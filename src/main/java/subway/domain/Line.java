@@ -44,4 +44,8 @@ public class Line {
     public boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public List<Station> getStations() {
+        return stations;
+    }
 }

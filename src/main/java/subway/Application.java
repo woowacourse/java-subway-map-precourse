@@ -14,7 +14,7 @@ public class Application {
     private static final String MAGNAGE_STATION = "1";
     private static final String MAGNAGE_LINE = "2";
     private static final String MAGNAGE_INTERVAL = "3";
-    private static final String PRINT_SUBWAY_MAP = "3";
+    private static final String PRINT_SUBWAY_MAP = "4";
     private static final String EXIT = "Q";
     private static final String INVALID = "INVALID";
 
@@ -100,7 +100,24 @@ public class Application {
             IntervalManager.start(scanner);
         }
         if (command.equals(PRINT_SUBWAY_MAP)) {
-            // printSubwayMap(scanner);
+            printSubwayMap(scanner);
+        }
+    }
+
+    private static void printSubwayMap(Scanner scanner) {
+        List<Line> lines = LineRepository.lines();
+        if (LineRepository.isEmpty()) {
+            System.out.println("\n[ERROR] 노선 목록이 비어 있다.\n");
+        }
+        System.out.println("\n## 지하철 노선도");
+        for (Line line : lines) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INRO] ---");
+            List<Station> stations = line.getStations();
+            for (Station station : stations) {
+                System.out.println("[INFO] " + station.getName());
+            }
+            System.out.println();
         }
     }
 }

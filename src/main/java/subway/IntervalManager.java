@@ -46,7 +46,7 @@ public class IntervalManager {
             System.out.println("\n[ERROR] 노선이 존재하지 않는다.");
             return;
         }
-        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
         String stationName = scanner.nextLine();
         if (!isInStationRepository(stationName)) {
             System.out.println("\n[ERROR] 등록되어 있지 않은 역이다.");
