@@ -2,6 +2,7 @@ package subway.domain.line;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,10 +14,11 @@ import subway.domain.station.Station;
 @DisplayName("지하철 노선 저장소(LineRepository)를 테스트 한다.")
 class LineRepositoryTest {
 
-    final String STATION_NAME = "test station1";
-    final Station upstreamStation = Station.from(STATION_NAME);
+    final String STATION_1_NAME = "test station1";
+    final Station upstreamStation = Station.from(STATION_1_NAME);
     final Station downstreamStation = Station.from("test station2");
-    final Line line = Line.of(STATION_NAME, upstreamStation, downstreamStation);
+    final int SIZE = 1;
+    final Line line = Line.of(STATION_1_NAME, upstreamStation, downstreamStation);
 
     @BeforeEach
     void before() {
@@ -42,17 +44,25 @@ class LineRepositoryTest {
 
         LineRepository.addLine(line);
 
-        final int EXPECT = 2;
+        final int EXPECT = SIZE + 1;
         assertEquals(LineRepository.lines().size(), EXPECT);
     }
 
     @DisplayName("지하철 노선 저장소에서 지하철 노선을 삭제할 수 있다.")
     @Test
     void deleteLine() {
-        LineRepository.deleteLineByName(STATION_NAME);
+        LineRepository.deleteLineByName(STATION_1_NAME);
 
-        final int EXPECT = 0;
+        final int EXPECT = SIZE - 1;
         assertEquals(LineRepository.lines().size(), EXPECT);
+    }
+
+    @DisplayName("지하철 노선 저장소에서 지하철 노선의 목록을 조회할 수 있다.")
+    @Test
+    void findAllLine() {
+        final List<Line> lines = LineRepository.lines();
+
+        assertEquals(lines.size(), SIZE);
     }
 
     @DisplayName("등록되지 않은 지하철 노선은 조회할 수 없다.")
@@ -66,7 +76,7 @@ class LineRepositoryTest {
     @DisplayName("지하철 노선 저장소에 존재하는 지하철 노선을 이름으로 조회할 수 있다.")
     @Test
     void findLineByName() {
-        final Line foundLine = LineRepository.findByName(STATION_NAME);
+        final Line foundLine = LineRepository.findByName(STATION_1_NAME);
 
         assertSame(foundLine, line);
     }
