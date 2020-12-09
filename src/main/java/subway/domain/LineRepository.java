@@ -8,6 +8,12 @@ import java.util.Objects;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
+    {
+        addLine(new Line("2호선"));
+        addLine(new Line("3호선"));
+        addLine(new Line("신분당선"));
+    }
+
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
