@@ -61,4 +61,8 @@ public class OutputView {
     public static void printInputRegisterLineDownStation() {
         System.out.println(NEW_LINE + "## 등록할 노선의 하행 종점역 이름을 입력하세요.");
     }
+
+    public static void printRegisteredLineMessage() {
+        System.out.println(NEW_LINE + "[INFO] 지하철 노선이 등록되었습니다.");
+    }
 }
