@@ -12,6 +12,7 @@ public class MainView {
 //        for (MainMenu menu : mainMenu) {
 //            System.out.println(menu.valueOf(menu.name()).getTitle());
 //        }
+        System.out.println();
         List<MainMenu> menu = Arrays.asList(mainMenu);
         menu.stream().map(MainMenu::getTitle).forEach(System.out::println);
         System.out.println();

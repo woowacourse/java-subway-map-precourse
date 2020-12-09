@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.StationRepository;
 import subway.enums.StationMenu;
 
 import java.util.Arrays;
@@ -28,5 +29,12 @@ public class StationView {
 
     public static void informStationDeleted() {
         System.out.println(StationMenu.INFO_STATION_DELETED.getTitle());
+    }
+
+    public static void printStationList() {
+        System.out.println(StationMenu.STATION_LIST.getTitle());
+        StationRepository.stations().stream()
+                .map(station -> StationMenu.INFO.getTitle() + station.getName())
+                .forEach(System.out::println);
     }
 }

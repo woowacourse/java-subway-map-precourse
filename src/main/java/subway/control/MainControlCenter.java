@@ -22,7 +22,6 @@ public class MainControlCenter {
     public void startMainControl(Scanner scanner) {
         while (true) {
             showMainMenu();
-            MainView.askInputMenu();
             String command = inputCommand(scanner);
             getViewByCommand(command, scanner);
         }
@@ -30,6 +29,7 @@ public class MainControlCenter {
 
     private void showMainMenu() {
         MainView.printMainMenu();
+        MainView.askInputMenu();
     }
 
     private void getViewByCommand(String command, Scanner scanner) {

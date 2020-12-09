@@ -19,8 +19,6 @@ public class StationControlCenter {
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
         selectMenu(command, scanner);
-
-        StationRepository.stations().stream().map(Station::getName).forEach(System.out::println);
     }
 
     private void selectMenu(String command, Scanner scanner) {
@@ -30,6 +28,10 @@ public class StationControlCenter {
         }
         if (command.equals(StationMenu.DELETE.getCommand())) {
             deleteStation(scanner);
+            return;
+        }
+        if (command.equals(StationMenu.CHECK.getCommand())) {
+            StationView.printStationList();
             return;
         }
     }

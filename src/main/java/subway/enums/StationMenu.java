@@ -7,11 +7,15 @@ public enum StationMenu {
     CHECK("3. 역 조회", "3"),
     BACK("B. 돌아가기", "B"),
 
+    INFO("[INFO] ", ""),
+
     ASK_STATION_NAME_TO_ENROLL("## 등록할 역 이름을 입력하세요.", ""),
-    INFO_STATION_ENROLLED("[INFO] 지하철 역이 등록되었습니다.", ""),
+    INFO_STATION_ENROLLED(INFO.getTitle() + "지하철 역이 등록되었습니다.", ""),
 
     ASK_STATION_NAME_TO_DELETE("## 삭제할 역 이름을 입력하세요.", ""),
-    INFO_STATION_DELETED("[INFO] 지하철 역이 삭제되었습니다.", "");
+    INFO_STATION_DELETED(INFO.getTitle() + "지하철 역이 삭제되었습니다.", ""),
+
+    STATION_LIST("## 역 목록", "");
 
     String title = "";
     String command = "";
