@@ -14,6 +14,7 @@ public enum StationQuestion {
     DELETE_STATION("2. 역 삭제", "2") {
         @Override
         public void nextAction(View view) {
+            view.deleteStation();
             view.mainView();
         }
     },

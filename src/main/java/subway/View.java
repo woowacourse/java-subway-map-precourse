@@ -50,4 +50,12 @@ public class View {
         StationRepository.addStation(new Station(inputView.getStation()));
         outputView.printRegisterStationSuccess();
     }
+
+    public void deleteStation() {
+        outputView.printDeleteStationQuestion();
+        if (!StationRepository.deleteStation(inputView.getStation())) {
+            throw new IllegalArgumentException("등록되지 않은 역입니다.");
+        }
+        outputView.printDeleteStationSuccess();
+    }
 }

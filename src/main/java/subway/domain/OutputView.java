@@ -10,6 +10,8 @@ public class OutputView {
     private final String SUBWAY_LINE_LIST_HEADER = "## 노선 목록";
     private final String REGISTER_STATION_QUESTION = "## 등록할 역 이름을 입력하세요.";
     private final String REGISTER_STATION_SUCCESS = "지하철 역이 등록되었습니다.";
+    private final String DELETE_STATION_QUESTION = "## 삭제할 역 이름을 입력하세요.";
+    private final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.";
     private final String DASH = "---";
     public OutputView() {
     }
@@ -20,6 +22,14 @@ public class OutputView {
 
     public void printRegisterStationSuccess() {
         printInfo(REGISTER_STATION_SUCCESS);
+    }
+
+    public void printDeleteStationQuestion() {
+        printLine(DELETE_STATION_QUESTION);
+    }
+
+    public void printDeleteStationSuccess() {
+        printInfo(DELETE_STATION_SUCCESS);
     }
 
     public void printSubwayLineList(List<Line> lineList) {
