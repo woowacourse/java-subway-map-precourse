@@ -25,13 +25,4 @@ public class Line {
         stations.add(index, station);
 //TODO catch (IndexOutOfBoundsException e) error handling
     }
-
-    public void printLine() {
-        System.out.println(getName());
-        getStations().forEach(this::printLine);
-    }
-
-    private void printLine(Station station) {
-        System.out.println(station.getName());
-    }
 }

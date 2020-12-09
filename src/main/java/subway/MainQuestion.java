@@ -25,7 +25,7 @@ public enum MainQuestion {
     PRINT_SUBWAY_ROUTE("4. 지하철 노선도 출력", "4") {
         @Override
         public void nextAction(View view) {
-            view.mainView();
+            view.printEntireSubwayLine();
         }
     },
     QUIT("Q. 종료", "Q") {

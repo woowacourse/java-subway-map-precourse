@@ -1,35 +1,41 @@
 package subway;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.OutputView;
+
 import java.util.Scanner;
 
 public class View {
-    private Scanner scanner;
+    InputView inputView;
+    OutputView outputView;
 
     public View(Scanner scanner) {
-        this.scanner = scanner;
+        inputView = new InputView(scanner);
+        outputView = new OutputView();
     }
 
     public void mainView() {
         MainQuestion.printQuestions();
-        String x = scanner.nextLine();
-        MainQuestion.findByAnswerCode(x).nextAction(this);
+        MainQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
     }
 
     public void stationView() {
         StationQuestion.printQuestions();
-        String x = scanner.nextLine();
-        StationQuestion.findByAnswerCode(x).nextAction(this);
+        StationQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
     }
 
     public void lineView() {
         LineQuestion.printQuestions();
-        String x = scanner.nextLine();
-        LineQuestion.findByAnswerCode(x).nextAction(this);
+        LineQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
     }
 
     public void sectionView() {
         SectionQuestion.printQuestions();
-        String x = scanner.nextLine();
-        SectionQuestion.findByAnswerCode(x).nextAction(this);
+        SectionQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
+    }
+
+    public void printEntireSubwayLine() {
+        outputView.printEntireSubwayLine(LineRepository.lines());
     }
 }
