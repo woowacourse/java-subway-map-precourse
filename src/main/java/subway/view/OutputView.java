@@ -27,4 +27,8 @@ public class OutputView {
     public static void printInputRegisterStation() {
         System.out.println(NEW_LINE + "## 등록할 역 이름을 입력하세요.");
     }
+
+    public static void printRegisteredStationMessage() {
+        System.out.println(NEW_LINE + "[INFO] 지하철 역이 등록되었습니다.");
+    }
 }
