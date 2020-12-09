@@ -14,6 +14,7 @@ public class SubwayManager {
             state = showStationScene(state, scanner);
             state = showLineScene(state, scanner);
             state = showSectionScene(state, scanner);
+            state = addStation(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -59,6 +60,15 @@ public class SubwayManager {
         }
 
         return state;
+    }
+
+    public State addStation(State state, Scanner scanner) {
+        if (state.equals(State.STATION_ADD)) {
+            OutputView.printInputStation();
+            addStation(InputView.inputStationName(scanner));
+        }
+
+        return State.MAIN_SCENE;
     }
 
     public void addStation(String name) {

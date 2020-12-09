@@ -5,6 +5,7 @@ import subway.domain.State;
 import java.util.Scanner;
 
 public class InputView {
+    private static final int NAME_LENGTH_MIN = 2;
     private static final String SCENE_FIRST = "1";
     private static final String SCENE_SECOND = "2";
     private static final String SCENE_THIRD = "3";
@@ -14,6 +15,7 @@ public class InputView {
     private static final String SCENE_BACK = "b";
     private static final String SCENE_BACK_UPPER = "B";
     private static final String INVALID_CHOICE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
+    private static final String INVALID_LENGTH_MESSAGE = "[ERROR] 이름은 두 글자 이상 이어야 합니다.";
 
     public static State inputMainSceneChoice(Scanner scanner) {
         return getMainSceneChoice(scanner.next());
@@ -32,7 +34,13 @@ public class InputView {
     }
 
     public static String inputStationName(Scanner scanner) {
-        return scanner.next();
+        String value = scanner.next();
+
+        if (value.length() < NAME_LENGTH_MIN) {
+            throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
+        }
+
+        return value;
     }
 
     public static String inputLineName(Scanner scanner) {
