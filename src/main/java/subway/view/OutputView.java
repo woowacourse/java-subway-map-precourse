@@ -2,8 +2,11 @@ package subway.view;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
+import java.util.List;
+
 public class OutputView {
     private static final String NEW_LINE = "\n";
+    private static final String INFORMATION = "[INFO] ";
 
     public static void printMainScene() {
         System.out.println(NEW_LINE + "## 메인 화면");
@@ -40,6 +43,12 @@ public class OutputView {
 
     public static void printRemovedStationMessage() {
         System.out.println(NEW_LINE + "[INFO] 지하철 역이 삭제되었습니다.");
+    }
+    
+    public static void printStationList(List<String> stationNames) {
+        System.out.println(NEW_LINE + "## 역 목록");
+
+        stationNames.forEach(name -> System.out.println(INFORMATION + name));
     }
 
     public static void printLineScene() {
