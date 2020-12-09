@@ -21,36 +21,44 @@ public class SubwayManager {
         if (state.equals(State.MAIN_SCENE)) {
             OutputView.printMainScene();
             OutputView.printChoiceFunction();
+
+            return InputView.inputMainSceneChoice(scanner);
         }
 
-        return InputView.inputMainSceneChoice(scanner);
+        return state;
     }
 
     public State showStationScene(State state, Scanner scanner) {
         if (state.equals(State.STATION_SCENE)) {
             OutputView.printStationManagementScene();
             OutputView.printChoiceFunction();
+
+            return InputView.inputStationSceneChoice(scanner);
         }
 
-        return InputView.inputStationSceneChoice(scanner);
+        return state;
     }
 
     public State showLineScene(State state, Scanner scanner) {
         if (state.equals(State.LINE_SCENE)) {
             OutputView.printLineScene();
             OutputView.printChoiceFunction();
+
+            return InputView.inputLineSceneChoice(scanner);
         }
 
-        return InputView.inputLineSceneChoice(scanner);
+        return state;
     }
 
     public State showSectionScene(State state, Scanner scanner) {
         if (state.equals(State.SECTION_SCENE)) {
             OutputView.printSectionScene();
             OutputView.printChoiceFunction();
+
+            return InputView.inputSectionSceneChoice(scanner);
         }
 
-        return InputView.inputSectionSceneChoice(scanner);
+        return state;
     }
 
     public void addStation(String name) {
