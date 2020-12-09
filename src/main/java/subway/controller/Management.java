@@ -12,27 +12,31 @@ import subway.view.OutputView;
  */
 public class Management {
 
-    private final OutputView outputView = new OutputView();
-    private final Scanner scanner;
     private final InputView inputView;
 
     public Management(Scanner scanner) {
-        this.scanner = scanner;
         inputView = new InputView(scanner);
     }
 
-    public void manageStation(String input) {
-        input = inputView.chooseLineOrStationMenu(input);
+    public void manageStation() {
+        OutputView.showStationMenu();
+        String input = inputView.inputValue();
+
         if (input.equals("1")) {
-            StationRepository.addStation(new Station(inputView.insertNewStation()));
-            outputView.doneInsertStation();
+            OutputView.guideInputStation();
+            StationRepository.addStation(new Station(inputView.inputValue()));
+            OutputView.doneInsertStation();
             return;
         }
         if (input.equals("2")) {
-
+            OutputView.guideRemoveStation();
+            StationRepository.deleteStation(inputView.inputValue());
+            OutputView.doneRemoveStation();
+            return;
         }
         if (input.equals("3")) {
-
+            OutputView.showStationList(StationRepository.stations());
+            return;
         }
         if (input.equals("B")) {
             return;
