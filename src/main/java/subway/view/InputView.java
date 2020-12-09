@@ -15,8 +15,12 @@ public class InputView {
     private static final String SCENE_BACK_UPPER = "B";
     private static final String INVALID_CHOICE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
 
-    public static State inputSceneChoice(Scanner scanner) {
+    public static State inputMainSceneChoice(Scanner scanner) {
         return getMainSceneChoice(scanner.next());
+    }
+
+    public static State inputStationSceneChoice(Scanner scanner) {
+        return getStationSceneMenu(scanner.next());
     }
 
     public static String inputStationName(Scanner scanner) {
@@ -50,6 +54,30 @@ public class InputView {
 
         if (value.equals(SCENE_FORTH)) {
             return State.MAP_SCENE;
+        }
+
+        throw new IllegalArgumentException(INVALID_CHOICE_MESSAGE);
+    }
+
+    private static State getStationSceneChoice(String value) {
+        if (value.equals(SCENE_BACK) || value.equals(SCENE_BACK_UPPER)) {
+            return State.BACK;
+        }
+
+        return getMainSceneMenu(value);
+    }
+
+    private static State getStationSceneMenu(String value) {
+        if (value.equals(SCENE_FIRST)) {
+            return State.STATION_ADD;
+        }
+
+        if (value.equals(SCENE_SECOND)) {
+            return State.STATION_REMOVE;
+        }
+
+        if (value.equals(SCENE_THIRD)) {
+            return State.STATION_INQUIRY;
         }
 
         throw new IllegalArgumentException(INVALID_CHOICE_MESSAGE);

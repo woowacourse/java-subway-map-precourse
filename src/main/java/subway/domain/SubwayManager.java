@@ -23,7 +23,7 @@ public class SubwayManager {
             OutputView.printChoiceFunction();
         }
 
-        return InputView.inputSceneChoice(scanner);
+        return InputView.inputMainSceneChoice(scanner);
     }
 
     public State showStationScene(State state, Scanner scanner) {
@@ -32,7 +32,7 @@ public class SubwayManager {
             OutputView.printChoiceFunction();
         }
 
-        return null;
+        return InputView.inputStationSceneChoice(scanner);
     }
 
     public State showLineScene(State state, Scanner scanner) {
