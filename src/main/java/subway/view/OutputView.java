@@ -99,15 +99,15 @@ public class OutputView {
     }
 
     public static void printInputLine() {
-        System.out.println("## 노선을 입력하세요.");
+        System.out.println(NEW_LINE + "## 노선을 입력하세요.");
     }
 
     public static void printInputStation() {
-        System.out.println("## 역이름을 입력하세요.");
+        System.out.println(NEW_LINE + "## 역이름을 입력하세요.");
     }
 
     public static void printInputOrder() {
-        System.out.println("## 순서를 입력하세요.");
+        System.out.println(NEW_LINE + "## 순서를 입력하세요.");
     }
 
     public static void printRegisteredSectionMessage() {
