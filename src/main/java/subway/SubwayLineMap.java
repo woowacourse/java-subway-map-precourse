@@ -17,20 +17,25 @@ public class SubwayLineMap {
         startMainLoop();
     }
 
-    public void startMainLoop(){
+    private void startMainLoop(){
         while(true){
             controllerState.printMain();
             String feature = scanner.next();
-            if(controllerState.isValidFeature(feature)){
+            if(!controllerState.isValidFeature(feature)){
                 continue;
             }
-            startFeature(feature);
+            boolean canQuit = startFeature(feature);
+            if(canQuit) return;
         }
     }
 
-    public void startFeature(String feature){
+    private boolean startFeature(String feature){
         int requiredInputNum = controllerState.getRequiredInputNum(feature);
+        if(isQuitable(feature)){
+            return true;
+        }
         startSpecificFunction(feature, requiredInputNum);
+        return false;
     }
 
     private void startSpecificFunction(String feature, int requiredInputNum){
@@ -41,9 +46,15 @@ public class SubwayLineMap {
                 input = scanner.next();
                 CommonView.printWhiteLine();
             }
-            controllerState.doFeature(feature, requiredInputNum, input);
+            controllerState.doFeature(feature, requiredInputNum, input, controllerState);
             requiredInputNumLeft--;
         }
     }
 
+    private boolean isQuitable(String input){
+        if(controllerState.equals(MainMenuControllerState.getMainController()) && input.equals("Q")){
+            return true;
+        }
+        return false;
+    }
 }
