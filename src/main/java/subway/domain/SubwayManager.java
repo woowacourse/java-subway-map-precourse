@@ -59,31 +59,31 @@ public class SubwayManager {
         OutputView.printRemovedSectionMessage();
     }
 
-    public Line findLineToRegister(String name) {
+    private Line findLineToRegister(String name) {
         OutputView.printInputLine();
 
         return LineRepository.findLineByName(name);
     }
-    
-    public Station findStationToRegister(String name) {
+
+    private Station findStationToRegister(String name) {
         OutputView.printInputStation();
 
         return StationRepository.findStationByName(name);
     }
 
-    public Line findLineToRemove(String name) {
+    private Line findLineToRemove(String name) {
         OutputView.printInputRemoveSectionLine();
 
         return LineRepository.findLineByName(name);
     }
 
-    public Station findStationToRemove(String name) {
+    private Station findStationToRemove(String name) {
         OutputView.printInputRemoveSectionStation();
 
         return StationRepository.findStationByName(name);
     }
 
-    public int getRegisterIndex(String index) {
+    private int getRegisterIndex(String index) {
         return Integer.parseInt(index);
     }
 
