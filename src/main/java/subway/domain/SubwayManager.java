@@ -50,7 +50,7 @@ public class SubwayManager {
             OutputView.printChoiceFunction();
         }
 
-        return null;
+        return InputView.inputSectionSceneChoice(scanner);
     }
 
     public void addStation(String name) {
