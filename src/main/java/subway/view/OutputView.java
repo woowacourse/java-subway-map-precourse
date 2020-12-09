@@ -65,4 +65,8 @@ public class OutputView {
     public static void printRegisteredLineMessage() {
         System.out.println(NEW_LINE + "[INFO] 지하철 노선이 등록되었습니다.");
     }
+
+    public static void printInputRemoveLine() {
+        System.out.println(NEW_LINE + "## 삭제할 노선 이름을 입력하세요.");
+    }
 }
