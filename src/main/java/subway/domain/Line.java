@@ -18,10 +18,4 @@ public class Line {
     public List<Station> getSection() {
         return section;
     }
-
-    public void addSection(Station station, int position) {
-        section.add(station);
-    }
-
-    // 추가 기능 구현
 }
