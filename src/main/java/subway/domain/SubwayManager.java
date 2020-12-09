@@ -22,6 +22,8 @@ public class SubwayManager {
             state = addLine(state, scanner);
             state = removeLine(state, scanner);
             state = inquiryLine(state);
+
+            state = registerSection(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -168,9 +170,28 @@ public class SubwayManager {
         return state;
     }
 
+    public State registerSection(State state, Scanner scanner) {
+        if (state.equals(State.SECTION_ADD)) {
+            registerSection(scanner);
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
+    }
+
     public void registerSection(Scanner scanner) {
-        findLineToRegister(
-                scanner.next()).addStation(findStationToRegister(scanner.next()), getRegisterIndex(scanner.next()));
+        OutputView.printInputLine();
+        Line line = findLineToRegister(InputView.inputLineName(scanner));
+
+        OutputView.printInputStation();
+        Station station = findStationToRegister(InputView.inputStationName(scanner));
+
+        OutputView.printInputOrder();
+        int index = InputView.inputStationIndex(scanner);
+
+        line.addStation(station, index);
+
         OutputView.printRegisteredSectionMessage();
     }
 
@@ -180,14 +201,10 @@ public class SubwayManager {
     }
 
     private Line findLineToRegister(String name) {
-        OutputView.printInputLine();
-
         return LineRepository.findLineByName(name);
     }
 
     private Station findStationToRegister(String name) {
-        OutputView.printInputStation();
-
         return StationRepository.findStationByName(name);
     }
 
@@ -201,10 +218,6 @@ public class SubwayManager {
         OutputView.printInputRemoveSectionStation();
 
         return StationRepository.findStationByName(name);
-    }
-
-    private int getRegisterIndex(String index) {
-        return Integer.parseInt(index);
     }
 
     public void inquirySubwayMap() {
