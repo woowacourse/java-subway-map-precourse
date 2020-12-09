@@ -2,15 +2,19 @@ package subway.enums;
 
 import java.util.Arrays;
 
-public enum MainViewInput {
-    stationView("1", "역 관리"), sineView("2", "노선 관리"), sectionView("3", "구간 관리"), showMap("4", "지하철 노선 출력"), Quit("Q", "종료");
+public enum MainInput {
+    stationView("1", "역 관리"), lineView("2", "노선 관리"), sectionView("3", "구간 관리"), showMap("4", "지하철 노선 출력"), Quit("Q", "종료");
 
     final private String inputValue;
     final private String feature;
 
-    private MainViewInput(String inputValue, String feature) {
+    private MainInput(String inputValue, String feature) {
         this.inputValue = inputValue;
         this.feature = feature;
+    }
+
+    public String getInputValue() {
+        return inputValue;
     }
 
     public String getMessage() {
@@ -18,11 +22,11 @@ public enum MainViewInput {
     }
 
     public static boolean isQuit(String mainViewInput) {
-        return MainViewInput.Quit.inputValue.equals(mainViewInput);
+        return MainInput.Quit.inputValue.equals(mainViewInput);
     }
 
     public static String validateInput(String mainViewInput) {
-        return Arrays.stream(MainViewInput.values())
+        return Arrays.stream(MainInput.values())
                 .filter(x -> x.inputValue.equals(mainViewInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new)
