@@ -29,6 +29,8 @@ public enum StationQuestion {
         }
     };
 
+    private static final String HEADER = "## 역 관리 화면";
+    private static final String ERROR_INVALID_CHOICE = "[ERROR], 선택할 수 없는 기능입니다.";
     private String question;
     private String answerCode;
 
@@ -43,12 +45,12 @@ public enum StationQuestion {
         return Arrays.stream(subway.StationQuestion.values()).map(StationQuestion::getQuestion);
     }
 
-    private String getQuestion(){
+    private String getQuestion() {
         return question;
     }
 
     public static void printQuestions() {
-        System.out.println("## 역 관리 화면");
+        System.out.println(HEADER);
         getQuestions().forEach(StationQuestion::printQuestion);
     }
 
@@ -60,7 +62,7 @@ public enum StationQuestion {
         return Arrays.stream(StationQuestion.values())
                 .filter(question -> question.hasAnswerCode(inputCode))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR], 선택할 수 없는 기능입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_CHOICE));
     }
 
     public boolean hasAnswerCode(String inputCode) {
