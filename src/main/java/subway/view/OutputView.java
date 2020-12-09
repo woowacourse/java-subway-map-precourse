@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.domain.Line;
+import subway.domain.Station;
 
 import java.util.List;
 
@@ -46,10 +47,10 @@ public class OutputView {
         System.out.println(NEW_LINE + "[INFO] 지하철 역이 삭제되었습니다.");
     }
     
-    public static void printStationList(List<String> stationNames) {
+    public static void printStationList(List<Station> stations) {
         System.out.println(NEW_LINE + "## 역 목록");
 
-        stationNames.forEach(name -> System.out.println(INFORMATION + name));
+        stations.forEach(station -> System.out.println(INFORMATION + station.getName()));
     }
 
     public static void printLineScene() {

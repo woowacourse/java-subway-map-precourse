@@ -12,4 +12,8 @@ public class SubwayManager {
         StationRepository.deleteStation(name);
         OutputView.printRemovedStationMessage();
     }
+
+    public void inquiryStation() {
+        OutputView.printStationList(StationRepository.stations());
+    }
 }
