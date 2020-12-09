@@ -5,6 +5,11 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class SubwayManager {
+    public void showMainScene() {
+        OutputView.printMainScene();
+        OutputView.printChoiceFunction();
+    }
+
     public void addStation(String name) {
         StationRepository.addStation(new Station(name));
         OutputView.printRegisteredStationMessage();
