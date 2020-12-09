@@ -95,4 +95,8 @@ public class OutputView {
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기");
     }
+
+    public static void printInputLine() {
+        System.out.println("## 노선을 입력하세요.");
+    }
 }
