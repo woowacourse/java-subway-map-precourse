@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.domain.line.exception.CannotFindLineByNameException;
 import subway.domain.line.exception.DuplicateLineNameException;
 import subway.domain.station.Station;
 
@@ -42,5 +43,25 @@ class LineRepositoryTest {
 
         final int EXPECT = 1;
         assertEquals(LineRepository.lines().size(), EXPECT);
+    }
+
+    @DisplayName("등록되지 않은 지하철 노선은 조회할 수 없다.")
+    @Test
+    void cannotFindLineByNameException() {
+        final String TARGET = "test";
+
+        assertThrows(CannotFindLineByNameException.class, () -> LineRepository.findByName(TARGET));
+    }
+
+    @DisplayName("지하철 노선 저장소에 존재하는 지하철 노선을 이름으로 조회할 수 있다.")
+    @Test
+    void findLineByName() {
+        final String NAME = "test";
+        final Line line = Line.of(NAME, upstreamStation, downstreamStation);
+        LineRepository.addLine(line);
+
+        final Line foundLine = LineRepository.findByName(NAME);
+
+        assertSame(foundLine, line);
     }
 }
