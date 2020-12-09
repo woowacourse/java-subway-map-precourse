@@ -73,12 +73,12 @@ public class OutputView {
         System.out.println(MENU_PREFIX + MENU_CATEGORY_CHOICE_MESSAGE);
     }
 
-    public void showLineMenu() {
+    public static void showLineMenu() {
         System.out.println(MENU_PREFIX + LINE_MENU_MESSAGE);
         System.out.println(MENU_PREFIX + MENU_CATEGORY_CHOICE_MESSAGE);
     }
 
-    public static void guideInputStation() {
+    public static void guideInsertStation() {
         System.out.println(MENU_PREFIX + INPUT_STATION_NAME_MESSAGE);
     }
 
@@ -99,15 +99,31 @@ public class OutputView {
         stations.forEach(station -> showInfoMessage(station.getName()));
     }
 
-    public void doneInsertLine() {
+    public static void guideInsertLine() {
+        System.out.println(MENU_PREFIX + INPUT_LINE_NAME_MESSAGE);
+    }
+
+    public static void guideStartStationOfLine(){
+        System.out.println(MENU_PREFIX + INPUT_LINE_START_STATION_NAME_MESSAGE);
+    }
+
+    public static void guideEndStationOfLine(){
+        System.out.println(MENU_PREFIX + INPUT_LINE_END_STATION_NAME_MESSAGE);
+    }
+
+    public static void doneInsertLine() {
         showInfoMessage(INPUT_LINE_CHECK_MESSAGE);
     }
 
-    public void doneRemoveLine() {
+    public static void guideRemoveLine() {
+        System.out.println(MENU_PREFIX + REMOVE_LINE_NAME_MESSAGE);
+    }
+
+    public static void doneRemoveLine() {
         showInfoMessage(REMOVE_LINE_CHECK_MESSAGE);
     }
 
-    public void showLineList(List<Line> lines) {
+    public static void showLineList(List<Line> lines) {
         System.out.println(INFORMATION_PREFIX + SHOW_LINE_LIST_MESSAGE);
         lines.forEach(line -> showInfoMessage(line.getName()));
     }

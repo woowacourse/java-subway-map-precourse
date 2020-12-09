@@ -1,6 +1,8 @@
 package subway.controller;
 
 import java.util.Scanner;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
@@ -23,7 +25,7 @@ public class Management {
         String input = inputView.inputValue();
 
         if (input.equals("1")) {
-            OutputView.guideInputStation();
+            OutputView.guideInsertStation();
             StationRepository.addStation(new Station(inputView.inputValue()));
             OutputView.doneInsertStation();
             return;
@@ -45,9 +47,37 @@ public class Management {
     }
 
     public void manageLine() {
+        OutputView.showLineMenu();
+        String input = inputView.inputValue();
+
+        if (input.equals("1")) {
+            OutputView.guideInsertLine();
+            Line line = new Line(inputView.inputValue());
+            LineRepository.addLine(line);
+            OutputView.guideStartStationOfLine();
+//            line.addSection(inputView.inputValue()); // Station 넘기는 함수 만들 예정
+            OutputView.guideEndStationOfLine();
+            OutputView.doneInsertLine();
+            return;
+        }
+        if (input.equals("2")) {
+            OutputView.guideRemoveLine();
+            LineRepository.deleteLineByName(inputView.inputValue());
+            OutputView.doneRemoveLine();
+            return;
+        }
+        if (input.equals("3")) {
+            OutputView.showLineList(LineRepository.lines());
+            return;
+        }
+        if (input.equals("B")) {
+            return;
+        }
+        throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
     public void mangeSection() {
+
     }
 
 }
