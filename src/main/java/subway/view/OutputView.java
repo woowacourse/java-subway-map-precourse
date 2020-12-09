@@ -1,5 +1,7 @@
 package subway.view;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 public class OutputView {
     private static final String NEW_LINE = "\n";
 
@@ -30,5 +32,9 @@ public class OutputView {
 
     public static void printRegisteredStationMessage() {
         System.out.println(NEW_LINE + "[INFO] 지하철 역이 등록되었습니다.");
+    }
+
+    public static void printInputRemoveStation() {
+        System.out.println(NEW_LINE + "## 삭제할 역 이름을 입력하세요.");
     }
 }
