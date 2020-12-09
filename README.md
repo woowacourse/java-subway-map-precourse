@@ -476,7 +476,6 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
 ### 지하철 역
 - 아는 것
     - 역 이름
-    - 지하철 노선(들) N:N 
 
 <br>
 
@@ -486,6 +485,7 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
 ### 지하철 역 저장소
 - 아는 것
     - 저장된 지하철 역
+    - 역&노선 (1:N)
 
 <br>
 
@@ -504,11 +504,20 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
     - 지하철 저장소 접근
     - 지하철 저장소 값 반환 
     
+### 역&노선
+- 아는 것
+    - 지하철 역 (N:1)
+    - 지하철 노선 (N:1)
+
+<br>
+
+- 하는 것
+
 
 ### 지하철 노선
 - 아는 것
     - 지하철 노선 이름
-    - 지하철 역(들) N:N
+    - 역&노선 (1:N)
 
 <br>
 
@@ -566,3 +575,6 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
     - 옵션 입력 받기
     - 서비스 진행
     
+<br>
+
+## 
