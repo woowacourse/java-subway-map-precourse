@@ -1,6 +1,5 @@
 package subway.domain;
 
-import jdk.internal.util.xml.impl.Input;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -11,24 +10,50 @@ public class SubwayManager {
         State state = State.MAIN_SCENE;
 
         do {
-            state = showMainScene(state, scanner);
-            state = showStationScene(state, scanner);
-            state = showLineScene(state, scanner);
-            state = showSectionScene(state, scanner);
-
-            state = addStation(state, scanner);
-            state = removeStation(state, scanner);
-            state = inquiryStation(state);
-
-            state = addLine(state, scanner);
-            state = removeLine(state, scanner);
-            state = inquiryLine(state);
-
-            state = registerSection(state, scanner);
-            state = removeSection(state, scanner);
-
-            state = inquirySubwayMap(state);
+            state = setSceneState(state, scanner);
+            state = setStationState(state, scanner);
+            state = setLineState(state, scanner);
+            state = setSectionState(state, scanner);
+            state = setMapState(state);
         } while (state != State.QUIT);
+    }
+
+    public State setSceneState(State state, Scanner scanner) {
+        state = showMainScene(state, scanner);
+        state = showStationScene(state, scanner);
+        state = showLineScene(state, scanner);
+        state = showSectionScene(state, scanner);
+
+        return state;
+    }
+
+    public State setStationState(State state, Scanner scanner) {
+        state = addStation(state, scanner);
+        state = removeStation(state, scanner);
+        state = inquiryStation(state);
+
+        return state;
+    }
+
+    public State setLineState(State state, Scanner scanner) {
+        state = addLine(state, scanner);
+        state = removeLine(state, scanner);
+        state = inquiryLine(state);
+
+        return state;
+    }
+
+    public State setSectionState(State state, Scanner scanner) {
+        state = registerSection(state, scanner);
+        state = removeSection(state, scanner);
+
+        return state;
+    }
+
+    public State setMapState(State state) {
+        state = inquirySubwayMap(state);
+
+        return state;
     }
 
     public State showMainScene(State state, Scanner scanner) {
