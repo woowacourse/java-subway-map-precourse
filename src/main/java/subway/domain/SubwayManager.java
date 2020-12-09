@@ -51,10 +51,12 @@ public class SubwayManager {
     public void registerSection(Scanner scanner) {
         findLineToRegister(
                 scanner.next()).addStation(findStationToRegister(scanner.next()), getRegisterIndex(scanner.next()));
+        OutputView.printRegisteredSectionMessage();
     }
 
     public void removeSection(Scanner scanner) {
         findLineToRemove(scanner.next()).deleteStation(findStationToRemove(scanner.next()).getName());
+        OutputView.printRemovedSectionMessage();
     }
 
     public Line findLineToRegister(String name) {
