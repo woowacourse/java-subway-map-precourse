@@ -16,7 +16,7 @@ public class SubwayManager {
             state = showSectionScene(state, scanner);
 
             state = addStation(state, scanner);
-            state = removeState(state, scanner);
+            state = removeStation(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -80,7 +80,7 @@ public class SubwayManager {
         OutputView.printRegisteredStationMessage();
     }
 
-    public State removeState(State state, Scanner scanner) {
+    public State removeStation(State state, Scanner scanner) {
         if (state.equals(State.STATION_REMOVE)) {
             OutputView.printInputRemoveStation();
             removeStation(InputView.inputStationName(scanner));
