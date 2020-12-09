@@ -37,4 +37,8 @@ public class OutputView {
     public static void printInputRemoveStation() {
         System.out.println(NEW_LINE + "## 삭제할 역 이름을 입력하세요.");
     }
+
+    public static void printRemovedStationMessage() {
+        System.out.println(NEW_LINE + "[INFO] 지하철 역이 삭제되었습니다.");
+    }
 }
