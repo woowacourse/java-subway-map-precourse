@@ -49,17 +49,18 @@ public class SubwayManager {
     }
 
     public void registerSection(Scanner scanner) {
-        findLineToRegister(
-                scanner.next()).addStation(findStationToRegister(scanner.next()), getRegisterIndex(scanner.next()));
+        findLine(scanner.next()).addStation(findStation(scanner.next()), getRegisterIndex(scanner.next()));
     }
 
-    public Line findLineToRegister(String name) {
+    public Line findLine(String name) {
         OutputView.printInputLine();
+
         return LineRepository.findLineByName(name);
     }
     
-    public Station findStationToRegister(String name) {
+    public Station findStation(String name) {
         OutputView.printInputStation();
+
         return StationRepository.findStationByName(name);
     }
 
