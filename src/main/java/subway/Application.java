@@ -97,7 +97,7 @@ public class Application {
             LineManager.start(scanner);
         }
         if (command.equals(MAGNAGE_INTERVAL)) {
-            // IntervalManager.start(scanner);
+            IntervalManager.start(scanner);
         }
         if (command.equals(PRINT_SUBWAY_MAP)) {
             // printSubwayMap(scanner);

@@ -27,4 +27,14 @@ public class LineRepository {
     public static boolean isEmpty() {
         return lines.size() == 0;
     }
+
+    public static Line getLineByName(String lineName) {
+        Line line = null;
+        for (Line temp : lines) {
+            if (temp.getName().equals(lineName)) {
+                line = temp;
+            }
+        }
+        return line;
+    }
 }
