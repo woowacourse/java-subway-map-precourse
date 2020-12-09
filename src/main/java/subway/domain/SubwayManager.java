@@ -14,7 +14,9 @@ public class SubwayManager {
             state = showStationScene(state, scanner);
             state = showLineScene(state, scanner);
             state = showSectionScene(state, scanner);
+
             state = addStation(state, scanner);
+            state = removeState(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -66,14 +68,27 @@ public class SubwayManager {
         if (state.equals(State.STATION_ADD)) {
             OutputView.printInputStation();
             addStation(InputView.inputStationName(scanner));
+
+            return State.MAIN_SCENE;
         }
 
-        return State.MAIN_SCENE;
+        return state;
     }
 
     public void addStation(String name) {
         StationRepository.addStation(new Station(name));
         OutputView.printRegisteredStationMessage();
+    }
+
+    public State removeState(State state, Scanner scanner) {
+        if (state.equals(State.STATION_REMOVE)) {
+            OutputView.printInputRemoveStation();
+            removeStation(InputView.inputStationName(scanner));
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
     }
 
     public void removeStation(String name) {
