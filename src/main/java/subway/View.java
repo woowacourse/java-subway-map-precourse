@@ -1,9 +1,6 @@
 package subway;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.OutputView;
-import subway.domain.StationRepository;
+import subway.domain.*;
 
 import java.util.Scanner;
 
@@ -42,5 +39,15 @@ public class View {
 
     public void printStationList() {
         outputView.printStationList(StationRepository.stations());
+    }
+
+    public void printSubwayLineList() {
+        outputView.printSubwayLineList(LineRepository.lines());
+    }
+
+    public void registerStation() {
+        outputView.printRegisterStationQuestion();
+        StationRepository.addStation(new Station(inputView.getStation()));
+        outputView.printRegisterStationSuccess();
     }
 }

@@ -7,6 +7,7 @@ public enum StationQuestion {
     REGISTER_STATION("1. 역 등록", "1") {
         @Override
         public void nextAction(View view) {
+            view.registerStation();
             view.mainView();
         }
     },

@@ -12,4 +12,8 @@ public class InputView {
     public String getAnswer() {
         return scanner.nextLine().strip();
     }
+
+    public String getStation() {
+        return scanner.nextLine().strip();
+    }
 }
