@@ -8,7 +8,7 @@ import java.util.Objects;
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
-    {
+    static {
         addStation(new Station("교대역"));
         addStation(new Station("강남역"));
         addStation(new Station("역삼역"));

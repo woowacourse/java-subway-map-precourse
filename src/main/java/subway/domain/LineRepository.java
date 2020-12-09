@@ -8,7 +8,7 @@ import java.util.Objects;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-    {
+    static {
         addLine(new Line("2호선"));
         addLine(new Line("3호선"));
         addLine(new Line("신분당선"));
