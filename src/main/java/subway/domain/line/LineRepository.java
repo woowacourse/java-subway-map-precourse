@@ -33,8 +33,8 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLineByName(String name) {
+        lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static void deleteAll() {
@@ -49,5 +49,10 @@ public class LineRepository {
     public static void addSection(String lineName, int indexToInsert, Station station) {
         Line line = findLineByName(lineName);
         line.addSection(indexToInsert, station);
+    }
+
+    public static void deleteSection(String lineName, Station station) {
+        Line line = findLineByName(lineName);
+        line.deleteSection(station);
     }
 }

@@ -79,6 +79,19 @@ class LineRepositoryTest {
         assertSame(findedLine.getStations().get(indexToInsert), station);
     }
 
+    @DisplayName("지하철 노선 저장소에서 노선에 등록된 역을 제거할 수 있다.")
+    @Test
+    void deleteSection() {
+        final int indexToInsert = 1;
+        final Station station = Station.from("inserted station");
+        LineRepository.addSection(LINE_NAME, indexToInsert, station);
+
+        LineRepository.deleteSection(LINE_NAME, downstreamStation);
+
+        Line findedLine = LineRepository.findLineByName(LINE_NAME);
+        assertEquals(findedLine.getStations().size(), STATION_SIZE);
+    }
+
     @DisplayName("등록되지 않은 지하철 노선은 조회할 수 없다.")
     @Test
     void cannotFindLineByNameException() {

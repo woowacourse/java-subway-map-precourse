@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import subway.domain.line.exception.CannotFindStationInLineException;
 import subway.domain.line.exception.ShorterThanMinLineNameException;
+import subway.domain.line.exception.ShorterThanMinLineStationsSizeException;
 import subway.domain.station.Station;
 
 public class Line {
 
     public static final int MIN_NAME_SIZE = 2;
+    public static final int MIN_STATIONS_SIZE = 2;
 
     private String name;
     private List<Station> stations;
@@ -33,6 +36,18 @@ public class Line {
 
     public void addSection(int indexToInsert, Station station) {
         stations.add(indexToInsert, station);
+    }
+
+    public void deleteSection(Station station) {
+        boolean isDeleted = stations.remove(station);
+
+        if (!isDeleted) {
+            throw new CannotFindStationInLineException(name, station.getName());
+        }
+
+        if (stations.size() < MIN_STATIONS_SIZE) {
+            throw new ShorterThanMinLineStationsSizeException(station.getName());
+        }
     }
 
     public String getName() {
