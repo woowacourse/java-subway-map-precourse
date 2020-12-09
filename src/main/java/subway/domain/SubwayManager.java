@@ -49,20 +49,21 @@ public class SubwayManager {
     }
 
     public void registerSection(Scanner scanner) {
-        findLine(scanner.next()).addStation(findStation(scanner.next()), getRegisterIndex(scanner.next()));
+        findLineToRegister(
+                scanner.next()).addStation(findStationToRegister(scanner.next()), getRegisterIndex(scanner.next()));
     }
 
     public void removeSection(Scanner scanner) {
         findLineToRemove(scanner.next()).deleteStation(findStationToRemove(scanner.next()).getName());
     }
 
-    public Line findLine(String name) {
+    public Line findLineToRegister(String name) {
         OutputView.printInputLine();
 
         return LineRepository.findLineByName(name);
     }
     
-    public Station findStation(String name) {
+    public Station findStationToRegister(String name) {
         OutputView.printInputStation();
 
         return StationRepository.findStationByName(name);
