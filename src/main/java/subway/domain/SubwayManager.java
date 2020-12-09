@@ -5,6 +5,14 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class SubwayManager {
+    public void startProgram() {
+        State state = State.MAIN_SCENE;
+
+        do {
+
+        } while (state != State.QUIT);
+    }
+
     public void showMainScene() {
         OutputView.printMainScene();
         OutputView.printChoiceFunction();
