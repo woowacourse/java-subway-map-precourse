@@ -18,6 +18,8 @@ public class SubwayManager {
             state = addStation(state, scanner);
             state = removeStation(state, scanner);
             state = inquiryStation(state);
+
+            state = addLine(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -100,6 +102,17 @@ public class SubwayManager {
     public State inquiryStation(State state) {
         if (state.equals(State.STATION_INQUIRY)) {
             OutputView.printStationList(StationRepository.stations());
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
+    }
+
+    public State addLine(State state, Scanner scanner) {
+        if (state.equals(State.LINE_ADD)) {
+            OutputView.printInputRegisterLine();
+            addLine(InputView.inputLineName(scanner), scanner);
 
             return State.MAIN_SCENE;
         }
