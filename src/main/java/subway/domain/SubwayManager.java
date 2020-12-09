@@ -26,4 +26,8 @@ public class SubwayManager {
         LineRepository.deleteLineByName(name);
         OutputView.printRemovedLineMessage();
     }
+    
+    public void inquiryLine() {
+        OutputView.printLineList(LineRepository.lines());
+    }
 }

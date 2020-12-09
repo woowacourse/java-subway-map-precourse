@@ -85,10 +85,10 @@ public class OutputView {
         System.out.println(NEW_LINE + "[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
-    public static void printLineList(List<String> lineNames) {
+    public static void printLineList(List<Line> lines) {
         System.out.println(NEW_LINE + "## 노선 목록");
 
-        lineNames.forEach(name -> System.out.println(INFORMATION + name));
+        lines.forEach(name -> System.out.println(INFORMATION + name.getName()));
     }
 
     public static void printSectionScene() {
