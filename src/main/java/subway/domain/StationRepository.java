@@ -28,4 +28,8 @@ public class StationRepository {
         }
         return null;
     }
+
+    public static void printStations() {
+        stations.forEach(Station::printStation);
+    }
 }
