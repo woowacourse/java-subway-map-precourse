@@ -53,4 +53,8 @@ public class OutputView {
     public static void printInputRegisterLine() {
         System.out.println(NEW_LINE + "## 등록할 노선 이름을 입력하세요.");
     }
+
+    public static void printInputRegisterLineUpStation() {
+        System.out.println(NEW_LINE + "## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+    }
 }
