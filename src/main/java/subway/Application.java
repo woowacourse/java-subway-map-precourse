@@ -16,6 +16,7 @@ public class Application {
     private static final String MAGNAGE_INTERVAL = "3";
     private static final String PRINT_SUBWAY_MAP = "3";
     private static final String EXIT = "Q";
+    private static final String INVALID = "INVALID";
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
@@ -23,14 +24,16 @@ public class Application {
         while (true) {
             showMainOptions();
             String command = getMainContolCommand(scanner);
-
+            if (command.equals(INVALID)) {
+                continue;
+            }
             if (command.equals(EXIT)) {
                 break;
             }
 
             initializeStationRepository();
             initializeLineRepository();
-            execute(command);
+            execute(command, scanner);
         }
     }
 
@@ -39,21 +42,20 @@ public class Application {
         System.out.println("1. 역 관리");
         System.out.println("2. 노선 관리");
         System.out.println("3. 구간 관리");
+        System.out.println("4. 지하철 노선도 출력");
         System.out.println("Q. 종료");
         System.out.println();
     }
 
     private static String getMainContolCommand(Scanner scanner) {
         List<String> commands = new ArrayList<>(Arrays.asList(MAGNAGE_STATION, MAGNAGE_LINE, MAGNAGE_INTERVAL, PRINT_SUBWAY_MAP, EXIT));
-        while (true) {
-            System.out.println("## 원하는 기능을 선택하세요.");
-            String userInput = scanner.nextLine();
-            System.out.println();
-            if (commands.contains(userInput)) {
-                return userInput;
-            }
-            System.out.println("[ERROR] 없는 기능입니다.\n");
+        System.out.println("## 원하는 기능을 선택하세요.");
+        String userInput = scanner.nextLine();
+        if (commands.contains(userInput)) {
+            return userInput;
         }
+        System.out.println("\n[ERROR] 없는 기능입니다.\n");
+        return INVALID;
     }
 
     private static void initializeLineRepository() {
@@ -68,6 +70,7 @@ public class Application {
         temp.addStation(new Station("남부터미널역"));
         temp.addStation(new Station("양재역"));
         temp.addStation(new Station("매봉역"));
+        LineRepository.addLine(temp);
 
         temp = new Line("신분당선");
         temp.addStation(new Station("강남역"));
@@ -86,18 +89,18 @@ public class Application {
         StationRepository.addStation(new Station("매봉역"));
     }
 
-    private static void execute(String command) {
+    private static void execute(String command, Scanner scanner) {
         if (command.equals(MAGNAGE_STATION)) {
-            // StationManager.start();
+            StationManager.start(scanner);
         }
         if (command.equals(MAGNAGE_LINE)) {
-            // LineManager.start();
+            // LineManager.start(scanner);
         }
         if (command.equals(MAGNAGE_INTERVAL)) {
-            // IntervalManager.start();
+            // IntervalManager.start(scanner);
         }
         if (command.equals(PRINT_SUBWAY_MAP)) {
-            // printSubwayMap();
+            // printSubwayMap(scanner);
         }
     }
 }
