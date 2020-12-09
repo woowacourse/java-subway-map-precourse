@@ -1,9 +1,13 @@
 package subway.domain;
 
 public class Station {
+    private static final int NAME_LENGTH_LOWER_BOUND = 2;
+
     private String name;
 
-    public Station(String name) {
+    public Station(String name) throws IllegalArgumentException {
+        validateDuplicate(name);
+        validateNameLength(name);
         this.name = name;
     }
 
@@ -13,15 +17,16 @@ public class Station {
                 .anyMatch(station -> station.equals(name));
     }
 
-    private void validateDuplicate(String name) {
+    private void validateDuplicate(String name) throws IllegalArgumentException {
         if (hasName(name)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateNameLength(String name) {
-        // under length 2
-
+    private void validateNameLength(String name) throws IllegalArgumentException {
+        if (name.length() < NAME_LENGTH_LOWER_BOUND) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getName() {
