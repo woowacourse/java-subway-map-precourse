@@ -17,6 +17,10 @@ public enum MainViewInput {
         return inputValue + ". " + feature;
     }
 
+    public static boolean isQuit(String mainViewInput) {
+        return MainViewInput.Quit.inputValue.equals(mainViewInput);
+    }
+
     public static String validateInput(String mainViewInput) {
         return Arrays.stream(MainViewInput.values())
                 .filter(x -> x.inputValue.equals(mainViewInput))

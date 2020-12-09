@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class InputView {
 
     private static final String newLine = "\n";
-    private final Scanner scanner;
+    private final Scanner SCANNER;
 
     public InputView(Scanner scanner) {
-        this.scanner = scanner;
+        this.SCANNER = scanner;
     }
 
-    public String mainInput() {
+    public String mainView() {
         System.out.println("## 메인 화면");
         for (MainViewInput mainViewInput : MainViewInput.values()) {
             System.out.println(mainViewInput.getMessage());
@@ -22,11 +22,15 @@ public class InputView {
         System.out.println(newLine + "## 원하는 기능을 선택하세요.");
 
         try {
-            return MainViewInput.validateInput(scanner.nextLine());
+            return MainViewInput.validateInput(SCANNER.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(newLine + "[ERROR] 입력이 잘못되었습니다." + newLine);
-            return mainInput();
+            return mainView();
         }
+    }
+
+    public String stationView() {
+        return "";
     }
 
 }
