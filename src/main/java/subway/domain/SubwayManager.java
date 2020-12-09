@@ -21,4 +21,9 @@ public class SubwayManager {
         LineRepository.addLine(new Line(name));
         OutputView.printRegisteredLineMessage();
     }
+
+    public void removeLine(String name) {
+        LineRepository.deleteLineByName(name);
+        OutputView.printRemovedLineMessage();
+    }
 }
