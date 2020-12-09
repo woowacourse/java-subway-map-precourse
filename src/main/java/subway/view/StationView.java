@@ -17,4 +17,8 @@ public class StationView {
     public static void printAskStationName() {
         System.out.println(StationMenu.ASK_STATION_NAME.getTitle());
     }
+
+    public static void informStationEnrolled() {
+        System.out.println(StationMenu.INFO_STATION_ENROLLED.getTitle());
+    }
 }

@@ -1,5 +1,7 @@
 package subway.control;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.enums.StationMenu;
 import subway.view.MainView;
 import subway.view.StationView;
@@ -28,6 +30,9 @@ public class StationControlCenter {
 
     private void enrollStation(Scanner scanner) {
         StationView.printAskStationName();
-        MainControlCenter.inputCommand(scanner);
+        String nameOfStation = MainControlCenter.inputCommand(scanner);
+        Station station = new Station(nameOfStation);
+        StationRepository.addStation(station);
+        StationView.informStationEnrolled();
     }
 }
