@@ -26,6 +26,8 @@ public class SubwayManager {
 
             state = registerSection(state, scanner);
             state = removeSection(state, scanner);
+
+            state = inquirySubwayMap(state);
         } while (state != State.QUIT);
     }
 
@@ -232,7 +234,13 @@ public class SubwayManager {
         return StationRepository.findStationByName(InputView.inputStationName(scanner));
     }
 
-    public void inquirySubwayMap() {
-        LineRepository.lines().forEach(OutputView::printSubwayMap);
+    public State inquirySubwayMap(State state) {
+        if (state.equals(State.MAP_SCENE)) {
+            LineRepository.lines().forEach(OutputView::printSubwayMap);
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
     }
 }
