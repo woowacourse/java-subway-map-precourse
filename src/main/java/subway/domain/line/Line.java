@@ -30,6 +30,10 @@ public class Line {
         return name;
     }
 
+    public boolean contains(Station target) {
+        return stations.contains(target);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.domain.line.LineRepository;
+import subway.domain.station.exception.CannotDeleteStationAlreadyAddedLineException;
 import subway.domain.station.exception.CannotFindStationByNameException;
 import subway.domain.station.exception.DuplicateStationNameException;
 
@@ -31,11 +33,16 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public static boolean deleteStationByName(String name) {
+        Station targetStation = findByName(name);
+        if (LineRepository.contains(targetStation)) {
+            throw new CannotDeleteStationAlreadyAddedLineException(name);
+        }
+
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static void deleteAll() {
+    public static void deleteAllStation() {
         stations.clear();
     }
 }

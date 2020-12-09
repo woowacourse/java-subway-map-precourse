@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Objects;
 import subway.domain.line.exception.CannotFindLineByNameException;
 import subway.domain.line.exception.DuplicateLineNameException;
+import subway.domain.station.Station;
 
 public class LineRepository {
+
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -37,5 +39,10 @@ public class LineRepository {
 
     public static void deleteAll() {
         lines.clear();
+    }
+
+    public static boolean contains(Station targetStation) {
+        return lines.stream()
+            .anyMatch(line -> line.contains(targetStation));
     }
 }
