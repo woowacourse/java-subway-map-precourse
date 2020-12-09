@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class View {
 	public static void printMainScreen() {
-		Arrays.stream(Main.values())
+		Arrays.stream(Base.values())
 				.limit(6)
 				.forEach(value -> System.out.println(value.getMessage()));
 	}

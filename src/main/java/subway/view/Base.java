@@ -1,6 +1,6 @@
 package subway.view;
 
-public enum Main {
+public enum Base {
 	MAIN_0(Logger.BASIC.getMessage() + "메인 화면 출력"),
 	MAIN_1(Numbering.ONE.getMessage() + "역 관리"),
 	MAIN_2(Numbering.TWO.getMessage() + "노선 관리"),
@@ -12,7 +12,7 @@ public enum Main {
 
 	final private String message;
 
-	Main(String message) {
+	Base(String message) {
 		this.message = message;
 	}
 
