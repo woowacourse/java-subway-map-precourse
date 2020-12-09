@@ -21,6 +21,7 @@ public class SubwayManager {
 
             state = addLine(state, scanner);
             state = removeLine(state, scanner);
+            state = inquiryLine(state);
         } while (state != State.QUIT);
     }
 
@@ -157,8 +158,14 @@ public class SubwayManager {
         OutputView.printRemovedLineMessage();
     }
     
-    public void inquiryLine() {
-        OutputView.printLineList(LineRepository.lines());
+    public State inquiryLine(State state) {
+        if (state.equals(State.LINE_INQUIRY)) {
+            OutputView.printLineList(LineRepository.lines());
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
     }
 
     public void registerSection(Scanner scanner) {

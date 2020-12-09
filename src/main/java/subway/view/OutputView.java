@@ -88,7 +88,7 @@ public class OutputView {
     public static void printLineList(List<Line> lines) {
         System.out.println(NEW_LINE + "## 노선 목록");
 
-        lines.forEach(name -> System.out.println(INFORMATION + name.getName()));
+        lines.forEach(line -> System.out.println(INFORMATION + line.getName()));
     }
 
     public static void printSectionScene() {
