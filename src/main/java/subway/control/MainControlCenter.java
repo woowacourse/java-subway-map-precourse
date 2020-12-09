@@ -20,10 +20,12 @@ public class MainControlCenter {
     }
 
     public void startMainControl(Scanner scanner) {
-        showMainMenu();
-        MainView.askInputMenu();
-        String command = inputCommand(scanner);
-        getViewByCommand(command, scanner);
+        while (true) {
+            showMainMenu();
+            MainView.askInputMenu();
+            String command = inputCommand(scanner);
+            getViewByCommand(command, scanner);
+        }
     }
 
     private void showMainMenu() {

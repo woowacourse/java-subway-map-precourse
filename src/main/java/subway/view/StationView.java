@@ -14,11 +14,19 @@ public class StationView {
         System.out.println();
     }
 
-    public static void printAskStationName() {
-        System.out.println(StationMenu.ASK_STATION_NAME.getTitle());
+    public static void printAskStationNameToEnroll() {
+        System.out.println(StationMenu.ASK_STATION_NAME_TO_ENROLL.getTitle());
     }
 
     public static void informStationEnrolled() {
         System.out.println(StationMenu.INFO_STATION_ENROLLED.getTitle());
+    }
+
+    public static void printAskStationNameToDelete() {
+        System.out.println(StationMenu.ASK_STATION_NAME_TO_DELETE.getTitle());
+    }
+
+    public static void informStationDeleted() {
+        System.out.println(StationMenu.INFO_STATION_DELETED.getTitle());
     }
 }
