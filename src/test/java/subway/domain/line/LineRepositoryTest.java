@@ -14,11 +14,12 @@ import subway.domain.station.Station;
 @DisplayName("지하철 노선 저장소(LineRepository)를 테스트 한다.")
 class LineRepositoryTest {
 
-    final String STATION_1_NAME = "test station1";
-    final Station upstreamStation = Station.from(STATION_1_NAME);
+    final String LINE_NAME = "test line";
+    final int LINE_SIZE = 1;
+    final Station upstreamStation = Station.from("test station1");
     final Station downstreamStation = Station.from("test station2");
-    final int SIZE = 1;
-    final Line line = Line.of(STATION_1_NAME, upstreamStation, downstreamStation);
+    final int STATION_SIZE = 2;
+    final Line line = Line.of(LINE_NAME, upstreamStation, downstreamStation);
 
     @BeforeEach
     void before() {
@@ -44,16 +45,16 @@ class LineRepositoryTest {
 
         LineRepository.addLine(line);
 
-        final int EXPECT = SIZE + 1;
+        final int EXPECT = LINE_SIZE + 1;
         assertEquals(LineRepository.lines().size(), EXPECT);
     }
 
     @DisplayName("지하철 노선 저장소에서 지하철 노선을 삭제할 수 있다.")
     @Test
     void deleteLine() {
-        LineRepository.deleteLineByName(STATION_1_NAME);
+        LineRepository.deleteLineByName(LINE_NAME);
 
-        final int EXPECT = SIZE - 1;
+        final int EXPECT = LINE_SIZE - 1;
         assertEquals(LineRepository.lines().size(), EXPECT);
     }
 
@@ -62,7 +63,20 @@ class LineRepositoryTest {
     void findAllLine() {
         final List<Line> lines = LineRepository.lines();
 
-        assertEquals(lines.size(), SIZE);
+        assertEquals(lines.size(), LINE_SIZE);
+    }
+
+    @DisplayName("지하철 노선 저장소에서 지하철 노선에 구간을 추가할 수 있다.")
+    @Test
+    void insertSection() {
+        final int indexToInsert = 1;
+        final Station station = Station.from("inserted station");
+
+        LineRepository.addSection(LINE_NAME, indexToInsert, station);
+
+        Line findedLine = LineRepository.findLineByName(LINE_NAME);
+        assertEquals(findedLine.getStations().size(), STATION_SIZE + 1);
+        assertSame(findedLine.getStations().get(indexToInsert), station);
     }
 
     @DisplayName("등록되지 않은 지하철 노선은 조회할 수 없다.")
@@ -76,7 +90,7 @@ class LineRepositoryTest {
     @DisplayName("지하철 노선 저장소에 존재하는 지하철 노선을 이름으로 조회할 수 있다.")
     @Test
     void findLineByName() {
-        final Line foundLine = LineRepository.findLineByName(STATION_1_NAME);
+        final Line foundLine = LineRepository.findLineByName(LINE_NAME);
 
         assertSame(foundLine, line);
     }

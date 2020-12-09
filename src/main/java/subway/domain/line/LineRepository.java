@@ -45,4 +45,9 @@ public class LineRepository {
         return lines.stream()
             .anyMatch(line -> line.contains(targetStation));
     }
+
+    public static void addSection(String lineName, int indexToInsert, Station station) {
+        Line line = findLineByName(lineName);
+        line.addSection(indexToInsert, station);
+    }
 }

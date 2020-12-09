@@ -1,5 +1,6 @@
 package subway.domain.line;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -23,15 +24,23 @@ public class Line {
             throw new ShorterThanMinLineNameException(name);
         }
 
-        return new Line(name, Arrays.asList(upstreamStation, downstreamStation));
+        return new Line(name, new ArrayList<>(Arrays.asList(upstreamStation, downstreamStation)));
+    }
+
+    public boolean contains(Station target) {
+        return stations.contains(target);
+    }
+
+    public void addSection(int indexToInsert, Station station) {
+        stations.add(indexToInsert, station);
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean contains(Station target) {
-        return stations.contains(target);
+    public List<Station> getStations() {
+        return stations;
     }
 
     @Override

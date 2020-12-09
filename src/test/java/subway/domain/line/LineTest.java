@@ -12,6 +12,7 @@ class LineTest {
 
     final Station upstreamStation = Station.from("test1");
     final Station downstreamStation = Station.from("test2");
+    final int SIZE = 2;
 
     @DisplayName("지하철 노선 이름은 2글자 이상이어야 한다.")
     @Test
@@ -29,5 +30,18 @@ class LineTest {
         final Line line = Line.of(name, upstreamStation, downstreamStation);
 
         assertNotNull(line);
+    }
+
+    @DisplayName("지하철 노선에 구간을 추가한다.")
+    @Test
+    void addSection() {
+        final String name = "test";
+        final Line line = Line.of(name, upstreamStation, downstreamStation);
+        final Station station = Station.from("inserted station");
+        final int indexToInsert = 1;
+        line.addSection(indexToInsert, station);
+
+        assertEquals(line.getStations().size(), SIZE + 1);
+        assertSame(line.getStations().get(indexToInsert), station);
     }
 }
