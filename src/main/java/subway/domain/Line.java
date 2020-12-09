@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Line {
     private String name;
-    private List<Station> stationList = new ArrayList<>();
+    private List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -16,6 +16,15 @@ public class Line {
     }
 
     public void addStation(Station station) {
-        stationList.add(station);
+        stations.add(station);
+    }
+
+    public boolean hasStation(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
