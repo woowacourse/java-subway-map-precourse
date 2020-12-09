@@ -20,6 +20,7 @@ public class SubwayManager {
             state = inquiryStation(state);
 
             state = addLine(state, scanner);
+            state = removeLine(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -138,6 +139,17 @@ public class SubwayManager {
     private void setLineDownStation(Line line, Scanner scanner) {
         OutputView.printInputRegisterLineDownStation();
         line.addStation(StationRepository.findStationByName(scanner.next()));
+    }
+    
+    public State removeLine(State state, Scanner scanner) {
+        if (state.equals(State.LINE_REMOVE)) {
+            OutputView.printInputRemoveLine();
+            removeLine(InputView.inputLineName(scanner));
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
     }
 
     public void removeLine(String name) {
