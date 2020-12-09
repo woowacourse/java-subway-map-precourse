@@ -41,7 +41,7 @@ public class SubwayManager {
             OutputView.printChoiceFunction();
         }
 
-        return null;
+        return InputView.inputLineSceneChoice(scanner);
     }
 
     public State showSectionScene(State state, Scanner scanner) {

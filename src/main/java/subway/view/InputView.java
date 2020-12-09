@@ -20,7 +20,11 @@ public class InputView {
     }
 
     public static State inputStationSceneChoice(Scanner scanner) {
-        return getStationSceneMenu(scanner.next());
+        return getStationSceneChoice(scanner.next());
+    }
+
+    public static State inputLineSceneChoice(Scanner scanner) {
+        return getLineSceneChoice(scanner.next());
     }
 
     public static String inputStationName(Scanner scanner) {
@@ -64,10 +68,34 @@ public class InputView {
             return State.BACK;
         }
 
-        return getMainSceneMenu(value);
+        return getStationSceneMenu(value);
     }
 
     private static State getStationSceneMenu(String value) {
+        if (value.equals(SCENE_FIRST)) {
+            return State.STATION_ADD;
+        }
+
+        if (value.equals(SCENE_SECOND)) {
+            return State.STATION_REMOVE;
+        }
+
+        if (value.equals(SCENE_THIRD)) {
+            return State.STATION_INQUIRY;
+        }
+
+        throw new IllegalArgumentException(INVALID_CHOICE_MESSAGE);
+    }
+
+    private static State getLineSceneChoice(String value) {
+        if (value.equals(SCENE_BACK) || value.equals(SCENE_BACK_UPPER)) {
+            return State.BACK;
+        }
+
+        return getLineSceneMenu(value);
+    }
+
+    private static State getLineSceneMenu(String value) {
         if (value.equals(SCENE_FIRST)) {
             return State.STATION_ADD;
         }
