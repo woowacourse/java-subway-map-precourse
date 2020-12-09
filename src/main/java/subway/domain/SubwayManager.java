@@ -22,21 +22,21 @@ public class SubwayManager {
     public void addLine(String name, Scanner scanner) {
         Line line = new Line(name);
 
-        OutputView.printInputRegisterLineUpStation();
-        line.addStation(StationRepository.findStationByName(scanner.next()));
-        OutputView.printInputRegisterLineDownStation();
-        line.addStation(StationRepository.findStationByName(scanner.next()));
+        setLineUpStation(line, scanner);
+        setLineDownStation(line, scanner);
 
         LineRepository.addLine(line);
         OutputView.printRegisteredLineMessage();
     }
 
-    private void setLineUpStation() {
-
+    private void setLineUpStation(Line line, Scanner scanner) {
+        OutputView.printInputRegisterLineUpStation();
+        line.addStation(StationRepository.findStationByName(scanner.next()));
     }
 
-    private void setLineDownStation() {
-
+    private void setLineDownStation(Line line, Scanner scanner) {
+        OutputView.printInputRegisterLineDownStation();
+        line.addStation(StationRepository.findStationByName(scanner.next()));
     }
 
     public void removeLine(String name) {
