@@ -2,11 +2,11 @@ package subway;
 
 import java.util.Scanner;
 import subway.controller.ControllerState;
-import subway.controller.MainControllerState;
+import subway.controller.MainMenuControllerState;
 import subway.view.CommonView;
 
 public class SubwayLineMap {
-    private ControllerState controllerState = MainControllerState.getMainController();
+    private ControllerState controllerState = MainMenuControllerState.getMainController();
     private Scanner scanner;
 
     public SubwayLineMap(Scanner scanner){
@@ -14,18 +14,26 @@ public class SubwayLineMap {
     }
 
     public void run(){
+        startMainLoop();
+    }
+
+    public void startMainLoop(){
         while(true){
             controllerState.printMain();
             String feature = scanner.next();
             if(controllerState.isValidFeature(feature)){
                 continue;
             }
-            int requiredInputNum = controllerState.getRequiredInputNum(feature);
-            startFunction(feature, requiredInputNum);
+            startFeature(feature);
         }
     }
 
-    public void startFunction(String feature, int requiredInputNum){
+    public void startFeature(String feature){
+        int requiredInputNum = controllerState.getRequiredInputNum(feature);
+        startSpecificFunction(feature, requiredInputNum);
+    }
+
+    public void startSpecificFunction(String feature, int requiredInputNum){
         int requiredInputNumLeft = requiredInputNum;
         while(requiredInputNumLeft >= 0){
             String input = "";

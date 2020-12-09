@@ -1,6 +1,6 @@
 package subway.view;
 
-public class MainView {
+public class MainMenuView {
     private static final String mainView = "## 메인 화면\n" +
             "1. 역 관리\n" +
             "2. 노선 관리\n" +
