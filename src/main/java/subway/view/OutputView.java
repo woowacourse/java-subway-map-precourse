@@ -63,7 +63,7 @@ public class OutputView {
         return message;
     }
 
-    public void showMainMenu() {
+    public static void showMainMenu() {
         System.out.println(MENU_PREFIX + MAIN_MENU_MESSAGE);
         System.out.println(MENU_PREFIX + MENU_CATEGORY_CHOICE_MESSAGE);
     }
@@ -112,15 +112,15 @@ public class OutputView {
         lines.forEach(line -> showInfoMessage(line.getName()));
     }
 
-    public void showSection(Line line) {
+    public static void showSection(Line line) {
         showInfoMessage(line.getName());
         showInfoMessage(SECTION_LINE);
         showStationList(line.getSection());
         System.out.println();
     }
 
-    public void showSubwayLineMap() {
-        LineRepository.lines().forEach(this::showSection);
+    public static void showSubwayLineMap() {
+        LineRepository.lines().forEach(OutputView::showSection);
     }
 
 }
