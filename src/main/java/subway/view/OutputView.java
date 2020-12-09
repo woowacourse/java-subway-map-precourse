@@ -17,4 +17,9 @@ public class OutputView {
 		Arrays.stream(LineScreen.values())
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
+
+	public static void printSectionScreen() {
+		Arrays.stream(SectionScreen.values())
+				.forEach(value -> System.out.println(value.getMessage()));
+	}
 }
