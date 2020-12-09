@@ -6,14 +6,20 @@ import subway.view.MainMenuView;
 import java.util.*;
 
 public class MainMenuControllerState extends ControllerState {
+    private static final String BTN_STATION_MANAGEMENT = "1";
+    private static final String BTN_LINE_MANAGEMENT = "2";
+    private static final String BTN_SECTION_MANAGEMENT = "3";
+    private static final String BTN_PRINT_SUBWAY_LINEMAP = "4";
+    private static final String BTN_QUIT = "Q";
+
     private static MainMenuControllerState mainController;
 
     private MainMenuControllerState(){
-        featureRequiredInputNumMap.put("1", 0);
-        featureRequiredInputNumMap.put("2", 0);
-        featureRequiredInputNumMap.put("3", 0);
-        featureRequiredInputNumMap.put("4", 0);
-        featureRequiredInputNumMap.put("Q", 0);
+        featureRequiredInputNumMap.put(BTN_STATION_MANAGEMENT, 0);
+        featureRequiredInputNumMap.put(BTN_LINE_MANAGEMENT, 0);
+        featureRequiredInputNumMap.put(BTN_SECTION_MANAGEMENT, 0);
+        featureRequiredInputNumMap.put(BTN_PRINT_SUBWAY_LINEMAP, 0);
+        featureRequiredInputNumMap.put(BTN_QUIT, 0);
     }
 
     public static synchronized MainMenuControllerState getMainController(){
