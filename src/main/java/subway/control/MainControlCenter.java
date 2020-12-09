@@ -1,26 +1,38 @@
 package subway.control;
 
+import subway.domain.Station;
+import subway.enums.MainMenu;
 import subway.view.MainView;
-import subway.view.StationView;
 
 import java.util.Scanner;
 
 public class MainControlCenter {
 
-    public MainControlCenter() {
+    StationControlCenter stationControlCenter;
 
+    public MainControlCenter() {
+        stationControlCenter = new StationControlCenter();
     }
 
     public void startMainControl(Scanner scanner) {
         showMainMenu();
-        StationView.printStationMenu();
+        String command = inputCommand(scanner);
+        getViewByCommand(command);
     }
 
-    public void showMainMenu() {
-        MainView mainView = new MainView();
-        mainView.printMainMenu();
+    private void showMainMenu() {
+        MainView.printMainMenu();
     }
 
+    private String inputCommand(Scanner scanner) {
+        MainView.askInputMenu();
+        return scanner.nextLine();
+    }
 
-
+    private void getViewByCommand(String command) {
+        if (command.equals(MainMenu.STATION_CONTROL.getCommand())) {
+            stationControlCenter.startStationControl();
+            return;
+        }
+    }
 }
