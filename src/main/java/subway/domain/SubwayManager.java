@@ -47,4 +47,9 @@ public class SubwayManager {
     public void inquiryLine() {
         OutputView.printLineList(LineRepository.lines());
     }
+
+    public Line findLineToRegister(String name) {
+        OutputView.printInputLine();
+        return LineRepository.findLineByName(name);
+    }
 }
