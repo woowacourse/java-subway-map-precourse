@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.domain.station.exception.CannotFindStationByNameException;
 import subway.domain.station.exception.DuplicateStationNameException;
 
 public class StationRepository {
@@ -11,6 +12,15 @@ public class StationRepository {
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
+    }
+
+    public static Station findByName(String name) {
+        return stations.stream()
+            .filter(station -> station.getName().equals(name))
+            .findAny()
+            .orElseThrow(() -> {
+                throw new CannotFindStationByNameException(name);
+            });
     }
 
     public static void addStation(Station station) {
