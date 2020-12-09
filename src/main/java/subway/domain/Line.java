@@ -25,4 +25,8 @@ public class Line {
     public void addStation(Station station) {
         stations.add(station);
     }
+
+    public void addStation(Station station, int index) {
+        stations.add(index, station);
+    }
 }

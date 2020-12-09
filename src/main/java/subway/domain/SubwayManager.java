@@ -48,6 +48,11 @@ public class SubwayManager {
         OutputView.printLineList(LineRepository.lines());
     }
 
+    public void registerSection(Scanner scanner) {
+        findLineToRegister(
+                scanner.next()).addStation(findStationToRegister(scanner.next()), getRegisterIndex(scanner.next()));
+    }
+
     public Line findLineToRegister(String name) {
         OutputView.printInputLine();
         return LineRepository.findLineByName(name);
@@ -56,5 +61,9 @@ public class SubwayManager {
     public Station findStationToRegister(String name) {
         OutputView.printInputStation();
         return StationRepository.findStationByName(name);
+    }
+
+    public int getRegisterIndex(String index) {
+        return Integer.parseInt(index);
     }
 }
