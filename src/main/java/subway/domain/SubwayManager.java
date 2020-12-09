@@ -20,6 +20,11 @@ public class SubwayManager {
         OutputView.printChoiceFunction();
     }
 
+    public void showSectionScene() {
+        OutputView.printSectionScene();
+        OutputView.printChoiceFunction();
+    }
+
     public void addStation(String name) {
         StationRepository.addStation(new Station(name));
         OutputView.printRegisteredStationMessage();
