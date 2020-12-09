@@ -33,7 +33,7 @@ public class SubwayLineMap {
         startSpecificFunction(feature, requiredInputNum);
     }
 
-    public void startSpecificFunction(String feature, int requiredInputNum){
+    private void startSpecificFunction(String feature, int requiredInputNum){
         int requiredInputNumLeft = requiredInputNum;
         while(requiredInputNumLeft >= 0){
             String input = "";
