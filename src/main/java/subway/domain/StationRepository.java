@@ -23,4 +23,8 @@ public class StationRepository {
     public static boolean isEmpty() {
         return stations.size() == 0;
     }
+
+    public static boolean contains(String stationName) {
+        return stations.stream().map(Station::getName).anyMatch(x -> x.equals(stationName));
+    }
 }

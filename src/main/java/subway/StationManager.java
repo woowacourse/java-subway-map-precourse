@@ -104,14 +104,6 @@ public class StationManager {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
 
-    private static boolean isNewName(String stationName) {
-        List<String> stationNames = StationRepository.stations().stream().map(Station::getName).collect(Collectors.toList());
-        if (stationNames.contains(stationName)) {
-            return false;
-        }
-        return true;
-    }
-
     private static boolean isLongEnough(String stationName) {
         return stationName.length() >= MINIMUM_LEGNTH;
     }
