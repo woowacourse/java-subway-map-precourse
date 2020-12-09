@@ -69,7 +69,7 @@ public class InputView {
 
     private static State getStationSceneChoice(String value) {
         if (value.equals(SCENE_BACK) || value.equals(SCENE_BACK_UPPER)) {
-            return State.BACK;
+            return State.MAIN_SCENE;
         }
 
         return getStationSceneMenu(value);
@@ -93,7 +93,7 @@ public class InputView {
 
     private static State getLineSceneChoice(String value) {
         if (value.equals(SCENE_BACK) || value.equals(SCENE_BACK_UPPER)) {
-            return State.BACK;
+            return State.MAIN_SCENE;
         }
 
         return getLineSceneMenu(value);
@@ -117,7 +117,7 @@ public class InputView {
 
     private static State getSectionSceneChoice(String value) {
         if (value.equals(SCENE_BACK) || value.equals(SCENE_BACK_UPPER)) {
-            return State.BACK;
+            return State.MAIN_SCENE;
         }
 
         return getSectionSceneMenu(value);
