@@ -1,12 +1,9 @@
 package subway.controller;
 
-import subway.view.InputView;
-import subway.view.OutputView;
-
-import java.util.Scanner;
+import subway.view.View;
 
 public class SectionController {
 	public static void showSectionScreen() {
-		OutputView.printSectionScreen();
+		View.printSectionScreen();
 	}
 }

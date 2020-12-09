@@ -1,25 +1,35 @@
 package subway.view;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class OutputView {
+public class View {
 	public static void printMainScreen() {
-		Arrays.stream(MainScreen.values())
+		Arrays.stream(Main.values())
+				.limit(6)
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
 	public static void printStationScreen() {
-		Arrays.stream(StationScreen.values())
+		Arrays.stream(Station.values())
+				.limit(5)
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
+	public static String getStationInput(Scanner scanner) {
+		System.out.println(Station.REGISTER_MESSAGE.getMessage());
+		return scanner.nextLine();
+	}
+
 	public static void printLineScreen() {
-		Arrays.stream(LineScreen.values())
+		Arrays.stream(Line.values())
+				.limit(5)
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
 	public static void printSectionScreen() {
-		Arrays.stream(SectionScreen.values())
+		Arrays.stream(Section.values())
+				.limit(4)
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 }
