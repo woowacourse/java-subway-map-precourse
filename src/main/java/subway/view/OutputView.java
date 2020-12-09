@@ -99,4 +99,8 @@ public class OutputView {
     public static void printInputLine() {
         System.out.println("## 노선을 입력하세요.");
     }
+
+    public static void printInputStation() {
+        System.out.println("## 역이름을 입력하세요.");
+    }
 }
