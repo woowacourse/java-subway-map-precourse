@@ -19,4 +19,8 @@ public class OutputView {
         System.out.println("3. 역 조회");
         System.out.println("B. 돌아가기");
     }
+
+    public static void printChoiceFunction() {
+        System.out.println(NEW_LINE + "## 원하는 기능을 선택하세요.");
+    }
 }
