@@ -8,8 +8,14 @@ import java.util.Scanner;
 
 public class StationController {
 	private static void createStation(Scanner scanner) {
-		String name = View.getStationInput(scanner);
+		String name = View.getStationRegisterInput(scanner);
 		StationRepository.addStation(new Station(name));
 		View.printStationRegisterCompletion();
+	}
+
+	private static void deleteStation(Scanner scanner) {
+		String name = View.getStationDeleteInput(scanner);
+		StationRepository.deleteStation(name);
+		View.printStationDeleteCompletion();
 	}
 }

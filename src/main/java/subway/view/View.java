@@ -16,13 +16,22 @@ public class View {
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
-	public static String getStationInput(Scanner scanner) {
+	public static String getStationRegisterInput(Scanner scanner) {
 		System.out.println(Station.REGISTER_MESSAGE.getMessage());
+		return scanner.nextLine();
+	}
+
+	public static String getStationDeleteInput(Scanner scanner) {
+		System.out.println(Station.DELETE_MESSAGE.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static void printStationRegisterCompletion() {
 		System.out.println(Station.REGISTER_COMPLETE_MESSAGE);
+	}
+
+	public static void printStationDeleteCompletion() {
+		System.out.println(Station.REGISTER_DELETE_MESSAGE);
 	}
 
 	public static void printLineScreen() {
