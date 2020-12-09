@@ -1,36 +1,56 @@
 package subway.domain;
 
+import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
 public class SubwayManager {
-    public void startProgram() {
+    public void startProgram(Scanner scanner) {
         State state = State.MAIN_SCENE;
 
         do {
-
+            state = showMainScene(state, scanner);
+            state = showStationScene(state, scanner);
+            state = showLineScene(state, scanner);
+            state = showSectionScene(state, scanner);
         } while (state != State.QUIT);
     }
 
-    public void showMainScene() {
-        OutputView.printMainScene();
-        OutputView.printChoiceFunction();
+    public State showMainScene(State state, Scanner scanner) {
+        if (state.equals(State.MAIN_SCENE)) {
+            OutputView.printMainScene();
+            OutputView.printChoiceFunction();
+        }
+
+        return InputView.inputSceneChoice(scanner);
     }
 
-    public void showStationScene() {
-        OutputView.printStationManagementScene();
-        OutputView.printChoiceFunction();
+    public State showStationScene(State state, Scanner scanner) {
+        if (state.equals(State.STATION_SCENE)) {
+            OutputView.printStationManagementScene();
+            OutputView.printChoiceFunction();
+        }
+
+        return null;
     }
 
-    public void showLineScene() {
-        OutputView.printLineScene();
-        OutputView.printChoiceFunction();
+    public State showLineScene(State state, Scanner scanner) {
+        if (state.equals(State.LINE_SCENE)) {
+            OutputView.printLineScene();
+            OutputView.printChoiceFunction();
+        }
+
+        return null;
     }
 
-    public void showSectionScene() {
-        OutputView.printSectionScene();
-        OutputView.printChoiceFunction();
+    public State showSectionScene(State state, Scanner scanner) {
+        if (state.equals(State.SECTION_SCENE)) {
+            OutputView.printSectionScene();
+            OutputView.printChoiceFunction();
+        }
+
+        return null;
     }
 
     public void addStation(String name) {

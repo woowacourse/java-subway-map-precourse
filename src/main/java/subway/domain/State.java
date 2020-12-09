@@ -1,6 +1,7 @@
 package subway.domain;
 
 public enum State {
+    BACK(-2),
     QUIT(-1),
     MAIN_SCENE(0),
     STATION_SCENE(1),
