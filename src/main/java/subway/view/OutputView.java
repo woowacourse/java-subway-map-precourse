@@ -115,4 +115,8 @@ public class OutputView {
     public static void printInputRemoveSectionLine() {
         System.out.println(NEW_LINE + "## 삭제할 구간의 노선을 입력하세요.");
     }
+
+    public static void printInputRemoveSectionStation() {
+        System.out.println(NEW_LINE + "## 삭제할 구간의 역을 입력하세요.");
+    }
 }
