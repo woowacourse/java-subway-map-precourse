@@ -10,5 +10,6 @@ public class StationController {
 	private static void createStation(Scanner scanner) {
 		String name = View.getStationInput(scanner);
 		StationRepository.addStation(new Station(name));
+		View.printStationRegisterCompletion();
 	}
 }

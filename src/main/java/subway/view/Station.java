@@ -7,7 +7,8 @@ public enum Station {
 	STATION_3(Numbering.THREE.getMessage() + "역 조회"),
 	STATION_B(Numbering.BACK.getMessage() + "돌아가기"),
 
-	REGISTER_MESSAGE(Logger.BASIC.getMessage() + "등록할 역 이름을 입력하세요.");
+	REGISTER_MESSAGE(Logger.BASIC.getMessage() + "등록할 역 이름을 입력하세요."),
+	REGISTER_COMPLETE_MESSAGE(Logger.INFO.getMessage() + "지하철 역이 등록되었습니다."),
 
 	final private String message;
 

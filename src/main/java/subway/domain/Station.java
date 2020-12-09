@@ -14,7 +14,7 @@ public class Station {
     private boolean hasName(String name) {
         return StationRepository.stations().stream()
                 .map(Station::getName)
-                .anyMatch(station -> station.equals(name));
+                .anyMatch(stationName -> stationName.equals(name));
     }
 
     private void validateDuplicate(String name) throws IllegalArgumentException {

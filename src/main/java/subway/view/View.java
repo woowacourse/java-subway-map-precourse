@@ -21,6 +21,10 @@ public class View {
 		return scanner.nextLine();
 	}
 
+	public static void printStationRegisterCompletion() {
+		System.out.println(Station.REGISTER_COMPLETE_MESSAGE);
+	}
+
 	public static void printLineScreen() {
 		Arrays.stream(Line.values())
 				.limit(5)
