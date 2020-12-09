@@ -2,6 +2,8 @@ package subway.domain;
 
 import subway.view.OutputView;
 
+import java.util.Scanner;
+
 public class SubwayManager {
     public void addStation(String name) {
         StationRepository.addStation(new Station(name));
@@ -17,9 +19,24 @@ public class SubwayManager {
         OutputView.printStationList(StationRepository.stations());
     }
 
-    public void addLine(String name) {
-        LineRepository.addLine(new Line(name));
+    public void addLine(String name, Scanner scanner) {
+        Line line = new Line(name);
+
+        OutputView.printInputRegisterLineUpStation();
+        line.addStation(StationRepository.findStationByName(scanner.next()));
+        OutputView.printInputRegisterLineDownStation();
+        line.addStation(StationRepository.findStationByName(scanner.next()));
+
+        LineRepository.addLine(line);
         OutputView.printRegisteredLineMessage();
+    }
+
+    private void setLineUpStation() {
+
+    }
+
+    private void setLineDownStation() {
+
     }
 
     public void removeLine(String name) {
