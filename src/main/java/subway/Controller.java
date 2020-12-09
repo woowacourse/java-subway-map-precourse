@@ -17,9 +17,10 @@ public class Controller {
     public void run() {
         InputView inputView = new InputView(SCANNER);
 
-        while (!MainViewInput.isQuit(mainViewInput)) {
-            moveViewTo(inputView.mainView());
-        };
+        do {
+            mainViewInput = inputView.mainView();
+            moveViewTo(mainViewInput);
+        } while (!MainViewInput.isQuit(mainViewInput));
     }
 
     private void moveViewTo(String inputValue) {
