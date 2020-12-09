@@ -2,6 +2,7 @@ package subway.domain.line;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import subway.domain.line.exception.ShorterThanMinLineNameException;
 import subway.domain.station.Station;
 
@@ -27,5 +28,22 @@ public class Line {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Line line = (Line) o;
+        return Objects.equals(name, line.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
