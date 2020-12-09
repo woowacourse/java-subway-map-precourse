@@ -1,16 +1,16 @@
 package subway.domain;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
     private String name;
-    private List<Station> stations = new LinkedList<>();
+    private List<Station> stations;
 
-    public Line(String name, Station start, Station end) {
+    public Line(String name, Station... stations) {
         this.name = name;
-        this.stations.add(start);
-        this.stations.add(end);
+        this.stations = new LinkedList<>(Arrays.asList(stations));
     }
 
     public String getName() {
