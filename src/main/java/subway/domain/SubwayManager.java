@@ -52,4 +52,9 @@ public class SubwayManager {
         OutputView.printInputLine();
         return LineRepository.findLineByName(name);
     }
+    
+    public Station findStationToRegister(String name) {
+        OutputView.printInputStation();
+        return StationRepository.findStationByName(name);
+    }
 }
