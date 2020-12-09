@@ -5,9 +5,9 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class MainScreenController {
-	public static void showMainScreen(Scanner scanner) {
+public class LineController {
+	public static void showStationScreen(Scanner scanner) {
 		InputView.getInput(scanner);
-		OutputView.printMainScreen();
+		OutputView.printLineScreen();
 	}
 }
