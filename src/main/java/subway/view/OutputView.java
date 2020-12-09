@@ -88,4 +88,11 @@ public class OutputView {
 
         lineNames.forEach(name -> System.out.println(INFORMATION + name));
     }
+
+    public static void printSectionScene() {
+        System.out.println(NEW_LINE + "## 구간 관리 화면");
+        System.out.println("1. 구간 등록");
+        System.out.println("2. 구간 삭제");
+        System.out.println("B. 돌아가기");
+    }
 }
