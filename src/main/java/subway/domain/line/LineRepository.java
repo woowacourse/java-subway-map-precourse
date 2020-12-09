@@ -16,7 +16,7 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static Line findByName(String name) {
+    public static Line findLineByName(String name) {
         return lines.stream()
             .filter(line -> line.getName().equals(name))
             .findAny()

@@ -76,13 +76,13 @@ class StationRepositoryTest {
         final String target = "test";
 
         assertThrows(CannotFindStationByNameException.class,
-            () -> StationRepository.findByName(target));
+            () -> StationRepository.findStationByName(target));
     }
 
     @DisplayName("지하철 역 저장소에 존재하는 지하철을 이름으로 조회할 수 있다.")
     @Test
     void findStationByName() {
-        final Station foundStation = StationRepository.findByName(STATION_1_NAME);
+        final Station foundStation = StationRepository.findStationByName(STATION_1_NAME);
 
         assertSame(foundStation, station1);
     }

@@ -70,13 +70,13 @@ class LineRepositoryTest {
     void cannotFindLineByNameException() {
         final String TARGET = "test";
 
-        assertThrows(CannotFindLineByNameException.class, () -> LineRepository.findByName(TARGET));
+        assertThrows(CannotFindLineByNameException.class, () -> LineRepository.findLineByName(TARGET));
     }
 
     @DisplayName("지하철 노선 저장소에 존재하는 지하철 노선을 이름으로 조회할 수 있다.")
     @Test
     void findLineByName() {
-        final Line foundLine = LineRepository.findByName(STATION_1_NAME);
+        final Line foundLine = LineRepository.findLineByName(STATION_1_NAME);
 
         assertSame(foundLine, line);
     }

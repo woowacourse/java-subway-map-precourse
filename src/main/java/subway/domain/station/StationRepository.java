@@ -16,7 +16,7 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static Station findByName(String name) {
+    public static Station findStationByName(String name) {
         return stations.stream()
             .filter(station -> station.getName().equals(name))
             .findAny()
@@ -34,7 +34,7 @@ public class StationRepository {
     }
 
     public static boolean deleteStationByName(String name) {
-        Station targetStation = findByName(name);
+        Station targetStation = findStationByName(name);
         if (LineRepository.contains(targetStation)) {
             throw new CannotDeleteStationAlreadyAddedLineException(name);
         }
