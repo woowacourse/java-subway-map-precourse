@@ -1,5 +1,6 @@
 package subway.domain;
 
+import jdk.internal.util.xml.impl.Input;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -24,6 +25,7 @@ public class SubwayManager {
             state = inquiryLine(state);
 
             state = registerSection(state, scanner);
+            state = removeSection(state, scanner);
         } while (state != State.QUIT);
     }
 
@@ -194,9 +196,19 @@ public class SubwayManager {
 
         OutputView.printRegisteredSectionMessage();
     }
+    
+    public State removeSection(State state, Scanner scanner) {
+        if (state.equals(State.SECTION_REMOVE)) {
+            removeSection(scanner);
+
+            return State.MAIN_SCENE;
+        }
+
+        return state;
+    }
 
     public void removeSection(Scanner scanner) {
-        findLineToRemove(scanner.next()).deleteStation(findStationToRemove(scanner.next()).getName());
+        findLineToRemove(scanner).deleteStation(findStationToRemove(scanner).getName());
         OutputView.printRemovedSectionMessage();
     }
 
@@ -208,16 +220,16 @@ public class SubwayManager {
         return StationRepository.findStationByName(name);
     }
 
-    private Line findLineToRemove(String name) {
+    private Line findLineToRemove(Scanner scanner) {
         OutputView.printInputRemoveSectionLine();
 
-        return LineRepository.findLineByName(name);
+        return LineRepository.findLineByName(InputView.inputLineName(scanner));
     }
 
-    private Station findStationToRemove(String name) {
+    private Station findStationToRemove(Scanner scanner) {
         OutputView.printInputRemoveSectionStation();
 
-        return StationRepository.findStationByName(name);
+        return StationRepository.findStationByName(InputView.inputStationName(scanner));
     }
 
     public void inquirySubwayMap() {
