@@ -86,4 +86,8 @@ public class SubwayManager {
     public int getRegisterIndex(String index) {
         return Integer.parseInt(index);
     }
+
+    public void inquirySubwayMap() {
+        LineRepository.lines().forEach(OutputView::printSubwayMap);
+    }
 }
