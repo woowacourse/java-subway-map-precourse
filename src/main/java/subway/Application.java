@@ -21,6 +21,8 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
+        initializeStationRepository();
+        initializeLineRepository();
         while (true) {
             showMainOptions();
             String command = getMainContolCommand(scanner);
@@ -31,8 +33,6 @@ public class Application {
                 break;
             }
 
-            initializeStationRepository();
-            initializeLineRepository();
             execute(command, scanner);
         }
     }
@@ -94,7 +94,7 @@ public class Application {
             StationManager.start(scanner);
         }
         if (command.equals(MAGNAGE_LINE)) {
-            // LineManager.start(scanner);
+            LineManager.start(scanner);
         }
         if (command.equals(MAGNAGE_INTERVAL)) {
             // IntervalManager.start(scanner);
