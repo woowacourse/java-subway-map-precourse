@@ -111,4 +111,8 @@ public class OutputView {
     public static void printRegisteredSectionMessage() {
         System.out.println(NEW_LINE + "[INFO] 구간이 등록되었습니다.");
     }
+
+    public static void printInputRemoveSectionLine() {
+        System.out.println(NEW_LINE + "## 삭제할 구간의 노선을 입력하세요.");
+    }
 }
