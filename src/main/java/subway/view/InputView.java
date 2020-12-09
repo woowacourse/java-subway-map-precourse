@@ -10,4 +10,8 @@ public class InputView {
     public static String inputStationName(Scanner scanner) {
         return scanner.next();
     }
+
+    public static String inputLineName(Scanner scanner) {
+        return scanner.next();
+    }
 }
