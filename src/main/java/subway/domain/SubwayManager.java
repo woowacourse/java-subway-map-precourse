@@ -16,4 +16,9 @@ public class SubwayManager {
     public void inquiryStation() {
         OutputView.printStationList(StationRepository.stations());
     }
+
+    public void addLine(String name) {
+        LineRepository.addLine(new Line(name));
+        OutputView.printRegisteredLineMessage();
+    }
 }
