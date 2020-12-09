@@ -1,6 +1,5 @@
 package subway.control;
 
-import subway.domain.Station;
 import subway.enums.MainMenu;
 import subway.view.MainView;
 
@@ -14,24 +13,26 @@ public class MainControlCenter {
         stationControlCenter = new StationControlCenter();
     }
 
+    public static String inputCommand(Scanner scanner) {
+        String command = scanner.nextLine();
+        System.out.println();
+        return command;
+    }
+
     public void startMainControl(Scanner scanner) {
         showMainMenu();
+        MainView.askInputMenu();
         String command = inputCommand(scanner);
-        getViewByCommand(command);
+        getViewByCommand(command, scanner);
     }
 
     private void showMainMenu() {
         MainView.printMainMenu();
     }
 
-    private String inputCommand(Scanner scanner) {
-        MainView.askInputMenu();
-        return scanner.nextLine();
-    }
-
-    private void getViewByCommand(String command) {
+    private void getViewByCommand(String command, Scanner scanner) {
         if (command.equals(MainMenu.STATION_CONTROL.getCommand())) {
-            stationControlCenter.startStationControl();
+            stationControlCenter.startStationControl(scanner);
             return;
         }
     }
