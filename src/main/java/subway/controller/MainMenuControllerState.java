@@ -30,7 +30,34 @@ public class MainMenuControllerState extends ControllerState {
     }
 
     @Override
-    public void doFeature(String feature, int order, String param) {
+    public void doFeature(String feature, int order, String param, ControllerState controllerState) {
+        if(feature.equals(BTN_STATION_MANAGEMENT)){
+            switchToStationControllerState(controllerState);
+        }
+        if(feature.equals(BTN_LINE_MANAGEMENT)){
+            switchToLineControllerState(controllerState);
+        }
+        if(feature.equals(BTN_SECTION_MANAGEMENT)){
+            switchToSectionControllerState(controllerState);
+        }
+        if(feature.equals(BTN_PRINT_SUBWAY_LINEMAP)){
+
+        }
+    }
+
+    public void switchToStationControllerState(ControllerState controllerState){
+        controllerState = LineControllerState.getLineController();
+    }
+
+    public void switchToLineControllerState(ControllerState controllerState){
+        controllerState = LineControllerState.getLineController();
+    }
+
+    public void switchToSectionControllerState(ControllerState controllerState){
+        controllerState = LineControllerState.getLineController();
+    }
+
+    public void printSubwayLinemap(){
 
     }
 }

@@ -9,7 +9,7 @@ public abstract class ControllerState {
 
     public abstract void printMain();
 
-    public abstract void doFeature(String feature, int order, String param);
+    public abstract void doFeature(String feature, int order, String param, ControllerState controllerState);
 
     public boolean isValidFeature(String feature) {
         if(Optional.of(featureRequiredInputNumMap.get(feature)).isPresent()){
