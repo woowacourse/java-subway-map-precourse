@@ -3,6 +3,7 @@ package subway;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.OutputView;
+import subway.domain.StationRepository;
 
 import java.util.Scanner;
 
@@ -37,5 +38,9 @@ public class View {
 
     public void printEntireSubwayLine() {
         outputView.printEntireSubwayLine(LineRepository.lines());
+    }
+
+    public void printStationList() {
+        outputView.printStationList(StationRepository.stations());
     }
 }

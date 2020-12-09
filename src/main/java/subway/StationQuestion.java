@@ -19,6 +19,7 @@ public enum StationQuestion {
     SHOW_STATIONS("3. 역 조회", "3") {
         @Override
         public void nextAction(View view) {
+            view.printStationList();
             view.mainView();
         }
     },
