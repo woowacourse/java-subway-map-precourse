@@ -9,7 +9,7 @@ public class Station {
 
     private String name;
 
-    public Station(String name) {
+    private Station(String name) {
         this.name = name;
     }
 

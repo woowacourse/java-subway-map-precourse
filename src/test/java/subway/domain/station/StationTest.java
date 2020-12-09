@@ -20,7 +20,7 @@ class StationTest {
     @DisplayName("지하철 역을 생성할 수 있다.")
     @Test
     void create() {
-        final String name = "a";
+        final String name = "test";
         final Station station = Station.from(name);
 
         assertNotNull(station);
