@@ -52,6 +52,10 @@ public class SubwayManager {
         findLine(scanner.next()).addStation(findStation(scanner.next()), getRegisterIndex(scanner.next()));
     }
 
+    public void removeSection(Scanner scanner) {
+        findLineToRemove(scanner.next()).deleteStation(findStationToRemove(scanner.next()).getName());
+    }
+
     public Line findLine(String name) {
         OutputView.printInputLine();
 
@@ -60,6 +64,18 @@ public class SubwayManager {
     
     public Station findStation(String name) {
         OutputView.printInputStation();
+
+        return StationRepository.findStationByName(name);
+    }
+
+    public Line findLineToRemove(String name) {
+        OutputView.printInputRemoveSectionLine();
+
+        return LineRepository.findLineByName(name);
+    }
+
+    public Station findStationToRemove(String name) {
+        OutputView.printInputRemoveSectionStation();
 
         return StationRepository.findStationByName(name);
     }
