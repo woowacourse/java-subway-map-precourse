@@ -107,4 +107,8 @@ public class OutputView {
     public static void printInputOrder() {
         System.out.println("## 순서를 입력하세요.");
     }
+
+    public static void printRegisteredSectionMessage() {
+        System.out.println(NEW_LINE + "[INFO] 구간이 등록되었습니다.");
+    }
 }
