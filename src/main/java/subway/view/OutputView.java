@@ -1,12 +1,13 @@
 package subway.view;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import subway.domain.Line;
 
 import java.util.List;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";
     private static final String INFORMATION = "[INFO] ";
+    private static final String LINE = "---";
 
     public static void printMainScene() {
         System.out.println(NEW_LINE + "## 메인 화면");
@@ -122,5 +123,13 @@ public class OutputView {
 
     public static void printRemovedSectionMessage() {
         System.out.println(NEW_LINE + "[INFO] 구간이 삭제되었습니다.");
+    }
+
+    public static void printSubwayMap(Line line) {
+        System.out.println(NEW_LINE + "## 지하철 노선도");
+        System.out.println(INFORMATION + line.getName());
+        System.out.println(LINE);
+
+        line.getStations().forEach(name -> System.out.println(INFORMATION + name));
     }
 }
