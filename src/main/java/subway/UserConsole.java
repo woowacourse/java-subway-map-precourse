@@ -80,11 +80,11 @@ public class UserConsole {
         System.out.println("## 원하는 기능을 선택하세요.");
         String userInput = scanner.nextLine();
         System.out.println();
-        if (authorizedCommands.contains(userInput)) {
-            return userInput;
+        if (!authorizedCommands.contains(userInput)) {
+            System.out.println("[ERROR] 없는 기능입니다.\n");
+            throw new IllegalArgumentException();
         }
-        System.out.println("[ERROR] 없는 기능입니다.\n");
-        return INVALID;
+        return userInput;
     }
 
     private static void showIntervalMangagerOptions() {
@@ -101,5 +101,15 @@ public class UserConsole {
             throw new IllegalArgumentException();
         }
         return name;
+    }
+
+    public static int getZeroOrNaturalNumber() {
+        String index = scanner.nextLine();
+        System.out.println();
+        if (!Validator.isZeroOrNaturalNumber(index)) {
+            System.out.println("\n[ERROR] 순서는 자연수이어야 한다");
+            throw new IllegalArgumentException();
+        }
+        return Integer.parseInt(index);
     }
 }

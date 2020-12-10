@@ -28,13 +28,32 @@ public class LineRepository {
         return lines.size() == 0;
     }
 
+    public static boolean containsLineWithStationName(String lineName, String stationName) {
+        Line line = getLineByName(lineName);
+        return line.contains(stationName);
+    }
+
     public static Line getLineByName(String lineName) {
-        Line line = null;
-        for (Line temp : lines) {
-            if (temp.getName().equals(lineName)) {
-                line = temp;
-            }
-        }
-        return line;
+        return lines.stream().filter(line -> line.getName().equals(lineName)).findAny().orElse(null);
+    }
+
+    public static boolean containsLineForIndex(String lineName, int index) {
+        Line line = getLineByName(lineName);
+        return line.size() >= index;
+    }
+
+    public static void addStationNameToLine(String lineName, String stationName, int index) {
+        Line line = getLineByName(lineName);
+        line.addStationName(index, stationName);
+    }
+
+    public static boolean containsLineAboveDeleteLimit(String lineName, int deleteLimit) {
+        Line line = getLineByName(lineName);
+        return line.size() > deleteLimit;
+    }
+
+    public static void deleteStationNameFromLine(String lineName, String stationName) {
+        Line line = getLineByName(lineName);
+        line.deleteStationName(stationName);
     }
 }

@@ -20,14 +20,6 @@ public class Line {
         stationNamesInLine.add(index, stationName);
     }
 
-    public boolean hasCapacitiy(int order) {
-        return order <= stationNamesInLine.size() + 1;
-    }
-
-    public boolean isStationDeletable() {
-        return stationNamesInLine.size() > 2;
-    }
-
     public boolean deleteStationName(String deleteName) {
         return stationNamesInLine.removeIf(stationName -> Objects.equals(stationName, deleteName));
     }
@@ -42,5 +34,9 @@ public class Line {
 
     public boolean contains(String specificStationName) {
         return stationNamesInLine.stream().anyMatch(stationName -> stationName.equals(specificStationName));
+    }
+
+    public int size() {
+        return stationNamesInLine.size();
     }
 }

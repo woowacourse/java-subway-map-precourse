@@ -1,6 +1,5 @@
 package subway;
 
-import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
@@ -13,22 +12,24 @@ public class IntervalManager {
     private static final String DELETE_INTERVAL = "2";
     private static final String BACK = "B";
     private static final String INVALID = "INVALID";
+    private static final int DELETE_LIMIT = 2;
 
     public static void start() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_INTERVAL, DELETE_INTERVAL, BACK));
         while (true) {
-            String command = UserConsole.getIntervalManagerCommand(authorizedCommands);
-            if (command.equals(INVALID)) {
+            try {
+                String command = UserConsole.getIntervalManagerCommand(authorizedCommands);
+                if (command.equals(BACK)) {
+                    break;
+                }
+                execute(command);
+            } catch (Exception exception) {
                 continue;
             }
-            if (command.equals(BACK)) {
-                break;
-            }
-            execute(command);
         }
     }
 
-    private static void execute(String command) {
+    private static void execute(String command) throws Exception {
         if (command.equals(ADD_INTERVAL)) {
             addInterval();
         }
@@ -37,120 +38,80 @@ public class IntervalManager {
         }
     }
 
-    private static void deleteInterval() {
+    private static void deleteInterval() throws Exception {
+        String lineName = getLineNameForIntervalDelete();
+        String stationName = getStationNameForIntervalDelete(lineName);
+        LineRepository.deleteStationNameFromLine(lineName, stationName);
+        System.out.println("[INFO] 구간이 삭제되었습니다.\n");
+    }
+
+    private static String getStationNameForIntervalDelete(String lineName) throws Exception {
+        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        String stationName = UserConsole.getName(); // temporary fix
+        if (!StationRepository.contains(stationName)) {
+            System.out.println("[ERROR] 역 목록에 등록되어 있지 않은 역이다.\n");
+            throw new IllegalArgumentException();
+        }
+        if (!LineRepository.containsLineWithStationName(lineName, stationName)) {
+            System.out.println("[ERROR] 노선에 등록되어 있지 않은 역이다.\n");
+            throw new IllegalArgumentException();
+        }
+        return stationName;
+    }
+
+    private static String getLineNameForIntervalDelete() throws Exception {
         System.out.println("## 삭제할 구간의 노선을 입력하세요.");
-        String lineName = UserConsole.getInput(); // temporary fix
-        if (!isInLineRepository(lineName)) {
-            System.out.println("\n[ERROR] 노선이 존재하지 않는다.");
-            return;
+        String lineName = UserConsole.getName(); // temporary fix
+        if (!LineRepository.contains(lineName)) {
+            System.out.println("[ERROR] 노선이 존재하지 않는다.\n");
+            throw new IllegalArgumentException();
         }
-        System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-        String stationName = UserConsole.getInput(); // temporary fix
-        if (!isInStationRepository(stationName)) {
-            System.out.println("\n[ERROR] 등록되어 있지 않은 역이다.");
-            return;
+        if (!LineRepository.containsLineAboveDeleteLimit(lineName, DELETE_LIMIT)) {
+            System.out.println("[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없다.\n");
+            throw new IllegalArgumentException();
         }
-        Line line = LineRepository.getLineByName(lineName);
-        if (!line.isStationDeletable()) {
-            System.out.println("\n[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없다.");
-            return;
-        }
-        line.deleteStationName(stationName);
-        System.out.println("\n[INFO] 구간이 삭제되었습니다.");
+        return lineName;
     }
 
-    private static void addInterval() {
+    private static void addInterval() throws Exception {
+        String lineName = getLineNameForIntervalAdd();
+        String stationName = getStationNameForIntervalAdd();
+        if (LineRepository.containsLineWithStationName(lineName, stationName)) {
+            System.out.println("[ERROR] 노선에 등록되어 있는 역은 추가할 수 없다.\n");
+            return;
+        }
+        int index = getIndex(lineName);
+        LineRepository.addStationNameToLine(lineName, stationName, index);
+        System.out.println("[INFO] 구간이 등록되었습니다.\n");
+    }
+
+    private static int getIndex(String lineName) {
+        System.out.println("## 순서를 입력하세요.");
+        int index = UserConsole.getZeroOrNaturalNumber(); // temporary fix
+        if (!LineRepository.containsLineForIndex(lineName, index)) {
+            System.out.println("[ERROR] 올바르지 않은 순서이다.\n");
+            throw new IllegalArgumentException();
+        }
+        return index;
+    }
+
+    private static String getStationNameForIntervalAdd() throws Exception {
+        System.out.println("## 역이름을 입력하세요.");
+        String stationName = UserConsole.getName(); // temporary fix
+        if (!StationRepository.contains(stationName)) {
+            System.out.println("[ERROR] 역 목록에 등록되어 있지 않은 역이다.\n");
+            throw new IllegalArgumentException();
+        }
+        return stationName;
+    }
+
+    private static String getLineNameForIntervalAdd() throws Exception {
         System.out.println("## 노선을 입력하세요.");
-        String targetLineName = UserConsole.getInput(); // temporary fix
-
-        if (!isInLineRepository(targetLineName)) {
-            System.out.println("\n[ERROR] 노선이 존재하지 않는다.");
-            return;
+        String lineName = UserConsole.getName(); // temporary fix
+        if (!LineRepository.contains(lineName)) {
+            System.out.println("[ERROR] 노선이 존재하지 않는다.\n");
+            throw new IllegalArgumentException();
         }
-
-        System.out.println("\n## 역이름을 입력하세요.");
-        String stationName = UserConsole.getInput(); // temporary fix
-
-        if (!isInStationRepository(stationName)) {
-            System.out.println("\n[ERROR] 등록되어 있지 않은 역이다.");
-            return;
-        }
-
-        if (isInTargetLine(stationName, targetLineName)) {
-            System.out.println("\n[ERROR] 노선에 등록되어 있는 역은 추가할 수 없다.");
-            return;
-        }
-
-        System.out.println("\n## 순서를 입력하세요.");
-        String order = UserConsole.getInput(); // temporary fix
-        if (!isNaturalNumber(order)) {
-            System.out.println("\n[ERROR] 순서는 자연수이어야 한다");
-            return;
-        }
-        if (!isAppropriateOrder(order, targetLineName)) {
-            System.out.println("\n[ERROR] 올바르지 않은 순서이다.");
-            return;
-        }
-
-        Line targetLine = LineRepository.getLineByName(targetLineName);
-        targetLine.addStationName(Integer.parseInt(order) - 1, stationName);
-        System.out.println("\n[INFO] 구간이 등록되었습니다.");
-    }
-
-    private static boolean isAppropriateOrder(String order, String targetLineName) {
-        Line targetLine = LineRepository.getLineByName(targetLineName);
-        if (targetLine.hasCapacitiy(Integer.parseInt(order))) {
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean isNaturalNumber(String order) {
-        if (!isAllDigit(order)) {
-            return false;
-        }
-        if (isFirstDigitZero(order)) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isFirstDigitZero(String order) {
-        if (!order.isEmpty() && order.charAt(0) == '0') {
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean isAllDigit(String order) {
-        for (char temp : order.toCharArray()) {
-            if ('0' <= temp && temp <= '9') {
-                continue;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isInTargetLine(String stationName, String targetLineName) {
-        Line targetLine = LineRepository.getLineByName(targetLineName);
-        if (targetLine.contains(stationName)) {
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean isInStationRepository(String stationName) {
-        if (StationRepository.contains(stationName)) {
-            return true;
-        }
-        return false;
-    }
-
-    private static boolean isInLineRepository(String stationName) {
-        if (LineRepository.contains(stationName)) {
-            return true;
-        }
-        return false;
+        return lineName;
     }
 }
