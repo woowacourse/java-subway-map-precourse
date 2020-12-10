@@ -13,7 +13,7 @@ public class StationRepository {
     }
 
     public static boolean addStation(Station station) {
-        if(!Station.isValidName(station.getName())){
+        if(!station.isValidStationName()){
             OutputView.printError(NAME_LENGTH_ERROR);
             return false;
         }
