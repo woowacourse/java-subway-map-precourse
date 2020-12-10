@@ -16,6 +16,7 @@ public class MainControlCenter {
         lineControlCenter = new LineControlCenter();
 
         InitialSetting.STATIONS.initializeStations();
+        InitialSetting.LINES.initializeLines();
     }
 
     public static String inputCommand(Scanner scanner) {

@@ -1,11 +1,9 @@
 package subway.view;
 
 import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 import subway.enums.ErrorMessage;
 import subway.enums.LineInfo;
 import subway.enums.LineMenu;
-import subway.enums.StationInfo;
 
 import java.util.Arrays;
 import java.util.List;
