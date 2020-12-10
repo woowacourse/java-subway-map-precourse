@@ -171,7 +171,8 @@ class LineRepositoryTest {
         lineRepository = lineRepository.deleteStation("1호선", "봉천역");
 
         //then
-        assertThat(lineRepository.contains("봉천역")).isFalse();
+        assertThat(lineRepository.lines().get(0).getStations().stations())
+                .extracting(Station::getName).containsExactly("강남역", "잠실역");
     }
 
     @Test
@@ -186,5 +187,35 @@ class LineRepositoryTest {
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(StationRepository.TOO_LESS_STATIONS_ERROR,
                         StationRepository.MINIMUM_STATION_SIZE);
+    }
+
+    @Test
+    @DisplayName("상행 종점을 제거할 경우 그 다음 역이 종점")
+    public void deleteStation_StartStation_StartsWithNextStation() {
+
+        // given
+        lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
+
+        // when
+        lineRepository = lineRepository.deleteStation("1호선", "강남역");
+
+        //then
+        assertThat(lineRepository.lines().get(0).getStations().stations())
+                .extracting(Station::getName).containsExactly("봉천역", "잠실역");
+    }
+
+    @Test
+    @DisplayName("하행 종점을 제거할 경우 그 다음 역이 종점")
+    public void deleteStation_FinalStation_EndWithNextStation() {
+
+        // given
+        lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
+
+        // when
+        lineRepository = lineRepository.deleteStation("1호선", "잠실역");
+
+        //then
+        assertThat(lineRepository.lines().get(0).getStations().stations())
+                .extracting(Station::getName).containsExactly("강남역", "봉천역");
     }
 }

@@ -28,6 +28,10 @@ public class Line {
         return name.getName();
     }
 
+    public StationRepository getStations() {
+        return stations;
+    }
+
     public Line insertStation(int index, String stationName) {
         return new Line(this.name, stations.insertStation(index, stationName));
     }
