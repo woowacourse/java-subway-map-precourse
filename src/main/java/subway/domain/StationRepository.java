@@ -7,6 +7,14 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+    private static final String DEFAULT_STATIONS = "교대역,강남역,역삼역,남부터미널역," +
+            "양재역,양재시민의숲역,매봉역";
+
+    static {
+        for (String s : DEFAULT_STATIONS.split(",")) {
+            addStation(new Station(s));
+        }
+    }
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
