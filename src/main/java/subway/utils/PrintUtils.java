@@ -1,4 +1,4 @@
-package utils;
+package subway.utils;
 
 /**
  * 프로그램의 출력 부분을 담당하는 클래스
