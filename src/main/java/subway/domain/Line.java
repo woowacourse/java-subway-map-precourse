@@ -16,29 +16,29 @@ public class Line {
         this.name = name;
     }
 
-    public void addSection(Station inputStation){
-        if(StationRepository.stations().contains(inputStation)){
+    public void addSection(Station inputStation) {
+        if (StationRepository.stations().contains(inputStation)) {
             sections.add(inputStation);
         }
     }
 
-    public void addSectionWithPosition(int position, Station inputStation){
-        if(StationRepository.stations().contains(inputStation)){
-            sections.add(position-1,inputStation);
+    public void addSectionWithPosition(int position, Station inputStation) {
+        if (StationRepository.stations().contains(inputStation)) {
+            sections.add(position - 1, inputStation);
         }
     }
 
-    public void deleteSection(Station inputStation){
-        if(!(sections.removeIf(station -> inputStation == station))){
+    public void deleteSection(Station inputStation) {
+        if (!(sections.removeIf(station -> inputStation == station))) {
             throw new SubwayCustomException(NOT_VALID_SECTION_EXCEPTION_MESSAGE);
         }
     }
 
-    public Station searchSection(String name){
+    public Station searchSection(String name) {
         return sections.stream()
             .filter(station -> Objects.equals(station.getName(), name))
             .findFirst()
-            .orElseThrow(()->new SubwayCustomException(NOT_VALID_SECTION_EXCEPTION_MESSAGE));
+            .orElseThrow(() -> new SubwayCustomException(NOT_VALID_SECTION_EXCEPTION_MESSAGE));
     }
 
     public String getName() {

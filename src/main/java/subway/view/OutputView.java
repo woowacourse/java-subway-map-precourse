@@ -68,13 +68,14 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + message);
         return message;
     }
-    private static void showMenuMessage(String message){
+
+    private static void showMenuMessage(String message) {
         showMessage(message);
         showMessage(MENU_CATEGORY_CHOICE_MESSAGE);
     }
 
-    private static void showMessage(String message){
-        System.out.println(MENU_PREFIX+message);
+    private static void showMessage(String message) {
+        System.out.println(MENU_PREFIX + message);
     }
 
     public static void showMainMenu() {
@@ -118,11 +119,11 @@ public class OutputView {
         showMessage(INPUT_LINE_NAME_MESSAGE);
     }
 
-    public static void guideStartStationOfLine(){
+    public static void guideStartStationOfLine() {
         showMessage(INPUT_LINE_START_STATION_NAME_MESSAGE);
     }
 
-    public static void guideEndStationOfLine(){
+    public static void guideEndStationOfLine() {
         showMessage(INPUT_LINE_END_STATION_NAME_MESSAGE);
     }
 
@@ -143,31 +144,31 @@ public class OutputView {
         lines.forEach(line -> showInfoMessage(line.getName()));
     }
 
-    public static void guideInsertSectionLineName(){
+    public static void guideInsertSectionLineName() {
         showMessage(INPUT_SECTION_LINE_MESSAGE);
     }
 
-    public static void guideInsertSectionStationName(){
+    public static void guideInsertSectionStationName() {
         showMessage(INPUT_SECTION_STATION_MESSAGE);
     }
 
-    public static void guideInsertSectionPostionName(){
-        showMessage( INPUT_SECTION_POSITION_MESSAGE);
+    public static void guideInsertSectionPostionName() {
+        showMessage(INPUT_SECTION_POSITION_MESSAGE);
     }
 
-    public static void doneInsertSection(){
+    public static void doneInsertSection() {
         showInfoMessage(INPUT_SECTION_CHECK_MESSAGE);
     }
 
-    public static void guideRemoveSectionLineName(){
+    public static void guideRemoveSectionLineName() {
         showMessage(REMOVE_SECTION_LINE_MESSAGE);
     }
 
-    public static void guideRemoveSectionStationName(){
+    public static void guideRemoveSectionStationName() {
         showMessage(REMOVE_SECTION_STATION_MESSAGE);
     }
 
-    public static void doneRemoveSection(){
+    public static void doneRemoveSection() {
         showInfoMessage(REMOVE_SECTION_CHECK_MESSAGE);
     }
 

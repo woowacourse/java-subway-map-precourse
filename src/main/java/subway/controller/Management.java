@@ -25,26 +25,26 @@ public class Management {
         inputView = new InputView(scanner);
     }
 
-    public void initialize(){
+    public void initialize() {
         Arrays.stream(initialLines)
             .forEach(line -> LineRepository.addLine(new Line(line)));
         Arrays.stream(initialStations)
-            .forEach(station-> StationRepository.addStation(new Station(station)));
-        initialSection("2호선","교대역");
-        initialSection("2호선","강남역");
-        initialSection("2호선","역삼역");
+            .forEach(station -> StationRepository.addStation(new Station(station)));
+        initialSection("2호선", "교대역");
+        initialSection("2호선", "강남역");
+        initialSection("2호선", "역삼역");
 
-        initialSection("3호선","교대역");
-        initialSection("3호선","남부터미널역");
-        initialSection("3호선","양재역");
-        initialSection("3호선","매봉역");
+        initialSection("3호선", "교대역");
+        initialSection("3호선", "남부터미널역");
+        initialSection("3호선", "양재역");
+        initialSection("3호선", "매봉역");
 
-        initialSection("신분당선","강남역");
-        initialSection("신분당선","양재역");
-        initialSection("신분당선","양재시민의숲역");
+        initialSection("신분당선", "강남역");
+        initialSection("신분당선", "양재역");
+        initialSection("신분당선", "양재시민의숲역");
     }
 
-    private void initialSection(String line, String station){
+    private void initialSection(String line, String station) {
         LineRepository.searchLine(line).addSection(StationRepository.searchStation(station));
     }
 
@@ -75,18 +75,18 @@ public class Management {
             OutputView.guideInsertStation();
             StationRepository.addStation(new Station(inputView.makeNewStationName()));
             OutputView.doneInsertStation();
-        } catch(SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manageStation();
         }
     }
 
     void deleteStation() {
-        try{
+        try {
             OutputView.guideRemoveStation();
             StationRepository.deleteStation(inputView.inputValue());
             OutputView.doneRemoveStation();
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manageStation();
         }
@@ -117,7 +117,7 @@ public class Management {
     private void addLine() {
         Line line;
         Station station;
-        try{
+        try {
             OutputView.guideInsertLine();
             line = new Line(inputView.makeNewLineName());
             LineRepository.addLine(line);
@@ -126,21 +126,21 @@ public class Management {
             line.addSection(station);
             OutputView.guideEndStationOfLine();
             station = StationRepository.searchStation(inputView.inputValue());
-            ValidateUtils.isAlreadyExistingSection(line,station);
+            ValidateUtils.isAlreadyExistingSection(line, station);
             line.addSection(station);
             OutputView.doneInsertLine();
-        } catch(SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manageLine();
         }
     }
 
     private void deleteLine() {
-        try{
+        try {
             OutputView.guideRemoveLine();
             LineRepository.deleteLine(inputView.inputValue());
             OutputView.doneRemoveLine();
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manageStation();
         }
@@ -149,15 +149,15 @@ public class Management {
     public void mangeSection() {
         OutputView.showSectionMenu();
         String input = inputView.inputValue();
-        if(input.equals("1")){
+        if (input.equals("1")) {
             addSection();
             return;
         }
-        if(input.equals("2")){
+        if (input.equals("2")) {
             deleteSection();
             return;
         }
-        if(input.equals("B")){
+        if (input.equals("B")) {
             return;
         }
         throw new SubwayCustomException("없는 선택사항입니다.");
@@ -167,17 +167,17 @@ public class Management {
         int position;
         Station station;
         Line line;
-        try{
+        try {
             OutputView.guideInsertSectionLineName();
             line = LineRepository.searchLine(inputView.inputValue());
             OutputView.guideInsertSectionStationName();
             station = StationRepository.searchStation(inputView.inputValue());
-            ValidateUtils.isAlreadyExistingSection(line,station);
+            ValidateUtils.isAlreadyExistingSection(line, station);
             OutputView.guideInsertSectionPostionName();
             position = Integer.parseInt(inputView.inputValue());
-            line.addSectionWithPosition(position,station);
+            line.addSectionWithPosition(position, station);
             OutputView.doneInsertSection();
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             mangeSection();
         }
@@ -186,7 +186,7 @@ public class Management {
     private void deleteSection() {
         Station station;
         Line line;
-        try{
+        try {
             OutputView.guideRemoveSectionLineName();
             line = LineRepository.searchLine(inputView.inputValue());
             ValidateUtils.isLessThanTwoStation(line);
@@ -194,7 +194,7 @@ public class Management {
             station = line.searchSection(inputView.inputValue());
             line.deleteSection(station);
             OutputView.doneRemoveSection();
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             mangeSection();
         }
