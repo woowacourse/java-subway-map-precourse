@@ -1,5 +1,6 @@
 package subway.control;
 
+import subway.enums.InitialSetting;
 import subway.enums.MainMenu;
 import subway.view.MainView;
 
@@ -11,6 +12,7 @@ public class MainControlCenter {
 
     public MainControlCenter() {
         stationControlCenter = new StationControlCenter();
+        InitialSetting.STATIONS.initializeStations();
     }
 
     public static String inputCommand(Scanner scanner) {
