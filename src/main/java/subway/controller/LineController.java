@@ -40,7 +40,7 @@ public class LineController {
 	}
 
 	private static void deleteLine(Scanner scanner) {
-		String name = View.getStationNameToDelete(scanner);
+		String name = View.getLineNameToDelete(scanner);
 		boolean isSuccessful = LineRepository.deleteLine(name);
 		if (isSuccessful) {
 			View.printLineDeleteCompletion();
