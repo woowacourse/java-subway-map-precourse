@@ -60,6 +60,20 @@ public class LineService {
         return true;
     }
 
+    public boolean sectionInsert(){
+        String lineName=InputView.getLineName();
+        String stationName=InputView.getStationName();
+        Integer order=InputView.getSectionOrder();
+
+        Line findLine=LineRepository.findByName(lineName);
+        boolean result=findLine.addStation(order,stationName);
+        if(result){
+            OutputView.printInfo(SECTION_INSERT_SUCCESS);
+            System.out.println();
+        }
+        return result;
+    }
+
     public boolean back(){
         return true;
     }
