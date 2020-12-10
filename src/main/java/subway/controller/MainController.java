@@ -58,6 +58,7 @@ public class MainController {
 	}
 
 	public static void run(Scanner scanner) {
+		View.printMainScreen();
 		String option = View.getScreenOption(scanner).trim();
 		try {
 			Options.validateOption(options, option);

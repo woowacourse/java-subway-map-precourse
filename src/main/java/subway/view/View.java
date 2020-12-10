@@ -8,6 +8,7 @@ public class View {
 		Arrays.stream(MainMessages.values())
 				.limit(6)
 				.forEach(value -> System.out.println(value.getMessage()));
+		System.out.println();
 	}
 
 	public static String getScreenOption(Scanner scanner) {
@@ -19,6 +20,7 @@ public class View {
 		Arrays.stream(StationMessages.values())
 				.limit(5)
 				.forEach(value -> System.out.println(value.getMessage()));
+		System.out.println();
 	}
 
 	public static String getStationNameToRegister(Scanner scanner) {
@@ -47,6 +49,7 @@ public class View {
 		Arrays.stream(LineMessages.values())
 				.limit(5)
 				.forEach(value -> System.out.println(value.getMessage()));
+		System.out.println();
 	}
 
 	public static String getLineNameToRegister(Scanner scanner) {
@@ -81,6 +84,7 @@ public class View {
 		Arrays.stream(SectionMessages.values())
 				.limit(4)
 				.forEach(value -> System.out.println(value.getMessage()));
+		System.out.println();
 	}
 
 	public static String getLineNameToRegisterSection(Scanner scanner) {
