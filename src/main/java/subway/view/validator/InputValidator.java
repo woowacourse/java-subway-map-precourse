@@ -9,13 +9,13 @@ public class InputValidator {
 
     static final String NULL_ERROR = "null 값을 입력하셨습니다.";
 
-    static final String RANGE_ERROR = "이름은 2글자 이상, 8글자 이하이어야 합니다.";
-
     private static final Pattern KOREAN_PATTERN = Pattern.compile("[가-힣]+");
 
     private static final int LENGTH_LOWER_BOUND = 2;
 
-    private static final int LENGTH_UPPER_BOUND = 8;
+    private static final int LENGTH_UPPER_BOUND = 10;
+
+    static final String RANGE_ERROR = String.format("이름은 %d글자 이상, %d글자 이하이어야 합니다.", LENGTH_LOWER_BOUND, LENGTH_UPPER_BOUND);
 
     public void validate(String input) {
         checkNull(input);
