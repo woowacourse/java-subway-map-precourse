@@ -7,6 +7,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
+import subway.utils.ValidateUtils;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -69,16 +70,21 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
+    private void addStation() {
+        try {
+            OutputView.guideInsertStation();
+            StationRepository.addStation(new Station(inputView.makeNewStationName()));
+            OutputView.doneInsertStation();
+        } catch(SubwayCustomException exception){
+            exception.getMessage();
+            manageStation();
+        }
+    }
+
     void deleteStation() {
         OutputView.guideRemoveStation();
         StationRepository.deleteStation(inputView.inputValue());
         OutputView.doneRemoveStation();
-    }
-
-    void addStation() {
-        OutputView.guideInsertStation();
-        StationRepository.addStation(new Station(inputView.inputValue()));
-        OutputView.doneInsertStation();
     }
 
     public void manageLine() {
@@ -103,23 +109,31 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
-    void deleteLine() {
+    private void deleteLine() {
         OutputView.guideRemoveLine();
         LineRepository.deleteLineByName(inputView.inputValue());
         OutputView.doneRemoveLine();
     }
 
-    void addLine() {
+    private void addLine() {
         Line line;
-
-        OutputView.guideInsertLine();
-        line = new Line(inputView.inputValue());
-        LineRepository.addLine(line);
-        OutputView.guideStartStationOfLine();
-        line.addSection(StationRepository.searchStationByName(inputView.inputValue()));
-        OutputView.guideEndStationOfLine();
-        line.addSection(StationRepository.searchStationByName(inputView.inputValue()));
-        OutputView.doneInsertLine();
+        Station station;
+        try{
+            OutputView.guideInsertLine();
+            line = new Line(inputView.makeNewLineName());
+            LineRepository.addLine(line);
+            OutputView.guideStartStationOfLine();
+            station = StationRepository.searchStationByName(inputView.inputValue());
+            line.addSection(station);
+            OutputView.guideEndStationOfLine();
+            station = StationRepository.searchStationByName(inputView.inputValue());
+            ValidateUtils.isAlreadyExistingSection(line,station);
+            line.addSection(station);
+            OutputView.doneInsertLine();
+        } catch(SubwayCustomException exception){
+            exception.getMessage();
+            manageLine();
+        }
     }
 
     public void mangeSection() {
@@ -139,7 +153,7 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
-    void deleteSection() {
+    private void deleteSection() {
         Station station;
         Line line;
 
@@ -151,19 +165,23 @@ public class Management {
         OutputView.doneRemoveSection();
     }
 
-    void addSection() {
+    private void addSection() {
         int position;
         Station station;
         Line line;
-
-        OutputView.guideInsertSectionLineName();
-        line = LineRepository.searchLineByName(inputView.inputValue());
-        OutputView.guideInsertSectionStationName();
-        station = line.searchSectionByName(inputView.inputValue());
-        OutputView.guideInsertSectionPostionName();
-        position = Integer.parseInt(inputView.inputValue());
-        line.addSectionWithPosition(position,station);
-        OutputView.doneInsertSection();
+        try{
+            OutputView.guideInsertSectionLineName();
+            line = LineRepository.searchLineByName(inputView.inputValue());
+            OutputView.guideInsertSectionStationName();
+            station = line.searchSectionByName(inputView.inputValue());
+            ValidateUtils.isAlreadyExistingSection(line,station);
+            OutputView.guideInsertSectionPostionName();
+            position = Integer.parseInt(inputView.inputValue());
+            line.addSectionWithPosition(position,station);
+            OutputView.doneInsertSection();
+        } catch (SubwayCustomException exception){
+            exception.getMessage();
+            mangeSection();
+        }
     }
-
 }
