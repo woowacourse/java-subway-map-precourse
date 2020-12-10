@@ -2,7 +2,6 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.General;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -19,8 +18,11 @@ public class SectionController {
 	}
 
 	private static void createStation(Scanner scanner) {
-		String name = View.getStationNameToRegister(scanner);
-		StationRepository.addStation(new Station(name));
+		String lineName = View.getLineNameForNewSection(scanner);
+		String stationName = View.getStationNameForNewSection(scanner);
+		int Location = View.getLocationForNewSection(scanner, lineName);
+
+
 		View.printStationRegisterCompletion();
 	}
 

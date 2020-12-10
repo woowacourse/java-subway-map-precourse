@@ -1,7 +1,7 @@
 package subway.domain;
 
 import subway.view.LineMessages;
-import subway.view.StationMessages;
+import subway.view.SectionMessages;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +27,10 @@ public class Line {
         return name;
     }
 
+    public int getLineLength() {
+        return sections.size();
+    }
+
     public List<Station> sections(Line line) {
         return Collections.unmodifiableList(sections);
     }
@@ -50,6 +54,21 @@ public class Line {
     private void validateNameLength(String name) throws IllegalArgumentException {
         if (name.length() < NAME_LENGTH_LOWER_BOUND) {
             throw new IllegalArgumentException(LineMessages.NAME_LENGTH_ERROR.getMessage());
+        }
+    }
+
+    public static void validateInteger(String location) throws IllegalArgumentException {
+        try {
+            Integer.parseInt(location);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(SectionMessages.POSITIVE_INTEGER_LOCATION_ERROR.getMessage());
+        }
+    }
+
+    public static void validateRange(String location, String lineName) throws IllegalArgumentException {
+        int lineLength = LineRepository.getLine(lineName).getLineLength();
+        if (Integer.parseInt(location) < 0 || lineLength <= Integer.parseInt(location)) {
+            throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
         }
     }
 }

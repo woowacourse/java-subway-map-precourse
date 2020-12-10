@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.LineMessages;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,5 +29,12 @@ public class LineRepository {
 
     public static boolean deleteLine(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static Line getLine(String lineName) throws IllegalArgumentException {
+        return LineRepository.lines().stream()
+                .filter(line -> line.getName().equals(lineName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(LineMessages.UNREGISTERED_NAME_ERROR.getMessage()));
     }
 }

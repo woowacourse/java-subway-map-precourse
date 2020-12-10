@@ -96,11 +96,32 @@ public class View {
 		System.out.println(LineMessages.UNREGISTERED_NAME_ERROR);
 	}
 
-
-
 	public static void printSectionScreen() {
 		Arrays.stream(SectionMessages.values())
 				.limit(4)
 				.forEach(value -> System.out.println(value.getMessage()));
+	}
+
+	public static String getLineNameForNewSection(Scanner scanner) {
+		System.out.println(SectionMessages.LINE_NAME_FOR_NEW_SECTION.getMessage());
+		return scanner.nextLine();
+	}
+
+	public static String getStationNameForNewSection(Scanner scanner) {
+		System.out.println(SectionMessages.STATION_NAME_FOR_NEW_SECTION.getMessage());
+		return scanner.nextLine();
+	}
+
+	public static int getLocationForNewSection(Scanner scanner, String lineName) {
+		System.out.println(SectionMessages.STATION_NAME_FOR_NEW_SECTION.getMessage());
+		String location = scanner.nextLine();
+		try {
+			Line.validateInteger(location);
+			Line.validateRange(location, lineName);
+			return Integer.parseInt(location);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getLocationForNewSection(scanner, lineName);
+		}
 	}
 }
