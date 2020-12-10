@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
+
     private static final List<Station> stations = new ArrayList<>();
+
+    private StationRepository() {
+    }
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
