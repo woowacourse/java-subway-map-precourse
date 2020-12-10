@@ -12,6 +12,7 @@ public class LineInsertActionScreen extends BaseActionScreen {
     public static final String SAVE_INPUT_MESSAGE = "등록할 노선 이름을 입력하세요.";
     public static final String UPSTREAM_INPUT_MESSAGE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String DOWNSTREAM_INPUT_MESSAGE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String INSERT_INPUT_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
 
     public LineInsertActionScreen(CategoryType selectedCategoryType) {
         super(selectedCategoryType);
@@ -32,5 +33,6 @@ public class LineInsertActionScreen extends BaseActionScreen {
         String downstreamStationName = inputView.readCommand();
 
         LineService.save(new LineRequestDto(lineName, upstreamStationName, downstreamStationName));
+        OutputView.printlnResult(INSERT_INPUT_SUCCESS_MESSAGE);
     }
 }

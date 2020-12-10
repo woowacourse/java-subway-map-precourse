@@ -11,6 +11,7 @@ public class SectionDeleteActionScreen extends BaseActionScreen {
 
     public static final String DELETE_SECTION_LINE_INPUT_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
     public static final String DELETE_SECTION_STATION_INPUT_MESSAGE = "삭제할 구간의 역을 입력하세요.";
+    public static final String INSERT_INPUT_SUCCESS_MESSAGE = "구간이 삭제되었습니다.";
 
     public SectionDeleteActionScreen(CategoryType selectedCategoryType) {
         super(selectedCategoryType);
@@ -28,5 +29,6 @@ public class SectionDeleteActionScreen extends BaseActionScreen {
         String stationName = inputView.readCommand();
 
         LineService.deleteSection(new SectionDeleteRequestDto(lineName, stationName));
+        OutputView.printlnResult(INSERT_INPUT_SUCCESS_MESSAGE);
     }
 }

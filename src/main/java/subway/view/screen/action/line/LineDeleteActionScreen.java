@@ -23,6 +23,6 @@ public class LineDeleteActionScreen extends BaseActionScreen {
         OutputView.printTitle(DELETE_INPUT_MESSAGE);
         String lineName = inputView.readCommand();
         LineService.deleteByName(lineName);
-        OutputView.printTitle(DELETE_INPUT_SUCCESS_MESSAGE);
+        OutputView.printlnResult(DELETE_INPUT_SUCCESS_MESSAGE);
     }
 }
