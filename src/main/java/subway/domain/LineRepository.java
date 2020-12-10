@@ -36,7 +36,7 @@ public class LineRepository {
     }
 
     public LineRepository insertStation(String lineName, int index, String stationName) {
-        Line line = getLineByName(lineName);
+        Line line = getLineByLineName(lineName);
         Line insertedLine = line.insertStation(index, stationName);
 
         int lineIndex = lines.indexOf(line);
@@ -60,7 +60,19 @@ public class LineRepository {
         return lines.stream().anyMatch(line -> line.contains(stationName));
     }
 
-    private Line getLineByName(String lineName) {
+    public LineRepository deleteStation(String lineName, String stationName) {
+        Line line = getLineByLineName(lineName);
+
+        int lineIndex = lines.indexOf(line);
+
+        line = line.remove(stationName);
+
+        lines.set(lineIndex, line);
+
+        return new LineRepository(lines);
+    }
+
+    private Line getLineByLineName(String lineName) {
         return lines.stream()
                 .filter(line -> line.getName().equals(lineName))
                 .findAny()

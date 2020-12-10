@@ -32,6 +32,10 @@ public class Line {
         return new Line(this.name, stations.insertStation(index, stationName));
     }
 
+    public Line remove(String stationName) {
+        return new Line(this.name, stations.deleteStation(stationName));
+    }
+
     public boolean contains(String stationName) {
         return stations.contains(stationName);
     }

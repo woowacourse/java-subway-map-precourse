@@ -159,4 +159,32 @@ class LineRepositoryTest {
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR, 2);
     }
+
+    @Test
+    @DisplayName("노선에 등록된 역 제거")
+    public void deleteStation_oldStation_LineDeletedStation() {
+
+        // given
+        lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
+
+        // when
+        lineRepository = lineRepository.deleteStation("1호선", "봉천역");
+
+        //then
+        assertThat(lineRepository.contains("봉천역")).isFalse();
+    }
+
+    @Test
+    @DisplayName("노선의 역 개수가 최소 역 개수 이하일 경우 역 제거 시 예외 발생")
+    public void deleteStation_LessThanMinimumStationSize_ExceptionThrown() {
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.deleteStation("1호선", "강남역");
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.TOO_LESS_STATIONS_ERROR,
+                        StationRepository.MINIMUM_STATION_SIZE);
+    }
 }
