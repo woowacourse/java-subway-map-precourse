@@ -9,9 +9,12 @@ import java.util.Scanner;
 public class MainControlCenter {
 
     StationControlCenter stationControlCenter;
+    LineControlCenter lineControlCenter;
 
     public MainControlCenter() {
         stationControlCenter = new StationControlCenter();
+        lineControlCenter = new LineControlCenter();
+
         InitialSetting.STATIONS.initializeStations();
     }
 
@@ -37,6 +40,10 @@ public class MainControlCenter {
     private void getViewByCommand(String command, Scanner scanner) {
         if (command.equals(MainMenu.STATION_CONTROL.getCommand())) {
             stationControlCenter.startStationControl(scanner);
+            return;
+        }
+        if (command.equals(MainMenu.LINE_CONTROL.getCommand())) {
+            lineControlCenter.startLineControl(scanner);
             return;
         }
     }
