@@ -3,6 +3,8 @@ package subway.domain;
 import java.util.*;
 
 public class StationRepository {
+    private static final String ERROR_ALREADY_EXIST= "이미 등록된 역입니다.";
+
     private static final List<Station> stations = new ArrayList<>();
 
     static {
@@ -19,6 +21,9 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
+        }
         stations.add(station);
     }
 

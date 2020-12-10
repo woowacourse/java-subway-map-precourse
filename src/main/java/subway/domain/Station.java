@@ -1,10 +1,10 @@
 package subway.domain;
 
 public class Station {
-    private static final int MIN_LENGTH = 2;
     private static final String INVALID_LENGTH_FORMAT = "이름은 %d 글자 이상이어야 합니다.";
+    private static final int MIN_LENGTH = 2;
 
-    private String name;
+    private final String name;
 
     public Station(String name) {
         if (name.length() < MIN_LENGTH) {
@@ -17,5 +17,21 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Station paramObj = (Station) obj;
+        return this.name.equals(paramObj.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
+
 }
