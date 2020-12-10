@@ -1,7 +1,5 @@
 package subway.service.output;
 
-import subway.exception.ErrorCode;
-
 public interface OutputService {
     String MAIN = "## 메인 화면";
     String MAIN_ONE = "1. 역 관리";
@@ -13,5 +11,4 @@ public interface OutputService {
     String ENTER = "\n";
 
     void printMain();
-    void printError(ErrorCode errorCode);
 }
