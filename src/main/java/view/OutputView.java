@@ -66,40 +66,36 @@ public class OutputView {
     public static final int TYPE_LINE = 2;
     public static final int TYPE_SECTION = 3;
 
-    public static int printMain() {
+    public static void printMain() {
         System.out.println(MAIN_TITLE);
         System.out.println(MAIN_MANAGE_STATION);
         System.out.println(MAIN_MANAGE_LINE);
         System.out.println(MAIN_MANAGE_SECTION);
         System.out.println(MAIN_PRINT_LINE_MAP);
         System.out.println(QUIT_MESSAGE + NEW_LINE);
-        return TYPE_MAIN;
     }
 
-    public static int printStationManagement() {
+    public static void printStationManagement() {
         System.out.println(STATION_TITLE);
         System.out.println(STATION_REGISTER);
         System.out.println(STATION_DELETE);
         System.out.println(STATION_INQUIRY);
         System.out.println(BACK_MESSAGE + NEW_LINE);
-        return TYPE_STATION;
     }
 
-    public static int printLineManagement() {
+    public static void printLineManagement() {
         System.out.println(LINE_TITLE);
         System.out.println(LINE_REGISTER);
         System.out.println(LINE_DELETE);
         System.out.println(LINE_INQUIRY);
         System.out.println(BACK_MESSAGE + NEW_LINE);
-        return TYPE_LINE;
     }
 
-    public static int printSectionManagement() {
+    public static void printSectionManagement() {
         System.out.println(SECTION_TITLE);
         System.out.println(SECTION_REGISTER);
         System.out.println(SECTION_DELETE);
         System.out.println(BACK_MESSAGE + NEW_LINE);
-        return TYPE_SECTION;
     }
 
     public static void printLineMap() {
