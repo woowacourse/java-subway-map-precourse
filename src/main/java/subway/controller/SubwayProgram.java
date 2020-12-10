@@ -7,6 +7,8 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class SubwayProgram {
+    private static final String STATION = "역";
+    private static final String LINE = "노선";
     
     private final Scanner scanner;
     
@@ -22,6 +24,10 @@ public class SubwayProgram {
         StationRepository.addStation(new Station("양재역"));
         StationRepository.addStation(new Station("양재시민의숲역"));
         StationRepository.addStation(new Station("매봉역"));
+        
+        LineRepository.addLine(new Line("2호선"));
+        LineRepository.addLine(new Line("3호선"));
+        LineRepository.addLine(new Line("신분당선"));
     }
 
 
@@ -35,32 +41,45 @@ public class SubwayProgram {
 
     private void selectMainMenu(MainMenuType mainMenuType) {
         if (MainMenuType.STATION_MANAGE.equals(mainMenuType)) {
-            getStationMenu();
+            getSubMenu(STATION);
+            return;
+        }
+        if (MainMenuType.LINE_MANAGE.equals(mainMenuType)) {
+            getSubMenu(LINE);
+            return;
         }
     }
 
-    private void getStationMenu() {
-        StationMenuType stationMenuType;
+    private void getSubMenu(String subMenuName) {
+        Menu subMenuType;
         do {
-            stationMenuType = InputView.inputStationMenu(scanner);
-            selectStationMenu(stationMenuType);
-        }while (!stationMenuType.equals(StationMenuType.BACK));
+            subMenuType = InputView.inputSubMenu(scanner, subMenuName);
+            if (subMenuName.equals(STATION)) {
+                selectStationMenu(subMenuType);
+            }
+
+        }while (!subMenuType.equals(SubMenuType.BACK));
     }
 
-    private void selectStationMenu(StationMenuType stationMenuType) {
-        if (StationMenuType.STATION_ADD.equals(stationMenuType)) {
+    private void selectStationMenu(Menu stationMenuType) {
+        if (SubMenuType.ADD.equals(stationMenuType)) {
             InputView.inputStationNameAdd(scanner);
             return;
         }
-        if (StationMenuType.STATION_DELETE.equals(stationMenuType)) {
+        if (SubMenuType.DELETE.equals(stationMenuType)) {
             InputView.inputStationNameDelete(scanner);
             return;
         }
-        if (StationMenuType.STATION_LIST_PRINT.equals(stationMenuType)) {
+        if (SubMenuType.LIST_PRINT.equals(stationMenuType)) {
             OutputView.printStationList();
             return;
         }
     }
+
+
+
+
+
 
 
 
