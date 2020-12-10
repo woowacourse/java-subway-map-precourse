@@ -33,6 +33,7 @@ public class Application {
             if (mainFunction == MainFunction.QUIT.getMenu()) {
                 break;
             }
+            selectDetailMenu(mainFunction);
         }
     }
 
@@ -40,5 +41,37 @@ public class Application {
         printUtils.printMainMenu();
         printUtils.printSelectFunction();
         return inputUtils.inputFunctionSelect(4, MainFunction.QUIT.getMenu());
+    }
+
+    private static void selectDetailMenu(char menu) {
+        if (menu == MainFunction.STATION_MANAGEMENT.getMenu()) {
+            stationManagementMenu();
+        }
+        if (menu == MainFunction.LINE_MANAGEMENT.getMenu()) {
+            lineManagementMenu();
+        }
+        if (menu == MainFunction.SECTION_MANAGEMENT.getMenu()) {
+            sectionManagementMenu();
+        }
+        if (menu == MainFunction.SUBWAY_MAP.getMenu()) {
+            subwayMapPrint();
+        }
+
+    }
+
+    private static void stationManagementMenu() {
+
+    }
+
+    private static void lineManagementMenu() {
+
+    }
+
+    private static void sectionManagementMenu() {
+
+    }
+
+    private static void subwayMapPrint() {
+
     }
 }
