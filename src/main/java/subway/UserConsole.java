@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class UserConsole {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String INVALID = "INVALID";
-    private static final int MINIMUM_LEGNTH = 2;
 
     // temporary fix
     public static String getInput() {
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        System.out.println();
+        return input;
     }
 
     public static String getMainCommand(List<String> authorizedCommands) {

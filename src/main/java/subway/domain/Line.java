@@ -54,4 +54,8 @@ public class Line {
             stations.add(StationRepository.getStationbyName(stationName));
         }
     }
+
+    public boolean contains(String stationName) {
+        return stations.stream().anyMatch(station -> station.getName().equals(stationName));
+    }
 }
