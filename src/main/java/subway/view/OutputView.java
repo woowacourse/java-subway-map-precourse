@@ -12,4 +12,30 @@ public class OutputView {
                 + ScreenType.QUITTING.getScreen()
                 + ScreenType.FEATURE_CHOICE.getScreen());
     }
+
+    public static void printStationManagementScreen() {
+        System.out.println(ScreenType.STATION_MANAGEMENT_SCREEN.getScreen()
+                + ScreenType.STATION_ADDING.getScreen()
+                + ScreenType.STATION_DELETION.getScreen()
+                + ScreenType.STATION_PRINT.getScreen()
+                + ScreenType.BACK.getScreen()
+                + ScreenType.FEATURE_CHOICE.getScreen());
+    }
+
+    public static void printLineManagementScreen() {
+        System.out.println(ScreenType.LINE_MANAGEMENT_SCREEN.getScreen()
+                + ScreenType.LINE_ADDING.getScreen()
+                + ScreenType.LINE_DELETION.getScreen()
+                + ScreenType.LINE_PRINT.getScreen()
+                + ScreenType.BACK.getScreen()
+                + ScreenType.FEATURE_CHOICE.getScreen());
+    }
+
+    public static void printSectionManagementScreen() {
+        System.out.println(ScreenType.SECTION_MANAGEMENT_SCREEN.getScreen()
+                + ScreenType.SECTION_ADDING.getScreen()
+                + ScreenType.SECTION_DELETION.getScreen()
+                + ScreenType.BACK.getScreen()
+                + ScreenType.FEATURE_CHOICE.getScreen());
+    }
 }
