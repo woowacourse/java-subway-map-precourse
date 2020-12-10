@@ -14,8 +14,14 @@ public class LineService {
     private static final String DELETE_SUCCESS="지하철 노선이 삭제되었습니다.";
     private static final String SECTION_INSERT_SUCCESS="구간이 등록되었습니다.";
     private static final String SECTION_DELETE_SUCCESS="구간이 삭제되었습니다.";
+    private static final String NAME_LENGTH_ERROR="노선 이름은 2글자 이상입니다.";
+    private static final String STATION_NAME_LENGTH_ERROR="지하철 역 이름은 2글자 이상이어야 한다.";
+    private static final Integer MIN_STATION_SIZE=2;
+    private static final Integer MIN_LINE_SIZE=2;
     private static LineService lineService;
-
+    private String name;
+    private String upwardLineName;
+    private String downLineName;
     private LineService(){}
 
     public static LineService getInstance(){
@@ -26,18 +32,30 @@ public class LineService {
     }
 
     public boolean insert(){
-        String name= InputView.getLineName();
-        String upwardLineName=InputView.getUpwardStationName();
-        String downLineName=InputView.getDownStationName();
-
+        if(!lineInsertInput()){
+            return false;
+        }
         Line line=new Line(name);
         line.addAllStation(upwardLineName,downLineName);
-        boolean result= LineRepository.addLine(line);
-        if(result){
-            OutputView.printInfo(INSERT_SUCCESS);
-            System.out.println();
-        }
+        boolean result=LineRepository.addLine(line);
+        OutputView.printResult(result,INSERT_SUCCESS);
         return result;
+    }
+
+    private boolean lineInsertInput(){
+        if((name=InputView.getLineName()).length()<MIN_LINE_SIZE){
+            OutputView.printError(NAME_LENGTH_ERROR);
+            return false;
+        }
+        if((upwardLineName=InputView.getUpwardStationName()).length()<MIN_STATION_SIZE){
+            OutputView.printError(STATION_NAME_LENGTH_ERROR);
+            return false;
+        }
+        if((downLineName=InputView.getDownStationName()).length()<MIN_STATION_SIZE){
+            OutputView.printError(STATION_NAME_LENGTH_ERROR);
+            return false;
+        }
+        return true;
     }
 
     public boolean delete(){
@@ -46,10 +64,7 @@ public class LineService {
         if(!result){
             OutputView.printError(DELETE_STATION_ERROR_TEXT);
         }
-        if(result){
-            OutputView.printInfo(DELETE_SUCCESS);
-            System.out.println();
-        }
+        OutputView.printResult(result,DELETE_SUCCESS);
         return result;
     }
 
@@ -67,10 +82,7 @@ public class LineService {
 
         Line findLine=LineRepository.findByName(lineName);
         boolean result=findLine.addStation(order,stationName);
-        if(result){
-            OutputView.printInfo(SECTION_INSERT_SUCCESS);
-            System.out.println();
-        }
+        OutputView.printResult(result,SECTION_INSERT_SUCCESS);
         return result;
     }
 
@@ -79,10 +91,7 @@ public class LineService {
         String stationName=InputView.getDeleteStationName();
         Line findLine=LineRepository.findByName(lineName);
         boolean result=LineRepository.deleteStationByName(findLine,stationName);
-        if(result){
-            OutputView.printInfo(SECTION_DELETE_SUCCESS);
-            System.out.println();
-        }
+        OutputView.printResult(result,SECTION_DELETE_SUCCESS);
         return result;
     }
 
