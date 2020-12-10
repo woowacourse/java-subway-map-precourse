@@ -40,4 +40,13 @@ public class StationRepository {
         }
         return true;
     }
+
+    public static Station searchStationByName(String name) {
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
+                return station;
+            }
+        }
+        throw new RuntimeException(ERROR_NOT_EXIST);
+    }
 }
