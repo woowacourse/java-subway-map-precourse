@@ -2,8 +2,6 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.General;
-import subway.view.StationMessages;
 import subway.view.View;
 
 import java.util.ArrayList;

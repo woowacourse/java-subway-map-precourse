@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.view.LineMessages;
 import subway.view.StationMessages;
 
 import java.util.ArrayList;
@@ -26,6 +27,13 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         stations.add(station);
+    }
+
+    public static Station getStation(String stationName) throws IllegalArgumentException {
+        return StationRepository.stations().stream()
+                .filter(station -> station.getName().equals(stationName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(StationMessages.UNREGISTERED_NAME_ERROR.getMessage()));
     }
 
     public static boolean deleteStation(String name) {

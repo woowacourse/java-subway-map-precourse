@@ -23,8 +23,7 @@ public class LineController {
 		String upwardDestination = View.getUpwardDestination(scanner);
 		String downwardDestination = View.getDownwardDestination(scanner);
 		try {
-			Line line = new Line(name, upwardDestination, downwardDestination);
-			LineRepository.addLine(line);
+			LineRepository.addLine(new Line(name, upwardDestination, downwardDestination));
 			View.printStationRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

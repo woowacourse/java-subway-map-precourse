@@ -116,4 +116,8 @@ public class View {
 		System.out.println(SectionMessages.STATION_NAME_FOR_NEW_SECTION.getMessage());
 		return scanner.nextLine();
 	}
+
+	public static void printSectionRegisterCompletion() {
+		System.out.println(SectionMessages.REGISTER_COMPLETE);
+	}
 }
