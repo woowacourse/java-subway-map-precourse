@@ -36,8 +36,7 @@ public class StationRepository {
             }
         }
         System.out.println("없는 역 입니다");
-        Station emptyStation = new Station("noname");
-        return emptyStation;
+        return null;
     }
 
 

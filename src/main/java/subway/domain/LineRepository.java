@@ -36,8 +36,7 @@ public class LineRepository {
             }
         }
         System.out.println("없는 노선 입니다");
-        Line emptyLine = new Line("noname");
-        return emptyLine;
+        return null;
     }
 
 
