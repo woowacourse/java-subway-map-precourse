@@ -7,7 +7,7 @@ public class Station {
 
     public static final int MIN_NAME_SIZE = 2;
 
-    private String name;
+    private final String name;
 
     private Station(String name) {
         this.name = name;

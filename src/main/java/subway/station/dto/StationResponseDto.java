@@ -6,7 +6,7 @@ import subway.station.domain.Station;
 
 public class StationResponseDto {
 
-    private String name;
+    private final String name;
 
     public StationResponseDto(String name) {
         this.name = name;

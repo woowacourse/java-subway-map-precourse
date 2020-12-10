@@ -21,6 +21,7 @@ public class ManagementScreen implements Screen {
     @Override
     public void visualize() {
         OutputView.printTitle(selectedCategoryType.getName() + SPACE + MANAGEMENT_SCREEN_MESSAGE);
+
         List<ActionType> actionOrder = selectedCategoryType.getActionOrder();
         for (int i = 1; i <= actionOrder.size(); i++) {
             OutputView.println(

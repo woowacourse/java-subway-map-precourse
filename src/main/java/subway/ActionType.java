@@ -7,7 +7,7 @@ public enum ActionType {
     SELECT("조회"),
     BACK("돌아가기");
 
-    private String name;
+    private final String name;
 
     ActionType(String name) {
         this.name = name;

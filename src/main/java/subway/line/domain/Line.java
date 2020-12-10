@@ -16,8 +16,8 @@ public class Line {
     public static final int MIN_NAME_SIZE = 2;
     public static final int MIN_STATIONS_SIZE = 2;
 
-    private String name;
-    private List<Station> stations;
+    private final String name;
+    private final List<Station> stations;
 
     private Line(String name, List<Station> stations) {
         this.name = name;

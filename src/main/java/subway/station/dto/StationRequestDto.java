@@ -2,7 +2,7 @@ package subway.station.dto;
 
 public class StationRequestDto {
 
-    private String name;
+    private final String name;
 
     public StationRequestDto(String name) {
         this.name = name;

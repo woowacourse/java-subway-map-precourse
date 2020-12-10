@@ -7,8 +7,8 @@ import subway.station.dto.StationResponseDto;
 
 public class LineResponseDto {
 
-    private String name;
-    private List<StationResponseDto> stations;
+    private final String name;
+    private final List<StationResponseDto> stations;
 
     public LineResponseDto(String name, List<StationResponseDto> stations) {
         this.name = name;

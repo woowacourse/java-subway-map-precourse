@@ -2,9 +2,9 @@ package subway.line.dto;
 
 public class LineRequestDto {
 
-    private String name;
-    private String upstreamStationName;
-    private String downstreamStationName;
+    private final String name;
+    private final String upstreamStationName;
+    private final String downstreamStationName;
 
     public LineRequestDto(String name, String upstreamStationName,
         String downstreamStationName) {
