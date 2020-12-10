@@ -52,4 +52,15 @@ public class LineService {
         }
         return result;
     }
+
+    public boolean printAllStation(){
+        System.out.println(SELECT_STATION_TEXT);
+        LineRepository.printAllLine();
+        System.out.println();
+        return true;
+    }
+
+    public boolean back(){
+        return true;
+    }
 }
