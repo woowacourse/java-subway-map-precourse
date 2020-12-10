@@ -1,11 +1,12 @@
 package subway.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
     private String name;
-    private List<Station> section;
+    private List<Station> sections = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -15,7 +16,13 @@ public class Line {
         return name;
     }
 
-    public List<Station> getSection() {
-        return section;
+    public List<Station> getSections() {
+        return sections;
+    }
+
+    public void addSection(Station inputStation){
+        if(StationRepository.stations().contains(inputStation)){
+            sections.add(inputStation);
+        }
     }
 }

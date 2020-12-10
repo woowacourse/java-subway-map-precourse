@@ -131,7 +131,7 @@ public class OutputView {
     public static void showSection(Line line) {
         showInfoMessage(line.getName());
         showInfoMessage(SECTION_LINE);
-        showStationList(line.getSection());
+        showStationList(line.getSections());
         System.out.println();
     }
 

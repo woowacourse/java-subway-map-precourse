@@ -27,10 +27,13 @@ public class Subway {
 
     public void start() {
         OutputView.showMainMenu();
-        chooseMenu(inputView.inputValue());
+        boolean continueSystem = chooseMenu(inputView.inputValue());
+        if(continueSystem){
+            start();
+        }
     }
 
-    private void chooseMenu(String input) {
+    private boolean chooseMenu(String input) {
         if (input.equals(STATION_MANGE_MENU)) {
             management.manageStation();
         }
@@ -44,8 +47,9 @@ public class Subway {
             OutputView.showSubwayLineMap();
         }
         if (input.equals(CLOSE)) {
-            return;
+            return false;
         }
+        return true;
     }
 
 
