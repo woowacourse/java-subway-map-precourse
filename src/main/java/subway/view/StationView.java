@@ -46,4 +46,8 @@ public class StationView {
     public static void informNameLengthUnder2() {
         System.err.println(ErrorMessage.NAME_LENGTH_UNDER_2.getMessage());
     }
+
+    public static void informStationNotExist() {
+        System.err.println(ErrorMessage.STATION_NOT_EXIST.getMessage());
+    }
 }

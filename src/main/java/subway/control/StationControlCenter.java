@@ -27,7 +27,7 @@ public class StationControlCenter {
             return;
         }
         if (command.equals(StationMenu.DELETE.getCommand())) {
-            deleteStation(scanner);
+            removeStation(scanner);
             return;
         }
         if (command.equals(StationMenu.CHECK.getCommand())) {
@@ -54,10 +54,14 @@ public class StationControlCenter {
         StationView.informStationEnrolled();
     }
 
-    private void deleteStation(Scanner scanner) {
+    private void removeStation(Scanner scanner) {
         StationView.printAskStationNameToDelete();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
-        StationRepository.deleteStation(nameOfStation);
-        StationView.informStationDeleted();
+        if (StationRepository.deleteStation(nameOfStation)) {
+            StationView.informStationDeleted();
+            return;
+        }
+        StationView.informStationNotExist();
+        removeStation(scanner);
     }
 }
