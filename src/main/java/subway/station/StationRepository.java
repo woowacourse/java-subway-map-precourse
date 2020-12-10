@@ -2,23 +2,15 @@ package subway.station;
 
 import subway.domain.Station;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
-public class StationRepository {
-    private static final List<Station> stations = new ArrayList<>();
+public interface StationRepository {
+    Set<Station> stations();
 
-    public static List<Station> stations() {
-        return Collections.unmodifiableList(stations);
-    }
+    void addStation(Station station);
 
-    public static void addStation(Station station) {
-        stations.add(station);
-    }
+    void deleteStation(Station station);
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
-    }
+    Optional<Station> findStationByName(String name);
 }

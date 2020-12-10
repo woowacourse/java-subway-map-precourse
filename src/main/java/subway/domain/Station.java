@@ -1,6 +1,6 @@
 package subway.domain;
 
-import static subway.station.StationValidator.*;
+import java.util.Objects;
 
 public class Station {
     private static final int ZERO = 0;
@@ -8,7 +8,6 @@ public class Station {
     private int lineCount = 0;
 
     public Station(String name) {
-        validateName(name);
         this.name = name;
     }
 
@@ -26,5 +25,18 @@ public class Station {
 
     public boolean isRemovable() {
         return lineCount == ZERO;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Station station = (Station) o;
+        return getName().equals(station.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }
