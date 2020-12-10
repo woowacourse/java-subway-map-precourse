@@ -70,18 +70,16 @@ public class Application {
     }
 
     private static void printSubwayMap() {
-        List<Line> lines = LineRepository.lines();
         if (LineRepository.isEmpty()) {
             System.out.println("[ERROR] 노선 목록이 비어 있다.\n");
         }
+        List<Line> lines = LineRepository.lines();
         System.out.println("## 지하철 노선도");
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
             System.out.println("[INRO] ---");
             List<String> stationNames = line.getStationNames();
-            for (String stationName : stationNames) {
-                System.out.println("[INFO] " + stationName);
-            }
+            stationNames.forEach(stationName -> System.out.println("[INFO] " + stationName));
             System.out.println();
         }
     }
