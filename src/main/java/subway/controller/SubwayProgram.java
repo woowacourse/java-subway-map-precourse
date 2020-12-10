@@ -56,6 +56,10 @@ public class SubwayProgram {
             InputView.inputStationNameDelete(scanner);
             return;
         }
+        if (StationMenuType.STATION_LIST_PRINT.equals(stationMenuType)) {
+            OutputView.printStationList();
+            return;
+        }
     }
 
 
