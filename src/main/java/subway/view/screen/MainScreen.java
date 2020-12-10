@@ -21,13 +21,12 @@ public class MainScreen implements Screen {
 
     @Override
     public void visualize() {
-        OutputView.println(DOUBLE_SHARP + MAIN_SCREEN_MESSAGE);
+        OutputView.printTitle(MAIN_SCREEN_MESSAGE);
         for (int i = 1; i <= MAIN_CATEGORIES.size(); i++) {
             System.out.println(i + COMMA + MAIN_CATEGORIES.get(i - 1).getName() + MANAGEMENT_MESSAGE);
         }
 
         OutputView.println(InputView.EXIT_COMMAND + COMMA + CategoryType.EXIT.getName());
-        OutputView.println();
     }
 
     @Override
@@ -50,7 +49,7 @@ public class MainScreen implements Screen {
 
     public int getCategoryCommandNumber(InputView inputView) {
         return (int) ErrorUtils.repeatingUntilNoException(() -> {
-            OutputView.println(Screen.DOUBLE_SHARP + Screen.SELECT_CATEGORY_MESSAGE);
+            OutputView.printTitle(Screen.SELECT_CATEGORY_MESSAGE);
             return inputView.readCategoryCommandNumber();
         });
     }

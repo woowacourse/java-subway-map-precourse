@@ -2,6 +2,7 @@ package subway.utils;
 
 import java.util.function.Supplier;
 import subway.view.OutputView;
+import subway.view.screen.Screen;
 
 public class ErrorUtils {
 
@@ -11,7 +12,7 @@ public class ErrorUtils {
                 supplierNoReturn.execute();
                 return;
             } catch (RuntimeException e) {
-                OutputView.println(e.getMessage());
+                OutputView.println(Screen.ERROR_PREFIX + e.getMessage());
                 OutputView.println();
             }
         }
@@ -22,7 +23,7 @@ public class ErrorUtils {
             try {
                 return supplier.get();
             } catch (RuntimeException e) {
-                OutputView.println(e.getMessage());
+                OutputView.println(Screen.ERROR_PREFIX + e.getMessage());
                 OutputView.println();
             }
         }
