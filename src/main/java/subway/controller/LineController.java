@@ -19,17 +19,6 @@ public class LineController {
 		options.add(Options.BACK.getOption());
 	}
 
-	private static boolean hasOption(String input) {
-		return options.stream()
-				.anyMatch(option -> option.equalsIgnoreCase(input));
-	}
-
-	private static void validateOption(String input) throws IllegalArgumentException {
-		if (!hasOption(input)) {
-			throw new IllegalArgumentException(General.NOT_AVAILABLE_OPTION_ERROR.getMessage());
-		}
-	}
-
 	private static void createLine(Scanner scanner) {
 		String name = View.getLineNameToRegister(scanner);
 		String upwardDestination = View.getUpwardDestination(scanner);
@@ -69,7 +58,7 @@ public class LineController {
 		View.printStationScreen();
 		String option = View.getScreenOption(scanner).trim();
 		try {
-			validateOption(option);
+			Options.validateOption(options, option);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

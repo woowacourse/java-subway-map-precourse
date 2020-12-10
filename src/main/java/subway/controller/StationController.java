@@ -20,17 +20,6 @@ public class StationController {
 		options.add(Options.BACK.getOption());
 	}
 
-	private static boolean hasOption(String input) {
-		return options.stream()
-				.anyMatch(option -> option.equalsIgnoreCase(input));
-	}
-
-	private static void validateOption(String input) throws IllegalArgumentException {
-		if (!hasOption(input)) {
-			throw new IllegalArgumentException(General.NOT_AVAILABLE_OPTION_ERROR.getMessage());
-		}
-	}
-
 	private static void createStation(Scanner scanner) {
 		String name = View.getStationNameToRegister(scanner);
 		StationRepository.addStation(new Station(name));
@@ -67,7 +56,7 @@ public class StationController {
 		View.printStationScreen();
 		String option = View.getScreenOption(scanner).trim();
 		try {
-			validateOption(option);
+			Options.validateOption(options, option);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
