@@ -18,9 +18,43 @@ public class OutputView {
     private final String REGISTER_LINE_SUCCESS = "지하철 노선이 등록되었습니다.";
     private final String DELETE_LINE_QUESTION = "## 삭제할 노선 이름을 입력하세요.";
     private final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.";
+    private final String REGISTER_SECTION_LINE_NAME_QUESTION = "## 노선을 입력하세요.";
+    private final String REGISTER_SECTION_STATION_NAME_QUESTION = "## 역이름을 입력하세요.";
+    private final String REGISTER_SECTION_ORDER_NUMBER_QUESTION = "## 순서를 입력하세요.";
+    private final String REGISTER_SECTION_SUCCESS = "구간이 등록되었습니다.";
+    private final String DELETE_SECTION_LINE_NAME_QUESTION = "## 삭제할 구간의 노선을 입력하세요.";
+    private final String DELETE_SECTION_STATION_NAME_QUESTION = "## 삭제할 구간의 역을 입력하세요.";
+    private final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.";
     private final String DASH = "---";
     public OutputView() {
     }
+    public void printRegisterSectionLineNameQuestion() {
+        printLine(REGISTER_SECTION_LINE_NAME_QUESTION);
+    }
+    public void printRegisterSectionStationNameQuestion() {
+        printLine(REGISTER_SECTION_STATION_NAME_QUESTION);
+    }
+
+    public void printRegisterSectionOrderNumberQuestion() {
+        printLine(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
+    }
+
+    public void printRegisterSectionSuccess() {
+        printLine(REGISTER_SECTION_SUCCESS);
+    }
+
+    public void printDeleteSectionLineNameQuestion() {
+        printLine(DELETE_SECTION_LINE_NAME_QUESTION);
+    }
+
+    public void printDeleteSectionStationNameQuestion() {
+        printLine(DELETE_SECTION_STATION_NAME_QUESTION);
+    }
+
+    public void printDeleteSectionSuccess() {
+        printInfo(DELETE_SECTION_SUCCESS);
+    }
+
 
     public void printRegisterStationQuestion() {
         printLine(REGISTER_STATION_QUESTION);

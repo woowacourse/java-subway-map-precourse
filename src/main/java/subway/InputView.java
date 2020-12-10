@@ -9,6 +9,10 @@ public class InputView {
         this.scanner = scanner;
     }
 
+    public int getInt() {
+        return Integer.parseInt(scanner.nextLine());
+    }
+
     public String getAnswer() {
         return scanner.nextLine().strip();
     }

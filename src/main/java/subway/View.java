@@ -77,4 +77,26 @@ public class View {
         }
         outputView.printDeleteLineSuccess();
     }
+
+    public void registerSection() {
+        outputView.printRegisterSectionLineNameQuestion();
+        Line line = LineRepository.getLine(inputView.getLine());
+        outputView.printRegisterSectionStationNameQuestion();
+        Station station = StationRepository.getStation(inputView.getStation());
+        outputView.printRegisterSectionOrderNumberQuestion();
+        int order = inputView.getInt();
+        line.add(order, station);
+        outputView.printRegisterSectionSuccess();
+    }
+
+    public void deleteSection() {
+        outputView.printDeleteSectionLineNameQuestion();
+        Line line = LineRepository.getLine(inputView.getLine());
+        outputView.printDeleteSectionStationNameQuestion();
+        Station station = StationRepository.getStation(inputView.getStation());
+        if (!line.remove(station)) {
+            throw new IllegalArgumentException("노선에 입력한 역이 없습니다.");
+        }
+        outputView.printDeleteSectionSuccess();
+    }
 }

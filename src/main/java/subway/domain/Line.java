@@ -25,4 +25,8 @@ public class Line {
         stations.add(index, station);
 //TODO catch (IndexOutOfBoundsException e) error handling
     }
+
+    public boolean remove(Station station) {
+        return stations.remove(station);
+    }
 }
