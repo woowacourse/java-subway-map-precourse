@@ -37,7 +37,9 @@ public class SubwayProgram {
     }
 
     private void selectStationMenu(StationMenuType stationMenuType) {
-
+        if (StationMenuType.STATION_ADD.equals(stationMenuType)) {
+            InputView.inputStationName(scanner);
+        }
     }
 
 
