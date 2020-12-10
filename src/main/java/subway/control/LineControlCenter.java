@@ -2,9 +2,11 @@ package subway.control;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 import subway.enums.LineMenu;
 import subway.view.LineView;
 import subway.view.MainView;
+import subway.view.StationView;
 
 import java.util.Scanner;
 
@@ -39,6 +41,12 @@ public class LineControlCenter {
     private void enrollLine(Scanner scanner) {
         LineView.printAskLineNameToEnroll();
         String nameOfLine = MainControlCenter.inputCommand(scanner);
+        if (LineRepository.isNameDuplication(nameOfLine)) {
+            LineView.informLineDuplicated();
+            enrollLine(scanner);
+            return;
+        }
+
         LineView.printAskUpLastStation();
         String upLastStation = MainControlCenter.inputCommand(scanner);
         LineView.printAskDownLastStation();

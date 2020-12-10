@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.enums.ErrorMessage;
 import subway.enums.LineInfo;
 import subway.enums.LineMenu;
 
@@ -31,5 +32,7 @@ public class LineView {
         System.out.println(LineInfo.INFO_LINE_ENROLLED.getInfo());
     }
 
-
+    public static void informLineDuplicated() {
+        System.err.println(ErrorMessage.LINE_DUPLICATION.getMessage());
+    }
 }
