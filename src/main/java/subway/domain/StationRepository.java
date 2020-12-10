@@ -1,9 +1,9 @@
 package subway.domain;
 
 import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class StationRepository {
 
@@ -13,10 +13,10 @@ public class StationRepository {
 
     public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
 
-    private final Set<Station> stations;
+    private final List<Station> stations;
 
     public StationRepository() {
-        this.stations = new LinkedHashSet<>();
+        this.stations = new LinkedList<>();
     }
 
     public StationRepository(String startStation, String finalStation) {
@@ -26,15 +26,18 @@ public class StationRepository {
         addStation(finalStation);
     }
 
-
-    public Set<Station> stations() {
-        return Collections.unmodifiableSet(stations);
+    public List<Station> stations() {
+        return Collections.unmodifiableList(stations);
     }
 
-    public void addStation(final String name) {
-        if (!stations.add(new Station(name))) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, name));
+    public void addStation(final String stationName) {
+        Station station = new Station(stationName);
+
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, stationName));
         }
+
+        stations.add(station);
     }
 
     public void deleteStation(final String name, final LineRepository lineRepository) {

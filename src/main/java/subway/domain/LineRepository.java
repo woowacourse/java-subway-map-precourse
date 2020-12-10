@@ -1,9 +1,9 @@
 package subway.domain;
 
 import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class LineRepository {
 
@@ -11,20 +11,22 @@ public class LineRepository {
 
     public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
 
-    private final Set<Line> lines;
+    private final List<Line> lines;
 
     public LineRepository() {
-        this.lines = new LinkedHashSet<>();
+        this.lines = new LinkedList<>();
     }
 
-    public Set<Line> lines() {
-        return Collections.unmodifiableSet(lines);
+    public List<Line> lines() {
+        return Collections.unmodifiableList(lines);
     }
 
     public void addLine(Line line) {
-        if (!lines.add(line)) {
+        if (lines.contains(line)) {
             throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, line.getName()));
         }
+
+        lines.add(line);
     }
 
     public void deleteLineByName(String name) {
