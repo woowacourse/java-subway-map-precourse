@@ -4,6 +4,7 @@ import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 
 /**
  * 결과에 따른 출력을 하는 클래스
@@ -35,7 +36,6 @@ public class OutputView {
         + "2. 구간 삭제\n"
         + "B. 돌아가기\n";
     private static final String MENU_CATEGORY_CHOICE_MESSAGE = "원하는 기능을 선택하세요.";
-
     private static final String INPUT_STATION_NAME_MESSAGE = "등록할 역 이름을 입력하세요.";
     private static final String INPUT_STATION_CHECK_MESSAGE = "지하철 역이 등록되었습니다.";
     private static final String REMOVE_STATION_NAME_MESSAGE = "삭제할 역 이름을 입력하세요.";
@@ -71,10 +71,9 @@ public class OutputView {
 
     private static void showMenuMessage(String message) {
         showMessage(message);
-        showMessage(MENU_CATEGORY_CHOICE_MESSAGE);
     }
 
-    private static void showMessage(String message) {
+    public static void showMessage(String message) {
         System.out.println(MENU_PREFIX + message);
     }
 
@@ -94,6 +93,10 @@ public class OutputView {
         showMenuMessage(SECTION_MENU_MESSAGE);
     }
 
+    public static void chooseCategory(){
+        showMessage(MENU_CATEGORY_CHOICE_MESSAGE);
+    }
+
     public static void guideInsertStation() {
         showMessage(INPUT_STATION_NAME_MESSAGE);
     }
@@ -110,9 +113,10 @@ public class OutputView {
         showInfoMessage(REMOVE_STATION_CHECK_MESSAGE);
     }
 
-    public static void showStationList(List<Station> stations) {
+    public static void showStationList() {
         showInfoMessage(SHOW_STATION_LIST_MESSAGE);
-        stations.forEach(station -> showInfoMessage(station.getName()));
+        StationRepository.stations()
+            .forEach(station -> showInfoMessage(station.getName()));
     }
 
     public static void guideInsertLine() {
@@ -139,9 +143,9 @@ public class OutputView {
         showInfoMessage(REMOVE_LINE_CHECK_MESSAGE);
     }
 
-    public static void showLineList(List<Line> lines) {
+    public static void showLineList() {
         showInfoMessage(SHOW_LINE_LIST_MESSAGE);
-        lines.forEach(line -> showInfoMessage(line.getName()));
+        LineRepository.lines().forEach(line -> showInfoMessage(line.getName()));
     }
 
     public static void guideInsertSectionLineName() {
@@ -175,7 +179,7 @@ public class OutputView {
     public static void showSection(Line line) {
         showInfoMessage(line.getName());
         showInfoMessage(SECTION_LINE);
-        showStationList(line.getSections());
+        line.getSections().forEach(section->showInfoMessage(section.getName()));
         System.out.println();
     }
 

@@ -9,5 +9,6 @@ public class SubwayCustomException extends IllegalArgumentException {
 
     public SubwayCustomException(String message) {
         super(OutputView.showErrorMessage(message));
+        System.out.println();
     }
 }

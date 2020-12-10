@@ -9,7 +9,7 @@ import subway.exception.SubwayCustomException;
 public class StationRepository {
 
     public static final String NOT_VALID_STATION_EXCEPTION_MESSAGE = "존재하지 않는 역입니다.";
-    private static final List<Station> stations = new ArrayList<>();
+    public static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
