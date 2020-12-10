@@ -1,12 +1,10 @@
 package subway.domain;
 
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class StationRepositoryTest {
 
@@ -25,11 +23,10 @@ class StationRepositoryTest {
         stationRepository.addStation(new Station("강남역"));
 
         // when
-        ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.addStation(new Station("봉천역"));
+        boolean isAdded = stationRepository.addStation(new Station("봉천역"));
 
         //then
-        assertThatCode(callable).doesNotThrowAnyException();
+        assertThat(isAdded).isTrue();
     }
 
     @Test
@@ -37,15 +34,12 @@ class StationRepositoryTest {
     public void addStation_DuplicateStation_ExceptionThrown() {
 
         // given
-        stationRepository.addStation(new Station("봉천역"));
-
+        stationRepository.addStation(new Station("강남역"));
 
         // when
-        ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.addStation(new Station("봉천역"));
+        boolean isAdded = stationRepository.addStation(new Station("강남역"));
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.DUPLICATE_NAME);
+        assertThat(isAdded).isFalse();
     }
 }
