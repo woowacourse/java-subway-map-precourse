@@ -21,7 +21,7 @@ public class MainControlCenter {
     public static String inputCommand(Scanner scanner) {
         String command = scanner.nextLine();
         System.out.println();
-        return command;
+        return command.trim();
     }
 
     public void startMainControl(Scanner scanner) {

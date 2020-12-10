@@ -37,21 +37,24 @@ public class StationControlCenter {
     }
 
     private void enrollStation(Scanner scanner) {
+        String nameOfStation = inputNameOfStation(scanner);
+        Station station = new Station(nameOfStation);
+        StationRepository.addStation(station);
+        StationView.informStationEnrolled();
+    }
+
+    private String inputNameOfStation(Scanner scanner) {
         StationView.printAskStationNameToEnroll();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
         if (StationRepository.isNameDuplication(nameOfStation)) {
             StationView.infromStationDuplicated();
-            enrollStation(scanner);
-            return;
+            return inputNameOfStation(scanner);
         }
         if (StationRepository.isNameLengthUnder2(nameOfStation)) {
             StationView.informNameLengthUnder2();
-            enrollStation(scanner);
-            return;
+            return inputNameOfStation(scanner);
         }
-        Station station = new Station(nameOfStation);
-        StationRepository.addStation(station);
-        StationView.informStationEnrolled();
+        return nameOfStation;
     }
 
     private void removeStation(Scanner scanner) {
