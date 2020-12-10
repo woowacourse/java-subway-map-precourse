@@ -1,8 +1,10 @@
 package subway.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,12 +20,15 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public void getLine() {
+    public List findAll() {
         Iterator<Line> iter = lines.iterator();
+        List<String> lineNameList = new ArrayList<>();
         while (iter.hasNext()) {
-            System.out.println(iter.next().getName());
+            lineNameList.add(iter.next().getName());
         }
+        return lineNameList;
     }
+
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
