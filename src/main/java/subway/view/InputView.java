@@ -63,10 +63,9 @@ public class InputView {
         return result;
     }
 
-    public static Integer getSectionOrder(){
+    public static String getSectionOrder(){
         System.out.println(ORDER_SECTION_TEXT);
-        Integer result=scanner.nextInt();
-        scanner.nextLine();
+        String result=scanner.nextLine();
         System.out.println();
         return result;
     }
