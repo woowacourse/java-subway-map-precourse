@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.domain.StationRepository;
+import subway.enums.ErrorMessage;
 import subway.enums.StationMenu;
 
 import java.util.Arrays;
@@ -36,5 +37,9 @@ public class StationView {
         StationRepository.stations().stream()
                 .map(station -> StationMenu.INFO.getTitle() + station.getName())
                 .forEach(System.out::println);
+    }
+
+    public static void infromStationDuplicated() {
+        System.err.println(ErrorMessage.STATION_DUPLICATION.getMessage());
     }
 }

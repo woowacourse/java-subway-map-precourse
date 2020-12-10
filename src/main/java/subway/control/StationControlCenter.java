@@ -39,6 +39,11 @@ public class StationControlCenter {
     private void enrollStation(Scanner scanner) {
         StationView.printAskStationNameToEnroll();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
+        if (StationRepository.isNameDuplication(nameOfStation)) {
+            StationView.infromStationDuplicated();
+            enrollStation(scanner);
+            return;
+        }
         Station station = new Station(nameOfStation);
         StationRepository.addStation(station);
         StationView.informStationEnrolled();
