@@ -28,7 +28,7 @@ public class DeleteStationTest {
     public void deleteStation_ExistLine_EmptyLines() {
 
         // when
-        LineRepository newLineRepository = lineRepository.deleteLineByName("1호선");
+        LineRepository newLineRepository = lineRepository.deleteLine("1호선");
 
         //then
         assertThat(newLineRepository.lines().isEmpty()).isTrue();
@@ -40,7 +40,7 @@ public class DeleteStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.deleteLineByName("신분당선");
+                () -> lineRepository.deleteLine("신분당선");
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -55,7 +55,7 @@ public class DeleteStationTest {
         lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
 
         // when
-        lineRepository = lineRepository.deleteStation("1호선", "봉천역");
+        lineRepository = lineRepository.removeStation("1호선", "봉천역");
 
         //then
         assertThat(lineRepository.lines().get(0).getStations().stations())
@@ -68,7 +68,7 @@ public class DeleteStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.deleteStation("1호선", "강남역");
+                () -> lineRepository.removeStation("1호선", "강남역");
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -84,7 +84,7 @@ public class DeleteStationTest {
         lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
 
         // when
-        lineRepository = lineRepository.deleteStation("1호선", "강남역");
+        lineRepository = lineRepository.removeStation("1호선", "강남역");
 
         //then
         assertThat(lineRepository.lines().get(0).getStations().stations())
@@ -99,7 +99,7 @@ public class DeleteStationTest {
         lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
 
         // when
-        lineRepository = lineRepository.deleteStation("1호선", "잠실역");
+        lineRepository = lineRepository.removeStation("1호선", "잠실역");
 
         //then
         assertThat(lineRepository.lines().get(0).getStations().stations())

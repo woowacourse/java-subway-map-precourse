@@ -26,7 +26,7 @@ public class Line {
         return stations;
     }
 
-    public Line insertStation(final int index, final String stationName) {
+    public Line insert(final int index, final String stationName) {
         return new Line(this.name, stations.insertStation(index, stationName));
     }
 
@@ -36,6 +36,10 @@ public class Line {
 
     public boolean contains(final String stationName) {
         return stations.contains(stationName);
+    }
+
+    public boolean equalsName(String lineName) {
+        return name.equals(new LineName(lineName));
     }
 
     @Override
