@@ -16,10 +16,16 @@ public class LineService {
     private static final String SECTION_DELETE_SUCCESS="구간이 삭제되었습니다.";
     private static final String NAME_LENGTH_ERROR="노선 이름은 2글자 이상입니다.";
     private static final String STATION_NAME_LENGTH_ERROR="지하철 역 이름은 2글자 이상이어야 한다.";
+    private static final String NOT_EXIST_LINE_NAME="존재하지 않는 노선 이름입니다.";
+    private static final String INVALID_ORDER="잘못된 순서 입력입니다.";
     private static final Integer MIN_STATION_SIZE=2;
     private static final Integer MIN_LINE_SIZE=2;
+    private static final int START_NUMBER=48;
+    private static final int END_NUMBER=57;
     private static LineService lineService;
-    private String name;
+    private String lineName;
+    private String stationName;
+    private String order;
     private String upwardLineName;
     private String downLineName;
     private LineService(){}
@@ -35,7 +41,7 @@ public class LineService {
         if(!lineInsertInput()){
             return false;
         }
-        Line line=new Line(name);
+        Line line=new Line(lineName);
         line.addAllStation(upwardLineName,downLineName);
         boolean result=LineRepository.addLine(line);
         OutputView.printResult(result,INSERT_SUCCESS);
@@ -43,7 +49,7 @@ public class LineService {
     }
 
     private boolean lineInsertInput(){
-        if((name=InputView.getLineName()).length()<MIN_LINE_SIZE){
+        if((lineName=InputView.getLineName()).length()<MIN_LINE_SIZE){
             OutputView.printError(NAME_LENGTH_ERROR);
             return false;
         }
@@ -76,14 +82,53 @@ public class LineService {
     }
 
     public boolean sectionInsert(){
-        String lineName=InputView.getLineName();
-        String stationName=InputView.getStationName();
-        Integer order=InputView.getSectionOrder();
-
-        Line findLine=LineRepository.findByName(lineName);
-        boolean result=findLine.addStation(order,stationName);
+        if(!isExistLineByName()){
+            return false;
+        }
+        if(!isValidStationNameLength()){
+            return false;
+        }
+        if(!isValidOrder()){
+            return false;
+        }
+        boolean result=LineRepository.findByName(lineName).addStation(Integer.parseInt(order),stationName);
         OutputView.printResult(result,SECTION_INSERT_SUCCESS);
         return result;
+    }
+
+    private boolean isExistLineByName(){
+        lineName=InputView.getLineName();
+        if(!LineRepository.isExistLineByName(lineName)){
+            OutputView.printError(NOT_EXIST_LINE_NAME);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidStationNameLength(){
+        stationName=InputView.getStationName();
+        if(stationName.length()<MIN_STATION_SIZE){
+            OutputView.printError(STATION_NAME_LENGTH_ERROR);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidOrder(){
+        order=InputView.getSectionOrder();
+        if(isNumber(order)&&Integer.parseInt(order)>0&&Integer.parseInt(order)<LineRepository.findByName(lineName).getStations().size()){
+            return true;
+        }
+        OutputView.printError(INVALID_ORDER);
+        return false;
+    }
+
+    private boolean isNumber(String number){
+        return number.chars().allMatch(this::isDigit);
+    }
+
+    private boolean isDigit(int ch){
+        return ch>=START_NUMBER&&ch<=END_NUMBER;
     }
 
     public boolean sectionDelete(){
