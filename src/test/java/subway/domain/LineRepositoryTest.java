@@ -76,6 +76,23 @@ class LineRepositoryTest {
     }
 
     @Test
+    @DisplayName("존재하지 않는 노선에 역 삽입 시 예외 발생")
+    public void insertStation_DoesNotExistLine_ExceptionThrown() {
+
+        // given
+        int index = 1;
+        String stationName = "잠실역";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.insertStation("11호선", index, stationName);
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(LineRepository.DOES_NOT_EXIST_ERROR, "11호선");
+    }
+
+    @Test
     @DisplayName("구간에 중복되지 않은 역 삽입")
     public void insertStation_NewStation_LineRepositoryInsertedStation() {
 

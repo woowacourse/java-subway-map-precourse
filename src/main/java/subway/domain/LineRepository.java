@@ -64,6 +64,7 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(lineName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(DOES_NOT_EXIST_ERROR));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format(DOES_NOT_EXIST_ERROR, lineName)));
     }
 }
