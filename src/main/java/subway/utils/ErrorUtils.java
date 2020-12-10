@@ -12,8 +12,8 @@ public class ErrorUtils {
                 supplierNoReturn.execute();
                 return;
             } catch (RuntimeException e) {
-                OutputView.println(Screen.ERROR_PREFIX + e.getMessage());
                 OutputView.println();
+                OutputView.println(Screen.ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -23,8 +23,8 @@ public class ErrorUtils {
             try {
                 return supplier.get();
             } catch (RuntimeException e) {
-                OutputView.println(Screen.ERROR_PREFIX + e.getMessage());
                 OutputView.println();
+                OutputView.println(Screen.ERROR_PREFIX + e.getMessage());
             }
         }
     }

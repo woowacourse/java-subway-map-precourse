@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import subway.line.exception.CannotFindStationInLineException;
+import subway.line.exception.DuplicateStationNameInLineException;
 import subway.line.exception.ShorterThanMinLineNameException;
 import subway.line.exception.ShorterThanMinLineStationsSizeException;
 import subway.station.domain.Station;
@@ -35,6 +36,10 @@ public class Line {
     }
 
     public void addSection(int indexToInsert, Station station) {
+        if (stations.contains(station)) {
+            throw new DuplicateStationNameInLineException(name, station.getName());
+        }
+
         stations.add(indexToInsert, station);
     }
 
