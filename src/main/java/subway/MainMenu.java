@@ -1,0 +1,41 @@
+package subway;
+
+import java.util.Scanner;
+
+public class MainMenu {
+    private final Scanner scanner;
+    private boolean isRunning = true;
+
+
+    public MainMenu(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public int inputAndNext() {
+        printMenuScreen();
+        return parseMenuNumber();
+    }
+
+    public void printMenuScreen() {
+        System.out.println("## 메인 화면");
+        System.out.println("1. 노선 관리");
+        System.out.println("2. 구간 관리");
+        System.out.println("3. 구간 관리");
+        System.out.println("4. 지하철 노선도 출력");
+        System.out.println("Q. 종료");
+    }
+
+    public int parseMenuNumber() {
+        String userInput = scanner.nextLine();
+        try {
+            return Integer.parseInt(userInput);
+        } catch (IllegalArgumentException e) {
+            if (userInput.equals("Q")) {
+                return 0;
+            }
+            System.out.println("[ERROR] 입력오류");
+            return inputAndNext();
+        }
+    }
+
+}
