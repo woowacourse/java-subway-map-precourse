@@ -63,10 +63,15 @@ public class StationController {
 		}
 	}
 
-	public static void run(Scanner scanner) throws IllegalArgumentException {
+	public static void run(Scanner scanner) {
 		View.printStationScreen();
 		String option = View.getScreenOption(scanner).trim();
-		validateOption(option);
-		controlByOption(option, scanner);
+		try {
+			validateOption(option);
+			controlByOption(option, scanner);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			run(scanner);
+		}
 	}
 }
