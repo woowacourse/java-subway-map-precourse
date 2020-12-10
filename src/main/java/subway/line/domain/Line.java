@@ -8,6 +8,7 @@ import subway.line.exception.CannotFindStationInLineException;
 import subway.line.exception.DuplicateStationNameInLineException;
 import subway.line.exception.ShorterThanMinLineNameException;
 import subway.line.exception.ShorterThanMinLineStationsSizeException;
+import subway.line.exception.UpstreamDownstreamStationInputException;
 import subway.station.domain.Station;
 
 public class Line {
@@ -28,6 +29,11 @@ public class Line {
             throw new ShorterThanMinLineNameException(name);
         }
 
+        if (upstreamStation.equals(downstreamStation)) {
+            throw new UpstreamDownstreamStationInputException(upstreamStation.getName(),
+                downstreamStation.getName());
+        }
+
         return new Line(name, new ArrayList<>(Arrays.asList(upstreamStation, downstreamStation)));
     }
 
@@ -40,7 +46,7 @@ public class Line {
             throw new DuplicateStationNameInLineException(name, station.getName());
         }
 
-        stations.add(indexToInsert, station);
+        stations.add(indexToInsert - 1, station);
     }
 
     public void deleteSection(Station station) {

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import subway.line.exception.CannotFindLineByNameException;
 import subway.line.exception.DuplicateLineNameException;
-import subway.station.domain.Station;
 
 public class LineRepository {
 
@@ -38,15 +37,5 @@ public class LineRepository {
 
     public static void deleteAll() {
         lines.clear();
-    }
-
-    public static void addSection(String lineName, int indexToInsert, Station station) {
-        Line line = findByName(lineName);
-        line.addSection(indexToInsert, station);
-    }
-
-    public static void deleteSection(String lineName, Station station) {
-        Line line = findByName(lineName);
-        line.deleteSection(station);
     }
 }

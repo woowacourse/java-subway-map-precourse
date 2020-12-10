@@ -22,7 +22,6 @@ class LineRepositoryTest {
     final int LINE_SIZE = 1;
     final Station upstreamStation = Station.from("test station1");
     final Station downstreamStation = Station.from("test station2");
-    final int STATION_SIZE = 2;
     final Line line = Line.of(LINE_NAME, upstreamStation, downstreamStation);
 
     @BeforeEach
@@ -68,32 +67,6 @@ class LineRepositoryTest {
         final List<Line> lines = LineRepository.findAll();
 
         assertEquals(lines.size(), LINE_SIZE);
-    }
-
-    @DisplayName("지하철 노선 저장소에서 지하철 노선에 구간을 추가할 수 있다.")
-    @Test
-    void insertSection() {
-        final int indexToInsert = 1;
-        final Station station = Station.from("inserted station");
-
-        LineRepository.addSection(LINE_NAME, indexToInsert, station);
-
-        Line findedLine = LineRepository.findByName(LINE_NAME);
-        assertEquals(findedLine.getStations().size(), STATION_SIZE + 1);
-        assertSame(findedLine.getStations().get(indexToInsert), station);
-    }
-
-    @DisplayName("지하철 노선 저장소에서 노선에 등록된 역을 제거할 수 있다.")
-    @Test
-    void deleteSection() {
-        final int indexToInsert = 1;
-        final Station station = Station.from("inserted station");
-        LineRepository.addSection(LINE_NAME, indexToInsert, station);
-
-        LineRepository.deleteSection(LINE_NAME, downstreamStation);
-
-        Line findedLine = LineRepository.findByName(LINE_NAME);
-        assertEquals(findedLine.getStations().size(), STATION_SIZE);
     }
 
     @DisplayName("등록되지 않은 지하철 노선은 조회할 수 없다.")
