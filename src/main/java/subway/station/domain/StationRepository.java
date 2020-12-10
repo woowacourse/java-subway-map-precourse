@@ -30,6 +30,10 @@ public class StationRepository {
         stations.add(station);
     }
 
+    public static void saveAll(List<Station> stations) {
+        stations.forEach(StationRepository::save);
+    }
+
     public static void delete(Station station) {
         stations.remove(station);
     }

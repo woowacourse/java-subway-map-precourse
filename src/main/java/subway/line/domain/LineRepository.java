@@ -31,6 +31,10 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static void saveAll(List<Line> lines) {
+        lines.forEach(LineRepository::save);
+    }
+
     public static void delete(Line line) {
         lines.remove(line);
     }
