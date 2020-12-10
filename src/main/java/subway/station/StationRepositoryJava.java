@@ -9,7 +9,7 @@ public class StationRepositoryJava implements StationRepository {
 
     @Override
     public Set<Station> stations() {
-        return Collections.unmodifiableSet(stations);
+        return new HashSet<>(stations);
     }
 
     @Override

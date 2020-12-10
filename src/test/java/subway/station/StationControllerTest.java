@@ -5,6 +5,7 @@ import subway.domain.Station;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,16 +27,8 @@ class StationControllerTest {
 
     @AfterEach
     private void deleteDummyStations() {
-        List<Station> stations = getDummyStations();
+        Set<Station> stations = stationRepository.stations();
         stations.forEach(station -> stationRepository.deleteStation(station));
-    }
-
-    private List<Station> getDummyStations() {
-        return Arrays.asList(
-                Station.from("도봉산역"),
-                Station.from("의정부역"),
-                Station.from("회룡역")
-        );
     }
 
     @Test
@@ -44,7 +37,7 @@ class StationControllerTest {
         //given
         final int stationsSize = 3;
         //when
-        List<StationDTO> stations = stationController.findStations();
+        List<StationResponseDTO> stations = stationController.findStations();
         //then
         Assertions.assertEquals(stationsSize, stations.size());
     }
@@ -70,7 +63,7 @@ class StationControllerTest {
         //when
         stationController.createStation(name);
         //then
-        StationDTO station = stationController.findStationByName(name);
+        StationResponseDTO station = stationController.findStationByName(name);
         Assertions.assertEquals(name, station.getName());
     }
 
@@ -133,8 +126,16 @@ class StationControllerTest {
         //given
         final String existentName = "의정부역";
         //when
-        StationDTO stationByName = stationController.findStationByName(existentName);
+        StationResponseDTO stationByName = stationController.findStationByName(existentName);
         //then
         Assertions.assertEquals(stationByName.getName(), existentName);
+    }
+
+    private List<Station> getDummyStations() {
+        return Arrays.asList(
+                Station.from("도봉산역"),
+                Station.from("의정부역"),
+                Station.from("회룡역")
+        );
     }
 }

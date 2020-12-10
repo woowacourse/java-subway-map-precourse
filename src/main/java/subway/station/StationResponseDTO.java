@@ -2,10 +2,10 @@ package subway.station;
 
 import subway.domain.Station;
 
-public class StationDTO {
+public class StationResponseDTO {
     private String name;
 
-    public StationDTO(Station station) {
+    public StationResponseDTO(Station station) {
         this.name = station.getName();
     }
 

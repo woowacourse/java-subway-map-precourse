@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private static final int MIN_STATION_SIZE = 2;
@@ -51,12 +52,24 @@ public class Line {
             final String errorMessage = "노선을 유지하려면 최소 둘 이상의 역이 등록되어 있어야 합니다.";
             throw new IllegalStateException(errorMessage);
         }
-        station.removeLine();
         stations.remove(station);
+        station.removeLine();
     }
 
     private boolean isStationRemovable() {
         return stations.size() > MIN_STATION_SIZE;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return getName().equals(line.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
 }
