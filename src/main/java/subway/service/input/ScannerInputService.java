@@ -29,8 +29,26 @@ public class ScannerInputService implements InputService {
             return OPTION_QUIT;
         }
         int option = stringToInt(inputOption);
-        validateOption(option);
+        validateMaionOption(option);
         return option;
+    }
+
+    @Override
+    public int getManageStationOption() {
+        String inputOption = getNextLine();
+        if(isBack(inputOption)){
+            return OPTION_BACK;
+        }
+        int option = stringToInt(inputOption);
+        validateManageStationOption(option);
+        return option;
+    }
+
+    private boolean isBack(String inputOption) {
+        if (inputOption.equals(MAIN_OPTION_BACK)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isQuit(String inputOption) {
@@ -40,7 +58,20 @@ public class ScannerInputService implements InputService {
         return false;
     }
 
-    private void validateOption(int option) {
+    private void validateManageStationOption(int option) {
+        if (option == MANAGE_STATION_ADD) {
+            return;
+        }
+        if (option == MANAGE_STATION_DELETE) {
+            return;
+        }
+        if (option == MANAGE_STATION_FIND) {
+            return;
+        }
+        throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);
+    }
+
+    private void validateMaionOption(int option) {
         if (option == MANAGE_STATION) {
             return;
         }

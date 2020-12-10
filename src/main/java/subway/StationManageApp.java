@@ -66,5 +66,7 @@ public class StationManageApp {
 
     private void manageStation() {
         outputService.printSManageStation();
+        int manageStationOption = inputService.getManageStationOption();
+        System.out.println("manageStationOption = " + manageStationOption);
     }
 }

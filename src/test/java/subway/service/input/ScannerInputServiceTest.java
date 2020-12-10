@@ -2,6 +2,7 @@ package subway.service.input;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.ErrorCode;
 import subway.exception.InputServiceException;
 
 import java.io.ByteArrayInputStream;
@@ -83,5 +84,52 @@ class ScannerInputServiceTest {
         assertThatThrownBy(() -> scannerInputUtils3.getMainOption())
                 .isInstanceOf(InputServiceException.class)
                 .hasMessage("[ERROR] 선택할 수 없는 기능입니다.");
+    }
+
+    @Test
+    @DisplayName("지하철 역 관리 옵션을 입력받는다")
+    void inputManageStationOption() {
+        //given
+        String optionOne = "1";
+        String optionTwo = "2";
+        String optionBack = "B";
+
+        //when
+        InputService scannerInputUtils = getScannerInputUtils(optionOne);
+        InputService scannerInputUtils2 = getScannerInputUtils(optionTwo);
+        InputService scannerInputUtils3 = getScannerInputUtils(optionBack);
+        int mainOptionOne = scannerInputUtils.getManageStationOption();
+        int mainOptionTwo = scannerInputUtils2.getManageStationOption();
+        int mainOptionBack = scannerInputUtils3.getManageStationOption();
+
+        //then
+        assertThat(mainOptionOne).isEqualTo(InputService.MANAGE_STATION_ADD);
+        assertThat(mainOptionTwo).isEqualTo(InputService.MANAGE_STATION_DELETE);
+        assertThat(mainOptionBack).isEqualTo(InputService.OPTION_BACK);
+    }
+
+    @Test
+    @DisplayName("지정되지 않은 옵션을 선택하면 에러가 발생한다.")
+    void inputManageStationOptionError() {
+        //given
+        String optionOne = "`";
+        String optionTwo = "0";
+        String optionBack = "C";
+
+        //when
+        InputService scannerInputUtils = getScannerInputUtils(optionOne);
+        InputService scannerInputUtils2 = getScannerInputUtils(optionTwo);
+        InputService scannerInputUtils3 = getScannerInputUtils(optionBack);
+
+        //then
+        assertThatThrownBy(() -> scannerInputUtils.getManageStationOption())
+                .isInstanceOf(InputServiceException.class)
+                .hasMessage(ErrorCode.CANNOT_CHOOSE_OPTION.getMessage());
+        assertThatThrownBy(() -> scannerInputUtils2.getManageStationOption())
+                .isInstanceOf(InputServiceException.class)
+                .hasMessage(ErrorCode.CANNOT_CHOOSE_OPTION.getMessage());
+        assertThatThrownBy(() -> scannerInputUtils3.getManageStationOption())
+                .isInstanceOf(InputServiceException.class)
+                .hasMessage(ErrorCode.CANNOT_CHOOSE_OPTION.getMessage());
     }
 }
