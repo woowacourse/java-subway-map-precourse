@@ -76,4 +76,16 @@ class LineRepositoryTest {
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(LineRepository.DOES_NOT_EXIST_ERROR, "신분당선");
     }
+
+    @Test
+    @DisplayName("지하철 구간에 새로운 구간 추가")
+    public void insertStation_newStation_NoExceptionThrown() {
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.insertStation(line.getName(), "역삼역", 1);
+
+        //then
+        assertThatCode(callable).doesNotThrowAnyException();
+    }
 }
