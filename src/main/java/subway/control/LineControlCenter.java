@@ -33,7 +33,7 @@ public class LineControlCenter {
             return;
         }
         if (command.equals(LineMenu.CHECK.getCommand())) {
-//            LineView.printLineList();
+            LineView.printLineList();
             return;
         }
     }

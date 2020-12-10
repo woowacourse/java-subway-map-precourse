@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 import subway.enums.ErrorMessage;
 import subway.enums.LineInfo;
 import subway.enums.LineMenu;
@@ -55,6 +57,13 @@ public class LineView {
 
     public static void informLineNotExist() {
         System.err.println(ErrorMessage.LINE_NOT_EXIST.getMessage());
+    }
+
+    public static void printLineList() {
+        System.out.println(LineInfo.LINE_LIST.getInfo());
+        LineRepository.lines().stream()
+                .map(line -> LineInfo.INFO.getInfo() + line.getName())
+                .forEach(System.out::println);
     }
 
 }
