@@ -1,6 +1,5 @@
 package view;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 
@@ -10,7 +9,7 @@ public class OutputView {
     private static final String MAIN_MANAGE_STATION = "1. 역 관리";
     private static final String MAIN_MANAGE_LINE = "2. 노선 관리";
     private static final String MAIN_MANAGE_SECTION = "3. 구간 관리";
-    private static final String MAIN_PRINT_LINEMAP = "4. 지하철 노선도 출력";
+    private static final String MAIN_PRINT_LINE_MAP = "4. 지하철 노선도 출력";
 
     private static final String STATION_TITLE = "## 역 관리 화면";
     private static final String STATION_REGISTER = "1. 역 등록";
@@ -28,6 +27,8 @@ public class OutputView {
 
     private static final String QUIT_MESSAGE = "Q. 종료";
     private static final String BACK_MESSAGE = "B. 돌아가기";
+
+    private static final String LINE_MAP_TITLE = "## 지하철 노선도";
 
     private static final String PREFIX_INFO = "[INFO] ";
     private static final String PREFIX_ERROR = "[ERROR] ";
@@ -58,17 +59,18 @@ public class OutputView {
     private static final String MESSAGE_ERROR_NOT_EXIST_LINE_NAME = "존재하지 않는 노선입니다.";
 
     private static final String NEW_LINE = "\n";
+    private static final String DIVISION_LINE = "---";
 
     public static void printMain() {
         System.out.println(MAIN_TITLE);
         System.out.println(MAIN_MANAGE_STATION);
         System.out.println(MAIN_MANAGE_LINE);
         System.out.println(MAIN_MANAGE_SECTION);
-        System.out.println(MAIN_PRINT_LINEMAP);
+        System.out.println(MAIN_PRINT_LINE_MAP);
         System.out.println(QUIT_MESSAGE + NEW_LINE);
     }
 
-    public static void printStationManagement() {
+    public static void printStationManagement() { // 1
         System.out.println(STATION_TITLE);
         System.out.println(STATION_REGISTER);
         System.out.println(STATION_DELETE);
@@ -76,6 +78,35 @@ public class OutputView {
         System.out.println(BACK_MESSAGE + NEW_LINE);
     }
 
-    
+    public static void printLineManagement() { // 2
+        System.out.println(LINE_TITLE);
+        System.out.println(LINE_REGISTER);
+        System.out.println(LINE_DELETE);
+        System.out.println(LINE_INQUIRY);
+        System.out.println(BACK_MESSAGE + NEW_LINE);
+    }
+
+    public static void printSectionManagement() { // 3
+        System.out.println(SECTION_TITLE);
+        System.out.println(SECTION_REGISTER);
+        System.out.println(SECTION_DELETE);
+        System.out.println(BACK_MESSAGE + NEW_LINE);
+    }
+
+    public static void printLineMap() { // 4
+        System.out.println(LINE_MAP_TITLE);
+        for (Line line : LineRepository.lines()) {
+            System.out.println(PREFIX_INFO + line.getName());
+            System.out.println(PREFIX_INFO + DIVISION_LINE);
+            printStationIn(line);
+        }
+    }
+
+    public static void printStationIn(Line line) {
+        for (String station : line.getContainedStation()) {
+            System.out.println(PREFIX_INFO + station);
+        }
+        System.out.println();
+    }
 
 }
