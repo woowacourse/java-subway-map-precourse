@@ -21,9 +21,9 @@ public class LineRepository {
         return Collections.unmodifiableSet(lines);
     }
 
-    public void addLine(String name) {
-        if (!lines.add(new Line(name))) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, name));
+    public void addLine(Line line) {
+        if (!lines.add(line)) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, line.getName()));
         }
     }
 

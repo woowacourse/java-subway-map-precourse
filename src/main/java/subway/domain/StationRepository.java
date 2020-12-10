@@ -17,19 +17,40 @@ public class StationRepository {
         this.stations = new LinkedHashSet<>();
     }
 
+    public StationRepository(String startStation, String finalStation) {
+        this();
+
+        addStation(startStation);
+        addStation(finalStation);
+    }
+
+
     public Set<Station> stations() {
         return Collections.unmodifiableSet(stations);
     }
 
-    public void addStation(String name) {
+    public void addStation(final String name) {
         if (!stations.add(new Station(name))) {
             throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, name));
         }
     }
 
-    public void deleteStation(String name) {
+    public void deleteStation(final String name) {
         if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (!(o instanceof StationRepository)) { return false; }
+        StationRepository that = (StationRepository) o;
+        return Objects.equals(stations, that.stations);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stations);
     }
 }

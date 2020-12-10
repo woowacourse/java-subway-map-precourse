@@ -10,11 +10,18 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class LineRepositoryTest {
 
+    private final Line line;
+
     private LineRepository lineRepository;
+
+    public LineRepositoryTest() {
+        line = new Line("1호선", "강남역", "잠실역");
+    }
 
     @BeforeEach
     public void initLineRepository() {
         lineRepository = new LineRepository();
+        lineRepository.addLine(line);
     }
 
     @Test
@@ -22,11 +29,11 @@ class LineRepositoryTest {
     public void addStation_NotDuplicateStation_NoExceptionThrown() {
 
         // given
-        lineRepository.addLine("신분당선");
+        Line newLine = new Line("2호선", "강남역", "봉천역");
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addLine("2호선");
+                () -> lineRepository.addLine(newLine);
 
         //then
         assertThatCode(callable).doesNotThrowAnyException();
@@ -36,28 +43,22 @@ class LineRepositoryTest {
     @DisplayName("중복된 노선 추가 시 예외 발생")
     public void addStation_DuplicateStation_ExceptionThrown() {
 
-        // given
-        lineRepository.addLine("신분당선");
-
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addLine("신분당선");
+                () -> lineRepository.addLine(line);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(LineRepository.DUPLICATE_NAME_ERROR, "신분당선");
+                .withMessage(LineRepository.DUPLICATE_NAME_ERROR, "1호선");
     }
 
     @Test
     @DisplayName("존재하는 노선 삭제 시 예외 미발생")
     public void deleteStation_ExistLine_ExceptionThrown() {
 
-        // given
-        lineRepository.addLine("신분당선");
-
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.deleteLineByName("신분당선");
+                () -> lineRepository.deleteLineByName("1호선");
 
         //then
         assertThatCode(callable).doesNotThrowAnyException();
