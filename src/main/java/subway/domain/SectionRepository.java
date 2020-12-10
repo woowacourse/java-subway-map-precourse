@@ -15,7 +15,10 @@ public class SectionRepository {
     }
 
     public void removeSection(Station stationInstance) {
-
+        if (isExistStation(stationInstance)) {
+            sectionList.remove(stationInstance);
+            System.out.println("해당 역이 구간에 삭제되었습니다.");
+        }
     }
 
     public List findAll() {
