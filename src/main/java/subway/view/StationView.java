@@ -42,4 +42,8 @@ public class StationView {
     public static void infromStationDuplicated() {
         System.err.println(ErrorMessage.STATION_DUPLICATION.getMessage());
     }
+
+    public static void informNameLengthUnder2() {
+        System.err.println(ErrorMessage.NAME_LENGTH_UNDER_2.getMessage());
+    }
 }

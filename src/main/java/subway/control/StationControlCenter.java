@@ -44,6 +44,11 @@ public class StationControlCenter {
             enrollStation(scanner);
             return;
         }
+        if (StationRepository.isNameLengthUnder2(nameOfStation)) {
+            StationView.informNameLengthUnder2();
+            enrollStation(scanner);
+            return;
+        }
         Station station = new Station(nameOfStation);
         StationRepository.addStation(station);
         StationView.informStationEnrolled();

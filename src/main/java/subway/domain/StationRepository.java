@@ -25,4 +25,8 @@ public class StationRepository {
                 .map(Station::getName)
                 .anyMatch(station -> station.equals(name));
     }
+
+    public static boolean isNameLengthUnder2(String name) {
+        return name.trim().length() < 2;
+    }
 }
