@@ -5,9 +5,11 @@ import subway.view.menu.Menu;
 import subway.view.menu.StationMenu;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String INFO_PREFIX = "[INFO] ";
     private static final String MENU_FORMAT = "%s. %s";
 
     private static MainMenu mainMenu = MainMenu.getInstance();
@@ -15,6 +17,7 @@ public class OutputView {
 
     public static void showErrorMessage(Exception e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
+        newLine();
     }
 
     public static void showMainMenu() {
@@ -32,5 +35,21 @@ public class OutputView {
         while (menuIterator.hasNext() && menuSelectionsIterator.hasNext()) {
             System.out.println(String.format(MENU_FORMAT, menuSelectionsIterator.next(), menuIterator.next()));
         }
+        newLine();
+    }
+
+    private static void printWithInfoPrefix(String string) {
+        System.out.println(INFO_PREFIX + string);
+    }
+
+    public static void printAll(List<String> resultList) {
+        for(String result : resultList) {
+            printWithInfoPrefix(result);
+        }
+        newLine();
+    }
+
+    private static void newLine() {
+        System.out.println();
     }
 }

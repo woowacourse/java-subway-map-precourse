@@ -34,7 +34,6 @@ public class Application {
         do{
             OutputView.showMainMenu();
             menu = InputView.getMainMenuSelection(); //무조건 올바른 값이 넘어오도록 설정
-            System.out.println(menu);
             runSelectedMenuFunction();
         }while(!menu.equals(QUIT));
     }

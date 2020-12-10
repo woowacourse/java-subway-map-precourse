@@ -46,6 +46,7 @@ public class InputView {
             if (!menu.getMenuSelections().contains(string)) {
                 throw new IllegalArgumentException(ERROR_INVALID_INPUT_VALUE);
             }
+            newLine();
             return string;
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
@@ -73,11 +74,17 @@ public class InputView {
         System.out.println(SELECTION_PREFIX + prefix + REQUEST_STATION_REGISTER);
         try {
             String name = deleteWhiteSpaces(scanner.nextLine());
+            newLine();
             isNotEmptyStringOrThrowException(name);
             return name;
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
+            newLine();
             return getStationName(prefix);
         }
+    }
+
+    private static void newLine() {
+        System.out.println();
     }
 }

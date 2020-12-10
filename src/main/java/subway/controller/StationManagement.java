@@ -5,10 +5,13 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StationManagement {
     private static final String REGISTER = "1";
     private static final String DELETE = "2";
-    private static final String DISPLAY = "3";
+    private static final String PRINT = "3";
     private static final String BACK = "B";
 
     private static String menu;
@@ -28,6 +31,9 @@ public class StationManagement {
         if (menu.equals(DELETE)) {
             deleteStation();
         }
+        if (menu.equals(PRINT)) {
+            printAllStation();
+        }
     }
 
     private static void registerStation() {
@@ -44,6 +50,17 @@ public class StationManagement {
             String name = InputView.getStationNameToDelete();
             StationRepository.deleteStation(name);
         } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+        }
+    }
+
+    private static void printAllStation() {
+        try {
+            List<String> stationNames = StationRepository.stations().stream()
+                    .map(Station::getName)
+                    .collect(Collectors.toList());
+            OutputView.printAll(stationNames);
+        } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
         }
     }

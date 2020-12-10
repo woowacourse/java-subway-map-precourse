@@ -3,8 +3,10 @@ package subway.domain;
 import java.util.*;
 
 public class StationRepository {
-    private static final String ERROR_ALREADY_EXIST= "이미 등록된 역입니다.";
-    private static final String ERROR_NOT_EXIST= "등록되지 않은 역입니다.";
+    private static final String ERROR_ALREADY_EXIST = "이미 등록된 역입니다.";
+    private static final String ERROR_NOT_EXIST = "등록되지 않은 역입니다.";
+    private static final String ERROR_NO_STATIONS = "등록된 역이 없습니다.";
+    private static final int ZERO = 0;
 
     private static final List<Station> stations = new ArrayList<>();
 
@@ -18,6 +20,9 @@ public class StationRepository {
     }
 
     public static List<Station> stations() {
+        if (stations.size() == ZERO) {
+            throw new RuntimeException(ERROR_NO_STATIONS);
+        }
         return Collections.unmodifiableList(stations);
     }
 
