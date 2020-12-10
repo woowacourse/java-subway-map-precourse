@@ -35,4 +35,8 @@ public class Line {
     public int hashCode() {
         return Objects.hash(getName());
     }
+
+    public boolean contains(String stationName) {
+        return stations.contains(stationName);
+    }
 }

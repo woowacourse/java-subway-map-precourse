@@ -55,9 +55,11 @@ class StationRepositoryTest {
         // given
         stationRepository.addStation("강남역");
 
+        LineRepository lineRepository = new LineRepository();
+
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.deleteStation("강남역");
+                () -> stationRepository.deleteStation("강남역", lineRepository);
 
         //then
         assertThatCode(callable).doesNotThrowAnyException();
@@ -67,12 +69,34 @@ class StationRepositoryTest {
     @DisplayName("존재하지 않는 역 삭제 시 예외 발생")
     public void deleteStation_DoesNotExistStation_ExceptionThrown() {
 
+        // given
+        LineRepository lineRepository = new LineRepository();
+
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.deleteStation("강남역");
+                () -> stationRepository.deleteStation("강남역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "강남역");
+    }
+
+    @Test
+    @DisplayName("노선에 등록되어 있는 역 삭제 시 예외 발생")
+    public void deleteStation_SavedStationAtLine_ExceptionThrown() {
+
+        // given
+        stationRepository.addStation("강남역");
+
+        LineRepository lineRepository = new LineRepository();
+        lineRepository.addLine(new Line("1호선", "강남역", "잠실역"));
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> stationRepository.deleteStation("강남역", lineRepository);
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.SAVED_AT_LINE_ERROR, "강남역");
     }
 }

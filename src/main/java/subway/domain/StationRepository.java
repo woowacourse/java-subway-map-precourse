@@ -11,6 +11,8 @@ public class StationRepository {
 
     public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
 
+    public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
+
     private final Set<Station> stations;
 
     public StationRepository() {
@@ -35,10 +37,18 @@ public class StationRepository {
         }
     }
 
-    public void deleteStation(final String name) {
+    public void deleteStation(final String name, final LineRepository lineRepository) {
+        if (lineRepository.contains(name)) {
+            throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
+        }
+
         if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
         }
+    }
+
+    public boolean contains(String stationName) {
+        return stations.contains(new Station(stationName));
     }
 
     @Override

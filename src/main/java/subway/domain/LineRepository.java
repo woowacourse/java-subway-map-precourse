@@ -32,4 +32,8 @@ public class LineRepository {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
         }
     }
+
+    public boolean contains(String stationName) {
+        return lines.stream().anyMatch(line -> line.contains(stationName));
+    }
 }
