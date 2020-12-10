@@ -2,6 +2,8 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.view.General;
+import subway.view.LineMessages;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -42,6 +44,13 @@ public class LineController {
 		deleteLine(scanner);
 	}
 
+	private static void showLines() {
+		System.out.println(LineMessages.REFERENCE);
+		LineRepository.lines().stream()
+				.map(Line::getName)
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+	}
+
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createLine(scanner);
@@ -50,7 +59,7 @@ public class LineController {
 			deleteLine(scanner);
 			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
-			View.showLines();
+			showLines();
 			MainController.run(scanner);
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
 			MainController.run(scanner);

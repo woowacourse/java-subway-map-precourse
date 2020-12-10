@@ -1,10 +1,5 @@
 package subway.view;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -48,13 +43,6 @@ public class View {
 		System.out.println(StationMessages.DELETE_COMPLETE.getMessage());
 	}
 
-	public static void showStations() {
-		System.out.println(StationMessages.REFERENCE);
-		StationRepository.stations().stream()
-				.map(Station::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
-	}
-
 	public static void printLineScreen() {
 		Arrays.stream(LineMessages.values())
 				.limit(5)
@@ -79,13 +67,6 @@ public class View {
 	public static String getLineNameToDelete(Scanner scanner) {
 		System.out.println(LineMessages.DELETE_NAME);
 		return scanner.nextLine();
-	}
-
-	public static void showLines() {
-		System.out.println(LineMessages.REFERENCE);
-		LineRepository.lines().stream()
-				.map(Line::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 	}
 
 	public static void printLineDeleteCompletion() {
@@ -134,5 +115,4 @@ public class View {
 	public static void printSectionDeleteCompletion() {
 		System.out.println(SectionMessages.DELETE_COMPLETE.getMessage());
 	}
-
 }

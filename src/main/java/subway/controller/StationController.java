@@ -2,6 +2,8 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.view.General;
+import subway.view.StationMessages;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -40,6 +42,13 @@ public class StationController {
 		deleteStation(scanner);
 	}
 
+	private static void showStations() {
+		System.out.println(StationMessages.REFERENCE);
+		StationRepository.stations().stream()
+				.map(Station::getName)
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+	}
+
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createStation(scanner);
@@ -48,7 +57,7 @@ public class StationController {
 			deleteStation(scanner);
 			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
-			View.showStations();
+			showStations();
 			MainController.run(scanner);
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
 			MainController.run(scanner);
