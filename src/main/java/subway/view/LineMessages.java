@@ -15,6 +15,7 @@ public enum LineMessages {
 	REGISTER_COMPLETE(General.INFO.getMessage() + "지하철 노선이 등록되었습니다."),
 	DELETE_NAME(General.BASIC.getMessage() + "삭제할 노선 이름을 입력하세요."),
 	DELETE_COMPLETE(General.INFO.getMessage() + "지하철 노선이 삭제되었습니다."),
+	REFERENCE(General.BASIC.getMessage() + "노선 목록"),
 
 	DUPLICATE_NAME_ERROR(General.ERROR.getMessage() + "이미 등록된 노선 이름입니다"),
 	NAME_LENGTH_ERROR(General.ERROR.getMessage() + "노선 이름은 "

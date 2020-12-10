@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -77,6 +79,13 @@ public class View {
 	public static String getLineNameToDelete(Scanner scanner) {
 		System.out.println(LineMessages.DELETE_NAME);
 		return scanner.nextLine();
+	}
+
+	public static void showLines() {
+		System.out.println(LineMessages.REFERENCE);
+		LineRepository.lines().stream()
+				.map(Line::getName)
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 	}
 
 	public static void printSectionScreen() {
