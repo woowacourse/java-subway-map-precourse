@@ -44,4 +44,9 @@ public class Line {
     public List<Station> getStations() {
         return stations;
     }
+
+    public boolean hasStation(String name){
+        return stations.stream()
+                .anyMatch(station -> station.getName().equals(name));
+    }
 }
