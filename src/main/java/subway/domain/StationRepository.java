@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public final class StationRepository {
 
-    public static final int INSERT_MINIMUM_INDEX = 1;
+    public static final int MINIMUM_INDEX = 0;
 
     public static final int MINIMUM_STATION_SIZE = 2;
 
@@ -17,7 +17,7 @@ public final class StationRepository {
 
     public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
 
-    public static final String OUT_OF_BOUNDS_ERROR = "노선의 범위를 벗어난 구간입니다. 1 이상 %d 미만의 값을 입력해주세요.";
+    public static final String OUT_OF_BOUNDS_ERROR = "노선의 범위를 벗어난 구간입니다. %d 초과 %d 미만의 값을 입력해주세요.";
 
     public static final String TOO_LESS_STATIONS_ERROR = "역이 %d개 이하인 노선의 역은 제거할 수 업습니다";
 
@@ -42,10 +42,11 @@ public final class StationRepository {
     public StationRepository insertStation(final int index, final String stationName) {
         int size = stations.size();
 
-        boolean canInsert = (index > INSERT_MINIMUM_INDEX) && (index < size);
+        boolean canInsert = (index > MINIMUM_INDEX) && (index < size);
 
         if (!canInsert) {
-            throw new IllegalArgumentException(String.format(OUT_OF_BOUNDS_ERROR, size));
+            throw new IllegalArgumentException(
+                    String.format(OUT_OF_BOUNDS_ERROR, MINIMUM_INDEX, size));
         }
 
         return insert(index, stationName);

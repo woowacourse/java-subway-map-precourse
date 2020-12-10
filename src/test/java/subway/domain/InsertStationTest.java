@@ -80,7 +80,7 @@ public class InsertStationTest {
 
         // given
         int index = 0;
-        String stationName = "잠실역";
+        String stationName = "봉천역";
 
         // when
         ThrowableAssert.ThrowingCallable callable =
@@ -88,7 +88,8 @@ public class InsertStationTest {
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR, 2);
+                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR,
+                        StationRepository.MINIMUM_INDEX, 2);
     }
 
     @Test
@@ -105,6 +106,7 @@ public class InsertStationTest {
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR, 2);
+                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR,
+                        StationRepository.MINIMUM_INDEX, 2);
     }
 }
