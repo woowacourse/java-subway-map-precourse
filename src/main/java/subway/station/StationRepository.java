@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.station;
+
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
