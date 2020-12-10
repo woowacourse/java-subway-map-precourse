@@ -8,6 +8,7 @@
 
 package subway;
 
+import subway.controller.StationManagement;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -34,11 +35,13 @@ public class Application {
             OutputView.showMainMenu();
             menu = InputView.getMainMenuSelection(); //무조건 올바른 값이 넘어오도록 설정
             System.out.println(menu);
-            // runSelectedMenuFunction();
+            runSelectedMenuFunction();
         }while(false);
     }
 
     private static void runSelectedMenuFunction() {
-
+        if (menu.equals(STATION_MANAGEMENT)) {
+            StationManagement.run();
+        }
     }
 }
