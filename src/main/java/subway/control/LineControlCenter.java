@@ -87,6 +87,13 @@ public class LineControlCenter {
     }
 
     private void removeLine(Scanner scanner) {
-
+        LineView.printAskLineNameToDelete();
+        String nameOfLine = MainControlCenter.inputCommand(scanner);
+        if (LineRepository.deleteLineByName(nameOfLine)) {
+            LineView.informLineDeleted();
+            return;
+        }
+        LineView.informLineNotExist();
+        removeLine(scanner);
     }
 }
