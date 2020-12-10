@@ -17,7 +17,10 @@ public class InputValidator {
 
     private static final int LENGTH_UPPER_BOUND = 10;
 
-    static final String RANGE_ERROR = String.format("이름은 %d글자 이상, %d글자 이하이어야 합니다. ", LENGTH_LOWER_BOUND, LENGTH_UPPER_BOUND);
+    static final String RANGE_ERROR =
+            String.format("이름은 %d글자 이상, %d글자 이하이어야 합니다. ", LENGTH_LOWER_BOUND, LENGTH_UPPER_BOUND);
+
+    private static final String STATION_POST_FIX = "역";
 
     public void validate(String input) {
         checkNull(input);
@@ -32,10 +35,15 @@ public class InputValidator {
     }
 
     private void checkRange(String input) {
+        if (!input.endsWith(STATION_POST_FIX)) {
+            input = input + STATION_POST_FIX;
+        }
+
         int length = input.length();
 
         if (length < LENGTH_LOWER_BOUND || length > LENGTH_UPPER_BOUND) {
-            throw new IllegalArgumentException(RANGE_ERROR + String.format(INPUT_LENGTH_MESSAGE, length));
+            throw new IllegalArgumentException(
+                    RANGE_ERROR + String.format(INPUT_LENGTH_MESSAGE, length));
         }
     }
 

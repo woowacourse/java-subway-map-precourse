@@ -43,6 +43,18 @@ public class InputValidatorTest {
     }
 
     @Test
+    @DisplayName("마지막 글자 뒤에 역을 추가 후 범위를 벗어날 경우 예외 발생")
+    public void checkRange_NotEndWithStation_ExceptionThrown() {
+
+        // given
+        String input = "서울시양재동시민의숲";
+
+        // when, then
+        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR +
+                String.format(InputValidator.INPUT_LENGTH_MESSAGE, input.length() + 1));
+    }
+
+    @Test
     @DisplayName("한글이 아닌 다른 문자가 입력될 경우 예외 발생")
     public void checkKorean_NotKorean_ExceptionThrown() {
 
