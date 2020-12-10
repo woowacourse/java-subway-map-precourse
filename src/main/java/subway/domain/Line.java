@@ -48,4 +48,10 @@ public class Line {
     public List<Station> getStations() {
         return stations;
     }
+
+    public void addStations(List<String> stationNames) {
+        for (String stationName : stationNames) {
+            stations.add(StationRepository.getStationbyName(stationName));
+        }
+    }
 }

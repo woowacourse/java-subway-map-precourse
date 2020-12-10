@@ -21,8 +21,7 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
-        initializeStationRepository();
-        initializeLineRepository();
+        initializeRepositories();
         while (true) {
             showMainOptions();
             String command = getMainContolCommand(scanner);
@@ -32,7 +31,6 @@ public class Application {
             if (command.equals(EXIT)) {
                 break;
             }
-
             execute(command, scanner);
         }
     }
@@ -58,35 +56,26 @@ public class Application {
         return INVALID;
     }
 
+    private static void initializeRepositories() {
+        initializeStationRepository();
+        initializeLineRepository();
+    }
+
     private static void initializeLineRepository() {
-        Line temp = new Line("2호선");
-        temp.addStation(new Station("교대역"));
-        temp.addStation(new Station("강남역"));
-        temp.addStation(new Station("역삼역"));
-        LineRepository.addLine(temp);
-
-        temp = new Line("3호선");
-        temp.addStation(new Station("교대역"));
-        temp.addStation(new Station("남부터미널역"));
-        temp.addStation(new Station("양재역"));
-        temp.addStation(new Station("매봉역"));
-        LineRepository.addLine(temp);
-
-        temp = new Line("신분당선");
-        temp.addStation(new Station("강남역"));
-        temp.addStation(new Station("양재역"));
-        temp.addStation(new Station("양재시민의숲역"));
-        LineRepository.addLine(temp);
+        Line line2 = new Line("2호선");
+        line2.addStations(Arrays.asList("교대역", "강남역", "역삼역"));
+        LineRepository.addLine(line2);
+        Line line3 = new Line("3호선");
+        line3.addStations(Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역"));
+        LineRepository.addLine(line3);
+        Line sinbundangLine = new Line("신분당선");
+        sinbundangLine.addStations(Arrays.asList("강남역", "양재역", "양재시민의숲역"));
+        LineRepository.addLine(sinbundangLine);
     }
 
     private static void initializeStationRepository() {
-        StationRepository.addStation(new Station("교대역"));
-        StationRepository.addStation(new Station("강남역"));
-        StationRepository.addStation(new Station("역삼역"));
-        StationRepository.addStation(new Station("남부터미널역"));
-        StationRepository.addStation(new Station("양재역"));
-        StationRepository.addStation(new Station("양재시민의숲역"));
-        StationRepository.addStation(new Station("매봉역"));
+        List<String> stationNames = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+        stationNames.forEach(stationName -> StationRepository.addStation(new Station(stationName)));
     }
 
     private static void execute(String command, Scanner scanner) {

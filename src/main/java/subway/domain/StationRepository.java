@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -29,12 +26,6 @@ public class StationRepository {
     }
 
     public static Station getStationbyName(String stationName) {
-        Station station = null;
-        for (Station temp : stations) {
-            if (temp.getName().equals((stationName))) {
-                station = temp;
-            }
-        }
-        return station;
+        return stations.stream().filter(station -> station.getName().equals(stationName)).findAny().orElse(null);
     }
 }
