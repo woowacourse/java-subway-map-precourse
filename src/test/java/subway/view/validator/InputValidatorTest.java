@@ -26,7 +26,8 @@ public class InputValidatorTest {
         String input = "역";
 
         // when, then
-        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR);
+        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR +
+                String.format(InputValidator.INPUT_LENGTH_MESSAGE, input.length()));
     }
 
     @Test
@@ -34,10 +35,11 @@ public class InputValidatorTest {
     public void checkRange_HigherThanLowerBound_ExceptionThrown() {
 
         // given
-        String input = "서울시강남구강남역";
+        String input = "서울특별시강남구강남역";
 
         // when, then
-        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR);
+        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR +
+                String.format(InputValidator.INPUT_LENGTH_MESSAGE, input.length()));
     }
 
     @Test

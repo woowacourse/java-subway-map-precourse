@@ -9,13 +9,15 @@ public class InputValidator {
 
     static final String NULL_ERROR = "null 값을 입력하셨습니다.";
 
+    static final String INPUT_LENGTH_MESSAGE = "입력하신 글자는 %d자 입니다.";
+
     private static final Pattern KOREAN_PATTERN = Pattern.compile("[가-힣]+");
 
     private static final int LENGTH_LOWER_BOUND = 2;
 
     private static final int LENGTH_UPPER_BOUND = 10;
 
-    static final String RANGE_ERROR = String.format("이름은 %d글자 이상, %d글자 이하이어야 합니다.", LENGTH_LOWER_BOUND, LENGTH_UPPER_BOUND);
+    static final String RANGE_ERROR = String.format("이름은 %d글자 이상, %d글자 이하이어야 합니다. ", LENGTH_LOWER_BOUND, LENGTH_UPPER_BOUND);
 
     public void validate(String input) {
         checkNull(input);
@@ -33,7 +35,7 @@ public class InputValidator {
         int length = input.length();
 
         if (length < LENGTH_LOWER_BOUND || length > LENGTH_UPPER_BOUND) {
-            throw new IllegalArgumentException(RANGE_ERROR);
+            throw new IllegalArgumentException(RANGE_ERROR + String.format(INPUT_LENGTH_MESSAGE, length));
         }
     }
 
