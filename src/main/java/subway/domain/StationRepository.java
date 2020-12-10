@@ -1,5 +1,7 @@
 package subway.domain;
 
+import validator.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+    private static final String NEW_LINE = "\n";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -17,6 +20,37 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (!isStationExist(name)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static boolean isStationExist (String name) {
+        for (Station station : stations()) {
+            String stationName = station.getName();
+            if (stationName.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void inputValidStationName(String name) {
+        if (name.length() < 2) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_OVER_TWO);
+        }
+        if (isStationExist(name)) {
+            throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_EXISTS);
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Station station : stations()) {
+            sb.append("[INFO] " + station + NEW_LINE);
+        }
+        return sb.toString();
     }
 }
