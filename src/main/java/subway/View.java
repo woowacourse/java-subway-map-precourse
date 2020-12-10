@@ -58,4 +58,18 @@ public class View {
         }
         outputView.printDeleteStationSuccess();
     }
+
+    public void registerLine() {
+        outputView.printRegisterLineQuestion();
+         LineRepository.addLine(new Line(inputView.getLine()));
+        outputView.printRegisterLineSuccess();
+    }
+
+    public void deleteLine() {
+        outputView.printDeleteLineQuestion();
+        if (! LineRepository.deleteLineByName(inputView.getLine())) {
+            throw new IllegalArgumentException("등록되지 않은 노선입니다.");
+        }
+        outputView.printDeleteLineSuccess();
+    }
 }

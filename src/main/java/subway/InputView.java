@@ -16,4 +16,8 @@ public class InputView {
     public String getStation() {
         return scanner.nextLine().strip();
     }
+
+    public String getLine() {
+        return scanner.nextLine().strip();
+    }
 }

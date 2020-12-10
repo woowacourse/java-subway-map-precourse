@@ -7,12 +7,14 @@ public enum LineQuestion {
     REGISTER_STATION("1. 노선 등록", "1") {
         @Override
         public void nextAction(View view) {
+            view.registerLine();
             view.mainView();
         }
     },
     DELETE_STATION("2. 노선 삭제", "2") {
         @Override
         public void nextAction(View view) {
+            view.deleteLine();
             view.mainView();
         }
     },
