@@ -7,5 +7,7 @@ public interface StationRepository {
 
     void addStation(Station station);
 
+    Station findByName(String name);
+
     boolean deleteStationByName(String name);
 }

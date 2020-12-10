@@ -587,7 +587,8 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
         - `InputServiceException`
 - [ ] 1이 입력될 시, 역 관리 화면 출력
 - [x] 지하철 역을 입력 받는다.
-- [ ] 지하철 역을 등록한다. 
+- [x] 지하철 역 등록 테스트. 
+- [ ] 지하철 역 등록 구현. 
 - [ ] 보장된 이름의 지하철 역을 등록한다.
     - 보장된 이름(2글자 이상의 한글이며, 특수문자, 공백이 포함되지 않은 이름)
 - [ ] 저장소에 저장되어 있는 지하철 역을 등록시 에러가 발생한다. 
