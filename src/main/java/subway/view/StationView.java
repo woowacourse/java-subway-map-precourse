@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.domain.StationRepository;
 import subway.enums.ErrorMessage;
+import subway.enums.StationInfo;
 import subway.enums.StationMenu;
 
 import java.util.Arrays;
@@ -17,25 +18,25 @@ public class StationView {
     }
 
     public static void printAskStationNameToEnroll() {
-        System.out.println(StationMenu.ASK_STATION_NAME_TO_ENROLL.getTitle());
+        System.out.println(StationInfo.ASK_STATION_NAME_TO_ENROLL.getInfo());
     }
 
     public static void informStationEnrolled() {
-        System.out.println(StationMenu.INFO_STATION_ENROLLED.getTitle());
+        System.out.println(StationInfo.INFO_STATION_ENROLLED.getInfo());
     }
 
     public static void printAskStationNameToDelete() {
-        System.out.println(StationMenu.ASK_STATION_NAME_TO_DELETE.getTitle());
+        System.out.println(StationInfo.ASK_STATION_NAME_TO_DELETE.getInfo());
     }
 
     public static void informStationDeleted() {
-        System.out.println(StationMenu.INFO_STATION_DELETED.getTitle());
+        System.out.println(StationInfo.INFO_STATION_DELETED.getInfo());
     }
 
     public static void printStationList() {
-        System.out.println(StationMenu.STATION_LIST.getTitle());
+        System.out.println(StationInfo.STATION_LIST.getInfo());
         StationRepository.stations().stream()
-                .map(station -> StationMenu.INFO.getTitle() + station.getName())
+                .map(station -> StationInfo.INFO.getInfo() + station.getName())
                 .forEach(System.out::println);
     }
 
