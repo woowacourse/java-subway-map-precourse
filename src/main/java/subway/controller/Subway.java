@@ -14,9 +14,8 @@ public class Subway {
     public static final String SECTION_MANAGE_MENU = "3";
     public static final String SUBWAY_SECTIONS_MENU = "4";
     public static final String CLOSE = "Q";
-    private static final String[] initialLines = {"2호선", "3호선", "신분당선"};
-    private static final String[] initialStations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역",
-        "양재시민의숲역", "매봉역"};
+
+
     private final InputView inputView;
     private final Management management;
 
@@ -26,9 +25,9 @@ public class Subway {
     }
 
     public void start() {
+        management.initialize();
         OutputView.showMainMenu();
-        boolean continueSystem = chooseMenu(inputView.inputValue());
-        if(continueSystem){
+        if (chooseMenu(inputView.inputValue())) {
             start();
         }
     }

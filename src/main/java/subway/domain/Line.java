@@ -8,6 +8,7 @@ import subway.exception.SubwayCustomException;
 public class Line {
 
     private static final String NOT_VALID_SECTION_EXCEPTION_MESSAGE = "존재하지 않는 구간입니다.";
+
     private String name;
     private List<Station> sections = new ArrayList<>();
 
@@ -15,12 +16,10 @@ public class Line {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Station> getSections() {
-        return sections;
+    public void addSection(Station inputStation){
+        if(StationRepository.stations().contains(inputStation)){
+            sections.add(inputStation);
+        }
     }
 
     public void addSectionWithPosition(int position, Station inputStation){
@@ -38,5 +37,13 @@ public class Line {
             .filter(station -> Objects.equals(station.getName(), name))
             .findFirst()
             .orElseThrow(()->new SubwayCustomException(NOT_VALID_SECTION_EXCEPTION_MESSAGE));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Station> getSections() {
+        return sections;
     }
 }

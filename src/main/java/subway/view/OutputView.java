@@ -58,6 +58,8 @@ public class OutputView {
     private static final String REMOVE_SECTION_STATION_MESSAGE = "삭제할 구간의 역을 입력하세요.";
     private static final String REMOVE_SECTION_CHECK_MESSAGE = "구간이 삭제되었습니다.";
 
+    private static final String SUBWAY_LINEMAP = "지하철 노선도";
+
     private static void showInfoMessage(String message) {
         System.out.println(INFORMATION_PREFIX + message);
     }
@@ -177,6 +179,7 @@ public class OutputView {
     }
 
     public static void showSubwayLineMap() {
+        showMessage(SUBWAY_LINEMAP);
         LineRepository.lines().forEach(OutputView::showSection);
     }
 
