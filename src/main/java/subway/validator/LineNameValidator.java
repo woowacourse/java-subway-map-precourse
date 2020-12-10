@@ -17,8 +17,6 @@ public class LineNameValidator extends Validator {
 
     private static final Pattern KOREAN_OR_NUMBER_PATTERN = Pattern.compile("([가-힣]?[0-9]?)+");
 
-    private static final String LINE_POST_FIX = "선";
-
     @Override
     public void validate(String input) {
         super.validate(input);
@@ -35,10 +33,6 @@ public class LineNameValidator extends Validator {
     }
 
     private void checkRange(String input) {
-        if (!input.endsWith(LINE_POST_FIX)) {
-            input = input + LINE_POST_FIX;
-        }
-
         int length = input.length();
 
         if (length < LineName.LENGTH_LOWER_BOUND || length > LineName.LENGTH_UPPER_BOUND) {

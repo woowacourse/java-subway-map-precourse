@@ -17,8 +17,6 @@ public class StationNameValidator extends Validator {
 
     private static final Pattern KOREAN_PATTERN = Pattern.compile("[가-힣]+");
 
-    private static final String STATION_POST_FIX = "역";
-
     @Override
     public void validate(String input) {
         super.validate(input);
@@ -35,10 +33,6 @@ public class StationNameValidator extends Validator {
     }
 
     private void checkRange(String input) {
-        if (!input.endsWith(STATION_POST_FIX)) {
-            input = input + STATION_POST_FIX;
-        }
-
         int length = input.length();
 
         if (length < StationName.LENGTH_LOWER_BOUND || length > StationName.LENGTH_UPPER_BOUND) {
