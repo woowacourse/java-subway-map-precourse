@@ -59,6 +59,26 @@ public class View {
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
+	public static String getLineNameToRegister(Scanner scanner) {
+		System.out.println(LineMessages.REGISTER_NAME);
+		return scanner.nextLine();
+	}
+
+	public static String getUpwardDestination(Scanner scanner) {
+		System.out.println(LineMessages.UPWARD_DESTINATION_NAME);
+		return scanner.nextLine();
+	}
+
+	public static String getDownwardDestination(Scanner scanner) {
+		System.out.println(LineMessages.DOWNWARD_DESTINATION_NAME);
+		return scanner.nextLine();
+	}
+
+	public static String getLineNameToDelete(Scanner scanner) {
+		System.out.println(LineMessages.DELETE_NAME);
+		return scanner.nextLine();
+	}
+
 	public static void printSectionScreen() {
 		Arrays.stream(SectionMessages.values())
 				.limit(4)

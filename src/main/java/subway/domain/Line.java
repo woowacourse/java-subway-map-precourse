@@ -1,23 +1,38 @@
 package subway.domain;
 
+import subway.view.LineMessages;
 import subway.view.StationMessages;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
     public static final int NAME_LENGTH_LOWER_BOUND = 2;
 
     private String name;
-    private List<Station> stations;
+    private final List<Station> sections = new ArrayList<>();
 
-    public Line(String name) throws IllegalArgumentException {
+    public Line(String name, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
         validateDuplicate(name);
         validateNameLength(name);
+        StationRepository.validateRegistration(upwardDestination);
+        StationRepository.validateRegistration(downwardDestination);
         this.name = name;
+        this.sections.add(new Station(upwardDestination));
+        this.sections.add(new Station(downwardDestination));
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<Station> sections(Line line) {
+        return Collections.unmodifiableList(sections);
+    }
+
+    public void addSection(Line line, Station station, int location) {
+        sections.add(location, station);
     }
 
     private boolean hasName(String name) {
@@ -28,13 +43,13 @@ public class Line {
 
     private void validateDuplicate(String name) throws IllegalArgumentException {
         if (hasName(name)) {
-            throw new IllegalArgumentException(StationMessages.DUPLICATE_NAME_ERROR.getMessage());
+            throw new IllegalArgumentException(LineMessages.DUPLICATE_NAME_ERROR.getMessage());
         }
     }
 
     private void validateNameLength(String name) throws IllegalArgumentException {
         if (name.length() < NAME_LENGTH_LOWER_BOUND) {
-            throw new IllegalArgumentException(StationMessages.NAME_LENGTH_ERROR.getMessage());
+            throw new IllegalArgumentException(LineMessages.NAME_LENGTH_ERROR.getMessage());
         }
     }
 }

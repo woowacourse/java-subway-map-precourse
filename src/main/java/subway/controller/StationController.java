@@ -2,6 +2,7 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.view.General;
 import subway.view.StationMessages;
 import subway.view.View;
 
@@ -19,6 +20,17 @@ public class StationController {
 		options.add(Options.BACK.getOption());
 	}
 
+	private static boolean hasOption(String input) {
+		return options.stream()
+				.anyMatch(option -> option.equalsIgnoreCase(input));
+	}
+
+	private static void validateOption(String input) throws IllegalArgumentException {
+		if (!hasOption(input)) {
+			throw new IllegalArgumentException(General.NOT_AVAILABLE_OPTION_ERROR.getMessage());
+		}
+	}
+
 	private static void createStation(Scanner scanner) {
 		String name = View.getStationNameToRegister(scanner);
 		StationRepository.addStation(new Station(name));
@@ -34,17 +46,6 @@ public class StationController {
 		}
 		View.printStationDeleteError();
 		deleteStation(scanner);
-	}
-
-	private static boolean hasOption(String input) {
-		return options.stream()
-				.anyMatch(option -> option.equalsIgnoreCase(input));
-	}
-
-	private static void validateOption(String input) throws IllegalArgumentException {
-		if (!hasOption(input)) {
-			throw new IllegalArgumentException(StationMessages.NOT_AVAILABLE_OPTION_ERROR.getMessage());
-		}
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {

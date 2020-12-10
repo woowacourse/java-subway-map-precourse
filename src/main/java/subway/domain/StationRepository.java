@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.StationMessages;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,5 +30,23 @@ public class StationRepository {
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    private static boolean hasName(String name) {
+        return StationRepository.stations().stream()
+                .map(Station::getName)
+                .anyMatch(stationName -> stationName.equals(name));
+    }
+
+    public static void validateDuplicate(String name) throws IllegalArgumentException {
+        if (hasName(name)) {
+            throw new IllegalArgumentException(StationMessages.DUPLICATE_NAME_ERROR.getMessage());
+        }
+    }
+
+    public static void validateRegistration(String name) throws IllegalArgumentException {
+        if (!hasName(name)) {
+            throw new IllegalArgumentException(StationMessages.UNREGISTERED_NAME_ERROR.getMessage());
+        }
     }
 }

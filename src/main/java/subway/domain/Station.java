@@ -8,21 +8,9 @@ public class Station {
     private String name;
 
     public Station(String name) throws IllegalArgumentException {
-        validateDuplicate(name);
+        StationRepository.validateDuplicate(name);
         validateNameLength(name);
         this.name = name;
-    }
-
-    private boolean hasName(String name) {
-        return StationRepository.stations().stream()
-                .map(Station::getName)
-                .anyMatch(stationName -> stationName.equals(name));
-    }
-
-    private void validateDuplicate(String name) throws IllegalArgumentException {
-        if (hasName(name)) {
-            throw new IllegalArgumentException(StationMessages.DUPLICATE_NAME_ERROR.getMessage());
-        }
     }
 
     private void validateNameLength(String name) throws IllegalArgumentException {
