@@ -4,22 +4,16 @@ import java.util.Objects;
 
 public class Line {
 
-    public static final String DUPLICATE_FINAL_STATION = "상행 종점역과 하행 종점역이 일치합니다. 서로 다른 역을 입력해주세요.";
-
     private final LineName name;
 
     private final StationRepository stations;
 
-    public Line(String name, String startStation, String finalStation) {
-        if (startStation.equals(finalStation)) {
-            throw new IllegalArgumentException(DUPLICATE_FINAL_STATION);
-        }
-
+    public Line(final String name, final String startStation, final String finalStation) {
         this.name = new LineName(name);
-        this.stations = new StationRepository(startStation, finalStation);
+        this.stations = new StationRepository().addStation(startStation).addStation(finalStation);
     }
 
-    public Line(LineName name, StationRepository stations) {
+    public Line(final LineName name, final StationRepository stations) {
         this.name = name;
         this.stations = stations;
     }
@@ -32,15 +26,15 @@ public class Line {
         return stations;
     }
 
-    public Line insertStation(int index, String stationName) {
+    public Line insertStation(final int index, final String stationName) {
         return new Line(this.name, stations.insertStation(index, stationName));
     }
 
-    public Line remove(String stationName) {
-        return new Line(this.name, stations.deleteStation(stationName));
+    public Line remove(final String stationName) {
+        return new Line(this.name, stations.removeStation(stationName));
     }
 
-    public boolean contains(String stationName) {
+    public boolean contains(final String stationName) {
         return stations.contains(stationName);
     }
 
