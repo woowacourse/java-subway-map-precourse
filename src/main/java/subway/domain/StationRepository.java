@@ -5,6 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/*
+필요 시 StationRepository, LineRepository 이 외 추가로 Repository를 만들 수 있다.
+추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가할 수 있다.
+객체들의 상태를 관리하기 위해서 XXXRepository 클래스를 활용해 저장 로직을 구현해야 한다.
+필요에 따라 자유롭게 수정이 가능하다.
+* */
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
