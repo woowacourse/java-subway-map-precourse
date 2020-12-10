@@ -36,12 +36,28 @@ public class ScannerInputService implements InputService {
     @Override
     public int getManageStationOption() {
         String inputOption = getNextLine();
-        if(isBack(inputOption)){
+        if (isBack(inputOption)) {
             return OPTION_BACK;
         }
         int option = stringToInt(inputOption);
         validateManageStationOption(option);
         return option;
+    }
+
+    @Override
+    public boolean isQuit(int option) {
+        if (option == OPTION_QUIT) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isBack(int manageStationOption) {
+        if (manageStationOption == OPTION_BACK) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isBack(String inputOption) {

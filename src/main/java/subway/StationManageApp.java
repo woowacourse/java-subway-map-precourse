@@ -1,5 +1,8 @@
 package subway;
 
+import subway.domain.station.MemoryStationRepository;
+import subway.domain.station.StationService;
+import subway.domain.station.StationServiceImpl;
 import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
@@ -10,10 +13,12 @@ import java.util.Scanner;
 public class StationManageApp {
     private final InputService inputService;
     private final OutputService outputService;
+    private final StationService stationService;
 
     public StationManageApp() {
         inputService = ScannerInputService.of(new Scanner(System.in));
         outputService = StringBuilderOutputService.of(new StringBuilder());
+        stationService = new StationServiceImpl(MemoryStationRepository.of());
     }
 
     public static StationManageApp of() {
@@ -32,7 +37,14 @@ public class StationManageApp {
     }
 
     private boolean isQuit(int option) {
-        if (option == InputService.OPTION_QUIT) {
+        if (inputService.isQuit(option)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isBack(int manageStationOption) {
+        if (inputService.isBack(manageStationOption)) {
             return true;
         }
         return false;
@@ -53,6 +65,25 @@ public class StationManageApp {
         }
     }
 
+    private void chooseManageStationOption(int manageStationOption) {
+        if (manageStationOption == InputService.MANAGE_STATION_ADD) {
+            String stationName = getStationName();
+            stationService.saveStation(stationName);
+        }
+        if (manageStationOption == InputService.MANAGE_STATION_DELETE) {
+
+        }
+        if (manageStationOption == InputService.MANAGE_STATION_FIND) {
+
+        }
+    }
+
+    private String getStationName() {
+        outputService.printManageStationAdd();
+        String stationName = inputService.getStationName();
+        return stationName;
+    }
+
     private void manageMap() {
     }
 
@@ -65,8 +96,11 @@ public class StationManageApp {
     }
 
     private void manageStation() {
-        outputService.printSManageStation();
+        outputService.printManageStation();
         int manageStationOption = inputService.getManageStationOption();
-        System.out.println("manageStationOption = " + manageStationOption);
+        if (isBack(manageStationOption)) {
+            return;
+        }
+        chooseManageStationOption(manageStationOption);
     }
 }

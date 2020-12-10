@@ -5,7 +5,7 @@ import java.util.List;
 public interface StationRepository {
     List<Station> stations();
 
-    void addStation(Station station);
+    Station addStation(Station station);
 
     Station findByName(String name);
 

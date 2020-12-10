@@ -23,13 +23,11 @@ class MemoryStationRepositoryTest {
         Station seoulStation = Station.of("서울시청");
 
         //when
-        stationRepository.addStation(incheonStation);
-        stationRepository.addStation(seoulStation);
-        Station findIncheonStation = stationRepository.findByName(incheonStation.getName());
-        Station findSeoulStation = stationRepository.findByName(seoulStation.getName());
+        Station savedIncheonStation = stationRepository.addStation(incheonStation);
+        Station savedSeroulStation = stationRepository.addStation(seoulStation);
 
         //then
-        assertThat(findIncheonStation.getName()).isEqualTo(incheonStation.getName());
-        assertThat(findSeoulStation.getName()).isEqualTo(seoulStation.getName());
+        assertThat(savedIncheonStation.getName()).isEqualTo(incheonStation.getName());
+        assertThat(savedSeroulStation.getName()).isEqualTo(seoulStation.getName());
     }
 }

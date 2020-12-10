@@ -29,7 +29,7 @@ public class StringBuilderOutputService implements OutputService {
     }
 
     @Override
-    public void printSManageStation() {
+    public void printManageStation() {
         sb.append(ENTER);
         sb.append(STATION_MAIN).append(ENTER);
         sb.append(STATION_ONE).append(ENTER);
@@ -65,6 +65,14 @@ public class StringBuilderOutputService implements OutputService {
         sb.append(BACK).append(ENTER);
         sb.append(ENTER);
         sb.append(CHOOSE_FUNCTION);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printManageStationAdd() {
+        sb.append(ENTER);
+        sb.append(MANAGE_STATION_ADD);
         System.out.println(sb.toString());
         clearSb();
     }

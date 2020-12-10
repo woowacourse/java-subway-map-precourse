@@ -19,4 +19,8 @@ public interface InputService {
     int getMainOption();
 
     int getManageStationOption();
+
+    boolean isQuit(int option);
+
+    boolean isBack(int manageStationOption);
 }

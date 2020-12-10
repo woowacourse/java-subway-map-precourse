@@ -21,8 +21,9 @@ public class MemoryStationRepository implements StationRepository {
     }
 
     @Override
-    public void addStation(Station station) {
+    public Station addStation(Station station) {
         stations.put(station.getName(), station);
+        return station;
     }
 
     @Override

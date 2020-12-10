@@ -21,10 +21,15 @@ public interface OutputService {
     String SECTION_MAIN = "## 구간 관리 화면";
     String SECTION_ONE = "1. 구간 등록";
     String SECTION_TWO = "2. 구간 삭제";
-
+    String MANAGE_STATION_ADD = "## 등록할 역 이름을 입력하세요";
 
     void printMain();
-    void printSManageStation();
+
+    void printManageStation();
+
     void printManageRoute();
+
     void printManageSection();
+
+    void printManageStationAdd();
 }
