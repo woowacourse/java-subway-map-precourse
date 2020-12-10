@@ -12,7 +12,7 @@ public class StationRepository {
 
     static {
         for (String s : DEFAULT_STATIONS.split(",")) {
-            addStation(new Station(s));
+            stations.add(new Station(s));
         }
     }
 
