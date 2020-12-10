@@ -19,7 +19,8 @@ public enum StationInput {
     remove("2", "역 삭제") {
         public void moveView(Scanner scanner) {
             StationInputView stationInputView = new StationInputView();
-            stationInputView.remove(scanner);
+            String station = stationInputView.remove(scanner);
+            StationRepository.deleteStation(station);
         }
     },
     inquiry("3", "역 조회") {
