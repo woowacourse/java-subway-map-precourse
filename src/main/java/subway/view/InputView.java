@@ -9,7 +9,10 @@ import java.util.Scanner;
 public class InputView {
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
     private static final String ERROR_INVALID_INPUT_VALUE = "유효하지 않은 입력입니다.";
-    private static final String MENU_SELECTION = "## 원하는 기능을 선택하세요.";
+    private static final String SELECTION_PREFIX = "## ";
+    private static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
+    private static final String TO_REGISTER_PREFIX = "등록할 ";
+    private static final String REQUEST_STATION_REGISTER = "역 이름을 입력하세요.";
 
     private static Scanner scanner;
     private static MainMenu mainMenu = MainMenu.getInstance();
@@ -55,5 +58,21 @@ public class InputView {
 
     public static String getStationMenuSelection() {
         return getMenuSelection(stationMenu);
+    }
+
+    public static String getStationNameToRegister() {
+        return getStationName(TO_REGISTER_PREFIX);
+    }
+
+    private static String getStationName(String Prefix) {
+        System.out.println(SELECTION_PREFIX + TO_REGISTER_PREFIX + REQUEST_STATION_REGISTER);
+        try {
+            String name = deleteWhiteSpaces(scanner.nextLine());
+            isNotEmptyStringOrThrowException(name);
+            return name;
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+            return getStationName(Prefix);
+        }
     }
 }
