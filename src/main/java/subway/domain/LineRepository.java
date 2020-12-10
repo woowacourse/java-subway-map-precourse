@@ -1,12 +1,18 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+
+    static {
+        List<String> initialLines = new ArrayList<>(Arrays.asList(
+                "2호선", "3호선", "신분당선"
+        ));
+        initialLines.stream()
+                .map(Line::new)
+                .forEach(LineRepository::addLine);
+    }
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
