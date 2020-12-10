@@ -2,17 +2,16 @@ package subway.enums;
 
 import java.util.Arrays;
 
-public enum StationInput {
-    register("1", "역 등록"),
-    remove("2", "역 삭제"),
-    inquiry("3", "역 조회"),
+public enum SectionInput {
+    register("1", "구간 등록"),
+    remove("2", "구간 삭제"),
     back("B", "돌아가기");
 
     final private String inputValue;
     final private String feature;
 
 
-    private StationInput(String inputValue, String feature) {
+    private SectionInput(String inputValue, String feature) {
         this.inputValue = inputValue;
         this.feature = feature;
     }
@@ -21,9 +20,9 @@ public enum StationInput {
         return inputValue + ". " + feature;
     }
 
-    public static String validateInput(String stationViewInput) {
-        return Arrays.stream(StationInput.values())
-                .filter(x -> x.inputValue.equals(stationViewInput))
+    public static String validateInput(String sectionViewInput) {
+        return Arrays.stream(SectionInput.values())
+                .filter(x -> x.inputValue.equals(sectionViewInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new)
                 .inputValue;

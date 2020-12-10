@@ -1,6 +1,7 @@
 package subway;
 
 import subway.enums.MainInput;
+import subway.enums.StationInput;
 import subway.view.InputView;
 
 import java.util.Scanner;
@@ -19,17 +20,9 @@ public class Controller {
 
         do {
             mainViewInput = inputView.mainView();
-            moveViewTo(mainViewInput, inputView);
+            MainInput.getInstance(mainViewInput).moveView(SCANNER);
         } while (!MainInput.isQuit(mainViewInput));
-    }
 
-    private void moveViewTo(String inputValue, InputView inputView) {
-        if (inputValue.equals(MainInput.stationView.getInputValue())) {
-            do {
-                inputView.stationView();
-            } while();
-        }
     }
-
 
 }
