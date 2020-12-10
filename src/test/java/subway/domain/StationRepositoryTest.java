@@ -1,10 +1,12 @@
 package subway.domain;
 
+import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class StationRepositoryTest {
 
@@ -20,13 +22,14 @@ class StationRepositoryTest {
     public void addStation_NotDuplicateStation_NoExceptionThrown() {
 
         // given
-        stationRepository.addStation(new Station("강남역"));
+        stationRepository.addStation("강남역");
 
         // when
-        boolean isAdded = stationRepository.addStation(new Station("봉천역"));
+        ThrowableAssert.ThrowingCallable callable =
+                () -> stationRepository.addStation("봉천역");
 
         //then
-        assertThat(isAdded).isTrue();
+        assertThatCode(callable).doesNotThrowAnyException();
     }
 
     @Test
@@ -34,12 +37,14 @@ class StationRepositoryTest {
     public void addStation_DuplicateStation_ExceptionThrown() {
 
         // given
-        stationRepository.addStation(new Station("강남역"));
+        stationRepository.addStation("강남역");
 
         // when
-        boolean isAdded = stationRepository.addStation(new Station("강남역"));
+        ThrowableAssert.ThrowingCallable callable =
+                () -> stationRepository.addStation("강남역");
 
         //then
-        assertThat(isAdded).isFalse();
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.DUPLICATE_NAME_ERROR, "강남역");
     }
 }

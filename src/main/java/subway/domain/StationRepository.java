@@ -7,6 +7,10 @@ import java.util.Set;
 
 public class StationRepository {
 
+    public static final String DUPLICATE_NAME_ERROR = "%s는 이미 존재하는 역 이름입니다!";
+
+    public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
+
     private final Set<Station> stations;
 
     public StationRepository() {
@@ -17,11 +21,15 @@ public class StationRepository {
         return Collections.unmodifiableSet(stations);
     }
 
-    public boolean addStation(Station station) {
-        return stations.add(station);
+    public void addStation(String name) {
+        if (!stations.add(new Station(name))) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, name));
+        }
     }
 
-    public boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public void deleteStation(String name) {
+        if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
+            throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
+        }
     }
 }

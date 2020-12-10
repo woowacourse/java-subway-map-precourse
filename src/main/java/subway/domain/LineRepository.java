@@ -6,17 +6,26 @@ import java.util.Objects;
 import java.util.Set;
 
 public class LineRepository {
+
+    public static final String DUPLICATE_NAME_ERROR = "%s는 이미 존재하는 노선 이름입니다!";
+
+    public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
+
     private static final Set<Line> lines = new LinkedHashSet<>();
 
     public static Set<Line> lines() {
         return Collections.unmodifiableSet(lines);
     }
 
-    public static boolean addLine(Line line) {
-        return lines.add(line);
+    public static void addLine(Line line) {
+        if (!lines.add(line)) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, line.getName()));
+        }
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLineByName(String name) {
+        if (lines.removeIf(line -> Objects.equals(line.getName(), name))) {
+            throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
+        }
     }
 }
