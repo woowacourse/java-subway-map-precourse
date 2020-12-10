@@ -1,6 +1,6 @@
 package subway.view;
 
-public enum Line {
+public enum LineMessages {
 	LINE_0(General.BASIC.getMessage() + "노선 관리 화면"),
 	LINE_1(General.ONE.getMessage() + "노선 등록"),
 	LINE_2(General.TWO.getMessage() + "노선 삭제"),
@@ -9,7 +9,7 @@ public enum Line {
 
 	final private String message;
 
-	Line(String message) {
+	LineMessages(String message) {
 		this.message = message;
 	}
 
