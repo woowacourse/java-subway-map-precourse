@@ -10,7 +10,7 @@ public enum ErrorMessage {
     LINE_NAME_LENGTH_UNDER_2(ERROR.getMessage() + "노선 이름은 2자부터 등록 가능합니다."),
 
     LAST_UP_AND_DOWN_STATION_DUPLICATION(ERROR.getMessage() + "상행 종점역과 중복됩니다."),
-    LINE_NOT_EXIST(ERROR.getMessage() + "등록된 역이 없습니다.");
+    LINE_NOT_EXIST(ERROR.getMessage() + "등록된 노선이 없습니다.");
 
     String message = "";
 

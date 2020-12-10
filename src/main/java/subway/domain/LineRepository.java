@@ -29,4 +29,11 @@ public class LineRepository {
     public static boolean isNameLengthUnder2(String name) {
         return name.trim().length() < 2;
     }
+
+    public static Line getLineByName(String name) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(name))
+                .findFirst()
+                .get();
+    }
 }
