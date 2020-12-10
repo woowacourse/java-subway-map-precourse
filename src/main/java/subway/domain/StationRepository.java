@@ -1,22 +1,31 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import subway.view.OutputView;
+
+import java.util.*;
 
 public class StationRepository {
-    private static final List<Station> stations = new ArrayList<>();
-
+    private static final String DUPLICATE_ERROR="이미 등록된 역 이름입니다.";
+    private static final String NAME_LENGTH_ERROR="지하철 역 이름은 2글자 이상이어야 한다.";
+    private static final List<Station> stations = new LinkedList<>();
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
+    public static boolean addStation(Station station) {
+        if(!Station.isValidName(station.getName())){
+            OutputView.printError(NAME_LENGTH_ERROR);
+            return false;
+        }
+        if(isDuplicate(station.getName())){
+            OutputView.printError(DUPLICATE_ERROR);
+            return false;
+        }
         stations.add(station);
+        return true;
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    private static boolean isDuplicate(String name){
+        return stations.stream().anyMatch(station -> station.getName().equals(name));
     }
 }
