@@ -579,7 +579,7 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
 
 ## 구현할 기능 목록
 ### **역 관리**
-- [ ] 객체 모델링
+- [x] 객체 모델링
 - [ ] 보장된 이름의 지하철 역을 등록한다.
     - 보장된 이름(2글자 이상의 한글이며, 특수문자, 공백이 포함되지 않은 이름)
 - [ ] 저장소에 저장되어 있는 지하철 역을 등록시 에러가 발생한다. 
