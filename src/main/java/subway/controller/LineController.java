@@ -22,9 +22,14 @@ public class LineController {
 		String name = View.getLineNameToRegister(scanner);
 		String upwardDestination = View.getUpwardDestination(scanner);
 		String downwardDestination = View.getDownwardDestination(scanner);
-		Line line = new Line(name, upwardDestination, downwardDestination);
-		LineRepository.addLine(line);
-		View.printStationRegisterCompletion();
+		try {
+			Line line = new Line(name, upwardDestination, downwardDestination);
+			LineRepository.addLine(line);
+			View.printStationRegisterCompletion();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			createLine(scanner);
+		}
 	}
 
 	private static void deleteLine(Scanner scanner) {

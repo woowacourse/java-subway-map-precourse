@@ -22,8 +22,13 @@ public class StationController {
 
 	private static void createStation(Scanner scanner) {
 		String name = View.getStationNameToRegister(scanner);
-		StationRepository.addStation(new Station(name));
-		View.printStationRegisterCompletion();
+		try {
+			StationRepository.addStation(new Station(name));
+			View.printStationRegisterCompletion();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			createStation(scanner);
+		}
 	}
 
 	private static void deleteStation(Scanner scanner) {

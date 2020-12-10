@@ -34,19 +34,4 @@ public class Line {
             throw new IllegalArgumentException(LineMessages.NAME_LENGTH_ERROR.getMessage());
         }
     }
-
-    public static void validateInteger(String location) throws IllegalArgumentException {
-        try {
-            Integer.parseInt(location);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(SectionMessages.NON_POSITIVE_INTEGER_LOCATION_ERROR.getMessage());
-        }
-    }
-
-    public static void validateSectionRange(String location, String lineName) throws IllegalArgumentException {
-        int lineLength = LineRepository.getLine(lineName).sections.getSectionLength();
-        if (Integer.parseInt(location) < 0 || lineLength <= Integer.parseInt(location)) {
-            throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
-        }
-    }
 }

@@ -1,6 +1,5 @@
 package subway.controller;
 
-import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.domain.StationRepository;
@@ -22,7 +21,6 @@ public class SectionController {
 	private static String getValidLineName(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameForNewSection(scanner);
 		try {
-			LineRepository.validateDuplicateName(lineName);
 			LineRepository.validateRegistration(lineName);
 			return lineName;
 		} catch (IllegalArgumentException e) {
@@ -46,8 +44,8 @@ public class SectionController {
 	private static int getValidLocation(Scanner scanner, String lineName) throws IllegalArgumentException {
 		String location = View.getLocationForNewSection(scanner);
 		try {
-			Line.validateInteger(location);
-			Line.validateSectionRange(location, lineName);
+			Sections.validateInteger(location);
+			Sections.validateRange(location, lineName);
 			return Integer.parseInt(location);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -55,16 +53,15 @@ public class SectionController {
 		}
 	}
 
-	private static void createStation(Scanner scanner) {
+	private static void createSection(Scanner scanner) {
 		String lineName = getValidLineName(scanner);
-		String stationName = getValidStationName(scanner);
+		String stationName = getValidStationName(scanner, lineName);
 		int Location = getValidLocation(scanner, lineName);
-		LineRepository
 
 		View.printStationRegisterCompletion();
 	}
 
-	private static void deleteStation(Scanner scanner) {
+	private static void deleteSection(Scanner scanner) {
 		String name = View.getStationNameToDelete(scanner);
 		boolean isSuccessful = StationRepository.deleteStation(name);
 		if (isSuccessful) {
@@ -72,15 +69,15 @@ public class SectionController {
 			return;
 		}
 		View.printStationDeleteError();
-		deleteStation(scanner);
+		deleteSection(scanner);
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
-			createStation(scanner);
+			createSection(scanner);
 			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
-			deleteStation(scanner);
+			deleteSection(scanner);
 			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			View.showStations();
