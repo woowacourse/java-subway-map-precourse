@@ -3,22 +3,21 @@ package subway.line.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 import subway.line.domain.Line;
-import subway.station.dto.StationResponseDto;
 
 public class LineResponseDto {
 
     private final String name;
-    private final List<StationResponseDto> stations;
+    private final List<LineStationResponseDto> lineStations;
 
-    public LineResponseDto(String name, List<StationResponseDto> stations) {
+    public LineResponseDto(String name, List<LineStationResponseDto> lineStations) {
         this.name = name;
-        this.stations = stations;
+        this.lineStations = lineStations;
     }
 
     public static LineResponseDto of(Line entity) {
         return new LineResponseDto(
             entity.getName(),
-            StationResponseDto.of(entity.getStations())
+            LineStationResponseDto.of(entity.getLineStations())
         );
     }
 
@@ -32,7 +31,7 @@ public class LineResponseDto {
         return name;
     }
 
-    public List<StationResponseDto> getStations() {
-        return stations;
+    public List<LineStationResponseDto> getLineStations() {
+        return lineStations;
     }
 }

@@ -21,8 +21,8 @@ public class PrintActionScreen implements Screen {
             OutputView.printResult(lineResponseDto.getName());
             OutputView.printResult(COLUMN_LINE);
 
-            lineResponseDto.getStations().forEach(
-                stationResponseDto -> OutputView.printResult(stationResponseDto.getName()));
+            lineResponseDto.getLineStations().forEach(
+                lineStationResponseDto -> OutputView.printResult(lineStationResponseDto.getStationName()));
 
             OutputView.println();
         });

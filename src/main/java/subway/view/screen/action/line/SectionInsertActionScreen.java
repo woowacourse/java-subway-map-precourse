@@ -2,7 +2,7 @@ package subway.view.screen.action.line;
 
 import subway.CategoryType;
 import subway.line.dto.SectionInsertRequestDto;
-import subway.line.service.LineService;
+import subway.line.service.LineStationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.screen.action.BaseActionScreen;
@@ -32,7 +32,7 @@ public class SectionInsertActionScreen extends BaseActionScreen {
         OutputView.printTitle(DELETE_SECTION_ORDER_INPUT_MESSAGE);
         int indexToInsert = inputView.readLineIndex();
 
-        LineService.addSection(new SectionInsertRequestDto(lineName, indexToInsert, stationName));
+        LineStationService.addSection(new SectionInsertRequestDto(lineName, indexToInsert, stationName));
         OutputView.printlnResult(INSERT_INPUT_SUCCESS_MESSAGE);
     }
 }

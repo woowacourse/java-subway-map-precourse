@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import subway.line.exception.CannotFindStationInLineException;
 import subway.line.exception.DuplicateStationNameInLineException;
 import subway.line.exception.ShorterThanMinLineNameException;
 import subway.line.exception.ShorterThanMinLineStationsSizeException;
@@ -17,14 +16,23 @@ public class Line {
     public static final int MIN_STATIONS_SIZE = 2;
 
     private final String name;
-    private final List<Station> stations;
+    private final LineStations lineStations;
 
-    private Line(String name, List<Station> stations) {
+    private Line(String name, List<LineStation> lineStations) {
         this.name = name;
-        this.stations = stations;
+        this.lineStations = new LineStations(lineStations);
     }
 
     public static Line of(String name, Station upstreamStation, Station downstreamStation) {
+        checkAddLineValidation(name, upstreamStation, downstreamStation);
+
+        LineStation upstreamLineStation = LineStation.from(upstreamStation);
+        LineStation downstreamLineStation = LineStation.of(downstreamStation, upstreamStation);
+
+        return new Line(name, new ArrayList<>(Arrays.asList(upstreamLineStation, downstreamLineStation)));
+    }
+
+    private static void checkAddLineValidation(String name, Station upstreamStation, Station downstreamStation) {
         if (name.length() < MIN_NAME_SIZE) {
             throw new ShorterThanMinLineNameException(name);
         }
@@ -33,30 +41,27 @@ public class Line {
             throw new UpstreamDownstreamStationInputException(upstreamStation.getName(),
                 downstreamStation.getName());
         }
-
-        return new Line(name, new ArrayList<>(Arrays.asList(upstreamStation, downstreamStation)));
     }
 
     public boolean contains(Station target) {
-        return stations.contains(target);
+        return lineStations.contains(target);
     }
 
     public void addSection(int indexToInsert, Station station) {
-        if (stations.contains(station)) {
+        if (lineStations.contains(station)) {
             throw new DuplicateStationNameInLineException(name, station.getName());
         }
 
-        stations.add(indexToInsert - 1, station);
+        lineStations.add(indexToInsert, station);
     }
 
     public void deleteSection(Station station) {
-        boolean isDeleted = stations.remove(station);
+        lineStations.remove(station);
+        checkDeleteSectionValidation(station);
+    }
 
-        if (!isDeleted) {
-            throw new CannotFindStationInLineException(name, station.getName());
-        }
-
-        if (stations.size() < MIN_STATIONS_SIZE) {
+    private void checkDeleteSectionValidation(Station station) {
+        if (lineStations.size() < MIN_STATIONS_SIZE) {
             throw new ShorterThanMinLineStationsSizeException(station.getName());
         }
     }
@@ -65,8 +70,8 @@ public class Line {
         return name;
     }
 
-    public List<Station> getStations() {
-        return stations;
+    public List<LineStation> getLineStations() {
+        return lineStations.getLineStations();
     }
 
     @Override

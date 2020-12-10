@@ -45,7 +45,7 @@ public class ManagementScreen implements Screen {
         HandlerMapping.mapping(selectedCategoryType, actionType);
     }
 
-    public int getActionOrderCommandNumber(InputView inputView) {
+    private int getActionOrderCommandNumber(InputView inputView) {
         return (int) ErrorUtils.repeatingUntilNoException(() -> {
             OutputView.printTitle(Screen.SELECT_CATEGORY_MESSAGE);
             return inputView.readActionOrderCommandNumber(selectedCategoryType);

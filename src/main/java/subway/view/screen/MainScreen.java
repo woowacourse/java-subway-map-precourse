@@ -52,7 +52,7 @@ public class MainScreen implements Screen {
         ScreenManager.push(new ManagementScreen(selectedCategoryType));
     }
 
-    public int getCategoryCommandNumber(InputView inputView) {
+    private int getCategoryCommandNumber(InputView inputView) {
         return (int) ErrorUtils.repeatingUntilNoException(() -> {
             OutputView.printTitle(Screen.SELECT_CATEGORY_MESSAGE);
             return inputView.readCategoryCommandNumber();

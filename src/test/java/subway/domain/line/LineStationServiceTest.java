@@ -11,11 +11,11 @@ import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.dto.SectionDeleteRequestDto;
 import subway.line.dto.SectionInsertRequestDto;
-import subway.line.service.LineService;
+import subway.line.service.LineStationService;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 
-public class LineServiceTest {
+public class LineStationServiceTest {
 
     final String LINE_NAME = "test line";
     final Station upstreamStation = Station.from("test station1");
@@ -31,6 +31,7 @@ public class LineServiceTest {
     @AfterEach
     void after() {
         LineRepository.deleteAll();
+        StationRepository.deleteAll();
     }
 
     @DisplayName("지하철 노선 저장소에서 지하철 노선에 구간을 추가할 수 있다.")
@@ -41,11 +42,12 @@ public class LineServiceTest {
         final Station station = Station.from(stationName);
         StationRepository.save(station);
 
-        LineService.addSection(new SectionInsertRequestDto(LINE_NAME, indexToInsert, stationName));
+        LineStationService
+            .addSection(new SectionInsertRequestDto(LINE_NAME, indexToInsert, stationName));
 
         Line findedLine = LineRepository.findByName(LINE_NAME);
-        assertEquals(findedLine.getStations().size(), STATION_SIZE + 1);
-        assertSame(findedLine.getStations().get(indexToInsert - 1), station);
+        assertEquals(findedLine.getLineStations().size(), STATION_SIZE + 1);
+        assertSame(findedLine.getLineStations().get(indexToInsert - 1).getStation(), station);
     }
 
     @DisplayName("지하철 노선 저장소에서 노선에 등록된 역을 제거할 수 있다.")
@@ -53,11 +55,13 @@ public class LineServiceTest {
     void deleteSection() {
         final int indexToInsert = 1;
         final String stationName = "inserted station";
-        LineService.addSection(new SectionInsertRequestDto(LINE_NAME, indexToInsert, stationName));
+        final Station station = Station.from(stationName);
+        StationRepository.save(station);
+        LineStationService.addSection(new SectionInsertRequestDto(LINE_NAME, indexToInsert, stationName));
 
-        LineService.deleteSection(new SectionDeleteRequestDto(LINE_NAME, stationName));
+        LineStationService.deleteSection(new SectionDeleteRequestDto(LINE_NAME, stationName));
 
         Line findedLine = LineRepository.findByName(LINE_NAME);
-        assertEquals(findedLine.getStations().size(), STATION_SIZE);
+        assertEquals(findedLine.getLineStations().size(), STATION_SIZE);
     }
 }

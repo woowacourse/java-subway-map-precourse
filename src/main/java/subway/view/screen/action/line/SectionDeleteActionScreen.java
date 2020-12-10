@@ -2,7 +2,7 @@ package subway.view.screen.action.line;
 
 import subway.CategoryType;
 import subway.line.dto.SectionDeleteRequestDto;
-import subway.line.service.LineService;
+import subway.line.service.LineStationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.screen.action.BaseActionScreen;
@@ -28,7 +28,7 @@ public class SectionDeleteActionScreen extends BaseActionScreen {
         OutputView.printTitle(DELETE_SECTION_STATION_INPUT_MESSAGE);
         String stationName = inputView.readCommand();
 
-        LineService.deleteSection(new SectionDeleteRequestDto(lineName, stationName));
+        LineStationService.deleteSection(new SectionDeleteRequestDto(lineName, stationName));
         OutputView.printlnResult(INSERT_INPUT_SUCCESS_MESSAGE);
     }
 }

@@ -1,6 +1,9 @@
 package subway.domain.line;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,8 +45,8 @@ class LineTest {
         final int indexToInsert = 1;
         line.addSection(indexToInsert, station);
 
-        assertEquals(line.getStations().size(), SIZE + 1);
-        assertSame(line.getStations().get(indexToInsert - 1), station);
+        assertEquals(line.getLineStations().size(), SIZE + 1);
+        assertSame(line.getLineStations().get(indexToInsert - 1).getStation(), station);
     }
 
     @DisplayName("지하철 노선에 등록된 역을 제거할 수 있다.")
@@ -54,9 +57,9 @@ class LineTest {
         final int indexToInsert = 1;
         line.addSection(indexToInsert, station);
 
-        line.deleteSection(downstreamStation);
+        line.deleteSection(station);
 
-        assertFalse(line.getStations().contains(downstreamStation));
+        assertEquals(line.getLineStations().size(), SIZE);
     }
 
     @DisplayName("노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없다.")
