@@ -19,8 +19,8 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static void deleteStation(String name) {
-        if (!(stations.removeIf(station -> Objects.equals(station.getName(), name)))) {
+    public static void deleteStation(Station inputStation) {
+        if (!(stations.removeIf(station -> station == inputStation))) {
             throw new SubwayCustomException(NOT_VALID_STATION_EXCEPTION_MESSAGE);
         }
     }

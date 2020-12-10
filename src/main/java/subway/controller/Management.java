@@ -2,7 +2,10 @@ package subway.controller;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import subway.domain.*;
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
 import subway.utils.ValidateUtils;
 import subway.view.InputView;
@@ -28,9 +31,9 @@ public class Management {
     public static void manageStation() {
         OutputView.showStationMenu();
         OutputView.chooseCategory();
-        try{
+        try {
             StationMenu.execute(inputView.inputValue());
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manageStation();
         }
@@ -39,9 +42,9 @@ public class Management {
     public static void manageLine() {
         OutputView.showLineMenu();
         OutputView.chooseCategory();
-        try{
+        try {
             LineMenu.execute(inputView.inputValue());
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manageLine();
         }
@@ -50,9 +53,9 @@ public class Management {
     public static void mangeSection() {
         OutputView.showSectionMenu();
         OutputView.chooseCategory();
-        try{
+        try {
             SectionMenu.execute(inputView.inputValue());
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             mangeSection();
         }
@@ -72,7 +75,9 @@ public class Management {
     public static void deleteStation() {
         try {
             OutputView.guideRemoveStation();
-            StationRepository.deleteStation(inputView.inputValue());
+            Station station = StationRepository.searchStation(inputView.inputValue());
+            ValidateUtils.isExistingSection(station);
+            StationRepository.deleteStation(station);
             OutputView.doneRemoveStation();
         } catch (SubwayCustomException exception) {
             exception.getMessage();

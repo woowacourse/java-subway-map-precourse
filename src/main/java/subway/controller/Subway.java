@@ -21,17 +21,17 @@ public class Subway {
 
     public void start() {
         management.initialize();
-        while(true){
+        while (true) {
             OutputView.showMainMenu();
             manage();
         }
     }
 
-    public void manage(){
+    public void manage() {
         OutputView.chooseCategory();
-        try{
+        try {
             MainMenu.execute(inputView.inputValue());
-        } catch (SubwayCustomException exception){
+        } catch (SubwayCustomException exception) {
             exception.getMessage();
             manage();
         }

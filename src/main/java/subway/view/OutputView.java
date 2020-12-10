@@ -1,9 +1,7 @@
 package subway.view;
 
-import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 
 /**
@@ -93,7 +91,7 @@ public class OutputView {
         showMenuMessage(SECTION_MENU_MESSAGE);
     }
 
-    public static void chooseCategory(){
+    public static void chooseCategory() {
         showMessage(MENU_CATEGORY_CHOICE_MESSAGE);
     }
 
@@ -179,7 +177,7 @@ public class OutputView {
     public static void showSection(Line line) {
         showInfoMessage(line.getName());
         showInfoMessage(SECTION_LINE);
-        line.getSections().forEach(section->showInfoMessage(section.getName()));
+        line.getSections().forEach(section -> showInfoMessage(section.getName()));
         System.out.println();
     }
 

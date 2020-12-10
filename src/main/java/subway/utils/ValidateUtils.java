@@ -15,7 +15,7 @@ public class ValidateUtils {
     private static final String EXISTING_LINE_EXCEPTION_MESSAGE = "이미 등록된 노선 이름입니다.";
     private static final String EXISTING_SECTION_EXCEPTION_MESSAGE = "이미 등록된 구간입니다.";
     private static final String LESS_THAN_TWO_SECTIONS_EXCEPTION_MESSAGE = "노선 내 구간은 최소 2개이어야 합니다.";
-    private static final String NOT_EXISTING_SECTION_EXCEPTION_MESSAGE = "존재하지 않는 구간입니다.";
+    private static final String EXISTING_IN_SECTION_EXCEPTION_MESSAGE = "노선에 등록된 역은 삭제할 수 없습니다.";
 
     public static void isAlreadyExistingSection(Line line, Station station) {
         if (line.getSections().contains(station)) {
@@ -26,6 +26,13 @@ public class ValidateUtils {
     public static void isLessThanTwoStation(Line line) {
         if (line.getSections().size() <= TWO) {
             throw new SubwayCustomException(LESS_THAN_TWO_SECTIONS_EXCEPTION_MESSAGE);
+        }
+    }
+
+    public static void isExistingSection(Station station) {
+        if (LineRepository.lines().stream()
+            .anyMatch(line -> line.getSections().contains(station))) {
+            throw new SubwayCustomException(EXISTING_IN_SECTION_EXCEPTION_MESSAGE);
         }
     }
 
@@ -48,5 +55,4 @@ public class ValidateUtils {
             throw new SubwayCustomException(EXISTING_LINE_EXCEPTION_MESSAGE);
         }
     }
-
 }

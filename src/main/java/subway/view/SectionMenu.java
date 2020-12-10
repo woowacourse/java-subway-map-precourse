@@ -20,13 +20,13 @@ public enum SectionMenu {
     }
 
     public static void execute(String input) {
-        try{
+        try {
             Arrays.stream(values())
                 .filter(value -> value.input.equals(input))
                 .findFirst()
                 .orElseThrow(() -> new SubwayCustomException(WRONG_MENU_INPUT_EXCEPTION_MESSAGE))
                 .handler.run();
-        } catch (NullPointerException exception){
+        } catch (NullPointerException exception) {
 
         }
     }
