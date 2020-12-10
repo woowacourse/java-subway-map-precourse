@@ -1,11 +1,11 @@
 package subway.view;
 
 public enum Line {
-	LINE_0(Logger.BASIC.getMessage() + "노선 관리 화면"),
-	LINE_1(Numbering.ONE.getMessage() + "노선 등록"),
-	LINE_2(Numbering.TWO.getMessage() + "노선 삭제"),
-	LINE_3(Numbering.THREE.getMessage() + "노선 조회"),
-	LINE_B(Numbering.BACK.getMessage() + "돌아가기");
+	LINE_0(General.BASIC.getMessage() + "노선 관리 화면"),
+	LINE_1(General.ONE.getMessage() + "노선 등록"),
+	LINE_2(General.TWO.getMessage() + "노선 삭제"),
+	LINE_3(General.THREE.getMessage() + "노선 조회"),
+	LINE_B(General.BACK.getMessage() + "돌아가기");
 
 	final private String message;
 

@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.General;
+
 public class Station {
     private static final int NAME_LENGTH_LOWER_BOUND = 2;
 

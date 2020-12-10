@@ -7,9 +7,13 @@ import java.util.Scanner;
 
 public class View {
 	public static void printMainScreen() {
-		Arrays.stream(Base.values())
+		Arrays.stream(Main.values())
 				.limit(6)
 				.forEach(value -> System.out.println(value.getMessage()));
+	}
+
+	public static void printScreenChoiceInput() {
+		System.out.println(General.CHOICE.getMessage());
 	}
 
 	public static void printStationScreen() {
@@ -39,7 +43,7 @@ public class View {
 	public static void showStations() {
 		StationRepository.stations().stream()
 				.map(subway.domain.Station::getName)
-				.forEach(name -> System.out.println(Logger.INFO.getMessage() + name));
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 	}
 
 	public static void printLineScreen() {
