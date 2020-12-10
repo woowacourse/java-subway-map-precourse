@@ -1,4 +1,4 @@
-package subway.service;
+package subway.domain.section;
 
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
