@@ -52,15 +52,12 @@ public class StationController {
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createStation(scanner);
-			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deleteStation(scanner);
-			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			showStations();
-			MainController.run(scanner);
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			MainController.run(scanner);
+			return;
 		}
 	}
 

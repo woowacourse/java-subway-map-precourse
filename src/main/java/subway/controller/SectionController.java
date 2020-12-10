@@ -93,12 +93,10 @@ public class SectionController {
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createSection(scanner);
-			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deleteSection(scanner);
-			MainController.run(scanner);
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			MainController.run(scanner);
+			return;
 		}
 	}
 

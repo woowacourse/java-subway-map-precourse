@@ -54,15 +54,12 @@ public class LineController {
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createLine(scanner);
-			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deleteLine(scanner);
-			MainController.run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			showLines();
-			MainController.run(scanner);
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			MainController.run(scanner);
+			return;
 		}
 	}
 

@@ -2,6 +2,8 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.view.General;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -19,32 +21,36 @@ public class MainController {
 		options.add(Options.QUIT.getOption());
 	}
 
-	private static void printStations() {
-
+	private static void showSections(Line line) {
+		line.getSections()
+				.sections()
+				.stream()
+				.map(Station::getName)
+				.forEach(System.out::println);
 	}
 
 	public static void showWholeMap() {
-		// get all lines
 		List<Line> lines = LineRepository.lines();
-		// iterate lines
 		for (Line line : lines) {
 			System.out.println(line.getName());
+			System.out.println(General.DIVISION_LINE);
+			showSections(line);
 		}
-		// print names
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
-//			createLine(scanner);
+			LineController.run(scanner);
 			run(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
-//			deleteLine(scanner);
+			StationController.run(scanner);
 			run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
-//			View.showLines();
+			SectionController.run(scanner);
 			run(scanner);
-		} else if (option.equals(Options.OPTION_3.getOption())) {
-
+		} else if (option.equals(Options.OPTION_4.getOption())) {
+			showWholeMap();
+			run(scanner);
 		} else if (option.equalsIgnoreCase(Options.QUIT.getOption())) {
 			return;
 		}
