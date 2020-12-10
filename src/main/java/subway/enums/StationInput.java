@@ -1,12 +1,35 @@
 package subway.enums;
 
+import subway.view.StationInputView;
+
 import java.util.Arrays;
+import java.util.Scanner;
 
 public enum StationInput {
-    register("1", "역 등록"),
-    remove("2", "역 삭제"),
-    inquiry("3", "역 조회"),
-    back("B", "돌아가기");
+    register("1", "역 등록") {
+        public void moveView(Scanner scanner) {
+            StationInputView stationInputView = new StationInputView();
+            stationInputView.register(scanner);
+        }
+    },
+    remove("2", "역 삭제") {
+        public void moveView(Scanner scanner) {
+            StationInputView stationInputView = new StationInputView();
+            stationInputView.remove(scanner);
+        }
+    },
+    inquiry("3", "역 조회") {
+        public void moveView(Scanner scanner) {
+            // 모든 역 출력
+            // StationRepository..
+            System.out.println("[INFO] 역 목록");
+        }
+    },
+    back("B", "돌아가기") {
+        public void moveView(Scanner scanner) {
+            return;
+        }
+    };
 
     final private String inputValue;
     final private String feature;
@@ -17,15 +40,29 @@ public enum StationInput {
         this.feature = feature;
     }
 
-    public String getMessage() {
-        return inputValue + ". " + feature;
+    abstract public void moveView(Scanner scanner);
+
+    public static StationInput findOneByInputValue(String viewInput){
+        return Arrays.stream(StationInput.values())
+                .filter(x -> x.inputValue.equals(viewInput))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public static StationInput getInstanceByInput(String viewInput) {
+        return findOneByInputValue(viewInput);
     }
 
     public static String validateInput(String stationViewInput) {
-        return Arrays.stream(StationInput.values())
-                .filter(x -> x.inputValue.equals(stationViewInput))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new)
-                .inputValue;
+        return findOneByInputValue(stationViewInput).inputValue;
     }
+
+    public static String getMenu() {
+        String message = "";
+        for (StationInput stationInput : StationInput.values()) {
+            message += stationInput.inputValue + ". " + stationInput.feature + "\n";
+        }
+        return message;
+    }
+
 }
