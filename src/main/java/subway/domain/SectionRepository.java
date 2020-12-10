@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,8 +19,12 @@ public class SectionRepository {
     }
 
     public List findAll() {
-
-        return null;
+        Iterator<Station> iter = sectionList.iterator();
+        List<String> stationNameList = new ArrayList<>();
+        while (iter.hasNext()) {
+            stationNameList.add(iter.next().getName());
+        }
+        return stationNameList;
     }
 
     public Station findByStation(Station station) {
