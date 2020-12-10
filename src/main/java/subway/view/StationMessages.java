@@ -16,7 +16,9 @@ public enum StationMessages {
 	REGISTER_COMPLETE_MESSAGE(General.INFO.getMessage() + "지하철 역이 등록되었습니다."),
 
 	DELETE_MESSAGE(General.BASIC.getMessage() + "삭제할 역 이름을 입력하세요."),
-	REGISTER_DELETE_MESSAGE(General.INFO.getMessage() + "지하철 역이 삭제되었습니다.");
+	REGISTER_DELETE_MESSAGE(General.INFO.getMessage() + "지하철 역이 삭제되었습니다."),
+
+	REFERENCE(General.BASIC + "역 목록");
 
 	final private String message;
 

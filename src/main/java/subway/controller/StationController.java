@@ -7,6 +7,10 @@ import subway.view.View;
 import java.util.Scanner;
 
 public class StationController {
+	private static void showScreen() {
+
+	}
+
 	private static void createStation(Scanner scanner) {
 		String name = View.getStationRegisterInput(scanner);
 		StationRepository.addStation(new Station(name));
@@ -21,5 +25,9 @@ public class StationController {
 			return;
 		}
 		deleteStation(scanner);
+	}
+
+	private static void showStations(Scanner scanner) {
+
 	}
 }

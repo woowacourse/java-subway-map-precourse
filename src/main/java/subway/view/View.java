@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 import java.util.Arrays;
@@ -12,8 +13,9 @@ public class View {
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
-	public static void printScreenChoiceInput() {
+	public static String getScreenChoiceInput(Scanner scanner) {
 		System.out.println(General.CHOICE.getMessage());
+		return scanner.nextLine();
 	}
 
 	public static void printStationScreen() {
@@ -41,8 +43,9 @@ public class View {
 	}
 
 	public static void showStations() {
+		System.out.println(StationMessages.REFERENCE);
 		StationRepository.stations().stream()
-				.map(subway.domain.Station::getName)
+				.map(Station::getName)
 				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 	}
 
