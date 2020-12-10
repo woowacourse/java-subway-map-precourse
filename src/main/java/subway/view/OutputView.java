@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.view.menu.LineMenu;
 import subway.view.menu.MainMenu;
 import subway.view.menu.Menu;
 import subway.view.menu.StationMenu;
@@ -19,6 +20,7 @@ public class OutputView {
 
     private static MainMenu mainMenu = MainMenu.getInstance();
     private static StationMenu stationMenu = StationMenu.getInstance();
+    private static LineMenu lineMenu = LineMenu.getInstance();
 
     public static void showErrorMessage(Exception e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
@@ -31,6 +33,10 @@ public class OutputView {
 
     public static void showStationManagementView() {
         showMenu(stationMenu);
+    }
+
+    public static void showLineManagementView() {
+        showMenu(lineMenu);
     }
 
     public static void showMenu(Menu menu) {

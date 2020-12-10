@@ -8,6 +8,7 @@
 
 package subway;
 
+import subway.controller.LineManagement;
 import subway.controller.StationManagement;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -41,6 +42,9 @@ public class Application {
     private static void runSelectedMenuFunction() {
         if (menu.equals(STATION_MANAGEMENT)) {
             StationManagement.run();
+        }
+        if (menu.equals(LINE_MANAGEMENT)) {
+            LineManagement.run();
         }
     }
 }

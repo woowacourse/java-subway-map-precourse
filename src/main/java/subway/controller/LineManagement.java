@@ -17,7 +17,8 @@ public class LineManagement {
 
     public static void run() {
         do {
-
+            OutputView.showLineManagementView();
+            menu = InputView.getLineMenuSelection();
             runSelectedMenuFunction();
         } while(!menu.equals(BACK));
     }

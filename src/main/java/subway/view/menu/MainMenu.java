@@ -40,6 +40,7 @@ public class MainMenu extends Menu {
         return menu;
     }
 
+    @Override
     public List<String> getMenuSelections() {
         return menuSelections;
     }

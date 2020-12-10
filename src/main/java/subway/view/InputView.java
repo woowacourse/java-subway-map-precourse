@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.view.menu.LineMenu;
 import subway.view.menu.MainMenu;
 import subway.view.menu.Menu;
 import subway.view.menu.StationMenu;
@@ -21,6 +22,7 @@ public class InputView {
     private static Scanner scanner;
     private static MainMenu mainMenu = MainMenu.getInstance();
     private static StationMenu stationMenu = StationMenu.getInstance();
+    private static LineMenu lineMenu = LineMenu.getInstance();
 
     public static void setScanner(Scanner scanner) {
         InputView.scanner = scanner;
@@ -63,6 +65,10 @@ public class InputView {
 
     public static String getStationMenuSelection() {
         return getMenuSelection(stationMenu);
+    }
+
+    public static String getLineMenuSelection() {
+        return getMenuSelection(lineMenu);
     }
 
     public static String getStationNameToRegister() {
