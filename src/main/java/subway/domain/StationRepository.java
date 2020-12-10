@@ -29,6 +29,17 @@ public class StationRepository {
         return stationNameList;
     }
 
+    public Station findByName(String lineName) {
+        for (Station station : stations) {
+            if (station.getName().equals(lineName)) {
+                return station;
+            }
+        }
+        System.out.println("없는 역 입니다");
+        Station emptyStation = new Station("noname");
+        return emptyStation;
+    }
+
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));

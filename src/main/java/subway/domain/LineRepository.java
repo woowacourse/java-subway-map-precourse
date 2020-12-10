@@ -29,6 +29,17 @@ public class LineRepository {
         return lineNameList;
     }
 
+    public Line findByName(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                return line;
+            }
+        }
+        System.out.println("없는 노선 입니다");
+        Line emptyLine = new Line("noname");
+        return emptyLine;
+    }
+
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
