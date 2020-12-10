@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class StationRepository {
 
-    public static final String DUPLICATE_NAME_ERROR = "%s는 이미 존재하는 역 이름입니다!";
+    public static final String DUPLICATE_NAME_ERROR = "%s은 이미 존재하는 역 이름입니다!";
 
     public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
 
