@@ -20,10 +20,21 @@ public class InputValidatorTest {
 
     @Test
     @DisplayName("입력 값의 길이가 최소 길이 미만일 경우 예외 발생")
-    public void checkRange_LessThanLowerBound_ExceptionThrown() {
+    public void checkRange_LowerThanLowerBound_ExceptionThrown() {
 
         // given
         String input = "역";
+
+        // when, then
+        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR);
+    }
+
+    @Test
+    @DisplayName("입력 값의 길이가 최대 길이 초과일 경우 예외 발생")
+    public void checkRange_HigherThanLowerBound_ExceptionThrown() {
+
+        // given
+        String input = "서울시강남구강남역";
 
         // when, then
         InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR);
