@@ -29,7 +29,16 @@ public class StationRepository {
         return false;
     }
 
-    public static ArrayList<Station> getStations() {
+    public static ArrayList<Station> getAllStations() {
         return (ArrayList<Station>) stations;
+    }
+
+    public static Station getStation(String stationName) throws NullPointerException {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return station;
+            }
+        }
+        return null;
     }
 }
