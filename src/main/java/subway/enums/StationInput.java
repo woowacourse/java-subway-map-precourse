@@ -12,7 +12,8 @@ public enum StationInput {
     register("1", "역 등록") {
         public void moveView(Scanner scanner) {
             StationInputView stationInputView = new StationInputView();
-            stationInputView.register(scanner);
+            String station = stationInputView.register(scanner);
+            StationRepository.addStation(new Station(station));
         }
     },
     remove("2", "역 삭제") {
@@ -25,6 +26,7 @@ public enum StationInput {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
             System.out.println("[INFO] 역 목록");
+            StationRepository.stations().stream().forEach(x->System.out.println(x.getName()));  // 임시로 결과를 확인하기 위한 코드
         }
     },
     back("B", "돌아가기") {
