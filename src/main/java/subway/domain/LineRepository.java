@@ -3,6 +3,8 @@ package subway.domain;
 import java.util.*;
 
 public class LineRepository {
+    private static final String ERROR_ALREADY_EXIST = "이미 등록된 노선 이름입니다.";
+
     private static final List<Line> lines = new ArrayList<>();
 
     static {
@@ -19,6 +21,9 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        if (lines.contains(line)) {
+            throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
+        }
         lines.add(line);
     }
 
