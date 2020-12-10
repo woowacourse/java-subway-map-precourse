@@ -1,7 +1,7 @@
 package subway.view;
 
 public enum MainMessages {
-	MAIN_0(General.BASIC.getMessage() + "메인 화면 출력"),
+	MAIN_0(General.BASIC.getMessage() + "메인 화면"),
 	MAIN_1(General.ONE.getMessage() + "역 관리"),
 	MAIN_2(General.TWO.getMessage() + "노선 관리"),
 	MAIN_3(General.THREE.getMessage() + "구간 관리"),

@@ -47,7 +47,7 @@ public class Sections {
 
 	public static void validateRange(String location, String lineName) throws IllegalArgumentException {
 		int sectionLength = LineRepository.getLine(lineName).getSections().getSectionLength();
-		if (Integer.parseInt(location) < 0 || sectionLength <= Integer.parseInt(location)) {
+		if (Integer.parseInt(location) < 0 || sectionLength < Integer.parseInt(location)) {
 			throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
 		}
 	}

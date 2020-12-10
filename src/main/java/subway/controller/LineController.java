@@ -29,7 +29,7 @@ public class LineController {
 			View.printStationRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			createLine(scanner);
+			run(scanner);
 		}
 	}
 
@@ -41,7 +41,7 @@ public class LineController {
 			return;
 		}
 		View.printLineDeleteError();
-		deleteLine(scanner);
+		run(scanner);
 	}
 
 	private static void showLines() {

@@ -19,8 +19,8 @@ public class Line {
         StationRepository.validateRegistration(upwardDestination);
         StationRepository.validateRegistration(downwardDestination);
         this.name = name;
-        this.sections.addSection(new Station(upwardDestination));
-        this.sections.addSection(new Station(downwardDestination));
+        this.sections.addSection(StationRepository.getStation(upwardDestination));
+        this.sections.addSection(StationRepository.getStation(downwardDestination));
     }
 
     public String getName() {
