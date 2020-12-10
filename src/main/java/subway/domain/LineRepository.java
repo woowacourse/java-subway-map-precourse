@@ -25,7 +25,7 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
+    public static boolean deleteLine(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 }

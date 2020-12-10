@@ -26,4 +26,15 @@ public class LineController {
 		LineRepository.addLine(line);
 		View.printStationRegisterCompletion();
 	}
+
+	private static void deleteLine(Scanner scanner) {
+		String name = View.getStationNameToDelete(scanner);
+		boolean isSuccessful = LineRepository.deleteLine(name);
+		if (isSuccessful) {
+			View.printLineDeleteCompletion();
+			return;
+		}
+		View.printLineDeleteError();
+		deleteLine(scanner);
+	}
 }

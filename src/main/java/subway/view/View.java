@@ -88,6 +88,16 @@ public class View {
 				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 	}
 
+	public static void printLineDeleteCompletion() {
+		System.out.println(LineMessages.DELETE_COMPLETE);
+	}
+
+	public static void printLineDeleteError() {
+		System.out.println(LineMessages.UNREGISTERED_NAME_ERROR);
+	}
+
+
+
 	public static void printSectionScreen() {
 		Arrays.stream(SectionMessages.values())
 				.limit(4)
