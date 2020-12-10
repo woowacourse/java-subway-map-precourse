@@ -41,16 +41,16 @@ public class ScannerInputService implements InputService {
     }
 
     private void validateOption(int option) {
-        if (option == MAIN_OPTION_ONE) {
+        if (option == MANAGE_STATION) {
             return;
         }
-        if (option == MAIN_OPTION_TWO) {
+        if (option == MANAGE_ROUTE) {
             return;
         }
-        if (option == MAIN_OPTION_THREE) {
+        if (option == MANAGE_SECTION) {
             return;
         }
-        if (option == MAIN_OPTION_FOUR) {
+        if (option == MANAGE_MAP) {
             return;
         }
         throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);

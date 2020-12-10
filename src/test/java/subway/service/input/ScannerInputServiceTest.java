@@ -1,13 +1,7 @@
 package subway.service.input;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import subway.domain.station.MemoryStationRepository;
-import subway.domain.station.Station;
-import subway.domain.station.StationRepository;
-import subway.exception.ErrorCode;
 import subway.exception.InputServiceException;
 
 import java.io.ByteArrayInputStream;
@@ -61,8 +55,8 @@ class ScannerInputServiceTest {
         int mainOptionQuit = scannerInputUtils3.getMainOption();
 
         //then
-        assertThat(mainOptionOne).isEqualTo(InputService.MAIN_OPTION_ONE);
-        assertThat(mainOptionTwo).isEqualTo(InputService.MAIN_OPTION_TWO);
+        assertThat(mainOptionOne).isEqualTo(InputService.MANAGE_STATION);
+        assertThat(mainOptionTwo).isEqualTo(InputService.MANAGE_ROUTE);
         assertThat(mainOptionQuit).isEqualTo(InputService.OPTION_QUIT);
     }
 

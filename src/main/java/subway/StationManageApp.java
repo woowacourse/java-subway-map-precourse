@@ -23,23 +23,37 @@ public class StationManageApp {
     public void startManage() {
         while (true) {
             outputService.printMain();
-            chooseOption(inputService.getMainOption());
+            int option = inputService.getMainOption();
+            if (isQuit(option)) {
+                break;
+            }
+            chooseOption(option);
         }
     }
 
+    private boolean isQuit(int option) {
+        if (option == InputService.OPTION_QUIT) {
+            return true;
+        }
+        return false;
+    }
+
     private void chooseOption(int mainOption) {
-        if (mainOption == 1) {
+        if (mainOption == InputService.MANAGE_STATION) {
             manageStation();
         }
-        if (mainOption == 2) {
+        if (mainOption == InputService.MANAGE_ROUTE) {
             manageRoute();
         }
-        if (mainOption == 3) {
+        if (mainOption == InputService.MANAGE_SECTION) {
             mangeSection();
         }
-        if (mainOption == 4) {
-
+        if (mainOption == InputService.MANAGE_MAP) {
+            manageMap();
         }
+    }
+
+    private void manageMap() {
     }
 
     private void mangeSection() {

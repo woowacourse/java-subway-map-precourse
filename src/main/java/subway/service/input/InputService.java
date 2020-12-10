@@ -1,10 +1,10 @@
 package subway.service.input;
 
 public interface InputService {
-    int MAIN_OPTION_ONE = 1;
-    int MAIN_OPTION_TWO = 2;
-    int MAIN_OPTION_THREE = 3;
-    int MAIN_OPTION_FOUR = 4;
+    int MANAGE_STATION = 1;
+    int MANAGE_ROUTE = 2;
+    int MANAGE_SECTION = 3;
+    int MANAGE_MAP = 4;
     String MAIN_OPTION_QUIT = "Q";
     int OPTION_QUIT = -999;
     int OPTION_ERROR = -1;
