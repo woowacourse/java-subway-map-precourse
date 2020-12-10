@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class MainController {
 	public static void run(Scanner scanner) {
 		View.printMainScreen();
-		String option = View.getScreenChoiceInput(scanner);
+		String option = View.getScreenOption(scanner);
 		controlByOption(option, scanner);
 	}
 

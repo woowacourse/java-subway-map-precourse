@@ -1,6 +1,5 @@
 package subway.domain;
 
-import subway.view.General;
 import subway.view.StationMessages;
 
 public class Station {
@@ -22,13 +21,13 @@ public class Station {
 
     private void validateDuplicate(String name) throws IllegalArgumentException {
         if (hasName(name)) {
-            throw new IllegalArgumentException(StationMessages.DUPLICATE_NAME_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(StationMessages.DUPLICATE_NAME_ERROR.getMessage());
         }
     }
 
     private void validateNameLength(String name) throws IllegalArgumentException {
         if (name.length() < NAME_LENGTH_LOWER_BOUND) {
-            throw new IllegalArgumentException(StationMessages.NAME_LENGTH_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(StationMessages.NAME_LENGTH_ERROR.getMessage());
         }
     }
 

@@ -20,13 +20,13 @@ public class StationController {
 	}
 
 	private static void createStation(Scanner scanner) {
-		String name = View.getStationRegisterInput(scanner);
+		String name = View.getStationNameToRegister(scanner);
 		StationRepository.addStation(new Station(name));
 		View.printStationRegisterCompletion();
 	}
 
 	private static void deleteStation(Scanner scanner) {
-		String name = View.getStationDeleteInput(scanner);
+		String name = View.getStationNameToDelete(scanner);
 		boolean isSuccessful = StationRepository.deleteStation(name);
 		if (isSuccessful) {
 			View.printStationDeleteCompletion();
@@ -43,7 +43,7 @@ public class StationController {
 
 	private static void validateOption(String input) throws IllegalArgumentException {
 		if (!hasOption(input)) {
-			throw new IllegalArgumentException(StationMessages.OPTION_ERROR_MESSAGE.getMessage());
+			throw new IllegalArgumentException(StationMessages.NOT_AVAILABLE_OPTION_ERROR.getMessage());
 		}
 	}
 
@@ -64,7 +64,7 @@ public class StationController {
 
 	public static void run(Scanner scanner) throws IllegalArgumentException {
 		View.printStationScreen();
-		String option = View.getScreenChoiceInput(scanner).trim();
+		String option = View.getScreenOption(scanner).trim();
 		validateOption(option);
 		controlByOption(option, scanner);
 	}

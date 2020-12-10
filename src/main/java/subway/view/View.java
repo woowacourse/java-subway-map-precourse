@@ -13,7 +13,7 @@ public class View {
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
-	public static String getScreenChoiceInput(Scanner scanner) {
+	public static String getScreenOption(Scanner scanner) {
 		System.out.println(General.CHOICE.getMessage());
 		return scanner.nextLine();
 	}
@@ -24,26 +24,26 @@ public class View {
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
-	public static String getStationRegisterInput(Scanner scanner) {
-		System.out.println(StationMessages.REGISTER_MESSAGE.getMessage());
+	public static String getStationNameToRegister(Scanner scanner) {
+		System.out.println(StationMessages.REGISTER_NAME.getMessage());
 		return scanner.nextLine();
 	}
 
-	public static String getStationDeleteInput(Scanner scanner) {
-		System.out.println(StationMessages.DELETE_MESSAGE.getMessage());
+	public static String getStationNameToDelete(Scanner scanner) {
+		System.out.println(StationMessages.DELETE_NAME.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static void printStationRegisterCompletion() {
-		System.out.println(StationMessages.REGISTER_COMPLETE_MESSAGE.getMessage());
+		System.out.println(StationMessages.REGISTER_COMPLETE.getMessage());
 	}
 
 	public static void printStationDeleteError() {
-		System.out.println(StationMessages.DELETE_ERROR_MESSAGE.getMessage());
+		System.out.println(StationMessages.UNREGISTERED_NAME_ERROR.getMessage());
 	}
 
 	public static void printStationDeleteCompletion() {
-		System.out.println(StationMessages.DELETE_COMPLETE_MESSAGE.getMessage());
+		System.out.println(StationMessages.DELETE_COMPLETE.getMessage());
 	}
 
 	public static void showStations() {
