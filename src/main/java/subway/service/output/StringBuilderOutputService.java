@@ -15,13 +15,28 @@ public class StringBuilderOutputService implements OutputService {
 
     @Override
     public void printMain() {
+        sb.append(ENTER);
         sb.append(MAIN).append(ENTER);
-        sb.append(MAIN_TWO).append(ENTER);
         sb.append(MAIN_ONE).append(ENTER);
+        sb.append(MAIN_TWO).append(ENTER);
         sb.append(MAIN_THREE).append(ENTER);
         sb.append(MAIN_FOUR).append(ENTER);
         sb.append(MAIN_QUIT).append(ENTER);
-        sb.append(ENTER).append(ENTER);
+        sb.append(ENTER);
+        sb.append(CHOOSE_FUNCTION);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printStationManage() {
+        sb.append(ENTER);
+        sb.append(STATION_MAIN).append(ENTER);
+        sb.append(STATION_ONE).append(ENTER);
+        sb.append(STATION_TWO).append(ENTER);
+        sb.append(STATION_THREE).append(ENTER);
+        sb.append(BACK).append(ENTER);
+        sb.append(ENTER);
         sb.append(CHOOSE_FUNCTION);
         System.out.println(sb.toString());
         clearSb();

@@ -23,8 +23,26 @@ public class StationManageApp {
     public void startManage() {
         while (true) {
             outputService.printMain();
-            int mainOption = inputService.getMainOption();
-            System.out.println("mainOption = " + mainOption);
+            chooseOption(inputService.getMainOption());
         }
+    }
+
+    private void chooseOption(int mainOption) {
+        if (mainOption == 1) {
+            stationManage();
+        }
+        if (mainOption == 2) {
+
+        }
+        if (mainOption == 3) {
+
+        }
+        if (mainOption == 4) {
+
+        }
+    }
+
+    private void stationManage() {
+        outputService.printStationManage();
     }
 }

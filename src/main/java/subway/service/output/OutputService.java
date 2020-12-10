@@ -9,6 +9,13 @@ public interface OutputService {
     String MAIN_QUIT = "Q. 종료";
     String CHOOSE_FUNCTION = "## 원하는 기능을 선택하세요.";
     String ENTER = "\n";
+    String BACK = "B. 돌아가기";
+    String STATION_MAIN = "## 역 관리 화면";
+    String STATION_ONE = "1. 역 등록";
+    String STATION_TWO = "2. 역 삭제";
+    String STATION_THREE = "3. 역 조회";
+
 
     void printMain();
+    void printStationManage();
 }
