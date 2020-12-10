@@ -38,8 +38,12 @@ public class View {
 		System.out.println(StationMessages.REGISTER_COMPLETE_MESSAGE.getMessage());
 	}
 
+	public static void printStationDeleteError() {
+		System.out.println(StationMessages.DELETE_ERROR_MESSAGE.getMessage());
+	}
+
 	public static void printStationDeleteCompletion() {
-		System.out.println(StationMessages.REGISTER_DELETE_MESSAGE.getMessage());
+		System.out.println(StationMessages.DELETE_COMPLETE_MESSAGE.getMessage());
 	}
 
 	public static void showStations() {

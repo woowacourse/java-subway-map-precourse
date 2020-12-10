@@ -7,6 +7,8 @@ public enum LineMessages {
 	LINE_3(General.THREE.getMessage() + "노선 조회"),
 	LINE_B(General.BACK.getMessage() + "돌아가기");
 
+
+
 	final private String message;
 
 	LineMessages(String message) {

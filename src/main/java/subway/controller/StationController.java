@@ -32,6 +32,7 @@ public class StationController {
 			View.printStationDeleteCompletion();
 			return;
 		}
+		View.printStationDeleteError();
 		deleteStation(scanner);
 	}
 
