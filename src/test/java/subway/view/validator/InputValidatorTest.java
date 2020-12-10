@@ -1,10 +1,7 @@
 package subway.view.validator;
 
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class InputValidatorTest {
 
@@ -17,12 +14,8 @@ public class InputValidatorTest {
         // given
         String input = null;
 
-        // when
-        ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
-
-        // then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(InputValidator.NULL_ERROR);
+        // when, then
+        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.NULL_ERROR);
     }
 
     @Test
@@ -32,12 +25,8 @@ public class InputValidatorTest {
         // given
         String input = "역";
 
-        // when
-        ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
-
-        // then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(InputValidator.RANGE_ERROR);
+        // when, then
+        InputValidatorUtils.assertValidationFailure(input, validator, InputValidator.RANGE_ERROR);
     }
 
     @Test
@@ -47,11 +36,8 @@ public class InputValidatorTest {
         // given
         String input = "abc";
 
-        // when
-        ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
-
-        // then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(InputValidator.NOT_KOREAN_ERROR);
+        // when, then
+        InputValidatorUtils
+                .assertValidationFailure(input, validator, InputValidator.NOT_KOREAN_ERROR);
     }
 }
