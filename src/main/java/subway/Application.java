@@ -36,7 +36,7 @@ public class Application {
             menu = InputView.getMainMenuSelection(); //무조건 올바른 값이 넘어오도록 설정
             System.out.println(menu);
             runSelectedMenuFunction();
-        }while(false);
+        }while(!menu.equals(QUIT));
     }
 
     private static void runSelectedMenuFunction() {

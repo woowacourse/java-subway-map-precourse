@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.view.menu.MainMenu;
 import subway.view.menu.Menu;
+import subway.view.menu.StationMenu;
 
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ public class InputView {
 
     private static Scanner scanner;
     private static MainMenu mainMenu = MainMenu.getInstance();
+    private static StationMenu stationMenu = StationMenu.getInstance();
 
     public static void setScanner(Scanner scanner) {
         InputView.scanner = scanner;
@@ -49,5 +51,9 @@ public class InputView {
 
     public static String getMainMenuSelection() {
         return getMenuSelection(mainMenu);
+    }
+
+    public static String getStationMenuSelection() {
+        return getMenuSelection(stationMenu);
     }
 }
