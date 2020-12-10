@@ -43,7 +43,7 @@ class LineTest {
         line.addSection(indexToInsert, station);
 
         assertEquals(line.getStations().size(), SIZE + 1);
-        assertSame(line.getStations().get(indexToInsert), station);
+        assertSame(line.getStations().get(indexToInsert - 1), station);
     }
 
     @DisplayName("지하철 노선에 등록된 역을 제거할 수 있다.")

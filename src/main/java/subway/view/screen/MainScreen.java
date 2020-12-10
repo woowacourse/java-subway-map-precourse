@@ -22,11 +22,17 @@ public class MainScreen implements Screen {
     @Override
     public void visualize() {
         OutputView.printTitle(MAIN_SCREEN_MESSAGE);
+
         for (int i = 1; i <= MAIN_CATEGORIES.size(); i++) {
-            System.out.println(i + COMMA + MAIN_CATEGORIES.get(i - 1).getName() + MANAGEMENT_MESSAGE);
+            String suffixMessage = MANAGEMENT_MESSAGE;
+            if (MAIN_CATEGORIES.get(i - 1) == CategoryType.PRINT) {
+                suffixMessage = PRINT_MESSAGE;
+            }
+
+            System.out.println(i + COMMA + MAIN_CATEGORIES.get(i - 1).getName() + SPACE + suffixMessage);
         }
 
-        OutputView.println(InputView.EXIT_COMMAND + COMMA + CategoryType.EXIT.getName());
+        OutputView.println(InputView.EXIT_COMMAND.toUpperCase() + COMMA + CategoryType.EXIT.getName());
     }
 
     @Override
@@ -38,7 +44,6 @@ public class MainScreen implements Screen {
         }
 
         CategoryType selectedCategoryType = MAIN_CATEGORIES.get(categoryCommandNumber - 1);
-
         if (selectedCategoryType == CategoryType.PRINT) {
             ScreenManager.push(new PrintActionScreen());
             return;

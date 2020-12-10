@@ -19,7 +19,7 @@ public class Application {
         ScreenManager.push(new MainScreen());
 
         while (!ScreenManager.isEmpty()) {
-            ErrorUtils.repeatingUntilNoException(() -> {
+            ErrorUtils.screenGoBackWhenException(() -> {
                 ScreenManager.visualize();
                 ScreenManager.logic(inputView);
             });

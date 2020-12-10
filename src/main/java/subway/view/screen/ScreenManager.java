@@ -2,7 +2,6 @@ package subway.view.screen;
 
 import java.util.Stack;
 import subway.view.InputView;
-import subway.view.OutputView;
 
 public class ScreenManager {
 
@@ -12,8 +11,8 @@ public class ScreenManager {
         stack.push(screen);
     }
 
-    public static Screen goBack() {
-        return stack.pop();
+    public static void goBack() {
+        stack.pop();
     }
 
     public static Screen peek() {
@@ -26,12 +25,10 @@ public class ScreenManager {
 
     public static void visualize() {
         peek().visualize();
-        OutputView.println();
     }
 
     public static void logic(InputView inputView) {
         peek().logic(inputView);
-        OutputView.println();
     }
 
     public static void exit() {
@@ -42,13 +39,5 @@ public class ScreenManager {
         while (stack.size() > 1) {
             goBack();
         }
-    }
-
-    public static boolean isMainScreen() {
-        return peek() instanceof MainScreen;
-    }
-
-    public static boolean isManagementScreen() {
-        return peek() instanceof ManagementScreen;
     }
 }

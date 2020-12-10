@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import subway.CategoryType;
+import subway.line.exception.NotDigitException;
 import subway.view.exception.InvalidCommandException;
 import subway.view.screen.MainScreen;
 
@@ -57,10 +58,17 @@ public final class InputView {
         return commandNumber;
     }
 
-    public String readCommand() {
-        String str = scanner.nextLine();
-        OutputView.println();
+    public int readLineIndex() {
+        String command = readCommand().toLowerCase();
 
-        return str;
+        if (!command.matches(InputView.ONLY_DIGIT_REGULAR) || command.isEmpty()) {
+            throw new NotDigitException(command);
+        }
+
+        return Integer.parseInt(command);
+    }
+
+    public String readCommand() {
+        return scanner.nextLine();
     }
 }

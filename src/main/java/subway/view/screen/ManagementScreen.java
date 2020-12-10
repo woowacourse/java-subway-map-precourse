@@ -3,6 +3,7 @@ package subway.view.screen;
 import java.util.List;
 import subway.ActionType;
 import subway.CategoryType;
+import subway.HandlerMapping;
 import subway.utils.ErrorUtils;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -22,24 +23,31 @@ public class ManagementScreen implements Screen {
         OutputView.printTitle(selectedCategoryType.getName() + SPACE + MANAGEMENT_SCREEN_MESSAGE);
         List<ActionType> actionOrder = selectedCategoryType.getActionOrder();
         for (int i = 1; i <= actionOrder.size(); i++) {
-            OutputView.println(i + COMMA + actionOrder.get(i - 1).getName() + MANAGEMENT_MESSAGE);
+            OutputView.println(
+                i + COMMA + selectedCategoryType.getName() + SPACE + actionOrder.get(i - 1).getName());
         }
 
-        OutputView.println(InputView.BACK_COMMAND + COMMA + ActionType.BACK.getName());
+        OutputView.println(InputView.BACK_COMMAND.toUpperCase() + COMMA + ActionType.BACK.getName());
     }
 
     @Override
     public void logic(InputView inputView) {
-        int actionOrderCommandNumber = (int) ErrorUtils.repeatingUntilNoException(() -> {
-            OutputView.printTitle(Screen.SELECT_CATEGORY_MESSAGE);
-            return inputView.readActionOrderCommandNumber(selectedCategoryType);
-        });
-
+        int actionOrderCommandNumber = getActionOrderCommandNumber(inputView);
         if (actionOrderCommandNumber == InputView.BACK) {
             ScreenManager.goBack();
             return;
         }
 
-        ActionType actionType = selectedCategoryType.getActionOrder().get(actionOrderCommandNumber - 1);
+        ActionType actionType = selectedCategoryType.getActionOrder()
+            .get(actionOrderCommandNumber - 1);
+
+        HandlerMapping.mapping(selectedCategoryType, actionType);
+    }
+
+    public int getActionOrderCommandNumber(InputView inputView) {
+        return (int) ErrorUtils.repeatingUntilNoException(() -> {
+            OutputView.printTitle(Screen.SELECT_CATEGORY_MESSAGE);
+            return inputView.readActionOrderCommandNumber(selectedCategoryType);
+        });
     }
 }

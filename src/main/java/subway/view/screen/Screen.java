@@ -11,7 +11,9 @@ public interface Screen {
     String SPACE = " ";
     String COMMA = ". ";
     String COLUMN_LINE = "---";
-    String MANAGEMENT_MESSAGE = " 관리";
+    String MANAGEMENT_MESSAGE = "관리";
+    String LIST_MESSAGE = "목록";
+    String PRINT_MESSAGE = "출력";
 
     void visualize();
     void logic(InputView inputView);
