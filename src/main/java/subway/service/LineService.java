@@ -39,4 +39,17 @@ public class LineService {
         }
         return result;
     }
+
+    public boolean delete(){
+        String name=InputView.getDeleteLineName();
+        boolean result=LineRepository.deleteLineByName(name);
+        if(!result){
+            OutputView.printError(DELETE_STATION_ERROR_TEXT);
+        }
+        if(result){
+            OutputView.printInfo(DELETE_SUCCESS);
+            System.out.println();
+        }
+        return result;
+    }
 }
