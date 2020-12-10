@@ -1,4 +1,6 @@
-package subway;
+package subway.main;
+
+import subway.main.view.MainOutputView;
 
 import java.util.Scanner;
 
