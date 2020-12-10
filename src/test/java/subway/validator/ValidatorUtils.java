@@ -1,14 +1,14 @@
-package subway.view.validator;
+package subway.validator;
 
 import org.assertj.core.api.ThrowableAssert;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class InputValidatorUtils {
+public class ValidatorUtils {
 
-    private InputValidatorUtils() {}
+    private ValidatorUtils() {}
 
-    public static void assertValidationFailure(String input, InputValidator validator,
+    public static void assertValidationFailure(String input, Validator validator,
                                                String message) {
 
         // when
