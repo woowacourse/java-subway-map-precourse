@@ -8,7 +8,6 @@ import subway.domain.StationRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Application {
     private static final String MAGNAGE_STATION = "1";
@@ -19,41 +18,18 @@ public class Application {
     private static final String INVALID = "INVALID";
 
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        // TODO: 프로그램 구현
         initializeRepositories();
+        List<String> authorizedCommands = new ArrayList<>(Arrays.asList(MAGNAGE_STATION, MAGNAGE_LINE, MAGNAGE_INTERVAL, PRINT_SUBWAY_MAP, EXIT));
         while (true) {
-            showMainOptions();
-            String command = getMainContolCommand(scanner);
+            String command = UserConsole.getMainCommand(authorizedCommands);
             if (command.equals(INVALID)) {
                 continue;
             }
             if (command.equals(EXIT)) {
                 break;
             }
-            execute(command, scanner);
+            execute(command);
         }
-    }
-
-    private static void showMainOptions() {
-        System.out.println("## 메인 화면");
-        System.out.println("1. 역 관리");
-        System.out.println("2. 노선 관리");
-        System.out.println("3. 구간 관리");
-        System.out.println("4. 지하철 노선도 출력");
-        System.out.println("Q. 종료");
-        System.out.println();
-    }
-
-    private static String getMainContolCommand(Scanner scanner) {
-        List<String> commands = new ArrayList<>(Arrays.asList(MAGNAGE_STATION, MAGNAGE_LINE, MAGNAGE_INTERVAL, PRINT_SUBWAY_MAP, EXIT));
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        if (commands.contains(userInput)) {
-            return userInput;
-        }
-        System.out.println("\n[ERROR] 없는 기능입니다.\n");
-        return INVALID;
     }
 
     private static void initializeRepositories() {
@@ -78,27 +54,27 @@ public class Application {
         stationNames.forEach(stationName -> StationRepository.addStation(new Station(stationName)));
     }
 
-    private static void execute(String command, Scanner scanner) {
+    private static void execute(String command) {
         if (command.equals(MAGNAGE_STATION)) {
-            StationManager.start(scanner);
+            StationManager.start();
         }
         if (command.equals(MAGNAGE_LINE)) {
-            LineManager.start(scanner);
+            LineManager.start();
         }
         if (command.equals(MAGNAGE_INTERVAL)) {
-            IntervalManager.start(scanner);
+            IntervalManager.start();
         }
         if (command.equals(PRINT_SUBWAY_MAP)) {
-            printSubwayMap(scanner);
+            printSubwayMap();
         }
     }
 
-    private static void printSubwayMap(Scanner scanner) {
+    private static void printSubwayMap() {
         List<Line> lines = LineRepository.lines();
         if (LineRepository.isEmpty()) {
-            System.out.println("\n[ERROR] 노선 목록이 비어 있다.\n");
+            System.out.println("[ERROR] 노선 목록이 비어 있다.\n");
         }
-        System.out.println("\n## 지하철 노선도");
+        System.out.println("## 지하철 노선도");
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
             System.out.println("[INRO] ---");

@@ -8,7 +8,6 @@ import subway.domain.StationRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class LineManager {
@@ -19,27 +18,26 @@ public class LineManager {
     private static final int MINIMUM_LEGNTH = 2;
     private static final String INVALID = "INVALID";
 
-    public static void start(Scanner scanner) {
+    public static void start() {
+        List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_LINE, DELETE_LINE, VIEW_LINES, BACK));
         while (true) {
-            showOption();
-            String command = getLineManagerContolCommand(scanner);
+            String command = UserConsole.getLineManagerCommand(authorizedCommands);
             if (command.equals(INVALID)) {
                 continue;
             }
             if (command.equals(BACK)) {
                 break;
             }
-
-            execute(command, scanner);
+            execute(command);
         }
     }
 
-    private static void execute(String command, Scanner scanner) {
+    private static void execute(String command) {
         if (command.equals(ADD_LINE)) {
-            addLine(scanner);
+            addLine();
         }
         if (command.equals(DELETE_LINE)) {
-            deleteLine(scanner);
+            deleteLine();
         }
         if (command.equals(VIEW_LINES)) {
             printLines();
@@ -56,9 +54,9 @@ public class LineManager {
         lineNames.forEach(x -> System.out.println("[INFO] " + x));
     }
 
-    private static void deleteLine(Scanner scanner) {
+    private static void deleteLine() {
         System.out.println("## 삭제할 노선 이름을 입력하세요.");
-        String lineName = scanner.nextLine();
+        String lineName = UserConsole.getInput(); // temporary fix
         if (!isInLineRepository(lineName)) {
             System.out.println("\n[ERROR] 노선이 존재하지 않는다.");
             return;
@@ -67,10 +65,10 @@ public class LineManager {
         System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
-    private static void addLine(Scanner scanner) {
+    private static void addLine() {
         System.out.println("## 등록할 노선 이름을 입력하세요.");
 
-        String lineName = scanner.nextLine();
+        String lineName = UserConsole.getInput(); // temporary fix
         if (!isLongEnough(lineName)) {
             System.out.println("\n[ERROR] 노선 이름은 2글자 이상이여야 한다.");
             return;
@@ -81,7 +79,7 @@ public class LineManager {
         }
 
         System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-        String upperTerminalName = scanner.nextLine();
+        String upperTerminalName = UserConsole.getInput(); // temporary fix
 
         if (!isInStationRepository(upperTerminalName)) {
             System.out.println("\n[ERROR] 등록되어 있지 않은 역이다.");
@@ -89,7 +87,7 @@ public class LineManager {
         }
 
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
-        String lowerTerminalName = scanner.nextLine();
+        String lowerTerminalName = UserConsole.getInput(); // temporary fix
 
         if (lowerTerminalName.equals(upperTerminalName)) {
             System.out.println("\n[ERROR] 하행 종점역은 상행 종점역과 같으면 안된다.");
@@ -125,25 +123,5 @@ public class LineManager {
 
     private static boolean isLongEnough(String lineName) {
         return lineName.length() >= MINIMUM_LEGNTH;
-    }
-
-    private static String getLineManagerContolCommand(Scanner scanner) {
-        List<String> commands = new ArrayList<>(Arrays.asList(ADD_LINE, DELETE_LINE, VIEW_LINES, BACK));
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-        if (commands.contains(userInput)) {
-            return userInput;
-        }
-        System.out.println("[ERROR] 없는 기능입니다.");
-        return INVALID;
-    }
-
-    private static void showOption() {
-        System.out.println("\n## 노선 관리 화면");
-        System.out.println("1. 노선 등록");
-        System.out.println("2. 노선 삭제");
-        System.out.println("3. 노선 조회");
-        System.out.println("B. 돌아가기\n");
     }
 }

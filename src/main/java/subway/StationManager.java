@@ -8,7 +8,6 @@ import subway.domain.StationRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class StationManager {
@@ -19,27 +18,26 @@ public class StationManager {
     private static final int MINIMUM_LEGNTH = 2;
     private static final String INVALID = "INVALID";
 
-    public static void start(Scanner scanner) {
+    public static void start() {
+        List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_STATION, DELETE_STATION, VIEW_STATIONS, BACK));
         while (true) {
-            showOption();
-            String command = getStationManagerContolCommand(scanner);
+            String command = UserConsole.getStationManagerCommand(authorizedCommands);
             if (command.equals(INVALID)) {
                 continue;
             }
             if (command.equals(BACK)) {
                 break;
             }
-
-            execute(command, scanner);
+            execute(command);
         }
     }
 
-    private static void execute(String command, Scanner scanner) {
+    private static void execute(String command) {
         if (command.equals(ADD_STATION)) {
-            addStation(scanner);
+            addStation();
         }
         if (command.equals(DELETE_STATION)) {
-            deleteStation(scanner);
+            deleteStation();
         }
         if (command.equals(VIEW_STATIONS)) {
             printStations();
@@ -56,9 +54,9 @@ public class StationManager {
         stationNames.forEach(x -> System.out.println("[INFO] " + x));
     }
 
-    private static void deleteStation(Scanner scanner) {
+    private static void deleteStation() {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
-        String stationName = scanner.nextLine();
+        String stationName = UserConsole.getInput(); // temporary fix
         if (!isInStationRepository(stationName)) {
             System.out.println("\n[ERROR] 역이 존재하지 않는다.");
             return;
@@ -89,9 +87,9 @@ public class StationManager {
         return false;
     }
 
-    private static void addStation(Scanner scanner) {
+    private static void addStation() {
         System.out.println("## 등록할 역 이름을 입력하세요.");
-        String stationName = scanner.nextLine();
+        String stationName = UserConsole.getInput(); // temporary fix
         if (!isLongEnough(stationName)) {
             System.out.println("\n[ERROR] 역 이름은 2글자 이상이여야 한다.");
             return;
@@ -106,25 +104,5 @@ public class StationManager {
 
     private static boolean isLongEnough(String stationName) {
         return stationName.length() >= MINIMUM_LEGNTH;
-    }
-
-    private static String getStationManagerContolCommand(Scanner scanner) {
-        List<String> commands = new ArrayList<>(Arrays.asList(ADD_STATION, DELETE_STATION, VIEW_STATIONS, BACK));
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-        if (commands.contains(userInput)) {
-            return userInput;
-        }
-        System.out.println("[ERROR] 없는 기능입니다.");
-        return INVALID;
-    }
-
-    private static void showOption() {
-        System.out.println("\n## 역 관리 화면");
-        System.out.println("1. 역 등록");
-        System.out.println("2. 역 삭제");
-        System.out.println("3. 역 조회");
-        System.out.println("B. 돌아가기\n");
     }
 }
