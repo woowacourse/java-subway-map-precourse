@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class StationRepository {
+public final class StationRepository {
 
     public static final int INSERT_MINIMUM_INDEX = 1;
 
@@ -27,14 +27,7 @@ public class StationRepository {
         this.stations = new LinkedList<>();
     }
 
-    public StationRepository(String startStation, String finalStation) {
-        this();
-
-        addStation(startStation);
-        addStation(finalStation);
-    }
-
-    public StationRepository(List<Station> stations) {
+    public StationRepository(final List<Station> stations) {
         this.stations = stations;
     }
 
@@ -43,48 +36,56 @@ public class StationRepository {
     }
 
     public StationRepository addStation(final String stationName) {
-        Station station = new Station(stationName);
-
-        checkDuplicateStation(contains(stationName),
-                String.format(DUPLICATE_NAME_ERROR, stationName));
-
-        stations.add(station);
-
-        return new StationRepository(stations);
+        return insert(stations.size(), stationName);
     }
 
-    public StationRepository insertStation(int index, String stationName) {
+    public StationRepository insertStation(final int index, final String stationName) {
         int size = stations.size();
 
-        if (index < INSERT_MINIMUM_INDEX || index >= size) {
+        boolean canInsert = (index > INSERT_MINIMUM_INDEX) && (index < size);
+
+        if (!canInsert) {
             throw new IllegalArgumentException(String.format(OUT_OF_BOUNDS_ERROR, size));
         }
 
-        checkDuplicateStation(contains(stationName),
-                String.format(DUPLICATE_NAME_ERROR, stationName));
+        return insert(index, stationName);
+    }
+
+    public StationRepository removeStation(final String stationName) {
+        boolean canRemove = stations.size() > MINIMUM_STATION_SIZE;
+
+        if (!canRemove) {
+            throw new IllegalArgumentException(
+                    String.format(TOO_LESS_STATIONS_ERROR, MINIMUM_STATION_SIZE));
+        }
+
+        return remove(stationName);
+    }
+
+    public StationRepository removeStation(final String stationName,
+                                           final LineRepository lineRepository) {
+        if (lineRepository.contains(stationName)) {
+            throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
+        }
+
+        return remove(stationName);
+    }
+
+    public boolean contains(final String stationName) {
+        return stations.contains(new Station(stationName));
+    }
+
+    private StationRepository insert(final int index, final String stationName) {
+        if (contains(stationName)) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, stationName));
+        }
 
         stations.add(index, new Station(stationName));
 
         return new StationRepository(stations);
     }
 
-    public StationRepository deleteStation(String stationName) {
-        if (stations.size() <= MINIMUM_STATION_SIZE) {
-            throw new IllegalArgumentException(
-                    String.format(TOO_LESS_STATIONS_ERROR, MINIMUM_STATION_SIZE));
-        }
-
-        return delete(stationName);
-    }
-
-    public StationRepository deleteStation(final String stationName,
-                                           final LineRepository lineRepository) {
-        checkDuplicateStation(lineRepository.contains(stationName), SAVED_AT_LINE_ERROR);
-
-        return delete(stationName);
-    }
-
-    private StationRepository delete(String stationName) {
+    private StationRepository remove(final String stationName) {
         boolean removed =
                 stations.removeIf(station -> Objects.equals(station.getName(), stationName));
 
@@ -93,16 +94,6 @@ public class StationRepository {
         }
 
         return new StationRepository(stations);
-    }
-
-    public boolean contains(String stationName) {
-        return stations.contains(new Station(stationName));
-    }
-
-    private void checkDuplicateStation(boolean contains, String format) {
-        if (contains) {
-            throw new IllegalArgumentException(format);
-        }
     }
 
     @Override

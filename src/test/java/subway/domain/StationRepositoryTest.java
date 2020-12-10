@@ -59,7 +59,7 @@ class StationRepositoryTest {
 
         // when
         StationRepository repositoryRemovedKangnam =
-                repositoryAddedKangnam.deleteStation("강남역", lineRepository);
+                repositoryAddedKangnam.removeStation("강남역", lineRepository);
 
         //then
         assertThat(repositoryRemovedKangnam.stations()).isEmpty();
@@ -74,7 +74,7 @@ class StationRepositoryTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.deleteStation("강남역", lineRepository);
+                () -> stationRepository.removeStation("강남역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -92,7 +92,7 @@ class StationRepositoryTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> repositoryAddedKangnam.deleteStation("강남역", lineRepository);
+                () -> repositoryAddedKangnam.removeStation("강남역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
