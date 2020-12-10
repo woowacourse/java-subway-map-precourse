@@ -1,22 +1,21 @@
-package subway.domain.line;
+package subway.line.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import subway.domain.line.exception.CannotFindLineByNameException;
-import subway.domain.line.exception.DuplicateLineNameException;
-import subway.domain.station.Station;
+import subway.line.exception.CannotFindLineByNameException;
+import subway.line.exception.DuplicateLineNameException;
+import subway.station.domain.Station;
 
 public class LineRepository {
 
     private static final List<Line> lines = new ArrayList<>();
 
-    public static List<Line> lines() {
+    public static List<Line> findAll() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static Line findLineByName(String name) {
+    public static Line findByName(String name) {
         return lines.stream()
             .filter(line -> line.getName().equals(name))
             .findAny()
@@ -25,7 +24,7 @@ public class LineRepository {
             });
     }
 
-    public static void addLine(Line line) {
+    public static void save(Line line) {
         if (lines.contains(line)) {
             throw new DuplicateLineNameException(line.getName());
         }
@@ -33,26 +32,21 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static void deleteLineByName(String name) {
-        lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void delete(Line line) {
+        lines.remove(line);
     }
 
     public static void deleteAll() {
         lines.clear();
     }
 
-    public static boolean contains(Station targetStation) {
-        return lines.stream()
-            .anyMatch(line -> line.contains(targetStation));
-    }
-
     public static void addSection(String lineName, int indexToInsert, Station station) {
-        Line line = findLineByName(lineName);
+        Line line = findByName(lineName);
         line.addSection(indexToInsert, station);
     }
 
     public static void deleteSection(String lineName, Station station) {
-        Line line = findLineByName(lineName);
+        Line line = findByName(lineName);
         line.deleteSection(station);
     }
 }

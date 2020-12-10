@@ -1,7 +1,7 @@
-package subway.domain.station;
+package subway.station.domain;
 
 import java.util.Objects;
-import subway.domain.station.exception.ShorterThanMinStationNameException;
+import subway.station.exception.ShorterThanMinStationNameException;
 
 public class Station {
 

@@ -1,6 +1,5 @@
-package subway.domain.station.exception;
+package subway.station.exception;
 
-import subway.domain.station.Station;
 import subway.view.OutputView;
 
 public class DuplicateStationNameException extends IllegalArgumentException {

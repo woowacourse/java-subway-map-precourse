@@ -1,13 +1,13 @@
-package subway.domain.line;
+package subway.line.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import subway.domain.line.exception.CannotFindStationInLineException;
-import subway.domain.line.exception.ShorterThanMinLineNameException;
-import subway.domain.line.exception.ShorterThanMinLineStationsSizeException;
-import subway.domain.station.Station;
+import subway.line.exception.CannotFindStationInLineException;
+import subway.line.exception.ShorterThanMinLineNameException;
+import subway.line.exception.ShorterThanMinLineStationsSizeException;
+import subway.station.domain.Station;
 
 public class Line {
 

@@ -1,6 +1,6 @@
-package subway.domain.station.exception;
+package subway.station.exception;
 
-import subway.domain.station.Station;
+import subway.station.domain.Station;
 import subway.view.OutputView;
 
 public class ShorterThanMinStationNameException extends IllegalArgumentException {

@@ -1,6 +1,6 @@
-package subway.domain.line.exception;
+package subway.line.exception;
 
-import subway.domain.line.Line;
+import subway.line.domain.Line;
 import subway.view.OutputView;
 
 public class ShorterThanMinLineStationsSizeException extends IllegalArgumentException {

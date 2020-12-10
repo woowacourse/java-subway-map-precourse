@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import subway.domain.line.exception.ShorterThanMinLineNameException;
-import subway.domain.line.exception.ShorterThanMinLineStationsSizeException;
-import subway.domain.station.Station;
+import subway.line.domain.Line;
+import subway.line.exception.ShorterThanMinLineNameException;
+import subway.line.exception.ShorterThanMinLineStationsSizeException;
+import subway.station.domain.Station;
 
 @DisplayName("지하철 노선(Line)에 대한 테스트")
 class LineTest {

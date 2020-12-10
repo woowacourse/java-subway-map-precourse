@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import subway.domain.station.exception.ShorterThanMinStationNameException;
+import subway.station.domain.Station;
+import subway.station.exception.ShorterThanMinStationNameException;
 
 @DisplayName("지하철 역(Station)에 대한 테스트")
 class StationTest {
