@@ -23,6 +23,14 @@ public class Line {
         return name.getName();
     }
 
+    public void insertStation(int index, String stationName) {
+        stations.insertStation(index, stationName);
+    }
+
+    public boolean contains(String stationName) {
+        return stations.contains(stationName);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) { return true; }
@@ -34,9 +42,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
-    }
-
-    public boolean contains(String stationName) {
-        return stations.contains(stationName);
     }
 }

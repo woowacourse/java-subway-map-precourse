@@ -7,11 +7,15 @@ import java.util.Objects;
 
 public class StationRepository {
 
+    public static final int INSERT_MINIMUM_INDEX = 1;
+
     public static final String DUPLICATE_NAME_ERROR = "%s은 이미 존재하는 역 이름입니다!";
 
     public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
 
     public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
+
+    public static final String OUT_OF_BOUNDS_ERROR = "노선의 범위를 벗어난 구간입니다. 1 이상 %d 미만의 값을 입력해주세요.";
 
     private final List<Station> stations;
 
@@ -33,25 +37,41 @@ public class StationRepository {
     public void addStation(final String stationName) {
         Station station = new Station(stationName);
 
-        if (stations.contains(station)) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, stationName));
-        }
+        checkDuplicateStation(contains(stationName),
+                String.format(DUPLICATE_NAME_ERROR, stationName));
 
         stations.add(station);
     }
 
-    public void deleteStation(final String name, final LineRepository lineRepository) {
-        if (lineRepository.contains(name)) {
-            throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
+    public void insertStation(int index, String stationName) {
+        int size = stations.size();
+
+        if (index < INSERT_MINIMUM_INDEX || index >= size) {
+            throw new IllegalArgumentException(String.format(OUT_OF_BOUNDS_ERROR, size));
         }
 
-        if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
-            throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
+        checkDuplicateStation(contains(stationName),
+                String.format(DUPLICATE_NAME_ERROR, stationName));
+
+        stations.add(index, new Station(stationName));
+    }
+
+    public void deleteStation(final String stationName, final LineRepository lineRepository) {
+        checkDuplicateStation(lineRepository.contains(stationName), SAVED_AT_LINE_ERROR);
+
+        if (!stations.removeIf(station -> Objects.equals(station.getName(), stationName))) {
+            throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, stationName));
         }
     }
 
     public boolean contains(String stationName) {
         return stations.contains(new Station(stationName));
+    }
+
+    private void checkDuplicateStation(boolean contains, String format) {
+        if (contains) {
+            throw new IllegalArgumentException(format);
+        }
     }
 
     @Override

@@ -76,4 +76,71 @@ class LineRepositoryTest {
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(LineRepository.DOES_NOT_EXIST_ERROR, "신분당선");
     }
+
+    @Test
+    @DisplayName("구간에 중복되지 않은 역 삽입 시 예외 미발생")
+    public void insertStation_NewStation_NoExceptionThrown() {
+
+        // given
+        int index = 1;
+        String stationName = "봉천역";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.insertStation(line.getName(), index, stationName);
+
+        //then
+        assertThatCode(callable).doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("구간에 중복되지 않은 역 삽입 시 예외 미발생")
+    public void insertStation_DuplicateStation_ExceptionThrown() {
+
+        // given
+        int index = 1;
+        String stationName = "잠실역";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.insertStation(line.getName(), index, stationName);
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.DUPLICATE_NAME_ERROR, stationName);
+    }
+
+    @Test
+    @DisplayName("구간 순서가 최소값보다 작을 경우 예외 발생")
+    public void insertStation_LowerThanMinimumIndex_ExceptionThrown() {
+
+        // given
+        int index = 0;
+        String stationName = "잠실역";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.insertStation(line.getName(), index, stationName);
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR, 0);
+    }
+
+    @Test
+    @DisplayName("구간 순서가 최대값보다 클 경우 예외 발생")
+    public void insertStation_HigherThanStationSize_ExceptionThrown() {
+
+        // given
+        int index = 2;
+        String stationName = "잠실역";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> lineRepository.insertStation(line.getName(), index, stationName);
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR, 2);
+    }
 }

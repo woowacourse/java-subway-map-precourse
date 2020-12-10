@@ -29,6 +29,19 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public void insertStation(String lineName, int index, String stationName) {
+        Line line = getLineByLineName(lineName);
+
+        line.insertStation(index, stationName);
+    }
+
+    private Line getLineByLineName(String lineName) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(lineName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(DOES_NOT_EXIST_ERROR));
+    }
+
     public void deleteLineByName(String name) {
         if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
