@@ -61,13 +61,18 @@ public class View {
 
     public void registerLine() {
         outputView.printRegisterLineQuestion();
-         LineRepository.addLine(new Line(inputView.getLine()));
+        String lineName = inputView.getLine();
+        outputView.printStartStationQuestion();
+        Station startStation = StationRepository.getStation(inputView.getStation());
+        outputView.printEndStationQuestion();
+        Station endStation = StationRepository.getStation(inputView.getStation());
+        LineRepository.addLine(new Line(lineName, startStation, endStation));
         outputView.printRegisterLineSuccess();
     }
 
     public void deleteLine() {
         outputView.printDeleteLineQuestion();
-        if (! LineRepository.deleteLineByName(inputView.getLine())) {
+        if (!LineRepository.deleteLineByName(inputView.getLine())) {
             throw new IllegalArgumentException("등록되지 않은 노선입니다.");
         }
         outputView.printDeleteLineSuccess();
