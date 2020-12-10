@@ -1,11 +1,11 @@
 package subway.main;
 
+import subway.main.view.MainInputView;
 import subway.main.view.MainOutputView;
 
-import java.util.Scanner;
-
 public class SubwayController {
-    public static void run(Scanner scanner) {
+    public static void run(MainInputView mainInputView) {
         MainOutputView.printMainSelection();
+        int option = mainInputView.selectOption();
     }
 }
