@@ -39,4 +39,8 @@ public class LineView {
     public static void informNameLengthUnder2() {
         System.err.println(ErrorMessage.LINE_NAME_LENGTH_UNDER_2.getMessage());
     }
+
+    public static void informLastUpDownStationDuplication() {
+        System.err.println(ErrorMessage.LAST_UP_AND_DOWN_STATION_DUPLICATION.getMessage());
+    }
 }
