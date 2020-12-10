@@ -1,5 +1,7 @@
 package subway.service.output;
 
+import subway.exception.ErrorCode;
+
 public class StringBuilderOutputService implements OutputService {
     private static final int START_INDEX = 0;
 
@@ -15,14 +17,21 @@ public class StringBuilderOutputService implements OutputService {
 
     @Override
     public void printMain() {
-        sb.append(MAIN);
-        sb.append(MAIN_ONE);
-        sb.append(MAIN_TWO);
-        sb.append(MAIN_THREE);
-        sb.append(MAIN_FOUR);
-        sb.append(MAIN_QUIT);
-        sb.append(ENTER);
+        sb.append(MAIN).append(ENTER);
+        sb.append(MAIN_TWO).append(ENTER);
+        sb.append(MAIN_ONE).append(ENTER);
+        sb.append(MAIN_THREE).append(ENTER);
+        sb.append(MAIN_FOUR).append(ENTER);
+        sb.append(MAIN_QUIT).append(ENTER);
+        sb.append(ENTER).append(ENTER);
         sb.append(CHOOSE_FUNCTION);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printError(ErrorCode errorCode) {
+        sb.append(errorCode.getMessage());
         System.out.println(sb.toString());
         clearSb();
     }
