@@ -112,16 +112,8 @@ public class View {
 		return scanner.nextLine();
 	}
 
-	public static int getLocationForNewSection(Scanner scanner, String lineName) {
+	public static String getLocationForNewSection(Scanner scanner) {
 		System.out.println(SectionMessages.STATION_NAME_FOR_NEW_SECTION.getMessage());
-		String location = scanner.nextLine();
-		try {
-			Line.validateInteger(location);
-			Line.validateRange(location, lineName);
-			return Integer.parseInt(location);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getLocationForNewSection(scanner, lineName);
-		}
+		return scanner.nextLine();
 	}
 }

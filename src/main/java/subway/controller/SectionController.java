@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.View;
@@ -17,11 +19,47 @@ public class SectionController {
 		options.add(Options.BACK.getOption());
 	}
 
-	private static void createStation(Scanner scanner) {
+	private static String getValidLineName(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameForNewSection(scanner);
-		String stationName = View.getStationNameForNewSection(scanner);
-		int Location = View.getLocationForNewSection(scanner, lineName);
+		try {
+			LineRepository.validateDuplicate(lineName);
+			LineRepository.validateRegistration(lineName);
+			return lineName;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getValidLineName(scanner);
+		}
+	}
 
+	private static String getValidStationName(Scanner scanner) throws IllegalArgumentException {
+		String stationName = View.getStationNameForNewSection(scanner);
+		try {
+			StationRepository.validateDuplicate(stationName);
+			StationRepository.validateRegistration(stationName);
+			return stationName;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getValidStationName(scanner);
+		}
+	}
+
+	private static int getValidLocation(Scanner scanner, String lineName) throws IllegalArgumentException {
+		String location = View.getLocationForNewSection(scanner);
+		try {
+			Line.validateInteger(location);
+			Line.validateRange(location, lineName);
+			return Integer.parseInt(location);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getValidLocation(scanner, lineName);
+		}
+	}
+
+	private static void createStation(Scanner scanner) {
+		String lineName = getValidLineName(scanner);
+		String stationName = getValidStationName(scanner);
+		int Location = getValidLocation(scanner, lineName);
+		LineRepository
 
 		View.printStationRegisterCompletion();
 	}

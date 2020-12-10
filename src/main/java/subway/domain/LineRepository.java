@@ -37,4 +37,22 @@ public class LineRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(LineMessages.UNREGISTERED_NAME_ERROR.getMessage()));
     }
+
+    public static boolean hasName(String name) {
+        return LineRepository.lines().stream()
+                .map(Line::getName)
+                .anyMatch(lineName -> lineName.equals(name));
+    }
+
+    public static void validateDuplicate(String name) throws IllegalArgumentException {
+        if (hasName(name)) {
+            throw new IllegalArgumentException(LineMessages.DUPLICATE_NAME_ERROR.getMessage());
+        }
+    }
+
+    public static void validateRegistration(String name) throws IllegalArgumentException {
+        if (!hasName(name)) {
+            throw new IllegalArgumentException(LineMessages.UNREGISTERED_NAME_ERROR.getMessage());
+        }
+    }
 }

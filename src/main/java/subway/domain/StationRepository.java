@@ -32,7 +32,7 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    private static boolean hasName(String name) {
+    public static boolean hasName(String name) {
         return StationRepository.stations().stream()
                 .map(Station::getName)
                 .anyMatch(stationName -> stationName.equals(name));

@@ -2,7 +2,6 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.view.General;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class LineController {
 	}
 
 	public static void run(Scanner scanner) {
-		View.printStationScreen();
+		View.printLineScreen();
 		String option = View.getScreenOption(scanner).trim();
 		try {
 			Options.validateOption(options, option);

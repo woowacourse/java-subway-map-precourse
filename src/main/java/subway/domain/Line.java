@@ -31,11 +31,11 @@ public class Line {
         return sections.size();
     }
 
-    public List<Station> sections(Line line) {
+    public List<Station> sections() {
         return Collections.unmodifiableList(sections);
     }
 
-    public void addSection(Line line, Station station, int location) {
+    public void addSection(Station station, int location) {
         sections.add(location, station);
     }
 
