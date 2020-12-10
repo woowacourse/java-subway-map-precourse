@@ -14,7 +14,7 @@ public class StationRepository {
 		addStation(new Station("교대역"));
 		addStation(new Station("강남역"));
 		addStation(new Station("역삼역"));
-		addStation(new Station("남부터미널"));
+		addStation(new Station("남부터미널역"));
 		addStation(new Station("양재역"));
 		addStation(new Station("양재시민의숲역"));
 		addStation(new Station("매봉역"));
@@ -33,7 +33,7 @@ public class StationRepository {
 				.stations()
 				.stream()
 				.filter(station -> station.getName().equals(stationName))
-				.findFirst()
+				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException(StationMessages.UNREGISTERED_NAME_ERROR.getMessage()));
 	}
 

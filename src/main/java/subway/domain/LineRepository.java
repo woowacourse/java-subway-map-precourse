@@ -16,9 +16,11 @@ public class LineRepository {
         - 신분당선: 강남역 - 양재역 - 양재시민의숲역 */
         addLine(new Line("2호선", "교대역", "역삼역"));
         getLine("2호선").getSections().addSection(StationRepository.getStation("강남역"),1);
+
         addLine(new Line("3호선", "교대역", "매봉역"));
         getLine("3호선").getSections().addSection(StationRepository.getStation("남부터미널역"),1);
         getLine("3호선").getSections().addSection(StationRepository.getStation("양재역"),2);
+
         addLine(new Line("신분당선","강남역", "양재시민의숲역"));
         getLine("신분당선").getSections().addSection(StationRepository.getStation("양재역"),1);
     }
@@ -40,7 +42,7 @@ public class LineRepository {
                 .lines()
                 .stream()
                 .filter(line -> line.getName().equals(lineName))
-                .findFirst()
+                .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(LineMessages.UNREGISTERED_NAME_ERROR.getMessage()));
     }
 

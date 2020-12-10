@@ -26,15 +26,16 @@ public class MainController {
 				.sections()
 				.stream()
 				.map(Station::getName)
-				.forEach(System.out::println);
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 	}
 
 	public static void showWholeMap() {
 		List<Line> lines = LineRepository.lines();
 		for (Line line : lines) {
-			System.out.println(line.getName());
-			System.out.println(General.DIVISION_LINE);
+			System.out.println(General.INFO.getMessage() + line.getName());
+			System.out.println(General.DIVISION_LINE.getMessage());
 			showSections(line);
+			System.out.println();
 		}
 	}
 
