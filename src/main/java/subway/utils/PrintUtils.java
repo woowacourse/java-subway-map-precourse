@@ -20,4 +20,8 @@ public class PrintUtils {
     public void printSelectFunction(){
         System.out.println("## 원하는 기능을 선택하세요.");
     }
+
+    public void invalidMenuError(){
+        System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
+    }
 }
