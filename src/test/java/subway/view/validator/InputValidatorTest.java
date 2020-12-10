@@ -39,4 +39,19 @@ public class InputValidatorTest {
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(InputValidator.RANGE_ERROR);
     }
+
+    @Test
+    @DisplayName("한글이 아닌 다른 문자가 입력될 경우 예외 발생")
+    public void checkKorean_NotKorean_ExceptionThrown() {
+
+        // given
+        String input = "abc";
+
+        // when
+        ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
+
+        // then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(InputValidator.NOT_KOREAN_ERROR);
+    }
 }
