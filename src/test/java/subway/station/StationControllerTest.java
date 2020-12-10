@@ -32,9 +32,9 @@ class StationControllerTest {
 
     private List<Station> getDummyStations() {
         return Arrays.asList(
-                new Station("도봉산역"),
-                new Station("의정부역"),
-                new Station("회룡역")
+                Station.from("도봉산역"),
+                Station.from("의정부역"),
+                Station.from("회룡역")
         );
     }
 

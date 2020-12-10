@@ -23,7 +23,7 @@ public class StationController {
         if (stationRepository.findStationByName(name).isPresent()) {
             throw new IllegalStateException(ALREADY_EXISTS);
         }
-        stationRepository.addStation(new Station(name));
+        stationRepository.addStation(Station.from(name));
     }
 
     public void deleteStation(String name) {

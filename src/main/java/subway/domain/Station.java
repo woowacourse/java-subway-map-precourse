@@ -7,8 +7,12 @@ public class Station {
     private String name;
     private int lineCount = 0;
 
-    public Station(String name) {
+    private Station(String name) {
         this.name = name;
+    }
+
+    public static Station from(String name){
+        return new Station(name);
     }
 
     public String getName() {
@@ -38,5 +42,10 @@ public class Station {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

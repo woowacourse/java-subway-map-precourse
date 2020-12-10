@@ -28,7 +28,7 @@ class StationTest {
 
     private Station createStation() {
         String name = "테스트";
-        return new Station(name);
+        return Station.from(name);
     }
 
 }
