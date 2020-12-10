@@ -1,7 +1,6 @@
 package subway.view;
 
 import java.util.Scanner;
-import subway.exception.SubwayCustomException;
 import subway.utils.ValidateUtils;
 
 /**
@@ -10,7 +9,7 @@ import subway.utils.ValidateUtils;
 public class InputView {
 
     private final Scanner scanner;
-    private ValidateUtils validateUtils;
+    private final ValidateUtils validateUtils;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;

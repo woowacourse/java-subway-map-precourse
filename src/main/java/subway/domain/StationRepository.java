@@ -19,15 +19,18 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void deleteStation(String name) {
+        if(!(stations.removeIf(station -> Objects.equals(station.getName(), name)))){
+            throw new SubwayCustomException(NOT_VALID_STATION_EXCEPTION_MESSAGE);
+        }
     }
 
-    public static Station searchStationByName(String name){
+    public static Station searchStation(String name){
         return stations.stream()
             .filter(station -> Objects.equals(station.getName(), name))
             .findFirst()
             .orElseThrow(()->new SubwayCustomException(NOT_VALID_STATION_EXCEPTION_MESSAGE));
     }
+
 
 }

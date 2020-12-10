@@ -19,11 +19,13 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLine(String name) {
+        if(!(lines.removeIf(line -> Objects.equals(line.getName(), name)))){
+            throw new SubwayCustomException(NOT_VALID_LINE_EXCEPTION_MESSAGE);
+        }
     }
 
-    public static Line searchLineByName(String name){
+    public static Line searchLine(String name){
         return lines.stream()
             .filter(line -> Objects.equals(line.getName(), name))
             .findFirst()

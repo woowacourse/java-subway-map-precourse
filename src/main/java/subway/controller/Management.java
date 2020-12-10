@@ -45,7 +45,7 @@ public class Management {
     }
 
     private void initialSection(String line, String station){
-        LineRepository.searchLineByName(line).addSection(StationRepository.searchStationByName(station));
+        LineRepository.searchLine(line).addSection(StationRepository.searchStation(station));
     }
 
     public void manageStation() {
@@ -82,9 +82,14 @@ public class Management {
     }
 
     void deleteStation() {
-        OutputView.guideRemoveStation();
-        StationRepository.deleteStation(inputView.inputValue());
-        OutputView.doneRemoveStation();
+        try{
+            OutputView.guideRemoveStation();
+            StationRepository.deleteStation(inputView.inputValue());
+            OutputView.doneRemoveStation();
+        } catch (SubwayCustomException exception){
+            exception.getMessage();
+            manageStation();
+        }
     }
 
     public void manageLine() {
@@ -109,12 +114,6 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
-    private void deleteLine() {
-        OutputView.guideRemoveLine();
-        LineRepository.deleteLineByName(inputView.inputValue());
-        OutputView.doneRemoveLine();
-    }
-
     private void addLine() {
         Line line;
         Station station;
@@ -123,16 +122,27 @@ public class Management {
             line = new Line(inputView.makeNewLineName());
             LineRepository.addLine(line);
             OutputView.guideStartStationOfLine();
-            station = StationRepository.searchStationByName(inputView.inputValue());
+            station = StationRepository.searchStation(inputView.inputValue());
             line.addSection(station);
             OutputView.guideEndStationOfLine();
-            station = StationRepository.searchStationByName(inputView.inputValue());
+            station = StationRepository.searchStation(inputView.inputValue());
             ValidateUtils.isAlreadyExistingSection(line,station);
             line.addSection(station);
             OutputView.doneInsertLine();
         } catch(SubwayCustomException exception){
             exception.getMessage();
             manageLine();
+        }
+    }
+
+    private void deleteLine() {
+        try{
+            OutputView.guideRemoveLine();
+            LineRepository.deleteLine(inputView.inputValue());
+            OutputView.doneRemoveLine();
+        } catch (SubwayCustomException exception){
+            exception.getMessage();
+            manageStation();
         }
     }
 
@@ -153,32 +163,37 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
-    private void deleteSection() {
-        Station station;
-        Line line;
-
-        OutputView.guideRemoveSectionLineName();
-        line = LineRepository.searchLineByName(inputView.inputValue());
-        OutputView.guideRemoveSectionStationName();
-        station = line.searchSectionByName(inputView.inputValue());
-        line.deleteSection(station);
-        OutputView.doneRemoveSection();
-    }
-
     private void addSection() {
         int position;
         Station station;
         Line line;
         try{
             OutputView.guideInsertSectionLineName();
-            line = LineRepository.searchLineByName(inputView.inputValue());
+            line = LineRepository.searchLine(inputView.inputValue());
             OutputView.guideInsertSectionStationName();
-            station = StationRepository.searchStationByName(inputView.inputValue());
+            station = StationRepository.searchStation(inputView.inputValue());
             ValidateUtils.isAlreadyExistingSection(line,station);
             OutputView.guideInsertSectionPostionName();
             position = Integer.parseInt(inputView.inputValue());
             line.addSectionWithPosition(position,station);
             OutputView.doneInsertSection();
+        } catch (SubwayCustomException exception){
+            exception.getMessage();
+            mangeSection();
+        }
+    }
+
+    private void deleteSection() {
+        Station station;
+        Line line;
+        try{
+            OutputView.guideRemoveSectionLineName();
+            line = LineRepository.searchLine(inputView.inputValue());
+            ValidateUtils.isLessThanTwoStation(line);
+            OutputView.guideRemoveSectionStationName();
+            station = line.searchSection(inputView.inputValue());
+            line.deleteSection(station);
+            OutputView.doneRemoveSection();
         } catch (SubwayCustomException exception){
             exception.getMessage();
             mangeSection();

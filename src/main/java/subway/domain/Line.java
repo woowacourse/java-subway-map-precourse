@@ -28,11 +28,13 @@ public class Line {
         }
     }
 
-    public boolean deleteSection(Station inputStation){
-        return sections.removeIf(station -> inputStation == station);
+    public void deleteSection(Station inputStation){
+        if(!(sections.removeIf(station -> inputStation == station))){
+            throw new SubwayCustomException(NOT_VALID_SECTION_EXCEPTION_MESSAGE);
+        }
     }
 
-    public Station searchSectionByName(String name){
+    public Station searchSection(String name){
         return sections.stream()
             .filter(station -> Objects.equals(station.getName(), name))
             .findFirst()
