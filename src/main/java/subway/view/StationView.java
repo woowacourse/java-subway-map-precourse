@@ -13,7 +13,7 @@ public class StationView {
     public static void printStationMenu() {
         StationMenu[] stationMenu = StationMenu.values();
         List<StationMenu> menu = Arrays.asList(stationMenu);
-        menu.stream().map(StationMenu::getTitle).limit(StationMenu.BACK.ordinal()).forEach(System.out::println);
+        menu.stream().map(StationMenu::getTitle).forEach(System.out::println);
         System.out.println();
     }
 

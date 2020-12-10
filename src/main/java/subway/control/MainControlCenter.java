@@ -10,10 +10,12 @@ public class MainControlCenter {
 
     StationControlCenter stationControlCenter;
     LineControlCenter lineControlCenter;
+    SectionControlCenter sectionControlCenter;
 
     public MainControlCenter() {
         stationControlCenter = new StationControlCenter();
         lineControlCenter = new LineControlCenter();
+        sectionControlCenter = new SectionControlCenter();
 
         InitialSetting.STATIONS.initializeStations();
         InitialSetting.LINES.initializeLines();
@@ -45,6 +47,10 @@ public class MainControlCenter {
         }
         if (command.equals(MainMenu.LINE_CONTROL.getCommand())) {
             lineControlCenter.startLineControl(scanner);
+            return;
+        }
+        if (command.equals(MainMenu.SECTION_CONTROL.getCommand())) {
+            sectionControlCenter.startSectionControl(scanner);
             return;
         }
     }
