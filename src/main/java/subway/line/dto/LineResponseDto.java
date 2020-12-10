@@ -31,4 +31,8 @@ public class LineResponseDto {
     public String getName() {
         return name;
     }
+
+    public List<StationResponseDto> getStations() {
+        return stations;
+    }
 }
