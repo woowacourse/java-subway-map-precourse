@@ -586,7 +586,7 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
     - 보장된 숫자가 아닐 시 에러 출력
         - `InputServiceException`
 - [x] 1이 입력될 시, 역 관리 화면 출력
-- [ ] 2가 입력될 시, 노선 관리 화면 출력
+- [x] 2가 입력될 시, 노선 관리 화면 출력
 - [ ] 3이 입력될 시, 구관 관리 화면 출력
 - [ ] 4가 입력될 시, 지하철 노선도 출력
 - [ ] Q가 입력될 시, 종료

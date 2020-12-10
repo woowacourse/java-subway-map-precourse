@@ -42,6 +42,20 @@ public class StringBuilderOutputService implements OutputService {
         clearSb();
     }
 
+    @Override
+    public void printRouteManage() {
+        sb.append(ENTER);
+        sb.append(ROUTE_MAIN).append(ENTER);
+        sb.append(ROUTE_ONE).append(ENTER);
+        sb.append(ROUTE_TWO).append(ENTER);
+        sb.append(ROUTE_THREE).append(ENTER);
+        sb.append(BACK).append(ENTER);
+        sb.append(ENTER);
+        sb.append(CHOOSE_FUNCTION);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
     private void clearSb() {
         sb.delete(START_INDEX, sb.length());
     }

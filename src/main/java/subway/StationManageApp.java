@@ -32,7 +32,7 @@ public class StationManageApp {
             stationManage();
         }
         if (mainOption == 2) {
-
+            routeManage();
         }
         if (mainOption == 3) {
 
@@ -40,6 +40,10 @@ public class StationManageApp {
         if (mainOption == 4) {
 
         }
+    }
+
+    private void routeManage() {
+        outputService.printRouteManage();
     }
 
     private void stationManage() {
