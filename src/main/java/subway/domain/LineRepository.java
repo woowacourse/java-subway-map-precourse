@@ -34,6 +34,10 @@ public class LineRepository {
                 .filter(line -> line.getName().equals(name)).findFirst().get();
     }
 
+    public static boolean isExistLineByName(String name){
+        return lines.stream().anyMatch(line -> line.getName().equals(name));
+    }
+
     public static boolean deleteStationByName(Line line,String name){
         if(line==null){
             return false;
