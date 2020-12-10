@@ -12,4 +12,11 @@ public class OutputView {
         System.out.println(ERROR+errorMessage);
         System.out.println();
     }
+
+    public static void printResult(boolean result,String message){
+        if(result){
+            System.out.println(INFO+message);
+            System.out.println();
+        }
+    }
 }
