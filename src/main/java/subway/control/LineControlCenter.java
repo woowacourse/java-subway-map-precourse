@@ -51,14 +51,24 @@ public class LineControlCenter {
             enrollLine(scanner);
             return;
         }
+        String upLastStation = inputUpLastStation(scanner);
 
-        LineView.printAskUpLastStation();
-        String upLastStation = MainControlCenter.inputCommand(scanner);
+
         LineView.printAskDownLastStation();
         String downLastStation = MainControlCenter.inputCommand(scanner);
         Line line = new Line(nameOfLine);
         LineRepository.addLine(line);
         LineView.informLineEnrolled();
+    }
+
+    private String inputUpLastStation(Scanner scanner) {
+        LineView.printAskUpLastStation();
+        String upLastStation = MainControlCenter.inputCommand(scanner);
+        if (!StationRepository.isNameDuplication(upLastStation)) {
+            StationView.informStationNotExist();
+            return inputUpLastStation(scanner);
+        }
+        return upLastStation;
     }
 
     private void removeLine(Scanner scanner) {
