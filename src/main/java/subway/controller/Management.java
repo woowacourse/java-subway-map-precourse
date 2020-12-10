@@ -77,6 +77,36 @@ public class Management {
     }
 
     public void mangeSection() {
+        Line line;
+        Station station;
+        int position;
+
+        OutputView.showSectionMenu();
+        String input = inputView.inputValue();
+        if(input.equals("1")){
+            OutputView.guideInsertSectionLineName();
+            line = LineRepository.searchLineByName(inputView.inputValue());
+            OutputView.guideInsertSectionStationName();
+            station = line.searchSectionByName(inputView.inputValue());
+            OutputView.guideInsertSectionPostionName();
+            position = Integer.parseInt(inputView.inputValue());
+            line.addSectionWithPosition(position,station);
+            OutputView.doneInsertSection();
+            return;
+        }
+        if(input.equals("2")){
+            OutputView.guideRemoveSectionLineName();
+            line = LineRepository.searchLineByName(inputView.inputValue());
+            OutputView.guideRemoveSectionStationName();
+            station = line.searchSectionByName(inputView.inputValue());
+            line.deleteSection(station);
+            OutputView.doneRemoveSection();
+            return;
+        }
+        if(input.equals("B")){
+            return;
+        }
+        throw new SubwayCustomException("없는 선택사항입니다.");
 
     }
 
