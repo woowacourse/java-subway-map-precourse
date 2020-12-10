@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class MemoryLineRepository implements LineRepository {
-    private static Map<String, Line> lines = new ConcurrentHashMap<>();
+    private static final Map<String, Line> lines = new ConcurrentHashMap<>();
 
     @Override
     public List<Line> lines() {

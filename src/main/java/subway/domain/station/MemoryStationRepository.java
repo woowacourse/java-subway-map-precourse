@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class MemoryStationRepository implements StationRepository {
-    private static Map<String, Station> stations = new ConcurrentHashMap<>();
+    private static final Map<String, Station> stations = new ConcurrentHashMap<>();
 
     @Override
     public List<Station> stations() {

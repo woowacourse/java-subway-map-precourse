@@ -1,18 +1,19 @@
 package subway;
 
-import subway.service.InputService;
+import subway.service.input.InputService;
+import subway.service.input.ScannerInputService;
 
 import java.util.Scanner;
 
 public class StationManageApp {
     private static InputService inputService;
 
-    public StationManageApp(Scanner scanner) {
-        inputService = InputService.of(scanner);
+    public StationManageApp() {
+        inputService = ScannerInputService.of(new Scanner(System.in));
     }
 
-    public static StationManageApp of(Scanner scanner) {
-        return new StationManageApp(scanner);
+    public static StationManageApp of() {
+        return new StationManageApp();
     }
 
     public void startManage() {
