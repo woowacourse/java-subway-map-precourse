@@ -14,9 +14,19 @@ public class LineRepository {
 
     public static void addLine(Line line) {
         lines.add(line);
+        System.out.println(line.getName());
     }
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static Line findLineByName(String name) {
+        for(Line line: lines()){
+            if(line.getName().equals(name)) {
+                return line;
+            }
+        }
+        throw new IllegalArgumentException("일치하는 노선이 없습니다.");
     }
 }
