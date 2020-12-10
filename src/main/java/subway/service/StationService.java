@@ -9,6 +9,7 @@ public class StationService {
     private static final String SELECT_STATION_TEXT="## 역 목록";
     private static final String DELETE_STATION_ERROR_TEXT="삭제할 수 없습니다.";
     private static final String INSERT_SUCCESS="지하철 역이 등록되었습니다.";
+    private static final String DELETE_SUCCESS="지하철 역이 삭제되었습니다.";
     private static StationService stationService;
 
     private StationService(){}
@@ -36,6 +37,10 @@ public class StationService {
         boolean result=StationRepository.deleteStation(name);
         if(!result){
             OutputView.printError(DELETE_STATION_ERROR_TEXT);
+        }
+        if(result){
+            OutputView.printInfo(DELETE_SUCCESS);
+            System.out.println();
         }
         return result;
     }
