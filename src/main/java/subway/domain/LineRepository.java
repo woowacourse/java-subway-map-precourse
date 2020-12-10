@@ -28,7 +28,7 @@ public class LineRepository {
     }
 
     public void deleteLineByName(String name) {
-        if (lines.removeIf(line -> Objects.equals(line.getName(), name))) {
+        if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
         }
     }

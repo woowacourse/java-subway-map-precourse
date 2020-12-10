@@ -47,4 +47,32 @@ class StationRepositoryTest {
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(StationRepository.DUPLICATE_NAME_ERROR, "강남역");
     }
+
+    @Test
+    @DisplayName("존재하는 역 삭제 시 예외 미발생")
+    public void deleteStation_ExistStation_ExceptionThrown() {
+
+        // given
+        stationRepository.addStation("강남역");
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> stationRepository.deleteStation("강남역");
+
+        //then
+        assertThatCode(callable).doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 역 삭제 시 예외 발생")
+    public void deleteStation_DoesNotExistStation_ExceptionThrown() {
+
+        // when
+        ThrowableAssert.ThrowingCallable callable =
+                () -> stationRepository.deleteStation("강남역");
+
+        //then
+        assertThatIllegalArgumentException().isThrownBy(callable)
+                .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "강남역");
+    }
 }
