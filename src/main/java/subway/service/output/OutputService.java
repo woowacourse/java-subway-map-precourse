@@ -18,9 +18,13 @@ public interface OutputService {
     String ROUTE_ONE = "1. 노선 등록";
     String ROUTE_TWO = "2. 노선 삭제";
     String ROUTE_THREE = "3. 노선 조회";
+    String SECTION_MAIN = "## 구간 관리 화면";
+    String SECTION_ONE = "1. 구간 등록";
+    String SECTION_TWO = "2. 구간 삭제";
 
 
     void printMain();
-    void printStationManage();
-    void printRouteManage();
+    void printSManageStation();
+    void printManageRoute();
+    void printManageSection();
 }

@@ -29,24 +29,28 @@ public class StationManageApp {
 
     private void chooseOption(int mainOption) {
         if (mainOption == 1) {
-            stationManage();
+            manageStation();
         }
         if (mainOption == 2) {
-            routeManage();
+            manageRoute();
         }
         if (mainOption == 3) {
-
+            mangeSection();
         }
         if (mainOption == 4) {
 
         }
     }
 
-    private void routeManage() {
-        outputService.printRouteManage();
+    private void mangeSection() {
+        outputService.printManageSection();
     }
 
-    private void stationManage() {
-        outputService.printStationManage();
+    private void manageRoute() {
+        outputService.printManageRoute();
+    }
+
+    private void manageStation() {
+        outputService.printSManageStation();
     }
 }
