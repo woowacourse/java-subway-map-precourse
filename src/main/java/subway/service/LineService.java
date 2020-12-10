@@ -74,6 +74,18 @@ public class LineService {
         return result;
     }
 
+    public boolean sectionDelete(){
+        String lineName=InputView.getDeleteLineName();
+        String stationName=InputView.getDeleteStationName();
+        Line findLine=LineRepository.findByName(lineName);
+        boolean result=LineRepository.deleteStationByName(findLine,stationName);
+        if(result){
+            OutputView.printInfo(SECTION_DELETE_SUCCESS);
+            System.out.println();
+        }
+        return result;
+    }
+
     public boolean back(){
         return true;
     }
