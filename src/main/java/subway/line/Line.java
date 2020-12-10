@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.line;
 
 public class Line {
     private String name;
