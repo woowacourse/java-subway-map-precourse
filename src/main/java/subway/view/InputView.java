@@ -1,13 +1,16 @@
 package subway.view;
 
-import subway.domain.MainMenuType;
+import subway.domain.*;
 
 import java.util.Scanner;
 
 public class InputView {
 
     private static final String MAIN_MENU_MESSAGE = "## 메인 화면\n1. 역 관리\n2. 노선 관리\n" +
-            "3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
+            "3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료\n";
+    private static final String STATION_MENU_MESSAGE = "## 역 관리 화면\n1. 역 등록\n2. 역 삭제\n" +
+            "3. 역 조회\nB. 돌아가기\n";
+    private static final String CHOOSE_MENU_MESSAGE = "## 원하는 기능을 선택하세요.";
 
 
     private InputView() {
@@ -17,12 +20,23 @@ public class InputView {
     public static MainMenuType inputMainMenu(Scanner scanner) {
         try {
             System.out.println(MAIN_MENU_MESSAGE);
-            return MainMenuType.validateMainMenu(scanner.nextLine());
+            System.out.println(CHOOSE_MENU_MESSAGE);
+            return MainMenuType.validateMenu(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMainMenu(scanner);
         }
     }
 
+    public static StationMenuType inputStationMenu(Scanner scanner) {
+        try {
+            System.out.println(STATION_MENU_MESSAGE);
+            System.out.println(CHOOSE_MENU_MESSAGE);
+            return StationMenuType.validateMenu(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputStationMenu(scanner);
+        }
+    }
 
 }
