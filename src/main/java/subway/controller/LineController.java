@@ -2,6 +2,7 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.view.General;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -16,6 +17,17 @@ public class LineController {
 		options.add(Options.OPTION_2.getOption());
 		options.add(Options.OPTION_3.getOption());
 		options.add(Options.BACK.getOption());
+	}
+
+	private static boolean hasOption(String input) {
+		return options.stream()
+				.anyMatch(option -> option.equalsIgnoreCase(input));
+	}
+
+	private static void validateOption(String input) throws IllegalArgumentException {
+		if (!hasOption(input)) {
+			throw new IllegalArgumentException(General.NOT_AVAILABLE_OPTION_ERROR.getMessage());
+		}
 	}
 
 	private static void createLine(Scanner scanner) {
@@ -36,5 +48,27 @@ public class LineController {
 		}
 		View.printLineDeleteError();
 		deleteLine(scanner);
+	}
+
+	private static void controlByOption(String option, Scanner scanner) {
+		if (option.equals(Options.OPTION_1.getOption())) {
+			createLine(scanner);
+			MainController.run(scanner);
+		} else if (option.equals(Options.OPTION_2.getOption())) {
+			deleteLine(scanner);
+			MainController.run(scanner);
+		} else if (option.equals(Options.OPTION_3.getOption())) {
+			View.showLines();
+			MainController.run(scanner);
+		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
+			MainController.run(scanner);
+		}
+	}
+
+	public static void run(Scanner scanner) throws IllegalArgumentException {
+		View.printStationScreen();
+		String option = View.getScreenOption(scanner).trim();
+		validateOption(option);
+		controlByOption(option, scanner);
 	}
 }
