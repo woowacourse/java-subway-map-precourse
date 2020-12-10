@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.exception.ErrorCode;
+import subway.exception.InputServiceException;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -40,6 +42,52 @@ class ScannerInputServiceTest {
         //then
         assertThat(incheonStationName).isEqualTo(incheonText);
         assertThat(seoulStationName).isEqualTo(seoulText);
+    }
 
+    @Test
+    @DisplayName("옵션을 입력받는다")
+    void inputOption() {
+        //given
+        String optionOne = "1";
+        String optionTwo = "2";
+        String optionQuit = "Q";
+
+        //when
+        InputService scannerInputUtils = getScannerInputUtils(optionOne);
+        InputService scannerInputUtils2 = getScannerInputUtils(optionTwo);
+        InputService scannerInputUtils3 = getScannerInputUtils(optionQuit);
+        int mainOptionOne = scannerInputUtils.getMainOption();
+        int mainOptionTwo = scannerInputUtils2.getMainOption();
+        int mainOptionQuit = scannerInputUtils3.getMainOption();
+
+        //then
+        assertThat(mainOptionOne).isEqualTo(InputService.MAIN_OPTION_ONE);
+        assertThat(mainOptionTwo).isEqualTo(InputService.MAIN_OPTION_TWO);
+        assertThat(mainOptionQuit).isEqualTo(InputService.OPTION_QUIT);
+    }
+
+    @Test
+    @DisplayName("지정된 옵션 이외의 것들을 입력하면 에러를 출력한다.")
+    void inputOptionQuit() {
+        //given
+        String optionMinus = "-1";
+        String optionNine = "9";
+        String option = "w";
+
+        //when
+        InputService scannerInputUtils = getScannerInputUtils(optionMinus);
+        InputService scannerInputUtils2 = getScannerInputUtils(optionNine);
+        InputService scannerInputUtils3 = getScannerInputUtils(option);
+
+        //then
+        assertThatThrownBy(() -> scannerInputUtils.getMainOption())
+                .isInstanceOf(InputServiceException.class)
+                .hasMessage("[ERROR] 선택할 수 없는 기능입니다.");
+        assertThatThrownBy(() -> scannerInputUtils2.getMainOption())
+                .isInstanceOf(InputServiceException.class)
+                .hasMessage("[ERROR] 선택할 수 없는 기능입니다.");
+        assertThatThrownBy(() -> scannerInputUtils3.getMainOption())
+                .isInstanceOf(InputServiceException.class)
+                .hasMessage("[ERROR] 선택할 수 없는 기능입니다.");
     }
 }

@@ -21,6 +21,10 @@ public class StationManageApp {
     }
 
     public void startManage() {
-        outputService.printMain();
+        while (true) {
+            outputService.printMain();
+            int mainOption = inputService.getMainOption();
+            System.out.println("mainOption = " + mainOption);
+        }
     }
 }
