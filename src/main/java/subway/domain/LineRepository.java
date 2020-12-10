@@ -17,38 +17,53 @@ public class LineRepository {
         this.lines = new LinkedList<>();
     }
 
+    public LineRepository(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public void addLine(Line line) {
+    public LineRepository addLine(Line line) {
         if (lines.contains(line)) {
             throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, line.getName()));
         }
 
         lines.add(line);
+
+        return this;
     }
 
-    public void insertStation(String lineName, int index, String stationName) {
-        Line line = getLineByLineName(lineName);
+    public LineRepository insertStation(String lineName, int index, String stationName) {
+        Line line = getLineByName(lineName);
+        Line insertedLine = line.insertStation(index, stationName);
 
-        line.insertStation(index, stationName);
+        int lineIndex = lines.indexOf(line);
+
+        lines.set(lineIndex, insertedLine);
+
+        return new LineRepository(lines);
     }
 
-    private Line getLineByLineName(String lineName) {
-        return lines.stream()
-                .filter(line -> line.getName().equals(lineName))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(DOES_NOT_EXIST_ERROR));
-    }
+    public LineRepository deleteLineByName(String name) {
+        boolean removed = lines.removeIf(line -> Objects.equals(line.getName(), name));
 
-    public void deleteLineByName(String name) {
-        if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
+        if (!removed) {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, name));
         }
+
+        return new LineRepository(lines);
     }
 
     public boolean contains(String stationName) {
         return lines.stream().anyMatch(line -> line.contains(stationName));
+    }
+
+    private Line getLineByName(String lineName) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(lineName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(DOES_NOT_EXIST_ERROR));
     }
 }

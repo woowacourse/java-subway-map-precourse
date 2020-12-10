@@ -6,9 +6,9 @@ public class Line {
 
     public static final String DUPLICATE_FINAL_STATION = "상행 종점역과 하행 종점역이 일치합니다. 서로 다른 역을 입력해주세요.";
 
-    private final StationRepository stations;
-
     private final LineName name;
+
+    private final StationRepository stations;
 
     public Line(String name, String startStation, String finalStation) {
         if (startStation.equals(finalStation)) {
@@ -19,12 +19,17 @@ public class Line {
         this.stations = new StationRepository(startStation, finalStation);
     }
 
+    public Line(LineName name, StationRepository stations) {
+        this.name = name;
+        this.stations = stations;
+    }
+
     public String getName() {
         return name.getName();
     }
 
-    public void insertStation(int index, String stationName) {
-        stations.insertStation(index, stationName);
+    public Line insertStation(int index, String stationName) {
+        return new Line(this.name, stations.insertStation(index, stationName));
     }
 
     public boolean contains(String stationName) {

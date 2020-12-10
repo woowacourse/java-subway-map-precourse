@@ -30,20 +30,26 @@ public class StationRepository {
         addStation(finalStation);
     }
 
+    public StationRepository(List<Station> stations) {
+        this.stations = stations;
+    }
+
     public List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
 
-    public void addStation(final String stationName) {
+    public StationRepository addStation(final String stationName) {
         Station station = new Station(stationName);
 
         checkDuplicateStation(contains(stationName),
                 String.format(DUPLICATE_NAME_ERROR, stationName));
 
         stations.add(station);
+
+        return new StationRepository(stations);
     }
 
-    public void insertStation(int index, String stationName) {
+    public StationRepository insertStation(int index, String stationName) {
         int size = stations.size();
 
         if (index < INSERT_MINIMUM_INDEX || index >= size) {
@@ -54,14 +60,22 @@ public class StationRepository {
                 String.format(DUPLICATE_NAME_ERROR, stationName));
 
         stations.add(index, new Station(stationName));
+
+        return new StationRepository(stations);
     }
 
-    public void deleteStation(final String stationName, final LineRepository lineRepository) {
+    public StationRepository deleteStation(final String stationName,
+                                           final LineRepository lineRepository) {
         checkDuplicateStation(lineRepository.contains(stationName), SAVED_AT_LINE_ERROR);
 
-        if (!stations.removeIf(station -> Objects.equals(station.getName(), stationName))) {
+        boolean removed =
+                stations.removeIf(station -> Objects.equals(station.getName(), stationName));
+
+        if (!removed) {
             throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, stationName));
         }
+
+        return new StationRepository(stations);
     }
 
     public boolean contains(String stationName) {

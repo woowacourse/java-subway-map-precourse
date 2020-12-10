@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class StationRepositoryTest {
@@ -22,14 +22,14 @@ class StationRepositoryTest {
     public void addStation_NotDuplicateStation_NoExceptionThrown() {
 
         // given
-        stationRepository.addStation("강남역");
+        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
 
         // when
-        ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.addStation("봉천역");
+        StationRepository repositoryAddedBongcheon = repositoryAddedKangnam.addStation("봉천역");
 
         //then
-        assertThatCode(callable).doesNotThrowAnyException();
+        assertThat(repositoryAddedBongcheon.stations())
+                .containsExactly(new Station("강남역"), new Station("봉천역"));
     }
 
     @Test
@@ -37,11 +37,11 @@ class StationRepositoryTest {
     public void addStation_DuplicateStation_ExceptionThrown() {
 
         // given
-        stationRepository.addStation("강남역");
+        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.addStation("강남역");
+                () -> repositoryAddedKangnam.addStation("강남역");
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -53,16 +53,16 @@ class StationRepositoryTest {
     public void deleteStation_ExistStation_ExceptionThrown() {
 
         // given
-        stationRepository.addStation("강남역");
+        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
 
         LineRepository lineRepository = new LineRepository();
 
         // when
-        ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.deleteStation("강남역", lineRepository);
+        StationRepository repositoryRemovedKangnam =
+                repositoryAddedKangnam.deleteStation("강남역", lineRepository);
 
         //then
-        assertThatCode(callable).doesNotThrowAnyException();
+        assertThat(repositoryRemovedKangnam.stations()).isEmpty();
     }
 
     @Test
@@ -86,14 +86,13 @@ class StationRepositoryTest {
     public void deleteStation_SavedStationAtLine_ExceptionThrown() {
 
         // given
-        stationRepository.addStation("강남역");
+        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
 
-        LineRepository lineRepository = new LineRepository();
-        lineRepository.addLine(new Line("1호선", "강남역", "잠실역"));
+        LineRepository lineRepository = new LineRepository().addLine(new Line("1호선", "강남역", "잠실역"));
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.deleteStation("강남역", lineRepository);
+                () -> repositoryAddedKangnam.deleteStation("강남역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
