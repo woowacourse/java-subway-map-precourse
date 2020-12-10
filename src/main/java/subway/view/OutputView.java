@@ -15,6 +15,7 @@ public class OutputView {
     private static final String STATIONS_LIST = "역 목록";
     private static final String STATION_REGISTER = "지하철 역이 등록되었습니다.";
     private static final String STATION_DELETE = "지하철 역이 삭제되었습니다.";
+    private static final String LINE_REGISTER = "지하철 노선이 등록되었습니다.";
 
     private static MainMenu mainMenu = MainMenu.getInstance();
     private static StationMenu stationMenu = StationMenu.getInstance();
@@ -55,6 +56,10 @@ public class OutputView {
     public static void printStationDeleteDone() {
         printWithInfoPrefix(STATION_DELETE);
         newLine();
+    }
+
+    public static void printLineRegisterDone() {
+        printWithInfoPrefix(LINE_REGISTER);
     }
 
     private static void printAll(List<String> resultList) {

@@ -14,6 +14,9 @@ public class InputView {
     private static final String TO_REGISTER_PREFIX = "등록할 ";
     private static final String TO_DELETE_PREFIX = "삭제할 ";
     private static final String REQUEST_STATION_NAME = "역 이름을 입력하세요.";
+    private static final String REQUEST_LINE_NAME = "노선 이름을 입력하세요.";
+    private static final String REQUEST_UPLINE_NAME = "노선의 상행 종점역 이름을 입력하세요.";
+    private static final String REQUEST_DOWNLINE_NAME = "노선의 하행 종점역 이름을 입력하세요.";
 
     private static Scanner scanner;
     private static MainMenu mainMenu = MainMenu.getInstance();
@@ -68,6 +71,22 @@ public class InputView {
 
     public static String getStationNameToDelete() {
         return getNameWithMessage(TO_DELETE_PREFIX, REQUEST_STATION_NAME);
+    }
+
+    public static String getLineNameToRegister() {
+        return getNameWithMessage(TO_REGISTER_PREFIX, REQUEST_LINE_NAME);
+    }
+
+    public static String getLineNameToDelete() {
+        return getNameWithMessage(TO_DELETE_PREFIX, REQUEST_LINE_NAME);
+    }
+
+    public static String getUplineStationName() {
+        return getNameWithMessage(TO_REGISTER_PREFIX, REQUEST_UPLINE_NAME);
+    }
+
+    public static String getDownlineStationName() {
+        return getNameWithMessage(TO_REGISTER_PREFIX, REQUEST_DOWNLINE_NAME);
     }
 
     private static String getNameWithMessage(String prefix, String requestMessage) {
