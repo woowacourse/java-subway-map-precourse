@@ -21,6 +21,12 @@ public class Sections {
 		sections.add(location, station);
 	}
 
+	public static void deleteSection(String lineName, String stationName) {
+		Line line = LineRepository.getLine(lineName);
+		Station station = StationRepository.getStation(stationName);
+		line.getSections().sections.remove(station);
+	}
+
 	public int getSectionLength() {
 		return sections.size();
 	}

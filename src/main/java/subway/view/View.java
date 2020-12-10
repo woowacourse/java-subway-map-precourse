@@ -102,22 +102,37 @@ public class View {
 				.forEach(value -> System.out.println(value.getMessage()));
 	}
 
-	public static String getLineNameForNewSection(Scanner scanner) {
-		System.out.println(SectionMessages.LINE_NAME_FOR_NEW_SECTION.getMessage());
+	public static String getLineNameToRegisterSection(Scanner scanner) {
+		System.out.println(SectionMessages.LINE_NAME_TO_REGISTER.getMessage());
 		return scanner.nextLine();
 	}
 
-	public static String getStationNameForNewSection(Scanner scanner) {
-		System.out.println(SectionMessages.STATION_NAME_FOR_NEW_SECTION.getMessage());
+	public static String getStationNameToRegisterSection(Scanner scanner) {
+		System.out.println(SectionMessages.STATION_NAME_TO_REGISTER.getMessage());
 		return scanner.nextLine();
 	}
 
-	public static String getLocationForNewSection(Scanner scanner) {
-		System.out.println(SectionMessages.STATION_NAME_FOR_NEW_SECTION.getMessage());
+	public static String getLocationToRegisterSection(Scanner scanner) {
+		System.out.println(SectionMessages.STATION_NAME_TO_REGISTER.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static void printSectionRegisterCompletion() {
 		System.out.println(SectionMessages.REGISTER_COMPLETE);
 	}
+
+	public static String getLineNameToDeleteSection(Scanner scanner) {
+		System.out.println(SectionMessages.LINE_NAME_TO_DELETE.getMessage());
+		return scanner.nextLine();
+	}
+
+	public static String getStationNameToDeleteSection(Scanner scanner) {
+		System.out.println(SectionMessages.STATION_NAME_TO_DELETE.getMessage());
+		return scanner.nextLine();
+	}
+
+	public static void printSectionDeleteCompletion() {
+		System.out.println(SectionMessages.DELETE_COMPLETE.getMessage());
+	}
+
 }
