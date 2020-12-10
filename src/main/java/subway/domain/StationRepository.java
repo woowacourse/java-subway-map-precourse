@@ -24,8 +24,4 @@ public class StationRepository {
     public static boolean contains(String stationName) {
         return stations.stream().map(Station::getName).anyMatch(x -> x.equals(stationName));
     }
-
-    public static Station getStationbyName(String stationName) {
-        return stations.stream().filter(station -> station.getName().equals(stationName)).findAny().orElse(null);
-    }
 }

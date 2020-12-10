@@ -55,16 +55,16 @@ public class UserConsole {
         System.out.println("B. 돌아가기\n");
     }
 
-    public static String getLineManagerCommand(List<String> authorizedCommands) {
+    public static String getLineManagerCommand(List<String> authorizedCommands) throws Exception {
         showLineMangagerOptions();
         System.out.println("## 원하는 기능을 선택하세요.");
         String userInput = scanner.nextLine();
         System.out.println();
-        if (authorizedCommands.contains(userInput)) {
-            return userInput;
+        if (!authorizedCommands.contains(userInput)) {
+            System.out.println("[ERROR] 없는 기능입니다.\n");
+            throw new IllegalArgumentException();
         }
-        System.out.println("[ERROR] 없는 기능입니다.\n");
-        return INVALID;
+        return userInput;
     }
 
     private static void showLineMangagerOptions() {
@@ -92,5 +92,14 @@ public class UserConsole {
         System.out.println("1. 구간 등록");
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기\n");
+    }
+
+    public static String getName() throws Exception {
+        String name = scanner.nextLine();
+        System.out.println();
+        if (!Validator.isAppropriateLength(name)) {
+            throw new IllegalArgumentException();
+        }
+        return name;
     }
 }

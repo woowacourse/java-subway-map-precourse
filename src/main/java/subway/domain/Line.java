@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Line {
     private String name;
-    private List<Station> stations = new ArrayList<>();
+    private List<String> stationNamesInLine = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -16,46 +16,31 @@ public class Line {
         return name;
     }
 
-    public void addStation(Station station) {
-        stations.add(station);
-    }
-
-    public void addStation(int index, Station station) {
-        stations.add(index, station);
-    }
-
-    public boolean hasStation(String stationName) {
-        for (Station station : stations) {
-            if (station.getName().equals(stationName)) {
-                return true;
-            }
-        }
-        return false;
+    public void addStationName(int index, String stationName) {
+        stationNamesInLine.add(index, stationName);
     }
 
     public boolean hasCapacitiy(int order) {
-        return order <= stations.size() + 1;
+        return order <= stationNamesInLine.size() + 1;
     }
 
     public boolean isStationDeletable() {
-        return stations.size() > 2;
+        return stationNamesInLine.size() > 2;
     }
 
-    public boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public boolean deleteStationName(String deleteName) {
+        return stationNamesInLine.removeIf(stationName -> Objects.equals(stationName, deleteName));
     }
 
-    public List<Station> getStations() {
-        return stations;
+    public List<String> getStationNames() {
+        return stationNamesInLine;
     }
 
-    public void addStations(List<String> stationNames) {
-        for (String stationName : stationNames) {
-            stations.add(StationRepository.getStationbyName(stationName));
-        }
+    public void addStationNames(List<String> stationNames) {
+        stationNamesInLine.addAll(stationNames);
     }
 
-    public boolean contains(String stationName) {
-        return stations.stream().anyMatch(station -> station.getName().equals(stationName));
+    public boolean contains(String specificStationName) {
+        return stationNamesInLine.stream().anyMatch(stationName -> stationName.equals(specificStationName));
     }
 }

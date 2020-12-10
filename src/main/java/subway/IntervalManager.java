@@ -55,7 +55,7 @@ public class IntervalManager {
             System.out.println("\n[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없다.");
             return;
         }
-        line.deleteStation(stationName);
+        line.deleteStationName(stationName);
         System.out.println("\n[INFO] 구간이 삭제되었습니다.");
     }
 
@@ -93,7 +93,7 @@ public class IntervalManager {
         }
 
         Line targetLine = LineRepository.getLineByName(targetLineName);
-        targetLine.addStation(Integer.parseInt(order) - 1, StationRepository.getStationbyName(stationName));
+        targetLine.addStationName(Integer.parseInt(order) - 1, stationName);
         System.out.println("\n[INFO] 구간이 등록되었습니다.");
     }
 
@@ -134,7 +134,7 @@ public class IntervalManager {
 
     private static boolean isInTargetLine(String stationName, String targetLineName) {
         Line targetLine = LineRepository.getLineByName(targetLineName);
-        if (targetLine.hasStation(stationName)) {
+        if (targetLine.contains(stationName)) {
             return true;
         }
         return false;

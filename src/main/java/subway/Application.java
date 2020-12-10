@@ -39,13 +39,13 @@ public class Application {
 
     private static void initializeLineRepository() {
         Line line2 = new Line("2호선");
-        line2.addStations(Arrays.asList("교대역", "강남역", "역삼역"));
+        line2.addStationNames(Arrays.asList("교대역", "강남역", "역삼역"));
         LineRepository.addLine(line2);
         Line line3 = new Line("3호선");
-        line3.addStations(Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역"));
+        line3.addStationNames(Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역"));
         LineRepository.addLine(line3);
         Line sinbundangLine = new Line("신분당선");
-        sinbundangLine.addStations(Arrays.asList("강남역", "양재역", "양재시민의숲역"));
+        sinbundangLine.addStationNames(Arrays.asList("강남역", "양재역", "양재시민의숲역"));
         LineRepository.addLine(sinbundangLine);
     }
 
@@ -78,9 +78,9 @@ public class Application {
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
             System.out.println("[INRO] ---");
-            List<Station> stations = line.getStations();
-            for (Station station : stations) {
-                System.out.println("[INFO] " + station.getName());
+            List<String> stationNames = line.getStationNames();
+            for (String stationName : stationNames) {
+                System.out.println("[INFO] " + stationName);
             }
             System.out.println();
         }
