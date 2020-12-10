@@ -29,11 +29,11 @@ public class View {
 	}
 
 	public static void printStationRegisterCompletion() {
-		System.out.println(Station.REGISTER_COMPLETE_MESSAGE);
+		System.out.println(Station.REGISTER_COMPLETE_MESSAGE.getMessage());
 	}
 
 	public static void printStationDeleteCompletion() {
-		System.out.println(Station.REGISTER_DELETE_MESSAGE);
+		System.out.println(Station.REGISTER_DELETE_MESSAGE.getMessage());
 	}
 
 	public static void showStations() {

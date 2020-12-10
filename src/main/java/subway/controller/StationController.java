@@ -15,7 +15,11 @@ public class StationController {
 
 	private static void deleteStation(Scanner scanner) {
 		String name = View.getStationDeleteInput(scanner);
-		StationRepository.deleteStation(name);
-		View.printStationDeleteCompletion();
+		boolean isSuccessful = StationRepository.deleteStation(name);
+		if (isSuccessful) {
+			View.printStationDeleteCompletion();
+			return;
+		}
+		deleteStation(scanner);
 	}
 }

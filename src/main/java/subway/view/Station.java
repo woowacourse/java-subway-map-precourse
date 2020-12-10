@@ -10,7 +10,7 @@ public enum Station {
 	REGISTER_MESSAGE(Logger.BASIC.getMessage() + "등록할 역 이름을 입력하세요."),
 	REGISTER_COMPLETE_MESSAGE(Logger.INFO.getMessage() + "지하철 역이 등록되었습니다."),
 	DELETE_MESSAGE(Logger.BASIC.getMessage() + "삭제할 역 이름을 입력하세요."),
-	REGISTER_DELETE_MESSAGE(Logger.INFO.getMessage() + "지하철 역이 삭제되었습니다."),
+	REGISTER_DELETE_MESSAGE(Logger.INFO.getMessage() + "지하철 역이 삭제되었습니다.");
 
 	final private String message;
 
