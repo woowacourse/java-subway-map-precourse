@@ -52,15 +52,11 @@ public class Management {
         String input = inputView.inputValue();
 
         if (input.equals("1")) {
-            OutputView.guideInsertStation();
-            StationRepository.addStation(new Station(inputView.inputValue()));
-            OutputView.doneInsertStation();
+            addStation();
             return;
         }
         if (input.equals("2")) {
-            OutputView.guideRemoveStation();
-            StationRepository.deleteStation(inputView.inputValue());
-            OutputView.doneRemoveStation();
+            deleteStation();
             return;
         }
         if (input.equals("3")) {
@@ -73,25 +69,28 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
+    void deleteStation() {
+        OutputView.guideRemoveStation();
+        StationRepository.deleteStation(inputView.inputValue());
+        OutputView.doneRemoveStation();
+    }
+
+    void addStation() {
+        OutputView.guideInsertStation();
+        StationRepository.addStation(new Station(inputView.inputValue()));
+        OutputView.doneInsertStation();
+    }
+
     public void manageLine() {
         OutputView.showLineMenu();
         String input = inputView.inputValue();
 
         if (input.equals("1")) {
-            OutputView.guideInsertLine();
-            Line line = new Line(inputView.inputValue());
-            LineRepository.addLine(line);
-            OutputView.guideStartStationOfLine();
-            line.addSection(StationRepository.searchStationByName(inputView.inputValue()));
-            OutputView.guideEndStationOfLine();
-            line.addSection(StationRepository.searchStationByName(inputView.inputValue()));
-            OutputView.doneInsertLine();
+            addLine();
             return;
         }
         if (input.equals("2")) {
-            OutputView.guideRemoveLine();
-            LineRepository.deleteLineByName(inputView.inputValue());
-            OutputView.doneRemoveLine();
+            deleteLine();
             return;
         }
         if (input.equals("3")) {
@@ -104,38 +103,67 @@ public class Management {
         throw new SubwayCustomException("없는 선택사항입니다.");
     }
 
-    public void mangeSection() {
-        Line line;
-        Station station;
-        int position;
+    void deleteLine() {
+        OutputView.guideRemoveLine();
+        LineRepository.deleteLineByName(inputView.inputValue());
+        OutputView.doneRemoveLine();
+    }
 
+    void addLine() {
+        Line line;
+
+        OutputView.guideInsertLine();
+        line = new Line(inputView.inputValue());
+        LineRepository.addLine(line);
+        OutputView.guideStartStationOfLine();
+        line.addSection(StationRepository.searchStationByName(inputView.inputValue()));
+        OutputView.guideEndStationOfLine();
+        line.addSection(StationRepository.searchStationByName(inputView.inputValue()));
+        OutputView.doneInsertLine();
+    }
+
+    public void mangeSection() {
         OutputView.showSectionMenu();
         String input = inputView.inputValue();
         if(input.equals("1")){
-            OutputView.guideInsertSectionLineName();
-            line = LineRepository.searchLineByName(inputView.inputValue());
-            OutputView.guideInsertSectionStationName();
-            station = line.searchSectionByName(inputView.inputValue());
-            OutputView.guideInsertSectionPostionName();
-            position = Integer.parseInt(inputView.inputValue());
-            line.addSectionWithPosition(position,station);
-            OutputView.doneInsertSection();
+            addSection();
             return;
         }
         if(input.equals("2")){
-            OutputView.guideRemoveSectionLineName();
-            line = LineRepository.searchLineByName(inputView.inputValue());
-            OutputView.guideRemoveSectionStationName();
-            station = line.searchSectionByName(inputView.inputValue());
-            line.deleteSection(station);
-            OutputView.doneRemoveSection();
+            deleteSection();
             return;
         }
         if(input.equals("B")){
             return;
         }
         throw new SubwayCustomException("없는 선택사항입니다.");
+    }
 
+    void deleteSection() {
+        Station station;
+        Line line;
+
+        OutputView.guideRemoveSectionLineName();
+        line = LineRepository.searchLineByName(inputView.inputValue());
+        OutputView.guideRemoveSectionStationName();
+        station = line.searchSectionByName(inputView.inputValue());
+        line.deleteSection(station);
+        OutputView.doneRemoveSection();
+    }
+
+    void addSection() {
+        int position;
+        Station station;
+        Line line;
+
+        OutputView.guideInsertSectionLineName();
+        line = LineRepository.searchLineByName(inputView.inputValue());
+        OutputView.guideInsertSectionStationName();
+        station = line.searchSectionByName(inputView.inputValue());
+        OutputView.guideInsertSectionPostionName();
+        position = Integer.parseInt(inputView.inputValue());
+        line.addSectionWithPosition(position,station);
+        OutputView.doneInsertSection();
     }
 
 }
