@@ -29,4 +29,11 @@ public class StationRepository {
     public static boolean isNameLengthUnder2(String name) {
         return name.trim().length() < 2;
     }
+
+    public static Station getStationByName(String name) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst()
+                .get();
+    }
 }

@@ -21,7 +21,7 @@ public class SectionControlCenter {
 
     private void selectMenu(String command, Scanner scanner) {
         if (command.equals(SectionMenu.ENROLL.getCommand())) {
-
+//            enrollSection(scanner);
             return;
         }
         if (command.equals(SectionMenu.DELETE.getCommand())) {
@@ -29,4 +29,22 @@ public class SectionControlCenter {
             return;
         }
     }
+//
+//    private void enrollSection(Scanner scanner) {
+//        String lineToEnrollStationOn = inputNameOfLine(scanner);
+//        SectionView.printAskStationToEnrollOnLine();
+//        String stationToEnrollOnLine = MainControlCenter.inputCommand(scanner);
+//        SectionView.printAskPosionToEnrollStation();
+//        String positionToEnrollStation = MainControlCenter.inputCommand(scanner);
+//        SectionView.informSectionEnrolled();
+//    }
+//
+//    private String inputNameOfLine(Scanner scanner) {
+//        SectionView.printAskLineToEnrollStationOn();
+//        String lineToEnrollStationOn = MainControlCenter.inputCommand(scanner);
+//
+//
+//        return "";
+//    }
+
 }

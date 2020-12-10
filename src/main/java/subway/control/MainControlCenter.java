@@ -3,6 +3,7 @@ package subway.control;
 import subway.enums.InitialSetting;
 import subway.enums.MainMenu;
 import subway.view.MainView;
+import subway.view.SectionView;
 
 import java.util.Scanner;
 
@@ -51,6 +52,10 @@ public class MainControlCenter {
         }
         if (command.equals(MainMenu.SECTION_CONTROL.getCommand())) {
             sectionControlCenter.startSectionControl(scanner);
+            return;
+        }
+        if (command.equals(MainMenu.PRINT_SUBWAY_MAP.getCommand())) {
+            SectionView.printSectionList();
             return;
         }
     }
