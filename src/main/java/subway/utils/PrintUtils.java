@@ -21,6 +21,14 @@ public class PrintUtils {
         System.out.println("## 원하는 기능을 선택하세요.");
     }
 
+    public void printStationManagementMenu(){
+        System.out.println("\n## 역 관리 화면");
+        System.out.println("1. 역 등록");
+        System.out.println("2. 역 삭제");
+        System.out.println("3. 역 조회");
+        System.out.println("B. 돌아가기");
+    }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }
