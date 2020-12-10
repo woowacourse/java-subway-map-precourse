@@ -10,8 +10,24 @@ import java.util.Scanner;
  */
 public class InputUtils {
     private final Scanner scanner;
+    private final ValidateUtils validateUtils;
+    private final PrintUtils printUtils;
 
     public InputUtils(){
         scanner = new Scanner(System.in);
+        validateUtils = new ValidateUtils();
+        printUtils = new PrintUtils();
+    }
+
+    public char inputFunctionSelect(int bound, char quit){
+        try{
+            String selectMenu = scanner.nextLine();
+            if(!validateUtils.isValidMenuSelect(selectMenu, bound, quit))
+                throw new IllegalArgumentException();
+            return selectMenu.charAt(0);
+        }catch(IllegalArgumentException e){
+            printUtils.invalidMenuError();
+            return inputFunctionSelect(bound, quit);
+        }
     }
 }
