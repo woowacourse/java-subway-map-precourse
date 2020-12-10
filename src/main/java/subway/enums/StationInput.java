@@ -1,5 +1,8 @@
 package subway.enums;
 
+import subway.Controller;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.StationInputView;
 
 import java.util.Arrays;
@@ -21,7 +24,6 @@ public enum StationInput {
     inquiry("3", "역 조회") {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
-            // StationRepository..
             System.out.println("[INFO] 역 목록");
         }
     },
