@@ -35,4 +35,8 @@ public class LineView {
     public static void informLineDuplicated() {
         System.err.println(ErrorMessage.LINE_DUPLICATION.getMessage());
     }
+
+    public static void informNameLengthUnder2() {
+        System.err.println(ErrorMessage.LINE_NAME_LENGTH_UNDER_2.getMessage());
+    }
 }

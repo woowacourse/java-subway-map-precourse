@@ -46,6 +46,11 @@ public class LineControlCenter {
             enrollLine(scanner);
             return;
         }
+        if (LineRepository.isNameLengthUnder2(nameOfLine)) {
+            LineView.informNameLengthUnder2();
+            enrollLine(scanner);
+            return;
+        }
 
         LineView.printAskUpLastStation();
         String upLastStation = MainControlCenter.inputCommand(scanner);

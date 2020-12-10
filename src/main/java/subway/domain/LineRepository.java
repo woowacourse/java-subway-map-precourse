@@ -25,4 +25,8 @@ public class LineRepository {
                 .map(Line::getName)
                 .anyMatch(line -> line.equals(name));
     }
+
+    public static boolean isNameLengthUnder2(String name) {
+        return name.trim().length() < 2;
+    }
 }
