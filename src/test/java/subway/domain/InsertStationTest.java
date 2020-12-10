@@ -58,7 +58,7 @@ public class InsertStationTest {
     }
 
     @Test
-    @DisplayName("구간에 중복되지 않은 역 삽입 시 예외 발생")
+    @DisplayName("구간에 중복된 역 삽입 시 예외 발생")
     public void insertStation_DuplicateStation_ExceptionThrown() {
 
         // given
@@ -98,7 +98,7 @@ public class InsertStationTest {
 
         // given
         int index = 2;
-        String stationName = "잠실역";
+        String stationName = "봉천역";
 
         // when
         ThrowableAssert.ThrowingCallable callable =

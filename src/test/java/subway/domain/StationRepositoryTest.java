@@ -22,13 +22,13 @@ class StationRepositoryTest {
     public void addStation_NotDuplicateStation_NoExceptionThrown() {
 
         // given
-        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
+        stationRepository = stationRepository.addStation("강남역");
 
         // when
-        StationRepository repositoryAddedBongcheon = repositoryAddedKangnam.addStation("봉천역");
+        stationRepository = stationRepository.addStation("봉천역");
 
         //then
-        assertThat(repositoryAddedBongcheon.stations())
+        assertThat(stationRepository.stations())
                 .containsExactly(new Station("강남역"), new Station("봉천역"));
     }
 
@@ -37,11 +37,11 @@ class StationRepositoryTest {
     public void addStation_DuplicateStation_ExceptionThrown() {
 
         // given
-        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
+        stationRepository = stationRepository.addStation("강남역");
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> repositoryAddedKangnam.addStation("강남역");
+                () -> stationRepository.addStation("강남역");
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -53,16 +53,15 @@ class StationRepositoryTest {
     public void deleteStation_ExistStation_ExceptionThrown() {
 
         // given
-        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
+        stationRepository = stationRepository.addStation("강남역");
 
         LineRepository lineRepository = new LineRepository();
 
         // when
-        StationRepository repositoryRemovedKangnam =
-                repositoryAddedKangnam.removeStation("강남역", lineRepository);
+        stationRepository = stationRepository.removeStation("강남역", lineRepository);
 
         //then
-        assertThat(repositoryRemovedKangnam.stations()).isEmpty();
+        assertThat(stationRepository.stations()).isEmpty();
     }
 
     @Test
@@ -86,13 +85,13 @@ class StationRepositoryTest {
     public void deleteStation_SavedStationAtLine_ExceptionThrown() {
 
         // given
-        StationRepository repositoryAddedKangnam = stationRepository.addStation("강남역");
+        stationRepository = stationRepository.addStation("강남역");
 
         LineRepository lineRepository = new LineRepository().addLine(new Line("1호선", "강남역", "잠실역"));
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> repositoryAddedKangnam.removeStation("강남역", lineRepository);
+                () -> stationRepository.removeStation("강남역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
