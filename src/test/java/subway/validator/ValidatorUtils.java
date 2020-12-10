@@ -9,13 +9,13 @@ public class ValidatorUtils {
     private ValidatorUtils() {}
 
     public static void assertValidationFailure(String input, Validator validator,
-                                               String message) {
+                                               String message, Object... parameters) {
 
         // when
         ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
 
         // then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(message);
+                .withMessage(message, parameters);
     }
 }

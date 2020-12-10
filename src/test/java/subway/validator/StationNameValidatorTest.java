@@ -16,7 +16,7 @@ public class StationNameValidatorTest {
 
         // when, then
         ValidatorUtils.assertValidationFailure(input, validator, StationNameValidator.RANGE_ERROR +
-                String.format(StationNameValidator.INPUT_LENGTH_MESSAGE, input.length()));
+                StationNameValidator.INPUT_LENGTH_MESSAGE, input.length());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class StationNameValidatorTest {
 
         // when, then
         ValidatorUtils.assertValidationFailure(input, validator, StationNameValidator.RANGE_ERROR +
-                String.format(StationNameValidator.INPUT_LENGTH_MESSAGE, input.length()));
+                StationNameValidator.INPUT_LENGTH_MESSAGE, input.length());
     }
 
     @Test

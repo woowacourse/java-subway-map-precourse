@@ -16,7 +16,7 @@ class LineNameValidatorTest {
 
         // when, then
         ValidatorUtils.assertValidationFailure(input, validator, LineNameValidator.RANGE_ERROR +
-                String.format(LineNameValidator.INPUT_LENGTH_MESSAGE, input.length()));
+                LineNameValidator.INPUT_LENGTH_MESSAGE, input.length());
     }
 
     @Test
@@ -28,7 +28,7 @@ class LineNameValidatorTest {
 
         // when, then
         ValidatorUtils.assertValidationFailure(input, validator, LineNameValidator.RANGE_ERROR +
-                String.format(LineNameValidator.INPUT_LENGTH_MESSAGE, input.length()));
+                LineNameValidator.INPUT_LENGTH_MESSAGE, input.length());
     }
 
     @Test
