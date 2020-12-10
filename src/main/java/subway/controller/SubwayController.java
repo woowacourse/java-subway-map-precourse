@@ -1,4 +1,4 @@
-package controller;
+package subway.controller;
 
 public class SubwayController {
 
