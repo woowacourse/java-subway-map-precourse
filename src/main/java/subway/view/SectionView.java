@@ -44,6 +44,7 @@ public class SectionView {
             section.getStations().stream()
                     .map(Station::getName)
                     .forEach(name -> System.out.println(SectionInfo.INFO.getInfo() + name));
+            System.out.println();
         }
     }
 }

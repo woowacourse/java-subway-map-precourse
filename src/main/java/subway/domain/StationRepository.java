@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.enums.InitialSetting;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,5 +37,12 @@ public class StationRepository {
                 .filter(station -> station.getName().equals(name))
                 .findFirst()
                 .get();
+    }
+
+    public static void initializeStations() {
+        InitialSetting.STATIONS.getValues()
+                .stream()
+                .map(Station::new)
+                .forEach(StationRepository::addStation);
     }
 }

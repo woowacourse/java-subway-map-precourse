@@ -1,6 +1,8 @@
 package subway.control;
 
-import subway.enums.InitialSetting;
+import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
+import subway.domain.StationRepository;
 import subway.enums.MainMenu;
 import subway.view.MainView;
 import subway.view.SectionView;
@@ -18,8 +20,9 @@ public class MainControlCenter {
         lineControlCenter = new LineControlCenter();
         sectionControlCenter = new SectionControlCenter();
 
-        InitialSetting.STATIONS.initializeStations();
-        InitialSetting.LINES.initializeLines();
+        StationRepository.initializeStations();;
+        LineRepository.initializeLines();
+        SectionRepository.initializeSections();
     }
 
     public static String inputCommand(Scanner scanner) {

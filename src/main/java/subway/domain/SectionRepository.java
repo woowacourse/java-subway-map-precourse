@@ -1,8 +1,11 @@
 package subway.domain;
 
+import subway.enums.InitialSections;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SectionRepository {
     private static final List<Section> sections = new ArrayList<>();
@@ -22,5 +25,16 @@ public class SectionRepository {
                 .get();
         int index = Integer.parseInt(position);
         section.getStations().add(index, station);
+    }
+
+    public static void initializeSections() {
+        for (InitialSections initialSection : InitialSections.values()) {
+            Line initialLine = LineRepository.getLineByName(initialSection.getLine());
+            List<Station> initialStations = initialSection.getStations()
+                    .stream()
+                    .map(StationRepository::getStationByName)
+                    .collect(Collectors.toList());
+            SectionRepository.addLineToSection(initialLine, initialStations);
+        }
     }
 }
