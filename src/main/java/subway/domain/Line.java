@@ -11,45 +11,23 @@ public class Line {
     public static final int NAME_LENGTH_LOWER_BOUND = 2;
 
     private String name;
-    private final List<Station> sections = new ArrayList<>();
+    private final Sections sections = new Sections();
 
     public Line(String name, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
-        validateDuplicate(name);
+        LineRepository.validateDuplicateName(name);
         validateNameLength(name);
         StationRepository.validateRegistration(upwardDestination);
         StationRepository.validateRegistration(downwardDestination);
         this.name = name;
-        this.sections.add(new Station(upwardDestination));
-        this.sections.add(new Station(downwardDestination));
+        this.sections.addSection(new Station(upwardDestination));
+        this.sections.addSection(new Station(downwardDestination));
     }
 
     public String getName() {
         return name;
     }
 
-    public int getLineLength() {
-        return sections.size();
-    }
-
-    public List<Station> sections() {
-        return Collections.unmodifiableList(sections);
-    }
-
-    public void addSection(Station station, int location) {
-        sections.add(location, station);
-    }
-
-    private boolean hasName(String name) {
-        return LineRepository.lines().stream()
-                .map(Line::getName)
-                .anyMatch(stationName -> stationName.equals(name));
-    }
-
-    private void validateDuplicate(String name) throws IllegalArgumentException {
-        if (hasName(name)) {
-            throw new IllegalArgumentException(LineMessages.DUPLICATE_NAME_ERROR.getMessage());
-        }
-    }
+    public Sections getSections() {return sections;}
 
     private void validateNameLength(String name) throws IllegalArgumentException {
         if (name.length() < NAME_LENGTH_LOWER_BOUND) {
@@ -61,12 +39,12 @@ public class Line {
         try {
             Integer.parseInt(location);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(SectionMessages.POSITIVE_INTEGER_LOCATION_ERROR.getMessage());
+            throw new IllegalArgumentException(SectionMessages.NON_POSITIVE_INTEGER_LOCATION_ERROR.getMessage());
         }
     }
 
-    public static void validateRange(String location, String lineName) throws IllegalArgumentException {
-        int lineLength = LineRepository.getLine(lineName).getLineLength();
+    public static void validateSectionRange(String location, String lineName) throws IllegalArgumentException {
+        int lineLength = LineRepository.getLine(lineName).sections.getSectionLength();
         if (Integer.parseInt(location) < 0 || lineLength <= Integer.parseInt(location)) {
             throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
         }

@@ -8,7 +8,7 @@ public class Station {
     private String name;
 
     public Station(String name) throws IllegalArgumentException {
-        StationRepository.validateDuplicate(name);
+        StationRepository.validateDuplicateName(name);
         validateNameLength(name);
         this.name = name;
     }

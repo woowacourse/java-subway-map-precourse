@@ -38,7 +38,7 @@ public class StationRepository {
                 .anyMatch(stationName -> stationName.equals(name));
     }
 
-    public static void validateDuplicate(String name) throws IllegalArgumentException {
+    public static void validateDuplicateName(String name) throws IllegalArgumentException {
         if (hasName(name)) {
             throw new IllegalArgumentException(StationMessages.DUPLICATE_NAME_ERROR.getMessage());
         }

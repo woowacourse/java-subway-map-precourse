@@ -15,7 +15,7 @@ public enum SectionMessages {
 	LINE_NAME_TO_DELETE_SECTION(General.BASIC.getMessage() + "삭제할 노선 이름을 입력하세요."),
 	STATION_NAME_TO_DELETE(General.INFO.getMessage() + "삭제할 구간의 역을 입력하세요."),
 
-	POSITIVE_INTEGER_LOCATION_ERROR(General.ERROR.getMessage() + "위치는 양의 정수만 입력 가능합니다."),
+	NON_POSITIVE_INTEGER_LOCATION_ERROR(General.ERROR.getMessage() + "위치는 양의 정수만 입력 가능합니다."),
 	LOCATION_OUT_OF_RANGE_ERROR(General.ERROR.getMessage() + "노선의 총 범위 내의 구간 위치를 입력해주세요."),
 	DUPLICATE_NAME_ERROR(General.ERROR.getMessage() + "이미 존재하는 구간입니다"),
 	UNREGISTERED_STATION_NAME_ERROR(General.ERROR.getMessage() + "등록되지 않은 역입니다."),

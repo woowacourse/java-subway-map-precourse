@@ -44,7 +44,7 @@ public class LineRepository {
                 .anyMatch(lineName -> lineName.equals(name));
     }
 
-    public static void validateDuplicate(String name) throws IllegalArgumentException {
+    public static void validateDuplicateName(String name) throws IllegalArgumentException {
         if (hasName(name)) {
             throw new IllegalArgumentException(LineMessages.DUPLICATE_NAME_ERROR.getMessage());
         }

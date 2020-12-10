@@ -2,7 +2,7 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
+import subway.domain.Sections;
 import subway.domain.StationRepository;
 import subway.view.View;
 
@@ -22,7 +22,7 @@ public class SectionController {
 	private static String getValidLineName(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameForNewSection(scanner);
 		try {
-			LineRepository.validateDuplicate(lineName);
+			LineRepository.validateDuplicateName(lineName);
 			LineRepository.validateRegistration(lineName);
 			return lineName;
 		} catch (IllegalArgumentException e) {
@@ -31,15 +31,15 @@ public class SectionController {
 		}
 	}
 
-	private static String getValidStationName(Scanner scanner) throws IllegalArgumentException {
+	private static String getValidStationName(Scanner scanner, String lineName) throws IllegalArgumentException {
 		String stationName = View.getStationNameForNewSection(scanner);
 		try {
-			StationRepository.validateDuplicate(stationName);
 			StationRepository.validateRegistration(stationName);
+			Sections.validateDuplicate(stationName, lineName);
 			return stationName;
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return getValidStationName(scanner);
+			return getValidStationName(scanner, lineName);
 		}
 	}
 
@@ -47,7 +47,7 @@ public class SectionController {
 		String location = View.getLocationForNewSection(scanner);
 		try {
 			Line.validateInteger(location);
-			Line.validateRange(location, lineName);
+			Line.validateSectionRange(location, lineName);
 			return Integer.parseInt(location);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
