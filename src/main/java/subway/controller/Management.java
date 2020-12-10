@@ -173,7 +173,7 @@ public class Management {
             OutputView.guideInsertSectionLineName();
             line = LineRepository.searchLineByName(inputView.inputValue());
             OutputView.guideInsertSectionStationName();
-            station = line.searchSectionByName(inputView.inputValue());
+            station = StationRepository.searchStationByName(inputView.inputValue());
             ValidateUtils.isAlreadyExistingSection(line,station);
             OutputView.guideInsertSectionPostionName();
             position = Integer.parseInt(inputView.inputValue());
