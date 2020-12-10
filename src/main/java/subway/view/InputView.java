@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class InputView {
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
     private static final String ERROR_INVALID_INPUT_VALUE = "유효하지 않은 입력입니다.";
-    private static final String SELECTION_PREFIX = "## ";
+    private static final String SHARP_PREFIX = "## ";
     private static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
     private static final String TO_REGISTER_PREFIX = "등록할 ";
     private static final String TO_DELETE_PREFIX = "삭제할 ";
-    private static final String REQUEST_STATION_REGISTER = "역 이름을 입력하세요.";
+    private static final String REQUEST_STATION_NAME = "역 이름을 입력하세요.";
 
     private static Scanner scanner;
     private static MainMenu mainMenu = MainMenu.getInstance();
@@ -24,7 +24,7 @@ public class InputView {
     }
 
     public static void showSelectionMessage() {
-        System.out.println(SELECTION_PREFIX + MENU_SELECTION);
+        System.out.println(SHARP_PREFIX + MENU_SELECTION);
     }
 
     private static String deleteWhiteSpaces(String string) {
@@ -63,15 +63,15 @@ public class InputView {
     }
 
     public static String getStationNameToRegister() {
-        return getStationName(TO_REGISTER_PREFIX);
+        return getNameWithMessage(TO_REGISTER_PREFIX, REQUEST_STATION_NAME);
     }
 
     public static String getStationNameToDelete() {
-        return getStationName(TO_DELETE_PREFIX);
+        return getNameWithMessage(TO_DELETE_PREFIX, REQUEST_STATION_NAME);
     }
 
-    private static String getStationName(String prefix) {
-        System.out.println(SELECTION_PREFIX + prefix + REQUEST_STATION_REGISTER);
+    private static String getNameWithMessage(String prefix, String requestMessage) {
+        System.out.println(SHARP_PREFIX + prefix + requestMessage);
         try {
             String name = deleteWhiteSpaces(scanner.nextLine());
             newLine();
@@ -79,8 +79,7 @@ public class InputView {
             return name;
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
-            newLine();
-            return getStationName(prefix);
+            return getNameWithMessage(prefix, requestMessage);
         }
     }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class MainMenu extends Menu {
+    private static final String VIEW_NAME = "메인 화면";
     private static final String STATION_MANAGEMENT = "역 관리";
     private static final String LINE_MANAGEMENT = "노선 관리";
     private static final String SECTION_MANAGEMENT = "구간 관리";
@@ -24,6 +25,7 @@ public class MainMenu extends Menu {
                 .mapToObj(Integer::toString)
                 .forEach(menuSelections::add);
         menuSelections.add("Q");
+        viewName = VIEW_NAME;
     }
 
     public static MainMenu getInstance() {

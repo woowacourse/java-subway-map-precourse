@@ -40,6 +40,7 @@ public class StationManagement {
         try {
             Station station = new Station(InputView.getStationNameToRegister());
             StationRepository.addStation(station);
+            OutputView.printStationRegisterDone();
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
@@ -49,6 +50,7 @@ public class StationManagement {
         try {
             String name = InputView.getStationNameToDelete();
             StationRepository.deleteStation(name);
+            OutputView.printStationDeleteDone();
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
@@ -59,7 +61,7 @@ public class StationManagement {
             List<String> stationNames = StationRepository.stations().stream()
                     .map(Station::getName)
                     .collect(Collectors.toList());
-            OutputView.printAll(stationNames);
+            OutputView.printStations(stationNames);
         } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
         }

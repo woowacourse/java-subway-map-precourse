@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class StationMenu extends Menu {
+    private static final String VIEW_NAME = "역 관리 화면";
     private static final String CREATE = "역 등록";
     private static final String DELETE = "역 삭제";
     private static final String DISPLAY = "역 조회";
@@ -22,7 +23,8 @@ public class StationMenu extends Menu {
         IntStream.rangeClosed(MENU_START_INDEX, MENU_LENGTH)
                 .mapToObj(Integer::toString)
                 .forEach(menuSelections::add);
-        menuSelections.add("B" );
+        menuSelections.add("B");
+        viewName = VIEW_NAME;
     }
 
     public static StationMenu getInstance() {
