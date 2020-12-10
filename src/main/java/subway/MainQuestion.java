@@ -26,6 +26,7 @@ public enum MainQuestion {
         @Override
         public void nextAction(View view) {
             view.printEntireSubwayLine();
+            view.mainView();
         }
     },
     QUIT("Q. 종료", "Q") {
