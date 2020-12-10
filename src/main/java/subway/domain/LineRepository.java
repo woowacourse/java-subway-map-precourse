@@ -29,10 +29,10 @@ public class LineRepository {
         return lineNameList;
     }
 
-    public Line findByName(String lineName) {
-        for (Line line : lines) {
-            if (line.getName().equals(lineName)) {
-                return line;
+    public Line findByName(String line) {
+        for (Line lineElement : lines) {
+            if (lineElement.getName().equals(line)) {
+                return lineElement;
             }
         }
         System.out.println("없는 노선 입니다");

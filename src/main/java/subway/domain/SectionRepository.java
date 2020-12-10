@@ -14,7 +14,7 @@ public class SectionRepository {
         sectionList.add(indexNumber, stationInstance);
     }
 
-    public void removeSection(Line lineInstance, Station stationInstance) {
+    public void removeSection(Station stationInstance) {
 
     }
 
@@ -27,9 +27,14 @@ public class SectionRepository {
         return stationNameList;
     }
 
-    public Station findByStation(Station station) {
-
-        return null;
+    public boolean isExistStation(Station station) {
+        for (Station stationElement : sectionList) {
+            if (stationElement.equals(station)) {
+                return true;
+            }
+        }
+        System.out.println("노선에 해당 역이 없습니다.");
+        return false;
     }
 
 

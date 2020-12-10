@@ -29,10 +29,10 @@ public class StationRepository {
         return stationNameList;
     }
 
-    public Station findByName(String lineName) {
-        for (Station station : stations) {
-            if (station.getName().equals(lineName)) {
-                return station;
+    public Station findByName(String station) {
+        for (Station stationElement : stations) {
+            if (stationElement.getName().equals(station)) {
+                return stationElement;
             }
         }
         System.out.println("없는 역 입니다");
