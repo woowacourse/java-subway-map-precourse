@@ -23,12 +23,15 @@ public class OutputView {
         System.out.println("1. 구간 등록\n" + "2. 구간 삭제\n" + "B. 돌아가기");
     }
 
-    public static void stationInsertView() {
+    public static void stationInsertSuccess() {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다\n");
+    }
+
+    public static void stationDeleteSuccess() {
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다\n");
     }
 
     public static void stationLookup(String stations) {
         System.out.println(stations);
     }
-
 }

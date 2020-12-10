@@ -25,10 +25,11 @@ public class StationManager {
         if (input.equals(STATION_INSERT)) {
             String stationName = InputView.inputStation(scanner);
             StationRepository.addStation(new Station(stationName));
-            OutputView.stationInsertView();
+            OutputView.stationInsertSuccess();
         }
         if (input.equals(STATION_DELETE)) {
             InputView.inputDeleteStation(scanner);
+            OutputView.stationDeleteSuccess();
         }
         if (input.equals(STATION_LOOKUP)) {
             OutputView.stationLookup(stationRepository.toString());
