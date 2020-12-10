@@ -57,7 +57,9 @@ public class SubwayProgram {
             if (subMenuName.equals(STATION)) {
                 selectStationMenu(subMenuType);
             }
-
+            if (subMenuName.equals(LINE)) {
+                selectLineMenu(subMenuType);
+            }
         }while (!subMenuType.equals(SubMenuType.BACK));
     }
 
@@ -76,7 +78,12 @@ public class SubwayProgram {
         }
     }
 
-
+    private void selectLineMenu(Menu lineMenuType) {
+        if (SubMenuType.ADD.equals(lineMenuType)) {
+            InputView.inputLineNameAdd(scanner);
+            return;
+        }
+    }
 
 
 

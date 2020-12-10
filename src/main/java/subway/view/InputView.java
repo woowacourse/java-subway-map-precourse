@@ -67,5 +67,26 @@ public class InputView {
         }
     }
 
+    public static void inputLineNameAdd(Scanner scanner) {
+        try {
+            System.out.println(INPUT_LINE_NAME_ADD_MESSAGE);
+            Line line = new Line(scanner.nextLine());
+            LineRepository.validateDuplicate(line);
+            inputFirstLastStationName(scanner, line);
+            LineRepository.addLine(line);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void inputFirstLastStationName(Scanner scanner, Line line) {
+        System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
+        Station firstStation = new Station(scanner.nextLine());
+        StationRepository.validateNameExist(firstStation);
+        System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
+        Station lastStation = new Station(scanner.nextLine());
+        StationRepository.validateNameExist(lastStation);
+        line.init(firstStation, lastStation);
+    }
 
 }

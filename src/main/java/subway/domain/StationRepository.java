@@ -17,7 +17,7 @@ public class StationRepository {
     }
 
     private static void validateDuplicate(Station station) {
-        Set<Station> duplicateCheckSet = new HashSet<>(stations());
+        Set<Station> duplicateCheckSet = new HashSet<>(stations);
         duplicateCheckSet.add(station);
         if (duplicateCheckSet.size() == stations.size()) {
             throw new IllegalArgumentException(STATION_DUPLICATE_ERROR);
@@ -25,14 +25,14 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        validateNameExist(name);
+        validateNameExist(new Station(name));
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    private static void validateNameExist(String name) {
+    public static void validateNameExist(Station newStation) {
         boolean nameFlag = true;
         for (Station station : stations) {
-            if (station.equals(new Station(name))) {
+            if (station.equals(newStation)) {
                 nameFlag = false;
             }
         }
@@ -40,4 +40,5 @@ public class StationRepository {
             throw new IllegalArgumentException(STATION_EXIST_ERROR);
         }
     }
+
 }
