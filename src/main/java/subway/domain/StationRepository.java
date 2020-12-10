@@ -1,22 +1,31 @@
 package subway.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class StationRepository {
-    private static final List<Station> stations = new ArrayList<>();
 
-    public static List<Station> stations() {
-        return Collections.unmodifiableList(stations);
+    public static final String DUPLICATE_NAME = "이미 존재하는 이름입니다.";
+
+    private final Set<Station> stations;
+
+    public StationRepository() {
+        this.stations = new LinkedHashSet<>();
     }
 
-    public static void addStation(Station station) {
-        stations.add(station);
+    public Set<Station> stations() {
+        return Collections.unmodifiableSet(stations);
     }
 
-    public static boolean deleteStation(String name) {
+    public void addStation(Station station) {
+        if (!stations.add(station)) {
+            throw new IllegalArgumentException(DUPLICATE_NAME);
+        }
+    }
+
+    public boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
