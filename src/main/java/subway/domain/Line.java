@@ -2,9 +2,12 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import subway.exception.SubwayCustomException;
 
 public class Line {
 
+    private static final String NOT_VALID_SECTION_EXCEPTION_MESSAGE = "존재하지 않는 구간입니다.";
     private String name;
     private List<Station> sections = new ArrayList<>();
 
@@ -20,9 +23,20 @@ public class Line {
         return sections;
     }
 
-    public void addSection(Station inputStation){
+    public void addSectionWithPosition(int position, Station inputStation){
         if(StationRepository.stations().contains(inputStation)){
-            sections.add(inputStation);
+            sections.add(position-1,inputStation);
         }
+    }
+
+    public boolean deleteSection(Station inputStation){
+        return sections.removeIf(station -> inputStation == station);
+    }
+
+    public Station searchSectionByName(String name){
+        return sections.stream()
+            .filter(station -> Objects.equals(station.getName(), name))
+            .findFirst()
+            .orElseThrow(()->new SubwayCustomException(NOT_VALID_SECTION_EXCEPTION_MESSAGE));
     }
 }
