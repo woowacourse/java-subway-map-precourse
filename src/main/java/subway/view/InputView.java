@@ -12,6 +12,7 @@ public class InputView {
     private static final String SELECTION_PREFIX = "## ";
     private static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
     private static final String TO_REGISTER_PREFIX = "등록할 ";
+    private static final String TO_DELETE_PREFIX = "삭제할 ";
     private static final String REQUEST_STATION_REGISTER = "역 이름을 입력하세요.";
 
     private static Scanner scanner;
@@ -23,15 +24,15 @@ public class InputView {
     }
 
     public static void showSelectionMessage() {
-        System.out.println(MENU_SELECTION);
+        System.out.println(SELECTION_PREFIX + MENU_SELECTION);
     }
 
     private static String deleteWhiteSpaces(String string) {
-        return string.replaceAll("\\s+", "");
+        return string.replaceAll("\\s+", "" );
     }
 
     private static boolean isNotEmptyStringOrThrowException(String string) {
-        if (string.equals("")) {
+        if (string.equals("" )) {
             throw new IllegalArgumentException(ERROR_NONE_INPUT_VALUE);
         }
         return true;
@@ -64,15 +65,19 @@ public class InputView {
         return getStationName(TO_REGISTER_PREFIX);
     }
 
-    private static String getStationName(String Prefix) {
-        System.out.println(SELECTION_PREFIX + TO_REGISTER_PREFIX + REQUEST_STATION_REGISTER);
+    public static String getStationNameToDelete() {
+        return getStationName(TO_DELETE_PREFIX);
+    }
+
+    private static String getStationName(String prefix) {
+        System.out.println(SELECTION_PREFIX + prefix + REQUEST_STATION_REGISTER);
         try {
             String name = deleteWhiteSpaces(scanner.nextLine());
             isNotEmptyStringOrThrowException(name);
             return name;
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
-            return getStationName(Prefix);
+            return getStationName(prefix);
         }
     }
 }

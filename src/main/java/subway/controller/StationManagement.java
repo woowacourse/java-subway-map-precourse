@@ -25,12 +25,24 @@ public class StationManagement {
         if (menu.equals(REGISTER)) {
             registerStation();
         }
+        if (menu.equals(DELETE)) {
+            deleteStation();
+        }
     }
 
     private static void registerStation() {
         try {
             Station station = new Station(InputView.getStationNameToRegister());
             StationRepository.addStation(station);
+        } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+        }
+    }
+
+    private static void deleteStation() {
+        try {
+            String name = InputView.getStationNameToDelete();
+            StationRepository.deleteStation(name);
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
