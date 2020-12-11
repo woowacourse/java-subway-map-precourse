@@ -1,6 +1,7 @@
 package subway.domain.station;
 
 import subway.domain.Line.Line;
+import subway.domain.Line.LineRepository;
 import subway.exception.AlreadyAddStationException;
 import subway.exception.StationNotFountException;
 
@@ -10,6 +11,10 @@ import java.util.List;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+
+    static {    // 예시 추가
+        new LineRepository();
+    }
 
     public List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -34,5 +39,11 @@ public class StationRepository {
         return true;
     }
 
+    public Station findBy(String string) {
+        return stations().stream()
+                .filter(station -> station.isSameName(string))
+                .findFirst()
+                .orElseThrow(() -> new StationNotFountException(string));
+    }
 
 }
