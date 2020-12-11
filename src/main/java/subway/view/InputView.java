@@ -6,6 +6,7 @@ import subway.domain.line.LineRepository;
 import subway.domain.menu.MainMenuType;
 import subway.domain.menu.SubMenuType;
 import subway.domain.station.Station;
+import subway.domain.station.StationName;
 import subway.domain.station.StationRepository;
 import subway.utils.InputValidator;
 
@@ -72,43 +73,26 @@ public class InputView {
         }
     }
 
-    public static void inputStationNameAdd(Scanner scanner) {
-        try {
-            System.out.println(INPUT_STATION_NAME_ADD_MESSAGE);
-            StationRepository.addStation(new Station(scanner.nextLine()));
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
-    public static void inputStationNameDelete(Scanner scanner) {
-        try {
-            System.out.println(INPUT_STATION_NAME_DELETE_MESSAGE);
-            StationRepository.deleteStation(scanner.nextLine());
-
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     public static LineName inputLineNameAdd(Scanner scanner) {
         System.out.println(INPUT_LINE_NAME_ADD_MESSAGE);
         return new LineName(scanner.nextLine());
     }
 
-    public static Station inputFirstStationName(Scanner scanner) {
-        System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
-        Station firstStation = new Station(scanner.nextLine());
-        StationRepository.validateNameExist(firstStation);
-        return firstStation;
-    }
-
-    public static Station inputLastStationName(Scanner scanner) {
-        System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
-        Station lastStation = new Station(scanner.nextLine());
-        StationRepository.validateNameExist(lastStation);
-        return lastStation;
-    }
+//    public static Station inputFirstStationName(Scanner scanner) {
+//        System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
+//        Station firstStation = new Station(scanner.nextLine());
+//        StationRepository.validateNameExist(firstStation);
+//        return firstStation;
+//    }
+//
+//    public static Station inputLastStationName(Scanner scanner) {
+//        System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
+//        Station lastStation = new Station(scanner.nextLine());
+//        StationRepository.validateNameExist(lastStation);
+//        return lastStation;
+//    }
 
     public static LineName inputLineNameDelete(Scanner scanner) {
         System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);
