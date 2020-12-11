@@ -31,12 +31,23 @@ public class StationManagement {
         if (type == StationManagementSelectionType.STATION_REGISTRATION) {
             registerNewStation(scanner);
         }
+        if (type == StationManagementSelectionType.STATION_DELETE) {
+            deleteStation(scanner);
+        }
+    }
+
+    private static void deleteStation(Scanner scanner) {
+        Printer.printUserInputStationToDeleteMessage();
+        String stationName = scanner.nextLine();
+        StationRepository.deleteStation(stationName);
+        Printer.printDeleteStationSuccessMessage();
     }
 
     private static void registerNewStation(Scanner scanner) {
         Printer.printUserInputStationRegistrationMessage();
         String newStationName = scanner.nextLine();
         StationRepository.addStation(new Station(newStationName));
+        Printer.printRegisterNewStationSuccessMessage();
     }
 
     private static void printScreen() {
