@@ -12,11 +12,12 @@ public class LineStationRepository {
     }
 
     public void addLineStation(Line line, Station station) {
-        add(line, station);
+        lineStation.computeIfAbsent(line, Ve->new ArrayList<Station>()).add(station);
     }
 
-    private void add(Line K, Station V){
-        lineStation.computeIfAbsent(K, Ve->new ArrayList<Station>()).add(V);
+    public void deleteLineStation(Line line) {
+        LineRepository.deleteLineByName(line.getName());
+        lineStation.remove(line);
     }
 
     public Map<Line, List<Station>> getLineStation() {
