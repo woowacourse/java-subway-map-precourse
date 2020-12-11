@@ -24,7 +24,7 @@ public enum SectionQuestion implements BaseQuestion {
         }
     };
 
-    private final static String HEADER = "## 구간 관리 화면";
+    public final static String HEADER = "## 구간 관리 화면";
     private String question;
     private String answerCode;
 
@@ -33,10 +33,17 @@ public enum SectionQuestion implements BaseQuestion {
         this.answerCode = answerCode;
     }
 
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
+
+    @Override
     public String getQuestion() {
         return question;
     }
 
+    @Override
     public boolean hasAnswerCode(String inputCode) {
         return this.answerCode.equals(inputCode);
     }

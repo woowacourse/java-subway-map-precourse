@@ -38,6 +38,7 @@ public class View {
     }
 
     private void nextView(String questionType) {
+        outputView.println(questions.getHeader(questionType));
         outputView.printQuestions(questions.getQuestions(questionType));
         selectedQuestion(questionType).nextAction(this);
     }
