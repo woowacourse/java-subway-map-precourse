@@ -80,4 +80,12 @@ public class Print {
     public static void getDescendingNameToAddLine() {
         System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.DESCENDING);
     }
+
+    public static void addLineDoneMessage() {
+        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.LINE, Constant.ADD);
+    }
+
+    public static void deleteLineDoneMessage() {
+        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.LINE, Constant.DELETE);
+    }
 }
