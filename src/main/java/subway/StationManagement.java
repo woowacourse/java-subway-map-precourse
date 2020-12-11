@@ -22,7 +22,7 @@ public class StationManagement {
             return StationManagementSelectionType.STATION_DELETE;
         }
         if (stationManagementSelectionInput.equals(UserSelections.THIRD)) {
-            return StationManagementSelectionType.STATION_PRINT;
+            return StationManagementSelectionType.STATION_PRINT_ALL;
         }
         return StationManagementSelectionType.GO_BACK;
     }
@@ -34,6 +34,13 @@ public class StationManagement {
         if (type == StationManagementSelectionType.STATION_DELETE) {
             deleteStation(scanner);
         }
+        if (type == StationManagementSelectionType.STATION_PRINT_ALL) {
+            printAllStations();
+        }
+    }
+
+    private static void printAllStations() {
+        StationRepository.printAll();
     }
 
     private static void deleteStation(Scanner scanner) {

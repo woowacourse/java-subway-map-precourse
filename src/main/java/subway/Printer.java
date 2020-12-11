@@ -11,6 +11,8 @@ public class Printer {
         = "\n## 삭제할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_SUCCESS_MESSAGE
         = "\n" + Prefix.INFO_PREFIX + "지하철 역이 삭제되었습니다.";
+    private static final String PRINT_ALL_STATIONS_LIST_TITLE
+        = "\n## 역 목록";
 
     public static void printUserInputStationRegistrationMessage() {
         System.out.println(USER_INPUT_STATION_REGISTRATION_MESSAGE);
@@ -30,5 +32,9 @@ public class Printer {
 
     public static void printDeleteStationSuccessMessage() {
         System.out.println(DELETE_STATION_SUCCESS_MESSAGE);
+    }
+
+    public static void printAllStationsTitle() {
+        System.out.println(PRINT_ALL_STATIONS_LIST_TITLE);
     }
 }

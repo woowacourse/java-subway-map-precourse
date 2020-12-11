@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.Prefix;
+import subway.Printer;
 
 /*
 필요 시 StationRepository, LineRepository 이 외 추가로 Repository를 만들 수 있다.
@@ -24,5 +26,14 @@ public class StationRepository {
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static void printAll() {
+        Printer.printAllStationsTitle();
+        stations.forEach(
+            station -> {
+                System.out.println(Prefix.INFO_PREFIX + station.getName());
+            }
+        );
     }
 }
