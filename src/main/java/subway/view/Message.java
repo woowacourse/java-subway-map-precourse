@@ -36,6 +36,7 @@ public class Message {
             "B. 돌아가기");
 
     private static final String selectFeature = "\n## 원하는 기능을 선택하세요.";
+    private static final String subwayLine = "## 지하철 노선도";
 
     private Message() {
     }
@@ -60,6 +61,9 @@ public class Message {
         System.out.println(selectFeature);
     }
 
+    public static void printSubwayLineMessage() {
+        System.out.println(subwayLine);
+    }
     public static void printLine() {
         System.out.println();
     }

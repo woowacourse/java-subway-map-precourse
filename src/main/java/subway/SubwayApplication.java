@@ -7,6 +7,7 @@ import subway.view.StationView;
 import subway.view.Button;
 import subway.view.Input;
 import subway.view.Message;
+import subway.view.SubwayLineView;
 
 /**
  * @author yhh1056
@@ -17,12 +18,14 @@ public class SubwayApplication {
     private final StationView stationView;
     private final LineView lineView;
     private final SectionView sectionView;
+    private final SubwayLineView subwayLineView;
 
     public SubwayApplication(Scanner scanner) {
         this.input = new Input(scanner);
         this.stationView = new StationView(input);
         this.lineView = new LineView(input);
         this.sectionView = new SectionView(input);
+        this.subwayLineView = new SubwayLineView();
     }
 
     public void run() {
@@ -72,5 +75,8 @@ public class SubwayApplication {
     }
 
     private void selectSubwayLineMenu(final String button) {
+        if (button.equals(Button.FOUR)) {
+            subwayLineView.showSubwayLine();
+        }
     }
 }
