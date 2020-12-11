@@ -1,7 +1,7 @@
 package subway.domain;
 
 public class Constant {
-    public static final String HASH = "##";
+    public static final String HASH = "## ";
     public static final String INFO = "[INFO]";
     public static final String DELIMITER = "---";
 
@@ -34,12 +34,8 @@ public class Constant {
     public static final String QUIT = "종료";
     public static final String BACK = "돌아가기";
 
-
-
-
     public static final String SPACE = " ";
     public static final String EMPTY = "";
 
     public static final int NAME_LENGTH_MINIMUM = 2;
-
 }
