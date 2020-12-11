@@ -126,11 +126,15 @@ public class OutputView {
         System.out.println(NEW_LINE + "[INFO] 구간이 삭제되었습니다.");
     }
 
-    public static void printSubwayMap(Line line) {
+    public static void printSubwayMapMessage() {
         System.out.println(NEW_LINE + "## 지하철 노선도");
+    }
+
+    public static void printSubwayMap(Line line) {
         System.out.println(INFORMATION + line.getName());
         System.out.println(LINE);
 
         line.getSectionStations().getStations().forEach(station -> System.out.println(INFORMATION + station.getName()));
+        System.out.println();
     }
 }

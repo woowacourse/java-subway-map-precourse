@@ -262,6 +262,7 @@ public class SubwayManager {
 
     public State inquirySubwayMap(State state) {
         if (state.equals(State.MAP_SCENE)) {
+            OutputView.printSubwayMapMessage();
             LineRepository.lines().forEach(OutputView::printSubwayMap);
 
             return State.MAIN_SCENE;
