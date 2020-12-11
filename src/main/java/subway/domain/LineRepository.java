@@ -1,6 +1,9 @@
 package subway.domain;
 
+import subway.dto.LineDTO;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LineRepository {
     private static final String ERROR_ALREADY_EXIST = "이미 등록된 노선 이름입니다.";
@@ -34,5 +37,11 @@ public class LineRepository {
             throw new IllegalArgumentException(ERROR_NOT_EXIST);
         }
         return true;
+    }
+
+    public static List<LineDTO> exprotsAllLinesToDTO() {
+        return lines.stream()
+                .map(Line::toDTO)
+                .collect(Collectors.toList());
     }
 }

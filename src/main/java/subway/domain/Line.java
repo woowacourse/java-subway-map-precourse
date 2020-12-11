@@ -1,5 +1,8 @@
 package subway.domain;
 
+import subway.dto.LineDTO;
+import subway.dto.StationDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,14 @@ public class Line {
 
     public String getName() {
         return name;
+    }
+
+    public LineDTO toDTO() {
+        List<StationDTO> stations = new ArrayList<>();
+        for (Station station: this.stations) {
+            stations.add(station.toDTO());
+        }
+        return new LineDTO(this.name, stations);
     }
 
     // 추가 기능 구현

@@ -1,5 +1,9 @@
 package subway.domain;
 
+import subway.dto.DTO;
+import subway.dto.LineDTO;
+import subway.dto.StationDTO;
+
 import java.util.*;
 
 public class StationRepository {
