@@ -22,7 +22,7 @@ public class StationManageView implements ViewStrategy {
         StationController stationController = StationController.get(StationRepositoryJava.get());
         STATION_MANAGE_VIEW.put("1", new CreateStationView(stationController, scanner));
         STATION_MANAGE_VIEW.put("2", new DeleteStationView(stationController, scanner));
-        STATION_MANAGE_VIEW.put("3", new ShowStationView(stationController, scanner));
+        STATION_MANAGE_VIEW.put("3", new ShowStationView(stationController));
         STATION_MANAGE_VIEW.put("B", new BackView());
     }
 

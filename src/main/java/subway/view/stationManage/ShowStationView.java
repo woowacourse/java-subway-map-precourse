@@ -9,11 +9,9 @@ public class ShowStationView implements StationManageViewStrategy {
     private static final String VIEW_NAME = "역 조회";
     private static final String SHOW_MESSAGE = "역 목록";
     private final StationController stationController;
-    private final Scanner scanner;
 
-    public ShowStationView(StationController stationController, Scanner scanner) {
+    public ShowStationView(StationController stationController) {
         this.stationController = stationController;
-        this.scanner = scanner;
     }
 
     @Override
