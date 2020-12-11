@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.line.Line;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -41,11 +42,23 @@ public class LineController extends Controller {
     }
 
     private void addLine() {
-        String rawLineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
+        try {
+            String rawLineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
+            Line.validateName(rawLineName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            addLine();
+        }
     }
 
     private void deleteLine() {
-        String rawLineName = inputView.inputName(InputView.CHOOSE_DELETE_LINE);
+        try {
+            String rawLineName = inputView.inputName(InputView.CHOOSE_DELETE_LINE);
+            Line.validateName(rawLineName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            deleteLine();
+        }
     }
 
     private void viewLines() {
