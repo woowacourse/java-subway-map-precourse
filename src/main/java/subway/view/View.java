@@ -25,23 +25,43 @@ public class View {
     }
 
     public void main() {
-        nextView(MAIN_VIEW);
+        try {
+            nextView(MAIN_VIEW);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            main();
+        }
     }
 
     public void station() {
-        nextView(STATION_VIEW);
+        try {
+            nextView(STATION_VIEW);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            station();
+        }
     }
 
     public void line() {
-        nextView(LINE_VIEW);
+        try {
+            nextView(LINE_VIEW);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            line();
+        }
     }
 
     public void section() {
-        nextView(SECTION_VIEW);
+        try {
+            nextView(SECTION_VIEW);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            section();
+        }
     }
 
     private void nextView(String questionType) {
-        outputView.println(questions.getHeader(questionType));
+        outputView.printQuestionHeader(questions.getHeader(questionType));
         outputView.printQuestions(questions.getQuestions(questionType));
         selectedQuestion(questionType).nextAction(this);
     }
