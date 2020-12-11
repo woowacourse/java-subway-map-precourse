@@ -21,7 +21,7 @@ public class StationRepository {
         return stations().stream().anyMatch(station -> Objects.equals(station.getName(), name));
     }
 
-    public static Station findStation(String name) {
+    public static Station findStationByName(String name) {
         Optional<Station> result = stations().stream()
                 .filter(station -> Objects.equals(station.getName(), name)).findAny();
 

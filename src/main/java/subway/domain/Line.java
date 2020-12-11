@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Line {
 
+    private static final int MINIMUM_SECTION_LENGTH = 2;
+
     private final List<Station> section = new LinkedList<>();
     private String name;
 
@@ -18,9 +20,13 @@ public class Line {
     }
 
     // 추가 기능 구현
-    public boolean isContains(String stationName) {
-        Station find = StationRepository.findStation(stationName);
+    public boolean contains(String stationName) {
+        Station find = StationRepository.findStationByName(stationName);
         return section.contains(find);
+    }
+
+    public boolean canRemove() {
+        return section.size() > MINIMUM_SECTION_LENGTH;
     }
 
     public boolean isValidSection(int index) {
@@ -28,16 +34,16 @@ public class Line {
     }
 
     public void addStation(int index, String name) {
-        Station station = StationRepository.findStation(name);
+        Station station = StationRepository.findStationByName(name);
         section.add(index, station);
     }
 
     public void addStation(String name) {
-        Station station = StationRepository.findStation(name);
+        Station station = StationRepository.findStationByName(name);
         section.add(station);
     }
 
-    public void removeStation(String name) {
+    public void removeStationByName(String name) {
         section.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
