@@ -44,9 +44,9 @@ public class SectionService {
     }
 
     private void deleteSection(Scanner scanner, LineStationRepository lineStation) {
-        inputDeleteLineNameRequestMessage();
+        inputLineNameToDeleteSectionRequestMessage();
         String lineName = scanner.nextLine();
-        inputDeleteStationNameRequestMessage();
+        inputStationNameToDeleteSectionRequestMessage();
         String stationName = scanner.nextLine();
         //validation
         //1. 입력한 노선 이름이 존재하는지 검증한다.
