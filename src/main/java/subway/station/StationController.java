@@ -27,7 +27,7 @@ public class StationController {
     }
 
     public static void inquire() {
-        StationRepository.stations()
+        StationRepository.findAll()
                 .forEach(OutputView::printStation);
     }
 }

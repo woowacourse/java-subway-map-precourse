@@ -12,6 +12,6 @@ public class LineService {
         Station topStation = StationRepository.findByName(topStationName);
         Station bottomStation = StationRepository.findByName(bottomStationName);
         Line line = new Line(lineName, new Route(topStation, bottomStation));
-        LineRepository.addLine(line);
+        LineRepository.register(line);
     }
 }

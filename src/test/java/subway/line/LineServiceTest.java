@@ -24,8 +24,8 @@ public class LineServiceTest {
         String topStationName = "대구역";
         String bottomStationName = "동대구역";
 
-        StationRepository.addStation(new Station(topStationName));
-        StationRepository.addStation(new Station(bottomStationName));
+        StationRepository.register(new Station(topStationName));
+        StationRepository.register(new Station(bottomStationName));
 
         //when
         LineService.register(lineName, topStationName, bottomStationName);

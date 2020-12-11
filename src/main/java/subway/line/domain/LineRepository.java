@@ -10,20 +10,20 @@ import java.util.Objects;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-    public static List<Line> lines() {
+    public static List<Line> findAll() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
+    public static void register(Line line) {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
+    public static boolean removeByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static Line findByName(String name) {
-        return lines().stream()
+        return findAll().stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
                 .orElseThrow(NotExistLineException::new);

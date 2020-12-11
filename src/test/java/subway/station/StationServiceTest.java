@@ -1,5 +1,6 @@
 package subway.station;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import subway.station.domain.StationRepository;
 import subway.station.exception.AlreadyExistException;
@@ -11,6 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class StationServiceTest {
+    @AfterEach
+    public void clearUp() {
+        StationRepository.removeAll();
+    }
 
     @Test
     public void 지하철_역_등록_확인() {
@@ -22,7 +27,6 @@ public class StationServiceTest {
 
         //then
         assertThat(StationRepository.isExist(name)).isTrue();
-        StationRepository.deleteStation(name);
     }
 
     @Test
@@ -57,7 +61,6 @@ public class StationServiceTest {
         //when & then
         assertThatExceptionOfType(AlreadyExistException.class)
                 .isThrownBy(() -> StationService.register(name));
-        StationRepository.deleteStation(name);
     }
 
     @Test

@@ -8,11 +8,11 @@ public class StationService {
     }
 
     public static void register(String name) {
-        StationRepository.addStation(new Station(name));
+        StationRepository.register(new Station(name));
     }
 
     public static void remove(String name) {
         StationValidator.validateRemoval(name);
-        StationRepository.deleteStation(name);
+        StationRepository.removeByName(name);
     }
 }
