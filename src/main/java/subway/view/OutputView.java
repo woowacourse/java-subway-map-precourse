@@ -35,7 +35,7 @@ public class OutputView {
             return;
         }
         if (mainFunctionNumber.equals("4")) {
-            printSubwayMap();
+            printSubwayMap(LineRepository.lines());
             return;
         }
     }
@@ -63,10 +63,24 @@ public class OutputView {
         System.out.println("1. 구간 등록");
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기");
+        printEmptyLine();
     }
 
-    private static void printSubwayMap() {
+    public static void printSubwayMap(List<Line> lines) {
         System.out.println("## 지하철 노선도");
+        for (Line line : lines) {
+            System.out.println(INFO_PREFIX + line.getName());
+            System.out.println(INFO_PREFIX + "---");
+            printStationsInLine(line);
+            printEmptyLine();
+        }
+        printEmptyLine();
+    }
+
+    private static void printStationsInLine(Line line) {
+        for (Station station : line.getStations()) {
+            System.out.println(INFO_PREFIX + station.getName());
+        }
     }
 
     public static void printSuccessToCreateStation() {

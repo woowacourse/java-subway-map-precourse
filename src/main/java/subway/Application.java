@@ -18,13 +18,11 @@ public class Application {
         while (true) {
             OutputView.printMainFunctions();
             String mainFunctionNumber = InputView.inputFunctionNumber(scanner);
-            // 메인 화면에서 종료
             if (mainFunctionNumber.equals("Q")) {
                 break;
             }
-            // 4번 - 지하철 노선도 출력
             if (mainFunctionNumber.equals("4")) {
-                
+                OutputView.printSubwayMap(LineRepository.lines());
             }
             Functions mainFunctions = machine.selectMainFunctions(mainFunctionNumber);
 
