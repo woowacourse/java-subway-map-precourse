@@ -12,6 +12,15 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public static boolean isExistEqualName(String newName) {
+        for(Station station: stations) {
+            if (station.equalName(newName)) {
+               return true;
+            }
+        }
+        return false;
+    }
+
     public static void addStation(Station station) {
         stations.add(station);
     }
@@ -28,4 +37,6 @@ public class StationRepository {
         }
         return stationNames;
     }
+
+
 }
