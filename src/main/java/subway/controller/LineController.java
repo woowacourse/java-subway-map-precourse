@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -62,6 +63,6 @@ public class LineController extends Controller {
     }
 
     private void viewLines() {
-
+        OutputView.printLines(LineRepository.lines());
     }
 }

@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.List;
 import subway.controller.Function;
+import subway.domain.line.Line;
 import subway.domain.station.Station;
 
 public class OutputView {
@@ -23,6 +24,7 @@ public class OutputView {
     private static final String LINE_MENU_ADD = "1. 노선 등록";
     private static final String LINE_MENU_DELETE = "2. 노선 삭제";
     private static final String LINE_MENU_VIEW = "3. 노선 조회";
+    private static final String LINE_VIEW_LABEL = "## 노선 목록";
 
     private static final String NON_MAIN_MENU_QUIT = "B. 돌아가기";
 
@@ -79,6 +81,14 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
+    public static void printLines(List<Line> lines) {
+        System.out.println();
+        System.out.println(LINE_VIEW_LABEL);
+        lines.stream()
+                .map(Line::getName)
+                .map(x -> INFO_LABEL + x)
+                .forEach(System.out::println);
+    }
 
     public static void printError(Exception e) {
         System.out.println(e.getMessage());
