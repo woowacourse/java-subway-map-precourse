@@ -3,7 +3,6 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class StationRepository {
     private static final String ERR_STATION_NOT_IN_REPO = "존재하지 않는 역 이름입니다";
@@ -17,8 +16,8 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean deleteStation(Station station) {
+        return stations.remove(station);
     }
 
     public static Station getStation(String name) {
@@ -27,6 +26,7 @@ public class StationRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERR_STATION_NOT_IN_REPO));
     }
+
     public static boolean isInStationRepository(String name) {
         return stations().stream()
                 .anyMatch(station -> station.getName().equals(name));

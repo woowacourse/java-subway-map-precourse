@@ -51,6 +51,10 @@ public class Line {
         }
     }
 
+    public boolean hasStation(Station station) {
+        return stations.contains(station);
+    }
+
     public boolean remove(Station station) {
         return stations.remove(station);
     }
