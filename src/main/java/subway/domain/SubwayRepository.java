@@ -9,7 +9,13 @@ public class SubwayRepository {
         return Collections.unmodifiableMap(subway);
     }
 
-    public static void addLineStation(Line line, Station station, Integer order) {
+    public static void addLineStation(Line line, Station station) {
+        if (subway.containsKey(line)) {
+            subway.get(line).add(station);
+        }
+    }
+
+    public static void addLineStationSpecificPlace(Line line, Station station, Integer order) {
         if (subway.containsKey(line)) {
             subway.get(line).add(order, station);
         }
@@ -27,5 +33,9 @@ public class SubwayRepository {
             }
         }
         return flag;
+    }
+
+    public static boolean findLineByName(String nowInputName) {
+        return subway().containsKey(LineRepository.findLineByName(nowInputName));
     }
 }

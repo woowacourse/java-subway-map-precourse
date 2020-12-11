@@ -26,6 +26,6 @@ public class LineRepository {
                 return line;
             }
         }
-        throw new IllegalArgumentException("일치하는 노선이 없습니다.");
+        return null;
     }
 }
