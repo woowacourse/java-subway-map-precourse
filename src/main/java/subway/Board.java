@@ -2,7 +2,12 @@ package subway;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Board {
 
@@ -33,15 +38,29 @@ public class Board {
 
     private final static int MIN_NAME_LENGTH = 2;
 
+    private final static List<String> initSections = Arrays
+            .asList("2호선=교대역 강남역 역삼역", "3호선=교대역 남부터미널역 양재역", "신분당선=강남역 양재역 양재시민의숲역");
 
     private final static Subway subway = new Subway();
 
     public Board() {
-
+        for (String str : initSections) {
+            setInitSection(str);
+        }
     }
 
-    private void setInitStation() {
+    private void setInitSection(String str) {
+        String[] split = str.split("=");
+        String lineName = split[0];
+        List<Station> stations = Arrays.stream(split[1].split(" ")).map(Station::new).collect(Collectors.toList());
 
+        Line line = new Line(lineName);
+        LineRepository.addLine(line);
+
+        for (Station station : stations) {
+            StationRepository.addStation(station);
+            line.addStation(station.getName());
+        }
     }
 
     public boolean addStation(String name) {
@@ -150,8 +169,8 @@ public class Board {
 
     private boolean checkValidSectionIndex(Line line, int index) {
         if (!line.isValidSection(index)) {
-           System.out.println(SECTION_INDEX_ERROR);
-           return false;
+            System.out.println(SECTION_INDEX_ERROR);
+            return false;
         }
         return true;
     }
