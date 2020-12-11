@@ -3,6 +3,9 @@ package subway.domain.name;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import subway.exception.InvalidLineNameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +39,18 @@ class LineNameTest {
 
         Collections.sort(names);
         System.out.println(names.toString());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"안역", "강남", "선삼팔", "신희김", "신분당"})
+    @Description("유요하지 않는 이름 예외 발생 ")
+    public void createFail(String name) {
+
+        Assertions.assertThrows(InvalidLineNameException.class, () -> {
+            LineName of = LineName.of(name);
+        });
+
+
     }
 
 }
