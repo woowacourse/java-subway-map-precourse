@@ -1,5 +1,7 @@
 package subway.constant;
 
+import subway.exception.InvalidInputException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,12 @@ public enum Service {
         return code;
     }
 
-    public static boolean isAvailable(String input) {
+    public static void validate(String input) throws InvalidInputException {
+        if (!isAvailable(input))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_SERVICE_CODE);
+    }
+
+    private static boolean isAvailable(String input) {
         initServiceCodes();
         return serviceCodes.contains(input);
     }
