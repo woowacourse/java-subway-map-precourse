@@ -14,6 +14,7 @@ public class UserInterface {
     }
 
     public static void lineSetting(Scanner scanner) {
+        Print.lineSetting();
         String input = scanner.next();
     }
 

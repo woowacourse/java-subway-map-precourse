@@ -22,6 +22,16 @@ public class Print {
         );
     }
 
+    public static void lineSetting() {
+        System.out.printf(Constant.HASH + Constant.LINE + Constant.SETTING_MENU + "%n"
+                + Constant.ONE + Constant.DOT + Constant.LINE + Constant.ADD + "%n"
+                + Constant.TWO + Constant.DOT + Constant.LINE + Constant.DELETE + "%n"
+                + Constant.THREE + Constant.DOT + Constant.LINE + Constant.LOOKUP + "%n"
+                + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
+                + Constant.HASH + Constant.CHOOSE_FUNCTION
+        );
+    }
+
     public static void getStationName() {
         System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.ADD, Constant.STATION);
     }
