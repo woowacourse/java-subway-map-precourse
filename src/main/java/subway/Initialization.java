@@ -6,17 +6,28 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 enum DefaultStations {
-    GYODAE("교대역"), GANGNAM("강남역"), YEOKSAM("역삼역"), NAMBU_BUS_TERMINAL("남부터미널역"),
-    YANGJAE("양재역"), YANGJAE_CITIZEN_FOREST("양재시민의숲역"), MAEBONG("매봉역");
+    GYODAE("교대역", new DefaultLines[]{DefaultLines.LINE_2, DefaultLines.LINE_3}),
+    GANGNAM("강남역", new DefaultLines[]{DefaultLines.LINE_2, DefaultLines.LINE_SHINBUNDANG}),
+    YEOKSAM("역삼역", new DefaultLines[]{DefaultLines.LINE_2}),
+    NAMBU_BUS_TERMINAL("남부터미널역", new DefaultLines[]{DefaultLines.LINE_3}),
+    YANGJAE("양재역", new DefaultLines[]{DefaultLines.LINE_3, DefaultLines.LINE_SHINBUNDANG}),
+    YANGJAE_CITIZEN_FOREST("양재시민의숲역", new DefaultLines[]{DefaultLines.LINE_SHINBUNDANG}),
+    MAEBONG("매봉역", new DefaultLines[]{DefaultLines.LINE_3});
 
     private final String name;
+    private final DefaultLines[] containedLines;
 
-    DefaultStations(String name) {
+    DefaultStations(String name, DefaultLines[] containedLines) {
         this.name = name;
+        this.containedLines = containedLines;
     }
 
     public String getName() {
         return name;
+    }
+
+    public DefaultLines[] getContainedLines() {
+        return containedLines;
     }
 }
 
@@ -68,7 +79,15 @@ public class Initialization {
     public void registerStations() {
         DefaultStations[] defaultStations = DefaultStations.values();
         for (DefaultStations defaultStation : defaultStations) {
-            StationRepository.addStation(new Station(defaultStation.getName()));
+            Station station = new Station(defaultStation.getName());
+            registerLinesInStation(defaultStation, station);
+            StationRepository.addStation(station);
+        }
+    }
+
+    public void registerLinesInStation(DefaultStations defaultStation, Station station) {
+        for (DefaultLines defaultLine : defaultStation.getContainedLines()) {
+            station.registerIn(defaultLine.getName());
         }
     }
 
