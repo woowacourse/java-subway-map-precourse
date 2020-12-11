@@ -16,12 +16,12 @@ public class LinkService extends CrudService {
 
     @Override
     public void add() {
-
+        System.out.println(Information.ADD_LINK_INFO_LINE);
     }
 
     @Override
     public void delete() {
-
+        System.out.println(Information.DELETE_LINK_INFO_LINE);
     }
 
     @Override
