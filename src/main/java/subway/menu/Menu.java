@@ -6,5 +6,6 @@ public interface Menu {
 
     Menu[] getValues();
 
+    String getTitle();
 
 }

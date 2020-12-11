@@ -33,4 +33,11 @@ public enum MainMenu implements Menu {
     public Menu[] getValues() {
         return values();
     }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+
 }

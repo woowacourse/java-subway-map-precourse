@@ -29,4 +29,8 @@ public enum SectionMenu implements Menu {
     public Menu[] getValues() {
         return values();
     }
+    @Override
+    public String getTitle() {
+        return title;
+    }
 }
