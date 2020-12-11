@@ -88,6 +88,8 @@ public class Application {
             return;
         if(StationFunction.ADD.matchMenu(menu))
             addStation();
+        if(StationFunction.INQUIRY.matchMenu(menu))
+            inquiryStationList();
     }
 
     private static void addStation(){
@@ -97,15 +99,17 @@ public class Application {
             if(stationRepository.isStationExist(newStation))
                 throw new IllegalArgumentException();
             stationRepository.addStation(newStation);
-            for (Station s : stationRepository.stations()) {
-                System.out.println(s.getName());
-            }
             printUtils.printCompleteAddStation();
         }catch(IllegalArgumentException e){
             printUtils.duplicateStationError();
             addStation();
             return;
         }
+    }
+
+    private static void inquiryStationList() {
+        printUtils.printStationsList();
+        stationRepository.printStationsList();
     }
 
     private static void lineManagementMenu() {

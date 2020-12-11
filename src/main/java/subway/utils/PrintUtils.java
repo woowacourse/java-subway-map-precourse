@@ -37,6 +37,14 @@ public class PrintUtils {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.\n");
     }
 
+    public void printStationsList(){
+        System.out.println("\n## 역 목록");
+    }
+
+    public void printStation(String stationName){
+        System.out.println("[INFO] "+stationName);
+    }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }
