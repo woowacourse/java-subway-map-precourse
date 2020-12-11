@@ -1,12 +1,14 @@
 package subway;
 
+import subway.service.MainService;
+
 import java.util.Scanner;
 
 public class Application {
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        Manager manager = new Manager(scanner);
-        manager.start();
+        MainService mainService = new MainService(scanner);
+        mainService.start();
     }
 }

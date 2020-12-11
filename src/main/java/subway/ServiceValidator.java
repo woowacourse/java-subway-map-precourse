@@ -1,13 +1,13 @@
 package subway;
 
-import subway.constant.Function;
+import subway.constant.Service;
 import subway.exception.InvalidInputException;
 
 
-public class FunctionValidator {
+public class ServiceValidator {
 
     public void validate(String input) throws InvalidInputException {
-        if (!Function.isAvailable(input))
+        if (!Service.isAvailable(input))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_FUNCTION_CODE);
     }
 }
