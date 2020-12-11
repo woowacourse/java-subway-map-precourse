@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import subway.setup.Setting;
 import subway.view.Input;
 import subway.view.MainView;
 
@@ -9,6 +10,10 @@ import subway.view.MainView;
  * @since 2020/12/10
  */
 public class SubwayApplication {
+    static {
+        Setting.setUpSubwayInformation();
+    }
+
     private final MainView mainView;
 
     public SubwayApplication(Scanner scanner) {
