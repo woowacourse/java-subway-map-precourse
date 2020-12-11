@@ -23,6 +23,10 @@ public class Line {
         return name;
     }
 
+    public List<Station> getStations() {
+        return stations;
+    }
+
     public boolean contains(String stationName) {
         for (Station station : stations) {
             if (station.getName().equals(stationName)) {

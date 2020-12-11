@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
+
     private static final List<Line> lines = new ArrayList<>();
+    private static final int VALID_MIN_SIZE_OF_LINE_STATIONS = 2;
 
     static {
         lines.add(new Line("2호선", new ArrayList<Station>(Arrays.asList(
@@ -48,6 +50,16 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    private static void validateStationsSizeInLineToDelete(String name) {
+        Line lineToDelete = lines.stream()
+            .filter(line -> line.getName().equals(name))
+            .findFirst()
+            .get();
+        if (lineToDelete.getStations().size() <= VALID_MIN_SIZE_OF_LINE_STATIONS) {
+            throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다.");
+        }
     }
 
     public static boolean contains(String stationName) {
