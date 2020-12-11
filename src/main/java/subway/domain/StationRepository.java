@@ -34,6 +34,7 @@ public class StationRepository {
         for (Station station : stations) {
             if (station.equals(newStation)) {
                 nameFlag = false;
+                break;
             }
         }
         if (nameFlag) {

@@ -21,6 +21,7 @@ public class InputView {
     private static final String INPUT_FIRST_STATION_ADD_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String INPUT_LAST_STATION_ADD_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String INPUT_STATION_NAME_DELETE_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
+    private static final String INPUT_LINE_NAME_DELETE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
     private InputView() {
 
     }
@@ -87,6 +88,15 @@ public class InputView {
         Station lastStation = new Station(scanner.nextLine());
         StationRepository.validateNameExist(lastStation);
         line.init(firstStation, lastStation);
+    }
+
+    public static void inputLineNameDelete(Scanner scanner) {
+        try {
+            System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);
+            LineRepository.deleteLineByName(scanner.nextLine());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

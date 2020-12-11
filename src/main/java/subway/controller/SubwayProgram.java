@@ -83,6 +83,10 @@ public class SubwayProgram {
             InputView.inputLineNameAdd(scanner);
             return;
         }
+        if (SubMenuType.DELETE.equals(lineMenuType)) {
+            InputView.inputLineNameDelete(scanner);
+            return;
+        }
     }
 
 
