@@ -44,8 +44,7 @@ public class LineStationService extends InputValidation {
     private void deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
         inputDeleteLineNameRequestMessage();
         String lineName = scanner.nextLine();
-        //validation
-        //1.입력한 노선 이름이 존재하는지 검증한다
+        validateLineNameIsContains(lineName);
         lineStation.deleteLineStation(LineRepository.findLine(lineName).get());
         LineRepository.deleteLineByName(lineName);
         printDeleteLineStationSuccessMessage();

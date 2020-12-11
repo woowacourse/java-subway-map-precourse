@@ -31,7 +31,7 @@ public class SectionService extends InputValidation {
         inputPositionToAddSectionRequestMessage();
         String position = scanner.nextLine();
         //validation
-        //1. 입력한 노선 이름이 존재하는지 검증한다.
+        validateLineNameIsContains(lineName);
         validateStationNameIsContains(stationName);
         //3. 입력값이 숫자인지 검증한다.
         //4. 입력값이 노선의 길이보다 이하의 값인지 검증한다.
@@ -47,7 +47,7 @@ public class SectionService extends InputValidation {
         inputStationNameToDeleteSectionRequestMessage();
         String stationName = scanner.nextLine();
         //validation
-        //1. 입력한 노선 이름이 존재하는지 검증한다.
+        validateLineNameIsContains(lineName);
         //2. 입력한 노선에 역 개수가 2개 이상인지 검증한다.
         validateStationNameIsContains(stationName);
         lineStation.deleteStationInLineByName(LineRepository.findLine(lineName).get(), stationName);

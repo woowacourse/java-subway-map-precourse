@@ -44,4 +44,11 @@ public class InputValidation {
             throw new IllegalArgumentException("[ERROR] 이미 등록된 노선 이름입니다.");
         }
     }
+
+    public void validateLineNameIsContains(String name) {
+        Line findLine = LineRepository.findLine(name).orElse(null);
+        if (Objects.equals(findLine, null)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
+        }
+    }
 }
