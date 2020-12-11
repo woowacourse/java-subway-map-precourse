@@ -6,7 +6,6 @@ import subway.view.Menu;
 
 public class SubwaySystem {
 
-    private Scanner scanner;
     private MenuInputManager menuInputManager;
     private StationSystem stationSystem;
     private LineSystem lineSystem;
@@ -36,7 +35,7 @@ public class SubwaySystem {
             lineSystem.run();
        }
         if(input.equals("3")){
-            Menu.printMenu(MenuItemsRepository.getSectionItems());
+            Menu.printMenu(MenuItemsRepository.getLinkItems());
         }
         if(input.equals("4")){
             System.out.println("노선도 출력");

@@ -45,6 +45,7 @@ public class LineSystem {
         String name = lineInputManager.getLineInput("등록할");
         Line line = new Line(name);
         LineRepository.addLine(line);
+
         InfoMessage.printLineAdded();
     }
 
