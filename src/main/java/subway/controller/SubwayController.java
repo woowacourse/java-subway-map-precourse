@@ -5,6 +5,8 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.StationOutputView;
 
+import static subway.controller.LineFunctionController.PRINT_ERROR_HEAD;
+
 public class SubwayController {
     private static final String function = "역";
     private final InputView inputView;
@@ -21,30 +23,39 @@ public class SubwayController {
     private void startSubway() {
         while (true) {
             OutputView.printMain();
-            String nowFunction = this.inputView.receiveFunction();
+            MainFunctions nowFunction = receiveMainFunction();
             OutputView.printOneLine();
-            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.FINISH)) {
+            if (nowFunction.equals(MainFunctions.FINISH)) {
                 break;
             }
-            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.STATION)) {
+            if (nowFunction.equals(MainFunctions.STATION)) {
                 stationFunction();
             }
-            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.LINE)) {
+            if (nowFunction.equals(MainFunctions.LINE)) {
                 lineFunction();
             }
-            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.WAY)) {
+            if (nowFunction.equals(MainFunctions.WAY)) {
                 wayFunction();
             }
-            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.SUBWAY)) {
+            if (nowFunction.equals(MainFunctions.SUBWAY)) {
                 subwayFunction();
             }
+        }
+    }
+
+    private MainFunctions receiveMainFunction(){
+        try{
+            return MainFunctions.haveNumber(this.inputView.receiveFunction());
+        }catch (IllegalArgumentException e){
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage()+"\n");
+            return receiveMainFunction();
         }
     }
 
     private void stationFunction() {
         while (true) {
             OutputView.printDetailFunction(MainFunctions.STATION);
-            DetailFunctions detailFunction = DetailFunctions.haveNumber(this.inputView.receiveFunction());
+            DetailFunctions detailFunction = receiveDetailFunction();
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
@@ -52,10 +63,19 @@ public class SubwayController {
         }
     }
 
+    private DetailFunctions receiveDetailFunction(){
+        try{
+            return DetailFunctions.haveNumber(this.inputView.receiveFunction());
+        }catch (IllegalArgumentException e){
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage()+"\n");
+            return receiveDetailFunction();
+        }
+    }
+
     private void lineFunction() {
         while (true) {
             OutputView.printDetailFunction(MainFunctions.LINE);
-            DetailFunctions detailFunction = DetailFunctions.haveNumber(this.inputView.receiveFunction());
+            DetailFunctions detailFunction = receiveDetailFunction();
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
@@ -66,7 +86,7 @@ public class SubwayController {
     private void wayFunction() {
         while (true) {
             OutputView.printDetailFunction(MainFunctions.WAY);
-            DetailFunctions detailFunction = DetailFunctions.haveNumber(this.inputView.receiveFunction());
+            DetailFunctions detailFunction = receiveDetailFunction();
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }

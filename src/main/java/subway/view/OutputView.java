@@ -44,6 +44,7 @@ public class OutputView {
             System.out.println(PRINT_INFO_HEAD+line.getName());
             System.out.println(PRINT_INFO_HEAD+ DELIMITER_LINE_STATION);
             subway.get(line).forEach(station -> System.out.println(PRINT_INFO_HEAD+station.getName()));
+            System.out.println();
         }
         System.out.println();
     }

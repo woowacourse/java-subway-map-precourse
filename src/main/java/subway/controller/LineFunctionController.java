@@ -6,6 +6,8 @@ import subway.view.LineOutputView;
 
 public class LineFunctionController {
 
+    public static final String PRINT_ERROR_HEAD = "[ERROR] ";
+
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
             enrollLine(detailFunction, inputView);
@@ -22,6 +24,7 @@ public class LineFunctionController {
     private static void enrollLine(DetailFunctions detailFunction, InputView inputView) {
         String enrollingLine = makeValidateEnrollName(inputView);
         LineRepository.addLine(new Line(enrollingLine));
+        SubwayRepository.addLine(LineRepository.findLineByName(enrollingLine));
         SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidateStation("상행", inputView));
         SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidateStation("하행", inputView));
         LineOutputView.printSuccess(detailFunction);
@@ -32,7 +35,7 @@ public class LineFunctionController {
             LineOutputView.printStartOrFinishStation(startOrFinish);
             return StationRepository.findStationByName(StationNameValidator.makeEnrolledStationName(inputView.receiveFunctionInfo()));
         } catch (IllegalArgumentException e){
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println(PRINT_ERROR_HEAD +e.getMessage());
             return makeValidateStation(startOrFinish, inputView);
         }
     }

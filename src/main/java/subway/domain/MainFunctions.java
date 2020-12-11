@@ -21,7 +21,7 @@ public enum MainFunctions {
                 return mainFunctions;
             }
         }
-        throw new IllegalArgumentException("잘못된 입력입니다");
+        throw new IllegalArgumentException("잘못된 입력입니다.");
     }
 
     public String getFunctionName() {
