@@ -12,6 +12,7 @@ public class UserInterface {
         String input = scanner.next();
         input = Exception.isNotSpace(input);
         input = Exception.isNotEmpty(input);
+        input = Exception.isNotTooShort(input);
         return Exception.isStation(input);
     }
 }

@@ -1,6 +1,8 @@
 package subway.domain;
 
 public class Exception {
+    private static final int NAME_LENGTH_MINIMUM = 2;
+    
     static String isStation(String input){
         String lastChar = input.substring(input.length() - 1, input.length());
         if(lastChar.equals("역")){
@@ -18,6 +20,13 @@ public class Exception {
 
     static String isNotSpace(String input){
         if(!input.contains(" ")){
+            return input;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    static String isNotTooShort(String input){
+        if(input.length() >= NAME_LENGTH_MINIMUM){
             return input;
         }
         throw new IllegalArgumentException();
