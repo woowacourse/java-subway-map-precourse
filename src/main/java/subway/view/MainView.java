@@ -1,6 +1,6 @@
 package subway.view;
 
-import subway.MenuType.MainMenuType;
+import subway.menuType.MainMenuType;
 import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 

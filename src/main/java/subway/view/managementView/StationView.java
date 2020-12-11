@@ -1,6 +1,6 @@
 package subway.view.managementView;
 
-import subway.MenuType.FunctionType;
+import subway.menuType.FunctionType;
 import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 

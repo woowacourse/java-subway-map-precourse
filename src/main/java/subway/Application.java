@@ -7,7 +7,7 @@
 
 package subway;
 
-import subway.MenuType.MainMenuType;
+import subway.menuType.MainMenuType;
 import subway.controller.LineManagement;
 import subway.controller.StationManagement;
 import subway.domain.LineRepository;

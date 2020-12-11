@@ -1,6 +1,6 @@
 package subway.view.managementView;
 
-import subway.MenuType.FunctionType;
+import subway.menuType.FunctionType;
 import subway.dto.DTO;
 import subway.view.InputView;
 import subway.view.OutputView;

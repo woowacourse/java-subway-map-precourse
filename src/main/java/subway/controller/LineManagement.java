@@ -1,6 +1,6 @@
 package subway.controller;
 
-import subway.MenuType.FunctionType;
+import subway.menuType.FunctionType;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
