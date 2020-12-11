@@ -6,7 +6,7 @@ import subway.view.OutputView;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class addStationView implements LineStationViewStrategy {
+public class AddStationOnLineView implements LineStationViewStrategy {
     private static final String VIEW_NAME = "구간 등록";
     private static final String GET_LINE_MESSAGE = "노선을 입력하세요.";
     private static final String GET_STATION_MESSAGE = "역이름을 입력하세요.";
@@ -16,7 +16,7 @@ public class addStationView implements LineStationViewStrategy {
     private final LineController lineController;
     private final Scanner scanner;
 
-    public addStationView(LineController lineController, Scanner scanner) {
+    public AddStationOnLineView(LineController lineController, Scanner scanner) {
         this.lineController = lineController;
         this.scanner = scanner;
     }
@@ -33,16 +33,15 @@ public class addStationView implements LineStationViewStrategy {
             OutputView.enter();
 
             OutputView.selectView(GET_INDEX_MESSAGE);
-            int index = scanner.nextInt();
+            int index = Integer.parseInt(scanner.nextLine());
             OutputView.enter();
 
             lineController.addStationOnLine(stationName, lineName, index);
             OutputView.infoView(ADD_STATION_COMPLETE);
+        } catch (NumberFormatException e) {
+            OutputView.errorView(WRONG_NUMBER);
         } catch (IllegalStateException e) {
             OutputView.errorView(e.getMessage());
-        } catch (InputMismatchException e) {
-            OutputView.errorView(WRONG_NUMBER);
-            scanner.nextLine();
         }
     }
 

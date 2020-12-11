@@ -4,6 +4,7 @@ import subway.line.LineController;
 import subway.view.BackView;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
+import subway.view.stationManage.DeleteStationView;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,7 +19,8 @@ public class LineStationManageView implements ViewStrategy {
 
     public LineStationManageView(Scanner scanner, LineController lineController) {
         this.scanner = scanner;
-        LINE_STATION_VIEW.put("1", new addStationView(lineController, scanner));
+        LINE_STATION_VIEW.put("1", new AddStationOnLineView(lineController, scanner));
+        LINE_STATION_VIEW.put("2", new RemoveStationFromLineView(lineController, scanner));
         LINE_STATION_VIEW.put("B", new BackView());
     }
 
