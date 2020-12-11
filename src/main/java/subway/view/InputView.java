@@ -73,6 +73,11 @@ public class InputView {
         }
     }
 
+    public static StationName inputStationNameAdd(Scanner scanner) {
+        System.out.println(INPUT_STATION_NAME_ADD_MESSAGE);
+        return new StationName(scanner.nextLine());
+    }
+
 
 
     public static LineName inputLineNameAdd(Scanner scanner) {

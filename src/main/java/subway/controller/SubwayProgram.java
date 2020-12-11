@@ -97,7 +97,7 @@ public class SubwayProgram {
 
     private void selectStationMenu(Menu stationMenuType) {
         if (SubMenuType.ADD.equals(stationMenuType)) {
-            
+            addStationInStationRepository();
             return;
         }
 //        if (SubMenuType.DELETE.equals(stationMenuType)) {
@@ -109,7 +109,14 @@ public class SubwayProgram {
         }
     }
 
-
+    private void addStationInStationRepository() {
+        try {
+            StationName stationName = InputView.inputStationNameAdd(scanner);
+            StationRepository.addStation(stationName);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     private void selectLineMenu(Menu lineMenuType) {
 //        if (SubMenuType.ADD.equals(lineMenuType)) {
