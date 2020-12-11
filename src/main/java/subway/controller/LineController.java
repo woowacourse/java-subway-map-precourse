@@ -69,7 +69,8 @@ public class LineController {
 	}
 
 	private static void showLines() {
-		System.out.println(LineMessages.REFERENCE);
+		System.out.println();
+		System.out.println(LineMessages.REFERENCE.getMessage());
 		LineRepository.lines()
 				.stream()
 				.map(Line::getName)

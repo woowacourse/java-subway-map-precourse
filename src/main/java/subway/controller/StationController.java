@@ -44,6 +44,7 @@ public class StationController {
 	}
 
 	private static void showStations() {
+		System.out.println();
 		System.out.println(StationMessages.REFERENCE.getMessage());
 		StationRepository
 				.stations()

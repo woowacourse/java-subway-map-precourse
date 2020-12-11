@@ -32,6 +32,7 @@ public class MainController {
 
 	public static void showWholeMap() {
 		List<Line> lines = LineRepository.lines();
+		System.out.println();
 		for (Line line : lines) {
 			System.out.println(General.INFO.getMessage() + line.getName());
 			System.out.println(General.DIVISION_LINE.getMessage());
