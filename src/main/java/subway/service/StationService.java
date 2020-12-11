@@ -24,9 +24,6 @@ public class StationService {
         if(menu.equals(MenuType.STATION_SEARCH.getKey())) {
             printStations();
         }
-        if(menu.equals(MenuType.BACK.getKey())) {
-            return;
-        }
     }
 
     private void addStation(Scanner scanner) {

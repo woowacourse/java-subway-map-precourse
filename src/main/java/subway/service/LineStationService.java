@@ -20,9 +20,6 @@ public class LineStationService {
         if(menu.equals(MenuType.LINE_STATION_SEARCH.getKey())) {
             printLines();
         }
-        if(menu.equals(MenuType.BACK.getKey())) {
-            return;
-        }
     }
 
     private void addLineStation(Scanner scanner, LineStationRepository lineStation) {

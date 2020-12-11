@@ -2,12 +2,14 @@ package subway.service;
 
 import subway.domain.LineStationRepository;
 import subway.domain.MenuType;
+import subway.utils.InputValidation;
 
 import java.util.Scanner;
 
+import static subway.domain.MenuType.*;
 import static subway.view.OutputView.*;
 
-public class SubwayMapService {
+public class SubwayMapService extends InputValidation {
     private final StationService stationService;
     private final LineStationService lineStationService;
     private final SectionService sectionService;
@@ -36,18 +38,21 @@ public class SubwayMapService {
     private void stationManagement(Scanner scanner, LineStationRepository lineStation) {
         printStationManagementMenu();
         String menu = scanner.nextLine();
+        validateMenuRange(STATION_MENU_RANGE.getKeys(), menu);
         stationService.selectStationManagementMenu(scanner, menu, lineStation);
     }
 
     private void lineStationManagement(Scanner scanner, LineStationRepository lineStation) {
         printLineStationManagementMenu();
         String menu = scanner.nextLine();
+        validateMenuRange(LINE_STATION_MENU_RANGE.getKeys(), menu);
         lineStationService.selectLineStationManagementMenu(scanner, menu, lineStation);
     }
 
     private void sectionManagement(Scanner scanner, LineStationRepository lineStation) {
         printSectionManagementMenu();
         String menu = scanner.nextLine();
+        validateMenuRange(SECTION_MENU_RANGE.getKeys(), menu);
         sectionService.selectSectionManagementMenu(scanner, menu, lineStation);
     }
 

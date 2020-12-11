@@ -20,9 +20,6 @@ public class SectionService {
         if(menu.equals(MenuType.SECTION_DELETE.getKey())) {
             deleteSection(scanner, lineStation);
         }
-        if(menu.equals(MenuType.BACK.getKey())) {
-            return;
-        }
     }
 
     private void addSection(Scanner scanner, LineStationRepository lineStation) {
