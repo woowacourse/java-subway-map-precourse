@@ -47,6 +47,7 @@ public class StationManagementViewState extends ViewState{
     @Override
     protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         checkAndAddStation(feature, application, scanner);
+        checkAndRemoveStation(feature, application, scanner);
         checkAndSwitchViewToMain(feature, application);
     }
 
@@ -57,6 +58,17 @@ public class StationManagementViewState extends ViewState{
             printWhiteSpace();
             addStation(stationName);
             printStationRegisterFinishLog();
+            switchViewToStationManagement(application);
+        }
+    }
+
+    private void checkAndRemoveStation(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+        if(feature.equals(BTN_DELETE_STATION)){
+            printStationRemoveLog();
+            String stationName = getStationName(scanner);
+            printWhiteSpace();
+            removeStation(stationName);
+            printStationRemoveFinishLog();
             switchViewToStationManagement(application);
         }
     }
@@ -84,8 +96,25 @@ public class StationManagementViewState extends ViewState{
         System.out.println(viewStringBuilder.toString());
     }
 
+    private void printStationRemoveLog(){
+        StringBuilder viewStringBuilder = new StringBuilder();
+        viewStringBuilder.append(StationManagementViewComponent.getRemoveStationComponent());
+        System.out.println(viewStringBuilder.toString());
+    }
+
+    private void printStationRemoveFinishLog(){
+        StringBuilder viewStringBuilder = new StringBuilder();
+        viewStringBuilder.append(StationManagementViewComponent.getRemoveStationFinishComponent());
+        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        System.out.println(viewStringBuilder.toString());
+    }
+
     private void addStation(String name) throws Exception {
         stationController.addStation(name);
+    }
+
+    private void removeStation(String name) throws Exception {
+        stationController.removeStation(name);
     }
 
     private void switchViewToStationManagement(SubwayLineMap application){
