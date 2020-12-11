@@ -10,6 +10,7 @@ import subway.repository.StationRepository;
 
 import java.util.Scanner;
 
+import static subway.constant.Constant.MIN_LINE_LENGTH;
 import static subway.constant.Constant.MIN_ORDER;
 
 public class LinkService extends CrudService {
@@ -93,6 +94,7 @@ public class LinkService extends CrudService {
     public void delete() {
         Link targetLink = getTargetLinkInput();
         validateTargetLink(targetLink);
+        deleteTargetLink(targetLink);
         System.out.println(Information.DELETE_LINK_SUCCESS);
     }
 
@@ -115,7 +117,20 @@ public class LinkService extends CrudService {
     private void validateTargetLink(Link targetLink) {
         validateLineExists(targetLink.getLineName());
         validateStationExists(targetLink.getStationName());
+        validateLineLength(targetLink.getLineName());
     }
+
+    private void validateLineLength(String lineName) {
+        Line targetLine = getTargetLine(lineName);
+        if (targetLine.getStations().size() < MIN_LINE_LENGTH)
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_LINK_AVAILABLE);
+    }
+
+    private void deleteTargetLink(Link targetLink) {
+        Line targetLine = getTargetLine(targetLink.getLineName());
+        targetLine.deleteTargetLink(targetLink);
+    }
+
 
     @Override
     public void show() {

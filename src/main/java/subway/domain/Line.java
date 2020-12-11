@@ -70,4 +70,10 @@ public class Line {
         stations.add(targetIndex, station);
         setUpAndDownEndStations();
     }
+
+    public void deleteTargetLink(Link targetLink) {
+        Station station = new Station(targetLink.getStationName());
+        stations.remove(station);
+        setUpAndDownEndStations();
+    }
 }
