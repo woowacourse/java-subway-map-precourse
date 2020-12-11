@@ -2,6 +2,7 @@ package subway.controller;
 
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
+import subway.domain.station.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -19,7 +20,7 @@ public class LineController extends Controller {
     public void run() {
         try {
             String functionDecision = inputView.inputFunction(Function.LINE_MENU);
-            if(Function.isExitDecision(functionDecision, Function.LINE_MENU)) {
+            if (Function.isExitDecision(functionDecision, Function.LINE_MENU)) {
                 return;
             }
             Function.validate(functionDecision, Function.LINE_MENU);
