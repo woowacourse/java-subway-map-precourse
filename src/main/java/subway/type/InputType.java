@@ -4,11 +4,11 @@ package subway.type;
  * 기능 입력 문자 상수를 모아둔 Enum 클래스
  */
 public enum InputType {
-    MAIN_STATION_MANAGEMENT("1"),
-    MAIN_LINE_MANAGEMENT("2"),
-    MAIN_SECTION_MANAGEMENT("3"),
-    MAIN_SUBWAY_MAP_PRINT("4"),
-    SCREEN_QUITTING("Q");
+    INPUT_ONE("1"),
+    INPUT_TWO("2"),
+    INPUT_THREE("3"),
+    INPUT_FOUR("4"),
+    INPUT_QUITTING("Q");
 
     private final String input;
 

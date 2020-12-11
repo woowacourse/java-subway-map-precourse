@@ -30,23 +30,23 @@ public class SubwayController {
     }
 
     public static boolean quitSubway(String mainInput) {
-        return mainInput.equals(InputType.SCREEN_QUITTING.getInput());
+        return mainInput.equals(InputType.INPUT_QUITTING.getInput());
     }
 
     public static void chooseFeature(String mainInput) {
-        if (mainInput.equals(InputType.MAIN_STATION_MANAGEMENT.getInput())) {
+        if (mainInput.equals(InputType.INPUT_ONE.getInput())) {
             OutputView.printStationManagementScreen();
             return;
         }
-        if (mainInput.equals(InputType.MAIN_LINE_MANAGEMENT.getInput())) {
+        if (mainInput.equals(InputType.INPUT_TWO.getInput())) {
             OutputView.printLineManagementScreen();
             return;
         }
-        if (mainInput.equals(InputType.MAIN_SECTION_MANAGEMENT.getInput())) {
+        if (mainInput.equals(InputType.INPUT_THREE.getInput())) {
             OutputView.printSectionManagementScreen();
             return;
         }
-        if (mainInput.equals(InputType.MAIN_SUBWAY_MAP_PRINT.getInput())) {
+        if (mainInput.equals(InputType.INPUT_FOUR.getInput())) {
             // TODO: 지하철 노선도 출력 기능 구현
             return;
         }
