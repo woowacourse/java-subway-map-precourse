@@ -10,6 +10,8 @@ import subway.repository.StationRepository;
 
 import java.util.Scanner;
 
+import static subway.constant.Information.INFO_HEADER;
+
 public class StationService {
 
     private Scanner scanner;
@@ -84,6 +86,9 @@ public class StationService {
     }
 
     private void showStations() {
-        System.out.println(Information.SHOW_STATION_INFO);
+        System.out.print(Information.SHOW_STATION_INFO);
+        for (Station station : StationRepository.stations())
+            System.out.print(INFO_HEADER + station.getName());
+        System.out.println();
     }
 }
