@@ -31,7 +31,7 @@ public class InputUtils {
         }
     }
 
-    public String inputNewStationName(){
+    public String inputStationName(){
         try{
             String stationName = scanner.nextLine();
             if(!validateUtils.isValidStationName(stationName))
@@ -39,7 +39,7 @@ public class InputUtils {
             return stationName;
         }catch(IllegalArgumentException e){
             printUtils.invalidStationNameLengthError();
-            return inputNewStationName();
+            return inputStationName();
         }
     }
 }

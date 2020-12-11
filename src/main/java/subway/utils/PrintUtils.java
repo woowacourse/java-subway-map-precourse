@@ -45,6 +45,14 @@ public class PrintUtils {
         System.out.println("[INFO] "+stationName);
     }
 
+    public void printDeleteStationGuide(){
+        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
+    }
+
+    public void printCompleteDeleteStation(){
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.\n");
+    }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }
@@ -55,5 +63,9 @@ public class PrintUtils {
 
     public void duplicateStationError(){
         System.out.println("[ERROR] 이미 존재하는 역입니다.");
+    }
+
+    public void nonExistentStationError(){
+        System.out.println("[ERROR] 존재하지 않는 역입니다.");
     }
 }

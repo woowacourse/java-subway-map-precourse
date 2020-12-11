@@ -88,6 +88,8 @@ public class Application {
             return;
         if(StationFunction.ADD.matchMenu(menu))
             addStation();
+        if(StationFunction.DELETE.matchMenu(menu))
+            deleteStation();
         if(StationFunction.INQUIRY.matchMenu(menu))
             inquiryStationList();
     }
@@ -95,7 +97,7 @@ public class Application {
     private static void addStation(){
         printUtils.printAddStationGuide();
         try{
-            Station newStation = new Station(inputUtils.inputNewStationName());
+            Station newStation = new Station(inputUtils.inputStationName());
             if(stationRepository.isStationExist(newStation))
                 throw new IllegalArgumentException();
             stationRepository.addStation(newStation);
@@ -103,6 +105,21 @@ public class Application {
         }catch(IllegalArgumentException e){
             printUtils.duplicateStationError();
             addStation();
+            return;
+        }
+    }
+
+    private static void deleteStation() {
+        printUtils.printDeleteStationGuide();
+        try{
+            Station delStation = new Station(inputUtils.inputStationName());
+            if(!stationRepository.isStationExist(delStation))
+                throw new IllegalArgumentException();
+            stationRepository.deleteStation(delStation.getName());
+            printUtils.printCompleteDeleteStation();
+        }catch(IllegalArgumentException e){
+            printUtils.nonExistentStationError();
+            deleteStation();
             return;
         }
     }
