@@ -53,4 +53,7 @@ public class Print {
         System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.DELETE, Constant.STATION);
     }
 
+    public static void stationList() {
+        System.out.printf("%n");
+    }
 }
