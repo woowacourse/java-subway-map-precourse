@@ -1,8 +1,8 @@
 package subway.domain;
 
 public class Constant {
-    public static final String HASH = "## ";
-    public static final String INFO = "[INFO] ";
+    public static final String HASH = "##";
+    public static final String INFO = "[INFO]";
     public static final String DELIMITER = "---";
 
     public static final String ONE = "1";
