@@ -79,6 +79,12 @@ public class OutputView {
 
     public static void printSuccessToCreateLine() {
         System.out.println(INFO_PREFIX + "지하철 노선이 등록되었습니다.");
+        printEmptyLine();
+    }
+
+    public static void printSuccessToDeleteLine() {
+        System.out.println(INFO_PREFIX + "지하철 노선이 삭제되었습니다.");
+        printEmptyLine();
     }
 
     public static void printStations(List<Station> stations) {
@@ -88,4 +94,6 @@ public class OutputView {
         }
         printEmptyLine();
     }
+
+
 }
