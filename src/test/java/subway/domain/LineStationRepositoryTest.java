@@ -35,6 +35,23 @@ class LineStationRepositoryTest {
     }
 
     @Test
+    public void 노선을_삭제한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+        List<Line> oldLines = LineRepository.lines();
+
+        //when
+        lineStation.deleteLineStation(LineRepository.findLine("2호선").get());
+
+        //then
+        List<Line> newLines = LineRepository.lines();
+        Map<Line, List<Station>> lineStations = lineStation.getLineStation();
+
+        printLineStation(lineStations);
+        assertThat(newLines.size()).isEqualTo(2);
+    }
+
+    @Test
     public void 구간_등록을_성공한다() throws Exception {
         //given
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
@@ -45,6 +62,21 @@ class LineStationRepositoryTest {
         Line line = LineRepository.findLine("2호선").get();
         StationRepository.addStation(station);
         lineStation.addStationInLine(line, station, 1);
+
+        //then
+        System.out.println("after==============");
+        printLineStation(lineStation.getLineStation());
+    }
+
+    @Test
+    public void 구간_삭제를_성공한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+        printLineStation(lineStation.getLineStation());
+
+        //when
+        Line line = LineRepository.findLine("3호선").get();
+        lineStation.deleteStationInLineByName(line, "남부터미널역");
 
         //then
         System.out.println("after==============");
@@ -75,23 +107,6 @@ class LineStationRepositoryTest {
         //then
         assertThat(findLine.orElse(null)).isNull();
         fail("등록된 노선 정보가 존재하지 않습니다.");
-    }
-
-    @Test
-    public void 노선을_삭제한다() throws Exception {
-        //given
-        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
-        List<Line> oldLines = LineRepository.lines();
-
-        //when
-        lineStation.deleteLineStation(LineRepository.findLine("2호선").get());
-
-        //then
-        List<Line> newLines = LineRepository.lines();
-        Map<Line, List<Station>> lineStations = lineStation.getLineStation();
-
-        printLineStation(lineStations);
-        assertThat(newLines.size()).isEqualTo(2);
     }
 
     private void printLineStation(Map<Line, List<Station>> lineStations) {
