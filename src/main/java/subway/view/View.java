@@ -99,9 +99,9 @@ public class View {
     public void registerLine() {
         outputView.printRegisterLineQuestion();
         String lineName = inputView.getLine();
-        outputView.printStartStationQuestion();
+        outputView.printLineStartStationQuestion();
         Station startStation = StationRepository.getStation(inputView.getStation());
-        outputView.printEndStationQuestion();
+        outputView.printLineEndStationQuestion();
         Station endStation = StationRepository.getStation(inputView.getStation());
         LineRepository.addLine(new Line(lineName, startStation, endStation));
         outputView.printRegisterLineSuccess();
