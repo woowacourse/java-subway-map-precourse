@@ -43,7 +43,7 @@ public class SubwayController {
             return;
         }
         if (mainInput.equals(InputType.INPUT_THREE.getInput())) {
-            OutputView.printSectionManagementScreen();
+            SectionController.startSection(scanner);
             return;
         }
         if (mainInput.equals(InputType.INPUT_FOUR.getInput())) {
@@ -52,6 +52,4 @@ public class SubwayController {
         }
         OutputView.printInvalidFeatureChoiceException();
     }
-
-
 }
