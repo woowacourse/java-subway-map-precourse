@@ -14,7 +14,7 @@ import subway.view.OutputView;
 public class LineCreateFunction extends Function {
     @Override
     public void operateFunction(Scanner scanner) {
-        String lineName = InputView.inputLineName(scanner);
+        String lineName = InputView.inputLineNameToCreate(scanner);
         String UpwardTerminalStationName = InputView.inputUpwardTerminalStationName(scanner);
         String DownwardTerminalStationName = InputView.inputDownwardTerminalStationName(scanner);
         LineRepository.addLine(new Line(lineName, new ArrayList<Station>(Arrays.asList(

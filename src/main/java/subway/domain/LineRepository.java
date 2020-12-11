@@ -70,4 +70,12 @@ public class LineRepository {
         }
         return false;
     }
+
+    public static void addStation(String lineName, String stationName, int order) {
+        Line foundLine = lines.stream()
+            .filter(line -> line.getName().equals(lineName))
+            .findFirst()
+            .get();
+        foundLine.addStation(stationName, order);
+    }
 }

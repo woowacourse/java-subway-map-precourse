@@ -36,6 +36,11 @@ public class Line {
         return false;
     }
 
+    public void addStation(String stationName, int order) {
+        int index = order - 1;
+        stations.add(index, new Station(stationName));
+    }
+
 
     @Override
     public String toString() {

@@ -24,7 +24,7 @@ public class InputView {
         return input;
     }
 
-    public static String inputLineName(Scanner scanner) {
+    public static String inputLineNameToCreate(Scanner scanner) {
         System.out.println("## 등록할 노선 이름을 입력하세요.");
         String input = scanner.nextLine();
         printEmptyLine();
@@ -47,6 +47,27 @@ public class InputView {
 
     public static String inputLineToDelete(Scanner scanner) {
         System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        String input = scanner.nextLine();
+        printEmptyLine();
+        return input;
+    }
+
+    public static String inputLineName(Scanner scanner) {
+        System.out.println("## 노선을 입력하세요.");
+        String input = scanner.nextLine();
+        printEmptyLine();
+        return input;
+    }
+
+    public static String inputStationName(Scanner scanner) {
+        System.out.println("## 역이름을 입력하세요.");
+        String input = scanner.nextLine();
+        printEmptyLine();
+        return input;
+    }
+
+    public static String inputOrder(Scanner scanner) {
+        System.out.println("## 순서를 입력하세요.");
         String input = scanner.nextLine();
         printEmptyLine();
         return input;
