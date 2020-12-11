@@ -11,12 +11,7 @@ public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
     static {
-        List<String> initialLines = new ArrayList<>(Arrays.asList(
-                "2호선", "3호선", "신분당선"
-        ));
-        initialLines.stream()
-                .map(Line::new)
-                .forEach(LineRepository::addLine);
+        Initializer.initialLineRepository();
     }
 
     public static List<Line> lines() {

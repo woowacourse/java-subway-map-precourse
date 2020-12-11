@@ -36,6 +36,7 @@ public class InputView {
         try {
             String string = deleteWhiteSpaces(scanner.nextLine());
             isNotEmptyStringOrThrowException(string);
+            newLine();
             return selections.searchByValue(string);
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);

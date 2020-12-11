@@ -11,12 +11,7 @@ public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
     static {
-        List<String> initialStations = new ArrayList<>(Arrays.asList(
-                "교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"
-        ));
-        initialStations.stream()
-                .map(Station::new)
-                .forEach(StationRepository::addStation);
+        Initializer.initialStationRepository();
     }
 
     public static List<Station> stations() {
