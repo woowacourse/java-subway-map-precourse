@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class Questions {
-    private static final String ERROR_INVALID_CHOICE = "[ERROR], 선택할 수 없는 기능입니다.";
+    private static final String ERROR_INVALID_CHOICE = "선택할 수 없는 기능입니다.";
     private Map<String, BaseQuestion[]> questions = new HashMap<>();
 
     public Questions() {
