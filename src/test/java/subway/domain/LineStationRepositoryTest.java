@@ -117,4 +117,30 @@ class LineStationRepositoryTest {
             }
         });
     }
+
+    @Test
+    public void 노선에_역이_등록_되어있는지_검증에_성공한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+
+        //when
+        Optional<Station> findStation = StationRepository.findStation("강남역");
+        boolean isContains = lineStation.findStationInLine(findStation.get());
+
+        //then
+        assertThat(isContains).isTrue();
+    }
+
+    @Test
+    public void 노선에_역이_등록_되어있는지_검증에_실패한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+        StationRepository.addStation(new Station("수원역"));
+        //when
+        Optional<Station> findStation = StationRepository.findStation("수원역");
+        boolean isContains = lineStation.findStationInLine(findStation.get());
+
+        //then
+        assertThat(isContains).isFalse();
+    }
 }
