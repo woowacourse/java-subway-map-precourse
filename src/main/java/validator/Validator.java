@@ -5,15 +5,21 @@ import java.util.List;
 
 public class Validator {
 
-    public void inputValidFunction(String input) {
+    public void isValidFunction(String input) {
         List<String> mainFunc = Arrays.asList("1", "2", "3", "4", "Q");
         if (!mainFunc.contains(input))
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_VALID_FUNCTION);
     }
 
-    public void inputValidStationFunction(String input) {
+    public void isValidStationFunction(String input) {
         List<String> stationFunc = Arrays.asList("1", "2", "3", "B");
         if (!stationFunc.contains(input))
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_VALID_FUNCTION);
+    }
+
+    public void isValidLineFunction(String input) {
+        List<String> lineFunc = Arrays.asList("1", "2", "3", "B");
+        if (!lineFunc.contains(input))
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_VALID_FUNCTION);
     }
 }

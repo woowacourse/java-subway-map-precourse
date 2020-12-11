@@ -1,5 +1,6 @@
 package subway.Manager;
 
+import subway.domain.Line;
 import view.InputView;
 import view.OutputView;
 
@@ -13,9 +14,11 @@ public class SubwayManager {
 
     private final Scanner scanner;
     private StationManager stationManager;
+    private LineManager lineManager;
 
     public SubwayManager(Scanner scanner) {
         stationManager = new StationManager(scanner);
+        lineManager = new LineManager(scanner);
         this.scanner = scanner;
     }
 
@@ -25,7 +28,8 @@ public class SubwayManager {
             stationManager.execute(InputView.inputStationFunction(scanner));
         }
         if (input.equals(LINE_MANAGE)) {
-
+            OutputView.lineManageView();
+            lineManager.execute(InputView.inputLineFunction(scanner));
         }
         if (input.equals(SECTION_MANAGE)) {
 
