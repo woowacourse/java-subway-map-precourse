@@ -1,6 +1,8 @@
 package subway.view;
 
 import java.util.List;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 
 public class OutputView {
@@ -95,5 +97,11 @@ public class OutputView {
         printEmptyLine();
     }
 
-
+    public static void printLine(List<Line> lines) {
+        System.out.println("## 노선 목록");
+        for (Line line : lines) {
+            System.out.println(INFO_PREFIX + line.getName());
+        }
+        printEmptyLine();
+    }
 }
