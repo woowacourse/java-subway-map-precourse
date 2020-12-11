@@ -7,6 +7,9 @@ import java.util.Scanner;
  * @since 2020/12/10
  */
 public class Input {
+    private static final String REGEX = "\\p{Z}";
+    private static final String REPLACEMENT = "";
+
     private final Scanner scanner;
 
     public Input(Scanner scanner) {
@@ -38,6 +41,6 @@ public class Input {
     }
 
     private String nextLine() {
-        return scanner.nextLine();
+        return scanner.nextLine().replaceAll(REGEX, REPLACEMENT);
     }
 }
