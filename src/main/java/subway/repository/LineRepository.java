@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.repository;
+
+import subway.domain.Line;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +9,12 @@ import java.util.Objects;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+
+    static {
+        lines.add(new Line("2호선"));
+        lines.add(new Line("3호선"));
+        lines.add(new Line("신분당선"));
+    }
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
