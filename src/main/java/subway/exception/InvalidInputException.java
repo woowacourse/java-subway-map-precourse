@@ -21,7 +21,6 @@ public class InvalidInputException extends RuntimeException {
         OUT_OF_LINE_RANGE,
         NO_LINK_AVAILABLE,
         STATION_LINKED;
-
     }
 
     public String getMessage() {
