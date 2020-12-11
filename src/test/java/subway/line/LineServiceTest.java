@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import subway.line.domain.LineRepository;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
-import subway.station.exception.NotExistException;
+import subway.station.exception.NotExistStationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -42,7 +42,7 @@ public class LineServiceTest {
         String bottomStationName = "동대구역";
 
         //when & then
-        assertThatExceptionOfType(NotExistException.class)
+        assertThatExceptionOfType(NotExistStationException.class)
                 .isThrownBy(() -> LineService.register(lineName, topStationName, bottomStationName));
     }
 }

@@ -3,8 +3,8 @@ package subway.station;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import subway.station.domain.StationRepository;
-import subway.station.exception.AlreadyExistException;
-import subway.station.exception.NotExistException;
+import subway.station.exception.AlreadyExistStationException;
+import subway.station.exception.NotExistStationException;
 import subway.station.exception.NotKoreanNameException;
 import subway.station.exception.TooShortStationNameException;
 
@@ -59,7 +59,7 @@ public class StationServiceTest {
         StationService.register(name);
 
         //when & then
-        assertThatExceptionOfType(AlreadyExistException.class)
+        assertThatExceptionOfType(AlreadyExistStationException.class)
                 .isThrownBy(() -> StationService.register(name));
     }
 
@@ -82,7 +82,7 @@ public class StationServiceTest {
         String notExistStation = "존재하지 않는 역";
 
         //when & then
-        assertThatExceptionOfType(NotExistException.class)
+        assertThatExceptionOfType(NotExistStationException.class)
                 .isThrownBy(() -> StationService.remove(notExistStation));
     }
 }

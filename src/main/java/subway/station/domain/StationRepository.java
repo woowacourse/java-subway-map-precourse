@@ -1,6 +1,6 @@
 package subway.station.domain;
 
-import subway.station.exception.NotExistException;
+import subway.station.exception.NotExistStationException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +31,7 @@ public class StationRepository {
         return findAll().stream()
                 .filter(station -> station.getName().equals(name))
                 .findFirst()
-                .orElseThrow(NotExistException::new);
+                .orElseThrow(NotExistStationException::new);
     }
 
     public static void removeAll() {

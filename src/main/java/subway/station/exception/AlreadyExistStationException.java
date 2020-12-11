@@ -1,9 +1,9 @@
 package subway.station.exception;
 
-public class AlreadyExistException extends IllegalArgumentException {
+public class AlreadyExistStationException extends IllegalArgumentException {
     private static final String MESSAGE = "이미 존재하는 지하철 역입니다. ";
 
-    public AlreadyExistException() {
+    public AlreadyExistStationException() {
         super(MESSAGE);
     }
 }
