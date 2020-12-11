@@ -35,6 +35,9 @@ public class Line {
     // 추가 기능 구현
 
 
+    public List<Station> getStations() {
+        return stations;
+    }
 
     public void init(Station firstStation, Station lastStation) {
         stations.add(firstStation);

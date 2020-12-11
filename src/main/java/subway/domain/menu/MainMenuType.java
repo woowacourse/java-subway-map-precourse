@@ -22,7 +22,7 @@ public enum MainMenuType implements Menu {
 
     public static MainMenuType validateMenu(String menuInput) {
         return Arrays.stream(MainMenuType.values())
-                .filter(menu -> menu.text.equals(menuInput))
+                .filter(menu -> menu.text.equals(menuInput.toUpperCase()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
     };

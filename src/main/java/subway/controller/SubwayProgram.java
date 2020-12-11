@@ -64,6 +64,9 @@ public class SubwayProgram {
             getSectionMenu(mainMenuType, SECTION);
             return;
         }
+        if (MainMenuType.PRINT_MAP.equals(mainMenuType)) {
+            OutputView.printSubwayMap();
+        }
     }
 
     private void getStationMenu(MainMenuType mainMenuType, String subMenuName) {
