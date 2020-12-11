@@ -6,12 +6,12 @@ public class LineManageView implements ViewStrategy {
     private static final String VIEW_NAME = "노선 관리";
 
     @Override
-    public String viewName() {
-        return VIEW_NAME;
+    public void show() {
+
     }
 
     @Override
-    public void show() {
-
+    public String toString() {
+        return VIEW_NAME;
     }
 }

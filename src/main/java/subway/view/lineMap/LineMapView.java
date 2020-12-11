@@ -21,11 +21,6 @@ public class LineMapView implements ViewStrategy {
     }
 
     @Override
-    public String viewName() {
-        return VIEW_NAME;
-    }
-
-    @Override
     public void show() {
         List<LineResponseDTO> lines = lineController.findLines();
         printLines(lines);
@@ -43,5 +38,10 @@ public class LineMapView implements ViewStrategy {
     private void printStations(List<StationResponseDTO> stations) {
         stations.forEach(station -> OutputView.infoView(station.getName()));
         System.out.println();
+    }
+
+    @Override
+    public String toString() {
+        return VIEW_NAME;
     }
 }

@@ -8,12 +8,12 @@ public class ExitView implements ViewStrategy {
     private static final String EXIT_MESSAGE = "시스템을 종료합니다.";
 
     @Override
-    public String viewName() {
-        return VIEW_NAME;
+    public void show() {
+        OutputView.infoView(EXIT_MESSAGE);
     }
 
     @Override
-    public void show() {
-        OutputView.infoView(EXIT_MESSAGE);
+    public String toString() {
+        return VIEW_NAME;
     }
 }

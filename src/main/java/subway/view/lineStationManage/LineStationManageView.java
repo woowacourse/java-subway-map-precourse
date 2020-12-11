@@ -10,12 +10,12 @@ public class LineStationManageView implements ViewStrategy {
     }
 
     @Override
-    public String viewName() {
-        return VIEW_NAME;
+    public void show() {
+
     }
 
     @Override
-    public void show() {
-
+    public String toString() {
+        return VIEW_NAME;
     }
 }
