@@ -88,4 +88,16 @@ public class Print {
     public static void deleteLineDoneMessage() {
         System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.LINE, Constant.DELETE);
     }
+
+    public static void setLineToAddSection() {
+        System.out.printf(Constant.HASH + Constant.ENTER_LINE);
+    }
+
+    public static void setStationToAddSection() {
+        System.out.printf(Constant.HASH + Constant.ENTER_STATION);
+    }
+
+    public static void setOrderToAddSection() {
+        System.out.printf(Constant.HASH + Constant.ENTER_ORDER);
+    }
 }
