@@ -12,6 +12,9 @@ public class Menu {
             System.out.println(item);
         }
         System.out.println();
+    }
+
+    public static void printWhatMenu(){
         System.out.println(WHAT_MENU);
     }
 

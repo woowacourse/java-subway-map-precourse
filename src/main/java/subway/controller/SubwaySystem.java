@@ -7,23 +7,33 @@ import subway.view.Menu;
 public class SubwaySystem {
 
     private Scanner scanner;
+    private InputManager inputManager;
 
     public SubwaySystem(Scanner scanner) {
-        this.scanner = scanner;
+        inputManager = new InputManager(scanner);
 
     }
 
     public void run() {
-        Menu.printMenu(MenuItemsRepository.getMainItems());
-        String input = scanner.nextLine().trim();
-        if(input.equals("1")){
-            Menu.printMenu(MenuItemsRepository.getStationItems());
+        while(true){
+            Menu.printMenu(MenuItemsRepository.getMainItems());
+            String input = inputManager.getMainInput();
+            if(input.equals("1")){
+                Menu.printMenu(MenuItemsRepository.getStationItems());
+            }
+            if(input.equals("2")){
+                Menu.printMenu(MenuItemsRepository.getLineItems());
+            }
+            if(input.equals("3")){
+                Menu.printMenu(MenuItemsRepository.getSectionItems());
+            }
+            if(input.equals("4")){
+                System.out.println("노선도 출력");
+            }
+            if(input.equals("Q")){
+                return;
+            }
         }
-        if(input.equals("2")){
-            Menu.printMenu(MenuItemsRepository.getLineItems());
-        }
-        if(input.equals("3")){
-            Menu.printMenu(MenuItemsRepository.getSectionItems());
-        }
+
     }
 }
