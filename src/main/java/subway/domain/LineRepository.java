@@ -16,7 +16,7 @@ public class LineRepository {
         return Collections.unmodifiableSet(lines);
     }
 
-    public static void addLine(Line line) {
+    public void addLine(Line line) {
         lines.add(line);
     }
 
@@ -38,7 +38,6 @@ public class LineRepository {
         System.out.println("없는 노선 입니다");
         return null;
     }
-
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));

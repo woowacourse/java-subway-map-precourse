@@ -16,7 +16,7 @@ public class StationRepository {
         return Collections.unmodifiableSet(stations);
     }
 
-    public static void addStation(Station station) {
+    public void addStation(Station station) {
         stations.add(station);
     }
 

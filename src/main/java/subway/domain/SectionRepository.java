@@ -1,44 +1,66 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class SectionRepository {
 
-    // 노선의 실제 구현 (2호선 = {당산역, 홍대역, 신촌역, 이대역, 아현역, 충정로역, 시청역})
-    private static final LinkedList<Station> sectionList = new LinkedList<>();
+    // 노선의 실제 구현 (ex 2호선 = {당산역, 홍대역, 신촌역, 이대역, 아현역, 충정로역, 시청역})
+    // 이게 배열 그 자체입니다.. 햇갈리지 말 것!
+    private final Map<Line, List<Station>> sectionMap = new HashMap<>();
 
-    public static void addSection(Station stationInstance, int indexNumber) {
-        sectionList.add(indexNumber, stationInstance);
+    public SectionRepository(Line sectionTitle, Station startStationInLine,
+        Station endStationInLine) {
+        List<Station> startToEndStation = new ArrayList<>();
+        startToEndStation.add(startStationInLine);
+        startToEndStation.add(endStationInLine);
+        this.sectionMap.put(sectionTitle, startToEndStation);
     }
 
-    public void removeSection(Station stationInstance) {
-        if (isExistStation(stationInstance)) {
-            sectionList.remove(stationInstance);
-            System.out.println("해당 역이 구간에 삭제되었습니다.");
+    public void addSection(Line sectionTitle, Station station, int index) {
+        List<Station> stations = this.sectionMap.get(sectionTitle);
+        stations.add(index, station);
+        this.sectionMap.put(sectionTitle, stations);
+    }
+
+    public void deleteLine(Line sectionTitle) {
+        // stations list (line) whole remove
+    }
+
+    public void deleteSection(Line sectionTitle, Station station) {
+        List<Station> stations = sectionMap.get(sectionTitle);
+        for (Station instanceStation : stations) {
+            if (station.equals(instanceStation)) {
+                stations.remove(station);
+            }
         }
+        sectionMap.put(sectionTitle, stations);
     }
 
-    public List findAll() {
-        Iterator<Station> iter = sectionList.iterator();
-        List<String> stationNameList = new ArrayList<>();
-        while (iter.hasNext()) {
-            stationNameList.add(iter.next().getName());
-        }
-        return stationNameList;
-    }
-
-    public boolean isExistStation(Station station) {
-        for (Station stationElement : sectionList) {
-            if (stationElement.equals(station)) {
+    public boolean isExistStationInLine(Line sectionTitle, Station station) {
+        List<Station> stations = sectionMap.get(sectionTitle);
+        for (Station instanceStation : stations) {
+            if (station.equals(instanceStation)) {
                 return true;
             }
         }
-        System.out.println("노선에 해당 역이 없습니다.");
         return false;
     }
 
-
+    public Map<String, List> findAll() {
+        Map<String, List> wholeSubwayMap = new HashMap<>();
+        Iterator<Line> sectionTitles = sectionMap.keySet().iterator();
+        while (sectionTitles.hasNext()) {
+            Line sectionTitle = sectionTitles.next();
+            List<String> stations = new ArrayList<>();
+            for (Station station : sectionMap.get(sectionTitle)) {
+                stations.add(station.getName());
+            }
+            wholeSubwayMap.put(sectionTitle.getName(), stations);
+        }
+        return wholeSubwayMap;
+    }
 }
