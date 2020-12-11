@@ -30,14 +30,12 @@ public class SectionService extends InputValidation {
         String stationName = scanner.nextLine();
         inputPositionToAddSectionRequestMessage();
         String position = scanner.nextLine();
-        //validation
         validateLineNameIsContains(lineName);
         validateStationNameIsContains(stationName);
         validatePositionIsDigit(position);
-        //4. 입력값이 노선의 길이보다 이하의 값인지 검증한다.
+        int pos = validatePositionIsOver(lineName, position, lineStation);
         lineStation.addStationInLine(LineRepository.findLine(lineName).get(),
-                StationRepository.findStation(stationName).get(),
-                Integer.parseInt(position));
+                StationRepository.findStation(stationName).get(), pos);
         printAddSectionSuccessMessage();
     }
 

@@ -1,12 +1,11 @@
 package subway.utils;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 
 import java.util.List;
 import java.util.Objects;
+
+import static subway.utils.ParseUtils.parseStringToInt;
 
 public class InputValidation {
     private static final int NAME_MIN_LENGTH = 2;
@@ -57,5 +56,14 @@ public class InputValidation {
         if (!isDigit) {
             throw new IllegalArgumentException("[ERROR] 순서는 숫자만 입력 가능합니다.");
         }
+    }
+
+    public int validatePositionIsOver(String lineName, String position, LineStationRepository lineStation) {
+        int pos = parseStringToInt(position);
+        int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName).get());
+        if (pos > stationSizeOfLine) {
+            return stationSizeOfLine;
+        }
+        return pos;
     }
 }
