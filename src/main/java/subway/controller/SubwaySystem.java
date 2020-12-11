@@ -9,10 +9,12 @@ public class SubwaySystem {
     private Scanner scanner;
     private MenuInputManager menuInputManager;
     private StationSystem stationSystem;
+    private LineSystem lineSystem;
 
     public SubwaySystem(Scanner scanner) {
         menuInputManager = new MenuInputManager(scanner);
         stationSystem = new StationSystem(scanner, menuInputManager);
+        lineSystem = new LineSystem(scanner,menuInputManager);
     }
 
     public void run() {
@@ -31,8 +33,8 @@ public class SubwaySystem {
             stationSystem.run();
         }
         if(input.equals("2")){
-            Menu.printMenu(MenuItemsRepository.getLineItems());
-        }
+            lineSystem.run();
+       }
         if(input.equals("3")){
             Menu.printMenu(MenuItemsRepository.getSectionItems());
         }

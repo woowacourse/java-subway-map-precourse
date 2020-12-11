@@ -1,21 +1,22 @@
 package subway.controller;
 
 import java.util.Scanner;
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.view.ErrorMessage;
 import subway.view.Menu;
 
-public class StationInputManager {
+public class LineInputManager {
 
     private Scanner scanner;
 
-    public StationInputManager(Scanner scanner) {
+    public LineInputManager(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public String getStationName(String function) {
+    public String getLineInput(String function) {
         while (true) {
-            Menu.printStationGuide(function);
+            Menu.printLineGuide(function);
             String name = scanner.nextLine().trim();
             if (!checkName(name)) {
                 continue;
@@ -25,11 +26,11 @@ public class StationInputManager {
     }
 
     private boolean checkName(String name) {
-        return checkLength(name) && checkLastLetter(name) && checkAlreadyExist(name);
+        return checkLastLetter(name) && checkAlreadyExist(name);
     }
 
     private boolean checkAlreadyExist(String name) {
-        if (StationRepository.stationNames().contains(name)) {
+        if (LineRepository.lineNames().contains(name)) {
             ErrorMessage.printValeAlreadyExist();
             return false;
         }
@@ -37,16 +38,8 @@ public class StationInputManager {
     }
 
     private boolean checkLastLetter(String name) {
-        if (name.charAt(name.length() - 1) != '역') {
-            ErrorMessage.printLastLetterStation();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkLength(String name) {
-        if (name.length() < 2) {
-            ErrorMessage.printNameLength();
+        if (name.substring(name.length() - 3).equals("호선")) {
+            ErrorMessage.printLastLetterLine();
             return false;
         }
         return true;

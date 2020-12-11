@@ -48,7 +48,7 @@ public class MenuInputManager {
 
     private boolean checkLineSelection(String input) {
         if (!MenuItemsRepository.getLineSelections().contains(input)) {
-            ErrorMessage.printMenuError(
+            ErrorMessage.printMenu(
                 MenuItemsRepository.getLineSelections().toString());
             return false;
         }
@@ -57,7 +57,7 @@ public class MenuInputManager {
 
     private boolean checkStationSelection(String input) {
         if (!MenuItemsRepository.getStationSelections().contains(input)) {
-            ErrorMessage.printMenuError(
+            ErrorMessage.printMenu(
                 MenuItemsRepository.getStationSelections().toString());
             return false;
         }
@@ -66,7 +66,7 @@ public class MenuInputManager {
 
     private boolean checkMainSelection(String input) {
         if (!MenuItemsRepository.getMainSelections().contains(input)) {
-            ErrorMessage.printMenuError(
+            ErrorMessage.printMenu(
                 MenuItemsRepository.getMainSelections().toString());
             return false;
         }
