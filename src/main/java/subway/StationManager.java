@@ -76,9 +76,6 @@ public class StationManager {
     private static void addStation() throws IllegalArgumentException {
         System.out.println("## 등록할 역 이름을 입력하세요.");
         String stationName = UserConsole.getName();
-        if (!Validator.isAppropriateLength(stationName)) {
-            throw new IllegalArgumentException();
-        }
         if (StationRepository.contains(stationName)) {
             System.out.println("[ERROR] 이미 등록되어 있는 이름이다.\n");
             throw new IllegalArgumentException();
