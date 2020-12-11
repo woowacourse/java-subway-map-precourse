@@ -2,11 +2,7 @@ package subway.controller;
 
 import subway.domain.*;
 import subway.view.InputView;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import subway.view.OutputView;
 
 public class SubwayController {
     private final InputView inputView;
@@ -17,7 +13,8 @@ public class SubwayController {
 
     public void run() {
         initSetting();
-
+        OutputView.printMain();
+        MainFunctions mainFunction = MainFunctions.haveNumber(this.inputView.receiveFunction());
     }
 
     private void initSetting(){
