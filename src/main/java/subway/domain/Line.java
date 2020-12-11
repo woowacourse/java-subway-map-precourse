@@ -38,6 +38,14 @@ public class Line {
         return name;
     }
 
+    public Station getUpEnd() {
+        return upEnd;
+    }
+
+    public Station getDownEnd() {
+        return downEnd;
+    }
+
     public List<Station> getStations() {
         return stations;
     }

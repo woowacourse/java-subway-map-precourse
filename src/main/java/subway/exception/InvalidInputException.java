@@ -7,7 +7,8 @@ public class InvalidInputException extends RuntimeException {
         INVALID_FUNCTION_CODE,
         DUPLICATE_STATION,
         DUPLICATE_LINE,
-        INVALID_NAME_LENGTH;
+        INVALID_NAME_LENGTH,
+        NO_SUCH_STATION;
     }
 
     private final String HEADER = "\n[ERROR] ";
@@ -27,6 +28,8 @@ public class InvalidInputException extends RuntimeException {
             return HEADER + "이미 등록된 노선 이름입니다.";
         if (exceptionCode.equals(ExceptionCode.INVALID_NAME_LENGTH))
             return HEADER + "이름은 두 글자 이상이어야 합니다.";
+        if (exceptionCode.equals(ExceptionCode.NO_SUCH_STATION))
+            return HEADER + "존재하지 않는 역 이름입니다.";
         return "";
     }
 }

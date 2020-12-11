@@ -7,6 +7,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.exception.InvalidInputException;
 import subway.repository.LineRepository;
+import subway.repository.StationRepository;
 
 import java.util.Scanner;
 
@@ -62,6 +63,7 @@ public class LineService extends BaseService {
     private void validateNewLine(Line newLine) {
         validateNameLength(newLine);
         validateDuplicateLine(newLine);
+        validateEndStationsExist(newLine);
     }
 
     private void validateNameLength(Line newLine) {
@@ -72,6 +74,12 @@ public class LineService extends BaseService {
     private void validateDuplicateLine(Line newLine) {
         if (LineRepository.lines().contains(newLine))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_LINE);
+    }
+
+    private void validateEndStationsExist(Line newLine) {
+        if (!StationRepository.stations().contains(newLine.getUpEnd())
+                || !StationRepository.stations().contains(newLine.getDownEnd()))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_STATION);
     }
 
     @Override
