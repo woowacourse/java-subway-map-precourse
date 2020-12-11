@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.Section;
 import subway.domain.SectionRepository;
 import subway.domain.Station;
+import subway.enums.ErrorMessage;
 import subway.enums.MainMenu;
 import subway.enums.SectionInfo;
 import subway.enums.SectionMenu;
@@ -65,5 +66,9 @@ public class SectionView {
 
     public static void informNoMenu() {
         MainView.informUnableCommand();
+    }
+
+    public static void informStationUnder2onLine() {
+        System.err.println(ErrorMessage.STATION_UNDER_2_ON_LINE.getMessage());
     }
 }

@@ -95,6 +95,10 @@ public class SectionControlCenter {
             LineView.informLineNotExist();
             return inputLineToDeleteStationFrom(scanner);
         }
+        if (SectionRepository.isStationUnder2onLine(nameOfLine)) {
+            SectionView.informStationUnder2onLine();
+            return inputLineToDeleteStationFrom(scanner);
+        }
         return SectionRepository.getSectionByLineName(nameOfLine).getLine();
     }
 

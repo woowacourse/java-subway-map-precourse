@@ -86,4 +86,9 @@ public class SectionRepository {
                 .map(Section::getStations)
                 .anyMatch(stationList -> stationList.contains(targetStation));
     }
+
+    public static boolean isStationUnder2onLine(String name) {
+        Section section = getSectionByLineName(name);
+        return section.getStations().size() <= 2;
+    }
 }
