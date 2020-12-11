@@ -11,15 +11,15 @@ import subway.domain.StationRepository;
 import subway.util.InitConstants;
 import subway.view.MainView;
 
-public class SubwayLauncher {
+public class Subway {
 
     public static StationRepository stations = new StationRepository();
     public static LineRepository lines = new LineRepository();
-    public static SectionRepository subwayMap = new SectionRepository();
+    public static SectionRepository Map = new SectionRepository();
 
     private static boolean systemState = true;
 
-    public SubwayLauncher() {
+    public Subway() {
         setInitData();
     }
 
@@ -34,11 +34,11 @@ public class SubwayLauncher {
         initStationGenerator(InitConstants.STATION_LIST, stations);
         initLineGenerator(InitConstants.LINE_LIST, lines);
         initSectionGenerator(InitConstants.LINE_TITLE_GREEN_TEXT,
-            InitConstants.STATION_IN_GREEN_LINE_LIST, subwayMap);
+            InitConstants.STATION_IN_GREEN_LINE_LIST, Map);
         initSectionGenerator(InitConstants.LINE_TITLE_ORANGE_TEXT,
-            InitConstants.STATION_IN_ORANGE_LINE_LIST, subwayMap);
+            InitConstants.STATION_IN_ORANGE_LINE_LIST, Map);
         initSectionGenerator(InitConstants.LINE_TITLE_SHINBUNDANG_TEXT,
-            InitConstants.STATION_IN_SHINBUNDANG_LINE_LIST, subwayMap);
+            InitConstants.STATION_IN_SHINBUNDANG_LINE_LIST, Map);
     }
 
     private void initStationGenerator(String[] stationNames, StationRepository stations) {
