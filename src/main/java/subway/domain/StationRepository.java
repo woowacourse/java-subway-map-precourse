@@ -35,12 +35,11 @@ public class StationRepository {
                 return stationElement;
             }
         }
-        System.out.println("없는 역 입니다");
         return null;
     }
 
 
-    public static boolean deleteStation(String name) {
+    public boolean deleteStationByName(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
