@@ -1,9 +1,18 @@
 package subway.view;
 
+import subway.domain.Line;
 import subway.domain.MainFunctions;
 import subway.domain.DetailFunctions;
+import subway.domain.Station;
+
+import java.util.List;
+import java.util.Map;
+
+import static subway.view.StationOutputView.PRINT_INFO_HEAD;
 
 public class OutputView {
+    public static final String DELIMITER_LINE_STATION = "---";
+
     public static void printMain(){
         System.out.println("## 메인 화면");
         System.out.println(MainFunctions.STATION.getFunctionNumber()+". "+ MainFunctions.STATION.getFunctionName()+" 관리");
@@ -26,6 +35,16 @@ public class OutputView {
     }
 
     public static void printOneLine(){
+        System.out.println();
+    }
+
+    public static void printSubway(Map<Line, List<Station>> subway) {
+        System.out.println("## "+MainFunctions.SUBWAY.getFunctionName());
+        for(Line line: subway.keySet()){
+            System.out.println(PRINT_INFO_HEAD+line.getName());
+            System.out.println(PRINT_INFO_HEAD+ DELIMITER_LINE_STATION);
+            subway.get(line).forEach(station -> System.out.println(PRINT_INFO_HEAD+station.getName()));
+        }
         System.out.println();
     }
 }

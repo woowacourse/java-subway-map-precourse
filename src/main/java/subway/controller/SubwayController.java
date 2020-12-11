@@ -35,6 +35,9 @@ public class SubwayController {
             if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.WAY)) {
                 wayFunction();
             }
+            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.SUBWAY)) {
+                subwayFunction();
+            }
         }
     }
 
@@ -69,6 +72,10 @@ public class SubwayController {
             }
             WayFunctionController.doFunction(detailFunction, this.inputView);
         }
+    }
+
+    private void subwayFunction() {
+        OutputView.printSubway(SubwayRepository.subway());
     }
 
     private void initSetting() {
