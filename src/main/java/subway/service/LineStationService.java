@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import static subway.view.InputView.*;
 import static subway.view.OutputView.printAddLineStationSuccessMessage;
+import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 
 public class LineStationService {
 
@@ -50,6 +51,7 @@ public class LineStationService {
         //1.입력한 노선 이름이 존재하는지 검증한다
         lineStation.deleteLineStation(LineRepository.findLine(lineName).get());
         LineRepository.deleteLineByName(lineName);
+        printDeleteLineStationSuccessMessage();
     }
 
     private void printLines() {
