@@ -6,7 +6,7 @@ public class Line {
     private String name;
     private String northboundTerminal;
     private String southboundTerminal;
-    private LinkedList<String> containedStation = new LinkedList<String>();
+    private LinkedList<String> stationsIncludedLine = new LinkedList<String>();
 
     public Line(String name, String northboundTerminal, String southboundTerminal) {
         this.name = name;
@@ -26,12 +26,20 @@ public class Line {
         return southboundTerminal;
     }
 
-    public LinkedList<String> getContainedStation() {
-        return containedStation;
+    public LinkedList<String> getStationsIncludedLine() {
+        return stationsIncludedLine;
+    }
+
+    public int getLineLength() {
+        return stationsIncludedLine.size();
     }
 
     public void appendStation(String stationName) {
-        containedStation.add(stationName);
+        stationsIncludedLine.add(stationName);
+    }
+
+    public boolean includedInSomeStations() {
+        return !stationsIncludedLine.isEmpty();
     }
 
 }
