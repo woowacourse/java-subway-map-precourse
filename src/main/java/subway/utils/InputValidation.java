@@ -1,5 +1,7 @@
 package subway.utils;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -33,6 +35,13 @@ public class InputValidation {
         Station findStation = StationRepository.findStation(name).orElse(null);
         if (Objects.equals(findStation, null)) {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+        }
+    }
+
+    public void validateLineNameIsDuplicate(String name) {
+        Line findLine = LineRepository.findLine(name).orElse(null);
+        if (Objects.equals(findLine, null)) {
+            throw new IllegalArgumentException("[ERROR] 이미 등록된 노선 이름입니다.");
         }
     }
 }
