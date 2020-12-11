@@ -5,11 +5,11 @@ import subway.domain.MenuItemsRepository;
 import subway.view.ErrorMessage;
 import subway.view.Menu;
 
-public class InputManager {
+public class MenuInputManager {
 
     private Scanner scanner;
 
-    public InputManager(Scanner scanner) {
+    public MenuInputManager(Scanner scanner) {
         this.scanner = scanner;
     }
 
@@ -48,7 +48,7 @@ public class InputManager {
 
     private boolean checkLineSelection(String input) {
         if (!MenuItemsRepository.getLineSelections().contains(input)) {
-            ErrorMessage.printError(
+            ErrorMessage.printMenuError(
                 MenuItemsRepository.getLineSelections().toString());
             return false;
         }
@@ -57,7 +57,7 @@ public class InputManager {
 
     private boolean checkStationSelection(String input) {
         if (!MenuItemsRepository.getStationSelections().contains(input)) {
-            ErrorMessage.printError(
+            ErrorMessage.printMenuError(
                 MenuItemsRepository.getStationSelections().toString());
             return false;
         }
@@ -66,7 +66,7 @@ public class InputManager {
 
     private boolean checkMainSelection(String input) {
         if (!MenuItemsRepository.getMainSelections().contains(input)) {
-            ErrorMessage.printError(
+            ErrorMessage.printMenuError(
                 MenuItemsRepository.getMainSelections().toString());
             return false;
         }

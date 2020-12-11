@@ -7,33 +7,37 @@ import subway.view.Menu;
 public class SubwaySystem {
 
     private Scanner scanner;
-    private InputManager inputManager;
+    private MenuInputManager menuInputManager;
+    private StationSystem stationSystem;
 
     public SubwaySystem(Scanner scanner) {
-        inputManager = new InputManager(scanner);
-
+        menuInputManager = new MenuInputManager(scanner);
+        stationSystem = new StationSystem(scanner, menuInputManager);
     }
 
     public void run() {
         while(true){
             Menu.printMenu(MenuItemsRepository.getMainItems());
-            String input = inputManager.getMainInput();
-            if(input.equals("1")){
-                Menu.printMenu(MenuItemsRepository.getStationItems());
-            }
-            if(input.equals("2")){
-                Menu.printMenu(MenuItemsRepository.getLineItems());
-            }
-            if(input.equals("3")){
-                Menu.printMenu(MenuItemsRepository.getSectionItems());
-            }
-            if(input.equals("4")){
-                System.out.println("노선도 출력");
-            }
+            String input = menuInputManager.getMainInput();
             if(input.equals("Q")){
                 return;
             }
+            runSystemByInput(input);
         }
+    }
 
+    private void runSystemByInput(String input) {
+        if(input.equals("1")){
+            stationSystem.run();
+        }
+        if(input.equals("2")){
+            Menu.printMenu(MenuItemsRepository.getLineItems());
+        }
+        if(input.equals("3")){
+            Menu.printMenu(MenuItemsRepository.getSectionItems());
+        }
+        if(input.equals("4")){
+            System.out.println("노선도 출력");
+        }
     }
 }
