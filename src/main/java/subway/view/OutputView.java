@@ -33,6 +33,8 @@ public class OutputView {
     public static final String ERROR_NOT_NUMERIC = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_OUT_OF_RANGE = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_NAME_SHORT = ERROR_LABEL + "이름의 길이가 너무 짧습니다";
+    public static final String ERROR_DUPLICATE_NAME = ERROR_LABEL + "중복되는 이름이 있습니다.";
+    public static final String ERROR_NOTHING = ERROR_LABEL + "해당 이름의 역/노선은 존재하지 않습니다.";
 
     public static void printMenu(int currentMenu) {
         if (currentMenu == Function.MAIN_MENU) {
