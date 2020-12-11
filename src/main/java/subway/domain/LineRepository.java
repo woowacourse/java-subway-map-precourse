@@ -20,6 +20,14 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public static List<Line> fixedLines() {
+        fixedLines.add(LINE_NUMBER_2);
+        fixedLines.add(LINE_NUMBER_3);
+        fixedLines.add(LINE_NUMBER_SHINBUNDANG);
+        addStationsOnLine();
+        return Collections.unmodifiableList(fixedLines);
+    }
+
     private static void addStationsOnLine() {
         LINE_NUMBER_2.addStation(StationRepository.STATION_KYODAE);
         LINE_NUMBER_2.addStation(StationRepository.STATION_GANGNAM);

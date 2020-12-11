@@ -27,6 +27,17 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public static List<Station> fixedStations() {
+        fixedStations.add(STATION_KYODAE);
+        fixedStations.add(STATION_GANGNAM);
+        fixedStations.add(STATION_YEOKSAM);
+        fixedStations.add(STATION_NAMBU_TERMINAL);
+        fixedStations.add(STATION_YANGJAE);
+        fixedStations.add(STATION_YANGJAE_FOREST);
+        fixedStations.add(STATION_MAEBONG);
+        return Collections.unmodifiableList(fixedStations);
+    }
+
     public static void addStation(Station station) {
         stations.add(station);
     }
