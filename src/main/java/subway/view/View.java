@@ -87,13 +87,13 @@ public class View {
 
     public void registerStation() {
         outputView.printRegisterStationQuestion();
-        StationRepository.addStation(new Station(inputView.getStation()));
+        StationRepository.addStation(new Station(inputView.getStationName()));
         outputView.printRegisterStationSuccess();
     }
 
     public void deleteStation() {
         outputView.printDeleteStationQuestion();
-        Station station = StationRepository.getStation(inputView.getStation());
+        Station station = StationRepository.getStation(inputView.getStationName());
         if (station.isLinePassed()){
             throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
         }
@@ -105,18 +105,18 @@ public class View {
 
     public void registerLine() {
         outputView.printRegisterLineQuestion();
-        String lineName = inputView.getLine();
+        String lineName = inputView.getLineName();
         outputView.printLineStartStationQuestion();
-        Station startStation = StationRepository.getStation(inputView.getStation());
+        Station startStation = StationRepository.getStation(inputView.getStationName());
         outputView.printLineEndStationQuestion();
-        Station endStation = StationRepository.getStation(inputView.getStation());
+        Station endStation = StationRepository.getStation(inputView.getStationName());
         LineRepository.addLine(new Line(lineName, startStation, endStation));
         outputView.printRegisterLineSuccess();
     }
 
     public void deleteLine() {
         outputView.printDeleteLineQuestion();
-        if (!LineRepository.deleteLineByName(inputView.getLine())) {
+        if (!LineRepository.deleteLineByName(inputView.getLineName())) {
             throw new IllegalArgumentException(ERR_UNREGISTERED_LINE);
         }
         outputView.printDeleteLineSuccess();
@@ -124,20 +124,20 @@ public class View {
 
     public void registerSection() {
         outputView.printRegisterSectionLineNameQuestion();
-        Line line = LineRepository.getLine(inputView.getLine());
+        Line line = LineRepository.getLine(inputView.getLineName());
         outputView.printRegisterSectionStationNameQuestion();
-        Station station = StationRepository.getStation(inputView.getStation());
+        Station station = StationRepository.getStation(inputView.getStationName());
         outputView.printRegisterSectionOrderNumberQuestion();
-        int order = inputView.getInt();
+        int order = inputView.getOrder();
         line.add(order-1, station);
         outputView.printRegisterSectionSuccess();
     }
 
     public void deleteSection() {
         outputView.printDeleteSectionLineNameQuestion();
-        Line line = LineRepository.getLine(inputView.getLine());
+        Line line = LineRepository.getLine(inputView.getLineName());
         outputView.printDeleteSectionStationNameQuestion();
-        Station station = StationRepository.getStation(inputView.getStation());
+        Station station = StationRepository.getStation(inputView.getStationName());
         if (line.getLength() <= MIN_LINE_LENGTH) {
             throw new IllegalArgumentException(ERR_MIN_LINE_LENGTH);
         }
