@@ -18,12 +18,13 @@ public class LineName implements Comparable<LineName> {
     }
 
     public static LineName of(String name) {
+        validate(name);
         return new LineName(name);
     }
 
     private static void validate(String name) {
 
-        if (name.length() > NAME_MIN_LENGTH) {
+        if (name.length() < NAME_MIN_LENGTH) {
             throw new InvalidLineNameException(name);
         }
 
