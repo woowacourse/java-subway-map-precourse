@@ -30,6 +30,7 @@ public class OutputView {
 
     public static final String INFO_LABEL = "[INFO] ";
     public static final String ERROR_LABEL = "[ERROR] ";
+    public static final String DIVIDER = "---";
     public static final String ERROR_NOT_NUMERIC = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_OUT_OF_RANGE = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_NAME_SHORT = ERROR_LABEL + "이름의 길이가 너무 짧습니다";
@@ -78,6 +79,7 @@ public class OutputView {
     public static void printStations(List<Station> stations) {
         System.out.println();
         System.out.println(STATION_VIEW_LABEL);
+        System.out.println(INFO_LABEL + DIVIDER);
         stations.stream()
                 .map(Station::getName)
                 .map(x -> INFO_LABEL + x)
@@ -87,6 +89,7 @@ public class OutputView {
     public static void printLines(List<Line> lines) {
         System.out.println();
         System.out.println(LINE_VIEW_LABEL);
+        System.out.println(INFO_LABEL + DIVIDER);
         lines.stream()
                 .map(Line::getName)
                 .map(x -> INFO_LABEL + x)
