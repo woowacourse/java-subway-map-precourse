@@ -23,7 +23,14 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        validateOverlappedStation(station);
         stations.add(station);
+    }
+
+    private static void validateOverlappedStation(Station station) {
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException("");
+        }
     }
 
     public static boolean deleteStation(String name) {
