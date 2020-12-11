@@ -16,6 +16,7 @@ public class SubwayController {
         OutputView.printMain();
         MainFunctions mainFunction = MainFunctions.haveNumber(this.inputView.receiveFunction());
         OutputView.printDetailFunction(mainFunction);
+        DetailFunctions detailFunctions = DetailFunctions.haveNumber(this.inputView.receiveFunction());
     }
 
     private void initSetting(){
