@@ -7,11 +7,12 @@ public class Menu {
     private Menu() {
     }
 
-    public static void printMain() {
-        for (MainMenuItems item : MainMenuItems.values()) {
-            System.out.println(item.getMenuItem());
+    public static void printMenu(String[] menuItems) {
+        for (String item : menuItems) {
+            System.out.println(item);
         }
         System.out.println();
         System.out.println(WHAT_MENU);
     }
+
 }
