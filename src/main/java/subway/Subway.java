@@ -11,10 +11,6 @@ public class Subway {
     public Subway() {
     }
 
-    public Station makeStation(String name) {
-        return new Station(name);
-    }
-
     public boolean containsStation(String name) {
         return StationRepository.contains(name);
     }
@@ -22,6 +18,10 @@ public class Subway {
     public void addStation(String name) {
         Station station = new Station(name);
         StationRepository.addStation(station);
+    }
+
+    public void removeStation(String name) {
+        StationRepository.deleteStation(name);
     }
 
     public boolean containsLine(String name) {
@@ -39,5 +39,9 @@ public class Subway {
         line.addStation(downStreamTerminal);
 
         LineRepository.addLine(line);
+    }
+
+    public void removeLine(String name) {
+        LineRepository.deleteLineByName(name);
     }
 }
