@@ -39,6 +39,10 @@ public class Line {
         return stations;
     }
 
+    public int getLength() {
+        return stations.size();
+    }
+
     public void add(int index, Station station) {
         try {
             stations.add(index, station);

@@ -10,6 +10,8 @@ public class View {
     private final String ERR_UNREGISTERED_STATION = "등록되지 않은 역입니다.";
     private final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
     private final String ERR_NO_STATION_ON_LINE = "노선에 입력한 역이 없습니다.";
+    private final String ERR_MIN_LINE_LENGTH = "노선의 길이가 짧습니다.";
+    private final int MIN_LINE_LENGTH = 2;
     private final String MAIN_VIEW = "Main";
     private final String STATION_VIEW = "Station";
     private final String LINE_VIEW = "Line";
@@ -131,6 +133,9 @@ public class View {
         Line line = LineRepository.getLine(inputView.getLine());
         outputView.printDeleteSectionStationNameQuestion();
         Station station = StationRepository.getStation(inputView.getStation());
+        if (line.getLength() <= MIN_LINE_LENGTH) {
+            throw new IllegalArgumentException(ERR_MIN_LINE_LENGTH);
+        }
         if (!line.remove(station)) {
             throw new IllegalArgumentException(ERR_NO_STATION_ON_LINE);
         }
