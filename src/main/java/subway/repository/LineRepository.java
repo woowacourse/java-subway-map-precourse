@@ -18,6 +18,11 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static void addLine(List<Line> lines) {
+        for (Line line : lines)
+            addLine(line);
+    }
+
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }

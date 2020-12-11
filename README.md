@@ -477,3 +477,4 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
   - [x] 선택지에 없는 입력일 시 에러메세지를 출력한다
   - [x] 사용자 입력에 따라 기능을 실행한다
   - [x] 사용자 입력이 Q인 경우 프로그램을 완전 종료한다
+  - [x] 사전등록정보에 따라 지하철 노선도를 초기화한다

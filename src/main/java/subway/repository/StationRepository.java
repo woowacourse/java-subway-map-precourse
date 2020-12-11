@@ -18,6 +18,11 @@ public class StationRepository {
         stations.add(station);
     }
 
+    public static void addStation(List<Station> stations) {
+        for (Station station : stations)
+            addStation(station);
+    }
+
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
