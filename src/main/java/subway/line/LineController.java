@@ -11,12 +11,16 @@ import static subway.line.LineErrorMessage.*;
 import static subway.line.LineValidator.*;
 
 public class LineController {
+    private static final LineController singleton = new LineController();
     private LineRepository lineRepository;
     private StationRepository stationRepository;
 
-    public LineController(LineRepository lineRepository, StationRepository stationRepository) {
-        this.lineRepository = lineRepository;
-        this.stationRepository = stationRepository;
+    private LineController(){}
+
+    public static LineController get(LineRepository lineRepository, StationRepository stationRepository){
+        singleton.lineRepository = lineRepository;
+        singleton.stationRepository = stationRepository;
+        return singleton;
     }
 
     public void createLine(LineRequestDTO lineRequestDTO) {

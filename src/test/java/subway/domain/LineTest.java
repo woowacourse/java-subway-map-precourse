@@ -18,21 +18,6 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("순서가 너무 컸을 때 역 등록 실패")
-    public void joinStatinFail() throws Exception{
-        //given
-        String expectedMessage = "순서가 너무 큽니다. 등록되어 있는 역 수 : 2";
-        Line line = createDummyLine();
-        Station station = Station.from("도봉산역");
-        int index = 4;
-        //when
-        IllegalStateException illegalStateException =
-                Assertions.assertThrows(IllegalStateException.class, () -> line.joinStation(station, index));
-        //then
-        Assertions.assertEquals(expectedMessage, illegalStateException.getMessage());
-    }
-
-    @Test
     @DisplayName("노선에 역 등록")
     public void joinStationSuccess() throws Exception {
         //given
@@ -44,20 +29,6 @@ class LineTest {
         //then
         Assertions.assertFalse(station.isRemovable());
         Assertions.assertTrue(line.stations().contains(station));
-    }
-
-    @Test
-    @DisplayName("제거할 수 없는 역 삭제")
-    public void removeStationFail() throws Exception{
-        //given
-        String expectedMessage = "노선을 유지하려면 최소 둘 이상의 역이 등록되어 있어야 합니다.";
-        Line line = createDummyLine();
-        Station existStation = Station.from("의정부역");
-        //when
-        IllegalStateException illegalStateException =
-                Assertions.assertThrows(IllegalStateException.class, () -> line.removeStation(existStation));
-        //then
-        Assertions.assertEquals(expectedMessage, illegalStateException.getMessage());
     }
 
     @Test

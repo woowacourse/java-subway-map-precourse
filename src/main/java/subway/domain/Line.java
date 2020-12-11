@@ -32,8 +32,6 @@ public class Line {
     }
 
     public void joinStation(Station station, int index) {
-        if (!isCorrectIndex(index)) {
-        }
         int newIndex = index - 1;   //1을 입력하면 0 번째 인덱스를 가르킨다.
         stations.add(newIndex, station);
         station.addLine();

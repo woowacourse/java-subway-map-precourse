@@ -8,7 +8,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class LineRepositoryJava implements LineRepository {
+    private static final LineRepositoryJava singleton = new LineRepositoryJava();
     private static final List<Line> lines = new ArrayList<>();
+
+    private LineRepositoryJava() {
+    }
+
+    public static LineRepositoryJava get() {
+        return singleton;
+    }
 
     @Override
     public List<Line> lines() {

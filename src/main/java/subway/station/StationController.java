@@ -10,10 +10,14 @@ import static subway.station.StationErrorMessage.*;
 import static subway.station.StationValidator.*;
 
 public class StationController {
+    private static final StationController singleton = new StationController();
     private StationRepository stationRepository;
 
-    public StationController(StationRepository stationRepository) {
-        this.stationRepository = stationRepository;
+    private StationController() {}
+
+    public static StationController get(StationRepository stationRepository) {
+        singleton.stationRepository = stationRepository;
+        return singleton;
     }
 
     public void createStation(String name) {
@@ -35,7 +39,7 @@ public class StationController {
         return new StationResponseDTO(station);
     }
 
-    public List<StationResponseDTO> findStations(){
+    public List<StationResponseDTO> findStations() {
         Set<Station> stations = stationRepository.stations();
         return stations.stream()
                 .map(StationResponseDTO::new)

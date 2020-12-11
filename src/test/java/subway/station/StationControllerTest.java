@@ -15,8 +15,8 @@ class StationControllerTest {
     private StationRepository stationRepository;
 
     public StationControllerTest() {
-        stationRepository = new StationRepositoryJava();
-        stationController = new StationController(stationRepository);
+        stationRepository = StationRepositoryJava.get();
+        stationController = StationController.get(stationRepository);
     }
 
     @BeforeEach

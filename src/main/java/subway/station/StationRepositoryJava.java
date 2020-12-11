@@ -5,7 +5,14 @@ import subway.domain.Station;
 import java.util.*;
 
 public class StationRepositoryJava implements StationRepository {
+    private static final StationRepositoryJava singleton = new StationRepositoryJava();
     private static final Set<Station> stations = new HashSet<>();
+
+    private StationRepositoryJava(){}
+
+    public static StationRepositoryJava get(){
+        return singleton;
+    }
 
     @Override
     public Set<Station> stations() {

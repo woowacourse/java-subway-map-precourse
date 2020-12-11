@@ -21,9 +21,9 @@ class LineControllerTest {
     private StationRepository stationRepository;
 
     public LineControllerTest() {
-        lineRepository = new LineRepositoryJava();
-        stationRepository = new StationRepositoryJava();
-        lineController = new LineController(lineRepository, stationRepository);
+        lineRepository = LineRepositoryJava.get();
+        stationRepository = StationRepositoryJava.get();
+        lineController = LineController.get(lineRepository, stationRepository);
     }
 
     @BeforeEach
