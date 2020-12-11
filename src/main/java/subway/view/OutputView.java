@@ -1,5 +1,8 @@
 package subway.view;
 
+import java.util.List;
+import subway.domain.Station;
+
 public class OutputView {
     private static final String INFO_PREFIX = "[INFO] ";
     public static void printMainFunctions() {
@@ -66,6 +69,19 @@ public class OutputView {
 
     public static void printSuccessToCreateStation() {
         System.out.println(INFO_PREFIX + "지하철 역이 등록되었습니다.");
+        printEmptyLine();
+    }
+
+    public static void printSuccessToDeleteStation() {
+        System.out.println(INFO_PREFIX + "지하철 역이 삭제되었습니다.");
+        printEmptyLine();
+    }
+
+    public static void printStations(List<Station> stations) {
+        System.out.println("## 역 목록");
+        for (Station station : stations) {
+            System.out.println(INFO_PREFIX + station.getName());
+        }
         printEmptyLine();
     }
 }

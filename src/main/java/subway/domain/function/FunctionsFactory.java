@@ -15,7 +15,7 @@ public class FunctionsFactory {
         functions.put("1", new StationCreateFunction());
         functions.put("2", new StationDeleteFunction());
         functions.put("3", new StationReadFunction());
-        functions.put("Q", new StationBackFunction());
+        functions.put("B", new StationBackFunction());
 
         return new Functions(functions);
     }
