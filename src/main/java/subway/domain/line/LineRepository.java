@@ -5,7 +5,9 @@ import java.util.List;
 public interface LineRepository {
     List<Line> lines();
 
-    void addLine(Line line);
+    Line addLine(Line line);
+
+    Line findByName(String name);
 
     boolean deleteLineByName(String name);
 }

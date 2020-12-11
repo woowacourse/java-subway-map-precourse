@@ -17,7 +17,9 @@ public enum ErrorCode {
     //Line
     LINE_NAME_LENGTH_ERROR("L001", Screen.PREFIX_ERROR + "구간 이름은 2글자 이상이어야 합니다."),
     LINE_INVALID_LAST_NAME("L002", Screen.PREFIX_ERROR + "마지막 글자에 선이 들어가야합니다."),
-    LINE_INVALID_CHARACTER("L003", Screen.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다.");
+    LINE_INVALID_CHARACTER("L003", Screen.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다."),
+    LINE_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 구간입니다.");
+
 
     private final String code;
     private final String message;

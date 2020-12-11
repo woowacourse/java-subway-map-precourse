@@ -1,5 +1,7 @@
 package subway.domain.line;
 
-public interface LineService {
+import subway.domain.line.dto.LineSaveReqDto;
 
+public interface LineService {
+    Line saveLine(LineSaveReqDto saveReqDto);
 }

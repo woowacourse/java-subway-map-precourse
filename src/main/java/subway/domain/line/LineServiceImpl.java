@@ -1,9 +1,24 @@
 package subway.domain.line;
 
+import subway.domain.line.dto.LineSaveReqDto;
+import subway.exception.ErrorCode;
+import subway.exception.LineException;
+
 public class LineServiceImpl implements LineService {
     private final LineRepository lineRepository;
 
     public LineServiceImpl(LineRepository lineRepository) {
         this.lineRepository = lineRepository;
+    }
+
+    @Override
+    public Line saveLine(LineSaveReqDto saveReqDto) {
+        Line line = Line.of(saveReqDto.getName());
+        Line findLine = lineRepository.findByName(line.getName());
+        if (findLine != null) {
+            throw new LineException(ErrorCode.LINE_ALREADY_EXIST);
+        }
+        lineRepository.addLine(line);
+        return line;
     }
 }
