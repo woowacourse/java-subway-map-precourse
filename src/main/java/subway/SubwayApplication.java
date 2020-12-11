@@ -2,6 +2,7 @@ package subway;
 
 import java.util.Scanner;
 import subway.view.LineView;
+import subway.view.SectionView;
 import subway.view.StationView;
 import subway.view.Button;
 import subway.view.Input;
@@ -15,11 +16,13 @@ public class SubwayApplication {
     private final Input input;
     private final StationView stationView;
     private final LineView lineView;
+    private final SectionView sectionView;
 
     public SubwayApplication(Scanner scanner) {
         this.input = new Input(scanner);
         this.stationView = new StationView(input);
         this.lineView = new LineView(input);
+        this.sectionView = new SectionView(input);
     }
 
     public void run() {
@@ -63,6 +66,9 @@ public class SubwayApplication {
     }
 
     private void selectSectionMenu(final String button) {
+        if (button.equals(Button.THREE)) {
+            sectionView.selectLineMenu(input.nextSectionButton());
+        }
     }
 
     private void selectSubwayLineMenu(final String button) {

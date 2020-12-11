@@ -29,6 +29,12 @@ public class Message {
             "3. 노선 조회",
             "B. 돌아가기");
 
+    private static final List<String> sectionMenus = Arrays.asList(
+            "\n## 구간 관리 화면",
+            "1. 구간 등록",
+            "2. 구간 삭제",
+            "B. 돌아가기");
+
     private static final String selectFeature = "\n## 원하는 기능을 선택하세요.";
 
     private Message() {
@@ -46,6 +52,11 @@ public class Message {
 
     public static void printLineMenu() {
         lineMenus.forEach(System.out::println);
+        System.out.println(selectFeature);
+    }
+
+    public static void printSectionMenu() {
+        sectionMenus.forEach(System.out::println);
         System.out.println(selectFeature);
     }
 
