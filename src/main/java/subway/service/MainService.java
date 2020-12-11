@@ -52,16 +52,16 @@ public class MainService {
         return scanner.nextLine();
     }
 
-    private void runSelectedService(String selectedFunction) {
-        if (selectedFunction.equals(Service.STATION.getCode()))
+    private void runSelectedService(String selectedService) {
+        if (selectedService.equals(Service.STATION.getCode()))
             stationService.run();
-        if (selectedFunction.equals(Service.LINE.getCode()))
+        if (selectedService.equals(Service.LINE.getCode()))
             lineService.run();
-        if (selectedFunction.equals(Service.AREA.getCode()))
+        if (selectedService.equals(Service.AREA.getCode()))
             areaService.run();
-        if (selectedFunction.equals(Service.MAP.getCode()))
+        if (selectedService.equals(Service.MAP.getCode()))
             mapService.run();
-        if (selectedFunction.equals(Service.QUIT.getCode()))
+        if (selectedService.equals(Service.QUIT.getCode()))
             isContinue = false;
     }
 }

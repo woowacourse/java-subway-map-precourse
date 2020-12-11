@@ -8,6 +8,6 @@ public class ServiceValidator {
 
     public void validate(String input) throws InvalidInputException {
         if (!Service.isAvailable(input))
-            throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_FUNCTION_CODE);
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_SERVICE_CODE);
     }
 }
