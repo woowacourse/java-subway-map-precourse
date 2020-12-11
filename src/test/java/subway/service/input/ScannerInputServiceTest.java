@@ -31,8 +31,8 @@ class ScannerInputServiceTest {
         //when
         InputService scannerInputUtils = getScannerInputUtils(incheonText);
         InputService scannerInputUtils2 = getScannerInputUtils(seoulText);
-        String incheonStationName = scannerInputUtils.getStationName();
-        String seoulStationName = scannerInputUtils2.getStationName();
+        String incheonStationName = scannerInputUtils.getName();
+        String seoulStationName = scannerInputUtils2.getName();
 
         //then
         assertThat(incheonStationName).isEqualTo(incheonText);

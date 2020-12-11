@@ -14,7 +14,7 @@ public interface InputService {
     int DELETE = 2;
     int FIND = 3;
 
-    String getStationName();
+    String getName();
 
     int getMainOption();
 

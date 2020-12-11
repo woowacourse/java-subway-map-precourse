@@ -1,5 +1,9 @@
 package subway;
 
+import subway.domain.line.LineService;
+import subway.domain.line.LineServiceImpl;
+import subway.domain.line.MemoryLineRepository;
+import subway.domain.line.dto.LineSaveReqDto;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
@@ -9,6 +13,7 @@ import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
 import subway.service.output.StringBuilderOutputService;
+import subway.view.LineView;
 import subway.view.StationView;
 
 import java.util.Scanner;
@@ -17,11 +22,13 @@ public class StationManageApp {
     private final InputService inputService;
     private final OutputService outputService;
     private final StationService stationService;
+    private final LineService lineService;
 
     public StationManageApp() {
         this.inputService = ScannerInputService.of(new Scanner(System.in));
         this.outputService = StringBuilderOutputService.of(new StringBuilder());
         this.stationService = new StationServiceImpl(MemoryStationRepository.of());
+        this.lineService = new LineServiceImpl(MemoryLineRepository.of());
     }
 
     public static StationManageApp of() {
@@ -72,12 +79,12 @@ public class StationManageApp {
         StationView stationView = new StationView(outputService);
         if (manageStationOption == InputService.ADD) {
             outputService.printAdd(stationView);
-            stationService.saveStation(new StationSaveReqDto(getStationName()));
+            stationService.saveStation(new StationSaveReqDto(getName()));
             outputService.printAfterAdd(stationView);
         }
         if (manageStationOption == InputService.DELETE) {
             outputService.printDelete(stationView);
-            stationService.deleteStation(new StationDeleteReqDto(getStationName()));
+            stationService.deleteStation(new StationDeleteReqDto(getName()));
             outputService.printAfterDelete(stationView);
         }
         if (manageStationOption == InputService.FIND) {
@@ -86,7 +93,11 @@ public class StationManageApp {
     }
 
     private void chooseManageRouteOption(int manageRouteOption) {
+        LineView lineView = new LineView(outputService);
         if (manageRouteOption == InputService.ADD) {
+            outputService.printAdd(lineView);
+            lineService.saveLine(new LineSaveReqDto(getName()));
+            outputService.printAfterAdd(lineView);
         }
         if (manageRouteOption == InputService.DELETE) {
         }
@@ -94,10 +105,11 @@ public class StationManageApp {
         }
     }
 
-    private String getStationName() {
-        String stationName = inputService.getStationName();
-        return stationName;
+    private String getName() {
+        String name = inputService.getName();
+        return name;
     }
+
 
     private void manageMap() {
     }

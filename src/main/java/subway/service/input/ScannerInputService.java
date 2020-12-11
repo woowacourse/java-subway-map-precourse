@@ -17,9 +17,9 @@ public class ScannerInputService implements InputService {
     }
 
     @Override
-    public String getStationName() {
-        String stationName = getNextLine();
-        return stationName;
+    public String getName() {
+        String name = getNextLine();
+        return name;
     }
 
     @Override
@@ -68,6 +68,7 @@ public class ScannerInputService implements InputService {
         }
         return false;
     }
+
     private void validateManageRouteOption(int option) {
         checkOption(option, ADD, DELETE, FIND);
     }
