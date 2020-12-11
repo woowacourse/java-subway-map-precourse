@@ -1,7 +1,6 @@
 package subway.view;
 
 import subway.domain.Sections;
-import subway.domain.Station;
 
 public enum SectionMessages {
 	SECTION_0(General.BASIC.getMessage() + "구간 관리 화면"),
@@ -23,7 +22,7 @@ public enum SectionMessages {
 	MINIMUM_SECTION_LENGTH_ERROR(General.ERROR.getMessage() + "노선에 역이 "
 			+ Sections.MINIMUM_SECTION_LENGTH
 			+ "개밖에 없습니다."),
-	UNREGISTERED_STATION_NAME_ERROR(General.ERROR.getMessage() + "등록되지 않은 역입니다."),
+	UNREGISTERED_STATION_NAME_ERROR(General.ERROR.getMessage() + "해당 노선에 등록되지 않은 역입니다."),
 	UNREGISTERED_LINE_NAME_ERROR(General.ERROR.getMessage() + "등록되지 않은 노선입니다.");
 
 	final private String message;
