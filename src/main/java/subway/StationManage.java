@@ -5,6 +5,8 @@ import subway.domain.StationRepository;
 import java.util.Scanner;
 
 public class StationManage {
+    public static final int MENU_INT_CREATE_STATION = 1;
+    public static final int MENU_INT_DELETE_STATION = 2;
     private Scanner scanner;
 
     public StationManage (Scanner scanner) {
@@ -42,13 +44,14 @@ public class StationManage {
     }
 
     public void selectMenu(int menuNumber) {
-        if (menuNumber == 1) {
+        if (menuNumber == MENU_INT_CREATE_STATION) {
             String station = askStationName();
             StationRepository.addStation(new Station(station));
+        } else if (menuNumber == MENU_INT_DELETE_STATION) {
+            String station = askStationName();
+            StationRepository.deleteStation(station);
+            
         }
-//        else if (menuNumber == 2) {
-//            
-//        }
 //        else if (stationMenuNumber == 3) {
 //
 //        } else if (stationMenuNumber == 0) {
