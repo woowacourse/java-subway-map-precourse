@@ -13,10 +13,6 @@ public class LineRepository {
 
     public static void addLine(Line line) {
         lines.add(line);
-        for (Line l : lines) {
-            System.out.print(l.getName()+" ");
-        }
-        System.out.println();
     }
 
     public static void validateDuplicate(Line line) {

@@ -74,7 +74,6 @@ public class SubwayProgram {
         }
         if (SubMenuType.LIST_PRINT.equals(stationMenuType)) {
             OutputView.printStationList();
-            return;
         }
     }
 
@@ -86,6 +85,9 @@ public class SubwayProgram {
         if (SubMenuType.DELETE.equals(lineMenuType)) {
             InputView.inputLineNameDelete(scanner);
             return;
+        }
+        if (SubMenuType.LIST_PRINT.equals(lineMenuType)) {
+            OutputView.printLineList();
         }
     }
 
