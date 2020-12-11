@@ -5,13 +5,13 @@ import subway.controller.Function;
 
 public class InputView {
 
-    private static final String CHOOSE_FUNCTION = "## 원하는 기능을 선택하세요.";
-    private static final String CHOOSE_ADD_STATION = "## 등록할 역 이름을 입력하세요.";
-    private static final String CHOOSE_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
-    private static final String CHOOSE_ADD_LINE = "## 등록할 노선 이름을 입력하세요.";
-    private static final String CHOOSE_DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
-    private static final String CHOOSE_LINE_BEGINNING = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
-    private static final String CHOOSE_LINE_ENDING = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String CHOOSE_FUNCTION = "## 원하는 기능을 선택하세요.";
+    public static final String CHOOSE_ADD_STATION = "## 등록할 역 이름을 입력하세요.";
+    public static final String CHOOSE_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
+    public static final String CHOOSE_ADD_LINE = "## 등록할 노선 이름을 입력하세요.";
+    public static final String CHOOSE_DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
+    public static final String CHOOSE_LINE_BEGINNING = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static final String CHOOSE_LINE_ENDING = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -24,14 +24,9 @@ public class InputView {
         return userStringInput(CHOOSE_FUNCTION);
     }
 
-    public String inputAddStationName() {
+    public String inputName(String specificInfo) {
         System.out.println();
-        return userStringInput(CHOOSE_ADD_STATION);
-    }
-
-    public String inputDeleteStationName() {
-        System.out.println();
-        return userStringInput(CHOOSE_DELETE_STATION);
+        return userStringInput(specificInfo);
     }
 
     private String userStringInput(String specificInfo) {

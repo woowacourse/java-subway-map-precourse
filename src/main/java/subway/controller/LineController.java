@@ -3,24 +3,24 @@ package subway.controller;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationController extends Controller {
+public class LineController extends Controller {
 
     private static final int ADD_FUNCTION = 1;
     private static final int DELETE_FUNCTION = 2;
     private static final int VIEW_FUNCTION = 3;
 
-    public StationController(InputView inputView) {
+    public LineController(InputView inputView) {
         super(inputView);
     }
 
     @Override
     public void run() {
         try {
-            String functionDecision = inputView.inputFunction(Function.STATION_MENU);
-            if(Function.isExitDecision(functionDecision, Function.STATION_MENU)) {
+            String functionDecision = inputView.inputFunction(Function.LINE_MENU);
+            if(Function.isExitDecision(functionDecision, Function.LINE_MENU)) {
                 return;
             }
-            Function.validate(functionDecision, Function.STATION_MENU);
+            Function.validate(functionDecision, Function.LINE_MENU);
             goTo(Integer.parseInt(functionDecision));
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
@@ -30,25 +30,25 @@ public class StationController extends Controller {
 
     private void goTo(int function) {
         if (function == ADD_FUNCTION) {
-            addStation();
+            addLine();
         }
         if (function == DELETE_FUNCTION) {
-            deleteStation();
+            deleteLine();
         }
         if (function == VIEW_FUNCTION) {
-            viewStations();
+            viewLines();
         }
     }
 
-    private void addStation() {
-        String rawStationName = inputView.inputName(InputView.CHOOSE_ADD_STATION);
+    private void addLine() {
+        String rawLineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
     }
 
-    private void deleteStation() {
-        String rawStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
+    private void deleteLine() {
+        String rawLineName = inputView.inputName(InputView.CHOOSE_DELETE_LINE);
     }
 
-    private void viewStations() {
+    private void viewLines() {
 
     }
 }
