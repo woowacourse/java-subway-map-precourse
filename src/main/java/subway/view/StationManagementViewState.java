@@ -48,6 +48,7 @@ public class StationManagementViewState extends ViewState{
     protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         checkAndAddStation(feature, application, scanner);
         checkAndRemoveStation(feature, application, scanner);
+        checkAndPrintStations(feature, application);
         checkAndSwitchViewToMain(feature, application);
     }
 
@@ -69,6 +70,14 @@ public class StationManagementViewState extends ViewState{
             printWhiteSpace();
             removeStation(stationName);
             printStationRemoveFinishLog();
+            switchViewToStationManagement(application);
+        }
+    }
+
+    private void checkAndPrintStations(String feature, SubwayLineMap application){
+        if(feature.equals(BTN_READ_STATION)){
+            List<Station> stationList = readStations();
+            printStationList(stationList);
             switchViewToStationManagement(application);
         }
     }
@@ -115,6 +124,20 @@ public class StationManagementViewState extends ViewState{
 
     private void removeStation(String name) throws Exception {
         stationController.removeStation(name);
+    }
+
+    private List<Station> readStations() {
+        return stationController.getStations();
+    }
+
+    private void printStationList(List<Station> stationList) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Station station : stationList){
+            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
+            stringBuilder.append(station.getName());
+            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        }
+        System.out.println(stringBuilder.toString());
     }
 
     private void switchViewToStationManagement(SubwayLineMap application){

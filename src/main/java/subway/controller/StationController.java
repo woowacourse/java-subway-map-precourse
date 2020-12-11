@@ -21,6 +21,10 @@ public class StationController {
         return stationController;
     }
 
+    public List<Station> getStations(){
+        return StationRepository.getStations();
+    }
+
     public void addStation(String name) throws DuplicatedStationNameException {
         if(checkIfStationExist(name)) {
             throw new DuplicatedStationNameException();
