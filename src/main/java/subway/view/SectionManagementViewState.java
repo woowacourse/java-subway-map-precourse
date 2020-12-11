@@ -1,7 +1,6 @@
 package subway.view;
 
 import subway.SubwayLineMap;
-import subway.exception.UnselectableFeatureException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.SectionManagementViewComponent;
 

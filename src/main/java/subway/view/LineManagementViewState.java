@@ -1,16 +1,11 @@
 package subway.view;
 
 import subway.SubwayLineMap;
-import subway.controller.MainMenuControllerState;
-import subway.exception.UnselectableFeatureException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.LineManagementViewComponent;
-import subway.view.component.MainViewComponent;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Scanner;
-import java.util.Set;
 
 public class LineManagementViewState extends ViewState {
     private static final String BTN_ADD_LINE = "1";
