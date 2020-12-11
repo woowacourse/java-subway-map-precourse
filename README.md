@@ -511,4 +511,4 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
     - [x] 노선 등록 시 이름이 2글자 이상인지 확인한다.
     - [x] 노선 등록 시 상행 종점역이 존재하는 역인지 확인한다.
     - [x] 노선 등록 시 하행 종점역이 존재하는 역인지 확인한다.
-    - [ ] 노선 삭제 시 존재하는 노선인지 확인한다.
+    - [x] 노선 삭제 시 존재하는 노선인지 확인한다.

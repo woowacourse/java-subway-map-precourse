@@ -82,10 +82,26 @@ public class LineService extends BaseService {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_STATION);
     }
 
+
     @Override
     public void delete() {
-        System.out.println(Information.DELETE_LINE_INFO);
+        String targetLineName = getTargetLineName();
+        validateLineExists(targetLineName);
+        LineRepository.deleteLineByName(targetLineName);
+        System.out.println(Information.DELETE_LINE_SUCCESS);
     }
+
+    private String getTargetLineName() {
+        System.out.println(Information.DELETE_LINE_INFO);
+        return scanner.nextLine();
+    }
+
+    private void validateLineExists(String targetLineName) {
+        Line targetLine = new Line(targetLineName);
+        if (!LineRepository.lines().contains(targetLine))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_LINE);
+    }
+
 
     @Override
     public void show() {
