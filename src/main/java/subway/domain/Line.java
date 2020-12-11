@@ -11,7 +11,6 @@ public class Line {
     private String name;
     private Station upEnd;
     private Station downEnd;
-
     private List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
@@ -57,6 +56,7 @@ public class Line {
     public int hashCode() {
         return Objects.hash(name);
     }
+
 
     public void addNewLink(Link newLink) {
         Station station = new Station(newLink.getStationName());
