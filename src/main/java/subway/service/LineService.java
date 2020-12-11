@@ -9,6 +9,9 @@ import subway.exception.InvalidInputException;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static subway.constant.Information.INFO_HEADER;
@@ -32,15 +35,14 @@ public class LineService extends CrudService {
     public void add() {
         Line newLine = getNewLineInput();
         validateNewLine(newLine);
-        LineRepository.addLine(newLine);
+        addNewLine(newLine);
         System.out.println(Information.ADD_LINE_SUCCESS);
     }
 
     private Line getNewLineInput() {
         String name = getNewLineName();
-        Station upEnd = getNewLineUpEnd();
-        Station downEnd = getNewLineDownEnd();
-        Line newLine = new Line(name, upEnd, downEnd);
+        List<Station> endStations = getNewLineEndStations();
+        Line newLine = new Line(name, endStations);
         validateNewLine(newLine);
         return newLine;
     }
@@ -48,6 +50,12 @@ public class LineService extends CrudService {
     private String getNewLineName() {
         System.out.println(Information.ADD_LINE_INFO);
         return scanner.nextLine();
+    }
+
+    private List<Station> getNewLineEndStations() {
+        Station upEnd = getNewLineUpEnd();
+        Station downEnd = getNewLineDownEnd();
+        return new ArrayList<>(Arrays.asList(upEnd, downEnd));
     }
 
     private Station getNewLineUpEnd() {
@@ -80,6 +88,10 @@ public class LineService extends CrudService {
         if (!StationRepository.stations().contains(newLine.getUpEnd())
                 || !StationRepository.stations().contains(newLine.getDownEnd()))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_STATION);
+    }
+
+    private void addNewLine(Line newLine) {
+        LineRepository.addLine(newLine);
     }
 
 
