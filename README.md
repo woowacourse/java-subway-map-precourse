@@ -525,3 +525,5 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
     - [x] 구간 삭제 시 존재하는 역인지 확인한다.
     - [x] 구간 삭제 시 노선에 남은 역이 2개 초과인지 확인한다.
     - [x] 구간 삭제 시 상하행 종점역을 갱신한다.
+- [x] 지하철 노선도
+    - [x] 모든 노선과 역을 순서대로 출력한다.
