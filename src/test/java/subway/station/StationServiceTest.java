@@ -2,6 +2,7 @@ package subway.station;
 
 import org.junit.jupiter.api.Test;
 import subway.station.domain.StationRepository;
+import subway.station.exception.NotKoreanNameException;
 import subway.station.exception.TooShortStationNameException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,5 +30,18 @@ public class StationServiceTest {
         //when & then
         assertThatExceptionOfType(TooShortStationNameException.class)
                 .isThrownBy(() -> StationService.register(name));
+    }
+
+    @Test
+    public void 한국어가_아닌_지하철역_등록시_예외_발생() {
+        //given
+        String englishName = "jamsil";
+        String numericName = "12434";
+
+        //when & then
+        assertThatExceptionOfType(NotKoreanNameException.class)
+                .isThrownBy(() -> StationService.register(englishName));
+        assertThatExceptionOfType(NotKoreanNameException.class)
+                .isThrownBy(() -> StationService.register(numericName));
     }
 }
