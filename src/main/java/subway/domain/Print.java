@@ -11,4 +11,8 @@ public class Print {
                 + Constant.HASH + Constant.CHOOSE_FUNCTION
         );
     }
+
+    public static void getStationName() {
+        System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.ADD, Constant.STATION);
+    }
 }

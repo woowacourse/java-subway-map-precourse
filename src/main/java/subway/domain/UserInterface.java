@@ -9,7 +9,7 @@ public class UserInterface {
     }
 
     static String getStationName(Scanner scanner) {
-        System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.ADD, Constant.STATION);
+        Print.getStationName();
         String input = scanner.next();
         return Exception.passNameExceptionTest(input);
     }
