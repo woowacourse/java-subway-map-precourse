@@ -1,14 +1,14 @@
 package subway.domain;
 
 public class Line {
-    private String name;
+    private Name name;
 
     public Line(String name) {
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     // 추가 기능 구현
