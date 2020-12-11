@@ -483,6 +483,7 @@ public class StationRepository {
     - 존재하지 않는 역, 노선 입력 시 출력 기능
     - 이미 존재하는 역, 노선 입력 시 출력 기능
 - Menu UI 구현 : 메인 및 관리 화면 출력 기능
+- 컨트롤러 구현하여 Info, Error, Menu 가 바르게 작동하도록 구현
 - 전체 어플리케이션 작동 기능 구현
     
     
