@@ -9,7 +9,7 @@ import subway.domain.StationRepository;
 /**
  * 역, 노선, 구간을 관리(등록, 삭제, 조회)하는 클래스
  */
-public class MainManager {
+public class InitialManager {
 
     private final String[] initialLines = {"2호선", "3호선", "신분당선"};
     private final String[] initialStations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역",
