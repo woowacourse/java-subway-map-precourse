@@ -29,8 +29,14 @@ public class LineController {
 		return lineName;
 	}
 
-	private static String createDestination(Scanner scanner) throws IllegalArgumentException {
+	private static String createUpwardDestination(Scanner scanner) throws IllegalArgumentException {
 		String destination = View.getUpwardDestination(scanner);
+		StationRepository.validateRegistration(destination);
+		return destination;
+	}
+
+	private static String createDownwardDestination(Scanner scanner) throws IllegalArgumentException {
+		String destination = View.getDownwardDestination(scanner);
 		StationRepository.validateRegistration(destination);
 		return destination;
 	}
@@ -46,8 +52,8 @@ public class LineController {
 	private static void registerLine(Scanner scanner) {
 		try {
 			String lineName = createLineName(scanner);
-			String upwardDestination = createDestination(scanner);
-			String downwardDestination = createDestination(scanner);
+			String upwardDestination = createUpwardDestination(scanner);
+			String downwardDestination = createDownwardDestination(scanner);
 			createLine(lineName, upwardDestination, downwardDestination);
 			View.printStationRegisterCompletion();
 		} catch (IllegalArgumentException e) {
