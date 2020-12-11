@@ -103,8 +103,8 @@ class ScannerInputServiceTest {
         int mainOptionBack = scannerInputUtils3.getManageStationOption();
 
         //then
-        assertThat(mainOptionOne).isEqualTo(InputService.MANAGE_STATION_ADD);
-        assertThat(mainOptionTwo).isEqualTo(InputService.MANAGE_STATION_DELETE);
+        assertThat(mainOptionOne).isEqualTo(InputService.ADD);
+        assertThat(mainOptionTwo).isEqualTo(InputService.DELETE);
         assertThat(mainOptionBack).isEqualTo(InputService.OPTION_BACK);
     }
 

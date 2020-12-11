@@ -10,13 +10,15 @@ public interface InputService {
     String MAIN_OPTION_BACK = "B";
     int OPTION_BACK = -888;
     int OPTION_ERROR = -1;
-    int MANAGE_STATION_ADD = 1;
-    int MANAGE_STATION_DELETE = 2;
-    int MANAGE_STATION_FIND = 3;
+    int ADD = 1;
+    int DELETE = 2;
+    int FIND = 3;
 
     String getStationName();
 
     int getMainOption();
 
     int getManageStationOption();
+
+    int getManageRouteOption();
 }

@@ -3,7 +3,6 @@ package subway;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
-import subway.domain.station.Stations;
 import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
@@ -41,7 +40,7 @@ public class StationManageApp {
     }
 
     private boolean isQuit(int option) {
-        if (option == InputService.OPTION_QUIT){
+        if (option == InputService.OPTION_QUIT) {
             return true;
         }
         return false;
@@ -71,17 +70,26 @@ public class StationManageApp {
 
     private void chooseManageStationOption(int manageStationOption) {
         StationView stationView = new StationView(outputService);
-        if (manageStationOption == InputService.MANAGE_STATION_ADD) {
+        if (manageStationOption == InputService.ADD) {
             outputService.printManageStationAdd();
             stationService.saveStation(new StationSaveReqDto(getStationName()));
             stationView.printAdd();
         }
-        if (manageStationOption == InputService.MANAGE_STATION_DELETE) {
+        if (manageStationOption == InputService.DELETE) {
             outputService.printManageStationDelete();
             stationView.printDelete(stationService.deleteStation(new StationDeleteReqDto(getStationName())));
         }
-        if (manageStationOption == InputService.MANAGE_STATION_FIND) {
+        if (manageStationOption == InputService.FIND) {
             stationView.printAllStations(stationService.getStations());
+        }
+    }
+
+    private void chooseManageRouteOption(int manageRouteOption) {
+        if (manageRouteOption == InputService.ADD) {
+        }
+        if (manageRouteOption == InputService.DELETE) {
+        }
+        if (manageRouteOption == InputService.FIND) {
         }
     }
 
@@ -99,6 +107,11 @@ public class StationManageApp {
 
     private void manageRoute() {
         outputService.printManageRoute();
+        int manageRouteOption = inputService.getManageRouteOption();
+        if (isBack(manageRouteOption)) {
+            return;
+        }
+        chooseManageRouteOption(manageRouteOption);
     }
 
     private void manageStation() {
