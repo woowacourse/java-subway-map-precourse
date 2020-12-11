@@ -1,28 +1,38 @@
 package subway.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class MainController {
+public class MainController extends Controller {
 
-    public static final int MAIN_MENU = 0;
+    public static boolean isRunning = true;
 
-    private InputView inputView;
+    private final List<Controller> controllers = new ArrayList<>();
 
     public MainController(InputView inputView) {
-        this.inputView = inputView;
+        super(inputView);
+        controllers.add(new StationController(inputView));
     }
 
+    @Override
     public void run() {
         try {
-            String functionDecision = inputView.inputFunction();
-            if(Function.isExitDecision(functionDecision)) {
+            String functionDecision = inputView.inputFunction(Function.MAIN_MENU);
+            if (Function.isExitDecision(functionDecision, Function.MAIN_MENU)) {
+                isRunning = false;
                 return;
             }
-            Function.validate(functionDecision, MAIN_MENU);
+            Function.validate(functionDecision, Function.MAIN_MENU);
+            goTo(controllers.get(Integer.parseInt(functionDecision) - 1));
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             run();
         }
+    }
+
+    private void goTo(Controller controller) {
+        controller.run();
     }
 }
