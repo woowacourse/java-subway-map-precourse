@@ -48,7 +48,7 @@ public class InputView {
         try {
             String string = deleteWhiteSpaces(scanner.nextLine());
             isNotEmptyStringOrThrowException(string);
-            if (!menu.getMenuSelections().contains(string)) {
+            if (!menu.selectionValues().contains(string)) {
                 throw new IllegalArgumentException(ERROR_INVALID_INPUT_VALUE);
             }
             newLine();

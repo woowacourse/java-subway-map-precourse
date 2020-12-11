@@ -1,11 +1,11 @@
 package subway.view;
 
+import subway.view.menu.Selection;
 import subway.view.menu.LineMenu;
 import subway.view.menu.MainMenu;
 import subway.view.menu.Menu;
 import subway.view.menu.StationMenu;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class OutputView {
@@ -43,11 +43,8 @@ public class OutputView {
 
     public static void showMenu(Menu menu) {
         System.out.println(SHARP_PREFIX + menu.getViewName());
-
-        Iterator<String> menuIterator = menu.getMenu().iterator();
-        Iterator<String> menuSelectionsIterator = menu.getMenuSelections().iterator();
-        while (menuIterator.hasNext() && menuSelectionsIterator.hasNext()) {
-            System.out.println(String.format(MENU_FORMAT, menuSelectionsIterator.next(), menuIterator.next()));
+        for (Selection selection : menu.selections()) {
+            System.out.println(String.format(MENU_FORMAT, selection.getValue(), selection.getDescription()));
         }
         newLine();
     }

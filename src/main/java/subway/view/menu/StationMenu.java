@@ -2,29 +2,33 @@ package subway.view.menu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StationMenu extends Menu {
     private static final String VIEW_NAME = "역 관리 화면";
     private static final String CREATE = "역 등록";
     private static final String DELETE = "역 삭제";
-    private static final String DISPLAY = "역 조회";
-    private static final String BACK = "돌아가기";
+    private static final String READ = "역 조회";
+    private static final String ESCAPE = "돌아가기";
+    private static final String ESCAPE_VALUE = "B";
     private static final int MENU_START_INDEX = 1;
-    private static final int MENU_LENGTH = 3;
 
     private static StationMenu instance;
 
     private StationMenu() {
-        menu = new ArrayList<>(Arrays.asList(
-                CREATE, DELETE, DISPLAY, BACK
-        ));
-        IntStream.rangeClosed(MENU_START_INDEX, MENU_LENGTH)
-                .mapToObj(Integer::toString)
-                .forEach(menuSelections::add);
-        menuSelections.add("B");
         viewName = VIEW_NAME;
+        List<String> descriptions = new ArrayList<>(Arrays.asList(
+                CREATE, DELETE, READ, ESCAPE
+        ));
+        Iterator<String> description = descriptions.iterator();
+        selections = IntStream.range(MENU_START_INDEX, descriptions.size())
+                .mapToObj(Integer::toString)
+                .map(i -> new Selection(i, description.next()))
+                .collect(Collectors.toList());
+        selections.add(new Selection(ESCAPE_VALUE, ESCAPE));
     }
 
     public static StationMenu getInstance() {
@@ -32,15 +36,5 @@ public class StationMenu extends Menu {
             instance = new StationMenu();
         }
         return instance;
-    }
-
-    @Override
-    public List<String> getMenu() {
-        return menu;
-    }
-
-    @Override
-    public List<String> getMenuSelections() {
-        return menuSelections;
     }
 }
