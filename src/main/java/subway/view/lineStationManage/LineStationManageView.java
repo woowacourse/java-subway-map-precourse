@@ -1,6 +1,7 @@
 package subway.view.lineStationManage;
 
 import subway.line.LineController;
+import subway.view.BackView;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
 
@@ -17,6 +18,8 @@ public class LineStationManageView implements ViewStrategy {
 
     public LineStationManageView(Scanner scanner, LineController lineController) {
         this.scanner = scanner;
+        LINE_STATION_VIEW.put("1", new addStationView(lineController, scanner));
+        LINE_STATION_VIEW.put("B", new BackView());
     }
 
     @Override
