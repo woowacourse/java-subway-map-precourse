@@ -8,7 +8,11 @@ public class UserInterface {
         String input = scanner.next();
     }
 
-    static String getStationName(Scanner scanner) {
+    public static void stationSetting(Scanner scanner) {
+        String input = scanner.next();
+    }
+
+    public static String getStationName(Scanner scanner) {
         Print.getStationName();
         String input = scanner.next();
         return Exception.passNameExceptionTest(input);
