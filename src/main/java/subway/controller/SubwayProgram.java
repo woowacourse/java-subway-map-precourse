@@ -100,10 +100,10 @@ public class SubwayProgram {
             addStationInStationRepository();
             return;
         }
-//        if (SubMenuType.DELETE.equals(stationMenuType)) {
-//            InputView.inputStationNameDelete(scanner);
-//            return;
-//        }
+        if (SubMenuType.DELETE.equals(stationMenuType)) {
+            deleteStationInStationRepository();
+            return;
+        }
         if (SubMenuType.LIST_PRINT.equals(stationMenuType)) {
             OutputView.printStationList();
         }
@@ -118,11 +118,20 @@ public class SubwayProgram {
         }
     }
 
+    private void deleteStationInStationRepository() {
+        try {
+            StationName stationName = InputView.inputStationNameDelete(scanner);
+            StationRepository.deleteStation(stationName);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private void selectLineMenu(Menu lineMenuType) {
-//        if (SubMenuType.ADD.equals(lineMenuType)) {
-//            addLineInLineRepository();
-//            return;
-//        }
+        if (SubMenuType.ADD.equals(lineMenuType)) {
+            addLineInLineRepository();
+            return;
+        }
         if (SubMenuType.DELETE.equals(lineMenuType)) {
             deleteLineInLineRepository();
             return;
@@ -132,16 +141,18 @@ public class SubwayProgram {
         }
     }
 
-//    private void addLineInLineRepository() {
-//        try {
-//            LineName lineName = InputView.inputLineNameAdd(scanner);
-//            Station firstStation = InputView.inputFirstStationName(scanner);
-//            Station lastStation = InputView.inputLastStationName(scanner);
-//            LineRepository.addLine(lineName, firstStation, lastStation);
-//        }catch (IllegalArgumentException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    private void addLineInLineRepository() {
+        try {
+            LineName lineName = InputView.inputLineNameAdd(scanner);
+            StationName firstStationName = InputView.inputFirstStationName(scanner);
+            StationRepository.validateNameExist(firstStationName);
+            StationName lastStationName = InputView.inputLastStationName(scanner);
+            StationRepository.validateNameExist(lastStationName);
+            LineRepository.addLine(lineName, firstStationName, lastStationName);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     private void deleteLineInLineRepository() {
         try {

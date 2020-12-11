@@ -2,6 +2,8 @@ package subway.domain.line;
 
 import subway.domain.line.Line;
 import subway.domain.station.Station;
+import subway.domain.station.StationName;
+import subway.domain.station.StationRepository;
 
 import java.util.*;
 
@@ -14,9 +16,11 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(LineName lineName, Station firstStation, Station lastStation) {
+    public static void addLine(LineName lineName, StationName firstStationName, StationName lastStationName) {
         validateDuplicate(lineName);
         Line line = new Line(lineName);
+        Station firstStation = new Station(firstStationName);
+        Station lastStation = new Station(lastStationName);
         line.init(firstStation, lastStation);
         lines.add(line);
     }
@@ -35,16 +39,6 @@ public class LineRepository {
     }
 
     public static void validateNameExist(LineName lineName) {
-//        boolean nameFlag = true;
-//        for (Line line : lines) {
-//            if (line.equals(newLine)) {
-//                nameFlag = false;
-//                break;
-//            }
-//        }
-//        if (nameFlag) {
-//            throw new IllegalArgumentException(LINE_EXIST_ERROR);
-//        }
         if (!lines.contains(new Line(lineName))) {
             throw new IllegalArgumentException(LINE_EXIST_ERROR);
         }

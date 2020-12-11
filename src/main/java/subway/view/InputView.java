@@ -78,26 +78,25 @@ public class InputView {
         return new StationName(scanner.nextLine());
     }
 
-
+    public static StationName inputStationNameDelete(Scanner scanner) {
+        System.out.println(INPUT_STATION_NAME_DELETE_MESSAGE);
+        return new StationName(scanner.nextLine());
+    }
 
     public static LineName inputLineNameAdd(Scanner scanner) {
         System.out.println(INPUT_LINE_NAME_ADD_MESSAGE);
         return new LineName(scanner.nextLine());
     }
 
-//    public static Station inputFirstStationName(Scanner scanner) {
-//        System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
-//        Station firstStation = new Station(scanner.nextLine());
-//        StationRepository.validateNameExist(firstStation);
-//        return firstStation;
-//    }
-//
-//    public static Station inputLastStationName(Scanner scanner) {
-//        System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
-//        Station lastStation = new Station(scanner.nextLine());
-//        StationRepository.validateNameExist(lastStation);
-//        return lastStation;
-//    }
+    public static StationName inputFirstStationName(Scanner scanner) {
+        System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
+        return new StationName(scanner.nextLine());
+    }
+
+    public static StationName inputLastStationName(Scanner scanner) {
+        System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
+        return new StationName(scanner.nextLine());
+    }
 
     public static LineName inputLineNameDelete(Scanner scanner) {
         System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);

@@ -30,8 +30,8 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(StationName stationName) {
+        validateNameExist(stationName);
         Station targetStation = new Station(stationName);
-        validateNameExist(targetStation);
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
             if (line.getStations().contains(targetStation)) {
@@ -41,8 +41,8 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
-    public static void validateNameExist(Station station) {
-        if (!stations.contains(station)) {
+    public static void validateNameExist(StationName stationName) {
+        if (!stations.contains(new Station(stationName))) {
             throw new IllegalArgumentException(STATION_EXIST_ERROR);
         }
     }
