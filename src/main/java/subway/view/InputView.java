@@ -2,6 +2,9 @@ package subway.view;
 
 import java.util.Scanner;
 
+import subway.view.validator.MenuSelectionException;
+import subway.view.validator.MenuValidator;
+
 public class InputView {
     private final static Scanner SCANNER = new Scanner(System.in);
 

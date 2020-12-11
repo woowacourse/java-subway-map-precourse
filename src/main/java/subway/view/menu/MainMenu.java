@@ -1,4 +1,8 @@
-package subway.view;
+package subway.view.menu;
+
+import subway.view.InputView;
+import subway.view.MapScreen;
+import subway.view.OutputView;
 
 public class MainMenu {
     public static void print() {

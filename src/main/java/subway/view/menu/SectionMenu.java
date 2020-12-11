@@ -1,4 +1,7 @@
-package subway.view;
+package subway.view.menu;
+
+import subway.view.InputView;
+import subway.view.OutputView;
 
 public class SectionMenu {
     public static void print() {

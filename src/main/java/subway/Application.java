@@ -1,6 +1,6 @@
 package subway;
 
-import subway.view.MainMenu;
+import subway.view.menu.MainMenu;
 
 public class Application {
     public static void main(String[] args) {

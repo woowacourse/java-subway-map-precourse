@@ -1,20 +1,23 @@
-package subway.view;
+package subway.view.menu;
 
-public class LineMenu {
+import subway.view.InputView;
+import subway.view.OutputView;
+
+public class StationMenu {
     public static void print() {
-        OutputView.printLineMenu();
-        String selection = InputView.receiveMenu("Line");
+        OutputView.printStationMenu();
+        String selection = InputView.receiveMenu("Station");
 
         if (selection.equals("1")) {
-            // 노선 등록
+            // 역 등록
             return;
         }
         if (selection.equals("2")) {
-            // 노선 삭제
+            // 역 삭제
             return;
         }
         if (selection.equals("3")) {
-            // 노선 조회
+            // 역 조회
             return;
         }
         if (selection.equals("B")) {
