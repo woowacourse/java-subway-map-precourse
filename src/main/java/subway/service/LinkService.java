@@ -21,11 +21,15 @@ public class LinkService extends CrudService {
 
     @Override
     public void add() {
-        Link newLink = getNewLinkInput();
-        validateNewLink(newLink);
+        try {
+            Link newLink = getNewLinkInput();
+            validateNewLink(newLink);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.NON_NUMBER_INPUT);
+        }
     }
 
-    private Link getNewLinkInput() {
+    private Link getNewLinkInput() throws NumberFormatException {
         String lineName = getLineName();
         String stationName = getStationName();
         int order = getOrder();
@@ -42,7 +46,7 @@ public class LinkService extends CrudService {
         return scanner.nextLine();
     }
 
-    private int getOrder() {
+    private int getOrder() throws NumberFormatException {
         System.out.println(Information.ADD_LINK_INFO_ORDER);
         return Integer.parseInt(scanner.nextLine());
     }
