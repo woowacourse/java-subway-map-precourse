@@ -56,4 +56,8 @@ public class Print {
     public static void stationList() {
         System.out.printf("%n");
     }
+
+    public static void addStationDoneMessage() {
+        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.STATION, Constant.ADD);
+    }
 }
