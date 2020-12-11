@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -18,7 +19,7 @@ public class StationController extends Controller {
     public void run() {
         try {
             String functionDecision = inputView.inputFunction(Function.STATION_MENU);
-            if(Function.isExitDecision(functionDecision, Function.STATION_MENU)) {
+            if (Function.isExitDecision(functionDecision, Function.STATION_MENU)) {
                 return;
             }
             Function.validate(functionDecision, Function.STATION_MENU);
@@ -45,6 +46,7 @@ public class StationController extends Controller {
         try {
             String rawStationName = inputView.inputName(InputView.CHOOSE_ADD_STATION);
             Station.validateName(rawStationName);
+            StationRepository.addStation(new Station(rawStationName));
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             addStation();

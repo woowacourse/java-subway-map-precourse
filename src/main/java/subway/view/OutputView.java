@@ -3,6 +3,7 @@ package subway.view;
 import subway.controller.Function;
 
 public class OutputView {
+
     private static final String MAIN_MENU_LABEL = "## 메인 화면";
     private static final String MAIN_MENU_STATION_CARE = "1. 역 관리";
     private static final String MAIN_MENU_LINE_CARE = "2. 노선 관리";
@@ -14,6 +15,7 @@ public class OutputView {
     private static final String STATION_MENU_ADD = "1. 역 등록";
     private static final String STATION_MENU_DELETE = "2. 역 삭제";
     private static final String STATION_MENU_VIEW = "3. 역 조회";
+    private static final String STATION_VIEW_LABEL = "## 역 목록";
 
     private static final String LINE_MENU_LABEL = "## 노선 관리 화면";
     private static final String LINE_MENU_ADD = "1. 노선 등록";
@@ -21,6 +23,8 @@ public class OutputView {
     private static final String LINE_MENU_VIEW = "3. 노선 조회";
 
     private static final String NON_MAIN_MENU_QUIT = "B. 돌아가기";
+
+    public static final String INFO_LABEL = "[INFO] ";
     public static final String ERROR_LABEL = "[ERROR] ";
     public static final String ERROR_NOT_NUMERIC = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_OUT_OF_RANGE = ERROR_LABEL + "선택할 수 없는 기능입니다.";
