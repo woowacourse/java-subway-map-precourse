@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import static subway.view.InputView.*;
 import static subway.view.OutputView.printAddSectionSuccessMessage;
+import static subway.view.OutputView.printDeleteSectionSuccessMessage;
 
 public class SectionService {
 
@@ -17,7 +18,7 @@ public class SectionService {
             addSection(scanner, lineStation);
         }
         if(menu.equals(MenuType.SECTION_DELETE.getKey())) {
-
+            deleteSection(scanner, lineStation);
         }
         if(menu.equals(MenuType.BACK.getKey())) {
             return;
@@ -40,5 +41,18 @@ public class SectionService {
                 StationRepository.findStation(stationName).get(),
                 Integer.parseInt(position));
         printAddSectionSuccessMessage();
+    }
+
+    private void deleteSection(Scanner scanner, LineStationRepository lineStation) {
+        inputDeleteLineNameRequestMessage();
+        String lineName = scanner.nextLine();
+        inputDeleteStationNameRequestMessage();
+        String stationName = scanner.nextLine();
+        //validation
+        //1. 입력한 노선 이름이 존재하는지 검증한다.
+        //2. 입력한 노선에 역 개수가 2개 이상인지 검증한다.
+        //3. 입력한 역 이름이 존재하는지 검증한다.
+        lineStation.deleteStationInLineByName(LineRepository.findLine(lineName).get(), stationName);
+        printDeleteSectionSuccessMessage();
     }
 }
