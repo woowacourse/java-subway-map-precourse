@@ -22,4 +22,12 @@ public class StationRepository {
                 .filter(station -> station.getName().equals(name))
                 .findAny();
     }
+
+    public static void printStations() {
+        System.out.println("## 역 목록");
+        stations.forEach(station -> {
+            System.out.println("[INFO] " + station);
+        });
+        System.out.println();
+    }
 }
