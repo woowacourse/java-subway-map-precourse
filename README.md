@@ -468,3 +468,12 @@ public class StationRepository {
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
+
+<br>
+
+## ☑ 구현할 기능 목록
+
+- [ ] 메인
+  - [ ] 선택지에 없는 입력일 시 에러메세지를 출력한다
+  - [ ] 사용자 입력에 따라 기능을 불러 온다
+  - [ ] 사용자 입력이 Q인 경우 프로그램을 완전 종료한다
