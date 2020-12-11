@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.domain.line.Line;
+import subway.domain.line.LineName;
 import subway.domain.line.LineRepository;
 import subway.domain.menu.MainMenuType;
 import subway.domain.menu.SubMenuType;
@@ -90,64 +91,57 @@ public class InputView {
         }
     }
 
-    public static void inputLineNameAdd(Scanner scanner) {
-        try {
-            System.out.println(INPUT_LINE_NAME_ADD_MESSAGE);
-            Line line = new Line(scanner.nextLine());
-            LineRepository.validateDuplicate(line);
-            inputFirstLastStationName(scanner, line);
-            LineRepository.addLine(line);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+    public static LineName inputLineNameAdd(Scanner scanner) {
+        System.out.println(INPUT_LINE_NAME_ADD_MESSAGE);
+        return new LineName(scanner.nextLine());
     }
 
-    private static void inputFirstLastStationName(Scanner scanner, Line line) {
+    public static Station inputFirstStationName(Scanner scanner) {
         System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
         Station firstStation = new Station(scanner.nextLine());
         StationRepository.validateNameExist(firstStation);
+        return firstStation;
+    }
+
+    public static Station inputLastStationName(Scanner scanner) {
         System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
         Station lastStation = new Station(scanner.nextLine());
         StationRepository.validateNameExist(lastStation);
-        line.init(firstStation, lastStation);
+        return lastStation;
     }
 
-    public static void inputLineNameDelete(Scanner scanner) {
-        try {
-            System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);
-            LineRepository.deleteLineByName(scanner.nextLine());
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+    public static LineName inputLineNameDelete(Scanner scanner) {
+        System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);
+        return new LineName(scanner.nextLine());
     }
 
-    public static void inputSectionAdd(Scanner scanner) {
-        try {
-            System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
-            Line line = LineRepository.getLineByName(scanner.nextLine());
-            System.out.println(INPUT_SECTION_STATION_ADD_MESSAGE);
-            Station station = new Station(scanner.nextLine());
-            StationRepository.validateNameExist(station);
-            line.validateDuplicateStationToLine(station);
-            System.out.println(INPUT_SECTION_INDEX_MESSAGE);
-            int index = InputValidator.validateInteger(scanner.nextLine());
-            line.addStationToLine(station, index);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void inputSectionDelete(Scanner scanner) {
-        try {
-            System.out.println(INPUT_SECTION_LINE_DELETE_MESSAGE);
-            Line line = LineRepository.getLineByName(scanner.nextLine());
-            System.out.println(INPUT_SECTION_STATION_DELETE_MESSAGE);
-            Station station = new Station(scanner.nextLine());
-            line.validateExistStationToLine(station);
-            line.deleteStationToLine(station);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public static void inputSectionAdd(Scanner scanner) {
+//        try {
+//            System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
+//            Line line = LineRepository.getLineByName(scanner.nextLine());
+//            System.out.println(INPUT_SECTION_STATION_ADD_MESSAGE);
+//            Station station = new Station(scanner.nextLine());
+//            StationRepository.validateNameExist(station);
+//            line.validateDuplicateStationToLine(station);
+//            System.out.println(INPUT_SECTION_INDEX_MESSAGE);
+//            int index = InputValidator.validateInteger(scanner.nextLine());
+//            line.addStationToLine(station, index);
+//        }catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
+//
+//    public static void inputSectionDelete(Scanner scanner) {
+//        try {
+//            System.out.println(INPUT_SECTION_LINE_DELETE_MESSAGE);
+//            Line line = LineRepository.getLineByName(scanner.nextLine());
+//            System.out.println(INPUT_SECTION_STATION_DELETE_MESSAGE);
+//            Station station = new Station(scanner.nextLine());
+//            line.validateExistStationToLine(station);
+//            line.deleteStationToLine(station);
+//        }catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
 }

@@ -1,6 +1,7 @@
 package subway.domain.line;
 
 import subway.domain.line.Line;
+import subway.domain.station.Station;
 
 import java.util.*;
 
@@ -13,45 +14,51 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
+    public static void addLine(LineName lineName, Station firstStation, Station lastStation) {
+        validateDuplicate(lineName);
+        Line line = new Line(lineName);
+        line.init(firstStation, lastStation);
         lines.add(line);
     }
 
-    public static void validateDuplicate(Line line) {
+    private static void validateDuplicate(LineName lineName) {
         Set<Line> duplicateCheckSet = new HashSet<>(lines);
-        duplicateCheckSet.add(line);
+        duplicateCheckSet.add(new Line(lineName));
         if (duplicateCheckSet.size() == lines.size()) {
             throw new IllegalArgumentException(LINE_DUPLICATE_ERROR);
         }
     }
 
-    public static boolean deleteLineByName(String name) {
-        validateNameExist(new Line(name));
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static boolean deleteLineByName(LineName lineName) {
+        validateNameExist(lineName);
+        return lines.removeIf(line -> Objects.equals(line.getName(), lineName));
     }
 
-    public static void validateNameExist(Line newLine) {
-        boolean nameFlag = true;
-        for (Line line : lines) {
-            if (line.equals(newLine)) {
-                nameFlag = false;
-                break;
-            }
-        }
-        if (nameFlag) {
+    public static void validateNameExist(LineName lineName) {
+//        boolean nameFlag = true;
+//        for (Line line : lines) {
+//            if (line.equals(newLine)) {
+//                nameFlag = false;
+//                break;
+//            }
+//        }
+//        if (nameFlag) {
+//            throw new IllegalArgumentException(LINE_EXIST_ERROR);
+//        }
+        if (!lines.contains(new Line(lineName))) {
             throw new IllegalArgumentException(LINE_EXIST_ERROR);
         }
     }
 
-    public static Line getLineByName(String name) {
-        Line inputLine = new Line(name);
-        for (Line line : lines) {
-            if (line.equals(inputLine)) {
-                return line;
-            }
-        }
-        throw new IllegalArgumentException(LINE_EXIST_ERROR);
-    }
+//    public static Line getLineByName(String name) {
+//        Line inputLine = new Line(name);
+//        for (Line line : lines) {
+//            if (line.equals(inputLine)) {
+//                return line;
+//            }
+//        }
+//        throw new IllegalArgumentException(LINE_EXIST_ERROR);
+//    }
 
 
 }
