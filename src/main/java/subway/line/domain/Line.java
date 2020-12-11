@@ -1,6 +1,10 @@
 package subway.line.domain;
 
+import subway.line.LineValidator;
+
 public class Line {
+    public static final int MIN_NAME_LENGTH = 2;
+
     private String name;
     private Route route;
 
@@ -9,6 +13,7 @@ public class Line {
     }
 
     public Line(String name, Route route) {
+        LineValidator.validateRegistration(name);
         this.name = name;
         this.route = route;
     }
