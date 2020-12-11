@@ -16,7 +16,7 @@ public class Request {
     }
 
     public String requestCommand(Scene scene) {
-        String input = scanner.nextLine();
+        String input = getInput();
         Error error = ExceptionManager.checkValidCommand(scene, input);
         if (error != Error.OK) {
             printError(Error.INVALID_COMMAND);
@@ -26,7 +26,7 @@ public class Request {
     }
 
     public boolean requestStationRegister() {
-        String input = scanner.nextLine();
+        String input = getInput();
         Error error = ExceptionManager.checkValidStationRegister(input);
         if (error != Error.OK) {
             printError(error);
@@ -37,7 +37,7 @@ public class Request {
     }
 
     public boolean requestStationRemoval() {
-        String input = scanner.nextLine();
+        String input = getInput();
         Error error = ExceptionManager.checkValidStationRemoval(input);
         if (error != Error.OK) {
             printError(error);
@@ -47,7 +47,22 @@ public class Request {
         return true;
     }
 
+    public boolean isAccessibleStationRepository() {
+        Error error = ExceptionManager.checkAccessibleStationRepository();
+        if (error != Error.OK) {
+            printError(error);
+            return false;
+        }
+        return true;
+    }
+
+    private String getInput() {
+        String input = scanner.nextLine();
+        printStream.println();
+        return input;
+    }
+
     private void printError(Error error) {
-        printStream.println(error.toString());
+        printStream.printf(error.toString());
     }
 }

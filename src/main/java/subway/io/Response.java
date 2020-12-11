@@ -2,19 +2,23 @@ package subway.io;
 
 import java.io.PrintStream;
 import java.util.LinkedHashMap;
+import java.util.List;
 import subway.Scene;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.Command;
 import subway.view.View;
 
 public class Response {
     private static final String HEADLINE_MESSAGE_FORMAT = "## %s\n";
     private static final String MENU_FORMAT = "%s. %s\n";
-    private static final String INFO_FORMAT = "[INFO] %s\n\n";
+    private static final String INFO_FORMAT = "[INFO] %s\n";
+    private static final String STATION_LIST_TITLE = "역 목록";
     public static final String COMMAND_REQUEST_MESSAGE = "원하는 기능을 선택하세요.";
     public static final String STATION_TO_REGISTER_REQUEST_MESSAGE = "등록할 역 이름을 입력하세요.";
     public static final String STATION_TO_REMOVE_REQUEST_MESSAGE = "삭제할 역 이름을 입력하세요.";
-    public static final String STATION_REGISTER_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.";
-    public static final String STATION_REMOVAL_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
+    public static final String STATION_REGISTER_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.\n";
+    public static final String STATION_REMOVAL_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.\n";
 
     private final PrintStream printStream;
 
@@ -28,6 +32,15 @@ public class Response {
         LinkedHashMap<String, Command> menus = view.getMenus();
         for (String input : menus.keySet()) {
             printStream.printf(MENU_FORMAT, input, menus.get(input).getMessage());
+        }
+        printStream.println();
+    }
+
+    public void printStations() {
+        printHeadlineMessage(STATION_LIST_TITLE);
+        List<Station> stations = StationRepository.stations();
+        for (Station station : stations) {
+            printInfoMessage(station.getName());
         }
         printStream.println();
     }

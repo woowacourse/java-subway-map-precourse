@@ -24,4 +24,8 @@ public class StationRepository {
         return stations.stream().filter(station -> Objects.equals(station.getName(), name))
                 .count() > 0;
     }
+
+    public static boolean isEmpty() {
+        return stations.isEmpty();
+    }
 }

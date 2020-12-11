@@ -29,7 +29,6 @@ public class SubwayManager {
         while (input == null) {
             response.printHeadlineMessage(Response.COMMAND_REQUEST_MESSAGE);
             input = request.requestCommand(scene);
-            response.printEmptyMessage();
         }
         return input;
     }

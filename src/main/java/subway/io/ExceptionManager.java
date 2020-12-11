@@ -14,7 +14,7 @@ public class ExceptionManager {
         DUPLICATE_STATION_NAME("이미 등록된 역 이름입니다."),
         INVALID_STATION_REMOVAL("존재하지 않는 역 이름입니다.");
 
-        private static final String ERROR_FORMAT = "\n[ERROR] %s";
+        private static final String ERROR_FORMAT = "[ERROR] %s\n\n";
 
         private final String message;
 
@@ -50,6 +50,13 @@ public class ExceptionManager {
         }
         if (!StationRepository.hasStation(name)) {
             return Error.INVALID_STATION_REMOVAL;
+        }
+        return Error.OK;
+    }
+
+    public static Error checkAccessibleStationRepository() {
+        if (StationRepository.isEmpty()) {
+            return Error.INVALID_COMMAND;
         }
         return Error.OK;
     }
