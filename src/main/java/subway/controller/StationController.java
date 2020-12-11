@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.station.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -41,11 +42,23 @@ public class StationController extends Controller {
     }
 
     private void addStation() {
-        String rawStationName = inputView.inputName(InputView.CHOOSE_ADD_STATION);
+        try {
+            String rawStationName = inputView.inputName(InputView.CHOOSE_ADD_STATION);
+            Station.validateName(rawStationName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            addStation();
+        }
     }
 
     private void deleteStation() {
-        String rawStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
+        try {
+            String rawStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
+            Station.validateName(rawStationName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            deleteStation();
+        }
     }
 
     private void viewStations() {
