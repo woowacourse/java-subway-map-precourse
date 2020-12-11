@@ -7,6 +7,9 @@ import subway.question.BaseQuestion;
 import java.util.Scanner;
 
 public class View {
+    private final String ERR_UNREGISTERED_STATION = "등록되지 않은 역입니다.";
+    private final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
+    private final String ERR_NO_STATION_ON_LINE = "노선에 입력한 역이 없습니다.";
     private final String MAIN_VIEW = "Main";
     private final String STATION_VIEW = "Station";
     private final String LINE_VIEW = "Line";
@@ -68,7 +71,7 @@ public class View {
     public void deleteStation() {
         outputView.printDeleteStationQuestion();
         if (!StationRepository.deleteStation(inputView.getStation())) {
-            throw new IllegalArgumentException("등록되지 않은 역입니다.");
+            throw new IllegalArgumentException(ERR_UNREGISTERED_STATION);
         }
         outputView.printDeleteStationSuccess();
     }
@@ -87,7 +90,7 @@ public class View {
     public void deleteLine() {
         outputView.printDeleteLineQuestion();
         if (!LineRepository.deleteLineByName(inputView.getLine())) {
-            throw new IllegalArgumentException("등록되지 않은 노선입니다.");
+            throw new IllegalArgumentException(ERR_UNREGISTERED_LINE);
         }
         outputView.printDeleteLineSuccess();
     }
@@ -109,7 +112,7 @@ public class View {
         outputView.printDeleteSectionStationNameQuestion();
         Station station = StationRepository.getStation(inputView.getStation());
         if (!line.remove(station)) {
-            throw new IllegalArgumentException("노선에 입력한 역이 없습니다.");
+            throw new IllegalArgumentException(ERR_NO_STATION_ON_LINE);
         }
         outputView.printDeleteSectionSuccess();
     }
