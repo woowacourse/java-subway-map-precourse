@@ -13,9 +13,9 @@ public class LineRepository {
 
 
     static {
-        for (int i=0; i<DEFAULT_LINES.length; i++) {
+        for (int i = 0; i < DEFAULT_LINES.length; i++) {
             List<Station> tmpStations = new ArrayList<>();
-            for (int j=0; j<DEFAULT_STATIONS[i].length; j++) {
+            for (int j = 0; j < DEFAULT_STATIONS[i].length; j++) {
                 tmpStations.add(new Station(DEFAULT_STATIONS[i][j]));
             }
 
@@ -33,5 +33,22 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         return lines.keySet().removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static void deleteStationInLine(String name) {
+        for (List<Station> stations : lines().values()) {
+            if (stations.stream().anyMatch(station -> station.getName().equals(name))) {
+                stations.removeIf(station -> Objects.equals(station.getName(), name));
+            }
+        }
+    }
+
+    public static boolean hasStationInLine(String name) {
+        for (List<Station> stations : lines().values()) {
+            if (stations.stream().anyMatch(station -> station.getName().equals(name))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

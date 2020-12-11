@@ -25,6 +25,10 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (LineRepository.hasStationInLine(name)) {
+            // error message
+            return false;
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
