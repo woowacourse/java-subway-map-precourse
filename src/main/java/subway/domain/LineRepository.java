@@ -4,6 +4,7 @@ import java.util.*;
 
 public class LineRepository {
     private static final String ERROR_ALREADY_EXIST = "이미 등록된 노선 이름입니다.";
+    private static final String ERROR_NOT_EXIST = "등록되지 않은 노선 이름입니다.";
 
     private static final List<Line> lines = new ArrayList<>();
 

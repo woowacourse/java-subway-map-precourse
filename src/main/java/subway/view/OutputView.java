@@ -66,7 +66,10 @@ public class OutputView {
 
     public static void printLineRegisterDone() {
         printWithInfoPrefix(LINE_REGISTER);
+        newLine();
     }
+
+
 
     private static void printAll(List<String> resultList) {
         for(String result : resultList) {

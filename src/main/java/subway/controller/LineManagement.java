@@ -24,7 +24,9 @@ public class LineManagement {
     }
 
     private static void runSelectedMenuFunction() {
-
+        if (menu.equals(REGISTER)) {
+            registerLine();
+        }
     }
 
     private static void registerLine() {
@@ -35,6 +37,7 @@ public class LineManagement {
             line.addStation(upLineEndStation);
             line.addStation(downLineEndStation);
             LineRepository.addLine(line);
+            OutputView.printLineRegisterDone();
         } catch (Exception e) {
             OutputView.showErrorMessage(e);
         }
