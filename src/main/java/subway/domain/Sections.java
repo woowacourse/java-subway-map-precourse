@@ -6,6 +6,7 @@ import subway.view.SectionMessages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Sections {
 	public static final int FIRST_SECTION_LOCATION = 1;
@@ -15,6 +16,14 @@ public class Sections {
 
 	public List<Station> sections() {
 		return Collections.unmodifiableList(sections);
+	}
+
+	private static List<Station> sections(String lineName) {
+		return LineRepository.getLine(lineName)
+				.getSections()
+				.sections
+				.stream()
+				.collect(Collectors.toUnmodifiableList());
 	}
 
 	public static void addSection(String lineName, String stationName, int location) {
@@ -39,20 +48,14 @@ public class Sections {
 	}
 
 	public static void validateDuplicate(String lineName, String stationName) throws IllegalArgumentException {
-		List<Station> sections = LineRepository.getLine(lineName)
-				.getSections()
-				.sections();
-		if (sections.contains(stationName)) {
+		if (sections(lineName).contains(stationName)) {
 			throw new IllegalArgumentException(SectionMessages.DUPLICATE_NAME_ERROR.getMessage());
 		}
 	}
 
 	public static void validateRegistration(String lineName, String stationName) throws IllegalArgumentException {
-		List<Station> sections = LineRepository.getLine(lineName)
-				.getSections()
-				.sections();
-		if (!sections.contains(stationName)) {
-			throw new IllegalArgumentException(SectionMessages.DUPLICATE_NAME_ERROR.getMessage());
+		if (!sections(lineName).contains(stationName)) {
+			throw new IllegalArgumentException(SectionMessages.UNREGISTERED_STATION_NAME_ERROR.getMessage());
 		}
 	}
 
@@ -78,7 +81,7 @@ public class Sections {
 
 	public static void validateSectionLength(String lineName) throws IllegalArgumentException{
 		if (getSectionLength(lineName) <= MINIMUM_SECTION_LENGTH) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(SectionMessages.MINIMUM_SECTION_LENGTH_ERROR.getMessage());
 		}
 	}
 }
