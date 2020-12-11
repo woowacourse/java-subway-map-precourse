@@ -52,6 +52,9 @@ public class LineRepository {
     }
 
     public static List<LineDTO> exprotsAllLinesToDTO() {
+        if (lines.size() == ZERO) {
+            throw new RuntimeException(ERROR_NO_LINES);
+        }
         return lines.stream()
                 .map(Line::toDTO)
                 .collect(Collectors.toList());

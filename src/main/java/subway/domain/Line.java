@@ -11,7 +11,7 @@ public class Line {
     private static final String ERROR_ALREADY_EXIST = "이미 노선에 등록된 역입니다.";
     private static final String ERROR_OUT_OF_RANGE = "구간 범위를 벗어났습니다.";
     private static final String ERROR_MIN_LENGTH = " 이하 길이의 구간에서는 삭제할 수 없습니다.";
-    private static final String ERROR_NOT_EXIST = "등록되지 않은 역입니다.";
+    private static final String ERROR_NOT_EXIST = "해당 구간에 등록되지 않은 역입니다.";
     private static final int MIN_LENGTH = 2;
     private static final int GAP = 1;
     private static final int ZERO = 0;

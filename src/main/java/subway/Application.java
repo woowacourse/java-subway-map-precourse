@@ -49,7 +49,15 @@ public class Application {
             SectionManagement.run();
         }
         if (menu.equals(MainMenuType.DISPLAY)) {
+            showSubwayMap();
+        }
+    }
+
+    private static void showSubwayMap() {
+        try {
             OutputView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
+        } catch (RuntimeException e) {
+            OutputView.showErrorMessage(e);
         }
     }
 }
