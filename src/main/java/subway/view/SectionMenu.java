@@ -1,0 +1,22 @@
+package subway.view;
+
+public class SectionMenu {
+    public static void print() {
+        OutputView.printSectionMenu();
+        OutputView.printMenuSelect();
+        String selection = InputView.receiveMenu();
+
+        if (selection.equals("1")) {
+            // 구간 등록
+            return;
+        }
+        if (selection.equals("2")) {
+            // 구간 삭제
+            return;
+        }
+        if (selection.equals("B")) {
+            MainMenu.print();
+            return;
+        }
+    }
+}
