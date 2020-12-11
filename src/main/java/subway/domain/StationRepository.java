@@ -39,10 +39,17 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (stations.contains(station)) {
+            return;
+        }
         stations.add(station);
     }
 
     public static boolean deleteStation(String name) {
+        if (fixedStations.removeIf(station -> Objects.equals(station.getName(), name))) {
+            // 삭제할 수 없는 역입니다. 메시지 출력
+            return false;
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
