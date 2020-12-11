@@ -10,6 +10,13 @@ public class InputView {
         return input;
     }
 
+    public static String inputStationToCreate(Scanner scanner) {
+        System.out.println("## 등록할 역 이름을 입력하세요.");
+        String input = scanner.nextLine();
+        printEmptyLine();
+        return input;
+    }
+
     private static void printEmptyLine() {
         System.out.println();
     }

@@ -24,8 +24,7 @@ public class Application {
             OutputView.printFunctions(mainFunctionNumber);
             String functionNumber = InputView.inputFunctionNumber(scanner);
             Function function = mainFunctions.selectFunction(functionNumber);
-            System.out.println(function);
-            function.operateFunction();
+            function.operateFunction(scanner);
         }
     }
 }

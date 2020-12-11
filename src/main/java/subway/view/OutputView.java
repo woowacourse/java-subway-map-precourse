@@ -1,6 +1,7 @@
 package subway.view;
 
 public class OutputView {
+    private static final String INFO_PREFIX = "[INFO] ";
     public static void printMainFunctions() {
         System.out.println("## 메인화면");
         System.out.println("1. 역 관리");
@@ -61,5 +62,10 @@ public class OutputView {
 
     private static void printSubwayMap() {
         System.out.println("## 지하철 노선도");
+    }
+
+    public static void printSuccessToCreateStation() {
+        System.out.println(INFO_PREFIX + "지하철 역이 등록되었습니다.");
+        printEmptyLine();
     }
 }

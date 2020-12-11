@@ -22,8 +22,6 @@ public class Machine {
     }
 
     public Functions selectMainFunctions(String mainFunctionsNumber) {
-        System.out.println("selectMainFunctions : " + mainFunctionsNumber);
-        System.out.println(mainFunctions.get(mainFunctionsNumber));
         return mainFunctions.get(mainFunctionsNumber);
     }
 }
