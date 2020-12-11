@@ -44,4 +44,16 @@ public class LineStationRepository {
     public int getStationSizeOfLine(Line line) {
         return lineStation.get(line).size();
     }
+
+    public void printAllLineStation() {
+        System.out.println("\n## 지하철 노선도");
+        lineStation.forEach((line, stations) -> {
+            System.out.println(line.toString());
+            System.out.println("[INFO] ---");
+            stations.forEach(station -> {
+                System.out.println(station.toString());
+            });
+            System.out.println();
+        });
+    }
 }
