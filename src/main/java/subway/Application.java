@@ -1,7 +1,6 @@
 package subway;
 
 import subway.controller.MenuController;
-import subway.view.InputView;
 
 import java.util.Scanner;
 
