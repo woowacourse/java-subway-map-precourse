@@ -2,6 +2,8 @@ package subway.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,5 +58,31 @@ class LineTest {
         //then
         assertThat(findLine.orElse(null)).isNull();
         fail("등록된 노선 정보가 존재하지 않습니다.");
+    }
+
+    @Test
+    public void 노선을_삭제한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+        List<Line> oldLines = LineRepository.lines();
+
+        //when
+        lineStation.deleteLineStation(LineRepository.findLine("2호선").get());
+
+        //then
+        List<Line> newLines = LineRepository.lines();
+        Map<Line, List<Station>> lineStations = lineStation.getLineStation();
+
+        printLineStation(lineStations);
+        assertThat(newLines.size()).isEqualTo(2);
+    }
+
+    private void printLineStation(Map<Line, List<Station>> lineStations) {
+        lineStations.forEach((k,v) ->{
+            System.out.println("==="+k.getName()+"===");
+            for (Station station : v) {
+                System.out.println(station.getName());
+            }
+        });
     }
 }
