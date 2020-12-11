@@ -10,7 +10,8 @@ public class InvalidInputException extends RuntimeException {
         INVALID_NAME_LENGTH,
         NO_SUCH_STATION,
         NO_SUCH_LINE,
-        NON_NUMBER_INPUT;
+        NON_NUMBER_INPUT,
+        OUT_OF_LINE_RANGE;
     }
 
     private final String HEADER = "\n[ERROR] ";
@@ -36,6 +37,8 @@ public class InvalidInputException extends RuntimeException {
             return HEADER + "존재하지 않는 노선 이름입니다.";
         if (exceptionCode.equals(ExceptionCode.NON_NUMBER_INPUT))
             return HEADER + "순서는 숫자로 입력해야 합니다.";
+        if (exceptionCode.equals(ExceptionCode.OUT_OF_LINE_RANGE))
+            return HEADER + "순서는 해당 노선의 범위 안에서 입력해야 합니다.";
         return "";
     }
 }

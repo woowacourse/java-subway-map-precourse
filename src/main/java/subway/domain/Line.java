@@ -59,4 +59,10 @@ public class Line {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public void addNewLink(Link newLink) {
+        Station station = new Station(newLink.getStationName());
+        int targetIndex = newLink.getOrder();
+        stations.add(targetIndex, station);
+    }
 }
