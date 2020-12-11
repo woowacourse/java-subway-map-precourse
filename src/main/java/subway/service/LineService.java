@@ -35,16 +35,14 @@ public class LineService extends CrudService {
     public void add() {
         Line newLine = getNewLineInput();
         validateNewLine(newLine);
-        addNewLine(newLine);
+        LineRepository.addLine(newLine);
         System.out.println(Information.ADD_LINE_SUCCESS);
     }
 
     private Line getNewLineInput() {
         String name = getNewLineName();
         List<Station> endStations = getNewLineEndStations();
-        Line newLine = new Line(name, endStations);
-        validateNewLine(newLine);
-        return newLine;
+        return new Line(name, endStations);
     }
 
     private String getNewLineName() {
@@ -70,7 +68,7 @@ public class LineService extends CrudService {
 
     private void validateNewLine(Line newLine) {
         validateNameLength(newLine);
-        validateDuplicateLine(newLine);
+        validateDuplicateLineExists(newLine);
         validateEndStationsExist(newLine);
     }
 
@@ -79,7 +77,7 @@ public class LineService extends CrudService {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_NAME_LENGTH);
     }
 
-    private void validateDuplicateLine(Line newLine) {
+    private void validateDuplicateLineExists(Line newLine) {
         if (LineRepository.lines().contains(newLine))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_LINE);
     }
@@ -90,15 +88,11 @@ public class LineService extends CrudService {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_STATION);
     }
 
-    private void addNewLine(Line newLine) {
-        LineRepository.addLine(newLine);
-    }
-
 
     @Override
     public void delete() {
         String targetLineName = getTargetLineName();
-        validateLineExists(targetLineName);
+        validateTargetLine(targetLineName);
         LineRepository.deleteLineByName(targetLineName);
         System.out.println(Information.DELETE_LINE_SUCCESS);
     }
@@ -108,7 +102,7 @@ public class LineService extends CrudService {
         return scanner.nextLine();
     }
 
-    private void validateLineExists(String targetLineName) {
+    private void validateTargetLine(String targetLineName) {
         Line targetLine = new Line(targetLineName);
         if (!LineRepository.lines().contains(targetLine))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_LINE);

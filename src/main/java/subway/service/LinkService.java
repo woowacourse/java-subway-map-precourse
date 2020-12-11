@@ -10,8 +10,8 @@ import subway.repository.StationRepository;
 
 import java.util.Scanner;
 
-import static subway.constant.Constant.MIN_STATIONS_IN_LINE;
 import static subway.constant.Constant.MIN_ORDER;
+import static subway.constant.Constant.MIN_STATIONS_IN_LINE;
 
 public class LinkService extends CrudService {
 
@@ -28,6 +28,7 @@ public class LinkService extends CrudService {
             Link newLink = getNewLinkInput();
             validateNewLink(newLink);
             addNewLink(newLink);
+            System.out.println(Information.ADD_LINK_SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NON_NUMBER_INPUT);
         }
@@ -36,7 +37,7 @@ public class LinkService extends CrudService {
     private Link getNewLinkInput() throws NumberFormatException {
         String lineName = getLineNameOnAdd();
         String stationName = getStationNameOnAdd();
-        int order = getOrder();
+        int order = getOrderOnAdd();
         return new Link(lineName, stationName, order);
     }
 
@@ -50,7 +51,7 @@ public class LinkService extends CrudService {
         return scanner.nextLine();
     }
 
-    private int getOrder() throws NumberFormatException {
+    private int getOrderOnAdd() throws NumberFormatException {
         System.out.println(Information.ADD_LINK_INFO_ORDER);
         return Integer.parseInt(scanner.nextLine()) - 1;
     }
@@ -74,19 +75,18 @@ public class LinkService extends CrudService {
     }
 
     private void validateOrderInRange(Link newLink) {
-        Line line = getTargetLine(newLink.getLineName());
+        Line line = getTargetLineByName(newLink.getLineName());
         if (newLink.getOrder() < MIN_ORDER || newLink.getOrder() > line.getStations().size())
             throw new InvalidInputException(InvalidInputException.ExceptionCode.OUT_OF_LINE_RANGE);
     }
 
-    private Line getTargetLine(String lineName) {
+    private Line getTargetLineByName(String lineName) {
         return LineRepository.getLineByName(lineName);
     }
 
     private void addNewLink(Link newLink) {
-        Line line = getTargetLine(newLink.getLineName());
+        Line line = getTargetLineByName(newLink.getLineName());
         line.addNewLink(newLink);
-        System.out.println(Information.ADD_LINK_SUCCESS);
     }
 
 
@@ -121,13 +121,13 @@ public class LinkService extends CrudService {
     }
 
     private void validateLineLength(String lineName) {
-        Line targetLine = getTargetLine(lineName);
+        Line targetLine = getTargetLineByName(lineName);
         if (targetLine.getStations().size() < MIN_STATIONS_IN_LINE)
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_LINK_AVAILABLE);
     }
 
     private void deleteTargetLink(Link targetLink) {
-        Line targetLine = getTargetLine(targetLink.getLineName());
+        Line targetLine = getTargetLineByName(targetLink.getLineName());
         targetLine.deleteTargetLink(targetLink);
     }
 

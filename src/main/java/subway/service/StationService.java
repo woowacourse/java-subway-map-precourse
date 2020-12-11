@@ -44,7 +44,7 @@ public class StationService extends CrudService {
 
     private void validateNewStation(Station newStation) {
         validateNameLength(newStation);
-        validateDuplicateStation(newStation);
+        validateDuplicateStationExists(newStation);
     }
 
     private void validateNameLength(Station newStation) {
@@ -52,7 +52,7 @@ public class StationService extends CrudService {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_NAME_LENGTH);
     }
 
-    private void validateDuplicateStation(Station newStation) {
+    private void validateDuplicateStationExists(Station newStation) {
         if (StationRepository.stations().contains(newStation))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_STATION);
     }

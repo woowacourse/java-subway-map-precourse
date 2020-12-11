@@ -8,8 +8,9 @@ import subway.repository.LineRepository;
 import static subway.constant.Constant.LINE;
 import static subway.constant.Information.INFO_HEADER;
 
-public class PrintService {
+public class PrintService implements MapService {
 
+    @Override
     public void run() {
         System.out.print(Information.PRINT_INFO);
         printLines();

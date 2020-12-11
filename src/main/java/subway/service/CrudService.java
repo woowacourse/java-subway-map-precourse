@@ -8,11 +8,11 @@ import java.util.Scanner;
 public abstract class CrudService implements MapService {
 
     private Scanner scanner;
-    private String info;
+    private String information;
 
-    public CrudService(Scanner scanner, String info) {
+    public CrudService(Scanner scanner, String information) {
         this.scanner = scanner;
-        this.info = info;
+        this.information = information;
     }
 
     @Override
@@ -26,13 +26,13 @@ public abstract class CrudService implements MapService {
     }
 
     private String selectFunction() {
-        String line = getFunctionInput();
-        Function.validate(line);
-        return line;
+        String input = getFunctionInput();
+        Function.validate(input);
+        return input;
     }
 
     private String getFunctionInput() {
-        System.out.println(info);
+        System.out.println(information);
         return scanner.nextLine();
     }
 

@@ -18,6 +18,10 @@ public class MainService {
 
     public MainService(Scanner scanner) {
         this.scanner = scanner;
+        initServices(scanner);
+    }
+
+    private void initServices(Scanner scanner) {
         stationService = new StationService(scanner);
         lineService = new LineService(scanner);
         linkService = new LinkService(scanner);
