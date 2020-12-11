@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.domain.station.Station;
 import subway.domain.station.Stations;
+import subway.domain.station.dto.StationFindResDto;
 import subway.exception.ErrorCode;
 import subway.exception.StationException;
 import subway.service.output.OutputService;
@@ -23,7 +24,8 @@ public class StationView extends Screen{
         outputService.printSharp(PRINT_STATION);
         List<Station> stationList = stations.getStations();
         for (Station station : stationList) {
-            outputService.printInfos(station.getName());
+            StationFindResDto stationFindResDto = new StationFindResDto(station.getName());
+            outputService.printInfos(stationFindResDto.getName());
         }
     }
 
