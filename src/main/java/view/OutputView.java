@@ -28,7 +28,8 @@ public class OutputView {
     public static final String QUIT_MESSAGE = "Q. 종료";
     public static final String BACK_MESSAGE = "B. 돌아가기";
 
-    public static final String LINE_MAP_TITLE = "## 지하철 노선도";
+    public static final String TOTAL_MAP_TITLE = "## 지하철 노선도";
+    public static final String TOTAL_LINE_TITLE = "노선 목록";
 
     public static final String PREFIX_INFO = "[INFO] ";
     public static final String PREFIX_ERROR = "[ERROR] ";
@@ -105,20 +106,27 @@ public class OutputView {
         System.out.println(BACK_MESSAGE + NEW_LINE);
     }
 
-    public static void printLineMap() {
-        System.out.println(LINE_MAP_TITLE);
+    public static void printTotalMap() {
+        System.out.println(TOTAL_MAP_TITLE);
         for (Line line : LineRepository.lines()) {
-            System.out.println(PREFIX_INFO + line.getName());
-            System.out.println(PREFIX_INFO + DIVISION_LINE);
+            printInformation(line.getName());
+            printInformation(DIVISION_LINE);
             printStationIn(line);
         }
     }
 
     public static void printStationIn(Line line) {
-        for (String station : line.getStationsIncludedLine()) {
-            System.out.println(PREFIX_INFO + station);
+        for (String stationName : line.getStationsIncludedLine()) {
+            printInformation(stationName);
         }
         System.out.println();
+    }
+
+    public static void printTotalLine() {
+        printInformation(TOTAL_LINE_TITLE);
+        for (Line line : LineRepository.lines()) {
+            printInformation(line.getName());
+        }
     }
 
     public static void printError(String errorMessage) {
