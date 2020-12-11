@@ -3,12 +3,13 @@ package subway.domain.name;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import subway.exception.InvalidStationNameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StationNameTest {
 
@@ -16,7 +17,7 @@ class StationNameTest {
     @Description("StationName 생성 테스트와 equals 테스트, toString도 구경")
     public void createTest() {
         //given
-        String name = "킹우정";
+        String name = "킹우정역";
 
         //when
         StationName stationName1 = StationName.of(name);
@@ -55,6 +56,17 @@ class StationNameTest {
         Collections.sort(names);
 
         System.out.println(names.toString());
+
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123역","양역","역용산",""})
+    @Description("유요하지 않는 이름 예외 발생,끝이 역으로 끝나고 역을 제외한 한글로만 이루어진 2글자 이상의 이름 true")
+    public void validateTest(String name){
+
+        Assertions.assertThrows(InvalidStationNameException.class,()->{
+           StationName.of(name);
+        });
 
     }
 }
