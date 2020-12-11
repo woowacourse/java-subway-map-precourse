@@ -1,4 +1,5 @@
 package subway.exception;
+
 /**
  * 커스텀 예외 처리 클래스
  */

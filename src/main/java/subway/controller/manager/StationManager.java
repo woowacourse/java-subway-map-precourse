@@ -3,10 +3,10 @@ package subway.controller.manager;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
+import subway.menu.StationMenu;
 import subway.utils.ValidateUtils;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.menu.StationMenu;
 
 public class StationManager {
 

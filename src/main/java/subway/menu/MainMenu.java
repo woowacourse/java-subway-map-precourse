@@ -3,8 +3,8 @@ package subway.menu;
 import static subway.view.TextFixtures.WRONG_MENU_INPUT_EXCEPTION_MESSAGE;
 
 import java.util.Arrays;
-import subway.controller.manager.LineManager;
 import subway.controller.manager.InitialManager;
+import subway.controller.manager.LineManager;
 import subway.controller.manager.SectionManager;
 import subway.controller.manager.StationManager;
 import subway.exception.SubwayCustomException;

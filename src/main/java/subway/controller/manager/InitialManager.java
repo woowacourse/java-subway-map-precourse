@@ -15,6 +15,10 @@ public class InitialManager {
     private final String[] initialStations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역",
         "양재시민의숲역", "매봉역"};
 
+    public static void end() {
+        System.exit(0);
+    }
+
     private void initialSection(String line, String station) {
         LineRepository.searchLine(line).addSection(StationRepository.searchStation(station));
     }
@@ -36,9 +40,5 @@ public class InitialManager {
         initialSection("신분당선", "강남역");
         initialSection("신분당선", "양재역");
         initialSection("신분당선", "양재시민의숲역");
-    }
-
-    public static void end() {
-        System.exit(0);
     }
 }

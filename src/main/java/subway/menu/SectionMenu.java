@@ -9,7 +9,8 @@ import subway.exception.SubwayCustomException;
 public enum SectionMenu {
     ADD_SECTION("1", SectionManager::addSection),
     DELETE_SECTION("2", SectionManager::deleteSection),
-    BACK("B", ()->{});
+    BACK("B", () -> {
+    });
 
     private final String input;
     private final Runnable handler;

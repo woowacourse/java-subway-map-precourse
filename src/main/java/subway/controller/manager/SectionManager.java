@@ -5,10 +5,10 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
+import subway.menu.SectionMenu;
 import subway.utils.ValidateUtils;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.menu.SectionMenu;
 
 public class SectionManager {
 

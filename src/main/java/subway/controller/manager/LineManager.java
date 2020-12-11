@@ -1,13 +1,12 @@
 package subway.controller.manager;
 
-import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
-import subway.utils.ValidateUtils;
 import subway.menu.LineMenu;
+import subway.utils.ValidateUtils;
 import subway.view.InputView;
 import subway.view.OutputView;
 

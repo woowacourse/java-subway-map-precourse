@@ -2,8 +2,8 @@ package subway.controller;
 
 import subway.controller.manager.InitialManager;
 import subway.exception.SubwayCustomException;
-import subway.view.InputView;
 import subway.menu.MainMenu;
+import subway.view.InputView;
 import subway.view.OutputView;
 
 /**
@@ -13,7 +13,7 @@ public class SubwayController {
 
     private final InitialManager initialManager;
 
-    public SubwayController(){
+    public SubwayController() {
         initialManager = new InitialManager();
     }
 
