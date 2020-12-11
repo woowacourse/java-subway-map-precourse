@@ -3,6 +3,7 @@ package subway.service;
 import subway.constant.Function;
 import subway.constant.Information;
 import subway.constant.InitialData;
+import subway.domain.Station;
 import subway.exception.InvalidInputException;
 import subway.repository.StationRepository;
 
@@ -51,7 +52,24 @@ public class StationService {
     }
 
     private void addNewStation() {
+        Station newStation = getNewStationInput();
+        validateNewStation(newStation);
+        StationRepository.addStation(newStation);
+        System.out.println(Information.ADD_STATION_SUCCESS);
+    }
+
+    private Station getNewStationInput() {
         System.out.println(Information.ADD_STATION_INFO);
+        return new Station(scanner.nextLine());
+    }
+
+    private void validateNewStation(Station newStation) {
+        validateDuplicateStation(newStation);
+    }
+
+    private void validateDuplicateStation(Station newStation) {
+        if (StationRepository.stations().contains(newStation))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_STATION_CODE);
     }
 
     private void deleteStation() {

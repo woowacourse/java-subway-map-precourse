@@ -19,6 +19,8 @@ public class InvalidInputException extends RuntimeException {
     public String getMessage() {
         if (exceptionCode.equals(ExceptionCode.INVALID_SERVICE_CODE) || exceptionCode.equals(ExceptionCode.INVALID_FUNCTION_CODE))
             return HEADER + "선택할 수 없는 기능입니다.";
+        if (exceptionCode.equals(ExceptionCode.DUPLICATE_STATION_CODE))
+            return HEADER + "이미 등록된 역 이름입니다.";
         return "";
     }
 }
