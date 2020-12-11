@@ -25,7 +25,7 @@ public class SubwayController {
             if (quitSubway(mainInput)) {
                 break;
             }
-            chooseSubwayFeature(mainInput);
+            chooseSubwayFeature(mainInput, scanner);
         }
     }
 
@@ -33,9 +33,9 @@ public class SubwayController {
         return mainInput.equals(InputType.INPUT_QUITTING.getInput());
     }
 
-    public static void chooseSubwayFeature(String mainInput) {
+    public static void chooseSubwayFeature(String mainInput, Scanner scanner) {
         if (mainInput.equals(InputType.INPUT_ONE.getInput())) {
-            OutputView.printStationManagementScreen();
+            StationController.startStation(scanner);
             return;
         }
         if (mainInput.equals(InputType.INPUT_TWO.getInput())) {

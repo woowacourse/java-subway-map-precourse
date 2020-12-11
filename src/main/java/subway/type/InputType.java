@@ -8,7 +8,8 @@ public enum InputType {
     INPUT_TWO("2"),
     INPUT_THREE("3"),
     INPUT_FOUR("4"),
-    INPUT_QUITTING("Q");
+    INPUT_QUITTING("Q"),
+    INPUT_BACK("B");
 
     private final String input;
 
