@@ -1,7 +1,6 @@
 package subway.service;
 
 import subway.constant.Constant;
-import subway.constant.Function;
 import subway.constant.Information;
 import subway.constant.InitialData;
 import subway.domain.Station;
@@ -12,11 +11,12 @@ import java.util.Scanner;
 
 import static subway.constant.Information.INFO_HEADER;
 
-public class StationService {
+public class StationService extends BaseService {
 
     private Scanner scanner;
 
     public StationService(Scanner scanner) {
+        super(scanner, Information.STATION_INFO);
         this.scanner = scanner;
         initStations();
     }
@@ -25,36 +25,9 @@ public class StationService {
         StationRepository.addStation(InitialData.stations);
     }
 
-    public void run() {
-        try {
-            String selectedFunction = selectFunction();
-            runSelectedFunction(selectedFunction);
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
-    private String selectFunction() {
-        String line = getFunctionInput();
-        Function.validate(line);
-        return line;
-    }
-
-    private String getFunctionInput() {
-        System.out.println(Information.STATION_INFO);
-        return scanner.nextLine();
-    }
-
-    private void runSelectedFunction(String selectedFunction) {
-        if (selectedFunction.equals(Function.ADD.getCode()))
-            addNewStation();
-        if (selectedFunction.equals(Function.DELETE.getCode()))
-            deleteStation();
-        if (selectedFunction.equals(Function.SHOW.getCode()))
-            showStations();
-    }
-
-    private void addNewStation() {
+    @Override
+    public void add() {
         Station newStation = getNewStationInput();
         validateNewStation(newStation);
         StationRepository.addStation(newStation);
@@ -81,11 +54,15 @@ public class StationService {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_STATION);
     }
 
-    private void deleteStation() {
+
+    @Override
+    public void delete() {
         System.out.println(Information.DELETE_STATION_INFO);
     }
 
-    private void showStations() {
+
+    @Override
+    public void show() {
         System.out.print(Information.SHOW_STATION_INFO);
         for (Station station : StationRepository.stations())
             System.out.print(INFO_HEADER + station.getName());
