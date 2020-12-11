@@ -1,6 +1,7 @@
-package subway;
+package subway.view;
 
 import subway.domain.*;
+import subway.Questions;
 
 import java.util.Scanner;
 
@@ -15,29 +16,9 @@ public class View {
         questions = new Questions();
     }
 
-    public void view(String key) {
-        questions.printQuestions(key);
-        questions.findByAnswerCode(inputView.getAnswer(), key).nextAction(this);
-    }
-
-    public void mainView() {
-        questions.printQuestions("Main");
-        questions.findByAnswerCode(inputView.getAnswer(), "Main").nextAction(this);
-    }
-
-    public void stationView() {
-        questions.printQuestions("Station");
-        questions.findByAnswerCode(inputView.getAnswer(), "Station").nextAction(this);
-    }
-
-    public void lineView() {
-        questions.printQuestions("Line");
-        questions.findByAnswerCode(inputView.getAnswer(), "Line").nextAction(this);
-    }
-
-    public void sectionView() {
-        questions.printQuestions("Section");
-        questions.findByAnswerCode(inputView.getAnswer(), "Section").nextAction(this);
+    public void view(String questionType) {
+        outputView.printQuestions(questions.getQuestions(questionType));
+        questions.findByAnswerCode(questionType, inputView.getAnswer()).nextAction(this);
     }
 
     public void printEntireSubwayLine() {

@@ -1,29 +1,31 @@
-package subway;
+package subway.question;
+
+import subway.view.View;
 
 public enum MainQuestion implements BaseQuestion {
     TO_STATION_VIEW("1. 역 관리", "1") {
         @Override
         public void nextAction(View view) {
-            view.stationView();
+            view.view("Station");
         }
     },
     TO_LINE_VIEW("2. 노선 관리", "2") {
         @Override
         public void nextAction(View view) {
-            view.lineView();
+            view.view("Line");
         }
     },
     TO_INTERVAL_VIEW("3. 구간 관리", "3") {
         @Override
         public void nextAction(View view) {
-            view.sectionView();
+            view.view("Section");
         }
     },
     PRINT_SUBWAY_ROUTE("4. 지하철 노선도 출력", "4") {
         @Override
         public void nextAction(View view) {
             view.printEntireSubwayLine();
-            view.mainView();
+            view.view("Main");
         }
     },
     QUIT("Q. 종료", "Q") {

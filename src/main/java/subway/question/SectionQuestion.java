@@ -1,24 +1,26 @@
-package subway;
+package subway.question;
+
+import subway.view.View;
 
 public enum SectionQuestion implements BaseQuestion {
     REGISTER_STATION("1. 구간 등록", "1") {
         @Override
         public void nextAction(View view) {
             view.registerSection();
-            view.mainView();
+            view.view("Main");
         }
     },
     DELETE_STATION("2. 구간 삭제", "2") {
         @Override
         public void nextAction(View view) {
             view.deleteSection();
-            view.mainView();
+            view.view("Main");
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction(View view) {
-            view.mainView();
+            view.view("Main");
         }
     };
 
