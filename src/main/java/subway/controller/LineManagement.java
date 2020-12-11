@@ -27,6 +27,9 @@ public class LineManagement {
         if (menu.equals(REGISTER)) {
             registerLine();
         }
+        if (menu.equals(DELETE)) {
+            deleteLine();
+        }
     }
 
     private static void registerLine() {
@@ -39,6 +42,15 @@ public class LineManagement {
             LineRepository.addLine(line);
             OutputView.printLineRegisterDone();
         } catch (Exception e) {
+            OutputView.showErrorMessage(e);
+        }
+    }
+
+    private static void deleteLine() {
+        try {
+            LineRepository.deleteLineByName(InputView.getLineNameToDelete());
+            OutputView.printLineDeleteDone();
+        } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
     }

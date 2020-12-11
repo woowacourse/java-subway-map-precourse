@@ -29,6 +29,10 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+        boolean removed = lines.removeIf(line -> Objects.equals(line.getName(), name));
+        if (!removed) {
+            throw new IllegalArgumentException(ERROR_NOT_EXIST);
+        }
+        return true;
     }
 }
