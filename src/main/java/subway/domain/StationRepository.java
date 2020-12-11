@@ -34,6 +34,9 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (LineRepository.contains(name)) {
+            throw new IllegalArgumentException("노선에 등록된 역은 삭제가 불가능합니다.");
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }

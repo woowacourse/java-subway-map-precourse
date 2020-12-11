@@ -13,5 +13,6 @@ public class StationCreateFunction extends Function {
         String station = InputView.inputStationToCreate(scanner);
         StationRepository.addStation(new Station(station));
         OutputView.printSuccessToCreateStation();
+        System.out.println(StationRepository.stations());
     }
 }

@@ -10,5 +10,6 @@ public class StationDeleteFunction extends Function {
     public void operateFunction(Scanner scanner) {
         String stationName = InputView.inputStationToDelete(scanner);
         StationRepository.deleteStation(stationName);
+        System.out.println(StationRepository.stations());
     }
 }

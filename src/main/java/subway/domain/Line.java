@@ -15,5 +15,20 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean contains(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+            "name='" + name + '\'' +
+            ", stations=" + stations +
+            '}';
+    }
 }
