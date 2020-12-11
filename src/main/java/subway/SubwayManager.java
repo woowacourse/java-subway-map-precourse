@@ -65,6 +65,16 @@ public class SubwayManager implements Message {
         }
     }
 
+    private void deleteLine() {
+        OutputView.printAnnouncement(ANN_DELETE_LINE);
+        String name = InputView.getInput();
+        if (LineRepository.deleteLineByName(name)) {
+            OutputView.printInfo(INFO_LINE_DELETED);
+            return;
+        }
+        OutputView.printError(ERROR_NOT_REGISTERED_LINE);
+    }
+
     private Station getFirstStation() {
         OutputView.printAnnouncement(ANN_REGISTER_FIRST_STATION);
         try {

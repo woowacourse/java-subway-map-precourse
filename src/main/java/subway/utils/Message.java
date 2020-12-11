@@ -15,6 +15,7 @@ public interface Message {
     String INFO_LINE_DELETED = "지하철 노선이 삭제되었습니다.";
 
     String ERROR_NOT_REGISTERED_STATION = "등록되지 않은 역 이름입니다.";
+    String ERROR_NOT_REGISTERED_LINE = "등록되지 않은 노선 이름입니다.";
     String ERROR_ALREADY_REGISTERED_STATION = "이미 등록된 역 이름입니다.";
     String ERROR_ALREADY_REGISTERED_LINE = "이미 등록된 노선 이름입니다.";
     String ERROR_INVALID_STATION_NAME_LENGTH = "역 이름은 2 글자 이상이어야 합니다.";
