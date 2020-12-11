@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import static subway.view.InputView.inputAddStationNameRequestMessage;
 import static subway.view.OutputView.printAddStationSuccessMessage;
+import static subway.view.OutputView.printDeleteStationSuccessMessage;
 
 public class StationService {
 
@@ -44,6 +45,7 @@ public class StationService {
         //validation
         //1.입력한 역 이름이 존재하는지 검증한다
         StationRepository.deleteStation(name);
+        printDeleteStationSuccessMessage();
     }
 
     private void printStations() {
