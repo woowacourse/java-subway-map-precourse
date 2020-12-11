@@ -18,17 +18,17 @@ public class LineRepository {
         - 신분당선: 강남역 - 양재역 - 양재시민의숲역 */
         addLine(new Line("2호선"));
         for (String section : new String[] {"역삼역", "강남역", "교대역"}) {
-            SectionController.addSection("2호선", section, Sections.FIRST_SECTION_LOCATION);
+            Sections.addSection("2호선", section, Sections.FIRST_SECTION_LOCATION);
         }
 
         addLine(new Line("3호선"));
         for (String section : new String[] {"매봉역","양재역","남부터미널역","교대역"}) {
-            SectionController.addSection("3호선", section, Sections.FIRST_SECTION_LOCATION);
+            Sections.addSection("3호선", section, Sections.FIRST_SECTION_LOCATION);
         }
 
         addLine(new Line("신분당선"));
         for (String section : new String[] {"양재시민의숲역","양재역","강남역"}) {
-            SectionController.addSection("3호선", section, Sections.FIRST_SECTION_LOCATION);
+            Sections.addSection("3호선", section, Sections.FIRST_SECTION_LOCATION);
         }
     }
 

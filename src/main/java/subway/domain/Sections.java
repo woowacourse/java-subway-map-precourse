@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.view.LineMessages;
 import subway.view.SectionMessages;
 
 import java.util.ArrayList;
@@ -15,8 +16,11 @@ public class Sections {
 		return Collections.unmodifiableList(sections);
 	}
 
-	public void addSection(Station station, int location) {
-		sections.add(location-1, station); // section number starts from 1
+	public static void addSection(String lineName, String stationName, int location) {
+		LineRepository.getLine(lineName)
+				.getSections()
+				.sections
+				.add(location-1, StationRepository.getStation(stationName));
 	}
 
 	public static void deleteSection(String lineName, String stationName) {
@@ -61,6 +65,12 @@ public class Sections {
 				.getSectionLength();
 		if (Integer.parseInt(location) - 1 < 0 || sectionLength < Integer.parseInt(location) - 1) {
 			throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
+		}
+	}
+
+	public static void validateDuplicateDestination(String upwardDestination, String downwardDestination) throws IllegalArgumentException {
+		if (upwardDestination.equalsIgnoreCase(downwardDestination)) {
+			throw new IllegalArgumentException(LineMessages.DESTINATION_DUPLICATE_ERROR.getMessage());
 		}
 	}
 }

@@ -36,12 +36,10 @@ public class LineController {
 	}
 
 	private static void createLine(String lineName, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
-		if (upwardDestination.equalsIgnoreCase(downwardDestination)) {
-			throw new IllegalArgumentException(LineMessages.DESTINATION_DUPLICATE_ERROR.getMessage());
-		}
+		Sections.validateDuplicateDestination(upwardDestination, downwardDestination);
 		LineRepository.addLine(new Line(lineName));
 		for (String destination : new String[] {downwardDestination, upwardDestination}) {
-			SectionController.addSection(lineName, destination, Sections.FIRST_SECTION_LOCATION);
+			Sections.addSection(lineName, destination, Sections.FIRST_SECTION_LOCATION);
 		}
 	}
 

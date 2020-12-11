@@ -37,18 +37,12 @@ public class SectionController {
 		return Integer.parseInt(location);
 	}
 
-	public static void addSection(String lineName, String stationName, int location) throws IllegalArgumentException {
-		LineRepository.getLine(lineName)
-				.getSections()
-				.addSection(StationRepository.getStation(stationName), location);
-	}
-
 	private static void registerSection(Scanner scanner) {
 		try {
 			String lineName = createLineNameToRegister(scanner);
 			String stationName = createStationNameToRegister(lineName, scanner);
 			int location = createLocationToRegister(lineName, scanner);
-			addSection(lineName, stationName, location);
+			Sections.addSection(lineName, stationName, location);
 			View.printSectionRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
