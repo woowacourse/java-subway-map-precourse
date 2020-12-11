@@ -17,7 +17,7 @@ public enum SectionMessages {
 	DELETE_COMPLETE(General.INFO.getMessage() + "구간이 삭제되었습니다."),
 
 	NON_POSITIVE_INTEGER_LOCATION_ERROR(General.ERROR.getMessage() + "위치는 양의 정수만 입력 가능합니다."),
-	LOCATION_OUT_OF_RANGE_ERROR(General.ERROR.getMessage() + "노선의 총 범위 내의 구간 위치를 입력해주세요."),
+	LOCATION_OUT_OF_RANGE_ERROR(General.ERROR.getMessage() + "올바른 구간 위치를 입력해주세요."),
 	DUPLICATE_NAME_ERROR(General.ERROR.getMessage() + "이미 등록된 구간입니다"),
 	MINIMUM_SECTION_LENGTH_ERROR(General.ERROR.getMessage() + "노선에 역이 "
 			+ Sections.MINIMUM_SECTION_LENGTH
