@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.Section;
 import subway.domain.SectionRepository;
 import subway.domain.Station;
+import subway.enums.MainMenu;
 import subway.enums.SectionInfo;
 import subway.enums.SectionMenu;
 
@@ -35,7 +36,7 @@ public class SectionView {
         System.out.println(SectionInfo.INFO_SECTION_ENROLLED.getInfo());
     }
 
-    public static void printSectionList() {
+    public static String printSectionList() {
         List<Section> sections = SectionRepository.sections();
         System.out.println(SectionInfo.SECTION_LIST.getInfo());
         for (Section section : sections) {
@@ -47,6 +48,7 @@ public class SectionView {
                     .forEach(name -> System.out.println(SectionInfo.INFO.getInfo() + name));
             System.out.println();
         }
+        return MainMenu.PRINT_SUBWAY_MAP.getCommand();
     }
 
     public static void printAskLineToDeleteStationFrom() {

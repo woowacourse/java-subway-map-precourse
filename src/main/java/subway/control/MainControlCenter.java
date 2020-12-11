@@ -32,10 +32,11 @@ public class MainControlCenter {
     }
 
     public void startMainControl(Scanner scanner) {
-        while (true) {
+        String view = "";
+        while (!view.equalsIgnoreCase("Q")) {
             showMainMenu();
             String command = inputCommand(scanner);
-            getViewByCommand(command, scanner);
+            view = getViewByCommand(command, scanner);
         }
     }
 
@@ -44,22 +45,17 @@ public class MainControlCenter {
         MainView.askInputMenu();
     }
 
-    private void getViewByCommand(String command, Scanner scanner) {
-        if (command.equals(MainMenu.STATION_CONTROL.getCommand())) {
-            stationControlCenter.startStationControl(scanner);
-            return;
-        }
-        if (command.equals(MainMenu.LINE_CONTROL.getCommand())) {
-            lineControlCenter.startLineControl(scanner);
-            return;
-        }
-        if (command.equals(MainMenu.SECTION_CONTROL.getCommand())) {
-            sectionControlCenter.startSectionControl(scanner);
-            return;
-        }
-        if (command.equals(MainMenu.PRINT_SUBWAY_MAP.getCommand())) {
-            SectionView.printSectionList();
-            return;
-        }
+    private String getViewByCommand(String command, Scanner scanner) {
+        if (command.equals(MainMenu.STATION_CONTROL.getCommand()))
+            return stationControlCenter.startStationControl(scanner);
+        if (command.equals(MainMenu.LINE_CONTROL.getCommand()))
+            return lineControlCenter.startLineControl(scanner);
+        if (command.equals(MainMenu.SECTION_CONTROL.getCommand()))
+            return sectionControlCenter.startSectionControl(scanner);
+        if (command.equals(MainMenu.PRINT_SUBWAY_MAP.getCommand()))
+            return SectionView.printSectionList();
+        if (command.equalsIgnoreCase(MainMenu.EXIT.getCommand()))
+            return MainView.exit();
+        return "";
     }
 }

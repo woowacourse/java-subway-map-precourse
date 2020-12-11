@@ -2,6 +2,7 @@ package subway.control;
 
 import subway.domain.*;
 import subway.enums.LineMenu;
+import subway.enums.MainMenu;
 import subway.view.LineView;
 import subway.view.MainView;
 import subway.view.StationView;
@@ -16,11 +17,12 @@ public class LineControlCenter {
 
     }
 
-    public void startLineControl(Scanner scanner) {
+    public String startLineControl(Scanner scanner) {
         LineView.printLineMenu();
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
         selectMenu(command, scanner);
+        return MainMenu.LINE_CONTROL.getCommand();
     }
 
     private void selectMenu(String command, Scanner scanner) {

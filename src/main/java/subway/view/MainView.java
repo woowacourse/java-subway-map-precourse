@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.enums.MainInfo;
 import subway.enums.MainMenu;
 
 import java.util.Arrays;
@@ -8,17 +9,19 @@ import java.util.List;
 public class MainView {
 
     public static void printMainMenu() {
-        MainMenu[] mainMenu = MainMenu.values();
-//        for (MainMenu menu : mainMenu) {
-//            System.out.println(menu.valueOf(menu.name()).getTitle());
-//        }
         System.out.println();
+        MainMenu[] mainMenu = MainMenu.values();
         List<MainMenu> menu = Arrays.asList(mainMenu);
         menu.stream().map(MainMenu::getTitle).forEach(System.out::println);
         System.out.println();
     }
 
     public static void askInputMenu() {
-        System.out.println("## 원하는 기능을 선택하세요.");
+        System.out.println(MainInfo.INPUT.getInfo());
+    }
+
+    public static String exit() {
+        System.out.println(MainInfo.EXIT.getInfo());
+        return MainMenu.EXIT.getCommand();
     }
 }
