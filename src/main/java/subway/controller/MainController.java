@@ -1,8 +1,11 @@
 package subway.controller;
 
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class MainController {
+
+    public static final int MAIN_MENU = 0;
 
     private InputView inputView;
 
@@ -11,6 +14,12 @@ public class MainController {
     }
 
     public void run() {
-        String functionNumber = inputView.inputFunction();
+        try {
+            String functionDecision = inputView.inputFunction();
+            Function.validate(functionDecision, MAIN_MENU);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            run();
+        }
     }
 }
