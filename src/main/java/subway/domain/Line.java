@@ -27,6 +27,10 @@ public class Line {
     public Line(String name, List<Station> stations) {
         this.name = name;
         this.stations = stations;
+        setUpAndDownEndStations();
+    }
+
+    private void setUpAndDownEndStations() {
         this.upEnd = stations.get(UP_END_INDEX);
         this.downEnd = stations.get(stations.size() - 1);
     }
@@ -64,5 +68,6 @@ public class Line {
         Station station = new Station(newLink.getStationName());
         int targetIndex = newLink.getOrder();
         stations.add(targetIndex, station);
+        setUpAndDownEndStations();
     }
 }
