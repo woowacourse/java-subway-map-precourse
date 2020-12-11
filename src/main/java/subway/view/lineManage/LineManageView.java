@@ -1,11 +1,9 @@
 package subway.view.lineManage;
 
 import subway.line.LineController;
-import subway.line.LineRepositoryJava;
-import subway.station.StationRepositoryJava;
+import subway.view.BackView;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
-import subway.view.BackView;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,9 +16,8 @@ public class LineManageView implements ViewStrategy {
     private final Scanner scanner;
     private LineManageViewStrategy lineManageViewStrategy;
 
-    public LineManageView(Scanner scanner) {
+    public LineManageView(Scanner scanner, LineController lineController) {
         this.scanner = scanner;
-        LineController lineController = LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
         LINE_MANAGE_VIEW.put("1", new CreateLineView(lineController, scanner));
         LINE_MANAGE_VIEW.put("2", new DeleteLineView(lineController, scanner));
         LINE_MANAGE_VIEW.put("3", new ShowLineView(lineController));

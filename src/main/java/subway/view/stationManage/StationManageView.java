@@ -1,7 +1,6 @@
 package subway.view.stationManage;
 
 import subway.station.StationController;
-import subway.station.StationRepositoryJava;
 import subway.view.BackView;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
@@ -17,9 +16,8 @@ public class StationManageView implements ViewStrategy {
     private final Scanner scanner;
     private StationManageViewStrategy stationManageViewStrategy;
 
-    public StationManageView(Scanner scanner) {
+    public StationManageView(Scanner scanner, StationController stationController) {
         this.scanner = scanner;
-        StationController stationController = StationController.get(StationRepositoryJava.get());
         STATION_MANAGE_VIEW.put("1", new CreateStationView(stationController, scanner));
         STATION_MANAGE_VIEW.put("2", new DeleteStationView(stationController, scanner));
         STATION_MANAGE_VIEW.put("3", new ShowStationView(stationController));

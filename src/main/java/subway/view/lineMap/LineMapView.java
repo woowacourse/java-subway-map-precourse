@@ -1,9 +1,7 @@
 package subway.view.lineMap;
 
 import subway.line.LineController;
-import subway.line.LineRepositoryJava;
 import subway.line.LineResponseDTO;
-import subway.station.StationRepositoryJava;
 import subway.station.StationResponseDTO;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
@@ -16,8 +14,8 @@ public class LineMapView implements ViewStrategy {
     private static final String DIVIDER = "----";
     private final LineController lineController;
 
-    public LineMapView() {
-        lineController = LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
+    public LineMapView(LineController lineController) {
+        this.lineController = lineController;
     }
 
     @Override
