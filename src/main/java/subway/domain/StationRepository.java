@@ -31,6 +31,4 @@ public class StationRepository {
             .findFirst()
             .orElseThrow(() -> new SubwayCustomException(NOT_VALID_STATION_EXCEPTION_MESSAGE));
     }
-
-
 }

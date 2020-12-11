@@ -23,7 +23,6 @@ public enum StationMenu {
     }
 
     public static void execute(String input) {
-
         Arrays.stream(values())
             .filter(value -> value.input.equals(input.toUpperCase()))
             .findFirst()

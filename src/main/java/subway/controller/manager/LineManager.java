@@ -24,7 +24,6 @@ public class LineManager {
     }
 
     public static void addLine() {
-
         try {
             OutputView.guideInsertLine();
             Line line = new Line(InputView.makeNewLineName());
@@ -61,5 +60,4 @@ public class LineManager {
             manageLine();
         }
     }
-
 }

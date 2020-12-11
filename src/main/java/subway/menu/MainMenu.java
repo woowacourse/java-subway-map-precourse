@@ -17,7 +17,6 @@ public enum MainMenu {
     MANAGE_SUBWAY("4", OutputView::showSubwayLineMap),
     MANAGE_QUIT("Q", InitialManager::end);
 
-
     private final String input;
     private final Runnable handler;
 
