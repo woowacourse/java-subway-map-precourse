@@ -22,6 +22,13 @@ public class Message {
             "3. 역 조회",
             "B. 돌아가기");
 
+    private static final List<String> lineMenus = Arrays.asList(
+            "## 노선 관리 화면",
+            "1. 노선 등록",
+            "2. 노선 삭제",
+            "3. 노선 조회",
+            "B. 돌아가기");
+
     private static final String selectFeature = "\n## 원하는 기능을 선택하세요.";
 
     private Message() {
@@ -34,6 +41,11 @@ public class Message {
 
     public static void printStatinMenu() {
         stationMenus.forEach(System.out::println);
+        System.out.println(selectFeature);
+    }
+
+    public static void printLineMenu() {
+        lineMenus.forEach(System.out::println);
         System.out.println(selectFeature);
     }
 

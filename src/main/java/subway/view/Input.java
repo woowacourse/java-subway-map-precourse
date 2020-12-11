@@ -26,4 +26,9 @@ public class Input {
     private String nextLine() {
         return scanner.nextLine();
     }
+
+    public String nextLineButton() {
+        Message.printLineMenu();
+        return nextLine();
+    }
 }
