@@ -22,12 +22,6 @@ public class LineRepository {
     }
 
     public static Line findLineByName(String name) {
-        Optional<Line> result = lines.stream()
-                .filter(line -> Objects.equals(line.getName(), name)).findAny();
-
-        if(result.isEmpty()) {
-            return null;
-        }
-        return result.get();
+        return lines.stream().filter(line -> Objects.equals(line.getName(), name)).findAny().orElse(null);
     }
 }

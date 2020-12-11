@@ -22,12 +22,6 @@ public class StationRepository {
     }
 
     public static Station findStationByName(String name) {
-        Optional<Station> result = stations().stream()
-                .filter(station -> Objects.equals(station.getName(), name)).findAny();
-
-        if(result.isEmpty()) {
-            return null;
-        }
-        return result.get();
+        return stations().stream().filter(station -> Objects.equals(station.getName(), name)).findAny().orElse(null);
     }
 }

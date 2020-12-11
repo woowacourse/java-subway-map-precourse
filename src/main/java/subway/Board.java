@@ -1,22 +1,33 @@
 package subway;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
+
+import java.util.Optional;
+
 public class Board {
 
     private final static String INFO = "[INFO]";
+
     private final static String STATION_REMOVED_MESSAGE = INFO + " 지하철 역을 삭제했습니다.";
     private final static String STATION_ADD_MESSAGE = INFO + " 지하철 역을 추가했습니다.";
+
     private final static String LINE_ADD_MESSAGE = INFO + " 노선을 추가했습니다.";
     private final static String LINE_REMOVED_MESSAGE = INFO + " 노선을 삭제했습니다.";
 
     private final static String ERROR = "[ERROR]";
-    private final static String DUPLICATED_SUBWAY_ERROR = ERROR + " 같은 이름의 역이 있습니다.";
+
+    private final static String MINIMUM_LENGTH_ERROR = ERROR + " 이름이 너무 짧습니다.";
+
+    private final static String DUPLICATED_STATION_ERROR = ERROR + " 같은 이름의 역이 있습니다.";
+    private final static String NOT_EXIST_STATION_ERROR = ERROR + " 지하철 역이 존재하지 않습니다.";
+
+    private final static String NOT_EXIST_LINE_ERROR = ERROR + " 존재하지 않는 노선입니다.";
+
+    private final static String SAME_STATION_IN_SECTION_ERROR = ERROR + " 이미 같은 역이 있습니다.";
     private final static String TERMINAL_DOES_NOT_EXIST_ERROR = ERROR + " 상행선 또는 하행선이 없는 역입니다.";
     private final static String SAME_TERMINAL_ERROR = ERROR + " 상행선과 하행선이 같은 역입니다.";
-    private final static String NOT_EXIST_STATION_ERROR = ERROR + " 지하철 역이 존재하지 않습니다.";
-    private final static String NOT_EXIST_LINE_ERROR = ERROR + " 존재하지 않는 노선입니다.";
-    private final static String MINIMUM_LENGTH_ERROR = ERROR + " 이름이 너무 짧습니다.";
-    private final static String SAME_STATION_IN_SECTION_ERROR = ERROR + " 이미 같은 역이 있습니다.";
-
 
     private final static int MIN_NAME_LENGTH = 2;
 
@@ -30,7 +41,7 @@ public class Board {
     public boolean addStation(String name) {
 
         if (subway.containsStation(name)) {
-            System.out.println(DUPLICATED_SUBWAY_ERROR);
+            System.out.println(DUPLICATED_STATION_ERROR);
             return false;
         } else if (name.length() < MIN_NAME_LENGTH) {
             System.out.println(MINIMUM_LENGTH_ERROR);
@@ -72,6 +83,22 @@ public class Board {
         }
         subway.removeLineByName(name);
         System.out.println(LINE_REMOVED_MESSAGE);
+    }
+
+    private boolean checkLineExist(String name) {
+        if (!LineRepository.contains(name)) {
+            System.out.println(NOT_EXIST_LINE_ERROR);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkStationExist(String name) {
+        if (!StationRepository.contains(name)) {
+            System.out.println(NOT_EXIST_STATION_ERROR);
+            return false;
+        }
+        return true;
     }
 
 }
