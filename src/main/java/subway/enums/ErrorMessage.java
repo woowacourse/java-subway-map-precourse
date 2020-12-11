@@ -12,6 +12,8 @@ public enum ErrorMessage {
     LAST_UP_AND_DOWN_STATION_DUPLICATION(ERROR.getMessage() + "상행 종점역과 중복됩니다."),
     LINE_NOT_EXIST(ERROR.getMessage() + "등록된 노선이 없습니다."),
 
+    STATION_ON_LINE(ERROR.getMessage() + "역이 노선에 등록되어 있어 삭제할 수 없습니다."),
+
     NO_MENU(ERROR.getMessage() + "선택할 수 없는 기능입니다.");
 
     String message = "";

@@ -56,4 +56,8 @@ public class StationView {
     public static void informNoMenu() {
         MainView.informUnableCommand();
     }
+
+    public static void informStationOnLine() {
+        System.err.println(ErrorMessage.STATION_ON_LINE.getMessage());
+    }
 }

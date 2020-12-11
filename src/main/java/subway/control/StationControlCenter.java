@@ -1,6 +1,7 @@
 package subway.control;
 
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.enums.MainMenu;
@@ -71,12 +72,18 @@ public class StationControlCenter {
     private String removeStation(Scanner scanner) {
         StationView.printAskStationNameToDelete();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
-        if (StationRepository.deleteStation(nameOfStation)) {
-            StationView.informStationDeleted();
-            return StationMenu.DELETE.getCommand();
+        if (!StationRepository.isNameDuplication(nameOfStation)) {
+            StationView.informStationNotExist();
+            return removeStation(scanner);
         }
-        StationView.informStationNotExist();
-        return removeStation(scanner);
+        if (SectionRepository.isStationInWholeSection(nameOfStation)) {
+            StationView.informStationOnLine();
+            return removeStation(scanner);
+        }
+        StationRepository.deleteStation(nameOfStation);
+        StationView.informStationDeleted();
+
+        return StationMenu.DELETE.getCommand();
     }
 
     private boolean isUnableCommand(String menu) {

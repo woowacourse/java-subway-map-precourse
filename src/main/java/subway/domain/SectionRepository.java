@@ -79,4 +79,11 @@ public class SectionRepository {
                 .findFirst()
                 .get();
     }
+
+    public static boolean isStationInWholeSection(String name) {
+        Station targetStation = StationRepository.getStationByName(name);
+        return sections.stream()
+                .map(Section::getStations)
+                .anyMatch(stationList -> stationList.contains(targetStation));
+    }
 }
