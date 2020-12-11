@@ -12,6 +12,7 @@ public class StationService {
     }
 
     public static void remove(String name) {
+        StationValidator.validateRemoval(name);
         StationRepository.deleteStation(name);
     }
 }
