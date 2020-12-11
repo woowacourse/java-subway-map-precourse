@@ -12,7 +12,7 @@ import java.util.List;
 
 public abstract class ManagementView {
     private static final String SHARP_PREFIX = "## ";
-    private static final String TO_REGISTER_PREFIX = "등록할 ";
+    private static final String TO_CREATE_PREFIX = "등록할 ";
     private static final String TO_DELETE_PREFIX = "삭제할 ";
     private static final String REQUEST_MESSAGE = "이름을 입력하세요.";
     private static final String LIST = "목록";
@@ -48,7 +48,7 @@ public abstract class ManagementView {
     }
 
     public String getNameToCreate() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + TO_REGISTER_PREFIX + itemPrefix + REQUEST_MESSAGE);
+        return InputView.getNameWithMessage(SHARP_PREFIX + TO_CREATE_PREFIX + itemPrefix + REQUEST_MESSAGE);
     }
 
     public String getNameToDelete() {
