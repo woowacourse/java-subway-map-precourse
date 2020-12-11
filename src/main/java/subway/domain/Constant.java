@@ -2,13 +2,44 @@ package subway.domain;
 
 public class Constant {
     public static final String HASH = "## ";
-    public static final String GIVE_ME_STATION_NAME = "등록할 역 이름을 입력하세요.";
+    public static final String INFO = "[INFO] ";
+    public static final String DELIMITER = "---";
+
+    public static final String ONE = "1";
+    public static final String TWO = "2";
+    public static final String THREE = "3";
+    public static final String FOUR = "4";
+    public static final String Q = "Q";
+    public static final String B = "B";
+    public static final String DOT = ". ";
+
+    public static final String CHOOSE_FUNCTION = "원하는 기능을 선택하세요.";
+    public static final String ENTER_NAME = "%s할 %s 이름을 입력하세요.";
+    public static final String ENTER_END_POINT = "등록할 노선의 %s 종점역 이름을 입력하세요.";
+
     public static final String MAIN_MENU = "메인 화면";
-    public static final String MAIN_STATION = "1. 역 관리";
-    public static final String MAIN_LINE = "2. 노선 관리";
-    public static final String MAIN_SECTION = "3. 구간 관리";
-    public static final String MAIN_LINE_MAP = "4. 지하철 노선도 출력";
+    public static final String SETTING_MENU = "%s 관리 화면";
+    public static final String SUBWAY_MAP = "지하철 노선도";
+
+    public static final String ASCENDING = "상행";
+    public static final String DESCENDING = "하행";
+    public static final String STATION = "역";
+    public static final String LINE = "노선";
+    public static final String SECTION = "구간";
+    public static final String PRINT_SOMETHING = "지하철 노선도 출력";
+    public static final String SETTING = " 관리";
+    public static final String ADD = " 등록";
+    public static final String DELETE = " 삭제";
+    public static final String LOOKUP = " 조회";
+    public static final String QUIT = "종료";
+    public static final String BACK = "돌아가기";
+
+
+
+
+    public static final String SPACE = " ";
+    public static final String EMPTY = "";
 
     public static final int NAME_LENGTH_MINIMUM = 2;
-    public static final String STATION = "역";
+
 }

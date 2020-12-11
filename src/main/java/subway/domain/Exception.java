@@ -2,7 +2,6 @@ package subway.domain;
 
 public class Exception {
 
-
     static String passNameExceptionTest(String input){
         input = isNotSpace(input);
         input = isNotEmpty(input);
@@ -19,14 +18,14 @@ public class Exception {
     }
 
     static String isNotEmpty(String input){
-        if(!input.equals("")){
+        if(!input.equals(Constant.EMPTY)){
             return input;
         }
         throw new IllegalArgumentException();
     }
 
     static String isNotSpace(String input){
-        if(!input.contains(" ")){
+        if(!input.contains(Constant.SPACE)){
             return input;
         }
         throw new IllegalArgumentException();
