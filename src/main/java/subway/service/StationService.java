@@ -31,20 +31,20 @@ public class StationService {
 
     private void addStation(Scanner scanner) {
         inputAddStationNameRequestMessage();
-        String name = scanner.nextLine();
+        String stationName = scanner.nextLine();
         //validation
         //1.이름의 길이가 2이상인지 검증한다
         //2.중복된 역 이름이 존재하는지 검증한다
-        StationRepository.addStation(new Station(name));
+        StationRepository.addStation(new Station(stationName));
         printAddStationSuccessMessage();
     }
 
     private void deleteStation(Scanner scanner) {
         InputView.inputDeleteStationNameRequestMessage();
-        String name = scanner.nextLine();
+        String stationName = scanner.nextLine();
         //validation
         //1.입력한 역 이름이 존재하는지 검증한다
-        StationRepository.deleteStation(name);
+        StationRepository.deleteStation(stationName);
         printDeleteStationSuccessMessage();
     }
 
