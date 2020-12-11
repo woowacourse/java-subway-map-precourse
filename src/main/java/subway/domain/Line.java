@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Line {
     private static final String CONTOUR = "---";
+    private static final int LEAST_STATION_NUM= 3;
     private String name;
     private List<Station> stations = new ArrayList<>();
 
@@ -41,7 +42,14 @@ public class Line {
     }
 
     public void removeInterval(String stationName) {
-        stations.removeIf(station -> station.equalWith(stationName));
+        if(removePossible()) {
+            stations.removeIf(station -> station.equalWith(stationName));
+        }
     }
+
+    public boolean removePossible() {
+        return stations.size() >= LEAST_STATION_NUM;
+    }
+
         // 추가 기능 구현
 }
