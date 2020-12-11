@@ -35,5 +35,9 @@ public class Line {
         }
         return stationNames;
     }
+
+    public void addInterval(Station station, int position) {
+        stations.add(position - 1, station);
+    }
         // 추가 기능 구현
 }
