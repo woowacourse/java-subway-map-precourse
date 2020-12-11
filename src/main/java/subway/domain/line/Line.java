@@ -1,6 +1,7 @@
 package subway.domain.line;
 
 import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,16 +41,13 @@ public class Line {
     }
 
     public void init(Station firstStation, Station lastStation) {
-        stations.add(firstStation);
-        stations.add(lastStation);
+        addStationToLine(firstStation, 1);
+        addStationToLine(lastStation, 2);
     }
 
     public void addStationToLine(Station newStation, int index) {
         validateIndexRange(index);
         stations.add(index - 1, newStation);
-        for (Station station : stations) {
-            System.out.println(station.getName());
-        }
     }
 
     public void deleteStationToLine(Station station) {
