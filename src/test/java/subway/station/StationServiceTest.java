@@ -2,6 +2,7 @@ package subway.station;
 
 import org.junit.jupiter.api.Test;
 import subway.station.domain.StationRepository;
+import subway.station.exception.AlreadyExistException;
 import subway.station.exception.NotKoreanNameException;
 import subway.station.exception.TooShortStationNameException;
 
@@ -20,6 +21,7 @@ public class StationServiceTest {
 
         //then
         assertThat(StationRepository.isExist(name)).isTrue();
+        StationRepository.deleteStation(name);
     }
 
     @Test
@@ -43,5 +45,17 @@ public class StationServiceTest {
                 .isThrownBy(() -> StationService.register(englishName));
         assertThatExceptionOfType(NotKoreanNameException.class)
                 .isThrownBy(() -> StationService.register(numericName));
+    }
+
+    @Test
+    public void 이미_존재하는_지하철역_등록시_예외_발생() {
+        //given
+        String name = "잠실역";
+        StationService.register(name);
+
+        //when & then
+        assertThatExceptionOfType(AlreadyExistException.class)
+                .isThrownBy(() -> StationService.register(name));
+        StationRepository.deleteStation(name);
     }
 }
