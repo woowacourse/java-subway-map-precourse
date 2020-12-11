@@ -17,7 +17,7 @@ public class LineRepository {
             new Station("강남역"),
             new Station("역삼역"))
         )));
-        lines.add(new Line("2호선", new ArrayList<Station>(Arrays.asList(
+        lines.add(new Line("3호선", new ArrayList<Station>(Arrays.asList(
             new Station("교대역"),
             new Station("남부터미널역"),
             new Station("양재역"),
