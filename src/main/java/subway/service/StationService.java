@@ -21,6 +21,7 @@ public class StationService {
             deleteStation(scanner);
         }
         if(menu.equals(MenuType.STATION_SEARCH.getKey())) {
+            printStations();
         }
         if(menu.equals(MenuType.BACK.getKey())) {
             return;
@@ -43,5 +44,9 @@ public class StationService {
         //validation
         //1.입력한 역 이름이 존재하는지 검증한다
         StationRepository.deleteStation(name);
+    }
+
+    private void printStations() {
+        StationRepository.printStations();
     }
 }
