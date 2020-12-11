@@ -2,8 +2,10 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.repository.LineRepository;
-import subway.type.InputType;
 import subway.type.LineType;
+import subway.view.OutputView;
+
+import java.util.Scanner;
 
 public class LineService {
     public static void initializeLines() {
@@ -12,16 +14,17 @@ public class LineService {
         LineRepository.addLine(new Line(LineType.SHINBUNDANG.getLine()));
     }
 
-    public static boolean isLineInput(String lineInput) {
-        if (lineInput.equals(InputType.INPUT_ONE.getInput())) {
-            return true;
+    public static void manageLine(Scanner scanner){
+        FeatureService featureService = new FeatureService();
+
+        while (true) {
+            OutputView.printLineManagementScreen();
+            String lineInput = scanner.next();
+            if (featureService.isInput(lineInput)) {
+                featureService.chooseFeature(lineInput);
+                break;
+            }
+            OutputView.printInvalidFeatureChoiceException();
         }
-        if (lineInput.equals(InputType.INPUT_TWO.getInput())) {
-            return true;
-        }
-        if (lineInput.equals(InputType.INPUT_THREE.getInput())) {
-            return true;
-        }
-        return lineInput.equals(InputType.INPUT_BACK.getInput());
     }
 }

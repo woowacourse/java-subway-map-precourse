@@ -2,13 +2,12 @@ package subway.controller;
 
 import subway.service.LineService;
 import subway.service.StationService;
-import subway.type.InputType;
-import subway.view.OutputView;
+import subway.service.SubwayService;
 
 import java.util.Scanner;
 
 public class SubwayController {
-    public static void runSubway(Scanner scanner) {
+    public void runSubway(Scanner scanner) {
         initializeSubway();
         startSubway(scanner);
     }
@@ -19,37 +18,6 @@ public class SubwayController {
     }
 
     public static void startSubway(Scanner scanner) {
-        while (true) {
-            OutputView.printMainScreen();
-            String mainInput = scanner.next();
-            if (quitSubway(mainInput)) {
-                break;
-            }
-            chooseSubwayFeature(mainInput, scanner);
-        }
-    }
-
-    public static boolean quitSubway(String mainInput) {
-        return mainInput.equals(InputType.INPUT_QUITTING.getInput());
-    }
-
-    public static void chooseSubwayFeature(String mainInput, Scanner scanner) {
-        if (mainInput.equals(InputType.INPUT_ONE.getInput())) {
-            StationController.startStation(scanner);
-            return;
-        }
-        if (mainInput.equals(InputType.INPUT_TWO.getInput())) {
-            LineController.startLine(scanner);
-            return;
-        }
-        if (mainInput.equals(InputType.INPUT_THREE.getInput())) {
-            SectionController.startSection(scanner);
-            return;
-        }
-        if (mainInput.equals(InputType.INPUT_FOUR.getInput())) {
-            // TODO: 지하철 노선도 출력 기능 구현
-            return;
-        }
-        OutputView.printInvalidFeatureChoiceException();
+        SubwayService.manageSubway(scanner);
     }
 }

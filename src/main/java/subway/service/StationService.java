@@ -2,8 +2,10 @@ package subway.service;
 
 import subway.domain.Station;
 import subway.repository.StationRepository;
-import subway.type.InputType;
 import subway.type.StationType;
+import subway.view.OutputView;
+
+import java.util.Scanner;
 
 public class StationService {
     public static void initializeStations() {
@@ -16,16 +18,17 @@ public class StationService {
         StationRepository.addStation(new Station(StationType.MAEBONG.getStation()));
     }
 
-    public static boolean isStationInput(String stationInput) {
-        if (stationInput.equals(InputType.INPUT_ONE.getInput())) {
-            return true;
+    public static void manageStation(Scanner scanner) {
+        FeatureService featureService = new FeatureService();
+
+        while (true) {
+            OutputView.printStationManagementScreen();
+            String stationInput = scanner.next();
+            if (featureService.isInput(stationInput)) {
+                featureService.chooseFeature(stationInput);
+                break;
+            }
+            OutputView.printInvalidFeatureChoiceException();
         }
-        if (stationInput.equals(InputType.INPUT_TWO.getInput())) {
-            return true;
-        }
-        if (stationInput.equals(InputType.INPUT_THREE.getInput())) {
-            return true;
-        }
-        return stationInput.equals(InputType.INPUT_BACK.getInput());
     }
 }
