@@ -26,7 +26,7 @@ public class StationRepository {
     public static void printStations() {
         System.out.println("## 역 목록");
         stations.forEach(station -> {
-            System.out.println("[INFO] " + station);
+            System.out.println(station.toString());
         });
         System.out.println();
     }
