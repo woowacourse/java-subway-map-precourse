@@ -9,18 +9,18 @@ public enum InitialSections {
     LINE_SINBUNDANG("신분당선", Arrays.asList("강남역", "양재역", "양재시민의숲역"));
 
     private String line;
-    private List<String> stations;
+    private List<String> namesOfStations;
 
-    InitialSections(String line, List<String> stations) {
+    InitialSections(String line, List<String> namesOfStations) {
         this.line = line;
-        this.stations = stations;
+        this.namesOfStations = namesOfStations;
     }
 
     public String getLine() {
         return line;
     }
 
-    public List<String> getStations() {
-        return stations;
+    public List<String> getNamesOfStations() {
+        return namesOfStations;
     }
 }

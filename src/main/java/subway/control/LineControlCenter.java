@@ -22,7 +22,7 @@ public class LineControlCenter {
         LineView.printLineMenu();
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
-        String menu = selectMenu(command, scanner);
+        String menu = selectLineMenu(command, scanner);
         if (isUnableCommand(menu)) {
             LineView.informNoMenu();
             return startLineControl(scanner);
@@ -30,14 +30,14 @@ public class LineControlCenter {
         return MainMenu.LINE_CONTROL.getCommand();
     }
 
-    private String selectMenu(String command, Scanner scanner) {
-        if (command.equals(LineMenu.ENROLL.getCommand())) {
-            return enrollLine(scanner);
+    private String selectLineMenu(String command, Scanner scanner) {
+        if (command.equals(LineMenu.REGISTER.getCommand())) {
+            return registerLine(scanner);
         }
         if (command.equals(LineMenu.DELETE.getCommand())) {
             return removeLine(scanner);
         }
-        if (command.equals(LineMenu.CHECK.getCommand())) {
+        if (command.equals(LineMenu.LIST.getCommand())) {
             return LineView.printLineList();
         }
         if (command.equalsIgnoreCase(LineMenu.BACK.getCommand())) {
@@ -46,28 +46,28 @@ public class LineControlCenter {
         return "";
     }
 
-    private String enrollLine(Scanner scanner) {
-        String nameOfLine = inputNameOfLine(scanner);
+    private String registerLine(Scanner scanner) {
+        String nameOfLineToRegister = inputNameOfLineToRegister(scanner);
         Station upLastStation = inputUpLastStation(scanner);
         Station downLastStation = inputDownLastStation(scanner, upLastStation);
-        Line line = new Line(nameOfLine);
-        LineRepository.addLine(line);
-        LineView.informLineEnrolled();
+        Line lineToRegister = new Line(nameOfLineToRegister);
+        LineRepository.addLine(lineToRegister);
+        LineView.informLineRegistered();
         SectionRepository.addLineToSection(
-                line, getUpDownLastStations(upLastStation, downLastStation));
-        return LineMenu.ENROLL.getCommand();
+                lineToRegister, getUpDownLastStations(upLastStation, downLastStation));
+        return LineMenu.REGISTER.getCommand();
     }
 
-    private String inputNameOfLine(Scanner scanner) {
-        LineView.printAskLineNameToEnroll();
+    private String inputNameOfLineToRegister(Scanner scanner) {
+        LineView.printAskLineNameToRegister();
         String nameOfLine = MainControlCenter.inputCommand(scanner);
-        if (!isValidName(nameOfLine)) {
-            return inputNameOfLine(scanner);
+        if (!isValidNameForLine(nameOfLine)) {
+            return inputNameOfLineToRegister(scanner);
         }
         return nameOfLine;
     }
 
-    private boolean isValidName(String nameOfLine) {
+    private boolean isValidNameForLine(String nameOfLine) {
         if (LineRepository.isNameDuplication(nameOfLine)) {
             LineView.informLineDuplicated();
             return false;
@@ -127,7 +127,7 @@ public class LineControlCenter {
 
     private boolean isUnableCommand(String menu) {
         return Arrays.stream(LineMenu.values())
-                .skip(LineMenu.ENROLL.ordinal())
+                .skip(LineMenu.REGISTER.ordinal())
                 .map(LineMenu::getCommand)
                 .noneMatch(command -> command.equals(menu));
     }

@@ -17,8 +17,8 @@ public class LineView {
         System.out.println();
     }
 
-    public static void printAskLineNameToEnroll() {
-        System.out.println(LineInfo.ASK_LINE_NAME_TO_ENROLL.getInfo());
+    public static void printAskLineNameToRegister() {
+        System.out.println(LineInfo.ASK_LINE_NAME_TO_REGISTER.getInfo());
     }
 
     public static void printAskUpLastStation() {
@@ -29,8 +29,8 @@ public class LineView {
         System.out.println(LineInfo.ASK_DOWN_LAST_STATION.getInfo());
     }
 
-    public static void informLineEnrolled() {
-        System.out.println(LineInfo.INFO_LINE_ENROLLED.getInfo());
+    public static void informLineRegistered() {
+        System.out.println(LineInfo.INFO_LINE_REGISTERED.getInfo());
     }
 
     public static void informLineDuplicated() {
@@ -62,7 +62,7 @@ public class LineView {
         LineRepository.lines().stream()
                 .map(line -> LineInfo.INFO.getInfo() + line.getName())
                 .forEach(System.out::println);
-        return LineMenu.CHECK.getCommand();
+        return LineMenu.LIST.getCommand();
     }
 
     public static void informNoMenu() {

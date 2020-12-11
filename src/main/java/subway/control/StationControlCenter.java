@@ -23,7 +23,7 @@ public class StationControlCenter {
         StationView.printStationMenu();
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
-        String menu = selectMenu(command, scanner);
+        String menu = selectStationMenu(command, scanner);
         if (isUnableCommand(menu)) {
             StationView.informNoMenu();
             return startStationControl(scanner);
@@ -31,31 +31,31 @@ public class StationControlCenter {
         return MainMenu.STATION_CONTROL.getCommand();
     }
 
-    private String selectMenu(String command, Scanner scanner) {
-        if (command.equals(StationMenu.ENROLL.getCommand()))
-            return enrollStation(scanner);
+    private String selectStationMenu(String command, Scanner scanner) {
+        if (command.equals(StationMenu.REGISTER.getCommand()))
+            return registerStation(scanner);
         if (command.equals(StationMenu.DELETE.getCommand()))
             return removeStation(scanner);
-        if (command.equals(StationMenu.CHECK.getCommand()))
+        if (command.equals(StationMenu.LIST.getCommand()))
             return StationView.printStationList();
         if (command.equalsIgnoreCase(StationMenu.BACK.getCommand()))
             return StationMenu.BACK.getCommand();
         return "";
     }
 
-    private String enrollStation(Scanner scanner) {
-        String nameOfStation = inputNameOfStation(scanner);
-        Station station = new Station(nameOfStation);
-        StationRepository.addStation(station);
-        StationView.informStationEnrolled();
-        return StationMenu.ENROLL.getCommand();
+    private String registerStation(Scanner scanner) {
+        String nameOfStationToRegister = inputNameOfStationToRegister(scanner);
+        Station stationToRegister = new Station(nameOfStationToRegister);
+        StationRepository.addStation(stationToRegister);
+        StationView.informStationRegistered();
+        return StationMenu.REGISTER.getCommand();
     }
 
-    private String inputNameOfStation(Scanner scanner) {
-        StationView.printAskStationNameToEnroll();
+    private String inputNameOfStationToRegister(Scanner scanner) {
+        StationView.printAskStationNameToRegister();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
         if (!isValidNameToRegister(nameOfStation)) {
-            return inputNameOfStation(scanner);
+            return inputNameOfStationToRegister(scanner);
         }
         return nameOfStation;
     }
@@ -78,11 +78,11 @@ public class StationControlCenter {
 
     private String removeStation(Scanner scanner) {
         StationView.printAskStationNameToDelete();
-        String nameOfStation = MainControlCenter.inputCommand(scanner);
-        if (!isValidNameToDelete(nameOfStation)) {
+        String nameOfStationToDelete = MainControlCenter.inputCommand(scanner);
+        if (!isValidNameToDelete(nameOfStationToDelete)) {
             return removeStation(scanner);
         }
-        StationRepository.deleteStation(nameOfStation);
+        StationRepository.deleteStation(nameOfStationToDelete);
         StationView.informStationDeleted();
         return StationMenu.DELETE.getCommand();
     }
@@ -92,7 +92,7 @@ public class StationControlCenter {
             StationView.informStationNotExist();
             return false;
         }
-        if (SectionRepository.isStationInWholeSection(nameOfStation)) {
+        if (SectionRepository.isStationInSections(nameOfStation)) {
             StationView.informStationOnLine();
             return false;
         }
@@ -101,7 +101,7 @@ public class StationControlCenter {
 
     private boolean isUnableCommand(String menu) {
         return Arrays.stream(StationMenu.values())
-                .skip(StationMenu.ENROLL.ordinal())
+                .skip(StationMenu.REGISTER.ordinal())
                 .map(StationMenu::getCommand)
                 .noneMatch(command -> command.equals(menu));
     }

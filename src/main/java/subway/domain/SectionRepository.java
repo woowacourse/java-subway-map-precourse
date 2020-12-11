@@ -42,7 +42,7 @@ public class SectionRepository {
     public static void initializeSections() {
         for (InitialSections initialSection : InitialSections.values()) {
             Line initialLine = LineRepository.getLineByName(initialSection.getLine());
-            List<Station> initialStations = initialSection.getStations()
+            List<Station> initialStations = initialSection.getNamesOfStations()
                     .stream()
                     .map(StationRepository::getStationByName)
                     .collect(Collectors.toList());
@@ -50,18 +50,18 @@ public class SectionRepository {
         }
     }
 
-    public static boolean isLineOnSectionDuplicated(String name) {
-        if (!LineRepository.isNameDuplication(name)) {
+    public static boolean isLineOnSectionDuplicated(String nameOfLine) {
+        if (!LineRepository.isNameDuplication(nameOfLine)) {
             return false;
         }
-        Line targetLine = LineRepository.getLineByName(name);
+        Line targetLine = LineRepository.getLineByName(nameOfLine);
         return sections.stream()
                 .map(Section::getLine)
                 .anyMatch(line -> line == targetLine);
     }
 
-    public static Section getSectionByLineName(String name) {
-        Line targetLine = LineRepository.getLineByName(name);
+    public static Section getSectionByLineName(String nameOfLine) {
+        Line targetLine = LineRepository.getLineByName(nameOfLine);
         return sections.stream()
                 .filter(section -> section.getLine() == targetLine)
                 .findFirst()
@@ -78,7 +78,7 @@ public class SectionRepository {
                 .anyMatch(station -> station == targetStation);
     }
 
-    public static Station getStationByName(Line line, String nameOfStation) {
+    public static Station getStationByLineAndNameOfStation(Line line, String nameOfStation) {
         Section section = getSectionByLineName(line.getName());
         Station targetStation = StationRepository.getStationByName(nameOfStation);
         return section.getStations().stream()
@@ -87,11 +87,11 @@ public class SectionRepository {
                 .get();
     }
 
-    public static boolean isStationInWholeSection(String name) {
-        Station targetStation = StationRepository.getStationByName(name);
+    public static boolean isStationInSections(String nameOfStation) {
+        Station targetStation = StationRepository.getStationByName(nameOfStation);
         return sections.stream()
                 .map(Section::getStations)
-                .anyMatch(stationList -> stationList.contains(targetStation));
+                .anyMatch(stations -> stations.contains(targetStation));
     }
 
     public static boolean isStationUnder2onLine(String name) {

@@ -17,12 +17,12 @@ public class StationView {
         System.out.println();
     }
 
-    public static void printAskStationNameToEnroll() {
-        System.out.println(StationInfo.ASK_STATION_NAME_TO_ENROLL.getInfo());
+    public static void printAskStationNameToRegister() {
+        System.out.println(StationInfo.ASK_STATION_NAME_TO_REGISTER.getInfo());
     }
 
-    public static void informStationEnrolled() {
-        System.out.println(StationInfo.INFO_STATION_ENROLLED.getInfo());
+    public static void informStationRegistered() {
+        System.out.println(StationInfo.INFO_STATION_REGISTERED.getInfo());
     }
 
     public static void printAskStationNameToDelete() {
@@ -38,7 +38,7 @@ public class StationView {
         StationRepository.stations().stream()
                 .map(station -> StationInfo.INFO.getInfo() + station.getName())
                 .forEach(System.out::println);
-        return StationMenu.CHECK.getCommand();
+        return StationMenu.LIST.getCommand();
     }
 
     public static void informStationDuplicated() {

@@ -21,7 +21,7 @@ public class SectionControlCenter {
         SectionView.printSectionMenu();
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
-        String menu = selectMenu(command, scanner);
+        String menu = selectSectionMenu(command, scanner);
         if (isUnableCommand(menu)) {
             SectionView.informNoMenu();
             return startSectionControl(scanner);
@@ -29,9 +29,9 @@ public class SectionControlCenter {
         return MainMenu.SECTION_CONTROL.getCommand();
     }
 
-    private String selectMenu(String command, Scanner scanner) {
-        if (command.equals(SectionMenu.ENROLL.getCommand()))
-            return enrollSection(scanner);
+    private String selectSectionMenu(String command, Scanner scanner) {
+        if (command.equals(SectionMenu.REGISTER.getCommand()))
+            return registerSection(scanner);
         if (command.equals(SectionMenu.DELETE.getCommand()))
             return deleteStationFromLine(scanner);
         if (command.equalsIgnoreCase(SectionMenu.BACK.getCommand()))
@@ -39,48 +39,51 @@ public class SectionControlCenter {
         return "";
     }
 
-    private String enrollSection(Scanner scanner) {
-        Line lineToEnrollStationOn = inputNameOfLine(scanner);
-        Station stationToEnrollOnLine = inputNameOfStation(lineToEnrollStationOn, scanner);
-        int positionToEnrollStationOnLine = inputPositionToEnrollStation(scanner);
+    private String registerSection(Scanner scanner) {
+        Line lineToRegisterStationOn = inputNameOfLineToRegisterStationOn(scanner);
+        Station stationToRegisterOnLine =
+                inputNameOfStationToRegisterOnLine(lineToRegisterStationOn, scanner);
+        int positionToRegisterStationOnLine = inputPositionToRegisterStation(scanner);
         SectionRepository.addStationOnLine(
-                lineToEnrollStationOn, stationToEnrollOnLine, positionToEnrollStationOnLine);
-        SectionView.informSectionEnrolled();
-        return SectionMenu.ENROLL.getCommand();
+                lineToRegisterStationOn, stationToRegisterOnLine, positionToRegisterStationOnLine);
+        SectionView.informSectionRegistered();
+        return SectionMenu.REGISTER.getCommand();
     }
 
-    private Line inputNameOfLine(Scanner scanner) {
-        SectionView.printAskLineToEnrollStationOn();
-        String lineToEnrollStationOn = MainControlCenter.inputCommand(scanner);
-        if (!LineRepository.isNameDuplication(lineToEnrollStationOn)) {
+    private Line inputNameOfLineToRegisterStationOn(Scanner scanner) {
+        SectionView.printAskLineToRegisterStationOn();
+        String lineToRegisterStationOn = MainControlCenter.inputCommand(scanner);
+        if (!LineRepository.isNameDuplication(lineToRegisterStationOn)) {
             LineView.informLineNotExist();
-            return inputNameOfLine(scanner);
+            return inputNameOfLineToRegisterStationOn(scanner);
         }
-        return LineRepository.getLineByName(lineToEnrollStationOn);
+        return LineRepository.getLineByName(lineToRegisterStationOn);
     }
 
-    private Station inputNameOfStation(Line lineToEnrollStationOn, Scanner scanner) {
-        SectionView.printAskStationToEnrollOnLine();
-        String stationToEnrollOnLine = MainControlCenter.inputCommand(scanner);
-        if (!StationRepository.isNameDuplication(stationToEnrollOnLine)) {
+    private Station inputNameOfStationToRegisterOnLine(
+            Line lineToEnrollStationOn, Scanner scanner) {
+        SectionView.printAskStationToRegisterOnLine();
+        String nameOfStationToRegisterOnLine = MainControlCenter.inputCommand(scanner);
+        if (!StationRepository.isNameDuplication(nameOfStationToRegisterOnLine)) {
             StationView.informStationNotExist();
-            return inputNameOfStation(lineToEnrollStationOn, scanner);
+            return inputNameOfStationToRegisterOnLine(lineToEnrollStationOn, scanner);
         }
-        if (SectionRepository.isStationOnLine(lineToEnrollStationOn, stationToEnrollOnLine)) {
+        if (SectionRepository.isStationOnLine(lineToEnrollStationOn
+                , nameOfStationToRegisterOnLine)) {
             StationView.informStationDuplicated();
-            return inputNameOfStation(lineToEnrollStationOn, scanner);
+            return inputNameOfStationToRegisterOnLine(lineToEnrollStationOn, scanner);
         }
-        return StationRepository.getStationByName(stationToEnrollOnLine);
+        return StationRepository.getStationByName(nameOfStationToRegisterOnLine);
     }
 
-    private int inputPositionToEnrollStation(Scanner scanner) {
-        SectionView.printAskPositionToEnrollStation();
-        String positionToEnrollStation = MainControlCenter.inputCommand(scanner);
+    private int inputPositionToRegisterStation(Scanner scanner) {
+        SectionView.printAskPositionToRegisterStation();
+        String positionToRegisterStation = MainControlCenter.inputCommand(scanner);
         try {
-            return Integer.parseInt(positionToEnrollStation);
+            return Integer.parseInt(positionToRegisterStation);
         } catch (NumberFormatException nfe) {
             SectionView.informNotNumberFormat();
-            return inputPositionToEnrollStation(scanner);
+            return inputPositionToRegisterStation(scanner);
         }
     }
 
@@ -95,31 +98,33 @@ public class SectionControlCenter {
 
     private Line inputLineToDeleteStationFrom(Scanner scanner) {
         SectionView.printAskLineToDeleteStationFrom();
-        String nameOfLine = MainControlCenter.inputCommand(scanner);
-        if (!SectionRepository.isLineOnSectionDuplicated(nameOfLine)) {
+        String nameOfLineToDeleteStationFrom = MainControlCenter.inputCommand(scanner);
+        if (!SectionRepository.isLineOnSectionDuplicated(nameOfLineToDeleteStationFrom)) {
             LineView.informLineNotExist();
             return inputLineToDeleteStationFrom(scanner);
         }
-        if (SectionRepository.isStationUnder2onLine(nameOfLine)) {
+        if (SectionRepository.isStationUnder2onLine(nameOfLineToDeleteStationFrom)) {
             SectionView.informStationUnder2onLine();
             return inputLineToDeleteStationFrom(scanner);
         }
-        return SectionRepository.getSectionByLineName(nameOfLine).getLine();
+        return SectionRepository.getSectionByLineName(nameOfLineToDeleteStationFrom).getLine();
     }
 
     private Station inputStationToDeleteFromLine(Line lineToDeleteStationFrom, Scanner scanner) {
         SectionView.printAskStationToDeleteFromLine();
-        String nameOfStation = MainControlCenter.inputCommand(scanner);
-        if (!SectionRepository.isStationOnLine(lineToDeleteStationFrom, nameOfStation)) {
+        String nameOfStationToDeleteFromLine = MainControlCenter.inputCommand(scanner);
+        if (!SectionRepository.isStationOnLine(
+                lineToDeleteStationFrom, nameOfStationToDeleteFromLine)) {
             StationView.informStationNotExist();
             return inputStationToDeleteFromLine(lineToDeleteStationFrom, scanner);
         }
-        return SectionRepository.getStationByName(lineToDeleteStationFrom, nameOfStation);
+        return SectionRepository.getStationByLineAndNameOfStation(
+                lineToDeleteStationFrom, nameOfStationToDeleteFromLine);
     }
 
     private boolean isUnableCommand(String menu) {
         return Arrays.stream(SectionMenu.values())
-                .skip(SectionMenu.ENROLL.ordinal())
+                .skip(SectionMenu.REGISTER.ordinal())
                 .map(SectionMenu::getCommand)
                 .noneMatch(command -> command.equals(menu));
     }

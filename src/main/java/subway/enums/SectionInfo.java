@@ -3,10 +3,10 @@ package subway.enums;
 public enum SectionInfo {
     INFO("[INFO] "),
 
-    ASK_LINE_TO_ENROLL_STATION_ON("## 노선을 입력하세요."),
-    ASK_STATION_TO_ENROLL_ON_LINE("## 역이름을 입력하세요."),
-    ASK_POSITION_TO_ENROLL_STATION("## 순서를 입력하세요."),
-    INFO_SECTION_ENROLLED(INFO.getInfo() + "구간이 등록되었습니다."),
+    ASK_LINE_TO_REGISTER_STATION_ON("## 노선을 입력하세요."),
+    ASK_STATION_TO_REGISTER_ON_LINE("## 역 이름을 입력하세요."),
+    ASK_POSITION_TO_REGISTER_STATION("## 순서를 입력하세요."),
+    INFO_SECTION_REGISTERED(INFO.getInfo() + "구간이 등록되었습니다."),
 
     ASK_LINE_TO_DELETE_STATION_FROM("## 삭제할 구간의 노선을 입력하세요."),
     ASK_STATION_TO_DELETE_FROM_LINE("## 삭제할 구간의 역을 입력하세요."),

@@ -2,7 +2,7 @@ package subway.enums;
 
 public enum SectionMenu {
     SUBJECT("## 구관 관리 화면","0"),
-    ENROLL("1. 구간 등록", "1"),
+    REGISTER("1. 구간 등록", "1"),
     DELETE("2. 구간 삭제", "2"),
     BACK("B. 돌아가기", "B");
 

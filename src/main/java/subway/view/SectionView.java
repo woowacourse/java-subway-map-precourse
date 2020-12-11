@@ -21,20 +21,20 @@ public class SectionView {
         System.out.println();
     }
 
-    public static void printAskLineToEnrollStationOn() {
-        System.out.println(SectionInfo.ASK_LINE_TO_ENROLL_STATION_ON.getInfo());
+    public static void printAskLineToRegisterStationOn() {
+        System.out.println(SectionInfo.ASK_LINE_TO_REGISTER_STATION_ON.getInfo());
     }
 
-    public static void printAskStationToEnrollOnLine() {
-        System.out.println(SectionInfo.ASK_STATION_TO_ENROLL_ON_LINE.getInfo());
+    public static void printAskStationToRegisterOnLine() {
+        System.out.println(SectionInfo.ASK_STATION_TO_REGISTER_ON_LINE.getInfo());
     }
 
-    public static void printAskPositionToEnrollStation() {
-        System.out.println(SectionInfo.ASK_POSITION_TO_ENROLL_STATION.getInfo());
+    public static void printAskPositionToRegisterStation() {
+        System.out.println(SectionInfo.ASK_POSITION_TO_REGISTER_STATION.getInfo());
     }
 
-    public static void informSectionEnrolled() {
-        System.out.println(SectionInfo.INFO_SECTION_ENROLLED.getInfo());
+    public static void informSectionRegistered() {
+        System.out.println(SectionInfo.INFO_SECTION_REGISTERED.getInfo());
     }
 
     public static String printSectionList() {
