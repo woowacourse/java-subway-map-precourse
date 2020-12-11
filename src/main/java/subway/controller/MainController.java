@@ -69,6 +69,7 @@ public class MainController {
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
+			System.out.println();
 			run(scanner);
 		}
 	}
