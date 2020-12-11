@@ -2,7 +2,6 @@ package subway.domain.Line;
 
 import subway.domain.name.LineName;
 import subway.domain.station.Station;
-import subway.exception.AlreadyAddLineException;
 import subway.exception.AlreadyAddStationException;
 
 import java.util.Collections;
@@ -14,13 +13,24 @@ public class Line {
     private LineName name;
     // 추가 기능 구현
     private final List<Station> stations = new LinkedList<>();
+    private final int STATIONS_MIN_INDEX = 1;
+    private final int ONE_INDEX = 1;
 
     private Line(LineName name) {
         this.name = name;
     }
 
-    public static Line of(String name) {
-        return new Line(LineName.of(name));
+    public static Line of(String name, Station start, Station end) {
+        Line line = new Line(LineName.of(name));
+
+        line.setStations(start, end);
+
+        return line;
+    }
+
+    private void setStations(Station start, Station end) {
+        stations.add(start);
+        stations.add(end);
     }
 
     public List<Station> getStations() {
@@ -59,5 +69,20 @@ public class Line {
 
     public boolean isSameName(String name) {
         return this.name.equals(name);
+    }
+
+    public void addTo(int order, Station station) {
+
+        if (isValidOrder(order))
+
+            stations.add(order - ONE_INDEX, station);
+    }
+
+    private boolean isValidOrder(int order) {
+
+        if (order < STATIONS_MIN_INDEX && order > stations.size()) {
+            return false;
+        }
+        return true;
     }
 }
