@@ -1,6 +1,7 @@
 package subway.service;
 
 import subway.domain.*;
+import subway.utils.InputValidation;
 
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import static subway.view.InputView.*;
 import static subway.view.OutputView.printAddLineStationSuccessMessage;
 import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 
-public class LineStationService {
+public class LineStationService extends InputValidation {
 
     public void selectLineStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
         if(menu.equals(MenuType.LINE_STATION_ADD.getKey())) {
@@ -30,7 +31,7 @@ public class LineStationService {
         inputAddEndStationNameRequestMessage();
         String endStationName = scanner.nextLine();
         //validation
-        //1. 노선 이름이 2글자 이상인지 검증한다
+        validateNameLengthIsMoreThan2(lineName);
         //2. 중복된 노선 이름이 존재하는지 검증한다
         //3. 입력한 역 이름이 존재하는지 검증한다(상행)
         //4. 입력한 역 이름이 존재하는지 검증한다(하행)

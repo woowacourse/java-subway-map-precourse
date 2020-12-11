@@ -4,6 +4,7 @@ import subway.domain.LineStationRepository;
 import subway.domain.MenuType;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.utils.InputValidation;
 import subway.view.InputView;
 
 import java.util.Scanner;
@@ -12,7 +13,7 @@ import static subway.view.InputView.inputAddStationNameRequestMessage;
 import static subway.view.OutputView.printAddStationSuccessMessage;
 import static subway.view.OutputView.printDeleteStationSuccessMessage;
 
-public class StationService {
+public class StationService extends InputValidation {
 
     public void selectStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
         if(menu.equals(MenuType.STATION_ADD.getKey())) {
@@ -30,7 +31,7 @@ public class StationService {
         inputAddStationNameRequestMessage();
         String stationName = scanner.nextLine();
         //validation
-        //1.이름의 길이가 2이상인지 검증한다
+        validateNameLengthIsMoreThan2(stationName);
         //2.중복된 역 이름이 존재하는지 검증한다
         StationRepository.addStation(new Station(stationName));
         printAddStationSuccessMessage();
