@@ -45,6 +45,15 @@ public class LineStationRepository {
         return lineStation.get(line).size();
     }
 
+    public boolean findStationInLine(Station station) {
+        for (Line line : lineStation.keySet()) {
+            if (lineStation.get(line).contains(station)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void printAllLineStation() {
         System.out.println("\n## 지하철 노선도");
         lineStation.forEach((line, stations) -> {
