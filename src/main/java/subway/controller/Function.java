@@ -8,8 +8,11 @@ public class Function {
     public static final int MIN_FUNCTION_DECISION = 1;
     public static final String EXIT_FUNCTION_DECISION = "Q";
 
+    public static boolean isExitDecision(String functionDecision) {
+        return functionDecision.equalsIgnoreCase(EXIT_FUNCTION_DECISION);
+    }
+
     public static void validate(String functionDecision, int currentMenu) {
-        //validateExit(functionDecision);
         validateNumeric(functionDecision);
         validateRange(functionDecision, currentMenu);
     }

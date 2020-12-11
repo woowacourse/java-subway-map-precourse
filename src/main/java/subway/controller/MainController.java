@@ -16,6 +16,9 @@ public class MainController {
     public void run() {
         try {
             String functionDecision = inputView.inputFunction();
+            if(Function.isExitDecision(functionDecision)) {
+                return;
+            }
             Function.validate(functionDecision, MAIN_MENU);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
