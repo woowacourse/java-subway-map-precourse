@@ -21,6 +21,7 @@ public class LineManageView implements ViewStrategy {
     public LineManageView(Scanner scanner) {
         this.scanner = scanner;
         LineController lineController = LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
+        LINE_MANAGE_VIEW.put("1", new CreateLineView(lineController, scanner));
         LINE_MANAGE_VIEW.put("B", new BackView());
     }
 

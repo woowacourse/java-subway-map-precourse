@@ -27,7 +27,6 @@ public class DeleteStationView implements StationManageViewStrategy {
             OutputView.infoView(DELETE_SUCCESS);
         } catch (IllegalStateException e) {
             OutputView.errorView(e.getMessage());
-            show();
         }
 
     }

@@ -20,7 +20,7 @@ public class MainView {
     public MainView(Scanner scanner) {
         this.scanner = scanner;
         views.put("1", new StationManageView(scanner));
-        views.put("2", new LineManageView());
+        views.put("2", new LineManageView(scanner));
         views.put("3", new LineStationManageView());
         views.put("4", new LineMapView());
         views.put("Q", new ExitView());
