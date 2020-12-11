@@ -2,7 +2,7 @@ package subway.domain;
 
 import java.util.Scanner;
 
-public class UserInput {
+public class UserInterface {
     private static final String HASH = "## ";
     private static final String GIVE_ME_STATION_NAME = "등록할 역 이름을 입력하세요.";
 
