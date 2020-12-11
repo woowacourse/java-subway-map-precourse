@@ -28,7 +28,7 @@ public class SectionControlCenter {
             return;
         }
         if (command.equals(SectionMenu.DELETE.getCommand())) {
-
+            deleteStationFromLine(scanner);
             return;
         }
     }
@@ -66,5 +66,33 @@ public class SectionControlCenter {
         SectionView.printAskPosionToEnrollStation();
         String positionToEnrollStation = MainControlCenter.inputCommand(scanner);
         return positionToEnrollStation;
+    }
+
+    private void deleteStationFromLine(Scanner scanner) {
+        Line lineToDeleteStationFrom = inputLineToDeleteStationFrom(scanner);
+        Station stationToDeleteFromLine =
+                inputStationToDeleteFromLine(lineToDeleteStationFrom, scanner);
+        SectionRepository.deleteStationOnLine(lineToDeleteStationFrom, stationToDeleteFromLine);
+        SectionView.informSectionDeleted();
+    }
+
+    private Line inputLineToDeleteStationFrom(Scanner scanner) {
+        SectionView.printAskLineToDeleteStationFrom();
+        String nameOfLine = MainControlCenter.inputCommand(scanner);
+        if (!SectionRepository.isLineOnSectionDuplicated(nameOfLine)) {
+            LineView.informLineNotExist();
+            return inputLineToDeleteStationFrom(scanner);
+        }
+        return SectionRepository.getSectionByLineName(nameOfLine).getLine();
+    }
+
+    private Station inputStationToDeleteFromLine(Line lineToDeleteStationFrom, Scanner scanner) {
+        SectionView.printAskStationToDeleteFromLine();
+        String nameOfStation = MainControlCenter.inputCommand(scanner);
+        if (!SectionRepository.isStationOnLine(lineToDeleteStationFrom, nameOfStation)) {
+            StationView.informStationNotExist();
+            return inputStationToDeleteFromLine(lineToDeleteStationFrom, scanner);
+        }
+        return SectionRepository.getStationByName(lineToDeleteStationFrom, nameOfStation);
     }
 }

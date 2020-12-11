@@ -27,6 +27,11 @@ public class SectionRepository {
         section.getStations().add(index, station);
     }
 
+    public static boolean deleteStationOnLine(Line line, Station targetStation) {
+        Section section = getSectionByLineName(line.getName());
+        return section.getStations().removeIf(station -> station == targetStation);
+    }
+
     public static void initializeSections() {
         for (InitialSections initialSection : InitialSections.values()) {
             Line initialLine = LineRepository.getLineByName(initialSection.getLine());
@@ -36,5 +41,42 @@ public class SectionRepository {
                     .collect(Collectors.toList());
             SectionRepository.addLineToSection(initialLine, initialStations);
         }
+    }
+
+    public static boolean isLineOnSectionDuplicated(String name) {
+        if (!LineRepository.isNameDuplication(name)) {
+            return false;
+        }
+        Line targetLine = LineRepository.getLineByName(name);
+        return sections.stream()
+                .map(Section::getLine)
+                .anyMatch(line -> line == targetLine);
+    }
+
+    public static Section getSectionByLineName(String name) {
+        Line targetLine = LineRepository.getLineByName(name);
+        return sections.stream()
+                .filter(section -> section.getLine() == targetLine)
+                .findFirst()
+                .get();
+    }
+
+    public static boolean isStationOnLine(Line line, String nameOfStation) {
+        if (!StationRepository.isNameDuplication(nameOfStation)) {
+            return false;
+        }
+        Section section = getSectionByLineName(line.getName());
+        Station targetStation = StationRepository.getStationByName(nameOfStation);
+        return section.getStations().stream()
+                .anyMatch(station -> station == targetStation);
+    }
+
+    public static Station getStationByName(Line line, String nameOfStation) {
+        Section section = getSectionByLineName(line.getName());
+        Station targetStation = StationRepository.getStationByName(nameOfStation);
+        return section.getStations().stream()
+                .filter(station -> station == targetStation)
+                .findFirst()
+                .get();
     }
 }

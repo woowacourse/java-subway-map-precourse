@@ -37,6 +37,7 @@ public class SectionView {
 
     public static void printSectionList() {
         List<Section> sections = SectionRepository.sections();
+        System.out.println(SectionInfo.SECTION_LIST.getInfo());
         for (Section section : sections) {
             Line line = section.getLine();
             System.out.println(SectionInfo.INFO.getInfo() + line.getName());
@@ -46,5 +47,17 @@ public class SectionView {
                     .forEach(name -> System.out.println(SectionInfo.INFO.getInfo() + name));
             System.out.println();
         }
+    }
+
+    public static void printAskLineToDeleteStationFrom() {
+        System.out.println(SectionInfo.ASK_LINE_TO_DELETE_STATION_FROM.getInfo());
+    }
+
+    public static void printAskStationToDeleteFromLine() {
+        System.out.println(SectionInfo.ASK_STATION_TO_DELETE_FROM_LINE.getInfo());
+    }
+
+    public static void informSectionDeleted() {
+        System.out.println(SectionInfo.INFO_SECTION_DELETED.getInfo());
     }
 }
