@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.constant.Constant;
 import subway.constant.Function;
 import subway.constant.Information;
 import subway.constant.InitialData;
@@ -64,12 +65,18 @@ public class StationService {
     }
 
     private void validateNewStation(Station newStation) {
+        validateNameLength(newStation);
         validateDuplicateStation(newStation);
+    }
+
+    private void validateNameLength(Station newStation) {
+        if (newStation.getName().length() < Constant.MIN_NAME_LENGTH)
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_NAME_LENGTH);
     }
 
     private void validateDuplicateStation(Station newStation) {
         if (StationRepository.stations().contains(newStation))
-            throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_STATION_CODE);
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.DUPLICATE_STATION);
     }
 
     private void deleteStation() {
