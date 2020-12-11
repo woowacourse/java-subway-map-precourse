@@ -41,6 +41,10 @@ public class Line {
         stations.add(index, new Station(stationName));
     }
 
+    public void deleteStation(String stationName) {
+        stations.removeIf(station -> station.getName().equals(stationName));
+    }
+
 
     @Override
     public String toString() {

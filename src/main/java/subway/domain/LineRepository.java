@@ -48,6 +48,13 @@ public class LineRepository {
         return;
     }
 
+    public static Line findByName(String name) {
+        return lines.stream()
+            .filter(line -> line.getName().equals(name))
+            .findFirst()
+            .get();
+    }
+
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
@@ -72,10 +79,12 @@ public class LineRepository {
     }
 
     public static void addStation(String lineName, String stationName, int order) {
-        Line foundLine = lines.stream()
-            .filter(line -> line.getName().equals(lineName))
-            .findFirst()
-            .get();
-        foundLine.addStation(stationName, order);
+        Line line = findByName(lineName);
+        line.addStation(stationName, order);
+    }
+
+    public static void deleteStation(String lineName, String stationName) {
+        Line line = findByName(lineName);
+        line.deleteStation(stationName);
     }
 }
