@@ -15,20 +15,21 @@ public class Application {
     private static final String MAGNAGE_INTERVAL = "3";
     private static final String PRINT_SUBWAY_MAP = "4";
     private static final String EXIT = "Q";
-    private static final String INVALID = "INVALID";
+    private static final String MAIN = "MAIN";
 
     public static void main(String[] args) {
         initializeRepositories();
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(MAGNAGE_STATION, MAGNAGE_LINE, MAGNAGE_INTERVAL, PRINT_SUBWAY_MAP, EXIT));
         while (true) {
-            String command = UserConsole.getMainCommand(authorizedCommands);
-            if (command.equals(INVALID)) {
+            try {
+                String command = UserConsole.getCommand(MAIN, authorizedCommands);
+                if (command.equals(EXIT)) {
+                    break;
+                }
+                execute(command);
+            } catch (Exception exception) {
                 continue;
             }
-            if (command.equals(EXIT)) {
-                break;
-            }
-            execute(command);
         }
     }
 

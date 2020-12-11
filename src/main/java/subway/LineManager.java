@@ -14,12 +14,13 @@ public class LineManager {
     private static final String DELETE_LINE = "2";
     private static final String VIEW_LINES = "3";
     private static final String BACK = "B";
+    private static final String LINE_MANAGER = "LINE MANAGER";
 
     public static void start() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_LINE, DELETE_LINE, VIEW_LINES, BACK));
         while (true) {
             try {
-                String command = UserConsole.getLineManagerCommand(authorizedCommands);
+                String command = UserConsole.getCommand(LINE_MANAGER, authorizedCommands);
                 if (command.equals(BACK)) {
                     break;
                 }
@@ -30,7 +31,7 @@ public class LineManager {
         }
     }
 
-    private static void execute(String command) throws Exception {
+    private static void execute(String command) throws IllegalArgumentException {
         if (command.equals(ADD_LINE)) {
             addLine();
         }
@@ -42,10 +43,10 @@ public class LineManager {
         }
     }
 
-    private static void printLines() {
+    private static void printLines() throws IllegalArgumentException {
         if (LineRepository.isEmpty()) {
             System.out.println("[ERROR] 노선 목록이 비어있다.\n");
-            return;
+            throw new IllegalArgumentException();
         }
         System.out.println("## 노선 목록");
         List<String> lineNames = LineRepository.lines().stream().map(Line::getName).collect(Collectors.toList());
@@ -53,18 +54,18 @@ public class LineManager {
         System.out.println();
     }
 
-    private static void deleteLine() {
+    private static void deleteLine() throws IllegalArgumentException {
         System.out.println("## 삭제할 노선 이름을 입력하세요.");
-        String lineName = UserConsole.getInput(); // temporary fix
+        String lineName = UserConsole.getName();
         if (!LineRepository.contains(lineName)) {
             System.out.println("[ERROR] 노선이 존재하지 않는다.\n");
-            return;
+            throw new IllegalArgumentException();
         }
         LineRepository.deleteLineByName(lineName);
         System.out.println("[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
 
-    private static void addLine() throws Exception {
+    private static void addLine() throws IllegalArgumentException {
         Line line = getNewLine();
         String firstTerminalStationName = getFirstTerminalStationName();
         String secondTerminalStationName = getSecondStationName(firstTerminalStationName);
@@ -73,7 +74,7 @@ public class LineManager {
         System.out.println("[INFO] 지하철 노선이 등록되었습니다.\n");
     }
 
-    private static String getSecondStationName(String firstTerminalStationName) throws Exception {
+    private static String getSecondStationName(String firstTerminalStationName) throws IllegalArgumentException {
         System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String stationName = UserConsole.getName();
         if (firstTerminalStationName.equals(stationName)) {
@@ -87,7 +88,7 @@ public class LineManager {
         return stationName;
     }
 
-    private static String getFirstTerminalStationName() throws Exception {
+    private static String getFirstTerminalStationName() throws IllegalArgumentException {
         System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         String stationlName = UserConsole.getName();
         if (!StationRepository.contains(stationlName)) {
@@ -97,7 +98,7 @@ public class LineManager {
         return stationlName;
     }
 
-    private static Line getNewLine() throws Exception {
+    private static Line getNewLine() throws IllegalArgumentException {
         System.out.println("## 등록할 노선 이름을 입력하세요.");
         String lineName = UserConsole.getName();
         if (LineRepository.contains(lineName)) {

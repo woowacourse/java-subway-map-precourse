@@ -5,25 +5,36 @@ import java.util.Scanner;
 
 public class UserConsole {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String INVALID = "INVALID";
+    private static final String MAIN = "MAIN";
+    private static final String STATION_MANAGER = "STATION MANAGER";
+    private static final String LINE_MANAGER = "LINE MANAGER";
+    private static final String INTERVAL_MANAGER = "INTERVAL MANAGER";
 
-    // temporary fix
-    public static String getInput() {
-        String input = scanner.nextLine();
-        System.out.println();
-        return input;
-    }
-
-    public static String getMainCommand(List<String> authorizedCommands) {
-        showMainOptions();
+    public static String getCommand(String placeOfCommand, List<String> authorizedCommands) throws IllegalArgumentException {
+        showOptions(placeOfCommand);
         System.out.println("## 원하는 기능을 선택하세요.");
         String userInput = scanner.nextLine();
         System.out.println();
-        if (authorizedCommands.contains(userInput)) {
-            return userInput;
+        if (!authorizedCommands.contains(userInput)) {
+            System.out.println("[ERROR] 없는 기능입니다.\n");
+            throw new IllegalArgumentException();
         }
-        System.out.println("[ERROR] 없는 기능입니다.\n");
-        return INVALID;
+        return userInput;
+    }
+
+    private static void showOptions(String placeOfCommand) {
+        if (placeOfCommand.equals(MAIN)) {
+            showMainOptions();
+        }
+        if (placeOfCommand.equals(STATION_MANAGER)) {
+            showStationMangagerOptions();
+        }
+        if (placeOfCommand.equals(LINE_MANAGER)) {
+            showLineMangagerOptions();
+        }
+        if (placeOfCommand.equals(INTERVAL_MANAGER)) {
+            showIntervalMangagerOptions();
+        }
     }
 
     private static void showMainOptions() {
@@ -35,36 +46,12 @@ public class UserConsole {
         System.out.println("Q. 종료\n");
     }
 
-    public static String getStationManagerCommand(List<String> authorizedCommands) {
-        showStationMangagerOptions();
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-        if (authorizedCommands.contains(userInput)) {
-            return userInput;
-        }
-        System.out.println("[ERROR] 없는 기능입니다.\n");
-        return INVALID;
-    }
-
     private static void showStationMangagerOptions() {
         System.out.println("## 역 관리 화면");
         System.out.println("1. 역 등록");
         System.out.println("2. 역 삭제");
         System.out.println("3. 역 조회");
         System.out.println("B. 돌아가기\n");
-    }
-
-    public static String getLineManagerCommand(List<String> authorizedCommands) throws Exception {
-        showLineMangagerOptions();
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-        if (!authorizedCommands.contains(userInput)) {
-            System.out.println("[ERROR] 없는 기능입니다.\n");
-            throw new IllegalArgumentException();
-        }
-        return userInput;
     }
 
     private static void showLineMangagerOptions() {
@@ -75,18 +62,6 @@ public class UserConsole {
         System.out.println("B. 돌아가기\n");
     }
 
-    public static String getIntervalManagerCommand(List<String> authorizedCommands) {
-        showIntervalMangagerOptions();
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-        if (!authorizedCommands.contains(userInput)) {
-            System.out.println("[ERROR] 없는 기능입니다.\n");
-            throw new IllegalArgumentException();
-        }
-        return userInput;
-    }
-
     private static void showIntervalMangagerOptions() {
         System.out.println("## 구간 관리 화면");
         System.out.println("1. 구간 등록");
@@ -94,7 +69,7 @@ public class UserConsole {
         System.out.println("B. 돌아가기\n");
     }
 
-    public static String getName() throws Exception {
+    public static String getName() throws IllegalArgumentException {
         String name = scanner.nextLine();
         System.out.println();
         if (!Validator.isAppropriateLength(name)) {
@@ -103,7 +78,7 @@ public class UserConsole {
         return name;
     }
 
-    public static int getZeroOrNaturalNumber() {
+    public static int getZeroOrNaturalNumber() throws IllegalArgumentException {
         String index = scanner.nextLine();
         System.out.println();
         if (!Validator.isZeroOrNaturalNumber(index)) {
