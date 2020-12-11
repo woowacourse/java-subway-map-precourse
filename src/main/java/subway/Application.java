@@ -10,8 +10,10 @@ package subway;
 import subway.MenuType.MainMenuType;
 import subway.controller.LineManagement;
 import subway.controller.StationManagement;
+import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.MainView;
+import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -41,6 +43,9 @@ public class Application {
         }
         if (menu.equals(MainMenuType.LINE)) {
             LineManagement.run();
+        }
+        if (menu.equals(MainMenuType.DISPLAY)) {
+            OutputView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
         }
     }
 }

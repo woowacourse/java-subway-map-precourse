@@ -1,6 +1,7 @@
 package subway.view.managementView;
 
 import subway.MenuType.FunctionType;
+import subway.dto.DTO;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.selection.Selection;
@@ -54,10 +55,10 @@ public abstract class ManagementView {
         return InputView.getNameWithMessage(SHARP_PREFIX + TO_DELETE_PREFIX + itemPrefix + REQUEST_MESSAGE);
     }
 
-    public void printAll(List<String> resultList) {
+    public void printAll(List<DTO> resultList) {
         System.out.println(SHARP_PREFIX + itemPrefix + LIST);
-        for (String result : resultList) {
-            OutputView.printWithInfoPrefix(result);
+        for (DTO result : resultList) {
+            OutputView.printWithInfoPrefix(result.getName());
         }
         newLine();
     }

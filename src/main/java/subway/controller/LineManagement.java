@@ -5,6 +5,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.dto.DTO;
 import subway.view.managementView.LineView;
 import subway.view.OutputView;
 
@@ -12,10 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LineManagement {
-    private static final String CREATE = "1";
-    private static final String DELETE = "2";
-    private static final String READ = "3";
-    private static final String ESCAPE = "B";
 
     private static LineView lineView = LineView.getInstance();
     private static FunctionType menu;
@@ -65,8 +62,8 @@ public class LineManagement {
 
     private static void printAllLines() {
         try {
-            List<String> lineNames = LineRepository.lines().stream()
-                    .map(Line::getName)
+            List<DTO> lineNames = LineRepository.lines().stream()
+                    .map(Line::toDTO)
                     .collect(Collectors.toList());
             lineView.printAll(lineNames);
         } catch (RuntimeException e) {

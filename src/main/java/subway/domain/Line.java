@@ -23,7 +23,7 @@ public class Line {
     }
 
     public void addStation(Station station) {
-        if (stations.contains(station)) {
+        if (contains(station)) {
             throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
         }
         stations.add(station);
@@ -39,6 +39,10 @@ public class Line {
             stations.add(station.toDTO());
         }
         return new LineDTO(this.name, stations);
+    }
+
+    public boolean contains(Station station) {
+        return stations.contains(station);
     }
 
     // 추가 기능 구현
