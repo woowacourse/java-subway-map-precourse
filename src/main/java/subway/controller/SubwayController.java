@@ -1,8 +1,6 @@
 package subway.controller;
 
-import java.util.Scanner;
-import subway.controller.manager.LineManager;
-import subway.controller.manager.MainManager;
+import subway.controller.manager.InitialManager;
 import subway.exception.SubwayCustomException;
 import subway.view.InputView;
 import subway.menu.MainMenu;
@@ -13,16 +11,14 @@ import subway.view.OutputView;
  */
 public class SubwayController {
 
-    private final MainManager mainManager;
-    private final InputView inputView;
+    private final InitialManager initialManager;
 
-    public SubwayController(final InputView inputView){
-        this.inputView = inputView;
-        mainManager = new MainManager();
+    public SubwayController(){
+        initialManager = new InitialManager();
     }
 
     public void start() {
-        mainManager.initialize();
+        initialManager.initialize();
         while (true) {
             OutputView.showMainMenu();
             manage();
@@ -32,7 +28,7 @@ public class SubwayController {
     public void manage() {
         OutputView.chooseCategory();
         try {
-            MainMenu.execute(inputView.inputValue());
+            MainMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);
             manage();

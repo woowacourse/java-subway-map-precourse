@@ -8,29 +8,23 @@ import subway.utils.ValidateUtils;
  */
 public class InputView {
 
-    private final Scanner scanner;
-    private final ValidateUtils validateUtils;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
-        validateUtils = new ValidateUtils();
-    }
-
-    public String inputValue() {
+    public static String inputValue() {
         return scanner.nextLine();
     }
 
-    public String makeNewStationName() {
+    public static String makeNewStationName() {
         String input = scanner.nextLine();
-        validateUtils.isMoreThanTwo(input);
-        validateUtils.isNotDuplicateStation(input);
+        ValidateUtils.isMoreThanTwo(input);
+        ValidateUtils.isNotDuplicateStation(input);
         return input;
     }
 
-    public String makeNewLineName() {
+    public static String makeNewLineName() {
         String input = scanner.nextLine();
-        validateUtils.isMoreThanTwo(input);
-        validateUtils.isNotDuplicateLine(input);
+        ValidateUtils.isMoreThanTwo(input);
+        ValidateUtils.isNotDuplicateLine(input);
         return input;
     }
 

@@ -1,5 +1,6 @@
 package subway.controller.manager;
 
+import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -16,7 +17,7 @@ public class LineManager {
         OutputView.showLineMenu();
         OutputView.chooseCategory();
         try {
-            LineMenu.execute(inputView.inputValue());
+            LineMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);
             manageLine();
@@ -27,7 +28,7 @@ public class LineManager {
 
         try {
             OutputView.guideInsertLine();
-            Line line = new Line(inputView.makeNewLineName());
+            Line line = new Line(InputView.makeNewLineName());
             LineRepository.addLine(line);
             addStartSection(line);
             addEndSection(line);
@@ -40,13 +41,13 @@ public class LineManager {
 
     private static void addStartSection(Line line) {
         OutputView.guideStartStationOfLine();
-        Station startStation = StationRepository.searchStation(inputView.inputValue());
+        Station startStation = StationRepository.searchStation(InputView.inputValue());
         line.addSection(startStation);
     }
 
     private static void addEndSection(Line line) {
         OutputView.guideEndStationOfLine();
-        Station endStation = StationRepository.searchStation(inputView.inputValue());
+        Station endStation = StationRepository.searchStation(InputView.inputValue());
         ValidateUtils.isAlreadyExistingSection(line, endStation);
         line.addSection(endStation);
     }
@@ -54,7 +55,7 @@ public class LineManager {
     public static void deleteLine() {
         try {
             OutputView.guideRemoveLine();
-            LineRepository.deleteLine(inputView.inputValue());
+            LineRepository.deleteLine(InputView.inputValue());
             OutputView.doneRemoveLine();
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);

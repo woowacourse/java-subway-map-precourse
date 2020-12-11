@@ -10,13 +10,11 @@ import subway.menu.StationMenu;
 
 public class StationManager {
 
-    private static InputView inputView;
-
     public static void manageStation() {
         OutputView.showStationMenu();
         OutputView.chooseCategory();
         try {
-            StationMenu.execute(inputView.inputValue());
+            StationMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);
             manageStation();

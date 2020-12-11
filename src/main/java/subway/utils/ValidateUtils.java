@@ -36,20 +36,20 @@ public class ValidateUtils {
         }
     }
 
-    public void isMoreThanTwo(String input) {
+    public static void isMoreThanTwo(String input) {
         if (input.length() < TWO) {
             throw new SubwayCustomException(SHORT_NAME_EXCEPTION_MESSAGE);
         }
     }
 
-    public void isNotDuplicateStation(String input) {
+    public static void isNotDuplicateStation(String input) {
         if (StationRepository.stations().stream()
             .anyMatch(station -> Objects.equals(station.getName(), input))) {
             throw new SubwayCustomException(EXISTING_STATION_EXCEPTION_MESSAGE);
         }
     }
 
-    public void isNotDuplicateLine(String input) {
+    public static void isNotDuplicateLine(String input) {
         if (LineRepository.lines().stream()
             .anyMatch(line -> Objects.equals(line.getName(), input))) {
             throw new SubwayCustomException(EXISTING_LINE_EXCEPTION_MESSAGE);

@@ -1,6 +1,7 @@
 package subway.view;
 
 import static subway.view.TextFixtures.*;
+
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;

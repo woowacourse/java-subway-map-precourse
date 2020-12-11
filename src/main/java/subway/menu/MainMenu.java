@@ -4,7 +4,7 @@ import static subway.view.TextFixtures.WRONG_MENU_INPUT_EXCEPTION_MESSAGE;
 
 import java.util.Arrays;
 import subway.controller.manager.LineManager;
-import subway.controller.manager.MainManager;
+import subway.controller.manager.InitialManager;
 import subway.controller.manager.SectionManager;
 import subway.controller.manager.StationManager;
 import subway.exception.SubwayCustomException;
@@ -15,7 +15,7 @@ public enum MainMenu {
     MANAGE_LINE("2", LineManager::manageLine),
     MANAGE_SECTION("3", SectionManager::mangeSection),
     MANAGE_SUBWAY("4", OutputView::showSubwayLineMap),
-    MANAGE_QUIT("Q", MainManager::end);
+    MANAGE_QUIT("Q", InitialManager::end);
 
 
     private final String input;
