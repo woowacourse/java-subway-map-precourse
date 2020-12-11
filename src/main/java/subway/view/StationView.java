@@ -41,7 +41,7 @@ public class StationView {
         return StationMenu.CHECK.getCommand();
     }
 
-    public static void infromStationDuplicated() {
+    public static void informStationDuplicated() {
         System.err.println(ErrorMessage.STATION_DUPLICATION.getMessage());
     }
 

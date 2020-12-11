@@ -1,9 +1,11 @@
 package subway.control;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.enums.MainMenu;
 import subway.enums.StationMenu;
+import subway.view.LineView;
 import subway.view.MainView;
 import subway.view.StationView;
 
@@ -52,11 +54,15 @@ public class StationControlCenter {
         StationView.printAskStationNameToEnroll();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
         if (StationRepository.isNameDuplication(nameOfStation)) {
-            StationView.infromStationDuplicated();
+            StationView.informStationDuplicated();
             return inputNameOfStation(scanner);
         }
         if (StationRepository.isNameLengthUnder2(nameOfStation)) {
             StationView.informNameLengthUnder2();
+            return inputNameOfStation(scanner);
+        }
+        if (LineRepository.isNameDuplication(nameOfStation)) {
+            LineView.informLineDuplicated();
             return inputNameOfStation(scanner);
         }
         return nameOfStation;
@@ -71,12 +77,6 @@ public class StationControlCenter {
         }
         StationView.informStationNotExist();
         return removeStation(scanner);
-    }
-
-    private void informNoMenu(String menu) {
-        if (isUnableCommand(menu)) {
-            MainView.informUnableCommand();
-        }
     }
 
     private boolean isUnableCommand(String menu) {

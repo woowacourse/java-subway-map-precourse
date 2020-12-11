@@ -69,6 +69,10 @@ public class LineControlCenter {
             LineView.informNameLengthUnder2();
             return inputNameOfLine(scanner);
         }
+        if (StationRepository.isNameDuplication(nameOfLine)) {
+            StationView.informStationDuplicated();
+            return inputNameOfLine(scanner);
+        }
         return nameOfLine;
     }
 

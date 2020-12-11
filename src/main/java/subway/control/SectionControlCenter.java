@@ -1,7 +1,6 @@
 package subway.control;
 
 import subway.domain.*;
-import subway.enums.LineMenu;
 import subway.enums.MainMenu;
 import subway.enums.SectionMenu;
 import subway.view.LineView;
@@ -42,7 +41,7 @@ public class SectionControlCenter {
 
     private String enrollSection(Scanner scanner) {
         Line lineToEnrollStationOn = inputNameOfLine(scanner);
-        Station stationToEnrollOnLine = inputNameOfStation(scanner);
+        Station stationToEnrollOnLine = inputNameOfStation(lineToEnrollStationOn, scanner);
         String positionToEnrollStationOnLine = inputPositionToEnrollStation(scanner);
         SectionRepository.addStationOnLine(
                 lineToEnrollStationOn, stationToEnrollOnLine, positionToEnrollStationOnLine);
@@ -60,12 +59,16 @@ public class SectionControlCenter {
         return LineRepository.getLineByName(lineToEnrollStationOn);
     }
 
-    private Station inputNameOfStation(Scanner scanner) {
+    private Station inputNameOfStation(Line lineToEnrollStationOn, Scanner scanner) {
         SectionView.printAskStationToEnrollOnLine();
         String stationToEnrollOnLine = MainControlCenter.inputCommand(scanner);
         if (!StationRepository.isNameDuplication(stationToEnrollOnLine)) {
             StationView.informStationNotExist();
-            return inputNameOfStation(scanner);
+            return inputNameOfStation(lineToEnrollStationOn, scanner);
+        }
+        if (SectionRepository.isStationOnLine(lineToEnrollStationOn, stationToEnrollOnLine)) {
+            StationView.informStationDuplicated();
+            return inputNameOfStation(lineToEnrollStationOn, scanner);
         }
         return StationRepository.getStationByName(stationToEnrollOnLine);
     }
