@@ -58,4 +58,17 @@ public class StationServiceTest {
                 .isThrownBy(() -> StationService.register(name));
         StationRepository.deleteStation(name);
     }
+
+    @Test
+    public void 지하철역_삭제_기능_테스트() {
+        //given
+        String name = "잠실역";
+        StationService.register(name);
+
+        //when
+        StationService.remove(name);
+
+        //then
+        assertThat(StationRepository.isExist(name)).isFalse();
+    }
 }

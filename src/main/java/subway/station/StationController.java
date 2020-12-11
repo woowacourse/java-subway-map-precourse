@@ -10,4 +10,9 @@ public class StationController {
         String name = InputView.getStationNameForRegistration();
         StationService.register(name);
     }
+
+    public static void remove() {
+        String name = InputView.getStationNameForRemoval();
+        StationService.remove(name);
+    }
 }
