@@ -1,15 +1,26 @@
 package subway.domain;
 
-public class Line {
-    private String name;
+import java.util.List;
 
-    public Line(String name) {
+public class Line {
+
+    private final String name;
+    private final List<Station> stations;
+
+    public Line(String name, List<Station> stations) {
         this.name = name;
+        this.stations = stations;
+    }
+
+    public void addStation(Station station) {
+        stations.add(station);
     }
 
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
+    public List<Station> getStations() {
+        return stations;
+    }
 }

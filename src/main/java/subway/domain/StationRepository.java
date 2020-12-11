@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
+
     private static final String WHITE_SPACE = " ";
     private static final int EMPTY_STATIONS = 0;
     private static final int LAST_INDEX = 1;
@@ -27,6 +28,17 @@ public class StationRepository {
         stations.add(new Station(name));
     }
 
+    public static Station findStation(String name) {
+        Station foundStation = null;
+        for (Station station : stations) {
+            if(station.getName().equals(name)){
+                foundStation = station;
+                break;
+            }
+        }
+        return foundStation;
+    }
+
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
@@ -38,7 +50,7 @@ public class StationRepository {
     }
 
     private static void validateNameLastCharacter(String name) {
-        if (!name.substring(name.length()-LAST_INDEX).equals(RULE_STATION_NAME)){
+        if (!name.substring(name.length() - LAST_INDEX).equals(RULE_STATION_NAME)) {
             throw new IllegalArgumentException("지하철 역 이름은 \"역\"으로 끝나야 합니다.");
         }
     }
