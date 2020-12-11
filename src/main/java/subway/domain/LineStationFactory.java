@@ -22,7 +22,6 @@ public class LineStationFactory {
         StationRepository.addStation(new Station("양재역"));
         StationRepository.addStation(new Station("양재시민의숲역"));
         StationRepository.addStation(new Station("매봉역"));
-        StationRepository.addStation(new Station("수원역"));
     }
 
     private static void initLine() {
