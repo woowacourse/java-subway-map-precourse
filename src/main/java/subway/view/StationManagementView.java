@@ -18,16 +18,23 @@ public class StationManagementView extends View {
     }
 
     private static void registerStaion(Scene scene, Request request, Response response) {
-        response.printStationToRegisterRequestMessage();
+        response.printHeadlineMessage(Response.STATION_TO_REGISTER_REQUEST_MESSAGE);
         boolean isSuccess = request.requestStationRegister();
         response.printEmptyMessage();
         if (isSuccess) {
+            response.printInfoMessage(Response.STATION_REGISTER_SUCCESS_MESSAGE);
             scene.back();
         }
     }
 
     private static void removeStation(Scene scene, Request request, Response response) {
-        scene.back();
+        response.printHeadlineMessage(Response.STATION_TO_REMOVE_REQUEST_MESSAGE);
+        boolean isSuccess = request.requestStationRemoval();
+        response.printEmptyMessage();
+        if (isSuccess) {
+            response.printInfoMessage(Response.STATION_REMOVAL_SUCCESS_MESSAGE);
+            scene.back();
+        }
     }
 
     private static void viewStations(Scene scene, Request request, Response response) {

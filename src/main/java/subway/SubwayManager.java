@@ -27,7 +27,7 @@ public class SubwayManager {
     private String selectCommand(Scene scene) {
         String input = null;
         while (input == null) {
-            response.printCommandRequestMessage();
+            response.printHeadlineMessage(Response.COMMAND_REQUEST_MESSAGE);
             input = request.requestCommand(scene);
             response.printEmptyMessage();
         }

@@ -11,7 +11,7 @@
 - [x] 지하철 역 등록 기능
   - 역 이름이 2글자 이상인지 확인
   - 중복되는 역 이름이 있는지 확인
-- [ ] 지하철 역 삭제 기능
+- [x] 지하철 역 삭제 기능
   - 존재하는 이름의 역인지 확인
 - [ ] 지하철 역 목록 출력 기능
   - 지하철 역이 없을 경우 에러 메시지 출력
@@ -48,7 +48,8 @@
 지하철 관리 프로그램에서 사용할 I/O들을 관리
 - Response(class): 프로그램에서 발생하는 출력 관리
 - Request(class): 프로그램에서 발생하는 입력을 관리하고 예외 발생 처리
-- Error(enum): 발생할 수 있는 에러 관리
+- ExceptionManager(class): 발생할 수 있는 예외 사항 체크 및 관리
+  - Error(inner enum): 에러 상태
 ### SubwayManager(class)
 지하철 관리 프로그램에 필요한 I/O 정보와 화면들을 관리
 ### Scene(class)
@@ -59,10 +60,12 @@ method inference를 위한 인터페이스
 <br>
 
 ## 💯테스트
-- StationManagementViewTest
-  - registerStationTest: 지하철 역 등록 기능 테스트
+- RequestTest
+  - requestStationRegisterTest: 지하철 역 등록 기능 테스트
     - 2글자 이하 입력
     - 중복된 입력
+  - requestStationRemovalTest: 지하철 역 삭제 기능 테스트
+    - 존재하지 않는 지하철역 이름 이력
 
 <br>
 

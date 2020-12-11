@@ -2,9 +2,9 @@ package subway.io;
 
 import java.io.PrintStream;
 import java.util.Scanner;
+import subway.io.ExceptionManager.Error;
 import subway.Scene;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.StationRepository;;
 
 public class Request {
     private final Scanner scanner;
@@ -17,7 +17,8 @@ public class Request {
 
     public String requestCommand(Scene scene) {
         String input = scanner.nextLine();
-        if (!scene.hasCommand(input)) {
+        Error error = ExceptionManager.checkValidCommand(scene, input);
+        if (error != Error.OK) {
             printError(Error.INVALID_COMMAND);
             return null;
         }
@@ -26,15 +27,23 @@ public class Request {
 
     public boolean requestStationRegister() {
         String input = scanner.nextLine();
-        if (input.length() < Station.MINIMUM_NAME_LENGTH) {
-            printError(Error.INVALID_STATION_NAME_LENGTH);
-            return false;
-        }
-        if (StationRepository.hasStation(input)) {
-            printError(Error.DUPLICATE_STATION_NAME);
+        Error error = ExceptionManager.checkValidStationRegister(input);
+        if (error != Error.OK) {
+            printError(error);
             return false;
         }
         StationRepository.addStation(input);
+        return true;
+    }
+
+    public boolean requestStationRemoval() {
+        String input = scanner.nextLine();
+        Error error = ExceptionManager.checkValidStationRemoval(input);
+        if (error != Error.OK) {
+            printError(error);
+            return false;
+        }
+        StationRepository.deleteStation(input);
         return true;
     }
 
