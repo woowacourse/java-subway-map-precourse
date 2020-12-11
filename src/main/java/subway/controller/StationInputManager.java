@@ -22,21 +22,31 @@ public class StationInputManager {
             }
             return name;
         }
-
-
     }
 
     private boolean checkName(String name) {
-        if (name.length() < 2) {
-            ErrorMessage.printNameLengthError();
+        return checkLength(name) && checkLastLetter(name) && checkAlreadyExist(name);
+    }
+
+    private boolean checkAlreadyExist(String name) {
+        if (StationRepository.stationNames().contains(name)) {
+            ErrorMessage.printValeAlreadyExist();
             return false;
         }
-        if(name.charAt(name.length()-1) != '역'){
+        return true;
+    }
+
+    private boolean checkLastLetter(String name) {
+        if (name.charAt(name.length() - 1) != '역') {
             ErrorMessage.printLastLetterError();
             return false;
         }
-        if(StationRepository.stationNames().contains(name)){
-            ErrorMessage.printValeAlreadyExist();
+        return true;
+    }
+
+    private boolean checkLength(String name) {
+        if (name.length() < 2) {
+            ErrorMessage.printNameLengthError();
             return false;
         }
         return true;
