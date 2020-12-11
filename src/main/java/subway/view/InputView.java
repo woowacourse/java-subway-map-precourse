@@ -6,6 +6,7 @@ public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String INPUT_STATION_NAME_FOR_REGISTRATION = "등록할 역 이름을 입력하세요.";
     private static final String INPUT_STATION_NAME_FOR_REMOVAL = "삭제할 역 이름을 입력하세요.";
+    private static final String INPUT_FUNCTION = "원하는 기능을 선택하세요.";
 
     private InputView() {
     }
@@ -17,6 +18,11 @@ public class InputView {
 
     public static String getStationNameForRemoval() {
         OutputView.printGuideMessage(INPUT_STATION_NAME_FOR_REMOVAL);
+        return SCANNER.nextLine();
+    }
+
+    public static String getStationFunction() {
+        OutputView.printGuideMessage(INPUT_FUNCTION);
         return SCANNER.nextLine();
     }
 }
