@@ -6,6 +6,7 @@ public class InvalidInputException extends RuntimeException {
         INVALID_SERVICE_CODE,
         INVALID_FUNCTION_CODE,
         DUPLICATE_STATION,
+        DUPLICATE_LINE,
         INVALID_NAME_LENGTH;
     }
 
@@ -22,6 +23,8 @@ public class InvalidInputException extends RuntimeException {
             return HEADER + "선택할 수 없는 기능입니다.";
         if (exceptionCode.equals(ExceptionCode.DUPLICATE_STATION))
             return HEADER + "이미 등록된 역 이름입니다.";
+        if (exceptionCode.equals(ExceptionCode.DUPLICATE_LINE))
+            return HEADER + "이미 등록된 노선 이름입니다.";
         if (exceptionCode.equals(ExceptionCode.INVALID_NAME_LENGTH))
             return HEADER + "이름은 두 글자 이상이어야 합니다.";
         return "";
