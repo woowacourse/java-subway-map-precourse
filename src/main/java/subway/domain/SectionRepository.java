@@ -2,9 +2,11 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SectionRepository {
 
@@ -45,13 +47,29 @@ public class SectionRepository {
     }
 
     public boolean isExistStationInLine(Line sectionTitle, Station station) {
+        if (sectionTitle == null || station == null) {
+            return false;
+        }
         List<Station> stations = sectionMap.get(sectionTitle);
         for (Station instanceStation : stations) {
-            if (station.equals(instanceStation)) {
+            if (instanceStation.equals(station)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public Set<String> findIncludedStationSet() {
+        Set<String> foundSet = new HashSet<>();
+        Iterator<Line> sections = sectionMap.keySet().iterator();
+        while (sections.hasNext()) {
+            Line section = sections.next();
+            for (Station station : sectionMap.get(section)) {
+                foundSet.add(station.getName());
+            }
+
+        }
+        return foundSet;
     }
 
     public Map<String, List> findAll() {
@@ -67,4 +85,6 @@ public class SectionRepository {
         }
         return wholeSubwayMap;
     }
+
+
 }
