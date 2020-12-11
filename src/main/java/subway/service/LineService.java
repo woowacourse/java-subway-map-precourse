@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.constant.Constant;
 import subway.constant.Information;
 import subway.constant.InitialData;
 import subway.domain.Line;
@@ -59,7 +60,13 @@ public class LineService extends BaseService {
     }
 
     private void validateNewLine(Line newLine) {
+        validateNameLength(newLine);
         validateDuplicateLine(newLine);
+    }
+
+    private void validateNameLength(Line newLine) {
+        if (newLine.getName().length() < Constant.MIN_NAME_LENGTH)
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.INVALID_NAME_LENGTH);
     }
 
     private void validateDuplicateLine(Line newLine) {
