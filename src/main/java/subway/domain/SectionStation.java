@@ -2,18 +2,21 @@ package subway.domain;
 
 public class SectionStation {
     private Station station;
-    private int index;
+    private SectionStation prevStation;
 
-    public SectionStation(Station station, int index) {
+    public SectionStation(Station station) {
         this.station = station;
-        this.index = index;
     }
 
     public Station getStation() {
         return station;
     }
 
-    public int getIndex() {
-        return index;
+    public SectionStation getPrevStation() {
+        return prevStation;
+    }
+
+    public void setPrevSectionStation(SectionStation sectionStation) {
+        prevStation = sectionStation;
     }
 }

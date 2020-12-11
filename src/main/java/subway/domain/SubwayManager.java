@@ -3,6 +3,7 @@ package subway.domain;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SubwayManager {
@@ -263,7 +264,8 @@ public class SubwayManager {
     public State inquirySubwayMap(State state) {
         if (state.equals(State.MAP_SCENE)) {
             OutputView.printSubwayMapMessage();
-            LineRepository.lines().forEach(OutputView::printSubwayMap);
+            List<Line> lines = LineRepository.lines();
+            lines.forEach(OutputView::printSubwayMap);
 
             return State.MAIN_SCENE;
         }
