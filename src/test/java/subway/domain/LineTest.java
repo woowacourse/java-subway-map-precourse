@@ -1,7 +1,11 @@
 package subway.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 class LineTest {
 
@@ -25,6 +29,32 @@ class LineTest {
 
         //then
         int afterSize = lineStation.getLineStationSize();
-        Assertions.assertThat(beforeSize).isNotEqualTo(afterSize);
+        assertThat(beforeSize).isNotEqualTo(afterSize);
+    }
+
+    @Test
+    public void 노선_검색을_성공한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+
+        //when
+        Optional<Line> findLine = LineRepository.findLine("2호선");
+
+        //then
+        assertThat(findLine.orElse(null)).isNotNull();
+        assertThat(findLine.orElse(null).getName()).isEqualTo("2호선");
+    }
+
+    @Test
+    public void 노선_검색을_실패한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+
+        //when
+        Optional<Line> findLine = LineRepository.findLine("1호선");
+
+        //then
+        assertThat(findLine.orElse(null)).isNull();
+        fail("등록된 노선 정보가 존재하지 않습니다.");
     }
 }
