@@ -21,14 +21,14 @@ public class OutputView {
         System.out.println(PRINT_STATION_LIST_MESSAGE);
         StationRepository.stations().stream()
                 .map(Station::getName)
-                .forEach(name -> System.out.printf(PRINT_LIST, name));
+                .forEach(name -> System.out.printf(PRINT_LIST, name.getName()));
     }
 
     public static void printLineList() {
         System.out.println(PRINT_LINE_LIST_MESSAGE);
         LineRepository.lines().stream()
                 .map(Line::getName)
-                .forEach(name -> System.out.printf(PRINT_LIST, name));
+                .forEach(name -> System.out.printf(PRINT_LIST, name.getName()));
     }
 
     public static void printSubwayMap() {
