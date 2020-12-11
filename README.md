@@ -17,10 +17,10 @@
    - 2호선: 교대역 - 강남역 - 역삼역
    - 3호선: 교대역 - 남부터미널역 - 양재역 - 매봉역
    - 신분당선: 강남역 - 양재역 - 양재시민의숲역
- ```
+```
 
 <img src="image/domain.png" width="500">
-  
+
 ### 지하철 역 관련 기능
 - 지하철 역을 등록하고 삭제할 수 있다. (단, 노선에 등록된 역은 삭제할 수 없다)
 - 중복된 지하철 역 이름이 등록될 수 없다.
@@ -410,7 +410,7 @@ public class Application {
 - 제공하는 각 클래스의 기본 생성자를 추가할 수 없다.
 - 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
 - 가능하면 setter 메소드(ex. setXXX)를 추가하지 않고 구현한다.
- 
+
 ```java
 public class Station {
     private String name;
@@ -434,7 +434,7 @@ public class Station {
 - 추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가할 수 있다.
 - 객체들의 상태를 관리하기 위해서 XXXRepository 클래스를 활용해 저장 로직을 구현해야 한다.
 - 필요에 따라 자유롭게 수정이 가능하다.
- 
+
 ```java
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -467,3 +467,39 @@ public class StationRepository {
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
+
+<br>
+
+## 🛒 구현할 기능 목록
+
+시스템 메시지 출력
+
+- 메인 화면
+- 기능 선택
+- 각 기능 별 메시지
+- [INFO]
+- [ERROR]
+- 메인 화면으로 돌아가기?
+
+지하철 역 관련
+
+- 중복, 이름 글자수 조건 체크
+
+- 역 등록 == 지하철 구간 추가
+- 하나의 역은 하나의 노선에 추가된다.
+- 역과 역 사이에 추가하면 순서가 밀린다.
+- 제거하면 순서가 당겨진다.
+- 순서에 따라 상행 종점, 하행 종점을 체크한다.
+- 두 개 이하이면 삭제할 수 없다.
+- 조회
+
+지하철 노선 관련
+
+- 등록
+  - 중복, 이름 글자수 조건 체크
+  - 상행 종점과 하행 종점역이 있는지 체크
+  - 여러 노선에서 같은 역을 가질 수 있다.
+- 조회
+  - 상행부터 하행까지 순서대로
+
+초기 설정
