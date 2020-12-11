@@ -1,5 +1,7 @@
 package subway.station.domain;
 
+import subway.station.exception.NotExistException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,5 +25,16 @@ public class StationRepository {
     public static boolean isExist(String name) {
         return stations().stream()
                 .anyMatch(station -> station.getName().equals(name));
+    }
+
+    public static Station findByName(String name) {
+        return stations().stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst()
+                .orElseThrow(NotExistException::new);
+    }
+
+    public static void removeAll() {
+        stations.clear();
     }
 }
