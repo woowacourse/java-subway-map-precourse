@@ -1,6 +1,8 @@
 package subway.domain;
 
+import subway.enums.Criteria;
 import subway.enums.InitialSections;
+import subway.enums.InitialStations;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +31,7 @@ public class SectionRepository {
     }
 
     public static int getFixedPosition(List<Station> stations, int position) {
-        if (position < 1) return 0;
+        if (position < 1) return Criteria.FIRST_PLACE_ON_LINE.getValue();
         if (position >= stations.size()) return stations.size();
         return position - 1;
     }
@@ -41,9 +43,10 @@ public class SectionRepository {
 
     public static void initializeSections() {
         for (InitialSections initialSection : InitialSections.values()) {
-            Line initialLine = LineRepository.getLineByName(initialSection.getLine());
-            List<Station> initialStations = initialSection.getNamesOfStations()
+            Line initialLine = LineRepository.getLineByName(initialSection.getLine().getName());
+            List<Station> initialStations = initialSection.getStations()
                     .stream()
+                    .map(InitialStations::getName)
                     .map(StationRepository::getStationByName)
                     .collect(Collectors.toList());
             SectionRepository.addLineToSection(initialLine, initialStations);
@@ -96,6 +99,7 @@ public class SectionRepository {
 
     public static boolean isStationUnder2onLine(String name) {
         Section section = getSectionByLineName(name);
-        return section.getStations().size() <= 2;
+        return section.getStations().size()
+                <= Criteria.MINIMUM_NUMBER_OF_STATIONS_ON_LINE.getValue();
     }
 }

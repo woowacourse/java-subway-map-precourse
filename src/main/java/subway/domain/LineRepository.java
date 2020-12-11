@@ -1,11 +1,9 @@
 package subway.domain;
 
-import subway.enums.InitialSetting;
+import subway.enums.Criteria;
+import subway.enums.InitialLines;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -29,7 +27,7 @@ public class LineRepository {
     }
 
     public static boolean isNameLengthUnder2(String name) {
-        return name.trim().length() < 2;
+        return name.trim().length() < Criteria.MINIMUM_NAME_LENGTH.getValue();
     }
 
     public static Line getLineByName(String name) {
@@ -40,9 +38,9 @@ public class LineRepository {
     }
 
     public static void initializeLines() {
-        InitialSetting.LINES.getValues()
-                .stream()
+        Arrays.stream(InitialLines.values())
+                .map(InitialLines::getName)
                 .map(Line::new)
-                .forEach(LineRepository::addLine);
+                .forEach(LineRepository::addLine);;
     }
 }

@@ -4,23 +4,27 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum InitialSections {
-    LINE_2("2호선", Arrays.asList("교대역", "강남역", "역삼역")),
-    LINE_3("3호선", Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역")),
-    LINE_SINBUNDANG("신분당선", Arrays.asList("강남역", "양재역", "양재시민의숲역"));
+    SECTION_2(InitialLines.LINE_2, Arrays.asList(
+            InitialStations.KYODAE, InitialStations.GANGNAM, InitialStations.YEOKSAM)),
+    SECTION_3(InitialLines.LINE_3, Arrays.asList(
+            InitialStations.KYODAE, InitialStations.NAMBU_TERMINAL, InitialStations.YANGJAE
+            , InitialStations.MAEBONG)),
+    SECTION_SINBUNDANG(InitialLines.LINE_SINBUNDANG, Arrays.asList(
+            InitialStations.GANGNAM, InitialStations.YANGJAE, InitialStations.YANGJAE_SIMIN_SOUP));
 
-    private String line;
-    private List<String> namesOfStations;
+    private InitialLines line;
+    private List<InitialStations> stations;
 
-    InitialSections(String line, List<String> namesOfStations) {
+    InitialSections(InitialLines line, List<InitialStations> stations) {
         this.line = line;
-        this.namesOfStations = namesOfStations;
+        this.stations = stations;
     }
 
-    public String getLine() {
+    public InitialLines getLine() {
         return line;
     }
 
-    public List<String> getNamesOfStations() {
-        return namesOfStations;
+    public List<InitialStations> getStations() {
+        return stations;
     }
 }

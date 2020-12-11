@@ -1,11 +1,9 @@
 package subway.domain;
 
-import subway.enums.InitialSetting;
+import subway.enums.Criteria;
+import subway.enums.InitialStations;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -28,8 +26,8 @@ public class StationRepository {
                 .anyMatch(station -> station.equals(name));
     }
 
-    public static boolean isNameLengthUnder2(String name) {
-        return name.trim().length() < 2;
+    public static boolean isNameLengthUnderCriteria(String name) {
+        return name.trim().length() < Criteria.MINIMUM_NAME_LENGTH.getValue();
     }
 
     public static Station getStationByName(String name) {
@@ -40,8 +38,8 @@ public class StationRepository {
     }
 
     public static void initializeStations() {
-        InitialSetting.STATIONS.getValues()
-                .stream()
+        Arrays.stream(InitialStations.values())
+                .map(InitialStations::getName)
                 .map(Station::new)
                 .forEach(StationRepository::addStation);
     }

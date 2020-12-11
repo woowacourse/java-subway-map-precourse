@@ -65,7 +65,7 @@ public class StationControlCenter {
             StationView.informStationDuplicated();
             return false;
         }
-        if (StationRepository.isNameLengthUnder2(nameOfStation)) {
+        if (StationRepository.isNameLengthUnderCriteria(nameOfStation)) {
             StationView.informNameLengthUnder2();
             return false;
         }

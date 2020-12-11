@@ -12,7 +12,8 @@ public enum SectionInfo {
     ASK_STATION_TO_DELETE_FROM_LINE("## 삭제할 구간의 역을 입력하세요."),
     INFO_SECTION_DELETED(INFO.getInfo() + "구간이 삭제되었습니다."),
 
-    SECTION_LIST("## 지하철 노선도");
+    SECTION_LIST("## 지하철 노선도"),
+    DELIMITER_BETWEEN_LINE_AND_STATIONS("---");
 
     String info = "";
 

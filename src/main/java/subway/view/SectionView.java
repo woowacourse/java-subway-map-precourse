@@ -43,7 +43,8 @@ public class SectionView {
         for (Section section : sections) {
             Line line = section.getLine();
             System.out.println(SectionInfo.INFO.getInfo() + line.getName());
-            System.out.println(SectionInfo.INFO.getInfo() + "---");
+            System.out.println(SectionInfo.INFO.getInfo()
+                    + SectionInfo.DELIMITER_BETWEEN_LINE_AND_STATIONS.getInfo());
             section.getStations().stream()
                     .map(Station::getName)
                     .forEach(name -> System.out.println(SectionInfo.INFO.getInfo() + name));
