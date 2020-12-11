@@ -42,6 +42,23 @@ public class StationService {
     }
 
     private void runSelectedFunction(String selectedFunction) {
-        System.out.println("선택된 기능: "+selectedFunction);
+        if (selectedFunction.equals(Function.ADD.getCode()))
+            addNewStation();
+        if (selectedFunction.equals(Function.DELETE.getCode()))
+            deleteStation();
+        if (selectedFunction.equals(Function.SHOW.getCode()))
+            showStations();
+    }
+
+    private void addNewStation() {
+        System.out.println(Information.ADD_STATION_INFO);
+    }
+
+    private void deleteStation() {
+        System.out.println(Information.DELETE_STATION_INFO);
+    }
+
+    private void showStations() {
+        System.out.println(Information.SHOW_STATION_INFO);
     }
 }

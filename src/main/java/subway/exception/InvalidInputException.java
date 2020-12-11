@@ -4,7 +4,8 @@ public class InvalidInputException extends RuntimeException {
 
     public enum ExceptionCode {
         INVALID_SERVICE_CODE,
-        INVALID_FUNCTION_CODE;
+        INVALID_FUNCTION_CODE,
+        DUPLICATE_STATION_CODE;
     }
 
     private final String HEADER = "\n[ERROR] ";
