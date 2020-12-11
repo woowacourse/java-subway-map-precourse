@@ -1,24 +1,22 @@
-package subway.view.menu;
+package subway.view.selection;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Menu {
+public class Selections {
     protected List<Selection> selections;
-    protected String viewName;
 
-    public List<Selection> selections() {
+    public Selections(List<Selection> selections) {
+        this.selections = selections;
+    }
+
+    public List<Selection> toList() {
         return selections;
     }
 
-    public List<String> selectionValues() {
+    public List<String> values() {
         return selections.stream()
                 .map(Selection::getValue)
                 .collect(Collectors.toList());
     }
-
-    public String getViewName() {
-        return viewName;
-    }
-
 }

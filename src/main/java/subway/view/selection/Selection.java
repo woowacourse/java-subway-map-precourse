@@ -1,4 +1,4 @@
-package subway.view.menu;
+package subway.view.selection;
 
 public class Selection {
     private String value;

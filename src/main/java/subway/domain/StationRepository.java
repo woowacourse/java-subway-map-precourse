@@ -41,7 +41,7 @@ public class StationRepository {
         return true;
     }
 
-    public static Station searchStationByName(String name) {
+    public static Station searchByName(String name) {
         for (Station station : stations) {
             if (station.getName().equals(name)) {
                 return station;

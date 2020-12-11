@@ -1,0 +1,70 @@
+package subway.view.managementView;
+
+import subway.view.InputView;
+import subway.view.selection.Selection;
+import subway.view.selection.Selections;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class LineView extends ManagementView {
+    private static final String VIEW_NAME = "노선 관리 화면";
+    private static final String ITEM_PREFIX = "노선 ";
+    private static final String STATION_REGISTER = "지하철 노선이 등록되었습니다.";
+    private static final String STATION_DELETE = "지하철 노선이 삭제되었습니다.";
+    private static final String TO_REGISTER_PREFIX = "등록할 ";
+    private static final String REQUEST_UPLINE_NAME = "노선의 상행 종점역 이름을 입력하세요.";
+    private static final String REQUEST_DOWNLINE_NAME = "노선의 하행 종점역 이름을 입력하세요.";
+    private static final String MENU_CREATE = "노선 등록";
+    private static final String MENU_DELETE = "노선 삭제";
+    private static final String MENU_READ = "노선 조회";
+    private static final String MENU_ESCAPE = "돌아가기";
+    private static final String MENU_ESCAPE_VALUE = "B";
+
+    private static final int MENU_START_INDEX = 1;
+
+    private static LineView instance;
+
+    private LineView() {
+        selections = new Selections(initializeSelections());
+        viewName = VIEW_NAME;
+        itemPrefix = ITEM_PREFIX;
+        createMessage = STATION_REGISTER;
+        deleteMessage = STATION_DELETE;
+    }
+
+    private List<Selection> initializeSelections() {
+        List<String> descriptions = new ArrayList<>(Arrays.asList(
+                MENU_CREATE, MENU_DELETE, MENU_READ, MENU_ESCAPE
+        ));
+        Iterator<String> description = descriptions.iterator();
+
+        List<Selection> selections = IntStream.range(MENU_START_INDEX, descriptions.size())
+                .mapToObj(Integer::toString)
+                .map(i -> new Selection(i, description.next()))
+                .collect(Collectors.toList());
+        selections.add(new Selection(MENU_ESCAPE_VALUE, MENU_ESCAPE));
+
+        return selections;
+    }
+
+    public static LineView getInstance() {
+        if (instance == null) {
+            instance = new LineView();
+        }
+        return instance;
+    }
+
+    public String getUplineStationName() {
+        return InputView.getNameWithMessage(TO_REGISTER_PREFIX + REQUEST_UPLINE_NAME);
+    }
+
+    public String getDownlineStationName() {
+        return InputView.getNameWithMessage(TO_REGISTER_PREFIX + REQUEST_DOWNLINE_NAME);
+    }
+
+}

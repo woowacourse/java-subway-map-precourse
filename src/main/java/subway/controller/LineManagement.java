@@ -4,49 +4,50 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.InputView;
+import subway.view.managementView.LineView;
 import subway.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LineManagement {
-    private static final String REGISTER = "1";
+    private static final String CREATE = "1";
     private static final String DELETE = "2";
-    private static final String PRINT = "3";
-    private static final String BACK = "B";
+    private static final String READ = "3";
+    private static final String ESCAPE = "B";
 
+    private static LineView lineView = LineView.getInstance();
     private static String menu;
 
     public static void run() {
         do {
-            OutputView.showLineManagementView();
-            menu = InputView.getLineMenuSelection();
+            lineView.showMenu();
+            menu = lineView.getFunctionSelection();
             runSelectedMenuFunction();
-        } while(!menu.equals(BACK));
+        } while(!menu.equals(ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(REGISTER)) {
+        if (menu.equals(CREATE)) {
             registerLine();
         }
         if (menu.equals(DELETE)) {
             deleteLine();
         }
-        if (menu.equals(PRINT)) {
+        if (menu.equals(READ)) {
             printAllLines();
         }
     }
 
     private static void registerLine() {
         try {
-            Line line = new Line(InputView.getLineNameToRegister());
-            Station upLineEndStation = StationRepository.searchStationByName(InputView.getUplineStationName());
-            Station downLineEndStation = StationRepository.searchStationByName(InputView.getDownlineStationName());
+            Line line = new Line(lineView.getNameToCreate());
+            Station upLineEndStation = StationRepository.searchByName(lineView.getUplineStationName());
+            Station downLineEndStation = StationRepository.searchByName(lineView.getDownlineStationName());
             line.addStation(upLineEndStation);
             line.addStation(downLineEndStation);
             LineRepository.addLine(line);
-            OutputView.printLineRegisterDone();
+            lineView.printRegisterDone();
         } catch (Exception e) {
             OutputView.showErrorMessage(e);
         }
@@ -54,8 +55,8 @@ public class LineManagement {
 
     private static void deleteLine() {
         try {
-            LineRepository.deleteLineByName(InputView.getLineNameToDelete());
-            OutputView.printLineDeleteDone();
+            LineRepository.deleteLineByName(lineView.getNameToCreate());
+            lineView.printDeleteDone();
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
@@ -66,7 +67,7 @@ public class LineManagement {
             List<String> lineNames = LineRepository.lines().stream()
                     .map(Line::getName)
                     .collect(Collectors.toList());
-            OutputView.printLines(lineNames);
+            lineView.printAll(lineNames);
         } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
         }

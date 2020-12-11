@@ -2,45 +2,46 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.managementView.StationView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StationManagement {
-    private static final String REGISTER = "1";
+    private static final String CREATE = "1";
     private static final String DELETE = "2";
-    private static final String PRINT = "3";
-    private static final String BACK = "B";
+    private static final String READ = "3";
+    private static final String ESCAPE = "B";
 
+    private static StationView stationView = StationView.getInstance();
     private static String menu;
 
     public static void run() {
         do {
-            OutputView.showStationManagementView();
-            menu = InputView.getStationMenuSelection();
+            stationView.showMenu();
+            menu = stationView.getFunctionSelection();
             runSelectedMenuFunction();
-        } while(!menu.equals(BACK));
+        } while(!menu.equals(ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(REGISTER)) {
+        if (menu.equals(CREATE)) {
             registerStation();
         }
         if (menu.equals(DELETE)) {
             deleteStation();
         }
-        if (menu.equals(PRINT)) {
+        if (menu.equals(READ)) {
             printAllStation();
         }
     }
 
     private static void registerStation() {
         try {
-            Station station = new Station(InputView.getStationNameToRegister());
+            Station station = new Station(stationView.getNameToCreate());
             StationRepository.addStation(station);
-            OutputView.printStationRegisterDone();
+            stationView.printRegisterDone();
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
@@ -48,9 +49,9 @@ public class StationManagement {
 
     private static void deleteStation() {
         try {
-            String name = InputView.getStationNameToDelete();
+            String name = stationView.getNameToDelete();
             StationRepository.deleteStation(name);
-            OutputView.printStationDeleteDone();
+            stationView.printDeleteDone();
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }
@@ -61,7 +62,7 @@ public class StationManagement {
             List<String> stationNames = StationRepository.stations().stream()
                     .map(Station::getName)
                     .collect(Collectors.toList());
-            OutputView.printStations(stationNames);
+            stationView.printAll(stationNames);
         } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
         }
