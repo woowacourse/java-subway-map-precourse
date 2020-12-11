@@ -25,7 +25,6 @@ public class CreateStationView implements StationManageViewStrategy {
             stationController.createStation(stationName);
             OutputView.enter();
             OutputView.infoView(CREATE_COMPLETE);
-            OutputView.enter();
         } catch (IllegalStateException e) {
             OutputView.errorView(e.getMessage());
             show();
