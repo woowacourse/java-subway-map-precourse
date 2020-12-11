@@ -2,6 +2,8 @@ package subway.view;
 
 import java.util.LinkedHashMap;
 import subway.Scene;
+import subway.io.Request;
+import subway.io.Response;
 
 public class LineManagementView extends View {
     private static final String VIEW_NAME = "노선 관리 화면";
@@ -15,19 +17,19 @@ public class LineManagementView extends View {
         MENUS.put("B", new Command("돌아가기", LineManagementView::back));
     }
 
-    private static void registerLine(Scene scene) {
+    private static void registerLine(Scene scene, Request request, Response response) {
         scene.back();
     }
 
-    private static void removeLine(Scene scene) {
+    private static void removeLine(Scene scene, Request request, Response response) {
         scene.back();
     }
 
-    private static void viewSections(Scene scene) {
+    private static void viewSections(Scene scene, Request request, Response response) {
         scene.back();
     }
 
-    private static void back(Scene scene) {
+    private static void back(Scene scene, Request request, Response response) {
         scene.back();
     }
 

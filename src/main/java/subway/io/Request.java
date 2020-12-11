@@ -3,6 +3,8 @@ package subway.io;
 import java.io.PrintStream;
 import java.util.Scanner;
 import subway.Scene;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 public class Request {
     private final Scanner scanner;
@@ -20,6 +22,20 @@ public class Request {
             return null;
         }
         return input;
+    }
+
+    public boolean requestStationRegister() {
+        String input = scanner.nextLine();
+        if (input.length() < Station.MINIMUM_NAME_LENGTH) {
+            printError(Error.INVALID_STATION_NAME_LENGTH);
+            return false;
+        }
+        if (StationRepository.hasStation(input)) {
+            printError(Error.DUPLICATE_STATION_NAME);
+            return false;
+        }
+        StationRepository.addStation(input);
+        return true;
     }
 
     private void printError(Error error) {

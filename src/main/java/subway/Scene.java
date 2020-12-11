@@ -1,6 +1,8 @@
 package subway;
 
 import java.util.Stack;
+import subway.io.Request;
+import subway.io.Response;
 import subway.view.MainView;
 import subway.view.View;
 
@@ -31,8 +33,8 @@ public class Scene {
         return getCurrentView().hasCommnad(input);
     }
 
-    public void executeCommand(String input) {
-        getCurrentView().executeCommand(input, this);
+    public void executeCommand(String input, Request request, Response response) {
+        getCurrentView().executeCommand(input, this, request, response);
     }
 
     public View getCurrentView() {

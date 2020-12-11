@@ -1,13 +1,15 @@
 package subway.view;
 
-import java.util.function.Consumer;
+import subway.CommandFunction;
 import subway.Scene;
+import subway.io.Request;
+import subway.io.Response;
 
 public class Command {
     private final String message;
-    private final Consumer<Scene> process;
+    private final CommandFunction<Scene, Request, Response> process;
 
-    public Command(String message, Consumer<Scene> process) {
+    public Command(String message, CommandFunction<Scene, Request, Response> process) {
         this.message = message;
         this.process = process;
     }
@@ -16,7 +18,7 @@ public class Command {
         return message;
     }
 
-    public void execute(Scene scene) {
-        process.accept(scene);
+    public void execute(Scene scene, Request request, Response response) {
+        process.apply(scene, request, response);
     }
 }

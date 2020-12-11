@@ -2,6 +2,8 @@ package subway.view;
 
 import java.util.LinkedHashMap;
 import subway.Scene;
+import subway.io.Request;
+import subway.io.Response;
 
 public class SectionManagementView extends View {
     private static final String VIEW_NAME = "구간 관리 화면";
@@ -14,15 +16,15 @@ public class SectionManagementView extends View {
         MENUS.put("B", new Command("돌아가기", SectionManagementView::back));
     }
 
-    private static void registerSection(Scene scene) {
+    private static void registerSection(Scene scene, Request request, Response response) {
         scene.back();
     }
 
-    private static void removeSection(Scene scene) {
+    private static void removeSection(Scene scene, Request request, Response response) {
         scene.back();
     }
 
-    private static void back(Scene scene) {
+    private static void back(Scene scene, Request request, Response response) {
         scene.back();
     }
 
