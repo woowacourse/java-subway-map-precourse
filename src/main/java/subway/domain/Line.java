@@ -27,37 +27,43 @@ public class Line {
         return name;
     }
 
-    public List<Station> stations() {
+    public List<Station> stations(){
         return Collections.unmodifiableList(stations);
     }
 
     public void joinStation(Station station, int index) {
         if (!isCorrectIndex(index)) {
-            final String errorMessage = "순서가 너무 큽니다. 등록되어 있는 역 수 : %d";
-            throw new IllegalStateException(String.format(errorMessage, stations.size()));
         }
         int newIndex = index - 1;   //1을 입력하면 0 번째 인덱스를 가르킨다.
         stations.add(newIndex, station);
         station.addLine();
     }
 
-    private boolean isCorrectIndex(int index) {
+    public boolean isCorrectIndex(int index) {
         int minIndex = 1;
         int maxIndex = stations.size() + 1;
         return index >= minIndex && index <= maxIndex;
     }
 
     public void removeStation(Station station) {
-        if (!isStationRemovable()) {
-            final String errorMessage = "노선을 유지하려면 최소 둘 이상의 역이 등록되어 있어야 합니다.";
-            throw new IllegalStateException(errorMessage);
-        }
         stations.remove(station);
         station.removeLine();
     }
 
-    private boolean isStationRemovable() {
+    public boolean isStationRemovable() {
         return stations.size() > MIN_STATION_SIZE;
+    }
+
+    public int stationSize(){
+        return stations.size();
+    }
+
+    public boolean containsStation(Station station) {
+        return stations.contains(station);
+    }
+
+    public void removeAllStation(){
+        stations.forEach(this::removeStation);
     }
 
     @Override

@@ -6,12 +6,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static subway.station.StationErrorMessage.*;
 import static subway.station.StationValidator.*;
 
 public class StationController {
-    private static final String ALREADY_EXISTS = "중복된 이름입니다.";
-    private static final String NOT_EXISTS = "존재하지 않는 역입니다.";
-    private static final String UN_REMOVABLE = "노선이 등록되어 있는 역입니다.";
     private StationRepository stationRepository;
 
     public StationController(StationRepository stationRepository) {
@@ -27,7 +25,7 @@ public class StationController {
     public void deleteStation(String name) {
         Station station = getStationByName(name);
         if (!station.isRemovable()) {
-            throw new IllegalStateException(UN_REMOVABLE);
+            throw new IllegalStateException(UN_REMOVABLE.getMessage());
         }
         stationRepository.deleteStation(station);
     }
@@ -46,12 +44,12 @@ public class StationController {
 
     private void checkDuplicateName(String name) {
         if (stationRepository.findStationByName(name).isPresent()) {
-            throw new IllegalStateException(ALREADY_EXISTS);
+            throw new IllegalStateException(ALREADY_EXISTS.getMessage());
         }
     }
 
     private Station getStationByName(String name) {
         return stationRepository.findStationByName(name)
-                .orElseThrow(() -> new IllegalStateException(NOT_EXISTS));
+                .orElseThrow(() -> new IllegalStateException(NOT_EXISTS.getMessage()));
     }
 }
