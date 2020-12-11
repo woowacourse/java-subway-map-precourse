@@ -9,6 +9,6 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
         SubwayMapController subwayMap = new SubwayMapController();
-        subwayMap.run();
+        subwayMap.run(scanner);
     }
 }
