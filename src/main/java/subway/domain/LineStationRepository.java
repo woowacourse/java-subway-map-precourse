@@ -15,6 +15,10 @@ public class LineStationRepository {
         lineStation.computeIfAbsent(line, Ve->new ArrayList<Station>()).add(station);
     }
 
+    public void addStationInLine(Line line, Station station, int position) {
+        lineStation.computeIfAbsent(line, Ve->new ArrayList<Station>()).add(position, station);
+    }
+
     public void deleteLineStation(Line line) {
         LineRepository.deleteLineByName(line.getName());
         lineStation.remove(line);
