@@ -9,6 +9,7 @@ public class UserInterface {
     }
 
     public static void stationSetting(Scanner scanner) {
+        Print.stationSetting();
         String input = scanner.next();
     }
 
