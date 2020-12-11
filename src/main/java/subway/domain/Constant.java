@@ -26,7 +26,7 @@ public class Constant {
     public static final String STATION = "역";
     public static final String LINE = "노선";
     public static final String SECTION = "구간";
-    public static final String PRINT_SOMETHING = "지하철 노선도 출력";
+    public static final String PRINT_SUBWAY_MAP = "지하철 노선도 출력";
     public static final String SETTING = " 관리";
     public static final String ADD = " 등록";
     public static final String DELETE = " 삭제";
