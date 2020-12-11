@@ -28,4 +28,13 @@ public class LineRepository {
         }
         return false;
     }
+
+    public boolean isRepeatedName(String Name) {
+        for(Line line: lines) {
+            if(line.equalName(Name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

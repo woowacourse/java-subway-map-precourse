@@ -19,5 +19,9 @@ public class Line {
         return stations.contains(station);
     }
 
+    public boolean equalName(String newName) {
+        return name.equals(newName);
+    }
+
         // 추가 기능 구현
 }
