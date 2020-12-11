@@ -2,6 +2,8 @@ package subway.domain.Line;
 
 import subway.domain.name.LineName;
 import subway.domain.station.Station;
+import subway.exception.AlreadyAddLineException;
+import subway.exception.AlreadyAddStationException;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -23,6 +25,18 @@ public class Line {
 
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
+    }
+
+    public void addStation(Station station) {
+
+        if (isContains(station)) {
+            throw new AlreadyAddStationException(station);
+        }
+        stations.add(station);
+    }
+
+    public boolean isContains(Station station) {
+        return stations.contains(station);
     }
 
     @Override
