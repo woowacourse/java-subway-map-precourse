@@ -1,10 +1,7 @@
 package subway.service;
 
-import subway.constant.Information;
+public interface MapService {
 
-public class MapService {
+    void run();
 
-    public void run() {
-        System.out.println(Information.MAP_INFO);
-    }
 }

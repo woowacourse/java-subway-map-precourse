@@ -5,12 +5,12 @@ import subway.exception.InvalidInputException;
 
 import java.util.Scanner;
 
-public abstract class BaseService implements Service {
+public abstract class CrudService implements MapService {
 
     private Scanner scanner;
     private String info;
 
-    public BaseService(Scanner scanner, String info) {
+    public CrudService(Scanner scanner, String info) {
         this.scanner = scanner;
         this.info = info;
     }
@@ -45,12 +45,9 @@ public abstract class BaseService implements Service {
             show();
     }
 
-    @Override
     public abstract void add();
 
-    @Override
     public abstract void delete();
 
-    @Override
     public abstract void show();
 }

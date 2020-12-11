@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import static subway.constant.Information.INFO_HEADER;
 
-public class StationService extends BaseService {
+public class StationService extends CrudService {
 
     private Scanner scanner;
 

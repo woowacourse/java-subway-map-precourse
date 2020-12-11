@@ -25,5 +25,5 @@ public class Information {
 
     public static final String LINK_INFO = "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기\n" + CHOOSE_FUNCTION;
 
-    public static final String MAP_INFO = "\n## 지하철 노선도";
+    public static final String PRINT_INFO = "\n## 지하철 노선도";
 }

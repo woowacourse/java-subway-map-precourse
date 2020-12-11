@@ -14,14 +14,14 @@ public class MainService {
     private StationService stationService;
     private LineService lineService;
     private LinkService linkService;
-    private MapService mapService;
+    private PrintService printService;
 
     public MainService(Scanner scanner) {
         this.scanner = scanner;
         stationService = new StationService(scanner);
         lineService = new LineService(scanner);
         linkService = new LinkService(scanner);
-        mapService = new MapService();
+        printService = new PrintService();
     }
 
 
@@ -58,7 +58,7 @@ public class MainService {
         if (selectedService.equals(Service.LINK.getCode()))
             linkService.run();
         if (selectedService.equals(Service.MAP.getCode()))
-            mapService.run();
+            printService.run();
         if (selectedService.equals(Service.QUIT.getCode()))
             isContinue = false;
     }

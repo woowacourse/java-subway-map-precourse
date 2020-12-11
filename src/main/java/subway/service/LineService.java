@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import static subway.constant.Information.INFO_HEADER;
 
-public class LineService extends BaseService {
+public class LineService extends CrudService {
 
     private Scanner scanner;
 
