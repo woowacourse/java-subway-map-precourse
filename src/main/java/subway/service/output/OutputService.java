@@ -1,5 +1,6 @@
 package subway.service.output;
 
+import subway.exception.ErrorCode;
 import subway.view.Screen;
 
 public interface OutputService {
@@ -28,6 +29,8 @@ public interface OutputService {
     void printInfo(String string);
 
     void printSharp(String string);
+
+    void printError(ErrorCode errorCode);
 
     void printMain();
 

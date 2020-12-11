@@ -8,7 +8,6 @@ import subway.exception.ErrorCode;
 import subway.exception.StationException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StationServiceImplTest {
 
@@ -32,6 +31,6 @@ class StationServiceImplTest {
         //then
         assertThatThrownBy(() -> stationService.saveStation(new StationSaveReqDto(name2)))
                 .isInstanceOf(StationException.class)
-                .hasMessage(ErrorCode.STATION_ALEADY_EXIST.getMessage());
+                .hasMessage(ErrorCode.STATION_ALREADY_EXIST.getMessage());
     }
 }

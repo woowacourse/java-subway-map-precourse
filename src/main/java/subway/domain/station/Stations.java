@@ -18,4 +18,8 @@ public class Stations {
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
+
+    public int size() {
+        return stations.size();
+    }
 }

@@ -1,5 +1,6 @@
 package subway.service.output;
 
+import subway.exception.ErrorCode;
 import subway.view.Screen;
 
 public class StringBuilderOutputService implements OutputService {
@@ -27,6 +28,14 @@ public class StringBuilderOutputService implements OutputService {
     public void printSharp(String string) {
         sb.append(Screen.PREFIX_SHARP);
         sb.append(string);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printError(ErrorCode errorCode) {
+        sb.append(ENTER);
+        sb.append(errorCode.getMessage());
         System.out.println(sb.toString());
         clearSb();
     }

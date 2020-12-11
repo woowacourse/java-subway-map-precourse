@@ -18,7 +18,7 @@ public class StationServiceImpl implements StationService {
         Station station = Station.of(saveReqDto.getName());
         Station stationFindByName = stationRepository.findByName(station.getName());
         if (stationFindByName != null){
-            throw new StationException(ErrorCode.STATION_ALEADY_EXIST);
+            throw new StationException(ErrorCode.STATION_ALREADY_EXIST);
         }
         stationRepository.addStation(station);
         return station;
