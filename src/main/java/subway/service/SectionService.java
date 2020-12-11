@@ -33,7 +33,7 @@ public class SectionService extends InputValidation {
         //validation
         validateLineNameIsContains(lineName);
         validateStationNameIsContains(stationName);
-        //3. 입력값이 숫자인지 검증한다.
+        validatePositionIsDigit(position);
         //4. 입력값이 노선의 길이보다 이하의 값인지 검증한다.
         lineStation.addStationInLine(LineRepository.findLine(lineName).get(),
                 StationRepository.findStation(stationName).get(),

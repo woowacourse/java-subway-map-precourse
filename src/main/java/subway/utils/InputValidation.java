@@ -51,4 +51,11 @@ public class InputValidation {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
         }
     }
+
+    public void validatePositionIsDigit(String position) {
+        boolean isDigit = position.chars().allMatch(Character::isDigit);
+        if (!isDigit) {
+            throw new IllegalArgumentException("[ERROR] 순서는 숫자만 입력 가능합니다.");
+        }
+    }
 }
