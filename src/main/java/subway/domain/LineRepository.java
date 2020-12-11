@@ -11,7 +11,6 @@ public class LineRepository {
             {"강남역", "양재역", "양재시민의숲역"}
     };
 
-
     static {
         for (int i = 0; i < DEFAULT_LINES.length; i++) {
             List<Station> tmpStations = new ArrayList<>();
@@ -28,19 +27,25 @@ public class LineRepository {
     }
 
     public static void addLine(Line line, Station startStation, Station endStation) {
-        lines.put(line, Arrays.asList(startStation, endStation));
+        lines.put(line, new ArrayList<>(Arrays.asList(startStation, endStation)));
     }
 
     public static boolean deleteLineByName(String name) {
         return lines.keySet().removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static void deleteStationInLine(String name) {
-        for (List<Station> stations : lines().values()) {
-            if (stations.stream().anyMatch(station -> station.getName().equals(name))) {
-                stations.removeIf(station -> Objects.equals(station.getName(), name));
-            }
-        }
+    public static void addStationInLineByName(String line, String station, int seq) {
+        lines.get(findLineByName(line)).add(seq,
+                StationRepository.findStationByName(station));
+    }
+
+    public static void deleteStationInLineByName(String line, String station) {
+        lines.get(findLineByName(line)).removeIf(st -> st.getName().equals(station));
+    }
+
+    public static Line findLineByName(String name) {
+        return lines.keySet().stream().filter(x -> x.getName().equals(name))
+                .findFirst().get();
     }
 
     public static boolean hasStationInLine(String name) {

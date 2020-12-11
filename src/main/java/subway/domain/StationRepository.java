@@ -21,14 +21,19 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        stations.add(station);
+            stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public static boolean deleteStationByName(String name) {
         if (LineRepository.hasStationInLine(name)) {
             // error message
             return false;
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static Station findStationByName(String name) {
+        return stations.stream().filter(x -> x.getName().equals(name))
+                .findFirst().get();
     }
 }
