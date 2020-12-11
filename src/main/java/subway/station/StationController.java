@@ -1,6 +1,8 @@
 package subway.station;
 
+import subway.station.domain.StationRepository;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class StationController {
     private StationController() {
@@ -14,5 +16,10 @@ public class StationController {
     public static void remove() {
         String name = InputView.getStationNameForRemoval();
         StationService.remove(name);
+    }
+
+    public static void inquire() {
+        StationRepository.stations()
+                .forEach(OutputView::printStation);
     }
 }

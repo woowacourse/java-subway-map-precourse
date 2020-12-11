@@ -1,11 +1,17 @@
 package subway.view;
 
+import subway.station.domain.Station;
+
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_PREFIX = "[INFO] ";
     private static final String GUIDE_PREFIX = "## ";
 
     private OutputView() {
+    }
+
+    public static void printStation(Station station) {
+        printResultMessage(station.getName());
     }
 
     public static void printErrorMessage(String message) {
