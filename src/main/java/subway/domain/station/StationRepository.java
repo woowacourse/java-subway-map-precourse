@@ -14,6 +14,13 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public static Station get(String name) {
+        return stations.stream()
+                .filter(x -> x.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NOTHING));
+    }
+
     public static void addStation(Station station) {
         validateAddition(station);
         stations.add(station);

@@ -47,6 +47,10 @@ public class LineController extends Controller {
         try {
             String rawLineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
             Line.validateName(rawLineName);
+            Line line = new Line(rawLineName);
+            line.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_BEGINNING)));
+            line.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_ENDING)));
+            LineRepository.addLine(line);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             addLine();
