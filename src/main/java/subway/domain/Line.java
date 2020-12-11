@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private static final String CONTOUR = "---";
     private String name;
     private List<Station> stations = new ArrayList<>();
 
@@ -24,5 +25,15 @@ public class Line {
         return name.equals(newName);
     }
 
+    public List<String> inquiryStations() {
+        List<String> stationNames = new ArrayList<>();
+        stationNames.add(this.name);
+        stationNames.add(CONTOUR);
+
+        for(Station station: stations) {
+            stationNames.add(station.getName());
+        }
+        return stationNames;
+    }
         // 추가 기능 구현
 }

@@ -38,4 +38,12 @@ public class LineRepository {
         return false;
     }
 
+    public List<String> inquiryAllStations() {
+        List<String> result = new ArrayList<>();
+        for(Line line: lines) {
+            result.addAll(line.inquiryStations());
+        }
+        return result;
+    }
+
 }
