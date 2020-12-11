@@ -14,4 +14,9 @@ public class LineService {
         Line line = new Line(lineName, new Route(topStation, bottomStation));
         LineRepository.register(line);
     }
+
+    public static void remove(String name) {
+        Line line = LineRepository.findByName(name);
+        LineRepository.remove(line);
+    }
 }

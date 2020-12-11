@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import subway.line.domain.LineRepository;
 import subway.line.exception.AlreadyExistLineException;
 import subway.line.exception.IllegalTypeOfNameException;
+import subway.line.exception.NotExistLineException;
 import subway.line.exception.TooShortLineNameException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
@@ -80,15 +81,40 @@ public class LineServiceTest {
     @Test
     public void 중복_노선_등록시_예외_발생() {
         //given
-        String name = "잠실역";
+        String name = "1호선";
         String topStationName = "대구역";
         String bottomStationName = "동대구역";
         LineService.register(name, topStationName, bottomStationName);
 
-        String duplicatedName = "잠실역";
+        String duplicatedName = "1호선";
 
         //when & then
         assertThatExceptionOfType(AlreadyExistLineException.class)
                 .isThrownBy(() -> LineService.register(duplicatedName, topStationName, bottomStationName));
+    }
+
+    @Test
+    public void 노선_삭제기능_동작확인() {
+        //given
+        String name = "1호선";
+        String topStationName = "대구역";
+        String bottomStationName = "동대구역";
+        LineService.register(name, topStationName, bottomStationName);
+
+        //when
+        LineService.remove(name);
+
+        //then
+        assertThat(LineRepository.isExist(name)).isFalse();
+    }
+
+    @Test
+    public void 등록되지_않은_노선_삭제시_예외_발생() {
+        //given
+        String notExistLine = "1호선";
+
+        //when & then
+        assertThatExceptionOfType(NotExistLineException.class)
+                .isThrownBy(() -> LineService.remove(notExistLine));
     }
 }
