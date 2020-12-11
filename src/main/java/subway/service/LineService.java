@@ -6,11 +6,12 @@ import subway.repository.LineRepository;
 
 import java.util.Scanner;
 
-public class LineService {
+public class LineService extends BaseService {
 
     private Scanner scanner;
 
     public LineService(Scanner scanner) {
+        super(scanner, Information.LINE_INFO);
         this.scanner = scanner;
         initLines();
     }
@@ -19,7 +20,19 @@ public class LineService {
         LineRepository.addLine(InitialData.lines);
     }
 
-    public void run() {
-        System.out.println(Information.LINE_INFO);
+
+    @Override
+    public void add() {
+        System.out.println(Information.ADD_LINE_INFO);
+    }
+
+    @Override
+    public void delete() {
+        System.out.println(Information.DELETE_LINE_INFO);
+    }
+
+    @Override
+    public void show() {
+        System.out.println(Information.SHOW_LINE_INFO);
     }
 }
