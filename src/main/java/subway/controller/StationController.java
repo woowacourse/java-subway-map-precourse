@@ -64,6 +64,6 @@ public class StationController extends Controller {
     }
 
     private void viewStations() {
-
+        OutputView.printStations(StationRepository.stations());
     }
 }

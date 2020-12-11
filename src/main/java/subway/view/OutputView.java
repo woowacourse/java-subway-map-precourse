@@ -1,6 +1,8 @@
 package subway.view;
 
+import java.util.List;
 import subway.controller.Function;
+import subway.domain.station.Station;
 
 public class OutputView {
 
@@ -67,6 +69,16 @@ public class OutputView {
         System.out.println(LINE_MENU_VIEW);
         System.out.println(NON_MAIN_MENU_QUIT);
     }
+
+    public static void printStations(List<Station> stations) {
+        System.out.println();
+        System.out.println(STATION_VIEW_LABEL);
+        stations.stream()
+                .map(Station::getName)
+                .map(x -> INFO_LABEL + x)
+                .forEach(System.out::println);
+    }
+
 
     public static void printError(Exception e) {
         System.out.println(e.getMessage());
