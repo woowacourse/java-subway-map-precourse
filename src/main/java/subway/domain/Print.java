@@ -8,17 +8,17 @@ public class Print {
                 + Constant.THREE + Constant.DOT + Constant.SECTION + Constant.SETTING + "%n"
                 + Constant.FOUR + Constant.DOT + Constant.PRINT_SUBWAY_MAP + "%n"
                 + Constant.Q + Constant.DOT + Constant.QUIT + "%n%n"
-                + Constant.HASH + Constant.CHOOSE_FUNCTION
+                + Constant.HASH + Constant.CHOOSE_FUNCTION + "%n"
         );
     }
 
     public static void stationSetting() {
-        System.out.printf(Constant.HASH + Constant.STATION + Constant.SETTING_MENU + "%n"
+        System.out.printf(Constant.HASH + Constant.SETTING_MENU + "%n"
                 + Constant.ONE + Constant.DOT + Constant.STATION + Constant.ADD + "%n"
                 + Constant.TWO + Constant.DOT + Constant.STATION + Constant.DELETE + "%n"
                 + Constant.THREE + Constant.DOT + Constant.STATION + Constant.LOOKUP + "%n"
                 + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
-                + Constant.HASH + Constant.CHOOSE_FUNCTION
+                + Constant.HASH + Constant.CHOOSE_FUNCTION + "%n"
         );
     }
 
@@ -28,7 +28,7 @@ public class Print {
                 + Constant.TWO + Constant.DOT + Constant.LINE + Constant.DELETE + "%n"
                 + Constant.THREE + Constant.DOT + Constant.LINE + Constant.LOOKUP + "%n"
                 + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
-                + Constant.HASH + Constant.CHOOSE_FUNCTION
+                + Constant.HASH + Constant.CHOOSE_FUNCTION + "%n"
         );
     }
 
@@ -37,7 +37,7 @@ public class Print {
                 + Constant.ONE + Constant.DOT + Constant.SECTION + Constant.ADD + "%n"
                 + Constant.TWO + Constant.DOT + Constant.SECTION + Constant.DELETE + "%n"
                 + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
-                + Constant.HASH + Constant.CHOOSE_FUNCTION
+                + Constant.HASH + Constant.CHOOSE_FUNCTION + "%n"
         );
     }
 
