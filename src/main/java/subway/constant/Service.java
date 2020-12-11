@@ -10,7 +10,7 @@ public enum Service {
     STATION("1"),
     LINE("2"),
     LINK("3"),
-    MAP("4"),
+    PRINT("4"),
     QUIT("Q");
 
     private static List<String> serviceCodes = new ArrayList<>();

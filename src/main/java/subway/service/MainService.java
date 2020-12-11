@@ -57,7 +57,7 @@ public class MainService {
             lineService.run();
         if (selectedService.equals(Service.LINK.getCode()))
             linkService.run();
-        if (selectedService.equals(Service.MAP.getCode()))
+        if (selectedService.equals(Service.PRINT.getCode()))
             printService.run();
         if (selectedService.equals(Service.QUIT.getCode()))
             isContinue = false;
