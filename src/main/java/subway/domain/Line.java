@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Line {
 
+    private static final int UP_END_INDEX = 0;
+
     private String name;
     private Station upEnd;
     private Station downEnd;
@@ -16,22 +18,17 @@ public class Line {
         this.name = name;
     }
 
-    public Line(String name, List<Station> stations) {
-        this.name = name;
-        this.stations = stations;
-    }
-
     public Line(String name, Station upEnd, Station downEnd) {
         this.name = name;
         this.upEnd = upEnd;
         this.downEnd = downEnd;
     }
 
-    public Line(String name, List<Station> stations, Station upEnd, Station downEnd) {
+    public Line(String name, List<Station> stations) {
         this.name = name;
         this.stations = stations;
-        this.upEnd = upEnd;
-        this.downEnd = downEnd;
+        this.upEnd = stations.get(UP_END_INDEX);
+        this.downEnd = stations.get(stations.size() - 1);
     }
 
     public String getName() {
