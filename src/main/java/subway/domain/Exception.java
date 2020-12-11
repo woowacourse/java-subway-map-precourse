@@ -2,10 +2,11 @@ package subway.domain;
 
 public class Exception {
     private static final int NAME_LENGTH_MINIMUM = 2;
-    
+    private static final String STATION = "역";
+
     static String isStation(String input){
         String lastChar = input.substring(input.length() - 1, input.length());
-        if(lastChar.equals("역")){
+        if(lastChar.equals(STATION)){
             return input;
         }
         throw new IllegalArgumentException();
