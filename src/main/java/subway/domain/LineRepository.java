@@ -28,7 +28,7 @@ public class LineRepository {
 
         addLine(new Line("신분당선"));
         for (String section : new String[] {"양재시민의숲역","양재역","강남역"}) {
-            Sections.addSection("3호선", section, Sections.FIRST_SECTION_LOCATION);
+            Sections.addSection("신분당선", section, Sections.FIRST_SECTION_LOCATION);
         }
     }
 

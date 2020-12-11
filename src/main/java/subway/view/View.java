@@ -103,7 +103,7 @@ public class View {
 	}
 
 	public static String getLocationToRegisterSection(Scanner scanner) {
-		System.out.println(SectionMessages.STATION_NAME_TO_REGISTER.getMessage());
+		System.out.println(SectionMessages.LOCATION.getMessage());
 		return scanner.nextLine();
 	}
 

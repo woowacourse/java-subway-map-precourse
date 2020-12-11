@@ -10,7 +10,7 @@ public enum SectionMessages {
 
 	LINE_NAME_TO_REGISTER(General.BASIC.getMessage() + "노선을 입력하세요."),
 	STATION_NAME_TO_REGISTER(General.BASIC.getMessage() + "역이름을 입력하세요."),
-	SECTION_LOCATION(General.BASIC.getMessage() + "순서를 입력하세요."),
+	LOCATION(General.BASIC.getMessage() + "순서를 입력하세요."),
 	REGISTER_COMPLETE(General.INFO.getMessage() + "구간이 등록되었습니다."),
 	LINE_NAME_TO_DELETE(General.BASIC.getMessage() + "삭제할 노선 이름을 입력하세요."),
 	STATION_NAME_TO_DELETE(General.BASIC.getMessage() + "삭제할 구간의 역을 입력하세요."),
