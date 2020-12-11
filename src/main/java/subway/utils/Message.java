@@ -8,9 +8,13 @@ public interface Message {
     String ANN_REGISTER_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     String ANN_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
     String ANN_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
+    String ANN_SELECT_LINE = "노선을 입력하세요";
+    String ANN_SELECT_STATION = "역 이름을 입력하세요";
+    String ANN_INPUT_ORDER = "순서를 입력하세요";
 
     String INFO_STATION_REGISTERED = "지하철 역이 등록되었습니다.";
     String INFO_LINE_REGISTERED = "지하철 노선이 등록되었습니다.";
+    String INFO_SECTION_REGISTERED = "구간이 등록되었습니다.";
     String INFO_STATION_DELETED = "지하철 역이 삭제되었습니다.";
     String INFO_LINE_DELETED = "지하철 노선이 삭제되었습니다.";
 

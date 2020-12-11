@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import subway.utils.Validator;
 
 public class LineRepository {
+
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -31,5 +34,13 @@ public class LineRepository {
 
     public static ArrayList<Line> getAllLines() {
         return (ArrayList<Line>) lines;
+    }
+
+    public static Line getLine(String name) {
+        Validator.checkRegisteredLine(name);
+        return lines.stream()
+            .filter(l -> l.getName().equals(name))
+            .findAny()
+            .orElseThrow();
     }
 }

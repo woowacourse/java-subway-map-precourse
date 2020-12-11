@@ -3,6 +3,7 @@ package subway.utils;
 import java.util.ArrayList;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class Validator implements Message {
@@ -33,6 +34,12 @@ public class Validator implements Message {
         }
         if (LineRepository.hasLine(name)) {
             throw new IllegalArgumentException(ERROR_ALREADY_REGISTERED_LINE);
+        }
+    }
+
+    public static void checkRegisteredLine(String name) {
+        if (!LineRepository.hasLine(name)) {
+            throw new IllegalArgumentException(ERROR_NOT_REGISTERED_LINE);
         }
     }
 

@@ -1,5 +1,6 @@
 package subway;
 
+import java.util.Optional;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -13,7 +14,6 @@ public class SubwayManager implements Message {
 
     public void run() {
     }
-
 
     private void registerStation() {
         Station station = generateStation();
@@ -73,8 +73,7 @@ public class SubwayManager implements Message {
     private Station getFirstStation() {
         OutputView.printAnnouncement(ANN_REGISTER_FIRST_STATION);
         try {
-            String name = InputView.getInput();
-            return getStation(name);
+            return getStation();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getFirstStation();
@@ -84,19 +83,30 @@ public class SubwayManager implements Message {
     private Station getLastStation() {
         OutputView.printAnnouncement(ANN_REGISTER_LAST_STATION);
         try {
-            String name = InputView.getInput();
-            return getStation(name);
+            return getStation();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getLastStation();
         }
     }
 
-    private Station getStation(String stationName) {
-        if (!StationRepository.hasStation(stationName)) {
+    private Station getStation() {
+        String name = InputView.getInput();
+        if (!StationRepository.hasStation(name)) {
             throw new IllegalArgumentException(ERROR_NOT_REGISTERED_STATION);
         }
-        return StationRepository.getStation(stationName);
+        return StationRepository.getStation(name);
+    }
+
+    private void insertStationInLine() {
+        OutputView.printAnnouncement(ANN_SELECT_LINE);
+        Line line = LineRepository.getLine(InputView.getInput());
+        OutputView.printAnnouncement(ANN_SELECT_STATION);
+        Station station = getStation();
+        OutputView.printAnnouncement(ANN_INPUT_ORDER);
+        int index = Integer.parseInt(InputView.getInput());
+        line.insertStation(index, station);
+        OutputView.printInfo(INFO_SECTION_REGISTERED);
     }
 
 }
