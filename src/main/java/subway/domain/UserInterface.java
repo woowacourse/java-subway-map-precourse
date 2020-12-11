@@ -28,7 +28,7 @@ public class UserInterface {
         mainMenu(scanner);
     }
 
-    public static String getStationName(Scanner scanner) {
+    public static String getStationNameToAdd(Scanner scanner) {
         Print.getStationNameToAdd();
         return scanner.next();
     }
