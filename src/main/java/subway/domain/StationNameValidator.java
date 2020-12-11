@@ -30,4 +30,11 @@ public class StationNameValidator {
             throw new IllegalArgumentException("역의 이름이 너무 깁니다.");
         }
     }
+
+    public static String makeRemoveName(String inputRemoveName) {
+        if(StationRepository.findStationByName(inputRemoveName)==null){
+            throw new IllegalArgumentException("일치하는 역이 없습니다.");
+        }
+        return inputRemoveName;
+    }
 }

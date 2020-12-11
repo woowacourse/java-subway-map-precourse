@@ -5,25 +5,39 @@ import subway.domain.Station;
 import subway.domain.StationNameValidator;
 import subway.domain.StationRepository;
 import subway.view.InputView;
-import subway.view.OutputView;
 import subway.view.StationOutputView;
 
 public class StationFunction {
 
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
-            StationRepository.addStation(new Station(makeValidateName(inputView)));
-            StationOutputView.printSuccessEnroll();
+            StationRepository.addStation(new Station(makeValidateEnrollName(inputView)));
+            StationOutputView.printSuccess(detailFunction);
+        }
+        if (detailFunction.equals(DetailFunctions.REMOVE)) {
+            StationRepository.deleteStation((makeValidateRemoveName(inputView)));
+            StationOutputView.printSuccess(detailFunction);
         }
     }
 
-    private static String makeValidateName(InputView inputView) {
+    private static String makeValidateEnrollName(InputView inputView) {
         try {
-            StationOutputView.printEnroll();
+            StationOutputView.printFunction(DetailFunctions.ENROLL);
             return StationNameValidator.makeName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] "+e.getMessage());
-            return makeValidateName(inputView);
+            return makeValidateEnrollName(inputView);
         }
     }
+
+    private static String makeValidateRemoveName(InputView inputView) {
+        try {
+            StationOutputView.printFunction(DetailFunctions.REMOVE);
+            return StationNameValidator.makeRemoveName(inputView.receiveFunctionInfo());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] "+e.getMessage());
+            return makeValidateRemoveName(inputView);
+        }
+    }
+
 }
