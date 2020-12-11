@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
+    private static final String ERR_STATION_NOT_IN_REPO = "존재하지 않는 역 이름입니다";
     private static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
@@ -21,15 +22,9 @@ public class StationRepository {
     }
 
     public static Station getStation(String name) {
-        for (Station station : stations) {
-            if (station.getName().equals(name)) {
-                return station;
-            }
-        }
-        return null;
-    }
-
-    public static void printStations() {
-        stations.forEach(Station::printStation);
+        return stations().stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ERR_STATION_NOT_IN_REPO));
     }
 }
