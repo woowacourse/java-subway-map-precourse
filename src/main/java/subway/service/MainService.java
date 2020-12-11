@@ -1,6 +1,6 @@
 package subway.service;
 
-import subway.ServiceValidator;
+import subway.validator.ServiceValidator;
 import subway.constant.Information;
 import subway.constant.Service;
 import subway.exception.InvalidInputException;
@@ -61,5 +61,7 @@ public class MainService {
             areaService.run();
         if (selectedFunction.equals(Service.MAP.getCode()))
             mapService.run();
+        if (selectedFunction.equals(Service.QUIT.getCode()))
+            isContinue = false;
     }
 }

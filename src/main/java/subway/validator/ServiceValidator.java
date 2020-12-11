@@ -1,4 +1,4 @@
-package subway;
+package subway.validator;
 
 import subway.constant.Service;
 import subway.exception.InvalidInputException;
