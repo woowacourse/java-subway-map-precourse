@@ -3,8 +3,10 @@ package subway.controller;
 import subway.domain.*;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.StationOutputView;
 
 public class SubwayController {
+    private static final String function = "역";
     private final InputView inputView;
 
     public SubwayController(InputView inputView) {
@@ -14,11 +16,21 @@ public class SubwayController {
     public void run() {
         initSetting();
         OutputView.printMain();
-        MainFunctions mainFunction = MainFunctions.haveNumber(this.inputView.receiveFunction());
-        OutputView.printDetailFunction(mainFunction);
-        DetailFunctions detailFunctions = DetailFunctions.haveNumber(this.inputView.receiveFunction());
+        if(MainFunctions.haveNumber(this.inputView.receiveFunction()).equals(MainFunctions.STATION)){
+            stationFunction();
+        }
     }
 
+    private void stationFunction() {
+        while (true) {
+            OutputView.printDetailFunction(MainFunctions.STATION);
+            DetailFunctions detailFunction = DetailFunctions.haveNumber(this.inputView.receiveFunction());
+            if(detailFunction.equals(DetailFunctions.BACK)){
+                break;
+            }
+            StationFunction.doFunction(detailFunction, this.inputView);
+        }
+    }
     private void initSetting(){
         StationRepository.addStation(new Station("교대역"));
         StationRepository.addStation(new Station("강남역"));

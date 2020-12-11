@@ -22,4 +22,5 @@ public class OutputView {
         }
         System.out.println(DetailFunctions.BACK.getFunctionNumber()+". "+ DetailFunctions.BACK.getFunctionName());
     }
+
 }
