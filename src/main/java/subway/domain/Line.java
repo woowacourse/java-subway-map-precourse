@@ -39,5 +39,9 @@ public class Line {
     public void addInterval(Station station, int position) {
         stations.add(position - 1, station);
     }
+
+    public void removeInterval(String stationName) {
+        stations.removeIf(station -> station.equalWith(stationName));
+    }
         // 추가 기능 구현
 }
