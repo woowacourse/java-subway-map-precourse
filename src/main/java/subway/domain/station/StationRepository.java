@@ -16,21 +16,21 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
-        validateDuplicate(station);
-        stations.add(station);
+    public static void addStation(StationName stationName) {
+        validateDuplicate(stationName);
+        stations.add(new Station(stationName));
     }
 
-    private static void validateDuplicate(Station station) {
+    private static void validateDuplicate(StationName stationName) {
         Set<Station> duplicateCheckSet = new HashSet<>(stations);
-        duplicateCheckSet.add(station);
+        duplicateCheckSet.add(new Station(stationName));
         if (duplicateCheckSet.size() == stations.size()) {
             throw new IllegalArgumentException(STATION_DUPLICATE_ERROR);
         }
     }
 
-    public static boolean deleteStation(String name) {
-        Station targetStation = new Station(name);
+    public static boolean deleteStation(StationName stationName) {
+        Station targetStation = new Station(stationName);
         validateNameExist(targetStation);
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
@@ -38,29 +38,14 @@ public class StationRepository {
                 throw new IllegalArgumentException(STATION_LINE_REGISTER_ERROR);
             }
         }
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        return stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
-    public static void validateNameExist(Station newStation) {
-        boolean nameFlag = true;
-        for (Station station : stations) {
-            if (station.equals(newStation)) {
-                nameFlag = false;
-                break;
-            }
-        }
-        if (nameFlag) {
+    public static void validateNameExist(Station station) {
+        if (!stations.contains(station)) {
             throw new IllegalArgumentException(STATION_EXIST_ERROR);
         }
     }
 
-    public static void registerStationToLine(Station newStation) {
-        for (Station station : stations()) {
-            if (station.equals(newStation)) {
-                station.registerToLine();
-                break;
-            }
-        }
-    }
 
 }
