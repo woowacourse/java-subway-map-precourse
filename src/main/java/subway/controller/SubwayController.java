@@ -56,7 +56,7 @@ public class SubwayController {
                 SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("교대역"), 0);
                 SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("남부터미널역"), 1);
                 SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("양재역"), 2);
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("매봉역"), 2);
+                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("매봉역"), 3);
             }
             if (line.getName().equals("신분당선")) {
                 SubwayRepository.addLine(LineRepository.findLineByName(line.getName()));

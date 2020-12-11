@@ -18,4 +18,14 @@ public class SubwayRepository {
     public static void addLine(Line lineByName) {
         subway.put(lineByName, new ArrayList<>());
     }
+
+    public static boolean findStationByName(String inputRemoveName) {
+        boolean flag = false;
+        for(Line line: subway.keySet()){
+            if(subway.get(line).stream().anyMatch(station -> station.getName().equals(inputRemoveName))){
+                flag = true;
+            }
+        }
+        return flag;
+    }
 }

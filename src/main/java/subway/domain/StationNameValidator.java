@@ -14,7 +14,7 @@ public class StationNameValidator {
     }
 
     private static void checkDuplicate() {
-        if(StationRepository.findStationByName(nowInputName) != null) {
+        if (StationRepository.findStationByName(nowInputName) != null) {
             throw new IllegalArgumentException("이미 존재하는 역입니다.");
         }
     }
@@ -32,9 +32,21 @@ public class StationNameValidator {
     }
 
     public static String makeRemoveName(String inputRemoveName) {
-        if(StationRepository.findStationByName(inputRemoveName)==null){
+        nowInputName = inputRemoveName;
+        checkAvailable();
+        checkInLine();
+        return nowInputName;
+    }
+
+    private static void checkAvailable() {
+        if (StationRepository.findStationByName(nowInputName) == null) {
             throw new IllegalArgumentException("일치하는 역이 없습니다.");
         }
-        return inputRemoveName;
+    }
+
+    private static void checkInLine() {
+        if (SubwayRepository.findStationByName(nowInputName)) {
+            throw new IllegalArgumentException("이미 노선에 등록된 역입니다.");
+        }
     }
 }
