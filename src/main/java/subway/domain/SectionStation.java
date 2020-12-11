@@ -8,4 +8,12 @@ public class SectionStation {
         this.station = station;
         this.index = index;
     }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public int getIndex() {
+        return index;
+    }
 }

@@ -156,21 +156,22 @@ public class SubwayManager {
     public void addLine(String name, Scanner scanner) {
         Line line = new Line(name);
 
-        setLineUpStation(line, scanner);
-        setLineDownStation(line, scanner);
+        line.initializeSectionStation(setLineUpStation(scanner), setLineDownStation(scanner));
 
         LineRepository.addLine(line);
         OutputView.printRegisteredLineMessage();
     }
 
-    private void setLineUpStation(Line line, Scanner scanner) {
+    private Station setLineUpStation(Scanner scanner) {
         OutputView.printInputRegisterLineUpStation();
-        line.addStation(StationRepository.findStationByName(scanner.next()));
+
+        return StationRepository.findStationByName(scanner.next());
     }
 
-    private void setLineDownStation(Line line, Scanner scanner) {
+    private Station setLineDownStation(Scanner scanner) {
         OutputView.printInputRegisterLineDownStation();
-        line.addStation(StationRepository.findStationByName(scanner.next()));
+
+        return StationRepository.findStationByName(scanner.next());
     }
     
     public State removeLine(State state, Scanner scanner) {

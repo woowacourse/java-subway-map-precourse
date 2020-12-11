@@ -131,6 +131,6 @@ public class OutputView {
         System.out.println(INFORMATION + line.getName());
         System.out.println(LINE);
 
-        line.getStations().forEach(station -> System.out.println(INFORMATION + station.getName()));
+        line.getSectionStations().getStations().forEach(station -> System.out.println(INFORMATION + station.getName()));
     }
 }

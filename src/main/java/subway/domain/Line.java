@@ -1,16 +1,14 @@
 package subway.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
     private String name;
-    private List<Station> stations;
+    private SectionStations sectionStations;
 
     public Line(String name) {
         this.name = name;
-        stations = new ArrayList<>();
     }
 
     public String getName() {
@@ -19,19 +17,19 @@ public class Line {
 
     // 추가 기능 구현
 
-    public List<Station> getStations() {
-        return stations;
+    public void initializeSectionStation(Station upStation, Station downStation) {
+        sectionStations = new SectionStations(upStation, downStation);
     }
 
-    public void addStation(Station station) {
-        stations.add(station);
+    public SectionStations getSectionStations() {
+        return sectionStations;
     }
 
     public void addStation(Station station, int index) {
-        stations.add(index, station);
+        sectionStations.add(station, index);
     }
 
     public boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        return sectionStations.remove(StationRepository.findStationByName(name));
     }
 }
