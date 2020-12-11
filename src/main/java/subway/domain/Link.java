@@ -12,6 +12,11 @@ public class Link {
         this.order = order;
     }
 
+    public Link(String targetLineName, String targetStationName) {
+        this.lineName = targetLineName;
+        this.stationName = targetStationName;
+    }
+
     public String getLineName() {
         return lineName;
     }

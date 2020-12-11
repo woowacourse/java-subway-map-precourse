@@ -33,18 +33,18 @@ public class LinkService extends CrudService {
     }
 
     private Link getNewLinkInput() throws NumberFormatException {
-        String lineName = getLineName();
-        String stationName = getStationName();
+        String lineName = getLineNameOnAdd();
+        String stationName = getStationNameOnAdd();
         int order = getOrder();
         return new Link(lineName, stationName, order);
     }
 
-    private String getLineName() {
+    private String getLineNameOnAdd() {
         System.out.println(Information.ADD_LINK_INFO_LINE);
         return scanner.nextLine();
     }
 
-    private String getStationName() {
+    private String getStationNameOnAdd() {
         System.out.println(Information.ADD_LINK_INFO_STATION);
         return scanner.nextLine();
     }
@@ -91,7 +91,30 @@ public class LinkService extends CrudService {
 
     @Override
     public void delete() {
+        Link targetLink = getTargetLinkInput();
+        validateTargetLink(targetLink);
+        System.out.println(Information.DELETE_LINK_SUCCESS);
+    }
+
+    private Link getTargetLinkInput() {
+        String targetLineName = getTargetLineNameOnDelete();
+        String targetStationName = getTargetStationNameOnDelete();
+        return new Link(targetLineName, targetStationName);
+    }
+
+    private String getTargetLineNameOnDelete() {
         System.out.println(Information.DELETE_LINK_INFO_LINE);
+        return scanner.nextLine();
+    }
+
+    private String getTargetStationNameOnDelete() {
+        System.out.println(Information.DELETE_LINK_INFO_STATION);
+        return scanner.nextLine();
+    }
+
+    private void validateTargetLink(Link targetLink) {
+        validateLineExists(targetLink.getLineName());
+        validateStationExists(targetLink.getStationName());
     }
 
     @Override
