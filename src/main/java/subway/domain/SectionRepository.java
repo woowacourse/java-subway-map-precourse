@@ -18,13 +18,20 @@ public class SectionRepository {
         sections.add(new Section(line, upDownLastStation));
     }
 
-    public static void addStationOnLine(Line line, Station station, String position) {
+    public static void addStationOnLine(Line line, Station station, int position) {
         Section section = sections.stream()
                 .filter(eachSection -> eachSection.getLine() == line)
                 .findFirst()
                 .get();
-        int index = Integer.parseInt(position);
-        section.getStations().add(index, station);
+        List<Station> stations = section.getStations();
+        int fixedPosition = getFixedPosition(stations, position);
+        stations.add(fixedPosition, station);
+    }
+
+    public static int getFixedPosition(List<Station> stations, int position) {
+        if (position < 1) return 0;
+        if (position >= stations.size()) return stations.size();
+        return position - 1;
     }
 
     public static boolean deleteStationOnLine(Line line, Station targetStation) {

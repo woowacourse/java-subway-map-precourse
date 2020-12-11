@@ -71,4 +71,8 @@ public class SectionView {
     public static void informStationUnder2onLine() {
         System.err.println(ErrorMessage.STATION_UNDER_2_ON_LINE.getMessage());
     }
+
+    public static void informNotNumberFormat() {
+        System.err.println(ErrorMessage.POSITION_NOT_NUMBER_FORMAT.getMessage());
+    }
 }

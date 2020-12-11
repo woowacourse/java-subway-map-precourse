@@ -42,7 +42,7 @@ public class SectionControlCenter {
     private String enrollSection(Scanner scanner) {
         Line lineToEnrollStationOn = inputNameOfLine(scanner);
         Station stationToEnrollOnLine = inputNameOfStation(lineToEnrollStationOn, scanner);
-        String positionToEnrollStationOnLine = inputPositionToEnrollStation(scanner);
+        int positionToEnrollStationOnLine = inputPositionToEnrollStation(scanner);
         SectionRepository.addStationOnLine(
                 lineToEnrollStationOn, stationToEnrollOnLine, positionToEnrollStationOnLine);
         SectionView.informSectionEnrolled();
@@ -73,10 +73,15 @@ public class SectionControlCenter {
         return StationRepository.getStationByName(stationToEnrollOnLine);
     }
 
-    private String inputPositionToEnrollStation(Scanner scanner) {
+    private int inputPositionToEnrollStation(Scanner scanner) {
         SectionView.printAskPosionToEnrollStation();
         String positionToEnrollStation = MainControlCenter.inputCommand(scanner);
-        return positionToEnrollStation;
+        try {
+            return Integer.parseInt(positionToEnrollStation);
+        } catch (NumberFormatException nfe) {
+            SectionView.informNotNumberFormat();
+            return inputPositionToEnrollStation(scanner);
+        }
     }
 
     private String deleteStationFromLine(Scanner scanner) {
