@@ -52,7 +52,7 @@ public class SectionController {
 	private static String getValidStationNameToDelete(Scanner scanner, String lineName) throws IllegalArgumentException {
 		String stationName = View.getStationNameToDeleteSection(scanner);
 		try {
-			Sections.validateDuplicate(stationName, lineName);
+			Sections.validateRegistration(stationName, lineName);
 			return stationName;
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

@@ -37,6 +37,12 @@ public class Sections {
 		}
 	}
 
+	public static void validateRegistration(String lineName, String stationName) throws IllegalArgumentException {
+		if (!LineRepository.getLine(lineName).getSections().sections().contains(stationName)) {
+			throw new IllegalArgumentException(SectionMessages.DUPLICATE_NAME_ERROR.getMessage());
+		}
+	}
+
 	public static void validateInteger(String location) throws IllegalArgumentException {
 		try {
 			Integer.parseInt(location);

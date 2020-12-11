@@ -13,7 +13,7 @@ public enum SectionMessages {
 	SECTION_LOCATION(General.BASIC.getMessage() + "순서를 입력하세요."),
 	REGISTER_COMPLETE(General.INFO.getMessage() + "구간이 등록되었습니다."),
 	LINE_NAME_TO_DELETE(General.BASIC.getMessage() + "삭제할 노선 이름을 입력하세요."),
-	STATION_NAME_TO_DELETE(General.INFO.getMessage() + "삭제할 구간의 역을 입력하세요."),
+	STATION_NAME_TO_DELETE(General.BASIC.getMessage() + "삭제할 구간의 역을 입력하세요."),
 	DELETE_COMPLETE(General.INFO.getMessage() + "구간이 삭제되었습니다."),
 
 	NON_POSITIVE_INTEGER_LOCATION_ERROR(General.ERROR.getMessage() + "위치는 양의 정수만 입력 가능합니다."),

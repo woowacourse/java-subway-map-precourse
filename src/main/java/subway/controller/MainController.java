@@ -51,6 +51,7 @@ public class MainController {
 			run(scanner);
 		} else if (option.equals(Options.OPTION_4.getOption())) {
 			showWholeMap();
+			View.printMainScreen();
 			run(scanner);
 		} else if (option.equalsIgnoreCase(Options.QUIT.getOption())) {
 			return;
