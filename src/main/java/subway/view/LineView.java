@@ -57,11 +57,15 @@ public class LineView {
         System.err.println(ErrorMessage.LINE_NOT_EXIST.getMessage());
     }
 
-    public static void printLineList() {
+    public static String printLineList() {
         System.out.println(LineInfo.LINE_LIST.getInfo());
         LineRepository.lines().stream()
                 .map(line -> LineInfo.INFO.getInfo() + line.getName())
                 .forEach(System.out::println);
+        return LineMenu.CHECK.getCommand();
     }
 
+    public static void informNoMenu() {
+        MainView.informUnableCommand();
+    }
 }

@@ -62,4 +62,8 @@ public class SectionView {
     public static void informSectionDeleted() {
         System.out.println(SectionInfo.INFO_SECTION_DELETED.getInfo());
     }
+
+    public static void informNoMenu() {
+        MainView.informUnableCommand();
+    }
 }

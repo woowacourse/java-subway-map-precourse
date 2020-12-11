@@ -33,11 +33,12 @@ public class StationView {
         System.out.println(StationInfo.INFO_STATION_DELETED.getInfo());
     }
 
-    public static void printStationList() {
+    public static String printStationList() {
         System.out.println(StationInfo.STATION_LIST.getInfo());
         StationRepository.stations().stream()
                 .map(station -> StationInfo.INFO.getInfo() + station.getName())
                 .forEach(System.out::println);
+        return StationMenu.CHECK.getCommand();
     }
 
     public static void infromStationDuplicated() {
@@ -50,5 +51,9 @@ public class StationView {
 
     public static void informStationNotExist() {
         System.err.println(ErrorMessage.STATION_NOT_EXIST.getMessage());
+    }
+
+    public static void informNoMenu() {
+        MainView.informUnableCommand();
     }
 }

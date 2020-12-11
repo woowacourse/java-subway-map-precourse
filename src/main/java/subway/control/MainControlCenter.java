@@ -7,6 +7,7 @@ import subway.enums.MainMenu;
 import subway.view.MainView;
 import subway.view.SectionView;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainControlCenter {
@@ -37,6 +38,7 @@ public class MainControlCenter {
             showMainMenu();
             String command = inputCommand(scanner);
             view = getViewByCommand(command, scanner);
+            informIfNoMenu(view);
         }
     }
 
@@ -57,5 +59,18 @@ public class MainControlCenter {
         if (command.equalsIgnoreCase(MainMenu.EXIT.getCommand()))
             return MainView.exit();
         return "";
+    }
+
+    private void informIfNoMenu(String view) {
+        if (isUnableCommand(view)) {
+            MainView.informUnableCommand();
+        }
+    }
+
+    private boolean isUnableCommand(String view) {
+        return Arrays.stream(MainMenu.values())
+                .skip(MainMenu.STATION_CONTROL.ordinal())
+                .map(MainMenu::getCommand)
+                .noneMatch(command -> command.equals(view));
     }
 }

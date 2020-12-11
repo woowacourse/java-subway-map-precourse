@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.enums.ErrorMessage;
 import subway.enums.MainInfo;
 import subway.enums.MainMenu;
 
@@ -18,6 +19,10 @@ public class MainView {
 
     public static void askInputMenu() {
         System.out.println(MainInfo.INPUT.getInfo());
+    }
+
+    public static void informUnableCommand() {
+        System.err.println(ErrorMessage.NO_MENU.getMessage());
     }
 
     public static String exit() {

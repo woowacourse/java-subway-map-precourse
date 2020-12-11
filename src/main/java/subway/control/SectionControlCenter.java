@@ -1,6 +1,7 @@
 package subway.control;
 
 import subway.domain.*;
+import subway.enums.LineMenu;
 import subway.enums.MainMenu;
 import subway.enums.SectionMenu;
 import subway.view.LineView;
@@ -8,6 +9,7 @@ import subway.view.MainView;
 import subway.view.SectionView;
 import subway.view.StationView;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SectionControlCenter {
@@ -20,28 +22,32 @@ public class SectionControlCenter {
         SectionView.printSectionMenu();
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
-        selectMenu(command, scanner);
+        String menu = selectMenu(command, scanner);
+        if (isUnableCommand(menu)) {
+            SectionView.informNoMenu();
+            return startSectionControl(scanner);
+        }
         return MainMenu.SECTION_CONTROL.getCommand();
     }
 
-    private void selectMenu(String command, Scanner scanner) {
-        if (command.equals(SectionMenu.ENROLL.getCommand())) {
-            enrollSection(scanner);
-            return;
-        }
-        if (command.equals(SectionMenu.DELETE.getCommand())) {
-            deleteStationFromLine(scanner);
-            return;
-        }
+    private String selectMenu(String command, Scanner scanner) {
+        if (command.equals(SectionMenu.ENROLL.getCommand()))
+            return enrollSection(scanner);
+        if (command.equals(SectionMenu.DELETE.getCommand()))
+            return deleteStationFromLine(scanner);
+        if (command.equalsIgnoreCase(SectionMenu.BACK.getCommand()))
+            return SectionMenu.BACK.getCommand();
+        return "";
     }
 
-    private void enrollSection(Scanner scanner) {
+    private String enrollSection(Scanner scanner) {
         Line lineToEnrollStationOn = inputNameOfLine(scanner);
         Station stationToEnrollOnLine = inputNameOfStation(scanner);
         String positionToEnrollStationOnLine = inputPositionToEnrollStation(scanner);
         SectionRepository.addStationOnLine(
                 lineToEnrollStationOn, stationToEnrollOnLine, positionToEnrollStationOnLine);
         SectionView.informSectionEnrolled();
+        return SectionMenu.ENROLL.getCommand();
     }
 
     private Line inputNameOfLine(Scanner scanner) {
@@ -70,12 +76,13 @@ public class SectionControlCenter {
         return positionToEnrollStation;
     }
 
-    private void deleteStationFromLine(Scanner scanner) {
+    private String deleteStationFromLine(Scanner scanner) {
         Line lineToDeleteStationFrom = inputLineToDeleteStationFrom(scanner);
         Station stationToDeleteFromLine =
                 inputStationToDeleteFromLine(lineToDeleteStationFrom, scanner);
         SectionRepository.deleteStationOnLine(lineToDeleteStationFrom, stationToDeleteFromLine);
         SectionView.informSectionDeleted();
+        return SectionMenu.DELETE.getCommand();
     }
 
     private Line inputLineToDeleteStationFrom(Scanner scanner) {
@@ -96,5 +103,12 @@ public class SectionControlCenter {
             return inputStationToDeleteFromLine(lineToDeleteStationFrom, scanner);
         }
         return SectionRepository.getStationByName(lineToDeleteStationFrom, nameOfStation);
+    }
+
+    private boolean isUnableCommand(String menu) {
+        return Arrays.stream(SectionMenu.values())
+                .skip(SectionMenu.ENROLL.ordinal())
+                .map(SectionMenu::getCommand)
+                .noneMatch(command -> command.equals(menu));
     }
 }

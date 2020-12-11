@@ -8,6 +8,7 @@ import subway.view.MainView;
 import subway.view.StationView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,26 +22,31 @@ public class LineControlCenter {
         LineView.printLineMenu();
         MainView.askInputMenu();
         String command = MainControlCenter.inputCommand(scanner);
-        selectMenu(command, scanner);
+        String menu = selectMenu(command, scanner);
+        if (isUnableCommand(menu)) {
+            LineView.informNoMenu();
+            return startLineControl(scanner);
+        }
         return MainMenu.LINE_CONTROL.getCommand();
     }
 
-    private void selectMenu(String command, Scanner scanner) {
+    private String selectMenu(String command, Scanner scanner) {
         if (command.equals(LineMenu.ENROLL.getCommand())) {
-            enrollLine(scanner);
-            return;
+            return enrollLine(scanner);
         }
         if (command.equals(LineMenu.DELETE.getCommand())) {
-            removeLine(scanner);
-            return;
+            return removeLine(scanner);
         }
         if (command.equals(LineMenu.CHECK.getCommand())) {
-            LineView.printLineList();
-            return;
+            return LineView.printLineList();
         }
+        if (command.equalsIgnoreCase(LineMenu.BACK.getCommand())) {
+            return LineMenu.BACK.getCommand();
+        }
+        return "";
     }
 
-    private void enrollLine(Scanner scanner) {
+    private String enrollLine(Scanner scanner) {
         String nameOfLine = inputNameOfLine(scanner);
         Station upLastStation = inputUpLastStation(scanner);
         Station downLastStation = inputDownLastStation(scanner, upLastStation);
@@ -49,6 +55,7 @@ public class LineControlCenter {
         LineView.informLineEnrolled();
         SectionRepository.addLineToSection(
                 line, getUpDownLastStations(upLastStation, downLastStation));
+        return LineMenu.ENROLL.getCommand();
     }
 
     private String inputNameOfLine(Scanner scanner) {
@@ -89,15 +96,15 @@ public class LineControlCenter {
         return StationRepository.getStationByName(downLastStation);
     }
 
-    private void removeLine(Scanner scanner) {
+    private String removeLine(Scanner scanner) {
         LineView.printAskLineNameToDelete();
         String nameOfLine = MainControlCenter.inputCommand(scanner);
         if (LineRepository.deleteLineByName(nameOfLine)) {
             LineView.informLineDeleted();
-            return;
+            return LineMenu.DELETE.getCommand();
         }
         LineView.informLineNotExist();
-        removeLine(scanner);
+        return removeLine(scanner);
     }
 
     private List<Station> getUpDownLastStations(Station upLastStation, Station downLastStation) {
@@ -105,5 +112,12 @@ public class LineControlCenter {
         upDownLastStations.add(upLastStation);
         upDownLastStations.add(downLastStation);
         return upDownLastStations;
+    }
+
+    private boolean isUnableCommand(String menu) {
+        return Arrays.stream(LineMenu.values())
+                .skip(LineMenu.ENROLL.ordinal())
+                .map(LineMenu::getCommand)
+                .noneMatch(command -> command.equals(menu));
     }
 }
