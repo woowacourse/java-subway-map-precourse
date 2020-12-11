@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import subway.line.domain.LineRepository;
+import subway.line.exception.IllegalTypeOfNameException;
 import subway.line.exception.TooShortLineNameException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
@@ -60,6 +61,18 @@ public class LineServiceTest {
 
         //when & then
         assertThatExceptionOfType(TooShortLineNameException.class)
+                .isThrownBy(() -> LineService.register(name, topStationName, bottomStationName));
+    }
+
+    @Test
+    public void 노선이름_한글_혹은_숫자가_아니면_예외_발생() {
+        //given
+        String name = "English";
+        String topStationName = "대구역";
+        String bottomStationName = "동대구역";
+
+        //when & then
+        assertThatExceptionOfType(IllegalTypeOfNameException.class)
                 .isThrownBy(() -> LineService.register(name, topStationName, bottomStationName));
     }
 }
