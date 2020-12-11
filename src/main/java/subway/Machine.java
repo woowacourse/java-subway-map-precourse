@@ -15,6 +15,9 @@ public class Machine {
 
     public Machine() {
         mainFunctions.put("1", FunctionsFactory.createStationFunctions());
+        mainFunctions.put("2", FunctionsFactory.createLineFunction());
+        mainFunctions.put("3", FunctionsFactory.createSectionFunctions());
+        mainFunctions.put("4", FunctionsFactory.createStationFunctions());
         // TODO "2" - 노선 관리
         // TODO "3" - 구간 관리
         // TODO "4" - 지하철 노선도 출력

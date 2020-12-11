@@ -22,6 +22,10 @@ public class Application {
             if (mainFunctionNumber.equals("Q")) {
                 break;
             }
+            // 4번 - 지하철 노선도 출력
+            if (mainFunctionNumber.equals("4")) {
+                
+            }
             Functions mainFunctions = machine.selectMainFunctions(mainFunctionNumber);
 
             // 서브 기능
