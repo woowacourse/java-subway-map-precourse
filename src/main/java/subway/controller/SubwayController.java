@@ -39,7 +39,7 @@ public class SubwayController {
             return;
         }
         if (mainInput.equals(InputType.INPUT_TWO.getInput())) {
-            OutputView.printLineManagementScreen();
+            LineController.startLine(scanner);
             return;
         }
         if (mainInput.equals(InputType.INPUT_THREE.getInput())) {
@@ -52,4 +52,6 @@ public class SubwayController {
         }
         OutputView.printInvalidFeatureChoiceException();
     }
+
+
 }
