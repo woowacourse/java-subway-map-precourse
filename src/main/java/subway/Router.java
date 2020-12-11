@@ -1,9 +1,11 @@
 package subway;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.controller.StationController;
+import subway.domain.Station;
 import subway.view.InputView;
-import subway.view.OutputView;
+import subway.view.LogMessage;
 
 public class Router {
     private static final String QUIT = "Q";
@@ -28,7 +30,7 @@ public class Router {
 
     private boolean routeMainScreen(String command) {
         if (command.equals(QUIT)) {
-            OutputView.printEndMessage();
+            LogMessage.printEndMessage();
             return false;
         }
         if (command.equals(STATION)) {
@@ -52,10 +54,10 @@ public class Router {
 
         }
         if (command.equals(SEARCH)) {
-
+            StationController.searchStation();
         }
         if (command.equals(BACK)) {
-            OutputView.printBackToMainScreen();
+            LogMessage.printBackToMainScreen();
         }
     }
 
