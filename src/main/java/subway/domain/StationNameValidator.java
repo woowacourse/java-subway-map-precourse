@@ -50,7 +50,7 @@ public class StationNameValidator {
         }
     }
 
-    public static String makeIsolateName(String inputName) {
+    public static String makeEnrolledStationName(String inputName) {
         nowInputName = inputName;
         checkNotEnrolledName();
         return nowInputName;

@@ -25,6 +25,10 @@ public class SubwayRepository {
         subway.put(lineByName, new ArrayList<>());
     }
 
+    public static void deleteStationFromLine(Line selectedLine, Station selectedStation) {
+        subway.get(selectedLine).remove(selectedStation);
+    }
+
     public static boolean findStationByName(String inputRemoveName) {
         boolean flag = false;
         for(Line line: subway.keySet()){
@@ -38,4 +42,5 @@ public class SubwayRepository {
     public static boolean findLineByName(String nowInputName) {
         return subway().containsKey(LineRepository.findLineByName(nowInputName));
     }
+
 }

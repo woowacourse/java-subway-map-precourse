@@ -32,6 +32,9 @@ public class SubwayController {
             if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.LINE)) {
                 lineFunction();
             }
+            if (MainFunctions.haveNumber(nowFunction).equals(MainFunctions.WAY)) {
+                wayFunction();
+            }
         }
     }
 
@@ -39,7 +42,6 @@ public class SubwayController {
         while (true) {
             OutputView.printDetailFunction(MainFunctions.STATION);
             DetailFunctions detailFunction = DetailFunctions.haveNumber(this.inputView.receiveFunction());
-            OutputView.printOneLine();
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
@@ -55,6 +57,17 @@ public class SubwayController {
                 break;
             }
             LineFunctionController.doFunction(detailFunction, this.inputView);
+        }
+    }
+
+    private void wayFunction() {
+        while (true) {
+            OutputView.printDetailFunction(MainFunctions.WAY);
+            DetailFunctions detailFunction = DetailFunctions.haveNumber(this.inputView.receiveFunction());
+            if (detailFunction.equals(DetailFunctions.BACK)) {
+                break;
+            }
+            WayFunctionController.doFunction(detailFunction, this.inputView);
         }
     }
 

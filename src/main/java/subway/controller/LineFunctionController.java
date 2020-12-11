@@ -11,7 +11,7 @@ public class LineFunctionController {
             enrollLine(detailFunction, inputView);
         }
         if (detailFunction.equals(DetailFunctions.REMOVE)) {
-            LineRepository.deleteLineByName((makeValidateRemoveName(inputView)));
+            LineRepository.deleteLineByName((makeValidateEnrolledName(inputView)));
             LineOutputView.printSuccess(detailFunction);
         }
         if (detailFunction.equals(DetailFunctions.RESEARCH)) {
@@ -30,7 +30,7 @@ public class LineFunctionController {
     private static Station makeValidateStation(String startOrFinish, InputView inputView) {
         try{
             LineOutputView.printStartOrFinishStation(startOrFinish);
-            return StationRepository.findStationByName(StationNameValidator.makeIsolateName(inputView.receiveFunctionInfo()));
+            return StationRepository.findStationByName(StationNameValidator.makeEnrolledStationName(inputView.receiveFunctionInfo()));
         } catch (IllegalArgumentException e){
             System.out.println("[ERROR] "+e.getMessage());
             return makeValidateStation(startOrFinish, inputView);
@@ -47,13 +47,13 @@ public class LineFunctionController {
         }
     }
 
-    private static String makeValidateRemoveName(InputView inputView) {
+    public static String makeValidateEnrolledName(InputView inputView) {
         try {
             LineOutputView.printFunction(DetailFunctions.REMOVE);
-            return LineNameValidator.makeRemoveName(inputView.receiveFunctionInfo());
+            return LineNameValidator.makeEnrolledLineName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] "+e.getMessage());
-            return makeValidateRemoveName(inputView);
+            return makeValidateEnrolledName(inputView);
         }
     }
 

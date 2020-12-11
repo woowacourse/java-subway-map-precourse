@@ -32,7 +32,7 @@ public class LineNameValidator {
         }
     }
 
-    public static String makeRemoveName(String inputRemoveName) {
+    public static String makeEnrolledLineName(String inputRemoveName) {
         nowInputName = inputRemoveName;
         checkNotEnrolledName();
         return nowInputName;
