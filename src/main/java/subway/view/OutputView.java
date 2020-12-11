@@ -77,6 +77,10 @@ public class OutputView {
         printEmptyLine();
     }
 
+    public static void printSuccessToCreateLine() {
+        System.out.println(INFO_PREFIX + "지하철 노선이 등록되었습니다.");
+    }
+
     public static void printStations(List<Station> stations) {
         System.out.println("## 역 목록");
         for (Station station : stations) {
