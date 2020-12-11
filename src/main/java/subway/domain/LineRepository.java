@@ -5,6 +5,8 @@ import java.util.*;
 public class LineRepository {
     private static final String ERROR_ALREADY_EXIST = "이미 등록된 노선 이름입니다.";
     private static final String ERROR_NOT_EXIST = "등록되지 않은 노선 이름입니다.";
+    private static final String ERROR_NO_LINES = "등록된 노선이 없습니다.";
+    private static final int ZERO = 0;
 
     private static final List<Line> lines = new ArrayList<>();
 
@@ -18,6 +20,9 @@ public class LineRepository {
     }
 
     public static List<Line> lines() {
+        if (lines.size() == ZERO) {
+            throw new RuntimeException(ERROR_NO_LINES);
+        }
         return Collections.unmodifiableList(lines);
     }
 

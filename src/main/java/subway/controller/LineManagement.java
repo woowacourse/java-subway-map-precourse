@@ -7,6 +7,9 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LineManagement {
     private static final String REGISTER = "1";
     private static final String DELETE = "2";
@@ -30,6 +33,9 @@ public class LineManagement {
         if (menu.equals(DELETE)) {
             deleteLine();
         }
+        if (menu.equals(PRINT)) {
+            printAllLines();
+        }
     }
 
     private static void registerLine() {
@@ -51,6 +57,17 @@ public class LineManagement {
             LineRepository.deleteLineByName(InputView.getLineNameToDelete());
             OutputView.printLineDeleteDone();
         } catch (IllegalArgumentException e) {
+            OutputView.showErrorMessage(e);
+        }
+    }
+
+    private static void printAllLines() {
+        try {
+            List<String> lineNames = LineRepository.lines().stream()
+                    .map(Line::getName)
+                    .collect(Collectors.toList());
+            OutputView.printLines(lineNames);
+        } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
         }
     }
