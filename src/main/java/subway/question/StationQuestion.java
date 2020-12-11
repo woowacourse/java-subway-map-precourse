@@ -7,27 +7,27 @@ public enum StationQuestion implements BaseQuestion {
         @Override
         public void nextAction(View view) {
             view.registerStation();
-            view.view("Main");
+            view.main();
         }
     },
     DELETE_STATION("2. 역 삭제", "2") {
         @Override
         public void nextAction(View view) {
             view.deleteStation();
-            view.view("Main");
+            view.main();
         }
     },
     SHOW_STATIONS("3. 역 조회", "3") {
         @Override
         public void nextAction(View view) {
             view.printStationList();
-            view.view("Main");
+            view.main();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction(View view) {
-            view.view("Main");
+            view.main();
         }
     };
 

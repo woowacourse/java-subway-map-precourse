@@ -1,5 +1,7 @@
 package subway;
 
+import subway.question.*;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,17 +18,12 @@ public class Questions {
         Questions.put("Section", SectionQuestion.values());
     }
 
-    public Stream<String> getQuestions(String key) {
-        return Arrays.stream(Questions.get(key)).map(BaseQuestion::getQuestion);
+    public Stream<String> getQuestions(String questionType) {
+        return Arrays.stream(Questions.get(questionType)).map(BaseQuestion::getQuestion);
     }
 
-    public void printQuestions(String key) {
-        System.out.println();
-        getQuestions(key).forEach(System.out::println);
-    }
-
-    public BaseQuestion findByAnswerCode(String inputCode, String key) {
-        return Arrays.stream(Questions.get(key))
+    public BaseQuestion findByAnswerCode(String questionType, String inputCode) {
+        return Arrays.stream(Questions.get(questionType))
                 .filter(question -> question.hasAnswerCode(inputCode))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_CHOICE));

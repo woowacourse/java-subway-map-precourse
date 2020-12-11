@@ -7,27 +7,27 @@ public enum LineQuestion implements BaseQuestion {
         @Override
         public void nextAction(View view) {
             view.registerLine();
-            view.view("Main");
+            view.main();
         }
     },
     DELETE_STATION("2. 노선 삭제", "2") {
         @Override
         public void nextAction(View view) {
             view.deleteLine();
-            view.view("Main");
+            view.main();
         }
     },
     SHOW_STATIONS("3. 노선 조회", "3") {
         @Override
         public void nextAction(View view) {
             view.printSubwayLineList();
-            view.view("Main");
+            view.main();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction(View view) {
-            view.view("Main");
+            view.main();
         }
     };
 

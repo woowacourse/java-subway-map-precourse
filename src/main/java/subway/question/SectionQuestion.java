@@ -7,20 +7,20 @@ public enum SectionQuestion implements BaseQuestion {
         @Override
         public void nextAction(View view) {
             view.registerSection();
-            view.view("Main");
+            view.main();
         }
     },
     DELETE_STATION("2. 구간 삭제", "2") {
         @Override
         public void nextAction(View view) {
             view.deleteSection();
-            view.view("Main");
+            view.main();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction(View view) {
-            view.view("Main");
+            view.main();
         }
     };
 

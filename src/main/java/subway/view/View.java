@@ -6,6 +6,10 @@ import subway.Questions;
 import java.util.Scanner;
 
 public class View {
+    private final String MAIN_VIEW = "Main";
+    private final String STATION_VIEW = "Station";
+    private final String LINE_VIEW = "Line";
+    private final String SECTION_VIEW = "Section";
     InputView inputView;
     OutputView outputView;
     Questions questions;
@@ -16,9 +20,29 @@ public class View {
         questions = new Questions();
     }
 
-    public void view(String questionType) {
+    public void main() {
+        nextView(MAIN_VIEW);
+    }
+
+    public void station() {
+        nextView(STATION_VIEW);
+    }
+
+    public void line() {
+        nextView(LINE_VIEW);
+    }
+
+    public void section() {
+        nextView(SECTION_VIEW);
+    }
+
+    private void nextView(String questionType) {
         outputView.printQuestions(questions.getQuestions(questionType));
-        questions.findByAnswerCode(questionType, inputView.getAnswer()).nextAction(this);
+        selectedQuestion(questionType).nextAction(this);
+    }
+
+    private BaseQuestion selectedQuestion(String questionType) {
+        return questions.findByAnswerCode(questionType, inputView.getAnswer());
     }
 
     public void printEntireSubwayLine() {
