@@ -30,35 +30,36 @@ public class OutputView {
     private final String DELETE_SECTION_STATION_NAME_QUESTION = "## 삭제할 구간의 역을 입력하세요.";
     private final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.";
     private final String DASH = "---";
+
     public OutputView() {
     }
 
     public void printQuestions(Stream<String> questions) {
-        printLine("");
-        questions.forEach(this::printLine);
+        questions.forEach(this::println);
     }
 
     public void printRegisterSectionLineNameQuestion() {
-        printLine(REGISTER_SECTION_LINE_NAME_QUESTION);
+        println(REGISTER_SECTION_LINE_NAME_QUESTION);
     }
+
     public void printRegisterSectionStationNameQuestion() {
-        printLine(REGISTER_SECTION_STATION_NAME_QUESTION);
+        println(REGISTER_SECTION_STATION_NAME_QUESTION);
     }
 
     public void printRegisterSectionOrderNumberQuestion() {
-        printLine(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
+        println(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
     }
 
     public void printRegisterSectionSuccess() {
-        printLine(REGISTER_SECTION_SUCCESS);
+        println(REGISTER_SECTION_SUCCESS);
     }
 
     public void printDeleteSectionLineNameQuestion() {
-        printLine(DELETE_SECTION_LINE_NAME_QUESTION);
+        println(DELETE_SECTION_LINE_NAME_QUESTION);
     }
 
     public void printDeleteSectionStationNameQuestion() {
-        printLine(DELETE_SECTION_STATION_NAME_QUESTION);
+        println(DELETE_SECTION_STATION_NAME_QUESTION);
     }
 
     public void printDeleteSectionSuccess() {
@@ -67,7 +68,7 @@ public class OutputView {
 
 
     public void printRegisterStationQuestion() {
-        printLine(REGISTER_STATION_QUESTION);
+        println(REGISTER_STATION_QUESTION);
     }
 
     public void printRegisterStationSuccess() {
@@ -75,7 +76,7 @@ public class OutputView {
     }
 
     public void printDeleteStationQuestion() {
-        printLine(DELETE_STATION_QUESTION);
+        println(DELETE_STATION_QUESTION);
     }
 
     public void printDeleteStationSuccess() {
@@ -83,7 +84,7 @@ public class OutputView {
     }
 
     public void printRegisterLineQuestion() {
-        printLine(REGISTER_LINE_QUESTION);
+        println(REGISTER_LINE_QUESTION);
     }
 
     public void printRegisterLineSuccess() {
@@ -91,15 +92,15 @@ public class OutputView {
     }
 
     public void printDeleteLineQuestion() {
-        printLine(DELETE_LINE_QUESTION);
+        println(DELETE_LINE_QUESTION);
     }
 
     public void printStartStationQuestion() {
-        printLine(START_STATION_QUESTION);
+        println(START_STATION_QUESTION);
     }
 
     public void printEndStationQuestion() {
-        printLine(END_STATION_QUESTION);
+        println(END_STATION_QUESTION);
     }
 
     public void printDeleteLineSuccess() {
@@ -107,24 +108,24 @@ public class OutputView {
     }
 
     public void printSubwayLineList(List<Line> lineList) {
-        printLine(SUBWAY_LINE_LIST_HEADER);
+        println(SUBWAY_LINE_LIST_HEADER);
         for (Line line : lineList) {
             printSubwayLineName(line);
         }
-        printLine("");
+        printEnter();
     }
 
     public void printStationList(List<Station> stationList) {
-        printLine(STATION_LIST_HEADER);
+        println(STATION_LIST_HEADER);
         printStationNames(stationList);
-        printLine("");
+        printEnter();
     }
 
     public void printEntireSubwayLine(List<Line> lineList) {
-        printLine(ENTIRE_SUBWAY_LINE_HEADER);
+        println(ENTIRE_SUBWAY_LINE_HEADER);
         for (Line line : lineList) {
             printSubwayLine(line);
-            printLine("");
+            printEnter();
         }
     }
 
@@ -144,16 +145,19 @@ public class OutputView {
         }
     }
 
-    public void printLine(String message) {
-        System.out.println(message);
+    public void printEnter() {
+        println("");
     }
 
     public void printInfo(String message) {
-        System.out.println(INFO_PREFIX + message);
+        println(INFO_PREFIX + message);
     }
 
     public void printError(String message) {
-        System.out.println(ERROR_PREFIX + message);
+        println(ERROR_PREFIX + message);
     }
 
+    public void println(String message) {
+        System.out.println(message);
+    }
 }
