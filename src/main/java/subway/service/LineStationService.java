@@ -42,4 +42,13 @@ public class LineStationService {
         lineStation.addLineStation(line, StationRepository.findStation(endStationName).get());
         printAddLineStationSuccessMessage();
     }
+
+    private void deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
+        inputDeleteLineNameRequestMessage();
+        String lineName = scanner.nextLine();
+        //validation
+        //1.입력한 노선 이름이 존재하는지 검증한다
+        lineStation.deleteLineStation(LineRepository.findLine(lineName).get());
+        LineRepository.deleteLineByName(lineName);
+    }
 }
