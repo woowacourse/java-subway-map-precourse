@@ -9,8 +9,8 @@ public class SectionRepository {
         return Collections.unmodifiableMap(sections);
     }
 
-    public static void addSection(String line, String startStation, String lastStation) {
-        sections.put(line, new ArrayList<>(Arrays.asList(startStation, lastStation)));
+    public static void addSection(String line, String firstStation, String lastStation) {
+        sections.put(line, new ArrayList<>(Arrays.asList(firstStation, lastStation)));
     }
 
     public static void insertSection(String line, String station, int index) {
