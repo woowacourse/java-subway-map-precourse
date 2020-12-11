@@ -1,11 +1,9 @@
 package subway.view;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-
-import java.util.List;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class OutputView {
     private static final String PRINT_STATION_LIST_MESSAGE = "## 역 목록";

@@ -1,6 +1,12 @@
 package subway.controller;
 
-import subway.domain.*;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.menu.MainMenuType;
+import subway.domain.menu.Menu;
+import subway.domain.menu.SubMenuType;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -25,10 +31,15 @@ public class SubwayProgram {
         StationRepository.addStation(new Station("양재역"));
         StationRepository.addStation(new Station("양재시민의숲역"));
         StationRepository.addStation(new Station("매봉역"));
-        
-        LineRepository.addLine(new Line("2호선"));
+
+        Line line = new Line("2호선");
+        line.init(new Station("교대역"), new Station("역삼역"));
+        line.addStationToLine(new Station("강남역"), 2);
+        LineRepository.addLine(line);
         LineRepository.addLine(new Line("3호선"));
         LineRepository.addLine(new Line("신분당선"));
+
+
     }
 
 
@@ -75,6 +86,7 @@ public class SubwayProgram {
         SubMenuType subMenuType;
         do {
             subMenuType = InputView.inputSectionMenu(scanner, subMenuName, mainMenuType);
+            selectSectionMenu(subMenuType);
         }while (!subMenuType.equals(SubMenuType.BACK));
     }
 
@@ -103,6 +115,17 @@ public class SubwayProgram {
         }
         if (SubMenuType.LIST_PRINT.equals(lineMenuType)) {
             OutputView.printLineList();
+        }
+    }
+
+    private void selectSectionMenu(Menu sectionMenuType) {
+        if (SubMenuType.ADD.equals(sectionMenuType)) {
+            InputView.inputSectionAdd(scanner);
+            return;
+        }
+        if (SubMenuType.DELETE.equals(sectionMenuType)) {
+            InputView.inputLineNameDelete(scanner);
+            return;
         }
     }
 

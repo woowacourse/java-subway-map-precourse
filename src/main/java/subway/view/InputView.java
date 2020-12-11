@@ -1,6 +1,12 @@
 package subway.view;
 
-import subway.domain.*;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.menu.MainMenuType;
+import subway.domain.menu.SubMenuType;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
+import subway.utils.InputValidator;
 
 import java.util.Scanner;
 
@@ -21,6 +27,9 @@ public class InputView {
     private static final String INPUT_LAST_STATION_ADD_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String INPUT_STATION_NAME_DELETE_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
     private static final String INPUT_LINE_NAME_DELETE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
+    private static final String INPUT_SECTION_LINE = "## 노선을 입력하세요.";
+    private static final String INPUT_SECTION_STATION = "## 역이름을 입력하세요.";
+    private static final String INPUT_SECTION_INDEX = "## 순서를 입력하세요.";
     private InputView() {
 
     }
@@ -105,6 +114,22 @@ public class InputView {
         try {
             System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);
             LineRepository.deleteLineByName(scanner.nextLine());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void inputSectionAdd(Scanner scanner) {
+        try {
+            System.out.println(INPUT_SECTION_LINE);
+            Line line = LineRepository.getLineByName(scanner.nextLine());
+            System.out.println(INPUT_SECTION_STATION);
+            Station station = new Station(scanner.nextLine());
+            StationRepository.validateNameExist(station);
+            line.validateDuplicateStationToLine(station);
+            System.out.println(INPUT_SECTION_INDEX);
+            int index = InputValidator.validateInteger(scanner.nextLine());
+            line.addStationToLine(station, index);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
