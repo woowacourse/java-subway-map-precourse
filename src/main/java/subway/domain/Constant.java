@@ -20,6 +20,8 @@ public class Constant {
     public static final String ENTER_LINE = "노선을 입력하세요.";
     public static final String ENTER_STATION = "역이름을 입력하세요.";
     public static final String ENTER_ORDER = "순서를 입력하세요.";
+    public static final String SECTION_DONE_MESSAGE = "구간이 %s되었습니다.";
+    public static final String ENTER_TO_DELETE_SECTION = "삭제할 구간의 %s을 입력하세요.";
     public static final String MAIN_MENU = "메인 화면";
     public static final String SETTING_MENU = "%s 관리 화면";
     public static final String SUBWAY_MAP = "지하철 노선도";

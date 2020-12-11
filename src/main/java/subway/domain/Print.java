@@ -100,4 +100,20 @@ public class Print {
     public static void setOrderToAddSection() {
         System.out.printf(Constant.HASH + Constant.ENTER_ORDER);
     }
+
+    public static void setLineToDeleteSection() {
+        System.out.printf(Constant.HASH + Constant.ENTER_TO_DELETE_SECTION, Constant.LINE);
+    }
+
+    public static void setStationToDeleteSection() {
+        System.out.printf(Constant.HASH + Constant.ENTER_TO_DELETE_SECTION, Constant.STATION);
+    }
+
+    public static void addSectionDoneMessage() {
+        System.out.printf(Constant.HASH + Constant.SECTION_DONE_MESSAGE, Constant.ADD);
+    }
+
+    public static void deleteSectionDoneMessage() {
+        System.out.printf(Constant.HASH + Constant.SECTION_DONE_MESSAGE, Constant.DELETE);
+    }
 }
