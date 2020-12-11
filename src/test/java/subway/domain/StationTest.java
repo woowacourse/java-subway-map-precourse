@@ -35,7 +35,7 @@ class StationTest {
                 .findAny();
 
         //then
-        assertThat(findStation.get()).isEqualTo(station);
+        assertThat(findStation.orElse(null)).isEqualTo(station);
     }
 
     @Test
@@ -51,7 +51,7 @@ class StationTest {
                 .findAny();
 
         //then
-        assertThat(findStation.get()).isNotEqualTo(station);
+        assertThat(findStation.orElse(null)).isNull();
     }
 
     @Test
