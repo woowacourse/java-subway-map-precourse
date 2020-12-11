@@ -61,19 +61,26 @@ public class LineControlCenter {
     private String inputNameOfLine(Scanner scanner) {
         LineView.printAskLineNameToEnroll();
         String nameOfLine = MainControlCenter.inputCommand(scanner);
-        if (LineRepository.isNameDuplication(nameOfLine)) {
-            LineView.informLineDuplicated();
-            return inputNameOfLine(scanner);
-        }
-        if (LineRepository.isNameLengthUnder2(nameOfLine)) {
-            LineView.informNameLengthUnder2();
-            return inputNameOfLine(scanner);
-        }
-        if (StationRepository.isNameDuplication(nameOfLine)) {
-            StationView.informStationDuplicated();
+        if (!isValidName(nameOfLine)) {
             return inputNameOfLine(scanner);
         }
         return nameOfLine;
+    }
+
+    private boolean isValidName(String nameOfLine) {
+        if (LineRepository.isNameDuplication(nameOfLine)) {
+            LineView.informLineDuplicated();
+            return false;
+        }
+        if (LineRepository.isNameLengthUnder2(nameOfLine)) {
+            LineView.informNameLengthUnder2();
+            return false;
+        }
+        if (StationRepository.isNameDuplication(nameOfLine)) {
+            StationView.informStationDuplicated();
+            return false;
+        }
+        return true;
     }
 
     private Station inputUpLastStation(Scanner scanner) {
@@ -93,7 +100,7 @@ public class LineControlCenter {
             StationView.informStationNotExist();
             return inputDownLastStation(scanner, upLastStation);
         }
-        if (downLastStation.equals(upLastStation.getName())){
+        if (downLastStation.equals(upLastStation.getName())) {
             LineView.informLastUpDownStationDuplication();
             return inputDownLastStation(scanner, upLastStation);
         }

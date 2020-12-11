@@ -54,36 +54,49 @@ public class StationControlCenter {
     private String inputNameOfStation(Scanner scanner) {
         StationView.printAskStationNameToEnroll();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
-        if (StationRepository.isNameDuplication(nameOfStation)) {
-            StationView.informStationDuplicated();
-            return inputNameOfStation(scanner);
-        }
-        if (StationRepository.isNameLengthUnder2(nameOfStation)) {
-            StationView.informNameLengthUnder2();
-            return inputNameOfStation(scanner);
-        }
-        if (LineRepository.isNameDuplication(nameOfStation)) {
-            LineView.informLineDuplicated();
+        if (!isValidNameToRegister(nameOfStation)) {
             return inputNameOfStation(scanner);
         }
         return nameOfStation;
     }
 
+    private boolean isValidNameToRegister(String nameOfStation) {
+        if (StationRepository.isNameDuplication(nameOfStation)) {
+            StationView.informStationDuplicated();
+            return false;
+        }
+        if (StationRepository.isNameLengthUnder2(nameOfStation)) {
+            StationView.informNameLengthUnder2();
+            return false;
+        }
+        if (LineRepository.isNameDuplication(nameOfStation)) {
+            LineView.informLineDuplicated();
+            return false;
+        }
+        return true;
+    }
+
     private String removeStation(Scanner scanner) {
         StationView.printAskStationNameToDelete();
         String nameOfStation = MainControlCenter.inputCommand(scanner);
-        if (!StationRepository.isNameDuplication(nameOfStation)) {
-            StationView.informStationNotExist();
-            return removeStation(scanner);
-        }
-        if (SectionRepository.isStationInWholeSection(nameOfStation)) {
-            StationView.informStationOnLine();
+        if (!isValidNameToDelete(nameOfStation)) {
             return removeStation(scanner);
         }
         StationRepository.deleteStation(nameOfStation);
         StationView.informStationDeleted();
-
         return StationMenu.DELETE.getCommand();
+    }
+
+    private boolean isValidNameToDelete(String nameOfStation) {
+        if (!StationRepository.isNameDuplication(nameOfStation)) {
+            StationView.informStationNotExist();
+            return false;
+        }
+        if (SectionRepository.isStationInWholeSection(nameOfStation)) {
+            StationView.informStationOnLine();
+            return false;
+        }
+        return true;
     }
 
     private boolean isUnableCommand(String menu) {

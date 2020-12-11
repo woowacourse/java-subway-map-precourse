@@ -74,7 +74,7 @@ public class SectionControlCenter {
     }
 
     private int inputPositionToEnrollStation(Scanner scanner) {
-        SectionView.printAskPosionToEnrollStation();
+        SectionView.printAskPositionToEnrollStation();
         String positionToEnrollStation = MainControlCenter.inputCommand(scanner);
         try {
             return Integer.parseInt(positionToEnrollStation);

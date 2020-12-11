@@ -29,7 +29,7 @@ public class SectionView {
         System.out.println(SectionInfo.ASK_STATION_TO_ENROLL_ON_LINE.getInfo());
     }
 
-    public static void printAskPosionToEnrollStation() {
+    public static void printAskPositionToEnrollStation() {
         System.out.println(SectionInfo.ASK_POSITION_TO_ENROLL_STATION.getInfo());
     }
 

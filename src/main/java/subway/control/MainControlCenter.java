@@ -21,7 +21,7 @@ public class MainControlCenter {
         lineControlCenter = new LineControlCenter();
         sectionControlCenter = new SectionControlCenter();
 
-        StationRepository.initializeStations();;
+        StationRepository.initializeStations();
         LineRepository.initializeLines();
         SectionRepository.initializeSections();
     }
