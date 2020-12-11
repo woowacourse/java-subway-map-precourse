@@ -20,7 +20,7 @@ public class Line {
         return stations.contains(station);
     }
 
-    public boolean equalName(String newName) {
+    public boolean equalWith(String newName) {
         return name.equals(newName);
     }
 

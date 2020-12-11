@@ -14,7 +14,7 @@ public class StationRepository {
 
     public static boolean isExistEqualName(String newName) {
         for(Station station: stations) {
-            if (station.equalName(newName)) {
+            if (station.equalWith(newName)) {
                return true;
             }
         }

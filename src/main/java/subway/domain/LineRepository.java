@@ -31,7 +31,7 @@ public class LineRepository {
 
     public boolean isRepeatedName(String Name) {
         for(Line line: lines) {
-            if(line.equalName(Name)) {
+            if(line.equalWith(Name)) {
                 return true;
             }
         }
