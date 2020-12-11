@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class SubwayProgram {
     private static final String STATION = "역";
     private static final String LINE = "노선";
+    private static final String SECTION = "구간";
     
     private final Scanner scanner;
     
@@ -41,25 +42,39 @@ public class SubwayProgram {
 
     private void selectMainMenu(MainMenuType mainMenuType) {
         if (MainMenuType.STATION_MANAGE.equals(mainMenuType)) {
-            getSubMenu(STATION);
+            getStationMenu(mainMenuType, STATION);
             return;
         }
         if (MainMenuType.LINE_MANAGE.equals(mainMenuType)) {
-            getSubMenu(LINE);
+            getLineMenu(mainMenuType, LINE);
+            return;
+        }
+        if (MainMenuType.SECTION_MANAGE.equals(mainMenuType)) {
+            getSectionMenu(mainMenuType, SECTION);
             return;
         }
     }
 
-    private void getSubMenu(String subMenuName) {
-        Menu subMenuType;
+    private void getStationMenu(MainMenuType mainMenuType, String subMenuName) {
+        SubMenuType subMenuType;
         do {
-            subMenuType = InputView.inputSubMenu(scanner, subMenuName);
-            if (subMenuName.equals(STATION)) {
-                selectStationMenu(subMenuType);
-            }
-            if (subMenuName.equals(LINE)) {
-                selectLineMenu(subMenuType);
-            }
+            subMenuType = InputView.inputStationOrLineMenu(scanner, subMenuName, mainMenuType);
+            selectStationMenu(subMenuType);
+        }while (!subMenuType.equals(SubMenuType.BACK));
+    }
+
+    private void getLineMenu(MainMenuType mainMenuType, String subMenuName) {
+        SubMenuType subMenuType;
+        do {
+            subMenuType = InputView.inputStationOrLineMenu(scanner, subMenuName, mainMenuType);
+            selectLineMenu(subMenuType);
+        }while (!subMenuType.equals(SubMenuType.BACK));
+    }
+
+    private void getSectionMenu(MainMenuType mainMenuType, String subMenuName) {
+        SubMenuType subMenuType;
+        do {
+            subMenuType = InputView.inputSectionMenu(scanner, subMenuName, mainMenuType);
         }while (!subMenuType.equals(SubMenuType.BACK));
     }
 
@@ -90,6 +105,7 @@ public class SubwayProgram {
             OutputView.printLineList();
         }
     }
+
 
 
 

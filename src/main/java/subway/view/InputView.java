@@ -14,7 +14,6 @@ public class InputView {
     private static final String SUB_MENU_MESSAGE_THREE = "3. %s 조회\n";
     private static final String SUB_MENU_MESSAGE_BOTTOM = "B. 돌아가기\n";
 
-    private static final String SECTION = "구간";
     private static final String CHOOSE_MENU_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String INPUT_STATION_NAME_ADD_MESSAGE = "## 등록할 역 이름을 입력하세요.";
     private static final String INPUT_LINE_NAME_ADD_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
@@ -37,15 +36,27 @@ public class InputView {
         }
     }
 
-    public static Menu inputSubMenu(Scanner scanner, String subMenuName) {
+    public static SubMenuType inputStationOrLineMenu(Scanner scanner, String subMenuName, MainMenuType mainMenuType) {
         try {
             System.out.printf(SUB_MENU_MESSAGE_TOP + SUB_MENU_MESSAGE_ONE + SUB_MENU_MESSAGE_TWO
             + SUB_MENU_MESSAGE_THREE + SUB_MENU_MESSAGE_BOTTOM, subMenuName, subMenuName, subMenuName, subMenuName);
             System.out.println(CHOOSE_MENU_MESSAGE);
-            return SubMenuType.validateMenu(scanner.nextLine());
+            return mainMenuType.validateSubMenu(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputSubMenu(scanner,subMenuName);
+            return inputStationOrLineMenu(scanner,subMenuName, mainMenuType);
+        }
+    }
+
+    public static SubMenuType inputSectionMenu(Scanner scanner, String subMenuName, MainMenuType mainMenuType) {
+        try {
+            System.out.printf(SUB_MENU_MESSAGE_TOP + SUB_MENU_MESSAGE_ONE + SUB_MENU_MESSAGE_TWO
+                    + SUB_MENU_MESSAGE_BOTTOM, subMenuName, subMenuName, subMenuName);
+            System.out.println(CHOOSE_MENU_MESSAGE);
+            return mainMenuType.validateSubMenu(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputSectionMenu(scanner,subMenuName, mainMenuType);
         }
     }
 
