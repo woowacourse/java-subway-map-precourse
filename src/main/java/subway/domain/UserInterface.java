@@ -3,12 +3,15 @@ package subway.domain;
 import java.util.Scanner;
 
 public class UserInterface {
-    private static final String HASH = "## ";
-    private static final String GIVE_ME_STATION_NAME = "등록할 역 이름을 입력하세요.";
 
-    public static String getStationName(Scanner scanner) {
-        System.out.print(HASH);
-        System.out.println(GIVE_ME_STATION_NAME);
+
+    public static void mainMenu() {
+        System.out.println(Constant.HASH + Constant.MAIN_MENU);
+    }
+
+    static String getStationName(Scanner scanner) {
+        System.out.print(Constant.HASH);
+        System.out.println(Constant.GIVE_ME_STATION_NAME);
         String input = scanner.next();
         return Exception.passNameExceptionTest(input);
     }

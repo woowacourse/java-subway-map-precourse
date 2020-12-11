@@ -1,19 +1,18 @@
 package subway.domain;
 
 public class Exception {
-    private static final int NAME_LENGTH_MINIMUM = 2;
-    private static final String STATION = "역";
+
 
     static String passNameExceptionTest(String input){
-        input = Exception.isNotSpace(input);
-        input = Exception.isNotEmpty(input);
-        input = Exception.isNotTooShort(input);
-        return Exception.isStation(input);
+        input = isNotSpace(input);
+        input = isNotEmpty(input);
+        input = isNotTooShort(input);
+        return isStation(input);
     }
 
     static String isStation(String input){
         String lastChar = input.substring(input.length() - 1, input.length());
-        if(lastChar.equals(STATION)){
+        if(lastChar.equals(Constant.STATION)){
             return input;
         }
         throw new IllegalArgumentException();
@@ -34,7 +33,7 @@ public class Exception {
     }
 
     static String isNotTooShort(String input){
-        if(input.length() >= NAME_LENGTH_MINIMUM){
+        if(input.length() >= Constant.NAME_LENGTH_MINIMUM){
             return input;
         }
         throw new IllegalArgumentException();
