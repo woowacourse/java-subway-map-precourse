@@ -1,12 +1,12 @@
 package subway;
 
+import subway.view.MainViewState;
+import subway.view.ViewState;
+
 import java.util.Scanner;
-import subway.controller.ControllerState;
-import subway.controller.MainMenuControllerState;
-import subway.view.CommonView;
 
 public class SubwayLineMap {
-    private ControllerState controllerState = MainMenuControllerState.getMainController();
+    private ViewState viewState = MainViewState.getMainView();
     private Scanner scanner;
 
     public SubwayLineMap(Scanner scanner){
@@ -18,43 +18,14 @@ public class SubwayLineMap {
     }
 
     private void startMainLoop(){
-        while(true){
-            controllerState.printMain();
-            String feature = scanner.next();
-            if(!controllerState.isValidFeature(feature)){
-                continue;
-            }
-            boolean canQuit = startFeature(feature);
-            if(canQuit) return;
+        boolean continuable = true;
+        while(continuable){
+            viewState.render(scanner, this);
+            continuable = viewState.isContinuable();
         }
     }
 
-    private boolean startFeature(String feature){
-        int requiredInputNum = controllerState.getRequiredInputNum(feature);
-        if(isQuitable(feature)){
-            return true;
-        }
-        startSpecificFunction(feature, requiredInputNum);
-        return false;
-    }
-
-    private void startSpecificFunction(String feature, int requiredInputNum){
-        int requiredInputNumLeft = requiredInputNum;
-        while(requiredInputNumLeft >= 0){
-            String input = "";
-            if(requiredInputNumLeft != 0){
-                input = scanner.next();
-                CommonView.printWhiteLine();
-            }
-            controllerState.doFeature(feature, requiredInputNum, input, controllerState);
-            requiredInputNumLeft--;
-        }
-    }
-
-    private boolean isQuitable(String input){
-        if(controllerState.equals(MainMenuControllerState.getMainController()) && input.equals("Q")){
-            return true;
-        }
-        return false;
+    public void setViewState(ViewState viewState){
+        this.viewState = viewState;
     }
 }
