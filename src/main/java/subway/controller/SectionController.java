@@ -16,92 +16,56 @@ public class SectionController {
 		options.add(Options.BACK.getOption());
 	}
 
-	private static String getValidLineNameToRegister(Scanner scanner) throws IllegalArgumentException {
+	private static void addSection(String lineName, String stationName, String location) throws IllegalArgumentException {
+		LineRepository.validateRegistration(lineName);
+		Sections.validateDuplicate(stationName, lineName);
+		Sections.validateInteger(location);
+		Sections.validateRange(location, lineName);
+		LineRepository.getLine(lineName)
+				.getSections()
+				.addSection(StationRepository.getStation(stationName), Integer.parseInt(location));
+	}
+
+	private static void registerSection(Scanner scanner) {
 		String lineName = View.getLineNameToRegisterSection(scanner);
-		try {
-			LineRepository.validateRegistration(lineName);
-			return lineName;
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getValidLineNameToRegister(scanner);
-		}
-	}
-
-	private static String getValidLineNameToDelete(Scanner scanner) throws IllegalArgumentException {
-		String lineName = View.getLineNameToDeleteSection(scanner);
-		try {
-			LineRepository.validateRegistration(lineName);
-			return lineName;
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getValidLineNameToDelete(scanner);
-		}
-	}
-
-	private static String getValidStationNameToRegister(Scanner scanner, String lineName) throws IllegalArgumentException {
 		String stationName = View.getStationNameToRegisterSection(scanner);
-		try {
-			Sections.validateDuplicate(stationName, lineName);
-			return stationName;
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getValidStationNameToRegister(scanner, lineName);
-		}
-	}
-
-	private static String getValidStationNameToDelete(Scanner scanner, String lineName) throws IllegalArgumentException {
-		String stationName = View.getStationNameToDeleteSection(scanner);
-		try {
-			Sections.validateRegistration(stationName, lineName);
-			return stationName;
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getValidStationNameToDelete(scanner, lineName);
-		}
-	}
-
-	private static int getValidLocation(Scanner scanner, String lineName) throws IllegalArgumentException {
 		String location = View.getLocationToRegisterSection(scanner);
 		try {
-			Sections.validateInteger(location);
-			Sections.validateRange(location, lineName);
-			return Integer.parseInt(location);
+			addSection(lineName, stationName, location);
+			View.printSectionRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return getValidLocation(scanner, lineName);
+			System.out.println();
+			run(scanner);
 		}
 	}
 
-	private static void createSection(Scanner scanner) {
-		String lineName = getValidLineNameToRegister(scanner);
-		String stationName = getValidStationNameToRegister(scanner, lineName);
-		int location = getValidLocation(scanner, lineName);
-
-		Station station = StationRepository.getStation(stationName);
-		Line line = LineRepository.getLine(lineName);
-		line.getSections().addSection(station, location);
-		View.printSectionRegisterCompletion();
-		System.out.println();
+	private static void deleteSection(String lineName, String stationName) throws IllegalArgumentException {
+		LineRepository.validateRegistration(lineName);
+		Sections.validateRegistration(stationName, lineName);
+		Sections.deleteSection(lineName, stationName);
 	}
 
-	private static void deleteSection(Scanner scanner) {
-		String lineName = getValidLineNameToDelete(scanner);
-		String stationName = getValidStationNameToDelete(scanner, lineName);
-		Sections.deleteSection(lineName, stationName);
-		View.printSectionDeleteCompletion();
-		System.out.println();
+	private static void deregisterSection(Scanner scanner) {
+		String lineName = View.getLineNameToDeleteSection(scanner);
+		String stationName = View.getStationNameToDeleteSection(scanner);
+		try {
+			deleteSection(lineName, stationName);
+			View.printSectionDeleteCompletion();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			System.out.println();
+			run(scanner);
+		}
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
-			createSection(scanner);
-			View.printMainScreen();
+			registerSection(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
-			deleteSection(scanner);
-			View.printMainScreen();
+			deregisterSection(scanner);
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			View.printMainScreen();
-			return;
+			System.out.println();
 		}
 	}
 
@@ -113,6 +77,7 @@ public class SectionController {
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
+			System.out.println();
 			run(scanner);
 		}
 	}

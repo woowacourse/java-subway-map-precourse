@@ -32,13 +32,19 @@ public class Sections {
 	}
 
 	public static void validateDuplicate(String lineName, String stationName) throws IllegalArgumentException {
-		if (LineRepository.getLine(lineName).getSections().sections().contains(stationName)) {
+		List<Station> sections = LineRepository.getLine(lineName)
+				.getSections()
+				.sections();
+		if (sections.contains(stationName)) {
 			throw new IllegalArgumentException(SectionMessages.DUPLICATE_NAME_ERROR.getMessage());
 		}
 	}
 
 	public static void validateRegistration(String lineName, String stationName) throws IllegalArgumentException {
-		if (!LineRepository.getLine(lineName).getSections().sections().contains(stationName)) {
+		List<Station> sections = LineRepository.getLine(lineName)
+				.getSections()
+				.sections();
+		if (!sections.contains(stationName)) {
 			throw new IllegalArgumentException(SectionMessages.DUPLICATE_NAME_ERROR.getMessage());
 		}
 	}
@@ -52,7 +58,9 @@ public class Sections {
 	}
 
 	public static void validateRange(String location, String lineName) throws IllegalArgumentException {
-		int sectionLength = LineRepository.getLine(lineName).getSections().getSectionLength();
+		int sectionLength = LineRepository.getLine(lineName)
+				.getSections()
+				.getSectionLength();
 		if (Integer.parseInt(location) < 0 || sectionLength < Integer.parseInt(location)) {
 			throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
 		}

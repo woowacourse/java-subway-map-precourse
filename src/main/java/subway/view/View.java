@@ -35,14 +35,17 @@ public class View {
 
 	public static void printStationRegisterCompletion() {
 		System.out.println(StationMessages.REGISTER_COMPLETE.getMessage());
+		System.out.println();
 	}
 
 	public static void printStationDeleteError() {
 		System.out.println(StationMessages.UNREGISTERED_NAME_ERROR.getMessage());
+		System.out.println();
 	}
 
 	public static void printStationDeleteCompletion() {
 		System.out.println(StationMessages.DELETE_COMPLETE.getMessage());
+		System.out.println();
 	}
 
 	public static void printLineScreen() {
@@ -74,10 +77,12 @@ public class View {
 
 	public static void printLineDeleteCompletion() {
 		System.out.println(LineMessages.DELETE_COMPLETE.getMessage());
+		System.out.println();
 	}
 
 	public static void printLineDeleteError() {
 		System.out.println(LineMessages.UNREGISTERED_NAME_ERROR.getMessage());
+		System.out.println();
 	}
 
 	public static void printSectionScreen() {
@@ -104,6 +109,7 @@ public class View {
 
 	public static void printSectionRegisterCompletion() {
 		System.out.println(SectionMessages.REGISTER_COMPLETE.getMessage());
+		System.out.println();
 	}
 
 	public static String getLineNameToDeleteSection(Scanner scanner) {
@@ -118,5 +124,6 @@ public class View {
 
 	public static void printSectionDeleteCompletion() {
 		System.out.println(SectionMessages.DELETE_COMPLETE.getMessage());
+		System.out.println();
 	}
 }

@@ -20,26 +20,25 @@ public class LineController {
 		options.add(Options.BACK.getOption());
 	}
 
-	private static void createLine(Scanner scanner) {
+	private static void registerLine(Scanner scanner) {
 		String name = View.getLineNameToRegister(scanner);
 		String upwardDestination = View.getUpwardDestination(scanner);
 		String downwardDestination = View.getDownwardDestination(scanner);
 		try {
 			LineRepository.addLine(new Line(name, upwardDestination, downwardDestination));
 			View.printStationRegisterCompletion();
-			System.out.println();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
+			System.out.println();
 			run(scanner);
 		}
 	}
 
-	private static void deleteLine(Scanner scanner) {
+	private static void deregisterLine(Scanner scanner) {
 		String name = View.getLineNameToDelete(scanner);
 		boolean isSuccessful = LineRepository.deleteLine(name);
 		if (isSuccessful) {
 			View.printLineDeleteCompletion();
-			System.out.println();
 			return;
 		}
 		View.printLineDeleteError();
@@ -48,7 +47,8 @@ public class LineController {
 
 	private static void showLines() {
 		System.out.println(LineMessages.REFERENCE);
-		LineRepository.lines().stream()
+		LineRepository.lines()
+				.stream()
 				.map(Line::getName)
 				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 		System.out.println();
@@ -56,17 +56,13 @@ public class LineController {
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
-			createLine(scanner);
-			View.printMainScreen();
+			registerLine(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
-			deleteLine(scanner);
-			View.printMainScreen();
+			deregisterLine(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			showLines();
-			View.printMainScreen();
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			View.printMainScreen();
-			return;
+			System.out.println();
 		}
 	}
 
