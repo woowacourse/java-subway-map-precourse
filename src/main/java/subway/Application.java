@@ -8,7 +8,7 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
 
-        SubwayLauncher boot = new SubwayLauncher();
+        Subway boot = new Subway();
         boot.launch(scanner);
     }
 }
