@@ -1,7 +1,7 @@
 package subway;
 
 public class PrintMainScreen {
-    private static final String MAIN_SCREEN
+    private static final String SCREEN
         = "\n## 메인 화면\n"
         + "1. 역 관리\n"
         + "2. 노선 관리\n"
@@ -10,6 +10,6 @@ public class PrintMainScreen {
         + "Q. 종료";
 
     public static void printMainScreen() {
-        System.out.println(MAIN_SCREEN);
+        System.out.println(SCREEN);
     }
 }
