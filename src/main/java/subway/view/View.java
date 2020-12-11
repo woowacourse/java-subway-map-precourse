@@ -129,7 +129,7 @@ public class View {
         Station station = StationRepository.getStation(inputView.getStation());
         outputView.printRegisterSectionOrderNumberQuestion();
         int order = inputView.getInt();
-        line.add(order, station);
+        line.add(order-1, station);
         outputView.printRegisterSectionSuccess();
     }
 
