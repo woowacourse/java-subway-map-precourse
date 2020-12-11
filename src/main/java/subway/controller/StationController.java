@@ -57,6 +57,7 @@ public class StationController extends Controller {
         try {
             String rawStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
             Station.validateName(rawStationName);
+            StationRepository.deleteStation(rawStationName);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             deleteStation();
