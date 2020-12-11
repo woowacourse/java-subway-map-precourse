@@ -8,10 +8,11 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class SectionManagementViewState extends ViewState{
-    private static SectionManagementViewState sectionManagementViewState;
     private static final String BTN_ADD_SECTION = "1";
     private static final String BTN_DELETE_SECTION = "2";
     private static final String BTN_BACK = "B";
+
+    private static SectionManagementViewState sectionManagementViewState;
 
     private SectionManagementViewState(){
         featureSet.add(BTN_ADD_SECTION);

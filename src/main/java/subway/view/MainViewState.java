@@ -8,12 +8,13 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class MainViewState extends ViewState{
-    private static MainViewState mainViewState;
     private static final String BTN_STATION_MANAGEMENT = "1";
     private static final String BTN_LINE_MANAGEMENT = "2";
     private static final String BTN_SECTION_MANAGEMENT = "3";
     private static final String BTN_PRINT_SUBWAY_LINEMAP = "4";
     private static final String BTN_QUIT = "Q";
+
+    private static MainViewState mainViewState;
 
     private MainViewState(){
         featureSet.add(BTN_STATION_MANAGEMENT);
