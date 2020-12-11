@@ -54,6 +54,7 @@ public class SectionController {
 	private static String createLineNameToDelete(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameToDeleteSection(scanner);
 		LineRepository.validateRegistration(lineName);
+		Sections.validateSectionLength(lineName);
 		return lineName;
 	}
 

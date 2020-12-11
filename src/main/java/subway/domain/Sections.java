@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Sections {
 	public static final int FIRST_SECTION_LOCATION = 1;
+	public static final int MINIMUM_SECTION_LENGTH = 2; // 2 Stations required for one Line
 
 	private final List<Station> sections = new ArrayList<>();
 
@@ -24,13 +25,17 @@ public class Sections {
 	}
 
 	public static void deleteSection(String lineName, String stationName) {
-		Line line = LineRepository.getLine(lineName);
-		Station station = StationRepository.getStation(stationName);
-		line.getSections().sections.remove(station);
+		LineRepository.getLine(lineName)
+				.getSections()
+				.sections
+				.remove(StationRepository.getStation(stationName));
 	}
 
-	public int getSectionLength() {
-		return sections.size();
+	public static int getSectionLength(String lineName) {
+		return LineRepository.getLine(lineName)
+				.getSections()
+				.sections
+				.size();
 	}
 
 	public static void validateDuplicate(String lineName, String stationName) throws IllegalArgumentException {
@@ -60,10 +65,7 @@ public class Sections {
 	}
 
 	public static void validateRange(String lineName, String location) throws IllegalArgumentException {
-		int sectionLength = LineRepository.getLine(lineName)
-				.getSections()
-				.getSectionLength();
-		if (Integer.parseInt(location) - 1 < 0 || sectionLength < Integer.parseInt(location) - 1) {
+		if (Integer.parseInt(location) - 1 < 0 || getSectionLength(lineName) < Integer.parseInt(location) - 1) {
 			throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
 		}
 	}
@@ -71,6 +73,12 @@ public class Sections {
 	public static void validateDuplicateDestination(String upwardDestination, String downwardDestination) throws IllegalArgumentException {
 		if (upwardDestination.equalsIgnoreCase(downwardDestination)) {
 			throw new IllegalArgumentException(LineMessages.DESTINATION_DUPLICATE_ERROR.getMessage());
+		}
+	}
+
+	public static void validateSectionLength(String lineName) throws IllegalArgumentException{
+		if (getSectionLength(lineName) <= MINIMUM_SECTION_LENGTH) {
+			throw new IllegalArgumentException();
 		}
 	}
 }
