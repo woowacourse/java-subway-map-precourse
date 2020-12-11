@@ -29,6 +29,11 @@ public class LineRepository {
                 .orElseThrow(NotExistLineException::new);
     }
 
+    public static boolean isExist(String name) {
+        return findAll().stream()
+                .anyMatch(line -> line.getName().equals(name));
+    }
+
     public static void removeAll() {
         lines.clear();
     }

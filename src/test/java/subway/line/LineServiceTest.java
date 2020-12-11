@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import subway.line.domain.LineRepository;
+import subway.line.exception.AlreadyExistLineException;
 import subway.line.exception.IllegalTypeOfNameException;
 import subway.line.exception.TooShortLineNameException;
 import subway.station.domain.Station;
@@ -74,5 +75,20 @@ public class LineServiceTest {
         //when & then
         assertThatExceptionOfType(IllegalTypeOfNameException.class)
                 .isThrownBy(() -> LineService.register(name, topStationName, bottomStationName));
+    }
+
+    @Test
+    public void 중복_노선_등록시_예외_발생() {
+        //given
+        String name = "잠실역";
+        String topStationName = "대구역";
+        String bottomStationName = "동대구역";
+        LineService.register(name, topStationName, bottomStationName);
+
+        String duplicatedName = "잠실역";
+
+        //when & then
+        assertThatExceptionOfType(AlreadyExistLineException.class)
+                .isThrownBy(() -> LineService.register(duplicatedName, topStationName, bottomStationName));
     }
 }

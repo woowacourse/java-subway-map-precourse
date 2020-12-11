@@ -1,6 +1,8 @@
 package subway.line;
 
 import subway.line.domain.Line;
+import subway.line.domain.LineRepository;
+import subway.line.exception.AlreadyExistLineException;
 import subway.line.exception.IllegalTypeOfNameException;
 import subway.line.exception.TooShortLineNameException;
 import subway.util.InputTypeValidator;
@@ -12,6 +14,7 @@ public class LineValidator {
     public static void validateRegistration(String name) {
         validateNameLength(name);
         validateInputType(name);
+        validateDuplication(name);
     }
 
     private static void validateNameLength(String name) {
@@ -27,6 +30,12 @@ public class LineValidator {
     private static void validateInputType(String name) {
         if (!InputTypeValidator.isKoreanOrNumeric(name)) {
             throw new IllegalTypeOfNameException();
+        }
+    }
+
+    private static void validateDuplication(String name) {
+        if (LineRepository.isExist(name)) {
+            throw new AlreadyExistLineException();
         }
     }
 }
