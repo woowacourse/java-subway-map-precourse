@@ -1,8 +1,8 @@
 package subway.view.stationManage;
 
 import subway.station.StationController;
-import subway.station.StationRepository;
 import subway.station.StationRepositoryJava;
+import subway.view.BackView;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
 
@@ -30,7 +30,7 @@ public class StationManageView implements ViewStrategy {
     public void show() {
         manageStation();
         OutputView.enter();
-        stationFunction();
+        stationManageViewStrategy.show();
         OutputView.enter();
     }
 
@@ -43,10 +43,6 @@ public class StationManageView implements ViewStrategy {
             manageStation();
         }
 
-    }
-
-    private void stationFunction() {
-        stationManageViewStrategy.show();
     }
 
     @Override
