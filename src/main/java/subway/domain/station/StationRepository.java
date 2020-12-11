@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.domain.station;
+
+import subway.domain.station.Station;
 
 import java.util.*;
 

@@ -1,9 +1,8 @@
-package subway.domain;
+package subway.domain.menu;
 
 import java.util.Arrays;
 
-public enum SubMenuType implements Menu{
-
+public enum SubMenuType implements Menu {
     ADD("1"),
     DELETE("2"),
     LIST_PRINT("3"),

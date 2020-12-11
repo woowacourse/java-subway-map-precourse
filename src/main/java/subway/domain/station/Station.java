@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.station;
 
 import java.util.Objects;
 
@@ -22,6 +22,9 @@ public class Station {
 
     // 추가 기능 구현
 
+//    public boolean isStationName(String name) {
+//        return this.name.equals(name);
+//    }
 
     private void validateStationName(String name) {
         validateKorean(name);

@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.domain.line;
+
+import subway.domain.line.Line;
 
 import java.util.*;
 
@@ -39,6 +41,16 @@ public class LineRepository {
         if (nameFlag) {
             throw new IllegalArgumentException(LINE_EXIST_ERROR);
         }
+    }
+
+    public static Line getLineByName(String name) {
+        Line inputLine = new Line(name);
+        for (Line line : lines) {
+            if (line.equals(inputLine)) {
+                return line;
+            }
+        }
+        throw new IllegalArgumentException(LINE_EXIST_ERROR);
     }
 
 
