@@ -27,4 +27,8 @@ public class StationRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ERR_STATION_NOT_IN_REPO));
     }
+    public static boolean isInStationRepository(String name) {
+        return stations().stream()
+                .anyMatch(station -> station.getName().equals(name));
+    }
 }
