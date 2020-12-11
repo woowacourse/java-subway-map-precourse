@@ -33,8 +33,8 @@ public class LineStationService extends InputValidation {
         //validation
         validateNameLengthIsMoreThan2(lineName);
         //2. 중복된 노선 이름이 존재하는지 검증한다
-        //3. 입력한 역 이름이 존재하는지 검증한다(상행)
-        //4. 입력한 역 이름이 존재하는지 검증한다(하행)
+        validateStationNameIsContains(startStationName);
+        validateStationNameIsContains(endStationName);
         Line line = new Line(lineName);
         LineRepository.addLine(line);
         lineStation.addLineStation(line, StationRepository.findStation(startStationName).get());

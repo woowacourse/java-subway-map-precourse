@@ -39,8 +39,7 @@ public class StationService extends InputValidation {
     private void deleteStation(Scanner scanner) {
         InputView.inputDeleteStationNameRequestMessage();
         String stationName = scanner.nextLine();
-        //validation
-        //1.입력한 역 이름이 존재하는지 검증한다
+        validateStationNameIsContains(stationName);
         StationRepository.deleteStation(stationName);
         printDeleteStationSuccessMessage();
     }
