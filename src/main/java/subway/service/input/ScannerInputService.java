@@ -44,22 +44,6 @@ public class ScannerInputService implements InputService {
         return option;
     }
 
-    @Override
-    public boolean isQuit(int option) {
-        if (option == OPTION_QUIT) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isBack(int manageStationOption) {
-        if (manageStationOption == OPTION_BACK) {
-            return true;
-        }
-        return false;
-    }
-
     private boolean isBack(String inputOption) {
         if (inputOption.equals(MAIN_OPTION_BACK)) {
             return true;

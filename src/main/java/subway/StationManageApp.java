@@ -37,14 +37,14 @@ public class StationManageApp {
     }
 
     private boolean isQuit(int option) {
-        if (inputService.isQuit(option)){
+        if (option == InputService.OPTION_QUIT){
             return true;
         }
         return false;
     }
 
     private boolean isBack(int manageStationOption) {
-        if (inputService.isBack(manageStationOption)) {
+        if (manageStationOption == InputService.OPTION_BACK) {
             return true;
         }
         return false;
