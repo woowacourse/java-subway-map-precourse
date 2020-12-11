@@ -23,6 +23,22 @@ public class FeatureService implements FeatureInterface {
     }
 
     @Override
+    public void chooseFeature(String input) {
+        if (input.equals(InputType.INPUT_ONE.getInput())) {
+            return;
+        }
+        if (input.equals(InputType.INPUT_TWO.getInput())) {
+            return;
+        }
+        if (input.equals(InputType.INPUT_THREE.getInput())) {
+            return;
+        }
+        if (input.equals(InputType.INPUT_BACK.getInput())) {
+            return;
+        }
+    }
+
+    @Override
     public void chooseSubwayFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             StationController.startStation(scanner);
@@ -38,22 +54,6 @@ public class FeatureService implements FeatureInterface {
         }
         if (input.equals(InputType.INPUT_FOUR.getInput())) {
             // TODO: 지하철 노선도 출력 기능 구현
-            return;
-        }
-    }
-
-    @Override
-    public void chooseFeature(String input) {
-        if (input.equals(InputType.INPUT_ONE.getInput())) {
-            return;
-        }
-        if (input.equals(InputType.INPUT_TWO.getInput())) {
-            return;
-        }
-        if (input.equals(InputType.INPUT_THREE.getInput())) {
-            return;
-        }
-        if (input.equals(InputType.INPUT_BACK.getInput())) {
             return;
         }
     }
