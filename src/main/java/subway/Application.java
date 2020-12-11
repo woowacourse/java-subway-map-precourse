@@ -1,6 +1,7 @@
 package subway;
 
 import com.sun.tools.javac.Main;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import subway.domain.Station;
@@ -41,6 +42,8 @@ public class Application {
     private static PrintUtils printUtils;
     private static InputUtils inputUtils;
 
+    private static final List<String> initialStationList= Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         printUtils = new PrintUtils();
@@ -48,6 +51,7 @@ public class Application {
         stationRepository = new StationRepository();
         char mainFunction;
 
+        initializeStation();
         while (true) {
             mainFunction = mainMenu();
             if (mainFunction == MainFunction.QUIT.getMenu()) {
@@ -55,6 +59,11 @@ public class Application {
             }
             selectDetailMenu(mainFunction);
         }
+    }
+
+    private static void initializeStation(){
+        for(String stationList: initialStationList)
+            stationRepository.addStation(new Station(stationList));
     }
 
     private static char mainMenu() {
