@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class LineStationRepository {
     private Map<Line, List<Station>> lineStation;
@@ -22,6 +23,10 @@ public class LineStationRepository {
     public void deleteLineStation(Line line) {
         LineRepository.deleteLineByName(line.getName());
         lineStation.remove(line);
+    }
+
+    public void deleteStationInLineByName(Line line, String name) {
+        lineStation.get(line).removeIf(station -> Objects.equals(station.getName(), name));
     }
 
     public Map<Line, List<Station>> getLineStation() {
