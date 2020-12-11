@@ -60,4 +60,24 @@ public class Print {
     public static void addStationDoneMessage() {
         System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.STATION, Constant.ADD);
     }
+
+    public static void deleteStationDoneMessage() {
+        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.STATION, Constant.DELETE);
+    }
+
+    public static void getLineNameToAdd() {
+        System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.ADD, Constant.LINE);
+    }
+
+    public static void getLineNameToDelete() {
+        System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.DELETE, Constant.LINE);
+    }
+
+    public static void getAscendingNameToAddLine() {
+        System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.ASCENDING);
+    }
+
+    public static void getDescendingNameToAddLine() {
+        System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.DESCENDING);
+    }
 }
