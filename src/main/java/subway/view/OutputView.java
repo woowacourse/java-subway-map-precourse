@@ -34,6 +34,11 @@ public class OutputView {
     public OutputView() {
     }
 
+    public void printQuestionHeader(String header) {
+        printEnter();
+        println(header);
+    }
+
     public void printQuestions(Stream<String> questions) {
         questions.forEach(this::println);
     }
