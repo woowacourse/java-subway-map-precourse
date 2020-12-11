@@ -1,6 +1,6 @@
 package subway.domain.station;
 
-import java.util.List;
+import subway.domain.station.dto.StationSaveReqDto;
 
 public class StationServiceImpl implements StationService {
     private final StationRepository stationRepository;
@@ -10,8 +10,8 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public void saveStation(String stationName) {
-        Station station = Station.of(stationName);
+    public void saveStation(StationSaveReqDto saveReqDto) {
+        Station station = Station.of(saveReqDto.getName());
         stationRepository.addStation(station);
     }
 }

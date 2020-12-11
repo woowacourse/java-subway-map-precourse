@@ -1,6 +1,7 @@
 package subway.service.output;
 
 public interface OutputService {
+    String PREFIX_ERROR = "[ERROR] ";
     String MAIN = "## 메인 화면";
     String MAIN_ONE = "1. 역 관리";
     String MAIN_TWO = "2. 노선 관리";

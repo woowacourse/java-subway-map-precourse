@@ -3,6 +3,7 @@ package subway;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
+import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
@@ -68,7 +69,7 @@ public class StationManageApp {
     private void chooseManageStationOption(int manageStationOption) {
         if (manageStationOption == InputService.MANAGE_STATION_ADD) {
             String stationName = getStationName();
-            stationService.saveStation(stationName);
+            stationService.saveStation(new StationSaveReqDto(stationName));
         }
         if (manageStationOption == InputService.MANAGE_STATION_DELETE) {
 
