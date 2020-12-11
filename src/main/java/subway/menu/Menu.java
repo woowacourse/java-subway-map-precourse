@@ -1,2 +1,10 @@
-package subway.menu;public interface Menu {
+package subway.menu;
+
+public interface Menu {
+
+    Menu run();
+
+    Menu[] getValues();
+
+
 }
