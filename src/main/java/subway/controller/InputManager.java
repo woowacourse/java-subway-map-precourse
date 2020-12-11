@@ -17,17 +17,57 @@ public class InputManager {
         while (true) {
             Menu.printWhatMenu();
             String input = scanner.nextLine().toUpperCase().trim();
-            if (!checkMainValidSelection(input)) {
+            if (!checkMainSelection(input)) {
                 continue;
             }
             return input;
         }
     }
 
-    private boolean checkMainValidSelection(String input) {
+    public String getStationInput() {
+        while (true) {
+            Menu.printWhatMenu();
+            String input = scanner.nextLine().toUpperCase().trim();
+            if (!checkStationSelection(input)) {
+                continue;
+            }
+            return input;
+        }
+    }
+
+    public String getLineInput() {
+        while (true) {
+            Menu.printWhatMenu();
+            String input = scanner.nextLine().toUpperCase().trim();
+            if (!checkLineSelection(input)) {
+                continue;
+            }
+            return input;
+        }
+    }
+
+    private boolean checkLineSelection(String input) {
+        if (!MenuItemsRepository.getLineSelections().contains(input)) {
+            ErrorMessage.printError(
+                MenuItemsRepository.getLineSelections().toString());
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkStationSelection(String input) {
+        if (!MenuItemsRepository.getStationSelections().contains(input)) {
+            ErrorMessage.printError(
+                MenuItemsRepository.getStationSelections().toString());
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkMainSelection(String input) {
         if (!MenuItemsRepository.getMainSelections().contains(input)) {
             ErrorMessage.printError(
-                MenuItemsRepository.getMainSelections().toString() + " 중에서 입력해 주세요.");
+                MenuItemsRepository.getMainSelections().toString());
             return false;
         }
         return true;
