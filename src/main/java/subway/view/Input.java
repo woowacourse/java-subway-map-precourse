@@ -18,6 +18,11 @@ public class Input {
         return nextLine();
     }
 
+    public String nextStationButton() {
+        Message.printStatinMenu();
+        return nextLine();
+    }
+
     private String nextLine() {
         return scanner.nextLine();
     }

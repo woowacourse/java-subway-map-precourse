@@ -10,6 +10,7 @@ public class Button {
     public static final String THREE = "3";
     public static final String FOUR = "4";
     public static final String END = "Q";
+    public static final String BACK = "B";
 
     private Button() {
     }
