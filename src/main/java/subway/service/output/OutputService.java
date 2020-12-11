@@ -25,6 +25,9 @@ public interface OutputService {
     String SECTION_ONE = "1. 구간 등록";
     String SECTION_TWO = "2. 구간 삭제";
     String MANAGE_STATION_ADD = Screen.PREFIX_SHARP + "등록할 역 이름을 입력하세요";
+    String MANAGE_STATION_DELETE =  Screen.PREFIX_SHARP + "삭제할 역 이름을 입력하세요";
+
+    void printInfos(String string);
 
     void printInfo(String string);
 
@@ -41,4 +44,6 @@ public interface OutputService {
     void printManageSection();
 
     void printManageStationAdd();
+
+    void printManageStationDelete();
 }

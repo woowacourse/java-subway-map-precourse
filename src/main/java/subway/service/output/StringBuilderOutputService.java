@@ -17,7 +17,16 @@ public class StringBuilderOutputService implements OutputService {
     }
 
     @Override
+    public void printInfos(String string) {
+        sb.append(Screen.PREFIX_INFO);
+        sb.append(string);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
     public void printInfo(String string) {
+        sb.append(ENTER);
         sb.append(Screen.PREFIX_INFO);
         sb.append(string);
         System.out.println(sb.toString());
@@ -26,6 +35,7 @@ public class StringBuilderOutputService implements OutputService {
 
     @Override
     public void printSharp(String string) {
+        sb.append(ENTER);
         sb.append(Screen.PREFIX_SHARP);
         sb.append(string);
         System.out.println(sb.toString());
@@ -100,6 +110,14 @@ public class StringBuilderOutputService implements OutputService {
     public void printManageStationAdd() {
         sb.append(ENTER);
         sb.append(MANAGE_STATION_ADD);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printManageStationDelete() {
+        sb.append(ENTER);
+        sb.append(MANAGE_STATION_DELETE);
         System.out.println(sb.toString());
         clearSb();
     }

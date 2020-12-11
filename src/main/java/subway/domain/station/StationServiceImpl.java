@@ -1,5 +1,6 @@
 package subway.domain.station;
 
+import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.StationException;
@@ -29,5 +30,13 @@ public class StationServiceImpl implements StationService {
         List<Station> stationList = stationRepository.stations();
         Stations stations = Stations.of(stationList);
         return stations;
+    }
+
+    @Override
+    public boolean deleteStation(StationDeleteReqDto deleteReqDto) {
+        if (stationRepository.deleteStationByName(deleteReqDto.getName())) {
+            return true;
+        }
+        return false;
     }
 }

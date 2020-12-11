@@ -4,6 +4,7 @@ import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
 import subway.domain.station.Stations;
+import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
@@ -69,21 +70,22 @@ public class StationManageApp {
     }
 
     private void chooseManageStationOption(int manageStationOption) {
+        StationView stationView = new StationView(outputService);
         if (manageStationOption == InputService.MANAGE_STATION_ADD) {
-            String stationName = getStationName();
-            stationService.saveStation(new StationSaveReqDto(stationName));
+            outputService.printManageStationAdd();
+            stationService.saveStation(new StationSaveReqDto(getStationName()));
+            stationView.printAdd();
         }
         if (manageStationOption == InputService.MANAGE_STATION_DELETE) {
-
+            outputService.printManageStationDelete();
+            stationView.printDelete(stationService.deleteStation(new StationDeleteReqDto(getStationName())));
         }
         if (manageStationOption == InputService.MANAGE_STATION_FIND) {
-            StationView stationView = new StationView(outputService);
             stationView.printAllStations(stationService.getStations());
         }
     }
 
     private String getStationName() {
-        outputService.printManageStationAdd();
         String stationName = inputService.getStationName();
         return stationName;
     }
