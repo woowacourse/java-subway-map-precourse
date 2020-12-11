@@ -50,6 +50,7 @@ public class StationController {
 				.stream()
 				.map(Station::getName)
 				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+		System.out.println();
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
