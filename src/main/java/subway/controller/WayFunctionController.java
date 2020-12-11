@@ -11,7 +11,9 @@ public class WayFunctionController {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
             enrollWay(inputView, detailFunction);
         }
-
+        if (detailFunction.equals(DetailFunctions.REMOVE)) {
+            removeWay(inputView, detailFunction);
+        }
     }
 
     private static void enrollWay(InputView inputView, DetailFunctions detailFunction){
@@ -25,4 +27,14 @@ public class WayFunctionController {
         OutputView.printOneLine();
     }
 
+    private static void removeWay(InputView inputView, DetailFunctions detailFunction) {
+        WayOutputView.printRemoveLine();
+        Line selectedLine = LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
+        WayOutputView.printRemoveStation();
+        Station selectedStation = StationRepository.findStationByName(makeEnrolledStationName(inputView.receiveFunctionInfo()));
+        WayOutputView.printOrder();
+        SubwayRepository.deleteStationFromLine(selectedLine, selectedStation);
+        WayOutputView.printSuccess(detailFunction);
+        OutputView.printOneLine();
+    }
 }
