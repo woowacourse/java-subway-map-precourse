@@ -7,6 +7,7 @@
 
 package subway;
 
+import subway.controller.SectionManagement;
 import subway.menuType.MainMenuType;
 import subway.controller.LineManagement;
 import subway.controller.StationManagement;
@@ -43,6 +44,9 @@ public class Application {
         }
         if (menu.equals(MainMenuType.LINE)) {
             LineManagement.run();
+        }
+        if (menu.equals(MainMenuType.SECTION)) {
+            SectionManagement.run();
         }
         if (menu.equals(MainMenuType.DISPLAY)) {
             OutputView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());

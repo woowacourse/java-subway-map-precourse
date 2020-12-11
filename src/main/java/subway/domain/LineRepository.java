@@ -42,6 +42,15 @@ public class LineRepository {
         return true;
     }
 
+    public static Line searchByName(String name) {
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
+                return line;
+            }
+        }
+        throw new RuntimeException(ERROR_NOT_EXIST);
+    }
+
     public static List<LineDTO> exprotsAllLinesToDTO() {
         return lines.stream()
                 .map(Line::toDTO)

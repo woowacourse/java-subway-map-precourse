@@ -9,7 +9,9 @@ import java.util.List;
 public class Line {
     private static final String INVALID_LENGTH_FORMAT = "이름은 %d 글자 이상이어야 합니다.";
     private static final String ERROR_ALREADY_EXIST = "이미 노선에 등록된 역입니다.";
+    private static final String ERROR_OUT_OF_RANGE = "범위를 벗어났습니다.";
     private static final int MIN_LENGTH = 2;
+    private static final int GAP = 1;
 
     private String name;
     private List<Station> stations;
@@ -23,6 +25,16 @@ public class Line {
     }
 
     public void addStation(Station station) {
+        if (contains(station)) {
+            throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
+        }
+        stations.add(station);
+    }
+
+    public void addStation(int index, Station station) {
+        if (stations.size() + GAP < index) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
+        }
         if (contains(station)) {
             throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
         }
