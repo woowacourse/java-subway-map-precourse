@@ -23,4 +23,13 @@ public class Line {
     public void addLast(Station station) {
         this.stations.addLast(station);
     }
+
+    public boolean hasStation(String name) {
+        for (Station station : this.stations) {
+            if (station.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,5 +1,7 @@
 package subway.utils;
 
+import java.util.ArrayList;
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
@@ -35,7 +37,12 @@ public class Validator implements Message {
     }
 
     public static boolean isStationRegisteredInLine(String name) {
-        // TODO : 해당 역이 노선에 등록되어 있는지 확인
+        ArrayList<Line> lines = LineRepository.getAllLines();
+        for (Line line : lines) {
+            if (line.hasStation(name)) {
+                return true;
+            }
+        }
         return false;
     }
 

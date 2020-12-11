@@ -12,11 +12,6 @@ public class SubwayManager implements Message {
 
 
     public void run() {
-        registerStation();
-        registerStation();
-        OutputView.printStations();
-        registerLine();
-        OutputView.printLines();
     }
 
 
