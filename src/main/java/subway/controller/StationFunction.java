@@ -18,6 +18,9 @@ public class StationFunction {
             StationRepository.deleteStation((makeValidateRemoveName(inputView)));
             StationOutputView.printSuccess(detailFunction);
         }
+        if (detailFunction.equals(DetailFunctions.RESEARCH)) {
+            StationOutputView.printResearch(StationRepository.stations());
+        }
     }
 
     private static String makeValidateEnrollName(InputView inputView) {

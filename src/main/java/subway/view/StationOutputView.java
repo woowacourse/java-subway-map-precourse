@@ -19,4 +19,12 @@ public class StationOutputView {
         System.out.println();
     }
 
+    public static void printResearch(List<Station> stations) {
+        System.out.println();
+        System.out.println("## "+"역"+" 목록");
+        for(Station station: stations){
+            System.out.println(PRINT_INFO_HEAD+station.getName());
+        }
+        System.out.println();
+    }
 }
