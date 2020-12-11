@@ -11,15 +11,15 @@ public class MainMenu {
         this.scanner = scanner;
     }
 
-    public int run() {
-        int parsedInput = input();
-        if (parsedInput == 0) {
+    public String run() {
+        String parsedInput = input();
+        if (parsedInput.matches("[Qq]")) {
             doNext = false;
         }
         return parsedInput;
     }
 
-    public int input() {
+    public String input() {
         printMenuScreen();
         return parseMenuNumber();
     }
@@ -33,21 +33,17 @@ public class MainMenu {
         System.out.println("Q. 종료");
     }
 
-    public int parseMenuNumber() {
+    public String parseMenuNumber() {
         String userInput = scanner.nextLine();
         try {
-            return Integer.parseInt(userInput);
+            return Validate.mainMenuInt(userInput);
         } catch (IllegalArgumentException e) {
-            if (userInput.equals("Q")) {
-                return 0;
-            }
-            System.out.println("[ERROR] 잘못된 입력입니다.");
-            return run();
+            System.out.println(e);
+            return input();
         }
     }
 
     public boolean doNext() {
         return doNext;
     }
-
 }

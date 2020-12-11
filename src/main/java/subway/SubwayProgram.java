@@ -16,17 +16,15 @@ public class SubwayProgram {
     public void run() {
         MainMenu mainMenu = new MainMenu(scanner);
         do {
-            int mainMenuNumber = mainMenu.run();
+            String mainMenuNumber = mainMenu.run();
             newStationRepository = new StationRepository();
             selectMainMenu(mainMenuNumber);
-
             System.out.println(newStationRepository);
         } while (mainMenu.doNext());
-
     }
 
-    public void selectMainMenu(int mainMenuNumber) {
-        if (mainMenuNumber == 1) {
+    public void selectMainMenu(String mainMenuNumber) {
+        if (mainMenuNumber.equals("1")) {
             StationManage newStationManage = new StationManage(scanner);
             newStationManage.manageStation();
         }
