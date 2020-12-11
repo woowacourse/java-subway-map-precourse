@@ -95,6 +95,8 @@ public class Initialization {
         DefaultLines[] defaultLines = DefaultLines.values();
         for (DefaultLines defaultLine : defaultLines) {
             Line currentLine = new Line(defaultLine.getName(), defaultLine.getNorthboundTerminal(), defaultLine.getSouthboundTerminal());
+            StationRepository.getStationNamed(defaultLine.getNorthboundTerminal()).registerToNorthbound();
+            StationRepository.getStationNamed(defaultLine.getSouthboundTerminal()).registerToSouthbound();
             registerStationsInLine(defaultLine, currentLine);
             LineRepository.addLine(currentLine);
         }
