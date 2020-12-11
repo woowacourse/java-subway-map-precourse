@@ -2,9 +2,12 @@ package subway.service;
 
 import subway.constant.Information;
 import subway.constant.InitialData;
+import subway.domain.Line;
 import subway.repository.LineRepository;
 
 import java.util.Scanner;
+
+import static subway.constant.Information.INFO_HEADER;
 
 public class LineService extends BaseService {
 
@@ -33,6 +36,9 @@ public class LineService extends BaseService {
 
     @Override
     public void show() {
-        System.out.println(Information.SHOW_LINE_INFO);
+        System.out.print(Information.SHOW_LINE_INFO);
+        for (Line line : LineRepository.lines())
+            System.out.print(INFO_HEADER + line.getName());
+        System.out.println();
     }
 }
