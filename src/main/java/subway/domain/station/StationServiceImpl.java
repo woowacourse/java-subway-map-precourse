@@ -33,10 +33,10 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public boolean deleteStation(StationDeleteReqDto deleteReqDto) {
+    public void deleteStation(StationDeleteReqDto deleteReqDto) {
         if (stationRepository.deleteStationByName(deleteReqDto.getName())) {
-            return true;
+            return;
         }
-        return false;
+        throw new StationException(ErrorCode.STATION_NOT_FOUND);
     }
 }

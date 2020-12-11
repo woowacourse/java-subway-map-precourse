@@ -107,17 +107,33 @@ public class StringBuilderOutputService implements OutputService {
     }
 
     @Override
-    public void printManageStationAdd() {
+    public void printAdd(Screen screen) {
         sb.append(ENTER);
-        sb.append(MANAGE_STATION_ADD);
+        sb.append(screen.getAdd());
         System.out.println(sb.toString());
         clearSb();
     }
 
     @Override
-    public void printManageStationDelete() {
+    public void printDelete(Screen screen) {
         sb.append(ENTER);
-        sb.append(MANAGE_STATION_DELETE);
+        sb.append(screen.getDelete());
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printAfterAdd(Screen screen) {
+        sb.append(ENTER);
+        sb.append(screen.getAfterAdd());
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printAfterDelete(Screen screen) {
+        sb.append(ENTER);
+        sb.append(screen.getAfterDelete());
         System.out.println(sb.toString());
         clearSb();
     }

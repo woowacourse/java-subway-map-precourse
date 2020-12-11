@@ -8,5 +8,5 @@ public interface StationService {
 
     Stations getStations();
 
-    boolean deleteStation(StationDeleteReqDto deleteReqDto);
+    void deleteStation(StationDeleteReqDto deleteReqDto);
 }

@@ -11,4 +11,12 @@ public abstract class Screen {
     public Screen(OutputService outputService) {
         this.outputService = outputService;
     }
+
+    public abstract String getAdd();
+
+    public abstract String getDelete();
+
+    public abstract String getAfterAdd();
+
+    public abstract String getAfterDelete();
 }

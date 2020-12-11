@@ -9,11 +9,12 @@ import subway.service.output.OutputService;
 
 import java.util.List;
 
-public class StationView extends Screen{
-
+public class StationView extends Screen {
     private static final String PRINT_STATION = "역 목록";
-    private static final String PRINT_ADD = "지하철 역이 등록되었습니다.";
-    private static final String PRINT_DELETE = "지하철 역이 삭제되었습니다.";
+    public static final String PRINT_ADD = "등록할 역 이름을 입력하세요";
+    public static final String PRINT_DELETE = "삭제할 역 이름을 입력하세요";
+    private static final String PRINT_AFTER_ADD = "지하철 역이 등록되었습니다.";
+    private static final String PRINT_AFTER_DELETE = "지하철 역이 삭제되었습니다.";
 
     public StationView(OutputService outputService) {
         super(outputService);
@@ -29,18 +30,25 @@ public class StationView extends Screen{
         }
     }
 
-    public void printAdd() {
-        outputService.printInfo(PRINT_ADD);
+    @Override
+    public String getAdd() {
+        return PREFIX_INFO + PRINT_ADD;
     }
 
-    public void printDelete(boolean isDelete) {
-        if (isDelete) {
-            outputService.printInfo(PRINT_DELETE);
-            return;
-        }
-        throw new StationException(ErrorCode.STATION_NOT_FOUND);
+    @Override
+    public String getDelete() {
+        return PREFIX_INFO + PRINT_DELETE;
     }
 
+    @Override
+    public String getAfterAdd() {
+        return PREFIX_INFO + PRINT_AFTER_ADD;
+    }
+
+    @Override
+    public String getAfterDelete() {
+        return PREFIX_INFO + PRINT_AFTER_DELETE;
+    }
 
     private void validateStations(Stations stations) {
         if (stations.size() == 0) {

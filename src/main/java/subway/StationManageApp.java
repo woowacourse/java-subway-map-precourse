@@ -71,13 +71,14 @@ public class StationManageApp {
     private void chooseManageStationOption(int manageStationOption) {
         StationView stationView = new StationView(outputService);
         if (manageStationOption == InputService.ADD) {
-            outputService.printManageStationAdd();
+            outputService.printAdd(stationView);
             stationService.saveStation(new StationSaveReqDto(getStationName()));
-            stationView.printAdd();
+            outputService.printAfterAdd(stationView);
         }
         if (manageStationOption == InputService.DELETE) {
-            outputService.printManageStationDelete();
-            stationView.printDelete(stationService.deleteStation(new StationDeleteReqDto(getStationName())));
+            outputService.printDelete(stationView);
+            stationService.deleteStation(new StationDeleteReqDto(getStationName()));
+            outputService.printAfterDelete(stationView);
         }
         if (manageStationOption == InputService.FIND) {
             stationView.printAllStations(stationService.getStations());
