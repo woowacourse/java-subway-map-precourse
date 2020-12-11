@@ -7,6 +7,7 @@ import subway.utils.Validator;
 public class Line implements Message {
 
     private static final int ADJUST = 1;
+    private static final int MIN_SIZE = 2;
     private final LinkedList<Station> stations = new LinkedList<>();
     private String name;
 
@@ -57,9 +58,22 @@ public class Line implements Message {
         this.stations.add(index, station);
     }
 
+    public void removeStation(Station station) {
+
+        if (this.stations.size() <= MIN_SIZE) {
+            throw new IllegalArgumentException("구간에 등록된 역은 2개 이하가 될 수 없습니다.");
+        }
+
+        boolean deleted = this.stations.remove(station);
+        if (!deleted) {
+            throw new IllegalArgumentException(ERROR_NOT_REGISTERED_STATION);
+        }
+    }
+
     private void checkDuplicateStation(Station station) {
         if (this.stations.contains(station)) {
             throw new IllegalArgumentException(ERROR_ALREADY_REGISTERED_STATION);
         }
     }
+
 }

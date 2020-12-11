@@ -1,6 +1,5 @@
 package subway;
 
-import java.util.Optional;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -107,6 +106,16 @@ public class SubwayManager implements Message {
         int index = Integer.parseInt(InputView.getInput());
         line.insertStation(index, station);
         OutputView.printInfo(INFO_SECTION_REGISTERED);
+    }
+
+    private void removeStationFromLine() {
+        OutputView.printAnnouncement(ANN_DELETE_SECTION_LINE);
+        Line line = LineRepository.getLine(InputView.getInput());
+        OutputView.printAnnouncement(ANN_DELETE_SECTION_STATION);
+        // TODO : getStation을 StationRepository의 클래스 메서드로 리팩토링
+        Station station = getStation();
+        line.removeStation(station);
+        OutputView.printInfo(INFO_SECTION_DELETED);
     }
 
 }
