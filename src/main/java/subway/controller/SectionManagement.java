@@ -24,6 +24,9 @@ public class SectionManagement {
         if (menu.equals(FunctionType.CREATE)) {
             createSection();
         }
+        if (menu.equals(FunctionType.DELETE)) {
+            deleteSection();
+        }
     }
 
     private static void createSection() {
@@ -32,6 +35,18 @@ public class SectionManagement {
             Line line = LineRepository.searchByName(sectionView.getLineNameToCreate());
             int index = sectionView.getIndex();
             line.addStation(index, station);
+            sectionView.printRegisterDone();
+        } catch (Exception e) {
+            OutputView.showErrorMessage(e);
+        }
+    }
+
+    private static void deleteSection() {
+        try {
+            Station station = StationRepository.searchByName(sectionView.getStationNameToDelete());
+            Line line = LineRepository.searchByName(sectionView.getLineNameToDelete());
+            line.deleteStation(station);
+            sectionView.printDeleteDone();
         } catch (Exception e) {
             OutputView.showErrorMessage(e);
         }

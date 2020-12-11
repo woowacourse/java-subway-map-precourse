@@ -12,9 +12,11 @@ public class SectionView extends ManagementView {
     private static final String SHARP_PREFIX = "## ";
     private static final String VIEW_NAME = "구간 관리 화면";
     private static final String ITEM_PREFIX = "구간 ";
+    private static final String TO_DELETE_PREFIX = "삭제할 ";
     private static final String STATION_PREFIX = "역이름을 ";
     private static final String LINE_PREFIX = "노선을 ";
     private static final String INDEX_PREFIX = "순서를 ";
+    private static final String SECTION_PREFIX = "구간의 ";
     private static final String REQUEST_MESSAGE = "입력하세요.";
     private static final String SECTION_REGISTER = "구간이 등록되었습니다.";
     private static final String SECTION_DELETE = "구간이 삭제되었습니다.";
@@ -75,8 +77,16 @@ public class SectionView extends ManagementView {
         return InputView.getNameWithMessage(SHARP_PREFIX + STATION_PREFIX + REQUEST_MESSAGE);
     }
 
+    public String getStationNameToDelete() {
+        return InputView.getNameWithMessage(SHARP_PREFIX + TO_DELETE_PREFIX + SECTION_PREFIX + STATION_PREFIX + REQUEST_MESSAGE);
+    }
+
     public String getLineNameToCreate() {
         return InputView.getNameWithMessage(SHARP_PREFIX + LINE_PREFIX + REQUEST_MESSAGE);
+    }
+
+    public String getLineNameToDelete() {
+        return InputView.getNameWithMessage(SHARP_PREFIX + TO_DELETE_PREFIX + SECTION_PREFIX + LINE_PREFIX + REQUEST_MESSAGE);
     }
 
     public int getIndex() {
