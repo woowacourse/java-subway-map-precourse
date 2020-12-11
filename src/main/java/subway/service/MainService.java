@@ -13,14 +13,14 @@ public class MainService {
 
     private StationService stationService;
     private LineService lineService;
-    private AreaService areaService;
+    private LinkService linkService;
     private MapService mapService;
 
     public MainService(Scanner scanner) {
         this.scanner = scanner;
         stationService = new StationService(scanner);
         lineService = new LineService(scanner);
-        areaService = new AreaService(scanner);
+        linkService = new LinkService(scanner);
         mapService = new MapService();
     }
 
@@ -55,8 +55,8 @@ public class MainService {
             stationService.run();
         if (selectedService.equals(Service.LINE.getCode()))
             lineService.run();
-        if (selectedService.equals(Service.AREA.getCode()))
-            areaService.run();
+        if (selectedService.equals(Service.LINK.getCode()))
+            linkService.run();
         if (selectedService.equals(Service.MAP.getCode()))
             mapService.run();
         if (selectedService.equals(Service.QUIT.getCode()))

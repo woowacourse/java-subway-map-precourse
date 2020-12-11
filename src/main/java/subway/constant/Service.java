@@ -9,7 +9,7 @@ public enum Service {
 
     STATION("1"),
     LINE("2"),
-    AREA("3"),
+    LINK("3"),
     MAP("4"),
     QUIT("Q");
 

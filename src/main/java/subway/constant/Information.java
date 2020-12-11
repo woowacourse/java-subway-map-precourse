@@ -23,7 +23,7 @@ public class Information {
     public static final String DELETE_LINE_SUCCESS = INFO_HEADER + "지하철 노선이 삭제되었습니다.";
     public static final String SHOW_LINE_INFO = "\n## 노선 목록";
 
-    public static final String AREA_INFO = "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기\n" + CHOOSE_FUNCTION;
+    public static final String LINK_INFO = "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기\n" + CHOOSE_FUNCTION;
 
     public static final String MAP_INFO = "\n## 지하철 노선도";
 }
