@@ -1,5 +1,7 @@
 package subway.view;
 
+import static subway.utils.Message.ANN_PRINT_WHOLE_LINES;
+
 import java.util.ArrayList;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -31,6 +33,18 @@ public class OutputView {
         ArrayList<Line> lines = LineRepository.getAllLines();
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
+        }
+    }
+
+    public static void printWholeSection() {
+        printAnnouncement(ANN_PRINT_WHOLE_LINES);
+        ArrayList<Line> lines = LineRepository.getAllLines();
+        for (Line line : lines) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INFO] ---");
+            for (Station station : line.getStations()) {
+                System.out.println("[INFO] " + station.getName());
+            }
         }
     }
 }

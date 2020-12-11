@@ -19,6 +19,10 @@ public class Line implements Message {
         return name;
     }
 
+    public LinkedList<Station> getStations() {
+        return stations;
+    }
+
     // 추가 기능 구현
     public void addFirst(Station station) {
         this.stations.addFirst(station);

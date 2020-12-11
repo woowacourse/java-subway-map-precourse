@@ -13,6 +13,7 @@ public interface Message {
     String ANN_SELECT_LINE = "노선을 입력하세요";
     String ANN_SELECT_STATION = "역 이름을 입력하세요";
     String ANN_INPUT_ORDER = "순서를 입력하세요";
+    String ANN_PRINT_WHOLE_LINES = "지하철 노선도";
 
     String INFO_STATION_REGISTERED = "지하철 역이 등록되었습니다.";
     String INFO_LINE_REGISTERED = "지하철 노선이 등록되었습니다.";
