@@ -53,4 +53,30 @@ class StationTest {
         //then
         assertThat(findStation.get()).isNotEqualTo(station);
     }
+
+    @Test
+    public void 역_삭제를_성공한다() throws Exception {
+        //given
+        Station station = new Station("서울역");
+        StationRepository.addStation(station);
+
+        //when
+        boolean isDelete = StationRepository.deleteStation("서울역");
+
+        //then
+        assertThat(isDelete).isTrue();
+    }
+
+    @Test
+    public void 역_삭제를_실패한다() throws Exception {
+        //given
+        Station station = new Station("서울역");
+        StationRepository.addStation(station);
+
+        //when
+        boolean isDelete = StationRepository.deleteStation("서현역");
+
+        //then
+        assertThat(isDelete).isFalse();
+    }
 }
