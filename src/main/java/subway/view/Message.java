@@ -37,33 +37,43 @@ public class Message {
 
     private static final String selectFeature = "\n## 원하는 기능을 선택하세요.";
     private static final String subwayLine = "## 지하철 노선도";
+    private static final String error = "\n[ERROR] 선택할 수 없는 기능입니다.";
 
     private Message() {
     }
 
     public static void printMainMenu() {
         mainMenus.forEach(System.out::println);
-        System.out.println(selectFeature);
+        printSelectFeature();
     }
 
     public static void printStatinMenu() {
         stationMenus.forEach(System.out::println);
-        System.out.println(selectFeature);
+        printSelectFeature();
     }
 
     public static void printLineMenu() {
         lineMenus.forEach(System.out::println);
-        System.out.println(selectFeature);
+        printSelectFeature();
     }
 
     public static void printSectionMenu() {
         sectionMenus.forEach(System.out::println);
-        System.out.println(selectFeature);
+        printSelectFeature();
     }
 
     public static void printSubwayLineMessage() {
         System.out.println(subwayLine);
     }
+
+    public static void printSelectFeature() {
+        System.out.println(selectFeature);
+    }
+
+    public static void printError() {
+        System.out.println(error);
+    }
+
     public static void printLine() {
         System.out.println();
     }

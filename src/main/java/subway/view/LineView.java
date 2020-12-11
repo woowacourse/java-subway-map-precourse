@@ -11,17 +11,21 @@ public class LineView {
         this.input = input;
     }
 
-    public void selectLineMenu(final String button) {
+    public void selectLineMenu() {
+        Message.printLineMenu();
+        selectMenu(input.nextLineButton());
+    }
+
+    private void selectMenu(final String button) {
         if (isBack(button)) {
             return;
         }
-
         registerLine(button);
         deleteLine(button);
         readLine(button);
     }
 
-    private boolean isBack(String button) {
+    private boolean isBack(final String button) {
         return button.equals(Button.BACK);
     }
 

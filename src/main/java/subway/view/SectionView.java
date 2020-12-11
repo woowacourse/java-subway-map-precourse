@@ -11,11 +11,15 @@ public class SectionView {
         this.input = input;
     }
 
-    public void selectLineMenu(final String button) {
+    public void selectSectionMenu() {
+        Message.printSectionMenu();
+        selectMenu(input.nextSectionButton());
+    }
+
+    private void selectMenu(final String button) {
         if (isBack(button)) {
             return;
         }
-
         registerSection(button);
         deleteSection(button);
     }

@@ -20,6 +20,7 @@ public class MainView {
     }
 
     public void selectMainMenu() {
+        Message.printMainMenu();
         selectMenu(input.nextMainButton());
     }
 
@@ -41,24 +42,24 @@ public class MainView {
 
     private void loopMainMenu() {
         Message.printLine();
-        selectMenu(input.nextMainButton());
+        selectMainMenu();
     }
 
     private void selectStationMenu(final String button) {
         if (button.equals(Button.ONE)) {
-            stationView.selectStationMenu(input.nextStationButton());
+            stationView.selectStationMenu();
         }
     }
 
     private void selectLineMenu(final String button) {
         if (button.equals(Button.TWO)) {
-            lineView.selectLineMenu(input.nextLineButton());
+            lineView.selectLineMenu();
         }
     }
 
     private void selectSectionMenu(final String button) {
         if (button.equals(Button.THREE)) {
-            sectionView.selectLineMenu(input.nextSectionButton());
+            sectionView.selectSectionMenu();
         }
     }
 

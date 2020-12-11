@@ -17,23 +17,43 @@ public class Input {
     }
 
     public String nextMainButton() {
-        Message.printMainMenu();
-        return toUpperNextLine();
+        String button = toUpperNextLine();
+        if (Button.containsMainButton(button)) {
+            return button;
+        }
+        Message.printError();
+        Message.printSelectFeature();
+        return nextMainButton();
     }
 
     public String nextStationButton() {
-        Message.printStatinMenu();
-        return toUpperNextLine();
+        String button = toUpperNextLine();
+        if (Button.containsStationButtons(button)) {
+            return button;
+        }
+        Message.printError();
+        Message.printSelectFeature();
+        return nextStationButton();
     }
 
     public String nextLineButton() {
-        Message.printLineMenu();
-        return toUpperNextLine();
+        String button = toUpperNextLine();
+        if (Button.containsLineButtons(button)) {
+            return button;
+        }
+        Message.printError();
+        Message.printSelectFeature();
+        return nextLineButton();
     }
 
     public String nextSectionButton() {
-        Message.printSectionMenu();
-        return toUpperNextLine();
+        String button = toUpperNextLine();
+        if (Button.containsSectionButtons(button)) {
+            return button;
+        }
+        Message.printError();
+        Message.printSelectFeature();
+        return nextSectionButton();
     }
 
     private String toUpperNextLine() {

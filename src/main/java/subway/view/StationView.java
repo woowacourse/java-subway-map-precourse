@@ -11,11 +11,15 @@ public class StationView {
         this.input = input;
     }
 
-    public void selectStationMenu(final String button) {
+    public void selectStationMenu() {
+        Message.printStatinMenu();
+        selectMenu(input.nextStationButton());
+    }
+
+    private void selectMenu(String button) {
         if (isBack(button)) {
             return;
         }
-
         registerStation(button);
         deleteStation(button);
         readStations(button);
