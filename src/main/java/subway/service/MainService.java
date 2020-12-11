@@ -1,6 +1,5 @@
 package subway.service;
 
-import subway.validator.ServiceValidator;
 import subway.constant.Information;
 import subway.constant.Service;
 import subway.exception.InvalidInputException;
@@ -10,7 +9,6 @@ import java.util.Scanner;
 public class MainService {
 
     private Scanner scanner;
-    private ServiceValidator serviceValidator = new ServiceValidator();
     private boolean isContinue = true;
 
     private StationService stationService;
@@ -43,7 +41,7 @@ public class MainService {
 
     private String selectService() {
         String line = getServiceInput();
-        serviceValidator.validate(line);
+        Service.validate(line);
         return line;
     }
 
