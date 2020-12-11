@@ -16,13 +16,13 @@ import static subway.view.OutputView.printDeleteStationSuccessMessage;
 public class StationService extends InputValidation {
 
     public void selectStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if(menu.equals(MenuType.STATION_ADD.getKey())) {
+        if (menu.equals(MenuType.STATION_ADD.getKey())) {
             addStation(scanner);
         }
-        if(menu.equals(MenuType.STATION_DELETE.getKey())) {
+        if (menu.equals(MenuType.STATION_DELETE.getKey())) {
             deleteStation(scanner);
         }
-        if(menu.equals(MenuType.STATION_SEARCH.getKey())) {
+        if (menu.equals(MenuType.STATION_SEARCH.getKey())) {
             printStations();
         }
     }

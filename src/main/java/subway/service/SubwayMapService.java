@@ -21,16 +21,16 @@ public class SubwayMapService extends InputValidation {
     }
 
     public void selectMainMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if(menu.equals(MenuType.MAIN_STATION.getKey())) {
+        if (menu.equals(MenuType.MAIN_STATION.getKey())) {
             stationManagement(scanner, lineStation);
         }
-        if(menu.equals(MenuType.MAIN_LINE_STATION.getKey())) {
+        if (menu.equals(MenuType.MAIN_LINE_STATION.getKey())) {
             lineStationManagement(scanner, lineStation);
         }
-        if(menu.equals(MenuType.MAIN_SECTION.getKey())) {
+        if (menu.equals(MenuType.MAIN_SECTION.getKey())) {
             sectionManagement(scanner, lineStation);
         }
-        if(menu.equals(MenuType.MAIN_PRINT_LINE_STATION.getKey())) {
+        if (menu.equals(MenuType.MAIN_PRINT_LINE_STATION.getKey())) {
             printLineStation(lineStation);
         }
     }

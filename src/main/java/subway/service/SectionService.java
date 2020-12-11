@@ -15,10 +15,10 @@ import static subway.view.OutputView.printDeleteSectionSuccessMessage;
 public class SectionService extends InputValidation {
 
     public void selectSectionManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if(menu.equals(MenuType.SECTION_ADD.getKey())) {
+        if (menu.equals(MenuType.SECTION_ADD.getKey())) {
             addSection(scanner, lineStation);
         }
-        if(menu.equals(MenuType.SECTION_DELETE.getKey())) {
+        if (menu.equals(MenuType.SECTION_DELETE.getKey())) {
             deleteSection(scanner, lineStation);
         }
     }

@@ -12,13 +12,13 @@ import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 public class LineStationService extends InputValidation {
 
     public void selectLineStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if(menu.equals(MenuType.LINE_STATION_ADD.getKey())) {
+        if (menu.equals(MenuType.LINE_STATION_ADD.getKey())) {
             addLineStation(scanner, lineStation);
         }
-        if(menu.equals(MenuType.LINE_STATION_DELETE.getKey())) {
+        if (menu.equals(MenuType.LINE_STATION_DELETE.getKey())) {
             deleteLineStation(scanner, lineStation);
         }
-        if(menu.equals(MenuType.LINE_STATION_SEARCH.getKey())) {
+        if (menu.equals(MenuType.LINE_STATION_SEARCH.getKey())) {
             printLines();
         }
     }
