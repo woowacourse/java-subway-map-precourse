@@ -41,7 +41,7 @@ public class Subway {
         LineRepository.addLine(line);
     }
 
-    public void removeLine(String name) {
+    public void removeLineByName(String name) {
         LineRepository.deleteLineByName(name);
     }
 }

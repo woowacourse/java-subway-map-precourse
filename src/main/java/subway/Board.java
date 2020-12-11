@@ -14,6 +14,11 @@ public class Board {
     private final static String SAME_TERMINAL_ERROR = ERROR + " 상행선과 하행선이 같은 역입니다.";
     private final static String NOT_EXIST_STATION_ERROR = ERROR + " 지하철 역이 존재하지 않습니다.";
     private final static String NOT_EXIST_LINE_ERROR = ERROR + " 존재하지 않는 노선입니다.";
+    private final static String MINIMUM_LENGTH_ERROR = ERROR + " 이름이 너무 짧습니다.";
+    private final static String SAME_STATION_IN_SECTION_ERROR = ERROR + " 이미 같은 역이 있습니다.";
+
+
+    private final static int MIN_NAME_LENGTH = 2;
 
 
     private final static Subway subway = new Subway();
@@ -27,13 +32,16 @@ public class Board {
         if (subway.containsStation(name)) {
             System.out.println(DUPLICATED_SUBWAY_ERROR);
             return false;
+        } else if (name.length() < MIN_NAME_LENGTH) {
+            System.out.println(MINIMUM_LENGTH_ERROR);
+            return false;
         }
         subway.addStation(name);
         System.out.println(STATION_ADD_MESSAGE);
         return true;
     }
 
-    public void removeStation(String name) {
+    public void removeStationByName(String name) {
         if (subway.containsStation(name)) {
             System.out.println(NOT_EXIST_STATION_ERROR);
         }
@@ -56,15 +64,14 @@ public class Board {
         return true;
     }
 
-    public void removeLine(String name) {
+    public void removeLineByName(String name) {
 
         if (subway.containsLine(name)) {
             System.out.println(NOT_EXIST_LINE_ERROR);
             return;
         }
-        subway.removeLine(name);
+        subway.removeLineByName(name);
         System.out.println(LINE_REMOVED_MESSAGE);
     }
 
-    
 }
