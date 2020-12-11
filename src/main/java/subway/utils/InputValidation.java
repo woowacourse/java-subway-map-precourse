@@ -74,4 +74,11 @@ public class InputValidation {
             throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하힙니다.");
         }
     }
+
+    public void validateStationIsContainsLineStation(String stationName, LineStationRepository lineStation) {
+        Station findStation = StationRepository.findStation(stationName).get();
+        if (lineStation.findStationInLine(findStation)) {
+            throw new IllegalArgumentException("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
+        }
+    }
 }

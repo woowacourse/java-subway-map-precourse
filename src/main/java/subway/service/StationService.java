@@ -20,7 +20,7 @@ public class StationService extends InputValidation {
             addStation(scanner);
         }
         if (menu.equals(MenuType.STATION_DELETE.getKey())) {
-            deleteStation(scanner);
+            deleteStation(scanner, lineStation);
         }
         if (menu.equals(MenuType.STATION_SEARCH.getKey())) {
             printStations();
@@ -36,10 +36,11 @@ public class StationService extends InputValidation {
         printAddStationSuccessMessage();
     }
 
-    private void deleteStation(Scanner scanner) {
+    private void deleteStation(Scanner scanner, LineStationRepository lineStation) {
         InputView.inputDeleteStationNameRequestMessage();
         String stationName = scanner.nextLine();
         validateStationNameIsContains(stationName);
+        validateStationIsContainsLineStation(stationName, lineStation);
         StationRepository.deleteStation(stationName);
         printDeleteStationSuccessMessage();
     }
