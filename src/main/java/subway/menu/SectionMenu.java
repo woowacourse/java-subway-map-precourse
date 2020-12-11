@@ -1,14 +1,14 @@
-package subway.view;
+package subway.menu;
 
-import static subway.view.MainMenu.WRONG_MENU_INPUT_EXCEPTION_MESSAGE;
+import static subway.view.TextFixtures.WRONG_MENU_INPUT_EXCEPTION_MESSAGE;
 
 import java.util.Arrays;
-import subway.controller.Management;
+import subway.controller.manager.SectionManager;
 import subway.exception.SubwayCustomException;
 
 public enum SectionMenu {
-    ADD_SECTION("1", Management::addSection),
-    DELETE_SECTION("2", Management::deleteSection),
+    ADD_SECTION("1", SectionManager::addSection),
+    DELETE_SECTION("2", SectionManager::deleteSection),
     BACK("B", null);
 
     private final String input;

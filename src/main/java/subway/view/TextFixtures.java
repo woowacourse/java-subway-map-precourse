@@ -3,7 +3,6 @@ package subway.view;
 public class TextFixtures {
 
     public static final String INFORMATION_PREFIX = "[INFO] ";
-    public static final String ERROR_PREFIX = "[ERROR] ";
     public static final String SECTION_LINE = "---";
     public static final String MENU_PREFIX = "## ";
     public static final String MAIN_MENU_MESSAGE = "메인화면 \n"
@@ -48,6 +47,8 @@ public class TextFixtures {
     public static final String REMOVE_SECTION_LINE_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
     public static final String REMOVE_SECTION_STATION_MESSAGE = "삭제할 구간의 역을 입력하세요.";
     public static final String REMOVE_SECTION_CHECK_MESSAGE = "구간이 삭제되었습니다.";
+
+    public static final String WRONG_MENU_INPUT_EXCEPTION_MESSAGE = "선택할 수 없는 기능입니다.";
 
     public static final String SUBWAY_LINE_MAP = "지하철 노선도";
 

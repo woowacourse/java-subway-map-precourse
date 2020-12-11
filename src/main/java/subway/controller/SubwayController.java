@@ -1,26 +1,28 @@
 package subway.controller;
 
 import java.util.Scanner;
+import subway.controller.manager.LineManager;
+import subway.controller.manager.MainManager;
 import subway.exception.SubwayCustomException;
 import subway.view.InputView;
-import subway.view.MainMenu;
+import subway.menu.MainMenu;
 import subway.view.OutputView;
 
 /**
  * 지하철 노선도 미션 총괄 클래스
  */
-public class Subway {
+public class SubwayController {
 
+    private final MainManager mainManager;
     private final InputView inputView;
-    private final Management management;
 
-    public Subway(Scanner scanner) {
-        inputView = new InputView(scanner);
-        management = new Management(scanner);
+    public SubwayController(final InputView inputView){
+        this.inputView = inputView;
+        mainManager = new MainManager();
     }
 
     public void start() {
-        management.initialize();
+        mainManager.initialize();
         while (true) {
             OutputView.showMainMenu();
             manage();
@@ -32,8 +34,10 @@ public class Subway {
         try {
             MainMenu.execute(inputView.inputValue());
         } catch (SubwayCustomException exception) {
-            exception.getMessage();
+            OutputView.showErrorMessage(exception);
             manage();
         }
     }
+
+
 }

@@ -1,21 +1,22 @@
-package subway.view;
+package subway.menu;
 
-import static subway.view.MainMenu.WRONG_MENU_INPUT_EXCEPTION_MESSAGE;
+import static subway.view.TextFixtures.WRONG_MENU_INPUT_EXCEPTION_MESSAGE;
 
 import java.util.Arrays;
-import subway.controller.Management;
+import subway.controller.manager.StationManager;
 import subway.exception.SubwayCustomException;
+import subway.view.OutputView;
 
-public enum LineMenu {
-    ADD_STATION("1", Management::addLine),
-    DELETE_STATION("2", Management::deleteLine),
-    SHOW_STATION_LIST("3", OutputView::showLineList),
+public enum StationMenu {
+    ADD_STATION("1", StationManager::addStation),
+    DELETE_STATION("2", StationManager::deleteStation),
+    SHOW_STATION_LIST("3", OutputView::showStationList),
     GO_BACK("B", null);
 
     private final String input;
     private final Runnable handler;
 
-    LineMenu(String input, Runnable handler) {
+    StationMenu(String input, Runnable handler) {
         this.input = input;
         this.handler = handler;
     }
@@ -28,7 +29,6 @@ public enum LineMenu {
                 .orElseThrow(() -> new SubwayCustomException(WRONG_MENU_INPUT_EXCEPTION_MESSAGE))
                 .handler.run();
         } catch (NullPointerException exception) {
-
         }
     }
 }

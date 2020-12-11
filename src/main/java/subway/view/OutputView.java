@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public static void showErrorMessage(SubwayCustomException exception) {
-        System.out.println(ERROR_PREFIX + exception.getMessage() + System.lineSeparator());
+        System.out.println(exception.getMessage() + System.lineSeparator());
     }
 
     private static void showMenuMessage(String message) {
