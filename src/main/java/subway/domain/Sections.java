@@ -18,11 +18,12 @@ public class Sections {
 		return Collections.unmodifiableList(sections);
 	}
 
-	private static List<Station> sections(String lineName) {
+	private static List<String> getSectionNames(String lineName) {
 		return LineRepository.getLine(lineName)
 				.getSections()
 				.sections
 				.stream()
+				.map(Station::getName)
 				.collect(Collectors.toUnmodifiableList());
 	}
 
@@ -48,13 +49,13 @@ public class Sections {
 	}
 
 	public static void validateDuplicate(String lineName, String stationName) throws IllegalArgumentException {
-		if (sections(lineName).contains(stationName)) {
+		if (getSectionNames(lineName).contains(stationName)) {
 			throw new IllegalArgumentException(SectionMessages.DUPLICATE_NAME_ERROR.getMessage());
 		}
 	}
 
 	public static void validateRegistration(String lineName, String stationName) throws IllegalArgumentException {
-		if (!sections(lineName).contains(stationName)) {
+		if (!getSectionNames(lineName).contains(stationName)) {
 			throw new IllegalArgumentException(SectionMessages.UNREGISTERED_STATION_NAME_ERROR.getMessage());
 		}
 	}
