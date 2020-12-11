@@ -9,7 +9,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
-class LineTest {
+class LineStationRepositoryTest {
 
     @Test
     public void 역_등록_후_노선_등록에_성공한다() throws Exception {
