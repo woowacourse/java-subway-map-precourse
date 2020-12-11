@@ -25,7 +25,7 @@ public class LineMapView implements ViewStrategy {
         OutputView.enter();
     }
 
-    private void printLines(List<LineResponseDTO> lines){
+    private void printLines(List<LineResponseDTO> lines) {
         OutputView.selectView(MAP_VIEW);
         lines.forEach(lineResponseDTO -> {
             OutputView.infoView(lineResponseDTO.getName());

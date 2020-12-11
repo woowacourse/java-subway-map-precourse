@@ -61,7 +61,7 @@ public class Line {
     }
 
     public void removeAllStation(){
-        stations.forEach(this::removeStation);
+        stations.forEach(Station::removeLine);
     }
 
     @Override

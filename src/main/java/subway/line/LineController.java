@@ -15,9 +15,10 @@ public class LineController {
     private LineRepository lineRepository;
     private StationRepository stationRepository;
 
-    private LineController(){}
+    private LineController() {
+    }
 
-    public static LineController get(LineRepository lineRepository, StationRepository stationRepository){
+    public static LineController get(LineRepository lineRepository, StationRepository stationRepository) {
         singleton.lineRepository = lineRepository;
         singleton.stationRepository = stationRepository;
         return singleton;
@@ -49,6 +50,10 @@ public class LineController {
         if (!line.isCorrectIndex(index)) {
             throw new IllegalStateException(String.format(INVALID_INDEX.getMessage(), line.stationSize()));
         }
+        if (line.containsStation(station)) {
+            throw new IllegalStateException(ALREADY_EXISTS_STATION.getMessage());
+        }
+
         line.joinStation(station, index);
     }
 

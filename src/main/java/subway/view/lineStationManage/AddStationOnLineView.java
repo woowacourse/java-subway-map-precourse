@@ -3,7 +3,6 @@ package subway.view.lineStationManage;
 import subway.line.LineController;
 import subway.view.OutputView;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AddStationOnLineView implements LineStationViewStrategy {

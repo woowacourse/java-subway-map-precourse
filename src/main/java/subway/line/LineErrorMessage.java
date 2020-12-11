@@ -8,7 +8,8 @@ public enum LineErrorMessage {
     UN_REMOVABLE("노선을 유지하려면 최소 둘 이상의 역이 등록되어 있어야 합니다."),
     WRONG_NAME("지하철 노선 이름은 %d 글자 이상이어야 합니다."),
     DUPLICATE_STATION("서로 다른 역을 입력해주세요."),
-    NOT_FOUND_STATION("노선에 등록된 역이 아닙니다.")
+    NOT_FOUND_STATION("노선에 등록된 역이 아닙니다."),
+    ALREADY_EXISTS_STATION("이미 노선에 등록된 역입니다.")
     ;
 
     private String message;

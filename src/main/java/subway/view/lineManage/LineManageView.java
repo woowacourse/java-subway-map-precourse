@@ -36,7 +36,7 @@ public class LineManageView implements ViewStrategy {
         OutputView.selectStrategy(LINE_MANAGE_VIEW, LINE_MANAGE_MESSAGE);
         String lineManageKey = scanner.nextLine();
         lineManageViewStrategy = LINE_MANAGE_VIEW.get(lineManageKey);
-        if(lineManageViewStrategy == null) {
+        if (lineManageViewStrategy == null) {
             OutputView.notExist();
             manageLine();
         }
