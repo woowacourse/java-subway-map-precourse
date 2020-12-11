@@ -30,9 +30,8 @@ public class StationService extends InputValidation {
     private void addStation(Scanner scanner) {
         inputAddStationNameRequestMessage();
         String stationName = scanner.nextLine();
-        //validation
         validateNameLengthIsMoreThan2(stationName);
-        //2.중복된 역 이름이 존재하는지 검증한다
+        validateStationNameIsDuplicate(stationName);
         StationRepository.addStation(new Station(stationName));
         printAddStationSuccessMessage();
     }
