@@ -11,6 +11,7 @@ public class OutputView {
         System.out.println(MainFunctions.WAY.getFunctionNumber()+". "+ MainFunctions.WAY.getFunctionName()+" 관리");
         System.out.println(MainFunctions.SUBWAY.getFunctionNumber()+". "+ MainFunctions.SUBWAY.getFunctionName()+" 출력");
         System.out.println(MainFunctions.FINISH.getFunctionNumber()+". "+ MainFunctions.FINISH.getFunctionName());
+        System.out.println();
     }
 
     public static void printDetailFunction(MainFunctions mainFunction) {
@@ -21,6 +22,10 @@ public class OutputView {
             System.out.println(DetailFunctions.RESEARCH.getFunctionNumber() + ". " + mainFunction.getFunctionName() + " " + DetailFunctions.RESEARCH.getFunctionName());
         }
         System.out.println(DetailFunctions.BACK.getFunctionNumber()+". "+ DetailFunctions.BACK.getFunctionName());
+        System.out.println();
     }
 
+    public static void printOneLine(){
+        System.out.println();
+    }
 }

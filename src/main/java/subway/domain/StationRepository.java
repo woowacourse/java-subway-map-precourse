@@ -14,7 +14,6 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         stations.add(station);
-        System.out.println(stations());
     }
 
     public static boolean deleteStation(String name) {
@@ -27,6 +26,6 @@ public class StationRepository {
                 return station;
             }
         }
-        throw new IllegalArgumentException("일치하는 역이 없습니다.");
+        return null;
     }
 }
