@@ -16,6 +16,9 @@ public class UserInterface {
         String input = scanner.next();
     }
 
+    public static void printSubwayMap(Scanner scanner) {
+    }
+
     public static String getStationName(Scanner scanner) {
         Print.getStationName();
         String input = scanner.next();
