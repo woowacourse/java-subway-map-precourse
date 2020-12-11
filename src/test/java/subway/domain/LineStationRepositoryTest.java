@@ -35,6 +35,23 @@ class LineStationRepositoryTest {
     }
 
     @Test
+    public void 구간_등록을_성공한다() throws Exception {
+        //given
+        LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
+        printLineStation(lineStation.getLineStation());
+
+        //when
+        Station station = new Station("우와역");
+        Line line = LineRepository.findLine("2호선").get();
+        StationRepository.addStation(station);
+        lineStation.addStationInLine(line, station, 1);
+
+        //then
+        System.out.println("after==============");
+        printLineStation(lineStation.getLineStation());
+    }
+
+   @Test
     public void 노선_검색을_성공한다() throws Exception {
         //given
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
