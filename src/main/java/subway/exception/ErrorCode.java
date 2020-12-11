@@ -8,7 +8,8 @@ public enum ErrorCode {
     //Station
     STATION_NAME_LENGTH_ERROR("S001", OutputService.PREFIX_ERROR + "역 이름은 2글자 이상이어야 합니다."),
     STATION_INVALID_LAST_NAME("S002", OutputService.PREFIX_ERROR + "마지막 글자에 역이 들어가야합니다."),
-    STATION_INVALID_CHARACTER("S003", OutputService.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다.");
+    STATION_INVALID_CHARACTER("S003", OutputService.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다."),
+    STATION_ALEADY_EXIST("S004", OutputService.PREFIX_ERROR + "이미 등록된 지하철 역입니다.");
 
     private final String code;
     private final String message;

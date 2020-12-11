@@ -19,8 +19,8 @@ class MemoryStationRepositoryTest {
     @DisplayName("지하철 역 저장 확인 ")
     void testSave() {
         //given
-        Station incheonStation = Station.of("인천시청");
-        Station seoulStation = Station.of("서울시청");
+        Station incheonStation = Station.of("인천시청역");
+        Station seoulStation = Station.of("서울시청역");
 
         //when
         Station savedIncheonStation = stationRepository.addStation(incheonStation);
