@@ -45,7 +45,7 @@ public class Print {
         System.out.printf("%n");
     }
 
-    public static void getStationName() {
+    public static void getStationNameToAdd() {
         System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.ADD, Constant.STATION);
     }
 }
