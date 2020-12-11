@@ -8,27 +8,27 @@ public class SubwayMapProgram {
         String mainInput = "";
         while (true) {
             PrintMainScreen.printMainScreen();
-            PrintUserSelectionMessage.printUserSelectionMessage();
+            Printer.printUserFunctionSelectionMessage();
             mainInput = scanner.nextLine();
-            if (mainInput.equals(MainSelection.QUIT)) {
+            if (mainInput.equals(UserSelections.QUIT)) {
                 break;
             }
-            resolveMainScreenInput(mainInput);
+            resolveMainScreenInput(mainInput, scanner);
         }
     }
 
-    private void resolveMainScreenInput(String mainInput) {
-        if (mainInput.equals(MainSelection.STATION_MANAGEMENT)) {
-            StationManagement.start();
+    private void resolveMainScreenInput(String mainInput, Scanner scanner) {
+        if (mainInput.equals(UserSelections.FIRST)) {
+            StationManagement.start(scanner);
         }
-        if (mainInput.equals(MainSelection.LINE_MANAGEMENT)) {
-            LineManagement.start();
+        if (mainInput.equals(UserSelections.SECOND)) {
+            LineManagement.start(scanner);
         }
-        if (mainInput.equals(MainSelection.SECTION_MANAGEMENT)) {
-            SectionManagement.start();
+        if (mainInput.equals(UserSelections.THIRD)) {
+            SectionManagement.start(scanner);
         }
-        if (mainInput.equals(MainSelection.PRINT_SUBWAY_MAP)) {
-            PrintSubwayMap.start();
+        if (mainInput.equals(UserSelections.GO_BACK)) {
+            PrintSubwayMap.start(scanner);
         }
     }
 }
