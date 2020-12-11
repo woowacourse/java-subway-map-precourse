@@ -10,6 +10,8 @@ public class UserInput {
         System.out.print(HASH);
         System.out.println(GIVE_ME_STATION_NAME);
         String input = scanner.next();
-        return input;
+        input = Exception.isNotSpace(input);
+        input = Exception.isNotEmpty(input);
+        return Exception.isStation(input);
     }
 }
