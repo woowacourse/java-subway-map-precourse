@@ -32,6 +32,19 @@ public class Print {
         );
     }
 
+    public static void sectionSetting() {
+        System.out.printf(Constant.HASH + Constant.SECTION + Constant.SETTING_MENU + "%n"
+                + Constant.ONE + Constant.DOT + Constant.SECTION + Constant.ADD + "%n"
+                + Constant.TWO + Constant.DOT + Constant.SECTION + Constant.DELETE + "%n"
+                + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
+                + Constant.HASH + Constant.CHOOSE_FUNCTION
+        );
+    }
+
+    public static void subwayMap() {
+        System.out.printf("%n");
+    }
+
     public static void getStationName() {
         System.out.printf(Constant.HASH + Constant.ENTER_NAME + "%n", Constant.ADD, Constant.STATION);
     }
