@@ -21,7 +21,6 @@ public class StationManager {
     }
 
     public void execute(String input) {
-
         if (input.equals(STATION_INSERT)) {
             String stationName = InputView.inputStation(scanner);
             StationRepository.addStation(new Station(stationName));

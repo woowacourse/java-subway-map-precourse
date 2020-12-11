@@ -20,9 +20,6 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        if (!isStationExist(name)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
-        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
@@ -36,9 +33,9 @@ public class StationRepository {
         return false;
     }
 
-    public static void inputValidStationName(String name) {
+    public static void isValidStationName(String name) {
         if (name.length() < 2) {
-            throw new IllegalArgumentException(ExceptionMessage.INPUT_OVER_TWO);
+            throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_OVER_TWO);
         }
         if (isStationExist(name)) {
             throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_EXISTS);
