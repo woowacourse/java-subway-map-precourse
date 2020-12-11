@@ -2,11 +2,19 @@ package subway.util;
 
 public class Constants {
 
+    public static final String MAIN_MENU_STATE = "MAIN";
+    public static final String STATION_MENU_STATE = "STATION";
+    public static final String LINE_MENU_STATE = "LINE";
+    public static final String SECTION_MENU_STATE = "SECTION";
+
     public final static char EXIT_INPUT_CHARACTER = 'Q';
     public final static char BACKWARD_INPUT_CHARACTER = 'B';
 
-    public final static String PREFIX_INFO = "[INFO]";
-    public final static String PREFIX_ERROR = "[ERROR]";
+    public final static int MIN_NAME_STRING_LENGTH = 2;
+    public final static int INDEX_ARRANGE_INT = 1;
+
+    public final static String PREFIX_INFO = "[INFO] ";
+    public final static String PREFIX_ERROR = "[ERROR] ";
 
     public final static String INVALID_STRING_OUTPUT_COMMENT = "선택할 수 없는 기능입니다.";
 
@@ -33,6 +41,7 @@ public class Constants {
     public final static String DELETE_STATION_OUTPUT_COMMENT = "지하철 역이 삭제되었습니다.";
     public final static String TITLE_WHOLE_STATION_TEXT = "## 역 목록";
     public final static String EXIST_STATION_OUTPUT_COMMENT = "이미 등록된 역 이름입니다.";
+    public final static String EXIST_STATION_IN_SECTION_OUTPUT_COMMENT = "구간에 등록되어 있는 역 입니다. 구간을 먼저 삭제해 주세요.";
     public final static String NO_EXIST_STATION_OUTPUT_COMMENT = "존재하지 않는 역 이름입니다.";
 
     public final static String[] SCREEN_MENU_LINE_MANAGEMENT = {
