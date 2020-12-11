@@ -9,7 +9,7 @@ import subway.exception.SubwayCustomException;
 public enum SectionMenu {
     ADD_SECTION("1", SectionManager::addSection),
     DELETE_SECTION("2", SectionManager::deleteSection),
-    BACK("B", null);
+    BACK("B", ()->{});
 
     private final String input;
     private final Runnable handler;
@@ -20,14 +20,10 @@ public enum SectionMenu {
     }
 
     public static void execute(String input) {
-        try {
-            Arrays.stream(values())
-                .filter(value -> value.input.equals(input))
-                .findFirst()
-                .orElseThrow(() -> new SubwayCustomException(WRONG_MENU_INPUT_EXCEPTION_MESSAGE))
-                .handler.run();
-        } catch (NullPointerException exception) {
-
-        }
+        Arrays.stream(values())
+            .filter(value -> value.input.equals(input.toUpperCase()))
+            .findFirst()
+            .orElseThrow(() -> new SubwayCustomException(WRONG_MENU_INPUT_EXCEPTION_MESSAGE))
+            .handler.run();
     }
 }
