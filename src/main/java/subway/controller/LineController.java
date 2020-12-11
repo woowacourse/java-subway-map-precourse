@@ -2,6 +2,8 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Sections;
+import subway.domain.StationRepository;
 import subway.view.General;
 import subway.view.LineMessages;
 import subway.view.View;
@@ -20,12 +22,35 @@ public class LineController {
 		options.add(Options.BACK.getOption());
 	}
 
+	private static String createLineName(Scanner scanner) throws IllegalArgumentException {
+		String lineName = View.getLineNameToRegister(scanner);
+		LineRepository.validateDuplicateName(lineName);
+		Line.validateNameLength(lineName);
+		return lineName;
+	}
+
+	private static String createDestination(Scanner scanner) throws IllegalArgumentException {
+		String destination = View.getUpwardDestination(scanner);
+		StationRepository.validateRegistration(destination);
+		return destination;
+	}
+
+	private static void createLine(String lineName, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
+		if (upwardDestination.equalsIgnoreCase(downwardDestination)) {
+			throw new IllegalArgumentException(LineMessages.DESTINATION_DUPLICATE_ERROR.getMessage());
+		}
+		LineRepository.addLine(new Line(lineName));
+		for (String destination : new String[] {downwardDestination, upwardDestination}) {
+			SectionController.addSection(lineName, destination, Sections.FIRST_SECTION_LOCATION);
+		}
+	}
+
 	private static void registerLine(Scanner scanner) {
-		String name = View.getLineNameToRegister(scanner);
-		String upwardDestination = View.getUpwardDestination(scanner);
-		String downwardDestination = View.getDownwardDestination(scanner);
 		try {
-			LineRepository.addLine(new Line(name, upwardDestination, downwardDestination));
+			String lineName = createLineName(scanner);
+			String upwardDestination = createDestination(scanner);
+			String downwardDestination = createDestination(scanner);
+			createLine(lineName, upwardDestination, downwardDestination);
 			View.printStationRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

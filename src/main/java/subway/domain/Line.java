@@ -7,14 +7,10 @@ public class Line {
 	private final Sections sections = new Sections();
 	private String name;
 
-	public Line(String name, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
+	public Line(String name) throws IllegalArgumentException {
 		LineRepository.validateDuplicateName(name);
 		validateNameLength(name);
-		StationRepository.validateRegistration(upwardDestination);
-		StationRepository.validateRegistration(downwardDestination);
 		this.name = name;
-		this.sections.addSection(StationRepository.getStation(upwardDestination));
-		this.sections.addSection(StationRepository.getStation(downwardDestination));
 	}
 
 	public String getName() {
@@ -25,7 +21,7 @@ public class Line {
 		return sections;
 	}
 
-	private void validateNameLength(String name) throws IllegalArgumentException {
+	public static void validateNameLength(String name) throws IllegalArgumentException {
 		if (name.length() < NAME_LENGTH_LOWER_BOUND) {
 			throw new IllegalArgumentException(LineMessages.NAME_LENGTH_ERROR.getMessage());
 		}

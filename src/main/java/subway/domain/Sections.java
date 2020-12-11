@@ -7,18 +7,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class Sections {
+	public static final int FIRST_SECTION_LOCATION = 1;
+
 	private final List<Station> sections = new ArrayList<>();
 
 	public List<Station> sections() {
 		return Collections.unmodifiableList(sections);
 	}
 
-	public void addSection(Station station) {
-		sections.add(station);
-	}
-
 	public void addSection(Station station, int location) {
-		sections.add(location, station);
+		sections.add(location-1, station); // section number starts from 1
 	}
 
 	public static void deleteSection(String lineName, String stationName) {
@@ -57,11 +55,11 @@ public class Sections {
 		}
 	}
 
-	public static void validateRange(String location, String lineName) throws IllegalArgumentException {
+	public static void validateRange(String lineName, String location) throws IllegalArgumentException {
 		int sectionLength = LineRepository.getLine(lineName)
 				.getSections()
 				.getSectionLength();
-		if (Integer.parseInt(location) < 0 || sectionLength < Integer.parseInt(location)) {
+		if (Integer.parseInt(location) - 1 < 0 || sectionLength < Integer.parseInt(location) - 1) {
 			throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
 		}
 	}

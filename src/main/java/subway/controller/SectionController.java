@@ -1,6 +1,8 @@
 package subway.controller;
 
-import subway.domain.*;
+import subway.domain.LineRepository;
+import subway.domain.Sections;
+import subway.domain.StationRepository;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -16,21 +18,36 @@ public class SectionController {
 		options.add(Options.BACK.getOption());
 	}
 
-	private static void addSection(String lineName, String stationName, String location) throws IllegalArgumentException {
+	private static String createLineNameToRegister(Scanner scanner) throws IllegalArgumentException {
+		String lineName = View.getLineNameToRegisterSection(scanner);
 		LineRepository.validateRegistration(lineName);
-		Sections.validateDuplicate(stationName, lineName);
+		return lineName;
+	}
+
+	private static String createStationNameToRegister(String lineName, Scanner scanner) throws IllegalArgumentException {
+		String stationName = View.getStationNameToRegisterSection(scanner);
+		Sections.validateDuplicate(lineName, stationName);
+		return stationName;
+	}
+
+	private static int createLocationToRegister(String lineName, Scanner scanner) throws IllegalArgumentException {
+		String location = View.getLocationToRegisterSection(scanner);
 		Sections.validateInteger(location);
-		Sections.validateRange(location, lineName);
+		Sections.validateRange(lineName, location);
+		return Integer.parseInt(location);
+	}
+
+	public static void addSection(String lineName, String stationName, int location) throws IllegalArgumentException {
 		LineRepository.getLine(lineName)
 				.getSections()
-				.addSection(StationRepository.getStation(stationName), Integer.parseInt(location));
+				.addSection(StationRepository.getStation(stationName), location);
 	}
 
 	private static void registerSection(Scanner scanner) {
-		String lineName = View.getLineNameToRegisterSection(scanner);
-		String stationName = View.getStationNameToRegisterSection(scanner);
-		String location = View.getLocationToRegisterSection(scanner);
 		try {
+			String lineName = createLineNameToRegister(scanner);
+			String stationName = createStationNameToRegister(lineName, scanner);
+			int location = createLocationToRegister(lineName, scanner);
 			addSection(lineName, stationName, location);
 			View.printSectionRegisterCompletion();
 		} catch (IllegalArgumentException e) {
@@ -40,17 +57,23 @@ public class SectionController {
 		}
 	}
 
-	private static void deleteSection(String lineName, String stationName) throws IllegalArgumentException {
+	private static String createLineNameToDelete(Scanner scanner) throws IllegalArgumentException {
+		String lineName = View.getLineNameToDeleteSection(scanner);
 		LineRepository.validateRegistration(lineName);
-		Sections.validateRegistration(stationName, lineName);
-		Sections.deleteSection(lineName, stationName);
+		return lineName;
+	}
+
+	private static String createStationNameToDelete(String lineName, Scanner scanner) throws IllegalArgumentException {
+		String stationName = View.getStationNameToDeleteSection(scanner);
+		Sections.validateRegistration(lineName, stationName);
+		return stationName;
 	}
 
 	private static void deregisterSection(Scanner scanner) {
-		String lineName = View.getLineNameToDeleteSection(scanner);
-		String stationName = View.getStationNameToDeleteSection(scanner);
 		try {
-			deleteSection(lineName, stationName);
+			String lineName = createLineNameToDelete(scanner);
+			String stationName = createStationNameToDelete(lineName, scanner);
+			Sections.deleteSection(lineName, stationName);
 			View.printSectionDeleteCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

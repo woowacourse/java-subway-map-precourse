@@ -18,6 +18,7 @@ public enum LineMessages {
 	REFERENCE(General.BASIC.getMessage() + "노선 목록"),
 
 	DUPLICATE_NAME_ERROR(General.ERROR.getMessage() + "이미 등록된 노선 이름입니다"),
+	DESTINATION_DUPLICATE_ERROR(General.ERROR.getMessage() + "상행 종점과 하행 종점이 같을 수 없습니다."),
 	NAME_LENGTH_ERROR(General.ERROR.getMessage() + "노선 이름은 "
 			+ Station.NAME_LENGTH_LOWER_BOUND + "이상이어야 합니다."),
 	UNREGISTERED_NAME_ERROR(General.ERROR.getMessage() + "등록되지 않은 노선입니다.");
