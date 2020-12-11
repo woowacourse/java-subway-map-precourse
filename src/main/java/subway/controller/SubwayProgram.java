@@ -124,8 +124,7 @@ public class SubwayProgram {
             return;
         }
         if (SubMenuType.DELETE.equals(sectionMenuType)) {
-            InputView.inputLineNameDelete(scanner);
-            return;
+            InputView.inputSectionDelete(scanner);
         }
     }
 

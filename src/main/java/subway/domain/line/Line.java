@@ -9,11 +9,14 @@ import java.util.Objects;
 public class Line {
     private static final int MIN_NAME_LENGTH = 2;
     private static final int MIN_INDEX = 1;
+    private static final int MIN_STATIONS_SIZE = 2;
     private static final String NAME_LENGTH_ERROR = "[ERROR] 노선 이름은 2자 이상으로 입력해주세요.";
     private static final String NAME_KOREAN_NUMBER_ERROR = "[ERROR] 노선 이름은 한글과 숫자만 입력 가능합니다.";
     private static final String NAME_FORM_ERROR = "[ERROR] 노선 이름은 OO선 형태로 입력해주세요.";
     private static final String INDEX_RANGE_ERROR = "[ERROR] 순서의 범위를 벗어났습니다. 1 ~ %d 까지 입력 가능합니다.";
     private static final String STATION_DUPLICATE_ERROR = "[ERROR] 이미 노선에 해당 역이 동록되어 있습니다.";
+    private static final String STATION_EXIST_ERROR = "[ERROR] 노선에 해당 역이 존재하지 않습니다.";
+    private static final String STATIONS_SIZE_ERROR = "[ERROR] 노선에 포함된 역이 2개 이하일 때는 제거할 수 없습니다.";
     private static final String KOREAN_NUMBER_REGEXP = "^[0-9가-힣]*$";
     private static final char NAME_END = '선';
     private List<Station> stations;
@@ -46,6 +49,13 @@ public class Line {
         }
     }
 
+    public void deleteStationToLine(Station station) {
+        if (stations.size() <= MIN_STATIONS_SIZE) {
+            throw new IllegalArgumentException(STATIONS_SIZE_ERROR);
+        }
+        stations.remove(station);
+    }
+
     private void validateIndexRange(int index) {
         if (index < MIN_INDEX || index > stations.size() + 1) {
             throw new IllegalArgumentException(String.format(INDEX_RANGE_ERROR, stations.size() + 1));
@@ -55,6 +65,11 @@ public class Line {
     public void validateDuplicateStationToLine(Station newStation) {
         if (stations.contains(newStation)) {
             throw new IllegalArgumentException(STATION_DUPLICATE_ERROR);
+        }
+    }
+    public void validateExistStationToLine(Station station) {
+        if (!stations.contains(station)) {
+            throw new IllegalArgumentException(STATION_EXIST_ERROR);
         }
     }
 

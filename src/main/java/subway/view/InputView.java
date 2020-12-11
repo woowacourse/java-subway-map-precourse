@@ -27,9 +27,11 @@ public class InputView {
     private static final String INPUT_LAST_STATION_ADD_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String INPUT_STATION_NAME_DELETE_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
     private static final String INPUT_LINE_NAME_DELETE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
-    private static final String INPUT_SECTION_LINE = "## 노선을 입력하세요.";
-    private static final String INPUT_SECTION_STATION = "## 역이름을 입력하세요.";
-    private static final String INPUT_SECTION_INDEX = "## 순서를 입력하세요.";
+    private static final String INPUT_SECTION_LINE_ADD_MESSAGE = "## 노선을 입력하세요.";
+    private static final String INPUT_SECTION_STATION_ADD_MESSAGE = "## 역이름을 입력하세요.";
+    private static final String INPUT_SECTION_INDEX_MESSAGE = "## 순서를 입력하세요.";
+    private static final String INPUT_SECTION_STATION_DELETE_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
+    private static final String INPUT_SECTION_LINE_DELETE_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
     private InputView() {
 
     }
@@ -121,15 +123,28 @@ public class InputView {
 
     public static void inputSectionAdd(Scanner scanner) {
         try {
-            System.out.println(INPUT_SECTION_LINE);
+            System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
             Line line = LineRepository.getLineByName(scanner.nextLine());
-            System.out.println(INPUT_SECTION_STATION);
+            System.out.println(INPUT_SECTION_STATION_ADD_MESSAGE);
             Station station = new Station(scanner.nextLine());
             StationRepository.validateNameExist(station);
             line.validateDuplicateStationToLine(station);
-            System.out.println(INPUT_SECTION_INDEX);
+            System.out.println(INPUT_SECTION_INDEX_MESSAGE);
             int index = InputValidator.validateInteger(scanner.nextLine());
             line.addStationToLine(station, index);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void inputSectionDelete(Scanner scanner) {
+        try {
+            System.out.println(INPUT_SECTION_LINE_DELETE_MESSAGE);
+            Line line = LineRepository.getLineByName(scanner.nextLine());
+            System.out.println(INPUT_SECTION_STATION_DELETE_MESSAGE);
+            Station station = new Station(scanner.nextLine());
+            line.validateExistStationToLine(station);
+            line.deleteStationToLine(station);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
