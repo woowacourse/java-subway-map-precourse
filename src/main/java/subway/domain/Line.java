@@ -18,12 +18,6 @@ public class Line {
         this.name = name;
     }
 
-    public Line(String name, Station upEnd, Station downEnd) {
-        this.name = name;
-        this.upEnd = upEnd;
-        this.downEnd = downEnd;
-    }
-
     public Line(String name, List<Station> stations) {
         this.name = name;
         this.stations = stations;
