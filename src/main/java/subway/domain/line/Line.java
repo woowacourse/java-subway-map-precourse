@@ -27,6 +27,11 @@ public class Line {
         stations.remove(station);
     }
 
+    public boolean hasStation(String name) {
+        return stations.stream()
+                .anyMatch(x -> x.getName().equals(name));
+    }
+
     public static void validateName(String name) {
         validateLength(name);
     }

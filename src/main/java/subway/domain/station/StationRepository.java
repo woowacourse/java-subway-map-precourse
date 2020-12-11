@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
+import subway.domain.line.LineRepository;
 import subway.view.OutputView;
 
 public class StationRepository {
@@ -43,6 +45,7 @@ public class StationRepository {
 
     private static void validateDeletion(String name) {
         validateDuplicate(name);
+        validateNoLineConnection(name);
     }
 
     private static void validateDuplicate(String name) {
@@ -61,5 +64,11 @@ public class StationRepository {
         return stations.stream()
                 .map(Station::getName)
                 .anyMatch(x -> x.equals(name));
+    }
+
+    private static void validateNoLineConnection(String name) {
+        if(LineRepository.hasLineWithStation(name)) {
+            throw new IllegalArgumentException(OutputView.ERROR_CONNECTED);
+        }
     }
 }
