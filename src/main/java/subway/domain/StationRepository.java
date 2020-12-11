@@ -20,7 +20,7 @@ public class StationRepository {
     }
 
     public static void deleteStation(Station inputStation) {
-        if (!(stations.removeIf(station -> station == inputStation))) {
+        if (!stations.removeIf(station -> station.equals(inputStation))) {
             throw new SubwayCustomException(NOT_VALID_STATION_EXCEPTION_MESSAGE);
         }
     }

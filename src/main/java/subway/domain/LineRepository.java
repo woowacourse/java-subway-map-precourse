@@ -20,7 +20,7 @@ public class LineRepository {
     }
 
     public static void deleteLine(String name) {
-        if (!(lines.removeIf(line -> Objects.equals(line.getName(), name)))) {
+        if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
             throw new SubwayCustomException(NOT_VALID_LINE_EXCEPTION_MESSAGE);
         }
     }
