@@ -33,12 +33,12 @@ public class StationNameValidator {
 
     public static String makeRemoveName(String inputRemoveName) {
         nowInputName = inputRemoveName;
-        checkAvailable();
+        checkNotEnrolledName();
         checkInLine();
         return nowInputName;
     }
 
-    private static void checkAvailable() {
+    private static void checkNotEnrolledName() {
         if (StationRepository.findStationByName(nowInputName) == null) {
             throw new IllegalArgumentException("일치하는 역이 없습니다.");
         }
@@ -48,5 +48,11 @@ public class StationNameValidator {
         if (SubwayRepository.findStationByName(nowInputName)) {
             throw new IllegalArgumentException("이미 노선에 등록된 역입니다.");
         }
+    }
+
+    public static String makeIsolateName(String inputName) {
+        nowInputName = inputName;
+        checkNotEnrolledName();
+        return nowInputName;
     }
 }

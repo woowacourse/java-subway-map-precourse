@@ -34,20 +34,13 @@ public class LineNameValidator {
 
     public static String makeRemoveName(String inputRemoveName) {
         nowInputName = inputRemoveName;
-        checkAvailable();
-        checkInLine();
+        checkNotEnrolledName();
         return nowInputName;
     }
 
-    private static void checkAvailable() {
+    private static void checkNotEnrolledName() {
         if (LineRepository.findLineByName(nowInputName) == null) {
             throw new IllegalArgumentException("일치하는 노선이 없습니다.");
-        }
-    }
-
-    private static void checkInLine() {
-        if (SubwayRepository.findLineByName(nowInputName)) {
-            throw new IllegalArgumentException("이미 노선에 등록된 노선입니다.");
         }
     }
 }

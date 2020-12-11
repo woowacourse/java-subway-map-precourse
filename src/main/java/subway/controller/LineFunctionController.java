@@ -22,11 +22,19 @@ public class LineFunctionController {
     private static void enrollLine(DetailFunctions detailFunction, InputView inputView) {
         String enrollingLine = makeValidateEnrollName(inputView);
         LineRepository.addLine(new Line(enrollingLine));
-        LineOutputView.printStartStation();
-        SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), StationRepository.findStationByName(inputView.receiveFunctionInfo()));
-        LineOutputView.printFinishStation();
-        SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), StationRepository.findStationByName(inputView.receiveFunctionInfo()));
+        SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidateStation("상행", inputView));
+        SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidateStation("하행", inputView));
         LineOutputView.printSuccess(detailFunction);
+    }
+
+    private static Station makeValidateStation(String startOrFinish, InputView inputView) {
+        try{
+            LineOutputView.printStartOrFinishStation(startOrFinish);
+            return StationRepository.findStationByName(StationNameValidator.makeIsolateName(inputView.receiveFunctionInfo()));
+        } catch (IllegalArgumentException e){
+            System.out.println("[ERROR] "+e.getMessage());
+            return makeValidateStation(startOrFinish, inputView);
+        }
     }
 
     private static String makeValidateEnrollName(InputView inputView) {

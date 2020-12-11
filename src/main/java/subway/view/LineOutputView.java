@@ -29,13 +29,8 @@ public class LineOutputView {
         System.out.println();
     }
 
-    public static void printStartStation() {
+    public static void printStartOrFinishStation(String startOrFinish) {
         System.out.println();
-        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-    }
-
-    public static void printFinishStation() {
-        System.out.println();
-        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        System.out.println("## 등록할 노선의 "+startOrFinish+" 종점역 이름을 입력하세요.");
     }
 }
