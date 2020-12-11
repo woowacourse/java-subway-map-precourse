@@ -8,6 +8,8 @@ public class Line {
     private static final String ERROR_STATION_NOT_ON_LINE = "[ERROR] 노선에 해당 역이 없습니다.";
     private String name; // 변경 불가능
     private LinkedList<Station> stationsOnLine; // 해당 노선에 소속된 역(들)
+    private Station upEndStation;
+    private Station downEndStation;
 
     public Line(String name) { // 변경 불가능
         this.name = name;
@@ -15,6 +17,11 @@ public class Line {
 
     public String getName() { // 변경 불가능
         return name;
+    }
+
+    public void initializeEndStations(Station upEndStation, Station downEndStation) {
+        this.upEndStation = upEndStation;
+        this.downEndStation = downEndStation;
     }
 
     public void addStation(Station station, int index) {
