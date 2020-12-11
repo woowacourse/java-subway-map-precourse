@@ -3,8 +3,7 @@ package subway.view;
 public class LineMenu {
     public static void print() {
         OutputView.printLineMenu();
-        OutputView.printMenuSelect();
-        String selection = InputView.receiveMenu();
+        String selection = InputView.receiveMenu("Line");
 
         if (selection.equals("1")) {
             // 노선 등록

@@ -3,8 +3,7 @@ package subway.view;
 public class MainMenu {
     public static void print() {
         OutputView.printMainMenu();
-        OutputView.printMenuSelect();
-        String selection = InputView.receiveMenu();
+        String selection = InputView.receiveMenu("Main");
 
         if (selection.equals("1")) {
             StationMenu.print();

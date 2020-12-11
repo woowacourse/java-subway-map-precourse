@@ -3,8 +3,7 @@ package subway.view;
 public class SectionMenu {
     public static void print() {
         OutputView.printSectionMenu();
-        OutputView.printMenuSelect();
-        String selection = InputView.receiveMenu();
+        String selection = InputView.receiveMenu("Section");
 
         if (selection.equals("1")) {
             // 구간 등록
