@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
+    private static String ERR_OUT_OF_BOUND = "노선의 길이 범위를 벗어나는 순서값입니다.";
     private String name;
     private List<Station> stations;
 
@@ -22,8 +23,11 @@ public class Line {
     }
 
     public void add(int index, Station station) {
-        stations.add(index, station);
-//TODO catch (IndexOutOfBoundsException e) error handling
+        try {
+            stations.add(index, station);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException(ERR_OUT_OF_BOUND);
+        }
     }
 
     public boolean remove(Station station) {
