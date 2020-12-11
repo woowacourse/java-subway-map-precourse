@@ -27,6 +27,7 @@ public class LineRepository {
     }
 
     private static void validateDeletion(String name) {
+        validateDuplicate(name);
     }
 
     private static void validateNoDuplicate(Line line) {
@@ -35,10 +36,22 @@ public class LineRepository {
         }
     }
 
+    private static void validateDuplicate(String name) {
+        if(!isDuplicate(name)) {
+            throw new IllegalArgumentException(OutputView.ERROR_NOTHING);
+        }
+    }
+
     private static boolean isDuplicate(Line line) {
         return lines.stream()
                 .map(Line::getName)
                 .anyMatch(x -> x.equals(line.getName()));
+    }
+
+    private static boolean isDuplicate(String name) {
+        return lines.stream()
+                .map(Line::getName)
+                .anyMatch(x -> x.equals(name));
     }
 
     public static boolean hasLineWithStation(String name) {

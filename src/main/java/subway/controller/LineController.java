@@ -61,6 +61,7 @@ public class LineController extends Controller {
         try {
             String rawLineName = inputView.inputName(InputView.CHOOSE_DELETE_LINE);
             Line.validateName(rawLineName);
+            LineRepository.deleteLineByName(rawLineName);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             deleteLine();
