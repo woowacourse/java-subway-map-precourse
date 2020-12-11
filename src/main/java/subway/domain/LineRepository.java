@@ -22,4 +22,12 @@ public class LineRepository {
                 .filter(line -> line.getName().equals(name))
                 .findAny();
     }
+
+    public static void printLines() {
+        System.out.println("## 노선 목록");
+        lines.forEach(line -> {
+            System.out.println(line.toString());
+        });
+        System.out.println();
+    }
 }
