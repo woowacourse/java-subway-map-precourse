@@ -1,4 +1,6 @@
-package subway;
+package subway.question;
+
+import subway.view.View;
 
 public interface BaseQuestion {
     String getQuestion();

@@ -1,6 +1,10 @@
-package subway.domain;
+package subway.view;
+
+import subway.domain.Line;
+import subway.domain.Station;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class OutputView {
     private final String INFO_PREFIX = "[INFO] ";
@@ -28,6 +32,12 @@ public class OutputView {
     private final String DASH = "---";
     public OutputView() {
     }
+
+    public void printQuestions(Stream<String> questions) {
+        printLine("");
+        questions.forEach(this::printLine);
+    }
+
     public void printRegisterSectionLineNameQuestion() {
         printLine(REGISTER_SECTION_LINE_NAME_QUESTION);
     }

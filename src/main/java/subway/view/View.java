@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.domain.*;
 import subway.Questions;
+import subway.question.BaseQuestion;
 
 import java.util.Scanner;
 
