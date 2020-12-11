@@ -7,30 +7,37 @@ import java.util.Scanner;
 public class View {
     InputView inputView;
     OutputView outputView;
+    Questions questions;
 
     public View(Scanner scanner) {
         inputView = new InputView(scanner);
         outputView = new OutputView();
+        questions = new Questions();
+    }
+
+    public void view(String key) {
+        questions.printQuestions(key);
+        questions.findByAnswerCode(inputView.getAnswer(), key).nextAction(this);
     }
 
     public void mainView() {
-        MainQuestion.printQuestions();
-        MainQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
+        questions.printQuestions("Main");
+        questions.findByAnswerCode(inputView.getAnswer(), "Main").nextAction(this);
     }
 
     public void stationView() {
-        StationQuestion.printQuestions();
-        StationQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
+        questions.printQuestions("Station");
+        questions.findByAnswerCode(inputView.getAnswer(), "Station").nextAction(this);
     }
 
     public void lineView() {
-        LineQuestion.printQuestions();
-        LineQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
+        questions.printQuestions("Line");
+        questions.findByAnswerCode(inputView.getAnswer(), "Line").nextAction(this);
     }
 
     public void sectionView() {
-        SectionQuestion.printQuestions();
-        SectionQuestion.findByAnswerCode(inputView.getAnswer()).nextAction(this);
+        questions.printQuestions("Section");
+        questions.findByAnswerCode(inputView.getAnswer(), "Section").nextAction(this);
     }
 
     public void printEntireSubwayLine() {
