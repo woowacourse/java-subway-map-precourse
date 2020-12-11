@@ -10,7 +10,6 @@ import subway.view.Menu;
 public class StationSystem {
 
     private MenuInputManager menuInputManager;
-    private Scanner scanner;
     private StationInputManager stationInputManager;
 
     public StationSystem(Scanner scanner, MenuInputManager menuInputManager) {
