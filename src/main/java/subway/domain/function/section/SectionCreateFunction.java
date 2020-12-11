@@ -15,5 +15,6 @@ public class SectionCreateFunction extends Function {
         String stationName = InputView.inputStationName(scanner);
         int order = Integer.parseInt(InputView.inputOrder(scanner));
         LineRepository.addStation(lineName, stationName, order);
+        OutputView.printSuccessToCreateSection();
     }
 }
