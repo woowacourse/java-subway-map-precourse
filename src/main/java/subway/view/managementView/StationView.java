@@ -1,12 +1,10 @@
 package subway.view.managementView;
 
+import subway.MenuType.FunctionType;
 import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,14 +23,24 @@ public class StationView extends ManagementView {
     private static StationView instance;
 
     private StationView() {
-        selections = new Selections(initializeSelections());
+        initializeSelections();
+        initializeHashMapToFunctionType();
         viewName = VIEW_NAME;
         itemPrefix = ITEM_PREFIX;
         createMessage = STATION_REGISTER;
         deleteMessage = STATION_DELETE;
     }
 
-    private List<Selection> initializeSelections() {
+    @Override
+    protected void initializeHashMapToFunctionType() {
+        mapToFunctionType = new HashMap<>();
+        Iterator<Selection> selection = selections.toList().iterator();
+        for (FunctionType functionType : FunctionType.values()) {
+            mapToFunctionType.put(selection.next(), functionType);
+        }
+    }
+
+    private void initializeSelections() {
         List<String> descriptions = new ArrayList<>(Arrays.asList(
                 MENU_CREATE, MENU_DELETE, MENU_READ, MENU_ESCAPE
         ));
@@ -43,7 +51,7 @@ public class StationView extends ManagementView {
                 .map(i -> new Selection(i, description.next()))
                 .collect(Collectors.toList());
         selections.add(new Selection(MENU_ESCAPE_VALUE, MENU_ESCAPE));
-        return selections;
+        this.selections = new Selections(selections);
     }
 
     public static StationView getInstance() {
@@ -52,5 +60,6 @@ public class StationView extends ManagementView {
         }
         return instance;
     }
+
 
 }

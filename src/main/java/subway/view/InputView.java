@@ -1,12 +1,12 @@
 package subway.view;
 
+import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 
 import java.util.Scanner;
 
 public class InputView {
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
-    private static final String ERROR_INVALID_INPUT_VALUE = "유효하지 않은 입력입니다.";
     private static final String SHARP_PREFIX = "## ";
     private static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
 
@@ -31,16 +31,12 @@ public class InputView {
         return true;
     }
 
-    public static String getSelection(Selections selections) {
+    public static Selection getSelection(Selections selections) {
         showSelectionMessage();
         try {
             String string = deleteWhiteSpaces(scanner.nextLine());
             isNotEmptyStringOrThrowException(string);
-            if (!selections.values().contains(string)) {
-                throw new IllegalArgumentException(ERROR_INVALID_INPUT_VALUE);
-            }
-            newLine();
-            return string;
+            return selections.searchByValue(string);
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
             return getSelection(selections);

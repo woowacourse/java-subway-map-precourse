@@ -1,9 +1,10 @@
 package subway.view.selection;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Selections {
+    private static final String ERROR_NOT_EXIST = "없는 선택지입니다.";
+
     protected List<Selection> selections;
 
     public Selections(List<Selection> selections) {
@@ -14,9 +15,12 @@ public class Selections {
         return selections;
     }
 
-    public List<String> values() {
-        return selections.stream()
-                .map(Selection::getValue)
-                .collect(Collectors.toList());
+    public Selection searchByValue(String value) {
+        for (Selection selection : selections) {
+            if(selection.getValue().equals(value)) {
+                return selection;
+            }
+        }
+        throw new IllegalArgumentException(ERROR_NOT_EXIST);
     }
 }

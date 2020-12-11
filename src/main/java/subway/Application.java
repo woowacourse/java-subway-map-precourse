@@ -7,6 +7,7 @@
 
 package subway;
 
+import subway.MenuType.MainMenuType;
 import subway.controller.LineManagement;
 import subway.controller.StationManagement;
 import subway.view.InputView;
@@ -15,13 +16,8 @@ import subway.view.MainView;
 import java.util.Scanner;
 
 public class Application {
-    private static final String STATION_MANAGEMENT = "1";
-    private static final String LINE_MANAGEMENT = "2";
-    private static final String SECTION_MANAGEMENT = "3";
-    private static final String SHOW_SUBWAY_LINE = "4";
-    private static final String QUIT = "Q";
 
-    private static String menu;
+    private static MainMenuType menu;
     private static MainView mainView = MainView.getInstance();
 
     public static void main(String[] args) {
@@ -34,16 +30,16 @@ public class Application {
     private static void run() {
         do {
             mainView.showMenu();
-            menu = mainView.getSelection();
+            menu = mainView.getMainMenuSelection();
             runSelectedMenuFunction();
-        } while (!menu.equals(QUIT));
+        } while (!menu.equals(MainMenuType.ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(STATION_MANAGEMENT)) {
+        if (menu.equals(MainMenuType.STATION)) {
             StationManagement.run();
         }
-        if (menu.equals(LINE_MANAGEMENT)) {
+        if (menu.equals(MainMenuType.LINE)) {
             LineManagement.run();
         }
     }

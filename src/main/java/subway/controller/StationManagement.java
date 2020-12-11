@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.MenuType.FunctionType;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.OutputView;
@@ -9,30 +10,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StationManagement {
-    private static final String CREATE = "1";
-    private static final String DELETE = "2";
-    private static final String READ = "3";
-    private static final String ESCAPE = "B";
 
     private static StationView stationView = StationView.getInstance();
-    private static String menu;
+    private static FunctionType menu;
 
     public static void run() {
         do {
             stationView.showMenu();
             menu = stationView.getFunctionSelection();
             runSelectedMenuFunction();
-        } while(!menu.equals(ESCAPE));
+        } while(!menu.equals(FunctionType.ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(CREATE)) {
+        if (menu.equals(FunctionType.CREATE)) {
             registerStation();
         }
-        if (menu.equals(DELETE)) {
+        if (menu.equals(FunctionType.DELETE)) {
             deleteStation();
         }
-        if (menu.equals(READ)) {
+        if (menu.equals(FunctionType.READ)) {
             printAllStation();
         }
     }

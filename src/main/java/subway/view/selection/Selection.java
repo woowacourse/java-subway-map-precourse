@@ -16,4 +16,9 @@ public class Selection {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public int hashCode() {
+        return this.value.hashCode();
+    }
 }

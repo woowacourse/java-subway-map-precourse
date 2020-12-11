@@ -1,9 +1,12 @@
 package subway.view.managementView;
 
+import subway.MenuType.FunctionType;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class ManagementView {
@@ -18,13 +21,21 @@ public abstract class ManagementView {
     protected String createMessage;
     protected String deleteMessage;
     protected Selections selections;
+    protected HashMap<Selection, FunctionType> mapToFunctionType;
+
+    protected abstract void initializeHashMapToFunctionType();
+
+    protected FunctionType convertToFunctionType(Selection selection){
+        return mapToFunctionType.get(selection);
+    }
 
     public void showMenu() {
         OutputView.showMenu(selections, viewName);
     }
 
-    public String getFunctionSelection() {
-        return InputView.getSelection(selections);
+    public FunctionType getFunctionSelection() {
+        Selection selection = InputView.getSelection(selections);
+        return convertToFunctionType(selection);
     }
 
     public void printRegisterDone() {

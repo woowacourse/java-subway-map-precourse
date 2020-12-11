@@ -1,12 +1,10 @@
 package subway.view;
 
+import subway.MenuType.MainMenuType;
 import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,9 +20,11 @@ public class MainView {
 
     private static MainView instance;
     private Selections selections;
+    private HashMap<Selection, MainMenuType> mapToMainMenuType;
 
     private MainView() {
         initializeSelection();
+        mapToMainMenuType();
     }
 
     private void initializeSelection() {
@@ -40,6 +40,14 @@ public class MainView {
         this.selections = new Selections(selections);
     }
 
+    private void mapToMainMenuType() {
+        mapToMainMenuType = new HashMap<>();
+        Iterator<Selection> selection = selections.toList().iterator();
+        for (MainMenuType MainMenuSelection : MainMenuType.values()) {
+            mapToMainMenuType.put(selection.next(), MainMenuSelection);
+        }
+    }
+
     public static MainView getInstance() {
         if (instance == null) {
             instance = new MainView();
@@ -51,8 +59,9 @@ public class MainView {
         OutputView.showMenu(selections, VIEW_NAME);
     }
 
-    public String getSelection() {
-        return InputView.getSelection(selections);
+    public MainMenuType getMainMenuSelection() {
+        Selection selection = InputView.getSelection(selections);
+        return mapToMainMenuType.get(selection);
     }
 
 }
