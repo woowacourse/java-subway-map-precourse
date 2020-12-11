@@ -24,6 +24,7 @@ public class LineMapView implements ViewStrategy {
     public void show() {
         List<LineResponseDTO> lines = lineController.findLines();
         printLines(lines);
+        OutputView.enter();
     }
 
     private void printLines(List<LineResponseDTO> lines){
