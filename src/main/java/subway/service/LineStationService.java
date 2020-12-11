@@ -30,9 +30,8 @@ public class LineStationService extends InputValidation {
         String startStationName = scanner.nextLine();
         inputAddEndStationNameRequestMessage();
         String endStationName = scanner.nextLine();
-        //validation
         validateNameLengthIsMoreThan2(lineName);
-        //2. 중복된 노선 이름이 존재하는지 검증한다
+        validateLineNameIsDuplicate(lineName);
         validateStationNameIsContains(startStationName);
         validateStationNameIsContains(endStationName);
         Line line = new Line(lineName);
