@@ -29,4 +29,15 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Station station: stations) {
+            sb.append("[INFO] ");
+            sb.append(station.getName());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

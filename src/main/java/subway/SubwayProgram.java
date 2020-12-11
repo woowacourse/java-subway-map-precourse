@@ -3,7 +3,6 @@ package subway;
 import subway.domain.*;
 
 import java.util.Scanner;
-import java.util.List;
 
 public class SubwayProgram {
     private final Scanner scanner;
@@ -18,7 +17,18 @@ public class SubwayProgram {
         MainMenu mainMenu = new MainMenu(scanner);
         int mainMenuNumber = mainMenu.inputAndNext();
         newStationRepository = new StationRepository();
+        selectMainMenu(mainMenuNumber);
 //        System.out.println(StationRepository.stations().get(0).getName());
+        System.out.println(newStationRepository);
+
+    }
+
+    public void selectMainMenu(int mainMenuNumber) {
+        if (mainMenuNumber == 1) {
+            StationManage newStationManage = new StationManage(scanner);
+            newStationManage.manageStation();
+
+        }
     }
 
 
