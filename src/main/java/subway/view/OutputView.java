@@ -30,7 +30,7 @@ public class OutputView {
     public static void printLines() {
         ArrayList<Line> lines = LineRepository.getAllLines();
         for (Line line : lines) {
-            System.out.println("[INFO]" + line.getName());
+            System.out.println("[INFO] " + line.getName());
         }
     }
 }

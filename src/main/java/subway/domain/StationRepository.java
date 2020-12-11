@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.utils.Validator;
 
 public class StationRepository {
+
     private static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
@@ -17,6 +19,7 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        Validator.checkDeletableStation(name);
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

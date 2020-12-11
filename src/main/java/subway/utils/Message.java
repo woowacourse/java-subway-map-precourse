@@ -19,5 +19,5 @@ public interface Message {
     String ERROR_ALREADY_REGISTERED_LINE = "이미 등록된 노선 이름입니다.";
     String ERROR_INVALID_STATION_NAME_LENGTH = "역 이름은 2 글자 이상이어야 합니다.";
     String ERROR_INVALID_LINE_NAME_LENGTH = "노선 이름은 2 글자 이상이어야 합니다.";
-
+    String ERROR_STATION_REGISTERED_IN_LINE = "노선에 등록된 역은 삭제할 수 없습니다.";
 }
