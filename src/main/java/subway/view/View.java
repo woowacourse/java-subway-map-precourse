@@ -53,31 +53,31 @@ public class View {
 	}
 
 	public static String getLineNameToRegister(Scanner scanner) {
-		System.out.println(LineMessages.REGISTER_NAME);
+		System.out.println(LineMessages.REGISTER_NAME.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static String getUpwardDestination(Scanner scanner) {
-		System.out.println(LineMessages.UPWARD_DESTINATION_NAME);
+		System.out.println(LineMessages.UPWARD_DESTINATION_NAME.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static String getDownwardDestination(Scanner scanner) {
-		System.out.println(LineMessages.DOWNWARD_DESTINATION_NAME);
+		System.out.println(LineMessages.DOWNWARD_DESTINATION_NAME.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static String getLineNameToDelete(Scanner scanner) {
-		System.out.println(LineMessages.DELETE_NAME);
+		System.out.println(LineMessages.DELETE_NAME.getMessage());
 		return scanner.nextLine();
 	}
 
 	public static void printLineDeleteCompletion() {
-		System.out.println(LineMessages.DELETE_COMPLETE);
+		System.out.println(LineMessages.DELETE_COMPLETE.getMessage());
 	}
 
 	public static void printLineDeleteError() {
-		System.out.println(LineMessages.UNREGISTERED_NAME_ERROR);
+		System.out.println(LineMessages.UNREGISTERED_NAME_ERROR.getMessage());
 	}
 
 	public static void printSectionScreen() {
@@ -103,7 +103,7 @@ public class View {
 	}
 
 	public static void printSectionRegisterCompletion() {
-		System.out.println(SectionMessages.REGISTER_COMPLETE);
+		System.out.println(SectionMessages.REGISTER_COMPLETE.getMessage());
 	}
 
 	public static String getLineNameToDeleteSection(Scanner scanner) {

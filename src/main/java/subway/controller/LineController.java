@@ -27,6 +27,7 @@ public class LineController {
 		try {
 			LineRepository.addLine(new Line(name, upwardDestination, downwardDestination));
 			View.printStationRegisterCompletion();
+			System.out.println();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			run(scanner);
@@ -38,6 +39,7 @@ public class LineController {
 		boolean isSuccessful = LineRepository.deleteLine(name);
 		if (isSuccessful) {
 			View.printLineDeleteCompletion();
+			System.out.println();
 			return;
 		}
 		View.printLineDeleteError();
@@ -49,16 +51,21 @@ public class LineController {
 		LineRepository.lines().stream()
 				.map(Line::getName)
 				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+		System.out.println();
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createLine(scanner);
+			View.printMainScreen();
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deleteLine(scanner);
+			View.printMainScreen();
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			showLines();
+			View.printMainScreen();
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
+			View.printMainScreen();
 			return;
 		}
 	}

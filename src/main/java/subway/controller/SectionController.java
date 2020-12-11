@@ -81,6 +81,7 @@ public class SectionController {
 		Line line = LineRepository.getLine(lineName);
 		line.getSections().addSection(station, location);
 		View.printSectionRegisterCompletion();
+		System.out.println();
 	}
 
 	private static void deleteSection(Scanner scanner) {
@@ -88,14 +89,18 @@ public class SectionController {
 		String stationName = getValidStationNameToDelete(scanner, lineName);
 		Sections.deleteSection(lineName, stationName);
 		View.printSectionDeleteCompletion();
+		System.out.println();
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createSection(scanner);
+			View.printMainScreen();
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deleteSection(scanner);
+			View.printMainScreen();
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
+			View.printMainScreen();
 			return;
 		}
 	}

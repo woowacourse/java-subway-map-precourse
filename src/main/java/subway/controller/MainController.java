@@ -41,10 +41,10 @@ public class MainController {
 
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
-			LineController.run(scanner);
+			StationController.run(scanner);
 			run(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
-			StationController.run(scanner);
+			LineController.run(scanner);
 			run(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			SectionController.run(scanner);
@@ -58,7 +58,6 @@ public class MainController {
 	}
 
 	public static void run(Scanner scanner) {
-		View.printMainScreen();
 		String option = View.getScreenOption(scanner).trim();
 		try {
 			Options.validateOption(options, option);

@@ -25,6 +25,7 @@ public class StationController {
 		try {
 			StationRepository.addStation(new Station(name));
 			View.printStationRegisterCompletion();
+			System.out.println();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			createStation(scanner);
@@ -36,6 +37,7 @@ public class StationController {
 		boolean isSuccessful = StationRepository.deleteStation(name);
 		if (isSuccessful) {
 			View.printStationDeleteCompletion();
+			System.out.println();
 			return;
 		}
 		View.printStationDeleteError();
@@ -43,7 +45,7 @@ public class StationController {
 	}
 
 	private static void showStations() {
-		System.out.println(StationMessages.REFERENCE);
+		System.out.println(StationMessages.REFERENCE.getMessage());
 		StationRepository.stations().stream()
 				.map(Station::getName)
 				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
@@ -52,11 +54,15 @@ public class StationController {
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			createStation(scanner);
+			View.printMainScreen();
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deleteStation(scanner);
+			View.printMainScreen();
 		} else if (option.equals(Options.OPTION_3.getOption())) {
 			showStations();
+			View.printMainScreen();
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
+			View.printMainScreen();
 			return;
 		}
 	}
