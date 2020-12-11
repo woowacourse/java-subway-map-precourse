@@ -41,21 +41,14 @@ public class Line implements Message {
         return false;
     }
 
-    public void insertStation(int idx, Station station) {
-        int index = idx - ADJUST;
+    public void insertStation(int index, Station station) {
+
         checkDuplicateStation(station);
-        if (index < 0) {
+        if (index < 1) {
             throw new IllegalArgumentException("구간은 1부터 시작합니다.");
         }
-        if (index == 0) {
-            stations.addFirst(station);
-            return;
-        }
-        if (index == this.stations.size()) {
-            this.stations.addLast(station);
-            return;
-        }
-        if (index > this.stations.size()) {
+
+        if (index > this.stations.size() - ADJUST) {
             throw new IllegalArgumentException("구간을 벗어났습니다.");
         }
 
