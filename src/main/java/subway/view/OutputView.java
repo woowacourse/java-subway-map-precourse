@@ -43,75 +43,6 @@ public class OutputView {
         questions.forEach(this::println);
     }
 
-    public void printRegisterSectionLineNameQuestion() {
-        println(REGISTER_SECTION_LINE_NAME_QUESTION);
-    }
-
-    public void printRegisterSectionStationNameQuestion() {
-        println(REGISTER_SECTION_STATION_NAME_QUESTION);
-    }
-
-    public void printRegisterSectionOrderNumberQuestion() {
-        println(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
-    }
-
-    public void printRegisterSectionSuccess() {
-        println(REGISTER_SECTION_SUCCESS);
-    }
-
-    public void printDeleteSectionLineNameQuestion() {
-        println(DELETE_SECTION_LINE_NAME_QUESTION);
-    }
-
-    public void printDeleteSectionStationNameQuestion() {
-        println(DELETE_SECTION_STATION_NAME_QUESTION);
-    }
-
-    public void printDeleteSectionSuccess() {
-        printInfo(DELETE_SECTION_SUCCESS);
-    }
-
-
-    public void printRegisterStationQuestion() {
-        println(REGISTER_STATION_QUESTION);
-    }
-
-    public void printRegisterStationSuccess() {
-        printInfo(REGISTER_STATION_SUCCESS);
-    }
-
-    public void printDeleteStationQuestion() {
-        println(DELETE_STATION_QUESTION);
-    }
-
-    public void printDeleteStationSuccess() {
-        printInfo(DELETE_STATION_SUCCESS);
-    }
-
-    public void printRegisterLineQuestion() {
-        println(REGISTER_LINE_QUESTION);
-    }
-
-    public void printRegisterLineSuccess() {
-        printInfo(REGISTER_LINE_SUCCESS);
-    }
-
-    public void printDeleteLineQuestion() {
-        println(DELETE_LINE_QUESTION);
-    }
-
-    public void printStartStationQuestion() {
-        println(START_STATION_QUESTION);
-    }
-
-    public void printEndStationQuestion() {
-        println(END_STATION_QUESTION);
-    }
-
-    public void printDeleteLineSuccess() {
-        printInfo(DELETE_LINE_SUCCESS);
-    }
-
     public void printSubwayLineList(List<Line> lineList) {
         println(SUBWAY_LINE_LIST_HEADER);
         for (Line line : lineList) {
@@ -148,6 +79,77 @@ public class OutputView {
         for (Station station : stationList) {
             printInfo(station.getName());
         }
+    }
+
+    // Station
+    public void printRegisterStationQuestion() {
+        println(REGISTER_STATION_QUESTION);
+    }
+
+    public void printRegisterStationSuccess() {
+        printInfo(REGISTER_STATION_SUCCESS);
+    }
+
+    public void printDeleteStationQuestion() {
+        println(DELETE_STATION_QUESTION);
+    }
+
+    public void printDeleteStationSuccess() {
+        printInfo(DELETE_STATION_SUCCESS);
+    }
+
+    // Line
+    public void printRegisterLineQuestion() {
+        println(REGISTER_LINE_QUESTION);
+    }
+
+    public void printRegisterLineSuccess() {
+        printInfo(REGISTER_LINE_SUCCESS);
+    }
+
+    public void printLineStartStationQuestion() {
+        println(START_STATION_QUESTION);
+    }
+
+    public void printLineEndStationQuestion() {
+        println(END_STATION_QUESTION);
+    }
+
+    public void printDeleteLineQuestion() {
+        println(DELETE_LINE_QUESTION);
+    }
+
+    public void printDeleteLineSuccess() {
+        printInfo(DELETE_LINE_SUCCESS);
+    }
+
+    // Section
+    public void printRegisterSectionLineNameQuestion() {
+        println(REGISTER_SECTION_LINE_NAME_QUESTION);
+    }
+
+    public void printRegisterSectionStationNameQuestion() {
+        println(REGISTER_SECTION_STATION_NAME_QUESTION);
+    }
+
+    public void printRegisterSectionOrderNumberQuestion() {
+        println(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
+    }
+
+    public void printRegisterSectionSuccess() {
+        println(REGISTER_SECTION_SUCCESS);
+    }
+
+    public void printDeleteSectionLineNameQuestion() {
+        println(DELETE_SECTION_LINE_NAME_QUESTION);
+    }
+
+    public void printDeleteSectionStationNameQuestion() {
+        println(DELETE_SECTION_STATION_NAME_QUESTION);
+    }
+
+    public void printDeleteSectionSuccess() {
+        printInfo(DELETE_SECTION_SUCCESS);
     }
 
     public void printEnter() {
