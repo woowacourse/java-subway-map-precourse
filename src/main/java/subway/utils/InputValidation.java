@@ -26,7 +26,7 @@ public class InputValidation {
 
     public void validateStationNameIsDuplicate(String name) {
         Station findStation = StationRepository.findStation(name).orElse(null);
-        if (Objects.equals(findStation, null)) {
+        if (!Objects.equals(findStation, null)) {
             throw new IllegalArgumentException("[ERROR] 이미 등록된 역 이름입니다.");
         }
     }
@@ -40,7 +40,7 @@ public class InputValidation {
 
     public void validateLineNameIsDuplicate(String name) {
         Line findLine = LineRepository.findLine(name).orElse(null);
-        if (Objects.equals(findLine, null)) {
+        if (!Objects.equals(findLine, null)) {
             throw new IllegalArgumentException("[ERROR] 이미 등록된 노선 이름입니다.");
         }
     }
