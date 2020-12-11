@@ -15,22 +15,26 @@ public class Input {
 
     public String nextMainButton() {
         Message.printMainMenu();
-        return nextLine();
+        return toUpperNextLine();
     }
 
     public String nextStationButton() {
         Message.printStatinMenu();
-        return nextLine();
+        return toUpperNextLine();
     }
 
     public String nextLineButton() {
         Message.printLineMenu();
-        return nextLine();
+        return toUpperNextLine();
     }
 
     public String nextSectionButton() {
         Message.printSectionMenu();
-        return nextLine();
+        return toUpperNextLine();
+    }
+
+    private String toUpperNextLine() {
+        return nextLine().toUpperCase();
     }
 
     private String nextLine() {
