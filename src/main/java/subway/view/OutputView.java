@@ -2,11 +2,11 @@ package subway.view;
 
 import subway.domain.Line.Line;
 import subway.domain.station.Station;
+import subway.menu.Menu;
 
 import java.util.List;
 
 public class OutputView {
-
 
     private static final String INFO_PREFIX = "[INFO] ";
     private static final String PRINT_STATIONS_TITLE = "## 역목록";
@@ -32,6 +32,15 @@ public class OutputView {
             System.out.println(INFO_PREFIX + line.toString());
         }
         addBlankLine();
+    }
+
+    public static void printMenu(Menu menu) {
+
+        for (Menu value : menu.getValues()) {
+            System.out.println(value.toString());
+        }
+        addBlankLine();
+
     }
 
 }
