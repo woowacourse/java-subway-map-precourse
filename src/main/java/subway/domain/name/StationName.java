@@ -22,6 +22,10 @@ public class StationName implements Comparable<StationName> {
         return Objects.equals(name, that.name);
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(name);

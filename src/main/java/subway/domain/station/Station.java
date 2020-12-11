@@ -1,11 +1,16 @@
 package subway.domain.station;
 
+import subway.domain.Line.Line;
 import subway.domain.name.StationName;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Station implements Comparable<Station> {
     private StationName name;
+
+    private static final List<Line> lines = new LinkedList<>();
 
     private Station(StationName name) {
         this.name = name;
@@ -36,6 +41,10 @@ public class Station implements Comparable<Station> {
     @Override
     public int compareTo(Station o) {
         return name.compareTo(o.name);
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.isSameName(name);
     }
 
     // 추가 기능 구현
