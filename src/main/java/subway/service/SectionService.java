@@ -44,9 +44,8 @@ public class SectionService extends InputValidation {
         String lineName = scanner.nextLine();
         inputStationNameToDeleteSectionRequestMessage();
         String stationName = scanner.nextLine();
-        //validation
         validateLineNameIsContains(lineName);
-        //2. 입력한 노선에 역 개수가 2개 이상인지 검증한다.
+        validateStationSizeOfLineIsMoreThan2(lineName, lineStation);
         validateStationNameIsContains(stationName);
         lineStation.deleteStationInLineByName(LineRepository.findLine(lineName).get(), stationName);
         printDeleteSectionSuccessMessage();

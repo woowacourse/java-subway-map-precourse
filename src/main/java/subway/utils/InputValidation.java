@@ -9,6 +9,7 @@ import static subway.utils.ParseUtils.parseStringToInt;
 
 public class InputValidation {
     private static final int NAME_MIN_LENGTH = 2;
+    private static final int MIN_COUNT_OF_DELETE_SECTION = 2;
 
     public void validateMenuRange(List<String> menuRange, String menu) {
         boolean isContains = menuRange.contains(menu);
@@ -65,5 +66,12 @@ public class InputValidation {
             return stationSizeOfLine;
         }
         return pos;
+    }
+
+    public void validateStationSizeOfLineIsMoreThan2(String lineName, LineStationRepository lineStation) {
+        int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName).get());
+        if (stationSizeOfLine <= MIN_COUNT_OF_DELETE_SECTION) {
+            throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하힙니다.");
+        }
     }
 }
