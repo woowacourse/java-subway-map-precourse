@@ -62,7 +62,7 @@ public class StationService extends CrudService {
     public void delete() {
         Station targetStation = getTargetStationInput();
         validateTargetStation(targetStation);
-        StationRepository.deleteStation(targetStation.getName());
+        StationRepository.deleteStationByName(targetStation.getName());
         System.out.println(DELETE_STATION_SUCCESS);
     }
 
