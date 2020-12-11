@@ -1,8 +1,10 @@
 package subway.controller;
 
 import subway.MenuType.FunctionType;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.dto.DTO;
 import subway.view.OutputView;
 import subway.view.managementView.StationView;
 
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StationManagement {
+    private static final String ERROR_CANNOT_REMOVE = "노선에 등록된 역은 삭제할 수 없습니다.";
 
     private static StationView stationView = StationView.getInstance();
     private static FunctionType menu;
@@ -47,6 +50,7 @@ public class StationManagement {
     private static void deleteStation() {
         try {
             String name = stationView.getNameToDelete();
+            throwExceptionIfItisInLines(name);
             StationRepository.deleteStation(name);
             stationView.printDeleteDone();
         } catch (IllegalArgumentException e) {
@@ -54,10 +58,20 @@ public class StationManagement {
         }
     }
 
+    private static boolean throwExceptionIfItisInLines(String name) {
+        Station key = new Station(name);
+        boolean exist = LineRepository.lines().stream()
+                .anyMatch(line -> line.contains(key));
+        if (exist) {
+            throw new IllegalArgumentException(ERROR_CANNOT_REMOVE);
+        }
+        return true;
+    }
+
     private static void printAllStation() {
         try {
-            List<String> stationNames = StationRepository.stations().stream()
-                    .map(Station::getName)
+            List<DTO> stationNames = StationRepository.stations().stream()
+                    .map(Station::toDTO)
                     .collect(Collectors.toList());
             stationView.printAll(stationNames);
         } catch (RuntimeException e) {
