@@ -4,8 +4,6 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
-import java.util.Optional;
-
 public class Board {
 
     private final static String INFO = "[INFO]";
@@ -42,6 +40,10 @@ public class Board {
 
     }
 
+    private void setInitStation() {
+
+    }
+
     public boolean addStation(String name) {
 
         if (subway.containsStation(name)) {
@@ -57,11 +59,11 @@ public class Board {
     }
 
     public void removeStationByName(String name) {
-        if (subway.containsStation(name)) {
-            System.out.println(NOT_EXIST_STATION_ERROR);
+        if (subway.removeStation(name)) {
+            System.out.println(STATION_REMOVED_MESSAGE);
+            return;
         }
-        subway.removeStation(name);
-        System.out.println(STATION_REMOVED_MESSAGE);
+        System.out.println(NOT_EXIST_STATION_ERROR);
     }
 
     public boolean addLine(String name, String upStreamTerminal, String downStreamTerminal) {
@@ -80,13 +82,11 @@ public class Board {
     }
 
     public void removeLineByName(String name) {
-
-        if (subway.containsLine(name)) {
-            System.out.println(NOT_EXIST_LINE_ERROR);
+        if (subway.removeLineByName(name)) {
+            System.out.println(LINE_REMOVED_MESSAGE);
             return;
         }
-        subway.removeLineByName(name);
-        System.out.println(LINE_REMOVED_MESSAGE);
+        System.out.println(NOT_EXIST_LINE_ERROR);
     }
 
     public boolean addSection(String lineName, String stationName, int index) {

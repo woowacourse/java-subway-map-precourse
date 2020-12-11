@@ -20,8 +20,8 @@ public class Subway {
         StationRepository.addStation(station);
     }
 
-    public void removeStation(String name) {
-        StationRepository.deleteStation(name);
+    public boolean removeStation(String name) {
+        return StationRepository.deleteStation(name);
     }
 
     public boolean containsLine(String name) {
@@ -41,7 +41,7 @@ public class Subway {
         LineRepository.addLine(line);
     }
 
-    public void removeLineByName(String name) {
-        LineRepository.deleteLineByName(name);
+    public boolean removeLineByName(String name) {
+        return LineRepository.deleteLineByName(name);
     }
 }
