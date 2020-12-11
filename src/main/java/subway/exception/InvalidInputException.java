@@ -2,26 +2,26 @@ package subway.exception;
 
 public class InvalidInputException extends RuntimeException {
 
+    private final String HEADER = "\n[ERROR] ";
+    private ExceptionCode exceptionCode;
+
+    public InvalidInputException(ExceptionCode exceptionCode) {
+        this.exceptionCode = exceptionCode;
+    }
+
     public enum ExceptionCode {
         INVALID_SERVICE_CODE,
         INVALID_FUNCTION_CODE,
         DUPLICATE_STATION,
         DUPLICATE_LINE,
-        INVALID_NAME_LENGTH,
         NO_SUCH_STATION,
         NO_SUCH_LINE,
+        INVALID_NAME_LENGTH,
         NON_NUMBER_INPUT,
         OUT_OF_LINE_RANGE,
         NO_LINK_AVAILABLE,
         STATION_LINKED;
-    }
 
-    private final String HEADER = "\n[ERROR] ";
-
-    private ExceptionCode exceptionCode;
-
-    public InvalidInputException(ExceptionCode exceptionCode) {
-        this.exceptionCode = exceptionCode;
     }
 
     public String getMessage() {
@@ -31,12 +31,12 @@ public class InvalidInputException extends RuntimeException {
             return HEADER + "이미 등록된 역 이름입니다.";
         if (exceptionCode.equals(ExceptionCode.DUPLICATE_LINE))
             return HEADER + "이미 등록된 노선 이름입니다.";
-        if (exceptionCode.equals(ExceptionCode.INVALID_NAME_LENGTH))
-            return HEADER + "이름은 두 글자 이상이어야 합니다.";
         if (exceptionCode.equals(ExceptionCode.NO_SUCH_STATION))
             return HEADER + "존재하지 않는 역 이름입니다.";
         if (exceptionCode.equals(ExceptionCode.NO_SUCH_LINE))
             return HEADER + "존재하지 않는 노선 이름입니다.";
+        if (exceptionCode.equals(ExceptionCode.INVALID_NAME_LENGTH))
+            return HEADER + "이름은 두 글자 이상이어야 합니다.";
         if (exceptionCode.equals(ExceptionCode.NON_NUMBER_INPUT))
             return HEADER + "순서는 숫자로 입력해야 합니다.";
         if (exceptionCode.equals(ExceptionCode.OUT_OF_LINE_RANGE))
