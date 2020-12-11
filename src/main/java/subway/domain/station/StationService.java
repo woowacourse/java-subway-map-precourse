@@ -4,4 +4,6 @@ import subway.domain.station.dto.StationSaveReqDto;
 
 public interface StationService {
     Station saveStation(StationSaveReqDto saveReqDto);
+
+    Stations getStations();
 }

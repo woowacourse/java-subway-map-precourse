@@ -1,5 +1,7 @@
 package subway.service.output;
 
+import subway.view.Screen;
+
 public class StringBuilderOutputService implements OutputService {
     private static final int START_INDEX = 0;
 
@@ -11,6 +13,22 @@ public class StringBuilderOutputService implements OutputService {
 
     public static StringBuilderOutputService of(StringBuilder sb) {
         return new StringBuilderOutputService(sb);
+    }
+
+    @Override
+    public void printInfo(String string) {
+        sb.append(Screen.PREFIX_INFO);
+        sb.append(string);
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
+    @Override
+    public void printSharp(String string) {
+        sb.append(Screen.PREFIX_SHARP);
+        sb.append(string);
+        System.out.println(sb.toString());
+        clearSb();
     }
 
     @Override

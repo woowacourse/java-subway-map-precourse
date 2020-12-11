@@ -3,11 +3,13 @@ package subway;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
+import subway.domain.station.Stations;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
 import subway.service.output.StringBuilderOutputService;
+import subway.view.StationView;
 
 import java.util.Scanner;
 
@@ -17,9 +19,9 @@ public class StationManageApp {
     private final StationService stationService;
 
     public StationManageApp() {
-        inputService = ScannerInputService.of(new Scanner(System.in));
-        outputService = StringBuilderOutputService.of(new StringBuilder());
-        stationService = new StationServiceImpl(MemoryStationRepository.of());
+        this.inputService = ScannerInputService.of(new Scanner(System.in));
+        this.outputService = StringBuilderOutputService.of(new StringBuilder());
+        this.stationService = new StationServiceImpl(MemoryStationRepository.of());
     }
 
     public static StationManageApp of() {
@@ -75,7 +77,8 @@ public class StationManageApp {
 
         }
         if (manageStationOption == InputService.MANAGE_STATION_FIND) {
-
+            StationView stationView = new StationView(outputService);
+            stationView.printAllStations(stationService.getStations());
         }
     }
 
