@@ -4,7 +4,6 @@ import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
 import subway.type.InputType;
-import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -41,7 +40,6 @@ public class FeatureService implements FeatureInterface {
             // TODO: 지하철 노선도 출력 기능 구현
             return;
         }
-        OutputView.printInvalidFeatureChoiceException();
     }
 
     @Override
