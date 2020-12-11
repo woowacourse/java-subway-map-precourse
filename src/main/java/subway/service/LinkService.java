@@ -49,12 +49,19 @@ public class LinkService extends CrudService {
 
     private void validateNewLink(Link newLink) {
         validateLineExists(newLink.getLineName());
+        validateStationExists(newLink.getStationName());
     }
 
     private void validateLineExists(String lineName) {
         Line line = new Line(lineName);
         if (!LineRepository.lines().contains(line))
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_LINE);
+    }
+
+    private void validateStationExists(String stationName) {
+        Station station = new Station(stationName);
+        if (!StationRepository.stations().contains(station))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_STATION);
     }
 
     @Override
