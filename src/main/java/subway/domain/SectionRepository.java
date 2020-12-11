@@ -8,11 +8,12 @@ import java.util.Map;
 
 public class SectionRepository {
 
-    // 노선의 실제 구현 (ex 2호선 = {당산역, 홍대역, 신촌역, 이대역, 아현역, 충정로역, 시청역})
-    // 이게 배열 그 자체입니다.. 햇갈리지 말 것!
     private final Map<Line, List<Station>> sectionMap = new HashMap<>();
 
-    public SectionRepository(Line sectionTitle, Station startStationInLine,
+    public SectionRepository() {
+    }
+
+    public void addLine(Line sectionTitle, Station startStationInLine,
         Station endStationInLine) {
         List<Station> startToEndStation = new ArrayList<>();
         startToEndStation.add(startStationInLine);
@@ -27,17 +28,20 @@ public class SectionRepository {
     }
 
     public void deleteLine(Line sectionTitle) {
-        // stations list (line) whole remove
+        if (!this.sectionMap.containsKey(sectionTitle)) {
+            System.out.println("해당 라인이 Section 목록에 없어요.");
+        }
+        this.sectionMap.remove(sectionTitle);
     }
 
     public void deleteSection(Line sectionTitle, Station station) {
-        List<Station> stations = sectionMap.get(sectionTitle);
+        List<Station> stations = this.sectionMap.get(sectionTitle);
         for (Station instanceStation : stations) {
             if (station.equals(instanceStation)) {
                 stations.remove(station);
             }
         }
-        sectionMap.put(sectionTitle, stations);
+        this.sectionMap.put(sectionTitle, stations);
     }
 
     public boolean isExistStationInLine(Line sectionTitle, Station station) {
