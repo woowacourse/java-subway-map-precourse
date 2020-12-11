@@ -15,11 +15,13 @@ public class SubwayProgram {
 
     public void run() {
         MainMenu mainMenu = new MainMenu(scanner);
-        int mainMenuNumber = mainMenu.inputAndNext();
-        newStationRepository = new StationRepository();
-        selectMainMenu(mainMenuNumber);
-//        System.out.println(StationRepository.stations().get(0).getName());
-        System.out.println(newStationRepository);
+        do {
+            int mainMenuNumber = mainMenu.run();
+            newStationRepository = new StationRepository();
+            selectMainMenu(mainMenuNumber);
+
+            System.out.println(newStationRepository);
+        } while (mainMenu.doNext());
 
     }
 
@@ -27,7 +29,6 @@ public class SubwayProgram {
         if (mainMenuNumber == 1) {
             StationManage newStationManage = new StationManage(scanner);
             newStationManage.manageStation();
-
         }
     }
 

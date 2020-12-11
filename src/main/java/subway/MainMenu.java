@@ -4,14 +4,22 @@ import java.util.Scanner;
 
 public class MainMenu {
     private final Scanner scanner;
-    private boolean isRunning = true;
+    private boolean doNext = true;
 
 
     public MainMenu(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public int inputAndNext() {
+    public int run() {
+        int parsedInput = input();
+        if (parsedInput == 0) {
+            doNext = false;
+        }
+        return parsedInput;
+    }
+
+    public int input() {
         printMenuScreen();
         return parseMenuNumber();
     }
@@ -34,8 +42,12 @@ public class MainMenu {
                 return 0;
             }
             System.out.println("[ERROR] 잘못된 입력입니다.");
-            return inputAndNext();
+            return run();
         }
+    }
+
+    public boolean doNext() {
+        return doNext;
     }
 
 }
