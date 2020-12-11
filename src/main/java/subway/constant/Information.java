@@ -24,6 +24,13 @@ public class Information {
     public static final String SHOW_LINE_INFO = "\n## 노선 목록";
 
     public static final String LINK_INFO = "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기\n" + CHOOSE_FUNCTION;
+    public static final String ADD_LINK_INFO_LINE = "\n## 노선 이름을 입력하세요.";
+    public static final String ADD_LINK_INFO_STATION = "\n## 역 이름을 입력하세요.";
+    public static final String ADD_LINK_INFO_ORDER = "\n## 순서를 입력하세요.";
+    public static final String ADD_LINK_SUCCESS = INFO_HEADER + "구간이 등록되었습니다.";
+    public static final String DELETE_LINK_INFO_LINE = "\n## 삭제할 구간의 노선 이름을 입력하세요.";
+    public static final String DELETE_LINK_INFO_STATION = "\n## 삭제할 구간의 역 이름을 입력하세요.";
+    public static final String DELETE_LINK_SUCCESS = INFO_HEADER + "구간이 삭제되었습니다.";
 
     public static final String PRINT_INFO = "\n## 지하철 노선도";
 }
