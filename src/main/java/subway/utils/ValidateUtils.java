@@ -18,4 +18,9 @@ public class ValidateUtils {
         }
         return false;
     }
+
+    public boolean isValidStationName(String stationName){
+        if(stationName.length()<2)return false;
+        return true;
+    }
 }

@@ -1,7 +1,10 @@
 package subway;
 
 import com.sun.tools.javac.Main;
+import java.util.List;
 import java.util.Scanner;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.utils.InputUtils;
 import subway.utils.PrintUtils;
 
@@ -13,12 +16,28 @@ public class Application {
 
         final private char menu;
 
-        private MainFunction(char menu){this.menu=menu;}
+        MainFunction(char menu){this.menu=menu;}
+
+        public char getMenu(){return menu;}
+    }
+
+    enum StationFunction {
+        ADD('1'), DELETE('2'), INQUIRY('3'), GET_BACK('B');
+
+        final private char menu;
+
+        StationFunction(char menu){this.menu=menu;}
 
         public char getMenu(){return menu;}
 
+        public boolean matchMenu(char menu){
+            if(this.menu==menu)return true;
+            return false;
+        }
+
     }
 
+    private static StationRepository stationRepository;
     private static PrintUtils printUtils;
     private static InputUtils inputUtils;
 
@@ -26,6 +45,7 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         printUtils = new PrintUtils();
         inputUtils = new InputUtils();
+        stationRepository = new StationRepository();
         char mainFunction;
 
         while (true) {
@@ -60,7 +80,32 @@ public class Application {
     }
 
     private static void stationManagementMenu() {
+        printUtils.printStationManagementMenu();
+        printUtils.printSelectFunction();
 
+        char menu=inputUtils.inputFunctionSelect(3, StationFunction.GET_BACK.getMenu());
+        if(StationFunction.GET_BACK.matchMenu(menu))
+            return;
+        if(StationFunction.ADD.matchMenu(menu))
+            addStation();
+    }
+
+    private static void addStation(){
+        printUtils.printAddStationGuide();
+        try{
+            Station newStation = new Station(inputUtils.inputNewStationName());
+            if(stationRepository.isStationExist(newStation))
+                throw new IllegalArgumentException();
+            stationRepository.addStation(newStation);
+            for (Station s : stationRepository.stations()) {
+                System.out.println(s.getName());
+            }
+            printUtils.printCompleteAddStation();
+        }catch(IllegalArgumentException e){
+            printUtils.duplicateStationError();
+            addStation();
+            return;
+        }
     }
 
     private static void lineManagementMenu() {

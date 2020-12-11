@@ -30,4 +30,16 @@ public class InputUtils {
             return inputFunctionSelect(bound, quit);
         }
     }
+
+    public String inputNewStationName(){
+        try{
+            String stationName = scanner.nextLine();
+            if(!validateUtils.isValidStationName(stationName))
+                throw new IllegalArgumentException();
+            return stationName;
+        }catch(IllegalArgumentException e){
+            printUtils.invalidStationNameLengthError();
+            return inputNewStationName();
+        }
+    }
 }
