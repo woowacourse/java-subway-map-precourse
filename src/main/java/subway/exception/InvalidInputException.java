@@ -12,7 +12,8 @@ public class InvalidInputException extends RuntimeException {
         NO_SUCH_LINE,
         NON_NUMBER_INPUT,
         OUT_OF_LINE_RANGE,
-        NO_LINK_AVAILABLE;
+        NO_LINK_AVAILABLE,
+        STATION_LINKED;
     }
 
     private final String HEADER = "\n[ERROR] ";
@@ -42,6 +43,8 @@ public class InvalidInputException extends RuntimeException {
             return HEADER + "순서는 해당 노선의 범위 안에서 입력해야 합니다.";
         if (exceptionCode.equals(ExceptionCode.NO_LINK_AVAILABLE))
             return HEADER + "역이 두 개 이하인 노선은 삭제할 수 없습니다";
+        if (exceptionCode.equals(ExceptionCode.STATION_LINKED))
+            return HEADER + "노선에 연결된 역은 삭제할 수 없습니다";
         return "";
     }
 }

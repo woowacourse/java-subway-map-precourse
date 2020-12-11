@@ -3,12 +3,15 @@ package subway.service;
 import subway.constant.Constant;
 import subway.constant.Information;
 import subway.constant.InitialData;
+import subway.domain.Line;
 import subway.domain.Station;
 import subway.exception.InvalidInputException;
+import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
 import java.util.Scanner;
 
+import static subway.constant.Information.DELETE_STATION_SUCCESS;
 import static subway.constant.Information.INFO_HEADER;
 
 public class StationService extends CrudService {
@@ -57,7 +60,35 @@ public class StationService extends CrudService {
 
     @Override
     public void delete() {
+        Station targetStation = getTargetStationInput();
+        validateTargetStation(targetStation);
+        StationRepository.deleteStation(targetStation.getName());
+        System.out.println(DELETE_STATION_SUCCESS);
+    }
+
+    private Station getTargetStationInput() {
         System.out.println(Information.DELETE_STATION_INFO);
+        return new Station(scanner.nextLine());
+    }
+
+    private void validateTargetStation(Station targetStation) {
+        validateTargetStationExists(targetStation);
+        validateTargetStationIsNotLinked(targetStation);
+    }
+
+    private void validateTargetStationExists(Station targetStation) {
+        if (!StationRepository.stations().contains(targetStation))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.NO_SUCH_STATION);
+    }
+
+    private void validateTargetStationIsNotLinked(Station targetStation) {
+        for (Line line : LineRepository.lines())
+            validateTargetStationIsNotInLine(line, targetStation);
+    }
+
+    private void validateTargetStationIsNotInLine(Line line, Station targetStation) {
+        if (line.getStations().contains(targetStation))
+            throw new InvalidInputException(InvalidInputException.ExceptionCode.STATION_LINKED);
     }
 
 
