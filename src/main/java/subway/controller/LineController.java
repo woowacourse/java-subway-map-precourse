@@ -2,6 +2,7 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.text.LineText;
@@ -38,6 +39,7 @@ public class LineController {
         OutputView.printInputRegisterValue(LineText.screenName());
         Line line = new Line(inputView.getInputRegisterLine());
         LineRepository.addLine(line);
+        registerSection(inputView,line);
         OutputView.printRegisterSuccess(LineText.screenName());
         goBackToMain(inputView);
     }
@@ -54,7 +56,17 @@ public class LineController {
 
     }
 
+    private void registerSection(InputView inputView, Line line) {
+        OutputView.printRegisterFirstStation();
+        String firstStation = inputView.getInputRegisterStation();
+        OutputView.printRegisterLastStation();
+        String lastStation = inputView.getInputRegisterStation();
+        SectionRepository.addSection(line.getName(), firstStation, lastStation);
+    }
+
     public String getControllerIndex() {
         return CONTROLLER_INDEX;
     }
 }
+
+
