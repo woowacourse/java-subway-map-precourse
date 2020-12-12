@@ -1,7 +1,10 @@
 package subway.view;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import subway.Scene;
+import subway.domain.LineRepository;
 import subway.io.Request;
 import subway.io.Response;
 
@@ -18,7 +21,49 @@ public class LineManagementView extends View {
     }
 
     private static void registerLine(Scene scene, Request request, Response response) {
+        List<String> inputs = new ArrayList<>();
+        if (!registerLineName(request, response, inputs)) {
+            return;
+        }
+        if (!request.isValidTerminatingStationPair(inputs.get(1), inputs.get(2))) {
+            return;
+        }
+        LineRepository.addLine(inputs.get(0), inputs.get(1), inputs.get(2));
+        response.printInfoMessage(Response.LINE_REGISTER_SUCCESS_MESSAGE);
         scene.back();
+    }
+
+    private static boolean registerLineName(Request request, Response response,
+            List<String> inputs) {
+        response.printHeadlineMessage(Response.LINE_TO_REGISTER_REQUEST_MESSAGE);
+        String lineName = request.requestLineRegister();
+        if (lineName == null) {
+            return false;
+        }
+        inputs.add(lineName);
+        return registerUpboundStationName(request, response, inputs);
+    }
+
+    private static boolean registerUpboundStationName(Request request, Response response,
+            List<String> inputs) {
+        response.printHeadlineMessage(Response.UPBOUND_STATION_TO_REGISTER_REQUEST_MESSAGE);
+        String upboundStation = request.requestTerminatingStation();
+        if (upboundStation == null) {
+            return false;
+        }
+        inputs.add(upboundStation);
+        return registerDownboundStationName(request, response, inputs);
+    }
+
+    private static boolean registerDownboundStationName(Request request, Response response,
+            List<String> inputs) {
+        response.printHeadlineMessage(Response.DOWNBOUND_STATION_TO_REGISTER_REQUEST_MESSAGE);
+        String downboundStation = request.requestTerminatingStation();
+        if (downboundStation == null) {
+            return false;
+        }
+        inputs.add(downboundStation);
+        return true;
     }
 
     private static void removeLine(Scene scene, Request request, Response response) {

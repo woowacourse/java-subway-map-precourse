@@ -47,8 +47,38 @@ public class Request {
         return true;
     }
 
+    public String requestLineRegister() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidLineRegister(input);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestTerminatingStation() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidTerminatingStation(input);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
     public boolean isAccessibleStationRepository() {
         Error error = ExceptionManager.checkAccessibleStationRepository();
+        if (error != Error.OK) {
+            printError(error);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isValidTerminatingStationPair(String upboundStation, String downboundStation) {
+        Error error =
+                ExceptionManager.checkValidTerminatingStationPair(upboundStation, downboundStation);
         if (error != Error.OK) {
             printError(error);
             return false;
