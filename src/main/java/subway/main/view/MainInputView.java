@@ -11,8 +11,9 @@ public class MainInputView {
         this.scanner = scanner;
     }
 
-    public int selectOption() {
+    public char selectOption() {
         System.out.println(ASK_OPTION_CHOICE);
-        return scanner.nextInt();
+        String option = scanner.next();
+        return option.charAt(0);
     }
 }
