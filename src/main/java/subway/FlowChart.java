@@ -3,7 +3,7 @@ package subway;
 import java.util.Scanner;
 
 public class FlowChart {
-    public static void flowChart(Scanner scanner){
+    public static void start(Scanner scanner){
         Menu mainPage = new Menu(Constant.MAIN_MENU_TITLE, Constant.mainMenuItemList());
         Menu stationPage = new Menu(Constant.STATION_LIST_TITLE, Constant.stationMenuItemList());
         Menu linePage = new Menu(Constant.LINE_MENU_TITLE, Constant.lineMenuItemList());
