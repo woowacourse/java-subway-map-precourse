@@ -40,6 +40,19 @@ public class StationManager {
         System.out.println(QUIT_OPTION);
     }
 
+    public static String getUserOption(Scanner scanner) {
+        try {
+            System.out.println(ASK_OPTION_MESSAGE);
+            userOption = scanner.nextLine();
+            System.out.println();
+            validateUserOption(userOption);
+            return userOption;
+        } catch (IllegalArgumentException iae) {
+            System.out.println(ERROR_PREFIX + iae.getMessage());
+            return getUserOption(scanner);
+        }
+    }
+
     public static String inputStationName(Scanner scanner) {
         String stationName = scanner.nextLine();
         try {
@@ -48,6 +61,21 @@ public class StationManager {
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
             return inputStationName(scanner);
+        }
+    }
+
+    public static void validateUserOption(String userOption) throws IllegalArgumentException {
+        if (userOption.equals(WANT_QUIT_CODE)) {
+            return;
+        }
+        int optionNumber;
+        try {
+            optionNumber = Integer.parseInt(userOption);
+            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ERROR_PREFIX + OPTION_ERROR_MESSAGE);
         }
     }
 }
