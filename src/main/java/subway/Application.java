@@ -9,6 +9,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class Application {
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         Machine machine = new Machine();
@@ -17,7 +18,7 @@ public class Application {
 
         while (true) {
             OutputView.printMainFunctions();
-            String mainFunctionNumber = InputView.inputFunctionNumber(scanner);
+            String mainFunctionNumber = getInputMainFunctionNumber(scanner);
             if (mainFunctionNumber.equals("Q")) {
                 break;
             }
@@ -31,6 +32,28 @@ public class Application {
             String functionNumber = InputView.inputFunctionNumber(scanner);
             Function function = mainFunctions.selectFunction(functionNumber);
             function.operateFunction(scanner);
+        }
+    }
+
+    private static String getInputMainFunctionNumber(Scanner scanner) {
+        try {
+            String mainFunctionNumber = InputView.inputFunctionNumber(scanner);
+            validateMainFunctionNumber(mainFunctionNumber);
+            return mainFunctionNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getInputMainFunctionNumber(scanner);
+        }
+    }
+
+    private static void validateMainFunctionNumber(String mainFunctionNumber) {
+        if (mainFunctionNumber != "1"
+            && mainFunctionNumber != "2"
+            && mainFunctionNumber != "3"
+            && mainFunctionNumber != "4"
+            && mainFunctionNumber != "Q"
+        ) {
+            throw new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다.");
         }
     }
 }
