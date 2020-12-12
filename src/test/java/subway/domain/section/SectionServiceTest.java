@@ -74,4 +74,18 @@ class SectionServiceTest {
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.LINE_ALREADY_EXIST.getMessage());
     }
+
+    @Test
+    @DisplayName("등룍하려는 상행 종점역이 존재하지 않으면 에러가 발생한다 테스트..")
+    void testUpwardNotFound() {
+        //given
+        String lineName = "2호선";
+        String upwardName = "역곡역";
+        String downwardName = "사랑역";
+
+        //then
+        assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_UPWARD_STATION_NOT_FOUND.getMessage());
+    }
 }
