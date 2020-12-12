@@ -28,45 +28,30 @@ public class View {
     }
 
     public void main() {
-        try {
-            nextView(MAIN_VIEW);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            main();
-        }
+        nextView(MAIN_VIEW);
     }
 
     public void station() {
-        try {
-            nextView(STATION_VIEW);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            station();
-        }
+        nextView(STATION_VIEW);
     }
 
     public void line() {
-        try {
-            nextView(LINE_VIEW);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            line();
-        }
+        nextView(LINE_VIEW);
     }
 
     public void section() {
-        try {
-            nextView(SECTION_VIEW);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            section();
-        }
+        nextView(SECTION_VIEW);
     }
 
     private void nextView(String questionType) {
-        outputView.printQuestionHeader(questions.getHeader(questionType));
-        outputView.printQuestions(questions.getQuestions(questionType));
-        selectedQuestion(questionType).nextAction(this);
+        try {
+            outputView.printQuestionHeader(questions.getHeader(questionType));
+            outputView.printQuestions(questions.getQuestions(questionType));
+            selectedQuestion(questionType).nextAction(this);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            nextView(questionType);
+        }
     }
 
     private BaseQuestion selectedQuestion(String questionType) {
