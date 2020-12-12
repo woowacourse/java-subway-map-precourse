@@ -11,10 +11,13 @@ public class LineRepository {
     }
 
     public static Optional<Line> getLine(String name){
-        return Optional.of(lines.stream()
+        List<Line> lineList = lines.stream()
                 .filter(line -> line.getName() != name)
-                .collect(Collectors.toList())
-                .get(0));
+                .collect(Collectors.toList());
+        if(lineList.isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(lineList.get(0));
     }
 
     public static void addLine(Line line) {
