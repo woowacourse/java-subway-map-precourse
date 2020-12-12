@@ -15,5 +15,6 @@ public class MainOutputView {
         System.out.println(SECTION_MANAGEMENT);
         System.out.println(PRINT_LINE_MAP);
         System.out.println(EXIT_SERVICE);
+        System.out.println();
     }
 }
