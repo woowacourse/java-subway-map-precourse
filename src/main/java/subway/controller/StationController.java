@@ -11,28 +11,30 @@ import java.util.List;
 
 public class StationController implements SubwayController {
 
-    private static final Menu STATE = StationMenu.BACK;
     private StationRepository stationRepository = new StationRepository();
     private final InputView inputView = InputView.getInstance();
 
     @Override
     public void save() {
-        System.out.println("## 등록할 역 이름을 입력하세요");
+        OutputView.printInputMessage(StationMenu.REGISTER);
         String name = inputView.input();
         stationRepository.addStation(Station.of(name));
+        OutputView.printResultMessage(StationMenu.REGISTER);
     }
 
     @Override
     public void delete() {
-        System.out.println("## 삭제할 역 이름을 입력하세요");
+        OutputView.printInputMessage(StationMenu.DELETE);
+
         String name = inputView.input();
         stationRepository.deleteStation(name);
+        OutputView.printResultMessage(StationMenu.DELETE);
     }
 
     @Override
     public void findAll() {
         List<Station> stations = stationRepository.stations();
-        OutputView.printStations(stations);
+        OutputView.printStations(stations, StationMenu.DELETE);
     }
 
     @Override
