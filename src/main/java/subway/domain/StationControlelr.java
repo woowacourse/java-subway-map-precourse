@@ -30,6 +30,6 @@ public class StationControlelr {
 
         stationRepository.removeStation(stationName);
 
-        outputView.printStationSaved();
+        outputView.printStationRemoved();
     }
 }
