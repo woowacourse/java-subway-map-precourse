@@ -12,4 +12,8 @@ public class StationController {
     public void createStation(final String name) {
         StationRepository.addStation(new Station(name));
     }
+
+    public boolean deleteStation(String name) {
+        return StationRepository.deleteStation(name);
+    }
 }

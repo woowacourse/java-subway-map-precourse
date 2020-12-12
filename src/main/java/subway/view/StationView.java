@@ -52,6 +52,10 @@ public class StationView {
 
     private void deleteStation(String button) {
         if (button.equals(Button.TWO)) {
+            Message.printDeleteStation();
+            String name = input.nextStation();
+            stationController.deleteStation(name);
+            Message.deleteStationInfo();
         }
     }
 
