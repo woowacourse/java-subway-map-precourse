@@ -18,12 +18,15 @@ public class Constant {
     public static List<String> mainMenuItemList() {
         return Collections.unmodifiableList(mainMenuItemList);
     }
+
     public static List<String> stationMenuItemList() {
         return Collections.unmodifiableList(stationMenuItemList);
     }
+
     public static List<String> lineMenuItemList() {
         return Collections.unmodifiableList(lineMenuItemList);
     }
+
     public static List<String> sectionMenuItemList() {
         return Collections.unmodifiableList(sectionMenuItemList);
     }
