@@ -60,7 +60,7 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
     }
 
     @Override
-    public void delete(Scanner scanner) {
-
+    public boolean delete(Scanner scanner) {
+        return false;
     }
 }

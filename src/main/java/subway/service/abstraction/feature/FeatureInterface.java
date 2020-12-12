@@ -4,5 +4,5 @@ import java.util.Scanner;
 
 public interface FeatureInterface {
     boolean add(Scanner scanner);
-    void delete(Scanner scanner);
+    boolean delete(Scanner scanner);
 }

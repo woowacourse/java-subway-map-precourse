@@ -58,7 +58,7 @@ public class SectionService implements InputInterface, FeatureChoiceInterface, F
     }
 
     @Override
-    public void delete(Scanner scanner) {
-
+    public boolean delete(Scanner scanner) {
+        return false;
     }
 }

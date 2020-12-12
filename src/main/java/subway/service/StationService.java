@@ -46,8 +46,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
             return add(scanner);
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
-            // TODO: 역 삭제 기능 구현
-            return false;
+            return delete(scanner);
         }
         if (input.equals(InputType.INPUT_THREE.getInput())) {
             // TODO: 역 조회 기능 구현
@@ -87,7 +86,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
     }
 
     @Override
-    public void delete(Scanner scanner) {
-
+    public boolean delete(Scanner scanner) {
+        return false;
     }
 }
