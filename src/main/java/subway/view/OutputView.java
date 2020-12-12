@@ -51,4 +51,8 @@ public class OutputView {
             System.out.println("[INFO] " + station.getName());
         }
     }
+    
+    public static void printLineRegisterSuccess() {
+        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
+    }
 }

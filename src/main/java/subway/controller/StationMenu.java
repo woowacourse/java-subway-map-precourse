@@ -32,9 +32,9 @@ public class StationMenu {
 
     private static void registerNewStation() {
         try {
-            String name = InputView.receiveStationName(STATION_REGISTER_MESSAGE);
-            StationValidator.validateStation(name);
-            StationRepository.addStation(new Station(name));
+            String stationName = InputView.receiveName(STATION_REGISTER_MESSAGE);
+            StationValidator.validateStation(stationName);
+            StationRepository.addStation(new Station(stationName));
             OutputView.printStationRegisterSuccess();
         } catch (NameFormatException | DuplicationException e) {
             System.out.println(e.getMessage());
@@ -44,8 +44,9 @@ public class StationMenu {
     
     private static void deleteStation() {
         try {
-            String name = InputView.receiveStationName(STATION_DELETE_MESSAGE);
-            StationValidator.validateNotExistedStation(name);
+            String name = InputView.receiveName(STATION_DELETE_MESSAGE);
+            boolean deletion = StationRepository.deleteStation(name);
+            StationValidator.validateExistedStation(deletion);
             OutputView.printStationDeleteSuccess();
         } catch (NotExistedElementException e) {
             System.out.println(e.getMessage());

@@ -8,6 +8,12 @@ public class StationValidator {
         validateLength(stationName);
         validateDuplication(stationName);
     }
+    
+    public static void validateUpAndDownStation(String stationName) {
+        validateFormat(stationName);
+        validateLength(stationName);
+        validateExistedStation(StationRepository.isExistedStation(stationName));
+    }
 
     private static void validateFormat(String stationName) {
         if (!stationName.matches("[가-힣]+역")) {
@@ -21,14 +27,14 @@ public class StationValidator {
         }
     }
     
-    public static void validateDuplication(String name) {
-        if (StationRepository.isDuplication(name)) {
+    public static void validateDuplication(String stationName) {
+        if (StationRepository.isExistedStation(stationName)) {
             throw new DuplicationException("\n[ERROR] 이미 등록된 역 이름입니다.");
         }
     }
     
-    public static void validateNotExistedStation(String name) {
-        if (!StationRepository.deleteStation(name)) {
+    public static void validateExistedStation(boolean isExisted) {
+        if (!isExisted) {
             throw new NotExistedElementException("\n[ERROR] 존재하지 않는 역 이름입니다.");
         }
     }

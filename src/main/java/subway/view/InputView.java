@@ -22,7 +22,7 @@ public class InputView {
         }
     }
 
-    public static String receiveStationName(String message) {
+    public static String receiveName(String message) {
         System.out.println(message);
         return SCANNER.nextLine();
     }

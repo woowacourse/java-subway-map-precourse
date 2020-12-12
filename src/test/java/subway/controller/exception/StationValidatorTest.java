@@ -24,6 +24,7 @@ public class StationValidatorTest {
     @Test(expected = NotExistedElementException.class)
     public void testStationNameExistWhenDelete() {
         StationRepository.addStation(new Station("잠실역"));
-        StationValidator.validateNotExistedStation("의정부역");
+        boolean deletion = StationRepository.deleteStation("의정부역");
+        StationValidator.validateExistedStation(deletion);
     }
 }
