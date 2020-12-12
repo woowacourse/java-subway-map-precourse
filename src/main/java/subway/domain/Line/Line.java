@@ -4,6 +4,7 @@ import subway.domain.name.LineName;
 import subway.domain.station.Station;
 import subway.exception.AlreadyAddStationException;
 import subway.exception.InvalidLineNameException;
+import subway.exception.InvalidOrderException;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -31,10 +32,10 @@ public class Line {
         return line;
     }
 
-
-
     private void setStations(Station start, Station end) {
+        start.addLine(this);
         stations.add(start);
+        end.addLine(this);
         stations.add(end);
     }
 
@@ -73,9 +74,11 @@ public class Line {
 
     public void addTo(int order, Station station) {
 
-        if (isValidOrder(order))
+        if (!isValidOrder(order)) {
+            throw new InvalidOrderException();
+        }
 
-            stations.add(order - ONE_INDEX, station);
+        stations.add(order - ONE_INDEX, station);
     }
 
     private boolean isValidOrder(int order) {

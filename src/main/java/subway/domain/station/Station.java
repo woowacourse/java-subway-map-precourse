@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Station implements Comparable<Station> {
     private StationName name;
 
-    private static final List<Line> lines = new LinkedList<>();
+    private final List<Line> lines = new LinkedList<>();
 
     private Station(StationName name) {
         this.name = name;
@@ -21,6 +21,7 @@ public class Station implements Comparable<Station> {
     }
 
     public boolean canRemove() {
+        System.out.println(lines.size());
         return lines.isEmpty();
     }
 
@@ -49,6 +50,13 @@ public class Station implements Comparable<Station> {
 
     public boolean isSameName(String name) {
         return this.name.isSameName(name);
+    }
+
+    public void addLine(Line line) {
+        if(lines.contains(line)){
+            throw new AlreadyLinkedException(line,this);
+        }
+        lines.add(line);
     }
 
     // 추가 기능 구현

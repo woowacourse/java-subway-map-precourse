@@ -32,15 +32,12 @@ public class StationRepository {
     public boolean deleteStation(String name) {  //기존
 
 
-        if (!canRemove(name)) {
+        Station station = findBy(name);
+        if (!station.canRemove()) {
             throw new CannotRemoveException();
         }
 
-        boolean result = stations.removeIf(station -> station.isSameName(name));
-        if (!result) {
-            throw new StationNotFountException(name);
-        }
-        return true;
+        return stations().remove(station);
     }
 
     private boolean canRemove(String name) {
