@@ -11,36 +11,20 @@ public class MainMenu {
         this.scanner = scanner;
     }
 
+    public static String menuInputNumber(String userInput, String regex) {
+        if (!userInput.matches(regex)) {
+            throw new IllegalArgumentException("[ERROR] 올바른 입력을 해주세요(1~4, Q)");
+        }
+        return userInput;
+    }
+
     public String run() {
-        String parsedInput = input();
-        if (parsedInput.matches("[Qq]")) {
+        InputView inputView = new InputView(scanner, "main");
+        String menuNumber = inputView.nextMenu();
+        if (menuNumber.matches("[Qq]")) {
             doNext = false;
         }
-        return parsedInput;
-    }
-
-    public String input() {
-        printMenuScreen();
-        return parseMenuNumber();
-    }
-
-    public void printMenuScreen() {
-        System.out.println("## 메인 화면");
-        System.out.println("1. 역 관리");
-        System.out.println("2. 노선 관리");
-        System.out.println("3. 구간 관리");
-        System.out.println("4. 지하철 노선도 출력");
-        System.out.println("Q. 종료");
-    }
-
-    public String parseMenuNumber() {
-        String userInput = scanner.nextLine();
-        try {
-            return Validate.mainMenuInt(userInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
-            return input();
-        }
+        return menuNumber;
     }
 
     public boolean doNext() {

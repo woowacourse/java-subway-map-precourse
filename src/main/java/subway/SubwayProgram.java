@@ -25,8 +25,8 @@ public class SubwayProgram {
 
     public void selectMainMenu(String mainMenuNumber) {
         if (mainMenuNumber.equals("1")) {
-            StationManage newStationManage = new StationManage(scanner);
-            newStationManage.manageStation();
+            StationManager newStationManage = new StationManager(scanner);
+            newStationManage.run();
         }
     }
 
