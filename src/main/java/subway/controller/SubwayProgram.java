@@ -150,6 +150,7 @@ public class SubwayProgram {
             StationRepository.validateNameExist(firstStationName);
             StationName lastStationName = InputView.inputLastStationName(scanner);
             StationRepository.validateNameExist(lastStationName);
+            firstStationName.compareName(lastStationName);
             LineRepository.addLine(lineName, firstStationName, lastStationName);
             OutputView.printAddMessage(LINE);
         }catch (IllegalArgumentException e) {

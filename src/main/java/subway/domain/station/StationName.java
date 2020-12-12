@@ -7,6 +7,7 @@ public class StationName {
     private static final String NAME_LENGTH_ERROR = "[ERROR] 역 이름은 2자 이상으로 입력해주세요.";
     private static final String NAME_KOREAN_ERROR = "[ERROR] 역 이름은 한글만 입력 가능합니다.";
     private static final String NAME_FORM_ERROR = "[ERROR] 역 이름은 OO역 형태로 입력해주세요.";
+    private static final String NAME_DUPLICATE_ERROR = "[ERROR] 같은 역은 올 수 없습니다.";
     private static final String KOREAN_REGEXP = "^[가-힣]*$";
     private static final char NAME_END = '역';
     private final String name;
@@ -16,15 +17,23 @@ public class StationName {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validateStationName(String name) {
         validateKorean(name);
         validateNameLength(name);
         validateStationNameForm(name);
     }
+
+    public void compareName(StationName stationName) {
+        if (this.equals(stationName)) {
+            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 
     private void validateNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH) {
