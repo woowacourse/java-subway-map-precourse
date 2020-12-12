@@ -4,6 +4,7 @@ import subway.line.view.LineInputView;
 import subway.line.view.LineOutputView;
 import subway.station.Station;
 import subway.station.StationService;
+import subway.station.validation.CheckLastLetter;
 
 public class LineService {
     public static void addLine(String lineName, LineInputView lineInputView) {
@@ -22,11 +23,13 @@ public class LineService {
 
     private static Station getStartStation(LineInputView lineInputView) {
         String startStationName = lineInputView.startStationName();
+        CheckLastLetter.validation(startStationName);
         return StationService.findStation(startStationName);
     }
 
     private static Station getEndStation(LineInputView lineInputView) {
         String endStationName = lineInputView.endStationName();
+        CheckLastLetter.validation(endStationName);
         return StationService.findStation(endStationName);
     }
 }
