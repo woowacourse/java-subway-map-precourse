@@ -13,6 +13,8 @@ public class InputView {
     private static final String INPUT_STATION_NAME = "\n## 등록할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_NAME = "\n## 삭제할 역 이름을 입력하세요.";
     private static final String INPUT_lINE_NAME = "\n## 등록할 노선 이름을 입력하세요.";
+    private static final String UP_TERMINAL_STATION = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String DOWN_TERMINAL_STATION = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String DELETE_lINE_NAME = "\n## 삭제할 노선 이름을 입력하세요.";
 
     public static String inputFunction(Scanner scanner) {
@@ -60,7 +62,7 @@ public class InputView {
             String input = scanner.next();
 
             if (!StationRepository.deleteStation(input)) {
-                throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+                throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_DELETE_STATION);
             }
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -85,13 +87,35 @@ public class InputView {
         try {
             System.out.println(INPUT_lINE_NAME);
             String input = scanner.next();
-
             LineRepository.isValidLineName(input);
             return input;
-
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             return inputLineName(scanner);
+        }
+    }
+
+    public static String inputUpTerminalStation(Scanner scanner) {
+        try {
+            System.out.println(UP_TERMINAL_STATION);
+            String upTerminal = scanner.next();
+            LineRepository.isPossibleTerminalStation(upTerminal);
+            return upTerminal;
+        } catch (IllegalArgumentException ie){
+            System.out.println(ie.getMessage());
+            return inputUpTerminalStation(scanner);
+        }
+    }
+
+    public static String inputDownTerminalStation(Scanner scanner) {
+        try {
+            System.out.println(UP_TERMINAL_STATION);
+            String downTerminal = scanner.next();
+            LineRepository.isPossibleTerminalStation(downTerminal);
+            return downTerminal;
+        } catch (IllegalArgumentException ie){
+            System.out.println(ie.getMessage());
+            return inputDownTerminalStation(scanner);
         }
     }
 

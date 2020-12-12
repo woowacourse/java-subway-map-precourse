@@ -42,6 +42,11 @@ public class LineRepository {
         }
     }
 
+    public static void isPossibleTerminalStation(String name) {
+        if (!StationRepository.isStationExist(name))
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION_FOR_LINE);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
