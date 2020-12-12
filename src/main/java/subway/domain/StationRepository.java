@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class StationRepository {
 
@@ -74,6 +75,10 @@ public final class StationRepository {
 
     public boolean contains(final String stationName) {
         return stations.contains(new Station(stationName));
+    }
+
+    public List<String> stationNames() {
+        return stations.stream().map(Station::getName).collect(Collectors.toList());
     }
 
     private StationRepository insert(final int index, final String stationName) {

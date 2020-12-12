@@ -2,6 +2,8 @@ package subway.view;
 
 import java.io.PrintStream;
 
+import subway.domain.StationRepository;
+
 public class OutputView {
 
     public static final String SUCCESS_PREFIX = "[INFO]";
@@ -16,6 +18,12 @@ public class OutputView {
 
     public void printStationRemoved() {
         printSuccessMessage(STATION_REMOVED);
+    }
+
+    public void printStations(StationRepository stationRepository) {
+        for (String stationName : stationRepository.stationNames()) {
+            printSuccessMessage(stationName);
+        }
     }
 
     private PrintStream printSuccessMessage(String message) {

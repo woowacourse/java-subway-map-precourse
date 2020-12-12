@@ -3,7 +3,7 @@ package subway.domain;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationControlelr {
+public class StationController {
 
     private final StationRepository stationRepository;
 
@@ -11,7 +11,7 @@ public class StationControlelr {
 
     private final OutputView outputView;
 
-    public StationControlelr() {
+    public StationController() {
         this.inputView = new InputView();
         this.stationRepository = new StationRepository();
         this.outputView = new OutputView();
@@ -31,5 +31,9 @@ public class StationControlelr {
         stationRepository.removeStation(stationName);
 
         outputView.printStationRemoved();
+    }
+
+    public void load() {
+        outputView.printStations(stationRepository);
     }
 }
