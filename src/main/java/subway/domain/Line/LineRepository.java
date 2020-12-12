@@ -1,6 +1,5 @@
 package subway.domain.Line;
 
-import subway.domain.name.StationName;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.AlreadyAddLineException;
@@ -47,9 +46,15 @@ public class LineRepository {
         lineBoon.addTo(1, station5);
         lineRepository.addLine(lineBoon);
 
+        stationRepository.addStation(Station.of("갓우정역"));
+        stationRepository.addStation(Station.of("킹우정역"));
+        stationRepository.addStation(Station.of("우정역"));
+
+        Station sample1 = stationRepository.findBy("갓우정역");
+        Station sample2 = stationRepository.findBy("킹우정역");
+        Station sample3 = stationRepository.findBy("우정역");
 
     }
-
 
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -57,11 +62,12 @@ public class LineRepository {
 
     public Line findBy(String name) {
         return lines().stream()
-                .filter(l -> l.isSameName(name)).findFirst()
-                .orElseThrow(() -> new AlreadyAddLineException(name));
+                .filter(l -> l.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new LineNotFoundException(name));
     }
 
-    public void addLine(Line line) { //기존 메서드
+    public void addLine(Line line) {
 
         if (lines().contains(line)) {
             throw new AlreadyAddLineException(line.toString());
@@ -69,15 +75,10 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public boolean deleteLineByName(String name) {   //기존 메서드
-
-        boolean result = lines().removeIf(l -> l.isSameName(name));
-
-        if (!result) {
-            throw new LineNotFoundException(name);
-        }
-        return result;
+    public boolean deleteLineByName(String name) {
+        Line line = findBy(name);
+        line.clear();
+        return lines.remove(line);
     }
-
 
 }

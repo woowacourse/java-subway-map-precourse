@@ -24,10 +24,8 @@ public class LineController implements SubwayController {
     @Override
     public void save() {
 
-        String name = inputView.inputName();
-
         System.out.println(INPUT_LINE_MESSAGE);
-        String lineName = inputView.inputName();
+        String lineName = inputView.input();
 
 
         System.out.println(INPUT_START_MESSAGE);
@@ -42,20 +40,14 @@ public class LineController implements SubwayController {
     }
 
     private Station selectStation() {
-        String stationName1 = inputView.inputName();
+        String stationName1 = inputView.input();
         return stationRepository.findBy(stationName1);
     }
 
     @Override
     public void delete() {
-        String name = inputView.inputName();
+        String name = inputView.input();
         lineRepository.deleteLineByName(name);
-
-        List<Station> stations = stationRepository.findByLine(name);
-
-        for (Station station : stations) {
-            stationRepository.deleteStation(station.toString());
-        }
     }
 
     @Override
