@@ -4,6 +4,8 @@ import java.io.PrintStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 import subway.Scene;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.Command;
@@ -14,6 +16,7 @@ public class Response {
     private static final String MENU_FORMAT = "%s. %s\n";
     private static final String INFO_FORMAT = "[INFO] %s\n";
     private static final String STATION_LIST_TITLE = "역 목록";
+    private static final String LINE_LIST_TITLE = "노선 목록";
     public static final String COMMAND_REQUEST_MESSAGE = "원하는 기능을 선택하세요.";
     public static final String STATION_TO_REGISTER_REQUEST_MESSAGE = "등록할 역 이름을 입력하세요.";
     public static final String STATION_TO_REMOVE_REQUEST_MESSAGE = "삭제할 역 이름을 입력하세요.";
@@ -49,6 +52,15 @@ public class Response {
         List<Station> stations = StationRepository.stations();
         for (Station station : stations) {
             printInfoMessage(station.getName());
+        }
+        printStream.println();
+    }
+    
+    public void printLines() {
+        printHeadlineMessage(LINE_LIST_TITLE);
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            printInfoMessage(line.getName());
         }
         printStream.println();
     }

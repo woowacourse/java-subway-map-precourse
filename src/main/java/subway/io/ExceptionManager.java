@@ -65,6 +65,13 @@ public class ExceptionManager {
         }
         return Error.OK;
     }
+    
+    public static Error checkAccessibleLineRepository() {
+        if (LineRepository.isEmpty()) {
+            return Error.INVALID_COMMAND;
+        }
+        return Error.OK;
+    }
 
     public static Error checkValidLineRegister(String name) {
         if (!isValidLineNameLength(name)) {

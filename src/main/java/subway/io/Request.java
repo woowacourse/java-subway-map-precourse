@@ -76,6 +76,15 @@ public class Request {
         }
         return true;
     }
+    
+    public boolean isAccessibleLineRepository() {
+        Error error = ExceptionManager.checkAccessibleLineRepository();
+        if (error != Error.OK) {
+            printError(error);
+            return false;
+        }
+        return true;
+    }
 
     public boolean isValidTerminatingStationPair(String upboundStation, String downboundStation) {
         Error error =

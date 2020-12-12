@@ -16,7 +16,7 @@ public class LineManagementView extends View {
     static {
         MENUS.put("1", new Command("노선 등록", LineManagementView::registerLine));
         MENUS.put("2", new Command("노선 삭제", LineManagementView::removeLine));
-        MENUS.put("3", new Command("구간 조회", LineManagementView::viewSections));
+        MENUS.put("3", new Command("노선 조회", LineManagementView::viewLines));
         MENUS.put("B", new Command("돌아가기", LineManagementView::back));
     }
 
@@ -74,8 +74,11 @@ public class LineManagementView extends View {
         }
     }
 
-    private static void viewSections(Scene scene, Request request, Response response) {
-        scene.back();
+    private static void viewLines(Scene scene, Request request, Response response) {
+        if (request.isAccessibleLineRepository()) {
+            response.printLines();
+            scene.back();
+        }
     }
 
     private static void back(Scene scene, Request request, Response response) {
