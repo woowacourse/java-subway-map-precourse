@@ -52,7 +52,7 @@ public class Print {
     }
 
     public static void addOrDeleteDoneMessage(String target, String AddOrDelete) {
-        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", target, AddOrDelete);
+        System.out.printf(Constant.INFO + Constant.DONE_MESSAGE + "%n", target, AddOrDelete);
     }
 
     public static void setLineToAddSection() {
