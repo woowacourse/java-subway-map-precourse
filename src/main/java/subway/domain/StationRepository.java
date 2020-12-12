@@ -42,4 +42,8 @@ public class StationRepository {
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static boolean contains(Station station) {
+        return stations.contains(station);
+    }
 }
