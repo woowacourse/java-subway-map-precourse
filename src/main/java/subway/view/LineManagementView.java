@@ -67,7 +67,11 @@ public class LineManagementView extends View {
     }
 
     private static void removeLine(Scene scene, Request request, Response response) {
-        scene.back();
+        response.printHeadlineMessage(Response.LINE_TO_REMOVE_REQUEST_MESSAGE);
+        if (request.requestLineRemoval()) {
+            response.printInfoMessage(Response.LINE_REMOVAL_SUCCESS_MESSAGE);
+            scene.back();
+        }
     }
 
     private static void viewSections(Scene scene, Request request, Response response) {

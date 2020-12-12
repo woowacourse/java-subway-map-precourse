@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import subway.io.ExceptionManager.Error;
 import subway.Scene;
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;;
 
 public class Request {
@@ -83,6 +84,17 @@ public class Request {
             printError(error);
             return false;
         }
+        return true;
+    }
+    
+    public boolean requestLineRemoval() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidLineRemoval(input);
+        if (error != Error.OK) {
+            printError(error);
+            return false;
+        }
+        LineRepository.deleteLineByName(input);
         return true;
     }
 

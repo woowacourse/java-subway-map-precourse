@@ -24,7 +24,9 @@ public class Response {
             "등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String DOWNBOUND_STATION_TO_REGISTER_REQUEST_MESSAGE =
             "등록할 노선의 하행 종점역 이름을 입력하세요.";
-    public static final String LINE_REGISTER_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
+    public static final String LINE_REGISTER_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.\n";
+    public static final String LINE_TO_REMOVE_REQUEST_MESSAGE = "삭제할 노선 이름을 입력하세요.";
+    public static final String LINE_REMOVAL_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.\n";
 
     private final PrintStream printStream;
 
