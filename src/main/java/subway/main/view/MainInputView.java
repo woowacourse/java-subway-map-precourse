@@ -2,6 +2,7 @@ package subway.main.view;
 
 import subway.main.validation.CheckValidOption;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainInputView {
@@ -13,13 +14,13 @@ public class MainInputView {
         this.scanner = scanner;
     }
 
-    public char selectOption() {
+    public char selectOption(List<Character> optionList) {
         char option;
         while (true) {
             try {
                 System.out.println(ASK_OPTION_CHOICE);
                 option = scanner.next().charAt(0);
-                CheckValidOption.validation(option);
+                CheckValidOption.validation(option, optionList);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

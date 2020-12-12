@@ -4,6 +4,9 @@ import subway.main.view.MainInputView;
 import subway.main.view.MainOutputView;
 import subway.station.StationController;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SubwayController {
     private static final char STATION_MANAGEMENT = '1';
     private static final char LINE_MANAGEMENT = '2';
@@ -12,8 +15,10 @@ public class SubwayController {
     private static final char EXIT_SERVICE = 'Q';
 
     public static void run(MainInputView mainInputView) {
+        List<Character> optionList = Arrays.asList(STATION_MANAGEMENT, LINE_MANAGEMENT, SECTION_MANAGEMENT, PRINT_LINE_MAP, EXIT_SERVICE);
+
         MainOutputView.printMainSelection();
-        selectOption(mainInputView.selectOption(), mainInputView);
+        selectOption(mainInputView.selectOption(optionList), mainInputView);
     }
 
     private static void selectOption(char option, MainInputView mainInputView) {
