@@ -2,10 +2,7 @@ package subway.domain.Line;
 
 import subway.domain.name.LineName;
 import subway.domain.station.Station;
-import subway.exception.AlreadyAddStationException;
-import subway.exception.DuplicateStationException;
-import subway.exception.InvalidLineNameException;
-import subway.exception.InvalidOrderException;
+import subway.exception.*;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -67,6 +64,12 @@ public class Line implements Comparable<Line> {
     }
 
     public void removeStation(Station station) {
+
+        if (!canRemoveStation()) {
+            throw new CannotRemoveException(this);
+        }
+
+        station.removeLine(this);
         stations.remove(station);
     }
 
