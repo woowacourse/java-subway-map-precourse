@@ -60,13 +60,13 @@ public class LineManager {
     }
 
     public static void deleteLine() {
-        String lineName = InputView.getDeleteLineName();
-        if (LineRepository.deleteLineByName(lineName)) {
-            OutputView.printInformation(OutputView.MESSAGE_SUCCESS_DELETE_LINE);
-        } else { // ELSE 삭제합시다!!!
-            System.out.println("[TEST] 노선 삭제 과정에서 뭔가 잘못됐어요 ~~~");
-            System.out.println("[TEST] 아마도 이게 보여질 일은 없을거야~ 아마두~");
+        if (LineRepository.isEmpty()) {
+            OutputView.printError(OutputView.MESSAGE_ERROR_EMPTY_LINE_REPOSITORY);
+            return;
         }
+        String lineName = InputView.getDeleteLineName();
+        LineRepository.deleteLineByName(lineName);
+        OutputView.printInformation(OutputView.MESSAGE_SUCCESS_DELETE_LINE);
     }
 
 }

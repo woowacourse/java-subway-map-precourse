@@ -58,13 +58,13 @@ public class StationManager {
     }
 
     public static void deleteStation() {
-        String stationName = InputView.getDeleteStationName();
-        if (StationRepository.deleteStation(stationName)) {
-            OutputView.printInformation(OutputView.MESSAGE_SUCCESS_DELETE_STATION);
-        } else { // ELSE 삭제합시다!!!
-            System.out.println("[TEST] 역 삭제 과정에서 뭔가 잘못됐어요 ~~~");
-            System.out.println("[TEST] 아마도 이게 보여질 일은 없을거야~ 아마두~");
+        if (StationRepository.isEmpty()) {
+            OutputView.printError(OutputView.MESSAGE_ERROR_EMPTY_STATION_REPOSITORY);
+            return;
         }
+        String stationName = InputView.getDeleteStationName();
+        StationRepository.deleteStation(stationName);
+        OutputView.printInformation(OutputView.MESSAGE_SUCCESS_DELETE_STATION);
     }
 
 }
