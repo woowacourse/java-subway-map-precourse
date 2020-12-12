@@ -36,6 +36,11 @@ public class LineController {
         }
     }
 
+    public static void showLines() {
+        OutputView.printLines();
+        backToMainMenu();
+    }
+
     private static void tryToDeleteLine() {
         OutputView.requestLineNameToDelete();
         LineRepository.deleteLineByName(InputView.getInput());

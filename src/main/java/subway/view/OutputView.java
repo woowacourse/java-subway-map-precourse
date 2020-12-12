@@ -2,6 +2,8 @@ package subway.view;
 
 import java.util.List;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.menu.Menu;
@@ -21,6 +23,7 @@ public class OutputView {
     private static final String REQUEST_INPUT_FORMAT = "%s입력하세요.";
 
     private static final String STATION_LIST = "역 목록";
+    private static final String LINE_LIST = "노선 목록";
 
     public static void printMenu(Menu menu) {
         printMessage(menu.getTitle());
@@ -93,6 +96,14 @@ public class OutputView {
     public static void informLineDeleted() {
         String message = getInformMessage(InformSubjectParts.LINE_IS, InformPredicateParts.DELETED);
         printInformMessage(message);
+    }
+
+    public static void printLines() {
+        printMessage(LINE_LIST);
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            printListItem(line.getName());
+        }
     }
 
     public static void printError(Exception exception) {
