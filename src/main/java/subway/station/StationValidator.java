@@ -4,7 +4,6 @@ import subway.common.util.InputTypeValidator;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 import subway.station.exception.AlreadyExistStationException;
-import subway.station.exception.NotExistStationException;
 import subway.station.exception.NotKoreanNameException;
 import subway.station.exception.TooShortStationNameException;
 
@@ -37,16 +36,6 @@ public class StationValidator {
     private static void validateDuplication(String name) {
         if (StationRepository.isExist(name)) {
             throw new AlreadyExistStationException();
-        }
-    }
-
-    public static void validateRemoval(String name) {
-        validateExistence(name);
-    }
-
-    private static void validateExistence(String name) {
-        if (!StationRepository.isExist(name)) {
-            throw new NotExistStationException();
         }
     }
 }

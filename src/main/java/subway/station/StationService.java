@@ -12,7 +12,7 @@ public class StationService {
     }
 
     public static void remove(String name) {
-        StationValidator.validateRemoval(name);
-        StationRepository.removeByName(name);
+        Station station = StationRepository.findByName(name);
+        StationRepository.remove(station);
     }
 }

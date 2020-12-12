@@ -5,7 +5,6 @@ import subway.station.exception.NotExistStationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -18,8 +17,8 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean removeByName(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void remove(Station station) {
+        stations.remove(station);
     }
 
     public static boolean isExist(String name) {
