@@ -16,6 +16,12 @@ public class OutputView {
 
     public static final String STATION_LIST = "역 목록";
 
+    public static final String LINE_SAVED = "지하철 노선이 등록되었습니다.";
+
+    public void printLineSaved() {
+        printSuccessMessage(LINE_SAVED);
+    }
+
     public void printStationSaved() {
         printSuccessMessage(STATION_SAVED);
     }

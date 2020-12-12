@@ -12,8 +12,8 @@ public class StationController {
     private final OutputView outputView;
 
     public StationController() {
-        this.inputView = new InputView();
         this.stationRepository = new StationRepository();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
     }
 
