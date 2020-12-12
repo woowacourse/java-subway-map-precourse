@@ -21,9 +21,10 @@ public class WayFunctionController {
         Line enrolledLine = receiveEnrollLine(inputView);
         Station enrolledStation = receiveEnrollStation(inputView, enrolledLine);
         Integer order = receiveOrder(inputView, SubwayRepository.subway().get(enrolledLine).size());
+
         SubwayRepository.addLineStationSpecificPlace(enrolledLine, enrolledStation, order);
+
         WayOutputView.printSuccess(DetailFunctions.ENROLL);
-        OutputView.printOneLine();
     }
 
     private static Line receiveEnrollLine(InputView inputView) {

@@ -15,6 +15,7 @@ public class OutputView {
     public static final String DELIMITER_LINE_STATION = "---";
 
     public static void printMain() {
+        System.out.println();
         System.out.println("## 메인 화면");
         System.out.println(MainFunctions.STATION.getFunctionNumber() + ". " + MainFunctions.STATION.getFunctionName() + " 관리");
         System.out.println(MainFunctions.LINE.getFunctionNumber() + ". " + MainFunctions.LINE.getFunctionName() + " 관리");

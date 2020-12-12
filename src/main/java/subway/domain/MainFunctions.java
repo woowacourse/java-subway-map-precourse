@@ -1,5 +1,8 @@
 package subway.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum MainFunctions {
     STATION("1", "역"),
     LINE("2", "노선"),
@@ -31,4 +34,11 @@ public enum MainFunctions {
     public String getFunctionNumber() {
         return functionNumber;
     }
+
+    public static List<String> getObjectsToString(MainFunctions mainFunctions) {
+        if(mainFunctions.equals(MainFunctions.STATION)) return StationRepository.stations().stream().map(Station::getName).collect(Collectors.toList());
+        if(mainFunctions.equals(MainFunctions.LINE)) return LineRepository.lines().stream().map(Line::getName).collect(Collectors.toList());
+        return null;
+    }
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import static subway.view.OutputView.PRINT_INFO_HEAD;
 
 public class StationOutputView {
-
+/*
     public static void printFunction(DetailFunctions detailFunctions) {
         System.out.println();
         System.out.println("## " + detailFunctions.getFunctionName() + "할 " + "역" + " 이름을 입력하세요.");
@@ -27,5 +27,5 @@ public class StationOutputView {
             System.out.println(PRINT_INFO_HEAD + station.getName());
         }
         System.out.println();
-    }
+    }*/
 }
