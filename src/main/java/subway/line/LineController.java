@@ -8,6 +8,12 @@ public class LineController {
     private LineController() {
     }
 
+    public static void execute() {
+        String command = InputView.getFunction();
+        Runnable function = LineFunctionMapper.matchFunction(command);
+        function.run();
+    }
+
     public static void register() {
         String name = InputView.getLineNameForRegistration();
         String topStation = InputView.getTopStation();

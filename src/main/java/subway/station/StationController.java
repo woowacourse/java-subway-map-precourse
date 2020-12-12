@@ -9,7 +9,7 @@ public class StationController {
     }
 
     public static void execute() {
-        String command = InputView.getStationFunction();
+        String command = InputView.getFunction();
         Runnable function = StationFunctionMapper.matchFunction(command);
         function.run();
     }
