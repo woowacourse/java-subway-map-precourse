@@ -32,7 +32,6 @@ public enum LineOption implements BaseOption {
         }
     };
 
-    public static final String HEADER = "## 노선 관리 화면";
     private final String option;
     private final String code;
 

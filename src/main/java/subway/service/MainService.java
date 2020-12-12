@@ -7,8 +7,10 @@ import subway.view.OutputView;
 import java.util.Arrays;
 
 public class MainService extends BaseService {
+    private static final String HEADER = "## 메인 화면";
+
     public static void main () {
-        view(Arrays.asList(MainOption.values()), MainOption.HEADER);
+        view(Arrays.asList(MainOption.values()), HEADER);
     }
     public static void printEntireSubwayLine() {
         OutputView.printEntireSubwayLine(LineRepository.lines());

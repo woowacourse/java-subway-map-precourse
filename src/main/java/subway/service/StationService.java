@@ -9,6 +9,7 @@ import subway.view.OutputView;
 import java.util.Arrays;
 
 public class StationService extends BaseService {
+    private static final String HEADER = "## 역 관리 화면";
     private static final String ERR_LINE_PASSED_STATION = "역을 지나는 노선이 있습니다.";
     private static final String ERR_UNREGISTERED_STATION = "등록되지 않은 역입니다.";
     private static final String REGISTER_STATION_QUESTION = "## 등록할 역 이름을 입력하세요.";
@@ -17,7 +18,7 @@ public class StationService extends BaseService {
     private static final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.";
 
     public static void main () {
-        view(Arrays.asList(StationOption.values()), StationOption.HEADER);
+        view(Arrays.asList(StationOption.values()), HEADER);
     }
 
     public static void register() {

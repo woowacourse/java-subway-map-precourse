@@ -25,7 +25,6 @@ public enum SectionOption implements BaseOption {
         }
     };
 
-    public static final String HEADER = "## 구간 관리 화면";
     private final String option;
     private final String code;
 

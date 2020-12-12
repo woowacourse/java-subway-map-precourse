@@ -37,7 +37,6 @@ public enum MainOption implements BaseOption {
         }
     };
 
-    public static final String HEADER = "## 메인 화면";
     private final String option;
     private final String code;
 

@@ -11,6 +11,7 @@ import subway.view.OutputView;
 import java.util.Arrays;
 
 public class SectionService extends BaseService {
+    private static final String HEADER = "## 구간 관리 화면";
     private static final int MIN_LINE_LENGTH = 2;
     private static final String REGISTER_SECTION_LINE_NAME_QUESTION = "## 노선을 입력하세요.";
     private static final String REGISTER_SECTION_STATION_NAME_QUESTION = "## 역이름을 입력하세요.";
@@ -23,7 +24,7 @@ public class SectionService extends BaseService {
     private static final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.";
 
     public static void main() {
-        view(Arrays.asList(SectionOption.values()), SectionOption.HEADER);
+        view(Arrays.asList(SectionOption.values()), HEADER);
     }
 
     public static void register() {

@@ -32,7 +32,6 @@ public enum StationOption implements BaseOption {
         }
     };
 
-    public static final String HEADER = "## 역 관리 화면";
     private final String option;
     private final String code;
 

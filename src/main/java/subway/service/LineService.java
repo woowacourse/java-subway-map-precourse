@@ -11,6 +11,7 @@ import subway.view.OutputView;
 import java.util.Arrays;
 
 public class LineService extends BaseService {
+    private static final String HEADER = "## 노선 관리 화면";
     private static final String REGISTER_LINE_QUESTION = "## 등록할 노선 이름을 입력하세요.";
     private static final String START_STATION_QUESTION = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String END_STATION_QUESTION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
@@ -20,7 +21,7 @@ public class LineService extends BaseService {
     private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.";
 
     public static void main () {
-        view(Arrays.asList(LineOption.values()), LineOption.HEADER);
+        view(Arrays.asList(LineOption.values()), HEADER);
     }
 
     public static void register() {
@@ -44,5 +45,4 @@ public class LineService extends BaseService {
     public static void printSubwayLineList() {
         OutputView.printSubwayLineList(LineRepository.lines());
     }
-
 }
