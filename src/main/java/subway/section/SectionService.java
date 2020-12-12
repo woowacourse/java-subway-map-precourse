@@ -12,6 +12,7 @@ public class SectionService {
     public static void register(String lineName, String stationName, int order) {
         Line line = LineRepository.findByName(lineName);
         Station station = StationRepository.findByName(stationName);
+        SectionValidator.validateRegistration(line, station, order);
         line.insert(order, station);
     }
 }

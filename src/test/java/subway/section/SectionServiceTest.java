@@ -9,6 +9,7 @@ import subway.line.domain.Route;
 import subway.line.exception.NotExistLineException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
+import subway.station.exception.AlreadyExistStationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -63,5 +64,16 @@ class SectionServiceTest {
         //when & then
         assertThatExceptionOfType(NotExistLineException.class)
                 .isThrownBy(() -> SectionService.register(notExistLine, newStation, order));
+    }
+
+    @Test
+    void 추가하려는_구간의_역_해당_노선에_이미_존재하는_역이면_예외_발생() {
+        //given
+        String alreadyExistStation = TOP_STATION;
+        int order = 1;
+
+        //when & then
+        assertThatExceptionOfType(AlreadyExistStationException.class)
+                .isThrownBy(() -> SectionService.register(LINE_NUMBER_ONE, alreadyExistStation, order));
     }
 }
