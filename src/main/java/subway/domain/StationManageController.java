@@ -54,4 +54,25 @@ public class StationManageController {
         return stationName;
     }
 
+    public boolean isFixedStation(String stationName) {
+        Optional<Station> fixedStation = StationRepository.fixedStations()
+                .stream().filter(station -> station.getName().equals(stationName)).findAny();
+        return fixedStation.isPresent();
+    }
+
+    public String deleteStation(Scanner scanner) throws IllegalArgumentException{
+        String stationName = scanner.next();
+        Optional<Station> searchedStation = StationRepository.stations()
+                .stream().filter(station -> station.getName().equals(stationName)).findAny();
+        if (searchedStation.isPresent()) {
+            if (isFixedStation(stationName)) {
+                //삭제할 수 없는 역이라는 메시지
+                throw new IllegalArgumentException();
+            }
+            return stationName;
+        }
+        //해당 역은 존재하지 않는다는 메시지
+        throw new IllegalArgumentException();
+    }
+
 }
