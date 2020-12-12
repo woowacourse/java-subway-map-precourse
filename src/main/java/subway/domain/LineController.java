@@ -15,10 +15,8 @@ public class LineController {
 
     private final OutputView outputView;
 
-    public LineController() {
-        this.lineRepository = new LineRepository();
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+    public LineController(InputView inputView, OutputView outputView) {
+        this(new LineRepository(), inputView, outputView);
     }
 
     public LineController(LineRepository lineRepository, InputView inputView,

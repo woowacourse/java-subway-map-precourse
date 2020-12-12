@@ -13,10 +13,9 @@ public class StationController {
 
     private final OutputView outputView;
 
-    public StationController() {
-        this.stationRepository = new StationRepository();
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+    public StationController(InputView inputView,
+                             OutputView outputView) {
+        this(new StationRepository(), inputView, outputView);
     }
 
     public StationController(StationRepository stationRepository, InputView inputView,
@@ -46,7 +45,9 @@ public class StationController {
         return new StationController(removedRepository, this.inputView, this.outputView);
     }
 
-    public void load() {
+    public StationController load() {
         outputView.printStations(stationRepository);
+
+        return this;
     }
 }
