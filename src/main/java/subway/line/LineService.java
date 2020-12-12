@@ -6,13 +6,11 @@ import subway.station.Station;
 import subway.station.StationService;
 
 public class LineService {
-    public static void addLine(String name, LineInputView lineInputView) {
+    public static void addLine(String lineName, LineInputView lineInputView) {
         try {
-            Line line = new Line(name);
-            String startStationName = lineInputView.startStationName();
-            String endStationName = lineInputView.endStationName();
-            Station startStation = StationService.findStation(startStationName);
-            Station endStation = StationService.findStation(endStationName);
+            Line line = new Line(lineName);
+            Station startStation = getStartStation(lineInputView);
+            Station endStation = getEndStation(lineInputView);
             line.addStation(startStation);
             line.addStation(endStation);
             LineRepository.addLine(line);
@@ -20,5 +18,15 @@ public class LineService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static Station getStartStation(LineInputView lineInputView) {
+        String startStationName = lineInputView.startStationName();
+        return StationService.findStation(startStationName);
+    }
+
+    private static Station getEndStation(LineInputView lineInputView) {
+        String endStationName = lineInputView.endStationName();
+        return StationService.findStation(endStationName);
     }
 }
