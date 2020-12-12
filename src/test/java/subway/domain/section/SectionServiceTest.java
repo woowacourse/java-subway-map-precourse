@@ -1,6 +1,5 @@
 package subway.domain.section;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -76,7 +75,7 @@ class SectionServiceTest {
     }
 
     @Test
-    @DisplayName("등룍하려는 상행 종점역이 존재하지 않으면 에러가 발생한다 테스트..")
+    @DisplayName("등룍하려는 상행 종점역이 존재하지 않으면 에러가 발생한다")
     void testUpwardNotFound() {
         //given
         String lineName = "2호선";
@@ -87,5 +86,19 @@ class SectionServiceTest {
         assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_UPWARD_STATION_NOT_FOUND.getMessage());
+    }
+
+    @Test
+    @DisplayName("등룍하려는 하행 종점역이 존재하지 않으면 에러가 발생한다")
+    void testDownwardNotFound() {
+        //given
+        String lineName = "2호선";
+        String upwardName = "행복역";
+        String downwardName = "역곡역";
+
+        //then
+        assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_DOWNWARD_STATION_NOT_FOUND.getMessage());
     }
 }
