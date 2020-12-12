@@ -4,8 +4,9 @@ import subway.question.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Questions {
     private static final String ERROR_INVALID_CHOICE = "선택할 수 없는 기능입니다.";
@@ -22,8 +23,10 @@ public class Questions {
         return questions.get(questionType)[0].getHeader();
     }
 
-    public Stream<String> getQuestions(String questionType) {
-        return Arrays.stream(questions.get(questionType)).map(BaseQuestion::getQuestion);
+    public List<String> getQuestions(String questionType) {
+        return Arrays.stream(questions.get(questionType))
+                     .map(BaseQuestion::getQuestion)
+                     .collect(Collectors.toList());
     }
 
     public BaseQuestion findByAnswerCode(String questionType, String inputCode) {

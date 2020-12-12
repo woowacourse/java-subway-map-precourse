@@ -39,7 +39,7 @@ public class OutputView {
         println(header);
     }
 
-    public void printQuestions(Stream<String> questions) {
+    public void printQuestions(List<String> questions) {
         questions.forEach(this::println);
     }
 
