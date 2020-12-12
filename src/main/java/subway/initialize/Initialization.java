@@ -44,7 +44,7 @@ public class Initialization {
 
     public void registerStationsInLine(String[] stations, Line line) {
         for (String stationName : stations) {
-            line.appendStation(stationName);
+            line.addOnLine(stationName);
         }
     }
 
