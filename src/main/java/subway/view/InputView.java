@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 
+import subway.validator.IndexValidator;
 import subway.validator.LineNameValidator;
 import subway.validator.StationNameValidator;
 import subway.validator.Validator;
@@ -14,6 +15,8 @@ public class InputView {
     public static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
 
     private static final String LINE_NAME_QUESTION = "등록할 노선 이름을 입력하세요.";
+
+    private static final String STATION_QUESTION = "순서를 입력하세요.";
 
     private final Scanner scanner;
 
@@ -39,6 +42,10 @@ public class InputView {
         }
 
         return lineName;
+    }
+
+    public int inputIndex() {
+        return Integer.parseInt(input(STATION_QUESTION, IndexValidator.class));
     }
 
     private String input(String message, Class<? extends Validator> validatorClass) {
