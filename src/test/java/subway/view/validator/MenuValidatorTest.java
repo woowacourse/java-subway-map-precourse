@@ -2,6 +2,9 @@ package subway.view.validator;
 
 import org.junit.Test;
 
+import subway.view.exception.MenuSelectionException;
+import subway.view.exception.MenuValidator;
+
 public class MenuValidatorTest {
     @Test(expected = MenuSelectionException.class)
     public void testMainMenuSelection() {

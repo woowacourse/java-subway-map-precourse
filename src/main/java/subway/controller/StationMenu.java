@@ -1,6 +1,7 @@
-package subway.view.menu;
+package subway.controller;
 
-import subway.DuplicationException;
+import subway.controller.exception.DuplicationException;
+import subway.controller.exception.StationValidator;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -33,17 +34,11 @@ public class StationMenu {
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
         try {
             String name = InputView.receiveStationName();
-            validateDuplication(name);
+            StationValidator.validateDuplication(name);
             StationRepository.addStation(new Station(name));
         } catch (DuplicationException e) {
             System.out.println(e.getMessage());
             registerNewStation();
-        }
-    }
-    
-    private static void validateDuplication(String name) {
-        if (StationRepository.isDuplication(name)) {
-            throw new DuplicationException("\n[ERROR] 이미 등록된 역 이름입니다.");
         }
     }
 }

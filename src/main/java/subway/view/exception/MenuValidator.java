@@ -1,4 +1,4 @@
-package subway.view.validator;
+package subway.view.exception;
 
 import java.util.HashMap;
 import java.util.Map;

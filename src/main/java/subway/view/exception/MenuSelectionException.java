@@ -1,4 +1,4 @@
-package subway.view.validator;
+package subway.view.exception;
 
 public class MenuSelectionException extends RuntimeException {
     public MenuSelectionException(String message) {

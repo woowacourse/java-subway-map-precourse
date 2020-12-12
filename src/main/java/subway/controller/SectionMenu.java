@@ -1,23 +1,19 @@
-package subway.view.menu;
+package subway.controller;
 
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineMenu {
+public class SectionMenu {
     public static void print() {
-        OutputView.printLineMenu();
-        String selection = InputView.receiveMenu("Line");
+        OutputView.printSectionMenu();
+        String selection = InputView.receiveMenu("Section");
 
         if (selection.equals("1")) {
-            // 노선 등록
+            // 구간 등록
             return;
         }
         if (selection.equals("2")) {
-            // 노선 삭제
-            return;
-        }
-        if (selection.equals("3")) {
-            // 노선 조회
+            // 구간 삭제
             return;
         }
         if (selection.equals("B")) {

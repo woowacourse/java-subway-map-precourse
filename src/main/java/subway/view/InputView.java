@@ -2,10 +2,10 @@ package subway.view;
 
 import java.util.Scanner;
 
-import subway.view.validator.MenuSelectionException;
-import subway.view.validator.MenuValidator;
-import subway.view.validator.NameFormatException;
-import subway.view.validator.StationNameValidator;
+import subway.controller.exception.NameFormatException;
+import subway.controller.exception.StationValidator;
+import subway.view.exception.MenuSelectionException;
+import subway.view.exception.MenuValidator;
 
 public class InputView {
     private final static Scanner SCANNER = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class InputView {
     public static String receiveStationName() {
         try {
             String stationName = SCANNER.nextLine();
-            StationNameValidator.validateStationName(stationName);
+            StationValidator.validateStationName(stationName);
             return stationName;
         } catch (NameFormatException e) {
             System.out.println(e.getMessage());

@@ -1,4 +1,4 @@
-package subway.view.menu;
+package subway.controller;
 
 import subway.view.InputView;
 import subway.view.MapScreen;

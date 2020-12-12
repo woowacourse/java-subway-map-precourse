@@ -1,4 +1,4 @@
-package subway;
+package subway.controller.exception;
 
 public class DuplicationException extends RuntimeException {
     public DuplicationException(String message) {
