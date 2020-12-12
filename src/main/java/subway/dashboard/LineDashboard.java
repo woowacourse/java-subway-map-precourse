@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 
 public class LineDashboard {
@@ -67,7 +68,9 @@ public class LineDashboard {
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
-            System.out.println("노선삭제실행");
+            if (deleteLine(inputView)) {
+                return true;
+            }
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {
@@ -114,6 +117,7 @@ public class LineDashboard {
                 break;
             }
         }
+        StationRepository.addStation(station);
         line.addStation(station);
 
     }
@@ -127,6 +131,7 @@ public class LineDashboard {
             System.out.println(ERROR_STATION_NAME_DUPLICATED);
             station = new Station(inputView.readLastStationName());
         }
+        StationRepository.addStation(station);
         line.addStation(station);
     }
 
@@ -135,6 +140,15 @@ public class LineDashboard {
             return false;
         }
         return true;
+    }
+
+    public boolean deleteLine(InputView inputView) {
+        String submittedLineName = inputView.readDeletingLineName();
+        if(!LineRepository.deleteLineByName(submittedLineName)) {
+            System.out.println(ERROR_LINE_NAME_NO_EXISTS);
+            return true;
+        }
+        return false;
     }
 
 

@@ -37,7 +37,7 @@ public class DashboardWords {
     public static final String ASK_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
     public static final String ASK_DELETE_STATION_NAME = "## 삭제할 역 이름을 입력하세요.";
     public static final String ASK_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
-    public static final String ASK_DELETE_LINE_NAME = "## 삭제할 역 이름을 입력하세요.";
+    public static final String ASK_DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
     public static final String ASK_LINE_FIRST_STATION = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String ASK_LINE_LAST_STATION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 
