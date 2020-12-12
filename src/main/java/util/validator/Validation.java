@@ -1,5 +1,6 @@
 package util.validator;
 
+import subway.view.OutputView;
 import util.exception.UserInputException;
 
 public class Validation {
@@ -10,7 +11,7 @@ public class Validation {
     private static final String OPTION_QUIT = "Q";
     private static final String OPTION_BACK = "B";
 
-    private static final String ERROR_WRONG_OPTION = "\n[ERROR] 선택할 수 없는 기능입니다.\n";
+    private static final String ERROR_WRONG_OPTION = "[ERROR] 선택할 수 없는 기능입니다.";
 
     public static boolean checkMainControllerInput(String userInput) {
         try {
@@ -19,7 +20,20 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            System.out.println(ERROR_WRONG_OPTION);
+            OutputView.printOptionError();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkStationControllerInput(String userInput) {
+        try {
+            if (!((userInput.equals(OPTION_ONE)) || (userInput.equals(OPTION_TWO)) || (userInput.equals(OPTION_THREE)) ||
+                    (userInput.equals(OPTION_BACK)))) {
+                throw new UserInputException();
+            }
+        } catch (UserInputException e) {
+            OutputView.printOptionError();
             return false;
         }
         return true;

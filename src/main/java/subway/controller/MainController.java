@@ -23,8 +23,7 @@ public class MainController {
 
     public void start(Scanner scanner) {
         registerInitialSetup();
-        OutputView.printMainControllerOption();
-        getMainControllerInput(scanner);
+        chooseController(scanner);
     }
 
     private void registerInitialSetup() {
@@ -36,9 +35,10 @@ public class MainController {
         }
     }
 
-    private void getMainControllerInput(Scanner scanner) {
+    private void chooseController(Scanner scanner) {
         String userChoice = "";
         while (!userChoice.equals(QUIT)) {
+            OutputView.printMainControllerOption();
             userChoice = getUserMainControllerChoice(scanner);
             if (userChoice.equals(STATION_CONTROL)) {
                 StationController.start(scanner);
@@ -56,9 +56,10 @@ public class MainController {
         String userChoice = null;
         boolean properChoice = false;
         while (!properChoice) {
-            OutputView.optionInstruction();
+            OutputView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
             properChoice = Validation.checkMainControllerInput(userChoice);
+            OutputView.printNewLine();
         }
         return userChoice;
     }
