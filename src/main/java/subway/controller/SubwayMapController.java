@@ -13,4 +13,10 @@ public class SubwayMapController {
     public void registerStation(Station station) {
         stationService.addStation(station);
     }
+
+    public void unregisterStation(String stationName) {
+        // TODO : 노선에 등록되어 있는지 체크
+        // lineService.isExistent(stationName)
+        stationService.deleteStation(stationName);
+    }
 }

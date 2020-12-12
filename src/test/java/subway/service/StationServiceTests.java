@@ -1,6 +1,7 @@
 package subway.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.station.Station;
@@ -32,4 +33,23 @@ class StationServiceTests {
                 .isTrue();
     }
 
+    @Test
+    public void station_삭제_테스트() {
+        String stationName = "화랑대";
+        Station station = new Station(stationName);
+        StationRepository.addStation(station);
+
+        assertThat(stationService.deleteStation(stationName))
+                .isTrue();
+    }
+
+    @Test
+    public void station_조회_테스트() {
+        String stationName = "시청";
+        Station station = new Station(stationName);
+        StationRepository.addStation(station);
+
+        assertThat(stationService.getStations().contains(station))
+                .isTrue();
+    }
 }
