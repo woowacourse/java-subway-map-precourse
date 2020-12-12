@@ -12,7 +12,8 @@ import subway.domain.menu.submenu.StationMenu;
 import subway.domain.menu.submenu.SubMenu;
 
 public class MainMenu {
-    private static final String MAIN_TITLE = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + CategoryType.MAIN + CommonMessage.SPACE + CommonMessage.SCREEN;
+    private static final String MAIN_TITLE = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE
+            + CategoryType.MAIN + CommonMessage.SPACE + CommonMessage.SCREEN;
     private static final char STATION_SEL = '1';
     private static final char LINE_SEL = '2';
     private static final char SECTION_SEL = '3';
@@ -31,16 +32,23 @@ public class MainMenu {
         this.scanner = scanner;
     }
 
-    public void printMainMenu() {
+    public void runMainMenu() {
+        printMainMenu();
+        char sel = inputMainMenu();
+        subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().action();
+    }
+
+    private void printMainMenu() {
         System.out.println(MAIN_TITLE);
-        subMenuList.stream()
-        .forEach(menu -> System.out.println(menu.getTitleActionMessage()));
+        subMenuList.stream().forEach(menu -> System.out.println(menu.getTitleActionMessage()));
         System.out.println();
     }
 
-    public void inputMainMenu() {
+    private char inputMainMenu() {
         System.out.println(CommonMessage.SELECT_MESSAGE);
         char sel = scanner.nextLine().charAt(0);
+
+        return sel;
     }
 
 }

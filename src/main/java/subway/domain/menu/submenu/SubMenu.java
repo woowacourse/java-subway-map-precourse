@@ -18,6 +18,10 @@ public class SubMenu {
         this.order = order;
     }
 
+    public char getOrder() {
+        return order;
+    }
+
     public String getTitle() {
         String title = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionType.MANAGE + CommonMessage.SPACE + CommonMessage.SCREEN;
 
@@ -32,6 +36,10 @@ public class SubMenu {
         titleActionMessage = order + CommonMessage.PUNCTUATION + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionType.MANAGE;
 
         return titleActionMessage;
+    }
+
+    public void action() {
+        System.out.println(order);
     }
 
 }
