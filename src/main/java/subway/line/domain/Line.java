@@ -3,6 +3,8 @@ package subway.line.domain;
 import subway.line.LineValidator;
 import subway.station.domain.Station;
 
+import java.util.List;
+
 public class Line {
     public static final int MIN_NAME_LENGTH = 2;
 
@@ -37,6 +39,10 @@ public class Line {
 
     public boolean isEnoughSize() {
         return this.route.isEnoughSize();
+    }
+
+    public List<Station> getStations() {
+        return this.route.getStations();
     }
 
     public String getName() {

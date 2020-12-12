@@ -3,6 +3,7 @@ package subway.line.domain;
 import subway.station.domain.Station;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Route {
@@ -23,6 +24,11 @@ public class Route {
 
     public void remove(Station station) {
         stations.remove(station);
+    }
+
+
+    public List<Station> getStations() {
+        return Collections.unmodifiableList(stations);
     }
 
     public boolean isExist(String stationName) {
