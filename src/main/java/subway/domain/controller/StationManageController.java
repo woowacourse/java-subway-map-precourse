@@ -3,9 +3,8 @@ package subway.domain.controller;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.input.StationManageInput;
-
-import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class StationManageController {
 
@@ -27,6 +26,13 @@ public class StationManageController {
         if (input.inputStationManageScreen(scanner).equals(FUNCTION_TWO)) {
             String station = input.inputDeleteStation(scanner);
             StationRepository.deleteStation(station);
+        }
+    }
+
+    public void printAllStations(Scanner scanner) {
+        if (input.inputStationManageScreen(scanner).equals(FUNCTION_THREE)) {
+            Stream<Station> stationStream = StationRepository.stations().stream();
+            stationStream.forEach(station -> System.out.println(station.getName()));
         }
     }
 
