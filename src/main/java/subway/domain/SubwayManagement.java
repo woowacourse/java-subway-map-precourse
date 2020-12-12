@@ -9,8 +9,10 @@ public class SubwayManagement {
     }
 
     public void start() {
-        printScreen.printMainScreen();
-        mainFunction(user.getInput());
+        while (true) {
+            printScreen.printMainScreen();
+            mainFunction(user.getInput());
+        }
     }
 
     private void mainFunction(String select) {
@@ -20,6 +22,8 @@ public class SubwayManagement {
             return;
         }
         if (select.equals(Constants.FUNCTION_2)) {
+            printScreen.printLineManagementScreen();
+            lineManagementFunction(user.getInput());
             return;
         }
         if (select.equals(Constants.FUNCTION_3)) {
@@ -67,15 +71,45 @@ public class SubwayManagement {
         printScreen.printStationList(StationRepository.retrieveStation());
     }
 
-    private void lineManagementFunction() {
+    private void lineManagementFunction(String select) {
+        if (select.equals(Constants.FUNCTION_1)) {
+            addLine();
+            return;
+        }
+        if (select.equals(Constants.FUNCTION_2)) {
+            deleteLine();
+            return;
+        }
+        if (select.equals(Constants.FUNCTION_3)) {
+            getLineList();
+            return;
+        }
+        if (select.equals(Constants.FUNCTION_B)) {
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
 
+    private void addLine() {
+        printScreen.printAddLine();
+        String lineName = user.getInput();
+        printScreen.printFirstAddLine();
+        String firstStation = user.getInput();
+        printScreen.printLastAddLine();
+        String lastStation = user.getInput();
+        LineRepository.addLine(lineName, firstStation, lastStation);
+    }
+
+    private void deleteLine() {
+        printScreen.printDeleteLine();
+        LineRepository.deleteLineByName(user.getInput());
+    }
+
+    private void getLineList() {
+        printScreen.printLineList(LineRepository.retrieveLine());
     }
 
     private void sectionManagementFunction() {
-
-    }
-
-    private void printSubwayLineFunction() {
 
     }
 }
