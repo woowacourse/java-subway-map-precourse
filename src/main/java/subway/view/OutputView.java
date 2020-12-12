@@ -1,5 +1,9 @@
 package subway.view;
 
+import java.util.List;
+
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuItem;
 import subway.view.messageparts.ActionParts;
@@ -15,6 +19,8 @@ public class OutputView {
 
     private static final String REQUEST_SELECT_FUNCTION = "원하는 기능을 선택하세요.";
     private static final String REQUEST_INPUT_FORMAT = "%s입력하세요.";
+
+    private static final String STATION_LIST = "역 목록";
 
     public static void printMenu(Menu menu) {
         printMessage(menu.getTitle());
@@ -51,6 +57,14 @@ public class OutputView {
         printInformMessage(message);
     }
 
+    public static void printStations() {
+        printMessage(STATION_LIST);
+        List<Station> stations = StationRepository.stations();
+        for (Station station : stations) {
+            printListItem(station.getName());
+        }
+    }
+
     public static void printError(Exception exception) {
         printEmptyLine();
         System.out.printf(ERROR_FORMAT, exception.getMessage());
@@ -64,6 +78,10 @@ public class OutputView {
     private static void printInformMessage(String informnation) {
         printEmptyLine();
         System.out.printf(INFORM_FORMAT, informnation);
+    }
+
+    private static void printListItem(String listItem) {
+        System.out.printf(INFORM_FORMAT, listItem);
     }
 
     private static void printEmptyLine() {

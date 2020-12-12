@@ -36,6 +36,11 @@ public class StationController {
         OutputView.informStationDeleted();
     }
 
+    public static void showStations() { 
+        OutputView.printStations();
+        backToMainMenu();
+    }
+
     public static void backToMainMenu() {
         SubwayMapController.callMainMenu();
     }

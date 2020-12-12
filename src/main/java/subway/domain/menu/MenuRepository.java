@@ -62,7 +62,8 @@ public class MenuRepository {
                 StationController::addStation));
         menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, STATION), 
                 StationController::deleteStation));
-        menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, STATION), null));
+        menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, STATION), 
+                StationController::showStations));
         menu.addMenuItem(new MenuItem(KEY_BACK, BACK, 
                 StationController::backToMainMenu));
 
