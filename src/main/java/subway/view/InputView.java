@@ -33,28 +33,20 @@ public class InputView {
 
     public static Selection getSelection(Selections selections) {
         showSelectionMessage();
-        try {
-            String string = deleteWhiteSpaces(scanner.nextLine());
-            isNotEmptyStringOrThrowException(string);
-            newLine();
-            return selections.searchByValue(string);
-        } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e);
-            return getSelection(selections);
-        }
+        String string = deleteWhiteSpaces(scanner.nextLine());
+        isNotEmptyStringOrThrowException(string);
+
+        newLine();
+        return selections.searchByValue(string);
     }
 
     public static String getNameWithMessage(String requestMessage) {
         System.out.println(requestMessage);
-        try {
-            String name = deleteWhiteSpaces(scanner.nextLine());
-            newLine();
-            isNotEmptyStringOrThrowException(name);
-            return name;
-        } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e);
-            return getNameWithMessage(requestMessage);
-        }
+        String name = deleteWhiteSpaces(scanner.nextLine());
+        isNotEmptyStringOrThrowException(name);
+
+        newLine();
+        return name;
     }
 
     private static void newLine() {
