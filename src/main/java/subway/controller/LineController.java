@@ -23,7 +23,7 @@ public class LineController {
         OutputView.requestDownstreamTerminus();
         String downstreamTerminus = InputView.getInput();
 
-        LineRepository.addLine(Line.createLineWithTerminus(name, upstreamTerminus, downstreamTerminus));
+        LineRepository.addLine(Line.createLineWithStationInitializers(name, upstreamTerminus, downstreamTerminus));
         OutputView.informLineAdded();
     }
     

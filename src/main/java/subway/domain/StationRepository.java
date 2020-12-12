@@ -53,16 +53,4 @@ public class StationRepository {
     public static boolean containsStation(String name) {
         return stations.stream().anyMatch(streamStation -> name.equals(streamStation.getName()));
     }
-    
-    public static Station getStationByName(String name) {
-        Station matchedStation = stations.stream()
-                .filter(streamStation -> name.equals(streamStation.getName()))
-                .findAny()
-                .orElse(null);
-        if (matchedStation == null) {
-            throw new NullStationException(name);
-        }
-
-        return matchedStation;
-    }
 }
