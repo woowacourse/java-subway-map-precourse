@@ -6,15 +6,15 @@ import subway.domain.menu.constant.CommonMessage;
 public class SubMenu {
     protected String category;
     protected char order;
-    protected String actionMessage;
+    protected String titleActionMessage;
 
     public SubMenu(char order, String category) {
         this.order = order;
         this.category = category;
     }
 
-    public SubMenu(String actionMessage, char order) {
-        this.actionMessage = actionMessage;
+    public SubMenu(String titleActionMessage, char order) {
+        this.titleActionMessage = titleActionMessage;
         this.order = order;
     }
 
@@ -22,6 +22,16 @@ public class SubMenu {
         String title = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionType.MANAGE + CommonMessage.SPACE + CommonMessage.SCREEN;
 
         return title;
+    }
+
+    public String getTitleActionMessage() {
+        if (titleActionMessage != null) {
+            return order + CommonMessage.PUNCTUATION + CommonMessage.SPACE + titleActionMessage;
+        }
+
+        titleActionMessage = order + CommonMessage.PUNCTUATION + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionType.MANAGE;
+
+        return titleActionMessage;
     }
 
 }
