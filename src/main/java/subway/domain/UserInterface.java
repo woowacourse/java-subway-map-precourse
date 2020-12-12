@@ -29,7 +29,7 @@ public class UserInterface {
     }
 
     public static String getStationNameToAdd(Scanner scanner) {
-        Print.getStationNameToAdd();
+        Print.getNameToAddOrDelete(Constant.STATION, Constant.ADD);
         return scanner.next();
     }
 }
