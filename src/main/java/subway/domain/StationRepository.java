@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -18,5 +19,11 @@ public class StationRepository {
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static List<String> getStationNames(){
+        return stations.stream()
+                .map(Station::toString)
+                .collect(Collectors.toList());
     }
 }

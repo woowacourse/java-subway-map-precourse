@@ -36,4 +36,11 @@ public class StationController {
         StationRepository.deleteStation(name);
         OutputView.printInfoMsg("지하철 역이 삭제되었습니다.");
     }
+
+    public void printStations(){
+        OutputView.printMsg("## 역 목록\n");
+        StationRepository.getStationNames()
+                .stream()
+                .forEach(OutputView::printInfoMsg);
+    }
 }
