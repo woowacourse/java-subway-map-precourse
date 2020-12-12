@@ -12,10 +12,11 @@ public class Menu {
         this.itemList = itemList;
     }
 
-    public void load(Scanner scanner) {
+    public String load(Scanner scanner) {
         printMenu();
         printInputMessage();
-        String nextPage = scanner.next();
+        String input = scanner.next();
+        return Exception.checkMenu(input, this.itemList);
     }
 
     public void printMenu() {
