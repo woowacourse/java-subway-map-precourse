@@ -22,8 +22,18 @@ public class SectionManagement {
             registerNewSection(scanner);
         }
         if (type == SectionManagementType.DELETE_SECTION) {
-            // TODO : deleteSection(scanner);
+            deleteSection(scanner);
         }
+    }
+
+    private static void deleteSection(Scanner scanner) {
+        SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
+        String lineNameToDeleteSection = scanner.nextLine();
+        SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
+        String stationNameToDeleteSection = scanner.nextLine();
+        LineStationMappingRepository
+            .deleteSection(lineNameToDeleteSection, stationNameToDeleteSection);
+        SectionManagementPrinter.printSectionDeleteSuccessMessage();
     }
 
     private static void registerNewSection(Scanner scanner) {
