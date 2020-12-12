@@ -18,7 +18,7 @@ public class SubwayManager {
     private static final int OPTION_MIN = 1;
     private static final int OPTION_MAX = 4;
     private static String userOption = "";
-    public static StationRepository stationRepository = new StationRepository();
+    private StationRepository stationRepository = new StationRepository();
 
     public static void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
@@ -64,4 +64,24 @@ public class SubwayManager {
             throw new IllegalArgumentException(ERROR_PREFIX + ERROR_MESSAGE);
         }
     }
+
+    public static void callOptionMenu(String userOption, Scanner scanner) {
+        if (!Character.isDefined(userOption.charAt(0))) {
+            return;
+        }
+        int optionNumber = Integer.parseInt(userOption);
+        if (optionNumber == 1) {
+            StationManager.manage(scanner);
+        }
+//        if (optionNumber == 2) {
+//            LineManagement.manage(scanner);
+//        }
+//        if (optionNumber == 3) {
+//            SectionManagement.manage(scanner);
+//        }
+        if (optionNumber == 4) {
+            printMap();
+        }
+    }
+    
 }
