@@ -19,4 +19,8 @@ public class LineController {
         }
         return lineController;
     }
+
+    public List<Line> getLines(){
+        return LineRepository.getLines();
+    }
 }
