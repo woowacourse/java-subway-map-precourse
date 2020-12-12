@@ -1,20 +1,23 @@
 package subway.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
-public class RouteMapRepository {
-    private static final List<RouteMap> routemap = new ArrayList<>();
+public class RouteRepository {
+    private static final List<Route> routemap = new ArrayList<>();
 
-    public static List<RouteMap> routemaps() {
+    public static List<Route> routemap() {
         return Collections.unmodifiableList(routemap);
     }
 
-    public static void addStation(Station station) {
-        routemap.add(station);
+    public static void addRoute(Route route) {
+        routemap.add(route);
     }
 
-    public static boolean deleteStationInLine(String name) {
-        return routemap.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean deleteRoute(Line line) {
+        return routemap.removeIf(routemap -> Objects.equals(routemap.getLine(), line));
     }
 
 }
