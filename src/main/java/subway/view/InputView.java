@@ -26,5 +26,12 @@ public class InputView {
         return instance;
     }
 
+    public String selectMenu() {
+        return scanner.nextLine();
+    }
+
+    public String inputName() {
+        return scanner.nextLine();
+    }
 
 }
