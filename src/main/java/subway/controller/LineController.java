@@ -3,9 +3,7 @@ package subway.controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.exceptions.DuplicatedLineNameException;
-import subway.exceptions.DuplicatedStartAndEndStationNameException;
-import subway.exceptions.LineNotExistException;
+import subway.exceptions.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,16 +25,17 @@ public class LineController {
         return LineRepository.getLines();
     }
 
+    public Optional<Line> getLine(String lineName){
+        return LineRepository.getLine(lineName);
+    }
+
     public void addLine(String name, Station startStation, Station endStation) throws Exception {
         if(checkIfLineExist(name)) {
             throw new DuplicatedLineNameException();
         }
-        if(startStation.getName().equals(endStation.getName())){
-            throw new DuplicatedStartAndEndStationNameException();
-        }
         Line line = new Line(name);
-        line.addStation(startStation);
-        line.addStation(endStation);
+        line.addStation(0, startStation);
+        line.addStation(1, endStation);
         LineRepository.addLine(line);
     }
 
@@ -45,6 +44,13 @@ public class LineController {
             throw new LineNotExistException();
         }
         LineRepository.deleteLineByName(name);
+    }
+
+    public void addStationInLineAtCertainPosition(Station station, Line line, int position) throws InvalidPositionException{
+        if(position > line.getStations().size() || position < 0){
+            throw new InvalidPositionException();
+        }
+        line.addStation(position, station);
     }
 
     public boolean checkIfLineExist(String name){

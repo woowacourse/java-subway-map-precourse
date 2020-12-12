@@ -21,8 +21,8 @@ public class Line {
     }
 
     // 추가 기능 구현
-    public void addStation(Station station){
-        stations.add(station);
+    public void addStation(int position, Station station){
+        stations.add(position, station);
     }
 
     public void removeStation(Station station){
