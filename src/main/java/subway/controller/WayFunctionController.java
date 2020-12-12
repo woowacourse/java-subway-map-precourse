@@ -20,8 +20,8 @@ public class WayFunctionController {
     private static void enrollWay(InputView inputView){
         Line enrolledLine = receiveEnrollLine(inputView);
         Station enrolledStation = receiveEnrollStation(inputView);
-        WayOutputView.printOrder();
-        SubwayRepository.addLineStationSpecificPlace(enrolledLine, enrolledStation, OrderValidator.makeValidOrder(inputView.receiveFunctionInfo()));
+        Integer order = receiveOrder(inputView, SubwayRepository.subway().get(enrolledLine).size());
+        SubwayRepository.addLineStationSpecificPlace(enrolledLine, enrolledStation, order);
         WayOutputView.printSuccess(DetailFunctions.ENROLL);
         OutputView.printOneLine();
     }
@@ -87,4 +87,14 @@ public class WayFunctionController {
         OutputView.printOneLine();
     }
 
+    private static Integer receiveOrder(InputView inputView, Integer lineSize) {
+        try {
+            WayOutputView.printOrder();
+            return OrderValidator.makeValidOrder(inputView.receiveFunctionInfo(), lineSize);
+        }catch (IllegalArgumentException e){
+            System.out.println();
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage());
+            return receiveOrder(inputView, lineSize);
+        }
+    }
 }
