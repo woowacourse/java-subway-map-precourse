@@ -44,6 +44,7 @@ public class LineController {
     private static void tryToDeleteLine() {
         OutputView.requestLineNameToDelete();
         LineRepository.deleteLineByName(InputView.getInput());
+        OutputView.informLineDeleted();
     }
 
     public static void backToMainMenu() {
