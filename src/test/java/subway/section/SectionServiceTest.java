@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.domain.Route;
+import subway.line.exception.NotExistLineException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class SectionServiceTest {
     private static final String LINE_NUMBER_ONE = "1호선";
@@ -47,5 +49,19 @@ class SectionServiceTest {
 
         //then
         assertThat(isExist).isTrue();
+    }
+
+    @Test
+    void 추가하려는_노선이_등록되지_않은_노선이면_예외_발생() {
+        //given
+        String notExistLine = "등록되지않은노선";
+        String newStation = "새로운역";
+        int order = 1;
+
+        StationRepository.register(new Station(newStation));
+
+        //when & then
+        assertThatExceptionOfType(NotExistLineException.class)
+                .isThrownBy(() -> SectionService.register(notExistLine, newStation, order));
     }
 }
