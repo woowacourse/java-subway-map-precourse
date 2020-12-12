@@ -39,7 +39,26 @@ public class SectionStations {
     }
 
     public boolean remove(Station station) {
-        return sectionStations.removeIf(sectionStation -> Objects.equals(sectionStation.getStation(), station));
+        SectionStation targetSectionStation = sectionStations.get(sectionStations.size() - LAST_STATION_INDEX);
+
+        if (targetSectionStation.getStation().equals(station)) {
+            sectionStations.remove(targetSectionStation);
+        }
+
+        for (int i = 0; i < sectionStations.size() - USER_INTERFACE_INDEX; i++) {
+            if (targetSectionStation.getPrevStation().getStation().equals(station)) {
+                SectionStation prevStation = targetSectionStation.getPrevStation();
+                targetSectionStation.setPrevSectionStation(prevStation.getPrevStation());
+
+                sectionStations.remove(prevStation);
+
+                break;
+            }
+
+            targetSectionStation = targetSectionStation.getPrevStation();
+        }
+
+        return true;
     }
 
     public List<Station> getStations() {
