@@ -13,10 +13,10 @@ public class StationController {
     private static String LOOK_UP_INDEX = "3";
 
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(StationText.getFunctionTitle());
-        OutputView.printFunctionList(StationText.getFunctionList());
+        OutputView.printFunctionTitle(StationText.functionTitle());
+        OutputView.printFunctionList(StationText.functionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView, inputView.getInputFunctionIndex(StationText.getFunctionIndexList()));
+        callFunction(inputView, inputView.getInputFunctionIndex(StationText.functionIndexList()));
     }
 
     private void callFunction(InputView inputView, String functionIndex) {
@@ -35,7 +35,7 @@ public class StationController {
     }
 
     private void registerStation(InputView inputView) {
-        OutputView.printInputRegisterStation();
+        OutputView.printInputRegisterValue(StationText.screenName());
         Station station = new Station(inputView.getInputRegisterStation());
         StationRepository.addStation(station);
         OutputView.printRegisterSuccess();
@@ -43,7 +43,7 @@ public class StationController {
     }
 
     private void deleteStation(InputView inputView) {
-        OutputView.printInputDeleteStation();
+        OutputView.printInputDeleteValue(StationText.screenName());
         if (StationRepository.deleteStation(inputView.getInputDeleteStation())) {
             OutputView.printDeleteSuccess();
         }
@@ -51,7 +51,7 @@ public class StationController {
     }
 
     private void lookUpStation(InputView inputView) {
-        String functionHeader = "역 목록";
+        String functionHeader = StationText.screenName() + " 목록";
         OutputView.printFunctionTitle(functionHeader);
         for (Station station : StationRepository.stations()) {
             System.out.println(station.toString());

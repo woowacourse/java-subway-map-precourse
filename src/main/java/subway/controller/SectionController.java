@@ -10,10 +10,10 @@ public class SectionController {
     private static String DELETE_INDEX = "2";
 
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(SectionText.getFunctionTitle());
-        OutputView.printFunctionList(SectionText.getFunctionList());
+        OutputView.printFunctionTitle(SectionText.functionTitle());
+        OutputView.printFunctionList(SectionText.functionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView.getInputFunctionIndex(SectionText.getFunctionIndexList()));
+        callFunction(inputView.getInputFunctionIndex(SectionText.functionIndexList()));
     }
 
     private void callFunction(String functionIndex) {

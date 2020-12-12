@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LineText {
-    private static String FUNCTION_TITLE = "노선 관리 화면";
+    private static String SCREEN_NAME = "노선";
+    private static String FUNCTION_TITLE = SCREEN_NAME + " 관리 화면";
     private static List<String> FUNCTION_INDEX_LIST = new ArrayList<>(Arrays.asList(
             "1",
             "2",
@@ -22,15 +23,19 @@ public class LineText {
     private LineText() {
     }
 
-    public static String getFunctionTitle() {
+    public static String screenName() {
+        return SCREEN_NAME;
+    }
+
+    public static String functionTitle() {
         return FUNCTION_TITLE;
     }
 
-    public static List<String> getFunctionIndexList() {
+    public static List<String> functionIndexList() {
         return FUNCTION_INDEX_LIST;
     }
 
-    public static List<String> getFunctionList() {
+    public static List<String> functionList() {
         return FUNCTION_LIST;
     }
 }

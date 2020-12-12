@@ -16,10 +16,10 @@ public class MainController {
     }
 
     public static void run(InputView inputView) {
-        OutputView.printFunctionTitle(MainText.getFunctionTitle());
-        OutputView.printFunctionList(MainText.getFunctionList());
+        OutputView.printFunctionTitle(MainText.functionTitle());
+        OutputView.printFunctionList(MainText.functionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView, inputView.getInputFunctionIndex(MainText.getFunctionIndexList()));
+        shiftFunctionScreen(inputView, inputView.getInputFunctionIndex(MainText.functionIndexList()));
     }
 
     private static void shiftFunctionScreen(InputView inputView, String functionIndex) {

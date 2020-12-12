@@ -11,40 +11,39 @@ public class LineController {
     private static String LOOK_UP_INDEX = "3";
 
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(LineText.getFunctionTitle());
-        OutputView.printFunctionList(LineText.getFunctionList());
+        OutputView.printFunctionTitle(LineText.functionTitle());
+        OutputView.printFunctionList(LineText.functionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView.getInputFunctionIndex(LineText.getFunctionIndexList()));
+        callFunction(inputView, inputView.getInputFunctionIndex(LineText.functionIndexList()));
     }
 
-    private void callFunction(String functionIndex) {
+    private void callFunction(InputView inputView, String functionIndex) {
         if (functionIndex.equals(RESISTER_INDEX)) {
-            registerLine();
+            registerLine(inputView);
         }
         if (functionIndex.equals(DELETE_INDEX)) {
-            deleteLine();
+            deleteLine(inputView);
         }
         if (functionIndex.equals(LOOK_UP_INDEX)) {
-            lookUpLine();
+            lookUpLine(inputView);
         }
         if (functionIndex.equals(MainController.getControllerIndex())) {
-            goBackToMain();
+            goBackToMain(inputView);
         }
     }
 
-    private void registerLine() {
+    private void registerLine(InputView inputView) {
+    }
+
+    private void deleteLine(InputView inputView) {
 
     }
 
-    private void deleteLine() {
+    private void lookUpLine(InputView inputView) {
 
     }
 
-    private void lookUpLine() {
-
-    }
-
-    private void goBackToMain() {
+    private void goBackToMain(InputView inputView) {
 
     }
 

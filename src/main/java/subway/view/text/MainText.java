@@ -24,15 +24,15 @@ public class MainText {
     private MainText() {
     }
 
-    public static String getFunctionTitle() {
+    public static String functionTitle() {
         return FUNCTION_TITLE;
     }
 
-    public static List<String> getFunctionIndexList() {
+    public static List<String> functionIndexList() {
         return FUNCTION_INDEX_LIST;
     }
 
-    public static List<String> getFunctionList() {
+    public static List<String> functionList() {
         return FUNCTION_LIST;
     }
 }
