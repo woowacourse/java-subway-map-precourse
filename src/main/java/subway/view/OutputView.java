@@ -19,20 +19,21 @@ public class OutputView {
     }
 
     public static void printStations(final List<Station> stations) {
-
         System.out.println(PRINT_STATIONS_TITLE);
-        for (Station station : stations) {
-            System.out.println(INFO_PREFIX + station.toString());
-        }
+        printList(stations);
         addBlankLine();
+    }
+
+    private static <T> void printList(List<T> objs) {
+        for (T obj : objs) {
+            System.out.println(INFO_PREFIX + obj.toString());
+        }
     }
 
     public static void printLines(final List<Line> lines) {
 
         System.out.println(PRINT_LINES_TITLE);
-        for (Line line : lines) {
-            System.out.println(INFO_PREFIX + line.toString());
-        }
+        printList(lines);
         addBlankLine();
     }
 
@@ -44,4 +45,17 @@ public class OutputView {
         addBlankLine();
     }
 
+    public static void printMap(final List<Line> lines) {
+        System.out.println("## 지하철 노선도");
+        for (Line line : lines) {
+            printPrefix(line.toString());
+            printList(line.getStations());
+            addBlankLine();
+        }
+
+    }
+
+    private static void printPrefix(String context) {
+        System.out.println(INFO_PREFIX + context);
+    }
 }
