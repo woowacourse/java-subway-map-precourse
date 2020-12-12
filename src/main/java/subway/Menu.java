@@ -28,6 +28,6 @@ public class Menu {
 
     public void printInputMessage() {
         System.out.println();
-        System.out.println(Constant.CHOOSE_FUNCTION);
+        System.out.println(Constant.HEAD_HASH + Constant.CHOOSE_FUNCTION);
     }
 }
