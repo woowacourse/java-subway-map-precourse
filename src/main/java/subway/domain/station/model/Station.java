@@ -1,5 +1,7 @@
 package subway.domain.station.model;
 
+import java.util.Objects;
+
 public class Station {
     private static final int MIN_STATION_NAME_LIMIT = 2;
     private static final String NAME_SHORTER_THAN_MIN_STATION_NAME_LIMIT_MESSAGE = "[ERROR] 지하철 역 이름이 2글자 이상이어야 합니다.";
@@ -21,5 +23,7 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean isEqualTo(Station station) {
+        return Objects.equals(name, station.name);
+    }
 }
