@@ -16,6 +16,9 @@ public class DataInitService {
     private static final String LINE_TWO = "2호선";
     private static final String LINE_THREE = "3호선";
     private static final String LINE_SINBUNDANG = "신분당선";
+    private static final int FIRST = 1;
+    private static final int SECOND = 2;
+    private static final int THIRD = 3;
 
     private final StationService stationService;
     private final SectionService sectionService;
@@ -31,9 +34,15 @@ public class DataInitService {
     }
 
     private void saveSection() {
-       sectionService.saveSection(new SectionSaveReqDto(LINE_TWO, STATION_GYODAE, STATION_YEOKSAM));
-       sectionService.saveSection(new SectionSaveReqDto(LINE_THREE, STATION_GYODAE, STATION_MAEBONG));
-       sectionService.saveSection(new SectionSaveReqDto(LINE_SINBUNDANG, STATION_GANGNAM, STATION_CITIZEN_FOREST));
+        sectionService.saveSection(new SectionSaveReqDto(LINE_TWO, STATION_GYODAE, STATION_YEOKSAM));
+        sectionService.addStation(LINE_TWO, STATION_GANGNAM, SECOND);
+
+        sectionService.saveSection(new SectionSaveReqDto(LINE_THREE, STATION_GYODAE, STATION_MAEBONG));
+        sectionService.addStation(LINE_THREE, STATION_SOUTH_TERMINAL, SECOND);
+        sectionService.addStation(LINE_THREE, STATION_YANGJAE, THIRD);
+
+        sectionService.saveSection(new SectionSaveReqDto(LINE_SINBUNDANG, STATION_GANGNAM, STATION_CITIZEN_FOREST));
+        sectionService.addStation(LINE_SINBUNDANG, STATION_YANGJAE, SECOND);
     }
 
     private void saveStation() {
