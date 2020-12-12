@@ -37,23 +37,24 @@ public class SectionService implements InputInterface, FeatureChoiceInterface, F
     }
 
     @Override
-    public void chooseFeature(String input, Scanner scanner) {
+    public boolean chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             // TODO: 구간 등록 기능 구현
-            return;
+            return false;
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
             // TODO: 구간 삭제 기능 구현
-            return;
+            return false;
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
-            return;
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void add(Scanner scanner) {
-
+    public boolean add(Scanner scanner) {
+        return false;
     }
 
     @Override

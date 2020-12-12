@@ -2,6 +2,7 @@ package subway.service;
 
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
+import subway.view.output.ExceptionView;
 
 public class InputService implements InputInterface {
     @Override
@@ -15,6 +16,10 @@ public class InputService implements InputInterface {
         if (input.equals(InputType.INPUT_THREE.getInput())) {
             return true;
         }
-        return input.equals(InputType.INPUT_BACK.getInput());
+        if (input.equals(InputType.INPUT_BACK.getInput())) {
+            return true;
+        }
+        ExceptionView.printInvalidFeatureChoiceException();
+        return false;
     }
 }
