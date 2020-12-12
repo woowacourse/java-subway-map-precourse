@@ -46,10 +46,12 @@ public class StationManagementScreen implements Screen {
             StationRepository.deleteStation(InputUtils.getUserInput());
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
-        } finally {
             MainScreen mainScreen = new MainScreen();
             mainScreen.start();
         }
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.start();
     }
 
     public void printStations() {

@@ -30,12 +30,11 @@ public class SectionManagementScreen implements Screen {
         try {
             Line line = LineRepository.findLine(InputUtils.getUserInput());
             Station station = getStationToAdd();
-            ArrayList<Station> lineStations = line.getLineStations();
-            if (lineStations.contains(station)) {
+            if (line.contains(station)) {
                 throw new IllegalArgumentException();
             }
-            int section = getSectionToAdd(lineStations);
-            lineStations.add(section, station);
+            int section = getSectionToAdd(line.getLineStations());
+            line.getLineStations().add(section, station);
 
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
@@ -67,11 +66,10 @@ public class SectionManagementScreen implements Screen {
         try {
             Line line = LineRepository.findLine(InputUtils.getUserInput());
             Station station = getStationToDelete();
-            ArrayList<Station> lineStations = line.getLineStations();
-            if (!lineStations.contains(station)) {
+            if (!line.contains(station)) {
                 throw new IllegalArgumentException();
             }
-            lineStations.remove(station);
+            line.getLineStations().remove(station);
 
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");

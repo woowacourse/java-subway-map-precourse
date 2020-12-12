@@ -17,7 +17,14 @@ public class Line {
         return name;
     }
 
-    public ArrayList<Station> getLineStations(){
+    public boolean contains(Station station) {
+        if (lineStations.contains(station)) {
+            return true;
+        }
+        return false;
+    }
+
+    public ArrayList<Station> getLineStations() {
         return lineStations;
     }
 
