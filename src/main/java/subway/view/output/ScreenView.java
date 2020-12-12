@@ -1,11 +1,8 @@
-package subway.view;
+package subway.view.output;
 
-import subway.type.ExceptionType;
-import subway.type.InformationType;
 import subway.type.ScreenType;
-import subway.type.TextType;
 
-public class OutputView {
+public class ScreenView {
     public static void printMainScreen() {
         System.out.println(ScreenType.MAIN_SCREEN.getScreen()
                 + ScreenType.STATION_MANAGEMENT.getScreen()
@@ -40,20 +37,5 @@ public class OutputView {
                 + ScreenType.SECTION_DELETION.getScreen()
                 + ScreenType.BACK.getScreen()
                 + ScreenType.FEATURE_CHOICE.getScreen());
-    }
-
-    public static void printInvalidFeatureChoiceException() {
-        System.out.println();
-        System.out.println(ExceptionType.INVALID_FEATURE_CHOICE.getException());
-    }
-
-    public static void printStationAddingText() {
-        System.out.println();
-        System.out.println(TextType.STATION_ADDING_TEXT.getText());
-    }
-
-    public static void printStationAddingInformation() {
-        System.out.println();
-        System.out.println(InformationType.STATION_ADDING_INFORMATION.getInformation());
     }
 }

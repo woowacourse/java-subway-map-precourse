@@ -6,7 +6,8 @@ import subway.controller.StationController;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
-import subway.view.OutputView;
+import subway.view.output.ExceptionView;
+import subway.view.output.ScreenView;
 
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class SubwayService implements InputInterface, FeatureChoiceInterface {
         SubwayService subwayService = new SubwayService();
 
         while (true) {
-            OutputView.printMainScreen();
+            ScreenView.printMainScreen();
             String mainInput = scanner.next();
             if (quitSubway(mainInput)) {
                 break;
@@ -24,7 +25,7 @@ public class SubwayService implements InputInterface, FeatureChoiceInterface {
                 subwayService.chooseFeature(mainInput, scanner);
                 continue;
             }
-            OutputView.printInvalidFeatureChoiceException();
+            ExceptionView.printInvalidFeatureChoiceException();
         }
     }
 

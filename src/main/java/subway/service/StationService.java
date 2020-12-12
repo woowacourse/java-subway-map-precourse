@@ -6,7 +6,10 @@ import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.type.StationType;
-import subway.view.OutputView;
+import subway.view.output.ExceptionView;
+import subway.view.output.InformationView;
+import subway.view.output.ScreenView;
+import subway.view.output.TextView;
 
 import java.util.Scanner;
 
@@ -27,13 +30,13 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
         System.out.println();
         while (true) {
-            OutputView.printStationManagementScreen();
+            ScreenView.printStationManagementScreen();
             String stationInput = scanner.next();
             if (inputService.isInput(stationInput)) {
                 stationService.chooseFeature(stationInput, scanner);
                 break;
             }
-            OutputView.printInvalidFeatureChoiceException();
+            ExceptionView.printInvalidFeatureChoiceException();
         }
     }
 
@@ -58,10 +61,10 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public void add(Scanner scanner) {
-        OutputView.printStationAddingText();
+        TextView.printStationAddingText();
         String stationName = scanner.next();
         StationRepository.addStation(new Station(stationName));
-        OutputView.printStationAddingInformation();
+        InformationView.printStationAddingInformation();
         System.out.println();
     }
 

@@ -6,7 +6,8 @@ import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.type.LineType;
-import subway.view.OutputView;
+import subway.view.output.ExceptionView;
+import subway.view.output.ScreenView;
 
 import java.util.Scanner;
 
@@ -23,13 +24,13 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
 
         System.out.println();
         while (true) {
-            OutputView.printLineManagementScreen();
+            ScreenView.printLineManagementScreen();
             String lineInput = scanner.next();
             if (inputService.isInput(lineInput)) {
                 lineService.chooseFeature(lineInput, scanner);
                 break;
             }
-            OutputView.printInvalidFeatureChoiceException();
+            ExceptionView.printInvalidFeatureChoiceException();
         }
     }
 

@@ -4,7 +4,8 @@ import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
-import subway.view.OutputView;
+import subway.view.output.ExceptionView;
+import subway.view.output.ScreenView;
 
 import java.util.Scanner;
 
@@ -14,13 +15,13 @@ public class SectionService implements InputInterface, FeatureChoiceInterface, F
 
         System.out.println();
         while (true) {
-            OutputView.printSectionManagementScreen();
+            ScreenView.printSectionManagementScreen();
             String sectionInput = scanner.next();
             if (sectionService.isInput(sectionInput)) {
                 sectionService.chooseFeature(sectionInput, scanner);
                 break;
             }
-            OutputView.printInvalidFeatureChoiceException();
+            ExceptionView.printInvalidFeatureChoiceException();
         }
     }
 
