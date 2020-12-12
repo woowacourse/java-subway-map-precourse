@@ -3,11 +3,11 @@ package subway.domain.station;
 import subway.domain.Line.Line;
 import subway.domain.name.LineName;
 import subway.domain.name.StationName;
+import subway.exception.AlreadyLinkedException;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Station implements Comparable<Station> {
     private StationName name;
@@ -23,7 +23,7 @@ public class Station implements Comparable<Station> {
     }
 
     public boolean canRemove() {
-        System.out.println(lines.size());
+
         return lines.isEmpty();
     }
 
@@ -63,6 +63,10 @@ public class Station implements Comparable<Station> {
 
     public boolean containLine(LineName lineName) {
         return lines.stream().anyMatch(line -> line.isSameName(lineName.toString()));
+    }
+
+    public void removeLine(Line line) {
+        lines.remove(line);
     }
 
     // 추가 기능 구현

@@ -31,15 +31,15 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public boolean deleteStation(String name) {  //기존
-
+    public boolean deleteStation(String name) {
 
         Station station = findBy(name);
         if (!station.canRemove()) {
-            throw new CannotRemoveException();
+            throw new CannotRemoveException(station);
         }
 
-        return stations().remove(station);
+
+        return stations.remove(station);
     }
 
     private boolean canRemove(String name) {
@@ -47,11 +47,11 @@ public class StationRepository {
         return station.canRemove();
     }
 
-    public Station findBy(String string) {
+    public Station findBy(String statiaonName) {
         return stations().stream()
-                .filter(station -> station.isSameName(string))
+                .filter(station -> station.isSameName(statiaonName))
                 .findFirst()
-                .orElseThrow(() -> new StationNotFountException(string));
+                .orElseThrow(() -> new StationNotFountException(statiaonName));
     }
 
     public List<Station> findByLine(String name) {

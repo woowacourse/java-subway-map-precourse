@@ -2,7 +2,6 @@ package subway.controller;
 
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
-import subway.menu.MainMenu;
 import subway.menu.Menu;
 import subway.menu.StationMenu;
 import subway.view.InputView;
@@ -19,13 +18,14 @@ public class StationController implements SubwayController {
     @Override
     public void save() {
         System.out.println("## 등록할 역 이름을 입력하세요");
-        String name = inputView.inputName();
+        String name = inputView.input();
         stationRepository.addStation(Station.of(name));
     }
 
     @Override
     public void delete() {
-        String name = inputView.inputName();
+        System.out.println("## 삭제할 역 이름을 입력하세요");
+        String name = inputView.input();
         stationRepository.deleteStation(name);
     }
 
