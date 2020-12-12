@@ -1,14 +1,18 @@
 package subway.service;
 
+import subway.controller.LineController;
+import subway.controller.SectionController;
+import subway.controller.StationController;
+import subway.service.abstraction.feature.SubwayFeatureInterface;
+import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class SubwayService extends FeatureService {
+public class SubwayService implements InputInterface, SubwayFeatureInterface {
     public static void manageSubway(Scanner scanner) {
         SubwayService subwayService = new SubwayService();
-        FeatureService featureService = new FeatureService();
 
         while (true) {
             OutputView.printMainScreen();
@@ -17,7 +21,7 @@ public class SubwayService extends FeatureService {
                 break;
             }
             if (subwayService.isInput(mainInput)) {
-                featureService.chooseSubwayFeature(mainInput, scanner);
+                subwayService.chooseSubwayFeature(mainInput, scanner);
                 continue;
             }
             OutputView.printInvalidFeatureChoiceException();
@@ -40,5 +44,25 @@ public class SubwayService extends FeatureService {
             return true;
         }
         return input.equals(InputType.INPUT_FOUR.getInput());
+    }
+
+    @Override
+    public void chooseSubwayFeature(String input, Scanner scanner) {
+        if (input.equals(InputType.INPUT_ONE.getInput())) {
+            StationController.startStation(scanner);
+            return;
+        }
+        if (input.equals(InputType.INPUT_TWO.getInput())) {
+            LineController.startLine(scanner);
+            return;
+        }
+        if (input.equals(InputType.INPUT_THREE.getInput())) {
+            SectionController.startSection(scanner);
+            return;
+        }
+        if (input.equals(InputType.INPUT_FOUR.getInput())) {
+            // TODO: 지하철 노선도 출력 기능 구현
+            return;
+        }
     }
 }

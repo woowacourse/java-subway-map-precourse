@@ -1,11 +1,13 @@
 package subway.service;
 
+import subway.service.abstraction.feature.FeatureInterface;
+import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class SectionService extends FeatureService {
+public class SectionService implements InputInterface, FeatureInterface {
     public static void manageSection(Scanner scanner) {
         SectionService sectionService = new SectionService();
 
@@ -35,9 +37,11 @@ public class SectionService extends FeatureService {
     @Override
     public void chooseFeature(String input) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
+            // TODO: 구간 등록 기능 구현
             return;
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
+            // TODO: 구간 삭제 기능 구현
             return;
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {

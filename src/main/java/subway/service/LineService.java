@@ -2,12 +2,14 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.repository.LineRepository;
+import subway.service.abstraction.feature.FeatureInterface;
+import subway.type.InputType;
 import subway.type.LineType;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class LineService {
+public class LineService implements FeatureInterface {
     public static void initializeLines() {
         LineRepository.addLine(new Line(LineType.TWO.getLine()));
         LineRepository.addLine(new Line(LineType.THREE.getLine()));
@@ -15,17 +17,37 @@ public class LineService {
     }
 
     public static void manageLine(Scanner scanner){
-        FeatureService featureService = new FeatureService();
+        InputService inputService = new InputService();
+        LineService lineService = new LineService();
 
         System.out.println();
         while (true) {
             OutputView.printLineManagementScreen();
             String lineInput = scanner.next();
-            if (featureService.isInput(lineInput)) {
-                featureService.chooseFeature(lineInput);
+            if (inputService.isInput(lineInput)) {
+                lineService.chooseFeature(lineInput);
                 break;
             }
             OutputView.printInvalidFeatureChoiceException();
+        }
+    }
+
+    @Override
+    public void chooseFeature(String input) {
+        if (input.equals(InputType.INPUT_ONE.getInput())) {
+            // TODO: 노선 등록 기능 구현
+            return;
+        }
+        if (input.equals(InputType.INPUT_TWO.getInput())) {
+            // TODO: 노선 삭제 기능 구현
+            return;
+        }
+        if (input.equals(InputType.INPUT_THREE.getInput())) {
+            // TODO: 노선 조회 기능 구현
+            return;
+        }
+        if (input.equals(InputType.INPUT_BACK.getInput())) {
+            return;
         }
     }
 }
