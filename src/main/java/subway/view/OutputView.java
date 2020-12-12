@@ -7,31 +7,23 @@ import subway.domain.station.StationRepository;
 
 import java.util.List;
 
-public class OutputView {
-    private static final String PRINT_STATION_LIST_MESSAGE = "## 역 목록";
-    private static final String PRINT_LINE_LIST_MESSAGE = "## 노선 목록";
-    private static final String PRINT_SUBWAY_MAP_MESSAGE = "## 지하철 노선도";
-    private static final String PRINT_LIST = "[INFO] %s\n";
-    private static final String DASH = "---";
-    private static final String ADD_MESSAGE = "[INFO] %s이 등록되었습니다.\n";
-    private static final String DELETE_MESSAGE = "[INFO] %s이 삭제되었습니다.\n";
-    private static final String SUBWAY = "지하철 ";
-    private static final String SECTION = "구간";
+public class OutputView implements ViewConstant {
+
 
     private OutputView() {
     }
 
-    public static void printAddMessage(String kind) {
-        if (!kind.equals(SECTION)) {
-            kind = SUBWAY + kind;
+    public static void printAddMessage(String category) {
+        if (!category.equals(SECTION)) {
+            category = SUBWAY + category;
         }
-        System.out.printf(ADD_MESSAGE, kind);
+        System.out.printf(ADD_MESSAGE, category);
     }
-    public static void printDeleteMessage(String kind) {
-        if (!kind.equals(SECTION)) {
-            kind = SUBWAY + kind;
+    public static void printDeleteMessage(String category) {
+        if (!category.equals(SECTION)) {
+            category = SUBWAY + category;
         }
-        System.out.printf(DELETE_MESSAGE, kind);
+        System.out.printf(DELETE_MESSAGE, category);
     }
 
     public static void printStationList() {

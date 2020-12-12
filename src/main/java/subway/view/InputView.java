@@ -1,41 +1,17 @@
 package subway.view;
 
-import subway.domain.line.Line;
 import subway.domain.line.LineName;
-import subway.domain.line.LineRepository;
 import subway.domain.menu.MainMenuType;
 import subway.domain.menu.SubMenuType;
-import subway.domain.station.Station;
 import subway.domain.station.StationName;
 import subway.domain.station.StationRepository;
 import subway.utils.InputValidator;
 
 import java.util.Scanner;
 
-public class InputView {
+public class InputView implements ViewConstant{
 
-    private static final String MAIN_MENU_MESSAGE = "## 메인 화면\n1. 역 관리\n2. 노선 관리\n" +
-            "3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료\n";
-    private static final String SUB_MENU_MESSAGE_TOP = "## %s 관리 화면\n";
-    private static final String SUB_MENU_MESSAGE_ONE = "1. %s 등록\n";
-    private static final String SUB_MENU_MESSAGE_TWO = "2. %s 삭제\n";
-    private static final String SUB_MENU_MESSAGE_THREE = "3. %s 조회\n";
-    private static final String SUB_MENU_MESSAGE_BOTTOM = "B. 돌아가기\n";
-
-    private static final String CHOOSE_MENU_MESSAGE = "## 원하는 기능을 선택하세요.";
-    private static final String INPUT_STATION_NAME_ADD_MESSAGE = "## 등록할 역 이름을 입력하세요.";
-    private static final String INPUT_LINE_NAME_ADD_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
-    private static final String INPUT_FIRST_STATION_ADD_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
-    private static final String INPUT_LAST_STATION_ADD_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
-    private static final String INPUT_STATION_NAME_DELETE_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
-    private static final String INPUT_LINE_NAME_DELETE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
-    private static final String INPUT_SECTION_LINE_ADD_MESSAGE = "## 노선을 입력하세요.";
-    private static final String INPUT_SECTION_STATION_ADD_MESSAGE = "## 역이름을 입력하세요.";
-    private static final String INPUT_SECTION_INDEX_MESSAGE = "## 순서를 입력하세요.";
-    private static final String INPUT_SECTION_STATION_DELETE_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
-    private static final String INPUT_SECTION_LINE_DELETE_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
     private InputView() {
-
     }
 
     public static MainMenuType inputMainMenu(Scanner scanner) {
@@ -73,43 +49,38 @@ public class InputView {
         }
     }
 
-    public static StationName inputStationNameAdd(Scanner scanner) {
-        System.out.println(INPUT_STATION_NAME_ADD_MESSAGE);
+    public static StationName inputStationNameAdd(Scanner scanner, String category) {
+        System.out.printf(INPUT_NAME_ADD_MESSAGE, category);
         return new StationName(scanner.nextLine());
     }
 
-    public static StationName inputStationNameDelete(Scanner scanner) {
-        System.out.println(INPUT_STATION_NAME_DELETE_MESSAGE);
+    public static StationName inputStationNameDelete(Scanner scanner, String category) {
+        System.out.printf(INPUT_NAME_DELETE_MESSAGE, category);
         return new StationName(scanner.nextLine());
     }
 
-    public static LineName inputLineNameAdd(Scanner scanner) {
-        System.out.println(INPUT_LINE_NAME_ADD_MESSAGE);
+    public static LineName inputLineNameAdd(Scanner scanner, String category) {
+        System.out.printf(INPUT_NAME_ADD_MESSAGE, category);
         return new LineName(scanner.nextLine());
     }
 
-    public static StationName inputFirstStationName(Scanner scanner) {
-        System.out.println(INPUT_FIRST_STATION_ADD_MESSAGE);
+    public static StationName inputUpOrDownLastStationName(Scanner scanner, String kind) {
+        System.out.printf(INPUT_UP_OR_DOWN_LAST_STATION_MESSAGE, kind);
         return new StationName(scanner.nextLine());
     }
 
-    public static StationName inputLastStationName(Scanner scanner) {
-        System.out.println(INPUT_LAST_STATION_ADD_MESSAGE);
-        return new StationName(scanner.nextLine());
-    }
-
-    public static LineName inputLineNameDelete(Scanner scanner) {
-        System.out.println(INPUT_LINE_NAME_DELETE_MESSAGE);
+    public static LineName inputLineNameDelete(Scanner scanner, String category) {
+        System.out.printf(INPUT_NAME_DELETE_MESSAGE, category);
         return new LineName(scanner.nextLine());
     }
 
     public static LineName inputLineNameToAddSection(Scanner scanner) {
-        System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
+        System.out.printf(INPUT_SECTION_ADD_MESSAGE, LINE);
         return new LineName(scanner.nextLine());
     }
 
     public static StationName inputStationNameToAddSection(Scanner scanner) {
-        System.out.println(INPUT_SECTION_STATION_ADD_MESSAGE);
+        System.out.printf(INPUT_SECTION_ADD_MESSAGE, STATION+NAME);
         StationName stationName = new StationName(scanner.nextLine());
         StationRepository.validateNameExist(stationName);
         return stationName;
@@ -121,12 +92,12 @@ public class InputView {
     }
 
     public static LineName inputLineNameToDeleteSection(Scanner scanner) {
-        System.out.println(INPUT_SECTION_LINE_DELETE_MESSAGE);
+        System.out.printf(INPUT_SECTION_DELETE_MESSAGE, LINE);
         return new LineName(scanner.nextLine());
     }
 
     public static StationName inputStationNameToDeleteSection(Scanner scanner) {
-        System.out.println(INPUT_SECTION_STATION_DELETE_MESSAGE);
+        System.out.printf(INPUT_SECTION_DELETE_MESSAGE, STATION);
         return new StationName(scanner.nextLine());
     }
 
