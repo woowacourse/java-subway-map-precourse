@@ -2,7 +2,7 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.utils.ParsingUtil;
+import subway.utils.ParsingUtils;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.SectionOutputView;
@@ -23,7 +23,7 @@ public class SectionController {
         SectionOutputView.requestStationForAddSection();
         String stationName = InputView.getInput();
         SectionOutputView.requestSectionOrder();
-        int index = ParsingUtil.stringToPositiveInteger(InputView.getInput()) - 1;
+        int index = ParsingUtils.stringToPositiveInteger(InputView.getInput()) - 1;
 
         Line line = LineRepository.getLine(lineName);
         line.addSection(index, stationName);
