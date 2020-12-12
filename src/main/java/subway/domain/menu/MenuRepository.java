@@ -3,6 +3,7 @@ package subway.domain.menu;
 import java.util.HashMap;
 import java.util.Map;
 
+import subway.controller.StationController;
 import subway.controller.SubwayMapController;
 
 public class MenuRepository {
@@ -57,7 +58,8 @@ public class MenuRepository {
 
     private static void setStationMenu() {
         Menu menu = new Menu(getMenuTitle(combination(MANAGE, STATION)));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, STATION), null));
+        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, STATION), 
+                StationController::addStation));
         menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, STATION), null));
         menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, STATION), null));
         menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
