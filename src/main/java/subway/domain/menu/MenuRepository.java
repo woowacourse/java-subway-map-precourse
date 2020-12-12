@@ -60,9 +60,11 @@ public class MenuRepository {
         Menu menu = new Menu(getMenuTitle(combination(MANAGE, STATION)));
         menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, STATION), 
                 StationController::addStation));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, STATION), null));
+        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, STATION), 
+                StationController::deleteStation));
         menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, STATION), null));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
+        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, 
+                StationController::backToMainMenu));
 
         menus.put(MenuType.STATION, menu);
     }

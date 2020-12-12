@@ -36,8 +36,18 @@ public class OutputView {
         printMessage(message);
     }
 
+    public static void requestStationNameToDelete() {
+        String message = getRequestMessage(ActionParts.TO_DELETE, ObjectParts.STATION_NAME);
+        printMessage(message);
+    }
+
     public static void informStationAdded() {
         String message = getInformMessage(InformSubjectParts.STATION_IS, InformPredicateParts.ADDED);
+        printInformMessage(message);
+    }
+
+    public static void informStationDeleted() {
+        String message = getInformMessage(InformSubjectParts.STATION_IS, InformPredicateParts.DELETED);
         printInformMessage(message);
     }
 

@@ -9,10 +9,9 @@ public class StationController {
     public static void addStation() {
         try {
             tryToAddStation();
-            SubwayMapController.callMainMenu();
+            backToMainMenu();
         } catch (Exception exception) {
-            OutputView.printError(exception);
-            SubwayMapController.callStationMenu();
+            catchError(exception);
         }
     }
 
@@ -20,5 +19,29 @@ public class StationController {
         OutputView.requestStationNameToAdd();
         StationRepository.addStation(new Station(InputView.getInput()));
         OutputView.informStationAdded();
+    }
+
+    public static void deleteStation() {
+        try {
+            tryToDeleteStation();
+            backToMainMenu();
+        } catch (Exception exception) {
+            catchError(exception);
+        }
+    }
+    
+    private static void tryToDeleteStation() {
+        OutputView.requestStationNameToDelete();
+        StationRepository.deleteStation(InputView.getInput());
+        OutputView.informStationDeleted();
+    }
+
+    public static void backToMainMenu() {
+        SubwayMapController.callMainMenu();
+    }
+
+    private static void catchError(Exception exception) {
+        OutputView.printError(exception);
+        SubwayMapController.callStationMenu();
     }
 }
