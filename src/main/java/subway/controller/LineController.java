@@ -3,6 +3,7 @@ package subway.controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.view.InputView;
+import subway.view.LineOutputView;
 import subway.view.OutputView;
 
 public class LineController {
@@ -16,15 +17,15 @@ public class LineController {
     }
     
     private static void tryToAddLine() {
-        OutputView.requestLineNameToAdd();
+        LineOutputView.requestLineNameToAdd();
         String name = InputView.getInput();
-        OutputView.requestUpstreamTerminus();
+        LineOutputView.requestUpstreamTerminus();
         String upstreamTerminus = InputView.getInput();
-        OutputView.requestDownstreamTerminus();
+        LineOutputView.requestDownstreamTerminus();
         String downstreamTerminus = InputView.getInput();
 
         LineRepository.addLine(Line.createLineWithStationInitializers(name, upstreamTerminus, downstreamTerminus));
-        OutputView.informLineAdded();
+        LineOutputView.informLineAdded();
     }
     
     public static void deleteLine() {
@@ -37,14 +38,14 @@ public class LineController {
     }
 
     public static void showLines() {
-        OutputView.printLines();
+        LineOutputView.printLines();
         backToMainMenu();
     }
 
     private static void tryToDeleteLine() {
-        OutputView.requestLineNameToDelete();
+        LineOutputView.requestLineNameToDelete();
         LineRepository.deleteLineByName(InputView.getInput());
-        OutputView.informLineDeleted();
+        LineOutputView.informLineDeleted();
     }
 
     public static void backToMainMenu() {

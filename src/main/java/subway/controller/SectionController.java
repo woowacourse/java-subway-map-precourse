@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.utils.ParsingUtil;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.SectionOutputView;
 
 public class SectionController {
     public static void addSection() {
@@ -17,16 +18,16 @@ public class SectionController {
     }
 
     private static void tryToAddSection() {
-        OutputView.requestLineForAddSection();
+        SectionOutputView.requestLineForAddSection();
         String lineName = InputView.getInput();
-        OutputView.requestStationForAddSection();
+        SectionOutputView.requestStationForAddSection();
         String stationName = InputView.getInput();
-        OutputView.requestSectionOrder();
+        SectionOutputView.requestSectionOrder();
         int index = ParsingUtil.stringToPositiveInteger(InputView.getInput()) - 1;
 
         Line line = LineRepository.getLine(lineName);
         line.addSection(index, stationName);
-        OutputView.informLineAdded();
+        SectionOutputView.informSectionAdded();
     }
 
     public static void deleteSection() {
@@ -39,14 +40,14 @@ public class SectionController {
     }
 
     private static void tryToDeleteSection() {
-        OutputView.requestLineForDeleteSection();
+        SectionOutputView.requestLineForDeleteSection();
         String lineName = InputView.getInput();
-        OutputView.requestStationForDeleteSection();
+        SectionOutputView.requestStationForDeleteSection();
         String stationName = InputView.getInput();
 
         Line line = LineRepository.getLine(lineName);
         line.deleteSection(stationName);
-        OutputView.informSectionDeleted();
+        SectionOutputView.informSectionDeleted();
     }
 
     public static void backToMainMenu() {

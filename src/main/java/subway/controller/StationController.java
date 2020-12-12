@@ -4,6 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.StationOutputView;
 
 public class StationController {
     public static void addStation() {
@@ -16,9 +17,9 @@ public class StationController {
     }
 
     private static void tryToAddStation() {
-        OutputView.requestStationNameToAdd();
+        StationOutputView.requestStationNameToAdd();
         StationRepository.addStation(new Station(InputView.getInput()));
-        OutputView.informStationAdded();
+        StationOutputView.informStationAdded();
     }
 
     public static void deleteStation() {
@@ -31,13 +32,13 @@ public class StationController {
     }
     
     private static void tryToDeleteStation() {
-        OutputView.requestStationNameToDelete();
+        StationOutputView.requestStationNameToDelete();
         StationRepository.deleteStation(InputView.getInput());
-        OutputView.informStationDeleted();
+        StationOutputView.informStationDeleted();
     }
 
     public static void showStations() { 
-        OutputView.printStations();
+        StationOutputView.printStations();
         backToMainMenu();
     }
 
