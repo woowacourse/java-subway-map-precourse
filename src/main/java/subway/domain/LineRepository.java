@@ -14,7 +14,10 @@ public class LineRepository {
 
     public static void addLine(String lineName, String upboundStationName,
             String downboundStationName) {
-        lines.add(new Line(lineName, upboundStationName, downboundStationName));
+        Line line = new Line(lineName);
+        line.pushSection(upboundStationName);
+        line.pushSection(downboundStationName);
+        lines.add(line);
     }
 
     public static void addSection(String lineName, String stationName, String index) {

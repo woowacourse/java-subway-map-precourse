@@ -9,14 +9,14 @@ public class Line {
     private String name;
     private List<Station> sections = new ArrayList<>();
 
-    public Line(String name, String upboundStationName, String downboundStationName) {
+    public Line(String name) {
         this.name = name;
-        Station upboundStation = StationRepository.getByName(upboundStationName);
-        Station downboundStation = StationRepository.getByName(downboundStationName);
-        upboundStation.addLine();
-        downboundStation.addLine();
-        sections.add(upboundStation);
-        sections.add(downboundStation);
+    }
+    
+    public void pushSection(String stationName) {
+        Station station = StationRepository.getByName(stationName);
+        station.addLine();
+        sections.add(station);
     }
 
     public void addSection(String stationName, String index) {
