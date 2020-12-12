@@ -75,7 +75,8 @@ public class MenuRepository {
         Menu menu = new Menu(getMenuTitle(combination(MANAGE, LINE)));
         menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, LINE), 
                 LineController::addLine));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, LINE), null));
+        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, LINE), 
+                LineController::deleteLine));
         menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, LINE), null));
         menu.addMenuItem(new MenuItem(KEY_BACK, BACK, 
                 LineController::backToMainMenu));

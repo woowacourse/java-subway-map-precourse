@@ -22,9 +22,23 @@ public class LineController {
         String upstreamTerminus = InputView.getInput();
         OutputView.requestDownstreamTerminus();
         String downstreamTerminus = InputView.getInput();
-        
+
         LineRepository.addLine(Line.createLineWithTerminus(name, upstreamTerminus, downstreamTerminus));
         OutputView.informLineAdded();
+    }
+    
+    public static void deleteLine() {
+        try {
+            tryToDeleteLine();
+            backToMainMenu();
+        } catch (Exception exception) {
+            catchError(exception);
+        }
+    }
+
+    private static void tryToDeleteLine() {
+        OutputView.requestLineNameToDelete();
+        LineRepository.deleteLineByName(InputView.getInput());
     }
 
     public static void backToMainMenu() {

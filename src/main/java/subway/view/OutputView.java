@@ -80,8 +80,18 @@ public class OutputView {
         printMessage(message);
     }
 
+    public static void requestLineNameToDelete() {
+        String message = getRequestMessage(ActionParts.TO_DELETE, ObjectParts.LINE_NAME);
+        printMessage(message);
+    }
+
     public static void informLineAdded() {
         String message = getInformMessage(InformSubjectParts.LINE_IS, InformPredicateParts.ADDED);
+        printInformMessage(message);
+    }
+
+    public static void informLineDeleted() {
+        String message = getInformMessage(InformSubjectParts.LINE_IS, InformPredicateParts.DELETED);
         printInformMessage(message);
     }
 
