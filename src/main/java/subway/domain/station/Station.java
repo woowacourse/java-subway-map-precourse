@@ -27,6 +27,14 @@ public class Station implements Comparable<Station> {
         return lines.isEmpty();
     }
 
+    public void clear() {
+        lines.stream().forEach(line -> line.removeStations(this));
+    }
+
+    public void removeLine(Line line) {
+        lines.remove(line);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,9 +73,6 @@ public class Station implements Comparable<Station> {
         return lines.stream().anyMatch(line -> line.isSameName(lineName.toString()));
     }
 
-    public void removeLine(Line line) {
-        lines.remove(line);
-    }
 
     // 추가 기능 구현
 }
