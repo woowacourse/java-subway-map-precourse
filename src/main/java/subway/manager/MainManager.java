@@ -58,11 +58,15 @@ public class MainManager {
         List<Line> lines = LineRepository.lines();
         System.out.println("## 지하철 노선도");
         for (Line line : lines) {
-            System.out.println("[INFO] " + line.getName());
-            System.out.println("[INRO] ---");
-            List<String> stationNames = line.getStationNames();
-            stationNames.forEach(stationName -> System.out.println("[INFO] " + stationName));
+            printLineWithStations(line);
             System.out.println();
         }
+    }
+
+    private static void printLineWithStations(Line line) {
+        System.out.println("[INFO] " + line.getName());
+        System.out.println("[INRO] ---");
+        List<String> stationNames = line.getStationNames();
+        stationNames.forEach(stationName -> System.out.println("[INFO] " + stationName));
     }
 }
