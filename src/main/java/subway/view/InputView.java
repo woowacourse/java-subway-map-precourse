@@ -20,7 +20,7 @@ public class InputView {
     private static final String NOT_EXISTING_STATION_ERROR_MESSAGE = "등록되지 않은 역 이름입니다.";
     private static final String NOT_EXISTING_LINE_ERROR_MESSAGE = "등록되지 않은 노선 이름입니다.";
     private static final String EXISTING_IN_SECTION_ERROR_MESSAGE = "노선에 등록된 역입니다.";
-    private static final String REGEX_KOREAN = "^[가-힣]*$";
+    private static final String REGEX_LETTER = "^[a-zA-Z0-9가-힣]*$";
     private static final int MIN_VALUE_LENGTH = 2;
     private static final String STATION = "역";
     private static final String LINE = "노선";
@@ -100,7 +100,7 @@ public class InputView {
     }
 
     private void validateInputStationLine(String value) {
-        if (isNotKorean(value)) {
+        if (isNotLetter(value)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_HEADER + NOT_LETTER_ERROR_MESSAGE);
         }
         if (isInvalidLength(value)) {
@@ -108,8 +108,8 @@ public class InputView {
         }
     }
 
-    private static boolean isNotKorean(String value) {
-        return !Pattern.matches(REGEX_KOREAN, value);
+    private static boolean isNotLetter(String value) {
+        return !Pattern.matches(REGEX_LETTER, value);
     }
 
     private static boolean isInvalidLength(String value) {
