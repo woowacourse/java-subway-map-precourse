@@ -22,4 +22,8 @@ public class StationService {
             throw new IllegalArgumentException(NOT_DUPLICATION_STATION_NAME_MESSAGE);
         }
     }
+
+    public static List<Station> findAll() {
+        return StationRepository.stations();
+    }
 }
