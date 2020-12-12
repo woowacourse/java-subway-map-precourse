@@ -32,7 +32,6 @@ public enum ErrorCode {
     SECTION_NOT_EXIST("SE004", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
     SECTION_HAS_STATION("SE005", Screen.PREFIX_ERROR + "현재 노선에 추가되어있는 역입니다.");
 
-
     private final String code;
     private final String message;
 

@@ -36,13 +36,13 @@ class StationTest {
         //when
 
         //then
-        assertThatThrownBy(()->Station.of(name))
+        assertThatThrownBy(() -> Station.of(name))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_NAME_LENGTH_ERROR.getMessage());
-        assertThatThrownBy(()->Station.of(name2))
+        assertThatThrownBy(() -> Station.of(name2))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_NAME_LENGTH_ERROR.getMessage());
-        assertThatThrownBy(()->Station.of(name3))
+        assertThatThrownBy(() -> Station.of(name3))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_NAME_LENGTH_ERROR.getMessage());
     }
@@ -57,10 +57,10 @@ class StationTest {
         //when
 
         //then
-        assertThatThrownBy(()->Station.of(name))
+        assertThatThrownBy(() -> Station.of(name))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_INVALID_LAST_NAME.getMessage());
-        assertThatThrownBy(()->Station.of(name2))
+        assertThatThrownBy(() -> Station.of(name2))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_INVALID_LAST_NAME.getMessage());
     }
@@ -75,10 +75,10 @@ class StationTest {
         //when
 
         //then
-        assertThatThrownBy(()->Station.of(name))
+        assertThatThrownBy(() -> Station.of(name))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_INVALID_CHARACTER.getMessage());
-        assertThatThrownBy(()->Station.of(name2))
+        assertThatThrownBy(() -> Station.of(name2))
                 .isInstanceOf(StationException.class)
                 .hasMessage(ErrorCode.STATION_INVALID_CHARACTER.getMessage());
     }

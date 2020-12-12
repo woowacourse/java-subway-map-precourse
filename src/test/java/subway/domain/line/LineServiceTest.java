@@ -36,5 +36,4 @@ class LineServiceTest {
                 .isInstanceOf(LineException.class)
                 .hasMessage(ErrorCode.LINE_ALREADY_EXIST.getMessage());
     }
-
 }

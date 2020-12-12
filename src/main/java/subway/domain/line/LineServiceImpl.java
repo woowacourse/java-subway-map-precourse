@@ -35,5 +35,4 @@ public class LineServiceImpl implements LineService {
         List<Line> lines = lineRepository.lines();
         return lines;
     }
-
 }

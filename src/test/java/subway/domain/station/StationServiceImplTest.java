@@ -37,7 +37,7 @@ class StationServiceImplTest {
         String lineName = "1호선";
         String upwardName = "행복역";
         String downwardName = "사랑역";
-        sectionService.saveSection(new SectionSaveReqDto(lineName,upwardName,downwardName));
+        sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName));
     }
 
     @AfterEach

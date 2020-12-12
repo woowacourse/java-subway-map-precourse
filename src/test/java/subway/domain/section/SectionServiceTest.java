@@ -39,7 +39,7 @@ class SectionServiceTest {
         String lineName = "1호선";
         String upwardName = "행복역";
         String downwardName = "사랑역";
-        sectionService.saveSection(new SectionSaveReqDto(lineName,upwardName,downwardName));
+        sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName));
     }
 
     @AfterEach
@@ -130,7 +130,7 @@ class SectionServiceTest {
 
         //then
         assertThat(isDelete).isEqualTo(true);
-        assertThatThrownBy(()-> sectionService.findByName(lineName))
+        assertThatThrownBy(() -> sectionService.findByName(lineName))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
     }
@@ -142,7 +142,7 @@ class SectionServiceTest {
         String lineName = "2호선";
 
         //then
-        assertThatThrownBy(()-> sectionService.deleteByName(new SectionDeleteReqDto(lineName)))
+        assertThatThrownBy(() -> sectionService.deleteByName(new SectionDeleteReqDto(lineName)))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
     }
@@ -155,9 +155,9 @@ class SectionServiceTest {
         String stationName = "행복역";
 
         //then
-       assertThatThrownBy(() -> sectionService.validateStation(lineName, stationName))
-               .isInstanceOf(SectionException.class)
-               .hasMessage(ErrorCode.SECTION_HAS_STATION.getMessage());
+        assertThatThrownBy(() -> sectionService.validateStation(lineName, stationName))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_HAS_STATION.getMessage());
     }
 
     @Test

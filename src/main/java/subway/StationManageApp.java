@@ -118,6 +118,7 @@ public class StationManageApp {
 
     private void chooseManageSectionOption(int manageSectionOption) {
         SectionView sectionView = new SectionView(outputService);
+
         if (manageSectionOption == InputService.ADD) {
             addSection(sectionView);
         }
