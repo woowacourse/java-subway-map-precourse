@@ -15,7 +15,6 @@ public class InfoMessage {
     public static void printStationAdded(){
         System.out.println(INFO_PREFIX+STATION_ADDED);
     }
-
     public static void printLineAdded(){
         System.out.println(INFO_PREFIX+LINE_ADDED);
     }

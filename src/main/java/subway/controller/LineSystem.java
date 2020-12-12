@@ -1,8 +1,12 @@
 package subway.controller;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import subway.domain.Line;
+import subway.domain.Station;
+import subway.domain.SubwayRepository;
 import subway.domain.LineRepository;
+import subway.domain.LinkRepository;
 import subway.domain.MenuItemsRepository;
 import subway.view.InfoMessage;
 import subway.view.Menu;
@@ -42,11 +46,18 @@ public class LineSystem {
     }
 
     private void addLine() {
-        String name = lineInputManager.getLineInput("등록할");
-        Line line = new Line(name);
-        LineRepository.addLine(line);
-
+        String[] lineInfo = lineInputManager.getAddLineInfo();
+        if(Arrays.asList(lineInfo).contains("OUT")){
+            return;
+        }
+        SubwayRepository.addSubwayRealLine(lineInfo);
         InfoMessage.printLineAdded();
+        Line wantLine = LineRepository.findLine(lineInfo[0]);
+        LinkRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
+        for(Station station : wantLinks.links()){
+            System.out.println(station.getName());
+        }
+
     }
 
     private void removeLine() {

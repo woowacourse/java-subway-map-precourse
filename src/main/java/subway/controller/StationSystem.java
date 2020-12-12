@@ -35,7 +35,7 @@ public class StationSystem {
             addStation();
         }
         if (input.equals("2")) {
-            removeStation();
+            deleteStation();
             System.out.println("역 삭제");
         }
         if (input.equals("3")) {
@@ -49,7 +49,7 @@ public class StationSystem {
         }
     }
 
-    private void removeStation() {
+    private void deleteStation() {
     }
 
     private void addStation() {

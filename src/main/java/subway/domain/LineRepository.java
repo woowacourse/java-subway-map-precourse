@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class LineRepository {
+
     private static final List<Line> lines = new ArrayList<>();
 
     private static final Set<String> lineNames = new HashSet<>();
@@ -25,8 +26,11 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Set<String> lineNames(){
+    public static Set<String> lineNames() {
         return Collections.unmodifiableSet(lineNames);
     }
 
+    public static Line findLine(String name){
+        return lines.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst().get();
+    }
 }
