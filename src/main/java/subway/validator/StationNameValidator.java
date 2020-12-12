@@ -15,6 +15,8 @@ public class StationNameValidator extends Validator {
 
     static final String NOT_KOREAN_ERROR = "역 이름은 한글만 입력 가능합니다.";
 
+    private static final String STATION_SUFFIX = "역";
+
     private static final Pattern KOREAN_PATTERN = Pattern.compile("[가-힣]+");
 
     @Override
@@ -33,6 +35,10 @@ public class StationNameValidator extends Validator {
     }
 
     private void checkRange(String input) {
+        if (!input.endsWith(STATION_SUFFIX)) {
+            input += STATION_SUFFIX;
+        }
+
         int length = input.length();
 
         if (length < StationName.LENGTH_LOWER_BOUND || length > StationName.LENGTH_UPPER_BOUND) {

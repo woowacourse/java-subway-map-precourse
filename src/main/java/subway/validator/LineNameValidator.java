@@ -15,6 +15,8 @@ public class LineNameValidator extends Validator {
 
     static final String NOT_KOREAN_OR_NUMBER_ERROR = "노선 이름은 한글 또는 숫자만 입력 가능합니다.";
 
+    private static final String LINE_SUFFIX = "선";
+
     private static final Pattern KOREAN_OR_NUMBER_PATTERN = Pattern.compile("([가-힣]?[0-9]?)+");
 
     @Override
@@ -33,6 +35,10 @@ public class LineNameValidator extends Validator {
     }
 
     private void checkRange(String input) {
+        if (!input.endsWith(LINE_SUFFIX)) {
+            input += LINE_SUFFIX;
+        }
+
         int length = input.length();
 
         if (length < LineName.LENGTH_LOWER_BOUND || length > LineName.LENGTH_UPPER_BOUND) {
