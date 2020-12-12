@@ -5,7 +5,7 @@ import subway.view.component.ErrorViewComponent;
 
 public class DuplicatedStartAndEndStationNameException extends Exception{
     public DuplicatedStartAndEndStationNameException(){
-        super(ErrorViewComponent.getDuplicatedStartAndEndStationName() +
+        super(ErrorViewComponent.getDuplicatedStartAndEndStationNameComponent() +
                 CommonViewComponent.getWhiteLineComponent());
     }
 }

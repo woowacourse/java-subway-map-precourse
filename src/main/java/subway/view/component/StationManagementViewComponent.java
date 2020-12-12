@@ -16,7 +16,7 @@ public class StationManagementViewComponent {
         return menuComponent;
     }
 
-    public static String getFinishPrefixComponent() {
+    public static String getFinishPrefixComponent(){
         return finishPrefixComponent;
     }
 
