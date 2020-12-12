@@ -17,7 +17,7 @@ public class LineService {
         if (lineName.length() < 2) {
             warnMessage(LINE_NAME_LENGTH_WARN);
         }
-        //validate
+        //상향 하향 받기
         return LineRepository.addLine(new Line(lineName));
     }
 }

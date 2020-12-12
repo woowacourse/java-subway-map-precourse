@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private String name;
@@ -23,5 +24,22 @@ public class Line {
 
     public List<Station> getStationList() {
         return Collections.unmodifiableList(stationList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Line) {
+            Line o = (Line) obj;
+            return this.name.equals(o.name);
+        }
+        return false;
     }
 }
