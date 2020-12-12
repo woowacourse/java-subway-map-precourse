@@ -3,6 +3,7 @@ package subway.service;
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
+import subway.controller.TransitMapController;
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
@@ -57,7 +58,7 @@ public class SubwayService implements InputInterface {
             SectionController.startSection(scanner);
         }
         if (input.equals(InputType.INPUT_FOUR.getInput())) {
-            // TODO: 지하철 노선도 출력 기능 구현
+            TransitMapController.showTransitMap();
         }
     }
 }
