@@ -15,6 +15,7 @@ public class StationService {
         String stationName = inputView.inputStationName();
         if (stationName.length() < 2) {
             warnMessage(STATION_NAME_LENGTH_WARN);
+            return false;
         }
         return StationRepository.addStation(new Station(stationName));
     }

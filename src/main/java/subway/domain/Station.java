@@ -27,7 +27,7 @@ public class Station {
         }
         if (obj instanceof Station) {
             Station station = (Station) obj;
-            return this.name == station.name;
+            return this.name.equals(station.name);
         }
         return false;
     }
