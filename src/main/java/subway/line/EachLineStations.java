@@ -19,4 +19,13 @@ public class EachLineStations {
     public void addStation(Station station) {
         stations.add(station);
     }
+
+    public boolean isRegistered(String name) {
+        for (Station station : stations) {
+            if (station.isSame(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

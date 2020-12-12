@@ -32,4 +32,8 @@ public class Line {
         CheckLineNameLength.validation(name);
         CheckLineNameDuplicate.validation(name);
     }
+
+    public boolean isRegistered(String name) {
+        return stations.isRegistered(name);
+    }
 }

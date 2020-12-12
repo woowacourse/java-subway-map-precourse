@@ -21,4 +21,8 @@ public class Station {
         CheckNameDuplicate.validation(name);
         CheckLastLetter.validation(name);
     }
+
+    public boolean isSame(String name) {
+        return this.name.equals(name);
+    }
 }
