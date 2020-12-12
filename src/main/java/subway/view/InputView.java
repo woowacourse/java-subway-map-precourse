@@ -45,15 +45,27 @@ public class InputView {
         }
     }
 
-    public String getStationName() {
-        OutputView.printOrderToRegisterStationName();
+    public String getStationNameToRegister() {
+        OutputView.printOrderToRegisterStation();
         try {
             String stationName = scanner.nextLine();
             validateLength(stationName);
             return stationName;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return getStationName();
+            return getStationNameToRegister();
+        }
+    }
+
+    public String getStationNameToDelete() {
+        OutputView.printOrderToDeleteStation();
+        try {
+            String stationName = scanner.nextLine();
+            validateLength(stationName);
+            return stationName;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getStationNameToDelete();
         }
     }
 
@@ -76,4 +88,6 @@ public class InputView {
             throw new IllegalArgumentException(INVALID_LENGTH);
         }
     }
+
+
 }

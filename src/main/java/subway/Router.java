@@ -1,9 +1,7 @@
 package subway;
 
-import java.util.List;
 import java.util.Scanner;
 import subway.controller.StationController;
-import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.LogMessage;
 
@@ -47,11 +45,12 @@ public class Router {
 
     private void routeStationManagementScreen(String command) {
         if (command.equals(REGISTER)) {
-            String stationName = inputView.getStationName();
+            String stationName = inputView.getStationNameToRegister();
             StationController.registerStation(stationName);
         }
         if (command.equals(DELETE)) {
-
+            String stationName = inputView.getStationNameToDelete();
+            StationController.deleteStation(stationName);
         }
         if (command.equals(SEARCH)) {
             StationController.searchStation();

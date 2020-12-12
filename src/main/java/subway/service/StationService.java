@@ -6,13 +6,24 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class StationService {
-    private static final String DUPLICATE_MESSAGE = "[ERROR] 이미 등록된 역 이름입니다.";
+    private static final String DUPLICATE_ERROR = "[ERROR] 이미 등록된 역 이름입니다.\n";
+    private static final String NOT_DELETE_ERROR = "[ERROR] 삭제할 수 없습니다.\n";
 
-    public static void registerStation(String stationName) {
+    public static void register(String stationName) {
         if (hasSameName(stationName)) {
-            throw new IllegalArgumentException(DUPLICATE_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
         }
         StationRepository.addStation(new Station(stationName));
+    }
+
+    public static List<Station> search() {
+        return StationRepository.stations();
+    }
+
+    public static void delete(String stationName) {
+        if (!StationRepository.deleteStation(stationName)) {
+            throw new IllegalArgumentException(NOT_DELETE_ERROR);
+        }
     }
 
     private static boolean hasSameName(String stationName) {
@@ -20,7 +31,5 @@ public class StationService {
         return findStation.isPresent();
     }
 
-    public static List<Station> searchStation() {
-        return StationRepository.stations();
-    }
+
 }
