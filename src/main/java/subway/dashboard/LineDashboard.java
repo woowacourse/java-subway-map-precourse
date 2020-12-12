@@ -65,12 +65,14 @@ public class LineDashboard {
             if (updateLine(inputView)) {
                 return true;
             }
+            System.out.println(INFO_LINE_ENROLL_SUCCESS);
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
             if (deleteLine(inputView)) {
                 return true;
             }
+            System.out.println(INFO_LINE_DELETE_SUCCESS);
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {

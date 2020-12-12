@@ -48,6 +48,10 @@ public class DashboardWords {
     public static final String ERROR_STATION_NAME_NO_EXISTS = "[ERROR] 존재하지 않는 역입니다.";
     public static final String ERROR_LINE_NAME_NO_EXISTS = "[ERROR] 존재하지 않는 노선입니다.";
 
+    public static final String INFO_STATION_ENROLL_SUCCESS = "[INFO] 지하철 역이 등록되었습니다.";
+    public static final String INFO_LINE_ENROLL_SUCCESS = "[INFO] 지하철 노선이 등록되었습니다.";
+    public static final String INFO_STATION_DELETE_SUCCESS = "[INFO] 지하철 역이 삭제되었습니다.";
+    public static final String INFO_LINE_DELETE_SUCCESS = "[INFO] 지하철 노선이 삭제었습니다.";
 
 
 

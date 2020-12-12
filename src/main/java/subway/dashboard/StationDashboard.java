@@ -65,12 +65,14 @@ public class StationDashboard {
             if (updateStation(inputView)) {
                 return true;
             }
+            System.out.println(INFO_STATION_ENROLL_SUCCESS);
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
             if (deleteStation(inputView)) {
                 return true;
             }
+            System.out.println(INFO_STATION_DELETE_SUCCESS);
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {
