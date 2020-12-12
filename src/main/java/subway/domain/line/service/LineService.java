@@ -24,4 +24,8 @@ public class LineService {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void remove(Line removedLine) {
+        LineRepository.deleteLineByName(removedLine.getName());
+    }
 }

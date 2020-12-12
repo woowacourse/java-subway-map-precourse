@@ -90,4 +90,31 @@ class LineServiceTest {
         assertThatThrownBy(() -> LineService.save(new Line(newLineName)))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("지하철 노선을 삭제하는 기능을 테스트한다")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1호선,2호선:1호선:1",
+            "신분당선,경의선,분당선:경의선:2"
+    }, delimiter = ':')
+    void testRemove(String input, String removedLineName, int expectedLinesNumber) {
+        //given
+        String[] lineNames = input.split(",");
+        Arrays.stream(lineNames)
+                .map(Line::new)
+                .forEach(LineRepository::addLine);
+        Line removedLine = new Line(removedLineName);
+
+        //when
+        LineService.remove(removedLine);
+
+        //then
+        List<Line> lines = LineRepository.lines();
+
+        assertAll(
+                () -> assertThat(lines).hasSize(expectedLinesNumber),
+                () -> assertThat(lines).usingElementComparatorOnFields("name")
+                        .doesNotContain(new Line(removedLineName))
+        );
+    }
 }
