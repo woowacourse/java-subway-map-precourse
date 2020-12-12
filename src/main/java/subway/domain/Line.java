@@ -57,6 +57,11 @@ public class Line {
         return name;
     }
 
+    public void addSection(int order, String stationName) {
+        // TODO: 역 중복과 순서 범위에 대한 예외처리
+        stations.add(order, stationName);
+    }
+
     public boolean containsStation(String name) {
         return stations.contains(name);
     }

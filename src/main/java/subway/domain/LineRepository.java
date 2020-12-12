@@ -31,6 +31,15 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static Line getLine(String name) {
+        Line matchedLine = lines.stream()
+                .filter(streamLine -> name.equals(streamLine.getName()))
+                .findAny()
+                .orElse(null);
+        // TODO: 노선이 없을 때 예외처리
+        return matchedLine;
+    }
+
     public static boolean containsLine(Line line) {
         return containsLine(line.getName());
     }

@@ -4,7 +4,10 @@ public enum ObjectParts {
     STATION_NAME("역 이름을 "),
     LINE_NAME("노선 이름을 "),
     UPSTREAM_TERMINUS("노선의 상행 종점역 이름을 "),
-    DOWNSTREAM_TERMINUS("노선의 하행 종점역 이름을 ");
+    DOWNSTREAM_TERMINUS("노선의 하행 종점역 이름을 "),
+    LINE_FOR_ADD_SECTION("노선을 "),
+    STATION_FOR_ADD_SECTION("역이름을 "),
+    SECTION_ORDER("순서를 ");
 
     private String messageParts;
 

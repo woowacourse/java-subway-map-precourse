@@ -106,6 +106,21 @@ public class OutputView {
         }
     }
 
+    public static void requestLineForAddSection() {
+        String message = getRequestMessage(ActionParts.TO_ADD, ObjectParts.LINE_FOR_ADD_SECTION);
+        printMessage(message);
+    }
+    
+    public static void requestStationForAddSection() {
+        String message = getRequestMessage(ActionParts.TO_ADD, ObjectParts.STATION_FOR_ADD_SECTION);
+        printMessage(message);
+    }
+    
+    public static void requestSectionOrder() {
+        String message = getRequestMessage(ActionParts.TO_ADD, ObjectParts.SECTION_ORDER);
+        printMessage(message);
+    }
+
     public static void printError(Exception exception) {
         printEmptyLine();
         System.out.printf(ERROR_FORMAT, exception.getMessage());

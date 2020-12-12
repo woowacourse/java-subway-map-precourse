@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import subway.controller.LineController;
+import subway.controller.SectionController;
 import subway.controller.StationController;
 import subway.controller.SubwayMapController;
 
@@ -87,7 +88,8 @@ public class MenuRepository {
 
     private static void setSectionMenu() {
         Menu menu = new Menu(getMenuTitle(combination(MANAGE, SECTION)));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, SECTION), null));
+        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, SECTION), 
+                SectionController::addSection));
         menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, SECTION), null));
         menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
 
