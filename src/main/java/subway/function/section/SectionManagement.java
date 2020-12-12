@@ -29,23 +29,30 @@ public class SectionManagement {
     private static void deleteSection(Scanner scanner) {
         SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
         String lineNameToDeleteSection = scanner.nextLine();
+
         SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
         String stationNameToDeleteSection = scanner.nextLine();
+
         LineStationMappingRepository
             .deleteSection(lineNameToDeleteSection, stationNameToDeleteSection);
+
         SectionManagementPrinter.printSectionDeleteSuccessMessage();
     }
 
     private static void registerNewSection(Scanner scanner) {
         SectionManagementPrinter.printLineNameToRegisterSectionInputMessage();
         String lineNameToRegisterSection = scanner.nextLine();
+
         SectionManagementPrinter.printStationNameToRegisterSectionInputMessage();
         String stationNameToRegisterSection = scanner.nextLine();
+
         SectionManagementPrinter.printOrderToRegisterInputMessage();
         String orderToRegisterSection = scanner.nextLine();
+
         LineStationMappingRepository
             .registerNewSection(lineNameToRegisterSection, stationNameToRegisterSection,
                 orderToRegisterSection);
+
         SectionManagementPrinter.printSectionRegistrationSuccessMessage();
     }
 

@@ -8,8 +8,8 @@ import subway.function.station.StationManagement;
 import subway.commonprint.CommonPrinter;
 
 public class SubwayMapProgram {
-
     public void start(Scanner scanner) {
+        Initializer.initialize();
         while (true) {
             PrintMainScreen.printMainScreen();
             CommonPrinter.printUserFunctionSelectionMessage();

@@ -1,14 +1,14 @@
 package subway.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import subway.commonprint.Prefix;
 import subway.function.printsubwaymap.PrintSubwayMapPrinter;
 
 public class LineStationMappingRepository {
-    private static final Map<Line, List<Station>> lineStationMapping = new HashMap<>();
+    private static final Map<Line, List<Station>> lineStationMapping = new LinkedHashMap<>();
 
     public static void createNewLine(String newLineName, String upEndStationName,
         String downEndStationName) {
