@@ -10,6 +10,7 @@ public class LineValidator {
     }
 
     private static void validateFormat(String lineName) {
+        // "의정부경전철"과 같은 노선이름도 있기 때문에, "OO선" 형식을 적용하지 않음
         if (!lineName.matches("[0-9가-힣]+")) {
             throw new NameFormatException("\n[ERROR] 잘못된 노선 이름입니다.");
         }
