@@ -37,7 +37,7 @@ public class MemorySectionRepository {
             sections.remove(lineName);
             return true;
         }
-        throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
+        throw new SectionException(ErrorCode.SECTION_NOT_EXIST_NAME);
     }
 
     public void removeAll() {

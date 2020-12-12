@@ -11,6 +11,8 @@ import subway.exception.ErrorCode;
 import subway.exception.SectionException;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class SectionService {
     private static final int LIST_SEQUENCE = 1;
@@ -58,7 +60,7 @@ public class SectionService {
     public Section findByName(String sectionName) {
         Section findSection = sectionRepository.findByName(sectionName);
         if (findSection == null) {
-            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
+            throw new SectionException(ErrorCode.SECTION_NOT_EXIST_NAME);
         }
         return findSection;
     }
@@ -103,5 +105,11 @@ public class SectionService {
         if (section.getStationsName().contains(stationName)) {
             throw new SectionException(ErrorCode.SECTION_HAS_STATION);
         }
+    }
+
+    public List<Section> findAll() {
+        List<Section> sections = sectionRepository.sections();
+        Collections.sort(sections);
+        return sections;
     }
 }

@@ -14,8 +14,6 @@ import subway.domain.station.dto.StationSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.SectionException;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 class SectionServiceTest {
@@ -132,7 +130,7 @@ class SectionServiceTest {
         assertThat(isDelete).isEqualTo(true);
         assertThatThrownBy(() -> sectionService.findByName(lineName))
                 .isInstanceOf(SectionException.class)
-                .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
+                .hasMessage(ErrorCode.SECTION_NOT_EXIST_NAME.getMessage());
     }
 
     @Test
@@ -144,7 +142,7 @@ class SectionServiceTest {
         //then
         assertThatThrownBy(() -> sectionService.deleteByName(new SectionDeleteReqDto(lineName)))
                 .isInstanceOf(SectionException.class)
-                .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
+                .hasMessage(ErrorCode.SECTION_NOT_EXIST_NAME.getMessage());
     }
 
     @Test
