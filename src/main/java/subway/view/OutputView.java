@@ -23,6 +23,8 @@ public class OutputView {
 
     public static final String LINE_LIST = "노선 목록";
 
+    private static final String RANGE_SAVED = "구간이 등록되었습니다.";
+
     public void printLineSaved() {
         printSuccessMessage(LINE_SAVED);
     }
@@ -53,6 +55,10 @@ public class OutputView {
         for (String stationName : stationRepository.stationNames()) {
             printSuccessMessage(stationName);
         }
+    }
+
+    public void printRangeSaved() {
+        printSuccessMessage(RANGE_SAVED);
     }
 
     private void printSuccessMessage(String message) {

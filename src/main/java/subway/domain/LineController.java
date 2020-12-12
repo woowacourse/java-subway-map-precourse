@@ -27,7 +27,7 @@ public class LineController {
         outputView.printLineSaved();
     }
 
-    public void remove() {
+    public void removeLine() {
         String lineName = inputView.inputLineName();
 
         lineRepository.removeLine(lineName);
@@ -35,7 +35,17 @@ public class LineController {
         outputView.printStationRemoved();
     }
 
-    public void load() {
+    public void loadLines() {
         outputView.printLines(lineRepository);
+    }
+
+    public void insertStation() {
+        String lineName = inputView.inputLineName();
+        String stationName = inputView.inputStationName();
+        int stationIndex = inputView.inputIndex();
+
+        lineRepository.insertStation(lineName, stationIndex, stationName);
+
+        outputView.printRangeSaved();
     }
 }
