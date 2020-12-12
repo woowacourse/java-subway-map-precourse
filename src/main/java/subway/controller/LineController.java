@@ -31,10 +31,10 @@ public class LineController {
         if(checkIfLineExist(name)) {
             throw new DuplicatedLineNameException();
         }
-        if(startStation.getName() == endStation.getName()){
+        if(startStation.getName().equals(endStation.getName())){
             throw new DuplicatedStartAndEndStationNameException();
         }
-        Line line = LineRepository.getLine(name).get();
+        Line line = new Line(name);
         line.addStation(startStation);
         line.addStation(endStation);
         LineRepository.addLine(line);

@@ -12,7 +12,7 @@ public class StationRepository {
 
     public static Optional<Station> getStation(String stationName) {
         List<Station> stationResult = stations.stream()
-                .filter(station -> station.getName() == stationName)
+                .filter(station -> station.getName().equals(stationName))
                 .collect(Collectors.toList());
         if(stationResult.size() == 0){
             return Optional.empty();
