@@ -54,11 +54,11 @@ public class MainController {
 
     private String getUserMainControllerChoice(Scanner scanner) {
         String userChoice = null;
-        boolean properChoice = false;
-        while (!properChoice) {
+        boolean validChoice = false;
+        while (!validChoice) {
             OutputView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
-            properChoice = Validation.checkMainControllerInput(userChoice);
+            validChoice = Validation.checkMainControllerInput(userChoice);
             OutputView.printNewLine();
         }
         return userChoice;

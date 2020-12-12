@@ -23,11 +23,11 @@ public class StationController {
             OutputView.printStationControllerOption();
             userChoice = getUserStationControllerChoice(scanner);
             if (userChoice.equals(STATION_REGISTER)) {
-                stationControllerDone = registerStation();
+                stationControllerDone = registerStation(scanner);
             } else if (userChoice.equals(STATION_DELETE)) {
-                stationControllerDone = deleteStation();
+                stationControllerDone = deleteStation(scanner);
             } else if (userChoice.equals(STATION_PRINT)) {
-                stationControllerDone = printStation();
+                stationControllerDone = printStation(scanner);
             } else if (userChoice.equals(BACK)) {
                 stationControllerDone = true;
             }
@@ -36,26 +36,31 @@ public class StationController {
 
     private static String getUserStationControllerChoice(Scanner scanner) {
         String userChoice = null;
-        boolean properChoice = false;
-        while (!properChoice) {
+        boolean validChoice = false;
+        while (!validChoice) {
             OutputView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
-            properChoice = Validation.checkStationControllerInput(userChoice);
+            validChoice = Validation.checkStationControllerInput(userChoice);
         }
         return userChoice;
     }
 
-    private static boolean registerStation() {
-        System.out.println("[INFO] 등록");
+    private static boolean registerStation(Scanner scanner) {
+        OutputView.printEnterStationInstruction();
+        String userInputStation = InputView.getInput(scanner);
+        boolean validInput = Validation.checkRegisterStationInput(userInputStation);
+        if (validInput == false) {
+            return false;
+        }
         return true;
     }
 
-    private static boolean deleteStation() {
+    private static boolean deleteStation(Scanner scanner) {
         System.out.println("[INFO] 삭제");
         return true;
     }
 
-    private static boolean printStation() {
+    private static boolean printStation(Scanner scanner) {
         System.out.println("[INFO] 출력");
         return true;
     }
