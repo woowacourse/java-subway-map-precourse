@@ -105,10 +105,10 @@ public class Line implements Comparable<Line> {
 
     private boolean isValidOrder(int order) {   //TODO 확인좀
 
-        if (order < STATIONS_MIN_INDEX && order > stations.size()) {
-            return false;
+        if (order >= STATIONS_MIN_INDEX && order <= stations.size() +ONE_INDEX) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
