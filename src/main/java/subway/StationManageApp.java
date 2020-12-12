@@ -128,13 +128,17 @@ public class StationManageApp {
     private void addSection(SectionView sectionView) {
         outputService.printAdd(sectionView);
         Section section = sectionService.findByName(getName());
+        int stationsLength = section.getStationsLength();
 
         outputService.printSharp(SectionView.PRINT_ADD_STATION);
         Station station = stationService.findByName(getName());
         sectionService.validateStation(section.getLineName(), station.getName());
 
         outputService.printSharp(SectionView.PRINT_ADD_SEQUENCE);
+        outputService.printSharp(String.format(SectionView.PRINT_AVAILABLE_SEQUENCE, stationsLength, stationsLength));
         int sequence = inputService.getSequence();
+        sectionService.addStation(section.getLineName(), station.getName(), sequence);
+        outputService.printAfterAdd(sectionView);
     }
 
     private void deleteLine(LineView lineView) {

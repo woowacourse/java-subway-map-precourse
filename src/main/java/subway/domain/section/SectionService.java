@@ -13,6 +13,7 @@ import subway.exception.SectionException;
 import java.util.Arrays;
 
 public class SectionService {
+    private static final int LIST_SEQUENCE = 1;
     private final LineRepository lineRepository;
     private final StationRepository stationRepository;
     private final MemorySectionRepository sectionRepository;
@@ -37,6 +38,15 @@ public class SectionService {
         lineRepository.addLine(line);
         Section section = Section.of(line, Stations.of(Arrays.asList(upwardStation, downwardStation)));
         return sectionRepository.addSection(section);
+    }
+
+    public void addStation(String lineName, String stationName, int sequence) {
+        Section section = findByName(lineName);
+        Station station = stationRepository.findByName(stationName);
+        if (sequence > section.getStationsLength()) {
+            sequence = section.getStationsLength() + LIST_SEQUENCE;
+        }
+        section.addStation(station, sequence - LIST_SEQUENCE);
     }
 
     private void checkSameName(String upwardStationName, String downwardStationName) {

@@ -22,4 +22,8 @@ public class Stations {
     public int size() {
         return stations.size();
     }
+
+    public void addStation(Station station, int sequence) {
+        stations.add(sequence, station);
+    }
 }

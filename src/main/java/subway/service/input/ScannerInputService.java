@@ -71,7 +71,7 @@ public class ScannerInputService implements InputService {
         String inputValue = getNextLine();
         int sequence = stringToInt(inputValue);
         validateSequence(sequence);
-        return 0;
+        return sequence;
     }
 
     private void validateSequence(int sequence) {

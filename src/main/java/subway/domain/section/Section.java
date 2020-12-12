@@ -24,9 +24,17 @@ public class Section {
         return line.getName();
     }
 
+    public int getStationsLength() {
+        return stations.size();
+    }
+
     public List<String> getStationsName() {
         return stations.getStations().stream()
                 .map(Station::getName)
                 .collect(Collectors.toList());
+    }
+
+    public void addStation(Station station, int sequence) {
+        stations.addStation(station, sequence);
     }
 }

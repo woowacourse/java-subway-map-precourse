@@ -14,6 +14,8 @@ import subway.domain.station.dto.StationSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.SectionException;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class SectionServiceTest {
@@ -156,5 +158,37 @@ class SectionServiceTest {
        assertThatThrownBy(() -> sectionService.validateStation(lineName, stationName))
                .isInstanceOf(SectionException.class)
                .hasMessage(ErrorCode.SECTION_HAS_STATION.getMessage());
+    }
+
+    @Test
+    @DisplayName("순서에 맞춰 역을 추가한다. ")
+    void testAddStationLine() {
+        //given
+        String lineName = "1호선";
+        String stationName = "희망역";
+        int sequence = 2;
+
+        //when
+        sectionService.addStation(lineName, stationName, sequence);
+        Section section = sectionService.findByName(lineName);
+
+        //then
+        assertThat(section.getStationsName().get(1)).isEqualTo(stationName);
+    }
+
+    @Test
+    @DisplayName("입력된 순서가 구간에 등록된 역의 사이즈 보다 크면 제일 마지막에 추가한다. ")
+    void testAddStationLineLength() {
+        //given
+        String lineName = "1호선";
+        String stationName = "희망역";
+        int sequence = 3;
+
+        //when
+        sectionService.addStation(lineName, stationName, sequence);
+        Section section = sectionService.findByName(lineName);
+
+        //then
+        assertThat(section.getStationsName().get(2)).isEqualTo(stationName);
     }
 }
