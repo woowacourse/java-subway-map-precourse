@@ -73,6 +73,10 @@ public class PrintUtils {
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
     }
 
+    public void printLinesList(){
+        System.out.println("\n## 역 목록");
+    }
+
     public void printCompleteAddLine(){
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.\n");
     }

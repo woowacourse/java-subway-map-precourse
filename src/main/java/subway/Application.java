@@ -194,6 +194,8 @@ public class Application {
         if (LineFunction.ADD.matchMenu(menu)) {
             addLine();
         }
+        if(LineFunction.INQUIRY.matchMenu(menu))
+            inquiryLineList();
     }
 
     private static void addLine() {
@@ -247,6 +249,11 @@ public class Application {
             printUtils.sameTerminalNameError();
         }
         return downboundTerminal(upboundStation);
+    }
+
+    private static void inquiryLineList() {
+        printUtils.printLinesList();
+        lineRepository.printLinesList();
     }
 
     private static void sectionManagementMenu() {

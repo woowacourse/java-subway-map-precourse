@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.utils.PrintUtils;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+    private static final PrintUtils printUtils = new PrintUtils();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -27,5 +29,12 @@ public class LineRepository {
             }
         }
         return false;
+    }
+
+    public static void printLinesList() {
+        for (Line line : lines) {
+            printUtils.printStation(line.getName());
+        }
+        System.out.println("");
     }
 }
