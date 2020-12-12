@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exceptions.DuplicatedStationNameException;
@@ -45,6 +46,8 @@ public class StationController {
         if(!checkIfStationExist(name)){
             throw new StationNotExistException();
         }
+        Station station = StationRepository.getStation(name).get();
+        LineRepository.deleteStationInLines(station);
         StationRepository.deleteStation(name);
     }
 

@@ -20,4 +20,12 @@ public class Line {
     public void addStation(Station station){
         stations.add(station);
     }
+
+    public void removeStation(Station station){
+        stations.remove(station);
+    }
+
+    public boolean containsStation(Station station){
+        return stations.contains(station);
+    }
 }
