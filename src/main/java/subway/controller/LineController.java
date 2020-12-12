@@ -38,7 +38,7 @@ public class LineController {
         OutputView.printInputRegisterValue(LineText.screenName());
         Line line = new Line(inputView.getInputRegisterLine());
         LineRepository.addLine(line);
-        OutputView.printRegisterSuccess();
+        OutputView.printRegisterSuccess(LineText.screenName());
         goBackToMain(inputView);
     }
 

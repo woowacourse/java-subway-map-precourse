@@ -38,14 +38,14 @@ public class StationController {
         OutputView.printInputRegisterValue(StationText.screenName());
         Station station = new Station(inputView.getInputRegisterStation());
         StationRepository.addStation(station);
-        OutputView.printRegisterSuccess();
+        OutputView.printRegisterSuccess(StationText.screenName());
         goBackToMain(inputView);
     }
 
     private void deleteStation(InputView inputView) {
         OutputView.printInputDeleteValue(StationText.screenName());
         if (StationRepository.deleteStation(inputView.getInputDeleteStation())) {
-            OutputView.printDeleteSuccess();
+            OutputView.printDeleteSuccess(StationText.screenName());
         }
         goBackToMain(inputView);
     }
