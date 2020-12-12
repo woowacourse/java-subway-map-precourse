@@ -42,4 +42,16 @@ public class InputUtils {
             return inputStationName();
         }
     }
+
+    public String inputLineName(){
+        try{
+            String lineName = scanner.nextLine();
+            if(!validateUtils.isValidLineName(lineName))
+                throw new IllegalArgumentException();
+            return lineName;
+        }catch(IllegalArgumentException e){
+            printUtils.invalidLineNameError();
+            return inputLineName();
+        }
+    }
 }

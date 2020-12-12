@@ -29,6 +29,14 @@ public class PrintUtils {
         System.out.println("B. 돌아가기\n");
     }
 
+    public void printLineManagementMenu(){
+        System.out.println("\n## 노선 관리 화면");
+        System.out.println("1. 노선 등록");
+        System.out.println("2. 노선 삭제");
+        System.out.println("3. 노선 조회");
+        System.out.println("B. 돌아가기\n");
+    }
+
     public void printAddStationGuide(){
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
     }
@@ -53,6 +61,22 @@ public class PrintUtils {
         System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.\n");
     }
 
+    public void printAddNewLineNameGuide(){
+        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
+    }
+
+    public void printUpboundTerminalNameGuide(){
+        System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+    }
+
+    public void printDownboundTerminalNameGuide(){
+        System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+    }
+
+    public void printCompleteAddLine(){
+        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.\n");
+    }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }
@@ -61,11 +85,23 @@ public class PrintUtils {
         System.out.println("[ERROR] 역의 이름은 2글자 이상 입력해주세요.");
     }
 
+    public void invalidLineNameError(){
+        System.out.println("[ERROR] 노선의 이름은 2글자 이상, '선'으로 끝나게 입력해주세요.");
+    }
+
     public void duplicateStationError(){
         System.out.println("[ERROR] 이미 존재하는 역입니다.");
     }
 
     public void nonExistentStationError(){
         System.out.println("[ERROR] 존재하지 않는 역입니다.");
+    }
+
+    public void duplicateLineError(){
+        System.out.println("[ERROR] 이미 존재하는 노선입니다.");
+    }
+
+    public void sameTerminalNameError(){
+        System.out.println("[ERROR] 상행 종점역과 하행 종점역은 달라야 합니다.");
     }
 }

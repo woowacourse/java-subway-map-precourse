@@ -23,4 +23,14 @@ public class ValidateUtils {
         if(stationName.length()<2)return false;
         return true;
     }
+
+    public boolean isValidLineName(String lineName) {
+        if (lineName.length() < 2) {
+            return false;
+        }
+        if (lineName.charAt(lineName.length() - 1) != '선') {
+            return false;
+        }
+        return true;
+    }
 }
