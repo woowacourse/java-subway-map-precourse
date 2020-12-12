@@ -52,4 +52,9 @@ public class StationServiceImpl implements StationService {
             throw new StationException(ErrorCode.STATION_NOT_FOUND);
         }
     }
+
+    @Override
+    public void removeAll() {
+        stationRepository.removeAll();
+    }
 }

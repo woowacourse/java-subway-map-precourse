@@ -10,4 +10,6 @@ public interface LineRepository {
     Line findByName(String name);
 
     boolean deleteLineByName(String name);
+
+    void removeAll();
 }

@@ -36,4 +36,8 @@ public class MemorySectionRepository {
         }
         return false;
     }
+
+    public void removeAll() {
+        sections.clear();
+    }
 }

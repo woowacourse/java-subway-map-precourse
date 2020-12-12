@@ -22,7 +22,7 @@ public class SectionService {
         this.stationRepository = stationRepository;
     }
 
-    public void addSection(SectionSaveReqDto saveReqDto) {
+    public Section saveSection(SectionSaveReqDto saveReqDto) {
         Line line = Line.of(saveReqDto.getLineName());
         checkExistLine(line.getName());
 
@@ -34,7 +34,12 @@ public class SectionService {
 
         lineRepository.addLine(line);
         Section section = Section.of(line, Stations.of(Arrays.asList(upwardStation, downwardStation)));
-        sectionRepository.addSection(section);
+        return sectionRepository.addSection(section);
+    }
+
+    public Section findByName(String sectionName) {
+        Section findSection = sectionRepository.findByName(sectionName);
+        return findSection;
     }
 
     public void checkUpwardNotFound(String stationName) {
@@ -56,5 +61,10 @@ public class SectionService {
         if (findLine != null) {
             throw new SectionException(ErrorCode.LINE_ALREADY_EXIST);
         }
+    }
+
+    public void removeAll() {
+        sectionRepository.removeAll();
+        lineRepository.removeAll();
     }
 }

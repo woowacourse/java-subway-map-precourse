@@ -13,4 +13,6 @@ public interface StationService {
     void checkExist(String stationName);
 
     void checkNotFound(String stationName);
+
+    void removeAll();
 }

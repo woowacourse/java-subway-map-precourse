@@ -40,4 +40,9 @@ public class MemoryStationRepository implements StationRepository {
         }
         return false;
     }
+
+    @Override
+    public void removeAll() {
+        stations.clear();
+    }
 }

@@ -10,4 +10,6 @@ public interface StationRepository {
     Station findByName(String name);
 
     boolean deleteStationByName(String name);
+
+    void removeAll();
 }

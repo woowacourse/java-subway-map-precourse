@@ -112,7 +112,7 @@ public class StationManageApp {
         String upwardName = getUpwardName(lineView);
         String downWard = getDownwardName(lineView);
 
-        sectionService.addSection(new SectionSaveReqDto(lineName, upwardName, downWard));
+        sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downWard));
 
         outputService.printAfterAdd(lineView);
     }

@@ -40,4 +40,9 @@ public class MemoryLineRepository implements LineRepository {
         }
         return false;
     }
+
+    @Override
+    public void removeAll() {
+        lines.clear();
+    }
 }
