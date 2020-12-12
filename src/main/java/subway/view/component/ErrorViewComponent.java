@@ -6,7 +6,8 @@ public class ErrorViewComponent {
     private static final String duplicatedStationNameComponent = "이미 등록된 역 이름입니다.";
     private static final String stationNotExistComponent = "존재하지 않는 역 이름입니다.";
     private static final String duplicatedLineNameComponent = "이미 등록된 노선 이름입니다.";
-    private static final String duplicatedStartAndEndStationName = "시작점과 도착점이 동일합니다.";
+    private static final String duplicatedStartAndEndStationNameComponent = "시작점과 도착점이 동일합니다.";
+    private static final String lineNotExistComponent = "존재하지 않는 노선 이름입니다.";
 
     public static String getUnselectableFeatureComponent(){
         return errorPrefixComponent + unselectableFeatureComponent;
@@ -24,7 +25,11 @@ public class ErrorViewComponent {
         return errorPrefixComponent + duplicatedLineNameComponent;
     }
 
-    public static String getDuplicatedStartAndEndStationName(){
-        return errorPrefixComponent + duplicatedStartAndEndStationName;
+    public static String getDuplicatedStartAndEndStationNameComponent(){
+        return errorPrefixComponent + duplicatedStartAndEndStationNameComponent;
+    }
+
+    public static String getLineNotExistComponent(){
+        return errorPrefixComponent + lineNotExistComponent;
     }
 }
