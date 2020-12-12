@@ -75,11 +75,7 @@ public class Print {
         System.out.printf(Constant.HASH + Constant.ENTER_TO_DELETE_SECTION + "%n", Constant.STATION);
     }
 
-    public static void addSectionDoneMessage() {
-        System.out.printf(Constant.INFO + Constant.SECTION_DONE_MESSAGE + "%n", Constant.ADD);
-    }
-
-    public static void deleteSectionDoneMessage() {
-        System.out.printf(Constant.INFO + Constant.SECTION_DONE_MESSAGE + "%n", Constant.DELETE);
+    public static void addOrDeleteSectionDoneMessage(String addOrDelete) {
+        System.out.printf(Constant.INFO + Constant.SECTION_DONE_MESSAGE + "%n", addOrDelete);
     }
 }
