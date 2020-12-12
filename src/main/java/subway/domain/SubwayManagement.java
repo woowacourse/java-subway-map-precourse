@@ -2,12 +2,9 @@ package subway.domain;
 
 public class SubwayManagement {
 
-    private final User user;
-    private final StationRepository stationRepository;
-
-    public SubwayManagement(User user, StationRepository stationRepository) {
+    private User user;
+    public SubwayManagement(User user) {
         this.user = user;
-        this.stationRepository = stationRepository;
     }
 
     public void start() {
@@ -37,7 +34,24 @@ public class SubwayManagement {
     }
 
     private void stationManagementFunction(String select) {
+        if (select.equals(Constants.FUNCTION_1)) {
 
+        }
+        if (select.equals(Constants.FUNCTION_2)) {
+
+        }
+        if (select.equals(Constants.FUNCTION_3)) {
+
+        }
+        if (select.equals(Constants.FUNCTION_B)) {
+
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private void addStation(){
+        printScreen.printInputStationName();
+        StationRepository.addStation(new Station(user.getInput()));
     }
 
     private void lineManagementFunction() {
