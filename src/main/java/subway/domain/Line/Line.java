@@ -43,10 +43,8 @@ public class Line implements Comparable<Line> {
     }
 
     private void setStations(Station start, Station end) {
-        start.addLine(this);
-        stations.add(start);
-        end.addLine(this);
-        stations.add(end);
+        addStation(start);
+        addStation(end);
     }
 
     public List<Station> getStations() {
@@ -54,11 +52,11 @@ public class Line implements Comparable<Line> {
     }
 
     public void addStation(Station station) {
-
         if (isContains(station)) {
             throw new AlreadyAddStationException(station);
         }
         stations.add(station);
+        station.addLine(this);
     }
 
 
