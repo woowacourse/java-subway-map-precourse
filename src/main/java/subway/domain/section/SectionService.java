@@ -74,4 +74,13 @@ public class SectionService {
         sectionRepository.removeAll();
         lineRepository.removeAll();
     }
+
+    public boolean deleteByName(String lineName) {
+        boolean isSectionDelete = sectionRepository.deleteLineByName(lineName);
+        if (isSectionDelete) {
+            lineRepository.deleteLineByName(lineName);
+            return true;
+        }
+        return false;
+    }
 }

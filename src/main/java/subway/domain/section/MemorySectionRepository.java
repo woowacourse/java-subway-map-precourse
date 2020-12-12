@@ -1,5 +1,8 @@
 package subway.domain.section;
 
+import subway.exception.ErrorCode;
+import subway.exception.SectionException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,6 +29,9 @@ public class MemorySectionRepository {
 
     public Section findByName(String lineName) {
         Section section = sections.get(lineName);
+        if (section == null) {
+            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
+        }
         return section;
     }
 
@@ -34,7 +40,7 @@ public class MemorySectionRepository {
             sections.remove(lineName);
             return true;
         }
-        return false;
+        throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
     }
 
     public void removeAll() {

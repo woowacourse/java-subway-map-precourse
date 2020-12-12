@@ -116,9 +116,16 @@ public class StationManageApp {
             addSection(lineView);
         }
         if (manageRouteOption == InputService.DELETE) {
+            deleteSection(lineView);
         }
         if (manageRouteOption == InputService.FIND) {
         }
+    }
+
+    private void deleteSection(LineView lineView) {
+        outputService.printDelete(lineView);
+        String lineNAme = getName();
+        sectionService.deleteByName(lineNAme);
     }
 
     private void addSection(LineView lineView) {

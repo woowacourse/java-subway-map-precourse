@@ -1,5 +1,8 @@
 package subway.domain.line;
 
+import subway.exception.ErrorCode;
+import subway.exception.LineException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,7 +41,7 @@ public class MemoryLineRepository implements LineRepository {
             lines.remove(name);
             return true;
         }
-        return false;
+        throw new LineException(ErrorCode.LINE_NOT_EXIST);
     }
 
     @Override

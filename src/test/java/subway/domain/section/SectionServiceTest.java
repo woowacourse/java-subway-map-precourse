@@ -115,4 +115,32 @@ class SectionServiceTest {
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_SAME_STATION_NAME.getMessage());
     }
+
+    @Test
+    @DisplayName("등룍된 노선 삭제")
+    void testDelete() {
+        //given
+        String lineName = "1호선";
+
+        //when
+        boolean isDelete = sectionService.deleteByName(lineName);
+
+        //then
+        assertThat(isDelete).isEqualTo(true);
+        assertThatThrownBy(()-> sectionService.findByName(lineName))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
+    }
+
+    @Test
+    @DisplayName("등록되지 않은 노선을 삭제할 시 에러가 발생한다.")
+    void testDeleteError() {
+        //given
+        String lineName = "2호선";
+
+        //then
+        assertThatThrownBy(()-> sectionService.deleteByName(lineName))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
+    }
 }
