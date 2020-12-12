@@ -47,11 +47,11 @@ public class Application {
     }
 
     private static void validateMainFunctionNumber(String mainFunctionNumber) {
-        if (mainFunctionNumber != "1"
-            && mainFunctionNumber != "2"
-            && mainFunctionNumber != "3"
-            && mainFunctionNumber != "4"
-            && mainFunctionNumber != "Q"
+        if (!mainFunctionNumber.equals("1")
+            && !mainFunctionNumber.equals("2")
+            && !mainFunctionNumber.equals("3")
+            && !mainFunctionNumber.equals("4")
+            && !mainFunctionNumber.equals("Q")
         ) {
             throw new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다.");
         }
