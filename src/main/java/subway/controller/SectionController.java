@@ -31,7 +31,7 @@ public class SectionController {
 
     public static void deleteSection() {
         try {
-            tryToAddSection();
+            tryToDeleteSection();
             backToMainMenu();
         } catch (Exception exception) {
             catchError(exception);
