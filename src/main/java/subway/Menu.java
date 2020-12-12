@@ -1,15 +1,32 @@
 package subway;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class Menu {
-    static final int ITEM_LENGTH = 4;
-    static final String QUIT = "Q. 종료";
-    String[] itemList = {"역 관리", "노선 관리", "구간 관리", "지하철 노선도 출력"};
-    
-    public static void main() {
-        
+    private String title;
+    private List<String> itemList;
+
+    public Menu(String title, List<String> itemList) {
+        this.title = title;
+        this.itemList = itemList;
     }
 
-    public static void print() {
+    public void load(Scanner scanner) {
+        printMenu();
+        printInputMessage();
+        String nextPage = scanner.next();
+    }
 
+    public void printMenu() {
+        System.out.println(Constant.HEAD_HASH + this.title);
+        for (int i = 0; i < this.itemList.size(); i++) {
+            System.out.println(this.itemList.get(i));
+        }
+    }
+
+    public void printInputMessage() {
+        System.out.println();
+        System.out.println(Constant.CHOOSE_FUNCTION);
     }
 }
