@@ -40,7 +40,9 @@ public class RegisterAction extends Action {
     }
 
     private void printSuccessMessage() {
-        System.out.println(CommonMessage.INFO + CommonMessage.SPACE + ActionMessage.SUCCESS_REGISTER_SUBWAY + CommonMessage.SPACE + category + ActionMessage.SUCCESS_REGISTER_POSTPOSITION + CommonMessage.SPACE + ActionMessage.SUCCESS_REGISTER_END);
+        System.out.println(CommonMessage.INFO + CommonMessage.SPACE + ActionMessage.SUCCESS_REGISTER_SUBWAY
+                + CommonMessage.SPACE + category + ActionMessage.SUCCESS_REGISTER_POSTPOSITION + CommonMessage.SPACE
+                + ActionMessage.SUCCESS_REGISTER_END);
         System.out.println();
     }
 }
