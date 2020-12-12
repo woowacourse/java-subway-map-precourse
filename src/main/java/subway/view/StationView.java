@@ -1,13 +1,25 @@
 package subway.view;
 
+import java.util.Arrays;
+import java.util.List;
 import subway.controller.StationController;
 import subway.domain.Station;
+import subway.message.Message;
+import subway.message.Output;
 
 /**
  * @author yhh1056
  * @since 2020/12/11
  */
 public class StationView {
+    private static final List<String> STATION_PAGE = Arrays.asList(
+            "\n## 역 관리 화면",
+            "1. 역 등록",
+            "2. 역 삭제",
+            "3. 역 조회",
+            "B. 돌아가기",
+            "\n## 원하는 기능을 선택하세요.");
+
     private final Input input;
     private final StationController stationController;
 
@@ -16,7 +28,8 @@ public class StationView {
         this.stationController = new StationController();
     }
 
-    public void selectStationMenu(String button) {
+    public void selectStationPage() {
+        String button = inputButton();
         while (!isBack(button)) {
             if (isCreate(button)) {
                 break;
@@ -27,8 +40,14 @@ public class StationView {
             if (isRead(button)) {
                 break;
             }
+            Output.printPage(STATION_PAGE);
             button = input.nextStationButton();
         }
+    }
+
+    private String inputButton() {
+        Output.printPage(STATION_PAGE);
+        return input.nextStationButton();
     }
 
     private boolean isBack(String button) {

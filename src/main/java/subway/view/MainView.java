@@ -1,10 +1,24 @@
 package subway.view;
 
+import java.util.Arrays;
+import java.util.List;
+import subway.message.Message;
+import subway.message.Output;
+
 /**
  * @author yhh1056
  * @since 2020/12/11
  */
 public class MainView {
+    private static final List<String> MAIN_PAGE = Arrays.asList(
+            "## 메인 화면",
+            "1. 역 관리",
+            "2. 노선 관리",
+            "3. 구간 관리",
+            "4. 지하철 노선도 출력",
+            "Q. 종료",
+            "\n## 원하는 기능을 선택하세요.");
+
     private final Input input;
     private final StationView stationView;
     private final LineView lineView;
@@ -19,51 +33,51 @@ public class MainView {
         this.subwayLineView = new SubwayLineView();
     }
 
-    public void selectMainMenu() {
-        Message.printMainMenu();
-        selectMenu(input.nextMainButton());
+    public void selectMainPage() {
+        Output.printPage(MAIN_PAGE);
+        selectPage(input.nextMainButton());
     }
 
-    private void selectMenu(final String button) {
+    private void selectPage(final String button) {
         if (isEnd(button)) {
             return;
         }
-        selectStationMenu(button);
-        selectLineMenu(button);
-        selectSectionMenu(button);
-        selectSubwayLineMenu(button);
+        selectStationPage(button);
+        selectLinePage(button);
+        selectSectionPage(button);
+        selectSubwayLinePage(button);
 
-        loopMainMenu();
+        loopMainPage();
     }
 
     private boolean isEnd(String button) {
         return button.equals(Button.END);
     }
 
-    private void loopMainMenu() {
+    private void loopMainPage() {
         Message.printLine();
-        selectMainMenu();
+        selectMainPage();
     }
 
-    private void selectStationMenu(final String button) {
+    private void selectStationPage(final String button) {
         if (button.equals(Button.ONE)) {
-            stationView.selectStationMenu(input.nextStationButton());
+            stationView.selectStationPage();
         }
     }
 
-    private void selectLineMenu(final String button) {
+    private void selectLinePage(final String button) {
         if (button.equals(Button.TWO)) {
-            lineView.selectLineMenu();
+            lineView.selectLinePage();
         }
     }
 
-    private void selectSectionMenu(final String button) {
+    private void selectSectionPage(final String button) {
         if (button.equals(Button.THREE)) {
-            sectionView.selectSectionMenu();
+            sectionView.selectSectionPage();
         }
     }
 
-    private void selectSubwayLineMenu(final String button) {
+    private void selectSubwayLinePage(final String button) {
         if (button.equals(Button.FOUR)) {
             subwayLineView.showSubwayLine();
         }

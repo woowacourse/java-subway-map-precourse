@@ -21,6 +21,6 @@ public class SubwayApplication {
     }
 
     public void run() {
-        mainView.selectMainMenu();
+        mainView.selectMainPage();
     }
 }

@@ -1,22 +1,34 @@
 package subway.view;
 
+import java.util.Arrays;
+import java.util.List;
+import subway.message.Output;
+
 /**
  * @author yhh1056
  * @since 2020/12/11
  */
 public class LineView {
+    private static final List<String> LINE_PAGE = Arrays.asList(
+            "\n## 노선 관리 화면",
+            "1. 노선 등록",
+            "2. 노선 삭제",
+            "3. 노선 조회",
+            "B. 돌아가기",
+            "\n## 원하는 기능을 선택하세요.");
+
     private final Input input;
 
     public LineView(final Input input) {
         this.input = input;
     }
 
-    public void selectLineMenu() {
-        Message.printLineMenu();
-        selectMenu(input.nextLineButton());
+    public void selectLinePage() {
+        Output.printPage(LINE_PAGE);
+        selectPage(input.nextLineButton());
     }
 
-    private void selectMenu(final String button) {
+    private void selectPage(final String button) {
         if (isBack(button)) {
             return;
         }

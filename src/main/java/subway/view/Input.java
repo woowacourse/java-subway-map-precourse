@@ -1,6 +1,8 @@
 package subway.view;
 
 import java.util.Scanner;
+import subway.message.Message;
+import subway.message.Output;
 
 /**
  * @author yhh1056
@@ -11,6 +13,7 @@ public class Input {
     private static final String REPLACEMENT = "";
     private static final int STATION_NAME_LENGTH = 2;
     private static final String STATION_END_NAME = "역";
+    private static final String SELECT_FEATURE = "\n## 원하는 기능을 선택하세요.";
 
     private final Scanner scanner;
 
@@ -24,18 +27,17 @@ public class Input {
             return button;
         }
         Message.printError();
-        Message.printSelectFeature();
+        Output.printLine(SELECT_FEATURE);
         return nextMainButton();
     }
 
     public String nextStationButton() {
-        Message.printStatinMenu();
         String button = toUpperNextLine();
         if (Button.containsStationButtons(button)) {
             return button;
         }
         Message.printError();
-        Message.printSelectFeature();
+        Output.printLine(SELECT_FEATURE);
         return nextStationButton();
     }
 
@@ -45,7 +47,7 @@ public class Input {
             return button;
         }
         Message.printError();
-        Message.printSelectFeature();
+        Output.printLine(SELECT_FEATURE);
         return nextLineButton();
     }
 
@@ -55,7 +57,7 @@ public class Input {
             return button;
         }
         Message.printError();
-        Message.printSelectFeature();
+        Output.printLine(SELECT_FEATURE);
         return nextSectionButton();
     }
 
