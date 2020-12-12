@@ -8,6 +8,10 @@ import java.util.Scanner;
 import subway.domain.menu.constant.ActionType;
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
+import subway.domain.menu.submenu.action.Action;
+import subway.domain.menu.submenu.action.DeleteAction;
+import subway.domain.menu.submenu.action.RegisterAction;
+import subway.domain.menu.submenu.action.ViewAction;
 
 public class SubMenu {
     protected String category;
@@ -18,30 +22,24 @@ public class SubMenu {
     protected static final char VIEW_SEL = '3';
     protected static final char BACK_SEL = 'B';
     protected static final String BACK = "돌아가기";
-    private static final int REMOVE_ITEM = 2;
-    protected List<String> selMenuList;
+    private List<Action> actionList;
     private final Scanner scanner;
 
     public SubMenu(char order, String category, Scanner scanner) {
         this.order = order;
         this.category = category;
-        selMenuList = new ArrayList<>();
-        createSelMenuList();
+        makeActionList();
         this.scanner = scanner;
     }
 
-    public void createSelMenuList() {
-        selMenuList.addAll(Arrays.asList(
-                (REGISTER_SEL + CommonMessage.PUNCTUATION + CommonMessage.SPACE + category + CommonMessage.SPACE
-                        + ActionType.REGISTER),
-                (DELETE_SEL + CommonMessage.PUNCTUATION + CommonMessage.SPACE + category + CommonMessage.SPACE
-                        + ActionType.DELETE),
-                (VIEW_SEL + CommonMessage.PUNCTUATION + CommonMessage.SPACE + category + CommonMessage.SPACE
-                        + ActionType.VIEW),
-                (BACK_SEL + CommonMessage.PUNCTUATION + CommonMessage.SPACE + BACK)));
+    public void makeActionList() {
+        actionList = new ArrayList<>();
+        actionList.addAll(Arrays.asList(new RegisterAction(REGISTER_SEL, category, ActionType.MANAGE),
+                new DeleteAction(DELETE_SEL, category, ActionType.DELETE),
+                new ViewAction(VIEW_SEL, category, ActionType.VIEW)));
 
         if (category.equals(CategoryType.SECTION)) {
-            selMenuList.remove(REMOVE_ITEM);
+            actionList.remove(actionList.size() - 1);
         }
     }
 
@@ -74,7 +72,8 @@ public class SubMenu {
 
     public void printSubMenu() {
         System.out.println(getTitle());
-        selMenuList.stream().forEach(menu -> System.out.println(menu));
+        actionList.stream().forEach(menu -> System.out.println(menu.getActionMessage()));
+        System.out.println(BACK_SEL + CommonMessage.PUNCTUATION + CommonMessage.SPACE + BACK);
         System.out.println();
     }
 
