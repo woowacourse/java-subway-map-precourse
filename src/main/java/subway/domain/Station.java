@@ -14,11 +14,10 @@ public class Station {
         return name;
     }
 
-    public static String validateLength(String userInput) {
-        if (userInput.length() >= 2) {
-            return userInput;
+    private void validateLength(String userInput) {
+        if (!(userInput.length() >= 2)) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 
     @Override

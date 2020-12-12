@@ -1,6 +1,6 @@
 package subway.view;
 
-public class MainScreen implements Screen{
+public class MainScreen implements Screen {
 
     @Override
     public void start() {
@@ -11,19 +11,19 @@ public class MainScreen implements Screen{
                 "4. 지하철 노선도 출력\n" +
                 "Q. 종료\n");
 
-        int userInput = InputUtils.createUserSelectionInput(4,"Q");
+        int userInput = InputUtils.createUserSelectionInput(4, "Q");
 
-        if(userInput == 1){
+        if (userInput == 1) {
             StationManagementScreen stationManagementScreen = new StationManagementScreen();
             stationManagementScreen.start();
             return;
         }
-        if(userInput == 2){
+        if (userInput == 2) {
             LineManagementScreen lineManagementScreen = new LineManagementScreen();
             lineManagementScreen.start();
             return;
         }
-        if(userInput == 3){
+        if (userInput == 3) {
             SectionManagementScreen sectionManagementScreen = new SectionManagementScreen();
             sectionManagementScreen.start();
             return;

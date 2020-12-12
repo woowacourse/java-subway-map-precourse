@@ -6,17 +6,20 @@ public class InputUtils {
     static Scanner scanner = new Scanner(System.in);
 
     public static Integer createUserSelectionInput(int endInclusive, String returnOption) {
-        System.out.println("## 원하는 기능을 선택하세요.");
-        try {
-            return validateUserSelectionInput(scanner.nextLine(), endInclusive, returnOption);
-        } catch (IllegalArgumentException e) {
-            System.err.println("[ERROR] 선택할 수 없는 기능입니다.");
-            createUserSelectionInput(endInclusive, returnOption);
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            System.out.println("## 원하는 기능을 선택하세요.");
+            try {
+                return validateUserSelectionInput(getUserInput(), endInclusive, returnOption);
+            } catch (IllegalArgumentException e) {
+                System.err.println("[ERROR] 선택할 수 없는 기능입니다.");
+                isValidInput = false;
+            }
         }
         return null;
     }
 
-    public static String createUserStationInput() {
+    public static String getUserInput() {
         return scanner.nextLine();
     }
 

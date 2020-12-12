@@ -12,18 +12,36 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if(stations.contains(station)){
+        if (stations.contains(station)) {
             throw new IllegalArgumentException();
         }
         stations.add(station);
     }
 
+    public static boolean contains(Station checkStation) {
+        for (Station station : stations) {
+            if (station.equals(checkStation)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Station findStation(String name) {
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
+                return station;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
     public static boolean deleteStation(String name) {
-        if (stations.isEmpty()){
+        if (stations.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        for(Station station : stations){
-            if(station.getName().equals(name)){
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
                 stations.remove(station);
                 return true;
             }
@@ -31,8 +49,8 @@ public class StationRepository {
         throw new IllegalArgumentException();
     }
 
-    public static void printStations(){
-        for(Station station : stations){
+    public static void printStations() {
+        for (Station station : stations) {
             System.out.println("[INFO] " + station.getName());
         }
     }
