@@ -28,17 +28,17 @@ public class InputView {
         String stationName = input(STATION_NAME_QUESTION, StationNameValidator.class);
 
         if (!stationName.endsWith(StationNameValidator.STATION_SUFFIX)) {
-            stationName+= StationNameValidator.STATION_SUFFIX;
+            stationName += StationNameValidator.STATION_SUFFIX;
         }
 
         return stationName;
     }
-    
+
     public String inputLineName() {
         String lineName = input(LINE_NAME_QUESTION, LineNameValidator.class);
 
         if (!lineName.endsWith(LineNameValidator.LINE_SUFFIX)) {
-            lineName+= LineNameValidator.LINE_SUFFIX;
+            lineName += LineNameValidator.LINE_SUFFIX;
         }
 
         return lineName;
