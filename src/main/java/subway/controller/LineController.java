@@ -6,21 +6,49 @@ import subway.view.text.LineText;
 
 public class LineController {
     private static String CONTROLLER_INDEX = "2";
+    private static String RESISTER_INDEX = "1";
+    private static String DELETE_INDEX = "2";
+    private static String LOOK_UP_INDEX = "3";
 
-    private LineController() {
-    }
-
-    public static void run(InputView inputView) {
+    public void run(InputView inputView) {
         OutputView.printFunctionTitle(LineText.getFunctionTitle());
         OutputView.printFunctionList(LineText.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView.getInputFunctionIndex(LineText.getFunctionIndexList()));
+        callFunction(inputView.getInputFunctionIndex(LineText.getFunctionIndexList()));
     }
 
-    private static void shiftFunctionScreen(String functionIndex) {
+    private void callFunction(String functionIndex) {
+        if (functionIndex.equals(RESISTER_INDEX)) {
+            registerLine();
+        }
+        if (functionIndex.equals(DELETE_INDEX)) {
+            deleteLine();
+        }
+        if (functionIndex.equals(LOOK_UP_INDEX)) {
+            lookUpLine();
+        }
+        if (functionIndex.equals(MainController.getControllerIndex())) {
+            goBackToMain();
+        }
     }
 
-    public static String getControllerIndex() {
+    private void registerLine() {
+
+    }
+
+    private void deleteLine() {
+
+    }
+
+    private void lookUpLine() {
+
+    }
+
+    private void goBackToMain() {
+
+    }
+
+    public String getControllerIndex() {
         return CONTROLLER_INDEX;
     }
 }

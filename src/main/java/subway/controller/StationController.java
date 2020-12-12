@@ -6,21 +6,49 @@ import subway.view.text.StationText;
 
 public class StationController {
     private static String CONTROLLER_INDEX = "1";
+    private static String RESISTER_INDEX = "1";
+    private static String DELETE_INDEX = "2";
+    private static String LOOK_UP_INDEX = "3";
 
-    private StationController() {
-    }
-
-    public static void run(InputView inputView) {
+    public void run(InputView inputView) {
         OutputView.printFunctionTitle(StationText.getFunctionTitle());
         OutputView.printFunctionList(StationText.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView.getInputFunctionIndex(StationText.getFunctionIndexList()));
+        callFunction(inputView, inputView.getInputFunctionIndex(StationText.getFunctionIndexList()));
     }
 
-    private static void shiftFunctionScreen(String functionIndex) {
+    private void callFunction(InputView inputView, String functionIndex) {
+        if (functionIndex.equals(RESISTER_INDEX)) {
+            registerStation(inputView);
+        }
+        if (functionIndex.equals(DELETE_INDEX)) {
+            deleteStation(inputView);
+        }
+        if (functionIndex.equals(LOOK_UP_INDEX)) {
+            lookUpStation(inputView);
+        }
+        if (functionIndex.equals(MainController.getControllerIndex())) {
+            goBackToMain();
+        }
     }
 
-    public static String getControllerIndex() {
+    private void registerStation(InputView inputView) {
+        OutputView.printInputRegisterStation();
+    }
+
+    private void deleteStation(InputView inputView) {
+
+    }
+
+    private void lookUpStation(InputView inputView) {
+
+    }
+
+    private void goBackToMain() {
+
+    }
+
+    public String getControllerIndex() {
         return CONTROLLER_INDEX;
     }
 }
