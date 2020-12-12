@@ -1,5 +1,6 @@
 package subway.manager;
 
+import subway.utils.LogicChecker;
 import subway.utils.UserConsole;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -51,10 +52,7 @@ public class MainManager {
     }
 
     private static void printSubwayMap() throws IllegalArgumentException {
-        if (LineRepository.isEmpty()) {
-            System.out.println("[ERROR] 노선 목록이 비어 있다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfLineRepositoryIsNotEmpty();
         List<Line> lines = LineRepository.lines();
         System.out.println("## 지하철 노선도");
         for (Line line : lines) {

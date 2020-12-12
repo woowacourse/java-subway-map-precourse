@@ -29,7 +29,7 @@ public class LineRepository {
         return lines.size() == 0;
     }
 
-    public static boolean containsLineWithStationName(String lineName, String stationName) {
+    public static boolean containsSpecificLineWithStationName(String lineName, String stationName) {
         Line line = getLineByName(lineName);
         return line.contains(stationName);
     }
@@ -38,22 +38,22 @@ public class LineRepository {
         return lines.stream().filter(line -> line.getName().equals(lineName)).findAny().orElse(null);
     }
 
-    public static boolean containsLineForIndex(String lineName, int index) {
+    public static boolean containsSpecificLineWithCapacityForIndex(String lineName, int index) {
         Line line = getLineByName(lineName);
         return line.size() >= index;
     }
 
-    public static void addStationNameToLine(String lineName, String stationName, int index) {
+    public static void updateLineByAddingStation(String lineName, String stationName, int index) {
         Line line = getLineByName(lineName);
         line.addStationName(index, stationName);
     }
 
-    public static boolean containsLineAboveDeleteLimit(String lineName, int deleteLimit) {
+    public static boolean containsSpecificLineAboveDeleteLimit(String lineName, int deleteLimit) {
         Line line = getLineByName(lineName);
         return line.size() > deleteLimit;
     }
 
-    public static void deleteStationNameFromLine(String lineName, String stationName) {
+    public static void updateLineByDeletingStation(String lineName, String stationName) {
         Line line = getLineByName(lineName);
         line.deleteStationName(stationName);
     }

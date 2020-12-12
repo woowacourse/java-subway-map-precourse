@@ -1,10 +1,9 @@
 package subway.manager;
 
-import subway.utils.UserConsole;
-import subway.domain.Line;
-import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.utils.LogicChecker;
+import subway.utils.UserConsole;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,10 +48,7 @@ public class StationManager {
     }
 
     private static void printStations() throws IllegalArgumentException {
-        if (StationRepository.isEmpty()) {
-            System.out.println("[ERROR] 역 목록이 비어있다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfStationRepositoryIsNotEmpty();
         System.out.println("## 역 목록");
         StationRepository.stations().forEach(station -> System.out.println("[INFO] " + station.getName()));
         System.out.println();
@@ -61,30 +57,16 @@ public class StationManager {
     private static void deleteStation() throws IllegalArgumentException {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
         String stationName = UserConsole.getName();
-        if (!StationRepository.contains(stationName)) {
-            System.out.println("[ERROR] 역이 존재하지 않는다.\n");
-            throw new IllegalArgumentException();
-        }
-        if (isInLines(stationName)) {
-            System.out.println("[ERROR] 노선에 등록되어 있는 역은 지울 수 없다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfStationRepositoryContainsStation(stationName);
+        LogicChecker.checkIfStationIsNotInLines(stationName);
         StationRepository.deleteStation(stationName);
         System.out.println("[INFO] 지하철 역이 삭제되었습니다.\n");
-    }
-
-    private static boolean isInLines(String stationName) {
-        List<Line> lines = LineRepository.lines();
-        return lines.stream().anyMatch(line -> line.contains(stationName));
     }
 
     private static void addStation() throws IllegalArgumentException {
         System.out.println("## 등록할 역 이름을 입력하세요.");
         String stationName = UserConsole.getName();
-        if (StationRepository.contains(stationName)) {
-            System.out.println("[ERROR] 이미 등록되어 있는 이름이다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfStationIsNotInStationRepository(stationName);
         StationRepository.addStation(new Station(stationName));
         System.out.println("[INFO] 지하철 역이 등록되었습니다.\n");
     }

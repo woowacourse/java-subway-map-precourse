@@ -1,14 +1,13 @@
 package subway.manager;
 
-import subway.utils.UserConsole;
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.StationRepository;
+import subway.utils.LogicChecker;
+import subway.utils.UserConsole;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LineManager {
     private static final String ADD_LINE = "1";
@@ -49,10 +48,7 @@ public class LineManager {
     }
 
     private static void printLines() throws IllegalArgumentException {
-        if (LineRepository.isEmpty()) {
-            System.out.println("[ERROR] 노선 목록이 비어있다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfLineRepositoryIsNotEmpty();
         System.out.println("## 노선 목록");
         LineRepository.lines().forEach(line -> System.out.println("[INFO] " + line.getName()));
         System.out.println();
@@ -61,10 +57,7 @@ public class LineManager {
     private static void deleteLine() throws IllegalArgumentException {
         System.out.println("## 삭제할 노선 이름을 입력하세요.");
         String lineName = UserConsole.getName();
-        if (!LineRepository.contains(lineName)) {
-            System.out.println("[ERROR] 노선이 존재하지 않는다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfLineRepositoryContainsLine(lineName);
         LineRepository.deleteLineByName(lineName);
         System.out.println("[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
@@ -80,34 +73,22 @@ public class LineManager {
     private static String getSecondStationName(String firstTerminalStationName) throws IllegalArgumentException {
         System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String stationName = UserConsole.getName();
-        if (firstTerminalStationName.equals(stationName)) {
-            System.out.println("[ERROR] 하행 종점역은 상행 종점역과 같으면 안된다.\n");
-            throw new IllegalArgumentException();
-        }
-        if (!StationRepository.contains(stationName)) {
-            System.out.println("[ERROR] 등록되어 있지 않은 역이다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfStationRepositoryContainsStation(stationName);
+        LogicChecker.checkIfStationsAreDifferent(stationName, firstTerminalStationName);
         return stationName;
     }
 
     private static String getFirstTerminalStationName() throws IllegalArgumentException {
         System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-        String stationlName = UserConsole.getName();
-        if (!StationRepository.contains(stationlName)) {
-            System.out.println("[ERROR] 등록되어 있지 않은 역이다.\n");
-            throw new IllegalArgumentException();
-        }
-        return stationlName;
+        String stationName = UserConsole.getName();
+        LogicChecker.checkIfStationRepositoryContainsStation(stationName);
+        return stationName;
     }
 
     private static Line getNewLine() throws IllegalArgumentException {
         System.out.println("## 등록할 노선 이름을 입력하세요.");
         String lineName = UserConsole.getName();
-        if (LineRepository.contains(lineName)) {
-            System.out.println("[ERROR] 이미 등록되어 있는 이름이다.\n");
-            throw new IllegalArgumentException();
-        }
+        LogicChecker.checkIfLineIsNotInLineRepository(lineName);
         return new Line(lineName);
     }
 }
