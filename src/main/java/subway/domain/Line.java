@@ -38,8 +38,8 @@ public class Line {
         return false;
     }
 
-    public void addStation(String stationName, int order) {
-        int index = order - 1;
+    public void addStation(String stationName, Order order) {
+        int index = order.getOrder() - 1;
         stations.add(index, new Station(stationName));
     }
 

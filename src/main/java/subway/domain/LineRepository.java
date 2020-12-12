@@ -69,7 +69,7 @@ public class LineRepository {
         return false;
     }
 
-    public static void addStation(String lineName, String stationName, int order) {
+    public static void addStation(String lineName, String stationName, Order order) {
         Line line = findByName(lineName);
         line.addStation(stationName, order);
     }
