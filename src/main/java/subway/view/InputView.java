@@ -30,8 +30,7 @@ public class InputView {
     public static Selection getSelection(Selections selections) {
         try{
             String input = getStringWithMessage(MENU_SELECTION);
-            newLine();
-            return selections.searchByValue(input);
+            return selections.searchByValue(input.toUpperCase());
         } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
             return getSelection(selections);
