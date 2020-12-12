@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.LineRepository;
+
 public class MainScreen implements Screen {
 
     @Override
@@ -27,6 +29,11 @@ public class MainScreen implements Screen {
             SectionManagementScreen sectionManagementScreen = new SectionManagementScreen();
             sectionManagementScreen.start();
             return;
+        }
+        if (userInput == 4) {
+            System.out.println("\n## 지하철 노선도");
+            LineRepository.printLinesAndStations();
+            start();
         }
     }
 }

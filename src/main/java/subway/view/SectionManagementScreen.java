@@ -1,6 +1,13 @@
 package subway.view;
 
-public class SectionManagementScreen implements Screen{
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
+
+import java.util.ArrayList;
+
+public class SectionManagementScreen implements Screen {
 
     @Override
     public void start() {
@@ -8,13 +15,77 @@ public class SectionManagementScreen implements Screen{
                 "1. 구간 등록\n" +
                 "2. 구간 삭제\n" +
                 "B. 돌아가기\n");
-        int userInput = InputUtils.createUserSelectionInput(2,"B");
+        int userInput = InputUtils.createUserSelectionInput(2, "B");
 
-        if(userInput == 1){
-
+        if (userInput == 1) {
+            registerNewSection();
         }
-        if(userInput == 2){
-
+        if (userInput == 2) {
+            deleteSection();
         }
+    }
+
+    public void registerNewSection() {
+        System.out.println("\n## 노선을 입력하세요.");
+        try {
+            Line line = LineRepository.findLine(InputUtils.getUserInput());
+            Station station = getStationToAdd();
+            ArrayList<Station> lineStations = line.getLineStations();
+            if (lineStations.contains(station)) {
+                throw new IllegalArgumentException();
+            }
+            int section = getSectionToAdd(lineStations);
+            lineStations.add(section, station);
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("[ERROR] 잘못된 입력입니다.");
+            MainScreen mainScreen = new MainScreen();
+            mainScreen.start();
+            return;
+        }
+        System.out.println("\n[INFO] 구간이 등록되었습니다.");
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.start();
+    }
+
+    public Station getStationToAdd() {
+        System.out.println("\n## 역이름을 입력하세요.");
+        return StationRepository.findStation(InputUtils.getUserInput());
+    }
+
+    public int getSectionToAdd(ArrayList<Station> lineStations) {
+        System.out.println("\n## 순서를 입력하세요.");
+        int section = Integer.parseInt(InputUtils.getUserInput());
+        if (section > lineStations.size() - 1 || section <= 0) {
+            throw new IllegalArgumentException();
+        }
+        return section;
+    }
+
+    public void deleteSection() {
+        System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
+        try {
+            Line line = LineRepository.findLine(InputUtils.getUserInput());
+            Station station = getStationToDelete();
+            ArrayList<Station> lineStations = line.getLineStations();
+            if (!lineStations.contains(station)) {
+                throw new IllegalArgumentException();
+            }
+            lineStations.remove(station);
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("[ERROR] 잘못된 입력입니다.");
+            MainScreen mainScreen = new MainScreen();
+            mainScreen.start();
+            return;
+        }
+        System.out.println("\n[INFO] 구간이 삭제되었습니다.");
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.start();
+    }
+
+    public Station getStationToDelete() {
+        System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
+        return StationRepository.findStation(InputUtils.getUserInput());
     }
 }

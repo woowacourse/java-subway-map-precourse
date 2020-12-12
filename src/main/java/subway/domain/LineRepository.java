@@ -43,4 +43,14 @@ public class LineRepository {
             System.out.println("[INFO] " + line.getName());
         }
     }
+
+    public static void printLinesAndStations() {
+        for (Line line : lines()) {
+            System.out.println("[INFO] " + line.getName() + "\n[INFO] ---");
+            for (Station station : line.getLineStations()) {
+                System.out.println("[INFO] " + station.getName());
+            }
+            System.out.println();
+        }
+    }
 }

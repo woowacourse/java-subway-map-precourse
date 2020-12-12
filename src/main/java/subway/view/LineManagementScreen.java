@@ -33,10 +33,13 @@ public class LineManagementScreen implements Screen {
             LineRepository.deleteLineByName(InputUtils.getUserInput());
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
-        } finally {
             MainScreen mainScreen = new MainScreen();
             mainScreen.start();
+            return;
         }
+        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.start();
     }
 
     public void registerNewLine() {
@@ -50,15 +53,16 @@ public class LineManagementScreen implements Screen {
             registerNewLine();
             return;
         }
+        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
         MainScreen mainScreen = new MainScreen();
         mainScreen.start();
     }
 
     public void initiateLinetations(Line line) {
-        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         Station firstStation = StationRepository.findStation(InputUtils.getUserInput());
 
-        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         Station secondStation = StationRepository.findStation(InputUtils.getUserInput());
 
         line.initiateLineStations(firstStation, secondStation);
