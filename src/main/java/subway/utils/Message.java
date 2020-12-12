@@ -2,6 +2,12 @@ package subway.utils;
 
 public interface Message {
 
+    String DISPLAY_MAIN = "메인화면 \n1. 역 관리\n2. 노선 관리\n3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
+    String DISPLAY_SELECTION = "원하는 기능을 선택하세요.";
+    String DISPLAY_STATION_MANAGEMENT = "역 관리 화면\n1. 역 등록\n2. 역 삭제\n3. 역 조회\nB. 돌아가기";
+    String DISPLAY_LINE_MANAGEMENT = "노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB. 돌아가기";
+    String DISPLAY_SECTION_MANAGEMENT = "구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기";
+
     String ANN_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
     String ANN_REGISTER_LINE = "등록할 노선 이름을 입력하세요.";
     String ANN_REGISTER_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";

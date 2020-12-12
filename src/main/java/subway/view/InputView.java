@@ -9,6 +9,11 @@ public class InputView implements Message {
     private static final Scanner scanner = new Scanner(System.in);
 
 
+    public static String getSelection() {
+        OutputView.displaySelection();
+        return getInput();
+    }
+
     public static String getStationName() {
         OutputView.printAnnouncement(ANN_REGISTER_STATION);
         String name = getInput();
@@ -26,4 +31,5 @@ public class InputView implements Message {
     public static String getInput() {
         return scanner.nextLine().trim();
     }
+
 }

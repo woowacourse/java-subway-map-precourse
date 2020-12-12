@@ -13,6 +13,84 @@ public class SubwayManager implements Message {
 
 
     public void run() {
+        String selection = "";
+        initializeSubway();
+
+        while (!selection.equalsIgnoreCase("Q")) {
+            OutputView.displayMain();
+            selection = InputView.getSelection();
+
+            if (selection.equals("1")) {
+                manageStation();
+            }
+
+            if (selection.equals("2")) {
+                manageLine();
+            }
+
+            if (selection.equals("3")) {
+                manageSection();
+            }
+
+            if (selection.equals("4")) {
+                OutputView.printWholeSection();
+            }
+        }
+    }
+
+    private void manageStation() {
+        String selection = "";
+
+        while (!selection.equals("B")) {
+            OutputView.displayStationManagement();
+            selection = InputView.getSelection();
+
+            if (selection.equals("1")) {
+                registerStation();
+            }
+            if (selection.equals("2")) {
+                deleteStation();
+            }
+            if (selection.equals("3")) {
+                OutputView.printStations();
+            }
+
+        }
+    }
+
+    private void manageLine() {
+        String selection = "";
+
+        while (!selection.equals("B")) {
+            OutputView.displayLineManagement();
+            selection = InputView.getSelection();
+
+            if (selection.equals("1")) {
+                registerLine();
+            }
+            if (selection.equals("2")) {
+                deleteLine();
+            }
+            if (selection.equals("3")) {
+                OutputView.printLines();
+            }
+        }
+    }
+
+    private void manageSection() {
+        String selection = "";
+
+        while (!selection.equals("B")) {
+            OutputView.displaySectionManagement();
+            selection = InputView.getSelection();
+
+            if (selection.equals("1")) {
+                insertStationInLine();
+            }
+            if (selection.equals("2")) {
+                removeStationFromLine();
+            }
+        }
     }
 
     private void initializeSubway() {
@@ -55,19 +133,14 @@ public class SubwayManager implements Message {
         }
     }
 
-    private void registerStation() {
-        Station station = generateStation();
-        StationRepository.addStation(station);
-        OutputView.printInfo(INFO_STATION_REGISTERED);
-    }
 
-    private Station generateStation() {
+    private void registerStation() {
         try {
             String name = InputView.getStationName();
-            return new Station(name);
+            StationRepository.addStation(new Station(name));
+            OutputView.printInfo(INFO_STATION_REGISTERED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return generateStation();
         }
     }
 
@@ -82,21 +155,24 @@ public class SubwayManager implements Message {
         }
     }
 
-    private void registerLine() {
-        Line newLine = generateLine();
-        newLine.addFirst(getFirstStation());
-        newLine.addLast(getLastStation());
-        LineRepository.addLine(newLine);
-        OutputView.printInfo(INFO_LINE_REGISTERED);
-    }
 
-    private Line generateLine() {
+    private void registerLine() {
         try {
             String name = InputView.getLineName();
-            return new Line(name);
+            Line newLine = new Line(name);
+
+            OutputView.printAnnouncement(ANN_REGISTER_FIRST_STATION);
+            Station firstStation = getStation();
+            newLine.addFirst(firstStation);
+
+            OutputView.printAnnouncement(ANN_REGISTER_LAST_STATION);
+            Station lastStation = getStation();
+            newLine.addLast(lastStation);
+
+            LineRepository.addLine(newLine);
+            OutputView.printInfo(INFO_LINE_REGISTERED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return generateLine();
         }
     }
 
@@ -110,26 +186,6 @@ public class SubwayManager implements Message {
         OutputView.printError(ERROR_NOT_REGISTERED_LINE);
     }
 
-    private Station getFirstStation() {
-        OutputView.printAnnouncement(ANN_REGISTER_FIRST_STATION);
-        try {
-            return getStation();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return getFirstStation();
-        }
-    }
-
-    private Station getLastStation() {
-        OutputView.printAnnouncement(ANN_REGISTER_LAST_STATION);
-        try {
-            return getStation();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return getLastStation();
-        }
-    }
-
     private Station getStation() {
         String name = InputView.getInput();
         if (!StationRepository.hasStation(name)) {
@@ -139,24 +195,32 @@ public class SubwayManager implements Message {
     }
 
     private void insertStationInLine() {
-        OutputView.printAnnouncement(ANN_SELECT_LINE);
-        Line line = LineRepository.getLine(InputView.getInput());
-        OutputView.printAnnouncement(ANN_SELECT_STATION);
-        Station station = getStation();
-        OutputView.printAnnouncement(ANN_INPUT_ORDER);
-        int index = Integer.parseInt(InputView.getInput());
-        line.insertStation(index, station);
-        OutputView.printInfo(INFO_SECTION_REGISTERED);
+        try {
+            OutputView.printAnnouncement(ANN_SELECT_LINE);
+            Line line = LineRepository.getLine(InputView.getInput());
+            OutputView.printAnnouncement(ANN_SELECT_STATION);
+            Station station = getStation();
+            OutputView.printAnnouncement(ANN_INPUT_ORDER);
+            int index = Integer.parseInt(InputView.getInput());
+            line.insertStation(index, station);
+            OutputView.printInfo(INFO_SECTION_REGISTERED);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+        }
     }
 
     private void removeStationFromLine() {
-        OutputView.printAnnouncement(ANN_DELETE_SECTION_LINE);
-        Line line = LineRepository.getLine(InputView.getInput());
-        OutputView.printAnnouncement(ANN_DELETE_SECTION_STATION);
-        // TODO : getStation을 StationRepository의 클래스 메서드로 리팩토링
-        Station station = getStation();
-        line.removeStation(station);
-        OutputView.printInfo(INFO_SECTION_DELETED);
+        try {
+            OutputView.printAnnouncement(ANN_DELETE_SECTION_LINE);
+            Line line = LineRepository.getLine(InputView.getInput());
+            OutputView.printAnnouncement(ANN_DELETE_SECTION_STATION);
+            // TODO : getStation을 StationRepository의 클래스 메서드로 리팩토링
+            Station station = getStation();
+            line.removeStation(station);
+            OutputView.printInfo(INFO_SECTION_DELETED);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+        }
     }
 
 }
