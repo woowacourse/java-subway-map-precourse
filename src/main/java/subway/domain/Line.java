@@ -21,10 +21,6 @@ public class Line {
         return new Line(name, Arrays.asList(firstStation, lastStation));
     }
 
-    public static Line getLineByName(String name) {
-        return LineRepository.findByName(name);
-    }
-
     public void save() {
         LineRepository.addLine(this);
     }
