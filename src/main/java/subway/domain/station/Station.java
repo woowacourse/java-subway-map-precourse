@@ -20,6 +20,10 @@ public class Station implements Comparable<Station> {
         return new Station(StationName.of(name));
     }
 
+    public boolean canRemove() {
+        return lines.isEmpty();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
