@@ -3,10 +3,14 @@ package subway.domain;
 import java.util.LinkedList;
 
 public class Line {
-    private String name;
+
+    private static final int FIRST_INDEX = 0;
+    private static final int PREVIOUS_INDEX = -1;
+
+    private final String name;
     private String northboundTerminal;
     private String southboundTerminal;
-    private LinkedList<String> stationsIncludedLine = new LinkedList<String>();
+    private final LinkedList<String> stationsIncludedLine = new LinkedList<String>();
 
     public Line(String name, String northboundTerminal, String southboundTerminal) {
         this.name = name;
@@ -18,14 +22,6 @@ public class Line {
         return name;
     }
 
-    public String getNorthboundTerminal() {
-        return northboundTerminal;
-    }
-
-    public String getSouthboundTerminal() {
-        return southboundTerminal;
-    }
-
     public LinkedList<String> getStationsIncludedLine() {
         return stationsIncludedLine;
     }
@@ -34,8 +30,34 @@ public class Line {
         return stationsIncludedLine.size();
     }
 
-    public void appendStation(String stationName) {
+    public void addOnLine(String stationName) {
         stationsIncludedLine.add(stationName);
+        southboundTerminal = stationName;
+    }
+
+    public void addOnLine(int index, String stationName) {
+        stationsIncludedLine.add(index, stationName);
+        if (index == FIRST_INDEX) {
+            northboundTerminal = stationName;
+            return;
+        }
+        if (index == getLineLength() + PREVIOUS_INDEX) {
+            southboundTerminal = stationName;
+        }
+    }
+
+    public void deleteOnLine(String stationName) {
+        int index = stationsIncludedLine.indexOf(stationName);
+        stationsIncludedLine.remove(stationName);
+        if (index == FIRST_INDEX) {
+            // 인덱스 벗어나지 않는지 검사 필요
+            northboundTerminal = stationsIncludedLine.get(index + 1);
+            return;
+        }
+        if (index == getLineLength() + PREVIOUS_INDEX) {
+            // 인덱스 벗어나지 않는지 검사 필요
+            southboundTerminal = stationsIncludedLine.get(index - 1);
+        }
     }
 
     public boolean includedInSomeStations() {
