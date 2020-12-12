@@ -11,7 +11,7 @@ public class StationService {
             stationName = scanner.next();
         } while (!validateStationName(stationName));
         StationRepository.addStation(new Station(stationName));
-        System.out.println("[INFO] 지하철 역이 등록되었습니다.");
+        System.out.println("[INFO] 지하철 역이 등록되었습니다.\n");
     }
 
     public void deleteStation(Scanner scanner) {
@@ -21,13 +21,13 @@ public class StationService {
             name = scanner.next();
         } while(!checkStationInLine(name));
         if(StationRepository.deleteStation(name)) {
-            System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+            System.out.println("[INFO] 지하철 역이 삭제되었습니다.\n");
         }
     }
 
     public void getStation() {
-        // TODO [INFO] 붙여서 출력하기
-        System.out.println(StationRepository.stations());
+        System.out.println("## 역 목록");
+        StationRepository.stations().forEach(station -> System.out.println("[INFO]" + station.getName()));
     }
 
     private boolean validateStationName(String stationName) {

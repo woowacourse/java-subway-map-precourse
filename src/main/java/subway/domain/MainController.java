@@ -49,6 +49,7 @@ public class MainController implements MenuSelectManager {
         MenuPrinter.printMainMenu();
         String menuInput = scanner.next();
         while(!menuInput.equals(QUIT)) {
+            System.out.println();
             if (menuInput.equals(MANAGE_STATION)) {
                 stationController.forward(scanner);
             }
