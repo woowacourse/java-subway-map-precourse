@@ -1,6 +1,8 @@
 package subway.line;
 
+import subway.line.domain.LineRepository;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class LineController {
     private LineController() {
@@ -16,5 +18,9 @@ public class LineController {
     public static void remove() {
         String name = InputView.getLineNameForRemoval();
         LineService.remove(name);
+    }
+
+    public static void inquire() {
+        OutputView.printLines(LineRepository.findAll());
     }
 }
