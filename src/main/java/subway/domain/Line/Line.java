@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
+public class Line implements Comparable<Line> {
     private LineName name;
     // 추가 기능 구현
     private final List<Station> stations = new LinkedList<>();
@@ -111,4 +111,8 @@ public class Line {
         return stations.size() > MIN_STATION_CAPACITY;
     }
 
+    @Override
+    public int compareTo(Line o) {
+        return name.compareTo(o.name);
+    }
 }

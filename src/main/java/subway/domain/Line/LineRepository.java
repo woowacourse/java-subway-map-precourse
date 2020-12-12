@@ -73,12 +73,17 @@ public class LineRepository {
             throw new AlreadyAddLineException(line.toString());
         }
         lines.add(line);
+        selfSort();
     }
 
     public boolean deleteLineByName(String name) {
         Line line = findBy(name);
         line.clear();
         return lines.remove(line);
+    }
+
+    private static void selfSort() {
+        Collections.sort(lines);
     }
 
 }
