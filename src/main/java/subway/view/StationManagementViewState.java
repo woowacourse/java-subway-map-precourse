@@ -3,6 +3,7 @@ package subway.view;
 import subway.SubwayLineMap;
 import subway.controller.StationController;
 import subway.domain.Station;
+import subway.exceptions.StationNameLengthException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.StationManagementViewComponent;
 
@@ -66,7 +67,7 @@ public class StationManagementViewState extends ViewState{
     private void checkAndRemoveStation(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         if(feature.equals(BTN_DELETE_STATION)){
             printStationRemoveLog();
-            String stationName = getStationName(scanner);
+            String stationName = checkAndGetStationName(scanner);
             printWhiteSpace();
             removeStation(stationName);
             printStationRemoveFinishLog();
@@ -86,6 +87,14 @@ public class StationManagementViewState extends ViewState{
         if(feature.equals(BTN_BACK)){
             switchViewToStationManagement(application);
         }
+    }
+
+    private String checkAndGetStationName(Scanner scanner) throws StationNameLengthException {
+        String stationName = getStationName(scanner);
+        if(stationName.length() < 2){
+            throw new StationNameLengthException();
+        }
+        return stationName;
     }
 
     private String getStationName(Scanner scanner){
