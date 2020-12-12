@@ -23,4 +23,11 @@ class StationRepositoryTest {
         assertNull(findStation);
     }
 
+    @Test
+    @DisplayName("역 이름으로 역을 삭제할 수 있다")
+    public void deleteStationByName() throws Exception{
+        StationRepository.addStation(new Station("bepoz"));
+        assertTrue(StationRepository.deleteStation("bepoz"));
+    }
+
 }
