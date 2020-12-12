@@ -3,12 +3,10 @@ package subway.controller;
 import subway.domain.*;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.StationOutputView;
 
 import static subway.controller.LineFunctionController.PRINT_ERROR_HEAD;
 
 public class SubwayController {
-    private static final String function = "역";
     private final InputView inputView;
 
     public SubwayController(InputView inputView) {

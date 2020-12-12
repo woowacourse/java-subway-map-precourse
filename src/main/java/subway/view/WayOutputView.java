@@ -27,12 +27,12 @@ public class WayOutputView {
 
     public static void printRemoveLine() {
         System.out.println();
-        System.out.println("## 삭제할 구간의 "+"노선 "+"을 입력하세요.");
+        System.out.println("## 삭제할 구간의 "+"노선"+"을 입력하세요.");
     }
 
     public static void printRemoveStation() {
         System.out.println();
-        System.out.println("## 삭제할 구간의 "+"역 "+"을 입력하세요.");
+        System.out.println("## 삭제할 구간의 "+"역"+"을 입력하세요.");
     }
 
 }

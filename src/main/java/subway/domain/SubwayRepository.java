@@ -29,6 +29,13 @@ public class SubwayRepository {
         subway.get(selectedLine).remove(selectedStation);
     }
 
+    public static Station findStationWithLine(Line line, String foundStationName){
+        if(subway.get(line).stream().anyMatch(station -> station.equals(StationRepository.findStationByName(foundStationName)))){
+            return StationRepository.findStationByName(foundStationName);
+        }
+        throw new IllegalArgumentException("노선에 역이 존재하지 않습니다.");
+    }
+
     public static boolean findStationByName(String inputRemoveName) {
         boolean flag = false;
         for(Line line: subway.keySet()){

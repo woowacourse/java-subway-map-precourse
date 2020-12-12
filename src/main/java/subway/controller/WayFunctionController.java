@@ -3,6 +3,7 @@ package subway.controller;
 import subway.domain.*;
 import subway.view.*;
 
+import static subway.controller.LineFunctionController.PRINT_ERROR_HEAD;
 import static subway.domain.LineNameValidator.makeEnrolledLineName;
 import static subway.domain.StationNameValidator.makeEnrolledStationName;
 
@@ -17,24 +18,61 @@ public class WayFunctionController {
     }
 
     private static void enrollWay(InputView inputView, DetailFunctions detailFunction){
-        WayOutputView.printEnrollLine();
-        Line enrolledLine = LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
-        WayOutputView.printEnrollStation();
-        Station enrolledStation = StationRepository.findStationByName(makeEnrolledStationName(inputView.receiveFunctionInfo()));
+        Line enrolledLine = receiveEnrollLine(inputView);
+        Station enrolledStation = receiveEnrollStation(inputView);
         WayOutputView.printOrder();
         SubwayRepository.addLineStationSpecificPlace(enrolledLine, enrolledStation, OrderValidator.makeValidOrder(inputView.receiveFunctionInfo()));
         WayOutputView.printSuccess(detailFunction);
         OutputView.printOneLine();
     }
 
+    private static Line receiveEnrollLine(InputView inputView) {
+        try{
+            WayOutputView.printEnrollLine();
+            return LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
+        }catch (IllegalArgumentException e){
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage());
+            return receiveEnrollLine(inputView);
+        }
+    }
+
+    private static Station receiveEnrollStation(InputView inputView) {
+        try{
+            WayOutputView.printEnrollStation();
+            return StationRepository.findStationByName(makeEnrolledStationName(inputView.receiveFunctionInfo()));
+        }catch (IllegalArgumentException e){
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage());
+            return receiveEnrollStation(inputView);
+        }
+    }
+
     private static void removeWay(InputView inputView, DetailFunctions detailFunction) {
-        WayOutputView.printRemoveLine();
-        Line selectedLine = LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
-        WayOutputView.printRemoveStation();
-        Station selectedStation = StationRepository.findStationByName(makeEnrolledStationName(inputView.receiveFunctionInfo()));
+        Line selectedLine = receiveRemoveLine(inputView);
+        Station selectedStation = receiveRemoveStation(inputView, selectedLine);
         WayOutputView.printOrder();
         SubwayRepository.deleteStationFromLine(selectedLine, selectedStation);
         WayOutputView.printSuccess(detailFunction);
         OutputView.printOneLine();
     }
+
+    private static Line receiveRemoveLine(InputView inputView) {
+        try{
+            WayOutputView.printRemoveLine();
+            return LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
+        }catch (IllegalArgumentException e){
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage());
+            return receiveRemoveLine(inputView);
+        }
+    }
+
+    private static Station receiveRemoveStation(InputView inputView, Line selectedLine) {
+        try{
+            WayOutputView.printRemoveStation();
+            return SubwayRepository.findStationWithLine(selectedLine, inputView.receiveFunctionInfo());
+        }catch (IllegalArgumentException e){
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage());
+            return receiveRemoveStation(inputView, selectedLine);
+        }
+    }
+
 }
