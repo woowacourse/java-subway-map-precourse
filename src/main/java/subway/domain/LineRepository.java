@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class LineRepository {
 
@@ -36,7 +37,7 @@ public class LineRepository {
         return this;
     }
 
-    public LineRepository deleteLine(final String lineName) {
+    public LineRepository removeLine(final String lineName) {
         boolean removed = lines.removeIf(line -> Objects.equals(line.getName(), lineName));
 
         if (!removed) {
@@ -57,6 +58,10 @@ public class LineRepository {
 
     public boolean contains(final String stationName) {
         return lines.stream().anyMatch(line -> line.contains(stationName));
+    }
+
+    public List<String> lineNames() {
+        return lines.stream().map(Line::getName).collect(Collectors.toList());
     }
 
     private LineRepository perform(final String lineName, final Function<Line, Line> lineFunction) {

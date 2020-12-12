@@ -2,6 +2,7 @@ package subway.view;
 
 import java.io.PrintStream;
 
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class OutputView {
@@ -18,8 +19,24 @@ public class OutputView {
 
     public static final String LINE_SAVED = "지하철 노선이 등록되었습니다.";
 
+    public static final String LINE_REMOVED = "지하철 노선이 삭제되었습니다.";
+
+    public static final String LINE_LIST = "노선 목록";
+
     public void printLineSaved() {
         printSuccessMessage(LINE_SAVED);
+    }
+
+    public void printLineRemoved() {
+        printSuccessMessage(STATION_REMOVED);
+    }
+
+    public void printLines(LineRepository lineRepository) {
+        System.out.printf("%s %s", TITLE_PREFIX, LINE_LIST);
+
+        for (String lineName : lineRepository.lineNames()) {
+            printSuccessMessage(lineName);
+        }
     }
 
     public void printStationSaved() {
@@ -38,7 +55,7 @@ public class OutputView {
         }
     }
 
-    private PrintStream printSuccessMessage(String message) {
-        return System.out.printf("%s %s", SUCCESS_PREFIX, message);
+    private void printSuccessMessage(String message) {
+        System.out.printf("%s %s", SUCCESS_PREFIX, message);
     }
 }

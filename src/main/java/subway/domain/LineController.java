@@ -26,4 +26,16 @@ public class LineController {
 
         outputView.printLineSaved();
     }
+
+    public void remove() {
+        String lineName = inputView.inputLineName();
+
+        lineRepository.removeLine(lineName);
+
+        outputView.printStationRemoved();
+    }
+
+    public void load() {
+        outputView.printLines(lineRepository);
+    }
 }

@@ -28,7 +28,7 @@ public class DeleteStationTest {
     public void deleteStation_ExistLine_EmptyLines() {
 
         // when
-        LineRepository newLineRepository = lineRepository.deleteLine("1호선");
+        LineRepository newLineRepository = lineRepository.removeLine("1호선");
 
         //then
         assertThat(newLineRepository.lines().isEmpty()).isTrue();
@@ -40,7 +40,7 @@ public class DeleteStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.deleteLine("신분당선");
+                () -> lineRepository.removeLine("신분당선");
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
