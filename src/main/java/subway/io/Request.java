@@ -58,9 +58,70 @@ public class Request {
         return input;
     }
 
+    public boolean requestLineRemoval() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidLineRemoval(input);
+        if (error != Error.OK) {
+            printError(error);
+            return false;
+        }
+        LineRepository.deleteLineByName(input);
+        return true;
+    }
+
     public String requestTerminatingStation() {
         String input = getInput();
         Error error = ExceptionManager.checkValidTerminatingStation(input);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestLineOfSectionRegister() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidLineOfSectionRegister(input);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestStationOfSectionRegister(String lineName) {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidStationOfSectionRegister(input, lineName);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestIndexOfSectionRegister(String lineName) {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidIndexOfSectionRegister(input, lineName);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestLineOfSectionRemoval() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidLineOfSectionRemoval(input);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestStationOfSectionRemoval(String lineName) {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidStationOfSectoinRemoval(input, lineName);
         if (error != Error.OK) {
             printError(error);
             return null;
@@ -75,36 +136,6 @@ public class Request {
             return false;
         }
         return true;
-    }
-
-    public String requestLineOfSection() {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidLineOfSection(input);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestStationOfSection(String lineName) {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidStationOfSection(input, lineName);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestIndexOfSection(String lineName) {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidIndexOfSection(input, lineName);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
     }
 
     public boolean isAccessibleLineRepository() {
@@ -123,17 +154,6 @@ public class Request {
             printError(error);
             return false;
         }
-        return true;
-    }
-
-    public boolean requestLineRemoval() {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidLineRemoval(input);
-        if (error != Error.OK) {
-            printError(error);
-            return false;
-        }
-        LineRepository.deleteLineByName(input);
         return true;
     }
 

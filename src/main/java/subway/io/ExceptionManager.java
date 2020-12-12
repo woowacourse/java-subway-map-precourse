@@ -6,8 +6,9 @@ import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class ExceptionManager {
-    private static int MINIMUM_STATION_NAME_LENGTH = 2;
-    private static int MINIMUM_LINE_NAME_LENGTH = 2;
+    private static final int MINIMUM_STATION_NAME_LENGTH = 2;
+    private static final int MINIMUM_LINE_NAME_LENGTH = 2;
+    private static final int MINIMUM_STATION_NUMBER_IN_LINE = 2;
 
     public enum Error {
         OK("에러가 발생하지 않았습니다."),
@@ -21,7 +22,9 @@ public class ExceptionManager {
         SAME_TERMINATING_STATION("하나의 역이 한 노선의 두 개의 종점이 될 수 없습니다."),
         EXISTENT_STATION_IN_LINE("이미 노선에 해당 역이 존재합니다."),
         INVALID_NUMBER_TYPE("순서는 숫자입니다."),
-        INVALID_STATION_INDEX("해당 위치에는 구간을 추가할 수 없습니다.");
+        INVALID_STATION_INDEX("해당 위치에는 구간을 추가할 수 없습니다."),
+        NON_EXISTENT_STATION_IN_LINE("노선에 해당 역이 존재하지 않습니다."),
+        INVALID_NUMBER_OF_STATION_IN_LINE("노선에는 최소 " + MINIMUM_STATION_NUMBER_IN_LINE + "개의 역이 필요합니다.");
 
         private static final String ERROR_FORMAT = "[ERROR] %s\n\n";
 
@@ -115,7 +118,7 @@ public class ExceptionManager {
         return Error.OK;
     }
 
-    public static Error checkValidLineOfSection(String name) {
+    public static Error checkValidLineOfSectionRegister(String name) {
         if (!isValidLineNameLength(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
@@ -125,7 +128,7 @@ public class ExceptionManager {
         return Error.OK;
     }
 
-    public static Error checkValidStationOfSection(String stationName, String lineName) {
+    public static Error checkValidStationOfSectionRegister(String stationName, String lineName) {
         if (!isValidStationNameLength(stationName)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
@@ -138,12 +141,38 @@ public class ExceptionManager {
         return Error.OK;
     }
 
-    public static Error checkValidIndexOfSection(String input, String lineName) {
+    public static Error checkValidIndexOfSectionRegister(String input, String lineName) {
         if (!isNumber(input)) {
             return Error.INVALID_NUMBER_TYPE;
         }
         if (!isValidRange(input, lineName)) {
             return Error.INVALID_STATION_INDEX;
+        }
+        return Error.OK;
+    }
+
+    public static Error checkValidLineOfSectionRemoval(String lineName) {
+        if (!isValidLineNameLength(lineName)) {
+            return Error.INVALID_LINE_NAME_LENGTH;
+        }
+        if (!LineRepository.hasLine(lineName)) {
+            return Error.NON_EXISTENT_LINE_NAME;
+        }
+        return Error.OK;
+    }
+
+    public static Error checkValidStationOfSectoinRemoval(String stationName, String lineName) {
+        if (!isValidStationNameLength(stationName)) {
+            return Error.INVALID_STATION_NAME_LENGTH;
+        }
+        if (!StationRepository.hasStation(stationName)) {
+            return Error.NON_EXISTENT_STATION_NAME;
+        }
+        if (!LineRepository.isStationInLine(stationName, lineName)) {
+            return Error.NON_EXISTENT_STATION_IN_LINE;
+        }
+        if (LineRepository.getNumberOfStationInLine(lineName) <= MINIMUM_STATION_NUMBER_IN_LINE) {
+            return Error.INVALID_NUMBER_OF_STATION_IN_LINE;
         }
         return Error.OK;
     }

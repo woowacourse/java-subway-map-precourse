@@ -23,10 +23,8 @@ public class Response {
     public static final String STATION_REGISTER_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.\n";
     public static final String STATION_REMOVAL_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.\n";
     public static final String LINE_REGISTER_MESSAGE = "등록할 노선 이름을 입력하세요.";
-    public static final String UPBOUND_STATION_REGISTER_MESSAGE =
-            "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    public static final String DOWNBOUND_STATION_REGISTER_MESSAGE =
-            "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String UPBOUND_STATION_REGISTER_MESSAGE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static final String DOWNBOUND_STATION_REGISTER_MESSAGE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     public static final String LINE_REGISTER_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.\n";
     public static final String LINE_REMOVAL_MESSAGE = "삭제할 노선 이름을 입력하세요.";
     public static final String LINE_REMOVAL_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.\n";
@@ -34,6 +32,8 @@ public class Response {
     public static final String STATION_OF_SECTION_REGISETER_MESSAGE = "역이름을 입력하세요.";
     public static final String INDEX_OF_SECTION_REGISTER_MESSAGE = "순서를 입력하세요.";
     public static final String SECTION_REGISTER_SUCCESS_MESSAGE = "구간이 등록되었습니다.\n";
+    public static final String LINE_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
+    public static final String STATION_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 역을 입력하세요.";
 
     private final PrintStream printStream;
 

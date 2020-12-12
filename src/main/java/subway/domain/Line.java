@@ -19,8 +19,16 @@ public class Line {
         sections.add(indexNumber, StationRepository.getByName(stationName));
     }
 
+    public void removeSection(String stationName) {
+        sections.removeIf(section -> Objects.equals(section.getName(), stationName));
+    }
+
     public String getName() {
         return name;
+    }
+
+    public int getNumberOfSections() {
+        return sections.size();
     }
 
     public boolean hasStation(String stationName) {

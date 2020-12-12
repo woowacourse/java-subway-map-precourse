@@ -25,8 +25,17 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static void deleteStationInLine(String stationName, String lineName) {
+        getLineByName(lineName).removeSection(stationName);
+    }
+
     public static boolean hasLine(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).count() > 0;
+    }
+
+    public static int getNumberOfStationInLine(String lineName) {
+        Line line = getLineByName(lineName);
+        return line.getNumberOfSections();
     }
 
     public static boolean isStationInLine(String stationName, String lineName) {

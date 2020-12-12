@@ -32,7 +32,7 @@ public class SectionManagementView extends View {
     private static boolean registerLineOfSection(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(Response.LINE_OF_SECTION_REGISTER_MESSAGE);
-        String lineName = request.requestLineOfSection();
+        String lineName = request.requestLineOfSectionRegister();
         if (lineName == null) {
             return false;
         }
@@ -44,7 +44,7 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(Response.STATION_OF_SECTION_REGISETER_MESSAGE);
         String lineName = inputs.get(0);
-        String stationName = request.requestStationOfSection(lineName);
+        String stationName = request.requestStationOfSectionRegister(lineName);
         if (stationName == null) {
             return false;
         }
@@ -56,7 +56,7 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(Response.INDEX_OF_SECTION_REGISTER_MESSAGE);
         String lineName = inputs.get(0);
-        String index = request.requestIndexOfSection(lineName);
+        String index = request.requestIndexOfSectionRegister(lineName);
         if (index == null) {
             return false;
         }
@@ -65,7 +65,34 @@ public class SectionManagementView extends View {
     }
 
     private static void removeSection(Scene scene, Request request, Response response) {
+        List<String> inputs = new ArrayList<>();
+        if (!removeLineOfSectoin(request, response, inputs)) {
+            return;
+        }
+        LineRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
         scene.back();
+    }
+
+    private static boolean removeLineOfSectoin(Request request, Response response,
+            List<String> inputs) {
+        response.printHeadlineMessage(Response.LINE_OF_SECTION_REMOVAL_MESSAGE);
+        String lineName = request.requestLineOfSectionRemoval();
+        if (lineName == null) {
+            return false;
+        }
+        inputs.add(lineName);
+        return removeStationOfSection(request, response, inputs);
+    }
+
+    private static boolean removeStationOfSection(Request request, Response response,
+            List<String> inputs) {
+        response.printHeadlineMessage(Response.STATION_OF_SECTION_REMOVAL_MESSAGE);
+        String stationName = request.requestStationOfSectionRemoval(inputs.get(0));
+        if (stationName == null) {
+            return false;
+        }
+        inputs.add(stationName);
+        return true;
     }
 
     private static void back(Scene scene, Request request, Response response) {
