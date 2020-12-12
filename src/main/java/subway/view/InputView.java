@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.view.resource.CommonMessage;
+
 import java.util.Scanner;
 
 import static subway.view.resource.LineMessage.*;
@@ -10,7 +12,6 @@ import static subway.view.resource.StationMessage.INPUT_STATION_NAME_FOR_REMOVAL
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final String INPUT_FUNCTION = "원하는 기능을 선택하세요.";
 
     private InputView() {
     }
@@ -26,7 +27,7 @@ public class InputView {
     }
 
     public static String getFunction() {
-        OutputView.printGuideMessage(INPUT_FUNCTION);
+        OutputView.printGuideMessage(CommonMessage.SELECT_FUNCTION);
         return SCANNER.nextLine();
     }
 
