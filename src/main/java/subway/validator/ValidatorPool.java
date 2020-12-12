@@ -7,7 +7,7 @@ public class ValidatorPool {
 
     private ValidatorPool() {}
 
-    public static Validator getInstance(Class<? extends Validator> validator) {
+    public static Validator getValidator(Class<? extends Validator> validator) {
         return ValidatorFactory.validatorPool.get(validator);
     }
 
