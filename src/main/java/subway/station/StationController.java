@@ -31,6 +31,9 @@ public class StationController {
         if (option == DELETE_STATION) {
             deleteStation(stationInputView);
         }
+        if (option == PRINT_STATION) {
+            printRegisteredStation();
+        }
     }
 
     private static void addNewStation(StationInputView stationInputView) {
@@ -57,5 +60,9 @@ public class StationController {
         }
         StationRepository.deleteStation(stationName);
         StationOutputView.deleteStationComplete();
+    }
+
+    private static void printRegisteredStation() {
+        StationOutputView.printAllStation();
     }
 }
