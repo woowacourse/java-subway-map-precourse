@@ -14,7 +14,7 @@ public class LineController {
         OutputView.printFunctionTitle(LineText.getFunctionTitle());
         OutputView.printFunctionList(LineText.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView.getInput(LineText.getFunctionIndexList()));
+        shiftFunctionScreen(inputView.getInputFunctionIndex(LineText.getFunctionIndexList()));
     }
 
     private static void shiftFunctionScreen(String functionIndex) {

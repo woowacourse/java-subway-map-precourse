@@ -14,7 +14,7 @@ public class StationController {
         OutputView.printFunctionTitle(StationText.getFunctionTitle());
         OutputView.printFunctionList(StationText.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView.getInput(StationText.getFunctionIndexList()));
+        shiftFunctionScreen(inputView.getInputFunctionIndex(StationText.getFunctionIndexList()));
     }
 
     private static void shiftFunctionScreen(String functionIndex) {

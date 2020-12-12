@@ -15,7 +15,7 @@ public class MainController {
         OutputView.printFunctionTitle(MainText.getFunctionTitle());
         OutputView.printFunctionList(MainText.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView, inputView.getInput(MainText.getFunctionIndexList()));
+        shiftFunctionScreen(inputView, inputView.getInputFunctionIndex(MainText.getFunctionIndexList()));
     }
 
     private static void shiftFunctionScreen(InputView inputView, String functionIndex) {

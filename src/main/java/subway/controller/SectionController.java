@@ -14,7 +14,7 @@ public class SectionController {
         OutputView.printFunctionTitle(SectionText.getFunctionTitle());
         OutputView.printFunctionList(SectionText.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView.getInput(SectionText.getFunctionIndexList()));
+        shiftFunctionScreen(inputView.getInputFunctionIndex(SectionText.getFunctionIndexList()));
     }
 
     private static void shiftFunctionScreen(String functionIndex) {
