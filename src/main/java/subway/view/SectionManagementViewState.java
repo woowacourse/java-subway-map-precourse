@@ -1,6 +1,14 @@
 package subway.view;
 
 import subway.SubwayLineMap;
+import subway.controller.LineController;
+import subway.controller.StationController;
+import subway.domain.Line;
+import subway.domain.Station;
+import subway.exceptions.DuplicatedStartAndEndStationNameException;
+import subway.exceptions.InvalidPositionException;
+import subway.exceptions.LineNotExistException;
+import subway.exceptions.StationNotExistException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.SectionManagementViewComponent;
 
@@ -13,6 +21,8 @@ public class SectionManagementViewState extends ViewState{
     private static final String BTN_BACK = "B";
 
     private static SectionManagementViewState sectionManagementViewState;
+    private LineController lineController = LineController.getLineController();
+    private StationController stationController = StationController.getStationController();
 
     private SectionManagementViewState(){
         featureSet.add(BTN_ADD_SECTION);
@@ -38,19 +48,83 @@ public class SectionManagementViewState extends ViewState{
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+        checkAndAddSection(feature, application, scanner);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddSectionStation(String feature, Scanner scanner, SubwayLineMap application{
+    private void checkAndAddSection(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         if(feature.equals(BTN_ADD_SECTION)){
-            printStationRemoveLog();
-            String stationName = getStationName(scanner);
-            printWhiteSpace();
-            removeStation(stationName);
-            printStationRemoveFinishLog();
+            Line line = printLogAndGetInputLineName(scanner);
+            Station station = printLogAndGetInputStationNameAtLine(scanner, line);
+            printLogAndGetInputStationPositionAtLine(scanner, station, line);
+            printSectionRegisterFinishLog();
             switchViewToStationManagement(application);
         }
+    }
+
+    private Line printLogAndGetInputLineName(Scanner scanner) throws LineNotExistException {
+        printSectionRegisterLineNameInputLog();
+        String lineName = getStationOrLineName(scanner);
+        printWhiteSpace();
+        Optional<Line> lineOptional = lineController.getLine(lineName);
+        if(!lineOptional.isPresent()){
+            throw new LineNotExistException();
+        }
+        return lineOptional.get();
+    }
+
+    private Station printLogAndGetInputStationNameAtLine(Scanner scanner, Line line) throws StationNotExistException,
+            DuplicatedStartAndEndStationNameException {
+        printSectionRegisterStationNameInputLog();
+        String stationName = getStationOrLineName(scanner);
+        Station station = stationController.getStation(stationName);
+        printWhiteSpace();
+        if(line.getStations().contains(station)){
+            throw new DuplicatedStartAndEndStationNameException();
+        }
+        return station;
+    }
+
+    private void printLogAndGetInputStationPositionAtLine(Scanner scanner, Station station, Line line) throws
+            InvalidPositionException {
+        printSectionRegisterPositionInputLog();
+        int position = getPosition(scanner);
+        printWhiteSpace();
+        lineController.addStationInLineAtCertainPosition(station, line, position);
+    }
+
+    private void printSectionRegisterLineNameInputLog(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
+        System.out.println(stringBuilder.toString());
+    }
+
+    private void printSectionRegisterStationNameInputLog(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterStationNameInputComponent());
+        System.out.println(stringBuilder.toString());
+    }
+
+    private void printSectionRegisterPositionInputLog(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterStationOrderComponent());
+        System.out.println(stringBuilder.toString());
+    }
+
+    private void printSectionRegisterFinishLog(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterFinishComponent());
+        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        System.out.println(stringBuilder.toString());
+    }
+
+    private int getPosition(Scanner scanner){
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private String getStationOrLineName(Scanner scanner){
+        return scanner.nextLine();
     }
 
     private void checkAndSwitchViewToMain(String feature, SubwayLineMap application){
