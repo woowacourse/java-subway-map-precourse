@@ -1,4 +1,4 @@
-package subway.domain;
+package subway;
 
 import java.util.Scanner;
 import subway.domain.function.MainFunction;
@@ -11,10 +11,10 @@ public class Machine {
             OutputView.printMainFunctions();
             String mainFunctionNumber = InputView.inputFunctionNumber(scanner);
             if (mainFunctionNumber.equals("Q")) {
-                start(scanner);
                 return;
             }
             MainFunction.getMainFunctionByNumber(mainFunctionNumber).operate(scanner);
+            start(scanner);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             OutputView.printEmptyLine();

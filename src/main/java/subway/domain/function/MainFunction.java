@@ -10,25 +10,40 @@ public enum MainFunction {
     MANAGING_STATION("1") {
         @Override
         public void operate(Scanner scanner) {
-            OutputView.printStationFunctions();
-            String functionNumber = InputView.inputFunctionNumber(scanner);
-            StationFunction.getStationFunctionByNumber(functionNumber).operate(scanner);
+            try {
+                OutputView.printStationFunctions();
+                String functionNumber = InputView.inputFunctionNumber(scanner);
+                StationFunction.getStationFunctionByNumber(functionNumber).operate(scanner);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                operate(scanner);
+            }
         }
     },
     MANAGING_LINE("2") {
         @Override
         public void operate(Scanner scanner) {
-            OutputView.printLineFunctions();
-            String functionNumber = InputView.inputFunctionNumber(scanner);
-            LineFunction.getLineFunctionByNumber(functionNumber).operate(scanner);
+            try {
+                OutputView.printLineFunctions();
+                String functionNumber = InputView.inputFunctionNumber(scanner);
+                LineFunction.getLineFunctionByNumber(functionNumber).operate(scanner);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                operate(scanner);
+            }
         }
     },
     MANAGING_SECTION("3") {
         @Override
         public void operate(Scanner scanner) {
-            OutputView.printSectionFunctions();
-            String functionNumber = InputView.inputFunctionNumber(scanner);
-            SectionFunction.getSectionFunctionByNumber(functionNumber).operate(scanner);
+            try {
+                OutputView.printSectionFunctions();
+                String functionNumber = InputView.inputFunctionNumber(scanner);
+                SectionFunction.getSectionFunctionByNumber(functionNumber).operate(scanner);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                operate(scanner);
+            }
         }
     },
     PRINT_SUBWAY_MAP("4") {
