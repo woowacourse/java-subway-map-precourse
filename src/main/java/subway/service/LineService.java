@@ -15,7 +15,9 @@ public class LineService {
     private final String ASK_ADD_LINE_NAME = "등록할 노선 이름을 입력하세요.";
     private final String ASK_UP_STATION_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     private final String ASK_DOWN_STATION_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    private final String STATION_NOT_EXIST_WARN = "존재하는 역을 입력해야 합니다.";
+    private final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 이름입니다.\n";
+    private final String UP_COMMAND = "UP";
+    private final String DOWN_COMMAND = "DOWN";
 
     public boolean addLine(InputView inputView) {
         askMessage(ASK_ADD_LINE_NAME);
@@ -24,28 +26,36 @@ public class LineService {
             warnMessage(LINE_NAME_LENGTH_WARN);
             return false;
         }
-        Station upStation = getUpStation(inputView);
-        if (upStation == null) {
-            warnMessage(STATION_NOT_EXIST_WARN);
-            return false;
+        Station upStation = getStation(inputView, UP_COMMAND);
+        if (!stationExistValidate(upStation)) {
+            return stationExistValidate(upStation);
         }
-        Station downStation = getDownStation(inputView);
-        if (downStation == null) {
-            warnMessage(STATION_NOT_EXIST_WARN);
-            return false;
+        Station downStation = getStation(inputView, DOWN_COMMAND);
+        if (!stationExistValidate(downStation)) {
+            return stationExistValidate(downStation);
         }
         return LineRepository.addLine(new Line(lineName, upStation, downStation));
     }
 
-    public Station getUpStation(InputView inputView) {
-        askMessage(ASK_UP_STATION_NAME);
-        String stationName = inputView.inputName();
-        return findStationByName(stationName);
+    public boolean stationExistValidate(Station station) {
+        if (station == null) {
+            warnMessage(STATION_NOT_EXIST_WARN);
+            return false;
+        }
+        return true;
     }
 
-    public Station getDownStation(InputView inputView) {
-        askMessage(ASK_DOWN_STATION_NAME);
-        String stationName = inputView.inputName();
-        return findStationByName(stationName);
+    public Station getStation(InputView inputView, String command) {
+        if (command.equals(UP_COMMAND)) {
+            askMessage(ASK_UP_STATION_NAME);
+            String stationName = inputView.inputName();
+            return findStationByName(stationName);
+        }
+        if (command.equals(DOWN_COMMAND)) {
+            askMessage(ASK_DOWN_STATION_NAME);
+            String stationName = inputView.inputName();
+            return findStationByName(stationName);
+        }
+        return null;
     }
 }
