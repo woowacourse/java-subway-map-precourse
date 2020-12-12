@@ -13,6 +13,7 @@ public class VerifyInput {
 
     private static final int PREVIOUS_INDEX = -1;
     private static final int MIN_NAME_LENGTH = 2;
+    private static final int NUM_MIN_STATION = 2;
     private static final String SUFFIX_STATION = "역";
     private static final String SUFFIX_LINE = "선";
 
@@ -106,16 +107,9 @@ public class VerifyInput {
         }
     }
 
-    public static void haveNorthboundIn(Station station) {
-        if (station.isNorthboundTerminal()) {
-            OutputView.printError(OutputView.MESSAGE_ERROR_ALREADY_NORTHBOUND_NAME);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void haveSouthboundIn(Station station) {
-        if (station.isSouthboundTerminal()) {
-            OutputView.printError(OutputView.MESSAGE_ERROR_ALREADY_SOUTHBOUND_NAME);
+    public static void compareTerminalName(String northbound, String southbound) {
+        if (northbound.equals(southbound)) {
+            OutputView.printError(OutputView.MESSAGE_ERROR_SAME_NORTHBOUND_NAME);
             throw new IllegalArgumentException();
         }
     }
@@ -127,6 +121,13 @@ public class VerifyInput {
         }
         if (line.getLineLength() > order) {
             OutputView.printError(OutputView.MESSAGE_ERROR_OUT_OF_LINE_RANGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void deletableSection(String lineName) {
+        if (LineRepository.getLineNamed(lineName).getLineLength() <= NUM_MIN_STATION) {
+            OutputView.printError(OutputView.MESSAGE_ERROR_TOO_LITTLE_STATIONS);
             throw new IllegalArgumentException();
         }
     }
