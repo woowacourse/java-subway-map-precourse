@@ -47,6 +47,7 @@ public class Message {
     private static final String NOT_EXIST_STATION = "\n[ERROR] 존재하지 않는 역입니다.";
     private static final String STATIONS = "\n역목록";
     private static final String INFO = "[INFO] ";
+    private static final String EXIST_STATION = "\n[ERROR] 이미 존재하는 역입니다.";
 
     private Message() {
     }
@@ -121,5 +122,9 @@ public class Message {
 
     public static void printStation(String name) {
         System.out.println(INFO + name);
+    }
+
+    public static void printIsExist() {
+        System.out.println(EXIST_STATION);
     }
 }

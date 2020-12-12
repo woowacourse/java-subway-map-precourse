@@ -21,4 +21,8 @@ public class StationController {
     public List<Station> findAll() {
         return StationRepository.stations();
     }
+
+    public boolean isExist(String name) {
+        return StationRepository.isExist(name);
+    }
 }

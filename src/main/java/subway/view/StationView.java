@@ -46,11 +46,19 @@ public class StationView {
         Message.printCreateStation();
         String name = input.nextStation();
         if (input.validName(name)) {
-            stationController.createStation(name);
-            Message.printSuccessStation();
-            return true;
+            return isNotExistNameCreateStation(name);
         }
         return false;
+    }
+
+    private boolean isNotExistNameCreateStation(String name) {
+        if (stationController.isExist(name)) {
+            Message.printIsExist();
+            return false;
+        }
+        stationController.createStation(name);
+        Message.printSuccessStation();
+        return true;
     }
 
     private boolean isDelete(String button) {
