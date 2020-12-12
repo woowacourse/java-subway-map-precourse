@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import subway.exception.IllegalFunctionException;
+
 public class Menu implements Iterable<MenuItem> {
     private String title;
     private final List<MenuItem> menuItems = new ArrayList<>();;
@@ -26,12 +28,15 @@ public class Menu implements Iterable<MenuItem> {
     }
 
     public void executeMenuItem(String key) {
-        MenuItem anyMatchMenuItem = menuItems.stream()
+        MenuItem matchedMenuItem = menuItems.stream()
                 .filter(streamMenuItem -> key.equals(streamMenuItem.getKey()))
                 .findAny()
                 .orElse(null);
-        // TODO: 해당하는 메뉴항목이 없을 때 예외처리
-        anyMatchMenuItem.execute();
+        if (matchedMenuItem == null) {
+            throw new IllegalFunctionException(key);
+        }
+
+        matchedMenuItem.execute();
     }
 
     @Override
