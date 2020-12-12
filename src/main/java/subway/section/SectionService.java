@@ -19,6 +19,7 @@ public class SectionService {
     public static void remove(String lineName, String stationName) {
         Line line = LineRepository.findByName(lineName);
         Station station = StationRepository.findByName(stationName);
+        SectionValidator.validateRemoval(line, station);
         line.remove(station);
     }
 }

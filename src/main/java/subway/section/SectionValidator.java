@@ -2,6 +2,7 @@ package subway.section;
 
 import subway.line.domain.Line;
 import subway.section.exception.InvalidOrderException;
+import subway.section.exception.NotRegisteredStationException;
 import subway.station.domain.Station;
 import subway.station.exception.AlreadyExistStationException;
 
@@ -23,6 +24,16 @@ public class SectionValidator {
     private static void validateOrder(Line line, int order) {
         if (!line.isValidOrder(order)) {
             throw new InvalidOrderException();
+        }
+    }
+
+    public static void validateRemoval(Line line, Station station) {
+        validateExistence(line, station);
+    }
+
+    private static void validateExistence(Line line, Station station) {
+        if (!line.isExist(station.getName())) {
+            throw new NotRegisteredStationException();
         }
     }
 }

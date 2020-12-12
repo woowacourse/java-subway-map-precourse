@@ -8,6 +8,7 @@ import subway.line.domain.LineRepository;
 import subway.line.domain.Route;
 import subway.line.exception.NotExistLineException;
 import subway.section.exception.InvalidOrderException;
+import subway.section.exception.NotRegisteredStationException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 import subway.station.exception.AlreadyExistStationException;
@@ -119,5 +120,16 @@ class SectionServiceTest {
         //when & then
         assertThatExceptionOfType(NotExistLineException.class)
                 .isThrownBy(() -> SectionService.remove(notExistLine, EXTRA_STATION));
+    }
+
+    @Test
+    void 삭제하려는_구간의_역이_해당_노선에_등록되어있지_않으면_예외_발생() {
+        //given
+        String targetStation = "해당노선에등록되지않은역";
+        StationRepository.register(new Station(targetStation));
+
+        //when & then
+        assertThatExceptionOfType(NotRegisteredStationException.class)
+                .isThrownBy(() -> SectionService.remove(LINE_NUMBER_ONE, targetStation));
     }
 }
