@@ -11,7 +11,7 @@ public class Station {
 
     public Station(String name) {
         if (name.length() < NAME_LENGTH_MINIMUM) {
-            throw new TooShortNameException(NAME_LENGTH_MINIMUM);
+            throw new TooShortNameException(name, NAME_LENGTH_MINIMUM);
         }
 
         if (RegexUtil.isBlank(name)) {
