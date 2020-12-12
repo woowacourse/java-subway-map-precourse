@@ -18,6 +18,11 @@ public class OutputView {
     private static void printMenuItem(MenuItem menuItem) {
         System.out.printf(MENU_ITEM_FORMAT, menuItem.getKey(), menuItem.getName());
     }
+
+    public static void printError(Exception exception) {
+        printEmptyLine();
+        System.out.printf(ERROR_FORMAT, exception.getMessage());
+    }
     
     private static void printMessage(String message) {
         printEmptyLine();

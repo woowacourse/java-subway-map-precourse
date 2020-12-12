@@ -28,12 +28,15 @@ public class MenuRepository {
     private static final String KEY_QUIT = "Q";
     private static final String KEY_BACK = "B";
 
-
     static {
         setMainMenu();
         setStationMenu();
         setLineMenu();
         setSectionMenu();
+    }
+
+    public static Menu getMenu(MenuType menuType) {
+        return menus.get(menuType);
     }
 
     private static void setMainMenu() {
