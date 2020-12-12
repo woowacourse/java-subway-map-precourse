@@ -16,8 +16,7 @@ public class Machine {
             MainFunction.getMainFunctionByNumber(mainFunctionNumber).operate(scanner);
             start(scanner);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            OutputView.printEmptyLine();
+            OutputView.printErrorMessage(e);
             start(scanner);
         }
 

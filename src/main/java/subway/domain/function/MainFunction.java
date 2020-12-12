@@ -15,7 +15,7 @@ public enum MainFunction {
                 String functionNumber = InputView.inputFunctionNumber(scanner);
                 StationFunction.getStationFunctionByNumber(functionNumber).operate(scanner);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e);
                 operate(scanner);
             }
         }
@@ -28,7 +28,7 @@ public enum MainFunction {
                 String functionNumber = InputView.inputFunctionNumber(scanner);
                 LineFunction.getLineFunctionByNumber(functionNumber).operate(scanner);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e);
                 operate(scanner);
             }
         }
@@ -41,7 +41,7 @@ public enum MainFunction {
                 String functionNumber = InputView.inputFunctionNumber(scanner);
                 SectionFunction.getSectionFunctionByNumber(functionNumber).operate(scanner);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e);
                 operate(scanner);
             }
         }
