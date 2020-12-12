@@ -50,4 +50,18 @@ public class SubwayManager {
             return getUserOption(scanner);
         }
     }
+
+    public static void validateUserOption(String userOption) throws IllegalArgumentException {
+        if (userOption.equals(WANT_QUIT_CODE)) {
+            return;
+        }
+        try {
+            int optionNumber = Integer.parseInt(userOption);
+            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ERROR_PREFIX + ERROR_MESSAGE);
+        }
+    }
 }
