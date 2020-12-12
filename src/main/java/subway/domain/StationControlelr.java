@@ -17,10 +17,18 @@ public class StationControlelr {
         this.outputView = new OutputView();
     }
 
-    public void addStation() {
+    public void add() {
         String stationName = inputView.inputStationName();
 
         stationRepository.addStation(stationName);
+
+        outputView.printStationSaved();
+    }
+
+    public void remove() {
+        String stationName = inputView.inputStationName();
+
+        stationRepository.removeStation(stationName);
 
         outputView.printStationSaved();
     }
