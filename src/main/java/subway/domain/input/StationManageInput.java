@@ -1,10 +1,13 @@
-package subway.domain;
+package subway.domain.input;
+
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 import java.util.*;
 
 public class StationManageInput {
 
-    static final String FUNCTION_ONE = "1";
+    final String FUNCTION_ONE = "1";
     static final String FUNCTION_TWO = "2";
     static final String FUNCTION_THREE = "3";
     static final String FUNCTION_BACK = "B";
