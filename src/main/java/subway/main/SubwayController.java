@@ -1,5 +1,6 @@
 package subway.main;
 
+import subway.line.LineController;
 import subway.main.view.MainInputView;
 import subway.main.view.MainOutputView;
 import subway.station.StationController;
@@ -32,6 +33,9 @@ public class SubwayController {
     private static void selectOption(char option, MainInputView mainInputView) {
         if (option == STATION_MANAGEMENT) {
             StationController.stationManagement(mainInputView);
+        }
+        if (option == LINE_MANAGEMENT) {
+            LineController.lineManagement(mainInputView);
         }
     }
 }
