@@ -29,10 +29,6 @@ public class InputView {
         return instance;
     }
 
-    private void addBlankLine() {
-        System.out.println();
-    }
-
     public String selectMenu() {
         System.out.println(COMMAND_INPUT_MESSAGE);
         String input = scanner.nextLine();

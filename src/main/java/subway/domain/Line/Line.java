@@ -103,7 +103,7 @@ public class Line implements Comparable<Line> {
         stations.add(order - ONE_INDEX, station);
     }
 
-    private boolean isValidOrder(int order) {   //TODO 확인좀
+    private boolean isValidOrder(int order) {
 
         if (order >= STATIONS_MIN_INDEX && order <= stations.size() +ONE_INDEX) {
             return true;

@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class LineName implements Comparable<LineName> {
 
-    private static final int ONE_INDEX = 1;
     private static final String NAME_REGULAR_EXPRESSION = "^[가-힣0-9]{2,}[$선|경전철]";
 
     private String name;
@@ -28,10 +27,6 @@ public class LineName implements Comparable<LineName> {
             throw new InvalidLineNameException(name);
         }
 
-    }
-
-    private static int LastIndexOf(String name) {
-        return name.length() - ONE_INDEX;
     }
 
     @Override

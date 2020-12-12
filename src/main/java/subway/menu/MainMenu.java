@@ -10,25 +10,25 @@ import java.util.List;
 
 public enum MainMenu implements Menu {
 
-    STATION("1", "역 관리") {
+    STATION("1", "역 관리",Action.BACK) {
         @Override
         public Menu run() {
             return StationMenu.BACK;
         }
     },
-    LINE("2", "노선 관리") {
+    LINE("2", "노선 관리",Action.BACK) {
         @Override
         public Menu run() {
             return LineMenu.BACK;
         }
     },
-    SECTION("3", "구간 관리") {
+    SECTION("3", "구간 관리",Action.BACK) {
         @Override
         public Menu run() {
             return SectionMenu.BACK;
         }
     },
-    MAP("4", "지하철 노선도 출력") {
+    MAP("4", "지하철 노선도 출력",Action.BACK) {
         @Override
         public Menu run() {
             LineRepository lineRepository = new LineRepository();
@@ -39,17 +39,19 @@ public enum MainMenu implements Menu {
             return MainMenu.LINE;
         }
     },
-    QUIT("Q", "종료");
+    QUIT("Q", "종료",Action.BACK);
 
     final String order;
     final String menu;
+    final Action action;
 
     private static final String MENU_TITLE = "메인 ";
     private static final String MENU_TYPE = "메인";
 
-    MainMenu(String order, String menu) {
+    MainMenu(String order, String menu,Action action) {
         this.order = order;
         this.menu = menu;
+        this.action =action;
     }
 
     @Override

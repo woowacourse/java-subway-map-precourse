@@ -4,7 +4,6 @@ import subway.domain.Line.Line;
 import subway.domain.Line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
-import subway.exception.CannotRemoveException;
 import subway.view.InputView;
 
 public class SectionController implements SubwayController {
