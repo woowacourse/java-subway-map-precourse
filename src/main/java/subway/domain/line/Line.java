@@ -33,7 +33,7 @@ public class Line {
     }
 
     public static Line createLine(LineName lineName, StationName firstStationName, StationName lastStationName) {
-        Line line = new Line(lineName);
+        Line line = Line.of(lineName);
         Station firstStation = Station.of(firstStationName);
         Station lastStation = Station.of(lastStationName);
         line.addStationToLine(firstStation, 1);
