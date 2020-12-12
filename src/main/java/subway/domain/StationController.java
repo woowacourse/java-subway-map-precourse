@@ -5,6 +5,8 @@ import subway.view.OutputView;
 
 public class StationController {
 
+    public static final String STATION = "역";
+
     private final StationRepository stationRepository;
 
     private final InputView inputView;
@@ -22,7 +24,7 @@ public class StationController {
 
         stationRepository.addStation(stationName);
 
-        outputView.printStationSaved();
+        outputView.printSaved(STATION);
     }
 
     public void remove() {
@@ -30,7 +32,7 @@ public class StationController {
 
         stationRepository.removeStation(stationName);
 
-        outputView.printStationRemoved();
+        outputView.printRemoved(STATION);
     }
 
     public void load() {

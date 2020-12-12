@@ -1,9 +1,9 @@
 package subway.view;
 
-import java.io.PrintStream;
-
 import subway.domain.Line;
+import subway.domain.LineController;
 import subway.domain.LineRepository;
+import subway.domain.StationController;
 import subway.domain.StationRepository;
 
 public class OutputView {
@@ -12,66 +12,36 @@ public class OutputView {
 
     public static final String SUCCESS_PREFIX = "[INFO]";
 
-    public static final String STATION_SAVED = "지하철 역이 등록되었습니다.";
+    public static final String SAVED = "지하철 %s이 등록되었습니다.";
 
-    public static final String STATION_REMOVED = "지하철 역이 삭제되었습니다.";
+    public static final String REMOVED = "지하철 %s이 삭제되었습니다.";
 
-    public static final String STATION_LIST = "역 목록";
-
-    public static final String LINE_SAVED = "지하철 노선이 등록되었습니다.";
-
-    public static final String LINE_REMOVED = "지하철 노선이 삭제되었습니다.";
-
-    public static final String LINE_LIST = "노선 목록";
-
-    private static final String RANGE_REMOVED = "구간이 삭제되었습니다.";
-
-    private static final String RANGE_SAVED = "구간이 등록되었습니다.";
+    public static final String LIST = "목록";
 
     public static final String HORIZONTAL_RULE = "---";
 
-    public void printLineSaved() {
-        printSuccessMessage(LINE_SAVED);
+    public void printSaved(String type) {
+        printSuccessMessage(String.format(SAVED, type));
     }
 
-    public void printLineRemoved() {
-        printSuccessMessage(STATION_REMOVED);
-    }
-
-    public void printLines(LineRepository lineRepository) {
-        System.out.printf("%s %s\n", TITLE_PREFIX, LINE_LIST);
-
-        for (String lineName : lineRepository.lineNames()) {
-            printSuccessMessage(lineName);
-        }
-    }
-
-    public void printStationSaved() {
-        printSuccessMessage(STATION_SAVED);
-    }
-
-    public void printStationRemoved() {
-        printSuccessMessage(STATION_REMOVED);
+    public void printRemoved(String type) {
+        printSuccessMessage(String.format(REMOVED, type));
     }
 
     public void printStations(StationRepository stationRepository) {
-        System.out.printf("%s %s\n", TITLE_PREFIX, STATION_LIST);
+        printListTitle(StationController.STATION);
 
         for (String stationName : stationRepository.stationNames()) {
             printSuccessMessage(stationName);
         }
     }
 
-    public void printRangeSaved() {
-        printSuccessMessage(RANGE_SAVED);
-    }
+    public void printLines(LineRepository lineRepository) {
+        printListTitle(LineController.LINE);
 
-    public void printRangeRemoved() {
-        printSuccessMessage(RANGE_REMOVED);
-    }
-
-    private void printSuccessMessage(String message) {
-        System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
+        for (String lineName : lineRepository.lineNames()) {
+            printSuccessMessage(lineName);
+        }
     }
 
     public void printSubwayMap(LineRepository lineRepository) {
@@ -81,5 +51,13 @@ public class OutputView {
             printStations(line.getStations());
             System.out.println();
         }
+    }
+
+    private void printListTitle(String type) {
+        System.out.printf("%s %s %s\n", TITLE_PREFIX, type, LIST);
+    }
+
+    private void printSuccessMessage(String message) {
+        System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
     }
 }

@@ -5,6 +5,10 @@ import subway.view.OutputView;
 
 public class LineController {
 
+    public static final String LINE = "노선";
+
+    public static final String RANGE = "구간";
+
     private final LineRepository lineRepository;
 
     private final InputView inputView;
@@ -24,7 +28,7 @@ public class LineController {
 
         lineRepository.addLine(new Line(lineName, startStation, finalStation));
 
-        outputView.printLineSaved();
+        outputView.printSaved(LINE);
     }
 
     public void removeLine() {
@@ -32,7 +36,7 @@ public class LineController {
 
         lineRepository.removeLine(lineName);
 
-        outputView.printLineRemoved();
+        outputView.printRemoved(LINE);
     }
 
     public void loadLines() {
@@ -46,7 +50,7 @@ public class LineController {
 
         lineRepository.insertStation(lineName, stationIndex, stationName);
 
-        outputView.printRangeSaved();
+        outputView.printSaved(RANGE);
     }
 
     public void removeStation() {
@@ -55,7 +59,7 @@ public class LineController {
 
         lineRepository.removeStation(lineName, stationName);
 
-        outputView.printRangeRemoved();
+        outputView.printRemoved(RANGE);
     }
 
     public void printSubwayMap() {
