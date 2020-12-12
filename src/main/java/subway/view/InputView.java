@@ -1,8 +1,6 @@
 package subway.view;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InputView {
     private static final String ERR_SHORT_STRING = "입력값의 길이가 짧습니다.";

@@ -3,11 +3,11 @@ package subway.domain;
 import java.util.*;
 
 public class Line {
-    private static String ERR_OUT_OF_BOUND = "노선의 길이 범위를 벗어나는 순서값입니다.";
-    private static String ERR_DUPLICATE_LINE_NAME = "이미 등록된 노선 이름입니다.";
-    private static String ERR_DUPLICATE_STATION_IN_LINE = "동일 노선에 동일한 이름의 역입니다.";
-    private String name;
-    private List<Station> stations;
+    private static final String ERR_OUT_OF_BOUND = "노선의 길이 범위를 벗어나는 순서값입니다.";
+    private static final String ERR_DUPLICATE_LINE_NAME = "이미 등록된 노선 이름입니다.";
+    private static final String ERR_DUPLICATE_STATION_IN_LINE = "동일 노선에 동일한 이름의 역입니다.";
+    private final String name;
+    private final List<Station> stations;
 
     public Line(String name, Station... stations) {
         if (LineRepository.isInLineRepository(name)) {
