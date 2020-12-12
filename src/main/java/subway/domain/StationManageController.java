@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class StationManageController {
 
@@ -11,8 +8,9 @@ public class StationManageController {
     static final String FUNCTION_TWO = "2";
     static final String FUNCTION_THREE = "3";
     static final String FUNCTION_BACK = "B";
+    static final int MIN_STATION_NAME_LENGTH = 2;
+    static final String STATION_NAME_SUFFIX = "역";
 
-    Scanner scanner;
     List<String> functionList = new ArrayList<>();
 
     public List<String> functionList() {
@@ -28,7 +26,32 @@ public class StationManageController {
         if (functionList().contains(stationManageChoice)) {
             return stationManageChoice;
         }
+        // 정해진 것만 입력하라는 메시지
         throw new IllegalArgumentException();
+    }
+
+    public String validateStationName(String stationName) {
+        if (stationName.length() < MIN_STATION_NAME_LENGTH) {
+            //2자 이상 입력하라는 메시지
+            throw new IllegalArgumentException();
+        }
+        if (!stationName.endsWith(STATION_NAME_SUFFIX)) {
+            //마지막 글자는 "역" 으로 입력하라는 메시지
+            throw new IllegalArgumentException();
+        }
+        return stationName;
+    }
+
+    public String enrollStation(Scanner scanner) throws IllegalArgumentException{
+        String stationName = scanner.next();
+        Optional<Station> newStation = StationRepository.stations()
+                .stream().filter(station -> station.getName().equals(stationName)).findAny();
+        if (newStation.isPresent()) {
+            //해당 역 이름이 존재한다는 메시지
+            throw new IllegalArgumentException();
+        }
+        validateStationName(stationName);
+        return stationName;
     }
 
 }
