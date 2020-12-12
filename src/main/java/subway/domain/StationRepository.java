@@ -33,7 +33,7 @@ public class StationRepository {
     }
 
     public static Station findStation(String name) {
-        return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst()
-            .get();
+        return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst().
+        get();
     }
 }

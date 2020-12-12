@@ -1,35 +1,52 @@
 package subway.domain;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class PathRepository {
-    private static final List<Station> path = new LinkedList<>();
+    private final LinkedList<Station> path = new LinkedList<>();
+    private final Set<String> pathStationNames = new HashSet<>();
 
     public PathRepository(String up, String down) {
         Station upStation = StationRepository.findStation(up);
         Station downStation = StationRepository.findStation(down);
-        path.add(upStation);
-        path.add(downStation);
-        upStation.onAndOffPath();
-        downStation.onAndOffPath();
+        path.addFirst(upStation);
+        path.addLast(downStation);
+        upStation.onPath();
+        downStation.onPath();
+        pathStationNames.add(up);
+        pathStationNames.add(down);
     }
 
     public List<Station> getPath() {
         return Collections.unmodifiableList(path);
     }
 
+    public boolean containsStationName(String station) {
+        return pathStationNames.contains(station);
+    }
 
     public void addPath(int index, String newStation) {
         Station station = StationRepository.findStation(newStation);
         path.add(index, station);
+        pathStationNames.add(newStation);
     }
 
     public boolean deletePathByName(String name) {
-        StationRepository.findStation(name).onAndOffPath();
+        StationRepository.findStation(name).onPath();
+        pathStationNames.remove(name);
         return path.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public int pathSize() {
+        System.out.println(path);
+        System.out.println(path.size());
+        return path.size();
+    }
+
 
 }

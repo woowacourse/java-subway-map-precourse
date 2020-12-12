@@ -11,11 +11,13 @@ public class SubwaySystem {
     private MenuInputManager menuInputManager;
     private StationSystem stationSystem;
     private LineSystem lineSystem;
+    private PathSystem pathSystem;
 
     public SubwaySystem(Scanner scanner) {
         menuInputManager = new MenuInputManager(scanner);
         stationSystem = new StationSystem(scanner, menuInputManager);
         lineSystem = new LineSystem(scanner, menuInputManager);
+        pathSystem = new PathSystem(scanner, menuInputManager);
         initInfo();
     }
 
@@ -31,13 +33,13 @@ public class SubwaySystem {
         String[] line2  = {"2호선", "교대역","역삼역"};
         String[] line3  = {"3호선", "교대역","매봉역"};
         String[] lineShin  = {"신분당선", "강남역","양재시민의숲역"};
-        SubwayRepository.addSubwayRealLine(line2);
-        SubwayRepository.getStationLinksByLine("2호선").addPath(1, "강남역");
-        SubwayRepository.addSubwayRealLine(line3);
-        SubwayRepository.getStationLinksByLine("3호선").addPath(1, "남부터미널역");
-        SubwayRepository.getStationLinksByLine("3호선").addPath(2, "양재역");
-        SubwayRepository.addSubwayRealLine(lineShin);
-        SubwayRepository.getStationLinksByLine("신분당선").addPath(1, "양재역");
+        SubwayRepository.createSubwayRealLine(line2);
+        SubwayRepository.addPathByLineName("2호선",1, "강남역");
+        SubwayRepository.createSubwayRealLine(line3);
+        SubwayRepository.getPathByLineName("3호선").addPath(1, "남부터미널역");
+        SubwayRepository.getPathByLineName("3호선").addPath(2, "양재역");
+        SubwayRepository.createSubwayRealLine(lineShin);
+        SubwayRepository.getPathByLineName("신분당선").addPath(1, "양재역");
     }
 
     public void run() {
@@ -59,7 +61,7 @@ public class SubwaySystem {
             lineSystem.run();
         }
         if (input.equals("3")) {
-            Menu.printMenu(MenuItemsRepository.getLinkItems());
+            pathSystem.run();
         }
         if (input.equals("4")) {
             System.out.println("노선도 출력");

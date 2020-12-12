@@ -8,6 +8,9 @@ public class Menu {
     public static final String LINE_GUIDE = " 노선 이름을 입력하세요.";
     public static final String UP_STATION_GUIDE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String DOWN_STATION_GUIDE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String LINE_TO_ADD_PATH_GUIDE = "노선을 입력하세요.";
+    public static final String STATION_TO_ADD_PATH_GUIDE = "역이름을 입력하세요.";
+    public static final String INDEX_TO_ADD_PATH_GUIDE = "순서를 입력하세요.";
 
 
     private Menu() {
@@ -43,5 +46,18 @@ public class Menu {
 
     public static void printDownStationGuide() {
         System.out.println(GUIDE_PREFIX + DOWN_STATION_GUIDE);
+    }
+
+
+    public static void printLineToAddPath() {
+        System.out.println(GUIDE_PREFIX + LINE_TO_ADD_PATH_GUIDE);
+    }
+
+
+    public static void printStationToAddPath() {
+        System.out.println(GUIDE_PREFIX + STATION_TO_ADD_PATH_GUIDE);
+    }
+    public static void printIndexToAddPath() {
+        System.out.println(GUIDE_PREFIX + INDEX_TO_ADD_PATH_GUIDE);
     }
 }

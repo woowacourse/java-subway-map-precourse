@@ -52,7 +52,7 @@ public class LineSystem {
         if (Arrays.asList(lineInfo).contains(ErrorMessage.OUT)) {
             return;
         }
-        SubwayRepository.addSubwayRealLine(lineInfo);
+        SubwayRepository.createSubwayRealLine(lineInfo);
         InfoMessage.printLineAdded();
       //  Line wantLine = LineRepository.findLine(lineInfo[0]);
 //        PathRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);

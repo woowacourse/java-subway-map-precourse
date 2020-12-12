@@ -23,12 +23,12 @@ public class MenuItemsRepository {
         "B. 돌아가기"
     };
     private static final List<String> lineSelections = Arrays.asList("1", "2", "3", "B");
-    private static final String[] linkItems = {
+    private static final String[] pathItems = {
         "## 구간 관리 화면",
         "1. 구간 등록", "2. 구간 삭제",
         "B. 돌아가기"
     };
-    private static final List<String> linkSelections = Arrays.asList("1", "2", "B");
+    private static final List<String> pathSelections = Arrays.asList("1", "2", "B");
 
     private MenuItemsRepository() {
 
@@ -46,8 +46,8 @@ public class MenuItemsRepository {
         return lineItems;
     }
 
-    public static String[] getLinkItems() {
-        return linkItems;
+    public static String[] getPathItems() {
+        return pathItems;
     }
 
     public static List<String> getMainSelections() {
@@ -62,7 +62,7 @@ public class MenuItemsRepository {
         return lineSelections;
     }
 
-    public static List<String> getLinkSelections() {
-        return linkSelections;
+    public static List<String> getPathSelections() {
+        return pathSelections;
     }
 }

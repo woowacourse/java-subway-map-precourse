@@ -14,8 +14,8 @@ public class Station {
 
     // 추가 기능 구현
 
-    public void onAndOffPath() {
-        isPathEnrolled = !isPathEnrolled;
+    public void onPath() {
+        isPathEnrolled = true;
     }
 
     public boolean isOnPath() {
