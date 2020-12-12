@@ -2,11 +2,11 @@ package subway.domain;
 
 import java.util.List;
 
-public class RouteMap {
+public class Route {
     private Line line;
     private List<Station> stations;
 
-    public RouteMap(Line line, List<Station> stations){
+    public Route(Line line, List<Station> stations){
         this.line = line;
         this.stations = stations;
     }
