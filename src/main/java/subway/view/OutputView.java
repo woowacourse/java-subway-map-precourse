@@ -6,11 +6,15 @@ import subway.domain.StationRepository;
 
 public class OutputView {
 
+    public static final String TITLE_PREFIX = "##";
+
     public static final String SUCCESS_PREFIX = "[INFO]";
 
     public static final String STATION_SAVED = "지하철 역이 등록되었습니다.";
 
     public static final String STATION_REMOVED = "지하철 역이 삭제되었습니다.";
+
+    public static final String STATION_LIST = "역 목록";
 
     public void printStationSaved() {
         printSuccessMessage(STATION_SAVED);
@@ -21,6 +25,8 @@ public class OutputView {
     }
 
     public void printStations(StationRepository stationRepository) {
+        System.out.printf("%s %s", TITLE_PREFIX, STATION_LIST);
+
         for (String stationName : stationRepository.stationNames()) {
             printSuccessMessage(stationName);
         }
