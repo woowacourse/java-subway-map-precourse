@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.line.validation.CheckLineNameDuplicate;
 import subway.line.validation.CheckLineNameLength;
 import subway.station.Station;
 
@@ -29,5 +30,6 @@ public class Line {
 
     private void validLineName(String name) {
         CheckLineNameLength.validation(name);
+        CheckLineNameDuplicate.validation(name);
     }
 }
