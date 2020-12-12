@@ -12,11 +12,11 @@ public class StationFunctionController {
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
             StationRepository.addStation(new Station(makeValidateEnrollName(inputView)));
-            StationOutputView.printSuccess(detailFunction);
+            StationOutputView.printSuccess(DetailFunctions.ENROLL);
         }
         if (detailFunction.equals(DetailFunctions.REMOVE)) {
             StationRepository.deleteStation((makeValidateRemoveName(inputView)));
-            StationOutputView.printSuccess(detailFunction);
+            StationOutputView.printSuccess(DetailFunctions.REMOVE);
         }
         if (detailFunction.equals(DetailFunctions.RESEARCH)) {
             StationOutputView.printResearch(StationRepository.stations());
@@ -28,7 +28,7 @@ public class StationFunctionController {
             StationOutputView.printFunction(DetailFunctions.ENROLL);
             return StationNameValidator.makeName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
             return makeValidateEnrollName(inputView);
         }
     }
@@ -38,7 +38,7 @@ public class StationFunctionController {
             StationOutputView.printFunction(DetailFunctions.REMOVE);
             return StationNameValidator.makeRemoveName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
             return makeValidateRemoveName(inputView);
         }
     }

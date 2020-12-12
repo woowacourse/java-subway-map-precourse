@@ -3,9 +3,9 @@ package subway.controller;
 import subway.domain.*;
 import subway.view.*;
 
-import static subway.controller.LineFunctionController.PRINT_ERROR_HEAD;
 import static subway.domain.LineNameValidator.makeEnrolledLineName;
 import static subway.domain.StationNameValidator.makeEnrolledStationName;
+import static subway.view.OutputView.PRINT_ERROR_HEAD;
 
 public class WayFunctionController {
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {

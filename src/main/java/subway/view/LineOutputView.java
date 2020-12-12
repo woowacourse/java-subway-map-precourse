@@ -5,7 +5,7 @@ import subway.domain.Line;
 
 import java.util.List;
 
-import static subway.view.StationOutputView.PRINT_INFO_HEAD;
+import static subway.view.OutputView.PRINT_INFO_HEAD;
 
 public class LineOutputView {
 

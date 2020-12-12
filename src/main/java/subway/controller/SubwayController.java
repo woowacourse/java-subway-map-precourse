@@ -7,7 +7,7 @@ import subway.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 
-import static subway.controller.LineFunctionController.PRINT_ERROR_HEAD;
+import static subway.view.OutputView.PRINT_ERROR_HEAD;
 
 public class SubwayController {
     private final InputView inputView;

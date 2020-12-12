@@ -4,10 +4,9 @@ import subway.domain.*;
 import subway.view.InputView;
 import subway.view.LineOutputView;
 
+import static subway.view.OutputView.PRINT_ERROR_HEAD;
+
 public class LineFunctionController {
-
-    public static final String PRINT_ERROR_HEAD = "[ERROR] ";
-
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
             enrollLine(inputView);
@@ -31,11 +30,11 @@ public class LineFunctionController {
     }
 
     private static Station makeValidateStation(String startOrFinish, InputView inputView) {
-        try{
+        try {
             LineOutputView.printStartOrFinishStation(startOrFinish);
             return StationRepository.findStationByName(StationNameValidator.makeEnrolledStationName(inputView.receiveFunctionInfo()));
-        } catch (IllegalArgumentException e){
-            System.out.println(PRINT_ERROR_HEAD +e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
             return makeValidateStation(startOrFinish, inputView);
         }
     }
@@ -45,7 +44,7 @@ public class LineFunctionController {
             LineOutputView.printFunction(DetailFunctions.ENROLL);
             return LineNameValidator.makeName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
             return makeValidateEnrollName(inputView);
         }
     }
@@ -55,7 +54,7 @@ public class LineFunctionController {
             LineOutputView.printFunction(DetailFunctions.REMOVE);
             return LineNameValidator.makeEnrolledLineName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
             return makeValidateEnrolledName(inputView);
         }
     }

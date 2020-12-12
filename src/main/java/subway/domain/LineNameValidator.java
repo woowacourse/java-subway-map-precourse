@@ -1,7 +1,7 @@
 package subway.domain;
 
-import static subway.domain.StationNameValidator.MAXIMUM_STATION_NAME_LENGTH;
-import static subway.domain.StationNameValidator.MINIMUM_STATION_NAME_LENGTH;
+import static subway.domain.StationNameValidator.MAXIMUM_NAME_LENGTH;
+import static subway.domain.StationNameValidator.MINIMUM_NAME_LENGTH;
 
 public class LineNameValidator {
     private static String nowInputName;
@@ -21,13 +21,13 @@ public class LineNameValidator {
     }
 
     private static void checkMinimumSize() {
-        if (nowInputName.length() < MINIMUM_STATION_NAME_LENGTH) {
+        if (nowInputName.length() < MINIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("노선의 이름이 너무 짧습니다.");
         }
     }
 
     private static void checkMaximumSize() {
-        if (nowInputName.length() > MAXIMUM_STATION_NAME_LENGTH) {
+        if (nowInputName.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("노선의 이름이 너무 깁니다.");
         }
     }

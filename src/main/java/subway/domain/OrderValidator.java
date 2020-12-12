@@ -3,10 +3,11 @@ package subway.domain;
 public class OrderValidator {
     private static final String ERROR_MESSAGE_WITH_NUMBER = "순서 입력은 숫자입니다.";
     private static final String ERROR_MESSAGE_WITH_NEGATIVE = "순서는 0 이상이어야 합니다.";
+    private static final String ERROR_MESSAGE_WITH_ORDER = "순서가 해당 호선의 역 수보다 큽니다.";
     private static final int MINIMUM_OF_ORDER = 0;
     private static final int NOT_NUMBER_FLAG = -1;
     private static final int ORDER_FORMATTER = 1;
-    public static final int POSSIBLE_ORDER_FORMATTER = 1;
+    private static final int POSSIBLE_ORDER_FORMATTER = 1;
 
     public static int makeValidOrder(final String inputOrder, final Integer lineSize) {
         int inputNumber = makeNumber(inputOrder);
@@ -18,7 +19,7 @@ public class OrderValidator {
 
     private static void checkLessThanSize(int number, Integer lineSize) {
         if (number > lineSize + POSSIBLE_ORDER_FORMATTER) {
-            throw new IllegalArgumentException("순서가 해당 호선의 역 수보다 큽니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_WITH_ORDER);
         }
     }
 

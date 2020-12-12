@@ -1,8 +1,9 @@
 package subway.domain;
 
 public class StationNameValidator {
-    public static final int MINIMUM_STATION_NAME_LENGTH = 2;
-    public static final int MAXIMUM_STATION_NAME_LENGTH = 5;
+    public static final int MINIMUM_NAME_LENGTH = 2;
+    public static final int MAXIMUM_NAME_LENGTH = 5;
+
     private static String nowInputName;
 
     public static String makeName(String inputName) {
@@ -20,13 +21,13 @@ public class StationNameValidator {
     }
 
     private static void checkMinimumSize() {
-        if (nowInputName.length() < MINIMUM_STATION_NAME_LENGTH) {
+        if (nowInputName.length() < MINIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("역의 이름이 너무 짧습니다.");
         }
     }
 
     private static void checkMaximumSize() {
-        if (nowInputName.length() > MAXIMUM_STATION_NAME_LENGTH) {
+        if (nowInputName.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("역의 이름이 너무 깁니다.");
         }
     }

@@ -1,8 +1,5 @@
 package subway.view;
 
-import subway.domain.DetailFunctions;
-import subway.domain.MainFunctions;
-
 import java.util.Scanner;
 
 public class InputView {
