@@ -58,6 +58,7 @@ public enum MainInput {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+
     public static MainInput getInstanceByInput(String viewInput) {
         return findOneByInputValue(viewInput);
     }

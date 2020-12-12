@@ -1,6 +1,7 @@
 package subway.enums;
 
 import subway.view.LineInputView;
+import subway.view.OutputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -22,7 +23,6 @@ public enum LineInput {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
             // LineRepository..
-            System.out.println("[INFO] 노선 목록");
         }
     },
     back("B", "돌아가기"){

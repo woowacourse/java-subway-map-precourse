@@ -3,6 +3,7 @@ package subway.enums;
 import subway.Controller;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.view.OutputView;
 import subway.view.StationInputView;
 
 import java.util.Arrays;
@@ -26,8 +27,7 @@ public enum StationInput {
     inquiry("3", "역 조회") {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
-            System.out.println("[INFO] 역 목록");
-            StationRepository.stations().stream().forEach(x->System.out.println(x.getName()));  // 임시로 결과를 확인하기 위한 코드
+            OutputView.inquiryStation();
         }
     },
     back("B", "돌아가기") {
