@@ -1,42 +1,43 @@
 package subway.controller;
 
+import subway.Menu;
+import subway.SubMenu;
 import subway.domain.exception.NonExistentMenuException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
 
 public class MenuController {
-    private static final List<String> MAIN_MENU_SIGN = Arrays.asList(new String[] {"1","2","3","4","Q"});
-    private static final List<String> STATION_MANAGEMENT_MENU_SIGN = Arrays.asList(new String[] {"1","2","3","B"});
-    private static final List<String> LINE_MANAGEMENT_MENU_SIGN = Arrays.asList(new String[] {"1","2","3","B"});
-    private static final List<String> EDGE_MANAGEMENT_MENU_SIGN = Arrays.asList(new String[] {"1","2","B"});
+    private static final String STATION_MANAGEMENT_SIGN = "1";
+    private static final String LINE_MANAGEMENT_SIGN = "2";
+    private static final String EDGE_MANAGEMENT_SIGN = "3";
+    private static final String LINE_MAP_SIGN = "4";
+    private static final String QUIT_SIGN = "Q";
+
+    private static final Map<String, SubMenu> mainMenu = new HashMap<String, SubMenu>() {
+        {
+            put(STATION_MANAGEMENT_SIGN, Menu.stationMenu);
+            put(LINE_MANAGEMENT_SIGN, Menu.lineMenu);
+            put(EDGE_MANAGEMENT_SIGN, Menu.edgeMenu);
+            put(LINE_MAP_SIGN, Menu.lineMap);
+            put(QUIT_SIGN, Menu.quit);
+        }
+    };
 
     public static String scanMainMenu(Scanner scanner) {
         OutputView.printMainScreen();
-        return scanValidMenu(scanner, MAIN_MENU_SIGN);
-    }
-
-    public static String scanStationManagementMenu(Scanner scanner) {
-        OutputView.printStationManagementScreen();
-        return scanValidMenu(scanner, STATION_MANAGEMENT_MENU_SIGN);
-    }
-
-    public static String scanLineManagementMenu(Scanner scanner) {
-        OutputView.printLineManagementScreen();
-        return scanValidMenu(scanner, LINE_MANAGEMENT_MENU_SIGN);
-    }
-
-    public static String scanEdgeManagementMenu(Scanner scanner) {
-        OutputView.printEdgeManagementScreen();
-        return scanValidMenu(scanner, EDGE_MANAGEMENT_MENU_SIGN);
+        List<String> mainMenuSigns = new ArrayList<String>(mainMenu.keySet());
+        return scanValidMenu(scanner, mainMenuSigns);
     }
 
     private static String scanValidMenu(Scanner scanner, List<String> signs) {
         String menu = scanMenu(scanner);
-        while (!isValidMenu(menu,signs)) {
+        while (!isValidMenu(menu, signs)) {
             menu = scanMenu(scanner);
         }
         return menu;
@@ -48,7 +49,7 @@ public class MenuController {
     }
 
     public static boolean isValidMenu(String menu, List<String> signs) {
-        try{
+        try {
             validateMenu(menu, signs);
             return true;
         } catch (NonExistentMenuException menuError) {
