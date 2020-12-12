@@ -21,26 +21,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printFunctions(String mainFunctionNumber) {
-        if (mainFunctionNumber.equals("1")) {
-            printStationFunctions();
-            return;
-        }
-        if (mainFunctionNumber.equals("2")) {
-            printLineFunctions();
-            return;
-        }
-        if (mainFunctionNumber.equals("3")) {
-            printSectionFunctions();
-            return;
-        }
-        if (mainFunctionNumber.equals("4")) {
-            printSubwayMap(LineRepository.lines());
-            return;
-        }
-    }
-
-    private static void printStationFunctions() {
+    public static void printStationFunctions() {
         System.out.println("## 역 관리 화면");
         System.out.println("1. 역 등록");
         System.out.println("2. 역 삭제");
@@ -49,7 +30,7 @@ public class OutputView {
         printEmptyLine();
     }
 
-    private static void printLineFunctions() {
+    public static void printLineFunctions() {
         System.out.println("## 노선 관리 화면");
         System.out.println("1. 노선 등록");
         System.out.println("2. 노선 삭제");
@@ -58,7 +39,7 @@ public class OutputView {
         printEmptyLine();
     }
 
-    private static void printSectionFunctions() {
+    public static void printSectionFunctions() {
         System.out.println("## 구간 관리 화면");
         System.out.println("1. 구간 등록");
         System.out.println("2. 구간 삭제");
