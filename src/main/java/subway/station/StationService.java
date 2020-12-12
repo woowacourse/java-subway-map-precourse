@@ -13,6 +13,7 @@ public class StationService {
 
     public static void remove(String name) {
         Station station = StationRepository.findByName(name);
+        StationValidator.validateRemoval(station);
         StationRepository.remove(station);
     }
 }

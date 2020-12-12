@@ -2,14 +2,14 @@ package subway.station;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import subway.line.domain.Line;
+import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
-import subway.station.exception.AlreadyExistStationException;
-import subway.station.exception.NotExistStationException;
-import subway.station.exception.NotKoreanNameException;
-import subway.station.exception.TooShortStationNameException;
+import subway.station.exception.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.Mockito.mock;
 
 public class StationServiceTest {
     @AfterEach
@@ -84,5 +84,20 @@ public class StationServiceTest {
         //when & then
         assertThatExceptionOfType(NotExistStationException.class)
                 .isThrownBy(() -> StationService.remove(notExistStation));
+    }
+
+    @Test
+    public void 노선에_등록된_지하철역은_삭제될_수_없다() {
+        //given
+        String stationName = "노선에등록된역";
+        Station station = new Station(stationName);
+        StationRepository.register(station);
+        Line line = mock(Line.class);
+
+        station.addLine(line);
+
+        //when & then
+        assertThatExceptionOfType(CanNotRemoveIfRegisteredException.class)
+                .isThrownBy(() -> StationService.remove(stationName));
     }
 }
