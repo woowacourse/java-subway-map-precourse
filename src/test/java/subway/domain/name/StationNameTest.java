@@ -60,12 +60,12 @@ class StationNameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"123역","양역","역용산",""})
+    @ValueSource(strings = {"123역", "양역", "역용산", ""})
     @Description("유요하지 않는 이름 예외 발생,끝이 역으로 끝나고 역을 제외한 한글로만 이루어진 2글자 이상의 이름 true")
-    public void validateTest(String name){
+    public void validateTest(String name) {
 
-        Assertions.assertThrows(InvalidStationNameException.class,()->{
-           StationName.of(name);
+        Assertions.assertThrows(InvalidStationNameException.class, () -> {
+            StationName.of(name);
         });
 
     }

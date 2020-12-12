@@ -5,8 +5,6 @@ import subway.domain.Line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.menu.LineMenu;
-import subway.menu.Menu;
-import subway.menu.StationMenu;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -14,7 +12,6 @@ import java.util.List;
 
 public class LineController implements SubwayController {
 
-    private static final Menu STATE = LineMenu.BACK;
     private final LineRepository lineRepository = new LineRepository();
     private final StationRepository stationRepository = new StationRepository();
     private final InputView inputView = InputView.getInstance();

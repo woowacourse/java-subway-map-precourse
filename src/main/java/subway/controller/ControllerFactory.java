@@ -18,7 +18,7 @@ public class ControllerFactory {
         if (menu instanceof SectionMenu) {
             return new SectionController();
         }
-        return null;
+        return new MainController();
     }
 
 }

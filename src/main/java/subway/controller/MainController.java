@@ -2,25 +2,22 @@ package subway.controller;
 
 import subway.domain.Line.Line;
 import subway.domain.Line.LineRepository;
-import subway.menu.MainMenu;
-import subway.menu.Menu;
 import subway.view.OutputView;
 
 import java.util.List;
 
 public class MainController implements SubwayController {
 
-    private static final Menu STATE = MainMenu.LINE;
     private static LineRepository lineRepository = new LineRepository();
 
     @Override
     public void save() {
-
+        // 미구현
     }
 
     @Override
     public void delete() {
-
+        // 미구현
     }
 
     @Override
@@ -31,6 +28,6 @@ public class MainController implements SubwayController {
 
     @Override
     public void findBy() {
-
+        // 미구현
     }
 }
