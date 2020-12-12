@@ -1,6 +1,8 @@
 package subway.view;
 
+import java.util.List;
 import subway.controller.StationController;
+import subway.domain.Station;
 
 /**
  * @author yhh1056
@@ -64,6 +66,11 @@ public class StationView {
 
     private void readStations(String button) {
         if (button.equals(Button.THREE)) {
+            Message.printStations();
+            List<Station> stations = stationController.readStations();
+            for (Station station : stations) {
+                Message.printStation(station.getName());
+            }
         }
     }
 }

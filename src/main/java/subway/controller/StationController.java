@@ -1,5 +1,6 @@
 package subway.controller;
 
+import java.util.List;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 
@@ -15,5 +16,9 @@ public class StationController {
 
     public boolean deleteStation(String name) {
         return StationRepository.deleteStation(name);
+    }
+
+    public List<Station> readStations() {
+        return StationRepository.stations();
     }
 }
