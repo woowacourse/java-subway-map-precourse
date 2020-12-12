@@ -1,9 +1,14 @@
 package subway.view;
 
 import subway.SubwayLineMap;
+import subway.controller.LineController;
+import subway.domain.Line;
+import subway.domain.Station;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.MainViewComponent;
+import subway.view.component.StationManagementViewComponent;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -15,6 +20,7 @@ public class MainViewState extends ViewState{
     private static final String BTN_QUIT = "Q";
 
     private static MainViewState mainViewState;
+    private LineController lineController = LineController.getLineController();
 
     private MainViewState(){
         featureSet.add(BTN_STATION_MANAGEMENT);
@@ -42,11 +48,11 @@ public class MainViewState extends ViewState{
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         checkAndSwitchViewToStationManagement(feature, application);
         checkAndSwitchViewToLineManagement(feature, application);
         checkAndSwitchViewToSectionManagement(feature, application);
-        checkAndPrintSubwayLineMap(feature);
+        checkAndPrintSubwayLineMap(feature, application);
         checkAndQuit(feature);
     }
 
@@ -68,9 +74,10 @@ public class MainViewState extends ViewState{
         }
     }
 
-    private void checkAndPrintSubwayLineMap(String feature){
+    private void checkAndPrintSubwayLineMap(String feature, SubwayLineMap application) throws Exception {
         if(feature.equals(BTN_PRINT_SUBWAY_LINEMAP)){
-            printSubwayLineMap();
+            printSubwayLineList();
+            switchViewToStationManagement(application);
         }
     }
 
@@ -92,7 +99,30 @@ public class MainViewState extends ViewState{
         application.setViewState(SectionManagementViewState.getSectionManagementViewState());
     }
 
-    private void printSubwayLineMap(){
+    public void printSubwayLineList(){
+        List<Line> lineList = lineController.getLines();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(MainViewComponent.getSubwayLineMapComponent());
+        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        appendSubwayLineListLog(stringBuilder, lineList);
+        System.out.println(stringBuilder.toString());
+    }
 
+    private void appendSubwayLineListLog(StringBuilder stringBuilder, List<Line> lineList){
+        for(Line line : lineList){
+            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
+            stringBuilder.append(line.getName());
+            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+            appendStationsInLine(stringBuilder, line);
+            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        }
+    }
+
+    private void appendStationsInLine(StringBuilder stringBuilder, Line line){
+        for(Station station : line.getStations()){
+            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
+            stringBuilder.append(station.getName());
+            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        }
     }
 }
