@@ -5,7 +5,7 @@ import org.junit.Test;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
-public class StationValidatorTest {
+public class StationValidatorTest {    
     @Test(expected = NameFormatException.class)
     public void testWrongFormatStationName() {
         StationValidator.validateStation("HankukUniversity");
@@ -19,5 +19,11 @@ public class StationValidatorTest {
     public void testStationNameDuplication() {
         StationRepository.addStation(new Station("잠실역"));
         StationValidator.validateStation("잠실역");
+    }
+    
+    @Test(expected = NotExistedElementException.class)
+    public void testStationNameExistWhenDelete() {
+        StationRepository.addStation(new Station("잠실역"));
+        StationValidator.validateNotExistedStation("의정부역");
     }
 }

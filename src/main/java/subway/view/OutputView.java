@@ -36,4 +36,8 @@ public class OutputView {
     public static void printStationRegisterSuccess() {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
+    
+    public static void printStationDeleteSuccess() {
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+    }
 }

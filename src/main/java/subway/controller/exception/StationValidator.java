@@ -26,4 +26,10 @@ public class StationValidator {
             throw new DuplicationException("\n[ERROR] 이미 등록된 역 이름입니다.");
         }
     }
+    
+    public static void validateNotExistedStation(String name) {
+        if (!StationRepository.deleteStation(name)) {
+            throw new NotExistedElementException("\n[ERROR] 존재하지 않는 역 이름입니다.");
+        }
+    }
 }
