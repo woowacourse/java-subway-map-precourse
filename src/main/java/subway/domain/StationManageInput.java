@@ -2,7 +2,7 @@ package subway.domain;
 
 import java.util.*;
 
-public class StationManageController {
+public class StationManageInput {
 
     static final String FUNCTION_ONE = "1";
     static final String FUNCTION_TWO = "2";
