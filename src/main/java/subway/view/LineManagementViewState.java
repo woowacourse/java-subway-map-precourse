@@ -54,7 +54,7 @@ public class LineManagementViewState extends ViewState {
     protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         checkAndAddLine(feature, application, scanner);
         checkAndRemoveLine(feature, application, scanner);
-        checkAndPrintSubwayLineMap(feature, application);
+        checkAndPrintSubwayLineMap(feature);
         checkAndSwitchViewToMain(feature, application);
     }
 
@@ -79,10 +79,9 @@ public class LineManagementViewState extends ViewState {
         }
     }
 
-    private void checkAndPrintSubwayLineMap(String feature, SubwayLineMap application) throws Exception {
+    private void checkAndPrintSubwayLineMap(String feature) throws Exception {
         if(feature.equals(BTN_READ_LINE)){
             printSubwayLineMap();
-            switchViewToStationManagement(application);
         }
     }
 
@@ -128,7 +127,7 @@ public class LineManagementViewState extends ViewState {
     public void printSubwayLineMap(){
         List<Line> lineList = lineController.getLines();
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(LineManagementViewComponent.getSubwayLineMapLog());
+        stringBuilder.append(LineManagementViewComponent.getSubwayLineListLog());
         stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
         appendSubwayLineMapLog(stringBuilder, lineList);
         System.out.println(stringBuilder.toString());
@@ -169,8 +168,6 @@ public class LineManagementViewState extends ViewState {
             stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
             stringBuilder.append(line.getName());
             stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-            appendStationsInLine(stringBuilder, line);
-            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
         }
     }
 
@@ -180,13 +177,5 @@ public class LineManagementViewState extends ViewState {
 
     private void switchViewToStationManagement(SubwayLineMap application){
         application.setViewState(MainViewState.getMainView());
-    }
-
-    private void appendStationsInLine(StringBuilder stringBuilder, Line line){
-        for(Station station : line.getStations()){
-            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
-            stringBuilder.append(station.getName());
-            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        }
     }
 }

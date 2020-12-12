@@ -13,7 +13,7 @@ public class LineManagementViewComponent {
     private static final String registerFinishComponent = "지하철 노선이 등록되었습니다.";
     private static final String removeLineBeginComponent = "## 삭제할 노선 이름을 입력하세요.";
     private static final String removeLineFinishComponent = "지하철 노선이 삭제되었습니다.";
-    private static final String subwayLineMapLog = "## 지하철 노선도";
+    private static final String subwayLineListLog = "## 노선 목록";
 
     public static String getMenuComponent(){
         return menuComponent;
@@ -43,7 +43,7 @@ public class LineManagementViewComponent {
         return finishPrefixComponent + removeLineFinishComponent;
     }
 
-    public static String getSubwayLineMapLog(){
-        return subwayLineMapLog;
+    public static String getSubwayLineListLog(){
+        return subwayLineListLog;
     }
 }
