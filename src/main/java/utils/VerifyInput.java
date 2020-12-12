@@ -6,7 +6,6 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import view.OutputView;
 
-
 import java.util.List;
 
 public class VerifyInput {
@@ -64,10 +63,8 @@ public class VerifyInput {
     }
 
     public static void existStationName(Line line, String stationName) {
-        for (String name : line.getStationsIncludedLine()) {
-            if (name.equals(stationName)) {
-                return;
-            }
+        if (line.getStationsIncludedLine().contains(stationName)) {
+            return;
         }
         OutputView.printError(line.getName() + OutputView.MESSAGE_ERROR_NOT_EXIST_STATION_NAME_IN_LINE);
         throw new IllegalArgumentException();
@@ -93,7 +90,7 @@ public class VerifyInput {
     public static Line existLineName(String lineName) {
         for (Line line : LineRepository.lines()) {
             if (line.getName().equals(lineName)) {
-                return  line;
+                return line;
             }
         }
         OutputView.printError(OutputView.MESSAGE_ERROR_NOT_EXIST_LINE_NAME);
