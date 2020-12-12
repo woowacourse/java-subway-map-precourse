@@ -1,6 +1,7 @@
 package output.screen;
 
 import input.Input;
+import management.LineManagement;
 import output.Function;
 import output.Menu;
 import management.StationManagement;
@@ -42,7 +43,7 @@ public class ManagementScreen implements Screen {
             StationManagement.stationManagement(answer, input);
         }
         if(selectedMenu == Menu.LINE){
-
+            LineManagement.lineManagement(answer, input);
         }
         if(selectedMenu == Menu.ROUTE){
 
