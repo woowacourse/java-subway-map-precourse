@@ -10,7 +10,7 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static Optional getStation(String stationName) {
+    public static Optional<Station> getStation(String stationName) {
         List<Station> stationResult = stations.stream()
                 .filter(station -> station.getName() == stationName)
                 .collect(Collectors.toList());
