@@ -22,7 +22,8 @@ public enum ErrorCode {
 
     //Section
     SECTION_UPWARD_STATION_NOT_FOUND("SE001", Screen.PREFIX_ERROR + "상행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),
-    SECTION_DOWNWARD_STATION_NOT_FOUND("SE002", Screen.PREFIX_ERROR + "하행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다.");
+    SECTION_DOWNWARD_STATION_NOT_FOUND("SE002", Screen.PREFIX_ERROR + "하행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),
+    SECTION_SAME_STATION_NAME("SE003", Screen.PREFIX_ERROR + "상행 좀점역과 하행 종점역의 이름이 같을 수 없습니다.");
 
 
     private final String code;

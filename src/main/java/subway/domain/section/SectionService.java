@@ -31,10 +31,17 @@ public class SectionService {
 
         Station downwardStation = Station.of(saveReqDto.getDownwardStationName());
         checkDownwardNotFound(downwardStation.getName());
+        checkSameName(upwardStation.getName(), downwardStation.getName());
 
         lineRepository.addLine(line);
         Section section = Section.of(line, Stations.of(Arrays.asList(upwardStation, downwardStation)));
         return sectionRepository.addSection(section);
+    }
+
+    private void checkSameName(String upwardStationName, String downwardStationName) {
+        if (upwardStationName.equals(downwardStationName)) {
+            throw new SectionException(ErrorCode.SECTION_SAME_STATION_NAME);
+        }
     }
 
     public Section findByName(String sectionName) {

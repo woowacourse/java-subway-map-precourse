@@ -65,8 +65,8 @@ class SectionServiceTest {
     void testAlreadySavedError() {
         //given
         String lineName = "1호선";
-        String upwardName = "행복역";
-        String downwardName = "사랑역";
+        String upwardName = "희망역";
+        String downwardName = "소망역";
 
         //then
         assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
@@ -80,7 +80,7 @@ class SectionServiceTest {
         //given
         String lineName = "2호선";
         String upwardName = "역곡역";
-        String downwardName = "사랑역";
+        String downwardName = "소망역";
 
         //then
         assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
@@ -93,12 +93,26 @@ class SectionServiceTest {
     void testDownwardNotFound() {
         //given
         String lineName = "2호선";
-        String upwardName = "행복역";
+        String upwardName = "소망역";
         String downwardName = "역곡역";
 
         //then
         assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_DOWNWARD_STATION_NOT_FOUND.getMessage());
+    }
+
+    @Test
+    @DisplayName("등룍하려는 하행 종점역이 앞서 등록한 상행 종점역일 시 에러가 발생한다")
+    void testDownwardSaveError() {
+        //given
+        String lineName = "2호선";
+        String upwardName = "소망역";
+        String downwardName = "소망역";
+
+        //then
+        assertThatThrownBy(() -> sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName)))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_SAME_STATION_NAME.getMessage());
     }
 }
