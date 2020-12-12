@@ -32,4 +32,8 @@ public class LineService {
         CheckLastLetter.validation(endStationName);
         return StationService.findStation(endStationName);
     }
+
+    public static void deleteLine(String lineName) {
+        LineRepository.deleteLineByName(lineName);
+    }
 }

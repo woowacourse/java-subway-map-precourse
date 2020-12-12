@@ -6,6 +6,7 @@ public class LineInputView {
     private static final String ENTER_NEW_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
     private static final String ENTER_START_STATION_NAME = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String ENTER_END_STATION_NAME = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String ENTER_DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
 
     private Scanner scanner;
 
@@ -25,6 +26,11 @@ public class LineInputView {
 
     public String endStationName() {
         System.out.println(ENTER_END_STATION_NAME);
+        return scanner.next();
+    }
+
+    public String deleteLineName() {
+        System.out.println(ENTER_DELETE_LINE_NAME);
         return scanner.next();
     }
 }

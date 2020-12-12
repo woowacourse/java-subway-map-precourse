@@ -28,10 +28,18 @@ public class LineController {
         if (option == ADD_LINE) {
             addNewLine(lineInputView);
         }
+        if (option == DELETE_LINE) {
+            deleteLine(lineInputView);
+        }
     }
 
     private static void addNewLine(LineInputView lineInputView) {
         String lineName = lineInputView.newLineName();
         LineService.addLine(lineName, lineInputView);
+    }
+
+    private static void deleteLine(LineInputView lineInputView) {
+        String lineName = lineInputView.deleteLineName();
+        LineService.deleteLine(lineName);
     }
 }
