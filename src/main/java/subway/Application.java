@@ -6,7 +6,7 @@ public class Application {
         DataInitService dataInitService = new DataInitService(stationManageConfig);
         dataInitService.init();
 
-        StationManageApp stationManageApp = StationManageApp.of();
+        StationManageApp stationManageApp = StationManageApp.of(stationManageConfig);
         stationManageApp.startManage();
     }
 }

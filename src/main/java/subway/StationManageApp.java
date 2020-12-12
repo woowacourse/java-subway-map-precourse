@@ -1,27 +1,16 @@
 package subway;
 
 import subway.domain.line.LineService;
-import subway.domain.line.LineServiceImpl;
-import subway.domain.line.MemoryLineRepository;
-import subway.domain.section.MemorySectionRepository;
 import subway.domain.section.SectionService;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
-import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
-import subway.domain.station.StationServiceImpl;
 import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
-import subway.exception.ErrorCode;
-import subway.exception.StationException;
 import subway.service.input.InputService;
-import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
-import subway.service.output.StringBuilderOutputService;
 import subway.view.LineView;
 import subway.view.StationView;
-
-import java.util.Scanner;
 
 public class StationManageApp {
     private final InputService inputService;
@@ -30,16 +19,16 @@ public class StationManageApp {
     private final LineService lineService;
     private final SectionService sectionService;
 
-    public StationManageApp() {
-        this.inputService = ScannerInputService.of(new Scanner(System.in));
-        this.outputService = StringBuilderOutputService.of(new StringBuilder());
-        this.stationService = new StationServiceImpl(MemoryStationRepository.of(), MemorySectionRepository.of());
-        this.lineService = new LineServiceImpl(MemoryLineRepository.of());
-        this.sectionService = new SectionService(MemoryLineRepository.of(), MemoryStationRepository.of(), MemorySectionRepository.of());
+    public StationManageApp(StationManageConfig stationManageConfig) {
+        this.inputService = stationManageConfig.inputService();
+        this.outputService = stationManageConfig.outputService();
+        this.stationService = stationManageConfig.stationService();
+        this.lineService = stationManageConfig.lineService();
+        this.sectionService = stationManageConfig.sectionService();
     }
 
-    public static StationManageApp of() {
-        return new StationManageApp();
+    public static StationManageApp of(StationManageConfig stationManageConfig) {
+        return new StationManageApp(stationManageConfig);
     }
 
     public void startManage() {

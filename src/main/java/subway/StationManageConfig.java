@@ -10,6 +10,12 @@ import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
+import subway.service.input.InputService;
+import subway.service.input.ScannerInputService;
+import subway.service.output.OutputService;
+import subway.service.output.StringBuilderOutputService;
+
+import java.util.Scanner;
 
 public class StationManageConfig {
     public StationManageConfig() {
@@ -37,5 +43,13 @@ public class StationManageConfig {
 
     public MemorySectionRepository sectionRepository() {
         return MemorySectionRepository.of();
+    }
+
+    public InputService inputService() {
+        return ScannerInputService.of(new Scanner(System.in));
+    }
+
+    public OutputService outputService() {
+        return StringBuilderOutputService.of(new StringBuilder());
     }
 }
