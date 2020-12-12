@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.line.view.LineOutputView;
 import subway.station.Station;
 import subway.station.StationService;
 
@@ -18,5 +19,6 @@ public class LineService {
         EachLineStations stations = new EachLineStations(newStations);
         Line line = new Line(name, stations);
         LineRepository.addLine(line);
+        LineOutputView.addLineComplete();
     }
 }
