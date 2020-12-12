@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class MainView {
     private static final Map<String, ViewStrategy> views = new LinkedHashMap<>();
     private static final String VIEW_NAME = "메인 화면";
-    private Scanner scanner;
+    private final Scanner scanner;
     private ViewStrategy viewStrategy;
 
     public MainView(Scanner scanner) {
@@ -49,6 +49,7 @@ public class MainView {
 
     public void manageView() {
         viewStrategy.show();
+        //Exit을 안 할 경우는 다시 start를 실행한다. (메인 화면으로 돌아간다.)
         if (!(viewStrategy instanceof ExitView)) {
             start();
         }

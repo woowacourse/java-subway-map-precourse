@@ -26,8 +26,7 @@ public class DummyData {
     private static void createLine() {
         Map<String, List<String>> lineGroup = DummyDataList.getLineGroup();
         lineGroup.forEach((lineName, stationNames) -> {
-            LineRequestDTO lineRequest = createLineRequest(lineName, stationNames);
-            LINE_CONTROLLER.createLine(lineRequest);
+            LINE_CONTROLLER.createLine(createLineRequest(lineName, stationNames));
             insertStation(lineName, stationNames);
         });
     }
