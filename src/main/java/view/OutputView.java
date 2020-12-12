@@ -24,16 +24,6 @@ public class OutputView {
         System.out.println(STATION_FUNCTION);
     }
 
-    public static void lineManageView() {
-        System.out.println(LINE_MAIN);
-        System.out.println(LINE_FUNCTION);
-    }
-
-    public static void sectionManageView() {
-        System.out.println(SECTION_MAIN);
-        System.out.println(SECTION_FUNCTION);
-    }
-
     public static void stationInsertSuccess() {
         System.out.println(STATION_INSERT_SUCCESS);
     }
@@ -46,6 +36,11 @@ public class OutputView {
         System.out.println(stations);
     }
 
+    public static void lineManageView() {
+        System.out.println(LINE_MAIN);
+        System.out.println(LINE_FUNCTION);
+    }
+
     public static void lineInsertSuccess() {
         System.out.println(LINE_INSERT_SUCCESS);
     }
@@ -56,5 +51,10 @@ public class OutputView {
 
     public static void lineLookup(String lines) {
         System.out.println(lines);
+    }
+
+    public static void sectionManageView() {
+        System.out.println(SECTION_MAIN);
+        System.out.println(SECTION_FUNCTION);
     }
 }
