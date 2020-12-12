@@ -1,5 +1,6 @@
 package subway.view.page;
 
+import subway.controller.StationController;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -7,10 +8,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class StationMenu {
+    private static StationController stationController;
 
     private StationMenu(){}
 
     public static void run(Scanner scanner){
+        stationController = StationController.getInstance(scanner);
         printMenu();
         Menu selected = getMenuSelection(scanner);
     }
