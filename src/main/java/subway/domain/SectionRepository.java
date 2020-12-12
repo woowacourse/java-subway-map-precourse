@@ -32,7 +32,7 @@ public class SectionRepository {
 
     public static int getFixedPosition(List<Station> stations, int position) {
         if (position < 1) return Criteria.FIRST_PLACE_ON_LINE.getValue();
-        if (position >= stations.size()) return stations.size();
+        if (position > stations.size()) return stations.size();
         return position - 1;
     }
 
