@@ -33,9 +33,8 @@ public class DashboardWords {
     public static final String DASHBOARD_STRETCH_OPTION_1 = "구간 등록";
     public static final String DASHBOARD_STRETCH_OPTION_2 = "구간 삭제";
 
-    public static final String LIST_OF_STATIONS = "##역 목록";
-    public static final String LIST_OF_LINES = "##노선 목록";
-
+    public static final String LIST_OF_STATIONS = "## 역 목록";
+    public static final String LIST_OF_LINES = "## 노선 목록";
     public static final String ASK_OPTIONS = "## 원하는 기능을 선택하세요.";
     public static final String ASK_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
     public static final String ASK_DELETE_STATION_NAME = "## 삭제할 역 이름을 입력하세요.";
@@ -51,6 +50,7 @@ public class DashboardWords {
     public static final String ERROR_STATION_NAME_NO_EXISTS = "[ERROR] 존재하지 않는 역입니다.";
     public static final String ERROR_LINE_NAME_NO_EXISTS = "[ERROR] 존재하지 않는 노선입니다.";
 
+    public static final String INFO = "[INFO]";
     public static final String INFO_STATION_ENROLL_SUCCESS = "[INFO] 지하철 역이 등록되었습니다.";
     public static final String INFO_LINE_ENROLL_SUCCESS = "[INFO] 지하철 노선이 등록되었습니다.";
     public static final String INFO_STATION_DELETE_SUCCESS = "[INFO] 지하철 역이 삭제되었습니다.";

@@ -119,6 +119,7 @@ public class StationDashboard {
     public void showStations() {
         System.out.println(LIST_OF_STATIONS);
         for (Station station : StationRepository.stations()) {
+            System.out.print(INFO);
             System.out.println(station);
         }
     }

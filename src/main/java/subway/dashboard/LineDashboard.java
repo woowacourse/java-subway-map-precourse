@@ -156,6 +156,7 @@ public class LineDashboard {
     public void showLines() {
         System.out.println(LIST_OF_LINES);
         for (Line line : LineRepository.lines()) {
+            System.out.print(INFO);
             System.out.println(line);
         }
     }
