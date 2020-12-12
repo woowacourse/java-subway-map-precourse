@@ -1,14 +1,14 @@
-package subway.domain;
+package subway.domain.subRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.domain.Repository;
+import subway.domain.Station;
 
-public class StationRepository {
+public class StationRepository implements Repository {
     private static final List<Station> stations = new ArrayList<>();
-
-
     public static List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
@@ -22,15 +22,15 @@ public class StationRepository {
         return false;
     }
 
-    public static void addStation(Station station) {
-        stations.add(station);
+    public static void add(int position, Station station) {
+        stations.add(position, station);
     }
 
-    public static boolean deleteStation(String name) {
+    public static boolean delete(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static List<String> inquiryList() {
+    public List<String> inquiryList() {
         List<String> stationNames = new ArrayList<>();
 
         for(Station station: stations) {
@@ -39,5 +39,8 @@ public class StationRepository {
         return stationNames;
     }
 
+    public int size() {
+        return this.stations.size();
+    }
 
 }

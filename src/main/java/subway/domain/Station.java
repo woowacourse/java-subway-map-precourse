@@ -1,6 +1,6 @@
 package subway.domain;
 
-public class Station {
+public class Station implements Node{
     private String name;
 
     public Station(String name) {

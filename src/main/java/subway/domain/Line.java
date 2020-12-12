@@ -2,54 +2,37 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import subway.domain.subRepository.PassingRouteRepository;
 
-public class Line {
+public class Line implements Node{
     private static final String CONTOUR = "---";
-    private static final int LEAST_STATION_NUM= 3;
     private String name;
-    private List<Station> stations = new ArrayList<>();
+    private PassingRouteRepository passingRoutes = null;
 
-    public Line(String name, List<Station> stations) {
+    public Line(String name, PassingRouteRepository passingRoutes) {
         this.name = name;
-        this.stations = stations;
+        this.passingRoutes = passingRoutes;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean isContaining(Station station) {
-        return stations.contains(station);
-    }
-
     public boolean equalWith(String newName) {
         return name.equals(newName);
     }
 
+    public boolean isContaining(Station station) {
+        return passingRoutes.isContaining(station);
+    }
+
     public List<String> inquiryStations() {
         List<String> stationNames = new ArrayList<>();
+
         stationNames.add(this.name);
         stationNames.add(CONTOUR);
 
-        for(Station station: stations) {
-            stationNames.add(station.getName());
-        }
+        stationNames = this.passingRoutes.addStationNames(stationNames);
         return stationNames;
     }
-
-    public void addInterval(Station station, int position) {
-        stations.add(position - 1, station);
-    }
-
-    public void removeInterval(String stationName) {
-        if(removePossible()) {
-            stations.removeIf(station -> station.equalWith(stationName));
-        }
-    }
-
-    public boolean removePossible() {
-        return stations.size() >= LEAST_STATION_NUM;
-    }
-
-        // 추가 기능 구현
 }
