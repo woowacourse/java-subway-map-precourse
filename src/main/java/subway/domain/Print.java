@@ -13,7 +13,7 @@ public class Print {
     }
 
     public static void stationSetting() {
-        System.out.printf(Constant.HASH + Constant.SETTING_MENU + "%n"
+        System.out.printf(Constant.HASH + Constant.STATION + Constant.SETTING_MENU + "%n"
                 + Constant.ONE + Constant.DOT + Constant.STATION + Constant.ADD + "%n"
                 + Constant.TWO + Constant.DOT + Constant.STATION + Constant.DELETE + "%n"
                 + Constant.THREE + Constant.DOT + Constant.STATION + Constant.LOOKUP + "%n"
