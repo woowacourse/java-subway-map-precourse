@@ -9,6 +9,12 @@ import subway.io.Request;
 import subway.io.Response;
 
 public class SectionManagementView extends View {
+    private static final String LINE_OF_SECTION_REGISTER_MESSAGE = "노선을 입력하세요.";
+    private static final String STATION_OF_SECTION_REGISETER_MESSAGE = "역이름을 입력하세요.";
+    private static final String INDEX_OF_SECTION_REGISTER_MESSAGE = "순서를 입력하세요.";
+    private static final String SECTION_REGISTER_SUCCESS_MESSAGE = "구간이 등록되었습니다.\n";
+    private static final String LINE_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
+    private static final String STATION_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 역을 입력하세요.";
     private static final String VIEW_NAME = "구간 관리 화면";
     private static final LinkedHashMap<String, Command> MENUS =
             new LinkedHashMap<String, Command>();
@@ -25,13 +31,13 @@ public class SectionManagementView extends View {
             return;
         }
         LineRepository.addSection(inputs.get(0), inputs.get(1), inputs.get(2));
-        response.printInfoMessage(Response.SECTION_REGISTER_SUCCESS_MESSAGE);
+        response.printInfoMessage(SECTION_REGISTER_SUCCESS_MESSAGE);
         scene.back();
     }
 
     private static boolean registerLineOfSection(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.LINE_OF_SECTION_REGISTER_MESSAGE);
+        response.printHeadlineMessage(LINE_OF_SECTION_REGISTER_MESSAGE);
         String lineName = request.requestLineOfSectionRegister();
         if (lineName == null) {
             return false;
@@ -42,7 +48,7 @@ public class SectionManagementView extends View {
 
     private static boolean registerStationOfSection(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.STATION_OF_SECTION_REGISETER_MESSAGE);
+        response.printHeadlineMessage(STATION_OF_SECTION_REGISETER_MESSAGE);
         String lineName = inputs.get(0);
         String stationName = request.requestStationOfSectionRegister(lineName);
         if (stationName == null) {
@@ -54,7 +60,7 @@ public class SectionManagementView extends View {
 
     private static boolean registerIndexOfSection(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.INDEX_OF_SECTION_REGISTER_MESSAGE);
+        response.printHeadlineMessage(INDEX_OF_SECTION_REGISTER_MESSAGE);
         String lineName = inputs.get(0);
         String index = request.requestIndexOfSectionRegister(lineName);
         if (index == null) {
@@ -75,7 +81,7 @@ public class SectionManagementView extends View {
 
     private static boolean removeLineOfSectoin(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.LINE_OF_SECTION_REMOVAL_MESSAGE);
+        response.printHeadlineMessage(LINE_OF_SECTION_REMOVAL_MESSAGE);
         String lineName = request.requestLineOfSectionRemoval();
         if (lineName == null) {
             return false;
@@ -86,7 +92,7 @@ public class SectionManagementView extends View {
 
     private static boolean removeStationOfSection(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.STATION_OF_SECTION_REMOVAL_MESSAGE);
+        response.printHeadlineMessage(STATION_OF_SECTION_REMOVAL_MESSAGE);
         String stationName = request.requestStationOfSectionRemoval(inputs.get(0));
         if (stationName == null) {
             return false;

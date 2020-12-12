@@ -9,6 +9,12 @@ import subway.io.Request;
 import subway.io.Response;
 
 public class LineManagementView extends View {
+    private static final String LINE_REGISTER_MESSAGE = "등록할 노선 이름을 입력하세요.";
+    private static final String UPBOUND_STATION_REGISTER_MESSAGE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String DOWNBOUND_STATION_REGISTER_MESSAGE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String LINE_REGISTER_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.\n";
+    private static final String LINE_REMOVAL_MESSAGE = "삭제할 노선 이름을 입력하세요.";
+    private static final String LINE_REMOVAL_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.\n";
     private static final String VIEW_NAME = "노선 관리 화면";
     private static final LinkedHashMap<String, Command> MENUS =
             new LinkedHashMap<String, Command>();
@@ -29,13 +35,13 @@ public class LineManagementView extends View {
             return;
         }
         LineRepository.addLine(inputs.get(0), inputs.get(1), inputs.get(2));
-        response.printInfoMessage(Response.LINE_REGISTER_SUCCESS_MESSAGE);
+        response.printInfoMessage(LINE_REGISTER_SUCCESS_MESSAGE);
         scene.back();
     }
 
     private static boolean registerLineName(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.LINE_REGISTER_MESSAGE);
+        response.printHeadlineMessage(LINE_REGISTER_MESSAGE);
         String lineName = request.requestLineRegister();
         if (lineName == null) {
             return false;
@@ -46,7 +52,7 @@ public class LineManagementView extends View {
 
     private static boolean registerUpboundStationName(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.UPBOUND_STATION_REGISTER_MESSAGE);
+        response.printHeadlineMessage(UPBOUND_STATION_REGISTER_MESSAGE);
         String upboundStation = request.requestTerminatingStation();
         if (upboundStation == null) {
             return false;
@@ -57,7 +63,7 @@ public class LineManagementView extends View {
 
     private static boolean registerDownboundStationName(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.DOWNBOUND_STATION_REGISTER_MESSAGE);
+        response.printHeadlineMessage(DOWNBOUND_STATION_REGISTER_MESSAGE);
         String downboundStation = request.requestTerminatingStation();
         if (downboundStation == null) {
             return false;
@@ -67,9 +73,9 @@ public class LineManagementView extends View {
     }
 
     private static void removeLine(Scene scene, Request request, Response response) {
-        response.printHeadlineMessage(Response.LINE_REMOVAL_MESSAGE);
+        response.printHeadlineMessage(LINE_REMOVAL_MESSAGE);
         if (request.requestLineRemoval()) {
-            response.printInfoMessage(Response.LINE_REMOVAL_SUCCESS_MESSAGE);
+            response.printInfoMessage(LINE_REMOVAL_SUCCESS_MESSAGE);
             scene.back();
         }
     }

@@ -6,6 +6,8 @@ import subway.io.Request;
 import subway.io.Response;
 
 public class SubwayManager {
+    private static final String COMMAND_REQUEST_MESSAGE = "원하는 기능을 선택하세요.";
+    
     private final Request request;
     private final Response response;
     private Scene scene;
@@ -27,7 +29,7 @@ public class SubwayManager {
     private String selectCommand(Scene scene) {
         String input = null;
         while (input == null) {
-            response.printHeadlineMessage(Response.COMMAND_REQUEST_MESSAGE);
+            response.printHeadlineMessage(COMMAND_REQUEST_MESSAGE);
             input = request.requestCommand(scene);
         }
         return input;

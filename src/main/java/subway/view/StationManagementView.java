@@ -6,6 +6,10 @@ import subway.io.Request;
 import subway.io.Response;
 
 public class StationManagementView extends View {
+    private static final String STATION_REGISTER_MESSAGE = "등록할 역 이름을 입력하세요.";
+    private static final String STATION_REMOVAL_MESSAGE = "삭제할 역 이름을 입력하세요.";
+    private static final String STATION_REGISTER_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.\n";
+    private static final String STATION_REMOVAL_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.\n";
     private static final String VIEW_NAME = "역 관리 화면";
     private static final LinkedHashMap<String, Command> MENUS =
             new LinkedHashMap<String, Command>();
@@ -18,19 +22,19 @@ public class StationManagementView extends View {
     }
 
     private static void registerStaion(Scene scene, Request request, Response response) {
-        response.printHeadlineMessage(Response.STATION_REGISTER_MESSAGE);
+        response.printHeadlineMessage(STATION_REGISTER_MESSAGE);
         boolean isSuccess = request.requestStationRegister();
         if (isSuccess) {
-            response.printInfoMessage(Response.STATION_REGISTER_SUCCESS_MESSAGE);
+            response.printInfoMessage(STATION_REGISTER_SUCCESS_MESSAGE);
             scene.back();
         }
     }
 
     private static void removeStation(Scene scene, Request request, Response response) {
-        response.printHeadlineMessage(Response.STATION_REMOVAL_MESSAGE);
+        response.printHeadlineMessage(STATION_REMOVAL_MESSAGE);
         boolean isSuccess = request.requestStationRemoval();
         if (isSuccess) {
-            response.printInfoMessage(Response.STATION_REMOVAL_SUCCESS_MESSAGE);
+            response.printInfoMessage(STATION_REMOVAL_SUCCESS_MESSAGE);
             scene.back();
         }
     }
