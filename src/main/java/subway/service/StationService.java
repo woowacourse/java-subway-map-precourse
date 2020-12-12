@@ -4,6 +4,7 @@ import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
+import subway.service.validation.StationValidation;
 import subway.type.InputType;
 import subway.type.StationType;
 import subway.view.output.ExceptionView;
@@ -32,40 +33,57 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
         while (true) {
             ScreenView.printStationManagementScreen();
             String stationInput = scanner.next();
-            if (inputService.isInput(stationInput)) {
-                stationService.chooseFeature(stationInput, scanner);
+            if ((inputService.isInput(stationInput))
+                    && (stationService.chooseFeature(stationInput, scanner))) {
                 break;
             }
-            ExceptionView.printInvalidFeatureChoiceException();
         }
     }
 
     @Override
-    public void chooseFeature(String input, Scanner scanner) {
+    public boolean chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
-            add(scanner);
-            return;
+            return add(scanner);
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
             // TODO: 역 삭제 기능 구현
-            return;
+            return false;
         }
         if (input.equals(InputType.INPUT_THREE.getInput())) {
             // TODO: 역 조회 기능 구현
-            return;
+            return false;
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
-            return;
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void add(Scanner scanner) {
+    public boolean add(Scanner scanner) {
         TextView.printStationAddingText();
         String stationName = scanner.next();
-        StationRepository.addStation(new Station(stationName));
-        InformationView.printStationAddingInformation();
-        System.out.println();
+        if (checkValidation(stationName)) {
+            StationRepository.addStation(new Station(stationName));
+            InformationView.printStationAddingInformation();
+            System.out.println();
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkValidation(String stationName) {
+        StationValidation stationValidation = new StationValidation();
+
+        if (stationValidation.checkNameDuplication(stationName)) {
+            ExceptionView.printInvalidStationNameException();
+            return false;
+        }
+        if (stationValidation.checkNameLength(stationName)) {
+            ExceptionView.printInvalidStationNameLengthException();
+            return false;
+        }
+        return true;
     }
 
     @Override
