@@ -76,7 +76,37 @@ public class Request {
         }
         return true;
     }
-    
+
+    public String requestLineOfSection() {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidLineOfSection(input);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestStationOfSection(String lineName) {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidStationOfSection(input, lineName);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
+    public String requestIndexOfSection(String lineName) {
+        String input = getInput();
+        Error error = ExceptionManager.checkValidIndexOfSection(input, lineName);
+        if (error != Error.OK) {
+            printError(error);
+            return null;
+        }
+        return input;
+    }
+
     public boolean isAccessibleLineRepository() {
         Error error = ExceptionManager.checkAccessibleLineRepository();
         if (error != Error.OK) {
@@ -95,7 +125,7 @@ public class Request {
         }
         return true;
     }
-    
+
     public boolean requestLineRemoval() {
         String input = getInput();
         Error error = ExceptionManager.checkValidLineRemoval(input);

@@ -35,7 +35,7 @@ public class LineManagementView extends View {
 
     private static boolean registerLineName(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.LINE_TO_REGISTER_REQUEST_MESSAGE);
+        response.printHeadlineMessage(Response.LINE_REGISTER_MESSAGE);
         String lineName = request.requestLineRegister();
         if (lineName == null) {
             return false;
@@ -46,7 +46,7 @@ public class LineManagementView extends View {
 
     private static boolean registerUpboundStationName(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.UPBOUND_STATION_TO_REGISTER_REQUEST_MESSAGE);
+        response.printHeadlineMessage(Response.UPBOUND_STATION_REGISTER_MESSAGE);
         String upboundStation = request.requestTerminatingStation();
         if (upboundStation == null) {
             return false;
@@ -57,7 +57,7 @@ public class LineManagementView extends View {
 
     private static boolean registerDownboundStationName(Request request, Response response,
             List<String> inputs) {
-        response.printHeadlineMessage(Response.DOWNBOUND_STATION_TO_REGISTER_REQUEST_MESSAGE);
+        response.printHeadlineMessage(Response.DOWNBOUND_STATION_REGISTER_MESSAGE);
         String downboundStation = request.requestTerminatingStation();
         if (downboundStation == null) {
             return false;
@@ -67,7 +67,7 @@ public class LineManagementView extends View {
     }
 
     private static void removeLine(Scene scene, Request request, Response response) {
-        response.printHeadlineMessage(Response.LINE_TO_REMOVE_REQUEST_MESSAGE);
+        response.printHeadlineMessage(Response.LINE_REMOVAL_MESSAGE);
         if (request.requestLineRemoval()) {
             response.printInfoMessage(Response.LINE_REMOVAL_SUCCESS_MESSAGE);
             scene.back();

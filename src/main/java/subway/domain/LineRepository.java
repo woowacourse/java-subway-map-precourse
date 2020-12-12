@@ -12,8 +12,13 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(String lineName, String upboundStationName, String downboundStationName) {
+    public static void addLine(String lineName, String upboundStationName,
+            String downboundStationName) {
         lines.add(new Line(lineName, upboundStationName, downboundStationName));
+    }
+
+    public static void addSection(String lineName, String stationName, String index) {
+        getLineByName(lineName).addSection(stationName, index);
     }
 
     public static boolean deleteLineByName(String name) {
@@ -23,8 +28,23 @@ public class LineRepository {
     public static boolean hasLine(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).count() > 0;
     }
-    
+
+    public static boolean isStationInLine(String stationName, String lineName) {
+        Line line = getLineByName(lineName);
+        return line.hasStation(stationName);
+    }
+
+    public static boolean isValidRangeInLine(int index, String lineName) {
+        Line line = getLineByName(lineName);
+        return line.isValidRange(index);
+    }
+
     public static boolean isEmpty() {
         return lines.isEmpty();
+    }
+
+    private static Line getLineByName(String name) {
+        return lines.stream().filter(line -> Objects.equals(line.getName(), name)).findFirst()
+                .get();
     }
 }

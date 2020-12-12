@@ -18,7 +18,7 @@ public class StationManagementView extends View {
     }
 
     private static void registerStaion(Scene scene, Request request, Response response) {
-        response.printHeadlineMessage(Response.STATION_TO_REGISTER_REQUEST_MESSAGE);
+        response.printHeadlineMessage(Response.STATION_REGISTER_MESSAGE);
         boolean isSuccess = request.requestStationRegister();
         if (isSuccess) {
             response.printInfoMessage(Response.STATION_REGISTER_SUCCESS_MESSAGE);
@@ -27,7 +27,7 @@ public class StationManagementView extends View {
     }
 
     private static void removeStation(Scene scene, Request request, Response response) {
-        response.printHeadlineMessage(Response.STATION_TO_REMOVE_REQUEST_MESSAGE);
+        response.printHeadlineMessage(Response.STATION_REMOVAL_MESSAGE);
         boolean isSuccess = request.requestStationRemoval();
         if (isSuccess) {
             response.printInfoMessage(Response.STATION_REMOVAL_SUCCESS_MESSAGE);

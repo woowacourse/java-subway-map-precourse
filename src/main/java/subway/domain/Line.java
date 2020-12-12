@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private String name;
@@ -13,9 +14,21 @@ public class Line {
         sections.add(StationRepository.getByName(downboundStationName));
     }
 
+    public void addSection(String stationName, String index) {
+        int indexNumber = Integer.parseInt(index);
+        sections.add(indexNumber, StationRepository.getByName(stationName));
+    }
+
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean hasStation(String stationName) {
+        Station station = StationRepository.getByName(stationName);
+        return sections.stream().filter(section -> Objects.equals(section, station)).count() > 0;
+    }
+
+    public boolean isValidRange(int index) {
+        return (index >= 0) && (index <= sections.size());
+    }
 }

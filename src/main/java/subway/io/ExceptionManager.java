@@ -1,5 +1,6 @@
 package subway.io;
 
+import java.util.regex.Pattern;
 import subway.Scene;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
@@ -17,7 +18,10 @@ public class ExceptionManager {
         DUPLICATE_LINE_NAME("이미 등록된 노선 이름입니다."),
         NON_EXISTENT_STATION_NAME("존재하지 않는 역 이름입니다."),
         NON_EXISTENT_LINE_NAME("존재하지 않는 노선 이름입니다."),
-        SAME_TERMINATING_STATION("하나의 역이 한 노선의 두 개의 종점이 될 수 없습니다.");
+        SAME_TERMINATING_STATION("하나의 역이 한 노선의 두 개의 종점이 될 수 없습니다."),
+        EXISTENT_STATION_IN_LINE("이미 노선에 해당 역이 존재합니다."),
+        INVALID_NUMBER_TYPE("순서는 숫자입니다."),
+        INVALID_STATION_INDEX("해당 위치에는 구간을 추가할 수 없습니다.");
 
         private static final String ERROR_FORMAT = "[ERROR] %s\n\n";
 
@@ -65,7 +69,7 @@ public class ExceptionManager {
         }
         return Error.OK;
     }
-    
+
     public static Error checkAccessibleLineRepository() {
         if (LineRepository.isEmpty()) {
             return Error.INVALID_COMMAND;
@@ -100,7 +104,7 @@ public class ExceptionManager {
         }
         return Error.OK;
     }
-    
+
     public static Error checkValidLineRemoval(String name) {
         if (!isValidLineNameLength(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
@@ -109,6 +113,54 @@ public class ExceptionManager {
             return Error.NON_EXISTENT_LINE_NAME;
         }
         return Error.OK;
+    }
+
+    public static Error checkValidLineOfSection(String name) {
+        if (!isValidLineNameLength(name)) {
+            return Error.INVALID_LINE_NAME_LENGTH;
+        }
+        if (!LineRepository.hasLine(name)) {
+            return Error.NON_EXISTENT_LINE_NAME;
+        }
+        return Error.OK;
+    }
+
+    public static Error checkValidStationOfSection(String stationName, String lineName) {
+        if (!isValidStationNameLength(stationName)) {
+            return Error.INVALID_STATION_NAME_LENGTH;
+        }
+        if (!StationRepository.hasStation(stationName)) {
+            return Error.NON_EXISTENT_STATION_NAME;
+        }
+        if (LineRepository.isStationInLine(stationName, lineName)) {
+            return Error.EXISTENT_STATION_IN_LINE;
+        }
+        return Error.OK;
+    }
+
+    public static Error checkValidIndexOfSection(String input, String lineName) {
+        if (!isNumber(input)) {
+            return Error.INVALID_NUMBER_TYPE;
+        }
+        if (!isValidRange(input, lineName)) {
+            return Error.INVALID_STATION_INDEX;
+        }
+        return Error.OK;
+    }
+
+    private static boolean isNumber(String input) {
+        String numberPattern = "[+-]?[0-9]+";
+        return Pattern.matches(numberPattern, input);
+    }
+
+    private static boolean isValidRange(String input, String lineName) {
+        int index = -1;
+        try {
+            index = Integer.parseInt(input);
+        } catch (Exception exception) {
+            return false;
+        }
+        return LineRepository.isValidRangeInLine(index, lineName);
     }
 
     private static boolean isValidStationNameLength(String name) {
