@@ -91,7 +91,7 @@ public class SubwayProgram {
         SubMenuType subMenuType;
         do {
             subMenuType = InputView.inputSectionMenu(scanner, subMenuName, mainMenuType);
-//            selectSectionMenu(subMenuType);
+            selectSectionMenu(subMenuType);
         }while (!subMenuType.equals(SubMenuType.BACK));
     }
 
@@ -163,15 +163,29 @@ public class SubwayProgram {
         }
     }
 
-//    private void selectSectionMenu(Menu sectionMenuType) {
-//        if (SubMenuType.ADD.equals(sectionMenuType)) {
-//            InputView.inputSectionAdd(scanner);
-//            return;
-//        }
+    private void selectSectionMenu(Menu sectionMenuType) {
+        if (SubMenuType.ADD.equals(sectionMenuType)) {
+            addSection();
+            return;
+        }
 //        if (SubMenuType.DELETE.equals(sectionMenuType)) {
 //            InputView.inputSectionDelete(scanner);
 //        }
-//    }
+    }
+
+    private void addSection() {
+        try {
+            LineName lineName = InputView.inputLineNameToAddSection(scanner);
+            Line line = LineRepository.getLineByName(lineName);
+            StationName stationName = InputView.inputStationNameToAddSection(scanner);
+            Station station = new Station(stationName);
+            line.validateDuplicateStationToLine(station);
+            int index = InputView.inputIndexToAddSection(scanner);
+            line.addStationToLine(station, index);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 
 

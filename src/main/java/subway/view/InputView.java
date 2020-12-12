@@ -118,6 +118,23 @@ public class InputView {
 //            System.out.println(e.getMessage());
 //        }
 //    }
+
+    public static LineName inputLineNameToAddSection(Scanner scanner) {
+        System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
+        return new LineName(scanner.nextLine());
+    }
+
+    public static StationName inputStationNameToAddSection(Scanner scanner) {
+        System.out.println(INPUT_SECTION_STATION_ADD_MESSAGE);
+        StationName stationName = new StationName(scanner.nextLine());
+        StationRepository.validateNameExist(stationName);
+        return stationName;
+    }
+
+    public static int inputIndexToAddSection(Scanner scanner) {
+        System.out.println(INPUT_SECTION_INDEX_MESSAGE);
+        return InputValidator.validateInteger(scanner.nextLine());
+    }
 //
 //    public static void inputSectionDelete(Scanner scanner) {
 //        try {

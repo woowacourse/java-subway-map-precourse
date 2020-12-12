@@ -44,15 +44,10 @@ public class LineRepository {
         }
     }
 
-//    public static Line getLineByName(String name) {
-//        Line inputLine = new Line(name);
-//        for (Line line : lines) {
-//            if (line.equals(inputLine)) {
-//                return line;
-//            }
-//        }
-//        throw new IllegalArgumentException(LINE_EXIST_ERROR);
-//    }
+    public static Line getLineByName(LineName lineName) {
+        validateNameExist(lineName);
+        return new Line(lineName);
+    }
 
 
 }
