@@ -1,7 +1,9 @@
 package output.screen;
 
+import input.Input;
 import output.Function;
 import output.Menu;
+import management.StationManagement;
 
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class ManagementScreen implements Screen {
     public final static String MANAGEMENT_SCREEN_MESSAGE = "관리 화면";
     public final static String BACK = "B. 돌아가기";
     private Menu selectedMenu;
+    private Input input;
 
     public ManagementScreen(Menu selectedMenu) {
         this.selectedMenu = selectedMenu;
@@ -26,7 +29,23 @@ public class ManagementScreen implements Screen {
     }
 
     @Override
-    public void logic() {
+    public void logic(Input input) {
+        this.input = input;
+        System.out.println(HEAD + SELECT_FUNCTION);
+        String answer = input.inputFunction(); //입력.
+        System.out.println();
+        runFunction(answer);
+    }
 
+    private void runFunction(String answer){
+        if(selectedMenu == Menu.STATION){
+            StationManagement.stationManagement(answer, input);
+        }
+        if(selectedMenu == Menu.LINE){
+
+        }
+        if(selectedMenu == Menu.ROUTE){
+
+        }
     }
 }
