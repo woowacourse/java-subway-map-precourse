@@ -38,6 +38,7 @@ public class LineService {
         try {
             CheckRegisteredLine.validation(lineName);
             LineRepository.deleteLineByName(lineName);
+            LineOutputView.deleteStationComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

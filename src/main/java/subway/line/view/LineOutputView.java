@@ -14,6 +14,7 @@ public class LineOutputView {
     private static final String GO_BACK = "B. 돌아가기";
     private static final String RESULT_PREFIX = "[INFO] ";
     private static final String COMPLETE_ADD_LINE = RESULT_PREFIX + "지하철 노선이 등록되었습니다.";
+    private static final String COMPLETE_DELETE_LINE = RESULT_PREFIX + "지하철 노선이 삭제되었습니다.";
     private static final String LINE_LIST_TITLE = "## 노선 목록";
 
     public static void printLineManagement() {
@@ -37,6 +38,11 @@ public class LineOutputView {
         for (Line line : lines) {
             System.out.println(RESULT_PREFIX + line.getName());
         }
+        System.out.println();
+    }
+
+    public static void deleteStationComplete() {
+        System.out.println(COMPLETE_DELETE_LINE);
         System.out.println();
     }
 }
