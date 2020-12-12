@@ -36,6 +36,8 @@ public class OutputView {
 
     public static final String PREFIX_INFO = "[INFO] ";
     public static final String PREFIX_ERROR = "[ERROR] ";
+    public static final String NEW_LINE = "\n";
+    public static final String DIVISION_LINE = "---";
 
     public static final String QUERY_FUNCTION_SELECT = "## 원하는 기능을 선택하세요.";
     public static final String QUERY_REGISTER_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
@@ -50,12 +52,12 @@ public class OutputView {
     public static final String QUERY_DELETE_SECTION_LINE_NAME = "## 삭제할 구간의 노선을 입력하세요.";
     public static final String QUERY_DELETE_SECTION_STATION_NAME = "## 삭제할 구간의 역을 입력하세요.";
 
-    public static final String MESSAGE_SUCCESS_REGISTER_STATION = "지하철 역이 등록되었습니다.";
-    public static final String MESSAGE_SUCCESS_DELETE_STATION = "지하철 역이 삭제되었습니다.";
-    public static final String MESSAGE_SUCCESS_REGISTER_LINE = "지하철 노선이 등록되었습니다.";
-    public static final String MESSAGE_SUCCESS_DELETE_LINE = "지하철 노선이 삭제되었습니다.";
-    public static final String MESSAGE_SUCCESS_REGISTER_SECTION = "지하철 구간이 등록되었습니다.";
-    public static final String MESSAGE_SUCCESS_DELETE_SECTION = "지하철 구간이 삭제되었습니다.";
+    public static final String MESSAGE_SUCCESS_REGISTER_STATION = "지하철 역이 등록되었습니다." + NEW_LINE;
+    public static final String MESSAGE_SUCCESS_DELETE_STATION = "지하철 역이 삭제되었습니다." + NEW_LINE;
+    public static final String MESSAGE_SUCCESS_REGISTER_LINE = "지하철 노선이 등록되었습니다." + NEW_LINE;
+    public static final String MESSAGE_SUCCESS_DELETE_LINE = "지하철 노선이 삭제되었습니다." + NEW_LINE;
+    public static final String MESSAGE_SUCCESS_REGISTER_SECTION = "지하철 구간이 등록되었습니다." + NEW_LINE;
+    public static final String MESSAGE_SUCCESS_DELETE_SECTION = "지하철 구간이 삭제되었습니다." + NEW_LINE;
 
     public static final String MESSAGE_ERROR_INVALID_SELECT = "선택할 수 없는 기능입니다.";
     public static final String MESSAGE_ERROR_ALREADY_EXIST_STATION_NAME = "이미 등록된 역입니다.";
@@ -72,9 +74,6 @@ public class OutputView {
     public static final String MESSAGE_ERROR_OUT_OF_LINE_RANGE = "노선의 총 길이를 벗어난 값입니다.";
     public static final String MESSAGE_ERROR_TOO_SHORT_NAME = "이름은 2글자 이상이어야 합니다.";
     public static final String MESSAGE_ERROR_TOO_LITTLE_STATIONS = "노선에는 적어도 2개의 역이 존재해야 합니다.";
-
-    public static final String NEW_LINE = "\n";
-    public static final String DIVISION_LINE = "---";
 
     public static final String EXIT_PROGRAM = "프로그램을 종료하겠습니다.";
 
