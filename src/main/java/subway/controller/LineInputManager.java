@@ -7,7 +7,6 @@ import subway.view.ErrorMessage;
 import subway.view.Menu;
 
 public class LineInputManager {
-
     private Scanner scanner;
 
     public LineInputManager(Scanner scanner) {

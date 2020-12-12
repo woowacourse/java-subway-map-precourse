@@ -1,8 +1,6 @@
 package subway.controller;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import javax.sound.sampled.Line.Info;
 import subway.domain.MenuItemsRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -11,7 +9,6 @@ import subway.view.InfoMessage;
 import subway.view.Menu;
 
 public class StationSystem {
-
     private MenuInputManager menuInputManager;
     private StationInputManager stationInputManager;
 
@@ -52,7 +49,7 @@ public class StationSystem {
 
     private void deleteStation() {
         String name = stationInputManager.getStationNameToDelete();
-        if(name.contains(ErrorMessage.OUT)){
+        if (name.contains(ErrorMessage.OUT)) {
             return;
         }
         StationRepository.deleteStation(name);

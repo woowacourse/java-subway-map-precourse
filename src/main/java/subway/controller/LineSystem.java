@@ -48,14 +48,14 @@ public class LineSystem {
 
     private void addLine() {
         String[] lineInfo = lineInputManager.getAddLineInfo();
-        if(Arrays.asList(lineInfo).contains(ErrorMessage.OUT)){
+        if (Arrays.asList(lineInfo).contains(ErrorMessage.OUT)) {
             return;
         }
         SubwayRepository.addSubwayRealLine(lineInfo);
         InfoMessage.printLineAdded();
         Line wantLine = LineRepository.findLine(lineInfo[0]);
         PathRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
-        for(Station station : wantLinks.getPath()){
+        for (Station station : wantLinks.getPath()) {
             System.out.println(station.getName());
         }
 

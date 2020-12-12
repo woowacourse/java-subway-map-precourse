@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MenuItemsRepository {
-
     private static final String[] mainItems = {
         "## 메인 화면",
         "1. 역 관리", "2. 노선 관리", "3. 구간 관리",

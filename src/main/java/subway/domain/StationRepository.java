@@ -28,11 +28,12 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static Set<String> stationNames(){
+    public static Set<String> stationNames() {
         return Collections.unmodifiableSet(stationNames);
     }
 
-    public static Station findStation(String name){
-        return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst().get();
+    public static Station findStation(String name) {
+        return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst()
+            .get();
     }
 }

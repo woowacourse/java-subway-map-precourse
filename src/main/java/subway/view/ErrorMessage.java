@@ -1,10 +1,7 @@
 package subway.view;
 
 public class ErrorMessage {
-
-
     public static final String OUT = "OUT";
-
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String INPUT_NEEDED = " 중에서 입력해 주세요.";
     private static final String OVER_TWO = "2글자 이상이어야 한다.";
@@ -45,7 +42,6 @@ public class ErrorMessage {
     public static void printNotDeleteOnPathStation() {
         System.out.println(ERROR_PREFIX + ON_PATH_STATION);
     }
-
 
     public static void printValeAlreadyExist() {
         System.out.println(ERROR_PREFIX + VALUE_EXIST);

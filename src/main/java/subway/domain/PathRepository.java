@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class PathRepository {
-
     private static final List<Station> path = new LinkedList<>();
 
     public PathRepository(String up, String down) {
@@ -23,11 +22,11 @@ public class PathRepository {
     }
 
 
-    public void addPath(int index, Station newStation){
+    public void addPath(int index, Station newStation) {
         path.add(index, newStation);
     }
 
-    public boolean deletePathByName(String name){
+    public boolean deletePathByName(String name) {
         StationRepository.findStation(name).onAndOffPath();
         return path.removeIf(station -> Objects.equals(station.getName(), name));
     }

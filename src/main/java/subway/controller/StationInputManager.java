@@ -6,7 +6,6 @@ import subway.view.ErrorMessage;
 import subway.view.Menu;
 
 public class StationInputManager {
-
     private Scanner scanner;
 
     public StationInputManager(Scanner scanner) {
@@ -15,15 +14,12 @@ public class StationInputManager {
 
 
     public String getStationNameToDelete() {
-        while (true) {
-            Menu.printStationDeleteGuide();
-            String name = scanner.nextLine().trim();
-            if (!checkNameToDelete(name)) {
-                return ErrorMessage.OUT;
-            }
-            return name;
+        Menu.printStationDeleteGuide();
+        String name = scanner.nextLine().trim();
+        if (!checkNameToDelete(name)) {
+            return ErrorMessage.OUT;
         }
-
+        return name;
     }
 
     private boolean checkNameToDelete(String name) {

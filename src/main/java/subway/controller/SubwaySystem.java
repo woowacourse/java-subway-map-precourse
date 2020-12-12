@@ -5,7 +5,6 @@ import subway.domain.MenuItemsRepository;
 import subway.view.Menu;
 
 public class SubwaySystem {
-
     private MenuInputManager menuInputManager;
     private StationSystem stationSystem;
     private LineSystem lineSystem;
@@ -13,14 +12,14 @@ public class SubwaySystem {
     public SubwaySystem(Scanner scanner) {
         menuInputManager = new MenuInputManager(scanner);
         stationSystem = new StationSystem(scanner, menuInputManager);
-        lineSystem = new LineSystem(scanner,menuInputManager);
+        lineSystem = new LineSystem(scanner, menuInputManager);
     }
 
     public void run() {
-        while(true){
+        while (true) {
             Menu.printMenu(MenuItemsRepository.getMainItems());
             String input = menuInputManager.getMainInput();
-            if(input.equals("Q")){
+            if (input.equals("Q")) {
                 return;
             }
             runSystemByInput(input);
@@ -28,16 +27,16 @@ public class SubwaySystem {
     }
 
     private void runSystemByInput(String input) {
-        if(input.equals("1")){
+        if (input.equals("1")) {
             stationSystem.run();
         }
-        if(input.equals("2")){
+        if (input.equals("2")) {
             lineSystem.run();
-       }
-        if(input.equals("3")){
+        }
+        if (input.equals("3")) {
             Menu.printMenu(MenuItemsRepository.getLinkItems());
         }
-        if(input.equals("4")){
+        if (input.equals("4")) {
             System.out.println("노선도 출력");
         }
     }
