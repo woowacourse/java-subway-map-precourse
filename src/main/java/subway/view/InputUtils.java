@@ -16,21 +16,8 @@ public class InputUtils {
         return null;
     }
 
-    public static String createUserStationInput(){
-        try {
-            return validateUserStationInput(scanner.nextLine());
-        } catch (IllegalArgumentException e) {
-            System.err.println("[ERROR] 역 이름은 2글자 이상입니다. 다시 입력해주세요.");
-            createUserStationInput();
-        }
-        return null;
-    }
-
-    public static String validateUserStationInput(String userInput){
-        if(userInput.length() >= 2){
-            return userInput;
-        }
-        throw new IllegalArgumentException();
+    public static String createUserStationInput() {
+        return scanner.nextLine();
     }
 
     public static Integer validateUserSelectionInput(String userInput, int endInclusive, String returnOption) {

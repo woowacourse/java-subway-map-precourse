@@ -15,16 +15,12 @@ public class StationManagementScreen implements Screen{
         int userInput = InputUtils.createUserSelectionInput(3,"B");
 
         if(userInput == 1){
-            System.out.println("\n## 등록할 역 이름을 입력하세요.");
-            StationRepository.addStation(new Station(InputUtils.createUserStationInput()));
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            registerNewStation();
+            return;
         }
         if(userInput == 2){
-            System.out.println("\n## 삭제할 역 이름을 입력하세요.");
-            StationRepository.deleteStation(InputUtils.createUserStationInput());
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            deleteStation();
+            return;
         }
         if(userInput == 3){
             System.out.println("\n## 역 목록");
@@ -33,5 +29,30 @@ public class StationManagementScreen implements Screen{
             mainScreen.start();
         }
     }
+    public void registerNewStation() {
+        System.out.println("\n## 등록할 역 이름을 입력하세요.");
+        try {
+            StationRepository.addStation(new Station(InputUtils.createUserStationInput()));
+        } catch (IllegalArgumentException e) {
+            System.err.println("[ERROR] 잘못된 입력입니다.");
+            registerNewStation();
+            return;
+        }
+        MainScreen mainScreen = new MainScreen();
+        mainScreen.start();
+    }
 
+    public void deleteStation(){
+        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
+        try{
+            StationRepository.deleteStation(InputUtils.createUserStationInput());
+        }
+        catch (IllegalArgumentException e){
+            System.err.println("[ERROR] 잘못된 입력입니다.");
+        }
+        finally {
+            MainScreen mainScreen = new MainScreen();
+            mainScreen.start();
+        }
+    }
 }
