@@ -37,6 +37,7 @@ public class LineController {
         Line line = LineRepository.getLine(name).get();
         line.addStation(startStation);
         line.addStation(endStation);
+        LineRepository.addLine(line);
     }
 
     public boolean checkIfLineExist(String name){
