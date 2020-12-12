@@ -36,7 +36,7 @@ public class SubwayRepository {
         if(subway.get(line).stream().anyMatch(station -> station.equals(StationRepository.findStationByName(foundStationName)))){
             return StationRepository.findStationByName(foundStationName);
         }
-        throw new IllegalArgumentException("노선에 역이 존재하지 않습니다.");
+        return null;
     }
 
     public static boolean findStationByName(String inputRemoveName) {
