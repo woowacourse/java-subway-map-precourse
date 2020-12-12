@@ -15,6 +15,7 @@ public class StationView extends Screen {
     public static final String PRINT_DELETE = "삭제할 역 이름을 입력하세요";
     private static final String PRINT_AFTER_ADD = "지하철 역이 등록되었습니다.";
     private static final String PRINT_AFTER_DELETE = "지하철 역이 삭제되었습니다.";
+    private static final int ZERO = 0;
 
     public StationView(OutputService outputService) {
         super(outputService);
@@ -51,7 +52,7 @@ public class StationView extends Screen {
     }
 
     private void validateStations(Stations stations) {
-        if (stations.size() == 0) {
+        if (stations.size() == ZERO) {
             throw new StationException(ErrorCode.STATION_NOT_EXIST);
         }
     }

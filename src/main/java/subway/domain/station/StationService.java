@@ -9,4 +9,8 @@ public interface StationService {
     Stations getStations();
 
     void deleteStation(StationDeleteReqDto deleteReqDto);
+
+    void checkExist(String stationName);
+
+    void checkNotFound(String stationName);
 }

@@ -3,7 +3,9 @@ package subway;
 import subway.domain.line.LineService;
 import subway.domain.line.LineServiceImpl;
 import subway.domain.line.MemoryLineRepository;
-import subway.domain.line.dto.LineSaveReqDto;
+import subway.domain.section.MemorySectionRepository;
+import subway.domain.section.SectionService;
+import subway.domain.section.dto.SectionSaveReqDto;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
@@ -23,12 +25,14 @@ public class StationManageApp {
     private final OutputService outputService;
     private final StationService stationService;
     private final LineService lineService;
+    private final SectionService sectionService;
 
     public StationManageApp() {
         this.inputService = ScannerInputService.of(new Scanner(System.in));
         this.outputService = StringBuilderOutputService.of(new StringBuilder());
         this.stationService = new StationServiceImpl(MemoryStationRepository.of());
         this.lineService = new LineServiceImpl(MemoryLineRepository.of());
+        this.sectionService = new SectionService(MemoryLineRepository.of(), MemorySectionRepository.of());
     }
 
     public static StationManageApp of() {
@@ -95,9 +99,7 @@ public class StationManageApp {
     private void chooseManageRouteOption(int manageRouteOption) {
         LineView lineView = new LineView(outputService);
         if (manageRouteOption == InputService.ADD) {
-            outputService.printAdd(lineView);
-            lineService.saveLine(new LineSaveReqDto(getName()));
-            outputService.printAfterAdd(lineView);
+            addSection(lineView);
         }
         if (manageRouteOption == InputService.DELETE) {
         }
@@ -105,11 +107,41 @@ public class StationManageApp {
         }
     }
 
+    private void addSection(LineView lineView) {
+        String lineName = getLineName(lineView);
+        String upwardName = getUpwardName(lineView);
+        String downWard = getDownwardName(lineView);
+
+        sectionService.addSection(new SectionSaveReqDto(lineName, upwardName, downWard));
+
+        outputService.printAfterAdd(lineView);
+    }
+
+    private String getDownwardName(LineView lineView) {
+        outputService.printSharp(lineView.getAddDownward());
+        String downwardName = inputService.getName();
+        stationService.checkNotFound(downwardName);
+        return downwardName;
+    }
+
+    private String getUpwardName(LineView lineView) {
+        outputService.printSharp(lineView.getAddUpward());
+        String upwardName = inputService.getName();
+        stationService.checkNotFound(upwardName);
+        return upwardName;
+    }
+
+    private String getLineName(LineView lineView) {
+        outputService.printAdd(lineView);
+        String lineName = inputService.getName();
+        lineService.checkExist(lineName);
+        return lineName;
+    }
+
     private String getName() {
         String name = inputService.getName();
         return name;
     }
-
 
     private void manageMap() {
     }

@@ -14,11 +14,17 @@ public class LineServiceImpl implements LineService {
     @Override
     public Line saveLine(LineSaveReqDto saveReqDto) {
         Line line = Line.of(saveReqDto.getName());
+        checkExist(line.getName());
+        lineRepository.addLine(line);
+        return line;
+    }
+
+    @Override
+    public void checkExist(String lineName) {
+        Line line = Line.of(lineName);
         Line findLine = lineRepository.findByName(line.getName());
         if (findLine != null) {
             throw new LineException(ErrorCode.LINE_ALREADY_EXIST);
         }
-        lineRepository.addLine(line);
-        return line;
     }
 }

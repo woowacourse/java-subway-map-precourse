@@ -15,4 +15,8 @@ public class Section {
     public static Section of(Line line, Stations stations) {
         return new Section(line, stations);
     }
+
+    public String getLineName() {
+        return line.getName();
+    }
 }
