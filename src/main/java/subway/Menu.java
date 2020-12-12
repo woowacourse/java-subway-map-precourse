@@ -16,6 +16,7 @@ public class Menu {
         printMenu();
         printInputMessage();
         String input = scanner.next();
+        System.out.println();
         return Exception.checkMenu(input, this.itemList);
     }
 
