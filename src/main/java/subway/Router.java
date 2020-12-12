@@ -41,30 +41,34 @@ public class Router {
             return false;
         }
         if (command.equals(ONE)) {
-            enterStationManagementScreen();
-            return true;
+            return enterStationManagementScreen();
         }
         if (command.equals(TWO)) {
-            enterLineManagementScreen();
-            return true;
+            return enterLineManagementScreen();
+        }
+        if (command.equals(THREE)){
         }
         return false;
     }
 
-    private void enterStationManagementScreen() {
-        String command;
-        do {
-            command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
-                , OutputView.STATION_MANAGEMENT_SCREEN);
-        } while (routeStationManagementScreen(command));
+    private boolean enterStationManagementScreen() {
+        String command= inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
+            , OutputView.STATION_MANAGEMENT_SCREEN);
+
+        if (routeStationManagementScreen(command)){
+            return enterStationManagementScreen();
+        }
+        return true;
     }
 
-    private void enterLineManagementScreen() {
-        String command;
-        do {
-            command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
-                , OutputView.LINE_MANAGEMENT_SCREEN);
-        } while (routeLineManagementScreen(command));
+    private boolean enterLineManagementScreen() {
+        String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
+            , OutputView.LINE_MANAGEMENT_SCREEN);
+
+        if(routeLineManagementScreen(command)){
+            return enterLineManagementScreen();
+        }
+        return true;
     }
 
     private boolean routeStationManagementScreen(String command) {
@@ -83,7 +87,6 @@ public class Router {
             List<Station> stations = stationController.searchStation();
             monitor.print(OutputView.STATION_LIST);
             OutputView.printList(stations);
-            return false;
         }
         return false;
     }
