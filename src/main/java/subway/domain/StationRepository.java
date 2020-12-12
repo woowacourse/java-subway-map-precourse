@@ -20,6 +20,7 @@ public class StationRepository {
             return;
         }
         stations.add(station);
+        System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_STATION_SUCCESS));
     }
 
     public static boolean deleteStation(String name) {

@@ -14,33 +14,35 @@ public class StationController {
 
     void printSelection(){
         System.out.println(Constant.STATION_ANNOUNCEMENT);
-        String flag = scanner.next();
-        if (flag.equals(Constant.FIRST_COMMAND)) {
+        String command = scanner.next();
+        if (command.equals(Constant.FIRST_COMMAND)) {
             addStation();
-        } else if (flag.equals(Constant.SECOND_COMMAND)) {
+        } else if (command.equals(Constant.SECOND_COMMAND)) {
             deleteStation();
-        } else if (flag.equals(Constant.THIRD_COMMAND)) {
+        } else if (command.equals(Constant.THIRD_COMMAND)) {
             readStations();
-        } else if (flag.equals(Constant.BACK_COMMAND)) {
-
+        } else if (command.equals(Constant.BACK_COMMAND)) {
+            return;
         }
     }
 
     void addStation(){
-        System.out.println("\n## 등록할 역 이름을 입력하세요.");
+        System.out.println(String.join(" 역 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String stationName = scanner.next();
         Station station = new Station(stationName);
         stationRepository.addStation(station);
-        stationRepository.printStations();
     }
 
     void deleteStation(){
-        System.out.println("## 삭제할 역 이름을 입력하세요.\n");
+        System.out.println(String.join(" 역 ", Constant.DELETE_PREFIX, Constant.NAME_POSTFIX));
         String stationName = scanner.next();
-        stationRepository.deleteStation(stationName);
+        boolean deleteFlag = stationRepository.deleteStation(stationName);
+        if(deleteFlag){
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
+        }
     }
 
     void readStations(){
-
+        stationRepository.printStations();
     }
 }
