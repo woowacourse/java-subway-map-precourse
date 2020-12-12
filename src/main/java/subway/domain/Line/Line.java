@@ -27,7 +27,7 @@ public class Line implements Comparable<Line> {
 
     public static Line of(String name, Station start, Station end) {
 
-        if (validateStations(start, end)){
+        if (validateStations(start, end)) {
             throw new DuplicateStationException();
         }
 
