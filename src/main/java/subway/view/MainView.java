@@ -30,7 +30,12 @@ public class MainView extends View {
         scene.go(new SectionManagementView());
     }
 
-    private static void printMap(Scene scene, Request request, Response response) {}
+    private static void printMap(Scene scene, Request request, Response response) {
+        if (!request.isAccessibleLineRepository()) {
+            return;
+        }
+        response.printMap();
+    }
 
     private static void exitSubwayManager(Scene scene, Request request, Response response) {
         scene.exit();

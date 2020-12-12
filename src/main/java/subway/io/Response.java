@@ -15,8 +15,10 @@ public class Response {
     private static final String HEADLINE_MESSAGE_FORMAT = "## %s\n";
     private static final String MENU_FORMAT = "%s. %s\n";
     private static final String INFO_FORMAT = "[INFO] %s\n";
+    private static final String BOUNDARY = "---";
     private static final String STATION_LIST_TITLE = "역 목록";
     private static final String LINE_LIST_TITLE = "노선 목록";
+    private static final String MAP_TITLE = "지하철 노선도";
     public static final String COMMAND_REQUEST_MESSAGE = "원하는 기능을 선택하세요.";
     public static final String STATION_REGISTER_MESSAGE = "등록할 역 이름을 입력하세요.";
     public static final String STATION_REMOVAL_MESSAGE = "삭제할 역 이름을 입력하세요.";
@@ -65,6 +67,24 @@ public class Response {
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
             printInfoMessage(line.getName());
+        }
+        printStream.println();
+    }
+
+    public void printMap() {
+        printHeadlineMessage(MAP_TITLE);
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            printInfoMessage(line.getName());
+            printInfoMessage(BOUNDARY);
+            printStationsInLine(line);
+        }
+    }
+
+    public void printStationsInLine(Line line) {
+        List<Station> stations = line.getStations();
+        for (Station station : stations) {
+            printInfoMessage(station.getName());
         }
         printStream.println();
     }

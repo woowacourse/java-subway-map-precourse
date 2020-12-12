@@ -30,6 +30,10 @@ public class StationRepository {
                 .count() > 0;
     }
 
+    public static boolean isRemovable(String name) {
+        return getByName(name).isRemovable();
+    }
+
     public static boolean isEmpty() {
         return stations.isEmpty();
     }

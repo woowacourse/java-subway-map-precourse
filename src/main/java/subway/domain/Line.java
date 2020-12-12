@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,25 +11,31 @@ public class Line {
 
     public Line(String name, String upboundStationName, String downboundStationName) {
         this.name = name;
-        sections.add(StationRepository.getByName(upboundStationName));
-        sections.add(StationRepository.getByName(downboundStationName));
+        Station upboundStation = StationRepository.getByName(upboundStationName);
+        Station downboundStation = StationRepository.getByName(downboundStationName);
+        upboundStation.addLine();
+        downboundStation.addLine();
+        sections.add(upboundStation);
+        sections.add(downboundStation);
     }
 
     public void addSection(String stationName, String index) {
-        int indexNumber = Integer.parseInt(index);
-        sections.add(indexNumber, StationRepository.getByName(stationName));
+        int indexNumber = Integer.parseInt(index) - 1;
+        Station station = StationRepository.getByName(stationName);
+        station.addLine();
+        sections.add(indexNumber, station);
     }
 
     public void removeSection(String stationName) {
-        sections.removeIf(section -> Objects.equals(section.getName(), stationName));
+        Station station = StationRepository.getByName(stationName);
+        station.removeLine();
+        sections.removeIf(section -> Objects.equals(section, station));
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getNumberOfSections() {
-        return sections.size();
+    public void removeAllSections() {
+        for (Station section : sections) {
+            section.removeLine();
+        }
     }
 
     public boolean hasStation(String stationName) {
@@ -38,5 +45,17 @@ public class Line {
 
     public boolean isValidRange(int index) {
         return (index >= 0) && (index <= sections.size());
+    }
+
+    public List<Station> getStations() {
+        return Collections.unmodifiableList(sections);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumberOfSections() {
+        return sections.size();
     }
 }

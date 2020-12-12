@@ -21,8 +21,9 @@ public class LineRepository {
         getLineByName(lineName).addSection(stationName, index);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLineByName(String name) {
+        getLineByName(name).removeAllSections();
+        lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static void deleteStationInLine(String stationName, String lineName) {
