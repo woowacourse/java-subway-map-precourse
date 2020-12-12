@@ -397,7 +397,6 @@ B. 돌아가기
 ### 프로그래밍 요구사항 - Application
 - Application 클래스를 활용해 구현해야 한다.
 - Application의 패키지 구조는 변경하지 않는다.
-- 주석을 참고하여 구현할 수 있으며 주석대로 구현하지 않아도 되고 삭제해도 무관하다. 
 ```java
 public class Application {
     public static void main(String[] args) {
