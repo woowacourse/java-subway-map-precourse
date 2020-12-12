@@ -3,6 +3,7 @@ package subway.domain.Line;
 import subway.domain.name.LineName;
 import subway.domain.station.Station;
 import subway.exception.AlreadyAddStationException;
+import subway.exception.DuplicateStationException;
 import subway.exception.InvalidLineNameException;
 import subway.exception.InvalidOrderException;
 
@@ -26,11 +27,19 @@ public class Line implements Comparable<Line> {
 
     public static Line of(String name, Station start, Station end) {
 
+        if (validateStations(start, end)){
+            throw new DuplicateStationException();
+        }
+
         Line line = new Line(LineName.of(name));
 
         line.setStations(start, end);
 
         return line;
+    }
+
+    private static boolean validateStations(Station start, Station end) {
+        return start.equals(end);
     }
 
     private void setStations(Station start, Station end) {
@@ -53,7 +62,6 @@ public class Line implements Comparable<Line> {
     }
 
 
-    //TODO 리팩토링1
     public void clear() {
         stations.stream().forEach(station -> {
             station.removeLine(this);
