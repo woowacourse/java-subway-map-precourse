@@ -5,11 +5,14 @@ import subway.view.OutputView;
 
 import java.util.*;
 
+import static subway.repository.LineRepository.isStationExistInLine;
 import static subway.view.OutputView.*;
 
 public class StationRepository {
     private static final String STATION_DUPLICATE_WARN = "역 이름은 중복이 되어서는 안됩니다.\n";
     private static final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 이름입니다.\n";
+    private static final String STATION_EXIST_IN_LINE_WARN = "노선에 등록된 역은 삭제할 수 없습니다.\n";
+
     private static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
@@ -30,7 +33,9 @@ public class StationRepository {
         if (findStation == null) {
             warnMessage(STATION_NOT_EXIST_WARN);
         }
-        //해당 station 노선 등록 확인
+        if (isStationExistInLine(findStation)) {
+            warnMessage(STATION_EXIST_IN_LINE_WARN);
+        }
         return stations.remove(findStation);
     }
 
