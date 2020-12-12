@@ -84,13 +84,13 @@ public enum MainMenu implements Menu {
     }
 
     @Override
-    public String getName() {
+    public String getType() {
         return MENU_TYPE;
     }
 
     @Override
     public String getActionType() {
-        return getName();
+        return getType();
     }
 
 

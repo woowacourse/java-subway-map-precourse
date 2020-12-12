@@ -1,9 +1,9 @@
 package subway.menu;
 
-import subway.Action;
 import subway.controller.ControllerFactory;
 import subway.controller.SubwayController;
 import subway.exception.MenuNotFountException;
+import subway.view.OutputView;
 
 import java.util.Arrays;
 
@@ -35,7 +35,7 @@ public enum LineMenu implements Menu {
             action.action(controller);
             return MainMenu.QUIT;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
         }
         return LineMenu.BACK;
     }
@@ -65,7 +65,7 @@ public enum LineMenu implements Menu {
                 );
     }
 
-    public String getName() {
+    public String getType() {
         return MENU_TYPE;
     }
 

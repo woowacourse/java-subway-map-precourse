@@ -10,7 +10,7 @@ public interface Menu {
 
     Menu change(String command);
 
-    String getName();
+    String getType();
 
     String getActionType();
 
