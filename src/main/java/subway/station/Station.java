@@ -1,5 +1,6 @@
 package subway.station;
 
+import subway.station.validation.CheckNameDuplicate;
 import subway.station.validation.CheckNameLength;
 
 public class Station {
@@ -16,5 +17,6 @@ public class Station {
 
     private void validStationName(String name) {
         CheckNameLength.validation(name);
+        CheckNameDuplicate.validation(name);
     }
 }
