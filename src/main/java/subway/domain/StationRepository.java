@@ -15,8 +15,9 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if(stations.contains(station)){
-            throw new IllegalArgumentException();
+        if(stations.stream().anyMatch(o -> o.getName().equals(station.getName()))){
+            System.out.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
+            return;
         }
         stations.add(station);
     }
