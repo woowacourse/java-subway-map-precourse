@@ -11,21 +11,21 @@ import java.util.Scanner;
 public class MenuController {
     private static final List<String> MAIN_MENU_SIGN = Arrays.asList(new String[] {"1","2","3","4","Q"});
 
-    public static String selectMainMenu(Scanner scanner) {
+    public static String scanMainMenu(Scanner scanner) {
         OutputView.printMainScreen();
-        return selectValidMenu(scanner, MAIN_MENU_SIGN);
+        return scanValidMenu(scanner, MAIN_MENU_SIGN);
 
     }
 
-    private static String selectValidMenu(Scanner scanner, List<String> signs) {
-        String menu = selectMenu(scanner);
+    private static String scanValidMenu(Scanner scanner, List<String> signs) {
+        String menu = scanMenu(scanner);
         while (!isValidMenu(menu,signs)) {
-            menu = selectMenu(scanner);
+            menu = scanMenu(scanner);
         }
         return menu;
     }
 
-    private static String selectMenu(Scanner scanner) {
+    private static String scanMenu(Scanner scanner) {
         OutputView.printMenuSelectScreen();
         return InputView.getInput(scanner);
     }
