@@ -2,7 +2,7 @@ package subway.domain;
 
 public class Line {
     private String name;
-    private LinkRepository linkRepository;
+    private PathRepository pathRepository;
 
     public Line(String name) {
         this.name = name;
@@ -12,8 +12,8 @@ public class Line {
         return name;
     }
 
-    public LinkRepository getLinksRepo(){
-        return linkRepository;
+    public PathRepository getLinksRepo(){
+        return pathRepository;
     }
 
     // 추가 기능 구현

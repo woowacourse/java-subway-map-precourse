@@ -6,7 +6,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.SubwayRepository;
 import subway.domain.LineRepository;
-import subway.domain.LinkRepository;
+import subway.domain.PathRepository;
 import subway.domain.MenuItemsRepository;
 import subway.view.InfoMessage;
 import subway.view.Menu;
@@ -53,8 +53,8 @@ public class LineSystem {
         SubwayRepository.addSubwayRealLine(lineInfo);
         InfoMessage.printLineAdded();
         Line wantLine = LineRepository.findLine(lineInfo[0]);
-        LinkRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
-        for(Station station : wantLinks.links()){
+        PathRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
+        for(Station station : wantLinks.getPath()){
             System.out.println(station.getName());
         }
 
