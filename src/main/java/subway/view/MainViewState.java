@@ -77,7 +77,6 @@ public class MainViewState extends ViewState{
     private void checkAndPrintSubwayLineMap(String feature, SubwayLineMap application) throws Exception {
         if(feature.equals(BTN_PRINT_SUBWAY_LINEMAP)){
             printSubwayLineList();
-            switchViewToStationManagement(application);
         }
     }
 
@@ -105,7 +104,7 @@ public class MainViewState extends ViewState{
         stringBuilder.append(MainViewComponent.getSubwayLineMapComponent());
         stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
         appendSubwayLineListLog(stringBuilder, lineList);
-        System.out.println(stringBuilder.toString());
+        System.out.print(stringBuilder.toString());
     }
 
     private void appendSubwayLineListLog(StringBuilder stringBuilder, List<Line> lineList){
