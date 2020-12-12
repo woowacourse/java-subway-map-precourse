@@ -51,7 +51,12 @@ public class StationController {
     }
 
     private void lookUpStation(InputView inputView) {
-
+        String functionHeader = "역 목록";
+        OutputView.printFunctionTitle(functionHeader);
+        for (Station station : StationRepository.stations()) {
+            System.out.println(station.toString());
+        }
+        goBackToMain(inputView);
     }
 
     private void goBackToMain(InputView inputView) {
