@@ -1,34 +1,22 @@
 package subway.domain.line;
 
-import subway.domain.line.Line;
-import subway.domain.station.Station;
-import subway.domain.station.StationName;
-import subway.domain.station.StationRepository;
-
 import java.util.*;
 
 public class LineRepository {
-    private static final String LINE_DUPLICATE_ERROR = "[ERROR] 이미 등록되어 있는 노선입니다.";
-    private static final String LINE_EXIST_ERROR = "[ERROR] 등록되어 있는 노선이 아닙니다.";
+    private static final String LINE_DUPLICATE_ERROR = "\n[ERROR] 이미 등록되어 있는 노선입니다.";
+    private static final String LINE_EXIST_ERROR = "\n[ERROR] 등록되어 있는 노선이 아닙니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(LineName lineName, StationName firstStationName, StationName lastStationName) {
-        validateDuplicate(lineName);
-        Line line = new Line(lineName);
-        Station firstStation = new Station(firstStationName);
-        Station lastStation = new Station(lastStationName);
-        line.init(firstStation, lastStation);
+    public static void addLine(Line line) {
         lines.add(line);
     }
 
-    private static void validateDuplicate(LineName lineName) {
-        Set<Line> duplicateCheckSet = new HashSet<>(lines);
-        duplicateCheckSet.add(new Line(lineName));
-        if (duplicateCheckSet.size() == lines.size()) {
+    public static void validateDuplicate(LineName lineName) {
+        if (lines.contains(Line.of(lineName))) {
             throw new IllegalArgumentException(LINE_DUPLICATE_ERROR);
         }
     }
@@ -39,14 +27,16 @@ public class LineRepository {
     }
 
     public static void validateNameExist(LineName lineName) {
-        if (!lines.contains(new Line(lineName))) {
+        if (!lines.contains(Line.of(lineName))) {
             throw new IllegalArgumentException(LINE_EXIST_ERROR);
         }
     }
 
     public static Line getLineByName(LineName lineName) {
-        validateNameExist(lineName);
-        return new Line(lineName);
+        return lines.stream()
+                .filter(line -> line.getName().equals(lineName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(LINE_EXIST_ERROR));
     }
 
 

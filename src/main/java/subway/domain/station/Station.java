@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Station {
     private final StationName stationName;
 
-    public Station(StationName stationName) {
+    private Station(StationName stationName) {
         this.stationName = stationName;
     }
 
@@ -14,6 +14,11 @@ public class Station {
     }
 
     // 추가 기능 구현
+
+    public static Station of(StationName stationName) {
+        return new Station(stationName);
+    }
+
 
     @Override
     public boolean equals(Object o) {
