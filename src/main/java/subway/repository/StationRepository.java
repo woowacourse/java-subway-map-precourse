@@ -3,10 +3,7 @@ package subway.repository;
 import subway.domain.Station;
 import subway.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static subway.view.OutputView.*;
 
@@ -31,5 +28,12 @@ public class StationRepository {
         //이름으로 station 검색
         //해당 station 노선 등록 확인
         return stations.remove(station);
+    }
+
+    public static Station findStationByName(String stationName) {
+        Optional<Station> findStation = stations.stream()
+                .filter(station -> station.getName().equals(stationName))
+                .findAny();
+        return findStation.orElse(null);
     }
 }
