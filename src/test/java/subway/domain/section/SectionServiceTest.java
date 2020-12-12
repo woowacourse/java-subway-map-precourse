@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import subway.domain.line.MemoryLineRepository;
+import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
@@ -123,7 +124,7 @@ class SectionServiceTest {
         String lineName = "1호선";
 
         //when
-        boolean isDelete = sectionService.deleteByName(lineName);
+        boolean isDelete = sectionService.deleteByName(new SectionDeleteReqDto(lineName));
 
         //then
         assertThat(isDelete).isEqualTo(true);
@@ -139,7 +140,7 @@ class SectionServiceTest {
         String lineName = "2호선";
 
         //then
-        assertThatThrownBy(()-> sectionService.deleteByName(lineName))
+        assertThatThrownBy(()-> sectionService.deleteByName(new SectionDeleteReqDto(lineName)))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
     }

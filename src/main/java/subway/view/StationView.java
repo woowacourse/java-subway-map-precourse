@@ -22,7 +22,7 @@ public class StationView extends Screen {
     }
 
     public void printAllStations(Stations stations) {
-        validateStations(stations);
+        validateLength(stations);
         outputService.printSharp(PRINT_STATION);
         List<Station> stationList = stations.getStations();
         for (Station station : stationList) {
@@ -51,7 +51,7 @@ public class StationView extends Screen {
         return PREFIX_INFO + PRINT_AFTER_DELETE;
     }
 
-    private void validateStations(Stations stations) {
+    private void validateLength(Stations stations) {
         if (stations.size() == ZERO) {
             throw new StationException(ErrorCode.STATION_NOT_EXIST);
         }

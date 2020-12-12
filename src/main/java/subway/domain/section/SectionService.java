@@ -2,6 +2,7 @@ package subway.domain.section;
 
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
+import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
@@ -75,10 +76,10 @@ public class SectionService {
         lineRepository.removeAll();
     }
 
-    public boolean deleteByName(String lineName) {
-        boolean isSectionDelete = sectionRepository.deleteLineByName(lineName);
+    public boolean deleteByName(SectionDeleteReqDto deleteReqDto) {
+        boolean isSectionDelete = sectionRepository.deleteLineByName(deleteReqDto.getLineName());
         if (isSectionDelete) {
-            lineRepository.deleteLineByName(lineName);
+            lineRepository.deleteLineByName(deleteReqDto.getLineName());
             return true;
         }
         return false;

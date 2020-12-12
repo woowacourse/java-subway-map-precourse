@@ -4,6 +4,8 @@ import subway.domain.line.dto.LineSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.LineException;
 
+import java.util.List;
+
 public class LineServiceImpl implements LineService {
     private final LineRepository lineRepository;
 
@@ -27,4 +29,11 @@ public class LineServiceImpl implements LineService {
             throw new LineException(ErrorCode.LINE_ALREADY_EXIST);
         }
     }
+
+    @Override
+    public List<Line> getLines() {
+        List<Line> lines = lineRepository.lines();
+        return lines;
+    }
+
 }

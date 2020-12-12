@@ -19,7 +19,8 @@ public enum ErrorCode {
     LINE_INVALID_LAST_NAME("L002", Screen.PREFIX_ERROR + "마지막 글자에 선이 들어가야합니다."),
     LINE_INVALID_CHARACTER("L003", Screen.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다."),
     LINE_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 노선입니다."),
-    LINE_NOT_EXIST("S004", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
+    LINE_NOT_FOUND_NAME("S005", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
+    LINE_NOT_EXIST("S006", Screen.PREFIX_ERROR + "등록된 노선이 없습니다."),
 
     //Section
     SECTION_UPWARD_STATION_NOT_FOUND("SE001", Screen.PREFIX_ERROR + "상행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),

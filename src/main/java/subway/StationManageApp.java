@@ -5,6 +5,7 @@ import subway.domain.line.LineServiceImpl;
 import subway.domain.line.MemoryLineRepository;
 import subway.domain.section.MemorySectionRepository;
 import subway.domain.section.SectionService;
+import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.StationService;
@@ -119,13 +120,15 @@ public class StationManageApp {
             deleteSection(lineView);
         }
         if (manageRouteOption == InputService.FIND) {
+            lineView.printAllLines(lineService.getLines());
         }
     }
 
     private void deleteSection(LineView lineView) {
         outputService.printDelete(lineView);
-        String lineNAme = getName();
-        sectionService.deleteByName(lineNAme);
+        String lineName = getName();
+        sectionService.deleteByName(new SectionDeleteReqDto(lineName));
+        outputService.printAfterAdd(lineView);
     }
 
     private void addSection(LineView lineView) {

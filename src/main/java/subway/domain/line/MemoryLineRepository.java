@@ -25,6 +25,9 @@ public class MemoryLineRepository implements LineRepository {
 
     @Override
     public Line addLine(Line line) {
+        if (findByName(line.getName()) != null) {
+            throw new LineException(ErrorCode.LINE_ALREADY_EXIST);
+        }
         lines.put(line.getName(), line);
         return line;
     }
@@ -41,7 +44,7 @@ public class MemoryLineRepository implements LineRepository {
             lines.remove(name);
             return true;
         }
-        throw new LineException(ErrorCode.LINE_NOT_EXIST);
+        throw new LineException(ErrorCode.LINE_NOT_FOUND_NAME);
     }
 
     @Override

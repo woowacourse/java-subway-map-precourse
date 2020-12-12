@@ -1,6 +1,12 @@
 package subway.view;
 
+import subway.domain.line.Line;
+import subway.domain.section.dto.SectionFindResDto;
+import subway.exception.ErrorCode;
+import subway.exception.LineException;
 import subway.service.output.OutputService;
+
+import java.util.List;
 
 public class LineView extends Screen {
     private static final String PRINT_ROUTE = "노선 목록";
@@ -10,9 +16,25 @@ public class LineView extends Screen {
     public static final String PRINT_DELETE = "삭제할 노선 이름을 입력하세요.";
     private static final String PRINT_AFTER_ADD = "지하철 노선이 등록되었습니다.";
     private static final String PRINT_AFTER_DELETE = "지하철 노선이 삭제되었습니다.";
+    private static final int ZERO = 0;
 
     public LineView(OutputService outputService) {
         super(outputService);
+    }
+
+    public void printAllLines(List<Line> lines) {
+        validateLength(lines);
+        outputService.printSharp(PRINT_ROUTE);
+        for (Line line : lines) {
+            SectionFindResDto sectionFindResDto = new SectionFindResDto(line.getName());
+            outputService.printInfos(sectionFindResDto.getLineName());
+        }
+    }
+
+    private void validateLength(List<Line> lines) {
+        if (lines.size() == ZERO) {
+            throw new LineException(ErrorCode.LINE_NOT_EXIST);
+        }
     }
 
     @Override
