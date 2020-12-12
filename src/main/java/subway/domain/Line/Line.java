@@ -67,11 +67,6 @@ public class Line {
         return Objects.hash(name);
     }
 
-    @Override
-    public String toString() {
-        return name.toString();
-    }
-
     public boolean isSameName(String name) {
         return this.name.equals(name);
     }
@@ -89,5 +84,10 @@ public class Line {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return name.toString();
     }
 }
