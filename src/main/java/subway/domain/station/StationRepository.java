@@ -37,8 +37,7 @@ public class StationRepository {
         if (!station.canRemove()) {
             throw new CannotRemoveException(station);
         }
-
-
+        station.clear();
         return stations.remove(station);
     }
 
@@ -47,11 +46,11 @@ public class StationRepository {
         return station.canRemove();
     }
 
-    public Station findBy(String statiaonName) {
+    public Station findBy(String stationName) {
         return stations().stream()
-                .filter(station -> station.isSameName(statiaonName))
+                .filter(station -> station.isSameName(stationName))
                 .findFirst()
-                .orElseThrow(() -> new StationNotFountException(statiaonName));
+                .orElseThrow(() -> new StationNotFountException(stationName));
     }
 
     public List<Station> findByLine(String name) {
