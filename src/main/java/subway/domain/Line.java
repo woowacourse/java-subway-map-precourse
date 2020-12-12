@@ -16,6 +16,10 @@ public class Line {
         stations.add(station);
     }
 
+    public void addStation(Station station, int index) {
+        stations.add(index, station);
+    }
+
     public String getName() {
         return name;
     }

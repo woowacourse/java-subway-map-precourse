@@ -90,4 +90,10 @@ public class LineRepositoryTest {
         LineRepository.addLine(lineName);
     }
 
+    @DisplayName("구간 등록 테스트")
+    @Test
+    public void testInsertLineStation() {
+        LineRepository.insertLineSection("2호선", "호랑역", 2);
+    }
+
 }

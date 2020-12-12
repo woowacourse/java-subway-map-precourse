@@ -93,9 +93,14 @@ public class LineRepository {
     }
 
     private static void validateSameStation(String name) {
-        if (lines.get(lines.size()-LAST_INDEX).getStations()
-            .stream().anyMatch(station -> station.getName().equals(name))){
+        if (lines.get(lines.size() - LAST_INDEX).getStations()
+            .stream().anyMatch(station -> station.getName().equals(name))) {
             throw new IllegalArgumentException("상행 종점역과 하행 종점역은 서로 달라야 합니다.");
         }
+    }
+
+    public static void insertLineSection(String lineName, String stationName, int index) {
+        lines.stream().filter(line -> line.getName().equals(lineName))
+            .forEach(line -> line.addStation(StationRepository.findStation(stationName), index));
     }
 }
