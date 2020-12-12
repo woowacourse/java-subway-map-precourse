@@ -1,5 +1,6 @@
-package subway;
+package subway.manager;
 
+import subway.utils.UserConsole;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -16,8 +17,12 @@ public class StationManager {
     private static final String BACK = "B";
     private static final String STATION_MANAGER = "STATION MANAGER";
 
-    public static void start() {
+    public static void initializeStationManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_STATION, DELETE_STATION, VIEW_STATIONS, BACK));
+        startStationManager(authorizedCommands);
+    }
+
+    private static void startStationManager(List<String> authorizedCommands) {
         while (true) {
             try {
                 String command = UserConsole.getCommand(STATION_MANAGER, authorizedCommands);

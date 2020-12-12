@@ -1,5 +1,6 @@
-package subway;
+package subway.manager;
 
+import subway.utils.UserConsole;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
@@ -16,8 +17,12 @@ public class LineManager {
     private static final String BACK = "B";
     private static final String LINE_MANAGER = "LINE MANAGER";
 
-    public static void start() {
+    public static void initializeLineManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_LINE, DELETE_LINE, VIEW_LINES, BACK));
+        startLineManager(authorizedCommands);
+    }
+
+    private static void startLineManager(List<String> authorizedCommands) {
         while (true) {
             try {
                 String command = UserConsole.getCommand(LINE_MANAGER, authorizedCommands);
@@ -69,8 +74,7 @@ public class LineManager {
         Line line = getNewLine();
         String firstTerminalStationName = getFirstTerminalStationName();
         String secondTerminalStationName = getSecondStationName(firstTerminalStationName);
-        line.addStationNames(Arrays.asList(firstTerminalStationName, secondTerminalStationName));
-        LineRepository.addLine(line);
+        LineRepository.addLineWithStationNames(line, Arrays.asList(firstTerminalStationName, secondTerminalStationName));
         System.out.println("[INFO] 지하철 노선이 등록되었습니다.\n");
     }
 

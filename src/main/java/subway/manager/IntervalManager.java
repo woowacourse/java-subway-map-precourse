@@ -1,5 +1,6 @@
-package subway;
+package subway.manager;
 
+import subway.utils.UserConsole;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
@@ -14,8 +15,12 @@ public class IntervalManager {
     private static final int DELETE_LIMIT = 2;
     private static final String INTERVAL_MANAGER = "INTERVAL MANAGER";
 
-    public static void start() {
+    public static void initializeIntervalManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_INTERVAL, DELETE_INTERVAL, BACK));
+        startIntervalManager(authorizedCommands);
+    }
+
+    private static void startIntervalManager(List<String> authorizedCommands) {
         while (true) {
             try {
                 String command = UserConsole.getCommand(INTERVAL_MANAGER, authorizedCommands);

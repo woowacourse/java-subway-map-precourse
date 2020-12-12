@@ -1,4 +1,4 @@
-package subway;
+package subway.utils;
 
 import java.util.List;
 import java.util.Scanner;

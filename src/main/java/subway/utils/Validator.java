@@ -1,4 +1,4 @@
-package subway;
+package subway.utils;
 
 public class Validator {
     private static final int MINIMUM_LEGNTH = 2;
