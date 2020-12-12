@@ -55,6 +55,7 @@ public class MainMenu {
     private char inputMainMenu() {
         System.out.println(CommonMessage.SELECT_MESSAGE);
         char sel = scanner.nextLine().charAt(0);
+        System.out.println();
 
         return sel;
     }

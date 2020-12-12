@@ -73,7 +73,6 @@ public class SubMenu {
     }
 
     public void printSubMenu() {
-        System.out.println();
         System.out.println(getTitle());
         selMenuList.stream().forEach(menu -> System.out.println(menu));
         System.out.println();
@@ -82,6 +81,7 @@ public class SubMenu {
     private char inputSubMenu() {
         System.out.println(CommonMessage.SELECT_MESSAGE);
         char sel = scanner.nextLine().charAt(0);
+        System.out.println();
 
         return sel;
     }
