@@ -7,11 +7,7 @@ import java.util.Objects;
 
 public class StationRepository {
 
-    private static final String WHITE_SPACE = " ";
     private static final int EMPTY_STATIONS = 0;
-    private static final int LAST_INDEX = 1;
-    private static final int MINIMUM_NAME_LENGTH = 3;
-    private static final String RULE_STATION_NAME = "역";
 
     private static final List<Station> stations = new ArrayList<>();
 
@@ -20,12 +16,9 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(String name) {
-        validateNameLastCharacter(name);
-        validateNameContainWhitepace(name);
-        validateNameLength(name);
-        validateNameDuplicate(name);
-        stations.add(new Station(name));
+    public static void addStation(Station station) {
+        validateNameDuplicate(station);
+        stations.add(station);
     }
 
     public static Station findStation(String name) {
@@ -49,27 +42,9 @@ public class StationRepository {
         }
     }
 
-    private static void validateNameLastCharacter(String name) {
-        if (!name.substring(name.length() - LAST_INDEX).equals(RULE_STATION_NAME)) {
-            throw new IllegalArgumentException("지하철 역 이름은 \"역\"으로 끝나야 합니다.");
-        }
-    }
-
-    private static void validateNameContainWhitepace(String name) {
-        if (name.contains(WHITE_SPACE)) {
-            throw new IllegalArgumentException("지하철 역 이름에 공백이 포함될 수 없습니다.");
-        }
-    }
-
-    private static void validateNameLength(String name) {
-        if (name.length() < MINIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException("지하철 역 이름은 2글자 이상 + \"역\"으로 이루어져야 합니다.");
-        }
-    }
-
-    private static void validateNameDuplicate(String name) {
+    private static void validateNameDuplicate(Station station) {
         if (stations.stream()
-            .anyMatch(station -> station.getName().equals(name))) {
+            .anyMatch(thisStation -> thisStation.getName().equals(station.getName()))) {
             throw new IllegalArgumentException("동일한 지하철 역 이름이 존재합니다.");
         }
     }

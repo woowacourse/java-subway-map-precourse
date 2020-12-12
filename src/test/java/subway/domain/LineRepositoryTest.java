@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LineRepositoryTest {
-
     @DisplayName("Line 등록 테스트")
     @Test
     public void testAddLine() {
@@ -34,13 +33,13 @@ public class LineRepositoryTest {
     }
 
     private void testEnoughStations() {
-        StationRepository.addStation("뭔데역");
+        StationRepository.addStation(Station.newStation("뭔데역"));
         LineRepository.enrollStartStation("뭔데역");
     }
 
     private void testExistStation() {
-        StationRepository.addStation("그래역");
-        StationRepository.addStation("싫어역");
+        StationRepository.addStation(Station.newStation("그래역"));
+        StationRepository.addStation(Station.newStation("싫어역"));
         LineRepository.enrollStartStation("없는건데역");
     }
 
@@ -95,5 +94,4 @@ public class LineRepositoryTest {
     public void testInsertLineStation() {
         LineRepository.insertLineSection("2호선", "호랑역", 2);
     }
-
 }
