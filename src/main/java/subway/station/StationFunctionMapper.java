@@ -1,8 +1,9 @@
 package subway.station;
 
+import subway.station.exception.NotSupportedFunctionException;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class StationFunctionMapper {
     private static final Map<String, Runnable> mapper = new HashMap<>();
@@ -19,7 +20,11 @@ public class StationFunctionMapper {
         });
     }
 
-    public static Optional<Runnable> matchFunction(String command) {
-        return Optional.ofNullable(mapper.get(command));
+    public static Runnable matchFunction(String command) {
+        return mapper.entrySet().stream()
+                .filter(entry -> entry.getKey().equals(command))
+                .map(Map.Entry::getValue)
+                .findAny()
+                .orElseThrow(NotSupportedFunctionException::new);
     }
 }
