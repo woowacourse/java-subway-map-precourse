@@ -1,12 +1,11 @@
-package subway.enums;
+package subway.menu;
 
-import subway.view.LineInputView;
 import subway.view.SectionInputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum SectionInput {
+public enum SectionMenu {
     register("1", "구간 등록"){
         public void moveView(Scanner scanner) {
             SectionInputView sectionInputView = new SectionInputView();
@@ -29,21 +28,21 @@ public enum SectionInput {
     final private String feature;
 
 
-    private SectionInput(String inputValue, String feature) {
+    private SectionMenu(String inputValue, String feature) {
         this.inputValue = inputValue;
         this.feature = feature;
     }
 
     abstract public void moveView(Scanner scanner);
 
-    public static SectionInput findOneByInputValue(String viewInput){
-        return Arrays.stream(SectionInput.values())
+    public static SectionMenu findOneByInputValue(String viewInput){
+        return Arrays.stream(SectionMenu.values())
                 .filter(x -> x.inputValue.equals(viewInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static SectionInput getInstanceByInput(String viewInput) {
+    public static SectionMenu getInstanceByInput(String viewInput) {
         return findOneByInputValue(viewInput);
     }
 
@@ -53,7 +52,7 @@ public enum SectionInput {
 
     public static String getMenu() {
         String message = "";
-        for (SectionInput lineInput : SectionInput.values()) {
+        for (SectionMenu lineInput : SectionMenu.values()) {
             message += lineInput.inputValue + ". " + lineInput.feature + "\n";
         }
         return message;

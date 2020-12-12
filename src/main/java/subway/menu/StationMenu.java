@@ -1,6 +1,5 @@
-package subway.enums;
+package subway.menu;
 
-import subway.Controller;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.OutputView;
@@ -9,7 +8,7 @@ import subway.view.StationInputView;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum StationInput {
+public enum StationMenu {
     register("1", "역 등록") {
         public void moveView(Scanner scanner) {
             StationInputView stationInputView = new StationInputView();
@@ -40,21 +39,21 @@ public enum StationInput {
     final private String feature;
 
 
-    private StationInput(String inputValue, String feature) {
+    private StationMenu(String inputValue, String feature) {
         this.inputValue = inputValue;
         this.feature = feature;
     }
 
     abstract public void moveView(Scanner scanner);
 
-    public static StationInput findOneByInputValue(String viewInput){
-        return Arrays.stream(StationInput.values())
+    public static StationMenu findOneByInputValue(String viewInput){
+        return Arrays.stream(StationMenu.values())
                 .filter(x -> x.inputValue.equals(viewInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static StationInput getInstanceByInput(String viewInput) {
+    public static StationMenu getInstanceByInput(String viewInput) {
         return findOneByInputValue(viewInput);
     }
 
@@ -64,8 +63,8 @@ public enum StationInput {
 
     public static String getMenu() {
         String message = "";
-        for (StationInput stationInput : StationInput.values()) {
-            message += stationInput.inputValue + ". " + stationInput.feature + "\n";
+        for (StationMenu stationMenu : StationMenu.values()) {
+            message += stationMenu.inputValue + ". " + stationMenu.feature + "\n";
         }
         return message;
     }

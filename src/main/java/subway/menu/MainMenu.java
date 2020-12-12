@@ -1,33 +1,29 @@
-package subway.enums;
+package subway.menu;
 
 import subway.view.LineInputView;
-import subway.view.MainInputView;
 import subway.view.SectionInputView;
 import subway.view.StationInputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum MainInput {
+public enum MainMenu {
     stationView("1", "역 관리") {
         public void moveView(Scanner scanner) {
-            StationInputView stationInputView = new StationInputView();
-            String stationViewInput = stationInputView.stationView(scanner);
-            StationInput.getInstanceByInput(stationViewInput).moveView(scanner);
+            String stationViewInput = StationInputView.menu(scanner);
+            StationMenu.getInstanceByInput(stationViewInput).moveView(scanner);
         }
     },
     lineView("2", "노선 관리") {
         public void moveView(Scanner scanner) {
-            LineInputView lineInputView = new LineInputView();
-            String lineViewInput = lineInputView.lineView(scanner);
-            LineInput.getInstanceByInput(lineViewInput).moveView(scanner);
+            String lineViewInput = LineInputView.menu(scanner);
+            LineMenu.getInstanceByInput(lineViewInput).moveView(scanner);
         }
     },
     sectionView("3", "구간 관리") {
         public void moveView(Scanner scanner) {
-            SectionInputView sectionInputView = new SectionInputView();
-            String sectionViewInput = sectionInputView.sectionView(scanner);
-            SectionInput.getInstanceByInput(sectionViewInput).moveView(scanner);
+            String sectionViewInput = SectionInputView.menu(scanner);
+            SectionMenu.getInstanceByInput(sectionViewInput).moveView(scanner);
         }
     },
     showMap("4", "지하철 노선 출력") {
@@ -44,38 +40,38 @@ public enum MainInput {
     final protected String inputValue;
     final protected String feature;
 
-    private MainInput(String inputValue, String feature) {
+    private MainMenu(String inputValue, String feature) {
         this.inputValue = inputValue;
         this.feature = feature;
     }
 
     abstract public void moveView(Scanner scanner);
 
-    public static MainInput findOneByInputValue(String viewInput){
-        return Arrays.stream(MainInput.values())
+    public static MainMenu findOneByInputValue(String viewInput){
+        return Arrays.stream(MainMenu.values())
                 .filter(x -> x.inputValue.equals(viewInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
 
-    public static MainInput getInstanceByInput(String viewInput) {
+    public static MainMenu getInstanceByInput(String viewInput) {
         return findOneByInputValue(viewInput);
     }
 
-    public static String validateInput(String stationViewInput) {
-        return findOneByInputValue(stationViewInput).inputValue;
+    public static String validateInput(String viewInput) {
+        return findOneByInputValue(viewInput).inputValue;
     }
 
     public static String getMenu() {
         String message = "";
-        for (MainInput mainInput : MainInput.values()) {
-            message += mainInput.inputValue + ". " + mainInput.feature + "\n";
+        for (MainMenu mainMenu : MainMenu.values()) {
+            message += mainMenu.inputValue + ". " + mainMenu.feature + "\n";
         }
         return message;
     }
 
     public static boolean isQuit(String viewInput) {
-        return MainInput.quit.inputValue.equals(viewInput);
+        return MainMenu.quit.inputValue.equals(viewInput);
     }
 }

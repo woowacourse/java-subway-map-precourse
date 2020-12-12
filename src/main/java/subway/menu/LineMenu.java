@@ -1,12 +1,11 @@
-package subway.enums;
+package subway.menu;
 
 import subway.view.LineInputView;
-import subway.view.OutputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum LineInput {
+public enum LineMenu {
     register("1", "노선 등록"){
         public void moveView(Scanner scanner) {
             LineInputView lineInputView = new LineInputView();
@@ -37,19 +36,19 @@ public enum LineInput {
 
     abstract public void moveView(Scanner scanner);
 
-    private LineInput(String inputValue, String feature) {
+    private LineMenu(String inputValue, String feature) {
         this.inputValue = inputValue;
         this.feature = feature;
     }
 
-    public static LineInput findOneByInputValue(String viewInput){
-        return Arrays.stream(LineInput.values())
+    public static LineMenu findOneByInputValue(String viewInput){
+        return Arrays.stream(LineMenu.values())
                 .filter(x -> x.inputValue.equals(viewInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static LineInput getInstanceByInput(String viewInput) {
+    public static LineMenu getInstanceByInput(String viewInput) {
         return findOneByInputValue(viewInput);
     }
 
@@ -59,8 +58,8 @@ public enum LineInput {
 
     public static String getMenu() {
         String message = "";
-        for (LineInput lineInput : LineInput.values()) {
-            message += lineInput.inputValue + ". " + lineInput.feature + "\n";
+        for (LineMenu lineMenu : LineMenu.values()) {
+            message += lineMenu.inputValue + ". " + lineMenu.feature + "\n";
         }
         return message;
     }

@@ -2,7 +2,7 @@ package subway;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.enums.MainInput;
+import subway.menu.MainMenu;
 import subway.view.MainInputView;
 
 import java.util.Scanner;
@@ -17,13 +17,12 @@ public class Controller {
 
     public void run() {
         initialize();
-        MainInputView mainInputView = new MainInputView(SCANNER);
         String mainViewInput = "";
 
         do {
-            mainViewInput = mainInputView.mainView();
-            MainInput.getInstanceByInput(mainViewInput).moveView(SCANNER);
-        } while (!MainInput.isQuit(mainViewInput));
+            mainViewInput = MainInputView.mainMenu(SCANNER);
+            MainMenu.getInstanceByInput(mainViewInput).moveView(SCANNER);
+        } while (!MainMenu.isQuit(mainViewInput));
 
     }
 
