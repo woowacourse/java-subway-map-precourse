@@ -3,6 +3,8 @@ package subway.domain.menu;
 import java.util.HashMap;
 import java.util.Map;
 
+import subway.controller.SubwayMapController;
+
 public class MenuRepository {
     private static final Map<MenuType, Menu> menus = new HashMap<>();
 
@@ -41,9 +43,12 @@ public class MenuRepository {
 
     private static void setMainMenu() {
         Menu menu = new Menu(getMenuTitle(MAIN));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(MANAGE, STATION), null));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(MANAGE, LINE), null));
-        menu.addMenuItem(new MenuItem(KEY_THREE, combination(MANAGE, SECTION), null));
+        menu.addMenuItem(new MenuItem(KEY_ONE, combination(MANAGE, STATION), 
+                SubwayMapController::callStationMenu));
+        menu.addMenuItem(new MenuItem(KEY_TWO, combination(MANAGE, LINE), 
+                SubwayMapController::callLineMenu));
+        menu.addMenuItem(new MenuItem(KEY_THREE, combination(MANAGE, SECTION), 
+                SubwayMapController::callSectionMenu));
         menu.addMenuItem(new MenuItem(KEY_FOUR, PRINT_SUBWAY_MAP, null));
         menu.addMenuItem(new MenuItem(KEY_QUIT, QUIT, null));
 
@@ -55,7 +60,7 @@ public class MenuRepository {
         menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, STATION), null));
         menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, STATION), null));
         menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, STATION), null));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, null));
+        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
 
         menus.put(MenuType.STATION, menu);
     }
@@ -65,7 +70,7 @@ public class MenuRepository {
         menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, LINE), null));
         menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, LINE), null));
         menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, LINE), null));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, null));
+        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
 
         menus.put(MenuType.LINE, menu);
     }
@@ -74,7 +79,7 @@ public class MenuRepository {
         Menu menu = new Menu(getMenuTitle(combination(MANAGE, SECTION)));
         menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, SECTION), null));
         menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, SECTION), null));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, null));
+        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
 
         menus.put(MenuType.SECTION, menu);
     }
