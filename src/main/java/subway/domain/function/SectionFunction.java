@@ -20,8 +20,6 @@ public enum SectionFunction {
             Order order = new Order(InputView.inputOrder(scanner), line);
             LineRepository.addStation(lineName, stationName, order);
             OutputView.printSuccessToCreateSection();
-            // TODO - 디버깅용
-            System.out.println(LineRepository.lines());
         }
     },
     DELETE("2") {
@@ -38,8 +36,6 @@ public enum SectionFunction {
             }
             LineRepository.deleteStation(lineName, stationName);
             OutputView.printSuccessToDeleteSection();
-            // TODO - 디버깅용
-            System.out.println(LineRepository.lines());
         }
     },
     BACK("B") {

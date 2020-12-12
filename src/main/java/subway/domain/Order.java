@@ -1,6 +1,7 @@
 package subway.domain;
 
 public class Order {
+
     private static final int MIN_ORDER = 2;
     private int order;
     private Line line;

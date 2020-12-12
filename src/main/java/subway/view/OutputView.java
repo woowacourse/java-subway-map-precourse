@@ -2,11 +2,12 @@ package subway.view;
 
 import java.util.List;
 import subway.domain.Line;
-import subway.domain.LineRepository;
 import subway.domain.Station;
 
 public class OutputView {
+
     private static final String INFO_PREFIX = "[INFO] ";
+
     public static void printMainFunctions() {
         System.out.println("## 메인 화면");
         System.out.println("1. 역 관리");

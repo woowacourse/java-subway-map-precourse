@@ -6,6 +6,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class Machine {
+
     public void start(Scanner scanner) {
         try {
             OutputView.printMainFunctions();
