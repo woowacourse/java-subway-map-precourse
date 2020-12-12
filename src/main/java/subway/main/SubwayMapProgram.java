@@ -46,7 +46,7 @@ public class SubwayMapProgram {
             SectionManagement.start(scanner);
         }
         if (type == MainScreenSelectionType.PRINT_SUBWAY_MAP) {
-            PrintSubwayMap.start(scanner);
+            PrintSubwayMap.start();
         }
     }
 }

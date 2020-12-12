@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import subway.commonprint.Prefix;
+import subway.function.printsubwaymap.PrintSubwayMapPrinter;
 
 public class LineStationMappingRepository {
     private static final Map<Line, List<Station>> lineStationMapping = new HashMap<>();
@@ -44,5 +46,16 @@ public class LineStationMappingRepository {
         Station stationToDeleteSection = StationRepository.findByName(stationNameToDeleteSection);
         List<Station> stationsToDeleteSection = lineStationMapping.get(lineToDeleteSection);
         stationsToDeleteSection.remove(stationToDeleteSection);
+    }
+
+    public static void printAllSubwayMap() {
+        for (Line line : lineStationMapping.keySet()) {
+            System.out.println(Prefix.INFO_PREFIX + line.getName());
+            System.out.println(Prefix.INFO_PREFIX + PrintSubwayMapPrinter.SPLIT_LINE);
+            for (Station station : lineStationMapping.get(line)) {
+                System.out.println(Prefix.INFO_PREFIX + station.getName());
+            }
+            System.out.println();
+        }
     }
 }
