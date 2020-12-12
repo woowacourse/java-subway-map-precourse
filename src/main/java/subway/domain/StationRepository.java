@@ -31,7 +31,7 @@ public class StationRepository {
     public static Station findStation(String name) {
         Station foundStation = null;
         for (Station station : stations) {
-            if(station.getName().equals(name)){
+            if (station.getName().equals(name)) {
                 foundStation = station;
                 break;
             }
