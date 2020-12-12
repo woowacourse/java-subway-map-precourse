@@ -35,7 +35,7 @@ public class Constant {
     public static final String SETTING = " 관리";
     public static final String ADD = "등록";
     public static final String DELETE = "삭제";
-    public static final String LOOKUP = " 조회";
+    public static final String LOOKUP = "조회";
     public static final String QUIT = "종료";
     public static final String BACK = "돌아가기";
 
