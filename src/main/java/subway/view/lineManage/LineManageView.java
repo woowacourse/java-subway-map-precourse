@@ -25,7 +25,7 @@ public class LineManageView implements ViewStrategy {
     }
 
     @Override
-    public void show() {
+    public void execute() {
         manageLine();
         OutputView.enter();
         lineManageViewStrategy.show();

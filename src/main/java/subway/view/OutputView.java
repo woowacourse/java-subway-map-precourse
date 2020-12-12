@@ -3,7 +3,7 @@ package subway.view;
 import java.util.Map;
 
 public class OutputView {
-    private static final String VIEW_SELECT_FORM = "## %s \n";
+    private static final String NAVIGATION_VIEW = "## %s \n";
     private static final String NAVIGATION_FORM = "%s. %s\n";
     private static final String ERROR_VIEW_FORM = "[ERROR] %s \n";
     private static final String INFO_VIEW_FORM = "[INFO] %s \n";
@@ -18,11 +18,15 @@ public class OutputView {
     }
 
     public static void selectView(String message) {
-        System.out.printf(VIEW_SELECT_FORM, message);
+        System.out.printf(NAVIGATION_VIEW, message);
     }
 
     private static void navigate(Map<String, ?> views) {
         views.forEach((key, value) -> System.out.printf(NAVIGATION_FORM, key, value));
+    }
+
+    public static void printMessage(String message){
+        System.out.print(message);
     }
 
     public static void notExist() {

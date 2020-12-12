@@ -25,7 +25,7 @@ public class StationManageView implements ViewStrategy {
     }
 
     @Override
-    public void show() {
+    public void execute() {
         manageStation();
         OutputView.enter();
         stationManageViewStrategy.show();

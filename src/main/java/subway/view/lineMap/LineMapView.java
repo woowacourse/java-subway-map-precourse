@@ -19,7 +19,7 @@ public class LineMapView implements ViewStrategy {
     }
 
     @Override
-    public void show() {
+    public void execute() {
         List<LineResponseDTO> lines = lineController.findLines();
         printLines(lines);
         OutputView.enter();

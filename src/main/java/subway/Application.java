@@ -1,6 +1,6 @@
 package subway;
 
-import subway.view.MainView;
+import subway.view.navigationViews.MainView;
 
 import java.util.Scanner;
 
@@ -9,6 +9,6 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         DummyData.insert();
         MainView mainView = new MainView(scanner);
-        mainView.start();
+        mainView.show();
     }
 }
