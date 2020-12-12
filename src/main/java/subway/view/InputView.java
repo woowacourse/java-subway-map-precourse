@@ -55,13 +55,13 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static String getStation() {
+    public static String getStationName() {
         OutputView.printGuideMessage(INPUT_STATION);
         return SCANNER.nextLine();
     }
 
-    public static String getOrder() {
+    public static int getOrder() {
         OutputView.printGuideMessage(INPUT_ORDER);
-        return SCANNER.nextLine();
+        return Integer.parseInt(SCANNER.nextLine());
     }
 }

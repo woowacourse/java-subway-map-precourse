@@ -1,6 +1,7 @@
 package subway.line.domain;
 
 import subway.line.LineValidator;
+import subway.station.domain.Station;
 
 public class Line {
     public static final int MIN_NAME_LENGTH = 2;
@@ -18,9 +19,15 @@ public class Line {
         this.route = route;
     }
 
+    public void insert(int index, Station station) {
+        this.route.insert(index, station);
+    }
+
+    public boolean isExist(String stationName) {
+        return route.isExist(stationName);
+    }
+
     public String getName() {
         return name;
     }
-
-    // 추가 기능 구현
 }
