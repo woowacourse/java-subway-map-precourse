@@ -7,7 +7,7 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.StationOutputView;
 
-public class StationFunction {
+public class StationFunctionController {
 
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {

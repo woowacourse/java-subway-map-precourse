@@ -4,6 +4,9 @@ import subway.domain.*;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static subway.controller.LineFunctionController.PRINT_ERROR_HEAD;
 
 public class SubwayController {
@@ -41,11 +44,12 @@ public class SubwayController {
         }
     }
 
-    private MainFunctions receiveMainFunction(){
-        try{
+    private MainFunctions receiveMainFunction() {
+        try {
             return MainFunctions.haveNumber(this.inputView.receiveFunction());
-        }catch (IllegalArgumentException e){
-            System.out.println(PRINT_ERROR_HEAD+e.getMessage()+"\n");
+        } catch (IllegalArgumentException e) {
+            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            System.out.println();
             return receiveMainFunction();
         }
     }
@@ -57,15 +61,16 @@ public class SubwayController {
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
-            StationFunction.doFunction(detailFunction, this.inputView);
+            StationFunctionController.doFunction(detailFunction, this.inputView);
         }
     }
 
-    private DetailFunctions receiveDetailFunction(){
-        try{
+    private DetailFunctions receiveDetailFunction() {
+        try {
             return DetailFunctions.haveNumber(this.inputView.receiveFunction());
-        }catch (IllegalArgumentException e){
-            System.out.println(PRINT_ERROR_HEAD+e.getMessage()+"\n");
+        } catch (IllegalArgumentException e) {
+            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            System.out.println();
             return receiveDetailFunction();
         }
     }
@@ -97,37 +102,54 @@ public class SubwayController {
     }
 
     private void initSetting() {
-        StationRepository.addStation(new Station("교대역"));
-        StationRepository.addStation(new Station("강남역"));
-        StationRepository.addStation(new Station("역삼역"));
-        StationRepository.addStation(new Station("남부터미널역"));
-        StationRepository.addStation(new Station("양재역"));
-        StationRepository.addStation(new Station("양재시민의숲역"));
-        StationRepository.addStation(new Station("매봉역"));
+        List<String> initStations = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+        List<String> initLines = Arrays.asList("2호선", "3호선", "신분당선");
 
-        LineRepository.addLine(new Line("2호선"));
-        LineRepository.addLine(new Line("3호선"));
-        LineRepository.addLine(new Line("신분당선"));
-
+        addInitStations(initStations);
+        addInitLines(initLines);
         for (Line line : LineRepository.lines()) {
-            if (line.getName().equals("2호선")) {
-                SubwayRepository.addLine(LineRepository.findLineByName(line.getName()));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("교대역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("강남역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("역삼역"));
+            SubwayRepository.addLine(line);
+            addInitSecondLine(initStations, line);
+            addInitThirdLine(initStations, line);
+            addInitSinLine(initStations, line);
+        }
+    }
+
+    private void addInitStations(List<String> initStations) {
+        for (String station : initStations) {
+            StationRepository.addStation(new Station(station));
+        }
+    }
+
+    private void addInitLines(List<String> initLines) {
+        for (String line : initLines) {
+            LineRepository.addLine(new Line(line));
+        }
+    }
+
+    private void addInitSecondLine(List<String> initStations, Line line) {
+        if (line.getName().equals("2호선")) {
+            List<Integer> initSecondStations = Arrays.asList(0, 1, 2);
+            for (Integer index : initSecondStations) {
+                SubwayRepository.addLineStation(line, StationRepository.findStationByName(initStations.get(index)));
             }
-            if (line.getName().equals("3호선")) {
-                SubwayRepository.addLine(LineRepository.findLineByName(line.getName()));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("교대역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("남부터미널역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("양재역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("매봉역"));
+        }
+    }
+
+    private void addInitThirdLine(List<String> initStations, Line line) {
+        if (line.getName().equals("3호선")) {
+            List<Integer> initSecondStations = Arrays.asList(0, 3, 4, 6);
+            for (Integer index : initSecondStations) {
+                SubwayRepository.addLineStation(line, StationRepository.findStationByName(initStations.get(index)));
             }
-            if (line.getName().equals("신분당선")) {
-                SubwayRepository.addLine(LineRepository.findLineByName(line.getName()));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("강남역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("양재역"));
-                SubwayRepository.addLineStation(LineRepository.findLineByName(line.getName()), StationRepository.findStationByName("양재시민의숲역"));
+        }
+    }
+
+    private void addInitSinLine(List<String> initStations, Line line) {
+        if (line.getName().equals("신분당선")) {
+            List<Integer> initSecondStations = Arrays.asList(1, 4, 5);
+            for (Integer index : initSecondStations) {
+                SubwayRepository.addLineStation(line, StationRepository.findStationByName(initStations.get(index)));
             }
         }
     }
