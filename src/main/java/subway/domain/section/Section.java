@@ -1,7 +1,11 @@
 package subway.domain.section;
 
 import subway.domain.line.Line;
+import subway.domain.station.Station;
 import subway.domain.station.Stations;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Section {
     private final Line line;
@@ -18,5 +22,11 @@ public class Section {
 
     public String getLineName() {
         return line.getName();
+    }
+
+    public List<String> getStationsName() {
+        return stations.getStations().stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
     }
 }

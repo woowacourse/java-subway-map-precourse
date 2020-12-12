@@ -11,6 +11,8 @@ import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
 import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
+import subway.exception.ErrorCode;
+import subway.exception.StationException;
 import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
@@ -30,7 +32,7 @@ public class StationManageApp {
     public StationManageApp() {
         this.inputService = ScannerInputService.of(new Scanner(System.in));
         this.outputService = StringBuilderOutputService.of(new StringBuilder());
-        this.stationService = new StationServiceImpl(MemoryStationRepository.of());
+        this.stationService = new StationServiceImpl(MemoryStationRepository.of(), MemorySectionRepository.of());
         this.lineService = new LineServiceImpl(MemoryLineRepository.of());
         this.sectionService = new SectionService(MemoryLineRepository.of(), MemoryStationRepository.of(), MemorySectionRepository.of());
     }
@@ -81,23 +83,35 @@ public class StationManageApp {
 
     private void chooseManageStationOption(int manageStationOption) {
         StationView stationView = new StationView(outputService);
+
         if (manageStationOption == InputService.ADD) {
-            outputService.printAdd(stationView);
-            stationService.saveStation(new StationSaveReqDto(getName()));
-            outputService.printAfterAdd(stationView);
+            addStation(stationView);
         }
         if (manageStationOption == InputService.DELETE) {
-            outputService.printDelete(stationView);
-            stationService.deleteStation(new StationDeleteReqDto(getName()));
-            outputService.printAfterDelete(stationView);
+            deleteStation(stationView);
         }
         if (manageStationOption == InputService.FIND) {
             stationView.printAllStations(stationService.getStations());
         }
     }
 
+    private void addStation(StationView stationView) {
+        outputService.printAdd(stationView);
+        String stationName = getName();
+        stationService.saveStation(new StationSaveReqDto(stationName));
+        outputService.printAfterAdd(stationView);
+    }
+
+    private void deleteStation(StationView stationView) {
+        outputService.printDelete(stationView);
+        String stationName = getName();
+        stationService.deleteStation(new StationDeleteReqDto(stationName));
+        outputService.printAfterDelete(stationView);
+    }
+
     private void chooseManageRouteOption(int manageRouteOption) {
         LineView lineView = new LineView(outputService);
+
         if (manageRouteOption == InputService.ADD) {
             addSection(lineView);
         }
@@ -113,7 +127,6 @@ public class StationManageApp {
         String downWard = getDownwardName(lineView);
 
         sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downWard));
-
         outputService.printAfterAdd(lineView);
     }
 

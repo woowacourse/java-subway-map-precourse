@@ -23,7 +23,7 @@ class SectionServiceTest {
     @BeforeEach
     void before() {
         sectionService = new SectionService(MemoryLineRepository.of(), MemoryStationRepository.of(), MemorySectionRepository.of());
-        stationService = new StationServiceImpl(MemoryStationRepository.of());
+        stationService = new StationServiceImpl(MemoryStationRepository.of(), MemorySectionRepository.of());
         String stationName = "행복역";
         String stationName2 = "사랑역";
         String stationName3 = "희망역";

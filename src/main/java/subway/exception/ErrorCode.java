@@ -1,6 +1,5 @@
 package subway.exception;
 
-import subway.service.output.OutputService;
 import subway.view.Screen;
 
 public enum ErrorCode {
@@ -13,12 +12,13 @@ public enum ErrorCode {
     STATION_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 역입니다."),
     STATION_NOT_EXIST("S005", Screen.PREFIX_ERROR + "등록된 지하철 역이 없습니다."),
     STATION_NOT_FOUND("S006", Screen.PREFIX_ERROR + "입력된 이름으로 등록된 지하철 역이 없습니다."),
+    STATION_IN_LINE("S007", Screen.PREFIX_ERROR + "삭제하려는 역이 노선에 포함되어 있습니다."),
 
     //Line
-    LINE_NAME_LENGTH_ERROR("L001", Screen.PREFIX_ERROR + "구간 이름은 2글자 이상이어야 합니다."),
+    LINE_NAME_LENGTH_ERROR("L001", Screen.PREFIX_ERROR + "노선 이름은 2글자 이상이어야 합니다."),
     LINE_INVALID_LAST_NAME("L002", Screen.PREFIX_ERROR + "마지막 글자에 선이 들어가야합니다."),
     LINE_INVALID_CHARACTER("L003", Screen.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다."),
-    LINE_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 구간입니다."),
+    LINE_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 노선입니다."),
 
     //Section
     SECTION_UPWARD_STATION_NOT_FOUND("SE001", Screen.PREFIX_ERROR + "상행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),

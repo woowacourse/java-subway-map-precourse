@@ -8,7 +8,7 @@ public interface StationService {
 
     Stations getStations();
 
-    void deleteStation(StationDeleteReqDto deleteReqDto);
+    boolean deleteStation(StationDeleteReqDto deleteReqDto);
 
     void checkExist(String stationName);
 

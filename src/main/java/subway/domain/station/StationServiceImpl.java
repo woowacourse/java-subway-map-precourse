@@ -1,5 +1,6 @@
 package subway.domain.station;
 
+import subway.domain.section.MemorySectionRepository;
 import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.exception.ErrorCode;
@@ -9,9 +10,11 @@ import java.util.List;
 
 public class StationServiceImpl implements StationService {
     private final StationRepository stationRepository;
+    private final MemorySectionRepository sectionRepository;
 
-    public StationServiceImpl(StationRepository stationRepository) {
+    public StationServiceImpl(StationRepository stationRepository, MemorySectionRepository sectionRepository) {
         this.stationRepository = stationRepository;
+        this.sectionRepository = sectionRepository;
     }
 
     @Override
@@ -30,9 +33,12 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public void deleteStation(StationDeleteReqDto deleteReqDto) {
+    public boolean deleteStation(StationDeleteReqDto deleteReqDto) {
+        if (containLine(deleteReqDto.getName())) {
+            throw new StationException(ErrorCode.STATION_IN_LINE);
+        }
         if (stationRepository.deleteStationByName(deleteReqDto.getName())) {
-            return;
+            return true;
         }
         throw new StationException(ErrorCode.STATION_NOT_FOUND);
     }
@@ -56,5 +62,17 @@ public class StationServiceImpl implements StationService {
     @Override
     public void removeAll() {
         stationRepository.removeAll();
+    }
+
+    public boolean containLine(String stationName) {
+        final boolean[] hasStation = {false};
+        sectionRepository.sections()
+                .stream()
+                .forEach(section -> {
+                    if (section.getStationsName().contains(stationName)) {
+                        hasStation[0] = true;
+                    }
+                });
+        return hasStation[0];
     }
 }
