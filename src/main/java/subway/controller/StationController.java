@@ -29,4 +29,11 @@ public class StationController {
         StationRepository.addStation(new Station(name));
         OutputView.printInfoMsg("지하철 역이 등록되었습니다.");
     }
+
+    public void deleteStation(){
+        OutputView.printMsg("## 삭제할 역 이름을 입력하세요.\n");
+        String name = InputView.getInput(scanner);
+        StationRepository.deleteStation(name);
+        OutputView.printInfoMsg("지하철 역이 삭제되었습니다.");
+    }
 }
