@@ -20,6 +20,12 @@ public class StationRepository {
         stations.add(station);
     }
 
+
+    public static boolean exists(String name) {
+        return stations.stream()
+                .anyMatch(station -> station.getName().equals(name));
+    }
+
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }

@@ -1,15 +1,43 @@
 package subway.domain;
 
-public class Station {
-    private String name;
+import subway.exception.StationAlreadyExistsException;
+import subway.exception.StationNameLengthException;
 
-    public Station(String name) {
+public class Station {
+
+    private final String name;
+
+    private Station(String name) {
         this.name = name;
+    }
+
+    public static Station from(String name) {
+        validateLength(name);
+        validateExists(name);
+        return new Station(name);
+    }
+
+    public void save() {
+        StationRepository.addStation(this);
     }
 
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
+    private static void validateLength(String name) {
+        if (name.length() < 2) {
+            throw new StationNameLengthException(name);
+        }
+        if (5 < name.length()) {
+            throw new StationNameLengthException(name);
+        }
+    }
+
+    private static void validateExists(String name) {
+        if (LineRepository.exists(name)) {
+            throw new StationAlreadyExistsException(name);
+        }
+    }
+
 }
