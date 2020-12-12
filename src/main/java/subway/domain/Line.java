@@ -3,12 +3,26 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import subway.exception.BlankNameException;
+import subway.exception.DuplicatedStationInLineException;
+import subway.exception.TooShortNameException;
+import subway.utils.RegexUtil;
+
 public class Line {
+    private static final int NAME_LENGTH_MINIMUM = 2;
+
     private String name;
     private final List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
-        // TODO: 노선 이름에 대한 예외 처리
+        if (name.length() < NAME_LENGTH_MINIMUM) {
+            throw new TooShortNameException(NAME_LENGTH_MINIMUM);
+        }
+
+        if (RegexUtil.isBlank(name)) {
+            throw new BlankNameException();
+        }
+
         this.name = name;
     }
 
@@ -25,7 +39,10 @@ public class Line {
     }
 
     public void addStation(Station station) {
-        // TODO: 중복되는 역 추가 시 예외 처리
+        if (containsStation(station)) {
+            throw new DuplicatedStationInLineException(station.getName());
+        }
+
         stations.add(station);
     }
 

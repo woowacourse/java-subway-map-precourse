@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import subway.exception.DuplicatedLineNameException;
+
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
@@ -13,11 +15,23 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        if (containsLine(line)) {
+            throw new DuplicatedLineNameException(line.getName());
+        }
+
         lines.add(line);
     }
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static boolean containsLine(Line line) {
+        return containsLine(line.getName());
+    }
+
+    public static boolean containsLine(String name) {
+        return lines.stream().anyMatch(streamLine -> name.equals(streamLine.getName()));
     }
 
     public static boolean anyLineContainsStation(String stationName) {

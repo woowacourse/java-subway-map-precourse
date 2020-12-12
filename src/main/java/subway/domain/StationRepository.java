@@ -59,7 +59,9 @@ public class StationRepository {
                 .filter(streamStation -> name.equals(streamStation.getName()))
                 .findAny()
                 .orElse(null);
-        // TODO: 존재하지 않을 시 예외 처리;
+        if (matchedStation == null) {
+            throw new NullStationException(name);
+        }
 
         return matchedStation;
     }
