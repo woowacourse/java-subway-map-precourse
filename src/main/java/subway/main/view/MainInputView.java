@@ -16,4 +16,8 @@ public class MainInputView {
         String option = scanner.next();
         return option.charAt(0);
     }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
 }
