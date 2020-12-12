@@ -28,7 +28,7 @@ public class MainMenu {
     public MainMenu(Scanner scanner) {
         subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION),
                 new LineMenu(LINE_SEL, CategoryType.LINE), new SectionMenu(SECTION_SEL, CategoryType.SECTION),
-                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE), new SubMenu(QUIT, QUIT_SEL));
+                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE));
         this.scanner = scanner;
     }
 
@@ -47,6 +47,7 @@ public class MainMenu {
     private void printMainMenu() {
         System.out.println(MAIN_TITLE);
         subMenuList.stream().forEach(menu -> System.out.println(menu.getTitleActionMessage()));
+        System.out.println(QUIT_SEL + CommonMessage.PUNCTUATION + CommonMessage.SPACE + QUIT);
         System.out.println();
     }
 

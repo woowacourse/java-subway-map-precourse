@@ -20,4 +20,9 @@ public class StationLineMenu extends SubMenu {
 
         return titleActionMessage;
     }
+
+    @Override
+    public void visualize() {
+        System.out.println(CommonMessage.INFO + CommonMessage.SPACE);
+    }
 }
