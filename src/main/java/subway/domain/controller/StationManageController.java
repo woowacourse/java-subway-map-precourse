@@ -15,12 +15,18 @@ public class StationManageController {
     static final String FUNCTION_BACK = "B";
 
     StationManageInput input = new StationManageInput();
-    List<String> functionList = input.functionList();
 
     public void processEnrollStation(Scanner scanner) {
         if (input.inputStationManageScreen(scanner).equals(FUNCTION_ONE)) {
             Station station = new Station(input.inputEnrollStation(scanner));
             StationRepository.addStation(station);
+        }
+    }
+
+    public void processDeleteStation(Scanner scanner) {
+        if (input.inputStationManageScreen(scanner).equals(FUNCTION_TWO)) {
+            String station = input.inputDeleteStation(scanner);
+            StationRepository.deleteStation(station);
         }
     }
 
