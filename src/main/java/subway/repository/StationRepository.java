@@ -28,6 +28,8 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        //이름으로 station 검색
+        //해당 station 노선 등록 확인
+        return stations.remove(station);
     }
 }
