@@ -7,6 +7,7 @@ import subway.view.OutputView;
 
 public class Line {
     public static final int MIN_NAME_LENGTH = 2;
+    public static final int MIN_STATION_AMOUNT = 2;
 
     private String name;
     private List<Station> stations = new ArrayList<>();
@@ -23,8 +24,17 @@ public class Line {
         stations.add(station);
     }
 
+    public void add(int index, Station station) {
+        stations.add(index, station);
+    }
+
     public void remove(Station station) {
+        validateMinimumAmount();
         stations.remove(station);
+    }
+
+    public List<Station> getStations() {
+        return stations;
     }
 
     public boolean hasStation(String name) {
@@ -44,5 +54,15 @@ public class Line {
 
     private static boolean shorterThanMinimalLength(String name) {
         return name.length() < MIN_NAME_LENGTH;
+    }
+
+    private void validateMinimumAmount() {
+        if(isLessThanEqualToMinimumAmount(stations.size())) {
+            throw new IllegalArgumentException(OutputView.ERROR_SIZE_SMALL);
+        }
+    }
+
+    private boolean isLessThanEqualToMinimumAmount(int size) {
+        return size <= MIN_STATION_AMOUNT;
     }
 }

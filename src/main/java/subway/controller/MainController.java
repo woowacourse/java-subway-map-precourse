@@ -15,6 +15,8 @@ public class MainController extends Controller {
         super(inputView);
         controllers.add(new StationController(inputView));
         controllers.add(new LineController(inputView));
+        controllers.add(new SectionController(inputView));
+        controllers.add(new MapController(inputView));
     }
 
     @Override

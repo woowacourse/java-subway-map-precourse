@@ -3,6 +3,7 @@ package subway.view;
 import java.util.List;
 import subway.controller.Function;
 import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
 
 public class OutputView {
@@ -26,6 +27,12 @@ public class OutputView {
     private static final String LINE_MENU_VIEW = "3. 노선 조회";
     private static final String LINE_VIEW_LABEL = "## 노선 목록";
 
+    private static final String SECTION_MENU_LABEL = "## 구간 관리 화면";
+    private static final String SECTION_MENU_ADD = "1. 구간 등록";
+    private static final String SECTION_MENU_DELETE = "2. 구간 삭제";
+
+    private static final String SHOW_MAP_LABEL = "## 지하철 노선도";
+
     private static final String NON_MAIN_MENU_QUIT = "B. 돌아가기";
 
     public static final String INFO_LABEL = "[INFO] ";
@@ -37,6 +44,7 @@ public class OutputView {
     public static final String ERROR_DUPLICATE_NAME = ERROR_LABEL + "중복되는 이름이 있습니다.";
     public static final String ERROR_NOTHING = ERROR_LABEL + "해당 이름의 역/노선은 존재하지 않습니다.";
     public static final String ERROR_CONNECTED = ERROR_LABEL + "해당 역은 노선에 연결되어 지울 수 없습니다.";
+    public static final String ERROR_SIZE_SMALL = ERROR_LABEL + "해당 노선은 종착역들로만 이루어져 있습니다.";
 
     public static void printMenu(int currentMenu) {
         if (currentMenu == Function.MAIN_MENU) {
@@ -47,6 +55,9 @@ public class OutputView {
         }
         if (currentMenu == Function.LINE_MENU) {
             printLineMenu();
+        }
+        if (currentMenu == Function.SECTION_MENU) {
+            printSectionMenu();
         }
     }
 
@@ -76,6 +87,13 @@ public class OutputView {
         System.out.println(NON_MAIN_MENU_QUIT);
     }
 
+    private static void printSectionMenu() {
+        System.out.println(SECTION_MENU_LABEL);
+        System.out.println(SECTION_MENU_ADD);
+        System.out.println(SECTION_MENU_DELETE);
+        System.out.println(NON_MAIN_MENU_QUIT);
+    }
+
     public static void printStations(List<Station> stations) {
         System.out.println();
         System.out.println(STATION_VIEW_LABEL);
@@ -94,6 +112,21 @@ public class OutputView {
                 .map(Line::getName)
                 .map(x -> INFO_LABEL + x)
                 .forEach(System.out::println);
+    }
+
+    public static void printMap() {
+        System.out.println();
+        System.out.println(SHOW_MAP_LABEL);
+        LineRepository.lines().forEach(x -> {
+            System.out.println(INFO_LABEL + x.getName());
+            System.out.println(INFO_LABEL + DIVIDER);
+            printStationsOfLine(x);
+            System.out.println();
+        });
+    }
+
+    private static void printStationsOfLine(Line line) {
+        line.getStations().forEach( x -> System.out.println(INFO_LABEL + x.getName()));
     }
 
     public static void printError(Exception e) {

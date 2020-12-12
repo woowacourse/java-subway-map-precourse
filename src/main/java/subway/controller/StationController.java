@@ -49,7 +49,6 @@ public class StationController extends Controller {
             StationRepository.addStation(new Station(rawStationName));
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
-            addStation();
         }
     }
 
@@ -60,7 +59,6 @@ public class StationController extends Controller {
             StationRepository.deleteStation(rawStationName);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
-            deleteStation();
         }
     }
 
