@@ -1,7 +1,9 @@
 package subway.controller;
 
 import java.util.List;
+import java.util.Map;
 import subway.domain.Line;
+import subway.domain.Station;
 import subway.service.LineService;
 import subway.view.OutputView;
 
@@ -35,7 +37,18 @@ public class LineController {
         }
     }
 
-    public List<Line> searchLine() {
+    public Map<Line, List<Station>> searchLine() {
         return LineService.search();
+    }
+
+    public boolean registerSection(String lineName, String stationName, int sequence) {
+        try {
+            LineService.join(lineName, stationName, sequence);
+            monitor.print(OutputView.SUCCESS_TO_REGISTER_SECTION_MESSAGE);
+            return false;
+        } catch (Exception e) {
+            monitor.print(e.getMessage());
+            return true;
+        }
     }
 }

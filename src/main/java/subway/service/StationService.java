@@ -10,7 +10,7 @@ public class StationService {
     private static final String NOT_DELETE_ERROR = "[ERROR] 삭제할 수 없습니다.\n";
 
     public static void register(String stationName) {
-        if (hasSameName(stationName)) {
+        if (hasSameStation(stationName)) {
             throw new IllegalArgumentException(DUPLICATE_ERROR);
         }
         StationRepository.addStation(new Station(stationName));
@@ -26,10 +26,8 @@ public class StationService {
         }
     }
 
-    public static boolean hasSameName(String stationName) {
+    public static boolean hasSameStation(String stationName) {
         Optional<Station> findStation = StationRepository.findByName(stationName);
         return findStation.isPresent();
     }
-
-
 }

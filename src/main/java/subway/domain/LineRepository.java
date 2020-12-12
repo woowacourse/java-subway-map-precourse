@@ -1,19 +1,17 @@
 package subway.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class LineRepository {
     private static final Map<Line, List<Station>> lines = new HashMap<>();
 
-    public static List<Line> lines() {
-        return Collections.unmodifiableList(lines.keySet().stream().collect(Collectors.toList()));
+    public static Map<Line, List<Station>> lines() {
+        return Collections.unmodifiableMap(lines);
     }
 
     public static void addLine(Line line, Station upTrainStation, Station downTrainStation) {
@@ -21,6 +19,10 @@ public class LineRepository {
         stationList.add(upTrainStation);
         stationList.add(downTrainStation);
         lines.put(line, stationList);
+    }
+
+    public static void addSection(Line line, Station station, int sequence) {
+        lines.get(line).add(sequence, station);
     }
 
     public static boolean deleteLineByName(String name) {

@@ -58,4 +58,15 @@ public class InputView {
     }
 
 
+    public int getSequence(String message) {
+        try {
+            monitor.print(message);
+            int number = scanner.nextInt();
+            monitor.print(NEW_LINE);
+            return number;
+        } catch (Exception e) {
+            monitor.print(e.getMessage());
+            return getSequence(message);
+        }
+    }
 }

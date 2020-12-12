@@ -1,7 +1,9 @@
 package subway;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
@@ -46,16 +48,17 @@ public class Router {
         if (command.equals(TWO)) {
             return enterLineManagementScreen();
         }
-        if (command.equals(THREE)){
+        if (command.equals(THREE)) {
+            return enterSectionManagementScreen();
         }
         return false;
     }
 
     private boolean enterStationManagementScreen() {
-        String command= inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
+        String command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
             , OutputView.STATION_MANAGEMENT_SCREEN);
 
-        if (routeStationManagementScreen(command)){
+        if (routeStationManagementScreen(command)) {
             return enterStationManagementScreen();
         }
         return true;
@@ -65,8 +68,18 @@ public class Router {
         String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
             , OutputView.LINE_MANAGEMENT_SCREEN);
 
-        if(routeLineManagementScreen(command)){
+        if (routeLineManagementScreen(command)) {
             return enterLineManagementScreen();
+        }
+        return true;
+    }
+
+    private boolean enterSectionManagementScreen() {
+        String command = inputView.getScreenCommand("SECTION_MANAGEMENT_SCREEN"
+            , OutputView.SECTION_MANAGEMENT_SCREEN);
+
+        if (routeSectionManagementScreen(command)) {
+            return enterSectionManagementScreen();
         }
         return true;
     }
@@ -97,19 +110,40 @@ public class Router {
         }
         if (command.equals(ONE)) {
             String lineName = inputView.getName(OutputView.ORDER_TO_REGISTER_LINE);
-            String upTrainLastStationName = inputView.getName(OutputView.ORDER_TO_REGISTER_UP_TRAIN_LAST_STATION);
-            String downTrainLastStationName = inputView.getName(OutputView.ORDER_TO_REGISTER_DOWN_TRAIN_LAST_STATION);
-            return lineController.registerLine(lineName,upTrainLastStationName,downTrainLastStationName);
+            String upTrainLastStationName = inputView
+                .getName(OutputView.ORDER_TO_REGISTER_UP_TRAIN_LAST_STATION);
+            String downTrainLastStationName = inputView
+                .getName(OutputView.ORDER_TO_REGISTER_DOWN_TRAIN_LAST_STATION);
+            return lineController
+                .registerLine(lineName, upTrainLastStationName, downTrainLastStationName);
         }
         if (command.equals(TWO)) {
             String lineName = inputView.getName(OutputView.ORDER_TO_DELETE_LINE);
             return lineController.deleteLine(lineName);
         }
         if (command.equals(THREE)) {
-            List<Line> lines = lineController.searchLine();
+            List<Line> lines = new ArrayList<>(lineController.searchLine().keySet());
             monitor.print(OutputView.LINE_LIST);
             OutputView.printList(lines);
         }
         return false;
     }
+
+    private boolean routeSectionManagementScreen(String command) {
+        if (command.equals(BACK)) {
+            return false;
+        }
+        if (command.equals(ONE)) {
+            String lineName = inputView.getName(OutputView.ORDER_TO_ENTER_LINE);
+            String stationName = inputView.getName(OutputView.ORDER_TO_ENTER_STATION);
+            int sequence = inputView.getSequence(OutputView.ORDER_TO_ENTER_SEQUENCE);
+            return lineController.registerSection(lineName,stationName,sequence);
+        }
+        if (command.equals(TWO)) {
+            String lineName = inputView.getName(OutputView.ORDER_TO_DELETE_LINE);
+            return lineController.deleteLine(lineName);
+        }
+        return false;
+    }
+
 }
