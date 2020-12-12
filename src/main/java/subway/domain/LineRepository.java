@@ -8,12 +8,12 @@ import java.util.Objects;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-    public static List<Line> lines() {
+    public static List<Line> retrieveLine() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
-        lines.add(line);
+    public static void addLine(String lineName, String firstStation, String lastStation) {
+        lines.add(new Line(lineName, firstStation, lastStation));
     }
 
     public static boolean deleteLineByName(String name) {
