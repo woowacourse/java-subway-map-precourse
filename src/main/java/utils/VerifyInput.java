@@ -115,11 +115,11 @@ public class VerifyInput {
     }
 
     public static void sectionOrderIn(Line line, int order) {
-        if (order <= 0) {
+        if (order < 0) {
             OutputView.printError(OutputView.MESSAGE_ERROR_NOT_POSITIVE_INTEGER);
             throw new IllegalArgumentException();
         }
-        if (line.getLineLength() > order) {
+        if (line.getLineLength() < order) {
             OutputView.printError(OutputView.MESSAGE_ERROR_OUT_OF_LINE_RANGE);
             throw new IllegalArgumentException();
         }
