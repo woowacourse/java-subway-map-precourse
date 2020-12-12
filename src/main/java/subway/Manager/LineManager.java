@@ -1,6 +1,5 @@
 package subway.Manager;
 
-import subway.domain.Line;
 import subway.domain.LineRepository;
 import view.InputView;
 import view.OutputView;
@@ -22,8 +21,7 @@ public class LineManager {
 
     public void execute(String input) {
         if (input.equals(LINE_INSERT)) {
-            String LineName = InputView.inputLineName(scanner);
-            LineRepository.addLine(new Line(LineName));
+            createLine();
             OutputView.lineInsertSuccess();
         }
         if (input.equals(LINE_DELETE)) {
@@ -33,5 +31,12 @@ public class LineManager {
         if (input.equals(LINE_LOOKUP)) {
             OutputView.lineLookup(lineRepository.toString());
         }
+    }
+
+    private void createLine() { // 노선 만들기위한 정보 초기화
+        String lineName = InputView.inputLineName(scanner);
+        String upTerminal = InputView.inputUpTerminalStation(scanner);
+        String downTerminal = InputView.inputDownTerminalStation(scanner);
+        LineRepository.createLineAndStation(lineName, upTerminal, downTerminal);
     }
 }

@@ -2,14 +2,11 @@ package subway.domain;
 
 import validator.ExceptionMessage;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
-    private static final List<Line> lines = new ArrayList<>();
     private static final String NEW_LINE = "\n";
+    private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -45,6 +42,15 @@ public class LineRepository {
     public static void isPossibleTerminalStation(String name) {
         if (!StationRepository.isStationExist(name))
             throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION_FOR_LINE);
+    }
+
+
+    public static void createLineAndStation(String lineName, String upTerminal, String downTerminal) { // 노선이름, 상행, 하행 종점 등록
+        Station upTerminalStation = StationRepository.getStation(upTerminal);
+        Station downTerminalStation = StationRepository.getStation(downTerminal);
+        Line newLine = new Line(lineName);
+        List<Station> sections = Arrays.asList(upTerminalStation, downTerminalStation);
+        SubwayRepository.addStationOnTheLine(newLine, sections);
     }
 
     @Override

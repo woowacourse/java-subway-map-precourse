@@ -19,6 +19,15 @@ public class StationRepository {
         stations.add(station);
     }
 
+    public static Station getStation(String stationName) {
+        for (Station station : stations()) {
+            if (station.getName().equals(stationName)) {
+                return station;
+            }
+        }
+        return null;
+    }
+
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }

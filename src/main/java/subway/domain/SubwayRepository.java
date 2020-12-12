@@ -11,7 +11,8 @@ public class SubwayRepository {
         return subway;
     }
 
-    public static void addStationOnTheLine(Line line, List<Station> stations) {
-        subway.put(line, stations);
+    public static void addStationOnTheLine(Line line, List<Station> sections) {
+        subway.put(line, sections);
     }
+
 }
