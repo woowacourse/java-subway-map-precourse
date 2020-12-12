@@ -41,7 +41,7 @@ public class MainMenu {
             if (sel == QUIT_SEL) {
                 break;
             }
-            subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().printSubMenu();
+            subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().runSubMenu();
         }
     }
 
