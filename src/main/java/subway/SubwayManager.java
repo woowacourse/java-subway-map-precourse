@@ -97,10 +97,14 @@ public class SubwayManager {
     public static boolean deleteStation(String stationName) {
         return stationRepository.deleteStation(stationName);
     }
-    
+
     public static void printStation() {
         for (Station station : stationRepository.stations()) {
             System.out.println(INFO_PREFIX + station.getName());
         }
+    }
+
+    public static boolean isDuplicated(String stationName) {
+        return stationRepository.isDuplicated(stationName);
     }
 }

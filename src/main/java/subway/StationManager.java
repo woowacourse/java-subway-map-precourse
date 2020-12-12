@@ -79,6 +79,15 @@ public class StationManager {
         }
     }
 
+    public static void validateStationName(String stationName) throws IllegalArgumentException {
+        if (stationName.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
+        }
+        if (SubwayManager.isDuplicated(stationName)) {
+            throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
+        }
+    }
+
     public static void callOptionMenu(String userOption, Scanner scanner) {
         if (!Character.isDefined(userOption.charAt(0))) {
             return;
