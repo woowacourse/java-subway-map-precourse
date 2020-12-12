@@ -1,9 +1,10 @@
 package subway;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.controller.StationController;
+import subway.domain.Station;
 import subway.view.InputView;
-import subway.view.LogMessage;
 import subway.view.OutputView;
 
 public class Router {
@@ -14,23 +15,25 @@ public class Router {
     private static final String BACK = "B";
     private static final String QUIT = "Q";
 
+    private static OutputView monitor = System.out::println;
+
     private InputView inputView;
+    private StationController stationController;
 
     public Router(Scanner scanner) {
-        this.inputView = new InputView(scanner);
+        this.inputView = new InputView(monitor, scanner);
+        this.stationController = new StationController(monitor);
     }
 
     public void run() {
         String command;
         do {
-            OutputView.printMainScreen();
-            command = inputView.getScreenCommand("MAIN_SCREEN");
+            command = inputView.getScreenCommand("MAIN_SCREEN", OutputView.MAIN_SCREEN);
         } while (routeMainScreen(command));
     }
 
     private boolean routeMainScreen(String command) {
         if (command.equals(QUIT)) {
-            LogMessage.printEndMessage();
             return false;
         }
         if (command.equals(ONE)) {
@@ -45,33 +48,39 @@ public class Router {
     }
 
     private void enterStationManagementScreen() {
-        OutputView.printStationManagementScreen();
-        String command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN");
+        String command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
+            , OutputView.STATION_MANAGEMENT_SCREEN);
         routeStationManagementScreen(command);
     }
 
     private void enterLineManagementScreen() {
-        OutputView.printLineManagementScreen();
-        String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN");
+        String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
+            , OutputView.LINE_MANAGEMENT_SCREEN);
+        routeLineManagementScreen(command);
     }
 
     private void routeStationManagementScreen(String command) {
         if (command.equals(ONE)) {
-            OutputView.printOrderToRegisterStation();
-            String stationName = inputView.getStationName();
-            StationController.registerStation(stationName);
+            String stationName = inputView.getStationName(OutputView.ORDER_TO_REGISTER_STATION);
+            stationController.registerStation(stationName);
         }
         if (command.equals(TWO)) {
-            OutputView.printOrderToDeleteStation();
-            String stationName = inputView.getStationName();
-            StationController.deleteStation(stationName);
+            String stationName = inputView.getStationName(OutputView.ORDER_TO_DELETE_STATION);
+            stationController.deleteStation(stationName);
         }
         if (command.equals(THREE)) {
-            StationController.searchStation();
-        }
-        if (command.equals(BACK)) {
-            LogMessage.printBackToMainScreen();
+            List<Station> stations = stationController.searchStation();
+            monitor.print(OutputView.STATION_LIST);
+            OutputView.printStationList(stations);
         }
     }
 
+    private void routeLineManagementScreen(String command) {
+        if (command.equals(ONE)) {
+        }
+        if (command.equals(TWO)) {
+        }
+        if (command.equals(THREE)) {
+        }
+    }
 }

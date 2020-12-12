@@ -3,31 +3,34 @@ package subway.controller;
 import java.util.List;
 import subway.domain.Station;
 import subway.service.StationService;
-import subway.view.LogMessage;
 import subway.view.OutputView;
 
 public class StationController {
-    public static void registerStation(String stationName) {
+    private OutputView monitor;
+
+    public StationController(OutputView monitor) {
+        this.monitor = monitor;
+    }
+
+    public void registerStation(String stationName) {
         try {
             StationService.register(stationName);
-            LogMessage.printSuccessToRegisterStation();
+            monitor.print(OutputView.SUCCESS_TO_REGISTER_STATION_MESSAGE);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            monitor.print(e.getMessage());
         }
     }
 
-    public static void searchStation() {
-        List<Station> stations = StationService.search();
-        OutputView.printStationList();
-        LogMessage.printStationList(stations);
+    public List<Station> searchStation() {
+        return StationService.search();
     }
 
-    public static void deleteStation(String stationName) {
+    public void deleteStation(String stationName) {
         try {
             StationService.delete(stationName);
-            LogMessage.printSuccessToDeleteStation();
+            monitor.print(OutputView.SUCCESS_TO_DELETE_STATION_MESSAGE);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            monitor.print(e.getMessage());
         }
     }
 }
