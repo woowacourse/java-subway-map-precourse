@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import util.validator.Validation;
@@ -46,22 +48,32 @@ public class StationController {
     }
 
     private static boolean registerStation(Scanner scanner) {
-        OutputView.printEnterStationInstruction();
+        OutputView.printEnterStationRegisterInstruction();
         String userInputStation = InputView.getInput(scanner);
         boolean validInput = Validation.checkRegisterStationInput(userInputStation);
         if (validInput == false) {
             return false;
         }
+        Station newStation = new Station(userInputStation);
+        StationRepository.addStation(newStation);
+        OutputView.printInfo("지하철 역이 등록되었습니다.");
         return true;
     }
 
     private static boolean deleteStation(Scanner scanner) {
-        System.out.println("[INFO] 삭제");
+        OutputView.printEnterStationDeleteInstruction();
+        String userInputStation = InputView.getInput(scanner);
+        boolean validInput = Validation.checkDeleteStationInput(userInputStation);
+        if (validInput == false) {
+            return false;
+        }
+        StationRepository.deleteStation(userInputStation);
+        OutputView.printInfo("지하철 역이 삭제되었습니다.");
         return true;
     }
 
     private static boolean printStation(Scanner scanner) {
-        System.out.println("[INFO] 출력");
+        StationRepository.printStation();
         return true;
     }
 

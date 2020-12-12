@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,12 +22,19 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isDuplicate(String name) {
+    public static boolean has(String name) {
         for (Station station : stations) {
             if(station.checkSameName(name)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static void printStation() {
+        OutputView.printStationList();
+        for (Station station : stations) {
+            OutputView.printInfo(station.getName());
+        }
     }
 }

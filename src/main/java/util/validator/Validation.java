@@ -71,7 +71,7 @@ public class Validation {
 
     private static boolean checkNotDuplicateStation(String userInputStation) {
         try {
-            if (StationRepository.isDuplicate(userInputStation)) {
+            if (StationRepository.has(userInputStation)) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
@@ -113,6 +113,25 @@ public class Validation {
             }
         } catch (UserInputException e) {
             OutputView.printEndWithWordStationError();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkDeleteStationInput(String userInputStation) {
+        if(checkIsInStationRepository(userInputStation) == false) {
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean checkIsInStationRepository(String userInputStation) {
+        try {
+            if (StationRepository.has(userInputStation) == false) {
+                throw new UserInputException();
+            }
+        } catch (UserInputException e) {
+            OutputView.printNotInStationRepositoryError();
             return false;
         }
         return true;

@@ -13,6 +13,6 @@ public class Station {
 
     // 추가 기능 구현
     public boolean checkSameName(String name) {
-        return (this.name == name);
+        return (this.name.equals(name));
     }
 }
