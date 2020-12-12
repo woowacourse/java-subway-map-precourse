@@ -40,6 +40,10 @@ public class LineController {
         LineRepository.addLine(line);
     }
 
+    public void removeLine(String name){
+        LineRepository.deleteLineByName(name);
+    }
+
     public boolean checkIfLineExist(String name){
         if(LineRepository.getLine(name).isPresent()){
             return true;
