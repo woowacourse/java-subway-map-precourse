@@ -1,23 +1,20 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-    public static List<Line> lines() {
+    public static List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static Line getLine(String name){
-        return lines.stream()
+    public static Optional<Line> getLine(String name){
+        return Optional.of(lines.stream()
                 .filter(line -> line.getName() != name)
                 .collect(Collectors.toList())
-                .get(0);
+                .get(0));
     }
 
     public static void addLine(Line line) {
