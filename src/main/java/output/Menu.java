@@ -1,12 +1,15 @@
 package output;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum Menu {
     STATION("역", Arrays.asList(Function.INSERT, Function.DELETE, Function.SEARCH)),
     LINE("노선", Arrays.asList(Function.INSERT, Function.DELETE, Function.SEARCH)),
-    ROUTE("구간", Arrays.asList(Function.INSERT, Function.DELETE));
+    ROUTE("구간", Arrays.asList(Function.INSERT, Function.DELETE)),
+    SUBWAY_MAP("지하철 노선도", Collections.emptyList()),
+    QUIT("종료", Collections.emptyList());
 
     private final String menuName;
     private final List<Function> menuElement;
