@@ -28,15 +28,15 @@ public class SubMenu {
     public SubMenu(char order, String category, Scanner scanner) {
         this.order = order;
         this.category = category;
-        makeActionList();
+        makeActionList(scanner);
         this.scanner = scanner;
     }
 
-    public void makeActionList() {
+    public void makeActionList(Scanner scanner) {
         actionList = new ArrayList<>();
-        actionList.addAll(Arrays.asList(new RegisterAction(REGISTER_SEL, category, ActionType.MANAGE),
-                new DeleteAction(DELETE_SEL, category, ActionType.DELETE),
-                new ViewAction(VIEW_SEL, category, ActionType.VIEW)));
+        actionList.addAll(Arrays.asList(new RegisterAction(REGISTER_SEL, category, ActionType.MANAGE, scanner),
+                new DeleteAction(DELETE_SEL, category, ActionType.DELETE, scanner),
+                new ViewAction(VIEW_SEL, category, ActionType.VIEW, scanner)));
 
         if (category.equals(CategoryType.SECTION)) {
             actionList.remove(actionList.size() - 1);
@@ -68,6 +68,8 @@ public class SubMenu {
         if (sel == BACK_SEL) {
             return;
         }
+
+        actionList.stream().filter(menu -> menu.getOrder() == sel).findFirst().get().runAction();
     }
 
     public void printSubMenu() {
