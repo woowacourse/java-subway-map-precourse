@@ -44,7 +44,8 @@ public enum MainMenu implements Menu {
     final String order;
     final String menu;
 
-    private static final String title = "메인 ";
+    private static final String MENU_TITLE = "메인 ";
+    private static final String MENU_TYPE = "메인";
 
     MainMenu(String order, String menu) {
         this.order = order;
@@ -69,7 +70,7 @@ public enum MainMenu implements Menu {
 
     @Override
     public String getTitle() {
-        return title;
+        return MENU_TITLE;
     }
 
     @Override
@@ -84,7 +85,7 @@ public enum MainMenu implements Menu {
 
     @Override
     public String getName() {
-        return getName();
+        return MENU_TYPE;
     }
 
     @Override

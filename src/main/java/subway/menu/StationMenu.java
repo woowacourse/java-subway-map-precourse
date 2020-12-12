@@ -18,8 +18,9 @@ public enum StationMenu implements Menu {
     final String menu;
     final Action action;
 
-    private static final String title = "역 관리 ";
+    private static final String MENU_TITLE = "역 관리 ";
     private static SubwayController controller = ControllerFactory.of(StationMenu.DELETE);
+    private static final String MENU_TYPE = "역";
 
     StationMenu(String order, String menu, Action action) {
         this.order = order;
@@ -51,7 +52,7 @@ public enum StationMenu implements Menu {
 
     @Override
     public String getTitle() {
-        return title;
+        return MENU_TITLE;
     }
 
     @Override
@@ -66,7 +67,7 @@ public enum StationMenu implements Menu {
 
     @Override
     public String getName() {
-        return getName();
+        return MENU_TYPE;
     }
 
     @Override
