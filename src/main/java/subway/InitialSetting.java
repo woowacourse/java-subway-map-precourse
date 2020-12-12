@@ -9,7 +9,6 @@ public class InitialSetting {
     public static void setInitialSubwayInfo() {
         setInitialStation();
         setInitialLine();
-        setInitialMap();
     }
 
     private static void setInitialStation() {
@@ -20,13 +19,30 @@ public class InitialSetting {
     }
 
     private static void setInitialLine() {
-        String[] lines = { "2호선", "3호선", "신분당선" };
-        for (String line : lines) {
-            LineRepository.addLine(new Line(line));
-        }
+        setLineNo2(new Line("2호선"));
+        setLineNo3(new Line("3호선"));
+        setLineNewBundang(new Line("신분당선"));
     }
-
-    private static void setInitialMap() {
-        // 초기 노선에 역 등록 기능 추가 예정
+    
+    private static void setLineNo2(Line lineNo2) {
+        lineNo2.addStation("교대역");
+        lineNo2.addStation("강남역");
+        lineNo2.addStation("역삼역");
+        LineRepository.addLine(lineNo2);
+    }
+    
+    private static void setLineNo3(Line lineNo3) {
+        lineNo3.addStation("교대역");
+        lineNo3.addStation("남부터미널역");
+        lineNo3.addStation("양재역");
+        lineNo3.addStation("매봉역");
+        LineRepository.addLine(lineNo3);
+    }
+    
+    private static void setLineNewBundang(Line lineNewBundang) {
+        lineNewBundang.addStation("강남역");
+        lineNewBundang.addStation("양재역");
+        lineNewBundang.addStation("양재시민의숲역");
+        LineRepository.addLine(lineNewBundang);
     }
 }
