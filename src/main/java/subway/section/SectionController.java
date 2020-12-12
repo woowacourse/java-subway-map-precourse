@@ -1,9 +1,18 @@
 package subway.section;
 
 import subway.view.InputView;
+import subway.view.OutputView;
+import subway.view.resource.SectionMessage;
 
 public class SectionController {
     private SectionController() {
+    }
+
+    public static void execute() {
+        OutputView.printGuideMessage(SectionMessage.SELECT_FUNCTION);
+        String command = InputView.getFunction();
+        Runnable function = SectionFunctionMapper.matchFunction(command);
+        function.run();
     }
 
     public static void register() {
