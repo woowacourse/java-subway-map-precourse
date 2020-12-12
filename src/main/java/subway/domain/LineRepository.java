@@ -53,6 +53,14 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static void deleteAll(){
+        lines.clear();
+    }
+
+    public static List<Line> findAll(){
+        return lines;
+    }
+
     private static boolean isDuplicate(String name){
         return lines.stream().anyMatch(line -> line.getName().equals(name));
     }
