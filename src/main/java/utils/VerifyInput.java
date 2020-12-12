@@ -122,11 +122,12 @@ public class VerifyInput {
         }
     }
 
-    public static void deletableSection(String lineName) {
+    public static boolean deletableSection(String lineName) {
         if (LineRepository.getLineNamed(lineName).getLineLength() <= NUM_MIN_STATION) {
             OutputView.printError(OutputView.MESSAGE_ERROR_TOO_LITTLE_STATIONS);
-            throw new IllegalArgumentException();
+            return false;
         }
+        return true;
     }
 
 }
