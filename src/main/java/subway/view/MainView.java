@@ -47,7 +47,7 @@ public class MainView {
 
     private void selectStationMenu(final String button) {
         if (button.equals(Button.ONE)) {
-            stationView.selectStationMenu();
+            stationView.selectStationMenu(input.nextStationButton());
         }
     }
 

@@ -17,60 +17,73 @@ public class StationView {
         this.stationController = new StationController();
     }
 
-    public void selectStationMenu() {
-        Message.printStatinMenu();
-        selectMenu(input.nextStationButton());
-    }
-
-    private void selectMenu(String button) {
-        if (isBack(button)) {
-            return;
+    public void selectStationMenu(String button) {
+        while (!isBack(button)) {
+            if (isCreate(button)) {
+                break;
+            }
+            if (isDelete(button)) {
+                break;
+            }
+            if (isRead(button)) {
+                break;
+            }
+            button = input.nextStationButton();
         }
-        registerStation(button);
-        deleteStation(button);
-        readStations(button);
     }
 
     private boolean isBack(String button) {
         return button.equals(Button.BACK);
     }
 
-    private void registerStation(String button) {
+    private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
-            Message.printCreateStation();
-            String name = input.nextStation();
-            if (!input.isValidNameLength(name)) {
-                Message.printNameLengthError();
-                selectStationMenu();
-            }
-            if (!input.isValidName(name)) {
-                Message.printNameError();
-                selectStationMenu();
-            }
-            stationController.createStation(name);
-            Message.printSuccessStation();
+            return registerStation();
         }
+        return false;
     }
 
-    private void deleteStation(String button) {
+    private boolean registerStation() {
+        Message.printCreateStation();
+        String name = input.nextStation();
+        if (!input.validName(name)) {
+            return false;
+        }
+        stationController.createStation(name);
+        Message.printSuccessStation();
+        return true;
+    }
+
+    private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            Message.printDeleteStation();
-            String name = input.nextStation();
-            if (!stationController.deleteStation(name)) {
-                Message.printIsNotExist();
-                return;
-            }
-            Message.deleteStationInfo();
+            return deleteStation();
         }
+        return false;
     }
 
-    private void readStations(String button) {
+    private boolean deleteStation() {
+        Message.printDeleteStation();
+        if (stationController.deleteStation(input.nextStation())) {
+            Message.deleteStationInfo();
+            return true;
+        }
+        Message.printIsNotExist();
+        return false;
+    }
+
+    private boolean isRead(String button) {
         if (button.equals(Button.THREE)) {
-            Message.printStations();
-            List<Station> stations = stationController.readStations();
-            for (Station station : stations) {
-                Message.printStation(station.getName());
-            }
+            readStations();
+            return true;
+        }
+        return false;
+    }
+
+    private void readStations() {
+        Message.printStations();
+        List<Station> stations = stationController.readStations();
+        for (Station station : stations) {
+            Message.printStation(station.getName());
         }
     }
 }

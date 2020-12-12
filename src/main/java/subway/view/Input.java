@@ -29,6 +29,7 @@ public class Input {
     }
 
     public String nextStationButton() {
+        Message.printStatinMenu();
         String button = toUpperNextLine();
         if (Button.containsStationButtons(button)) {
             return button;
@@ -70,11 +71,15 @@ public class Input {
         return nextLine();
     }
 
-    public boolean isValidNameLength(String name) {
-        return name.length() >= STATION_NAME_LENGTH;
-    }
-
-    public boolean isValidName(String name) {
-        return name.endsWith(STATION_END_NAME);
+    public boolean validName(String name) {
+        if (name.length() < STATION_NAME_LENGTH) {
+            Message.printNameLengthError();
+            return false;
+        }
+        if (!name.endsWith(STATION_END_NAME)) {
+            Message.printNameError();
+            return false;
+        }
+        return true;
     }
 }
