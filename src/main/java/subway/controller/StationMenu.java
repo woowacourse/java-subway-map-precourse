@@ -1,5 +1,7 @@
 package subway.controller;
 
+import java.util.List;
+
 import subway.controller.exception.DuplicationException;
 import subway.controller.exception.NameFormatException;
 import subway.controller.exception.NotExistedElementException;
@@ -16,7 +18,6 @@ public class StationMenu {
     public static void goToStationMenu() {
         OutputView.printStationMenu();
         String selection = InputView.receiveMenu("Station");
-
         if (selection.equals("1")) {
             registerNewStation();
         }
@@ -24,7 +25,7 @@ public class StationMenu {
             deleteStation();
         }
         if (selection.equals("3")) {
-            // 역 조회
+            inquireStationList();
         }
         MainMenu.print();
     }
@@ -50,5 +51,10 @@ public class StationMenu {
             System.out.println(e.getMessage());
             goToStationMenu();
         }
+    }
+    
+    private static void inquireStationList() {
+        List<Station> stations = StationRepository.stations();
+        OutputView.printStationList(stations);
     }
 }

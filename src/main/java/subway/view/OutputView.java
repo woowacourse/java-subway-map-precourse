@@ -1,5 +1,9 @@
 package subway.view;
 
+import java.util.List;
+
+import subway.domain.Station;
+
 public class OutputView {
     public static void printMainMenu() {
         System.out.println("\n## 메인 화면");
@@ -32,12 +36,19 @@ public class OutputView {
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기\n");
     }
-    
+
     public static void printStationRegisterSuccess() {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
-    
+
     public static void printStationDeleteSuccess() {
         System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
+    public static void printStationList(List<Station> stations) {
+        System.out.println("\n## 역 목록");
+        for (Station station : stations) {
+            System.out.println("[INFO] " + station.getName());
+        }
     }
 }
