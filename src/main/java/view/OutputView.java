@@ -131,6 +131,7 @@ public class OutputView {
         for (Station station : StationRepository.stations()) {
             printInformation(station.getName());
         }
+        System.out.println();
     }
 
     public static void printTotalLine() {
@@ -138,10 +139,11 @@ public class OutputView {
         for (Line line : LineRepository.lines()) {
             printInformation(line.getName());
         }
+        System.out.println();
     }
 
     public static void printError(String errorMessage) {
-        System.out.println(PREFIX_ERROR + errorMessage);
+        System.out.println(PREFIX_ERROR + errorMessage + NEW_LINE);
     }
 
     public static void printInformation(String infoMessage) {
