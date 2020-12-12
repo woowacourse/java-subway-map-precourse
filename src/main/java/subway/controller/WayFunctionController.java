@@ -10,19 +10,19 @@ import static subway.domain.StationNameValidator.makeEnrolledStationName;
 public class WayFunctionController {
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
-            enrollWay(inputView, detailFunction);
+            enrollWay(inputView);
         }
         if (detailFunction.equals(DetailFunctions.REMOVE)) {
-            removeWay(inputView, detailFunction);
+            removeWay(inputView);
         }
     }
 
-    private static void enrollWay(InputView inputView, DetailFunctions detailFunction){
+    private static void enrollWay(InputView inputView){
         Line enrolledLine = receiveEnrollLine(inputView);
         Station enrolledStation = receiveEnrollStation(inputView);
         WayOutputView.printOrder();
         SubwayRepository.addLineStationSpecificPlace(enrolledLine, enrolledStation, OrderValidator.makeValidOrder(inputView.receiveFunctionInfo()));
-        WayOutputView.printSuccess(detailFunction);
+        WayOutputView.printSuccess(DetailFunctions.ENROLL);
         OutputView.printOneLine();
     }
 
@@ -31,6 +31,7 @@ public class WayFunctionController {
             WayOutputView.printEnrollLine();
             return LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
         }catch (IllegalArgumentException e){
+            System.out.println();
             System.out.println(PRINT_ERROR_HEAD+e.getMessage());
             return receiveEnrollLine(inputView);
         }
@@ -41,18 +42,20 @@ public class WayFunctionController {
             WayOutputView.printEnrollStation();
             return StationRepository.findStationByName(makeEnrolledStationName(inputView.receiveFunctionInfo()));
         }catch (IllegalArgumentException e){
+            System.out.println();
             System.out.println(PRINT_ERROR_HEAD+e.getMessage());
             return receiveEnrollStation(inputView);
         }
     }
 
-    private static void removeWay(InputView inputView, DetailFunctions detailFunction) {
-        Line selectedLine = receiveRemoveLine(inputView);
-        Station selectedStation = receiveRemoveStation(inputView, selectedLine);
-        WayOutputView.printOrder();
-        SubwayRepository.deleteStationFromLine(selectedLine, selectedStation);
-        WayOutputView.printSuccess(detailFunction);
-        OutputView.printOneLine();
+    private static void removeStationFromLine(Line selectedLine, Station selectedStation) {
+        try {
+            SubwayRepository.deleteStationFromLine(selectedLine, selectedStation);
+            WayOutputView.printSuccess(DetailFunctions.REMOVE);
+        }catch (IllegalArgumentException e){
+            System.out.println();
+            System.out.println(PRINT_ERROR_HEAD+e.getMessage());
+        }
     }
 
     private static Line receiveRemoveLine(InputView inputView) {
@@ -60,6 +63,7 @@ public class WayFunctionController {
             WayOutputView.printRemoveLine();
             return LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
         }catch (IllegalArgumentException e){
+            System.out.println();
             System.out.println(PRINT_ERROR_HEAD+e.getMessage());
             return receiveRemoveLine(inputView);
         }
@@ -70,9 +74,17 @@ public class WayFunctionController {
             WayOutputView.printRemoveStation();
             return SubwayRepository.findStationWithLine(selectedLine, inputView.receiveFunctionInfo());
         }catch (IllegalArgumentException e){
+            System.out.println();
             System.out.println(PRINT_ERROR_HEAD+e.getMessage());
             return receiveRemoveStation(inputView, selectedLine);
         }
+    }
+
+    private static void removeWay(InputView inputView) {
+        Line selectedLine = receiveRemoveLine(inputView);
+        Station selectedStation = receiveRemoveStation(inputView, selectedLine);
+        removeStationFromLine(selectedLine, selectedStation);
+        OutputView.printOneLine();
     }
 
 }

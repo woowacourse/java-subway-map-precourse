@@ -26,10 +26,13 @@ public class SubwayRepository {
     }
 
     public static void deleteStationFromLine(Line selectedLine, Station selectedStation) {
+        if (subway.get(selectedLine).size() <= 2) {
+            throw new IllegalArgumentException("역이 2개 이하인 노선에서는 역을 삭제할 수 없습니다.");
+        }
         subway.get(selectedLine).remove(selectedStation);
     }
 
-    public static Station findStationWithLine(Line line, String foundStationName){
+        public static Station findStationWithLine(Line line, String foundStationName){
         if(subway.get(line).stream().anyMatch(station -> station.equals(StationRepository.findStationByName(foundStationName)))){
             return StationRepository.findStationByName(foundStationName);
         }

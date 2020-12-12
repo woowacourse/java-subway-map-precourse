@@ -10,7 +10,7 @@ public class LineFunctionController {
 
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
-            enrollLine(detailFunction, inputView);
+            enrollLine(inputView);
         }
         if (detailFunction.equals(DetailFunctions.REMOVE)) {
             LineRepository.deleteLineByName((makeValidateEnrolledName(inputView)));
@@ -21,13 +21,13 @@ public class LineFunctionController {
         }
     }
 
-    private static void enrollLine(DetailFunctions detailFunction, InputView inputView) {
+    private static void enrollLine(InputView inputView) {
         String enrollingLine = makeValidateEnrollName(inputView);
         LineRepository.addLine(new Line(enrollingLine));
         SubwayRepository.addLine(LineRepository.findLineByName(enrollingLine));
         SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidateStation("상행", inputView));
         SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidateStation("하행", inputView));
-        LineOutputView.printSuccess(detailFunction);
+        LineOutputView.printSuccess(DetailFunctions.ENROLL);
     }
 
     private static Station makeValidateStation(String startOrFinish, InputView inputView) {
