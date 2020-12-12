@@ -102,6 +102,7 @@ public class SubwayManager {
         for (Station station : stationRepository.stations()) {
             System.out.println(INFO_PREFIX + station.getName());
         }
+        System.out.println();
     }
 
     public static boolean isDuplicated(String stationName) {
