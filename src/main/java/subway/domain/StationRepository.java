@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.service.LineService;
 
 public class StationRepository {
 
@@ -32,8 +33,18 @@ public class StationRepository {
         return foundStation;
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void deleteStation(String name) {
+        validateStationsEmpty();
+        validateRegistered(name);
+        if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
+            throw new IllegalArgumentException("일치하는 지하철 역이 없습니다.");
+        }
+    }
+
+    private static void validateRegistered(String name) {
+        if (LineService.contain(name)) {
+            throw new IllegalArgumentException("지하철 노선에 등록되어 있는 지하철 역은 삭제할 수 없습니다.");
+        }
     }
 
     private static void validateStationsEmpty() {

@@ -9,4 +9,8 @@ public class StationService {
         Station newStation = Station.newStation(stationName);
         StationRepository.addStation(newStation);
     }
+
+    public static void delete(String stationName) {
+        StationRepository.deleteStation(stationName);
+    }
 }

@@ -17,7 +17,6 @@ public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
-        validateLinesEmpty();
         return Collections.unmodifiableList(lines);
     }
 
