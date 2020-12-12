@@ -54,12 +54,10 @@ public class Line {
         int index = stationsIncludedLine.indexOf(stationName);
         stationsIncludedLine.remove(stationName);
         if (index == FIRST_INDEX) {
-            // 인덱스 벗어나지 않는지 검사 필요
             northboundTerminal = stationsIncludedLine.get(index + 1);
             return;
         }
         if (index == getLineLength() + PREVIOUS_INDEX) {
-            // 인덱스 벗어나지 않는지 검사 필요
             southboundTerminal = stationsIncludedLine.get(index - 1);
         }
     }
