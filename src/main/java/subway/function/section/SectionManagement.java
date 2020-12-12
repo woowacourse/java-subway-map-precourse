@@ -1,4 +1,4 @@
-package subway;
+package subway.function.section;
 
 import java.util.Scanner;
 

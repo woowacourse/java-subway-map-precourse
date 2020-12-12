@@ -1,4 +1,4 @@
-package subway;
+package subway.main;
 
 public class PrintMainScreen {
     private static final String SCREEN

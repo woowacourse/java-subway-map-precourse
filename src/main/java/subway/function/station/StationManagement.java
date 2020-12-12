@@ -1,6 +1,8 @@
-package subway;
+package subway.function.station;
 
 import java.util.Scanner;
+import subway.commonprint.CommonPrinter;
+import subway.main.UserSelections;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -13,7 +15,7 @@ public class StationManagement {
 
     private static StationManagementSelectionType getStationManagementSelectionType(
         Scanner scanner) {
-        Printer.printUserFunctionSelectionMessage();
+        CommonPrinter.printUserFunctionSelectionMessage();
         String stationManagementSelectionInput = scanner.nextLine();
         if (stationManagementSelectionInput.equals(UserSelections.FIRST)) {
             return StationManagementSelectionType.STATION_REGISTRATION;
@@ -44,17 +46,17 @@ public class StationManagement {
     }
 
     private static void deleteStation(Scanner scanner) {
-        Printer.printUserInputStationToDeleteMessage();
+        StationPrinter.printUserInputStationToDeleteMessage();
         String stationName = scanner.nextLine();
         StationRepository.deleteStation(stationName);
-        Printer.printDeleteStationSuccessMessage();
+        StationPrinter.printDeleteStationSuccessMessage();
     }
 
     private static void registerNewStation(Scanner scanner) {
-        Printer.printUserInputStationRegistrationMessage();
+        StationPrinter.printUserInputStationRegistrationMessage();
         String newStationName = scanner.nextLine();
         StationRepository.addStation(new Station(newStationName));
-        Printer.printRegisterNewStationSuccessMessage();
+        StationPrinter.printRegisterNewStationSuccessMessage();
     }
 
     private static void printScreen() {

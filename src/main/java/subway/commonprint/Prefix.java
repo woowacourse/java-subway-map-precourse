@@ -1,4 +1,4 @@
-package subway;
+package subway.commonprint;
 
 public class Prefix {
     public static final String INFO_PREFIX = "[INFO] ";

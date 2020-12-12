@@ -1,4 +1,4 @@
-package subway;
+package subway.function.station;
 
 public class PrintStationManagementScreen {
     private static final String SCREEN

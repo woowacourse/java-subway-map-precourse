@@ -1,4 +1,4 @@
-package subway;
+package subway.function.printsubwaymap;
 
 import java.util.Scanner;
 
