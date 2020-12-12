@@ -18,7 +18,7 @@ public class StationController {
         return StationRepository.deleteStation(name);
     }
 
-    public List<Station> readStations() {
+    public List<Station> findAll() {
         return StationRepository.stations();
     }
 }

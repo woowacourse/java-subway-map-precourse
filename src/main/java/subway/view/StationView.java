@@ -1,6 +1,5 @@
 package subway.view;
 
-import java.util.List;
 import subway.controller.StationController;
 import subway.domain.Station;
 
@@ -38,30 +37,30 @@ public class StationView {
 
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
-            return registerStation();
+            return isCreateStation();
         }
         return false;
     }
 
-    private boolean registerStation() {
+    private boolean isCreateStation() {
         Message.printCreateStation();
         String name = input.nextStation();
-        if (!input.validName(name)) {
-            return false;
+        if (input.validName(name)) {
+            stationController.createStation(name);
+            Message.printSuccessStation();
+            return true;
         }
-        stationController.createStation(name);
-        Message.printSuccessStation();
-        return true;
+        return false;
     }
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            return deleteStation();
+            return isDeleteStation();
         }
         return false;
     }
 
-    private boolean deleteStation() {
+    private boolean isDeleteStation() {
         Message.printDeleteStation();
         if (stationController.deleteStation(input.nextStation())) {
             Message.deleteStationInfo();
@@ -81,9 +80,8 @@ public class StationView {
 
     private void readStations() {
         Message.printStations();
-        List<Station> stations = stationController.readStations();
-        for (Station station : stations) {
-            Message.printStation(station.getName());
-        }
+        stationController.findAll().stream()
+                .map(Station::getName)
+                .forEach(Message::printStation);
     }
 }
