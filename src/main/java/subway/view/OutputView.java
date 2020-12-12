@@ -45,6 +45,7 @@ public class OutputView {
             for (Station station : line.getStations()) {
                 System.out.println("[INFO] " + station.getName());
             }
+            System.out.println("");
         }
     }
 }

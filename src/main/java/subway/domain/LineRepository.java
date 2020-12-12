@@ -43,4 +43,10 @@ public class LineRepository {
             .findAny()
             .orElseThrow();
     }
+
+    public static void setLines(ArrayList<Line> lines) {
+        for (Line line : lines) {
+            LineRepository.addLine(line);
+        }
+    }
 }

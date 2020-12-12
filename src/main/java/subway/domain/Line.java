@@ -73,4 +73,10 @@ public class Line implements Message {
         }
     }
 
+    public void setStations(Station... stations) {
+        for (Station station : stations) {
+            this.addLast(station);
+        }
+    }
+
 }

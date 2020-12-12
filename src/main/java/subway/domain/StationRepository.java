@@ -44,4 +44,10 @@ public class StationRepository {
         }
         return null;
     }
+
+    public static void setStations(ArrayList<Station> stations) {
+        for (Station station : stations) {
+            StationRepository.addStation(station);
+        }
+    }
 }
