@@ -37,6 +37,10 @@ public class StationView {
         if (button.equals(Button.ONE)) {
             Message.printCreateStation();
             String name = input.nextStation();
+            if (!input.isValidNameLength(name)) {
+                Message.printNameLengthError();
+                selectStationMenu();
+            }
             if (!input.isValidName(name)) {
                 Message.printNameError();
                 selectStationMenu();

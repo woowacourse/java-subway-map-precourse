@@ -10,6 +10,7 @@ public class Input {
     private static final String REGEX = "\\p{Z}";
     private static final String REPLACEMENT = "";
     private static final int STATION_NAME_LENGTH = 2;
+    private static final String STATION_END_NAME = "역";
 
     private final Scanner scanner;
 
@@ -69,7 +70,11 @@ public class Input {
         return nextLine();
     }
 
-    public boolean isValidName(String name) {
+    public boolean isValidNameLength(String name) {
         return name.length() >= STATION_NAME_LENGTH;
+    }
+
+    public boolean isValidName(String name) {
+        return name.endsWith(STATION_END_NAME);
     }
 }
