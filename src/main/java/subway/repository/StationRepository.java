@@ -31,7 +31,7 @@ public class StationRepository {
             warnMessage(STATION_NOT_EXIST_WARN);
         }
         //해당 station 노선 등록 확인
-        return stations.remove(station);
+        return stations.remove(findStation);
     }
 
     public static Station findStationByName(String stationName) {
