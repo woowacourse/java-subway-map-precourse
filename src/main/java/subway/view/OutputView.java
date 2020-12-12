@@ -121,6 +121,26 @@ public class OutputView {
         printMessage(message);
     }
 
+    public static void requestLineForDeleteSection() {
+        String message = getRequestMessage(ActionParts.TO_DELETE, ObjectParts.LINE_FOR_DELETE_SECTION);
+        printMessage(message);
+    }
+
+    public static void requestStationForDeleteSection() {
+        String message = getRequestMessage(ActionParts.TO_DELETE, ObjectParts.STATION_FOR_DELETE_SECTION);
+        printMessage(message);
+    }
+
+    public static void informSectionAdded() {
+        String message = getInformMessage(InformSubjectParts.SECTION_IS, InformPredicateParts.ADDED);
+        printInformMessage(message);
+    }
+
+    public static void informSectionDeleted() {
+        String message = getInformMessage(InformSubjectParts.SECTION_IS, InformPredicateParts.DELETED);
+        printInformMessage(message);
+    }
+
     public static void printError(Exception exception) {
         printEmptyLine();
         System.out.printf(ERROR_FORMAT, exception.getMessage());

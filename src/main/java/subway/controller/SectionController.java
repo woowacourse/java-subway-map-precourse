@@ -27,7 +27,27 @@ public class SectionController {
         Line line = LineRepository.getLine(lineName);
         line.addSection(index, stationName);
         OutputView.informLineAdded();
-    } 
+    }
+
+    public static void deleteSection() {
+        try {
+            tryToAddSection();
+            backToMainMenu();
+        } catch (Exception exception) {
+            catchError(exception);
+        }
+    }
+
+    private static void tryToDeleteSection() {
+        OutputView.requestLineForDeleteSection();
+        String lineName = InputView.getInput();
+        OutputView.requestStationForDeleteSection();
+        String stationName = InputView.getInput();
+
+        Line line = LineRepository.getLine(lineName);
+        line.deleteSection(stationName);
+        OutputView.informSectionDeleted();
+    }
 
     public static void backToMainMenu() {
         SubwayMapController.callMainMenu();

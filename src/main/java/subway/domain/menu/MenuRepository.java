@@ -90,7 +90,8 @@ public class MenuRepository {
         Menu menu = new Menu(getMenuTitle(combination(MANAGE, SECTION)));
         menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, SECTION), 
                 SectionController::addSection));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, SECTION), null));
+        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, SECTION),
+                SectionController::deleteSection));
         menu.addMenuItem(new MenuItem(KEY_BACK, BACK, SubwayMapController::callMainMenu));
 
         menus.put(MenuType.SECTION, menu);

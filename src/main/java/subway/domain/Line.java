@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import subway.exception.BlankNameException;
 import subway.exception.DuplicatedStationInLineException;
@@ -77,6 +78,11 @@ public class Line {
         }
 
         stations.add(index, stationName);
+    }
+
+    public boolean deleteSection(String stationName) {
+        // TODO: 노선에 역이 존재하지 않으면 예외처리
+        return stations.removeIf(station -> Objects.equals(station, stationName));
     }
 
     private int getLastStationOrder() {
