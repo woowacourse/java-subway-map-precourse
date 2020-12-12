@@ -15,13 +15,16 @@ public class LineRepository {
     public static void addLine(String lineName, String upboundStationName,
             String downboundStationName) {
         Line line = new Line(lineName);
-        line.pushSection(upboundStationName);
-        line.pushSection(downboundStationName);
+        line.pushSections(upboundStationName, downboundStationName);
         lines.add(line);
     }
 
     public static void addSection(String lineName, String stationName, String index) {
         getLineByName(lineName).addSection(stationName, index);
+    }
+    
+    public static void pushSectios(String lineName, String...stationNames) {
+        getLineByName(lineName).pushSections(stationNames);
     }
 
     public static void deleteLineByName(String name) {

@@ -13,10 +13,12 @@ public class Line {
         this.name = name;
     }
     
-    public void pushSection(String stationName) {
-        Station station = StationRepository.getByName(stationName);
-        station.addLine();
-        sections.add(station);
+    public void pushSections(String...stationNames) {
+        for (String stationName : stationNames) {
+            Station station = StationRepository.getByName(stationName);
+            station.addLine();
+            sections.add(station);
+        }
     }
 
     public void addSection(String stationName, String index) {

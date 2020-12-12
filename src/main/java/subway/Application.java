@@ -7,6 +7,7 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         final PrintStream printStream = new PrintStream(System.out);
+        InitialSetup.apply();
         SubwayManager subwayManager = new SubwayManager(scanner, printStream);
         subwayManager.run();
     }
