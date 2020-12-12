@@ -1,6 +1,7 @@
 package subway.domain.station;
 
 import subway.domain.Line.LineRepository;
+import subway.domain.name.LineName;
 import subway.exception.AlreadyAddStationException;
 import subway.exception.CannotRemoveException;
 import subway.exception.StationNotFountException;
@@ -8,6 +9,7 @@ import subway.exception.StationNotFountException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -52,4 +54,12 @@ public class StationRepository {
                 .orElseThrow(() -> new StationNotFountException(string));
     }
 
+    public List<Station> findByLine(String name) {
+
+        LineName lineName = LineName.of(name);
+
+        return stations().stream()
+                .filter(station -> station.containLine(lineName))
+                .collect(Collectors.toUnmodifiableList());
+    }
 }

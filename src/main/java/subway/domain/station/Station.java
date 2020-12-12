@@ -1,11 +1,13 @@
 package subway.domain.station;
 
 import subway.domain.Line.Line;
+import subway.domain.name.LineName;
 import subway.domain.name.StationName;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Station implements Comparable<Station> {
     private StationName name;
@@ -53,10 +55,14 @@ public class Station implements Comparable<Station> {
     }
 
     public void addLine(Line line) {
-        if(lines.contains(line)){
-            throw new AlreadyLinkedException(line,this);
+        if (lines.contains(line)) {
+            throw new AlreadyLinkedException(line, this);
         }
         lines.add(line);
+    }
+
+    public boolean containLine(LineName lineName) {
+        return lines.stream().anyMatch(line -> line.isSameName(lineName.toString()));
     }
 
     // 추가 기능 구현
