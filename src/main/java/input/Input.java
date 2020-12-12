@@ -15,4 +15,12 @@ public class Input {
     public String inputStationName(){
         return scanner.next();
     }
+
+    public String inputLineName(){
+        return scanner.next();
+    }
+
+    public String inputOrder(){
+        return scanner.next();
+    }
 }
