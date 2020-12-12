@@ -23,6 +23,8 @@ public class OutputView {
 
     public static final String LINE_LIST = "노선 목록";
 
+    private static final String RANGE_REMOVED = "구간이 삭제되었습니다.";
+
     private static final String RANGE_SAVED = "구간이 등록되었습니다.";
 
     public void printLineSaved() {
@@ -59,6 +61,10 @@ public class OutputView {
 
     public void printRangeSaved() {
         printSuccessMessage(RANGE_SAVED);
+    }
+
+    public void printRangeRemoved() {
+        printSuccessMessage(RANGE_REMOVED);
     }
 
     private void printSuccessMessage(String message) {

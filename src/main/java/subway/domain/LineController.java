@@ -48,4 +48,13 @@ public class LineController {
 
         outputView.printRangeSaved();
     }
+
+    public void removeStation() {
+        String lineName = inputView.inputLineName();
+        String stationName = inputView.inputStationName();
+
+        lineRepository.removeStation(lineName, stationName);
+
+        outputView.printRangeRemoved();
+    }
 }
