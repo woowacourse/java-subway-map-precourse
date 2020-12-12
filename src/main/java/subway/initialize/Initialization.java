@@ -8,6 +8,7 @@ import subway.domain.StationRepository;
 public class Initialization {
 
     private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
     private static final int PREVIOUS_INDEX = -1;
 
     public static void set() {
@@ -43,8 +44,9 @@ public class Initialization {
     }
 
     public void registerStationsInLine(String[] stations, Line line) {
-        for (String stationName : stations) {
-            line.addOnLine(stationName);
+        // 상행 종점역과 하행 종점역의 중복 등록을 방지하기 위함
+        for (int i = SECOND_INDEX; i < stations.length + PREVIOUS_INDEX; i++) {
+            line.addOnLine(i, stations[i]);
         }
     }
 
