@@ -81,10 +81,8 @@ public class LineManagementView extends View {
     }
 
     private static void viewLines(Scene scene, Request request, Response response) {
-        if (request.isAccessibleLineRepository()) {
-            response.printLines();
-            scene.back();
-        }
+        response.printLines();
+        scene.back();
     }
 
     private static void back(Scene scene, Request request, Response response) {

@@ -40,10 +40,8 @@ public class StationManagementView extends View {
     }
 
     private static void viewStations(Scene scene, Request request, Response response) {
-        if (request.isAccessibleStationRepository()) {
-            response.printStations();
-            scene.back();
-        }
+        response.printStations();
+        scene.back();
     }
 
     private static void back(Scene scene, Request request, Response response) {

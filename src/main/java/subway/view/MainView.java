@@ -31,9 +31,6 @@ public class MainView extends View {
     }
 
     private static void printMap(Scene scene, Request request, Response response) {
-        if (!request.isAccessibleLineRepository()) {
-            return;
-        }
         response.printMap();
     }
 
