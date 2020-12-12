@@ -6,6 +6,7 @@ import subway.util.FeatureGroup;
 public class InputView {
     private static final String INVALID_INPUT = "[ERROR] 선택할 수 없는 기능입니다.\n";
     private static final String INVALID_LENGTH = "[ERROR] 이름은 2글자 이상이어야 한다.\n";
+    private static final String NEW_LINE = "\n";
     private static final int LENGTH = 2;
 
     private OutputView monitor;
@@ -20,6 +21,7 @@ public class InputView {
         try {
             monitor.print(message);
             String command = scanner.nextLine();
+            monitor.print(NEW_LINE);
             validateScreenCommand(screen, command);
             return command;
         } catch (Exception e) {
@@ -32,6 +34,7 @@ public class InputView {
         try {
             monitor.print(message);
             String stationName = scanner.nextLine();
+            monitor.print(NEW_LINE);
             validateLength(stationName);
             return stationName;
         } catch (Exception e) {

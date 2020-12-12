@@ -12,12 +12,14 @@ public class StationController {
         this.monitor = monitor;
     }
 
-    public void registerStation(String stationName) {
+    public boolean registerStation(String stationName) {
         try {
             StationService.register(stationName);
             monitor.print(OutputView.SUCCESS_TO_REGISTER_STATION_MESSAGE);
+            return false;
         } catch (Exception e) {
             monitor.print(e.getMessage());
+            return true;
         }
     }
 
@@ -25,12 +27,14 @@ public class StationController {
         return StationService.search();
     }
 
-    public void deleteStation(String stationName) {
+    public boolean deleteStation(String stationName) {
         try {
             StationService.delete(stationName);
             monitor.print(OutputView.SUCCESS_TO_DELETE_STATION_MESSAGE);
+            return false;
         } catch (Exception e) {
             monitor.print(e.getMessage());
+            return true;
         }
     }
 }

@@ -48,39 +48,49 @@ public class Router {
     }
 
     private void enterStationManagementScreen() {
-        String command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
-            , OutputView.STATION_MANAGEMENT_SCREEN);
-        routeStationManagementScreen(command);
+        String command;
+        do {
+            command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
+                , OutputView.STATION_MANAGEMENT_SCREEN);
+        } while (routeStationManagementScreen(command));
     }
 
     private void enterLineManagementScreen() {
-        String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
-            , OutputView.LINE_MANAGEMENT_SCREEN);
-        routeLineManagementScreen(command);
+        String command;
+        do {
+            command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
+                , OutputView.LINE_MANAGEMENT_SCREEN);
+        } while (routeLineManagementScreen(command));
     }
 
-    private void routeStationManagementScreen(String command) {
+    private boolean routeStationManagementScreen(String command) {
+        if (command.equals(BACK)) {
+            return false;
+        }
         if (command.equals(ONE)) {
             String stationName = inputView.getStationName(OutputView.ORDER_TO_REGISTER_STATION);
-            stationController.registerStation(stationName);
+            return stationController.registerStation(stationName);
         }
         if (command.equals(TWO)) {
             String stationName = inputView.getStationName(OutputView.ORDER_TO_DELETE_STATION);
-            stationController.deleteStation(stationName);
+            return stationController.deleteStation(stationName);
         }
         if (command.equals(THREE)) {
             List<Station> stations = stationController.searchStation();
             monitor.print(OutputView.STATION_LIST);
             OutputView.printStationList(stations);
+            return false;
         }
+        return false;
     }
 
-    private void routeLineManagementScreen(String command) {
+    private boolean routeLineManagementScreen(String command) {
         if (command.equals(ONE)) {
         }
         if (command.equals(TWO)) {
         }
         if (command.equals(THREE)) {
         }
+        return false;
     }
 }
