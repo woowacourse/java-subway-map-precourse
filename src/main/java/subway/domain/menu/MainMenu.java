@@ -26,9 +26,10 @@ public class MainMenu {
     List<SubMenu> subMenuList;
 
     public MainMenu(Scanner scanner) {
-        subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION),
-                new LineMenu(LINE_SEL, CategoryType.LINE), new SectionMenu(SECTION_SEL, CategoryType.SECTION),
-                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE));
+        subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION, scanner),
+                new LineMenu(LINE_SEL, CategoryType.LINE, scanner),
+                new SectionMenu(SECTION_SEL, CategoryType.SECTION, scanner),
+                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE, scanner));
         this.scanner = scanner;
     }
 
@@ -40,7 +41,7 @@ public class MainMenu {
             if (sel == QUIT_SEL) {
                 break;
             }
-            subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().visualize();
+            subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().printSubMenu();
         }
     }
 

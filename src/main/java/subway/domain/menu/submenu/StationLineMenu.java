@@ -1,11 +1,13 @@
 package subway.domain.menu.submenu;
 
+import java.util.Scanner;
+
 import subway.domain.menu.constant.ActionType;
 import subway.domain.menu.constant.CommonMessage;
 
 public class StationLineMenu extends SubMenu {
-    public StationLineMenu(char order, String category) {
-        super(order, category);
+    public StationLineMenu(char order, String category, Scanner scanner) {
+        super(order, category, scanner);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class StationLineMenu extends SubMenu {
     }
 
     @Override
-    public void visualize() {
+    public void printSubMenu() {
         System.out.println(CommonMessage.INFO + CommonMessage.SPACE);
     }
 }
