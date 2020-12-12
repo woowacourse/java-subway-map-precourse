@@ -1,15 +1,44 @@
 package subway.menu;
 
+import subway.domain.Line.Line;
+import subway.domain.Line.LineRepository;
 import subway.exception.MenuNotFountException;
+import subway.view.OutputView;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum MainMenu implements Menu {
 
-    STATION("1", "역 관리"),
-    LINE("2", "노선 관리"),
-    SECTION("3", "구간 관리"),
-    MAP("4", "지하철 노선도 출력"),
+    STATION("1", "역 관리") {
+        @Override
+        public Menu run() {
+            return StationMenu.BACK;
+        }
+    },
+    LINE("2", "노선 관리") {
+        @Override
+        public Menu run() {
+            return LineMenu.BACK;
+        }
+    },
+    SECTION("3", "구간 관리") {
+        @Override
+        public Menu run() {
+            return SectionMenu.BACK;
+        }
+    },
+    MAP("4", "지하철 노선도 출력") {
+        @Override
+        public Menu run() {
+            LineRepository lineRepository = new LineRepository();
+            List<Line> lines = lineRepository.lines();
+
+            OutputView.printMap(lines);
+
+            return MainMenu.LINE;
+        }
+    },
     QUIT("Q", "종료");
 
     final String order;

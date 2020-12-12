@@ -6,25 +6,25 @@ public enum Action {
 
     REGISTER() {
         @Override
-        void action(SubwayController controller) {
+        public void action(SubwayController controller) {
             controller.save();
         }
     },
     DELETE() {
         @Override
-        void action(SubwayController controller) {
+        public void action(SubwayController controller) {
             controller.delete();
         }
     },
     SEARCH() {
         @Override
-        void action(SubwayController controller) {
+        public void action(SubwayController controller) {
             controller.findAll();
         }
     },
     BACK() {
         @Override
-        void action(SubwayController controller) {
+        public void action(SubwayController controller) {
             // 아무것도 안함
         }
     };
@@ -33,6 +33,6 @@ public enum Action {
     Action() {
     }
 
-    abstract void action(SubwayController controller);
+    abstract public void action(SubwayController controller);
 
 }
