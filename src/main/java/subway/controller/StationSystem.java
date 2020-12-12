@@ -1,10 +1,12 @@
 package subway.controller;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.sound.sampled.Line.Info;
 import subway.domain.MenuItemsRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.view.ErrorMessage;
 import subway.view.InfoMessage;
 import subway.view.Menu;
 
@@ -36,7 +38,6 @@ public class StationSystem {
         }
         if (input.equals("2")) {
             deleteStation();
-            System.out.println("역 삭제");
         }
         if (input.equals("3")) {
             lookupStations();
@@ -50,10 +51,16 @@ public class StationSystem {
     }
 
     private void deleteStation() {
+        String name = stationInputManager.getStationNameToDelete();
+        if(name.contains(ErrorMessage.OUT)){
+            return;
+        }
+        StationRepository.deleteStation(name);
+        InfoMessage.printLineDeleted();
     }
 
     private void addStation() {
-        String name = stationInputManager.getStationName("등록할");
+        String name = stationInputManager.getStationNameToAdd("등록할");
         Station station = new Station(name);
         StationRepository.addStation(station);
         InfoMessage.printStationAdded();

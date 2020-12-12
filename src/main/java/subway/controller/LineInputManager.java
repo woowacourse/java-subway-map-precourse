@@ -9,7 +9,6 @@ import subway.view.Menu;
 public class LineInputManager {
 
     private Scanner scanner;
-    public static final String OUT = "OUT";
 
     public LineInputManager(Scanner scanner) {
         this.scanner = scanner;
@@ -30,10 +29,10 @@ public class LineInputManager {
         Menu.printDownStationGuide();
         String name = scanner.nextLine().trim();
         if (isEqualToUpStation(upStation, name)) {
-            return OUT;
+            return ErrorMessage.OUT;
         }
         if (!checkEnrolledStation(name)) {
-            return OUT;
+            return ErrorMessage.OUT;
         }
         return name;
 
@@ -48,7 +47,7 @@ public class LineInputManager {
     }
 
     private boolean invalidUpDownStation(String lineInfo) {
-        return lineInfo.contains(OUT);
+        return lineInfo.contains(ErrorMessage.OUT);
     }
 
     private String getLineName(String function) {
@@ -69,7 +68,7 @@ public class LineInputManager {
         Menu.printUpStationGuide();
         String name = scanner.nextLine().trim();
         if (!checkEnrolledStation(name)) {
-            return OUT;
+            return ErrorMessage.OUT;
         }
         return name;
     }

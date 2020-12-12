@@ -8,6 +8,7 @@ import subway.domain.SubwayRepository;
 import subway.domain.LineRepository;
 import subway.domain.PathRepository;
 import subway.domain.MenuItemsRepository;
+import subway.view.ErrorMessage;
 import subway.view.InfoMessage;
 import subway.view.Menu;
 
@@ -47,7 +48,7 @@ public class LineSystem {
 
     private void addLine() {
         String[] lineInfo = lineInputManager.getAddLineInfo();
-        if(Arrays.asList(lineInfo).contains("OUT")){
+        if(Arrays.asList(lineInfo).contains(ErrorMessage.OUT)){
             return;
         }
         SubwayRepository.addSubwayRealLine(lineInfo);

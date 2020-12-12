@@ -14,6 +14,8 @@ public class PathRepository {
         Station downStation = StationRepository.findStation(down);
         path.add(upStation);
         path.add(downStation);
+        upStation.onAndOffPath();
+        downStation.onAndOffPath();
     }
 
     public List<Station> getPath() {
@@ -26,6 +28,7 @@ public class PathRepository {
     }
 
     public boolean deletePathByName(String name){
+        StationRepository.findStation(name).onAndOffPath();
         return path.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

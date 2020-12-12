@@ -13,7 +13,32 @@ public class StationInputManager {
         this.scanner = scanner;
     }
 
-    public String getStationName(String function) {
+
+    public String getStationNameToDelete() {
+        while (true) {
+            Menu.printStationDeleteGuide();
+            String name = scanner.nextLine().trim();
+            if (!checkNameToDelete(name)) {
+                return ErrorMessage.OUT;
+            }
+            return name;
+        }
+
+    }
+
+    private boolean checkNameToDelete(String name) {
+        return checkAlreadyExist(name) && checkNotOnPath(name);
+    }
+
+    private boolean checkNotOnPath(String name) {
+        if (StationRepository.findStation(name).isOnPath()) {
+            ErrorMessage.printNotDeleteOnPathStation();
+            return false;
+        }
+        return true;
+    }
+
+    public String getStationNameToAdd(String function) {
         while (true) {
             Menu.printStationGuide(function);
             String name = scanner.nextLine().trim();
@@ -25,12 +50,20 @@ public class StationInputManager {
     }
 
     private boolean checkName(String name) {
-        return checkLength(name) && checkLastLetter(name) && checkAlreadyExist(name);
+        return checkLength(name) && checkLastLetter(name) && checkNotAlreadyExist(name);
+    }
+
+    private boolean checkNotAlreadyExist(String name) {
+        if (StationRepository.stationNames().contains(name)) {
+            ErrorMessage.printValeAlreadyExist();
+            return false;
+        }
+        return true;
     }
 
     private boolean checkAlreadyExist(String name) {
-        if (StationRepository.stationNames().contains(name)) {
-            ErrorMessage.printValeAlreadyExist();
+        if (!StationRepository.stationNames().contains(name)) {
+            ErrorMessage.printNotExistStation();
             return false;
         }
         return true;

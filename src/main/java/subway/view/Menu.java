@@ -5,6 +5,8 @@ public class Menu {
     public static final String GUIDE_PREFIX = "## ";
     public static final String WHAT_MENU = "원하는 기능을 선택하세요.";
     public static final String STATION_GUIDE = " 역 이름을 입력하세요.";
+
+    public static final String STATION_DELETE_GUIDE = "삭제할 역 이름을 입력하세요.";
     public static final String LINE_GUIDE = " 노선 이름을 입력하세요.";
     public static final String UP_STATION_GUIDE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String DOWN_STATION_GUIDE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
@@ -27,6 +29,10 @@ public class Menu {
     public static void printStationGuide(String function) {
         System.out.println(GUIDE_PREFIX + function + STATION_GUIDE);
     }
+    public static void printStationDeleteGuide() {
+        System.out.println(GUIDE_PREFIX +  STATION_DELETE_GUIDE);
+    }
+
 
     public static void printLineGuide(String function) {
         System.out.println(GUIDE_PREFIX + function + LINE_GUIDE);
