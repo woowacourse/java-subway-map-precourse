@@ -21,4 +21,20 @@ public class InputView {
         System.out.println(ASK_STATION_NAME);
         return scanner.nextLine();
     }
+
+    public String readLineName() {
+        System.out.println(ASK_LINE_NAME);
+        return scanner.nextLine();
+    }
+
+    public String readFirstStationName() {
+        System.out.println(ASK_LINE_FIRST_STATION);
+        return scanner.nextLine();
+    }
+
+
+    public String readLastStationName() {
+        System.out.println(ASK_LINE_LAST_STATION);
+        return scanner.nextLine();
+    }
 }

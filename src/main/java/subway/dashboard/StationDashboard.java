@@ -11,6 +11,7 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 
 public class StationDashboard {
+
     TreeMap<String, String> options;
     InputView inputView;
 
@@ -31,7 +32,7 @@ public class StationDashboard {
     }
 
     public void startStationDashboard(InputView inputView) {
-        while(true) {
+        while (true) {
             if (!startChosenOptionUntilFinished(makeUserChooseOption(inputView))) {
                 break;
             }
@@ -41,7 +42,7 @@ public class StationDashboard {
     public String makeUserChooseOption(InputView inputView) {
         showOptions();
         String optionChosen;
-        while(true) {
+        while (true) {
             optionChosen = chooseOption(inputView);
             if (checkOptions(optionChosen)) {
                 return optionChosen;
@@ -60,7 +61,7 @@ public class StationDashboard {
     public boolean startChosenOptionUntilFinished(String option) {
 
         if (option.equals(OPTION_NUM_1)) {
-            if(updateStation(inputView)) {
+            if (updateStation(inputView)) {
                 return true;
             }
             return false;
