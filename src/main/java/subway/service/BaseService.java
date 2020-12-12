@@ -13,6 +13,7 @@ public class BaseService {
         try {
             OutputView.printQuestionHeader(header);
             OutputView.printQuestions(questionList.stream().map(BaseQuestion::getQuestion));
+            OutputView.printChooseOptionMessage();
             selectedQuestion(questionList, InputView.getAnswer()).nextAction();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
