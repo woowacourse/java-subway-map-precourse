@@ -11,6 +11,13 @@ public class InputUtils {
         return true;
     }
 
+    public static boolean isPositiveInt(int inputInt) {
+        if (inputInt <= 0) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean isMinLengthString(String inputString) {
         return inputString.length() >= Constants.MIN_NAME_STRING_LENGTH;
     }

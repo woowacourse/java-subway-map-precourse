@@ -57,11 +57,11 @@ public class MainView {
         if (input.equals("4")) {
             this.showWholeSubwayMap();
         }
-        if (input.toLowerCase().equals(Constants.EXIT_INPUT_CHARACTER)) {
+        if (input.equalsIgnoreCase((Constants.EXIT_INPUT_CHARACTER))) {
             state = false;
         }
         if (!(input.equals("1") || input.equals("2") || input.equals("3") || input
-            .equals("4") || input.toLowerCase().equals(Constants.EXIT_INPUT_CHARACTER))) {
+            .equals("4") || input.equalsIgnoreCase(Constants.EXIT_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;
@@ -87,6 +87,7 @@ public class MainView {
     }
 
     public void showWholeSubwayMap() {
+        MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_SUBWAY_MAP_TEXT);
         Map<String, List> wholeSubwayMap = Subway.Map.findAll();
         Iterator<String> lineTitles = wholeSubwayMap.keySet().iterator();

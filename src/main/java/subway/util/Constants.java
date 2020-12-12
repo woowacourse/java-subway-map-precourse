@@ -7,8 +7,8 @@ public class Constants {
     public static final String LINE_MENU_STATE = "LINE";
     public static final String SECTION_MENU_STATE = "SECTION";
 
-    public final static char EXIT_INPUT_CHARACTER = 'Q';
-    public final static char BACKWARD_INPUT_CHARACTER = 'B';
+    public final static String EXIT_INPUT_CHARACTER = new String("Q");
+    public final static String BACKWARD_INPUT_CHARACTER = new String("B");
 
     public final static int MIN_NAME_STRING_LENGTH = 2;
     public final static int INDEX_ARRANGE_INT = 1;
@@ -35,6 +35,7 @@ public class Constants {
     public final static String ANNOUNCEMENT_FEATURE_SELECT_COMMENT = "## 원하는 기능을 선택하세요.";
 
     public final static String[] SCREEN_MENU_STATION_MANAGEMENT = {
+        "",
         "## 역 관리 화면"
         , "1. 역 등록"
         , "2. 역 삭제"
@@ -51,6 +52,7 @@ public class Constants {
     public final static String NO_EXIST_STATION_OUTPUT_COMMENT = "존재하지 않는 역 이름입니다.";
 
     public final static String[] SCREEN_MENU_LINE_MANAGEMENT = {
+        "",
         "## 노선 관리 화면"
         , "1. 노선 등록"
         , "2. 노선 삭제"
@@ -69,6 +71,7 @@ public class Constants {
     public final static String NO_EXIST_LINE_OUTPUT_COMMENT = "존재하지 않는 노선 이름입니다.";
 
     public final static String[] SCREEN_MENU_SECTION_MANAGEMENT = {
+        "",
         "## 구간 관리 화면"
         , "1. 구간 등록"
         , "2. 구간 삭제"

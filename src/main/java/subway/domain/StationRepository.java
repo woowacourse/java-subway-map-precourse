@@ -37,8 +37,7 @@ public class StationRepository {
         }
         return null;
     }
-
-
+    
     public boolean deleteStationByName(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }

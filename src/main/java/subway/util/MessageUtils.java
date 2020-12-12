@@ -11,7 +11,6 @@ public class MessageUtils {
 
     public static void printError(String e) {
         System.out.println(Constants.PREFIX_ERROR + e);
-        printBlankLine();
     }
 
     public static void printInfo(String info) {

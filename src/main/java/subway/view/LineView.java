@@ -13,6 +13,7 @@ public class LineView {
 
     public static String menuSelector(Scanner userInput) {
         String input = userInput.next();
+        MessageUtils.printBlankLine();
         String thisMenuState = Constants.LINE_MENU_STATE;
         if (input.equals("1")) {
             insertLine(userInput);
@@ -23,11 +24,11 @@ public class LineView {
         if (input.equals("3")) {
             showLines();
         }
-        if (input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER)) {
+        if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
         }
         if (!(input.equals("1") || input.equals("2") || input.equals("3")
-            || input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER))) {
+            || input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;
@@ -36,6 +37,7 @@ public class LineView {
     private static boolean insertLine(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_NAME_INPUT_COMMENT);
         String lineName = userInput.next();
+        MessageUtils.printBlankLine();
         if (isExistLineName(lineName)) {
             MessageUtils.printError(Constants.EXIST_LINE_OUTPUT_COMMENT);
             return false;
@@ -43,6 +45,9 @@ public class LineView {
         Subway.lines.addLine(new Line(lineName));
         Line newLine = Subway.lines.findByName(lineName);
         List<Station> p2pStations = p2pStation(userInput);
+        if (p2pStations == null) {
+            return false;
+        }
         Subway.Map.addLine(newLine, p2pStations.get(0), p2pStations.get(1));
         MessageUtils.printInfo(Constants.ADD_LINE_OUTPUT_COMMENT);
         return true;
@@ -51,8 +56,15 @@ public class LineView {
     private static List<Station> p2pStation(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_START_STATION_NAME_INPUT_COMMENT);
         String startStationInLineName = userInput.next();
+        MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_END_STATION_NAME_INPUT_COMMENT);
         String endStationInLineName = userInput.next();
+        MessageUtils.printBlankLine();
+        if (!StationView.isExistStationName(startStationInLineName) && !StationView
+            .isExistStationName(endStationInLineName)) {
+            MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+            return null;
+        }
         List<Station> stationList = new ArrayList<>();
         stationList.add(Subway.stations.findByName(startStationInLineName));
         stationList.add(Subway.stations.findByName(endStationInLineName));
@@ -69,6 +81,7 @@ public class LineView {
     private static boolean deleteLine(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.DELETE_LINE_END_STATION_NAME_INPUT_COMMENT);
         String targetLineName = userInput.next();
+        MessageUtils.printBlankLine();
         if (!isExistLineName(targetLineName)) {
             MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
             return false;
@@ -84,6 +97,5 @@ public class LineView {
         for (Object line : Subway.lines.findAll()) {
             MessageUtils.printInfo((String) line);
         }
-        MessageUtils.printBlankLine();
     }
 }

@@ -12,6 +12,7 @@ public class StationView {
 
     public static String menuSelector(Scanner userInput) {
         String input = userInput.next();
+        MessageUtils.printBlankLine();
         String thisMenuState = Constants.STATION_MENU_STATE;
         if (input.equals("1")) {
             insertStation(userInput);
@@ -22,11 +23,11 @@ public class StationView {
         if (input.equals("3")) {
             showStations();
         }
-        if (input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER)) {
+        if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
         }
         if (!(input.equals("1") || input.equals("2") || input.equals("3")
-            || input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER))) {
+            || input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;
@@ -35,6 +36,7 @@ public class StationView {
     public static boolean insertStation(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_STATION_INPUT_COMMENT);
         String stationName = userInput.next();
+        MessageUtils.printBlankLine();
         if (!InputUtils.isMinLengthString(stationName)) {
             MessageUtils.printError(Constants.INVALID_MIN_LENGTH_ERROR_COMMENT);
             return false;
@@ -59,6 +61,7 @@ public class StationView {
     public static void deleteStation(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.DELETE_STATION_INPUT_COMMENT);
         String targetStationName = userInput.next();
+        MessageUtils.printBlankLine();
         Set<String> existStationInSection = Subway.Map.findIncludedStationSet();
         if (!existStationInSection.contains(targetStationName)) {
             deleteByName(targetStationName);
@@ -83,6 +86,5 @@ public class StationView {
         for (Object station : Subway.stations.findAll()) {
             MessageUtils.printInfo((String) station);
         }
-        MessageUtils.printBlankLine();
     }
 }

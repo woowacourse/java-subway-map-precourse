@@ -30,7 +30,6 @@ public class SectionRepository {
 
     public void addSection(Line sectionTitle, Station station, int index) {
         List<Station> stations = this.sectionMap.get(sectionTitle);
-        index -= Constants.INDEX_ARRANGE_INT;
         stations.add(index - Constants.INDEX_ARRANGE_INT, station);
         this.addStationList(sectionTitle, stations);
     }
@@ -38,6 +37,10 @@ public class SectionRepository {
     public int getSize(Line sectionTitle) {
         List<Station> stations = this.sectionMap.get(sectionTitle);
         return stations.size();
+    }
+
+    public List<Station> getStationListInLine(Line sectionTitle) {
+        return this.sectionMap.get(sectionTitle);
     }
 
     public void deleteLine(Line sectionTitle) {
@@ -54,19 +57,6 @@ public class SectionRepository {
             }
         }
         this.sectionMap.put(sectionTitle, stations);
-    }
-
-    public boolean isExistStationInLine(Line sectionTitle, Station station) {
-        if (sectionTitle == null || station == null) {
-            return false;
-        }
-        List<Station> stations = sectionMap.get(sectionTitle);
-        for (Station instanceStation : stations) {
-            if (instanceStation.equals(station)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Set<String> findIncludedStationSet() {
@@ -92,6 +82,4 @@ public class SectionRepository {
         }
         return wholeSubwayMap;
     }
-
-
 }

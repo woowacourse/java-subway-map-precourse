@@ -1,7 +1,10 @@
 package subway.view;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.Subway;
+import subway.domain.Line;
+import subway.domain.Station;
 import subway.util.Constants;
 import subway.util.InputUtils;
 import subway.util.MessageUtils;
@@ -10,6 +13,7 @@ public class SectionView {
 
     public static String menuSelector(Scanner userInput) {
         String input = userInput.next();
+        MessageUtils.printBlankLine();
         String thisMenuState = Constants.SECTION_MENU_STATE;
         if (input.equals("1")) {
             insertSection(userInput);
@@ -17,11 +21,11 @@ public class SectionView {
         if (input.equals("2")) {
             deleteSection(userInput);
         }
-        if (input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER)) {
+        if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
         }
-        if (!(input.equals("1") || input.equals("2") || input.equals("3") || input.toLowerCase()
-            .equals(Constants.BACKWARD_INPUT_CHARACTER))) {
+        if (!(input.equals("1") || input.equals("2") || input.equals("3") || input
+            .equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;
@@ -30,8 +34,10 @@ public class SectionView {
     private static boolean insertSection(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_LINE_INPUT_COMMENT);
         String sectionTitle = userInput.next();
+        MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_STATION_INPUT_COMMENT);
         String stationName = userInput.next();
+        MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_INDEX_INPUT_COMMENT);
         String indexString = userInput.next();
         if (!checkExistInInsertSection(sectionTitle, stationName, indexString)) {
@@ -46,6 +52,11 @@ public class SectionView {
     private static boolean insertByName(String sectionTitle, String stationName,
         String indexString) {
         int index = Integer.parseInt(indexString);
+        System.out.println(index);
+        if (!InputUtils.isPositiveInt(index)) {
+            MessageUtils.printError(Constants.INVALID_LENGTH_ERROR_COMMENT);
+            return false;
+        }
         int listSize = Subway.Map.getSize(Subway.lines.findByName(sectionTitle));
         if (index <= listSize) {
             Subway.Map.addSection(Subway.lines.findByName(sectionTitle),
@@ -58,13 +69,16 @@ public class SectionView {
 
     private static boolean checkExistInInsertSection(String sectionTitle, String stationName,
         String indexString) {
-        if (!LineView.isExistLineName(sectionTitle)) {
-            MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
+        if (isExistStationInLine(Subway.lines.findByName(sectionTitle),
+            Subway.stations.findByName(stationName))) {
+            MessageUtils.printError(Constants.EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
-        if (!StationView.isExistStationName(stationName)) {
-            MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-            return false;
+        {
+            if (!StationView.isExistStationName(stationName)) {
+                MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+                return false;
+            }
         }
         if (!InputUtils.isValidateInt(indexString)) {
             MessageUtils.printError(Constants.INVALID_STRING_ERROR_COMMENT);
@@ -74,6 +88,19 @@ public class SectionView {
             return false;
         }
         return true;
+    }
+
+    public static boolean isExistStationInLine(Line sectionTitle, Station station) {
+        if (sectionTitle == null || station == null) {
+            return false;
+        }
+        List<Station> stations = Subway.Map.getStationListInLine(sectionTitle);
+        for (Station instanceStation : stations) {
+            if (instanceStation.equals(station)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean checkValidationSectionListLength(String sectionTitle,
@@ -89,8 +116,10 @@ public class SectionView {
     private static boolean deleteSection(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_LINE_INPUT_COMMENT);
         String sectionTitle = userInput.next();
+        MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_STATION_INPUT_COMMENT);
         String stationName = userInput.next();
+        MessageUtils.printBlankLine();
         if (Subway.lines.findByName(sectionTitle) == null) {
             MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
             return false;
@@ -101,6 +130,7 @@ public class SectionView {
         }
         Subway.Map.deleteSection(Subway.lines.findByName(sectionTitle),
             Subway.stations.findByName(stationName));
+        MessageUtils.printInfo(Constants.DELETE_SECTION_OUTPUT_COMMENT);
         return true;
     }
 }
