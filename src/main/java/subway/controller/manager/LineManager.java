@@ -13,9 +13,9 @@ import subway.view.OutputView;
 public class LineManager {
 
     public static void manageLine() {
-        OutputView.showLineMenu();
-        OutputView.chooseCategory();
         try {
+            OutputView.showLineMenu();
+            OutputView.chooseCategory();
             LineMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);
@@ -27,9 +27,9 @@ public class LineManager {
         try {
             OutputView.guideInsertLine();
             Line line = new Line(InputView.makeNewLineName());
-            LineRepository.addLine(line);
             addStartSection(line);
             addEndSection(line);
+            LineRepository.addLine(line);
             OutputView.doneInsertLine();
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);
