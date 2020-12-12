@@ -43,7 +43,11 @@ public class StationController {
     }
 
     private void deleteStation(InputView inputView) {
-
+        OutputView.printInputDeleteStation();
+        if (StationRepository.deleteStation(inputView.getInputDeleteStation())) {
+            OutputView.printDeleteSuccess();
+        }
+        goBackToMain(inputView);
     }
 
     private void lookUpStation(InputView inputView) {
