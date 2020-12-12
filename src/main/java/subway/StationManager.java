@@ -20,8 +20,7 @@ public class StationManager {
 
     public void selectMenu(String menuNumber) {
         if (menuNumber.equals("1")) {
-            String station = askStationName();
-            StationRepository.addStation(new Station(station));
+            addStation();
         } else if (menuNumber.equals("2")) {
             String station = askStationName();
             StationRepository.deleteStation(station);
@@ -32,6 +31,22 @@ public class StationManager {
 //
 //        }
     }
+
+    private void addStation() {
+        System.out.println("\n## 등록할 역 이름을 입력하세요");
+        String station = askStationName();
+        if (isDuplicate(station)) {
+            System.out.println("\n[ERROR] 이미 등록된 역입니다.");
+            run();
+        }
+        StationRepository.addStation(new Station(station));
+    }
+
+    private boolean isDuplicate(String station) {
+        return StationRepository.hasStation(station);
+
+    }
+
 
     public String askStationName() {
         String userInput = scanner.nextLine();

@@ -30,6 +30,15 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
+    public static boolean hasStation(String newStation) {
+        for (Station station: stations) {
+            if (station.getName().equals(newStation)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
