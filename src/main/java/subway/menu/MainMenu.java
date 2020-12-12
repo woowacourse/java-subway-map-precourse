@@ -27,7 +27,7 @@ public enum MainMenu {
 
     public static void execute(String input) {
         Arrays.stream(values())
-            .filter(value -> value.input.equals(input))
+            .filter(value -> value.input.equals(input.toUpperCase()))
             .findFirst()
             .orElseThrow(() -> new SubwayCustomException(WRONG_MENU_INPUT_EXCEPTION_MESSAGE))
             .handler.run();
