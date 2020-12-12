@@ -3,18 +3,25 @@ package subway.domain.type;
 import subway.domain.type.exception.UnsupportedFunctionException;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public enum ManagementType {
-    STATION("1"),
-    LINE("2"),
-    SECTION("3"),
-    SUBWAY_MAP_PRINT("4"),
-    EXIT("Q");
+    STATION("1",
+            Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.READ, FunctionType.BACK)),
+    LINE("2",
+            Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.READ, FunctionType.BACK)),
+    SECTION("3",
+            Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.BACK)),
+    SUBWAY_MAP_PRINT("4", Collections.emptyList()),
+    EXIT("Q", Collections.emptyList());
 
     private final String managementNumber;
+    private final List<FunctionType> functionTypes;
 
-    private ManagementType(String managementNumber) {
+    private ManagementType(String managementNumber, List<FunctionType> functionTypes) {
         this.managementNumber = managementNumber;
+        this.functionTypes = functionTypes;
     }
 
     public static ManagementType findManagementType(String managementNumber) {
@@ -26,5 +33,12 @@ public enum ManagementType {
 
     private boolean matches(String managementNumber) {
         return this.managementNumber.equals(managementNumber);
+    }
+
+    public FunctionType findFunctionType(String functionNumber) {
+        return functionTypes.stream()
+                .filter(functionType -> functionType.matches(functionNumber))
+                .findFirst()
+                .orElseThrow(UnsupportedFunctionException::new);
     }
 }
