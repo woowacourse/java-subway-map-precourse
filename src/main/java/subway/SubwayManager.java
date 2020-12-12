@@ -38,4 +38,16 @@ public class SubwayManager {
         System.out.println();
     }
 
+    public static String getUserOption(Scanner scanner) {
+        try {
+            System.out.println(ASK_OPTION_MESSAGE);
+            userOption = scanner.nextLine();
+            System.out.println();
+            validateUserOption(userOption);
+            return userOption;
+        } catch (IllegalArgumentException iae) {
+            System.out.println(ERROR_PREFIX + iae.getMessage());
+            return getUserOption(scanner);
+        }
+    }
 }
