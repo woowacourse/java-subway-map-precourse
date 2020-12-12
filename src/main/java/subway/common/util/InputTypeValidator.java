@@ -1,4 +1,4 @@
-package subway.util;
+package subway.common.util;
 
 import java.util.regex.Pattern;
 

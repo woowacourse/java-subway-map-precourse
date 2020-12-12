@@ -1,11 +1,11 @@
 package subway.line;
 
+import subway.common.util.InputTypeValidator;
 import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.exception.AlreadyExistLineException;
 import subway.line.exception.IllegalTypeOfNameException;
 import subway.line.exception.TooShortLineNameException;
-import subway.util.InputTypeValidator;
 
 public class LineValidator {
     private LineValidator() {

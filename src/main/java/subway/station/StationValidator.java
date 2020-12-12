@@ -1,12 +1,12 @@
 package subway.station;
 
+import subway.common.util.InputTypeValidator;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 import subway.station.exception.AlreadyExistStationException;
 import subway.station.exception.NotExistStationException;
 import subway.station.exception.NotKoreanNameException;
 import subway.station.exception.TooShortStationNameException;
-import subway.util.InputTypeValidator;
 
 public class StationValidator {
     private StationValidator() {

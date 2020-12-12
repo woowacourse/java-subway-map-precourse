@@ -1,6 +1,6 @@
 package subway.line;
 
-import subway.station.exception.NotSupportedFunctionException;
+import subway.common.exception.NotSupportedFunctionException;
 
 import java.util.HashMap;
 import java.util.Map;

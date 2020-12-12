@@ -1,7 +1,7 @@
 package subway.station;
 
 import org.junit.jupiter.api.Test;
-import subway.station.exception.NotSupportedFunctionException;
+import subway.common.exception.NotSupportedFunctionException;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
