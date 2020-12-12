@@ -1,7 +1,9 @@
 package subway.view;
 
 import subway.type.ExceptionType;
+import subway.type.InformationType;
 import subway.type.ScreenType;
+import subway.type.TextType;
 
 public class OutputView {
     public static void printMainScreen() {
@@ -43,5 +45,15 @@ public class OutputView {
     public static void printInvalidFeatureChoiceException() {
         System.out.println();
         System.out.println(ExceptionType.INVALID_FEATURE_CHOICE.getException());
+    }
+
+    public static void printStationAddingText() {
+        System.out.println();
+        System.out.println(TextType.STATION_ADDING_TEXT.getText());
+    }
+
+    public static void printStationAddingInformation() {
+        System.out.println();
+        System.out.println(InformationType.STATION_ADDING_INFORMATION.getInformation());
     }
 }

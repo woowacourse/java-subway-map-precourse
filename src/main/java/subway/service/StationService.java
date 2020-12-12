@@ -40,7 +40,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
     @Override
     public void chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
-            // TODO: 역 등록 기능 구현
+            add(scanner);
             return;
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
@@ -58,7 +58,11 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public void add(Scanner scanner) {
-
+        OutputView.printStationAddingText();
+        String stationName = scanner.next();
+        StationRepository.addStation(new Station(stationName));
+        OutputView.printStationAddingInformation();
+        System.out.println();
     }
 
     @Override
