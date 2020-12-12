@@ -5,6 +5,8 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
+import subway.view.OutputView;
+import util.validator.Validation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,15 +22,15 @@ public class MainController {
     private static final String QUIT = "Q";
 
     public void start(Scanner scanner) {
-        initialSetupRegister();
+        registerInitialSetup();
+        OutputView.printMainControllerOption();
         getMainControllerInput(scanner);
     }
 
-    private void initialSetupRegister() {
+    private void registerInitialSetup() {
         for (String station : preregisterStations) {
             StationRepository.addStation(new Station(station));
         }
-
         for (String line : preregisterLines) {
             LineRepository.addLine(new Line(line));
         }
@@ -37,16 +39,27 @@ public class MainController {
     private void getMainControllerInput(Scanner scanner) {
         String userChoice = "";
         while (!userChoice.equals(QUIT)) {
-            userChoice = InputView.mainControllerInput(scanner);
+            userChoice = getUserMainControllerChoice(scanner);
             if (userChoice.equals(STATION_CONTROL)) {
-                StationController.start();
+                StationController.start(scanner);
             } else if (userChoice.equals(LINE_CONTROL)) {
-                LineController.start();
+                LineController.start(scanner);
             } else if (userChoice.equals(LINE_SECTION_CONTROL)) {
-                LineSectionController.start();
+                LineSectionController.start(scanner);
             } else if (userChoice.equals(MAP_PRINT_CONTROL)) {
-                MapPrintController.start();
+                MapPrintController.start(scanner);
             }
         }
+    }
+
+    private String getUserMainControllerChoice(Scanner scanner) {
+        String userChoice = null;
+        boolean properChoice = false;
+        while (!properChoice) {
+            OutputView.optionInstruction();
+            userChoice = InputView.getInput(scanner);
+            properChoice = Validation.checkMainControllerInput(userChoice);
+        }
+        return userChoice;
     }
 }
