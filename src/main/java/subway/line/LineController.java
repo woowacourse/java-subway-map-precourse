@@ -31,6 +31,9 @@ public class LineController {
         if (option == DELETE_LINE) {
             deleteLine(lineInputView);
         }
+        if (option == PRINT_LINE) {
+            printRegisteredLine();
+        }
     }
 
     private static void addNewLine(LineInputView lineInputView) {
@@ -41,5 +44,9 @@ public class LineController {
     private static void deleteLine(LineInputView lineInputView) {
         String lineName = lineInputView.deleteLineName();
         LineService.deleteLine(lineName);
+    }
+
+    private static void printRegisteredLine() {
+        LineOutputView.printAllLine();
     }
 }
