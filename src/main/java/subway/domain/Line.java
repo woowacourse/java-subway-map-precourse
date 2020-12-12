@@ -1,7 +1,11 @@
 package subway.domain;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Line {
     private Name name;
+    private List<Station> stations = new LinkedList<>();
 
     public Line(String name) {
         this.name = new Name(name);
@@ -11,5 +15,29 @@ public class Line {
         return name.getName();
     }
 
-    // 추가 기능 구현
+    public void addList(int stationOrder, Station station) {
+        stations.add(stationOrder, station);
+    }
+
+    public List<Station> getStations() {
+        return stations;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqualObject = false;
+        Line line = (Line) object;
+        if (getName().equals(line.getName())) {
+            isEqualObject = true;
+        }
+        return isEqualObject;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+        hashCode = prime * hashCode + getName().hashCode();
+        return hashCode;
+    }
 }
