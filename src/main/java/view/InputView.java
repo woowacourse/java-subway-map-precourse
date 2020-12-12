@@ -81,23 +81,22 @@ public class InputView {
         System.out.println(OutputView.QUERY_REGISTER_LINE_NORTHBOUND_NAME);
         try {
             String input = scanner.nextLine();
-            Station station = VerifyInput.existStationName(input);
-            VerifyInput.haveNorthboundIn(station);
+            VerifyInput.existStationName(input);
             return input;
         } catch (Exception e) {
             return getRegisterLineNorthboundName();
         }
     }
 
-    public static String getRegisterLineSouthboundName() {
+    public static String getRegisterLineSouthboundName(String northboundName) {
         System.out.println(OutputView.QUERY_REGISTER_LINE_SOUTHBOUND_NAME);
         try {
             String input = scanner.nextLine();
-            Station station = VerifyInput.existStationName(input);
-            VerifyInput.haveSouthboundIn(station);
+            VerifyInput.existStationName(input);
+            VerifyInput.compareTerminalName(northboundName, input);
             return input;
         } catch (Exception e) {
-            return getRegisterLineSouthboundName();
+            return getRegisterLineSouthboundName(northboundName);
         }
     }
 
@@ -143,7 +142,8 @@ public class InputView {
         System.out.println(OutputView.QUERY_DELETE_SECTION_LINE_NAME);
         try {
             String input = scanner.nextLine();
-            Line line = VerifyInput.existLineName(input);
+            VerifyInput.existLineName(input);
+            VerifyInput.deletableSection(input);
             return input;
         } catch (Exception e) {
             return getDeleteSectionLineName();
