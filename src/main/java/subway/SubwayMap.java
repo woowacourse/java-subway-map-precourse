@@ -42,7 +42,7 @@ public class SubwayMap {
         try {
             this.state = state.change(input);
         } catch (MenuNotFountException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
         }
     }
 

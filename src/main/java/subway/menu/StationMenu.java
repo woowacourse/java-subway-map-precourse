@@ -1,9 +1,9 @@
 package subway.menu;
 
-import subway.Action;
 import subway.controller.ControllerFactory;
 import subway.controller.SubwayController;
 import subway.exception.MenuNotFountException;
+import subway.view.OutputView;
 
 import java.util.Arrays;
 
@@ -35,7 +35,7 @@ public enum StationMenu implements Menu {
             action.action(controller);
             return MainMenu.LINE;
         } catch (Exception e) {
-            e.printStackTrace();
+            OutputView.printErrorMessage(e);
             return StationMenu.BACK;
         }
     }
@@ -66,7 +66,7 @@ public enum StationMenu implements Menu {
     }
 
     @Override
-    public String getName() {
+    public String getType() {
         return MENU_TYPE;
     }
 
