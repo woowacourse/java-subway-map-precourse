@@ -8,6 +8,7 @@ import java.util.Objects;
 import subway.exception.BlankNameException;
 import subway.exception.DuplicatedStationInLineException;
 import subway.exception.NullStationException;
+import subway.exception.NullStationInLineException;
 import subway.exception.SectionOutOfRangeException;
 import subway.exception.TooShortNameException;
 import subway.utils.RegexUtil;
@@ -81,7 +82,10 @@ public class Line {
     }
 
     public boolean deleteSection(String stationName) {
-        // TODO: 노선에 역이 존재하지 않으면 예외처리
+        if (!stations.contains(stationName)) {
+            throw new NullStationInLineException(stationName);
+        }
+
         return stations.removeIf(station -> Objects.equals(station, stationName));
     }
 
