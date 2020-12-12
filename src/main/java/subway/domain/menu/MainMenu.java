@@ -2,6 +2,7 @@ package subway.domain.menu;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
@@ -19,18 +20,27 @@ public class MainMenu {
     private static final char QUIT_SEL = 'Q';
     private static final String PRINT_STATION_LINE = "지하철 노선도 출력";
     private static final String QUIT = "종료";
+    private final Scanner scanner;
+
     List<SubMenu> subMenuList;
 
-    public MainMenu() {
+    public MainMenu(Scanner scanner) {
         subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION),
                 new LineMenu(LINE_SEL, CategoryType.LINE), new SectionMenu(SECTION_SEL, CategoryType.SECTION),
                 new SubMenu(PRINT_STATION_LINE, PRINT_STATION_LINE_SEL), new SubMenu(QUIT, QUIT_SEL));
+        this.scanner = scanner;
     }
 
     public void printMainMenu() {
         System.out.println(MAIN_TITLE);
         subMenuList.stream()
         .forEach(menu -> System.out.println(menu.getTitleActionMessage()));
+        System.out.println();
+    }
+
+    public void inputMainMenu() {
+        System.out.println(CommonMessage.SELECT_MESSAGE);
+        char sel = scanner.nextLine().charAt(0);
     }
 
 }
