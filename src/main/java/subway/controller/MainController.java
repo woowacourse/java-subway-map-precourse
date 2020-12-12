@@ -23,7 +23,6 @@ public class MainController {
     }
 
     private static void shiftFunctionScreen(InputView inputView, String functionIndex) {
-        System.out.println();
         if (functionIndex.equals(stationController.getControllerIndex())) {
             stationController.run(inputView);
         }

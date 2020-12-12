@@ -12,6 +12,7 @@ public class OutputView {
     private static final String DELETE_STATION_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
 
     public static void printFunctionTitle(String functionHeader) {
+        System.out.println();
         System.out.println(HEADER_SHARP + functionHeader);
     }
 
@@ -27,22 +28,22 @@ public class OutputView {
     }
 
     public static void printInputRegisterStation() {
+        System.out.println();
         System.out.println(HEADER_SHARP + INPUT_REGISTER_STATION_MESSAGE);
     }
 
     public static void printRegisterSuccess() {
         System.out.println();
         System.out.println(HEADER_INFO + REGISTER_STATION_SUCCESS_MESSAGE);
-        System.out.println();
     }
 
     public static void printInputDeleteStation() {
+        System.out.println();
         System.out.println(HEADER_SHARP + INPUT_DELETE_STATION_MESSAGE);
     }
 
     public static void printDeleteSuccess() {
         System.out.println();
         System.out.println(HEADER_INFO + DELETE_STATION_SUCCESS_MESSAGE);
-        System.out.println();
     }
 }
