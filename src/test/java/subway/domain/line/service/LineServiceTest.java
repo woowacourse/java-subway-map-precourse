@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineServiceTest {
@@ -70,5 +71,23 @@ class LineServiceTest {
                 () -> assertThat(lines).usingElementComparatorOnFields("name")
                         .contains(line)
         );
+    }
+
+    @DisplayName("노선 이름이 중복되면 예외를 발생시키는 기능을 테스트한다")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1호선,2호선:1호선",
+            "신분당선,경의선,분당선:경의선"
+    }, delimiter = ':')
+    void testSaveIfDuplicatedLineName(String input, String newLineName) {
+        //given
+        String[] lineNames = input.split(",");
+        Arrays.stream(lineNames)
+                .map(Line::new)
+                .forEach(LineRepository::addLine);
+
+        //when //then
+        assertThatThrownBy(() -> LineService.save(new Line(newLineName)))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

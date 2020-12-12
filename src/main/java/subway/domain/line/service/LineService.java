@@ -11,6 +11,17 @@ public class LineService {
     }
 
     public static void save(Line line) {
+        validateDuplicationLine(line);
         LineRepository.addLine(line);
+    }
+
+    private static void validateDuplicationLine(Line line) {
+        List<Line> lines = LineRepository.lines();
+        boolean isDuplicated = lines.stream()
+                .anyMatch(savedLine -> savedLine.isEqualTo(line));
+
+        if (isDuplicated) {
+            throw new IllegalArgumentException();
+        }
     }
 }
