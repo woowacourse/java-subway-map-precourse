@@ -27,6 +27,9 @@ public class StationController {
         if (option == ADD_STATION) {
             addNewStation(stationInputView);
         }
+        if (option == DELETE_STATION) {
+            deleteStation(stationInputView);
+        }
     }
 
     private static void addNewStation(StationInputView stationInputView) {
@@ -40,5 +43,11 @@ public class StationController {
         }
         StationRepository.addStation(station);
         StationOutputView.addStationComplete();
+    }
+
+    private static void deleteStation(StationInputView stationInputView) {
+        String stationName = stationInputView.deleteStation();
+        StationRepository.deleteStation(stationName);
+        StationOutputView.deleteStationComplete();
     }
 }
