@@ -12,19 +12,16 @@ public class SectionView {
         String input = userInput.next();
         String thisMenuState = Constants.SECTION_MENU_STATE;
         if (input.equals("1")) {
-            System.out.println("대충 구간 등록 한다는 내용");
             insertSection(userInput);
         }
         if (input.equals("2")) {
-            System.out.println("대충 구간 삭제 한다는 내용");
             deleteSection(userInput);
         }
-        if (input.toLowerCase().equals("b")) {
+        if (input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
         }
-        if (!(input.equals("1") || input.equals("2") || input.equals("3") || input
-            .toLowerCase()
-            .equals("b"))) {
+        if (!(input.equals("1") || input.equals("2") || input.equals("3") || input.toLowerCase()
+            .equals(Constants.BACKWARD_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;
@@ -89,7 +86,6 @@ public class SectionView {
         return true;
     }
 
-
     private static boolean deleteSection(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_LINE_INPUT_COMMENT);
         String sectionTitle = userInput.next();
@@ -107,5 +103,4 @@ public class SectionView {
             Subway.stations.findByName(stationName));
         return true;
     }
-
 }

@@ -2,9 +2,10 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.Set;
-import subway.SubwayLauncher;
+import subway.Subway;
 import subway.domain.Station;
 import subway.util.Constants;
+import subway.util.InputUtils;
 import subway.util.MessageUtils;
 
 public class StationView {
@@ -21,28 +22,44 @@ public class StationView {
         if (input.equals("3")) {
             showStations();
         }
-        if (input.toLowerCase().equals("b")) {
+        if (input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
         }
         if (!(input.equals("1") || input.equals("2") || input.equals("3")
-            || input.toLowerCase().equals("b"))) {
+            || input.toLowerCase().equals(Constants.BACKWARD_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;
     }
 
-    public static void insertStation(Scanner userInput) {
-        MessageUtils.printAnnouncement(Constants.ADD_STATION_INPUT_COMMENT);
+    public static boolean insertStation(Scanner userInput) {
+        MessageUtils.printInputAnnouncement(Constants.ADD_STATION_INPUT_COMMENT);
         String stationName = userInput.next();
+        if (!InputUtils.isMinLengthString(stationName)) {
+            MessageUtils.printError(Constants.INVALID_MIN_LENGTH_ERROR_COMMENT);
+            return false;
+        }
+        if (isExistStationName(stationName)) {
+            MessageUtils.printError(Constants.EXIST_STATION_OUTPUT_COMMENT);
+            return false;
+        }
         Station newStation = new Station(stationName);
-        SubwayLauncher.stations.addStation(newStation);
+        Subway.stations.addStation(newStation);
         MessageUtils.printInfo(Constants.ADD_STATION_OUTPUT_COMMENT);
+        return true;
+    }
+
+    public static boolean isExistStationName(String stationName) {
+        if (Subway.stations.findByName(stationName) == null) {
+            return false;
+        }
+        return true;
     }
 
     public static void deleteStation(Scanner userInput) {
-        MessageUtils.printAnnouncement(Constants.DELETE_STATION_INPUT_COMMENT);
+        MessageUtils.printInputAnnouncement(Constants.DELETE_STATION_INPUT_COMMENT);
         String targetStationName = userInput.next();
-        Set<String> existStationInSection = SubwayLauncher.subwayMap.findIncludedStationSet();
+        Set<String> existStationInSection = Subway.Map.findIncludedStationSet();
         if (!existStationInSection.contains(targetStationName)) {
             deleteByName(targetStationName);
         }
@@ -52,19 +69,20 @@ public class StationView {
     }
 
     private static void deleteByName(String targetStationName) {
-        if (SubwayLauncher.stations.findByName(targetStationName) == null) {
+        if (Subway.stations.findByName(targetStationName) == null) {
             MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
         }
-        if (SubwayLauncher.stations.findByName(targetStationName) != null) {
-            SubwayLauncher.stations.deleteStationByName(targetStationName);
+        if (Subway.stations.findByName(targetStationName) != null) {
+            Subway.stations.deleteStationByName(targetStationName);
             MessageUtils.printInfo(Constants.DELETE_STATION_OUTPUT_COMMENT);
         }
     }
 
     public static void showStations() {
-        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
-        for (Object station : SubwayLauncher.stations.findAll()) {
+        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
+        for (Object station : Subway.stations.findAll()) {
             MessageUtils.printInfo((String) station);
         }
+        MessageUtils.printBlankLine();
     }
 }

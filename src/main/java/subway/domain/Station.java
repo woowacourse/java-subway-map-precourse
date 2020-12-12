@@ -23,7 +23,7 @@ public class Station {
     public boolean equals(Object obj) {
         if (obj instanceof Station) {
             Station station = (Station) obj;
-            if (this.name == station.name) {
+            if (this.name.equals(station.name)) {
                 return true;
             }
             return false;

@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import subway.util.Constants;
 
 public class SectionRepository {
 
@@ -15,31 +16,40 @@ public class SectionRepository {
     public SectionRepository() {
     }
 
+    public void addStationList(Line sectionTitle, List<Station> stations) {
+        this.sectionMap.put(sectionTitle, stations);
+    }
+
     public void addLine(Line sectionTitle, Station startStationInLine,
         Station endStationInLine) {
         List<Station> startToEndStation = new ArrayList<>();
         startToEndStation.add(startStationInLine);
         startToEndStation.add(endStationInLine);
-        this.sectionMap.put(sectionTitle, startToEndStation);
+        this.addStationList(sectionTitle, startToEndStation);
     }
 
     public void addSection(Line sectionTitle, Station station, int index) {
         List<Station> stations = this.sectionMap.get(sectionTitle);
-        stations.add(index, station);
-        this.sectionMap.put(sectionTitle, stations);
+        index -= Constants.INDEX_ARRANGE_INT;
+        stations.add(index - Constants.INDEX_ARRANGE_INT, station);
+        this.addStationList(sectionTitle, stations);
+    }
+
+    public int getSize(Line sectionTitle) {
+        List<Station> stations = this.sectionMap.get(sectionTitle);
+        return stations.size();
     }
 
     public void deleteLine(Line sectionTitle) {
-        if (!this.sectionMap.containsKey(sectionTitle)) {
-            System.out.println("해당 라인이 Section 목록에 없어요.");
+        if (this.sectionMap.containsKey(sectionTitle)) {
+            this.sectionMap.remove(sectionTitle);
         }
-        this.sectionMap.remove(sectionTitle);
     }
 
     public void deleteSection(Line sectionTitle, Station station) {
         List<Station> stations = this.sectionMap.get(sectionTitle);
         for (Station instanceStation : stations) {
-            if (station.equals(instanceStation)) {
+            if (instanceStation.equals(stations)) {
                 stations.remove(station);
             }
         }
@@ -61,13 +71,10 @@ public class SectionRepository {
 
     public Set<String> findIncludedStationSet() {
         Set<String> foundSet = new HashSet<>();
-        Iterator<Line> sections = sectionMap.keySet().iterator();
-        while (sections.hasNext()) {
-            Line section = sections.next();
-            for (Station station : sectionMap.get(section)) {
+        for (Line sectionTitle : this.sectionMap.keySet()) {
+            for (Station station : this.sectionMap.get(sectionTitle)) {
                 foundSet.add(station.getName());
             }
-
         }
         return foundSet;
     }

@@ -23,7 +23,7 @@ public class Line {
     public boolean equals(Object obj) {
         if (obj instanceof Line) {
             Line line = (Line) obj;
-            if (this.name == line.name) {
+            if (this.name.equals(line.name)) {
                 return true;
             }
             return false;

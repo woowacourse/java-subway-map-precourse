@@ -57,11 +57,11 @@ public class MainView {
         if (input.equals("4")) {
             this.showWholeSubwayMap();
         }
-        if (input.toLowerCase().equals("q")) {
+        if (input.toLowerCase().equals(Constants.EXIT_INPUT_CHARACTER)) {
             state = false;
         }
         if (!(input.equals("1") || input.equals("2") || input.equals("3") || input
-            .equals("4") || input.toLowerCase().equals("q"))) {
+            .equals("4") || input.toLowerCase().equals(Constants.EXIT_INPUT_CHARACTER))) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
         }
         return thisMenuState;

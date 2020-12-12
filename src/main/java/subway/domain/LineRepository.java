@@ -35,11 +35,10 @@ public class LineRepository {
                 return lineElement;
             }
         }
-        System.out.println("없는 노선 입니다");
         return null;
     }
 
-    public static boolean deleteLineByName(String name) {
+    public boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
