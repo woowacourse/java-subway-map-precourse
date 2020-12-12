@@ -5,6 +5,7 @@ import java.util.List;
 import subway.domain.subRepository.PassingRouteRepository;
 
 public class Line implements Node{
+
     private static final String CONTOUR = "---";
     private String name;
     private PassingRouteRepository passingRoutes = null;
@@ -20,10 +21,6 @@ public class Line implements Node{
 
     public boolean equalWith(String newName) {
         return name.equals(newName);
-    }
-
-    public boolean isContaining(Station station) {
-        return passingRoutes.isContaining(station);
     }
 
     public List<String> inquiryStations() {

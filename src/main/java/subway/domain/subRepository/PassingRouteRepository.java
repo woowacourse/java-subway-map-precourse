@@ -7,27 +7,35 @@ import subway.domain.Repository;
 import subway.domain.Station;
 
 public class PassingRouteRepository implements Repository {
+
     private static final int LEAST_STATION_NUM= 3;
+    private static final int STATION_NOT_EXIST = -1;
     private List<Station> routes = new ArrayList<>();
 
     public PassingRouteRepository(List<Station> routes) {
         this.routes = routes;
     }
 
-    private boolean addPossible(int position, Station station) {
+    private boolean addPossible(int whereToInsert, Station station) {
         if(isContaining(station)) {
-
+            return false;
         }
         return true;
     }
+
     public void add(int position, Station station) {
 
         routes.add(position - 1, station);
     }
 
     public boolean isContaining(Station station) {
-        return routes.contains(station);
+        return indexOf(station) != this.STATION_NOT_EXIST;
     }
+
+    public int indexOf(Station station) {
+        return routes.indexOf(station);
+    }
+
     public boolean removePossible() {
         return routes.size() >= LEAST_STATION_NUM;
     }
