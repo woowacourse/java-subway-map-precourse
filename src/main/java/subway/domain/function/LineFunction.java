@@ -14,12 +14,15 @@ public enum LineFunction {
         @Override
         public void operate(Scanner scanner) {
             String lineName = InputView.inputLineNameToCreate(scanner);
-            String UpwardTerminalStationName = InputView.inputUpwardTerminalStationName(scanner);
-            String DownwardTerminalStationName = InputView.inputDownwardTerminalStationName(scanner);
-            LineRepository.addLine(new Line(lineName, new ArrayList<Station>(Arrays.asList(
-                new Station(UpwardTerminalStationName),
-                new Station(DownwardTerminalStationName))
-            )));
+            Line.validateLineName(lineName);
+            String upwardTerminalStationName = InputView.inputUpwardTerminalStationName(scanner);
+            Station upwardTerminalStation = new Station(upwardTerminalStationName);
+            String downwardTerminalStationName = InputView.inputDownwardTerminalStationName(scanner);
+            Station downwardTerminalStation = new Station(downwardTerminalStationName);
+            LineRepository.addLine(new Line(lineName, new ArrayList<>(Arrays.asList(
+                upwardTerminalStation,
+                downwardTerminalStation
+            ))));
             OutputView.printSuccessToCreateLine();
             // TODO - 디버깅용
             System.out.println(LineRepository.lines());
