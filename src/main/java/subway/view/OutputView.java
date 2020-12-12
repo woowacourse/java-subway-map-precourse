@@ -12,8 +12,6 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String INFO_PREFIX = "[INFO] ";
     private static final String MENU_FORMAT = "%s. %s";
-    private static final String BORDERLINE = "---";
-    private static final String SUBWAY_MAP = "지하철 노선도";
 
     public static void showErrorMessage(Exception e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
@@ -36,18 +34,6 @@ public class OutputView {
         System.out.println(INFO_PREFIX + string);
     }
 
-    public static void showSubwayMap(List<LineDTO> Lines) {
-        printWithSharpPrefix(SUBWAY_MAP);
-
-        for (LineDTO line : Lines) {
-            OutputView.printResponseMessage(line.getName());
-            printResponseMessage(BORDERLINE);
-            line.getStations().stream()
-                    .map(StationDTO::getName)
-                    .forEach(OutputView::printResponseMessage);
-            newLine();
-        }
-    }
 
     public static void newLine() {
         System.out.println();

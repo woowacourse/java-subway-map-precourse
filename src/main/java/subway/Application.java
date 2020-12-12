@@ -59,7 +59,7 @@ public class Application {
 
     private static void showSubwayMap() {
         try {
-            OutputView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
+            MainView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
         } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
         }
