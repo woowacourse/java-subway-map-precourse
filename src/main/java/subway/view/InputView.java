@@ -22,6 +22,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String readDeletingStationName() {
+        System.out.println(ASK_DELETE_STATION_NAME);
+        return scanner.nextLine();
+    }
+
     public String readLineName() {
         System.out.println(ASK_LINE_NAME);
         return scanner.nextLine();

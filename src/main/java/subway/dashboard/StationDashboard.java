@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -67,7 +68,9 @@ public class StationDashboard {
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
-            System.out.println("역삭제실행");
+            if (deleteStation(inputView)) {
+                return true;
+            }
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {
@@ -100,6 +103,15 @@ public class StationDashboard {
             return true;
         }
         StationRepository.addStation(station);
+        return false;
+    }
+
+    public boolean deleteStation(InputView inputView) {
+        String submittedStationName = inputView.readDeletingStationName();
+        if(!StationRepository.deleteStation(submittedStationName)) {
+            System.out.println(ERROR_STATION_NAME_NO_EXISTS);
+            return true;
+        }
         return false;
     }
 
