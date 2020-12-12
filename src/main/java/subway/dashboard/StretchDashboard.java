@@ -10,10 +10,12 @@ import java.util.Set;
 import java.util.TreeMap;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 
 public class StretchDashboard {
+
     TreeMap<String, String> options;
     InputView inputView;
 
@@ -33,7 +35,7 @@ public class StretchDashboard {
     }
 
     public void startStretchDashboard(InputView inputView) {
-        while(true) {
+        while (true) {
             if (!startChosenOptionUntilFinished(makeUserChooseOption(inputView))) {
                 break;
             }
@@ -43,7 +45,7 @@ public class StretchDashboard {
     public String makeUserChooseOption(InputView inputView) {
         showOptions();
         String optionChosen;
-        while(true) {
+        while (true) {
             optionChosen = chooseOption(inputView);
             if (checkOptions(optionChosen)) {
                 return optionChosen;
@@ -62,7 +64,7 @@ public class StretchDashboard {
     public boolean startChosenOptionUntilFinished(String option) {
 
         if (option.equals(OPTION_NUM_1)) {
-            System.out.println("구간등록실행");
+            insertStretch(inputView);
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
@@ -87,10 +89,45 @@ public class StretchDashboard {
         return inputView.readOptionChoice();
     }
 
+    public void insertStretch(InputView inputView) {
+        Line chosenLine;
+        // 노선 입력
+        while (true) {
+            String chosenLineName = inputView.readLineName();
+            if (validLineNameSubmitted(new Line(chosenLineName))) {
+                chosenLine = pushChosenLine(chosenLineName);
+                break;
+            }
+        }
+        // 역 입력
+        Station newStation = new Station(inputView.readStationName());
+        if (chosenLine.getStations().contains(newStation)) {
+            System.out.println(ERROR_STATION_NAME_DUPLICATED);
+            return;
+        }
+        // 위치 입력
+        String tempOrder = inputView.readStationOrder();
+        int order;
+        try {
+            order = Integer.parseInt(tempOrder);
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_ORDER_OUT_OF_RANGE);
+            return;
+        }
+
+        if (order < 0 || order > chosenLine.getStations().size()) {
+            System.out.println(ERROR_ORDER_OUT_OF_RANGE);
+            return;
+        }
+        StationRepository.addStation(newStation);
+        chosenLine.getStations().add(order, newStation);
+        System.out.println(INFO_STRETCH_INSERT_SUCCESS);
+    }
+
     public void deleteStretch(InputView inputView) {
         Line chosenLine;
 //      존재하지 않는 노선 입력시 다시 입력받도록 함
-        while(true) {
+        while (true) {
             String chosenLineName = inputView.readDeletingLineName();
             if (validLineNameSubmitted(new Line(chosenLineName))) {
                 chosenLine = pushChosenLine(chosenLineName);
@@ -99,12 +136,12 @@ public class StretchDashboard {
         }
 //        존재하지 않는 역 이름 입력시 종료시킴
         String chosenStationName = inputView.readDeletingStationName();
-        deleteChosenStretch(chosenLine,chosenStationName);
+        deleteChosenStretch(chosenLine, chosenStationName);
 
     }
 
     public boolean validLineNameSubmitted(Line line) {
-        if(LineRepository.lines().contains(line)) {
+        if (LineRepository.lines().contains(line)) {
             return true;
         }
         System.out.println(ERROR_LINE_NAME_NO_EXISTS);
@@ -121,13 +158,13 @@ public class StretchDashboard {
     }
 
     public void deleteChosenStretch(Line chosenLine, String StationName) {
-        if(chosenLine.getStations().removeIf(station -> Objects.equals(station.getName(), StationName))) {
+        if (chosenLine.getStations()
+            .removeIf(station -> Objects.equals(station.getName(), StationName))) {
             System.out.println(INFO_STRETCH_DELETE_SUCCESS);
             return;
         }
         System.out.println(ERROR_STATION_NAME_NO_EXISTS);
     }
-
 
 
 }

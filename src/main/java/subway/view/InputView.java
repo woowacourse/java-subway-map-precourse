@@ -47,8 +47,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public int readStationOrder() {
+    public String readStationOrder() {
         System.out.println(ASK_STRETCH_UPDATE_ORDER);
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 }
