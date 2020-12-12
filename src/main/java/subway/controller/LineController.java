@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.text.LineText;
@@ -33,6 +35,11 @@ public class LineController {
     }
 
     private void registerLine(InputView inputView) {
+        OutputView.printInputRegisterValue(LineText.screenName());
+        Line line = new Line(inputView.getInputRegisterLine());
+        LineRepository.addLine(line);
+        OutputView.printRegisterSuccess();
+        goBackToMain(inputView);
     }
 
     private void deleteLine(InputView inputView) {
