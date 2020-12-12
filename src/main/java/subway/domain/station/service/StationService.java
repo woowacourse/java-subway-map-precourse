@@ -26,4 +26,8 @@ public class StationService {
     public static List<Station> findAll() {
         return StationRepository.stations();
     }
+
+    public static void remove(Station station) {
+        StationRepository.deleteStation(station.getName());
+    }
 }

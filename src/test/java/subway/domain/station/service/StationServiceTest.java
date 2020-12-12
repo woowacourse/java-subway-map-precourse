@@ -75,9 +75,36 @@ class StationServiceTest {
                 .collect(Collectors.toList());
         assertAll(
                 () -> assertThat(stations)
-                                .usingElementComparatorOnFields("name")
-                                .containsAll(expectedStations),
+                        .usingElementComparatorOnFields("name")
+                        .containsAll(expectedStations),
                 () -> assertThat(stations).hasSize(stationNumber)
+        );
+    }
+
+    @DisplayName("지하철 역을 삭제하는 기능을 테스트한다")
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "강남역,잠실역,사당역:잠실역:2", "신림역,봉천역,서울대입구역,낙성대역실:봉천역:3"
+            }, delimiter = ':'
+    )
+    void testRemove(String input, String removedStationName, int expectedStationsNumber) {
+        //given
+        String[] stationsNames = input.split(",");
+        Arrays.stream(stationsNames)
+                .map(Station::new)
+                .forEach(StationRepository::addStation);
+        Station removedStation = new Station(removedStationName);
+
+        //when
+        StationService.remove(removedStation);
+
+        //then
+        List<Station> stations = StationService.findAll();
+        assertAll(
+                () -> assertThat(stations).hasSize(expectedStationsNumber),
+                () -> assertThat(stations).usingElementComparatorOnFields("name")
+                        .doesNotContain(removedStation)
         );
     }
 }
