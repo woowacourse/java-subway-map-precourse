@@ -9,8 +9,10 @@ public class Line {
     private String name;
     private final List<Station> stationList = new ArrayList<>();
 
-    public Line(String name) {
+    public Line(String name, Station upStation, Station downStation) {
         this.name = name;
+        stationList.add(upStation);
+        stationList.add(downStation);
     }
 
     public String getName() {
