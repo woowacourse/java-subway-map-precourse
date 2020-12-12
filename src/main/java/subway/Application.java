@@ -81,6 +81,9 @@ public class Application {
     private static final List<String> initialStationList = Arrays
         .asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
 
+    private static final List<String> initialLineList = Arrays
+        .asList("2호선", "3호선", "신분당선");
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         printUtils = new PrintUtils();
@@ -90,6 +93,7 @@ public class Application {
         char mainFunction;
 
         initializeStation();
+        initializeLines();
         while (true) {
             mainFunction = mainMenu();
             if (mainFunction == MainFunction.QUIT.getMenu()) {
@@ -102,6 +106,12 @@ public class Application {
     private static void initializeStation() {
         for (String stationList : initialStationList) {
             stationRepository.addStation(new Station(stationList));
+        }
+    }
+
+    private static void initializeLines() {
+        for (String lineList : initialLineList) {
+            lineRepository.addLine(new Line(lineList));
         }
     }
 
