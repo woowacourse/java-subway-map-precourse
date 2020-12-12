@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.controller.exception.LineValidator;
+import subway.controller.exception.NotExistedElementException;
 import subway.controller.exception.StationValidator;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -9,6 +10,7 @@ import subway.view.OutputView;
 
 public class LineMenu {
     private static final String LINE_REGISTER_MESSAGE = "\n## 등록할 노선 이름을 입력하세요.";
+    private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 노선 이름을 입력하세요.";
     private static final String UP_STATION_MESSAGE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String DOWN_STATION_MESSAGE = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 
@@ -19,7 +21,7 @@ public class LineMenu {
             registerNewLine();
         }
         if (selection.equals("2")) {
-            // 노선 삭제
+            deleteLine();
         }
         if (selection.equals("3")) {
             // 노선 조회
@@ -63,5 +65,17 @@ public class LineMenu {
         line.addStation(upStation);
         line.addStation(downStation);
         LineRepository.addLine(line);
+    }
+    
+    private static void deleteLine() {
+        try {
+            String lineName = InputView.receiveName(LINE_DELETE_MESSAGE);
+            boolean deletion = LineRepository.deleteLineByName(lineName);
+            LineValidator.validateExistedLine(deletion);
+            OutputView.printLineDeleteSuccess();
+        } catch (NotExistedElementException e) {
+            System.out.println(e.getMessage());
+            goToLineMenu();
+        }
     }
 }

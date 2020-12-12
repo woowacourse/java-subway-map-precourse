@@ -23,4 +23,11 @@ public class LineValidatorTest {
     public void testUpStationEqualsDownStation() {
         LineValidator.validateUpAndDownIsEqual("양재역", "양재역");
     }
+    
+    @Test(expected = NotExistedElementException.class)
+    public void testLineNameExistWhenDelete() {
+        LineRepository.addLine(new Line("2호선"));
+        boolean deletion = LineRepository.deleteLineByName("8호선");
+        LineValidator.validateExistedLine(deletion);
+    }
 }

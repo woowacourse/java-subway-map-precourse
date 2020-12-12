@@ -33,4 +33,10 @@ public class LineValidator {
             throw new IllegalElementException("\n[ERROR] 상행역과 하행역이 동일합니다.");
         }
     }
+    
+    public static void validateExistedLine(boolean isExisted) {
+        if (!isExisted) {
+            throw new NotExistedElementException("\n[ERROR] 존재하지 않는 노선 이름입니다.");
+        }
+    }
 }
