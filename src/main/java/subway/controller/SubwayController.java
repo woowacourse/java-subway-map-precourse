@@ -3,6 +3,7 @@ package subway.controller;
 import subway.service.LineService;
 import subway.service.StationService;
 import subway.service.SubwayService;
+import subway.service.TransitMapService;
 
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class SubwayController {
     public static void initializeSubway() {
         StationService.initializeStations();
         LineService.initializeLines();
+        TransitMapService.initializeTransitMaps();
     }
 
     public static void startSubway(Scanner scanner) {
