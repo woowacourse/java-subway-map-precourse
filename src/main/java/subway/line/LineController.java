@@ -32,8 +32,6 @@ public class LineController {
 
     private static void addNewLine(LineInputView lineInputView) {
         String lineName = lineInputView.newLineName();
-        String startStationName = lineInputView.startStationName();
-        String endStationName = lineInputView.endStationName();
-        LineService.addLine(lineName, startStationName, endStationName);
+        LineService.addLine(lineName, lineInputView);
     }
 }
