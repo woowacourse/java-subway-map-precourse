@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.exception.NonExistentMenuException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -12,8 +13,16 @@ public class MenuController {
 
     public static String selectMainMenu(Scanner scanner) {
         OutputView.printMainScreen();
-        return selectMenu(scanner);
+        return selectValidMenu(scanner, MAIN_MENU_SIGN);
 
+    }
+
+    private static String selectValidMenu(Scanner scanner, List<String> signs) {
+        String menu = selectMenu(scanner);
+        while (!isValidMenu(menu,signs)) {
+            menu = selectMenu(scanner);
+        }
+        return menu;
     }
 
     private static String selectMenu(Scanner scanner) {
@@ -21,7 +30,20 @@ public class MenuController {
         return InputView.getInput(scanner);
     }
 
-    public static boolean isValidMenu(String menu) {
-        return MAIN_MENU_SIGN.contains(menu);
+    public static boolean isValidMenu(String menu, List<String> signs) {
+        try{
+            validateMenu(menu, signs);
+            return true;
+        } catch (NonExistentMenuException menuError) {
+            System.out.println(menuError.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean validateMenu(String menu, List<String> signs) {
+        if (!signs.contains(menu)) {
+            throw new NonExistentMenuException();
+        }
+        return true;
     }
 }
