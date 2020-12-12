@@ -32,12 +32,11 @@ public enum SectionMenu implements Menu {
         try {
             action.action(controller);
 
+            return MainMenu.SECTION;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return MainMenu.SECTION;
         }
-
-        return null;
     }
 
     @Override
@@ -63,5 +62,15 @@ public enum SectionMenu implements Menu {
                 .findFirst().orElseThrow(() ->
                         new MenuNotFountException(command)
                 );
+    }
+
+    @Override
+    public String getName() {
+        return getName();
+    }
+
+    @Override
+    public String getActionType() {
+        return action.toString();
     }
 }

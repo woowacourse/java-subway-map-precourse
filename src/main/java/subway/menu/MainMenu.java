@@ -82,5 +82,15 @@ public enum MainMenu implements Menu {
                 );
     }
 
+    @Override
+    public String getName() {
+        return getName();
+    }
+
+    @Override
+    public String getActionType() {
+        return getName();
+    }
+
 
 }

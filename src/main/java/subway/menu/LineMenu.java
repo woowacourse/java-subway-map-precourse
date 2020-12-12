@@ -63,4 +63,14 @@ public enum LineMenu implements Menu {
                         new MenuNotFountException(command)
                 );
     }
+
+    @Override
+    public String getName() {
+        return getName();
+    }
+
+    @Override
+    public String getActionType() {
+        return action.toString();
+    }
 }

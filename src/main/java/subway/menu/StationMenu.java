@@ -34,6 +34,7 @@ public enum StationMenu implements Menu {
             action.action(controller);
             return MainMenu.LINE;
         } catch (Exception e) {
+            e.printStackTrace();
             return StationMenu.BACK;
         }
     }
@@ -61,5 +62,15 @@ public enum StationMenu implements Menu {
                 .findFirst().orElseThrow(() ->
                         new MenuNotFountException(command)
                 );
+    }
+
+    @Override
+    public String getName() {
+        return getName();
+    }
+
+    @Override
+    public String getActionType() {
+        return action.toString();
     }
 }
