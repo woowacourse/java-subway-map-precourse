@@ -144,4 +144,17 @@ class SectionServiceTest {
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_NOT_EXIST.getMessage());
     }
+
+    @Test
+    @DisplayName("현재 노선에 동일한 역이 있을 시 에러가 발생한다. ")
+    void testAddStation() {
+        //given
+        String lineName = "1호선";
+        String stationName = "행복역";
+
+        //then
+       assertThatThrownBy(() -> sectionService.validateStation(lineName, stationName))
+               .isInstanceOf(SectionException.class)
+               .hasMessage(ErrorCode.SECTION_HAS_STATION.getMessage());
+    }
 }

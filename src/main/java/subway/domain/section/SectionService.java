@@ -87,4 +87,11 @@ public class SectionService {
         }
         return false;
     }
+
+    public void validateStation(String lineName, String stationName) {
+        Section section = findByName(lineName);
+        if (section.getStationsName().contains(stationName)) {
+            throw new SectionException(ErrorCode.SECTION_HAS_STATION);
+        }
+    }
 }

@@ -29,7 +29,8 @@ public enum ErrorCode {
     SECTION_UPWARD_STATION_NOT_FOUND("SE001", Screen.PREFIX_ERROR + "상행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),
     SECTION_DOWNWARD_STATION_NOT_FOUND("SE002", Screen.PREFIX_ERROR + "하행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),
     SECTION_SAME_STATION_NAME("SE003", Screen.PREFIX_ERROR + "상행 좀점역과 하행 종점역의 이름이 같을 수 없습니다."),
-    SECTION_NOT_EXIST("SE004", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다.");
+    SECTION_NOT_EXIST("SE004", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
+    SECTION_HAS_STATION("SE005", Screen.PREFIX_ERROR + "현재 노선에 추가되어있는 역입니다.");
 
 
     private final String code;
