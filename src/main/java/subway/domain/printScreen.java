@@ -30,15 +30,62 @@ public class printScreen {
         System.out.println("## 등록할 역 이름을 입력하세요.");
     }
 
+    public static void printAlarmAddStation() {
+        System.out.println("[INFO] 지하철 역이 등록되었습니다.");
+    }
+
     public static void printDeleteStation() {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
+    }
+
+    public static void printAlarmDeleteStation() {
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
     }
 
     public static void printStationList(List<Station> stations) {
         System.out.println("## 역 목록");
 
         for (int i = 0; i < stations.size(); i++) {
-            System.out.println("[INFO] "+ stations.get(i));
+            System.out.println("[INFO] " + stations.get(i).getName());
         }
+        System.out.println();
+    }
+
+    public static void printLineManagementScreen() {
+        System.out.println("## 노선 관리 화면");
+        System.out.println("1. 노선 등록");
+        System.out.println("2. 노선 삭제");
+        System.out.println("3. 노선 조회");
+        System.out.println("B. 돌아가기\n");
+        printSelectFunction();
+    }
+
+    public static void printAddLine() {
+        System.out.println("## 등록할 노선 이름을 입력하세요.");
+    }
+
+    public static void printFirstAddLine() {
+        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+    }
+
+    public static void printLastAddLine() {
+        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+    }
+
+    public static void printAlarmAddLine() {
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    public static void printDeleteLine() {
+        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+    }
+
+    public static void printLineList(List<Line> lines) {
+        System.out.println("## 노선 목록");
+
+        for (int i = 0; i < lines.size(); i++) {
+            System.out.println("[INFO] " + lines.get(i).getName());
+        }
+        System.out.println();
     }
 }
