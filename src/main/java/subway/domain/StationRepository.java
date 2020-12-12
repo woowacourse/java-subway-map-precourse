@@ -39,6 +39,10 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
+    public static void deleteAll(){
+        stations.clear();
+    }
+
     public static void printAllStation(){
         stations.forEach(station -> OutputView.printInfo(station.getName()));
     }
