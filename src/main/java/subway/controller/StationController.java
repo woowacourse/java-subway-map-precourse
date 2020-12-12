@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.text.StationText;
@@ -28,12 +30,16 @@ public class StationController {
             lookUpStation(inputView);
         }
         if (functionIndex.equals(MainController.getControllerIndex())) {
-            goBackToMain();
+            goBackToMain(inputView);
         }
     }
 
     private void registerStation(InputView inputView) {
         OutputView.printInputRegisterStation();
+        Station station = new Station(inputView.getInputRegisterStation());
+        StationRepository.addStation(station);
+        OutputView.printRegisterSuccess();
+        goBackToMain(inputView);
     }
 
     private void deleteStation(InputView inputView) {
@@ -44,8 +50,8 @@ public class StationController {
 
     }
 
-    private void goBackToMain() {
-
+    private void goBackToMain(InputView inputView) {
+        MainController.run(inputView);
     }
 
     public String getControllerIndex() {
