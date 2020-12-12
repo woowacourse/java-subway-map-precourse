@@ -5,8 +5,6 @@ import subway.domain.Line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.CannotRemoveException;
-import subway.menu.Menu;
-import subway.menu.SectionMenu;
 import subway.view.InputView;
 
 public class SectionController implements SubwayController {
@@ -15,7 +13,12 @@ public class SectionController implements SubwayController {
     private final StationRepository stationRepository = new StationRepository();
     private final LineRepository lineRepository = new LineRepository();
 
-    private static final Menu STATE = SectionMenu.BACK;
+    private String DELETE_STATION_MESSAGE = "## 삭제할 구간의 역이름을 입력하세요";
+    private String DELETE_LINE_MESSAGE = "## 삭제할 구간의 노선 이름을 입력하세요";
+    private String INPUT_ORDER_MESSAGE = "## 순서를 입력하세요";
+    private String INPUT_STATION_MESSAGE = "## 역이름을 입력하세요";
+    private String INPUT_LINE_MESSAGE = "## 노선을 입력하세요.";
+
 
     @Override
     public void save() {
@@ -29,18 +32,18 @@ public class SectionController implements SubwayController {
     }
 
     private int inputOrder() {
-        System.out.println("## 순서를 입력하세요");
+        System.out.println(INPUT_ORDER_MESSAGE);
         return inputView.inputNumber();
     }
 
     private Station inputRegisterStation() {
-        System.out.println("## 역이름을 입력하세요");
+        System.out.println(INPUT_STATION_MESSAGE);
         String stationName = inputView.input();
         return stationRepository.findBy(stationName);
     }
 
     private Line inputRegisterLine() {
-        System.out.println("노선을 입력하세요.");
+        System.out.println(INPUT_LINE_MESSAGE);
         String lineName = inputView.input();
         return lineRepository.findBy(lineName);
     }
@@ -50,22 +53,18 @@ public class SectionController implements SubwayController {
 
         Line line = inputDeleteLine();
 
-        if (!line.canRemoveStation()) {
-            throw new CannotRemoveException(line);
-        }
-
-        lineRepository.deleteLineByName(line.toString());
-
+        Station station = inputDeleteStation();
+        line.removeStation(station);
     }
 
     private Station inputDeleteStation() {
-        System.out.println("삭제할 구간의 역이름을 입력하세요");
+        System.out.println(DELETE_STATION_MESSAGE);
         String stationName = inputView.input();
         return stationRepository.findBy(stationName);
     }
 
     private Line inputDeleteLine() {
-        System.out.println("삭제할 구간의 노선을 입력하세요.");
+        System.out.println(DELETE_LINE_MESSAGE);
         String lineName = inputView.input();
         return lineRepository.findBy(lineName);
     }
