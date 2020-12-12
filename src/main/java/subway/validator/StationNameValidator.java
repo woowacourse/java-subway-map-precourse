@@ -13,9 +13,9 @@ public class StationNameValidator extends Validator {
             String.format("역 이름은 %d글자 이상, %d글자 이하이어야 합니다. ", StationName.LENGTH_LOWER_BOUND,
                     StationName.LENGTH_UPPER_BOUND);
 
-    static final String NOT_KOREAN_ERROR = "역 이름은 한글만 입력 가능합니다.";
+    public static final String STATION_SUFFIX = "역";
 
-    private static final String STATION_SUFFIX = "역";
+    static final String NOT_KOREAN_ERROR = "역 이름은 한글만 입력 가능합니다.";
 
     private static final Pattern KOREAN_PATTERN = Pattern.compile("[가-힣]+");
 

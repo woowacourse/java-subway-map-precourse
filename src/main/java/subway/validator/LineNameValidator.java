@@ -13,9 +13,9 @@ public class LineNameValidator extends Validator {
             String.format("노선 이름은 %d글자 이상, %d글자 이하이어야 합니다. ", LineName.LENGTH_LOWER_BOUND,
                     LineName.LENGTH_UPPER_BOUND);
 
-    static final String NOT_KOREAN_OR_NUMBER_ERROR = "노선 이름은 한글 또는 숫자만 입력 가능합니다.";
+    public static final String LINE_SUFFIX = "선";
 
-    private static final String LINE_SUFFIX = "선";
+    static final String NOT_KOREAN_OR_NUMBER_ERROR = "노선 이름은 한글 또는 숫자만 입력 가능합니다.";
 
     private static final Pattern KOREAN_OR_NUMBER_PATTERN = Pattern.compile("([가-힣]?[0-9]?)+");
 
