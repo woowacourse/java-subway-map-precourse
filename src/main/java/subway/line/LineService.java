@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.line.validation.CheckRegisteredLine;
 import subway.line.view.LineInputView;
 import subway.line.view.LineOutputView;
 import subway.station.Station;
@@ -34,6 +35,11 @@ public class LineService {
     }
 
     public static void deleteLine(String lineName) {
-        LineRepository.deleteLineByName(lineName);
+        try {
+            CheckRegisteredLine.validation(lineName);
+            LineRepository.deleteLineByName(lineName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
