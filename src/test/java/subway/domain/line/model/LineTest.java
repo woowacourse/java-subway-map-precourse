@@ -22,7 +22,7 @@ class LineTest {
         assertThat(line).extracting("name").isEqualTo(name);
     }
 
-    @DisplayName("최소 호선이름 길이보다 호선이름이 짧을 경우 예외를 발생하는 기능을 테스트한다 ")
+    @DisplayName("최소 노선이름 길이보다 노선 름이 짧으면 예외를 던지는 기능을 테스트한다 ")
     @ParameterizedTest
     @ValueSource(strings = {
             "1", "2", "3"
