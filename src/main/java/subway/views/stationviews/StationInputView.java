@@ -1,4 +1,4 @@
-package subway.views.lineviews;
+package subway.views.stationviews;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package subway.views.lineviews;
+package subway.views.stationviews;
 
 enum StationMenu {
     STATION_INSERT("1", "역 등록"),
