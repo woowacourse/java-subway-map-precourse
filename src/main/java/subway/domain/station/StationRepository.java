@@ -1,8 +1,8 @@
 package subway.domain.station;
 
-import subway.domain.Line.Line;
 import subway.domain.Line.LineRepository;
 import subway.exception.AlreadyAddStationException;
+import subway.exception.CannotRemoveException;
 import subway.exception.StationNotFountException;
 
 import java.util.ArrayList;
@@ -31,12 +31,21 @@ public class StationRepository {
 
     public boolean deleteStation(String name) {  //기존
 
-        boolean result = stations.removeIf(station -> station.isSameName(name));
 
+        if (!canRemove(name)) {
+            throw new CannotRemoveException();
+        }
+
+        boolean result = stations.removeIf(station -> station.isSameName(name));
         if (!result) {
             throw new StationNotFountException(name);
         }
         return true;
+    }
+
+    private boolean canRemove(String name) {
+        Station station = findBy(name);
+        return station.canRemove();
     }
 
     public Station findBy(String string) {
