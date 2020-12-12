@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.line.model.Line;
 import subway.domain.line.model.LineRepository;
 
@@ -47,6 +48,27 @@ class LineServiceTest {
                         .usingElementComparatorOnFields("name")
                         .containsAll(expectedLines),
                 () -> assertThat(lines).hasSize(lineNumber)
+        );
+    }
+
+    @DisplayName("지하철 노선을 등록하는 기능을 테스트한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "경의선", "신분당선", "1호선", "2호선"
+    })
+    void testSave(String lineName) {
+        //when
+        Line line = new Line(lineName);
+
+        //when
+        LineService.save(line);
+
+        //then
+        List<Line> lines = LineRepository.lines();
+        assertAll(
+                () -> assertThat(lines).hasSize(1),
+                () -> assertThat(lines).usingElementComparatorOnFields("name")
+                        .contains(line)
         );
     }
 }

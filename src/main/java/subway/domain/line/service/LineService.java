@@ -9,4 +9,8 @@ public class LineService {
     public static List<Line> findAll() {
         return LineRepository.lines();
     }
+
+    public static void save(Line line) {
+        LineRepository.addLine(line);
+    }
 }
