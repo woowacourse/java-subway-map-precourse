@@ -9,6 +9,7 @@ import static subway.view.OutputView.*;
 
 public class StationRepository {
     private static final String STATION_DUPLICATE_WARN = "역 이름은 중복이 되어서는 안됩니다.\n";
+    private static final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 이름입니다.\n";
     private static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
@@ -25,7 +26,10 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        //이름으로 station 검색
+        Station findStation = findStationByName(name);
+        if (findStation == null) {
+            warnMessage(STATION_NOT_EXIST_WARN);
+        }
         //해당 station 노선 등록 확인
         return stations.remove(station);
     }
