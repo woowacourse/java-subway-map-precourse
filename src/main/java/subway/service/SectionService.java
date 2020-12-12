@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
@@ -7,7 +8,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class SectionService implements InputInterface, FeatureInterface {
+public class SectionService implements InputInterface, FeatureChoiceInterface, FeatureInterface {
     public static void manageSection(Scanner scanner) {
         SectionService sectionService = new SectionService();
 
@@ -16,7 +17,7 @@ public class SectionService implements InputInterface, FeatureInterface {
             OutputView.printSectionManagementScreen();
             String sectionInput = scanner.next();
             if (sectionService.isInput(sectionInput)) {
-                sectionService.chooseFeature(sectionInput);
+                sectionService.chooseFeature(sectionInput, scanner);
                 break;
             }
             OutputView.printInvalidFeatureChoiceException();
@@ -35,7 +36,7 @@ public class SectionService implements InputInterface, FeatureInterface {
     }
 
     @Override
-    public void chooseFeature(String input) {
+    public void chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             // TODO: 구간 등록 기능 구현
             return;
@@ -47,5 +48,15 @@ public class SectionService implements InputInterface, FeatureInterface {
         if (input.equals(InputType.INPUT_BACK.getInput())) {
             return;
         }
+    }
+
+    @Override
+    public void add(Scanner scanner) {
+
+    }
+
+    @Override
+    public void delete(Scanner scanner) {
+
     }
 }

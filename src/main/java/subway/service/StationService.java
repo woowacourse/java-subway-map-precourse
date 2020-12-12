@@ -2,6 +2,7 @@ package subway.service;
 
 import subway.domain.Station;
 import subway.repository.StationRepository;
+import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.type.StationType;
@@ -9,7 +10,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class StationService implements FeatureInterface {
+public class StationService implements FeatureChoiceInterface, FeatureInterface {
     public static void initializeStations() {
         StationRepository.addStation(new Station(StationType.EDUCATION_UNIVERSITY.getStation()));
         StationRepository.addStation(new Station(StationType.GANGNAM.getStation()));
@@ -29,7 +30,7 @@ public class StationService implements FeatureInterface {
             OutputView.printStationManagementScreen();
             String stationInput = scanner.next();
             if (inputService.isInput(stationInput)) {
-                stationService.chooseFeature(stationInput);
+                stationService.chooseFeature(stationInput, scanner);
                 break;
             }
             OutputView.printInvalidFeatureChoiceException();
@@ -37,7 +38,7 @@ public class StationService implements FeatureInterface {
     }
 
     @Override
-    public void chooseFeature(String input) {
+    public void chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             // TODO: 역 등록 기능 구현
             return;
@@ -53,5 +54,15 @@ public class StationService implements FeatureInterface {
         if (input.equals(InputType.INPUT_BACK.getInput())) {
             return;
         }
+    }
+
+    @Override
+    public void add(Scanner scanner) {
+
+    }
+
+    @Override
+    public void delete(Scanner scanner) {
+
     }
 }

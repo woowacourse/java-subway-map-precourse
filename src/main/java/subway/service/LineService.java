@@ -2,6 +2,7 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.repository.LineRepository;
+import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.type.LineType;
@@ -9,7 +10,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class LineService implements FeatureInterface {
+public class LineService implements FeatureChoiceInterface, FeatureInterface {
     public static void initializeLines() {
         LineRepository.addLine(new Line(LineType.TWO.getLine()));
         LineRepository.addLine(new Line(LineType.THREE.getLine()));
@@ -25,7 +26,7 @@ public class LineService implements FeatureInterface {
             OutputView.printLineManagementScreen();
             String lineInput = scanner.next();
             if (inputService.isInput(lineInput)) {
-                lineService.chooseFeature(lineInput);
+                lineService.chooseFeature(lineInput, scanner);
                 break;
             }
             OutputView.printInvalidFeatureChoiceException();
@@ -33,7 +34,7 @@ public class LineService implements FeatureInterface {
     }
 
     @Override
-    public void chooseFeature(String input) {
+    public void chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             // TODO: 노선 등록 기능 구현
             return;
@@ -49,5 +50,15 @@ public class LineService implements FeatureInterface {
         if (input.equals(InputType.INPUT_BACK.getInput())) {
             return;
         }
+    }
+
+    @Override
+    public void add(Scanner scanner) {
+
+    }
+
+    @Override
+    public void delete(Scanner scanner) {
+
     }
 }

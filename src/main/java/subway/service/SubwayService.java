@@ -3,14 +3,14 @@ package subway.service;
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
-import subway.service.abstraction.feature.SubwayFeatureInterface;
+import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class SubwayService implements InputInterface, SubwayFeatureInterface {
+public class SubwayService implements InputInterface, FeatureChoiceInterface {
     public static void manageSubway(Scanner scanner) {
         SubwayService subwayService = new SubwayService();
 
@@ -21,7 +21,7 @@ public class SubwayService implements InputInterface, SubwayFeatureInterface {
                 break;
             }
             if (subwayService.isInput(mainInput)) {
-                subwayService.chooseSubwayFeature(mainInput, scanner);
+                subwayService.chooseFeature(mainInput, scanner);
                 continue;
             }
             OutputView.printInvalidFeatureChoiceException();
@@ -47,7 +47,7 @@ public class SubwayService implements InputInterface, SubwayFeatureInterface {
     }
 
     @Override
-    public void chooseSubwayFeature(String input, Scanner scanner) {
+    public void chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             StationController.startStation(scanner);
             return;
