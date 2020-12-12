@@ -1,6 +1,6 @@
 package subway.service;
 
-import subway.question.BaseQuestion;
+import subway.option.BaseOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -9,25 +9,29 @@ import java.util.List;
 public class BaseService {
     private static final String ERROR_INVALID_CHOICE = "선택할 수 없는 기능입니다.";
 
-    public static void view(List<BaseQuestion> questionList, String header) {
+    public static void view(List<BaseOption> optionList, String header) {
         try {
-            OutputView.printQuestionHeader(header);
-            OutputView.printQuestions(questionList.stream().map(BaseQuestion::getOption));
-            OutputView.printChooseOptionMessage();
-            selectedQuestion(questionList, InputView.getAnswer()).nextAction();
+            showSelectionOptionsScreen(header, optionList);
+            executeNextActionBySelectedOption(optionList, InputView.getAnswer());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            view(questionList, header);
+            view(optionList, header);
         }
     }
 
-    private static BaseQuestion selectedQuestion(List<BaseQuestion> questionList, String inputCode) {
-        return findByAnswerCode(questionList, inputCode);
+    private static void showSelectionOptionsScreen(String header, List<BaseOption> optionList) {
+        OutputView.printHeader(header);
+        OutputView.printQuestionOptions(optionList.stream().map(BaseOption::getOption));
+        OutputView.printChooseOptionMessage();
     }
 
-    private static BaseQuestion findByAnswerCode(List<BaseQuestion> questionList, String inputCode) {
-        return questionList.stream()
-                .filter(question -> question.hasAnswerCode(inputCode))
+    private static void executeNextActionBySelectedOption(List<BaseOption> optionList, String inputCode) {
+        findByCode(optionList, inputCode).nextAction();
+    }
+
+    private static BaseOption findByCode(List<BaseOption> optionList, String inputCode) {
+        return optionList.stream()
+                .filter(option -> option.hasCode(inputCode))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_CHOICE));
     }

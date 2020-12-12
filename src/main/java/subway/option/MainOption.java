@@ -1,11 +1,11 @@
-package subway.question;
+package subway.option;
 
 import subway.service.LineService;
 import subway.service.MainService;
 import subway.service.SectionService;
 import subway.service.StationService;
 
-public enum MainQuestion implements BaseQuestion {
+public enum MainOption implements BaseOption {
     TO_STATION_VIEW("1. 역 관리", "1") {
         @Override
         public void nextAction() {
@@ -39,16 +39,11 @@ public enum MainQuestion implements BaseQuestion {
 
     public static final String HEADER = "## 메인 화면";
     private final String option;
-    private final String answerCode;
+    private final String code;
 
-    MainQuestion(String option, String answerCode) {
+    MainOption(String option, String code) {
         this.option = option;
-        this.answerCode = answerCode;
-    }
-
-    @Override
-    public String getHeader() {
-        return HEADER;
+        this.code = code;
     }
 
     @Override
@@ -57,7 +52,7 @@ public enum MainQuestion implements BaseQuestion {
     }
 
     @Override
-    public boolean hasAnswerCode(String inputCode) {
-        return this.answerCode.equals(inputCode);
+    public boolean hasCode(String inputCode) {
+        return this.code.equals(inputCode);
     }
 }

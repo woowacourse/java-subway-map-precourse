@@ -1,9 +1,9 @@
-package subway.question;
+package subway.option;
 
 import subway.service.LineService;
 import subway.service.MainService;
 
-public enum LineQuestion implements BaseQuestion {
+public enum LineOption implements BaseOption {
     REGISTER_STATION("1. 노선 등록", "1") {
         @Override
         public void nextAction() {
@@ -34,16 +34,11 @@ public enum LineQuestion implements BaseQuestion {
 
     public static final String HEADER = "## 노선 관리 화면";
     private final String option;
-    private final String answerCode;
+    private final String code;
 
-    LineQuestion(String option, String answerCode) {
+    LineOption(String option, String code) {
         this.option = option;
-        this.answerCode = answerCode;
-    }
-
-    @Override
-    public String getHeader() {
-        return HEADER;
+        this.code = code;
     }
 
     @Override
@@ -52,7 +47,7 @@ public enum LineQuestion implements BaseQuestion {
     }
 
     @Override
-    public boolean hasAnswerCode(String inputCode) {
-        return this.answerCode.equals(inputCode);
+    public boolean hasCode(String inputCode) {
+        return this.code.equals(inputCode);
     }
 }

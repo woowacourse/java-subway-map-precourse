@@ -2,7 +2,7 @@ package subway.service;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.question.StationQuestion;
+import subway.option.StationOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -13,7 +13,7 @@ public class StationService extends BaseService {
     private static final String ERR_UNREGISTERED_STATION = "등록되지 않은 역입니다.";
 
     public static void main () {
-        view(Arrays.asList(StationQuestion.values()), StationQuestion.HEADER);
+        view(Arrays.asList(StationOption.values()), StationOption.HEADER);
     }
 
     public static void register() {

@@ -35,12 +35,12 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printQuestionHeader(String header) {
+    public static void printHeader(String header) {
         printEnter();
         println(header);
     }
 
-    public static void printQuestions(Stream<String> questions) {
+    public static void printQuestionOptions(Stream<String> questions) {
         questions.forEach(OutputView::println);
     }
 

@@ -4,7 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.question.SectionQuestion;
+import subway.option.SectionOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -16,7 +16,7 @@ public class SectionService extends BaseService{
     private static final String ERR_NO_STATION_ON_LINE = "노선에 입력한 역이 없습니다.";
 
     public static void main () {
-        view(Arrays.asList(SectionQuestion.values()), SectionQuestion.HEADER);
+        view(Arrays.asList(SectionOption.values()), SectionOption.HEADER);
     }
     public static void register() {
         OutputView.printRegisterSectionLineNameQuestion();
