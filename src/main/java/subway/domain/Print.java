@@ -63,12 +63,8 @@ public class Print {
         System.out.printf(Constant.HASH + Constant.ENTER_ORDER + "%n");
     }
 
-    public static void setLineToDeleteSection() {
-        System.out.printf(Constant.HASH + Constant.ENTER_TO_DELETE_SECTION + "%n", Constant.LINE);
-    }
-
-    public static void setStationToDeleteSection() {
-        System.out.printf(Constant.HASH + Constant.ENTER_TO_DELETE_SECTION + "%n", Constant.STATION);
+    public static void setLineOrStationToDeleteSection(String lineOrStation) {
+        System.out.printf(Constant.HASH + Constant.ENTER_TO_DELETE_SECTION + "%n", lineOrStation);
     }
 
     public static void addOrDeleteSectionDoneMessage(String addOrDelete) {
