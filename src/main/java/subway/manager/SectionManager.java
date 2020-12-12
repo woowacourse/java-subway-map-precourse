@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import utils.VerifyInput;
 import view.InputView;
 import view.OutputView;
 
@@ -42,9 +43,11 @@ public class SectionManager {
         if (command.equals(SectionButton.BACK.getSymbol())) {
             MainManager.execute();
             return;
-        } else if (command.equals(SectionButton.REGISTER.getSymbol())) {
+        }
+        if (command.equals(SectionButton.REGISTER.getSymbol())) {
             registerSection();
-        } else if (command.equals(SectionButton.DELETE.getSymbol())) {
+        }
+        if (command.equals(SectionButton.DELETE.getSymbol())) {
             deleteSection();
         }
         MainManager.execute();
@@ -63,6 +66,9 @@ public class SectionManager {
 
     public static void deleteSection() {
         String lineName = InputView.getDeleteSectionLineName();
+        if (!VerifyInput.deletableSection(lineName)) {
+            return;
+        }
         Line currentLine = LineRepository.getLineNamed(lineName);
         String stationName = InputView.getDeleteSectionStationName(currentLine);
         Station currentStation = StationRepository.getStationNamed(stationName);
