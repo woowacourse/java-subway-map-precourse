@@ -11,29 +11,35 @@ import subway.view.OutputView;
 import java.util.Arrays;
 
 public class LineService extends BaseService {
+    private static final String REGISTER_LINE_QUESTION = "## 등록할 노선 이름을 입력하세요.";
+    private static final String START_STATION_QUESTION = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String END_STATION_QUESTION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String REGISTER_LINE_SUCCESS = "지하철 노선이 등록되었습니다.";
+    private static final String DELETE_LINE_QUESTION = "## 삭제할 노선 이름을 입력하세요.";
     private static final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
+    private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.";
 
     public static void main () {
         view(Arrays.asList(LineOption.values()), LineOption.HEADER);
     }
 
     public static void register() {
-        OutputView.printRegisterLineQuestion();
+        OutputView.println(REGISTER_LINE_QUESTION);
         String lineName = InputView.getLineName();
-        OutputView.printLineStartStationQuestion();
+        OutputView.printInfo(START_STATION_QUESTION);
         Station startStation = StationRepository.getStation(InputView.getStationName());
-        OutputView.printLineEndStationQuestion();
+        OutputView.println(END_STATION_QUESTION);
         Station endStation = StationRepository.getStation(InputView.getStationName());
         LineRepository.addLine(new Line(lineName, startStation, endStation));
-        OutputView.printRegisterLineSuccess();
+        OutputView.printInfo(REGISTER_LINE_SUCCESS);
     }
 
     public static void delete() {
-        OutputView.printDeleteLineQuestion();
+        OutputView.println(DELETE_LINE_QUESTION);
         if (!LineRepository.deleteLineByName(InputView.getLineName())) {
             throw new IllegalArgumentException(ERR_UNREGISTERED_LINE);
         }
-        OutputView.printDeleteLineSuccess();
+        OutputView.printInfo(DELETE_LINE_SUCCESS);
     }
     public static void printSubwayLineList() {
         OutputView.printSubwayLineList(LineRepository.lines());

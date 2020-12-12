@@ -11,19 +11,23 @@ import java.util.Arrays;
 public class StationService extends BaseService {
     private static final String ERR_LINE_PASSED_STATION = "역을 지나는 노선이 있습니다.";
     private static final String ERR_UNREGISTERED_STATION = "등록되지 않은 역입니다.";
+    private static final String REGISTER_STATION_QUESTION = "## 등록할 역 이름을 입력하세요.";
+    private static final String REGISTER_STATION_SUCCESS = "지하철 역이 등록되었습니다.";
+    private static final String DELETE_STATION_QUESTION = "## 삭제할 역 이름을 입력하세요.";
+    private static final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.";
 
     public static void main () {
         view(Arrays.asList(StationOption.values()), StationOption.HEADER);
     }
 
     public static void register() {
-        OutputView.printRegisterStationQuestion();
+        OutputView.println(REGISTER_STATION_QUESTION);
         StationRepository.addStation(new Station(InputView.getStationName()));
-        OutputView.printRegisterStationSuccess();
+        OutputView.printInfo(REGISTER_STATION_SUCCESS);
     }
 
     public static void delete() {
-        OutputView.printDeleteStationQuestion();
+        OutputView.println(DELETE_STATION_QUESTION);
         Station station = StationRepository.getStation(InputView.getStationName());
         if (station.isLinePassed()){
             throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
@@ -31,7 +35,7 @@ public class StationService extends BaseService {
         if (!StationRepository.deleteStation(station)) {
             throw new IllegalArgumentException(ERR_UNREGISTERED_STATION);
         }
-        OutputView.printDeleteStationSuccess();
+        OutputView.printInfo(DELETE_STATION_SUCCESS);
     }
 
     public static void printStationList() {
