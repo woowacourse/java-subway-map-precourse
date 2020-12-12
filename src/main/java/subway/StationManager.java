@@ -109,4 +109,8 @@ public class StationManager {
         }
         System.out.println(INFO_PREFIX + DELETION_FAIL_INFO_MESSAGE);
     }
+
+    public static void searchStation(Scanner scanner) {
+        SubwayManager.printStation();
+    }
 }

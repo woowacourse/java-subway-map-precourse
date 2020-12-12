@@ -15,6 +15,7 @@ public class SubwayManager {
     private static final String QUIT_OPTION = "Q. 종료";
     private static final String ASK_OPTION_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String INFO_PREFIX = "[INFO] ";
     private static final String ERROR_MESSAGE = "1~4 또는 Q 옵션 중 하나를 입력하세요";
     private static final int OPTION_MIN = 1;
     private static final int OPTION_MAX = 4;
@@ -95,5 +96,11 @@ public class SubwayManager {
 
     public static boolean deleteStation(String stationName) {
         return stationRepository.deleteStation(stationName);
+    }
+    
+    public static void printStation() {
+        for (Station station : stationRepository.stations()) {
+            System.out.println(INFO_PREFIX + station.getName());
+        }
     }
 }
