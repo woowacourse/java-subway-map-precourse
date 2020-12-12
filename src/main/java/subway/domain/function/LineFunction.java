@@ -21,6 +21,8 @@ public enum LineFunction {
                 new Station(DownwardTerminalStationName))
             )));
             OutputView.printSuccessToCreateLine();
+            // TODO - 디버깅용
+            System.out.println(LineRepository.lines());
         }
     },
     DELETE("2") {
@@ -29,6 +31,9 @@ public enum LineFunction {
             String lineName = InputView.inputLineToDelete(scanner);
             LineRepository.deleteLineByName(lineName);
             OutputView.printSuccessToDeleteLine();
+            // TODO - 디버깅용
+            System.out.println(LineRepository.lines());
+
         }
     },
     READ("3") {
