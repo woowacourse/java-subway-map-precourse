@@ -14,7 +14,6 @@ import java.util.List;
 
 public abstract class ManagementView {
     protected static final String FATAL_MENU_DATA_CRAHSED = "메뉴를 생성할 수 없습니다. ";
-    protected static final String SHARP_PREFIX = "## ";
     protected static final String VIEW_NAME = "관리 화면";
     protected static final String TO_CREATE_PREFIX = "등록할 ";
     protected static final String TO_DELETE_PREFIX = "삭제할 ";
@@ -70,25 +69,25 @@ public abstract class ManagementView {
     }
 
     public void printCreateDone() {
-        OutputView.printWithInfoPrefix(createMessage);
+        OutputView.printResponseMessage(createMessage);
     }
 
     public void printDeleteDone() {
-        OutputView.printWithInfoPrefix(deleteMessage);
+        OutputView.printResponseMessage(deleteMessage);
     }
 
     public String getNameToCreate() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + TO_CREATE_PREFIX + itemPrefix + REQUEST_MESSAGE);
+        return InputView.getStringWithMessage(TO_CREATE_PREFIX + itemPrefix + REQUEST_MESSAGE);
     }
 
     public String getNameToDelete() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + TO_DELETE_PREFIX + itemPrefix + REQUEST_MESSAGE);
+        return InputView.getStringWithMessage(TO_DELETE_PREFIX + itemPrefix + REQUEST_MESSAGE);
     }
 
     public void printAll(List<DTO> resultList) {
-        System.out.println(SHARP_PREFIX + itemPrefix + LIST);
+        OutputView.printResponseMessage(itemPrefix + LIST);
         for (DTO result : resultList) {
-            OutputView.printWithInfoPrefix(result.getName());
+            OutputView.printResponseMessage(result.getName());
         }
         newLine();
     }

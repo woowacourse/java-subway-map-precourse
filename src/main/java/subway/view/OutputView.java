@@ -21,30 +21,30 @@ public class OutputView {
     }
 
     public static void showMenu(Selections selections, String viewName) {
-        print(SHARP_PREFIX + viewName);
+        printWithSharpPrefix(viewName);
         for (Selection selection : selections.toList()) {
             System.out.println(String.format(MENU_FORMAT, selection.getValue(), selection.getDescription()));
         }
         newLine();
     }
 
-    public static void print(String string) {
-        System.out.println(string);
+    public static void printWithSharpPrefix(String string) {
+        System.out.println(SHARP_PREFIX + string);
     }
 
-    public static void printWithInfoPrefix(String string) {
+    public static void printResponseMessage(String string) {
         System.out.println(INFO_PREFIX + string);
     }
 
     public static void showSubwayMap(List<LineDTO> Lines) {
-        print(SUBWAY_MAP);
+        printWithSharpPrefix(SUBWAY_MAP);
 
         for (LineDTO line : Lines) {
-            OutputView.printWithInfoPrefix(line.getName());
-            printWithInfoPrefix(BORDERLINE);
+            OutputView.printResponseMessage(line.getName());
+            printResponseMessage(BORDERLINE);
             line.getStations().stream()
                     .map(StationDTO::getName)
-                    .forEach(OutputView::printWithInfoPrefix);
+                    .forEach(OutputView::printResponseMessage);
             newLine();
         }
     }

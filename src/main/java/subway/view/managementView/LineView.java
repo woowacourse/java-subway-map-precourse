@@ -39,11 +39,11 @@ public class LineView extends ManagementView {
     }
 
     public String getUplineStationName() {
-        return InputView.getNameWithMessage(TO_CREATE_PREFIX + REQUEST_UPLINE_NAME);
+        return InputView.getStringWithMessage(TO_CREATE_PREFIX + REQUEST_UPLINE_NAME);
     }
 
     public String getDownlineStationName() {
-        return InputView.getNameWithMessage(TO_CREATE_PREFIX + REQUEST_DOWNLINE_NAME);
+        return InputView.getStringWithMessage(TO_CREATE_PREFIX + REQUEST_DOWNLINE_NAME);
     }
 
 }

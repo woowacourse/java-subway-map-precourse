@@ -40,8 +40,8 @@ public class InputView {
         return selections.searchByValue(string);
     }
 
-    public static String getNameWithMessage(String requestMessage) {
-        System.out.println(requestMessage);
+    public static String getStringWithMessage(String requestMessage) {
+        System.out.println(SHARP_PREFIX + requestMessage);
         String name = deleteWhiteSpaces(scanner.nextLine());
         isNotEmptyStringOrThrowException(name);
 

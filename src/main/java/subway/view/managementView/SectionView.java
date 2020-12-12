@@ -45,29 +45,28 @@ public class SectionView extends ManagementView {
     }
 
     public String getStationNameToCreate() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + STATION_PREFIX + REQUEST_MESSAGE);
+        return InputView.getStringWithMessage(STATION_PREFIX + REQUEST_MESSAGE);
     }
 
     public String getStationNameToDelete() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + TO_DELETE_PREFIX + SECTION_PREFIX + STATION_PREFIX + REQUEST_MESSAGE);
+        return InputView.getStringWithMessage(TO_DELETE_PREFIX + SECTION_PREFIX + STATION_PREFIX + REQUEST_MESSAGE);
     }
 
     public String getLineNameToCreate() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + LINE_PREFIX + REQUEST_MESSAGE);
+        return InputView.getStringWithMessage(LINE_PREFIX + REQUEST_MESSAGE);
     }
 
     public String getLineNameToDelete() {
-        return InputView.getNameWithMessage(SHARP_PREFIX + TO_DELETE_PREFIX + SECTION_PREFIX + LINE_PREFIX + REQUEST_MESSAGE);
+        return InputView.getStringWithMessage(TO_DELETE_PREFIX + SECTION_PREFIX + LINE_PREFIX + REQUEST_MESSAGE);
     }
 
     public int getIndex() {
-        String rawString = InputView.getNameWithMessage(SHARP_PREFIX + INDEX_PREFIX + REQUEST_MESSAGE);
+        String rawString = InputView.getStringWithMessage(INDEX_PREFIX + REQUEST_MESSAGE);
         try {
             return Integer.parseInt(rawString);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_INVALID_VALUE);
         }
-
     }
 
 }
