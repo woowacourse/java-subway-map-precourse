@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.List;
+
 public class printScreen {
 
     public static void printMainScreen() {
@@ -24,7 +26,19 @@ public class printScreen {
         System.out.println("## 원하는 기능을 선택하세요.");
     }
 
-    public static void printInputStationName() {
+    public static void printAddStation() {
         System.out.println("## 등록할 역 이름을 입력하세요.");
+    }
+
+    public static void printDeleteStation() {
+        System.out.println("## 삭제할 역 이름을 입력하세요.");
+    }
+
+    public static void printStationList(List<Station> stations) {
+        System.out.println("## 역 목록");
+
+        for (int i = 0; i < stations.size(); i++) {
+            System.out.println("[INFO] "+ stations.get(i));
+        }
     }
 }
