@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import subway.domain.LineRepository;
 
-public class LineScreen implements SubwayScreen {
+class LineScreen implements SubwayScreen {
     private static final String LINE_SCREEN_MANAGER_MENU = "\n## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB. 돌아가기";
     private static final String MESSAGE_ADD_LINE_INPUT_LINE_NAME = "\n## 등록할 노선 이름을 입력하세요.";
     private static final String MESSAGE_ADD_LINE_INPUT_UP_END_STATION_OF_LINE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
@@ -71,10 +71,12 @@ public class LineScreen implements SubwayScreen {
         if (lineScreenInput.equals(LINE_SCREEN_SELECT_ADD)) {
             System.out.println(MESSAGE_ADD_LINE_INPUT_LINE_NAME);
             String lineName = scanner.nextLine();
+            LineRepository.validateLineName(lineName);
             System.out.println(MESSAGE_ADD_LINE_INPUT_UP_END_STATION_OF_LINE);
             String upEndStation = scanner.nextLine();
             System.out.println(MESSAGE_ADD_LINE_INPUT_DOWN_END_STATION_OF_LINE);
             String downEndStation = scanner.nextLine();
+            LineRepository.validateEndStationNames(upEndStation, downEndStation);
             LineRepository.initializeLine(lineName, upEndStation, downEndStation);
         }
     }

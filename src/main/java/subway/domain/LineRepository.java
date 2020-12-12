@@ -23,22 +23,16 @@ public class LineRepository {
     }
 
     public static void initializeLine(String lineName, String upEndStationName, String downEndStationName) {
-        validateLineName(lineName);
         Line newLine = new Line(lineName);
-
-        validateEndStationNames(upEndStationName, downEndStationName);
-
         Stream<Station> stationStream = StationRepository.stations().stream();
         ArrayList<Station> bothEndStations = stationStream.filter(station -> station.getName().
             equals(upEndStationName) || station.getName().equals(downEndStationName)).
             collect(Collectors.toCollection(ArrayList<Station>::new));
-
         newLine.initializeEndStations(bothEndStations.get(0), bothEndStations.get(1));
         addLine(newLine);
     }
 
-    private static void validateEndStationNames(String upEndStationName,
-        String downEndStationName) {
+    public static void validateEndStationNames(String upEndStationName, String downEndStationName) {
         if (upEndStationName.equals(downEndStationName)) {
             throw new IllegalArgumentException(ERROR_SAME_STATION_NAME);
         }
@@ -54,7 +48,7 @@ public class LineRepository {
             station.getName().equals(downEndStationName)).count() == UP_DOWN_END_STATION_TOTAL;
     }
 
-    private static void validateLineName(String lineName) {
+    public static void validateLineName(String lineName) {
         if (lineName.length() < LINE_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException(ERROR_INVALID_LINE_NAME_LENGTH);
         }
