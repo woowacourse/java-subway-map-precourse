@@ -22,14 +22,8 @@ public class InputView {
         }
     }
 
-    public static String receiveStationName() {
-        try {
-            String stationName = SCANNER.nextLine();
-            StationValidator.validateStationName(stationName);
-            return stationName;
-        } catch (NameFormatException e) {
-            System.out.println(e.getMessage());
-            return receiveStationName();
-        }
+    public static String receiveStationName(String message) {
+        System.out.println(message);
+        return SCANNER.nextLine();
     }
 }

@@ -10,23 +10,18 @@ public class MainMenu {
         String selection = InputView.receiveMenu("Main");
 
         if (selection.equals("1")) {
-            StationMenu.print();
-            return;
+            StationMenu.goToStationMenu();
         }
         if (selection.equals("2")) {
             LineMenu.print();
-            return;
         }
         if (selection.equals("3")) {
             SectionMenu.print();
-            return;
         }
         if (selection.equals("4")) {
             MapScreen.print();
-            return;
         }
         if (selection.equals("Q")) {
-            return;
         }
     }
 }

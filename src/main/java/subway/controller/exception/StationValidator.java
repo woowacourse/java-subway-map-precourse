@@ -3,9 +3,10 @@ package subway.controller.exception;
 import subway.domain.StationRepository;
 
 public class StationValidator {
-    public static void validateStationName(String stationName) {
+    public static void validateStation(String stationName) {
         validateFormat(stationName);
         validateLength(stationName);
+        validateDuplication(stationName);
     }
 
     private static void validateFormat(String stationName) {
