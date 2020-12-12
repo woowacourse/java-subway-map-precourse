@@ -29,9 +29,9 @@ public class SubwayManager {
     }
 
     public State setStationState(State state, Scanner scanner) {
-        state = addStation(state, scanner);
-        state = removeStation(state, scanner);
-        state = inquiryStation(state);
+        state = StationManager.addStation(state, scanner);
+        state = StationManager.removeStation(state, scanner);
+        state = StationManager.inquiryStation(state);
 
         return state;
     }
@@ -101,47 +101,7 @@ public class SubwayManager {
         return state;
     }
 
-    public State addStation(State state, Scanner scanner) {
-        if (state.equals(State.STATION_ADD)) {
-            OutputView.printInputStation();
-            addStation(InputView.inputStationName(scanner));
 
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
-
-    public void addStation(String name) {
-        StationRepository.addStation(new Station(name));
-        OutputView.printRegisteredStationMessage();
-    }
-
-    public State removeStation(State state, Scanner scanner) {
-        if (state.equals(State.STATION_REMOVE)) {
-            OutputView.printInputRemoveStation();
-            removeStation(InputView.inputStationName(scanner));
-
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
-
-    public void removeStation(String name) {
-        StationRepository.deleteStation(name);
-        OutputView.printRemovedStationMessage();
-    }
-
-    public State inquiryStation(State state) {
-        if (state.equals(State.STATION_INQUIRY)) {
-            OutputView.printStationList(StationRepository.stations());
-
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
 
     public State addLine(State state, Scanner scanner) {
         if (state.equals(State.LINE_ADD)) {
