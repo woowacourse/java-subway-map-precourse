@@ -17,8 +17,8 @@ public class StationService extends BaseService {
     private static final String DELETE_STATION_QUESTION = "## 삭제할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.";
 
-    public static void main () {
-        view(Arrays.asList(StationOption.values()), HEADER);
+    public static void view() {
+        getUserChoiceWithinOptionList(Arrays.asList(StationOption.values()), HEADER);
     }
 
     public static void register() {

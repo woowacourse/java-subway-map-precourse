@@ -23,8 +23,8 @@ public class SectionService extends BaseService {
     private static final String ERR_NO_STATION_ON_LINE = "노선에 입력한 역이 없습니다.";
     private static final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.";
 
-    public static void main() {
-        view(Arrays.asList(SectionOption.values()), HEADER);
+    public static void view() {
+        getUserChoiceWithinOptionList(Arrays.asList(SectionOption.values()), HEADER);
     }
 
     public static void register() {

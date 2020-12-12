@@ -8,20 +8,20 @@ public enum SectionOption implements BaseOption {
         @Override
         public void nextAction() {
             SectionService.register();
-            MainService.main();
+            MainService.view();
         }
     },
     DELETE_SECTION("2. 구간 삭제", "2") {
         @Override
         public void nextAction() {
             SectionService.delete();
-            MainService.main();
+            MainService.view();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction() {
-            MainService.main();
+            MainService.view();
         }
     };
 

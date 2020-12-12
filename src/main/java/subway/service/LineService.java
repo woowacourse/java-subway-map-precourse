@@ -20,8 +20,8 @@ public class LineService extends BaseService {
     private static final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
     private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.";
 
-    public static void main () {
-        view(Arrays.asList(LineOption.values()), HEADER);
+    public static void view() {
+        getUserChoiceWithinOptionList(Arrays.asList(LineOption.values()), HEADER);
     }
 
     public static void register() {

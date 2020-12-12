@@ -9,13 +9,13 @@ import java.util.List;
 public class BaseService {
     private static final String ERROR_INVALID_CHOICE = "선택할 수 없는 기능입니다.";
 
-    public static void view(List<BaseOption> optionList, String header) {
+    public static void getUserChoiceWithinOptionList(List<BaseOption> optionList, String header) {
         try {
             showSelectionOptionsScreen(header, optionList);
             executeNextActionBySelectedOption(optionList, InputView.getAnswer());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            view(optionList, header);
+            getUserChoiceWithinOptionList(optionList, header);
         }
     }
 

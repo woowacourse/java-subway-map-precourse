@@ -9,26 +9,26 @@ public enum MainOption implements BaseOption {
     TO_STATION_VIEW("1. 역 관리", "1") {
         @Override
         public void nextAction() {
-            StationService.main();
+            StationService.view();
         }
     },
     TO_LINE_VIEW("2. 노선 관리", "2") {
         @Override
         public void nextAction() {
-            LineService.main();
+            LineService.view();
         }
     },
     TO_INTERVAL_VIEW("3. 구간 관리", "3") {
         @Override
         public void nextAction() {
-            SectionService.main();
+            SectionService.view();
         }
     },
     PRINT_SUBWAY_ROUTE("4. 지하철 노선도 출력", "4") {
         @Override
         public void nextAction() {
             MainService.printEntireSubwayLine();
-            MainService.main();
+            MainService.view();
         }
     },
     QUIT("Q. 종료", "Q") {
