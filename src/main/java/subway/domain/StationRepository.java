@@ -16,6 +16,16 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    static {
+        stations.add(new Station("교대역"));
+        stations.add(new Station("강남역"));
+        stations.add(new Station("역삼역"));
+        stations.add(new Station("남부터미널역"));
+        stations.add(new Station("양재역"));
+        stations.add(new Station("양재시민의숲역"));
+        stations.add(new Station("매봉역"));
+    }
+
     public static void addStation(Station station) {
         if (containsStation(station)) {
             throw new DuplicatedStationNameException(station.getName());
