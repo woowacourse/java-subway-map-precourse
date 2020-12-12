@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.Constant;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +15,19 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if(stations.contains(station)){
+            throw new IllegalArgumentException();
+        }
         stations.add(station);
     }
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static void printStations(){
+        for(int i=0; i<stations.size(); i++){
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, stations.get(i).getName()));
+        }
     }
 }
