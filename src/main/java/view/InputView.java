@@ -23,7 +23,7 @@ public class InputView {
             System.out.println();
             VerifyInput.functionSelect(choices, input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getFunctionSelect(choices);
         }
     }
@@ -37,7 +37,7 @@ public class InputView {
             VerifyInput.suffixStationName(input);
             VerifyInput.duplicateStationName(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterStationName();
         }
     }
@@ -50,7 +50,7 @@ public class InputView {
             Station station = VerifyInput.existStationName(input);
             VerifyInput.notIncludedAnyLinesIn(station);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getDeleteStationName();
         }
     }
@@ -64,7 +64,7 @@ public class InputView {
             VerifyInput.suffixLineName(input);
             VerifyInput.duplicateLineName(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterLineName();
         }
     }
@@ -77,7 +77,7 @@ public class InputView {
             Line line = VerifyInput.existLineName(input);
             VerifyInput.notIncludedAnyStationsIn(line);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getDeleteLineName();
         }
     }
@@ -89,7 +89,7 @@ public class InputView {
             System.out.println();
             VerifyInput.existStationName(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterLineNorthboundName();
         }
     }
@@ -102,7 +102,7 @@ public class InputView {
             VerifyInput.existStationName(input);
             VerifyInput.compareTerminalName(northboundName, input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterLineSouthboundName(northboundName);
         }
     }
@@ -114,7 +114,7 @@ public class InputView {
             System.out.println();
             VerifyInput.existLineName(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterSectionLineName();
         }
     }
@@ -126,7 +126,7 @@ public class InputView {
             System.out.println();
             VerifyInput.existStationName(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterSectionStationName();
         }
     }
@@ -143,7 +143,7 @@ public class InputView {
             bufferFlush();
             OutputView.printError(OutputView.MESSAGE_ERROR_NOT_POSITIVE_INTEGER);
             return getRegisterSectionOrder(line);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getRegisterSectionOrder(line);
         }
     }
@@ -156,7 +156,7 @@ public class InputView {
             VerifyInput.existLineName(input);
             VerifyInput.deletableSection(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getDeleteSectionLineName();
         }
     }
@@ -168,7 +168,7 @@ public class InputView {
             System.out.println();
             VerifyInput.existStationName(line, input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return getDeleteSectionStationName(line);
         }
     }
