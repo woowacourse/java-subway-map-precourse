@@ -2,7 +2,9 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.exceptions.DuplicatedLineNameException;
+import subway.exceptions.DuplicatedStartAndEndStationNameException;
 import subway.view.SectionManagementViewState;
 
 import java.util.List;
@@ -25,11 +27,16 @@ public class LineController {
         return LineRepository.getLines();
     }
 
-    public void addLine(String name) throws DuplicatedLineNameException {
+    public void addLine(String name, Station startStation, Station endStation) throws Exception {
         if(checkIfLineExist(name)) {
             throw new DuplicatedLineNameException();
         }
-        LineRepository.addLine(new Line(name));
+        if(startStation.getName() == endStation.getName()){
+            throw new DuplicatedStartAndEndStationNameException();
+        }
+        Line line = LineRepository.getLine(name).get();
+        line.addStation(startStation);
+        line.addStation(endStation);
     }
 
     public boolean checkIfLineExist(String name){
