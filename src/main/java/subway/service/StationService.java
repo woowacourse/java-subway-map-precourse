@@ -15,16 +15,6 @@ import subway.view.output.TextView;
 import java.util.Scanner;
 
 public class StationService implements FeatureChoiceInterface, FeatureInterface {
-    public static void initializeStations() {
-        StationRepository.addStation(new Station(StationType.EDUCATION_UNIVERSITY.getStation()));
-        StationRepository.addStation(new Station(StationType.GANGNAM.getStation()));
-        StationRepository.addStation(new Station(StationType.YEOKSAM.getStation()));
-        StationRepository.addStation(new Station(StationType.NAMBU_BUS_TERMINAL.getStation()));
-        StationRepository.addStation(new Station(StationType.YANGJAE.getStation()));
-        StationRepository.addStation(new Station(StationType.YANGJAE_CITIZENS_FOREST.getStation()));
-        StationRepository.addStation(new Station(StationType.MAEBONG.getStation()));
-    }
-
     public static void manageStation(Scanner scanner) {
         InputService inputService = new InputService();
         StationService stationService = new StationService();

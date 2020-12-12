@@ -12,12 +12,6 @@ import subway.view.output.ScreenView;
 import java.util.Scanner;
 
 public class LineService implements FeatureChoiceInterface, FeatureInterface {
-    public static void initializeLines() {
-        LineRepository.addLine(new Line(LineType.TWO.getLine()));
-        LineRepository.addLine(new Line(LineType.THREE.getLine()));
-        LineRepository.addLine(new Line(LineType.SHINBUNDANG.getLine()));
-    }
-
     public static void manageLine(Scanner scanner){
         InputService inputService = new InputService();
         LineService lineService = new LineService();

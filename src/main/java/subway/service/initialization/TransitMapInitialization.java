@@ -1,4 +1,4 @@
-package subway.service;
+package subway.service.initialization;
 
 import subway.domain.Line;
 import subway.domain.Station;
@@ -10,7 +10,7 @@ import subway.type.StationType;
 
 import java.util.*;
 
-public class TransitMapService {
+public class TransitMapInitialization {
     private static final List<Station> stations = StationRepository.stations();
 
     public static void initializeTransitMaps() {
