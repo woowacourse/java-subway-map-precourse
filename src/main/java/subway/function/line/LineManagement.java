@@ -1,11 +1,14 @@
 package subway.function.line;
 
 import java.util.Scanner;
+import subway.commonprint.CommonPrinter;
+import subway.domain.LineStationMappingRepository;
 import subway.main.UserSelections;
 
 public class LineManagement {
     public static void start(Scanner scanner) {
         PrintLineManagementScreen.printLineManagementScreen();
+        CommonPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
         if (userInput.equals(UserSelections.GO_BACK)) {
             return;
@@ -16,7 +19,7 @@ public class LineManagement {
 
     private static void resolveUserSelection(LineManagementSelectionType type, Scanner scanner) {
         if (type == LineManagementSelectionType.LINE_REGISTRATION) {
-            //registerNewLine(scanner);
+            registerNewLine(scanner);
         }
         if (type == LineManagementSelectionType.LINE_DELETE) {
             //deleteLine(scanner);
@@ -27,7 +30,19 @@ public class LineManagement {
     }
 
     private static void registerNewLine(Scanner scanner) {
+        LineManagementPrinter.printNewLineNameInputMessage();
+        String newLineNameInput = scanner.nextLine();
 
+        LineManagementPrinter.printLineUpEndStationNameInputMessage();
+        String upEndStationNameInput = scanner.nextLine();
+
+        LineManagementPrinter.printLineDownEndStationNameInputMessage();
+        String downEndStationNameInput = scanner.nextLine();
+
+        LineStationMappingRepository
+            .createNewLine(newLineNameInput, upEndStationNameInput, downEndStationNameInput);
+
+        LineManagementPrinter.printNewLineRegistrationSuccessMessage();
     }
 
     private static LineManagementSelectionType getLineManagementSelectionType(String userInput) {

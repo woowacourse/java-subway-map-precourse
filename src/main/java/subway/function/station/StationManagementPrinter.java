@@ -2,7 +2,7 @@ package subway.function.station;
 
 import subway.commonprint.Prefix;
 
-public class StationPrinter {
+public class StationManagementPrinter {
     private static final String USER_INPUT_STATION_REGISTRATION_MESSAGE
         = "\n## 등록할 역 이름을 입력하세요.";
     private static final String REGISTER_NEW_STATION_SUCCESS_MESSAGE

@@ -2,7 +2,7 @@ package subway.function.line;
 
 import subway.commonprint.Prefix;
 
-public class LinePrinter {
+public class LineManagementPrinter {
     private static final String NEW_LINE_NAME_INPUT_MESSAGE
         = "\n## 등록할 노선 이름을 입력하세요.";
     private static final String NEW_LINE_UP_END_STATION_NAME_INPUT_MESSAGE

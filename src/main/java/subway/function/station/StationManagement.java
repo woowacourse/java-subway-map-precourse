@@ -46,17 +46,17 @@ public class StationManagement {
     }
 
     private static void deleteStation(Scanner scanner) {
-        StationPrinter.printUserInputStationToDeleteMessage();
+        StationManagementPrinter.printUserInputStationToDeleteMessage();
         String stationName = scanner.nextLine();
         StationRepository.deleteStation(stationName);
-        StationPrinter.printDeleteStationSuccessMessage();
+        StationManagementPrinter.printDeleteStationSuccessMessage();
     }
 
     private static void registerNewStation(Scanner scanner) {
-        StationPrinter.printUserInputStationRegistrationMessage();
+        StationManagementPrinter.printUserInputStationRegistrationMessage();
         String newStationName = scanner.nextLine();
         StationRepository.addStation(new Station(newStationName));
-        StationPrinter.printRegisterNewStationSuccessMessage();
+        StationManagementPrinter.printRegisterNewStationSuccessMessage();
     }
 
     private static void printScreen() {
