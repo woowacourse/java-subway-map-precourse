@@ -29,30 +29,35 @@ public class MenuController {
         }
     };
 
-    public static void scanMainMenu(Scanner scanner) {
-        OutputView.printMainScreen();
-        List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
-        SubMenu selectedMenu = mainMenu.get(scanValidMenu(scanner, mainMenuSigns));
-        if (Menu.isCategoricalMenu(selectedMenu)) {
-            scanSubMenu(scanner, selectedMenu);
+    public static SubMenu scanMenu(Scanner scanner) {
+        SubMenu selectedMainMenu = scanMainMenu(scanner);
+        if (Menu.isCategoricalMenu(selectedMainMenu)) {
+            return scanSubMenu(scanner, selectedMainMenu);
         }
+        return selectedMainMenu;
     }
 
-    private static String scanSubMenu(Scanner scanner, SubMenu menu) {
+    public static SubMenu scanMainMenu(Scanner scanner) {
+        OutputView.printMainScreen();
+        List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
+        return scanValidMenu(scanner, mainMenuSigns);
+    }
+
+    private static SubMenu scanSubMenu(Scanner scanner, SubMenu menu) {
         OutputView.printSubScreen(menu);
         List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
         return scanValidMenu(scanner, subMenuSigns);
     }
 
-    private static String scanValidMenu(Scanner scanner, List<String> signs) {
-        String menu = scanMenu(scanner);
+    private static SubMenu scanValidMenu(Scanner scanner, List<String> signs) {
+        String menu = scanMenuCommand(scanner);
         while (!isValidMenu(menu, signs)) {
-            menu = scanMenu(scanner);
+            menu = scanMenuCommand(scanner);
         }
-        return menu;
+        return mainMenu.get(menu);
     }
 
-    private static String scanMenu(Scanner scanner) {
+    private static String scanMenuCommand(Scanner scanner) {
         OutputView.printMenuSelectScreen();
         return InputView.getInput(scanner);
     }
