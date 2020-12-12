@@ -1,26 +1,19 @@
 package subway.view;
 
 import java.util.Scanner;
-import subway.exception.ExitSystemException;
 
 public class InputView {
-    // todo 입력 데이터를 적절한 컨트롤러에게 전달
 
-    private final Scanner scanner;
+    private static Scanner scanner;
 
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
+    private InputView() {
     }
 
-    private void printSubwayMap() {
-
+    public static void registerScanner(Scanner scanner) {
+        InputView.scanner = scanner;
     }
 
-    private void exitSystem() {
-        throw new ExitSystemException();
-    }
-
-    private String getInput() {
+    public static String getInput() {
         return scanner.next();
     }
 }
