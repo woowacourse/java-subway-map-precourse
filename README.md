@@ -481,10 +481,14 @@ public class StationRepository {
 - (O) 구간 삭제 기능 구현하기
 - () 노선 포함 역이 2개 이하면 역 제거 불가능하도록 조건설정
 - () 노선 역 조회하기
-- (O) 역 관리 입력화면 설정
-- () 노선 관리 입력화면 설정
-- () 구간 관리 입력화면 설정
-- () 메인 입력화면 설정
+- (O) 역 관리 입력화면 구현
+- () 노선 관리 입력화면 구현
+- () 구간 관리 입력화면 구현
+- () 역 관리 출력화면 구현
+- () 노선 관리 출력화면 구현
+- () 구간 관리 출력화면 구현
+- () 메인 입력화면 구현
+- () 메인 출력화면 구현
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
