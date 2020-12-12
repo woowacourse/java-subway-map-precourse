@@ -32,7 +32,7 @@ public class InputView {
             String input = getStringWithMessage(MENU_SELECTION);
             return selections.searchByValue(input.toUpperCase());
         } catch (RuntimeException e) {
-            OutputView.showErrorMessage(e);
+            OutputView.printErrorMessage(e);
             return getSelection(selections);
         }
     }
@@ -45,7 +45,7 @@ public class InputView {
             newLine();
             return string;
         }catch (RuntimeException e) {
-            OutputView.showErrorMessage(e);
+            OutputView.printErrorMessage(e);
             return getStringWithMessage(requestMessage);
         }
     }

@@ -15,11 +15,11 @@ public class SectionManagement {
     public static void run() {
         do {
             try {
-                sectionView.showMenu();
+                sectionView.printMenu();
                 menu = sectionView.getFunctionSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
-                OutputView.showErrorMessage(e);
+                OutputView.printErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
     }

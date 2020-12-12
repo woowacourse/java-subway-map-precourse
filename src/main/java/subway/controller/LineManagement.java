@@ -20,11 +20,11 @@ public class LineManagement {
     public static void run() {
         do {
             try {
-                lineView.showMenu();
+                lineView.printMenu();
                 menu = lineView.getFunctionSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
-                OutputView.showErrorMessage(e);
+                OutputView.printErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
     }

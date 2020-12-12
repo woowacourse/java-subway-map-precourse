@@ -36,7 +36,7 @@ public class Application {
 
     private static void run() {
         do {
-            mainView.showMenu();
+            mainView.printMenu();
             menu = mainView.getFunctionSelection();
             runSelectedMenuFunction();
         } while (!menu.equals(MainMenuType.ESCAPE));
@@ -52,7 +52,7 @@ public class Application {
         if (menu.equals(MainMenuType.SECTION)) {
             SectionManagement.run();
         }
-        if (menu.equals(MainMenuType.DISPLAY)) {
+        if (menu.equals(MainMenuType.PRINT)) {
             showSubwayMap();
         }
     }
@@ -61,7 +61,7 @@ public class Application {
         try {
             MainView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
         } catch (RuntimeException e) {
-            OutputView.showErrorMessage(e);
+            OutputView.printErrorMessage(e);
         }
     }
 }

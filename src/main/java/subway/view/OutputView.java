@@ -1,11 +1,7 @@
 package subway.view;
 
-import subway.dto.LineDTO;
-import subway.dto.StationDTO;
 import subway.view.selection.Selection;
 import subway.view.selection.Selections;
-
-import java.util.List;
 
 public class OutputView {
     private static final String SHARP_PREFIX = "## ";
@@ -13,12 +9,12 @@ public class OutputView {
     private static final String INFO_PREFIX = "[INFO] ";
     private static final String MENU_FORMAT = "%s. %s";
 
-    public static void showErrorMessage(Exception e) {
+    public static void printErrorMessage(Exception e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
         newLine();
     }
 
-    public static void showMenu(Selections selections, String viewName) {
+    public static void printMenu(Selections selections, String viewName) {
         printWithSharpPrefix(viewName);
         for (Selection selection : selections.toList()) {
             System.out.println(String.format(MENU_FORMAT, selection.getValue(), selection.getDescription()));

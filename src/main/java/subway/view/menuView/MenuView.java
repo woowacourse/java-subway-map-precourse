@@ -43,8 +43,8 @@ public abstract class MenuView<T> {
         }
     }
 
-    public void showMenu() {
-        OutputView.showMenu(selections, viewName);
+    public void printMenu() {
+        OutputView.printMenu(selections, viewName);
     }
 
     protected T convertToFunctionType(Selection selection){

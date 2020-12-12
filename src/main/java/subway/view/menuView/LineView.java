@@ -3,7 +3,9 @@ package subway.view.menuView;
 import subway.menuType.FunctionType;
 import subway.view.InputView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

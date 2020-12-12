@@ -21,11 +21,11 @@ public class StationManagement {
     public static void run() {
         do {
             try {
-                stationView.showMenu();
+                stationView.printMenu();
                 menu = stationView.getFunctionSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
-                OutputView.showErrorMessage(e);
+                OutputView.printErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
     }

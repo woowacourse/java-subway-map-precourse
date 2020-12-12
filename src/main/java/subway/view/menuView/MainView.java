@@ -5,20 +5,20 @@ import subway.dto.StationDTO;
 import subway.menuType.MainMenuType;
 import subway.view.OutputView;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainView extends MenuView<MainMenuType> {
     private static final String VIEW_NAME = "메인 화면";
+    private static final String BORDERLINE = "---";
+    private static final String SUBWAY_MAP = "지하철 노선도";
     private static final String MENU_STATION_MANAGEMENT = "역 관리";
     private static final String MENU_LINE_MANAGEMENT = "노선 관리";
     private static final String MENU_SECTION_MANAGEMENT = "구간 관리";
     private static final String MENU_SUBWAY_MAP = "지하철 노선도 출력";
     private static final String ESCAPE = "종료";
     private static final String ESCAPE_VALUE = "Q";
-    private static final String BORDERLINE = "---";
-    private static final String SUBWAY_MAP = "지하철 노선도";
 
     private static MainView instance;
 
