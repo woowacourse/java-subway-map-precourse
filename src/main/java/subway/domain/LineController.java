@@ -49,8 +49,10 @@ public class LineController {
         return new LineController(removedLineRepository, this.inputView, this.outputView);
     }
 
-    public void loadLines() {
+    public LineController loadLines() {
         outputView.printLines(lineRepository);
+
+        return this;
     }
 
     public LineController addRange() {
@@ -78,7 +80,9 @@ public class LineController {
         return new LineController(rangeRemovedLineRepository, this.inputView, this.outputView);
     }
 
-    public void printSubwayMap() {
+    public LineController printSubwayMap() {
         outputView.printSubwayMap(lineRepository);
+
+        return this;
     }
 }
