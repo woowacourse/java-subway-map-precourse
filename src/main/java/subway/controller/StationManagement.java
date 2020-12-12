@@ -41,7 +41,7 @@ public class StationManagement {
         try {
             Station station = new Station(stationView.getNameToCreate());
             StationRepository.addStation(station);
-            stationView.printRegisterDone();
+            stationView.printCreateDone();
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e);
         }

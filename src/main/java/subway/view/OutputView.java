@@ -21,15 +21,15 @@ public class OutputView {
     }
 
     public static void showMenu(Selections selections, String viewName) {
-        printWithSharpPrefix(viewName);
+        print(SHARP_PREFIX + viewName);
         for (Selection selection : selections.toList()) {
             System.out.println(String.format(MENU_FORMAT, selection.getValue(), selection.getDescription()));
         }
         newLine();
     }
 
-    public static void printWithSharpPrefix(String string) {
-        System.out.println(SHARP_PREFIX + string);
+    public static void print(String string) {
+        System.out.println(string);
     }
 
     public static void printWithInfoPrefix(String string) {
@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     public static void showSubwayMap(List<LineDTO> Lines) {
-        printWithSharpPrefix(SUBWAY_MAP);
+        print(SUBWAY_MAP);
 
         for (LineDTO line : Lines) {
             OutputView.printWithInfoPrefix(line.getName());

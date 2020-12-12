@@ -45,7 +45,7 @@ public class LineManagement {
             line.addStation(upLineEndStation);
             line.addStation(downLineEndStation);
             LineRepository.addLine(line);
-            lineView.printRegisterDone();
+            lineView.printCreateDone();
         } catch (Exception e) {
             OutputView.showErrorMessage(e);
         }

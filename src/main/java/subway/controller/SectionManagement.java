@@ -35,7 +35,7 @@ public class SectionManagement {
             Line line = LineRepository.searchByName(sectionView.getLineNameToCreate());
             int index = sectionView.getIndex();
             line.addStation(index, station);
-            sectionView.printRegisterDone();
+            sectionView.printCreateDone();
         } catch (Exception e) {
             OutputView.showErrorMessage(e);
         }
