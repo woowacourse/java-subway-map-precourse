@@ -10,33 +10,39 @@ public class FlowChart {
     public static void main(Scanner scanner) {
         Menu mainPage = new Menu(Constant.MAIN_MENU_TITLE, Constant.mainMenuItemList());
         String mainInput = mainPage.load(scanner);
-        station(mainInput);
-        line(mainInput);
-        section(mainInput);
-        map(mainInput);
+        station(scanner, mainInput);
+        line(scanner, mainInput);
+        section(scanner, mainInput);
+        map(scanner, mainInput);
         quit(mainInput);
     }
 
-    public static void station(String mainInput) {
+    public static void station(Scanner scanner, String mainInput) {
         Menu stationPage = new Menu(Constant.STATION_MENU_TITLE, Constant.stationMenuItemList());
         if(mainInput.equals("1")){
+            String stationInput = stationPage.load(scanner);
         }
     }
 
-    public static void line(String mainInput) {
+    public static void line(Scanner scanner, String mainInput) {
         Menu linePage = new Menu(Constant.LINE_MENU_TITLE, Constant.lineMenuItemList());
         if(mainInput.equals("2")){
+            String lineInput = linePage.load(scanner);
         }
     }
 
-    public static void section(String mainInput) {
+    public static void section(Scanner scanner, String mainInput) {
         Menu sectionPage = new Menu(Constant.SECTION_MENU_TITLE, Constant.sectionMenuItemList());
         if(mainInput.equals("3")){
+            String sectionInput = sectionPage.load(scanner);
         }
     }
 
-    public static void map(String mainInput) {
+    public static void map(Scanner scanner, String mainInput) {
         if(mainInput.equals("4")){
+            System.out.println("map");
+            System.out.println();
+            main(scanner);
         }
     }
 
