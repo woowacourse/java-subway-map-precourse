@@ -2,6 +2,8 @@ package subway.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.domain.Station;
+import subway.repository.StationRepository;
 import subway.view.InputView;
 
 import java.util.Scanner;
@@ -41,6 +43,17 @@ class StationServiceTest {
         InputView inputView2 = new InputView(scanner2);
         boolean result = stationService.addStation(inputView2);
         assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("역을 조회할 수 있다")
+    public void printStationListTest() throws Exception{
+        StationRepository.addStation(new Station("잠실"));
+        StationRepository.addStation(new Station("당산"));
+        StationRepository.addStation(new Station("홍대입구"));
+
+        StationService stationService = new StationService();
+        stationService.printStationList();
     }
 
 }
