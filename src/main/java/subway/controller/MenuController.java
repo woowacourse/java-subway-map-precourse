@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MenuController {
     private static final String STATION_MANAGEMENT_SIGN = "1";
@@ -19,7 +19,7 @@ public class MenuController {
     private static final String LINE_MAP_SIGN = "4";
     private static final String QUIT_SIGN = "Q";
 
-    private static final Map<String, SubMenu> mainMenu = new HashMap<String, SubMenu>() {
+    private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
         {
             put(STATION_MANAGEMENT_SIGN, Menu.stationMenu);
             put(LINE_MANAGEMENT_SIGN, Menu.lineMenu);
@@ -29,10 +29,19 @@ public class MenuController {
         }
     };
 
-    public static String scanMainMenu(Scanner scanner) {
+    public static void scanMainMenu(Scanner scanner) {
         OutputView.printMainScreen();
-        List<String> mainMenuSigns = new ArrayList<String>(mainMenu.keySet());
-        return scanValidMenu(scanner, mainMenuSigns);
+        List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
+        SubMenu selectedMenu = mainMenu.get(scanValidMenu(scanner, mainMenuSigns));
+        if (Menu.isCategoricalMenu(selectedMenu)) {
+            scanSubMenu(scanner, selectedMenu);
+        }
+    }
+
+    private static String scanSubMenu(Scanner scanner, SubMenu menu) {
+        OutputView.printSubScreen(menu);
+        List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
+        return scanValidMenu(scanner, subMenuSigns);
     }
 
     private static String scanValidMenu(Scanner scanner, List<String> signs) {
