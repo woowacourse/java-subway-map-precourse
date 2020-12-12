@@ -103,22 +103,6 @@ public class InputView {
         return new LineName(scanner.nextLine());
     }
 
-//    public static void inputSectionAdd(Scanner scanner) {
-//        try {
-//            System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
-//            Line line = LineRepository.getLineByName(scanner.nextLine());
-//            System.out.println(INPUT_SECTION_STATION_ADD_MESSAGE);
-//            Station station = new Station(scanner.nextLine());
-//            StationRepository.validateNameExist(station);
-//            line.validateDuplicateStationToLine(station);
-//            System.out.println(INPUT_SECTION_INDEX_MESSAGE);
-//            int index = InputValidator.validateInteger(scanner.nextLine());
-//            line.addStationToLine(station, index);
-//        }catch (IllegalArgumentException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
     public static LineName inputLineNameToAddSection(Scanner scanner) {
         System.out.println(INPUT_SECTION_LINE_ADD_MESSAGE);
         return new LineName(scanner.nextLine());
@@ -135,18 +119,15 @@ public class InputView {
         System.out.println(INPUT_SECTION_INDEX_MESSAGE);
         return InputValidator.validateInteger(scanner.nextLine());
     }
-//
-//    public static void inputSectionDelete(Scanner scanner) {
-//        try {
-//            System.out.println(INPUT_SECTION_LINE_DELETE_MESSAGE);
-//            Line line = LineRepository.getLineByName(scanner.nextLine());
-//            System.out.println(INPUT_SECTION_STATION_DELETE_MESSAGE);
-//            Station station = new Station(scanner.nextLine());
-//            line.validateExistStationToLine(station);
-//            line.deleteStationToLine(station);
-//        }catch (IllegalArgumentException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+
+    public static LineName inputLineNameToDeleteSection(Scanner scanner) {
+        System.out.println(INPUT_SECTION_LINE_DELETE_MESSAGE);
+        return new LineName(scanner.nextLine());
+    }
+
+    public static StationName inputStationNameToDeleteSection(Scanner scanner) {
+        System.out.println(INPUT_SECTION_STATION_DELETE_MESSAGE);
+        return new StationName(scanner.nextLine());
+    }
 
 }

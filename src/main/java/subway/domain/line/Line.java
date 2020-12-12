@@ -1,6 +1,7 @@
 package subway.domain.line;
 
 import subway.domain.station.Station;
+import subway.domain.station.StationName;
 import subway.domain.station.StationRepository;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class Line {
 
     public void addStationToLine(Station newStation, int index) {
         validateIndexRange(index);
+        System.out.println(newStation.getName() + "/" + index);
         stations.add(index - 1, newStation);
     }
 
@@ -62,10 +64,12 @@ public class Line {
             throw new IllegalArgumentException(STATION_DUPLICATE_ERROR);
         }
     }
-    public void validateExistStationToLine(Station station) {
-        if (!stations.contains(station)) {
+
+    public boolean hasStationToLine(StationName stationName) {
+        if (!stations.contains(new Station(stationName))) {
             throw new IllegalArgumentException(STATION_EXIST_ERROR);
         }
+        return true;
     }
 
 

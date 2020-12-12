@@ -168,9 +168,9 @@ public class SubwayProgram {
             addSection();
             return;
         }
-//        if (SubMenuType.DELETE.equals(sectionMenuType)) {
-//            InputView.inputSectionDelete(scanner);
-//        }
+        if (SubMenuType.DELETE.equals(sectionMenuType)) {
+            deleteSection();
+        }
     }
 
     private void addSection() {
@@ -187,10 +187,16 @@ public class SubwayProgram {
         }
     }
 
-
-
-
-
-
-
+    private void deleteSection() {
+        try {
+            LineName lineName = InputView.inputLineNameToDeleteSection(scanner);
+            Line line = LineRepository.getLineByName(lineName);
+            StationName stationName = InputView.inputStationNameToDeleteSection(scanner);
+            if (line.hasStationToLine(stationName)) {
+                line.deleteStationToLine(new Station(stationName));
+            }
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
