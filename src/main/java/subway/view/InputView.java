@@ -12,6 +12,9 @@ public class InputView {
     public static final String CHOOSE_DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
     public static final String CHOOSE_LINE_BEGINNING = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String CHOOSE_LINE_ENDING = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String CHOOSE_LINE = "## 노선을 입력하세요.";
+    public static final String CHOOSE_STATION_NAME = "## 역이름을 입력하세요.";
+    public static final String CHOOSE_ORDER = "## 순서를 입력하세요.";
     private Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -29,9 +32,20 @@ public class InputView {
         return userStringInput(specificInfo);
     }
 
+    public int inputIndex(String specificInfo) {
+        System.out.println();
+        return userIntegerInput(specificInfo);
+    }
+
     private String userStringInput(String specificInfo) {
         System.out.println();
         System.out.println(specificInfo);
         return scanner.nextLine();
+    }
+
+    private int userIntegerInput(String specificInfo) {
+        System.out.println();
+        System.out.println(specificInfo);
+        return scanner.nextInt();
     }
 }

@@ -45,6 +45,8 @@ public class OutputView {
     public static final String ERROR_NOTHING = ERROR_LABEL + "해당 이름의 역/노선은 존재하지 않습니다.";
     public static final String ERROR_CONNECTED = ERROR_LABEL + "해당 역은 노선에 연결되어 지울 수 없습니다.";
     public static final String ERROR_SIZE_SMALL = ERROR_LABEL + "해당 노선은 종착역들로만 이루어져 있습니다.";
+    public static final String ERROR_DUPLICATE_STATION = ERROR_LABEL + "역이 이미 노선에 등록되어 있습니다.";
+    public static final String ERROR_NO_NAME = ERROR_LABEL + "해당 이름의 역/노선이 없습니다.";
 
     public static void printMenu(int currentMenu) {
         if (currentMenu == Function.MAIN_MENU) {
@@ -97,7 +99,6 @@ public class OutputView {
     public static void printStations(List<Station> stations) {
         System.out.println();
         System.out.println(STATION_VIEW_LABEL);
-        System.out.println(INFO_LABEL + DIVIDER);
         stations.stream()
                 .map(Station::getName)
                 .map(x -> INFO_LABEL + x)

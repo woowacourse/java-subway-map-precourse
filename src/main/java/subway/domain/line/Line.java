@@ -21,10 +21,12 @@ public class Line {
     }
 
     public void add(Station station) {
+        validateDuplicate(station);
         stations.add(station);
     }
 
     public void add(int index, Station station) {
+        validateDuplicate(station);
         stations.add(index, station);
     }
 
@@ -54,6 +56,18 @@ public class Line {
 
     private static boolean shorterThanMinimalLength(String name) {
         return name.length() < MIN_NAME_LENGTH;
+    }
+
+    private void validateDuplicate(Station station) {
+        if(isDuplicate(station)) {
+            throw new IllegalArgumentException(OutputView.ERROR_DUPLICATE_STATION);
+        }
+    }
+
+    private boolean isDuplicate(Station station) {
+        return stations.stream()
+                .map(Station::getName)
+                .anyMatch(x -> x.equals(station.getName()));
     }
 
     private void validateMinimumAmount() {
