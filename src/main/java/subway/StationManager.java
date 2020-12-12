@@ -39,4 +39,15 @@ public class StationManager {
         System.out.println(STATION_SEARCH);
         System.out.println(QUIT_OPTION);
     }
+
+    public static String inputStationName(Scanner scanner) {
+        String stationName = scanner.nextLine();
+        try {
+            validateStationName(stationName);
+            return stationName;
+        } catch (IllegalArgumentException iae) {
+            System.out.println(ERROR_PREFIX + iae.getMessage());
+            return inputStationName(scanner);
+        }
+    }
 }
