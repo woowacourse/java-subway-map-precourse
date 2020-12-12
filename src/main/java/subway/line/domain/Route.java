@@ -20,6 +20,10 @@ public class Route {
         stations.add(order - INDEX_CORRECTION_VALUE, station);
     }
 
+    public void remove(Station station) {
+        stations.remove(station);
+    }
+
     public boolean isExist(String stationName) {
         return stations.stream()
                 .anyMatch(station -> station.getName().equals(stationName));

@@ -12,4 +12,10 @@ public class SectionController {
         int order = InputView.getOrder();
         SectionService.register(lineName, stationName, order);
     }
+
+    public static void remove() {
+        String lineName = InputView.getLineNameForRemoval();
+        String stationName = InputView.getStationNameForRemoval();
+        SectionService.remove(lineName, stationName);
+    }
 }

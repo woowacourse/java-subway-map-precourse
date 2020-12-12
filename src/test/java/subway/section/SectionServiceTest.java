@@ -19,14 +19,20 @@ class SectionServiceTest {
     private static final String LINE_NUMBER_ONE = "1호선";
     private static final String TOP_STATION = "대구역";
     private static final String BOTTOM_STATION = "대구역";
+    private static final String EXTRA_STATION = "반월당역";
 
     @BeforeEach
     void setUp() {
         Station topStation = new Station(TOP_STATION);
         Station bottomStation = new Station(BOTTOM_STATION);
+        Station extraStation = new Station(EXTRA_STATION);
+
         StationRepository.register(topStation);
         StationRepository.register(bottomStation);
+        StationRepository.register(extraStation);
+
         LineRepository.register(new Line(LINE_NUMBER_ONE, new Route(topStation, bottomStation)));
+        SectionService.register(LINE_NUMBER_ONE, EXTRA_STATION, 2);
     }
 
     @AfterEach
@@ -82,12 +88,36 @@ class SectionServiceTest {
     void 추가하려는_구간의_순서가_허용범위를_벗어나면_예외_발생() {
         //given
         String newStation = "새로운역";
-        int order = 4;
+        int order = 5;
 
         StationRepository.register(new Station(newStation));
 
         //when & then
         assertThatExceptionOfType(InvalidOrderException.class)
                 .isThrownBy(() -> SectionService.register(LINE_NUMBER_ONE, newStation, order));
+    }
+
+    @Test
+    void 구간삭제_동작_확인() {
+        //given
+        String targetStation = EXTRA_STATION;
+
+        //when
+        SectionService.remove(LINE_NUMBER_ONE, targetStation);
+        boolean isExist = LineRepository.findByName(LINE_NUMBER_ONE)
+                .isExist(targetStation);
+
+        //then
+        assertThat(isExist).isFalse();
+    }
+
+    @Test
+    void 삭제하려는_구간의_노선이_등록되지_않은_노선이면_예외발생() {
+        //given
+        String notExistLine = "등록되지않은노선";
+
+        //when & then
+        assertThatExceptionOfType(NotExistLineException.class)
+                .isThrownBy(() -> SectionService.remove(notExistLine, EXTRA_STATION));
     }
 }

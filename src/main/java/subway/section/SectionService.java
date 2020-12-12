@@ -15,4 +15,10 @@ public class SectionService {
         SectionValidator.validateRegistration(line, station, order);
         line.insert(order, station);
     }
+
+    public static void remove(String lineName, String stationName) {
+        Line line = LineRepository.findByName(lineName);
+        Station station = StationRepository.findByName(stationName);
+        line.remove(station);
+    }
 }

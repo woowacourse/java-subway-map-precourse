@@ -23,6 +23,10 @@ public class Line {
         this.route.insert(index, station);
     }
 
+    public void remove(Station station) {
+        this.route.remove(station);
+    }
+
     public boolean isExist(String stationName) {
         return route.isExist(stationName);
     }
