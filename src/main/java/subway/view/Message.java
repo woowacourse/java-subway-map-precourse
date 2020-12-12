@@ -40,6 +40,7 @@ public class Message {
     private static final String error = "\n[ERROR] 선택할 수 없는 기능입니다.";
     private static final String createStation = "\n## 등록할 역 이름을 입력하세요.";
     private static final String successStation = "\n[INFO] 지하철 역이 등록되었습니다.";
+    private static final String ERROR_NAME = "\n[ERROR] 이름은 2글자 이상이어야 합니다.";
 
     private Message() {
     }
@@ -86,5 +87,9 @@ public class Message {
 
     public static void printSuccessStation() {
         System.out.println(successStation);
+    }
+
+    public static void printNameError() {
+        System.out.println(ERROR_NAME);
     }
 }

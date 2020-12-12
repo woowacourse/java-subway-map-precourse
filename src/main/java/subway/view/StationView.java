@@ -36,7 +36,12 @@ public class StationView {
     private void registerStation(String button) {
         if (button.equals(Button.ONE)) {
             Message.printCreateStation();
-            stationController.createStation(input.nextStation());
+            String name = input.nextStation();
+            if (!input.isValidName(name)) {
+                Message.printNameError();
+                selectStationMenu();
+            }
+            stationController.createStation(name);
             Message.printSuccessStation();
         }
     }

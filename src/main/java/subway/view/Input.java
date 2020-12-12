@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Input {
     private static final String REGEX = "\\p{Z}";
     private static final String REPLACEMENT = "";
+    private static final int STATION_NAME_LENGTH = 2;
 
     private final Scanner scanner;
 
@@ -66,5 +67,9 @@ public class Input {
 
     public String nextStation() {
         return nextLine();
+    }
+
+    public boolean isValidName(String name) {
+        return name.length() >= STATION_NAME_LENGTH;
     }
 }
