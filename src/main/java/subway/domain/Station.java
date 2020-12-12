@@ -17,7 +17,7 @@ public class Station {
 
     private void validateStationName(String name) {
         if (name.length() < MIN_LENGTH_OF_STATION_NAME) {
-            throw new IllegalArgumentException("역의 이름은 2글자 이상이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 역의 이름은 2글자 이상이어야 합니다.");
         }
     }
 

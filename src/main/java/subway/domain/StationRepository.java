@@ -29,13 +29,13 @@ public class StationRepository {
 
     private static void validateOverlappedStation(Station station) {
         if (stations.contains(station)) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("[ERROR] 중복된 지하철 역 이름은 등록하실 수 없습니다.");
         }
     }
 
     public static boolean deleteStation(String name) {
         if (LineRepository.contains(name)) {
-            throw new IllegalArgumentException("노선에 등록된 역은 삭제가 불가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 노선에 등록된 역은 삭제가 불가능합니다.");
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
