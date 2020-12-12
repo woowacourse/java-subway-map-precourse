@@ -42,15 +42,15 @@ public class LineView {
             MessageUtils.printError(Constants.EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
-        Subway.lines.addLine(new Line(lineName));
-        Line newLine = Subway.lines.findByName(lineName);
         List<Station> p2pStations = p2pStation(userInput);
-        if (p2pStations == null) {
-            return false;
+        if (p2pStations != null) {
+            Subway.lines.addLine(new Line(lineName));
+            Line newLine = Subway.lines.findByName(lineName);
+            Subway.Map.addLine(newLine, p2pStations.get(0), p2pStations.get(1));
+            MessageUtils.printInfo(Constants.ADD_LINE_OUTPUT_COMMENT);
+            return true;
         }
-        Subway.Map.addLine(newLine, p2pStations.get(0), p2pStations.get(1));
-        MessageUtils.printInfo(Constants.ADD_LINE_OUTPUT_COMMENT);
-        return true;
+        return false;
     }
 
     private static List<Station> p2pStation(Scanner userInput) {
@@ -60,15 +60,19 @@ public class LineView {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_END_STATION_NAME_INPUT_COMMENT);
         String endStationInLineName = userInput.next();
         MessageUtils.printBlankLine();
-        if (!StationView.isExistStationName(startStationInLineName) && !StationView
+        if (!StationView.isExistStationName(startStationInLineName) || !StationView
             .isExistStationName(endStationInLineName)) {
             MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
             return null;
         }
-        List<Station> stationList = new ArrayList<>();
-        stationList.add(Subway.stations.findByName(startStationInLineName));
-        stationList.add(Subway.stations.findByName(endStationInLineName));
-        return stationList;
+        if (StationView.isExistStationName(startStationInLineName) && StationView
+            .isExistStationName(endStationInLineName)) {
+            List<Station> stationList = new ArrayList<>();
+            stationList.add(Subway.stations.findByName(startStationInLineName));
+            stationList.add(Subway.stations.findByName(endStationInLineName));
+            return stationList;
+        }
+        return null;
     }
 
     public static boolean isExistLineName(String lineName) {
@@ -87,7 +91,7 @@ public class LineView {
             return false;
         }
         Subway.Map.deleteLine(Subway.lines.findByName(targetLineName));
-        Subway.lines.deleteLineByName("2호선");
+        Subway.lines.deleteLineByName(targetLineName);
         MessageUtils.printInfo(Constants.DELETE_LINE_OUTPUT_COMMENT);
         return true;
     }

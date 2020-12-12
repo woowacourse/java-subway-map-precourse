@@ -51,11 +51,7 @@ public class SectionRepository {
 
     public void deleteSection(Line sectionTitle, Station station) {
         List<Station> stations = this.sectionMap.get(sectionTitle);
-        for (Station instanceStation : stations) {
-            if (instanceStation.equals(stations)) {
-                stations.remove(station);
-            }
-        }
+        stations.removeIf(element -> element == station);
         this.sectionMap.put(sectionTitle, stations);
     }
 

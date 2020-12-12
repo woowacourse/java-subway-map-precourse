@@ -52,7 +52,6 @@ public class SectionView {
     private static boolean insertByName(String sectionTitle, String stationName,
         String indexString) {
         int index = Integer.parseInt(indexString);
-        System.out.println(index);
         if (!InputUtils.isPositiveInt(index)) {
             MessageUtils.printError(Constants.INVALID_LENGTH_ERROR_COMMENT);
             return false;
@@ -74,12 +73,17 @@ public class SectionView {
             MessageUtils.printError(Constants.EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
-        {
-            if (!StationView.isExistStationName(stationName)) {
-                MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-                return false;
-            }
+
+        if (!isExistLineName(sectionTitle)) {
+            MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
+            return false;
         }
+
+        if (!StationView.isExistStationName(stationName)) {
+            MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+            return false;
+        }
+
         if (!InputUtils.isValidateInt(indexString)) {
             MessageUtils.printError(Constants.INVALID_STRING_ERROR_COMMENT);
             return false;
@@ -99,6 +103,16 @@ public class SectionView {
             if (instanceStation.equals(station)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public static boolean isExistLineName(String sectionTitle) {
+        if (sectionTitle == null) {
+            return false;
+        }
+        if (Subway.lines.findByName(sectionTitle) != null) {
+            return true;
         }
         return false;
     }
@@ -128,9 +142,18 @@ public class SectionView {
             MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
             return false;
         }
-        Subway.Map.deleteSection(Subway.lines.findByName(sectionTitle),
-            Subway.stations.findByName(stationName));
-        MessageUtils.printInfo(Constants.DELETE_SECTION_OUTPUT_COMMENT);
-        return true;
+        if (!isExistStationInLine(Subway.lines.findByName(sectionTitle),
+            Subway.stations.findByName(stationName))) {
+            MessageUtils.printError(Constants.NO_EXIST_SECTION_OUTPUT_COMMENT);
+            return false;
+        }
+        if (Subway.stations.findByName(stationName) != null
+            && Subway.stations.findByName(stationName) != null) {
+            Subway.Map.deleteSection(Subway.lines.findByName(sectionTitle),
+                Subway.stations.findByName(stationName));
+            MessageUtils.printInfo(Constants.DELETE_SECTION_OUTPUT_COMMENT);
+            return true;
+        }
+        return false;
     }
 }

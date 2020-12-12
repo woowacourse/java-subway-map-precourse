@@ -19,7 +19,7 @@ public class Constants {
 
     public final static String INVALID_STRING_OUTPUT_COMMENT = "선택할 수 없는 기능입니다.";
     public final static String INVALID_STRING_ERROR_COMMENT = "잘못된 문자 입력입니다.";
-    public final static String INVALID_LENGTH_ERROR_COMMENT = "길이를 초과 합니다.";
+    public final static String INVALID_LENGTH_ERROR_COMMENT = "잘못된 위치 입니다.";
     public final static String INVALID_MIN_LENGTH_ERROR_COMMENT =
         "문자 길이가 " + MIN_NAME_STRING_LENGTH + " 이상 필요 합니다.";
 
@@ -85,6 +85,7 @@ public class Constants {
     public final static String DELETE_SECTION_LINE_INPUT_COMMENT = "## 삭제할 구간의 노선을 입력하세요.";
     public final static String DELETE_SECTION_STATION_INPUT_COMMENT = "## 삭제할 구간의 역을 입력하세요.";
     public final static String DELETE_SECTION_OUTPUT_COMMENT = "구간이 삭제되었습니다.";
+    public final static String NO_EXIST_SECTION_OUTPUT_COMMENT = "구간에 역이 존재하지 않습니다.";
 
     public final static String TITLE_WHOLE_SUBWAY_MAP_TEXT = "## 지하철 노선도";
     public final static String SEPARATE_STRING_WHOLE_SUBWAY_MAP_TEXT = "---";
