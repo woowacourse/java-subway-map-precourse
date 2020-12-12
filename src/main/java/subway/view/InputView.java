@@ -3,6 +3,7 @@ package subway.view;
 import java.util.Scanner;
 
 import static subway.view.resource.LineMessage.*;
+import static subway.view.resource.SectionMessage.INPUT_LINE;
 import static subway.view.resource.StationMessage.INPUT_STATION_NAME_FOR_REGISTRATION;
 import static subway.view.resource.StationMessage.INPUT_STATION_NAME_FOR_REMOVAL;
 
@@ -46,6 +47,11 @@ public class InputView {
 
     public static String getLineNameForRemoval() {
         OutputView.printGuideMessage(INPUT_LINE_NAME_FOR_REMOVAL);
+        return SCANNER.nextLine();
+    }
+
+    public static String getLineName() {
+        OutputView.printGuideMessage(INPUT_LINE);
         return SCANNER.nextLine();
     }
 }
