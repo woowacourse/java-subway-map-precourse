@@ -25,7 +25,7 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
         System.out.println();
         while (true) {
             ScreenView.printLineManagementScreen();
-            String lineInput = scanner.next();
+            String lineInput = scanner.nextLine();
             if (inputService.isInput(lineInput)) {
                 lineService.chooseFeature(lineInput, scanner);
                 break;

@@ -16,7 +16,7 @@ public class SectionService implements InputInterface, FeatureChoiceInterface, F
         System.out.println();
         while (true) {
             ScreenView.printSectionManagementScreen();
-            String sectionInput = scanner.next();
+            String sectionInput = scanner.nextLine();
             if (sectionService.isInput(sectionInput)) {
                 sectionService.chooseFeature(sectionInput, scanner);
                 break;

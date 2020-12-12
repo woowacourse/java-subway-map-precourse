@@ -32,7 +32,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
         System.out.println();
         while (true) {
             ScreenView.printStationManagementScreen();
-            String stationInput = scanner.next();
+            String stationInput = scanner.nextLine();
             if ((inputService.isInput(stationInput))
                     && (stationService.chooseFeature(stationInput, scanner))) {
                 break;
@@ -62,7 +62,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
     @Override
     public boolean add(Scanner scanner) {
         TextView.printStationAddingText();
-        String stationName = scanner.next();
+        String stationName = scanner.nextLine();
         if (checkValidation(stationName)) {
             StationRepository.addStation(new Station(stationName));
             InformationView.printStationAddingInformation();

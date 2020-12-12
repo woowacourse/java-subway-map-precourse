@@ -16,7 +16,7 @@ public class SubwayService implements InputInterface {
 
         while (true) {
             ScreenView.printMainScreen();
-            String mainInput = scanner.next();
+            String mainInput = scanner.nextLine();
             if (quitSubway(mainInput)) {
                 break;
             }
