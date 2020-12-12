@@ -11,6 +11,7 @@ public class LineManagementViewComponent {
     private static final String stationRequiringBeginComponent = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String stationRequiringEndComponent = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String registerFinishComponent = "지하철 노선이 등록되었습니다.";
+    private static final String subwayLineMapLog = "## 지하철 노선도";
 
     public static String getMenuComponent(){
         return menuComponent;
@@ -30,5 +31,9 @@ public class LineManagementViewComponent {
 
     public static String getRegisterFinishComponent(){
         return finishPrefixComponent + registerFinishComponent;
+    }
+
+    public static String getSubwayLineMapLog(){
+        return subwayLineMapLog;
     }
 }

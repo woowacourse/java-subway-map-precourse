@@ -12,7 +12,7 @@ public class LineRepository {
 
     public static Optional<Line> getLine(String name){
         List<Line> lineList = lines.stream()
-                .filter(line -> line.getName() != name)
+                .filter(line -> line.getName().equals(name))
                 .collect(Collectors.toList());
         if(lineList.isEmpty()){
             return Optional.empty();

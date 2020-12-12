@@ -16,6 +16,10 @@ public class Line {
         return name;
     }
 
+    public List<Station> getStations(){
+        return stations;
+    }
+
     // 추가 기능 구현
     public void addStation(Station station){
         stations.add(station);

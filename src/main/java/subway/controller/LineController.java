@@ -5,7 +5,6 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.exceptions.DuplicatedLineNameException;
 import subway.exceptions.DuplicatedStartAndEndStationNameException;
-import subway.view.SectionManagementViewState;
 
 import java.util.List;
 import java.util.Optional;
