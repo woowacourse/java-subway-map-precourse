@@ -3,6 +3,7 @@ package subway.section;
 import subway.line.domain.Line;
 import subway.section.exception.InvalidOrderException;
 import subway.section.exception.NotRegisteredStationException;
+import subway.section.exception.TooShortToRemoveException;
 import subway.station.domain.Station;
 import subway.station.exception.AlreadyExistStationException;
 
@@ -29,11 +30,18 @@ public class SectionValidator {
 
     public static void validateRemoval(Line line, Station station) {
         validateExistence(line, station);
+        validateLineSize(line);
     }
 
     private static void validateExistence(Line line, Station station) {
         if (!line.isExist(station.getName())) {
             throw new NotRegisteredStationException();
+        }
+    }
+
+    private static void validateLineSize(Line line) {
+        if (!line.isEnoughSize()) {
+            throw new TooShortToRemoveException();
         }
     }
 }

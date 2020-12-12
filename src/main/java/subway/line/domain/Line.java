@@ -35,6 +35,10 @@ public class Line {
         return route.isValidOrder(order);
     }
 
+    public boolean isEnoughSize() {
+        return this.route.isEnoughSize();
+    }
+
     public String getName() {
         return name;
     }

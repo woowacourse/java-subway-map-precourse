@@ -8,6 +8,7 @@ import java.util.List;
 public class Route {
     private static final int INDEX_CORRECTION_VALUE = 1;
     private static final int MIN_OF_ORDER = 1;
+    private static final int MIN_SIZE_FOR_REMOVAL = 2;
 
     private final List<Station> stations = new ArrayList<>();
 
@@ -31,5 +32,9 @@ public class Route {
 
     public boolean isValidOrder(int order) {
         return order >= MIN_OF_ORDER && order <= stations.size() + INDEX_CORRECTION_VALUE;
+    }
+
+    public boolean isEnoughSize() {
+        return stations.size() > MIN_SIZE_FOR_REMOVAL;
     }
 }

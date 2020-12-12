@@ -9,6 +9,7 @@ import subway.line.domain.Route;
 import subway.line.exception.NotExistLineException;
 import subway.section.exception.InvalidOrderException;
 import subway.section.exception.NotRegisteredStationException;
+import subway.section.exception.TooShortToRemoveException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 import subway.station.exception.AlreadyExistStationException;
@@ -131,5 +132,15 @@ class SectionServiceTest {
         //when & then
         assertThatExceptionOfType(NotRegisteredStationException.class)
                 .isThrownBy(() -> SectionService.remove(LINE_NUMBER_ONE, targetStation));
+    }
+
+    @Test
+    void 삭제하려는_구간의_노선에_포함된_역이_두개_이하이면_제거할_수_없다() {
+        //given
+        SectionService.remove(LINE_NUMBER_ONE, EXTRA_STATION);
+
+        //when & then
+        assertThatExceptionOfType(TooShortToRemoveException.class)
+                .isThrownBy(() -> SectionService.remove(LINE_NUMBER_ONE, TOP_STATION));
     }
 }
