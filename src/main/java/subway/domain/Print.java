@@ -43,14 +43,6 @@ public class Print {
         System.out.printf("%n");
     }
 
-    public static void addStationDoneMessage() {
-        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.STATION, Constant.ADD);
-    }
-
-    public static void deleteStationDoneMessage() {
-        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.STATION, Constant.DELETE);
-    }
-
     public static void getAscendingNameToAddLine() {
         System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.ASCENDING);
     }
@@ -59,12 +51,8 @@ public class Print {
         System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.DESCENDING);
     }
 
-    public static void addLineDoneMessage() {
-        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.LINE, Constant.ADD);
-    }
-
-    public static void deleteLineDoneMessage() {
-        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", Constant.LINE, Constant.DELETE);
+    public static void addOrDeleteDoneMessage(String target, String AddOrDelete) {
+        System.out.printf(Constant.HASH + Constant.DONE_MESSAGE + "%n", target, AddOrDelete);
     }
 
     public static void setLineToAddSection() {
