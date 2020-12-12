@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
-    static final List<Station> fixedStations = new ArrayList<>();
+    private static final List<Station> fixedStations = new ArrayList<>();
     static final Station STATION_KYODAE = new Station("교대역");
     static final Station STATION_GANGNAM = new Station("강남역");
     static final Station STATION_YEOKSAM = new Station("역삼역");
