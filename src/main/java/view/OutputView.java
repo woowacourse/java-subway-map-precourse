@@ -64,10 +64,12 @@ public class OutputView {
     public static final String MESSAGE_ERROR_NOT_EXIST_STATION_NAME = "존재하지 않는 역입니다.";
     public static final String MESSAGE_ERROR_NOT_EXIST_STATION_NAME_IN_LINE = "에 존재하지 않는 역입니다.";
     public static final String MESSAGE_ERROR_UNDELETABLE_STATION_NAME = "삭제할 역은 어떠한 노선에도 포함되면 안됩니다.";
+    public static final String MESSAGE_ERROR_EMPTY_STATION_REPOSITORY = "삭제할 수 있는 어떠한 역도 존재하지 않습니다.";
     public static final String MESSAGE_ERROR_STATION_NAME_SUFFIX = "역 이름은 '~역' 형태로 입력해주시길 바랍니다.";
     public static final String MESSAGE_ERROR_ALREADY_EXIST_LINE_NAME = "이미 등록된 노선입니다.";
     public static final String MESSAGE_ERROR_NOT_EXIST_LINE_NAME = "존재하지 않는 노선입니다.";
     public static final String MESSAGE_ERROR_UNDELETABLE_LINE_NAME = "삭제할 노선은 어떠한 구간도 포함되면 안됩니다.";
+    public static final String MESSAGE_ERROR_EMPTY_LINE_REPOSITORY = "삭제할 수 있는 어떠한 노선도 존재하지 않습니다.";
     public static final String MESSAGE_ERROR_LINE_NAME_SUFFIX = "노선 이름은 '~선' 형태로 입력해주시길 바랍니다.";
     public static final String MESSAGE_ERROR_SAME_NORTHBOUND_NAME = "상행 종점과 하행 종점의 이름은 달라야 합니다.";
     public static final String MESSAGE_ERROR_NOT_POSITIVE_INTEGER = "순서는 양의 정수 형태로 이루어져야 합니다.";
