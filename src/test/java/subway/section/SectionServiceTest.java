@@ -7,6 +7,7 @@ import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.domain.Route;
 import subway.line.exception.NotExistLineException;
+import subway.section.exception.InvalidOrderException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 import subway.station.exception.AlreadyExistStationException;
@@ -75,5 +76,18 @@ class SectionServiceTest {
         //when & then
         assertThatExceptionOfType(AlreadyExistStationException.class)
                 .isThrownBy(() -> SectionService.register(LINE_NUMBER_ONE, alreadyExistStation, order));
+    }
+
+    @Test
+    void 추가하려는_구간의_순서가_허용범위를_벗어나면_예외_발생() {
+        //given
+        String newStation = "새로운역";
+        int order = 4;
+
+        StationRepository.register(new Station(newStation));
+
+        //when & then
+        assertThatExceptionOfType(InvalidOrderException.class)
+                .isThrownBy(() -> SectionService.register(LINE_NUMBER_ONE, newStation, order));
     }
 }

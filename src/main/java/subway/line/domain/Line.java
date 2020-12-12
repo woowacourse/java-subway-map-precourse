@@ -27,6 +27,10 @@ public class Line {
         return route.isExist(stationName);
     }
 
+    public boolean isValidOrder(int order) {
+        return route.isValidOrder(order);
+    }
+
     public String getName() {
         return name;
     }

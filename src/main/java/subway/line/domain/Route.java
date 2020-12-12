@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Route {
     private static final int INDEX_CORRECTION_VALUE = 1;
+    private static final int MIN_OF_ORDER = 1;
 
     private final List<Station> stations = new ArrayList<>();
 
@@ -15,12 +16,16 @@ public class Route {
         stations.add(bottomStation);
     }
 
-    public void insert(int index, Station station) {
-        stations.add(index - INDEX_CORRECTION_VALUE, station);
+    public void insert(int order, Station station) {
+        stations.add(order - INDEX_CORRECTION_VALUE, station);
     }
 
     public boolean isExist(String stationName) {
         return stations.stream()
                 .anyMatch(station -> station.getName().equals(stationName));
+    }
+
+    public boolean isValidOrder(int order) {
+        return order >= MIN_OF_ORDER && order <= stations.size() + INDEX_CORRECTION_VALUE;
     }
 }
