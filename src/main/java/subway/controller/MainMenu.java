@@ -5,7 +5,7 @@ import subway.view.MapScreen;
 import subway.view.OutputView;
 
 public class MainMenu {
-    public static void print() {
+    public static void goToMain() {
         OutputView.printMainMenu();
         String selection = InputView.receiveMenu("Main");
         if (selection.equals("1")) {
@@ -15,12 +15,15 @@ public class MainMenu {
             LineMenu.goToLineMenu();
         }
         if (selection.equals("3")) {
-            SectionMenu.print();
+            SectionMenu.goToSectionMenu();
         }
         if (selection.equals("4")) {
             MapScreen.print();
         }
         if (selection.equals("Q")) {
+            OutputView.printQuit();
+            return;
         }
+        goToMain();
     }
 }

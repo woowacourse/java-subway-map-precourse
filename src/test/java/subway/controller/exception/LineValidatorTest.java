@@ -27,7 +27,6 @@ public class LineValidatorTest {
     @Test(expected = NotExistedElementException.class)
     public void testLineNameExistWhenDelete() {
         LineRepository.addLine(new Line("2호선"));
-        boolean deletion = LineRepository.deleteLineByName("8호선");
-        LineValidator.validateExistedLine(deletion);
+        LineValidator.validateNotExistedLine("8호선");
     }
 }

@@ -3,6 +3,7 @@ package subway.controller;
 import java.util.List;
 
 import subway.controller.exception.DuplicationException;
+import subway.controller.exception.IllegalElementException;
 import subway.controller.exception.NameFormatException;
 import subway.controller.exception.NotExistedElementException;
 import subway.controller.exception.StationValidator;
@@ -27,13 +28,12 @@ public class StationMenu {
         if (selection.equals("3")) {
             inquireStationList();
         }
-        MainMenu.print();
     }
 
     private static void registerNewStation() {
         try {
             String stationName = InputView.receiveName(STATION_REGISTER_MESSAGE);
-            StationValidator.validateStation(stationName);
+            StationValidator.validateRegisterStation(stationName);
             StationRepository.addStation(new Station(stationName));
             OutputView.printStationRegisterSuccess();
         } catch (NameFormatException | DuplicationException e) {
@@ -45,10 +45,10 @@ public class StationMenu {
     private static void deleteStation() {
         try {
             String name = InputView.receiveName(STATION_DELETE_MESSAGE);
-            boolean deletion = StationRepository.deleteStation(name);
-            StationValidator.validateExistedStation(deletion);
+            StationValidator.validateDeleteStation(name);
+            StationRepository.deleteStation(name);
             OutputView.printStationDeleteSuccess();
-        } catch (NotExistedElementException e) {
+        } catch (NotExistedElementException | IllegalElementException e) {
             System.out.println(e.getMessage());
             goToStationMenu();
         }

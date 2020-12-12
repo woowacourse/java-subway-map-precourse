@@ -35,4 +35,13 @@ public class LineRepository {
     private static boolean isEqual(Line line, String name) {
         return name.equals(line.getName());
     }
+    
+    public static boolean hasStation(String stationName) {
+        for (Line line : lines) {
+            if (line.isStation(stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

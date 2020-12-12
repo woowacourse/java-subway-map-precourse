@@ -1,5 +1,7 @@
 package subway.controller;
 
+import java.util.List;
+
 import subway.controller.exception.LineValidator;
 import subway.controller.exception.NotExistedElementException;
 import subway.controller.exception.StationValidator;
@@ -24,9 +26,8 @@ public class LineMenu {
             deleteLine();
         }
         if (selection.equals("3")) {
-            // 노선 조회
+            inquireLineList();
         }
-        MainMenu.print();
     }
 
     private static void registerNewLine() {
@@ -66,16 +67,21 @@ public class LineMenu {
         line.addStation(downStation);
         LineRepository.addLine(line);
     }
-    
+
     private static void deleteLine() {
         try {
             String lineName = InputView.receiveName(LINE_DELETE_MESSAGE);
-            boolean deletion = LineRepository.deleteLineByName(lineName);
-            LineValidator.validateExistedLine(deletion);
+            LineValidator.validateNotExistedLine(lineName);
+            LineRepository.deleteLineByName(lineName);
             OutputView.printLineDeleteSuccess();
         } catch (NotExistedElementException e) {
             System.out.println(e.getMessage());
             goToLineMenu();
         }
+    }
+
+    private static void inquireLineList() {
+        List<Line> lines = LineRepository.lines();
+        OutputView.printLineList(lines);
     }
 }

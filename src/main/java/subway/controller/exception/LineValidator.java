@@ -34,8 +34,8 @@ public class LineValidator {
         }
     }
     
-    public static void validateExistedLine(boolean isExisted) {
-        if (!isExisted) {
+    public static void validateNotExistedLine(String lineName) {
+        if (!LineRepository.isExistedLine(lineName)) {
             throw new NotExistedElementException("\n[ERROR] 존재하지 않는 노선 이름입니다.");
         }
     }
