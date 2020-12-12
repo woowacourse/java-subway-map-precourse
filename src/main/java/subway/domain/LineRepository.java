@@ -4,21 +4,21 @@ import java.util.*;
 
 public class LineRepository {
     private static final Map<Line, List<Station>> lines = new HashMap<>();
-    private static final String[] DEFAULT_LINES = {"2호선", "3호선", "신분당선"};
-    private static final String[][] DEFAULT_STATIONS = {
+    private static final String[] defaultLines = {"2호선", "3호선", "신분당선"};
+    private static final String[][] defaultStations = {
             {"교대역", "강남역", "역삼역"},
             {"교대역", "남부터미널역", "양재역", "매봉역"},
             {"강남역", "양재역", "양재시민의숲역"}
     };
 
     static {
-        for (int i = 0; i < DEFAULT_LINES.length; i++) {
+        for (int i = 0; i < defaultLines.length; i++) {
             List<Station> tmpStations = new ArrayList<>();
-            for (int j = 0; j < DEFAULT_STATIONS[i].length; j++) {
-                tmpStations.add(new Station(DEFAULT_STATIONS[i][j]));
+            for (int j = 0; j < defaultStations[i].length; j++) {
+                tmpStations.add(new Station(defaultStations[i][j]));
             }
 
-            lines.put(new Line(DEFAULT_LINES[i]), tmpStations);
+            lines.put(new Line(defaultLines[i]), tmpStations);
         }
     }
 

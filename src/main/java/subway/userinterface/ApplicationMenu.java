@@ -1,7 +1,5 @@
 package subway.userinterface;
 
-import java.util.Scanner;
-
 public class ApplicationMenu {
     public static void printMainMenu() {
         System.out.println("\n## 메인 화면");
