@@ -1,6 +1,9 @@
 package subway.domain;
 
 import subway.dto.LineDTO;
+import subway.exception.DuplicatedObjectException;
+import subway.exception.NoSuchObjectException;
+import subway.exception.NoneObjectException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,14 +25,14 @@ public class LineRepository {
 
     public static List<Line> lines() {
         if (lines.size() == ZERO) {
-            throw new RuntimeException(ERROR_NO_LINES);
+            throw new NoneObjectException(ERROR_NO_LINES);
         }
         return Collections.unmodifiableList(lines);
     }
 
     public static void addLine(Line line) {
         if (lines.contains(line)) {
-            throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
+            throw new DuplicatedObjectException(ERROR_ALREADY_EXIST);
         }
         lines.add(line);
     }
@@ -37,7 +40,7 @@ public class LineRepository {
     public static boolean deleteLineByName(String name) {
         boolean removed = lines.removeIf(line -> Objects.equals(line.getName(), name));
         if (!removed) {
-            throw new IllegalArgumentException(ERROR_NOT_EXIST);
+            throw new NoSuchObjectException(ERROR_NOT_EXIST);
         }
         return true;
     }
@@ -48,12 +51,12 @@ public class LineRepository {
                 return line;
             }
         }
-        throw new RuntimeException(ERROR_NOT_EXIST);
+        throw new NoSuchObjectException(ERROR_NOT_EXIST);
     }
 
     public static List<LineDTO> exprotsAllLinesToDTO() {
         if (lines.size() == ZERO) {
-            throw new RuntimeException(ERROR_NO_LINES);
+            throw new NoneObjectException(ERROR_NO_LINES);
         }
         return lines.stream()
                 .map(Line::toDTO)

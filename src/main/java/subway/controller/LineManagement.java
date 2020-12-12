@@ -23,7 +23,7 @@ public class LineManagement {
                 lineView.showMenu();
                 menu = lineView.getFunctionSelection();
                 runSelectedMenuFunction();
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 OutputView.showErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));

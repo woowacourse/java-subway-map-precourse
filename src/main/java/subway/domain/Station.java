@@ -1,6 +1,7 @@
 package subway.domain;
 
 import subway.dto.StationDTO;
+import subway.exception.InvalidInputLengthException;
 
 public class Station {
     private static final String INVALID_LENGTH_FORMAT = "이름은 %d 글자 이상이어야 합니다.";
@@ -10,7 +11,7 @@ public class Station {
 
     public Station(String name) {
         if (name.length() < MIN_LENGTH) {
-            throw new IllegalArgumentException(String.format(INVALID_LENGTH_FORMAT, MIN_LENGTH));
+            throw new InvalidInputLengthException(String.format(INVALID_LENGTH_FORMAT, MIN_LENGTH));
         }
         this.name = name;
     }

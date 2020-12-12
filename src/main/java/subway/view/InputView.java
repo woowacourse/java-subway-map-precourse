@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.exception.NoneInputException;
 import subway.view.selection.Selection;
 import subway.view.selection.Selections;
 
@@ -21,7 +22,7 @@ public class InputView {
 
     private static boolean isNotEmptyStringOrThrowException(String string) {
         if (string.equals("")) {
-            throw new IllegalArgumentException(ERROR_NONE_INPUT_VALUE);
+            throw new NoneInputException(ERROR_NONE_INPUT_VALUE);
         }
         return true;
     }
@@ -31,7 +32,7 @@ public class InputView {
             String input = getStringWithMessage(MENU_SELECTION);
             newLine();
             return selections.searchByValue(input);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
             return getSelection(selections);
         }
@@ -44,7 +45,7 @@ public class InputView {
             isNotEmptyStringOrThrowException(string);
             newLine();
             return string;
-        }catch (Exception e) {
+        }catch (RuntimeException e) {
             OutputView.showErrorMessage(e);
             return getStringWithMessage(requestMessage);
         }

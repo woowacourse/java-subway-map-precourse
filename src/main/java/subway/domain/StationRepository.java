@@ -1,5 +1,9 @@
 package subway.domain;
 
+import subway.exception.DuplicatedObjectException;
+import subway.exception.NoSuchObjectException;
+import subway.exception.NoneObjectException;
+
 import java.util.*;
 
 public class StationRepository {
@@ -16,14 +20,14 @@ public class StationRepository {
 
     public static List<Station> stations() {
         if (stations.size() == ZERO) {
-            throw new RuntimeException(ERROR_NO_STATIONS);
+            throw new NoneObjectException(ERROR_NO_STATIONS);
         }
         return Collections.unmodifiableList(stations);
     }
 
     public static void addStation(Station station) {
         if (stations.contains(station)) {
-            throw new IllegalArgumentException(ERROR_ALREADY_EXIST);
+            throw new DuplicatedObjectException(ERROR_ALREADY_EXIST);
         }
         stations.add(station);
     }
@@ -31,7 +35,7 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         boolean removed = stations.removeIf(station -> Objects.equals(station.getName(), name));
         if (!removed) {
-            throw new IllegalArgumentException(ERROR_NOT_EXIST);
+            throw new NoSuchObjectException(ERROR_NOT_EXIST);
         }
         return true;
     }
@@ -42,6 +46,6 @@ public class StationRepository {
                 return station;
             }
         }
-        throw new RuntimeException(ERROR_NOT_EXIST);
+        throw new NoSuchObjectException(ERROR_NOT_EXIST);
     }
 }

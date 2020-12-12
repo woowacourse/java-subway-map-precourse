@@ -18,7 +18,7 @@ public class SectionManagement {
                 sectionView.showMenu();
                 menu = sectionView.getFunctionSelection();
                 runSelectedMenuFunction();
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 OutputView.showErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));

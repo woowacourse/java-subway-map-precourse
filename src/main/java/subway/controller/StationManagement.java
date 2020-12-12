@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.exception.AttemptToDeleteDependentObjectException;
 import subway.menuType.FunctionType;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -23,7 +24,7 @@ public class StationManagement {
                 stationView.showMenu();
                 menu = stationView.getFunctionSelection();
                 runSelectedMenuFunction();
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 OutputView.showErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
@@ -61,7 +62,7 @@ public class StationManagement {
                 .anyMatch(line -> line.contains(key));
 
         if (exist) {
-            throw new IllegalArgumentException(ERROR_CANNOT_REMOVE);
+            throw new AttemptToDeleteDependentObjectException(ERROR_CANNOT_REMOVE);
         }
 
         return true;
