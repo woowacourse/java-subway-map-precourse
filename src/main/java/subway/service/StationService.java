@@ -3,9 +3,6 @@ package subway.service;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.view.InputView;
-import subway.view.OutputView;
-
-import java.util.List;
 
 import static subway.repository.StationRepository.stations;
 import static subway.view.OutputView.*;
@@ -18,7 +15,7 @@ public class StationService {
 
     public boolean addStation(InputView inputView) {
         askMessage(ASK_ADD_STATION_NAME);
-        String stationName = inputView.inputStationName();
+        String stationName = inputView.inputName();
         if (stationName.length() < 2) {
             warnMessage(STATION_NAME_LENGTH_WARN);
             return false;
@@ -28,7 +25,7 @@ public class StationService {
 
     public boolean deleteStation(InputView inputView) {
         askMessage(ASK_DELETE_STATION_NAME);
-        String stationName = inputView.inputStationName();
+        String stationName = inputView.inputName();
         return StationRepository.deleteStation(stationName);
     }
 

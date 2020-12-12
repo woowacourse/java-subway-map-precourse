@@ -9,7 +9,7 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public String inputStationName() {
+    public String inputName() {
         return scanner.nextLine().trim();
     }
 }
