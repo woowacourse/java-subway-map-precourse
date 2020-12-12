@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class FlowChart {
     public static void start(Scanner scanner){
         Menu mainPage = new Menu(Constant.MAIN_MENU_TITLE, Constant.mainMenuItemList());
-        Menu stationPage = new Menu(Constant.STATION_LIST_TITLE, Constant.stationMenuItemList());
+
         Menu linePage = new Menu(Constant.LINE_MENU_TITLE, Constant.lineMenuItemList());
         Menu sectionPage = new Menu(Constant.SECTION_MENU_TITLE, Constant.sectionMenuItemList());
 
         while (true) {
             String mainInput = mainPage.load(scanner);
             if(mainInput.equals(Constant.mainMenuItemList().get(0).substring(0, 1))){
-                stationPage.load(scanner);
+                loopStationPage(scanner);
             }
             if(mainInput.equals(Constant.mainMenuItemList().get(1).substring(0, 1))){
                 linePage.load(scanner);
@@ -28,4 +28,25 @@ public class FlowChart {
             }
         }
     }
+
+    public static void loopStationPage(Scanner scanner){
+        Menu stationPage = new Menu(Constant.STATION_LIST_TITLE, Constant.stationMenuItemList());
+        while (true){
+            String stationInput = stationPage.load(scanner);
+            if(stationInput.equals(Constant.stationMenuItemList().get(0).substring(0, 1))){
+                // 역 등록.
+            }
+            if(stationInput.equals(Constant.stationMenuItemList().get(1).substring(0, 1))){
+                // 역 삭제.
+            }
+            if(stationInput.equals(Constant.stationMenuItemList().get(2).substring(0, 1))){
+                // 역 조회.
+            }
+            if(stationInput.equals(Constant.stationMenuItemList().get(3).substring(0, 1))){
+                break;
+            }
+        }
+    }
+
+
 }
