@@ -17,8 +17,16 @@ public class SubwayController {
     public static void run(MainInputView mainInputView) {
         List<Character> optionList = Arrays.asList(STATION_MANAGEMENT, LINE_MANAGEMENT, SECTION_MANAGEMENT, PRINT_LINE_MAP, EXIT_SERVICE);
 
-        MainOutputView.printMainSelection();
-        selectOption(mainInputView.selectOption(optionList), mainInputView);
+        while (true) {
+            MainOutputView.printMainSelection();
+            char option = mainInputView.selectOption(optionList);
+
+            if (option == EXIT_SERVICE) {
+                break;
+            }
+
+            selectOption(option, mainInputView);
+        }
     }
 
     private static void selectOption(char option, MainInputView mainInputView) {
