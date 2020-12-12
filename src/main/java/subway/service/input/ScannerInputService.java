@@ -66,6 +66,20 @@ public class ScannerInputService implements InputService {
         return option;
     }
 
+    @Override
+    public int getSequence() {
+        String inputValue = getNextLine();
+        int sequence = stringToInt(inputValue);
+        validateSequence(sequence);
+        return 0;
+    }
+
+    private void validateSequence(int sequence) {
+        if (sequence < 1) {
+            throw new InputServiceException(ErrorCode.INVALID_SEQUENCE);
+        }
+    }
+
     private boolean isBack(String inputOption) {
         if (inputOption.equals(MAIN_OPTION_BACK)) {
             return true;

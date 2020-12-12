@@ -130,6 +130,8 @@ public class StationManageApp {
         Section section = sectionService.findByName(getName());
         outputService.printSharp(SectionView.PRINT_ADD_STATION);
         Station station = stationService.findByName(getName());
+        outputService.printSharp(SectionView.PRINT_ADD_SEQUENCE);
+        inputService.getSequence();
     }
 
     private void deleteLine(LineView lineView) {

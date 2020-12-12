@@ -5,6 +5,9 @@ import subway.view.Screen;
 public enum ErrorCode {
     CANNOT_CHOOSE_OPTION("I001", Screen.PREFIX_ERROR + "선택할 수 없는 기능입니다."),
 
+    //InputService
+    INVALID_SEQUENCE("In001", Screen.PREFIX_ERROR + "순서는 1이상의 자연수 입니다."),
+
     //Station
     STATION_NAME_LENGTH_ERROR("S001", Screen.PREFIX_ERROR + "역 이름은 2글자 이상이어야 합니다."),
     STATION_INVALID_LAST_NAME("S002", Screen.PREFIX_ERROR + "마지막 글자에 역이 들어가야합니다."),

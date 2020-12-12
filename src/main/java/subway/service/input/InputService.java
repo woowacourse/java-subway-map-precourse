@@ -23,4 +23,6 @@ public interface InputService {
     int getManageRouteOption();
 
     int getManageSectionOption();
+
+    int getSequence();
 }
