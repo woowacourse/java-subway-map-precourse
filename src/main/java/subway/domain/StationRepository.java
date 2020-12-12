@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import subway.exception.DuplicatedStationNameException;
+import subway.exception.NullStationException;
+import subway.exception.ResisteredStationException;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -23,6 +25,14 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (!containsStation(name)) {
+            throw new NullStationException(name);
+        }
+
+        if (LineRepository.anyLineContainsStation(name)) {
+            throw new ResisteredStationException(name);
+        }
+
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
@@ -30,7 +40,7 @@ public class StationRepository {
         return containsStation(station.getName());
     }
     
-    private static boolean containsStation(String name) {
+    public static boolean containsStation(String name) {
         return stations.stream()
                 .anyMatch(streamStation -> name.equals(streamStation.getName()));
     }
