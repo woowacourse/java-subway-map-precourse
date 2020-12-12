@@ -1,14 +1,18 @@
 package subway.view;
 
+import subway.controller.StationController;
+
 /**
  * @author yhh1056
  * @since 2020/12/11
  */
 public class StationView {
     private final Input input;
+    private final StationController stationController;
 
     public StationView(Input input) {
         this.input = input;
+        this.stationController = new StationController();
     }
 
     public void selectStationMenu() {
@@ -31,6 +35,9 @@ public class StationView {
 
     private void registerStation(String button) {
         if (button.equals(Button.ONE)) {
+            Message.printCreateStation();
+            stationController.createStation(input.nextStation());
+            Message.printSuccessStation();
         }
     }
 

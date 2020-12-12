@@ -63,4 +63,8 @@ public class Input {
     private String nextLine() {
         return scanner.nextLine().replaceAll(REGEX, REPLACEMENT);
     }
+
+    public String nextStation() {
+        return nextLine();
+    }
 }

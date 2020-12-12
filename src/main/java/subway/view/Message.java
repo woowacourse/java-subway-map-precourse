@@ -38,6 +38,8 @@ public class Message {
     private static final String selectFeature = "\n## 원하는 기능을 선택하세요.";
     private static final String subwayLine = "## 지하철 노선도";
     private static final String error = "\n[ERROR] 선택할 수 없는 기능입니다.";
+    private static final String createStation = "\n## 등록할 역 이름을 입력하세요.";
+    private static final String successStation = "\n[INFO] 지하철 역이 등록되었습니다.";
 
     private Message() {
     }
@@ -76,5 +78,13 @@ public class Message {
 
     public static void printLine() {
         System.out.println();
+    }
+
+    public static void printCreateStation() {
+        System.out.println(createStation);
+    }
+
+    public static void printSuccessStation() {
+        System.out.println(successStation);
     }
 }
