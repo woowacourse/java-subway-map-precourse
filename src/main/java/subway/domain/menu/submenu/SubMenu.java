@@ -38,7 +38,8 @@ public class SubMenu {
         return titleActionMessage;
     }
 
-    public void action() {
+    public void visualize() {
+        System.out.println();
         System.out.println(getTitle());
     }
 
