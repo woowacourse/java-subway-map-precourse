@@ -27,4 +27,11 @@ public class StationServiceTest {
     public void testDeleteStation() {
         StationService.delete("테스트역");
     }
+
+    @DisplayName("Station 출력 기능 테스트")
+    @Test
+    public void testPrintStation(){
+        StationService.save("오리역");
+        StationService.printAll();
+    }
 }
