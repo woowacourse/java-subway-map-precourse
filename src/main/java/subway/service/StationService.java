@@ -21,12 +21,12 @@ public class StationService {
     }
 
     public static void delete(String stationName) {
-        if (!StationRepository.deleteStation(stationName)) {
+        if (!StationRepository.deleteStationByName(stationName)) {
             throw new IllegalArgumentException(NOT_DELETE_ERROR);
         }
     }
 
-    private static boolean hasSameName(String stationName) {
+    public static boolean hasSameName(String stationName) {
         Optional<Station> findStation = StationRepository.findByName(stationName);
         return findStation.isPresent();
     }

@@ -2,6 +2,7 @@ package subway;
 
 import java.util.List;
 import java.util.Scanner;
+import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Station;
 import subway.view.InputView;
@@ -19,10 +20,12 @@ public class Router {
 
     private InputView inputView;
     private StationController stationController;
+    private LineController lineController;
 
     public Router(Scanner scanner) {
         this.inputView = new InputView(monitor, scanner);
         this.stationController = new StationController(monitor);
+        this.lineController = new LineController(monitor);
     }
 
     public void run() {
@@ -68,11 +71,11 @@ public class Router {
             return false;
         }
         if (command.equals(ONE)) {
-            String stationName = inputView.getStationName(OutputView.ORDER_TO_REGISTER_STATION);
+            String stationName = inputView.getName(OutputView.ORDER_TO_REGISTER_STATION);
             return stationController.registerStation(stationName);
         }
         if (command.equals(TWO)) {
-            String stationName = inputView.getStationName(OutputView.ORDER_TO_DELETE_STATION);
+            String stationName = inputView.getName(OutputView.ORDER_TO_DELETE_STATION);
             return stationController.deleteStation(stationName);
         }
         if (command.equals(THREE)) {
@@ -85,9 +88,18 @@ public class Router {
     }
 
     private boolean routeLineManagementScreen(String command) {
+        if (command.equals(BACK)) {
+            return false;
+        }
         if (command.equals(ONE)) {
+            String lineName = inputView.getName(OutputView.ORDER_TO_REGISTER_LINE);
+            String upTrainLastStationName = inputView.getName(OutputView.ORDER_TO_REGISTER_UP_TRAIN_LAST_STATION);
+            String downTrainLastStationName = inputView.getName(OutputView.ORDER_TO_REGISTER_DOWN_TRAIN_LAST_STATION);
+            return lineController.registerLine(lineName,upTrainLastStationName,downTrainLastStationName);
         }
         if (command.equals(TWO)) {
+            String lineName = inputView.getName(OutputView.ORDER_TO_DELETE_LINE);
+            return lineController.deleteLine(lineName);
         }
         if (command.equals(THREE)) {
         }
