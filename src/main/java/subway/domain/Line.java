@@ -73,7 +73,7 @@ public class Line {
             throw new DuplicatedStationInLineException(stationName);
         }
 
-        if (index <= FIRST_STATION_ORDER || index >= getLastStationOrder()) {
+        if (index <= FIRST_STATION_ORDER || index > getLastStationOrder()) {
             throw new SectionOutOfRangeException(index + 1);
         }
 

@@ -55,6 +55,6 @@ public class SectionController {
 
     private static void catchError(Exception exception) {
         OutputView.printError(exception);
-        SubwayMapController.callLineMenu();
+        SubwayMapController.callSectionMenu();
     }
 }
