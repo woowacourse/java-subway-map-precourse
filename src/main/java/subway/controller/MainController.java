@@ -35,9 +35,18 @@ public class MainController {
     }
 
     private void getMainControllerInput(Scanner scanner) {
-        String userChoice = InputView.mainControllerInput(scanner);
-        if (userChoice.equals(STATION_CONTROL)) {
-
+        String userChoice = "";
+        while (!userChoice.equals(QUIT)) {
+            userChoice = InputView.mainControllerInput(scanner);
+            if (userChoice.equals(STATION_CONTROL)) {
+                StationController.start();
+            } else if (userChoice.equals(LINE_CONTROL)) {
+                LineController.start();
+            } else if (userChoice.equals(LINE_SECTION_CONTROL)) {
+                LineSectionController.start();
+            } else if (userChoice.equals(MAP_PRINT_CONTROL)) {
+                MapPrintController.start();
+            }
         }
     }
 }
