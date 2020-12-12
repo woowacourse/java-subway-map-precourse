@@ -11,16 +11,15 @@ import subway.view.InputView;
 
 public class MainDashboard {
     TreeMap<String, String> options;
-
-    public MainDashboard(Scanner scanner) {
-        InputView inputView = new InputView(scanner);
+    InputView inputView;
+    public MainDashboard(InputView inputView) {
+        this.inputView = inputView;
         options = new TreeMap<>();
         options.put(OPTION_NUM_1, DASHBOARD_MAIN_OPTION_1);
         options.put(OPTION_NUM_2, DASHBOARD_MAIN_OPTION_2);
         options.put(OPTION_NUM_3, DASHBOARD_MAIN_OPTION_3);
         options.put(OPTION_NUM_4, DASHBOARD_MAIN_OPTION_4);
-        options.put(OPTION_QUIT, DASHBOARD_MAIN_OPTION_Q);
-        showDashboardName();
+        options.put(OPTION_QUIT, DASHBOARD_OPTION_Q);
         startMainDashboard(inputView);
 
     }
@@ -30,7 +29,6 @@ public class MainDashboard {
     }
 
     public void startMainDashboard(InputView inputView) {
-        showOptions();
         while(true) {
             if (!startChosenOptionUntilFinished(makeUserChooseOption(inputView))) {
                 break;
@@ -39,6 +37,8 @@ public class MainDashboard {
     }
 
     public String makeUserChooseOption(InputView inputView) {
+        showDashboardName();
+        showOptions();
         String optionChosen;
         while(true) {
             optionChosen = chooseOption(inputView);
@@ -58,17 +58,17 @@ public class MainDashboard {
 
     public boolean startChosenOptionUntilFinished(String option) {
         if (option.equals(OPTION_NUM_1)) {
-            StationDashboard stationDashboard = new StationDashboard();
+            StationDashboard stationDashboard = new StationDashboard(inputView);
             return true;
         }
 
         if (option.equals(OPTION_NUM_2)) {
-            LineDashboard lineDashboard = new LineDashboard();
+            LineDashboard lineDashboard = new LineDashboard(inputView);
             return true;
         }
 
         if (option.equals(OPTION_NUM_3)) {
-            StretchDashboard stretchDashboard = new StretchDashboard();
+            StretchDashboard stretchDashboard = new StretchDashboard(inputView);
             return true;
         }
 

@@ -17,7 +17,21 @@ public class DashboardWords {
     public static final String DASHBOARD_MAIN_OPTION_2 = "노선 관리";
     public static final String DASHBOARD_MAIN_OPTION_3 = "구간 관리";
     public static final String DASHBOARD_MAIN_OPTION_4 = "지하철 노선도 출력";
-    public static final String DASHBOARD_MAIN_OPTION_Q = "종료";
+
+
+    public static final String DASHBOARD_OPTION_Q = "종료";
+    public static final String DASHBOARD_OPTION_B = "돌아가기";
+
+    public static final String DASHBOARD_STATION_OPTION_1 = "역 등록";
+    public static final String DASHBOARD_STATION_OPTION_2 = "역 삭제";
+    public static final String DASHBOARD_STATION_OPTION_3 = "역 조회";
+
+    public static final String DASHBOARD_LINE_OPTION_1 = "노선 등록";
+    public static final String DASHBOARD_LINE_OPTION_2 = "노선 삭제";
+    public static final String DASHBOARD_LINE_OPTION_3 = "노선 조회";
+
+    public static final String DASHBOARD_STRETCH_OPTION_1 = "구간 등록";
+    public static final String DASHBOARD_STRETCH_OPTION_2 = "구간 삭제";
 
     public static final String ASK_OPTIONS = "## 원하는 기능을 선택하세요.";
 
