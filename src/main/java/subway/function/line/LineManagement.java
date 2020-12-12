@@ -2,6 +2,7 @@ package subway.function.line;
 
 import java.util.Scanner;
 import subway.commonprint.CommonPrinter;
+import subway.domain.LineRepository;
 import subway.domain.LineStationMappingRepository;
 import subway.main.UserSelections;
 
@@ -25,8 +26,13 @@ public class LineManagement {
             deleteLine(scanner);
         }
         if (type == LineManagementSelectionType.PRINT_ALL_LINES) {
-            //printAllLines(scanner);
+            printLineList();
         }
+    }
+
+    private static void printLineList() {
+        LineManagementPrinter.printLineListTitle();
+        LineRepository.printAllLines();
     }
 
     private static void deleteLine(Scanner scanner) {

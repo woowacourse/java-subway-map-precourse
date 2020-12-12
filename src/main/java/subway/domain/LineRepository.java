@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.commonprint.Prefix;
 
 /*
 필요 시 StationRepository, LineRepository 이 외 추가로 Repository를 만들 수 있다.
@@ -33,5 +34,11 @@ public class LineRepository {
             }
         }
         return null;
+    }
+
+    public static void printAllLines() {
+        lines.forEach(
+            line -> System.out.println(Prefix.INFO_PREFIX + line.getName())
+        );
     }
 }
