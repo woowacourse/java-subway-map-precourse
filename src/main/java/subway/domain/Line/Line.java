@@ -60,6 +60,10 @@ public class Line {
         });
     }
 
+    public void removeStation(Station station) {
+        stations.remove(station);
+    }
+
     public boolean isContains(Station station) {
         return stations.contains(station);
     }
@@ -107,7 +111,4 @@ public class Line {
         return stations.size() > MIN_STATION_CAPACITY;
     }
 
-    public void removeStations(Station station) {
-        stations.remove(station);
-    }
 }

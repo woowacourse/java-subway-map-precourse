@@ -28,7 +28,7 @@ public class Station implements Comparable<Station> {
     }
 
     public void clear() {
-        lines.stream().forEach(line -> line.removeStations(this));
+        lines.stream().forEach(line -> line.removeStation(this));
     }
 
     public void removeLine(Line line) {

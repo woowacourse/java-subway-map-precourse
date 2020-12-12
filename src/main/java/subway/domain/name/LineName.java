@@ -47,7 +47,7 @@ public class LineName implements Comparable<LineName> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LineName lineName = (LineName) o;
-        return Objects.equals(name, lineName.name);
+        return this.name.equals(lineName.name);
     }
 
     @Override
