@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StationController implements SubwayController {
 
-    private StationRepository stationRepository = new StationRepository();
+    private final StationRepository stationRepository = new StationRepository();
     private final InputView inputView = InputView.getInstance();
 
     @Override

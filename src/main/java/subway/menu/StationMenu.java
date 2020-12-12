@@ -32,7 +32,7 @@ public enum StationMenu implements Menu {
     public Menu run() {
 
         try {
-            action.action(controller);
+            action.action(this);
             return MainMenu.LINE;
         } catch (Exception e) {
             OutputView.printErrorMessage(e);

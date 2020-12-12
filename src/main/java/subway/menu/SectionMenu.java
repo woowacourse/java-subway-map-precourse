@@ -31,7 +31,7 @@ public enum SectionMenu implements Menu {
     public Menu run() {
 
         try {
-            action.action(controller);
+            action.action(this);
 
             return MainMenu.SECTION;
         } catch (Exception e) {

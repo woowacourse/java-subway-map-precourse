@@ -4,21 +4,26 @@ import subway.menu.*;
 
 public class ControllerFactory {
 
+    private static final SubwayController stationController = new StationController();
+    private static final SubwayController lineController = new LineController();
+    private static final SubwayController sectionController = new SectionController();
+    private static final SubwayController mainController = new MainController();
+
     private ControllerFactory() {
     }
 
     public static SubwayController of(Menu menu) {
 
         if (menu instanceof StationMenu) {
-            return new StationController();
+            return stationController;
         }
         if (menu instanceof LineMenu) {
-            return new LineController();
+            return lineController;
         }
         if (menu instanceof SectionMenu) {
-            return new SectionController();
+            return sectionController;
         }
-        return new MainController();
+        return mainController;
     }
 
 }
