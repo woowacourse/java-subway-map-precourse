@@ -13,6 +13,11 @@ import java.util.Scanner;
 public class MainController {
     private static final List<String> preregisterStations = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
     private static final List<String> preregisterLines = Arrays.asList("2호선", "3호선", "신분당선");
+    private static final String STATION_CONTROL = "1";
+    private static final String LINE_CONTROL = "2";
+    private static final String LINE_SECTION_CONTROL = "3";
+    private static final String MAP_PRINT_CONTROL = "4";
+    private static final String QUIT = "Q";
 
     public void start(Scanner scanner) {
         initialSetupRegister();
@@ -31,5 +36,8 @@ public class MainController {
 
     private void getMainControllerInput(Scanner scanner) {
         String userChoice = InputView.mainControllerInput(scanner);
+        if (userChoice.equals(STATION_CONTROL)) {
+
+        }
     }
 }

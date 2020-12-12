@@ -10,13 +10,13 @@ public class InputView {
 
     public static String mainControllerInput(Scanner scanner) {
         System.out.println(MAIN_CONTROLLER_INFORMATION);
-        String userInput;
-        boolean properInput;
-        do {
+        String userInput = null;
+        boolean properInput = false;
+        while (!properInput) {
             System.out.println(MAIN_CONTROLLER_GIVE_OPTION);
             userInput = scanner.nextLine();
             properInput = Validation.checkMainControllerInput(userInput);
-        } while(!properInput);
+        }
         return userInput;
     }
 }

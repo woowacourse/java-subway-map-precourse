@@ -19,7 +19,7 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            System.err.println(ERROR_WRONG_OPTION);
+            System.out.println(ERROR_WRONG_OPTION);
             return false;
         }
         return true;
