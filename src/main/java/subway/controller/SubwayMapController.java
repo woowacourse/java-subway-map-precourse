@@ -47,6 +47,7 @@ public class SubwayMapController {
 
     public static void showSubwayMap() {
         OutputView.printSubwayMap();
+        callMainMenu();
     }
 
     public static void Quit() {
