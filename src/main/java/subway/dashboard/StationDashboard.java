@@ -4,9 +4,10 @@ import static subway.dashboard.DashboardWords.*;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 
 public class StationDashboard {
@@ -59,7 +60,9 @@ public class StationDashboard {
     public boolean startChosenOptionUntilFinished(String option) {
 
         if (option.equals(OPTION_NUM_1)) {
-            System.out.println("역등록실행");
+            if(updateStation(inputView)) {
+                return true;
+            }
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
@@ -86,6 +89,17 @@ public class StationDashboard {
 
     public String chooseOption(InputView inputView) {
         return inputView.readOptionChoice();
+    }
+
+    public boolean updateStation(InputView inputView) {
+        String submittedStationName = inputView.readStationName();
+        Station station = new Station(submittedStationName);
+        if (StationRepository.stations().contains(station)) {
+            System.out.println(ERROR_STATION_NAME_DUPLICATED);
+            return true;
+        }
+        StationRepository.addStation(station);
+        return false;
     }
 
 

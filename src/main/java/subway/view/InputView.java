@@ -16,4 +16,9 @@ public class InputView {
         System.out.println(ASK_OPTIONS);
         return scanner.nextLine();
     }
+
+    public String readStationName() {
+        System.out.println(ASK_STATION_NAME);
+        return scanner.nextLine();
+    }
 }

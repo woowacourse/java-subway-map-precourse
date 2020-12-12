@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.Objects;
+
 public class Station {
     private String name;
 
@@ -11,5 +13,11 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean equals(Object object) {
+        if (object instanceof Station) {
+            return ((Station) object).name.equals(this.name);
+        }
+        return false;
+    }
+
 }
