@@ -13,22 +13,10 @@ public class Menu {
     }
 
     public String load(Scanner scanner) {
-        printMenu();
-        printInputMessage();
+        Print.menu(this.title, this.itemList);
+        Print.enterMessage(Constant.CHOOSE_FUNCTION);
         String input = scanner.next();
         System.out.println();
         return Exception.checkMenu(input, this.itemList);
-    }
-
-    public void printMenu() {
-        System.out.println(Constant.HEAD_HASH + this.title);
-        for (int i = 0; i < this.itemList.size(); i++) {
-            System.out.println(this.itemList.get(i));
-        }
-    }
-
-    public void printInputMessage() {
-        System.out.println();
-        System.out.println(Constant.HEAD_HASH + Constant.CHOOSE_FUNCTION);
     }
 }
