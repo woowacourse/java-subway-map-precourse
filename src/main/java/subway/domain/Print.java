@@ -12,21 +12,11 @@ public class Print {
         );
     }
 
-    public static void stationSetting() {
-        System.out.printf(Constant.HASH + Constant.STATION + Constant.SETTING_MENU + "%n"
-                + Constant.ONE + Constant.DOT + Constant.STATION + Constant.SPACE + Constant.ADD + "%n"
-                + Constant.TWO + Constant.DOT + Constant.STATION + Constant.SPACE + Constant.DELETE + "%n"
-                + Constant.THREE + Constant.DOT + Constant.STATION + Constant.SPACE + Constant.LOOKUP + "%n"
-                + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
-                + Constant.HASH + Constant.CHOOSE_FUNCTION + "%n"
-        );
-    }
-
-    public static void lineSetting() {
-        System.out.printf(Constant.HASH + Constant.LINE + Constant.SETTING_MENU + "%n"
-                + Constant.ONE + Constant.DOT + Constant.LINE + Constant.SPACE + Constant.ADD + "%n"
-                + Constant.TWO + Constant.DOT + Constant.LINE + Constant.SPACE + Constant.DELETE + "%n"
-                + Constant.THREE + Constant.DOT + Constant.LINE + Constant.SPACE + Constant.LOOKUP + "%n"
+    public static void setting(String target) {
+        System.out.printf(Constant.HASH + target + Constant.SETTING_MENU + "%n"
+                + Constant.ONE + Constant.DOT + target + Constant.SPACE + Constant.ADD + "%n"
+                + Constant.TWO + Constant.DOT + target + Constant.SPACE + Constant.DELETE + "%n"
+                + Constant.THREE + Constant.DOT + target + Constant.SPACE + Constant.LOOKUP + "%n"
                 + Constant.B + Constant.DOT + Constant.BACK + "%n%n"
                 + Constant.HASH + Constant.CHOOSE_FUNCTION + "%n"
         );

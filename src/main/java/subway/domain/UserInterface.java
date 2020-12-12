@@ -9,12 +9,12 @@ public class UserInterface {
     }
 
     public static String stationSetting(Scanner scanner) {
-        Print.stationSetting();
+        Print.setting(Constant.STATION);
         return scanner.next();
     }
 
     public static String lineSetting(Scanner scanner) {
-        Print.lineSetting();
+        Print.setting(Constant.LINE);
         return scanner.next();
     }
 
