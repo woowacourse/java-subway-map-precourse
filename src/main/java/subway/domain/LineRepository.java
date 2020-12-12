@@ -16,7 +16,31 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static Line findLine(String name) {
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
+                return line;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
     public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+        if (lines.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
+                lines.remove(line);
+                return true;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static void printLines() {
+        for (Line line : lines()) {
+            System.out.println("[INFO] " + line.getName());
+        }
     }
 }
