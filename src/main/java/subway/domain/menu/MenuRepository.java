@@ -84,11 +84,11 @@ public class MenuRepository {
         menus.put(MenuType.SECTION, menu);
     }
 
-    private static String combination(String object, String functionFormat) {
-        return String.format(object, functionFormat);
+    private static String combination(String functionFormat, String object) {
+        return String.format(functionFormat, object);
     }
 
     private static String getMenuTitle(String object) {
-        return String.format(object, SCREEN);
+        return String.format(SCREEN, object);
     }
 }
