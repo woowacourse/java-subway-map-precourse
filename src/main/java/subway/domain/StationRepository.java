@@ -51,7 +51,16 @@ public class StationRepository {
     }
     
     public static boolean containsStation(String name) {
-        return stations.stream()
-                .anyMatch(streamStation -> name.equals(streamStation.getName()));
+        return stations.stream().anyMatch(streamStation -> name.equals(streamStation.getName()));
+    }
+    
+    public static Station getStationByName(String name) {
+        Station matchedStation = stations.stream()
+                .filter(streamStation -> name.equals(streamStation.getName()))
+                .findAny()
+                .orElse(null);
+        // TODO: 존재하지 않을 시 예외 처리;
+
+        return matchedStation;
     }
 }

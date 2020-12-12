@@ -65,6 +65,26 @@ public class OutputView {
         }
     }
 
+    public static void requestLineNameToAdd() {
+        String message = getRequestMessage(ActionParts.TO_ADD, ObjectParts.LINE_NAME);
+        printMessage(message);
+    }
+    
+    public static void requestUpstreamTerminus() {
+        String message = getRequestMessage(ActionParts.TO_ADD, ObjectParts.UPSTREAM_TERMINUS);
+        printMessage(message);
+    }
+    
+    public static void requestDownstreamTerminus() {
+        String message = getRequestMessage(ActionParts.TO_ADD, ObjectParts.DOWNSTREAM_TERMINUS);
+        printMessage(message);
+    }
+
+    public static void informLineAdded() {
+        String message = getInformMessage(InformSubjectParts.LINE_IS, InformPredicateParts.ADDED);
+        printInformMessage(message);
+    }
+
     public static void printError(Exception exception) {
         printEmptyLine();
         System.out.printf(ERROR_FORMAT, exception.getMessage());
