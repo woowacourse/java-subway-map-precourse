@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import subway.exception.DuplicatedLineNameException;
+import subway.exception.NullLineException;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -23,6 +24,10 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
+        if (!containsLine(name)) {
+            throw new NullLineException(name);
+        }
+
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
