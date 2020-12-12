@@ -21,45 +21,60 @@ public class LineController {
         this.outputView = new OutputView();
     }
 
-    public void addLine() {
+    public LineController(LineRepository lineRepository, InputView inputView,
+                          OutputView outputView) {
+        this.lineRepository = lineRepository;
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
+    public LineController addLine() {
         String lineName = inputView.inputLineName();
         String startStation = inputView.inputStationName();
         String finalStation = inputView.inputStationName();
 
-        lineRepository.addLine(new Line(lineName, startStation, finalStation));
+        LineRepository addedLineRepository = lineRepository.addLine(new Line(lineName, startStation, finalStation));
 
         outputView.printSaved(LINE);
+
+        return new LineController(addedLineRepository, this.inputView, this.outputView);
     }
 
-    public void removeLine() {
+    public LineController removeLine() {
         String lineName = inputView.inputLineName();
 
-        lineRepository.removeLine(lineName);
+        LineRepository removedLineRepository = lineRepository.removeLine(lineName);
 
         outputView.printRemoved(LINE);
+
+        return new LineController(removedLineRepository, this.inputView, this.outputView);
     }
 
     public void loadLines() {
         outputView.printLines(lineRepository);
     }
 
-    public void insertStation() {
+    public LineController insertStation() {
         String lineName = inputView.inputLineName();
         String stationName = inputView.inputStationName();
         int stationIndex = inputView.inputIndex();
 
-        lineRepository.insertStation(lineName, stationIndex, stationName);
+        LineRepository rangeInsertedLineRepository = lineRepository.insertStation(lineName, stationIndex, stationName);
 
         outputView.printSaved(RANGE);
+
+        return new LineController(rangeInsertedLineRepository, this.inputView, this.outputView);
     }
 
-    public void removeStation() {
+    public LineController removeStation() {
         String lineName = inputView.inputLineName();
         String stationName = inputView.inputStationName();
 
-        lineRepository.removeStation(lineName, stationName);
+        LineRepository rangeRemovedLineRepository = lineRepository.removeStation(lineName, stationName);
 
         outputView.printRemoved(RANGE);
+
+        return new LineController(rangeRemovedLineRepository, this.inputView, this.outputView);
     }
 
     public void printSubwayMap() {

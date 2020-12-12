@@ -18,6 +18,8 @@ public class OutputView {
 
     public static final String LIST = "목록";
 
+    public static final String SUBWAY_MAP = "지하철 노선도";
+
     public static final String HORIZONTAL_RULE = "---";
 
     public void printSaved(String type) {
@@ -45,6 +47,8 @@ public class OutputView {
     }
 
     public void printSubwayMap(LineRepository lineRepository) {
+        System.out.printf("%s %s", TITLE_PREFIX, SUBWAY_MAP);
+
         for (Line line : lineRepository.lines()) {
             printSuccessMessage(line.getName());
             printSuccessMessage(HORIZONTAL_RULE);
@@ -53,11 +57,11 @@ public class OutputView {
         }
     }
 
-    private void printListTitle(String type) {
-        System.out.printf("%s %s %s\n", TITLE_PREFIX, type, LIST);
-    }
-
     private void printSuccessMessage(String message) {
         System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
+    }
+
+    private void printListTitle(String type) {
+        System.out.printf("%s %s %s\n", TITLE_PREFIX, type, LIST);
     }
 }
