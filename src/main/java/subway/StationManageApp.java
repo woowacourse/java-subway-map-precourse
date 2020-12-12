@@ -124,11 +124,18 @@ public class StationManageApp {
         }
     }
 
+    private void chooseManageSectionOption(int manageSectionOption) {
+        if (manageSectionOption == InputService.ADD) {
+        }
+        if (manageSectionOption == InputService.DELETE) {
+        }
+    }
+
     private void deleteSection(LineView lineView) {
         outputService.printDelete(lineView);
         String lineName = getName();
         sectionService.deleteByName(new SectionDeleteReqDto(lineName));
-        outputService.printAfterAdd(lineView);
+        outputService.printAfterDelete(lineView);
     }
 
     private void addSection(LineView lineView) {
@@ -168,6 +175,11 @@ public class StationManageApp {
 
     private void mangeSection() {
         outputService.printManageSection();
+        int manageSectionOption = inputService.getManageSectionOption();
+        if (isBack(manageSectionOption)) {
+            return;
+        }
+        chooseManageSectionOption(manageSectionOption);
     }
 
     private void manageRoute() {

@@ -21,4 +21,6 @@ public interface InputService {
     int getManageStationOption();
 
     int getManageRouteOption();
+
+    int getManageSectionOption();
 }
