@@ -2,6 +2,7 @@ package subway.view;
 
 import java.io.PrintStream;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
@@ -27,6 +28,8 @@ public class OutputView {
 
     private static final String RANGE_SAVED = "구간이 등록되었습니다.";
 
+    public static final String HORIZONTAL_RULE = "---";
+
     public void printLineSaved() {
         printSuccessMessage(LINE_SAVED);
     }
@@ -36,7 +39,7 @@ public class OutputView {
     }
 
     public void printLines(LineRepository lineRepository) {
-        System.out.printf("%s %s", TITLE_PREFIX, LINE_LIST);
+        System.out.printf("%s %s\n", TITLE_PREFIX, LINE_LIST);
 
         for (String lineName : lineRepository.lineNames()) {
             printSuccessMessage(lineName);
@@ -52,7 +55,7 @@ public class OutputView {
     }
 
     public void printStations(StationRepository stationRepository) {
-        System.out.printf("%s %s", TITLE_PREFIX, STATION_LIST);
+        System.out.printf("%s %s\n", TITLE_PREFIX, STATION_LIST);
 
         for (String stationName : stationRepository.stationNames()) {
             printSuccessMessage(stationName);
@@ -68,6 +71,15 @@ public class OutputView {
     }
 
     private void printSuccessMessage(String message) {
-        System.out.printf("%s %s", SUCCESS_PREFIX, message);
+        System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
+    }
+
+    public void printSubwayMap(LineRepository lineRepository) {
+        for (Line line : lineRepository.lines()) {
+            printSuccessMessage(line.getName());
+            printSuccessMessage(HORIZONTAL_RULE);
+            printStations(line.getStations());
+            System.out.println();
+        }
     }
 }

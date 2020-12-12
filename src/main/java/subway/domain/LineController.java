@@ -32,7 +32,7 @@ public class LineController {
 
         lineRepository.removeLine(lineName);
 
-        outputView.printStationRemoved();
+        outputView.printLineRemoved();
     }
 
     public void loadLines() {
@@ -56,5 +56,9 @@ public class LineController {
         lineRepository.removeStation(lineName, stationName);
 
         outputView.printRangeRemoved();
+    }
+
+    public void printSubwayMap() {
+        outputView.printSubwayMap(lineRepository);
     }
 }
