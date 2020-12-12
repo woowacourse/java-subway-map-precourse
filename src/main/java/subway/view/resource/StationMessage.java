@@ -1,7 +1,7 @@
 package subway.view.resource;
 
 public class StationMessage {
-    public static final String SELECT_FUNCTION = "## 역 관리 화면\n" +
+    public static final String SELECT_FUNCTION = "역 관리 화면\n" +
             "1. 역 등록\n" +
             "2. 역 삭제\n" +
             "3. 역 조회\n" +
