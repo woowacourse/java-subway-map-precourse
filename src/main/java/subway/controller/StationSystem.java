@@ -53,7 +53,7 @@ public class StationSystem {
             return;
         }
         StationRepository.deleteStation(name);
-        InfoMessage.printLineDeleted();
+        InfoMessage.printStationDeleted();
     }
 
     private void addStation() {

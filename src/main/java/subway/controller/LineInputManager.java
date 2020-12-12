@@ -81,12 +81,12 @@ public class LineInputManager {
     }
 
     private boolean checkName(String name) {
-        return checkLength(name) && checkLastLetter(name) && checkAlreadyExist(name);
+        return checkLength(name) && checkLastLetter(name) && checkNotAlreadyExist(name);
     }
 
-    private boolean checkAlreadyExist(String name) {
+    private boolean checkNotAlreadyExist(String name) {
         if (LineRepository.lineNames().contains(name)) {
-            ErrorMessage.printValeAlreadyExist();
+            ErrorMessage.printValueAlreadyExist();
             return false;
         }
         return true;
@@ -108,4 +108,24 @@ public class LineInputManager {
         return true;
     }
 
+    public String getLineNameToDelete() {
+        Menu.printStationDeleteGuide();
+        String name = scanner.nextLine().trim();
+        if (!checkNameToDelete(name)) {
+            return ErrorMessage.OUT;
+        }
+        return name;
+    }
+
+    private boolean checkNameToDelete(String name) {
+        return checkAlreadyExist(name);
+    }
+
+    private boolean checkAlreadyExist(String name) {
+        if (!LineRepository.lineNames().contains(name)) {
+            ErrorMessage.printNotExistLine();
+            return false;
+        }
+        return true;
+    }
 }

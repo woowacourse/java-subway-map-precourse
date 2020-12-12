@@ -51,7 +51,7 @@ public class StationInputManager {
 
     private boolean checkNotAlreadyExist(String name) {
         if (StationRepository.stationNames().contains(name)) {
-            ErrorMessage.printValeAlreadyExist();
+            ErrorMessage.printValueAlreadyExist();
             return false;
         }
         return true;

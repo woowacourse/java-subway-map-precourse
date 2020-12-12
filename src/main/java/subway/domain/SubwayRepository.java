@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SubwayRepository {
     private static final Map<Line, PathRepository> subwayRealLines = new HashMap<>();
@@ -17,5 +18,12 @@ public class SubwayRepository {
         Line line = LineRepository.findLine(lineName);
         return subwayRealLines.get(line);
     }
+
+    public static void deleteSubwayLineByName(String lineName) {
+        Line line = LineRepository.findLine(lineName);
+        subwayRealLines.remove(line);
+    }
+
+
 
 }

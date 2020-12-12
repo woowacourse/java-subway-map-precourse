@@ -11,6 +11,7 @@ public class ErrorMessage {
     private static final String NOT_EXIST_STATION = "등록되어 있지 않은 역입니다.";
     private static final String SAME_UP_DOWN_STATION = "상행과 하행은 같은 역을 등록할 수 없습니다.";
     private static final String ON_PATH_STATION = "노선에 등록된 역은 삭제할 수 없습니다.";
+    private static final String NOT_EXIST_LINE = "등록되어 있지 않은 노선입니다.";
 
     private ErrorMessage() {
     }
@@ -43,8 +44,12 @@ public class ErrorMessage {
         System.out.println(ERROR_PREFIX + ON_PATH_STATION);
     }
 
-    public static void printValeAlreadyExist() {
+    public static void printValueAlreadyExist() {
         System.out.println(ERROR_PREFIX + VALUE_EXIST);
+    }
+
+    public static void printNotExistLine() {
+        System.out.println(ERROR_PREFIX + NOT_EXIST_LINE);
     }
 
 }

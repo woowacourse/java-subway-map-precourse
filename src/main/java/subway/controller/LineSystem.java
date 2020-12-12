@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
 import subway.domain.LineRepository;
 import subway.domain.PathRepository;
@@ -38,7 +39,7 @@ public class LineSystem {
             addLine();
         }
         if (input.equals("2")) {
-            removeLine();
+            deleteLine();
             System.out.println("노선 삭제");
         }
         if (input.equals("3")) {
@@ -61,7 +62,13 @@ public class LineSystem {
 
     }
 
-    private void removeLine() {
+    private void deleteLine() {
+        String name = lineInputManager.getLineNameToDelete();
+        if (name.contains(ErrorMessage.OUT)) {
+            return;
+        }
+        LineRepository.deleteLineByName(name);
+        InfoMessage.printLineDeleted();
     }
 
     private void lookupLines() {
