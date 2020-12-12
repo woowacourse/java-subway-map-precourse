@@ -2,6 +2,8 @@ package subway.view;
 
 import subway.line.domain.Line;
 import subway.station.domain.Station;
+import subway.view.resource.LineMessage;
+import subway.view.resource.StationMessage;
 
 import java.util.List;
 
@@ -9,17 +11,21 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_PREFIX = "[INFO] ";
     private static final String GUIDE_PREFIX = "## ";
-    private static final String LINE_LIST = "노선 목록";
 
     private OutputView() {
     }
 
-    public static void printStation(Station station) {
-        printResultMessage(station.getName());
+    public static void printStations(List<Station> stations) {
+        OutputView.printGuideMessage(StationMessage.STATION_LIST);
+        stations.forEach(OutputView::printStation);
+    }
+
+    private static void printStation(Station station) {
+        OutputView.printResultMessage(station.getName());
     }
 
     public static void printLines(List<Line> lines) {
-        OutputView.printResultMessage(LINE_LIST);
+        OutputView.printGuideMessage(LineMessage.LINE_LIST);
         lines.forEach(OutputView::printLine);
     }
 

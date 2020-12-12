@@ -20,11 +20,13 @@ public class SectionController {
         String stationName = InputView.getStationName();
         int order = InputView.getOrder();
         SectionService.register(lineName, stationName, order);
+        OutputView.printResultMessage(SectionMessage.COMPLETE_REGISTRATION);
     }
 
     public static void remove() {
         String lineName = InputView.getLineNameForRemoval();
         String stationName = InputView.getStationNameForRemoval();
         SectionService.remove(lineName, stationName);
+        OutputView.printResultMessage(SectionMessage.COMPLETE_REMOVAL);
     }
 }
