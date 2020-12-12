@@ -76,10 +76,10 @@ public class Print {
     }
 
     public static void addSectionDoneMessage() {
-        System.out.printf(Constant.HASH + Constant.SECTION_DONE_MESSAGE + "%n", Constant.ADD);
+        System.out.printf(Constant.INFO + Constant.SECTION_DONE_MESSAGE + "%n", Constant.ADD);
     }
 
     public static void deleteSectionDoneMessage() {
-        System.out.printf(Constant.HASH + Constant.SECTION_DONE_MESSAGE + "%n", Constant.DELETE);
+        System.out.printf(Constant.INFO + Constant.SECTION_DONE_MESSAGE + "%n", Constant.DELETE);
     }
 }
