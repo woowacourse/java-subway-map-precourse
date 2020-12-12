@@ -12,6 +12,8 @@ public class InputView {
 
     public static final String VIEW_PREFIX = "##";
 
+    private static final String FUNCTION_IDENTIFIER_QUESTION = "원하는 기능을 선택하세요.";
+
     public static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
 
     private static final String LINE_NAME_QUESTION = "등록할 노선 이름을 입력하세요.";
@@ -22,6 +24,10 @@ public class InputView {
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;
+    }
+
+    public String inputFunctionIdentifier() {
+        return input(FUNCTION_IDENTIFIER_QUESTION, Validator.class);
     }
 
     public String inputStationName() {
