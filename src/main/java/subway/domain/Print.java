@@ -43,12 +43,8 @@ public class Print {
         System.out.printf("%n");
     }
 
-    public static void getAscendingNameToAddLine() {
-        System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.ASCENDING);
-    }
-
-    public static void getDescendingNameToAddLine() {
-        System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", Constant.DESCENDING);
+    public static void getStationNameToAddLine(String ascendingOrDescending) {
+        System.out.printf(Constant.HASH + Constant.ENTER_END_POINT + "%n", ascendingOrDescending);
     }
 
     public static void addOrDeleteDoneMessage(String target, String AddOrDelete) {
