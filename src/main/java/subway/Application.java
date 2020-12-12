@@ -4,9 +4,6 @@ import java.util.Scanner;
 import subway.domain.LineRepository;
 import subway.domain.Machine;
 import subway.domain.StationRepository;
-import subway.domain.function.MainFunction;
-import subway.view.InputView;
-import subway.view.OutputView;
 
 public class Application {
 
