@@ -32,7 +32,7 @@ public class StationManageApp {
         this.outputService = StringBuilderOutputService.of(new StringBuilder());
         this.stationService = new StationServiceImpl(MemoryStationRepository.of());
         this.lineService = new LineServiceImpl(MemoryLineRepository.of());
-        this.sectionService = new SectionService(MemoryLineRepository.of(), MemorySectionRepository.of());
+        this.sectionService = new SectionService(MemoryLineRepository.of(), MemoryStationRepository.of(), MemorySectionRepository.of());
     }
 
     public static StationManageApp of() {
@@ -120,21 +120,18 @@ public class StationManageApp {
     private String getDownwardName(LineView lineView) {
         outputService.printSharp(lineView.getAddDownward());
         String downwardName = inputService.getName();
-        stationService.checkNotFound(downwardName);
         return downwardName;
     }
 
     private String getUpwardName(LineView lineView) {
         outputService.printSharp(lineView.getAddUpward());
         String upwardName = inputService.getName();
-        stationService.checkNotFound(upwardName);
         return upwardName;
     }
 
     private String getLineName(LineView lineView) {
         outputService.printAdd(lineView);
         String lineName = inputService.getName();
-        lineService.checkExist(lineName);
         return lineName;
     }
 
