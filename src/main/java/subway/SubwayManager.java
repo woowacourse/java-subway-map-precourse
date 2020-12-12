@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class SubwayManager {
@@ -18,7 +19,7 @@ public class SubwayManager {
     private static final int OPTION_MIN = 1;
     private static final int OPTION_MAX = 4;
     private static String userOption = "";
-    private StationRepository stationRepository = new StationRepository();
+    private static StationRepository stationRepository = new StationRepository();
 
     public static void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
@@ -71,7 +72,7 @@ public class SubwayManager {
         }
         int optionNumber = Integer.parseInt(userOption);
         if (optionNumber == 1) {
-            StationManager.manage(scanner);
+            new StationManager().manage(scanner);
         }
 //        if (optionNumber == 2) {
 //            LineManagement.manage(scanner);
@@ -86,5 +87,13 @@ public class SubwayManager {
 
     public static void printMap() {
 
+    }
+
+    public static void addStation(String stationName) {
+        stationRepository.addStation(new Station(stationName));
+    }
+
+    public static boolean deleteStation(String stationName) {
+        return stationRepository.deleteStation(stationName);
     }
 }
