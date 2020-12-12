@@ -9,10 +9,20 @@ import java.util.Scanner;
 public class MainMenu {
     private MainMenu(){}
 
+    public static void run(Scanner scanner){
+        printMenu();
+        Menu selected = getMenuSelection(scanner);
+    }
+
     public static void printMenu(){
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName()+"\n")
                 .forEach(OutputView::printMsg);
+    }
+
+    public static Menu getMenuSelection(Scanner scanner){
+        OutputView.printMsg("원하는 기능을 선택하세요.");
+        return Menu.getSelection(InputView.getInput(scanner));
     }
 
     private enum Menu {
@@ -32,6 +42,13 @@ public class MainMenu {
 
         public String getMenuName(){
             return menuName;
+        }
+
+        public static Menu getSelection(String input){
+            return Arrays.stream(values())
+                    .filter(menu -> menu.userInput.equals(input))
+                    .findFirst()
+                    .orElseThrow(()-> new IllegalArgumentException("적절하지 않은 입력입니다."));
         }
     }
 }
