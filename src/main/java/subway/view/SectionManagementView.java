@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import subway.Scene;
 import subway.domain.SectionRepository;
+import subway.io.ExceptionManager;
 import subway.io.Request;
 import subway.io.Response;
 
@@ -38,7 +39,7 @@ public class SectionManagementView extends View {
     private static boolean registerLineOfSection(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_OF_SECTION_REGISTER_MESSAGE);
-        String lineName = request.requestLineOfSectionRegister();
+        String lineName = request.requestInput(ExceptionManager::checkValidLineOfSectionRegister);
         if (lineName == null) {
             return false;
         }
@@ -49,8 +50,8 @@ public class SectionManagementView extends View {
     private static boolean registerStationOfSection(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REGISETER_MESSAGE);
-        String lineName = inputs.get(0);
-        String stationName = request.requestStationOfSectionRegister(lineName);
+        String stationName = request.requestInputInLine(
+                ExceptionManager::checkValidStationOfSectionRegister, inputs.get(0));
         if (stationName == null) {
             return false;
         }
@@ -61,8 +62,8 @@ public class SectionManagementView extends View {
     private static boolean registerIndexOfSection(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(INDEX_OF_SECTION_REGISTER_MESSAGE);
-        String lineName = inputs.get(0);
-        String index = request.requestIndexOfSectionRegister(lineName);
+        String index = request.requestInputInLine(
+                ExceptionManager::checkValidIndexOfSectionRegister, inputs.get(0));
         if (index == null) {
             return false;
         }
@@ -72,17 +73,17 @@ public class SectionManagementView extends View {
 
     private static void removeSection(Scene scene, Request request, Response response) {
         List<String> inputs = new ArrayList<>();
-        if (!removeLineOfSectoin(request, response, inputs)) {
+        if (!removeLineOfSection(request, response, inputs)) {
             return;
         }
         SectionRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
         scene.back();
     }
 
-    private static boolean removeLineOfSectoin(Request request, Response response,
+    private static boolean removeLineOfSection(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_OF_SECTION_REMOVAL_MESSAGE);
-        String lineName = request.requestLineOfSectionRemoval();
+        String lineName = request.requestInput(ExceptionManager::checkValidLineOfSectionRemoval);
         if (lineName == null) {
             return false;
         }
@@ -93,7 +94,8 @@ public class SectionManagementView extends View {
     private static boolean removeStationOfSection(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REMOVAL_MESSAGE);
-        String stationName = request.requestStationOfSectionRemoval(inputs.get(0));
+        String stationName = request.requestInputInLine(
+                ExceptionManager::checkValidStationOfSectoinRemoval, inputs.get(0));
         if (stationName == null) {
             return false;
         }

@@ -2,6 +2,8 @@ package subway.view;
 
 import java.util.LinkedHashMap;
 import subway.Scene;
+import subway.domain.StationRepository;
+import subway.io.ExceptionManager;
 import subway.io.Request;
 import subway.io.Response;
 
@@ -23,8 +25,8 @@ public class StationManagementView extends View {
 
     private static void registerStaion(Scene scene, Request request, Response response) {
         response.printHeadlineMessage(STATION_REGISTER_MESSAGE);
-        boolean isSuccess = request.requestStationRegister();
-        if (isSuccess) {
+        if (request.applyInput(ExceptionManager::checkValidStationRegister,
+                StationRepository::addStation)) {
             response.printInfoMessage(STATION_REGISTER_SUCCESS_MESSAGE);
             scene.back();
         }
@@ -32,8 +34,8 @@ public class StationManagementView extends View {
 
     private static void removeStation(Scene scene, Request request, Response response) {
         response.printHeadlineMessage(STATION_REMOVAL_MESSAGE);
-        boolean isSuccess = request.requestStationRemoval();
-        if (isSuccess) {
+        if (request.applyInput(ExceptionManager::checkValidStationRemoval,
+                StationRepository::deleteStation)) {
             response.printInfoMessage(STATION_REMOVAL_SUCCESS_MESSAGE);
             scene.back();
         }

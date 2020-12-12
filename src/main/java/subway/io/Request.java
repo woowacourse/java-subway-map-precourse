@@ -2,10 +2,11 @@ package subway.io;
 
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import subway.io.ExceptionManager.Error;
 import subway.Scene;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;;
 
 public class Request {
     private final Scanner scanner;
@@ -26,31 +27,20 @@ public class Request {
         return input;
     }
 
-    public boolean requestStationRegister() {
+    public boolean applyInput(Function<String, Error> checkValidation, Consumer<String> objective) {
         String input = getInput();
-        Error error = ExceptionManager.checkValidStationRegister(input);
+        Error error = checkValidation.apply(input);
         if (error != Error.OK) {
             printError(error);
             return false;
         }
-        StationRepository.addStation(input);
+        objective.accept(input);
         return true;
     }
 
-    public boolean requestStationRemoval() {
+    public String requestInput(Function<String, Error> checkValidation) {
         String input = getInput();
-        Error error = ExceptionManager.checkValidStationRemoval(input);
-        if (error != Error.OK) {
-            printError(error);
-            return false;
-        }
-        StationRepository.deleteStation(input);
-        return true;
-    }
-
-    public String requestLineRegister() {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidLineRegister(input);
+        Error error = checkValidation.apply(input);
         if (error != Error.OK) {
             printError(error);
             return null;
@@ -58,70 +48,10 @@ public class Request {
         return input;
     }
 
-    public boolean requestLineRemoval() {
+    public String requestInputInLine(BiFunction<String, String, Error> checkValidation,
+            String lineName) {
         String input = getInput();
-        Error error = ExceptionManager.checkValidLineRemoval(input);
-        if (error != Error.OK) {
-            printError(error);
-            return false;
-        }
-        LineRepository.deleteLineByName(input);
-        return true;
-    }
-
-    public String requestTerminatingStation() {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidTerminatingStation(input);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestLineOfSectionRegister() {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidLineOfSectionRegister(input);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestStationOfSectionRegister(String lineName) {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidStationOfSectionRegister(input, lineName);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestIndexOfSectionRegister(String lineName) {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidIndexOfSectionRegister(input, lineName);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestLineOfSectionRemoval() {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidLineOfSectionRemoval(input);
-        if (error != Error.OK) {
-            printError(error);
-            return null;
-        }
-        return input;
-    }
-
-    public String requestStationOfSectionRemoval(String lineName) {
-        String input = getInput();
-        Error error = ExceptionManager.checkValidStationOfSectoinRemoval(input, lineName);
+        Error error = checkValidation.apply(input, lineName);
         if (error != Error.OK) {
             printError(error);
             return null;
