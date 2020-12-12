@@ -30,4 +30,8 @@ public class StationRepository {
         }
         return stationLookingFor;
     }
+
+    public static boolean isEmpty() {
+        return stations.isEmpty();
+    }
 }

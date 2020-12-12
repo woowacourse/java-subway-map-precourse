@@ -31,4 +31,8 @@ public class LineRepository {
         return lineLookingFor;
     }
 
+    public static boolean isEmpty() {
+        return lines.isEmpty();
+    }
+
 }
