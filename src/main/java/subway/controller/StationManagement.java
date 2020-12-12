@@ -6,7 +6,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.dto.DTO;
 import subway.view.OutputView;
-import subway.view.managementView.StationView;
+import subway.view.menuView.StationView;
 
 import java.util.List;
 import java.util.stream.Collectors;

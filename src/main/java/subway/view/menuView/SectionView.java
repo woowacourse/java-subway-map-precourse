@@ -1,10 +1,11 @@
-package subway.view.managementView;
+package subway.view.menuView;
 
 import subway.menuType.FunctionType;
 import subway.view.InputView;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SectionView extends ManagementView {
     private static final String ITEM_PREFIX = "구간 ";
@@ -22,19 +23,33 @@ public class SectionView extends ManagementView {
     private static SectionView instance;
 
     private SectionView() {
-        List<String> descriptions = new ArrayList<>(Arrays.asList(
-                MENU_CREATE, MENU_DELETE
-        ));
-        initializeSelections(descriptions);
-
-        initializeHashMapToFunctionType(selections.toList(), Arrays.stream(FunctionType.values())
-                        .filter(e -> e != FunctionType.READ)
-                        .collect(Collectors.toList()));
+        initializeSelections();
+        initializeHashMapToFunctionType();
 
         viewName = ITEM_PREFIX + VIEW_NAME;
         itemPrefix = ITEM_PREFIX;
         createMessage = SECTION_CREATE;
         deleteMessage = SECTION_DELETE;
+    }
+
+    private void initializeSelections() {
+        List<String> descriptions = new ArrayList<>(Arrays.asList(
+                MENU_CREATE, MENU_DELETE, MENU_ESCAPE
+        ));
+        List<String> menuIndexs = new ArrayList<>(IntStream.range(MENU_START_INDEX, descriptions.size())
+                .mapToObj(Integer::toString)
+                .collect(Collectors.toList()));
+        menuIndexs.add(MENU_ESCAPE_VALUE);
+
+        initializeSelections(menuIndexs, descriptions);
+    }
+
+    private void initializeHashMapToFunctionType() {
+        List<FunctionType> functionTypes = Arrays.stream(FunctionType.values())
+                .filter(e -> e != FunctionType.READ)
+                .collect(Collectors.toList());
+
+        initializeHashMapToFunctionType(this.selections.toList(), functionTypes);
     }
 
     public static SectionView getInstance() {

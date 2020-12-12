@@ -13,13 +13,12 @@ import subway.controller.LineManagement;
 import subway.controller.StationManagement;
 import subway.domain.LineRepository;
 import subway.view.InputView;
-import subway.view.MainView;
+import subway.view.menuView.MainView;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
 public class Application {
-
     private static MainMenuType menu;
     private static MainView mainView = MainView.getInstance();
 
@@ -33,7 +32,7 @@ public class Application {
     private static void run() {
         do {
             mainView.showMenu();
-            menu = mainView.getMainMenuSelection();
+            menu = mainView.getFunctionSelection();
             runSelectedMenuFunction();
         } while (!menu.equals(MainMenuType.ESCAPE));
     }

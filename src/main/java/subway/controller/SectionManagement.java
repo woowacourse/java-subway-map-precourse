@@ -6,7 +6,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.menuType.FunctionType;
 import subway.view.OutputView;
-import subway.view.managementView.SectionView;
+import subway.view.menuView.SectionView;
 
 public class SectionManagement {
     private static SectionView sectionView = SectionView.getInstance();

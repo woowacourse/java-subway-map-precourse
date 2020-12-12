@@ -1,9 +1,11 @@
-package subway.view.managementView;
+package subway.view.menuView;
 
 import subway.menuType.FunctionType;
 import subway.view.InputView;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LineView extends ManagementView {
     private static final String ITEM_PREFIX = "노선 ";
@@ -18,17 +20,24 @@ public class LineView extends ManagementView {
     private static LineView instance;
 
     private LineView() {
-        List<String> descriptions = new ArrayList<>(Arrays.asList(
-                MENU_CREATE, MENU_DELETE, MENU_READ
-        ));
-        initializeSelections(descriptions);
-
-        initializeHashMapToFunctionType(selections.toList(), Arrays.asList(FunctionType.values()));
+        initializeSelections();
+        initializeHashMapToFunctionType(this.selections.toList(), Arrays.asList(FunctionType.values()));
 
         viewName = ITEM_PREFIX + VIEW_NAME;
         itemPrefix = ITEM_PREFIX;
         createMessage = LINE_CREATE;
         deleteMessage = LINE_DELETE;
+    }
+
+    private void initializeSelections() {
+        List<String> descriptions = new ArrayList<>(Arrays.asList(
+                MENU_CREATE, MENU_DELETE, MENU_READ, MENU_ESCAPE
+        ));
+        List<String> menuIndexs = new ArrayList<>(IntStream.range(MENU_START_INDEX, descriptions.size())
+                .mapToObj(Integer::toString)
+                .collect(Collectors.toList()));
+        menuIndexs.add(MENU_ESCAPE_VALUE);
+        initializeSelections(menuIndexs, descriptions);
     }
 
     public static LineView getInstance() {

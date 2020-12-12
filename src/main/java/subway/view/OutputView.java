@@ -49,7 +49,7 @@ public class OutputView {
         }
     }
 
-    private static void newLine() {
+    public static void newLine() {
         System.out.println();
     }
 }
