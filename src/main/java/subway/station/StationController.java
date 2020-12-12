@@ -37,29 +37,13 @@ public class StationController {
     }
 
     private static void addNewStation(StationInputView stationInputView) {
-        Station station;
         String stationName = stationInputView.addStation();
-        try {
-            station = new Station(stationName);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        StationRepository.addStation(station);
-        StationOutputView.addStationComplete();
+        StationService.addStation(stationName);
     }
 
     private static void deleteStation(StationInputView stationInputView) {
         String stationName = stationInputView.deleteStation();
-
-        try {
-            CheckRegisteredStation.validation(stationName);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        StationRepository.deleteStation(stationName);
-        StationOutputView.deleteStationComplete();
+        StationService.deleteStation(stationName);
     }
 
     private static void printRegisteredStation() {
