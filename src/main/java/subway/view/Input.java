@@ -32,6 +32,26 @@ public class Input {
         return button;
     }
 
+    public boolean validName(String name) {
+        return validNameLength(name) && validNameEndWord(name);
+    }
+
+    private boolean validNameLength(String name) {
+        if (name.length() >= STATION_NAME_LENGTH) {
+            return true;
+        }
+        Message.printNameLengthError();
+        return true;
+    }
+
+    private boolean validNameEndWord(String name) {
+        if (name.endsWith(STATION_END_NAME)) {
+            return true;
+        }
+        Message.printNameError();
+        return false;
+    }
+
     private String toUpperNextLine() {
         return nextLine().toUpperCase();
     }
@@ -42,17 +62,5 @@ public class Input {
 
     public String nextStation() {
         return nextLine();
-    }
-
-    public boolean validName(String name) {
-        if (name.length() < STATION_NAME_LENGTH) {
-            Message.printNameLengthError();
-            return false;
-        }
-        if (!name.endsWith(STATION_END_NAME)) {
-            Message.printNameError();
-            return false;
-        }
-        return true;
     }
 }
