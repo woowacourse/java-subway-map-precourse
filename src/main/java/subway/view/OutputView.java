@@ -12,7 +12,7 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_PREFIX = "[INFO] ";
     private static final String GUIDE_PREFIX = "## ";
-    private static final String BLANK = "";
+    private static final String NEW_LINE = "\n";
 
     private OutputView() {
     }
@@ -40,7 +40,6 @@ public class OutputView {
         OutputView.printResultMessage(line.getName());
         OutputView.printResultMessage(SubwayMapMessage.DIVIDING_LINE);
         line.getStations().forEach(OutputView::printStation);
-        OutputView.printMessage(BLANK);
     }
 
     private static void printLine(Line line) {
@@ -48,18 +47,18 @@ public class OutputView {
     }
 
     public static void printErrorMessage(String message) {
-        printMessage(ERROR_PREFIX + message);
+        printMessage(NEW_LINE + ERROR_PREFIX + message);
     }
 
     public static void printResultMessage(String message) {
-        printMessage(RESULT_PREFIX + message);
+        printMessage(NEW_LINE + RESULT_PREFIX + message);
     }
 
     public static void printGuideMessage(String message) {
-        printMessage(GUIDE_PREFIX + message);
+        printMessage(NEW_LINE + GUIDE_PREFIX + message);
     }
 
-    private static void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 }
