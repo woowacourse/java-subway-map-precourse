@@ -1,9 +1,15 @@
 package subway.view;
 
+import subway.domain.section.Section;
+import subway.exception.ErrorCode;
+import subway.exception.SectionException;
 import subway.service.output.OutputService;
+
+import java.util.List;
 
 public class SectionView extends Screen {
     public static final String PRINT_ADD = "노선을 입력하세요.";
+    public static final String PRINT_ROUTE_MAP = "지하철 노선도";
     public static final String PRINT_ADD_STATION = "역이름을 입력하세요.";
     public static final String PRINT_ADD_SEQUENCE = "순서를 입력하세요.";
     public static final String PRINT_AFTER_ADD = "구간이 등록되었습니다.";
@@ -12,6 +18,25 @@ public class SectionView extends Screen {
 
     public SectionView(OutputService outputService) {
         super(outputService);
+    }
+
+    public void printAllSection(List<Section> sections) {
+        outputService.printSharp(PRINT_ROUTE_MAP);
+        validateSectionsLength(sections.size());
+        for (Section section : sections) {
+            outputService.printInfos(section.getLineName());
+            outputService.printInfos(CONTOUR);
+            for (String stationName : section.getStationsName()) {
+                outputService.printInfos(stationName);
+            }
+            outputService.printEnter();
+        }
+    }
+
+    private void validateSectionsLength(int sectionsSize) {
+        if (sectionsSize == ZERO) {
+            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
+        }
     }
 
     @Override

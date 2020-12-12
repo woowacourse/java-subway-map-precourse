@@ -15,6 +15,8 @@ import subway.view.LineView;
 import subway.view.SectionView;
 import subway.view.StationView;
 
+import java.util.List;
+
 public class StationManageApp {
     private final InputService inputService;
     private final OutputService outputService;
@@ -136,7 +138,7 @@ public class StationManageApp {
         sectionService.validateStation(section.getLineName(), station.getName());
 
         outputService.printSharp(SectionView.PRINT_ADD_SEQUENCE);
-        outputService.printSharp(String.format(SectionView.PRINT_AVAILABLE_SEQUENCE, stationsLength, stationsLength));
+        outputService.printSharp(String.format(SectionView.PRINT_AVAILABLE_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE));
         int sequence = inputService.getSequence();
         sectionService.addStation(section.getLineName(), station.getName(), sequence);
         outputService.printAfterAdd(sectionView);
@@ -182,6 +184,9 @@ public class StationManageApp {
     }
 
     private void manageMap() {
+        SectionView sectionView = new SectionView(outputService);
+        List<Section> sections = sectionService.findAll();
+        sectionView.printAllSection(sections);
     }
 
     private void mangeSection() {

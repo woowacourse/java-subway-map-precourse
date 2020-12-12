@@ -138,6 +138,12 @@ public class StringBuilderOutputService implements OutputService {
         clearSb();
     }
 
+    @Override
+    public void printEnter() {
+        System.out.println(sb.toString());
+        clearSb();
+    }
+
     private void clearSb() {
         sb.delete(START_INDEX, sb.length());
     }

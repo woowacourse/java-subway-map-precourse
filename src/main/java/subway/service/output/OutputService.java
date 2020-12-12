@@ -48,4 +48,6 @@ public interface OutputService {
     void printAfterAdd(Screen screen);
 
     void printAfterDelete(Screen screen);
+
+    void printEnter();
 }

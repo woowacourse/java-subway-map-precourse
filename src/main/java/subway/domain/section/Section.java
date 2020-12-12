@@ -7,7 +7,7 @@ import subway.domain.station.Stations;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Section {
+public class Section implements Comparable<Section>{
     private final Line line;
     private final Stations stations;
 
@@ -36,5 +36,13 @@ public class Section {
 
     public void addStation(Station station, int sequence) {
         stations.addStation(station, sequence);
+    }
+
+    @Override
+    public int compareTo(Section o) {
+        if (this.line.getName().compareTo(o.line.getName()) > 0) {
+            return 1;
+        }
+        return -1;
     }
 }

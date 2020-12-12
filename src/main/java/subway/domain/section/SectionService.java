@@ -15,7 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class SectionService {
-    private static final int LIST_SEQUENCE = 1;
+    public static final int CONVERT_SEQUENCE = 1;
+
     private final LineRepository lineRepository;
     private final StationRepository stationRepository;
     private final MemorySectionRepository sectionRepository;
@@ -46,9 +47,9 @@ public class SectionService {
         Section section = findByName(lineName);
         Station station = stationRepository.findByName(stationName);
         if (sequence > section.getStationsLength()) {
-            sequence = section.getStationsLength() + LIST_SEQUENCE;
+            sequence = section.getStationsLength() + CONVERT_SEQUENCE;
         }
-        section.addStation(station, sequence - LIST_SEQUENCE);
+        section.addStation(station, sequence - CONVERT_SEQUENCE);
     }
 
     private void checkSameName(String upwardStationName, String downwardStationName) {
