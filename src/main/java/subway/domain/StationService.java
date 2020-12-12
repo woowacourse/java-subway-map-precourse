@@ -1,5 +1,6 @@
 package subway.domain;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class StationService {
@@ -14,8 +15,14 @@ public class StationService {
     }
 
     public void deleteStation(Scanner scanner) {
-        String name = scanner.next();
-        StationRepository.deleteStation(name);
+        String name;
+        do {
+            System.out.println("## 삭제할 역 이름을 입력하세요.");
+            name = scanner.next();
+        } while(!checkStationInLine(name));
+        if(StationRepository.deleteStation(name)) {
+            System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        }
     }
 
     public void getStation() {
@@ -30,6 +37,14 @@ public class StationService {
         }
         if(stationName.length() < 2) {
             System.out.println("[ERROR] 역 이름은 2자 이상이어야 합니다.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkStationInLine(String stationName) {
+        if(SectionRepository.checkStationInLine(stationName)) {
+            System.out.println("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
             return false;
         }
         return true;
