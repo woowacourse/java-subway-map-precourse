@@ -28,6 +28,13 @@ public class Constant {
         return Collections.unmodifiableList(sectionMenuItemList);
     }
 
+    static final String ONE = "1";
+    static final String TWO = "2";
+    static final String THREE = "3";
+    static final String FOUR = "4";
+    static final String Q = "Q";
+    static final String B = "B";
+
     static final String MAIN_MENU_TITLE = "메인 화면";
     static final String STATION_MENU_TITLE = "역 관리 화면";
     static final String LINE_MENU_TITLE = "노선 관리 화면";
