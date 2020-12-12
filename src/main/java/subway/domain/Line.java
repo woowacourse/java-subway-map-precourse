@@ -7,11 +7,13 @@ import java.util.List;
 import subway.exception.BlankNameException;
 import subway.exception.DuplicatedStationInLineException;
 import subway.exception.NullStationException;
+import subway.exception.SectionOutOfRangeException;
 import subway.exception.TooShortNameException;
 import subway.utils.RegexUtil;
 
 public class Line {
     private static final int NAME_LENGTH_MINIMUM = 2;
+    private static final int FIRST_STATION_ORDER = 0;
 
     private String name;
     private final List<String> stations = new ArrayList<>();
@@ -57,12 +59,27 @@ public class Line {
         return name;
     }
 
-    public void addSection(int order, String stationName) {
-        // TODO: 역 중복과 순서 범위에 대한 예외처리
-        stations.add(order, stationName);
-    }
-
     public boolean containsStation(String name) {
         return stations.contains(name);
+    }
+
+    public void addSection(int index, String stationName) {
+        if (!StationRepository.containsStation(stationName)) {
+            throw new NullStationException(stationName);
+        }
+
+        if (stations.contains(stationName)) {
+            throw new DuplicatedStationInLineException(stationName);
+        }
+
+        if (index <= FIRST_STATION_ORDER || index >= getLastStationOrder()) {
+            throw new SectionOutOfRangeException(index + 1);
+        }
+
+        stations.add(index, stationName);
+    }
+
+    private int getLastStationOrder() {
+        return stations.size() - 1;
     }
 }

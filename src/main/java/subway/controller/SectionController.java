@@ -22,10 +22,10 @@ public class SectionController {
         OutputView.requestStationForAddSection();
         String stationName = InputView.getInput();
         OutputView.requestSectionOrder();
-        int order = ParsingUtil.stringToPositiveInteger(InputView.getInput()) - 1;
+        int index = ParsingUtil.stringToPositiveInteger(InputView.getInput()) - 1;
 
         Line line = LineRepository.getLine(lineName);
-        line.addSection(order, stationName);
+        line.addSection(index, stationName);
         OutputView.informLineAdded();
     } 
 

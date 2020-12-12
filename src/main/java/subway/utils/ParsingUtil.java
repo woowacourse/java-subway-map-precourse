@@ -1,8 +1,13 @@
 package subway.utils;
 
+import subway.exception.NotPositiveIntegerException;
+
 public class ParsingUtil {
     public static int stringToPositiveInteger(String string) {
-        // TODO: 자연수가 아닐 경우 예외 처리
+        if (!RegexUtil.isPositiveInteger(string)) {
+            throw new NotPositiveIntegerException(string);
+        }
+        
         return Integer.parseInt(string);
     }
 }

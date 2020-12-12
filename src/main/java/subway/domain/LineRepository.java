@@ -34,9 +34,11 @@ public class LineRepository {
     public static Line getLine(String name) {
         Line matchedLine = lines.stream()
                 .filter(streamLine -> name.equals(streamLine.getName()))
-                .findAny()
-                .orElse(null);
-        // TODO: 노선이 없을 때 예외처리
+                .findAny().orElse(null);
+        if (matchedLine == null) {
+            throw new NullLineException(name);
+        }
+
         return matchedLine;
     }
 
