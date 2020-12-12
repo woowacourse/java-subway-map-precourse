@@ -26,6 +26,15 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
+    public Station findByName(String stationName) {
+        Station station = stationRepository.findByName(stationName);
+        if (station == null) {
+            throw new StationException(ErrorCode.STATION_NOT_FOUND);
+        }
+        return station;
+    }
+
+    @Override
     public Stations getStations() {
         List<Station> stationList = stationRepository.stations();
         Stations stations = Stations.of(stationList);

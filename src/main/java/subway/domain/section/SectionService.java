@@ -47,6 +47,9 @@ public class SectionService {
 
     public Section findByName(String sectionName) {
         Section findSection = sectionRepository.findByName(sectionName);
+        if (findSection == null) {
+            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
+        }
         return findSection;
     }
 

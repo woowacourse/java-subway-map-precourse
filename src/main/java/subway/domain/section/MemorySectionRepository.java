@@ -29,9 +29,6 @@ public class MemorySectionRepository {
 
     public Section findByName(String lineName) {
         Section section = sections.get(lineName);
-        if (section == null) {
-            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
-        }
         return section;
     }
 
