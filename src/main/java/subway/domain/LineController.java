@@ -33,7 +33,8 @@ public class LineController {
         String startStation = inputView.inputStationName();
         String finalStation = inputView.inputStationName();
 
-        LineRepository addedLineRepository = lineRepository.addLine(new Line(lineName, startStation, finalStation));
+        LineRepository addedLineRepository =
+                lineRepository.addLine(new Line(lineName, startStation, finalStation));
 
         outputView.printSaved(LINE);
 
@@ -54,23 +55,25 @@ public class LineController {
         outputView.printLines(lineRepository);
     }
 
-    public LineController insertStation() {
+    public LineController addRange() {
         String lineName = inputView.inputLineName();
         String stationName = inputView.inputStationName();
         int stationIndex = inputView.inputIndex();
 
-        LineRepository rangeInsertedLineRepository = lineRepository.insertStation(lineName, stationIndex, stationName);
+        LineRepository rangeInsertedLineRepository =
+                lineRepository.addRange(lineName, stationIndex, stationName);
 
         outputView.printSaved(RANGE);
 
         return new LineController(rangeInsertedLineRepository, this.inputView, this.outputView);
     }
 
-    public LineController removeStation() {
+    public LineController removeRange() {
         String lineName = inputView.inputLineName();
         String stationName = inputView.inputStationName();
 
-        LineRepository rangeRemovedLineRepository = lineRepository.removeStation(lineName, stationName);
+        LineRepository rangeRemovedLineRepository =
+                lineRepository.removeRange(lineName, stationName);
 
         outputView.printRemoved(RANGE);
 

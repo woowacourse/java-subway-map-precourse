@@ -52,10 +52,10 @@ public class DeleteStationTest {
     public void deleteStation_oldStation_LineDeletedStation() {
 
         // given
-        lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
+        lineRepository = lineRepository.addRange(line.getName(), 1, "봉천역");
 
         // when
-        lineRepository = lineRepository.removeStation("1호선", "봉천역");
+        lineRepository = lineRepository.removeRange("1호선", "봉천역");
 
         //then
         assertThat(lineRepository.lines().get(0).getStations().stations())
@@ -68,7 +68,7 @@ public class DeleteStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.removeStation("1호선", "강남역");
+                () -> lineRepository.removeRange("1호선", "강남역");
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -81,10 +81,10 @@ public class DeleteStationTest {
     public void deleteStation_StartStation_StartsWithNextStation() {
 
         // given
-        lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
+        lineRepository = lineRepository.addRange(line.getName(), 1, "봉천역");
 
         // when
-        lineRepository = lineRepository.removeStation("1호선", "강남역");
+        lineRepository = lineRepository.removeRange("1호선", "강남역");
 
         //then
         assertThat(lineRepository.lines().get(0).getStations().stations())
@@ -96,10 +96,10 @@ public class DeleteStationTest {
     public void deleteStation_FinalStation_EndWithNextStation() {
 
         // given
-        lineRepository = lineRepository.insertStation(line.getName(), 1, "봉천역");
+        lineRepository = lineRepository.addRange(line.getName(), 1, "봉천역");
 
         // when
-        lineRepository = lineRepository.removeStation("1호선", "잠실역");
+        lineRepository = lineRepository.removeRange("1호선", "잠실역");
 
         //then
         assertThat(lineRepository.lines().get(0).getStations().stations())

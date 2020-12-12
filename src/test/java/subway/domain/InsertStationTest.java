@@ -33,7 +33,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.insertStation("11호선", index, stationName);
+                () -> lineRepository.addRange("11호선", index, stationName);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -50,7 +50,7 @@ public class InsertStationTest {
 
         // when
         LineRepository newLineRepository =
-                lineRepository.insertStation(line.getName(), index, stationName);
+                lineRepository.addRange(line.getName(), index, stationName);
 
         //then
         assertThat(newLineRepository.lines().size()).isEqualTo(1);
@@ -67,7 +67,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.insertStation(line.getName(), index, stationName);
+                () -> lineRepository.addRange(line.getName(), index, stationName);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -84,7 +84,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.insertStation(line.getName(), index, stationName);
+                () -> lineRepository.addRange(line.getName(), index, stationName);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
@@ -102,7 +102,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.insertStation(line.getName(), index, stationName);
+                () -> lineRepository.addRange(line.getName(), index, stationName);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
