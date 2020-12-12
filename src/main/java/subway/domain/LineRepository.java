@@ -56,7 +56,6 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
-        System.out.println("테스트 : " + findByName(name));
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 

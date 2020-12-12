@@ -28,9 +28,18 @@ public enum SectionFunction {
         @Override
         public void operate(Scanner scanner) {
             String lineName = InputView.inputLineNameToDeleteSection(scanner);
+            Line line = LineRepository.findByName(lineName);
+            if (line.getStations().size() <= MIN_STATION_LENGTH_IN_LINE) {
+                throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두 개 이하일 때는 역을 제거할 수 없습니다.");
+            }
             String stationName = InputView.inputStationNameInLineToDelete(scanner);
+            if (!line.contains(stationName)) {
+                throw new IllegalArgumentException("[ERROR] 해당 노선에서 존재하는 역만 삭제하실 수 있습니다.");
+            }
             LineRepository.deleteStation(lineName, stationName);
             OutputView.printSuccessToDeleteSection();
+            // TODO - 디버깅용
+            System.out.println(LineRepository.lines());
         }
     },
     BACK("B") {
@@ -40,6 +49,7 @@ public enum SectionFunction {
     };
 
     private String number;
+    private static final int MIN_STATION_LENGTH_IN_LINE = 2;
 
     SectionFunction(String number) {
         this.number = number;
