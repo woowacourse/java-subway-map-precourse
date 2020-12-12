@@ -14,9 +14,13 @@ public class SectionManagement {
 
     public static void run() {
         do {
-            sectionView.showMenu();
-            menu = sectionView.getFunctionSelection();
-            runSelectedMenuFunction();
+            try {
+                sectionView.showMenu();
+                menu = sectionView.getFunctionSelection();
+                runSelectedMenuFunction();
+            } catch (Exception e) {
+                OutputView.showErrorMessage(e);
+            }
         } while (!menu.equals(FunctionType.ESCAPE));
     }
 
@@ -30,25 +34,20 @@ public class SectionManagement {
     }
 
     private static void createSection() {
-        try {
-            Station station = StationRepository.searchByName(sectionView.getStationNameToCreate());
-            Line line = LineRepository.searchByName(sectionView.getLineNameToCreate());
-            int index = sectionView.getIndex();
-            line.addStation(index, station);
-            sectionView.printCreateDone();
-        } catch (Exception e) {
-            OutputView.showErrorMessage(e);
-        }
+        Station station = StationRepository.searchByName(sectionView.getStationNameToCreate());
+        Line line = LineRepository.searchByName(sectionView.getLineNameToCreate());
+        int index = sectionView.getIndex();
+
+        line.addStation(index, station);
+        sectionView.printCreateDone();
     }
 
     private static void deleteSection() {
-        try {
-            Station station = StationRepository.searchByName(sectionView.getStationNameToDelete());
-            Line line = LineRepository.searchByName(sectionView.getLineNameToDelete());
-            line.deleteStation(station);
-            sectionView.printDeleteDone();
-        } catch (Exception e) {
-            OutputView.showErrorMessage(e);
-        }
+        Station station = StationRepository.searchByName(sectionView.getStationNameToDelete());
+        Line line = LineRepository.searchByName(sectionView.getLineNameToDelete());
+
+        line.deleteStation(station);
+        sectionView.printDeleteDone();
     }
+
 }

@@ -19,10 +19,14 @@ public class StationManagement {
 
     public static void run() {
         do {
-            stationView.showMenu();
-            menu = stationView.getFunctionSelection();
-            runSelectedMenuFunction();
-        } while(!menu.equals(FunctionType.ESCAPE));
+            try {
+                stationView.showMenu();
+                menu = stationView.getFunctionSelection();
+                runSelectedMenuFunction();
+            } catch (Exception e) {
+                OutputView.showErrorMessage(e);
+            }
+        } while (!menu.equals(FunctionType.ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
@@ -38,44 +42,37 @@ public class StationManagement {
     }
 
     private static void registerStation() {
-        try {
-            Station station = new Station(stationView.getNameToCreate());
-            StationRepository.addStation(station);
-            stationView.printCreateDone();
-        } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e);
-        }
+        Station station = new Station(stationView.getNameToCreate());
+        StationRepository.addStation(station);
+        stationView.printCreateDone();
     }
 
     private static void deleteStation() {
-        try {
-            String name = stationView.getNameToDelete();
-            throwExceptionIfItisInLines(name);
-            StationRepository.deleteStation(name);
-            stationView.printDeleteDone();
-        } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e);
-        }
+        String name = stationView.getNameToDelete();
+        throwExceptionIfItisInLines(name);
+
+        StationRepository.deleteStation(name);
+        stationView.printDeleteDone();
     }
 
     private static boolean throwExceptionIfItisInLines(String name) {
         Station key = new Station(name);
         boolean exist = LineRepository.lines().stream()
                 .anyMatch(line -> line.contains(key));
+
         if (exist) {
             throw new IllegalArgumentException(ERROR_CANNOT_REMOVE);
         }
+
         return true;
     }
 
     private static void printAllStation() {
-        try {
-            List<DTO> stationNames = StationRepository.stations().stream()
-                    .map(Station::toDTO)
-                    .collect(Collectors.toList());
-            stationView.printAll(stationNames);
-        } catch (RuntimeException e) {
-            OutputView.showErrorMessage(e);
-        }
+        List<DTO> stationNames = StationRepository.stations().stream()
+                .map(Station::toDTO)
+                .collect(Collectors.toList());
+
+        stationView.printAll(stationNames);
     }
+
 }
