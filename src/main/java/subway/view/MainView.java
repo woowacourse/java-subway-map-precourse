@@ -1,6 +1,10 @@
 package subway.view;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import subway.Subway;
 import subway.util.Constants;
 import subway.util.MessageUtils;
 
@@ -51,7 +55,7 @@ public class MainView {
             this.showMenu(thisMenuState);
         }
         if (input.equals("4")) {
-            System.out.println("대충 노선도 출력한다는 내용");
+            this.showWholeSubwayMap();
         }
         if (input.toLowerCase().equals("q")) {
             state = false;
@@ -66,15 +70,34 @@ public class MainView {
     private void showMenu(String switchMenu) {
         if (switchMenu.equals(Constants.MAIN_MENU_STATE)) {
             MessageUtils.printMenu(Constants.SCREEN_MENU_MAIN);
+            MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
         }
         if (switchMenu.equals(Constants.STATION_MENU_STATE)) {
             MessageUtils.printMenu(Constants.SCREEN_MENU_STATION_MANAGEMENT);
+            MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
         }
         if (switchMenu.equals(Constants.LINE_MENU_STATE)) {
             MessageUtils.printMenu(Constants.SCREEN_MENU_LINE_MANAGEMENT);
+            MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
         }
         if (switchMenu.equals(Constants.SECTION_MENU_STATE)) {
             MessageUtils.printMenu(Constants.SCREEN_MENU_SECTION_MANAGEMENT);
+            MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
+        }
+    }
+
+    public void showWholeSubwayMap() {
+        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_SUBWAY_MAP_TEXT);
+        Map<String, List> wholeSubwayMap = Subway.Map.findAll();
+        Iterator<String> lineTitles = wholeSubwayMap.keySet().iterator();
+        while (lineTitles.hasNext()) {
+            String lineTitle = lineTitles.next();
+            MessageUtils.printInfo(lineTitle);
+            MessageUtils.printInfo(Constants.SEPARATE_STRING_WHOLE_SUBWAY_MAP_TEXT);
+            for (Object stationTitle : wholeSubwayMap.get(lineTitle)) {
+                MessageUtils.printInfo((String) stationTitle);
+            }
+            MessageUtils.printBlankLine();
         }
     }
 }

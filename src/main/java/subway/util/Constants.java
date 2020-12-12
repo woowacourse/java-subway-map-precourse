@@ -12,11 +12,17 @@ public class Constants {
 
     public final static int MIN_NAME_STRING_LENGTH = 2;
     public final static int INDEX_ARRANGE_INT = 1;
+    public final static String LINE_BLANK = " ";
 
     public final static String PREFIX_INFO = "[INFO] ";
     public final static String PREFIX_ERROR = "[ERROR] ";
 
     public final static String INVALID_STRING_OUTPUT_COMMENT = "선택할 수 없는 기능입니다.";
+    public final static String INVALID_STRING_ERROR_COMMENT = "잘못된 문자 입력입니다.";
+    public final static String INVALID_LENGTH_ERROR_COMMENT = "길이를 초과 합니다.";
+    public final static String INVALID_MIN_LENGTH_ERROR_COMMENT =
+        "문자 길이가 " + MIN_NAME_STRING_LENGTH + " 이상 필요 합니다.";
+
 
     public final static String[] SCREEN_MENU_MAIN = {
         "## 메인 화면"
