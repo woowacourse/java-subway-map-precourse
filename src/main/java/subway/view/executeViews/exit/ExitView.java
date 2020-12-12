@@ -1,4 +1,4 @@
-package subway.view.exit;
+package subway.view.executeViews.exit;
 
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
@@ -13,7 +13,7 @@ public class ExitView implements ViewStrategy {
     }
 
     @Override
-    public String toString() {
+    public String viewName() {
         return VIEW_NAME;
     }
 }

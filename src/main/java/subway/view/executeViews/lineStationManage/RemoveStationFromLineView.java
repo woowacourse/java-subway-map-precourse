@@ -1,11 +1,12 @@
-package subway.view.lineStationManage;
+package subway.view.executeViews.lineStationManage;
 
 import subway.line.LineController;
 import subway.view.OutputView;
+import subway.view.ViewStrategy;
 
 import java.util.Scanner;
 
-public class RemoveStationFromLineView implements LineStationViewStrategy {
+public class RemoveStationFromLineView implements ViewStrategy {
     private static final String VIEW_NAME = "구간 삭제";
     private static final String GET_LINE_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
     private static final String GET_STATION_MESSAGE = "삭제할 구간의 역을 입력하세요.";
@@ -19,7 +20,7 @@ public class RemoveStationFromLineView implements LineStationViewStrategy {
     }
 
     @Override
-    public void show() {
+    public void execute() {
         try {
             OutputView.selectView(GET_LINE_MESSAGE);
             String lineName = scanner.nextLine();
@@ -35,7 +36,7 @@ public class RemoveStationFromLineView implements LineStationViewStrategy {
     }
 
     @Override
-    public String toString() {
+    public String viewName() {
         return VIEW_NAME;
     }
 }

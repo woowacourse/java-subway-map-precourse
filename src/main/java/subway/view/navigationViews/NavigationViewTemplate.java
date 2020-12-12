@@ -21,6 +21,7 @@ public abstract class NavigationViewTemplate {
     public void show() {
         selectView();
         viewStrategy.execute();
+        OutputView.enter();
     }
 
     private void selectView() {

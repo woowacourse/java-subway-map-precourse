@@ -1,7 +1,9 @@
-package subway.view.lineMap;
+package subway.view.executeViews.lineMap;
 
 import subway.line.LineController;
+import subway.line.LineRepositoryJava;
 import subway.line.LineResponseDTO;
+import subway.station.StationRepositoryJava;
 import subway.station.StationResponseDTO;
 import subway.view.OutputView;
 import subway.view.ViewStrategy;
@@ -14,15 +16,14 @@ public class LineMapView implements ViewStrategy {
     private static final String DIVIDER = "----";
     private final LineController lineController;
 
-    public LineMapView(LineController lineController) {
-        this.lineController = lineController;
+    public LineMapView() {
+        this.lineController = LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
     }
 
     @Override
     public void execute() {
         List<LineResponseDTO> lines = lineController.findLines();
         printLines(lines);
-        OutputView.enter();
     }
 
     private void printLines(List<LineResponseDTO> lines) {
@@ -36,11 +37,12 @@ public class LineMapView implements ViewStrategy {
 
     private void printStations(List<StationResponseDTO> stations) {
         stations.forEach(station -> OutputView.infoView(station.getName()));
-        System.out.println();
+        OutputView.enter();
     }
 
     @Override
-    public String toString() {
+    public String viewName() {
         return VIEW_NAME;
     }
+
 }

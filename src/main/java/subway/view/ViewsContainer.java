@@ -21,7 +21,7 @@ public class ViewsContainer {
 
     public String navigate() {
         StringBuilder sb = new StringBuilder();
-        views.forEach((key, value) -> sb.append(String.format(NAVIGATION_FORM, key, value)));
+        views.forEach((key, value) -> sb.append(String.format(NAVIGATION_FORM, key, value.viewName())));
         return sb.toString();
     }
 

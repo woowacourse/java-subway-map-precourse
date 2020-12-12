@@ -4,12 +4,10 @@ import subway.line.LineController;
 import subway.line.LineRepositoryJava;
 import subway.station.StationController;
 import subway.station.StationRepositoryJava;
+import subway.view.OutputView;
 import subway.view.ViewsContainer;
-import subway.view.exit.ExitView;
-import subway.view.lineManage.LineManageView;
-import subway.view.lineMap.LineMapView;
-import subway.view.lineStationManage.LineStationManageView;
-import subway.view.stationManage.StationManageView;
+import subway.view.executeViews.exit.ExitView;
+import subway.view.executeViews.lineMap.LineMapView;
 
 import java.util.Scanner;
 
@@ -31,14 +29,10 @@ public class MainView extends NavigationViewTemplate {
     @Override
     protected ViewsContainer setViewsContainer() {
         ViewsContainer views = ViewsContainer.newInstance();
-
-        StationController stationController = StationController.get(StationRepositoryJava.get());
-        LineController lineController = LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
-
-        views.add("1", new StationManageView(scanner, stationController));
-        views.add("2", new LineManageView(scanner, lineController));
-        views.add("3", new LineStationManageView(scanner, lineController));
-        views.add("4", new LineMapView(lineController));
+        views.add("1", new StationManageView(scanner));
+        views.add("2", new LineManageView(scanner));
+        views.add("3", new LineStationManageView(scanner));
+        views.add("4", new LineMapView());
         views.add("Q", new ExitView());
         return views;
     }

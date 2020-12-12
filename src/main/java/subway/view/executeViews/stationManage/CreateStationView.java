@@ -1,11 +1,12 @@
-package subway.view.stationManage;
+package subway.view.executeViews.stationManage;
 
 import subway.station.StationController;
 import subway.view.OutputView;
+import subway.view.ViewStrategy;
 
 import java.util.Scanner;
 
-public class CreateStationView implements StationManageViewStrategy {
+public class CreateStationView implements ViewStrategy {
     private static final String VIEW_NAME = "역 등록";
     private static final String CREATE_MESSAGE = "등록할 역 이름을 입력하세요.";
     private static final String CREATE_COMPLETE = "지하철 역이 등록되었습니다.";
@@ -18,7 +19,7 @@ public class CreateStationView implements StationManageViewStrategy {
     }
 
     @Override
-    public void show() {
+    public void execute() {
         try {
             OutputView.selectView(CREATE_MESSAGE);
             String stationName = scanner.nextLine();
@@ -31,7 +32,7 @@ public class CreateStationView implements StationManageViewStrategy {
     }
 
     @Override
-    public String toString() {
+    public String viewName() {
         return VIEW_NAME;
     }
 }
