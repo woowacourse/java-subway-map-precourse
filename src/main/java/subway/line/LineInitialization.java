@@ -2,6 +2,7 @@ package subway.line;
 
 import subway.station.Station;
 import subway.station.StationRepository;
+import subway.station.StationService;
 import utils.StringSeparation;
 
 import java.util.ArrayList;
@@ -29,26 +30,11 @@ public class LineInitialization {
 
         for (String stationName : lineComponent) {
             if (!stationName.equals(lineName)) {
-                Station station = findStation(stationName);
+                Station station = StationService.findStation(stationName);
                 stations.add(station);
             }
         }
 
         return stations;
-    }
-
-    private static Station findStation(String stationName) {
-        List<Station> stations = StationRepository.stations();
-        Station findStation = null;
-
-        for (Station station : stations) {
-            String name = station.getName();
-            if (name.equals(stationName)) {
-                findStation = station;
-                break;
-            }
-        }
-
-        return findStation;
     }
 }
