@@ -24,6 +24,8 @@ public class OutputView {
 
     private static final String STATION_LIST = "역 목록";
     private static final String LINE_LIST = "노선 목록";
+    private static final String SUBWAY_MAP = "지하철 노선도";
+    private static final String SEPARATOR = "---";
 
     public static void printMenu(Menu menu) {
         printMessage(menu.getTitle());
@@ -139,6 +141,23 @@ public class OutputView {
     public static void informSectionDeleted() {
         String message = getInformMessage(InformSubjectParts.SECTION_IS, InformPredicateParts.DELETED);
         printInformMessage(message);
+    }
+
+    public static void printSubwayMap() {
+        printMessage(SUBWAY_MAP);
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            printSubwayLine(line);
+            printEmptyLine();
+        }
+    }
+
+    private static void printSubwayLine(Line line) {
+        printListItem(line.getName());
+        printListItem(SEPARATOR);
+        for (String station : line) {
+            printListItem(station);
+        }
     }
 
     public static void printError(Exception exception) {

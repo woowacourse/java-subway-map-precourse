@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import subway.exception.SectionOutOfRangeException;
 import subway.exception.TooShortNameException;
 import subway.utils.RegexUtil;
 
-public class Line {
+public class Line implements Iterable<String> {
     private static final int NAME_LENGTH_MINIMUM = 2;
     private static final int FIRST_STATION_ORDER = 0;
 
@@ -44,7 +45,7 @@ public class Line {
             addStation(stationName);
         }
     }
-    
+
     private void addStation(String stationName) {
         if (!StationRepository.containsStation(stationName)) {
             throw new NullStationException(stationName);
@@ -91,5 +92,10 @@ public class Line {
 
     private int getLastStationOrder() {
         return stations.size() - 1;
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return stations.iterator();
     }
 }

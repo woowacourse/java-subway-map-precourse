@@ -44,4 +44,8 @@ public class SubwayMapController {
             selectFunction(menu);
         }
     }
+
+    public static void showSubwayMap() {
+        OutputView.printSubwayMap();
+    }
 }
