@@ -1,6 +1,7 @@
 package subway.station;
 
 import subway.main.view.MainInputView;
+import subway.station.validation.CheckRegisteredStation;
 import subway.station.view.StationInputView;
 import subway.station.view.StationOutputView;
 
@@ -47,6 +48,13 @@ public class StationController {
 
     private static void deleteStation(StationInputView stationInputView) {
         String stationName = stationInputView.deleteStation();
+
+        try {
+            CheckRegisteredStation.validation(stationName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         StationRepository.deleteStation(stationName);
         StationOutputView.deleteStationComplete();
     }
