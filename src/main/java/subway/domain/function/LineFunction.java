@@ -15,6 +15,7 @@ public enum LineFunction {
         public void operate(Scanner scanner) {
             String lineName = InputView.inputLineNameToCreate(scanner);
             Line.validateLineName(lineName);
+            LineRepository.validateOverlappedLineName(lineName);
             String upwardTerminalStationName = InputView.inputUpwardTerminalStationName(scanner);
             Station upwardTerminalStation = new Station(upwardTerminalStationName);
             String downwardTerminalStationName = InputView.inputDownwardTerminalStationName(scanner);

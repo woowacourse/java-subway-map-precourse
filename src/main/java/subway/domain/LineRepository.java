@@ -39,7 +39,7 @@ public class LineRepository {
         lines.add(line);
     }
 
-    private static void validateOverlappedLineName(String name) {
+    public static void validateOverlappedLineName(String name) {
         for (Line line : lines) {
             if (line.getName().equals(name)) {
                 throw new IllegalArgumentException("[ERROR] 중복된 지하철 노선 이름은 등록될 수 없습니다.");
