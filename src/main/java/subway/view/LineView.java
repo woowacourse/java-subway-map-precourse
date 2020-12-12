@@ -16,6 +16,7 @@ public class LineView {
             "3. 노선 조회",
             "B. 돌아가기",
             "\n## 원하는 기능을 선택하세요.");
+    private static final List<String> LINE_BUTTONS = Arrays.asList("1", "2", "3", "B");
 
     private final Input input;
 
@@ -25,7 +26,7 @@ public class LineView {
 
     public void selectLinePage() {
         Output.printPage(LINE_PAGE);
-        selectPage(input.nextLineButton());
+        selectPage(input.nextButton(LINE_BUTTONS));
     }
 
     private void selectPage(final String button) {

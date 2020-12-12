@@ -15,6 +15,7 @@ public class SectionView {
             "2. 구간 삭제",
             "B. 돌아가기",
             "\n## 원하는 기능을 선택하세요.");
+    private static final List<String> SECTION_BUTTONS = Arrays.asList("1", "2", "B");
 
     private final Input input;
 
@@ -24,7 +25,7 @@ public class SectionView {
 
     public void selectSectionPage() {
         Output.printPage(SECTION_PAGE);
-        selectPage(input.nextSectionButton());
+        selectPage(input.nextButton(SECTION_BUTTONS));
     }
 
     private void selectPage(final String button) {

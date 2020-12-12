@@ -19,6 +19,7 @@ public class StationView {
             "3. 역 조회",
             "B. 돌아가기",
             "\n## 원하는 기능을 선택하세요.");
+    private static final List<String> STATION_BUTTONS = Arrays.asList("1", "2", "3", "B");
 
     private final Input input;
     private final StationController stationController;
@@ -40,14 +41,13 @@ public class StationView {
             if (isRead(button)) {
                 break;
             }
-            Output.printPage(STATION_PAGE);
-            button = input.nextStationButton();
+            button = inputButton();
         }
     }
 
     private String inputButton() {
         Output.printPage(STATION_PAGE);
-        return input.nextStationButton();
+        return input.nextButton(STATION_BUTTONS);
     }
 
     private boolean isBack(String button) {

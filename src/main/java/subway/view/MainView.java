@@ -18,6 +18,7 @@ public class MainView {
             "4. 지하철 노선도 출력",
             "Q. 종료",
             "\n## 원하는 기능을 선택하세요.");
+    private static final List<String> MAIN_BUTTONS = Arrays.asList("1", "2", "3", "4", "Q");
 
     private final Input input;
     private final StationView stationView;
@@ -35,7 +36,7 @@ public class MainView {
 
     public void selectMainPage() {
         Output.printPage(MAIN_PAGE);
-        selectPage(input.nextMainButton());
+        selectPage(input.nextButton(MAIN_BUTTONS));
     }
 
     private void selectPage(final String button) {

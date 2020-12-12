@@ -1,5 +1,6 @@
 package subway.view;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.message.Message;
 import subway.message.Output;
@@ -21,44 +22,14 @@ public class Input {
         this.scanner = scanner;
     }
 
-    public String nextMainButton() {
+    public String nextButton(List<String> buttons) {
         String button = toUpperNextLine();
-        if (Button.containsMainButton(button)) {
-            return button;
+        while (!buttons.contains(button)) {
+            Message.printError();
+            Output.printLine(SELECT_FEATURE);
+            button = toUpperNextLine();
         }
-        Message.printError();
-        Output.printLine(SELECT_FEATURE);
-        return nextMainButton();
-    }
-
-    public String nextStationButton() {
-        String button = toUpperNextLine();
-        if (Button.containsStationButtons(button)) {
-            return button;
-        }
-        Message.printError();
-        Output.printLine(SELECT_FEATURE);
-        return nextStationButton();
-    }
-
-    public String nextLineButton() {
-        String button = toUpperNextLine();
-        if (Button.containsLineButtons(button)) {
-            return button;
-        }
-        Message.printError();
-        Output.printLine(SELECT_FEATURE);
-        return nextLineButton();
-    }
-
-    public String nextSectionButton() {
-        String button = toUpperNextLine();
-        if (Button.containsSectionButtons(button)) {
-            return button;
-        }
-        Message.printError();
-        Output.printLine(SELECT_FEATURE);
-        return nextSectionButton();
+        return button;
     }
 
     private String toUpperNextLine() {
