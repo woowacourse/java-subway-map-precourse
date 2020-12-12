@@ -12,6 +12,9 @@ public class SubwayRepository {
     }
 
     public static void addLineStation(Line line, Station station) {
+        if(subway.get(line).stream().anyMatch(station1 -> station1.equals(station))){
+            throw new IllegalArgumentException("이미 등록된 역입니다.");
+        }
         if (subway.containsKey(line)) {
             subway.get(line).add(station);
         }

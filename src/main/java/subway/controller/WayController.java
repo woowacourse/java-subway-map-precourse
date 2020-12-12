@@ -5,9 +5,8 @@ import subway.view.*;
 
 import static subway.domain.LineNameValidator.makeEnrolledLineName;
 import static subway.domain.StationNameValidator.makeEnrolledStationName;
-import static subway.view.OutputView.PRINT_ERROR_HEAD;
 
-public class WayFunctionController {
+public class WayController {
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
             enrollWay(inputView);
@@ -24,29 +23,27 @@ public class WayFunctionController {
 
         SubwayRepository.addLineStationSpecificPlace(enrolledLine, enrolledStation, order);
 
-        WayOutputView.printSuccess(DetailFunctions.ENROLL);
+        FunctionOutputView.printSuccess(DetailFunctions.ENROLL, MainFunctions.WAY);
     }
 
     private static Line receiveEnrollLine(InputView inputView) {
         try {
-            WayOutputView.printEnrollLine();
+            FunctionOutputView.printReceiveSomething(DetailFunctions.ENROLL, MainFunctions.LINE);
             return LineRepository.findLineByName(makeEnrolledLineName(inputView.receiveFunctionInfo()));
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            OutputView.printError(e.getMessage());
             return receiveEnrollLine(inputView);
         }
     }
 
     private static Station receiveEnrollStation(InputView inputView, Line enrolledLine) {
         try {
-            WayOutputView.printEnrollStation();
+            FunctionOutputView.printReceiveSomething(DetailFunctions.ENROLL, MainFunctions.STATION);
             String validStationName = makeEnrolledStationName(inputView.receiveFunctionInfo());
             checkNotIncludeStationInLine(validStationName, enrolledLine);
             return StationRepository.findStationByName(validStationName);
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            OutputView.printError(e.getMessage());
             return receiveEnrollStation(inputView, enrolledLine);
         }
     }
@@ -60,34 +57,31 @@ public class WayFunctionController {
     private static void removeStationFromLine(Line selectedLine, Station selectedStation) {
         try {
             SubwayRepository.deleteStationFromLine(selectedLine, selectedStation);
-            WayOutputView.printSuccess(DetailFunctions.REMOVE);
+            FunctionOutputView.printSuccess(DetailFunctions.REMOVE, MainFunctions.WAY);
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            OutputView.printError(e.getMessage());
         }
     }
 
     private static Line receiveRemoveLine(InputView inputView) {
         try {
-            WayOutputView.printRemoveLine();
+            FunctionOutputView.printReceiveSomething(DetailFunctions.REMOVE, MainFunctions.LINE);
             String validLineName = makeEnrolledLineName(inputView.receiveFunctionInfo());
             return LineRepository.findLineByName(validLineName);
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            OutputView.printError(e.getMessage());
             return receiveRemoveLine(inputView);
         }
     }
 
     private static Station receiveRemoveStation(InputView inputView, Line selectedLine) {
         try {
-            WayOutputView.printRemoveStation();
+            FunctionOutputView.printReceiveSomething(DetailFunctions.REMOVE, MainFunctions.STATION);
             String validStationName = makeEnrolledStationName(inputView.receiveFunctionInfo());
             checkStationIncludeLine(validStationName, selectedLine);
             return StationRepository.findStationByName(validStationName);
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            OutputView.printError(e.getMessage());
             return receiveRemoveStation(inputView, selectedLine);
         }
     }
@@ -107,11 +101,10 @@ public class WayFunctionController {
 
     private static Integer receiveOrder(InputView inputView, Integer lineSize) {
         try {
-            WayOutputView.printOrder();
+            FunctionOutputView.printOrder();
             return OrderValidator.makeValidOrder(inputView.receiveFunctionInfo(), lineSize);
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
+            OutputView.printError(e.getMessage());
             return receiveOrder(inputView, lineSize);
         }
     }

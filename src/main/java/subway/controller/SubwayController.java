@@ -7,8 +7,6 @@ import subway.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 
-import static subway.view.OutputView.PRINT_ERROR_HEAD;
-
 public class SubwayController {
     private final InputView inputView;
 
@@ -48,8 +46,7 @@ public class SubwayController {
         try {
             return MainFunctions.haveNumber(this.inputView.receiveFunction());
         } catch (IllegalArgumentException e) {
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
-            System.out.println();
+            OutputView.printError(e.getMessage());
             return receiveMainFunction();
         }
     }
@@ -61,7 +58,7 @@ public class SubwayController {
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
-            StationFunctionController.doFunction(detailFunction, this.inputView);
+            StationController.doFunction(detailFunction, this.inputView);
         }
     }
 
@@ -69,8 +66,7 @@ public class SubwayController {
         try {
             return DetailFunctions.haveNumber(this.inputView.receiveFunction());
         } catch (IllegalArgumentException e) {
-            System.out.println(PRINT_ERROR_HEAD + e.getMessage());
-            System.out.println();
+            OutputView.printError(e.getMessage());
             return receiveDetailFunction();
         }
     }
@@ -82,7 +78,7 @@ public class SubwayController {
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
-            LineFunctionController.doFunction(detailFunction, this.inputView);
+            LineController.doFunction(detailFunction, this.inputView);
         }
     }
 
@@ -93,7 +89,7 @@ public class SubwayController {
             if (detailFunction.equals(DetailFunctions.BACK)) {
                 break;
             }
-            WayFunctionController.doFunction(detailFunction, this.inputView);
+            WayController.doFunction(detailFunction, this.inputView);
         }
     }
 

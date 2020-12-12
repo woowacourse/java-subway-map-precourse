@@ -3,8 +3,9 @@ package subway.controller;
 import subway.domain.*;
 import subway.view.InputView;
 import subway.view.FunctionOutputView;
+import subway.view.OutputView;
 
-public class StationFunctionController {
+public class StationController {
 
     public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
         if (detailFunction.equals(DetailFunctions.ENROLL)) {
@@ -25,7 +26,7 @@ public class StationFunctionController {
             FunctionOutputView.printFunction(DetailFunctions.ENROLL, MainFunctions.STATION);
             return StationNameValidator.makeName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printError(e.getMessage());
             return makeValidateEnrollName(inputView);
         }
     }
@@ -35,7 +36,7 @@ public class StationFunctionController {
             FunctionOutputView.printFunction(DetailFunctions.REMOVE, MainFunctions.STATION);
             return StationNameValidator.makeRemoveName(inputView.receiveFunctionInfo());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printError(e.getMessage());
             return makeValidateRemoveName(inputView);
         }
     }
