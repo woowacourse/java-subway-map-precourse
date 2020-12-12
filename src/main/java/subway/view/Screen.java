@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.view;
 
 public interface Screen {
 

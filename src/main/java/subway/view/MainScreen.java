@@ -1,6 +1,4 @@
-package subway.controller;
-
-import subway.InputUtils;
+package subway.view;
 
 public class MainScreen implements Screen{
 
@@ -13,7 +11,7 @@ public class MainScreen implements Screen{
                 "4. 지하철 노선도 출력\n" +
                 "Q. 종료\n");
 
-        int userInput = InputUtils.createMainInput(4,"Q");
+        int userInput = InputUtils.createUserSelectionInput(4,"Q");
 
         if(userInput == 1){
             StationManagementScreen stationManagementScreen = new StationManagementScreen();

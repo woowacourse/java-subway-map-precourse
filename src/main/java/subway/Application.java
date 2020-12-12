@@ -1,6 +1,6 @@
 package subway;
 
-import subway.controller.MainScreen;
+import subway.view.MainScreen;
 
 public class Application {
 

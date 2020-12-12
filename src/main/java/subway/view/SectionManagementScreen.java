@@ -1,6 +1,4 @@
-package subway.controller;
-
-import subway.InputUtils;
+package subway.view;
 
 public class SectionManagementScreen implements Screen{
 
@@ -10,7 +8,7 @@ public class SectionManagementScreen implements Screen{
                 "1. 구간 등록\n" +
                 "2. 구간 삭제\n" +
                 "B. 돌아가기\n");
-        int userInput = InputUtils.createMainInput(2,"B");
+        int userInput = InputUtils.createUserSelectionInput(2,"B");
 
         if(userInput == 1){
 

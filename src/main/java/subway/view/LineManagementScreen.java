@@ -1,6 +1,4 @@
-package subway.controller;
-
-import subway.InputUtils;
+package subway.view;
 
 public class LineManagementScreen implements Screen{
 
@@ -11,7 +9,7 @@ public class LineManagementScreen implements Screen{
                 "2. 노선 삭제\n" +
                 "3. 노선 조회\n" +
                 "B. 돌아가기\n");
-        int userInput = InputUtils.createMainInput(3,"B");
+        int userInput = InputUtils.createUserSelectionInput(3,"B");
 
         if(userInput == 1){
 

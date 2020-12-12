@@ -19,4 +19,10 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static void printStations(){
+        for(Station station : stations){
+            System.out.println("[INFO] " + station.getName());
+        }
+    }
 }
