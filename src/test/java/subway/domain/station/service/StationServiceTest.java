@@ -25,12 +25,12 @@ class StationServiceTest {
 
     @DisplayName("station을 추가하는 기능을 테스트한다")
     @Test
-    void testRegisterStation() {
+    void testSave() {
         //given
         Station station = new Station("강남역");
 
         //when
-        StationService.registerStation(station);
+        StationService.save(station);
 
         //thent
         List<Station> stations = StationRepository.stations();
@@ -41,14 +41,14 @@ class StationServiceTest {
 
     @DisplayName("중복되는 이름의 station을 추가하면 예외를 발생시킨다.")
     @Test
-    void testAddStationIfRegisterDuplicatedStationName() {
+    void testSaveIfRegisterDuplicatedStationName() {
         //given
         Station station = new Station("강남역");
-        StationService.registerStation(station);
+        StationService.save(station);
         Station duplicatedStation = new Station("강남역");
 
         //when //then
-        assertThatThrownBy(() -> StationService.registerStation(duplicatedStation))
+        assertThatThrownBy(() -> StationService.save(duplicatedStation))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
