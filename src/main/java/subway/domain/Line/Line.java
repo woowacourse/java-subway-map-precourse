@@ -3,6 +3,7 @@ package subway.domain.Line;
 import subway.domain.name.LineName;
 import subway.domain.station.Station;
 import subway.exception.AlreadyAddStationException;
+import subway.exception.InvalidLineNameException;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,20 +14,24 @@ public class Line {
     private LineName name;
     // 추가 기능 구현
     private final List<Station> stations = new LinkedList<>();
-    private final int STATIONS_MIN_INDEX = 1;
-    private final int ONE_INDEX = 1;
+    private static final int STATIONS_MIN_INDEX = 1;
+    private static final int ONE_INDEX = 1;
+
 
     private Line(LineName name) {
         this.name = name;
     }
 
     public static Line of(String name, Station start, Station end) {
+
         Line line = new Line(LineName.of(name));
 
         line.setStations(start, end);
 
         return line;
     }
+
+
 
     private void setStations(Station start, Station end) {
         stations.add(start);
