@@ -27,4 +27,14 @@ public class LineStationMappingRepository {
         lineStationMapping.remove(lineToDelete);
         LineRepository.deleteLineByName(lineNameToDeleteInput);
     }
+
+    public static void registerNewSection(String lineNameToRegisterSection,
+        String stationNameToRegisterSection, String orderToRegisterSection) {
+        Line lineToRegisterSection = LineRepository.findByName(lineNameToRegisterSection);
+        Station stationToRegisterSection = StationRepository
+            .findByName(stationNameToRegisterSection);
+        List<Station> stationsToRegisterNewSection = lineStationMapping.get(lineToRegisterSection);
+        stationsToRegisterNewSection
+            .add(Integer.parseInt(orderToRegisterSection) - 1, stationToRegisterSection);
+    }
 }
