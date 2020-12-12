@@ -2,14 +2,10 @@ package subway.domain.line.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import subway.domain.line.model.Line;
 import subway.domain.line.model.LineRepository;
-import subway.domain.station.model.Station;
-import subway.domain.station.model.StationRepository;
-import subway.domain.station.service.StationService;
 
 import java.util.Arrays;
 import java.util.List;
