@@ -8,6 +8,7 @@ import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
 import subway.domain.menu.submenu.LineMenu;
 import subway.domain.menu.submenu.SectionMenu;
+import subway.domain.menu.submenu.StationLineMenu;
 import subway.domain.menu.submenu.StationMenu;
 import subway.domain.menu.submenu.SubMenu;
 
@@ -19,7 +20,6 @@ public class MainMenu {
     private static final char SECTION_SEL = '3';
     private static final char PRINT_STATION_LINE_SEL = '4';
     private static final char QUIT_SEL = 'Q';
-    private static final String PRINT_STATION_LINE = "지하철 노선도 출력";
     private static final String QUIT = "종료";
     private final Scanner scanner;
 
@@ -28,14 +28,20 @@ public class MainMenu {
     public MainMenu(Scanner scanner) {
         subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION),
                 new LineMenu(LINE_SEL, CategoryType.LINE), new SectionMenu(SECTION_SEL, CategoryType.SECTION),
-                new SubMenu(PRINT_STATION_LINE, PRINT_STATION_LINE_SEL), new SubMenu(QUIT, QUIT_SEL));
+                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE), new SubMenu(QUIT, QUIT_SEL));
         this.scanner = scanner;
     }
 
     public void runMainMenu() {
-        printMainMenu();
-        char sel = inputMainMenu();
-        subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().action();
+        while (true) {
+            printMainMenu();
+            char sel = inputMainMenu();
+
+            if (sel == QUIT_SEL) {
+                break;
+            }
+            subMenuList.stream().filter(menu -> sel == menu.getOrder()).findFirst().get().action();
+        }
     }
 
     private void printMainMenu() {

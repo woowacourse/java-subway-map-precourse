@@ -39,7 +39,7 @@ public class SubMenu {
     }
 
     public void action() {
-        System.out.println(order);
+        System.out.println(getTitle());
     }
 
 }
