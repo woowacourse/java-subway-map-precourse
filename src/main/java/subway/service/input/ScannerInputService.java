@@ -63,7 +63,7 @@ public class ScannerInputService implements InputService {
         }
         int option = stringToInt(inputOption);
         validateManageSectionOption(option);
-        return 0;
+        return option;
     }
 
     private boolean isBack(String inputOption) {

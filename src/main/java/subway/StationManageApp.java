@@ -1,6 +1,7 @@
 package subway;
 
 import subway.domain.line.LineService;
+import subway.domain.section.Section;
 import subway.domain.section.SectionService;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
@@ -10,6 +11,7 @@ import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.service.output.OutputService;
 import subway.view.LineView;
+import subway.view.SectionView;
 import subway.view.StationView;
 
 public class StationManageApp {
@@ -103,10 +105,10 @@ public class StationManageApp {
         LineView lineView = new LineView(outputService);
 
         if (manageRouteOption == InputService.ADD) {
-            addSection(lineView);
+            addLine(lineView);
         }
         if (manageRouteOption == InputService.DELETE) {
-            deleteSection(lineView);
+            deleteLine(lineView);
         }
         if (manageRouteOption == InputService.FIND) {
             lineView.printAllLines(lineService.getLines());
@@ -114,20 +116,28 @@ public class StationManageApp {
     }
 
     private void chooseManageSectionOption(int manageSectionOption) {
+        SectionView sectionView = new SectionView(outputService);
         if (manageSectionOption == InputService.ADD) {
+            addSection(sectionView);
         }
         if (manageSectionOption == InputService.DELETE) {
         }
     }
 
-    private void deleteSection(LineView lineView) {
+    private void addSection(SectionView sectionView) {
+        outputService.printAdd(sectionView);
+        String lineName = getName();
+        Section section = sectionService.findByName(lineName);
+    }
+
+    private void deleteLine(LineView lineView) {
         outputService.printDelete(lineView);
         String lineName = getName();
         sectionService.deleteByName(new SectionDeleteReqDto(lineName));
         outputService.printAfterDelete(lineView);
     }
 
-    private void addSection(LineView lineView) {
+    private void addLine(LineView lineView) {
         String lineName = getLineName(lineView);
         String upwardName = getUpwardName(lineView);
         String downWard = getDownwardName(lineView);
