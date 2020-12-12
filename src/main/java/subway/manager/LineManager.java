@@ -54,8 +54,7 @@ public class LineManager {
             throw new IllegalArgumentException();
         }
         System.out.println("## 노선 목록");
-        List<String> lineNames = LineRepository.lines().stream().map(Line::getName).collect(Collectors.toList());
-        lineNames.forEach(x -> System.out.println("[INFO] " + x));
+        LineRepository.lines().forEach(line -> System.out.println("[INFO] " + line.getName()));
         System.out.println();
     }
 
