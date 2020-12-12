@@ -65,6 +65,7 @@ public class OutputView {
         showInfoMessage(SHOW_STATION_LIST_MESSAGE);
         StationRepository.stations()
             .forEach(station -> showInfoMessage(station.getName()));
+        System.out.println();
     }
 
     public static void guideInsertLine() {
@@ -94,6 +95,7 @@ public class OutputView {
     public static void showLineList() {
         showInfoMessage(SHOW_LINE_LIST_MESSAGE);
         LineRepository.lines().forEach(line -> showInfoMessage(line.getName()));
+        System.out.println();
     }
 
     public static void guideInsertSectionLineName() {
