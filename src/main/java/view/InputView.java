@@ -154,7 +154,6 @@ public class InputView {
             String input = scanner.nextLine();
             System.out.println();
             VerifyInput.existLineName(input);
-            VerifyInput.deletableSection(input);
             return input;
         } catch (IllegalArgumentException e) {
             return getDeleteSectionLineName();
