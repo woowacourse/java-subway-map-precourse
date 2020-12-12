@@ -10,7 +10,6 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class LineController {
-
     private final Scanner scanner;
     private final LineService lineService;
 
@@ -24,7 +23,7 @@ public class LineController {
         do {
             subMenuType = InputView.inputStationOrLineMenu(scanner, category, mainMenuType);
             selectLineMenu(subMenuType, category);
-        }while (!subMenuType.equals(SubMenuType.BACK));
+        } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
     private void selectLineMenu(Menu lineMenuType, String category) {

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class StationService {
 
     private final Scanner scanner;
+
     public StationService(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -19,7 +20,7 @@ public class StationService {
             StationName stationName = InputView.inputStationNameAdd(scanner, category);
             StationRepository.addStation(stationName);
             OutputView.printAddMessage(category);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -29,7 +30,7 @@ public class StationService {
             StationName stationName = InputView.inputStationNameDelete(scanner, category);
             StationRepository.deleteStation(stationName);
             OutputView.printDeleteMessage(category);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

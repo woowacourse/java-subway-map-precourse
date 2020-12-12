@@ -11,6 +11,7 @@ public class LineName {
     private static final char NAME_END = '선';
 
     private final String name;
+
     public LineName(String name) {
         validateLineName(name);
         this.name = name;

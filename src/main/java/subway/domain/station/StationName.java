@@ -34,7 +34,6 @@ public class StationName {
     }
 
 
-
     private void validateNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);

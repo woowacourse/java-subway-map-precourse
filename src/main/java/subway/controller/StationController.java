@@ -24,7 +24,7 @@ public class StationController {
         do {
             subMenuType = InputView.inputStationOrLineMenu(scanner, category, mainMenuType);
             selectStationMenu(subMenuType, category);
-        }while (!subMenuType.equals(SubMenuType.BACK));
+        } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
     private void selectStationMenu(Menu stationMenuType, String category) {

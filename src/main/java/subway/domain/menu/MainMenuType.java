@@ -25,7 +25,7 @@ public enum MainMenuType implements Menu {
                 .filter(menu -> menu.text.equals(menuInput.toUpperCase()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
-    };
+    }
 
     public SubMenuType validateSubMenu(String menuInput) {
         return subMenuTypeList.stream()
@@ -33,6 +33,4 @@ public enum MainMenuType implements Menu {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
     }
-
-
 }

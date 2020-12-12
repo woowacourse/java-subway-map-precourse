@@ -19,7 +19,6 @@ public class Station {
         return new Station(stationName);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -32,6 +31,4 @@ public class Station {
     public int hashCode() {
         return Objects.hash(stationName);
     }
-
-
 }

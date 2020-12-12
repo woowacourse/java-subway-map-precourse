@@ -38,6 +38,4 @@ public class LineRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(LINE_EXIST_ERROR));
     }
-
-
 }

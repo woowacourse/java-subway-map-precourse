@@ -13,9 +13,11 @@ import java.util.Scanner;
 public class SectionService {
 
     private final Scanner scanner;
+
     public SectionService(Scanner scanner) {
         this.scanner = scanner;
     }
+
     public void addSection(String category) {
         try {
             LineName lineName = InputView.inputLineNameToAddSection(scanner);
@@ -26,7 +28,7 @@ public class SectionService {
             int index = InputView.inputIndexToAddSection(scanner);
             line.addStationToLine(station, index);
             OutputView.printAddMessage(category);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -40,7 +42,7 @@ public class SectionService {
                 line.deleteStationToLine(Station.of(stationName));
                 OutputView.printDeleteMessage(category);
             }
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

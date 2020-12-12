@@ -28,8 +28,6 @@ public class Line {
     }
 
     // 추가 기능 구현
-
-
     public List<Station> getStations() {
         return stations;
     }
@@ -77,7 +75,6 @@ public class Line {
         }
         return true;
     }
-
 
     @Override
     public boolean equals(Object o) {

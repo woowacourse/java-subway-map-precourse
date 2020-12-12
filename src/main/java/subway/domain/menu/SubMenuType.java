@@ -19,5 +19,5 @@ public enum SubMenuType implements Menu {
                 .filter(menu -> menu.menuInput.equals(menuInput.toUpperCase()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
-    };
+    }
 }

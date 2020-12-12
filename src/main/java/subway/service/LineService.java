@@ -15,6 +15,7 @@ public class LineService {
     private static final String UP = "상";
     private static final String DOWN = "하";
     private final Scanner scanner;
+
     public LineService(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -31,7 +32,7 @@ public class LineService {
             Line newLine = Line.createLine(lineName, upLastStationName, downLastStationName);
             LineRepository.addLine(newLine);
             OutputView.printAddMessage(category);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -41,7 +42,7 @@ public class LineService {
             LineName lineName = InputView.inputLineNameDelete(scanner, category);
             LineRepository.deleteLineByName(lineName);
             OutputView.printDeleteMessage(category);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

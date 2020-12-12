@@ -45,6 +45,4 @@ public class StationRepository {
             throw new IllegalArgumentException(STATION_EXIST_ERROR);
         }
     }
-
-
 }

@@ -22,7 +22,7 @@ public class SectionController {
         do {
             subMenuType = InputView.inputSectionMenu(scanner, category, mainMenuType);
             selectSectionMenu(subMenuType, category);
-        }while (!subMenuType.equals(SubMenuType.BACK));
+        } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
     private void selectSectionMenu(Menu sectionMenuType, String category) {
