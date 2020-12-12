@@ -101,7 +101,12 @@ public class StationManager {
         System.out.println(INFO_PREFIX + ENROLLMENT_INFO_MESSAGE);
     }
 
-
-
-
+    public static void deleteStation(Scanner scanner) {
+        String stationName = inputStationName(scanner);
+        if (SubwayManager.deleteStation(stationName)) {
+            System.out.println(INFO_PREFIX + DELETION_INFO_MESSAGE);
+            return;
+        }
+        System.out.println(INFO_PREFIX + DELETION_FAIL_INFO_MESSAGE);
+    }
 }
