@@ -22,11 +22,18 @@ public class LineManagement {
             registerNewLine(scanner);
         }
         if (type == LineManagementSelectionType.LINE_DELETE) {
-            //deleteLine(scanner);
+            deleteLine(scanner);
         }
         if (type == LineManagementSelectionType.PRINT_ALL_LINES) {
             //printAllLines(scanner);
         }
+    }
+
+    private static void deleteLine(Scanner scanner) {
+        LineManagementPrinter.printLineNameToDeleteInputMessage();
+        String lineNameToDeleteInput = scanner.nextLine();
+        LineStationMappingRepository.deleteLine(lineNameToDeleteInput);
+        LineManagementPrinter.printLineDeleteSuccessMessage();
     }
 
     private static void registerNewLine(Scanner scanner) {

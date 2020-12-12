@@ -21,4 +21,10 @@ public class LineStationMappingRepository {
             }
         });
     }
+
+    public static void deleteLine(String lineNameToDeleteInput) {
+        Line lineToDelete = LineRepository.findByName(lineNameToDeleteInput);
+        lineStationMapping.remove(lineToDelete);
+        LineRepository.deleteLineByName(lineNameToDeleteInput);
+    }
 }
