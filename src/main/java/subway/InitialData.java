@@ -24,10 +24,10 @@ public class InitialData {
         StationRepository.addStation(station7);
         Line line1 = new Line("2호선");
         Line line2 = new Line("3호선");
-        Line line3 = new Line("3호선");
-        LineRepository.addLine(new Line("2호선"));
-        LineRepository.addLine(new Line("3호선"));
-        LineRepository.addLine(new Line("신분당선"));
+        Line line3 = new Line("신분당선");
+        LineRepository.addLine(line1);
+        LineRepository.addLine(line2);
+        LineRepository.addLine(line3);
         line1.addStation(station1);
         line1.addStation(station2);
         line1.addStation(station3);
