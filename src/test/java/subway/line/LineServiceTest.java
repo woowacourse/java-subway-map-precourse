@@ -3,6 +3,7 @@ package subway.line;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.exception.AlreadyExistLineException;
 import subway.line.exception.IllegalTypeOfNameException;
@@ -116,5 +117,23 @@ public class LineServiceTest {
         //when & then
         assertThatExceptionOfType(NotExistLineException.class)
                 .isThrownBy(() -> LineService.remove(notExistLine));
+    }
+
+    @Test
+    public void 노선이_등록될때_각_종점들은_해당_노선을_자신의_노선_리스트에_추가해야함() {
+        //given
+        String lineName = "1호선";
+        String topStationName = "잠실역";
+        String bottomStationName = "강남역";
+
+        Station topStation = new Station(topStationName);
+        Station bottomStation = new Station(bottomStationName);
+
+        //when
+        Line line = LineCreator.createLine(lineName, topStation, bottomStation);
+
+        //then
+        assertThat(topStation.isRegistered()).isTrue();
+        assertThat(bottomStation.isRegistered()).isTrue();
     }
 }
