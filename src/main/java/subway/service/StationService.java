@@ -21,6 +21,7 @@ public class StationService {
     public static void manageStation(Scanner scanner) {
         FeatureService featureService = new FeatureService();
 
+        System.out.println();
         while (true) {
             OutputView.printStationManagementScreen();
             String stationInput = scanner.next();

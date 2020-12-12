@@ -9,6 +9,7 @@ public class SectionService extends FeatureService {
     public static void manageSection(Scanner scanner) {
         SectionService sectionService = new SectionService();
 
+        System.out.println();
         while (true) {
             OutputView.printSectionManagementScreen();
             String sectionInput = scanner.next();

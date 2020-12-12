@@ -17,6 +17,7 @@ public class LineService {
     public static void manageLine(Scanner scanner){
         FeatureService featureService = new FeatureService();
 
+        System.out.println();
         while (true) {
             OutputView.printLineManagementScreen();
             String lineInput = scanner.next();
