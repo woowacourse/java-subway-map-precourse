@@ -1,5 +1,6 @@
 package subway.question;
 
+import subway.service.MainService;
 import subway.view.View;
 
 public enum MainQuestion implements BaseQuestion {
@@ -24,7 +25,7 @@ public enum MainQuestion implements BaseQuestion {
     PRINT_SUBWAY_ROUTE("4. 지하철 노선도 출력", "4") {
         @Override
         public void nextAction(View view) {
-            view.printEntireSubwayLine();
+            MainService.printEntireSubwayLine();
             view.main();
         }
     },

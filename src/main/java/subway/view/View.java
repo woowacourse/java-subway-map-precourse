@@ -7,12 +7,6 @@ import subway.question.BaseQuestion;
 import java.util.Scanner;
 
 public class View {
-    private final String ERR_LINE_PASSED_STATION = "역을 지나는 노선이 있습니다.";
-    private final String ERR_UNREGISTERED_STATION = "등록되지 않은 역입니다.";
-    private final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
-    private final String ERR_NO_STATION_ON_LINE = "노선에 입력한 역이 없습니다.";
-    private final String ERR_MIN_LINE_LENGTH = "노선의 길이가 짧습니다.";
-    private final int MIN_LINE_LENGTH = 2;
     private final String MAIN_VIEW = "Main";
     private final String STATION_VIEW = "Station";
     private final String LINE_VIEW = "Line";
@@ -70,73 +64,8 @@ public class View {
     }
 
 
-    public void printStationList() {
-        OutputView.printStationList(StationRepository.stations());
-    }
 
-    public void printSubwayLineList() {
-        OutputView.printSubwayLineList(LineRepository.lines());
-    }
 
-    public void registerStation() {
-        OutputView.printRegisterStationQuestion();
-        StationRepository.addStation(new Station(InputView.getStationName()));
-        OutputView.printRegisterStationSuccess();
-    }
 
-    public void deleteStation() {
-        OutputView.printDeleteStationQuestion();
-        Station station = StationRepository.getStation(InputView.getStationName());
-        if (station.isLinePassed()){
-            throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
-        }
-        if (!StationRepository.deleteStation(station)) {
-            throw new IllegalArgumentException(ERR_UNREGISTERED_STATION);
-        }
-        OutputView.printDeleteStationSuccess();
-    }
 
-    public void registerLine() {
-        OutputView.printRegisterLineQuestion();
-        String lineName = InputView.getLineName();
-        OutputView.printLineStartStationQuestion();
-        Station startStation = StationRepository.getStation(InputView.getStationName());
-        OutputView.printLineEndStationQuestion();
-        Station endStation = StationRepository.getStation(InputView.getStationName());
-        LineRepository.addLine(new Line(lineName, startStation, endStation));
-        OutputView.printRegisterLineSuccess();
-    }
-
-    public void deleteLine() {
-        OutputView.printDeleteLineQuestion();
-        if (!LineRepository.deleteLineByName(InputView.getLineName())) {
-            throw new IllegalArgumentException(ERR_UNREGISTERED_LINE);
-        }
-        OutputView.printDeleteLineSuccess();
-    }
-
-    public void registerSection() {
-        OutputView.printRegisterSectionLineNameQuestion();
-        Line line = LineRepository.getLine(InputView.getLineName());
-        OutputView.printRegisterSectionStationNameQuestion();
-        Station station = StationRepository.getStation(InputView.getStationName());
-        OutputView.printRegisterSectionOrderNumberQuestion();
-        int order = InputView.getOrder();
-        line.add(order-1, station);
-        OutputView.printRegisterSectionSuccess();
-    }
-
-    public void deleteSection() {
-        OutputView.printDeleteSectionLineNameQuestion();
-        Line line = LineRepository.getLine(InputView.getLineName());
-        OutputView.printDeleteSectionStationNameQuestion();
-        Station station = StationRepository.getStation(InputView.getStationName());
-        if (line.getLength() <= MIN_LINE_LENGTH) {
-            throw new IllegalArgumentException(ERR_MIN_LINE_LENGTH);
-        }
-        if (!line.remove(station)) {
-            throw new IllegalArgumentException(ERR_NO_STATION_ON_LINE);
-        }
-        OutputView.printDeleteSectionSuccess();
-    }
 }

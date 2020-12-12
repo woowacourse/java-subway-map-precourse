@@ -1,26 +1,27 @@
 package subway.question;
 
+import subway.service.StationService;
 import subway.view.View;
 
 public enum StationQuestion implements BaseQuestion {
     REGISTER_STATION("1. 역 등록", "1") {
         @Override
         public void nextAction(View view) {
-            view.registerStation();
+            StationService.register();
             view.main();
         }
     },
     DELETE_STATION("2. 역 삭제", "2") {
         @Override
         public void nextAction(View view) {
-            view.deleteStation();
+            StationService.delete();
             view.main();
         }
     },
     SHOW_STATIONS("3. 역 조회", "3") {
         @Override
         public void nextAction(View view) {
-            view.printStationList();
+            StationService.printStationList();
             view.main();
         }
     },

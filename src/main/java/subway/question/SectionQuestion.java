@@ -1,19 +1,20 @@
 package subway.question;
 
+import subway.service.SectionService;
 import subway.view.View;
 
 public enum SectionQuestion implements BaseQuestion {
     REGISTER_STATION("1. 구간 등록", "1") {
         @Override
         public void nextAction(View view) {
-            view.registerSection();
+            SectionService.register();
             view.main();
         }
     },
     DELETE_STATION("2. 구간 삭제", "2") {
         @Override
         public void nextAction(View view) {
-            view.deleteSection();
+            SectionService.delete();
             view.main();
         }
     },
