@@ -5,6 +5,7 @@ import java.util.List;
 public class Line {
 
     private static final int MIN_LENGTH_OF_LINE_NAME = 2;
+    private static final int GAP_WITH_INDEX_AND_ORDER = 1;
     private String name;
     private List<Station> stations;
 
@@ -39,7 +40,7 @@ public class Line {
     }
 
     public void addStation(String stationName, Order order) {
-        int index = order.getOrder() - 1;
+        int index = order.getOrder() - GAP_WITH_INDEX_AND_ORDER;
         stations.add(index, new Station(stationName));
     }
 
