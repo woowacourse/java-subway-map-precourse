@@ -78,4 +78,30 @@ public class StationManager {
             throw new IllegalArgumentException(ERROR_PREFIX + OPTION_ERROR_MESSAGE);
         }
     }
+
+    public static void callOptionMenu(String userOption, Scanner scanner) {
+        if (!Character.isDefined(userOption.charAt(0))) {
+            return;
+        }
+        int optionNumber = Integer.parseInt(userOption);
+        if (optionNumber == 1) {
+            enrollStation(scanner);
+        }
+        if (optionNumber == 2) {
+            deleteStation(scanner);
+        }
+        if (optionNumber == 3) {
+            searchStation(scanner);
+        }
+    }
+
+    public static void enrollStation(Scanner scanner) {
+        String stationName = inputStationName(scanner);
+        SubwayManager.addStation(stationName);
+        System.out.println(INFO_PREFIX + ENROLLMENT_INFO_MESSAGE);
+    }
+
+
+
+
 }
