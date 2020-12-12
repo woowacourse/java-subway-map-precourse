@@ -4,14 +4,15 @@ import java.util.Scanner;
 import subway.controller.StationController;
 import subway.view.InputView;
 import subway.view.LogMessage;
+import subway.view.OutputView;
 
 public class Router {
-    private static final String QUIT = "Q";
-    private static final String STATION = "1";
-    private static final String REGISTER = "1";
-    private static final String DELETE = "2";
-    private static final String SEARCH = "3";
+    private static final String ONE = "1";
+    private static final String TWO = "2";
+    private static final String THREE = "3";
+    private static final String FOUR = "4";
     private static final String BACK = "B";
+    private static final String QUIT = "Q";
 
     private InputView inputView;
 
@@ -22,7 +23,8 @@ public class Router {
     public void run() {
         String command;
         do {
-            command = inputView.getMainScreenCommand();
+            OutputView.printMainScreen();
+            command = inputView.getScreenCommand("MAIN_SCREEN");
         } while (routeMainScreen(command));
     }
 
@@ -31,28 +33,40 @@ public class Router {
             LogMessage.printEndMessage();
             return false;
         }
-        if (command.equals(STATION)) {
+        if (command.equals(ONE)) {
             enterStationManagementScreen();
+            return true;
+        }
+        if (command.equals(TWO)) {
+            enterLineManagementScreen();
             return true;
         }
         return false;
     }
 
     private void enterStationManagementScreen() {
-        String command = inputView.getStationManagementScreenCommand();
+        OutputView.printStationManagementScreen();
+        String command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN");
         routeStationManagementScreen(command);
     }
 
+    private void enterLineManagementScreen() {
+        OutputView.printLineManagementScreen();
+        String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN");
+    }
+
     private void routeStationManagementScreen(String command) {
-        if (command.equals(REGISTER)) {
-            String stationName = inputView.getStationNameToRegister();
+        if (command.equals(ONE)) {
+            OutputView.printOrderToRegisterStation();
+            String stationName = inputView.getStationName();
             StationController.registerStation(stationName);
         }
-        if (command.equals(DELETE)) {
-            String stationName = inputView.getStationNameToDelete();
+        if (command.equals(TWO)) {
+            OutputView.printOrderToDeleteStation();
+            String stationName = inputView.getStationName();
             StationController.deleteStation(stationName);
         }
-        if (command.equals(SEARCH)) {
+        if (command.equals(THREE)) {
             StationController.searchStation();
         }
         if (command.equals(BACK)) {
