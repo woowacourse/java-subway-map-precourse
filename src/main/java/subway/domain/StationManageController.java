@@ -42,7 +42,7 @@ public class StationManageController {
         return stationName;
     }
 
-    public String enrollStation(Scanner scanner) throws IllegalArgumentException{
+    public String inputEnrollStation(Scanner scanner) throws IllegalArgumentException{
         String stationName = scanner.next();
         Optional<Station> newStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();
@@ -60,7 +60,7 @@ public class StationManageController {
         return fixedStation.isPresent();
     }
 
-    public String deleteStation(Scanner scanner) throws IllegalArgumentException{
+    public String inputDeleteStation(Scanner scanner) throws IllegalArgumentException{
         String stationName = scanner.next();
         Optional<Station> searchedStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();
