@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
 
 public class InitialSetup {
@@ -34,7 +35,7 @@ public class InitialSetup {
             List<String> stations = LINES.get(lineName);
             LineRepository.addLine(lineName, stations.get(0), stations.get(1));
             for (int stationIndex = 2; stationIndex < stations.size(); stationIndex++) {
-                LineRepository.pushSectios(lineName, stations.get(stationIndex));
+                SectionRepository.pushSections(lineName, stations.get(stationIndex));
             }
         }
     }

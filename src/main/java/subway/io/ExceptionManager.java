@@ -3,6 +3,7 @@ package subway.io;
 import java.util.regex.Pattern;
 import subway.Scene;
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
 
 public class ExceptionManager {
@@ -139,7 +140,7 @@ public class ExceptionManager {
         if (!StationRepository.hasStation(stationName)) {
             return Error.NON_EXISTENT_STATION_NAME;
         }
-        if (LineRepository.isStationInLine(stationName, lineName)) {
+        if (SectionRepository.isStationInLine(stationName, lineName)) {
             return Error.EXISTENT_STATION_IN_LINE;
         }
         return Error.OK;
@@ -172,10 +173,10 @@ public class ExceptionManager {
         if (!StationRepository.hasStation(stationName)) {
             return Error.NON_EXISTENT_STATION_NAME;
         }
-        if (!LineRepository.isStationInLine(stationName, lineName)) {
+        if (!SectionRepository.isStationInLine(stationName, lineName)) {
             return Error.NON_EXISTENT_STATION_IN_LINE;
         }
-        if (LineRepository.getNumberOfStationInLine(lineName) <= MINIMUM_STATION_NUMBER_IN_LINE) {
+        if (SectionRepository.getNumberOfStationInLine(lineName) <= MINIMUM_STATION_NUMBER_IN_LINE) {
             return Error.INVALID_NUMBER_OF_STATION_IN_LINE;
         }
         return Error.OK;
@@ -193,7 +194,7 @@ public class ExceptionManager {
         } catch (Exception exception) {
             return false;
         }
-        return LineRepository.isValidRangeInLine(index, lineName);
+        return SectionRepository.isValidRangeInLine(index, lineName);
     }
 
     private static boolean isValidStationNameLength(String name) {

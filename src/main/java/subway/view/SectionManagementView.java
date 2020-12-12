@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import subway.Scene;
-import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.io.Request;
 import subway.io.Response;
 
@@ -30,7 +30,7 @@ public class SectionManagementView extends View {
         if (!registerLineOfSection(request, response, inputs)) {
             return;
         }
-        LineRepository.addSection(inputs.get(0), inputs.get(1), inputs.get(2));
+        SectionRepository.addSection(inputs.get(0), inputs.get(1), inputs.get(2));
         response.printInfoMessage(SECTION_REGISTER_SUCCESS_MESSAGE);
         scene.back();
     }
@@ -75,7 +75,7 @@ public class SectionManagementView extends View {
         if (!removeLineOfSectoin(request, response, inputs)) {
             return;
         }
-        LineRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
+        SectionRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
         scene.back();
     }
 

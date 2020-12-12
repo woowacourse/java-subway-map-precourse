@@ -19,47 +19,20 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static void addSection(String lineName, String stationName, String index) {
-        getLineByName(lineName).addSection(stationName, index);
-    }
-    
-    public static void pushSectios(String lineName, String...stationNames) {
-        getLineByName(lineName).pushSections(stationNames);
-    }
-
     public static void deleteLineByName(String name) {
         getLineByName(name).removeAllSections();
         lines.removeIf(line -> Objects.equals(line.getName(), name));
-    }
-
-    public static void deleteStationInLine(String stationName, String lineName) {
-        getLineByName(lineName).removeSection(stationName);
     }
 
     public static boolean hasLine(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).count() > 0;
     }
 
-    public static int getNumberOfStationInLine(String lineName) {
-        Line line = getLineByName(lineName);
-        return line.getNumberOfSections();
-    }
-
-    public static boolean isStationInLine(String stationName, String lineName) {
-        Line line = getLineByName(lineName);
-        return line.hasStation(stationName);
-    }
-
-    public static boolean isValidRangeInLine(int index, String lineName) {
-        Line line = getLineByName(lineName);
-        return line.isValidRange(index);
-    }
-
     public static boolean isEmpty() {
         return lines.isEmpty();
     }
 
-    private static Line getLineByName(String name) {
+    public static Line getLineByName(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).findFirst()
                 .get();
     }
