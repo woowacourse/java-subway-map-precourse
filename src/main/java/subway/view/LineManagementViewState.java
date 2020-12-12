@@ -6,6 +6,7 @@ import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.exceptions.DuplicatedLineNameException;
+import subway.exceptions.LineNotExistException;
 import subway.exceptions.StationNotExistException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.LineManagementViewComponent;
@@ -52,6 +53,7 @@ public class LineManagementViewState extends ViewState {
     @Override
     protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         checkAndAddLine(feature, application, scanner);
+        checkAndRemoveLine(feature, application, scanner);
         checkAndPrintSubwayLineMap(feature, application);
         checkAndSwitchViewToMain(feature, application);
     }
@@ -63,6 +65,16 @@ public class LineManagementViewState extends ViewState {
             Station endStation = getEndStation(scanner);
             lineController.addLine(lineName, startStation, endStation);
             printStationRegisterFinishLog();
+            switchViewToStationManagement(application);
+        }
+    }
+
+    private void checkAndRemoveLine(String feature, SubwayLineMap application, Scanner scanner) throws LineNotExistException {
+        if(feature.equals(BTN_DELETE_LINE)){
+            printRemoveLineBeginLog();
+            String lineName = getLineOrStationName(scanner);
+            lineController.removeLine(lineName);
+            printLineRemoveFinishLog();
             switchViewToStationManagement(application);
         }
     }
@@ -99,13 +111,27 @@ public class LineManagementViewState extends ViewState {
         System.out.println(stringBuilder.toString());
     }
 
+    public void printRemoveLineBeginLog(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(LineManagementViewComponent.getRemoveLineBeginComponent());
+        System.out.println(stringBuilder.toString());
+    }
+
+    public void printLineRemoveFinishLog(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        stringBuilder.append(LineManagementViewComponent.getRemoveLineFinishComponent());
+        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
+        System.out.println(stringBuilder.toString());
+    }
+
     public void printSubwayLineMap(){
         List<Line> lineList = lineController.getLines();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(LineManagementViewComponent.getSubwayLineMapLog());
         stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
         appendSubwayLineMapLog(stringBuilder, lineList);
-        System.out.print(stringBuilder.toString());
+        System.out.println(stringBuilder.toString());
     }
 
     private void checkAndSwitchViewToMain(String feature, SubwayLineMap application){

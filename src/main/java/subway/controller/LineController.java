@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.exceptions.DuplicatedLineNameException;
 import subway.exceptions.DuplicatedStartAndEndStationNameException;
+import subway.exceptions.LineNotExistException;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +40,10 @@ public class LineController {
         LineRepository.addLine(line);
     }
 
-    public void removeLine(String name){
+    public void removeLine(String name) throws LineNotExistException {
+        if(!checkIfLineExist(name)) {
+            throw new LineNotExistException();
+        }
         LineRepository.deleteLineByName(name);
     }
 
