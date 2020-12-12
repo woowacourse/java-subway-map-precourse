@@ -44,7 +44,11 @@ public class DashboardWords {
     public static final String ASK_DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
     public static final String ASK_LINE_FIRST_STATION = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String ASK_LINE_LAST_STATION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
-
+    public static final String ASK_STRETCH_UPDATE_LINE_NAME = "## 노선을 입력하세요.";
+    public static final String ASK_STRETCH_UPDATE_STATION_NAME = "## 역이름을 입력하세요.";
+    public static final String ASK_STRETCH_UPDATE_ORDER = "## 순서를 입력하세요.";
+    public static final String ASK_STRETCH_DELETE_LINE_NAME = "## 삭제할 구간의 노선을 입력하세요.";
+    public static final String ASK_STRETCH_DELETE_STATION_NAME = "## 삭제할 구간의 역을 입력하세요.";
 
     public static final String ERROR_OPTION_UNAVAILABLE = "[ERROR] 선택할 수 없는 기능입니다.";
     public static final String ERROR_STATION_NAME_DUPLICATED = "[ERROR] 이미 등록된 역 이름입니다.";
@@ -58,6 +62,8 @@ public class DashboardWords {
     public static final String INFO_LINE_ENROLL_SUCCESS = "[INFO] 지하철 노선이 등록되었습니다.";
     public static final String INFO_STATION_DELETE_SUCCESS = "[INFO] 지하철 역이 삭제되었습니다.";
     public static final String INFO_LINE_DELETE_SUCCESS = "[INFO] 지하철 노선이 삭제었습니다.";
+    public static final String INFO_STRETCH_DELETE_SUCCESS = "[INFO] 구간이 삭제되었습니다.";
+
 
 
 

@@ -42,9 +42,13 @@ public class InputView {
         return scanner.nextLine();
     }
 
-
     public String readLastStationName() {
         System.out.println(ASK_LINE_LAST_STATION);
         return scanner.nextLine();
+    }
+
+    public int readStationOrder() {
+        System.out.println(ASK_STRETCH_UPDATE_ORDER);
+        return scanner.nextInt();
     }
 }
