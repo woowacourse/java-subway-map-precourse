@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.Objects;
 
 public class Station {
+
     private String name;
 
     public Station(String name) {
@@ -18,6 +19,10 @@ public class Station {
             return ((Station) object).name.equals(this.name);
         }
         return false;
+    }
+
+    public String toString() {
+        return name;
     }
 
 }

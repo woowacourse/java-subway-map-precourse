@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
     private String name;
 
     private List<Station> stations = new ArrayList<Station>();
@@ -16,7 +17,9 @@ public class Line {
         stations.add(station);
     }
 
-    public List<Station> getStations() { return stations;}
+    public List<Station> getStations() {
+        return stations;
+    }
 
     public String getName() {
         return name;
@@ -27,5 +30,9 @@ public class Line {
             return ((Line) object).name.equals(this.name);
         }
         return false;
+    }
+
+    public String toString() {
+        return name;
     }
 }

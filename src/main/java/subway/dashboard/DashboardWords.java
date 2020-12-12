@@ -33,6 +33,9 @@ public class DashboardWords {
     public static final String DASHBOARD_STRETCH_OPTION_1 = "구간 등록";
     public static final String DASHBOARD_STRETCH_OPTION_2 = "구간 삭제";
 
+    public static final String LIST_OF_STATIONS = "##역 목록";
+    public static final String LIST_OF_LINES = "##노선 목록";
+
     public static final String ASK_OPTIONS = "## 원하는 기능을 선택하세요.";
     public static final String ASK_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
     public static final String ASK_DELETE_STATION_NAME = "## 삭제할 역 이름을 입력하세요.";

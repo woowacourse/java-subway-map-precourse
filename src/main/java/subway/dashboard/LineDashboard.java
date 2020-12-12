@@ -13,6 +13,7 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 
 public class LineDashboard {
+
     TreeMap<String, String> options;
     InputView inputView;
 
@@ -33,7 +34,7 @@ public class LineDashboard {
     }
 
     public void startLineDashboard(InputView inputView) {
-        while(true) {
+        while (true) {
             if (!startChosenOptionUntilFinished(makeUserChooseOption(inputView))) {
                 break;
             }
@@ -43,7 +44,7 @@ public class LineDashboard {
     public String makeUserChooseOption(InputView inputView) {
         showOptions();
         String optionChosen;
-        while(true) {
+        while (true) {
             optionChosen = chooseOption(inputView);
             if (checkOptions(optionChosen)) {
                 return optionChosen;
@@ -76,8 +77,7 @@ public class LineDashboard {
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {
-            System.out.println("노선조회실행");
-            return false;
+            showLines();
         }
         return false;
     }
@@ -114,8 +114,8 @@ public class LineDashboard {
 
     public void setFirstStation(InputView inputView, Line line) {
         Station station = new Station(inputView.readFirstStationName());
-        while(true) {
-            if(canAddStation(line, station)) {
+        while (true) {
+            if (canAddStation(line, station)) {
                 break;
             }
         }
@@ -126,8 +126,8 @@ public class LineDashboard {
 
     public void setLastStation(InputView inputView, Line line) {
         Station station = new Station(inputView.readLastStationName());
-        while(true) {
-            if(canAddStation(line, station)) {
+        while (true) {
+            if (canAddStation(line, station)) {
                 break;
             }
             System.out.println(ERROR_STATION_NAME_DUPLICATED);
@@ -146,12 +146,18 @@ public class LineDashboard {
 
     public boolean deleteLine(InputView inputView) {
         String submittedLineName = inputView.readDeletingLineName();
-        if(!LineRepository.deleteLineByName(submittedLineName)) {
+        if (!LineRepository.deleteLineByName(submittedLineName)) {
             System.out.println(ERROR_LINE_NAME_NO_EXISTS);
             return true;
         }
         return false;
     }
 
+    public void showLines() {
+        System.out.println(LIST_OF_LINES);
+        for (Line line : LineRepository.lines()) {
+            System.out.println(line);
+        }
+    }
 
 }

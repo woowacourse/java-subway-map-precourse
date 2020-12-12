@@ -76,8 +76,7 @@ public class StationDashboard {
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {
-            System.out.println("역조회실행");
-            return false;
+            showStations();
         }
         return false;
     }
@@ -110,11 +109,18 @@ public class StationDashboard {
 
     public boolean deleteStation(InputView inputView) {
         String submittedStationName = inputView.readDeletingStationName();
-        if(!StationRepository.deleteStation(submittedStationName)) {
+        if (!StationRepository.deleteStation(submittedStationName)) {
             System.out.println(ERROR_STATION_NAME_NO_EXISTS);
             return true;
         }
         return false;
+    }
+
+    public void showStations() {
+        System.out.println(LIST_OF_STATIONS);
+        for (Station station : StationRepository.stations()) {
+            System.out.println(station);
+        }
     }
 
 
