@@ -8,4 +8,6 @@ public interface Menu {
 
     String getTitle();
 
+    Menu change(String command);
+
 }

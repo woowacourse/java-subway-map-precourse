@@ -1,5 +1,9 @@
 package subway.menu;
 
+import subway.exception.MenuNotFountException;
+
+import java.util.Arrays;
+
 public enum MainMenu implements Menu {
 
     STATION("1", "역 관리"),
@@ -37,6 +41,16 @@ public enum MainMenu implements Menu {
     @Override
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public Menu change(String command) {
+        return Arrays
+                .stream(values())
+                .filter(menu -> menu.order.equals(command))
+                .findFirst().orElseThrow(() ->
+                        new MenuNotFountException(command)
+                );
     }
 
 
