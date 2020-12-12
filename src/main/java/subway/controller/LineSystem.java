@@ -53,11 +53,11 @@ public class LineSystem {
         }
         SubwayRepository.addSubwayRealLine(lineInfo);
         InfoMessage.printLineAdded();
-        Line wantLine = LineRepository.findLine(lineInfo[0]);
-        PathRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
-        for (Station station : wantLinks.getPath()) {
-            System.out.println(station.getName());
-        }
+      //  Line wantLine = LineRepository.findLine(lineInfo[0]);
+//        PathRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
+//        for (Station station : wantLinks.getPath()) {
+//            System.out.println(station.getName());
+//        }
 
     }
 

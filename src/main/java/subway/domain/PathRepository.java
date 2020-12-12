@@ -22,8 +22,9 @@ public class PathRepository {
     }
 
 
-    public void addPath(int index, Station newStation) {
-        path.add(index, newStation);
+    public void addPath(int index, String newStation) {
+        Station station = StationRepository.findStation(newStation);
+        path.add(index, station);
     }
 
     public boolean deletePathByName(String name) {

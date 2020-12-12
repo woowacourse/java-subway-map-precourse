@@ -13,7 +13,8 @@ public class SubwayRepository {
         subwayRealLines.put(line, links);
     }
 
-    public static PathRepository getStationLinksByLine(Line line) {
+    public static PathRepository getStationLinksByLine(String lineName) {
+        Line line = LineRepository.findLine(lineName);
         return subwayRealLines.get(line);
     }
 
