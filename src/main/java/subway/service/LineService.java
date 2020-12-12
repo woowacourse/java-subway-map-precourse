@@ -4,11 +4,18 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.question.LineQuestion;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineService {
+import java.util.Arrays;
+
+public class LineService extends BaseService {
     private static final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
+
+    public static void main () {
+        view(Arrays.asList(LineQuestion.values()), LineQuestion.HEADER);
+    }
 
     public static void register() {
         OutputView.printRegisterLineQuestion();

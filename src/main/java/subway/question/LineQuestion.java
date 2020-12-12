@@ -1,38 +1,38 @@
 package subway.question;
 
 import subway.service.LineService;
-import subway.view.View;
+import subway.service.MainService;
 
 public enum LineQuestion implements BaseQuestion {
     REGISTER_STATION("1. 노선 등록", "1") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
             LineService.register();
-            view.main();
+            MainService.main();
         }
     },
     DELETE_STATION("2. 노선 삭제", "2") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
             LineService.delete();
-            view.main();
+            MainService.main();
         }
     },
     SHOW_STATIONS("3. 노선 조회", "3") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
             LineService.printSubwayLineList();
-            view.main();
+            MainService.main();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
-        public void nextAction(View view) {
-            view.main();
+        public void nextAction() {
+            MainService.main();
         }
     };
 
-    public final String HEADER = "## 노선 관리 화면";
+    public static final String HEADER = "## 노선 관리 화면";
     private String question;
     private String answerCode;
 

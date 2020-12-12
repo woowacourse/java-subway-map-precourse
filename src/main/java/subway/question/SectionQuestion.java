@@ -1,31 +1,31 @@
 package subway.question;
 
+import subway.service.MainService;
 import subway.service.SectionService;
-import subway.view.View;
 
 public enum SectionQuestion implements BaseQuestion {
     REGISTER_STATION("1. 구간 등록", "1") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
             SectionService.register();
-            view.main();
+            MainService.main();
         }
     },
     DELETE_STATION("2. 구간 삭제", "2") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
             SectionService.delete();
-            view.main();
+            MainService.main();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
-        public void nextAction(View view) {
-            view.main();
+        public void nextAction() {
+            MainService.main();
         }
     };
 
-    public final static String HEADER = "## 구간 관리 화면";
+    public static final String HEADER = "## 구간 관리 화면";
     private String question;
     private String answerCode;
 

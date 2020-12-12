@@ -1,41 +1,43 @@
 package subway.question;
 
+import subway.service.LineService;
 import subway.service.MainService;
-import subway.view.View;
+import subway.service.SectionService;
+import subway.service.StationService;
 
 public enum MainQuestion implements BaseQuestion {
     TO_STATION_VIEW("1. 역 관리", "1") {
         @Override
-        public void nextAction(View view) {
-            view.station();
+        public void nextAction() {
+            StationService.main();
         }
     },
     TO_LINE_VIEW("2. 노선 관리", "2") {
         @Override
-        public void nextAction(View view) {
-            view.line();
+        public void nextAction() {
+            LineService.main();
         }
     },
     TO_INTERVAL_VIEW("3. 구간 관리", "3") {
         @Override
-        public void nextAction(View view) {
-            view.section();
+        public void nextAction() {
+            SectionService.main();
         }
     },
     PRINT_SUBWAY_ROUTE("4. 지하철 노선도 출력", "4") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
             MainService.printEntireSubwayLine();
-            view.main();
+            MainService.main();
         }
     },
     QUIT("Q. 종료", "Q") {
         @Override
-        public void nextAction(View view) {
+        public void nextAction() {
         }
     };
 
-    private final String HEADER = "## 메인 화면";
+    public static final String HEADER = "## 메인 화면";
     public String question;
     private String answerCode;
 
