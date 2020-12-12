@@ -16,6 +16,10 @@ public class Line {
         this.name = name;
         this.northboundTerminal = northboundTerminal;
         this.southboundTerminal = southboundTerminal;
+        addOnLine(northboundTerminal);
+        addOnLine(southboundTerminal);
+        StationRepository.getStationNamed(northboundTerminal).registerIn(name);
+        StationRepository.getStationNamed(southboundTerminal).registerIn(name);
     }
 
     public String getName() {
