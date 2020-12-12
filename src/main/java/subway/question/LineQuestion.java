@@ -33,11 +33,11 @@ public enum LineQuestion implements BaseQuestion {
     };
 
     public static final String HEADER = "## 노선 관리 화면";
-    private String question;
-    private String answerCode;
+    private final String option;
+    private final String answerCode;
 
-    LineQuestion(String question, String answerCode) {
-        this.question = question;
+    LineQuestion(String option, String answerCode) {
+        this.option = option;
         this.answerCode = answerCode;
     }
 
@@ -47,8 +47,8 @@ public enum LineQuestion implements BaseQuestion {
     }
 
     @Override
-    public String getQuestion() {
-        return question;
+    public String getOption() {
+        return option;
     }
 
     @Override

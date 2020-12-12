@@ -3,7 +3,7 @@ package subway.question;
 public interface BaseQuestion {
     String getHeader();
 
-    String getQuestion();
+    String getOption();
 
     void nextAction();
 

@@ -38,11 +38,11 @@ public enum MainQuestion implements BaseQuestion {
     };
 
     public static final String HEADER = "## 메인 화면";
-    public String question;
-    private String answerCode;
+    private final String option;
+    private final String answerCode;
 
-    MainQuestion(String question, String answerCode) {
-        this.question = question;
+    MainQuestion(String option, String answerCode) {
+        this.option = option;
         this.answerCode = answerCode;
     }
 
@@ -52,8 +52,8 @@ public enum MainQuestion implements BaseQuestion {
     }
 
     @Override
-    public String getQuestion() {
-        return question;
+    public String getOption() {
+        return option;
     }
 
     @Override

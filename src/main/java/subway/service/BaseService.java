@@ -12,7 +12,7 @@ public class BaseService {
     public static void view(List<BaseQuestion> questionList, String header) {
         try {
             OutputView.printQuestionHeader(header);
-            OutputView.printQuestions(questionList.stream().map(BaseQuestion::getQuestion));
+            OutputView.printQuestions(questionList.stream().map(BaseQuestion::getOption));
             OutputView.printChooseOptionMessage();
             selectedQuestion(questionList, InputView.getAnswer()).nextAction();
         } catch (IllegalArgumentException e) {
