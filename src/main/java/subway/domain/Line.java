@@ -16,7 +16,7 @@ import subway.utils.RegexUtils;
 
 public class Line implements Iterable<String> {
     private static final int NAME_LENGTH_MINIMUM = 2;
-    private static final int FIRST_STATION_ORDER = 0;
+    private static final int FIRST_STATION_ORDER = 1;
 
     private String name;
     private final List<String> stations = new ArrayList<>();
@@ -66,7 +66,7 @@ public class Line implements Iterable<String> {
         return stations.contains(name);
     }
 
-    public void addSection(int index, String stationName) {
+    public void addSection(int order, String stationName) {
         if (!StationRepository.containsStation(stationName)) {
             throw new NullStationException(stationName);
         }
@@ -75,11 +75,16 @@ public class Line implements Iterable<String> {
             throw new DuplicatedStationInLineException(stationName);
         }
 
-        if (index <= FIRST_STATION_ORDER || index > getLastStationOrder()) {
-            throw new SectionOutOfRangeException(index + 1);
+        if (order <= FIRST_STATION_ORDER || order > getLastStationOrder()) {
+            throw new SectionOutOfRangeException(order);
         }
 
+        int index = order - 1;
         stations.add(index, stationName);
+    }
+
+    private int getLastStationOrder() {
+        return stations.size();
     }
 
     public boolean deleteSection(String stationName) {
@@ -88,10 +93,6 @@ public class Line implements Iterable<String> {
         }
 
         return stations.removeIf(station -> Objects.equals(station, stationName));
-    }
-
-    private int getLastStationOrder() {
-        return stations.size() - 1;
     }
 
     @Override
