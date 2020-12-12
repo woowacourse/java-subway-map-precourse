@@ -42,6 +42,17 @@ public class SectionManagementViewState extends ViewState{
         checkAndSwitchViewToMain(feature, application);
     }
 
+    private void checkAndAddSectionStation(String feature, Scanner scanner, SubwayLineMap application{
+        if(feature.equals(BTN_ADD_SECTION)){
+            printStationRemoveLog();
+            String stationName = getStationName(scanner);
+            printWhiteSpace();
+            removeStation(stationName);
+            printStationRemoveFinishLog();
+            switchViewToStationManagement(application);
+        }
+    }
+
     private void checkAndSwitchViewToMain(String feature, SubwayLineMap application){
         if(feature.equals(BTN_BACK)){
             switchViewToStationManagement(application);
