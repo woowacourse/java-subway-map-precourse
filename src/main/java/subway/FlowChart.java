@@ -27,7 +27,7 @@ public class FlowChart {
     }
 
     public static void loopStationPage(Scanner scanner){
-        Menu stationPage = new Menu(Constant.STATION_LIST_TITLE, Constant.stationMenuItemList());
+        Menu stationPage = new Menu(Constant.STATION_MENU_TITLE, Constant.stationMenuItemList());
         while (true){
             String stationInput = stationPage.load(scanner);
             if(stationInput.equals(Constant.stationMenuItemList().get(0).substring(0, 1))){
