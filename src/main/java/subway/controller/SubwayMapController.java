@@ -48,4 +48,8 @@ public class SubwayMapController {
     public static void showSubwayMap() {
         OutputView.printSubwayMap();
     }
+
+    public static void Quit() {
+        System.exit(0);
+    }
 }

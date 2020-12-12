@@ -54,7 +54,8 @@ public class MenuRepository {
                 SubwayMapController::callSectionMenu));
         menu.addMenuItem(new MenuItem(KEY_FOUR, PRINT_SUBWAY_MAP, 
                 SubwayMapController::showSubwayMap));;
-        menu.addMenuItem(new MenuItem(KEY_QUIT, QUIT, null));
+        menu.addMenuItem(new MenuItem(KEY_QUIT, QUIT, 
+                SubwayMapController::Quit));
 
         menus.put(MenuType.MAIN, menu);
     }
