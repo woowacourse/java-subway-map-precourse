@@ -2,6 +2,7 @@ package subway.repository;
 
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.domain.TransitMap;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ public class TransitMapRepository {
         return Collections.unmodifiableMap(transitMaps);
     }
 
-    public static void addTransitMap(Line line, LinkedList<Station> stationList) {
-        transitMaps.put(line, stationList);
+    public static void addTransitMap(TransitMap transitMap) {
+        transitMaps.put(transitMap.getTransitMapLine(), transitMap.getTransitMapStations());
     }
 }
