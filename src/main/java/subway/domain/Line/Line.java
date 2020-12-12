@@ -17,6 +17,7 @@ public class Line {
     private final List<Station> stations = new LinkedList<>();
     private static final int STATIONS_MIN_INDEX = 1;
     private static final int ONE_INDEX = 1;
+    private static final int MIN_STATION_CAPACITY = 2;
 
 
     private Line(LineName name) {
@@ -51,6 +52,14 @@ public class Line {
         stations.add(station);
     }
 
+
+    //TODO 리팩토링1
+    public void clear() {
+        stations.stream().forEach(station -> {
+            station.removeLine(this);
+        });
+    }
+
     public boolean isContains(Station station) {
         return stations.contains(station);
     }
@@ -69,7 +78,7 @@ public class Line {
     }
 
     public boolean isSameName(String name) {
-        return this.name.equals(name);
+        return this.name.equals(LineName.of(name));
     }
 
     public void addTo(int order, Station station) {
@@ -81,7 +90,7 @@ public class Line {
         stations.add(order - ONE_INDEX, station);
     }
 
-    private boolean isValidOrder(int order) {
+    private boolean isValidOrder(int order) {   //TODO 확인좀
 
         if (order < STATIONS_MIN_INDEX && order > stations.size()) {
             return false;
@@ -92,5 +101,13 @@ public class Line {
     @Override
     public String toString() {
         return name.toString();
+    }
+
+    public boolean canRemoveStation() {
+        return stations.size() > MIN_STATION_CAPACITY;
+    }
+
+    public void removeStations(Station station) {
+        stations.remove(station);
     }
 }
