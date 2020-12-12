@@ -9,6 +9,7 @@ public class ErrorViewComponent {
     private static final String duplicatedStartAndEndStationNameComponent = "시작점과 도착점이 동일합니다.";
     private static final String lineNotExistComponent = "존재하지 않는 노선 이름입니다.";
     private static final String invalidPositionComponent = "노선에서 선택할 수 없는 위치입니다.";
+    private static final String minimumLineLengthComponent = "노선의 길이가 2보다 작아지게 됩니다.";
 
     public static String getUnselectableFeatureComponent(){
         return errorPrefixComponent + unselectableFeatureComponent;
@@ -36,5 +37,9 @@ public class ErrorViewComponent {
 
     public static String getInvalidPositionComponent(){
         return errorPrefixComponent + invalidPositionComponent;
+    }
+
+    public static String getMinimumLineLengthComponent(){
+        return errorPrefixComponent + minimumLineLengthComponent;
     }
 }
