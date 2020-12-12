@@ -19,4 +19,10 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static Station findStation(String terminus) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(terminus))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(("존재하지 않는 역입니다용")));
+    }
 }

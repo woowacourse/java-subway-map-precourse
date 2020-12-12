@@ -1,6 +1,11 @@
 package subway.menu;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.LineInputView;
+import subway.view.StationInputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,8 +13,13 @@ import java.util.Scanner;
 public enum LineMenu {
     REGISTER("1", "노선 등록") {
         public void moveView(Scanner scanner) {
-            LineInputView lineInputView = new LineInputView();
-            lineInputView.register(scanner);
+            String line = LineInputView.register(scanner);
+            String upBoundTerminus = LineInputView.upBoundTerminus(scanner);
+            String downBoundTerminus = LineInputView.downBoundTerminus(scanner);
+
+            Line newLine = new Line(line);
+            newLine.addTerminus(upBoundTerminus, downBoundTerminus);
+            LineRepository.addLine(newLine);
         }
     },
     REMOVE("2", "노선 삭제") {
@@ -22,6 +32,7 @@ public enum LineMenu {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
             // LineRepository..
+            LineRepository.lines().stream().forEach(x -> System.out.println(x.getName()+ " "+ x.line.getFirst() + " " + x.line.getLast()));
         }
     },
     BACK("B", "돌아가기") {
