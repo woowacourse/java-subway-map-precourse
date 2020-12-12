@@ -36,4 +36,8 @@ public class StationManageController {
         }
     }
 
+    public boolean processGoBack(Scanner scanner) {
+        return input.inputStationManageScreen(scanner).equals(FUNCTION_BACK);
+    }
+
 }
