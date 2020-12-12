@@ -1,10 +1,17 @@
-package subway.domain;
+package subway;
+
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Initializer {
+public class SampleDataInitializer {
+
+
 
     public static void initialStationRepository() {
         List<String> initialStations = new ArrayList<>(Arrays.asList(

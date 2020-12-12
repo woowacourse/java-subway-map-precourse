@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.SampleDataInitializer;
 import subway.exception.DuplicatedObjectException;
 import subway.exception.NoSuchObjectException;
 import subway.exception.NoneObjectException;
@@ -13,10 +14,6 @@ public class StationRepository {
     private static final int ZERO = 0;
 
     private static final List<Station> stations = new ArrayList<>();
-
-    static {
-        Initializer.initialStationRepository();
-    }
 
     public static List<Station> stations() {
         if (stations.size() == ZERO) {

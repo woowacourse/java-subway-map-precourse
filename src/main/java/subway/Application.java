@@ -22,6 +22,11 @@ public class Application {
     private static MainMenuType menu;
     private static MainView mainView = MainView.getInstance();
 
+    static {
+        SampleDataInitializer.initialStationRepository();
+        SampleDataInitializer.initialLineRepository();
+    }
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현

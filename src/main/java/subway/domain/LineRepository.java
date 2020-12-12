@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.SampleDataInitializer;
 import subway.dto.LineDTO;
 import subway.exception.DuplicatedObjectException;
 import subway.exception.NoSuchObjectException;
@@ -18,10 +19,6 @@ public class LineRepository {
     private static final int ZERO = 0;
 
     private static final List<Line> lines = new ArrayList<>();
-
-    static {
-        Initializer.initialLineRepository();
-    }
 
     public static List<Line> lines() {
         if (lines.size() == ZERO) {
