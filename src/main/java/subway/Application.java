@@ -194,6 +194,8 @@ public class Application {
         if (LineFunction.ADD.matchMenu(menu)) {
             addLine();
         }
+        if(LineFunction.DELETE.matchMenu(menu))
+            deleteLine();
         if(LineFunction.INQUIRY.matchMenu(menu))
             inquiryLineList();
     }
@@ -249,6 +251,22 @@ public class Application {
             printUtils.sameTerminalNameError();
         }
         return downboundTerminal(upboundStation);
+    }
+
+    private static void deleteLine() {
+        printUtils.printDeleteLineGuide();
+        try {
+            Line delLine = new Line(inputUtils.inputLineName());
+            if (!lineRepository.isLineExist(delLine)) {
+                throw new IllegalArgumentException();
+            }
+            lineRepository.deleteLineByName(delLine.getName());
+            printUtils.printCompleteDeleteLine();
+        } catch (IllegalArgumentException e) {
+            printUtils.nonExistentStationError();
+            deleteLine();
+            return;
+        }
     }
 
     private static void inquiryLineList() {
