@@ -2,6 +2,8 @@ package view;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 public class OutputView {
 
@@ -29,6 +31,7 @@ public class OutputView {
     public static final String BACK_MESSAGE = "B. 돌아가기";
 
     public static final String TOTAL_MAP_TITLE = "## 지하철 노선도";
+    public static final String TOTAL_STATION_TITLE = "## 역 목록";
     public static final String TOTAL_LINE_TITLE = "노선 목록";
 
     public static final String PREFIX_INFO = "[INFO] ";
@@ -55,8 +58,6 @@ public class OutputView {
     public static final String MESSAGE_SUCCESS_DELETE_SECTION = "지하철 구간이 삭제되었습니다.";
 
     public static final String MESSAGE_ERROR_INVALID_SELECT = "선택할 수 없는 기능입니다.";
-    public static final String MESSAGE_ERROR_TOO_SHORT_NAME = "이름은 2글자 이상이어야 합니다.";
-
     public static final String MESSAGE_ERROR_ALREADY_EXIST_STATION_NAME = "이미 등록된 역입니다.";
     public static final String MESSAGE_ERROR_NOT_EXIST_STATION_NAME = "존재하지 않는 역입니다.";
     public static final String MESSAGE_ERROR_NOT_EXIST_STATION_NAME_IN_LINE = "에 존재하지 않는 역입니다.";
@@ -66,13 +67,16 @@ public class OutputView {
     public static final String MESSAGE_ERROR_NOT_EXIST_LINE_NAME = "존재하지 않는 노선입니다.";
     public static final String MESSAGE_ERROR_UNDELETABLE_LINE_NAME = "삭제할 노선은 어떠한 구간도 포함되면 안됩니다.";
     public static final String MESSAGE_ERROR_LINE_NAME_SUFFIX = "노선 이름은 '~선' 형태로 입력해주시길 바랍니다.";
-    public static final String MESSAGE_ERROR_ALREADY_NORTHBOUND_NAME = "이미 상행 종점역으로 등록되어 있습니다.";
-    public static final String MESSAGE_ERROR_ALREADY_SOUTHBOUND_NAME = "이미 하행 종점역으로 등록되어 있습니다.";
+    public static final String MESSAGE_ERROR_SAME_NORTHBOUND_NAME = "상행 종점과 하행 종점의 이름은 달라야 합니다.";
     public static final String MESSAGE_ERROR_NOT_POSITIVE_INTEGER = "순서는 양의 정수 형태로 이루어져야 합니다.";
     public static final String MESSAGE_ERROR_OUT_OF_LINE_RANGE = "노선의 총 길이를 벗어난 값입니다.";
+    public static final String MESSAGE_ERROR_TOO_SHORT_NAME = "이름은 2글자 이상이어야 합니다.";
+    public static final String MESSAGE_ERROR_TOO_LITTLE_STATIONS = "노선에는 적어도 2개의 역이 존재해야 합니다.";
 
     public static final String NEW_LINE = "\n";
     public static final String DIVISION_LINE = "---";
+
+    public static final String EXIT_PROGRAM = "프로그램을 종료하겠습니다.";
 
     public static void printMain() {
         System.out.println(MAIN_TITLE);
@@ -120,6 +124,13 @@ public class OutputView {
             printInformation(stationName);
         }
         System.out.println();
+    }
+
+    public static void printTotalStation() {
+        System.out.println(TOTAL_STATION_TITLE);
+        for (Station station : StationRepository.stations()) {
+            printInformation(station.getName());
+        }
     }
 
     public static void printTotalLine() {
