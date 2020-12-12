@@ -13,8 +13,25 @@ public class OutputView {
     private static final String PRINT_SUBWAY_MAP_MESSAGE = "## 지하철 노선도";
     private static final String PRINT_LIST = "[INFO] %s\n";
     private static final String DASH = "---";
+    private static final String ADD_MESSAGE = "[INFO] %s이 등록되었습니다.\n";
+    private static final String DELETE_MESSAGE = "[INFO] %s이 삭제되었습니다.\n";
+    private static final String SUBWAY = "지하철 ";
+    private static final String SECTION = "구간";
 
     private OutputView() {
+    }
+
+    public static void printAddMessage(String kind) {
+        if (!kind.equals(SECTION)) {
+            kind = SUBWAY + kind;
+        }
+        System.out.printf(ADD_MESSAGE, kind);
+    }
+    public static void printDeleteMessage(String kind) {
+        if (!kind.equals(SECTION)) {
+            kind = SUBWAY + kind;
+        }
+        System.out.printf(DELETE_MESSAGE, kind);
     }
 
     public static void printStationList() {
@@ -35,11 +52,11 @@ public class OutputView {
         System.out.println(PRINT_SUBWAY_MAP_MESSAGE);
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
-            System.out.printf(PRINT_LIST, line.getName());
+            System.out.printf(PRINT_LIST, line.getName().getName());
             System.out.printf(PRINT_LIST, DASH);
             line.getStations().stream()
                     .map(Station::getName)
-                    .forEach(name -> System.out.printf(PRINT_LIST, name));
+                    .forEach(name -> System.out.printf(PRINT_LIST, name.getName()));
             System.out.println();
         }
     }

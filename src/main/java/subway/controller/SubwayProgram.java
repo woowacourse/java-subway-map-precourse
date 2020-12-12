@@ -113,6 +113,7 @@ public class SubwayProgram {
         try {
             StationName stationName = InputView.inputStationNameAdd(scanner);
             StationRepository.addStation(stationName);
+            OutputView.printAddMessage(STATION);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -122,6 +123,7 @@ public class SubwayProgram {
         try {
             StationName stationName = InputView.inputStationNameDelete(scanner);
             StationRepository.deleteStation(stationName);
+            OutputView.printDeleteMessage(STATION);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -149,6 +151,7 @@ public class SubwayProgram {
             StationName lastStationName = InputView.inputLastStationName(scanner);
             StationRepository.validateNameExist(lastStationName);
             LineRepository.addLine(lineName, firstStationName, lastStationName);
+            OutputView.printAddMessage(LINE);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -158,6 +161,7 @@ public class SubwayProgram {
         try {
             LineName lineName = InputView.inputLineNameDelete(scanner);
             LineRepository.deleteLineByName(lineName);
+            OutputView.printDeleteMessage(LINE);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -182,6 +186,7 @@ public class SubwayProgram {
             line.validateDuplicateStationToLine(station);
             int index = InputView.inputIndexToAddSection(scanner);
             line.addStationToLine(station, index);
+            OutputView.printAddMessage(SECTION);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -194,6 +199,7 @@ public class SubwayProgram {
             StationName stationName = InputView.inputStationNameToDeleteSection(scanner);
             if (line.hasStationToLine(stationName)) {
                 line.deleteStationToLine(new Station(stationName));
+                OutputView.printDeleteMessage(SECTION);
             }
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
