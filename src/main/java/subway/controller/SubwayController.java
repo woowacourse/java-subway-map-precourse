@@ -6,9 +6,6 @@ import subway.menu.MainMenu;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-/**
- * 지하철 노선도 미션 총괄 클래스
- */
 public class SubwayController {
 
     private final InitialManager initialManager;
@@ -26,8 +23,8 @@ public class SubwayController {
     }
 
     public void manage() {
-        OutputView.chooseCategory();
         try {
+            OutputView.chooseCategory();
             MainMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);

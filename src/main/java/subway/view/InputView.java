@@ -3,9 +3,6 @@ package subway.view;
 import java.util.Scanner;
 import subway.utils.ValidateUtils;
 
-/**
- * 입력값을 받는 클래스
- */
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);

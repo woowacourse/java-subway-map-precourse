@@ -11,9 +11,9 @@ import subway.view.OutputView;
 public class StationManager {
 
     public static void manageStation() {
-        OutputView.showStationMenu();
-        OutputView.chooseCategory();
         try {
+            OutputView.showStationMenu();
+            OutputView.chooseCategory();
             StationMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);

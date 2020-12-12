@@ -7,9 +7,6 @@ import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.exception.SubwayCustomException;
 
-/**
- * 결과에 따른 출력을 하는 클래스
- */
 public class OutputView {
 
     private static void showInfoMessage(String message) {

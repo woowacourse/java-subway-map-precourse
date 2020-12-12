@@ -13,9 +13,9 @@ import subway.view.OutputView;
 public class SectionManager {
 
     public static void mangeSection() {
-        OutputView.showSectionMenu();
-        OutputView.chooseCategory();
         try {
+            OutputView.showSectionMenu();
+            OutputView.chooseCategory();
             SectionMenu.execute(InputView.inputValue());
         } catch (SubwayCustomException exception) {
             OutputView.showErrorMessage(exception);
@@ -24,17 +24,14 @@ public class SectionManager {
     }
 
     public static void addSection() {
-        int position;
-        Station station;
-        Line line;
         try {
             OutputView.guideInsertSectionLineName();
-            line = LineRepository.searchLine(InputView.inputValue());
+            Line line = LineRepository.searchLine(InputView.inputValue());
             OutputView.guideInsertSectionStationName();
-            station = StationRepository.searchStation(InputView.inputValue());
+            Station station = StationRepository.searchStation(InputView.inputValue());
             ValidateUtils.isAlreadyExistingSection(line, station);
             OutputView.guideInsertSectionPostionName();
-            position = Integer.parseInt(InputView.inputValue());
+            int position = Integer.parseInt(InputView.inputValue());
             line.addSectionWithPosition(position, station);
             OutputView.doneInsertSection();
         } catch (SubwayCustomException exception) {
@@ -44,14 +41,12 @@ public class SectionManager {
     }
 
     public static void deleteSection() {
-        Station station;
-        Line line;
         try {
             OutputView.guideRemoveSectionLineName();
-            line = LineRepository.searchLine(InputView.inputValue());
+            Line line = LineRepository.searchLine(InputView.inputValue());
             ValidateUtils.isLessThanTwoStation(line);
             OutputView.guideRemoveSectionStationName();
-            station = line.searchSection(InputView.inputValue());
+            Station station = line.searchSection(InputView.inputValue());
             line.deleteSection(station);
             OutputView.doneRemoveSection();
         } catch (SubwayCustomException exception) {
