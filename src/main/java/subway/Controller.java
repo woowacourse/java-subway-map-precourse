@@ -14,15 +14,14 @@ public class Controller {
         this.SCANNER = scanner;
     }
 
-
     public void run() {
         initialize();
-        String mainViewInput = "";
+        String mainMenuInput = "";
 
         do {
-            mainViewInput = MainInputView.mainMenu(SCANNER);
-            MainMenu.getInstanceByInput(mainViewInput).moveView(SCANNER);
-        } while (!MainMenu.isQuit(mainViewInput));
+            mainMenuInput = MainInputView.mainMenu(SCANNER);
+            MainMenu.select(mainMenuInput).moveView(SCANNER);
+        } while (MainMenu.canContinue(mainMenuInput));
 
     }
 

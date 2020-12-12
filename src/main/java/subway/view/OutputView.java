@@ -7,7 +7,8 @@ public class OutputView {
 
     public static void inquiryStation() {
         System.out.println("[INFO] 역 목록");
-        StationRepository.stations().stream().forEach(x -> System.out.println(x.getName()));
+        StationRepository.stations().stream()
+                .forEach(station -> System.out.println(station.getName()));
         System.out.println();
     }
 }

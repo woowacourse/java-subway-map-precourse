@@ -9,64 +9,57 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public enum StationMenu {
-    register("1", "역 등록") {
+    REGISTER("1", "역 등록") {
         public void moveView(Scanner scanner) {
-            StationInputView stationInputView = new StationInputView();
-            String station = stationInputView.register(scanner);
+            String station = StationInputView.register(scanner);
             StationRepository.addStation(new Station(station));
         }
     },
-    remove("2", "역 삭제") {
+    REMOVE("2", "역 삭제") {
         public void moveView(Scanner scanner) {
-            StationInputView stationInputView = new StationInputView();
-            String station = stationInputView.remove(scanner);
+            String station = StationInputView.remove(scanner);
             StationRepository.deleteStation(station);
         }
     },
-    inquiry("3", "역 조회") {
+    INQUIRY("3", "역 조회") {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
             OutputView.inquiryStation();
         }
     },
-    back("B", "돌아가기") {
+    BACK("B", "돌아가기") {
         public void moveView(Scanner scanner) {
             return;
         }
     };
 
-    final private String inputValue;
+    final private String selection;
     final private String feature;
 
-
-    private StationMenu(String inputValue, String feature) {
-        this.inputValue = inputValue;
+    private StationMenu(String selection, String feature) {
+        this.selection = selection;
         this.feature = feature;
     }
 
     abstract public void moveView(Scanner scanner);
 
-    public static StationMenu findOneByInputValue(String viewInput){
+    public static StationMenu select(String stationMenuInput) {
         return Arrays.stream(StationMenu.values())
-                .filter(x -> x.inputValue.equals(viewInput))
+                .filter(menu -> menu.selection.equals(stationMenuInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static StationMenu getInstanceByInput(String viewInput) {
-        return findOneByInputValue(viewInput);
-    }
-
-    public static String validateInput(String stationViewInput) {
-        return findOneByInputValue(stationViewInput).inputValue;
+    public static String validateInput(String stationMenuInput) {
+        return select(stationMenuInput).selection;
     }
 
     public static String getMenu() {
-        String message = "";
+        String menuText = "";
         for (StationMenu stationMenu : StationMenu.values()) {
-            message += stationMenu.inputValue + ". " + stationMenu.feature + "\n";
+            menuText += stationMenu.selection + ". " + stationMenu.feature + "\n";
         }
-        return message;
+        return menuText;
     }
 
 }

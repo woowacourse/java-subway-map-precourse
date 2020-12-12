@@ -6,61 +6,56 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public enum LineMenu {
-    register("1", "노선 등록"){
+    REGISTER("1", "노선 등록") {
         public void moveView(Scanner scanner) {
             LineInputView lineInputView = new LineInputView();
             lineInputView.register(scanner);
         }
     },
-    remove("2", "노선 삭제"){
+    REMOVE("2", "노선 삭제") {
         public void moveView(Scanner scanner) {
             LineInputView lineInputView = new LineInputView();
             lineInputView.remove(scanner);
         }
     },
-    inquiry("3", "노선 조회"){
+    INQUIRY("3", "노선 조회") {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
             // LineRepository..
         }
     },
-    back("B", "돌아가기"){
+    BACK("B", "돌아가기") {
         public void moveView(Scanner scanner) {
             return;
         }
     };
 
-
-    final private String inputValue;
+    final private String selection;
     final private String feature;
 
     abstract public void moveView(Scanner scanner);
 
-    private LineMenu(String inputValue, String feature) {
-        this.inputValue = inputValue;
+    private LineMenu(String selection, String feature) {
+        this.selection = selection;
         this.feature = feature;
     }
 
-    public static LineMenu findOneByInputValue(String viewInput){
+    public static LineMenu select(String lineMenuInput) {
         return Arrays.stream(LineMenu.values())
-                .filter(x -> x.inputValue.equals(viewInput))
+                .filter(menu -> menu.selection.equals(lineMenuInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static LineMenu getInstanceByInput(String viewInput) {
-        return findOneByInputValue(viewInput);
-    }
-
-    public static String validateInput(String lineViewInput) {
-        return findOneByInputValue(lineViewInput).inputValue;
+    public static String validateInput(String lineMenuInput) {
+        return select(lineMenuInput).selection;
     }
 
     public static String getMenu() {
-        String message = "";
+        String menuText = "";
         for (LineMenu lineMenu : LineMenu.values()) {
-            message += lineMenu.inputValue + ". " + lineMenu.feature + "\n";
+            menuText += lineMenu.selection + ". " + lineMenu.feature + "\n";
         }
-        return message;
+        return menuText;
     }
 }

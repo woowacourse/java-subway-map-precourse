@@ -8,70 +8,65 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public enum MainMenu {
-    stationView("1", "역 관리") {
+    MANAGE_STATION("1", "역 관리") {
         public void moveView(Scanner scanner) {
             String stationViewInput = StationInputView.menu(scanner);
-            StationMenu.getInstanceByInput(stationViewInput).moveView(scanner);
+            StationMenu.select(stationViewInput).moveView(scanner);
         }
     },
-    lineView("2", "노선 관리") {
+    MANAGE_LINE("2", "노선 관리") {
         public void moveView(Scanner scanner) {
             String lineViewInput = LineInputView.menu(scanner);
-            LineMenu.getInstanceByInput(lineViewInput).moveView(scanner);
+            LineMenu.select(lineViewInput).moveView(scanner);
         }
     },
-    sectionView("3", "구간 관리") {
+    MANAGE_SECTION("3", "구간 관리") {
         public void moveView(Scanner scanner) {
             String sectionViewInput = SectionInputView.menu(scanner);
-            SectionMenu.getInstanceByInput(sectionViewInput).moveView(scanner);
+            SectionMenu.select(sectionViewInput).moveView(scanner);
         }
     },
-    showMap("4", "지하철 노선 출력") {
+    SHOW_MAP("4", "지하철 노선 출력") {
         public void moveView(Scanner scanner) {
             System.out.println("지하철 노선 출력");
         }
     },
-    quit("Q", "종료") {
+    QUIT("Q", "종료") {
         public void moveView(Scanner scanner) {
             return;
         }
     };
 
-    final protected String inputValue;
-    final protected String feature;
+    final private String selection;
+    final private String feature;
 
-    private MainMenu(String inputValue, String feature) {
-        this.inputValue = inputValue;
+    private MainMenu(String selection, String feature) {
+        this.selection = selection;
         this.feature = feature;
     }
 
     abstract public void moveView(Scanner scanner);
 
-    public static MainMenu findOneByInputValue(String viewInput){
+    public static MainMenu select(String mainMenuInput) {
         return Arrays.stream(MainMenu.values())
-                .filter(x -> x.inputValue.equals(viewInput))
+                .filter(menu -> menu.selection.equals(mainMenuInput))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-
-    public static MainMenu getInstanceByInput(String viewInput) {
-        return findOneByInputValue(viewInput);
-    }
-
-    public static String validateInput(String viewInput) {
-        return findOneByInputValue(viewInput).inputValue;
+    public static String validateInput(String mainMenuInput) {
+        return select(mainMenuInput).selection;
     }
 
     public static String getMenu() {
-        String message = "";
+        String menuText = "";
         for (MainMenu mainMenu : MainMenu.values()) {
-            message += mainMenu.inputValue + ". " + mainMenu.feature + "\n";
+            menuText += mainMenu.selection + ". " + mainMenu.feature + "\n";
         }
-        return message;
+        return menuText;
     }
 
-    public static boolean isQuit(String viewInput) {
-        return MainMenu.quit.inputValue.equals(viewInput);
+    public static boolean canContinue(String mainMenuInput) {
+        return !MainMenu.QUIT.selection.equals(mainMenuInput);
     }
 }
