@@ -76,7 +76,7 @@ public class MainViewState extends ViewState{
 
     private void checkAndQuit(String feature){
         if(feature.equals(BTN_QUIT)){
-            continuable = true;
+            continuable = false;
         }
     }
 
