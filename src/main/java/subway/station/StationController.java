@@ -26,8 +26,15 @@ public class StationController {
     }
 
     private static void addNewStation(StationInputView stationInputView) {
-        String station = stationInputView.addStation();
-        StationRepository.addStation(new Station(station));
+        Station station;
+        String stationName = stationInputView.addStation();
+        try {
+            station = new Station(stationName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        StationRepository.addStation(station);
         StationOutputView.addStationComplete();
     }
 }
