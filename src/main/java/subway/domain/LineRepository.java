@@ -52,21 +52,12 @@ public class LineRepository {
         return lines.stream()
             .filter(line -> line.getName().equals(name))
             .findFirst()
-            .get();
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 등록되지 않은 노선입니다."));
     }
 
     public static boolean deleteLineByName(String name) {
+        System.out.println("테스트 : " + findByName(name));
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
-    }
-
-    private static void validateStationsSizeInLineToDelete(String name) {
-        Line lineToDelete = lines.stream()
-            .filter(line -> line.getName().equals(name))
-            .findFirst()
-            .get();
-        if (lineToDelete.getStations().size() <= VALID_MIN_SIZE_OF_LINE_STATIONS) {
-            throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다.");
-        }
     }
 
     public static boolean contains(String stationName) {
@@ -84,7 +75,18 @@ public class LineRepository {
     }
 
     public static void deleteStation(String lineName, String stationName) {
+        validateStationsSizeInLine(lineName);
         Line line = findByName(lineName);
         line.deleteStation(stationName);
+    }
+
+    private static void validateStationsSizeInLine(String lineName) {
+        Line lineToDelete = lines.stream()
+            .filter(line -> line.getName().equals(lineName))
+            .findFirst()
+            .get();
+        if (lineToDelete.getStations().size() <= VALID_MIN_SIZE_OF_LINE_STATIONS) {
+            throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다.");
+        }
     }
 }
