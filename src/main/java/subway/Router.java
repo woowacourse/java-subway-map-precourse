@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import subway.controller.LineController;
 import subway.controller.StationController;
+import subway.domain.Line;
 import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -81,7 +82,7 @@ public class Router {
         if (command.equals(THREE)) {
             List<Station> stations = stationController.searchStation();
             monitor.print(OutputView.STATION_LIST);
-            OutputView.printStationList(stations);
+            OutputView.printList(stations);
             return false;
         }
         return false;
@@ -102,6 +103,9 @@ public class Router {
             return lineController.deleteLine(lineName);
         }
         if (command.equals(THREE)) {
+            List<Line> lines = lineController.searchLine();
+            monitor.print(OutputView.LINE_LIST);
+            OutputView.printList(lines);
         }
         return false;
     }

@@ -1,5 +1,6 @@
 package subway.service;
 
+import java.util.List;
 import java.util.Optional;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -15,16 +16,16 @@ public class LineService {
         if (hasSameName(lineName)) {
             throw new IllegalArgumentException(DUPLICATE_ERROR);
         }
-        if(!StationService.hasSameName(upTrainLastStationName) && !StationService.hasSameName(downTrainLastStationName))
-        {
+        if (!StationService.hasSameName(upTrainLastStationName) && !StationService
+            .hasSameName(downTrainLastStationName)) {
             throw new IllegalArgumentException(NOT_EXIST_ERROR);
         }
-        LineRepository.addLine(new Line(lineName),new Station(upTrainLastStationName)
-            ,new Station(downTrainLastStationName));
+        LineRepository.addLine(new Line(lineName), new Station(upTrainLastStationName)
+            , new Station(downTrainLastStationName));
     }
 
-    public static void delete(String lineName){
-        if(!LineRepository.deleteLineByName(lineName)){
+    public static void delete(String lineName) {
+        if (!LineRepository.deleteLineByName(lineName)) {
             throw new IllegalArgumentException(NOT_DELETE_ERROR);
         }
     }
@@ -32,5 +33,9 @@ public class LineService {
     public static boolean hasSameName(String lineName) {
         Optional<Line> findLine = LineRepository.findByName(lineName);
         return findLine.isPresent();
+    }
+
+    public static List<Line> search() {
+        return LineRepository.lines();
     }
 }

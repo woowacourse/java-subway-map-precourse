@@ -1,5 +1,7 @@
 package subway.controller;
 
+import java.util.List;
+import subway.domain.Line;
 import subway.service.LineService;
 import subway.view.OutputView;
 
@@ -13,7 +15,7 @@ public class LineController {
     public boolean registerLine(String lineName
         , String upTrainLastStationName, String downTrainLastStationName) {
         try {
-            LineService.register(lineName,upTrainLastStationName,downTrainLastStationName);
+            LineService.register(lineName, upTrainLastStationName, downTrainLastStationName);
             monitor.print(OutputView.SUCCESS_TO_REGISTER_LINE_MESSAGE);
             return false;
         } catch (Exception e) {
@@ -31,5 +33,9 @@ public class LineController {
             monitor.print(e.getMessage());
             return true;
         }
+    }
+
+    public List<Line> searchLine() {
+        return LineService.search();
     }
 }
