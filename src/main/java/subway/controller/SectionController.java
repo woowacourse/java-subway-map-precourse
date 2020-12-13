@@ -39,4 +39,18 @@ public class SectionController {
 
         OutputView.printInfoMsg("구간이 등록되었습니다.");
     }
+
+    public void deleteSection() {
+        OutputView.printMsg("## 삭제할 노선을 입력하세요.\n");
+        String lineName = InputView.getInput(scanner);
+        Line line = LineRepository.getLineByName(lineName);
+        //TODO :: 존재하는 노선 인지 확인
+        OutputView.printMsg("## 역이름을 입력하세요.\n");
+        String stationName = InputView.getInput(scanner);
+        Station station = StationRepository.getStationByName(stationName);
+
+        line.deleteSection(station);
+
+        OutputView.printInfoMsg("구간이 삭제되었습니다.");
+    }
 }
