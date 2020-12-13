@@ -39,6 +39,22 @@ public class Exception {
         return input;
     }
 
+    public static String checkFirstStation(String input) {
+        input = isNotEmpty(input);
+        input = isNotSpace(input);
+        input = isLengthTwoOrMore(input);
+        input = isInStationList(input);
+        return input;
+    }
+
+    public static String checkLastStation(String input) {
+        input = isNotEmpty(input);
+        input = isNotSpace(input);
+        input = isLengthTwoOrMore(input);
+        input = isInStationList(input);
+        return input;
+    }
+
     static String isNotEmpty(String input) {
         if (!input.equals("")) {
             return input;
