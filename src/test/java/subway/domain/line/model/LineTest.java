@@ -163,4 +163,20 @@ class LineTest {
                 .containsExactlyInAnyOrder(new Station("잠실역"), new Station("사당역"))
         );
     }
+
+    @DisplayName("노선에 포함된 역이 두개 이하일 때는 예외를 발생시키는 기능을 테스트한다")
+    @Test
+    void testRemoveStationIfStationsSize() {
+        //given
+        String name = "2호선";
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(name, stations);
+
+        //when //then
+        assertThatThrownBy(() -> line.removeStation("강남역"))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
 }
