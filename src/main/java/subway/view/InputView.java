@@ -13,6 +13,7 @@ public class InputView {
             return Integer.parseInt(getInput(scanner));
         } catch (Exception e) {
             OutputView.printErrorMsg(e);
+            OutputView.printMsg("다시 입력해주세요\n");
             return getInteger(scanner);
         }
     }
@@ -22,6 +23,7 @@ public class InputView {
             return new Name(getInput(scanner));
         } catch (Exception e) {
             OutputView.printErrorMsg(e);
+            OutputView.printMsg("다시 입력해주세요\n");
             return getName(scanner);
         }
     }

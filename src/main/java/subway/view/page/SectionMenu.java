@@ -24,6 +24,7 @@ public class SectionMenu {
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
+        OutputView.printLineSeparator();
     }
 
     public static Menu getMenuSelection(Scanner scanner) {
@@ -31,14 +32,14 @@ public class SectionMenu {
         return Menu.getSelection(InputView.getInput(scanner));
     }
 
-    public static void printGoBack() {
-        OutputView.printInfoMsg("이전 메뉴로 돌아갑니다.");
+    public static void goBack() {
+        OutputView.printInfoMsg("이전 메뉴로 돌아갑니다.\n");
     }
 
     private enum Menu {
         REGISTER_STATION("1", "1. 구간 등록", () -> sectionController.addSection()),
         DELETE_STATION("2", "2. 구간 삭제", () -> sectionController.deleteSection()),
-        BACK("B", "B. 돌아가기", () -> printGoBack());
+        BACK("B", "B. 돌아가기", () -> goBack());
 
         private String userInput;
         private String menuName;
