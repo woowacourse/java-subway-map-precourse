@@ -105,7 +105,7 @@ public class StationManager {
         if (stationName.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
         }
-        if (!SubwayManager.isExist(stationName)) {
+        if (!SubwayManager.isExistStation(stationName)) {
             throw new IllegalArgumentException(STATION_EXIST_ERROR_MESSAGE);
         }
     }

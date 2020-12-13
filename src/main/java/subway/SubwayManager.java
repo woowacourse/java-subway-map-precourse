@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -100,6 +101,10 @@ public class SubwayManager {
         return stationRepository.deleteStation(stationName);
     }
 
+    public static boolean deleteLine(String lineName) {
+        return lineRepository.deleteLineByName(lineName);
+    }
+
     public static void printStation() {
         for (Station station : stationRepository.stations()) {
             System.out.println(INFO_PREFIX + station.getName());
@@ -120,7 +125,7 @@ public class SubwayManager {
         return lineRepository.isDuplicated(lineName);
     }
 
-    public static boolean isExist(String stationName) {
+    public static boolean isExistStation(String stationName) {
         for (Station station : stationRepository.stations()) {
             if (station.isSameName(stationName)) {
                 return true;
@@ -128,4 +133,13 @@ public class SubwayManager {
         }
         return false;
     }
+    public static boolean isExistLine(String lineName) {
+        for (Line line : lineRepository.lines()) {
+            if (line.isSameName(lineName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
