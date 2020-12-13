@@ -24,9 +24,7 @@ public class ReturnController implements Menu {
     }
 
     @Override
-    public void run(Scanner scanner) {
-
-    }
+    public void run(Scanner scanner) {}
 
     public static Menu getInstance() {
         if (returnController == null) {

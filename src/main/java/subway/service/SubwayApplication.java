@@ -6,8 +6,17 @@ import java.util.Scanner;
 
 public class SubwayApplication {
 
+    private static String userSelectMenu = "";
+
+    public static void init() {
+        //초기화 함수
+    }
+
     public static void run(Scanner scanner) {
-        MainMenuView.getInstance().printMenu();
-        MainMenuView.getInstance().getUserInput(scanner);
+        while (!userSelectMenu.equals("Q")) {
+            MainMenuView.getInstance().printMenu();
+            userSelectMenu = MainMenuView.getInstance().getUserInput(scanner);
+            MainService.getInstance().selectMenu(MainMenuView.mainMenu, userSelectMenu, scanner);
+        }
     }
 }
