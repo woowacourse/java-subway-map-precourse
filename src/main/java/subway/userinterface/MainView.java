@@ -31,11 +31,11 @@ public class MainView {
         mainMenu.put(ExitController.getInstance().getMenuKey(), ExitController.getInstance());
     }
 
-    public static void printMainMenu() {
+    public void printMainMenu() {
         MainViewOutputController.printMainMenu(mainMenu);
     }
 
-    public static void getUserInput(Scanner scanner) {
+    public void getUserInput(Scanner scanner) {
         MainViewInputController.getMainMenuInput(scanner);
     }
 
