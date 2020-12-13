@@ -35,7 +35,7 @@ public class SectionView {
         OutputView.printInfoMsg("구간이 등록되었습니다.");
     }
 
-    public Name getLineNameOfDeleteSection() {
+    public Name getLineNameToDeleteSection() {
         OutputView.printMsg("## 삭제할 노선을 입력하세요.\n");
         return InputView.getName(scanner);
     }
