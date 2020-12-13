@@ -1,7 +1,5 @@
 package subway.view;
 
-import subway.domain.Station;
-
 public class OutputView {
 
     // todo 컨트롤러에서 준 데이터를 출력
@@ -33,7 +31,7 @@ public class OutputView {
         print(ERROR_HEADER + exception.getMessage());
     }
 
-    private static void print(String string) {
+    public static void print(String string) {
         System.out.println(string);
     }
 }
