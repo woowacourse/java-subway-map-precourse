@@ -6,6 +6,7 @@ import subway.domain.Station;
 import subway.domain.input.LineManageInput;
 
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class LineManageController {
 
@@ -24,6 +25,11 @@ public class LineManageController {
     public void processUpDownTrain(Scanner scanner, Line line) {
         Station train = input.inputUpDownTrainLine(scanner);
         line.addStation(train);
+    }
+
+    public void printAllLines() {
+        Stream<Line> lineStream = LineRepository.lines().stream();
+        lineStream.forEach(line -> System.out.println(line.getName()));
     }
 
 }
