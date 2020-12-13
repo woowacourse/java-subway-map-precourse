@@ -32,10 +32,14 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void infoMessageNotBr(String stationName) {
+        System.out.println(INFO_PREFIX + stationName);
+    }
+
     public static void lineDetailPrint(String name, List<Station> stations) {
         System.out.println(INFO_PREFIX + name);
         System.out.println(INFO_PREFIX + DASH);
-        stations.forEach(station -> infoMessage(station.getName()));
+        stations.forEach(station -> infoMessageNotBr(station.getName()));
         System.out.println();
     }
 }

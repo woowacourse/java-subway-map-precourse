@@ -37,6 +37,7 @@ public class StationService {
             return;
         }
         stations()
-                .forEach(station -> infoMessage(station.getName()));
+                .forEach(station -> infoMessageNotBr(station.getName()));
+        System.out.println();
     }
 }
