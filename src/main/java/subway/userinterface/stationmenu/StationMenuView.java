@@ -12,6 +12,7 @@ public class StationMenuView implements MenuView {
     private static StationMenuView stationMenuView;
     public static LinkedHashMap<String, Menu> stationMenu = new LinkedHashMap<>();
     private static StationViewInputController stationViewInputController = new StationViewInputController();
+    private static StationViewOutputController stationViewOutputController = new StationViewOutputController();
 
     private StationMenuView() {
         setMenu();
@@ -38,7 +39,7 @@ public class StationMenuView implements MenuView {
 
     @Override
     public void printMenu() {
-
+        stationViewOutputController.printMainMenu(stationMenu);
     }
 
     @Override
