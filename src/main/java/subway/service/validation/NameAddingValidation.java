@@ -4,7 +4,7 @@ import subway.repository.StationRepository;
 import subway.service.abstraction.validation.NameAddingValidationInterface;
 import subway.type.BoundaryType;
 import subway.type.CheckType;
-import subway.view.output.ExceptionView;
+import subway.view.output.station.StationExceptionView;
 
 import java.util.List;
 
@@ -27,17 +27,17 @@ public class NameAddingValidation implements NameAddingValidationInterface {
     }
 
     @Override
-    public boolean checkValidation(String stationName) {
+    public boolean checkAddingValidation(String stationName) {
         if (checkNameDuplication(stationName)) {
-            ExceptionView.printInvalidStationNameException();
+            StationExceptionView.printInvalidStationNameException();
             return false;
         }
         if (!checkNameLength(stationName)) {
-            ExceptionView.printInvalidStationNameLengthException();
+            StationExceptionView.printInvalidStationNameLengthException();
             return false;
         }
         if (!checkNameLastCharacter(stationName)) {
-            ExceptionView.printInvalidStationNameLastCharacter();
+            StationExceptionView.printInvalidStationNameLastCharacterException();
             return false;
         }
         return true;

@@ -1,8 +1,8 @@
-package subway.view.output;
+package subway.view.output.station;
 
 import subway.type.TextType;
 
-public class TextView {
+public class StationTextView {
     public static void printStationAddingText() {
         System.out.println();
         System.out.println(TextType.STATION_ADDING_TEXT.getText());
