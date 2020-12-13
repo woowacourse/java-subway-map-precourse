@@ -17,10 +17,10 @@
    - 2호선: 교대역 - 강남역 - 역삼역
    - 3호선: 교대역 - 남부터미널역 - 양재역 - 매봉역
    - 신분당선: 강남역 - 양재역 - 양재시민의숲역
- ```
+```
 
-<img src="image/domain.png" width="500">
-  
+<img src="../image/domain.png" width="500">
+
 ### 지하철 역 관련 기능
 - 지하철 역을 등록하고 삭제할 수 있다. (단, 노선에 등록된 역은 삭제할 수 없다)
 - 중복된 지하철 역 이름이 등록될 수 없다.
@@ -41,14 +41,14 @@
 - 역과 역 사이에 새로운 역이 추가 될 수 있다.
 - 노선에서 갈래길은 생길 수 없다.
 
-<img src="image/section1.png" width="500">
+<img src="../image/section1.png" width="500">
 
 ### 지하철 구간 삭제 기능
 - 노선에 등록된 역을 제거할 수 있다.
 - 종점을 제거할 경우 다음 역이 종점이 된다.
 - 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없다.
 
-<img src="image/section2.png" width="500">
+<img src="../image/section2.png" width="500">
 
 ### 지하철 노선에 등록된 역 조회 기능
 - 노선의 상행 종점부터 하행 종점까지 연결된 순서대로 역 목록을 조회할 수 있다.
@@ -410,7 +410,7 @@ public class Application {
 - 제공하는 각 클래스의 기본 생성자를 추가할 수 없다.
 - 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
 - 가능하면 setter 메소드(ex. setXXX)를 추가하지 않고 구현한다.
- 
+
 ```java
 public class Station {
     private String name;
@@ -434,7 +434,7 @@ public class Station {
 - 추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가할 수 있다.
 - 객체들의 상태를 관리하기 위해서 XXXRepository 클래스를 활용해 저장 로직을 구현해야 한다.
 - 필요에 따라 자유롭게 수정이 가능하다.
- 
+
 ```java
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -455,15 +455,67 @@ public class StationRepository {
 
 <br>
 
-## 📈 진행 요구사항
-- 미션은 [java-subway-map-precourse 저장소](https://github.com/woowacourse/java-subway-map-precourse) 를 fork/clone해 시작한다.
-- 기능을 구현하기 전에 java-subway-map-precourse/docs/README.md 파일에 구현할 기능 목록을 정리해 추가한다.
-- git의 commit 단위는 앞 단계에서 README.md 파일에 정리한 기능 목록 단위로 추가한다.
-  - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
-- [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 절차를 따라 미션을 제출한다.
-  - [프리코스 과제 FAQ](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse/faq) 문서를 참고하여 진행할 수 있다.
-<br>
+## 📝 기능 구현
 
-## 📝 License
+#### 1. 메인화면
 
-This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
+- 메뉴에 있는 번호가 아니면 `[ERROR] 선택할 수 없는 기능입니다.`
+- 메인 메뉴, 지하철 역 메뉴, 지하철 노선 메뉴, 지하철 구간 메뉴 생성
+
+#### 2. 역 관리
+
+- **역 등록**
+  - 지하철 역 등록하기 `[INFO] 지하철 역이 등록되었습니다.`
+    - 이름이 입력되지 않은 경우 `[ERROR] null값을 입력하셨습니다.`
+    - 이름은 2글자 이상이여야함  `[ERROR] 역이름은 2글자 이상 입력해야합니다.`
+    - `역`으로 끝나게 이름 작성해야함 `[ERROR] 역이름은 OO역으로 끝나야 합니다.`
+    - 중복되지 않도록 작성해야함 `[ERROR] 이미 등록된 역 이름입니다. 중복되지 않는 역이름을 입력해주세요.`
+- **역 삭제**
+  - 지하철 역 삭제하기 `[INFO] 지하철 역이 삭제되었습니다.`
+    - 역 리스트에 존재해야함 `[ERROR] 존재하지 않는 역입니다.`
+    - 마지막에 `역`으로 끝나야함 `[ERROR] OO역으로 입력해야 삭제가 가능합니다.` 
+    - 노선에 등록되어있지 않아야함 `[ERROR] 노선에 등록되어있는 역은 삭제가 불가능합니다.`
+- **역 조회**
+  - 역 이름만 가지고 있는 배열 생성(조회하면 배열의 원소를 하나씩 보여주기)
+
+#### 3. 노선 관리
+
+- **노선 등록**
+  - 노선  등록하기 `[INFO] 지하철 노선이 등록되었습니다.`
+    - 노선 이름
+      - 이름은 2글자 이상이여야함  `[ERROR] 노선 이름은 2글자 이상 입력해야합니다.`
+      - `선`으로 끝나게 이름 작성해야함 `[ERROR] 노선이름은 OO선 또는 O호선으로 끝나야 합니다.`
+      - 중복되지 않도록 작성해야함 `[ERROR] 이미 존재하는 노선입니다. 중복되지 않는 노선 이름을 입력해주세요.`
+    - 상행 종점역 이름 / 하행 종점역 이름
+      - 존재하는 역 중에서 작성해야함 `[ERROR] 존재하는 역 중에서 입력해주세요.`
+- **노선 삭제**
+  - 지하철 노선 삭제하기 `[INFO] 지하철 노선이 삭제되었습니다.`
+    - 노선 리스트에 존재해야함 `[ERROR] 존재하지 않는 노선입니다.`
+    - 마지막에 `호선` 또는 `선`으로 끝나야함 `[ERROR] OO선 또는 O호선으로 입력해야합니다..` 
+    - 노선에 등록되어있어야함 `[ERROR] 노선에 등록되어있지 않는 역입니다. 다시 입력해주세요.`
+- **노선 조회**
+  - 노선 이름만 가지고 있는 배열 생성(조회하면 배열의 원소를 하나씩 보여주기)
+
+#### 4. 구간 관리
+
+- **구간 등록**
+  - 구간 등록하기 `[INFO] 구간이 등록되었습니다.`
+    - 노선 이름
+      - 존재하는 노선 중에서 작성해야함 `[ERROR] 존재하는 노선 중에서 입력해주세요.`
+    - 역 이름
+      - 존재하는 역 중에서 작성해야함 `[ERROR] 존재하는 역 중에서 입력해주세요.`
+    - 순서
+      - 종점 역 사이에 있어야함 `[ERROR] 종점역 사이에 존재해야합니다.`
+- **구간 삭제**
+  - 지하철 노선 삭제하기 `[INFO] 지하철 노선이 삭제되었습니다.`
+    - 노선 리스트에 존재해야함 `[ERROR] 존재하지 않는 노선입니다.`
+    - 마지막에 `호선` 또는 `선`으로 끝나야함 `[ERROR] OO선 또는 O호선으로 입력해야합니다..` 
+    - 노선에 등록되어있어야함 `[ERROR] 노선에 등록되어있지 않는 역입니다. 다시 입력해주세요.`
+
+#### 5.  지하철 노선도 출력
+
+- 가지고 있어야하는 배열
+  - 역만 가지고 있는 배열
+  - 노선만 가지고 있는 배열
+  - 노선도 -> [ [2호선, ---, 교대역, 강남역, 역삼역], [3호선, ---, ,,,], [신분당선, ---, ,,,] ]
+
