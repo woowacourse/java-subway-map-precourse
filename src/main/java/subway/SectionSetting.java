@@ -12,7 +12,7 @@ public class SectionSetting {
         LineRepository.lines().forEach(line -> {
             if (line.getName().equals(lineName)) {
                 String station = station(scanner, line);
-                int order = order(scanner, line);
+                int order = orderAdd(scanner, line);
                 addStationToLine(line, station, order);
                 Print.infoMessage(Constant.ADD_SECTION_DONE);
             }
@@ -33,7 +33,7 @@ public class SectionSetting {
         return Exceptions.isAlreadyAddedInThisLine(input, line);
     }
 
-    public static int order(Scanner scanner, Line line) {
+    public static int orderAdd(Scanner scanner, Line line) {
         Print.hashMessage(Constant.ENTER_ORDER_SECTION_TO_ADD);
         String input = scanner.next();
         System.out.println();
