@@ -37,11 +37,13 @@ public class Line {
             throw new IllegalArgumentException("이미 노선에 포함된 역입니다.");
         }
 
-        if (order.isBiggerThan(stations.size())) {
-            throw new IllegalArgumentException("순서는 현재 포함된 역 개수보다 클 수 없습니다.");
+        if (order.isBiggerThan(stations.size() + Order.getStartingNumber())) {
+            throw new IllegalArgumentException("유효하지 않은 순서 입력입니다.");
         }
 
-        stations.add(order.getValue(), station);
+        int index = order.getValue() - Order.getStartingNumber();
+        stations.add(index, station);
+
         station.onLine();
     }
 

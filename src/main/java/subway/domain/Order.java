@@ -1,6 +1,7 @@
 package subway.domain;
 
 public class Order {
+    private static final int STARTING_ORDER = 1;
 
     private final int order;
 
@@ -14,6 +15,10 @@ public class Order {
 
     public int getValue() {
         return order;
+    }
+
+    public static int getStartingNumber() {
+        return STARTING_ORDER;
     }
 
     public boolean isBiggerThan(int integer) {
