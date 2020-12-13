@@ -70,6 +70,27 @@ public class LineManageInput {
         throw new IllegalArgumentException();
     }
 
+    public boolean isFixedLine(String lineName) {
+        Optional<Line> fixedLine = LineRepository.fixedLines()
+                .stream().filter(line -> line.getName().equals(lineName)).findAny();
+        return fixedLine.isPresent();
+    }
+
+    public String inputDeleteLine(Scanner scanner) throws IllegalArgumentException{
+        String lineName = scanner.next();
+        Optional<Line> searchedLine = LineRepository.lines()
+                .stream().filter(line -> line.getName().equals(lineName)).findAny();
+        if (searchedLine.isPresent()) {
+            if (isFixedLine(lineName)) {
+                //삭제할 수 없는 노선이라는 메시지
+                throw new IllegalArgumentException();
+            }
+            return lineName;
+        }
+        //해당 노선은 존재하지 않는다는 메시지
+        throw new IllegalArgumentException();
+    }
+
 
 
 }
