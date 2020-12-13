@@ -17,17 +17,17 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
+    public static boolean deleteLineByName(Name name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static List<String> getLineNames() {
         return lines.stream()
-                .map(Line::getName)
+                .map(Line::toString)
                 .collect(Collectors.toList());
     }
 
-    public static Line getLineByName(String name) {
+    public static Line getLineByName(Name name) {
         return lines.stream()
                 .filter(line -> line.isName(name))
                 .findFirst()

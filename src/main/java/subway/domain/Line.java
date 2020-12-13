@@ -3,20 +3,20 @@ package subway.domain;
 import java.util.List;
 
 public class Line {
-    private String name;
+    private Name name;
     private List<Station> stations;
 
-    public Line(String name, Station firstStation, Station lastStation) {
+    public Line(Name name, Station firstStation, Station lastStation) {
         this.name = name;
         stations.add(firstStation);
         stations.add(lastStation);
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public boolean isName(String name) {
+    public boolean isName(Name name) {
         return this.name.equals(name);
     }
 
@@ -42,6 +42,6 @@ public class Line {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 }

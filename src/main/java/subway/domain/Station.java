@@ -1,22 +1,22 @@
 package subway.domain;
 
 public class Station {
-    private String name;
+    private Name name;
 
-    public Station(String name) {
+    public Station(Name name) {
         this.name = name;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public boolean isSameName(String name) {
+    public boolean isSameName(Name name) {
         return this.name.equals(name);
     }
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 }
