@@ -2,16 +2,18 @@ package subway.userinterface.mainmenu;
 
 import subway.userinterface.Menu;
 import subway.userinterface.MenuView;
+import subway.userinterface.OutputController;
 
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class MainMenuView implements MenuView {
 
+    private final static String MENU_INTRO = "\n## 메인 화면";
+
     private static MainMenuView mainMenuView;
     public static LinkedHashMap<String, Menu> mainMenu = new LinkedHashMap<>();
     private static MainViewInputController mainViewInputController = new MainViewInputController();
-    private static MainViewOutputController mainViewOutputController = new MainViewOutputController();
 
     private MainMenuView() {
         setMenu();
@@ -40,12 +42,12 @@ public class MainMenuView implements MenuView {
 
     @Override
     public void printMenu() {
-        mainViewOutputController.printMainMenu(mainMenu);
+        OutputController.printMainMenu(mainMenu, MENU_INTRO);
     }
 
     @Override
-    public void getUserInput(Scanner scanner) {
-        mainViewInputController.getUserInput(scanner);
+    public String getUserInput(Scanner scanner) {
+        return mainViewInputController.getUserInput(scanner);
     }
 
 }

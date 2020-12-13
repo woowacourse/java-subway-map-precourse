@@ -2,6 +2,7 @@ package subway.userinterface.stationmenu;
 
 import subway.userinterface.Menu;
 import subway.userinterface.MenuView;
+import subway.userinterface.OutputController;
 import subway.userinterface.ReturnController;
 
 import java.util.LinkedHashMap;
@@ -9,10 +10,11 @@ import java.util.Scanner;
 
 public class StationMenuView implements MenuView {
 
+    private final static String MENU_INTRO = "\n## 역 관리 화면";
+
     private static StationMenuView stationMenuView;
     public static LinkedHashMap<String, Menu> stationMenu = new LinkedHashMap<>();
     private static StationViewInputController stationViewInputController = new StationViewInputController();
-    private static StationViewOutputController stationViewOutputController = new StationViewOutputController();
 
     private StationMenuView() {
         setMenu();
@@ -39,11 +41,11 @@ public class StationMenuView implements MenuView {
 
     @Override
     public void printMenu() {
-        stationViewOutputController.printMainMenu(stationMenu);
+        OutputController.printMainMenu(stationMenu, MENU_INTRO);
     }
 
     @Override
-    public void getUserInput(Scanner scanner) {
-        stationViewInputController.getUserInput(scanner);
+    public String getUserInput(Scanner scanner) {
+        return stationViewInputController.getUserInput(scanner);
     }
 }
