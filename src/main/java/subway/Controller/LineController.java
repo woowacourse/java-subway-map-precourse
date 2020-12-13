@@ -36,6 +36,19 @@ public class LineController {
         if (selection.equals(TRAVERSE)) {
             traverse();
         }
+        if (selection.equals(DELETE)) {
+            delete();
+        }
+        MainController.run();
+    }
+
+    private static void delete() {
+        String line = InputView.getDeleteLine();
+        if (LineRepository.deleteLineByName(line)) {
+            OutputView.printDeleteLineSuccess();
+            return;
+        }
+        OutputView.printInfo("해당 역은 존재하지 않습니다.");
     }
 
     private static void traverse() {
@@ -55,6 +68,5 @@ public class LineController {
         newLine.addStationByOrder(new Station(downwardStation), 1);
         LineRepository.addLine(newLine);
         OutputView.printAddLineSuccess();
-        MainController.run();
     }
 }
