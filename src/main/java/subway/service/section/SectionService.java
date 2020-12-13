@@ -1,6 +1,5 @@
-package subway.service;
+package subway.service.section;
 
-import subway.service.abstraction.input.InputInterface;
 import subway.service.station.StationService;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
@@ -8,35 +7,22 @@ import subway.view.output.ScreenView;
 
 import java.util.Scanner;
 
-public class SectionService extends StationService implements InputInterface {
+public class SectionService extends StationService {
     public static void manageSection(Scanner scanner) {
         SectionService sectionService = new SectionService();
+        SectionInputService sectionInputService = new SectionInputService();
 
         System.out.println();
         while (true) {
             ScreenView.printSectionManagementScreen();
             String sectionInput = scanner.nextLine();
-            if (sectionService.isInput(sectionInput)) {
+
+            if (sectionInputService.isInput(sectionInput)) {
                 sectionService.chooseFeature(sectionInput, scanner);
                 break;
             }
             ExceptionView.printInvalidFeatureChoiceException();
         }
-    }
-
-    @Override
-    public boolean isInput(String input) {
-        if (input.equals(InputType.INPUT_ONE.getInput())) {
-            return true;
-        }
-        if (input.equals(InputType.INPUT_TWO.getInput())) {
-            return true;
-        }
-        if (input.equals(InputType.INPUT_BACK.getInput())) {
-            System.out.println();
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -50,6 +36,7 @@ public class SectionService extends StationService implements InputInterface {
             return false;
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
+            System.out.println();
             return true;
         }
         return false;
