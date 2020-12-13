@@ -39,12 +39,18 @@ public class StationManageApp {
 
     public void startManage() {
         while (true) {
+            int option;
             outputService.printMain();
-            int option = inputService.getMainOption();
+            try {
+                option = inputService.getMainOption();
+                chooseOption(option);
+            } catch (Exception exception) {
+                System.out.println(OutputService.ENTER + exception.getMessage());
+                continue;
+            }
             if (isQuit(option)) {
                 break;
             }
-            chooseOption(option);
         }
     }
 
@@ -204,29 +210,54 @@ public class StationManageApp {
     }
 
     private void mangeSection() {
-        outputService.printManageSection();
-        int manageSectionOption = inputService.getManageSectionOption();
-        if (isBack(manageSectionOption)) {
-            return;
+        while (true) {
+            outputService.printManageSection();
+            int manageSectionOption;
+            try {
+                manageSectionOption = inputService.getManageSectionOption();
+                chooseManageSectionOption(manageSectionOption);
+            } catch (Exception exception) {
+                System.out.println(OutputService.ENTER + exception.getMessage());
+                continue;
+            }
+            if (isBack(manageSectionOption)) {
+                return;
+            }
         }
-        chooseManageSectionOption(manageSectionOption);
     }
 
     private void manageRoute() {
-        outputService.printManageRoute();
-        int manageRouteOption = inputService.getManageRouteOption();
-        if (isBack(manageRouteOption)) {
-            return;
+        while (true) {
+            outputService.printManageRoute();
+            int manageRouteOption;
+            try {
+                manageRouteOption = inputService.getManageRouteOption();
+                chooseManageRouteOption(manageRouteOption);
+            } catch (Exception exception) {
+                System.out.println(OutputService.ENTER + exception.getMessage());
+                continue;
+            }
+            if (isBack(manageRouteOption)) {
+                return;
+            }
         }
-        chooseManageRouteOption(manageRouteOption);
     }
 
     private void manageStation() {
-        outputService.printManageStation();
-        int manageStationOption = inputService.getManageStationOption();
-        if (isBack(manageStationOption)) {
-            return;
+        while (true) {
+            outputService.printManageStation();
+            int manageStationOption;
+            try {
+                manageStationOption = inputService.getManageStationOption();
+                chooseManageStationOption(manageStationOption);
+            } catch (Exception exception) {
+                System.out.println(OutputService.ENTER + exception.getMessage());
+                continue;
+            }
+            if (isBack(manageStationOption)) {
+                return;
+            }
         }
-        chooseManageStationOption(manageStationOption);
     }
 }
+
