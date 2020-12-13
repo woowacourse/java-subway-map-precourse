@@ -36,6 +36,8 @@ public class LineManagementView {
             return LineRepository.isPossibleLine(lineName, startName, endName);
         }
         if (menu == 2) {
+            String lineName =InputView.LineDeleteInput();
+            return LineRepository.deleteLineByName(lineName);
         }
         if (menu == 3) {
             return LineRepository.lookUpLine();
