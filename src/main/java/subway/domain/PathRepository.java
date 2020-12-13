@@ -35,7 +35,7 @@ public class PathRepository {
         path.add(index, station);
         pathStationNames.add(newStation);
     }
-
+    //onPath 문제가 있음.. 다중으로 등록 되어있을때!
     public boolean deletePathByName(String name) {
         StationRepository.findStation(name).onPath();
         pathStationNames.remove(name);
@@ -43,8 +43,6 @@ public class PathRepository {
     }
 
     public int pathSize() {
-        System.out.println(path);
-        System.out.println(path.size());
         return path.size();
     }
 

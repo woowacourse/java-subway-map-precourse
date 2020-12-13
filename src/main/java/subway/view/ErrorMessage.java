@@ -13,9 +13,9 @@ public class ErrorMessage {
     private static final String ON_PATH_STATION = "노선에 등록된 역은 삭제할 수 없습니다.";
     private static final String NOT_EXIST_LINE = "등록되어 있지 않은 노선입니다.";
     private static final String STATION_ALREADY_ON_PATH = "입력하신 역은 구간에 이미 등록되어 있습니다.";
-    private static final String NOT_NUMBER = "숫자가 아닙니다. 숫자를 입력해 주세요.";
-    private static final String NOT_OVER_ONE = "순서는 1부터 가능합니다.";
-    private static final String OVER_SIZE_PATH = "구간의 크기가 기존 사이즈를 넘어갑니다..";
+    private static final String NOT_NUMBER = "정수가 아닙니다. 순서는 1이상의 정수를 입력해 주세요.";
+    private static final String NOT_OVER_ONE = "순서는 1이상의 정수로 가능합니다.";
+    private static final String OVER_SIZE_PATH = "구간의 크기가 기존 사이즈를 넘어갑니다.";
 
     private ErrorMessage() {
     }
@@ -60,13 +60,13 @@ public class ErrorMessage {
     }
 
     public static void printNotNumber(){
-        throw new IllegalArgumentException(ERROR_PREFIX+NOT_NUMBER);
+        System.out.println(ERROR_PREFIX+NOT_NUMBER);
     }
     public static void printNotOverOne(){
-        throw new IllegalArgumentException(ERROR_PREFIX+NOT_OVER_ONE);
+        System.out.println(ERROR_PREFIX+NOT_OVER_ONE);
     }
     public static void printOverSizePath(){
-        throw new IllegalArgumentException(ERROR_PREFIX+OVER_SIZE_PATH);
+        System.out.println(ERROR_PREFIX+OVER_SIZE_PATH);
     }
 
 }

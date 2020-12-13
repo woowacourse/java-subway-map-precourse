@@ -7,6 +7,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.PathRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
 import subway.view.ErrorMessage;
 import subway.view.Menu;
@@ -44,64 +45,67 @@ public class PathInputManager {
     private boolean checkValidIndex(String index, String lineName) {
         try {
             int indexNumber = Integer.parseInt(index);
-            if (indexNumber < 1) {
-                ErrorMessage.printNotOverOne();
-                return false;
-            }
-            System.out.println(SubwayRepository.getSizeOfPathByLineName(lineName));
-            if (indexNumber - 1 > SubwayRepository.getSizeOfPathByLineName(lineName)) {
-                ErrorMessage.printOverSizePath();
-                return false;
-            }
+            return checkOverOne(indexNumber) && checkNotOverSize(indexNumber, lineName);
         } catch (NumberFormatException n) {
             ErrorMessage.printNotNumber();
-        } catch (IllegalArgumentException i) {
-            System.out.println(i.getMessage());
+            return false;
+        }
+    }
+
+    private boolean checkNotOverSize(int indexNumber, String lineName) {
+        if (indexNumber > SubwayRepository.getSizeOfPathByLineName(lineName) - 1) {
+            ErrorMessage.printOverSizePath();
+            return false;
         }
         return true;
+    }
 
+    private boolean checkOverOne(int indexNumber) {
+        if (indexNumber < 1) {
+            ErrorMessage.printNotOverOne();
+            return false;
+        }
+        return true;
     }
 
     private String getStationNameToAdd(String line) {
         Menu.printStationToAddPath();
         String stationName = scanner.nextLine().trim();
-        if (checkStationNameExist(stationName, line)) {
+        if (checkEnrolledStationNameOnPath(stationName, line) || !checkEnrolledStation(stationName)) {
             return ErrorMessage.OUT;
         }
         return stationName;
 
     }
 
-    private boolean checkStationNameExist(String stationName, String lineName) {
-        if (SubwayRepository.containsStationOnPathByLineName(stationName, lineName)) {
+    private boolean checkEnrolledStation(String stationName) {
+        if(!StationRepository.containsName(stationName)){
+            ErrorMessage.printNotExistStation();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkEnrolledStationNameOnPath(String stationName, String lineName) {
+        if (SubwayRepository.containsStationOnLine(stationName, lineName)) {
             ErrorMessage.printStationAlreadyOnPath();
             return true;
         }
         return false;
     }
 
+
     private String getLineNameToAdd() {
         Menu.printLineToAddPath();
-        for(Line line:SubwayRepository.getSubwayRealLines().keySet()) {
-            System.out.println(line.getName());
-        }
         String lineName = scanner.nextLine().trim();
-        //확인용
-        PathRepository path = SubwayRepository.getPathByLineName(lineName);
-        for(Station station : path.getPath() ){
-            System.out.println(station.getName());
-        }
-        //
         if (!checkLineNameExist(lineName)) {
             return ErrorMessage.OUT;
         }
         return lineName;
     }
-    /*
-    subwayRepository에 있는지 확인?
-     */
+
     private boolean checkLineNameExist(String lineName) {
-        if (!LineRepository.lineNames().contains(lineName)) {
+        if (!LineRepository.containsName(lineName)) {
             ErrorMessage.printNotExistLine();
             return false;
         }

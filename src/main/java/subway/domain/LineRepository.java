@@ -35,4 +35,8 @@ public class LineRepository {
         return lines.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst()
             .get();
     }
+
+    public static boolean containsName(String lineName){
+        return lineNames.contains(lineName);
+    }
 }

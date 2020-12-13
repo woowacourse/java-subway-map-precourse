@@ -37,7 +37,7 @@ public class SubwayRepository {
     public static int getSizeOfPathByLineName(String lineName){
         return getPathByLineName(lineName).pathSize();
     }
-    public static boolean containsStationOnPathByLineName(String station, String lineName){
+    public static boolean containsStationOnLine(String station, String lineName){
         return getPathByLineName(lineName).containsStationName(station);
 
     }
