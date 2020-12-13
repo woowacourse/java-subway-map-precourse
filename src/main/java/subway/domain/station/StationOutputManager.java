@@ -11,7 +11,7 @@ public class StationOutputManager {
     private static final String STATION_DELETED = "지하철 역이 삭제되었습니다.";
     private static final String STATION_LIST = "역 목록";
 
-    private StationOutputManager(){
+    private StationOutputManager() {
     }
 
     public static void printAddSGuide() {

@@ -5,7 +5,7 @@ public class ErrorMessage extends IllegalArgumentException {
     private static final String ERROR_PREFIX = "\n[ERROR] ";
 
     public ErrorMessage(String message) {
-        super(ERROR_PREFIX+message);
+        super(ERROR_PREFIX + message);
     }
 
 }

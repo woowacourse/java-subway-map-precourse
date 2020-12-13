@@ -6,8 +6,8 @@ public class GuideMessage {
     private GuideMessage() {
     }
 
-    public static void print(String message){
-        System.out.println(GUIDE_PREFIX+message);
+    public static void print(String message) {
+        System.out.println(GUIDE_PREFIX + message);
     }
 
 }

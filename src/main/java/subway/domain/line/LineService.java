@@ -6,7 +6,6 @@ import subway.domain.menu.MenuInputManager;
 import subway.domain.SubwayRepository;
 import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
-import subway.common.InfoMessage;
 import subway.domain.menu.MenuOutputManager;
 
 public class LineService {

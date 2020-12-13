@@ -33,7 +33,6 @@ public class MenuInputManager {
             return ErrorMessage.OUT;
         }
         return input;
-
     }
 
     public String getLineInput() {
@@ -87,6 +86,5 @@ public class MenuInputManager {
                 MenuItemsRepository.getPathSelections().toString() + INPUT_NEEDED);
         }
     }
-
 
 }

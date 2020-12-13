@@ -31,9 +31,10 @@ public class StationRepository {
 
     public static Station findStation(String name) {
         return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst().
-        get();
+            get();
     }
-    public static boolean containsName(String lineName){
+
+    public static boolean containsName(String lineName) {
         return stationNames.contains(lineName);
     }
 }

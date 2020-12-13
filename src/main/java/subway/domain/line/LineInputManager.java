@@ -36,9 +36,9 @@ public class LineInputManager {
     public String getLineNameToDelete() {
         LineOutputManager.printDeleteGuide();
         String name = scanner.nextLine().trim();
-        try{
+        try {
             checkNameToDelete(name);
-        }catch (ErrorMessage error){
+        } catch (ErrorMessage error) {
             System.out.println(error.getMessage());
             return ErrorMessage.OUT;
         }

@@ -10,7 +10,7 @@ import subway.domain.path.PathRepository;
 public class SubwayRepository {
     private static final Map<Line, PathRepository> subwayRealLines = new HashMap<>();
 
-    public static Map<Line,PathRepository> getSubwayRealLines(){
+    public static Map<Line, PathRepository> getSubwayRealLines() {
         return Collections.unmodifiableMap(subwayRealLines);
     }
 
@@ -21,7 +21,7 @@ public class SubwayRepository {
         subwayRealLines.put(newline, path);
     }
 
-    public static PathRepository getPathByLine(Line line){
+    public static PathRepository getPathByLine(Line line) {
         return subwayRealLines.get(line);
     }
 
@@ -29,13 +29,14 @@ public class SubwayRepository {
         Line line = LineRepository.findLine(lineName);
         return subwayRealLines.get(line);
     }
-    public static void addPathByLineName(String[] pathInfo){
+
+    public static void addPathByLineName(String[] pathInfo) {
         String lineName = pathInfo[0];
         int index = Integer.parseInt(pathInfo[1]);
         String station = pathInfo[2];
         Line line = LineRepository.findLine(lineName);
         PathRepository pathRepository = subwayRealLines.get(line);
-        pathRepository.addPath(index,station);
+        pathRepository.addPath(index, station);
     }
 
     public static void deleteSubwayLineByName(String lineName) {
@@ -43,15 +44,16 @@ public class SubwayRepository {
         subwayRealLines.remove(line);
     }
 
-    public static int getSizeOfPathByLineName(String lineName){
+    public static int getSizeOfPathByLineName(String lineName) {
         return getPathByLineName(lineName).pathSize();
     }
-    public static boolean containsStationOnLine(String station, String lineName){
+
+    public static boolean containsStationOnLine(String station, String lineName) {
         return getPathByLineName(lineName).containsStationName(station);
 
     }
 
-    public static void deleteStationOnPathByLineName(String[] pathInfo){
+    public static void deleteStationOnPathByLineName(String[] pathInfo) {
         String lineName = pathInfo[0];
         String stationName = pathInfo[1];
         getPathByLineName(lineName).deletePathByName(stationName);

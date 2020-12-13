@@ -10,15 +10,15 @@ public class SubwayOutputManager {
     private static final String SUBWAY_MAP = "지하철노선도";
     private static final String DIVIDER = "---";
 
-    private SubwayOutputManager(){
+    private SubwayOutputManager() {
     }
 
     public static void printSubwayMap() {
         GuideMessage.print(SUBWAY_MAP);
-        for(Line line: LineRepository.lines()){
+        for (Line line : LineRepository.lines()) {
             InfoMessage.print(line.getName());
             InfoMessage.print(DIVIDER);
-            for(Station station : SubwayRepository.getPathByLine(line).getPath()){
+            for (Station station : SubwayRepository.getPathByLine(line).getPath()) {
                 InfoMessage.print(station.getName());
             }
             System.out.println();
