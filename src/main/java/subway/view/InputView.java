@@ -46,7 +46,7 @@ public final class InputView {
         return inputStationName(FINAL_STATION_NAME_QUESTION);
     }
 
-    public static String inputStationName(final String message) {
+    private static String inputStationName(final String message) {
         String stationName = input(message, StationNameValidator.class);
 
         if (!stationName.endsWith(StationNameValidator.STATION_SUFFIX)) {

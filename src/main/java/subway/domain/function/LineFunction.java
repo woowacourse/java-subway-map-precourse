@@ -3,19 +3,11 @@ package subway.domain.function;
 import java.util.function.Function;
 
 import subway.controller.ManageController;
-import subway.view.InputView;
 
 public enum LineFunction implements Functionable {
-    ADD("1", "노선 등록",
-            manageController -> manageController
-                    .addLine(InputView.inputLineName(), InputView.inputStartStation(),
-                            InputView.inputFinalStation())),
-
-    REMOVE("2", "노선 삭제",
-            manageController -> manageController.removeLine(InputView.inputLineName())),
-
+    ADD("1", "노선 등록", ManageController::addLine),
+    REMOVE("2", "노선 삭제", ManageController::removeLine),
     LOAD("3", "노선 조회", ManageController::loadLines),
-
     BACK("B", "돌아가기", Function.identity());
 
     public static final String TITLE = "노선 관리";

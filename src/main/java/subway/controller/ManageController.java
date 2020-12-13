@@ -3,6 +3,7 @@ package subway.controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
+import subway.view.InputView;
 import subway.view.OutputView;
 
 public final class ManageController {
@@ -35,12 +36,24 @@ public final class ManageController {
         return stationRepository;
     }
 
+    public ManageController addStation() {
+        final String stationName = InputView.inputStation();
+
+        return addStation(stationName);
+    }
+
     public ManageController addStation(final String stationName) {
         StationRepository addedRepository = stationRepository.addStation(stationName);
 
         OutputView.printSaved(STATION);
 
         return new ManageController(this.lineRepository, addedRepository);
+    }
+
+    public ManageController removeStation() {
+        final String stationName = InputView.inputStation();
+
+        return removeStation(stationName);
     }
 
     public ManageController removeStation(final String stationName) {
@@ -58,6 +71,14 @@ public final class ManageController {
         return this;
     }
 
+    public ManageController addLine() {
+        final String lineName = InputView.inputLineName();
+        final String startStation = InputView.inputStartStation();
+        final String finalStation = InputView.inputFinalStation();
+
+        return addLine(lineName, startStation, finalStation);
+    }
+
     public ManageController addLine(final String lineName, final String startStation,
                                     final String finalStation) {
         LineRepository addedLineRepository =
@@ -66,6 +87,12 @@ public final class ManageController {
         OutputView.printSaved(LINE);
 
         return new ManageController(addedLineRepository, this.stationRepository);
+    }
+
+    public ManageController removeLine() {
+        final String lineName = InputView.inputLineName();
+
+        return removeLine(lineName);
     }
 
     public ManageController removeLine(final String lineName) {
@@ -82,6 +109,14 @@ public final class ManageController {
         return this;
     }
 
+    public ManageController addRange() {
+        final String lineName = InputView.inputLineName();
+        final String stationName = InputView.inputStation();
+        final int stationIndex = InputView.inputIndex();
+
+        return addRange(lineName, stationName, stationIndex);
+    }
+
     public ManageController addRange(final String lineName, final String stationName,
                                      final int stationIndex) {
         LineRepository rangeInsertedLineRepository =
@@ -90,6 +125,13 @@ public final class ManageController {
         OutputView.printSaved(RANGE);
 
         return new ManageController(rangeInsertedLineRepository, this.stationRepository);
+    }
+
+    public ManageController removeRange() {
+        final String lineName = InputView.inputLineName();
+        final String stationName = InputView.inputStation();
+
+        return removeRange(lineName, stationName);
     }
 
     public ManageController removeRange(final String lineName, final String stationName) {
