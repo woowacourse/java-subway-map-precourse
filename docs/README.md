@@ -41,7 +41,6 @@
         - 몸 담고 있는 노선에 역이 본인 포함 두개 이하라면 예외처리
     - 해당 객체 StationRepository에서 제거
     - 해당 객체 StationInWhichLinesRepository에서 제거
-    - 해당 객체 null로 제거
         
 - __역 조회__
     - 역 목록 출력하기
@@ -59,6 +58,7 @@
         - 노선 이름이 빈칸이면 예외처리
         - 노선 이름이 "선"으로 끝나지 않으면 예외처리
         - 입력 받은 상행/하행 종점역이 존재하지 않으면 예외처리
+        - 입력 받은 상행/하행 종점역이 동일하면 예외처리
     - 해당 이름으로 Line 객체 생성
     - 해당 객체 LineRepository에 추가 
     - StationInWhichLinesRepository에서 상행 종점역에 방금 등록한 Line 객체 추가
@@ -70,7 +70,6 @@
     - 삭제할 노선 소속 역들 탐색
         - 각 역들의 StationInWhichLinesRepository에서 삭제할 노선 제거
     - 해당 객체 LineRepository에서 제거
-    - 해당 객체 null로 제거
         
 - __노선 조회__
     - 노선 목록 출력
