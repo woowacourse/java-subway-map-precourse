@@ -13,7 +13,7 @@ public class MainScreen implements Screen{
     public void visualize() {
         System.out.println(HEAD + MAIN_SCREEN_MESSAGE);
         for (Menu menu : Menu.values()) {
-            System.out.println((menu.ordinal() + SET_NUMBER) + POINT + SPACE + menu.getMenuName() + SPACE + MANAGEMENT);
+            printMenuElement(menu);
         }
     }
 
@@ -43,5 +43,14 @@ public class MainScreen implements Screen{
     }
     public Menu getSelectedScreen(){
         return selectedMenu;
+    }
+
+    private void printMenuElement(Menu menu){
+        if(menu.ordinal() == 3)
+            System.out.println((menu.ordinal() + SET_NUMBER) + POINT + SPACE + menu.getMenuName());
+        if(menu.ordinal() == 4)
+            System.out.println("Q" + POINT + SPACE + menu.getMenuName());
+        if(menu.ordinal() < 3)
+        System.out.println((menu.ordinal() + SET_NUMBER) + POINT + SPACE + menu.getMenuName() + SPACE + MANAGEMENT);
     }
 }
