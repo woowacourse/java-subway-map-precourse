@@ -22,6 +22,7 @@ public class MainMenu {
     }
 
     public static void printMenu() {
+        OutputView.printMsg("## 메인 화면\n");
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
