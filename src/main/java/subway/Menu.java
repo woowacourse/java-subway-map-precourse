@@ -81,23 +81,24 @@ public class Menu {
         return true;
     }
 
-    public static void runMenu(InputView inputView, ArrayList<String> selectedMenus) {
+    public static boolean runMenu(InputView inputView, ArrayList<String> selectedMenus) {
         SubMenu menu = MenuController.getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
         if (menu == stationMenu) {
-            runStationMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+            return runStationMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == lineMenu) {
-            runLineMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+            return runLineMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == edgeMenu) {
-            runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+            return runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == lineMap) {
-            runLineMapMenu();
+            return runLineMapMenu();
         }
+        return false;
     }
 
-    private static void runStationMenu(InputView inputView, String subMenuAction) {
+    private static boolean runStationMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             Station.add(inputView, STATION_MENU_TITLE);
         }
@@ -107,14 +108,21 @@ public class Menu {
         if (subMenuAction.equals(LIST_SIGN)) {
             Station.printList(STATION_MENU_TITLE);
         }
+        if (subMenuAction.equals(BACK_SIGN)) {
+            return false;
+        }
+        return true;
     }
 
-    private static void runLineMenu(InputView inputView, String subMenuAction) {
+    private static boolean runLineMenu(InputView inputView, String subMenuAction) {
+        return true;
     }
 
-    private static void runEdgeMenu(InputView inputView, String subMenuAction) {
+    private static boolean runEdgeMenu(InputView inputView, String subMenuAction) {
+        return true;
     }
 
-    private static void runLineMapMenu() {
+    private static boolean runLineMapMenu() {
+        return true;
     }
 }

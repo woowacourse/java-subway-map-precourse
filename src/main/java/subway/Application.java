@@ -14,7 +14,10 @@ public class Application {
     }
 
     public static void run(InputView inputView) {
-        MenuController.scanMenu(inputView);
-        MenuController.runMenus(inputView);
+        boolean runStatus;
+        do {
+            MenuController.scanMenu(inputView);
+            runStatus = MenuController.runMenus(inputView);
+        } while(!runStatus);
     }
 }

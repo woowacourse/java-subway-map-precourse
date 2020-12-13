@@ -19,6 +19,9 @@ public class MenuController {
     private static final String QUIT_SIGN = "Q";
     private static final int SUB_MENU_INDEX = 0;
     private static final int SUB_MENU_ACTION_INDEX = 1;
+    private static final String NORMAL_SIGN = "NORMAL";
+    private static final String ERROR_SIGN = "ERROR";
+    private static final String BREAK_SIGN = "BREAK";
     public static ArrayList<String> selectedMenus = new ArrayList<String>();
 
     private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
@@ -31,20 +34,29 @@ public class MenuController {
         }
     };
 
-    public static void runMenus(InputView inputView) {
-        while (!checkRunStatus(inputView)) {
+    public static boolean runMenus(InputView inputView) {
+        String runStatus = checkRunStatus(inputView);
+        while (runStatus.equals(ERROR_SIGN)) {
             selectedMenus.remove(SUB_MENU_ACTION_INDEX);
             scanSubMenu(inputView, mainMenu.get(selectedMenus.get(SUB_MENU_INDEX)));
+            runStatus = checkRunStatus(inputView);
         }
+        if (runStatus.equals(BREAK_SIGN)) {
+            selectedMenus.clear();
+            return false;
+        }
+        return true;
     }
 
-    private static boolean checkRunStatus(InputView inputView) {
+    private static String checkRunStatus(InputView inputView) {
         try {
-            Menu.runMenu(inputView, selectedMenus);
-            return true;
+            if (Menu.runMenu(inputView, selectedMenus)) {
+                return NORMAL_SIGN;
+            }
+            return BREAK_SIGN;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            return false;
+            return ERROR_SIGN;
         }
     }
 
