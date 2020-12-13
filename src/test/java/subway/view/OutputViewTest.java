@@ -3,7 +3,6 @@ package subway.view;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.Line.Line;
 import subway.domain.Line.LineRepository;
 import subway.domain.station.Station;
@@ -13,13 +12,11 @@ import subway.menu.*;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class OutputViewTest {
 
     @BeforeAll
     public void init(){
-        InputView.initScanner(new Scanner(System.in));
+        InputView.initInputView(new Scanner(System.in));
     }
 
     @Test

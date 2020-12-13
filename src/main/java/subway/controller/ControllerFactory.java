@@ -12,7 +12,7 @@ public class ControllerFactory {
     private ControllerFactory() {
     }
 
-    public static SubwayController of(Menu menu) {
+    public static SubwayController getInstance(Menu menu) {
 
         if (menu instanceof StationMenu) {
             return stationController;

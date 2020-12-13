@@ -9,25 +9,21 @@ public enum Action {
     REGISTER("등록") {
         @Override
         public Menu action(Menu menu) {
-
             try {
-                SubwayController controller = ControllerFactory.of(menu);
+                SubwayController controller = ControllerFactory.getInstance(menu);
                 controller.save();
                 return MainMenu.SECTION;
             } catch (Exception e) {
                 OutputView.printErrorMessage(e);
                 return menu;
             }
-
-
         }
     },
     DELETE("삭제") {
         @Override
         public Menu action(Menu menu) {
-
             try {
-                SubwayController controller = ControllerFactory.of(menu);
+                SubwayController controller = ControllerFactory.getInstance(menu);
                 controller.delete();
                 return MainMenu.SECTION;
             } catch (Exception e) {
@@ -40,7 +36,7 @@ public enum Action {
         @Override
         public Menu action(Menu menu) {
             try {
-                SubwayController controller = ControllerFactory.of(menu);
+                SubwayController controller = ControllerFactory.getInstance(menu);
                 controller.findAll();
                 return MainMenu.SECTION;
             } catch (Exception e) {

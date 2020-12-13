@@ -16,7 +16,7 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public static void initScanner(Scanner scanner) {
+    public static void initInputView(Scanner scanner) {
         instance = new InputView(scanner);
     }
 

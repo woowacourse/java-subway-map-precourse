@@ -21,7 +21,7 @@ class InputViewTest {
     @Description("InputView 싱글톤 테스트")
     public void inputViewSigleTonTest() {
         Scanner sc = new Scanner(System.in);
-        InputView.initScanner(sc);
+        InputView.initInputView(sc);
 
         InputView instance1 = InputView.getInstance();
         InputView instance2 = InputView.getInstance();

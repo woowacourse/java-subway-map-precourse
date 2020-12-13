@@ -73,6 +73,4 @@ public class Station implements Comparable<Station> {
         return lines.stream().anyMatch(line -> line.isSameName(lineName.toString()));
     }
 
-
-    // 추가 기능 구현
 }

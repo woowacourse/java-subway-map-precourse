@@ -16,8 +16,10 @@ public class StationController implements SubwayController {
     @Override
     public void save() {
         OutputView.printInputMessage(StationMenu.REGISTER);
+
         String name = inputView.input();
         stationRepository.addStation(Station.of(name));
+
         OutputView.printResultMessage(StationMenu.REGISTER);
     }
 
@@ -27,13 +29,14 @@ public class StationController implements SubwayController {
 
         String name = inputView.input();
         stationRepository.deleteStation(name);
+
         OutputView.printResultMessage(StationMenu.DELETE);
     }
 
     @Override
     public void findAll() {
         List<Station> stations = stationRepository.stations();
-        OutputView.printStations(stations, StationMenu.DELETE);
+        OutputView.printStations(stations, StationMenu.SEARCH);
     }
 
     @Override

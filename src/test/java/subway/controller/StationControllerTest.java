@@ -27,7 +27,7 @@ class StationControllerTest {
     private Station saveAndFind(String name) {
         StationRepository stationRepository = new StationRepository();
         String input = "킹우정역";
-        InputView.initScanner(getScannerMock(input));
+        InputView.initInputView(getScannerMock(input));
         StationController controller = new StationController();
         controller.save();
         return stationRepository.findBy(input);
@@ -40,7 +40,7 @@ class StationControllerTest {
         StationRepository stationRepository = new StationRepository();
         //given
         String input = "킹우정역";
-        InputView.initScanner(getScannerMock(input));
+        InputView.initInputView(getScannerMock(input));
         StationController controller = new StationController();
 
         //when
@@ -58,7 +58,7 @@ class StationControllerTest {
 
         //given
         String input = "강남역";
-        InputView.initScanner(getScannerMock(input));
+        InputView.initInputView(getScannerMock(input));
         StationController controller = new StationController();
 
         //when
@@ -92,7 +92,7 @@ class StationControllerTest {
     public void deleteExceptionTest(){
         String name = "강남역";
         Scanner scannerMock = getScannerMock(name);
-        InputView.initScanner(scannerMock);
+        InputView.initInputView(scannerMock);
 
         StationController controller = new StationController();
         controller.findBy();
