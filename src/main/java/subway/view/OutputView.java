@@ -38,6 +38,14 @@ public class OutputView {
         }
     }
 
+    public static void printLines(List<Line> lines) {
+        System.out.println(LINES_LIST_MESSAGE);
+        for (Line line : lines) {
+            System.out.println(INFO_MESSAGE + line.getName());
+        }
+        System.out.println();
+    }
+
     private static void printLine(Line line) {
         List<Station> stations = line.getStations();
         System.out.println(INFO_MESSAGE + line.getName());
