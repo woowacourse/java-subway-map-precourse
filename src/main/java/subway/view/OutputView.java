@@ -10,6 +10,12 @@ public class OutputView {
     private static final String INFO_PREFIX = "[INFO] ";
     private static final String STATION_SUFFIX = " 역";
     private static final String DASH = "---";
+    private static final String MENU_SELECT = "원하는 기능을 선택하세요.";
+
+    public static void printMenuMessage(List<String> menuMessages) {
+        menuMessages.forEach(System.out::println);
+        System.out.println(MENU_SELECT);
+    }
 
     public static void warnMessage(String warnMessage) {
         System.out.println(ERROR_PREFIX + warnMessage);
