@@ -10,10 +10,10 @@ import java.util.function.Predicate;
 import static subway.view.OutputView.*;
 
 public class LineRepository {
-    private static final String LINE_DUPLICATE_WARN = "노선 이름은 중복이 되어서는 안됩니다.\n";
-    private static final String SECTION_ADD_SUCCESS = "구간이 등록되었습니다.\n";
-    private static final String SECTION_DELETE_SUCCESS = "구간이 삭제되었습니다.\n";
-    private static final String SECTION_DELETE_WARN = "역이 2개 이하인 노선은 구간삭제가 불가능합니다.\n";
+    private static final String LINE_DUPLICATE_WARN = "노선 이름은 중복이 되어서는 안됩니다.";
+    private static final String SECTION_ADD_SUCCESS = "구간이 등록되었습니다.";
+    private static final String SECTION_DELETE_SUCCESS = "구간이 삭제되었습니다.";
+    private static final String SECTION_DELETE_WARN = "역이 2개 이하인 노선은 구간삭제가 불가능합니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
