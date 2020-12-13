@@ -98,6 +98,10 @@ public class StationDashboard {
 
     public boolean updateStation(InputView inputView) {
         String submittedStationName = inputView.readStationName();
+        if (submittedStationName.length() < 2) {
+            System.out.println(ERROR_NAME_LENGTH);
+            return true;
+        }
         Station station = new Station(submittedStationName);
         if (StationRepository.stations().contains(station)) {
             System.out.println(ERROR_STATION_NAME_DUPLICATED);

@@ -52,6 +52,8 @@ public class DashboardWords {
     public static final String ERROR_STATION_NAME_NO_EXISTS = "[ERROR] 존재하지 않는 역입니다.";
     public static final String ERROR_LINE_NAME_NO_EXISTS = "[ERROR] 존재하지 않는 노선입니다.";
     public static final String ERROR_ORDER_OUT_OF_RANGE = "[ERROR] 유효하지 않은 위치입니다.";
+    public static final String ERROR_NAME_LENGTH = "[ERROR] 2글자 이상의 이름을 지정할 수 있습니다.";
+
 
     public static final String INFO = "[INFO]";
     public static final String INFO_DASH = "---";

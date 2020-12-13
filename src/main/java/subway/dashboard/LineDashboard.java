@@ -99,8 +99,11 @@ public class LineDashboard {
     }
 
     public boolean updateLine(InputView inputView) {
-        String submittedLinName = inputView.readLineName();
-        Line line = new Line(submittedLinName);
+        String submittedLineName = inputView.readLineName();
+        if (submittedLineName.length() < 2) {
+            System.out.println(ERROR_NAME_LENGTH);
+        }
+        Line line = new Line(submittedLineName);
         if (LineRepository.lines().contains(line)) {
             System.out.println(ERROR_LINE_NAME_DUPLICATED);
             return true;
@@ -113,8 +116,9 @@ public class LineDashboard {
     }
 
     public void setFirstStation(InputView inputView, Line line) {
-        Station station = new Station(inputView.readFirstStationName());
+        Station station;
         while (true) {
+            station = new Station(inputView.readFirstStationName());
             if (canAddStation(line, station)) {
                 break;
             }
@@ -125,13 +129,12 @@ public class LineDashboard {
     }
 
     public void setLastStation(InputView inputView, Line line) {
-        Station station = new Station(inputView.readLastStationName());
+        Station station;
         while (true) {
+            station = new Station(inputView.readLastStationName());
             if (canAddStation(line, station)) {
                 break;
             }
-            System.out.println(ERROR_STATION_NAME_DUPLICATED);
-            station = new Station(inputView.readLastStationName());
         }
         StationRepository.addStation(station);
         line.addStation(station);
@@ -139,6 +142,11 @@ public class LineDashboard {
 
     public boolean canAddStation(Line line, Station station) {
         if (line.getStations().contains(station)) {
+            System.out.println(ERROR_STATION_NAME_DUPLICATED);
+            return false;
+        }
+        if (station.getName().length() < 2) {
+            System.out.println(ERROR_NAME_LENGTH);
             return false;
         }
         return true;
