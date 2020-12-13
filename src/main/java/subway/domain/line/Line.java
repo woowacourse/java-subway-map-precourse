@@ -8,6 +8,7 @@ import subway.view.OutputView;
 public class Line {
     public static final int MIN_NAME_LENGTH = 2;
     public static final int MIN_STATION_AMOUNT = 2;
+    public static final int MIN_INDEX = 0;
 
     private String name;
     private List<Station> stations = new ArrayList<>();
@@ -25,9 +26,19 @@ public class Line {
         stations.add(station);
     }
 
-    public void add(int index, Station station) {
+    public void add(String stringIndex, Station station) {
+        try {
+            int translatedIndex = Integer.parseInt(stringIndex) - 1;
+            validateIndexAndStation(translatedIndex, station);
+            stations.add(translatedIndex, station);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(OutputView.ERROR_INDEX);
+        }
+    }
+
+    private void validateIndexAndStation(int index, Station station) {
         validateDuplicate(station);
-        stations.add(index, station);
+        validateIndex(index);
     }
 
     public void remove(Station station) {
@@ -78,5 +89,23 @@ public class Line {
 
     private boolean isLessThanEqualToMinimumAmount(int size) {
         return size <= MIN_STATION_AMOUNT;
+    }
+
+    private void validateIndex(int index) {
+        validateIndexRange(index);
+    }
+
+    private void validateIndexRange(int index) {
+        if(lowerThanMinIndex(index) || higherThanMaxIndex(index)) {
+            throw new IllegalArgumentException(OutputView.ERROR_INDEX);
+        }
+    }
+
+    private boolean lowerThanMinIndex(int index) {
+        return index < MIN_INDEX;
+    }
+
+    private boolean higherThanMaxIndex(int index) {
+        return index > stations.size();
     }
 }

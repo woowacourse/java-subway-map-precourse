@@ -32,20 +32,14 @@ public class InputView {
         return userStringInput(specificInfo);
     }
 
-    public int inputIndex(String specificInfo) {
+    public String inputIndex(String specificInfo) {
         System.out.println();
-        return userIntegerInput(specificInfo);
+        return userStringInput(specificInfo);
     }
 
     private String userStringInput(String specificInfo) {
         System.out.println();
         System.out.println(specificInfo);
         return scanner.nextLine();
-    }
-
-    private int userIntegerInput(String specificInfo) {
-        System.out.println();
-        System.out.println(specificInfo);
-        return scanner.nextInt();
     }
 }

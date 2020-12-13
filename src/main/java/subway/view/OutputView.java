@@ -47,6 +47,7 @@ public class OutputView {
     public static final String ERROR_SIZE_SMALL = ERROR_LABEL + "해당 노선은 종착역들로만 이루어져 있습니다.";
     public static final String ERROR_DUPLICATE_STATION = ERROR_LABEL + "역이 이미 노선에 등록되어 있습니다.";
     public static final String ERROR_NO_NAME = ERROR_LABEL + "해당 이름의 역/노선이 없습니다.";
+    public static final String ERROR_INDEX = ERROR_LABEL + "유효하지 않은 순서입니다.";
 
     public static void printMenu(int currentMenu) {
         if (currentMenu == Function.MAIN_MENU) {
@@ -122,7 +123,6 @@ public class OutputView {
             System.out.println(INFO_LABEL + x.getName());
             System.out.println(INFO_LABEL + DIVIDER);
             printStationsOfLine(x);
-            System.out.println();
         });
     }
 
@@ -131,6 +131,7 @@ public class OutputView {
     }
 
     public static void printError(Exception e) {
+        System.out.println();
         System.out.println(e.getMessage());
     }
 

@@ -1,6 +1,9 @@
 package subway.controller;
 
+import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -41,8 +44,10 @@ public class SectionController extends Controller {
         try {
             String targetLine = inputView.inputName(InputView.CHOOSE_LINE);
             String targetStation = inputView.inputName(InputView.CHOOSE_STATION_NAME);
-            int index = inputView.inputIndex(InputView.CHOOSE_ORDER);
-            LineRepository.addSection(targetLine, targetStation, index);
+            String index = inputView.inputIndex(InputView.CHOOSE_ORDER);
+            Line modifyingLine = LineRepository.get(targetLine);
+            Station addingStation = StationRepository.get(targetStation);
+            modifyingLine.add(index, addingStation);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
@@ -52,7 +57,9 @@ public class SectionController extends Controller {
         try {
             String targetLine = inputView.inputName(InputView.CHOOSE_LINE);
             String targetStation = inputView.inputName(InputView.CHOOSE_STATION_NAME);
-            LineRepository.deleteSection(targetLine, targetStation);
+            Line modifyingLine = LineRepository.get(targetLine);
+            Station deletingStation = StationRepository.get(targetStation);
+            modifyingLine.remove(deletingStation);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

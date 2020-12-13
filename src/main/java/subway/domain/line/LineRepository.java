@@ -62,17 +62,7 @@ public class LineRepository {
                 .anyMatch(x -> x.hasStation(name));
     }
 
-    public static void addSection(String targetLine, String targetStation, int index) {
-        Line updatedLine = getLine(targetLine);
-        int targetLineIndex = lines.indexOf(updatedLine);
-        updatedLine.add(index, StationRepository.get(targetStation));
-        lines.set(targetLineIndex, updatedLine);
-    }
-
-    public static void deleteSection(String targetLine, String targetStation) {
-    }
-
-    public static Line getLine(String name) {
+    public static Line get(String name) {
         return lines.stream()
                 .filter(x -> x.getName().equals(name))
                 .findFirst()
