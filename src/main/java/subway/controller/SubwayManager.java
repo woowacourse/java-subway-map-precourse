@@ -1,6 +1,8 @@
 package subway.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -13,10 +15,14 @@ public class SubwayManager implements Message {
 
     private static final String QUIT = "Q";
     private static final String BACK = "B";
+    private final List<String> STATION_NAMES_TO_INIT = Arrays
+        .asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+    private final List<String> LINE_NAMES_TO_INIT = Arrays
+        .asList("2호선", "3호선", "신분당선");
 
     public void run() {
         initializeSubway();
-        while(true) {
+        while (true) {
             OutputView.displayMain();
             String selection = InputView.getSelection();
             if (selection.equalsIgnoreCase(QUIT)) {
@@ -35,26 +41,14 @@ public class SubwayManager implements Message {
     }
 
     private void initializeStations() {
-        final int NUMBER_OF_STATIONS = 7;
-        final String[] STATION_NAMES = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
         ArrayList<Station> stations = new ArrayList<>();
-
-        for (int i = 0; i < NUMBER_OF_STATIONS; i++) {
-            stations.add(new Station(STATION_NAMES[i]));
-        }
-
+        STATION_NAMES_TO_INIT.forEach(name -> stations.add(new Station(name)));
         StationRepository.setStations(stations);
     }
 
     private void initializeLines() {
-        final int NUMBER_OF_LINES = 3;
-        final String[] LINE_NAMES = {"2호선", "3호선", "신분당선"};
         ArrayList<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < NUMBER_OF_LINES; i++) {
-            lines.add(new Line(LINE_NAMES[i]));
-        }
-
+        LINE_NAMES_TO_INIT.forEach(name -> lines.add(new Line(name)));
         LineRepository.setLines(lines);
     }
 

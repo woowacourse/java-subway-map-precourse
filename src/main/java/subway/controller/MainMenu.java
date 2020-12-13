@@ -1,6 +1,5 @@
 package subway.controller;
 
-import subway.controller.SubwayManager;
 import subway.utils.Message;
 import subway.view.OutputView;
 

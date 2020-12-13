@@ -6,11 +6,7 @@ import subway.utils.Message;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationManager implements Message {
-
-    private static final String REGISTER = "1";
-    private static final String DELETE = "2";
-    private static final String PRINT = "3";
+public class StationManager extends Manager implements Message {
 
     public static void request(String selection) {
         if (selection.equals(REGISTER)) {

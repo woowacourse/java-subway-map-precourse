@@ -7,17 +7,14 @@ import subway.utils.Message;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionManager implements Message {
-
-    private static final String INSERT = "1";
-    private static final String REMOVE = "2";
+public class SectionManager extends Manager implements Message {
 
     public static void request(String selection) {
-        if (selection.equals(INSERT)) {
+        if (selection.equals(REGISTER)) {
             insertStationInLine();
             return;
         }
-        if (selection.equals(REMOVE)) {
+        if (selection.equals(DELETE)) {
             removeStationFromLine();
             return;
         }
