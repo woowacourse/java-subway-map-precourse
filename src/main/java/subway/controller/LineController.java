@@ -34,7 +34,7 @@ public class LineController {
         Station firstStation = StationRepository.getStationByName(firstStationName);
 
         // TODO :: name 유효성 검사
-        
+
         OutputView.printMsg("## 등록할 노선의 하행 종점역 이름을 입력하세요.\n");
         String lastStationName = InputView.getInput(scanner);
         Station lastStation = StationRepository.getStationByName(firstStationName);
@@ -44,5 +44,13 @@ public class LineController {
         Line newLine = new Line(name, firstStation, lastStation);
         LineRepository.addLine(newLine);
         OutputView.printInfoMsg("지하철 노선이 등록되었습니다.");
+    }
+
+    public void deleteLine() {
+        OutputView.printMsg("## 삭제할 노선 이름을 입력하세요.\n");
+        String name = InputView.getInput(scanner);
+        // TODO :: 존재하는 노선인지 확인
+        LineRepository.deleteLineByName(name);
+        OutputView.printInfoMsg("지하철 노선이 삭제되었습니다.");
     }
 }
