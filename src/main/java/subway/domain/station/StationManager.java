@@ -2,6 +2,7 @@ package subway.domain.station;
 
 import subway.domain.State;
 import subway.exception.AlreadyExistStationException;
+import subway.exception.NoSuchStationException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -41,6 +42,10 @@ public class StationManager {
     }
 
     public static void removeStation(String name) {
+        if (!StationRepository.isExistStation(name)) {
+            throw new NoSuchStationException();
+        }
+
         StationRepository.deleteStation(name);
         OutputView.printRemovedStationMessage();
     }
