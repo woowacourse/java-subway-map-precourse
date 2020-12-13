@@ -46,7 +46,8 @@ public class LineView {
 
     private boolean isEndLinePage(String button) {
         return !isCreate(button)
-                && !isBack(button);
+                && !isBack(button)
+                && !isDelete(button);
     }
 
     private boolean isBack(final String button) {
@@ -75,9 +76,20 @@ public class LineView {
         return lineController.createSection(name, firstStation, lastStation);
     }
 
-    private void deleteLine(String button) {
+    private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
+            printLine(Message.INPUT_DELETE_LINE);
+
+            if (isDeleteLine()) {
+                printLine(Message.INFO_DELETE_LINE);
+                return true;
+            }
         }
+        return false;
+    }
+
+    private boolean isDeleteLine() {
+        return lineController.deleteLine(input.nextLine());
     }
 
     private void readLine(String button) {

@@ -20,4 +20,8 @@ public class LineController {
     public boolean createSection(String name, String firstStation, String lastStation) {
         return lineService.addSection(name, firstStation, lastStation);
     }
+
+    public boolean deleteLine(String name) {
+        return lineService.deleteLine(name);
+    }
 }

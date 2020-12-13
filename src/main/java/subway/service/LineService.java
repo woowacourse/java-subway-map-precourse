@@ -1,8 +1,8 @@
 package subway.service;
 
 import subway.domain.Line;
-import subway.repository.LineRepository;
 import subway.domain.Station;
+import subway.repository.LineRepository;
 import subway.repository.SectionRepository;
 import subway.repository.StationRepository;
 
@@ -25,5 +25,12 @@ public class LineService {
         SectionRepository.addSection(line, firstStation);
         SectionRepository.addSection(line, lastStation);
         return true;
+    }
+
+    public boolean deleteLine(String name) {
+        if (LineRepository.deleteLineByName(name)) {
+            return true;
+        }
+        return false;
     }
 }
