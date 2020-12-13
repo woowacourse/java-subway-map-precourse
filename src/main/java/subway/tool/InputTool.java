@@ -37,8 +37,7 @@ public class InputTool {
     public static boolean isPossibleInsertLineSize(String lineName, String input) {
         final int lineSize = LineRepository.getTargetLineSize(lineName);
         System.out.println(lineSize);
-        //역이 3개면 4번째에 추가할 수 있음
-        if(lineSize+1>=Integer.parseInt(input)) return true;
+        if(lineSize>=Integer.parseInt(input)) return true;
         return false;
     }
 
