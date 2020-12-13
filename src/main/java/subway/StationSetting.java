@@ -13,8 +13,7 @@ public class StationSetting {
                 String input = scanner.next();
                 System.out.println();
                 input = Exception.checkStationAdd(input);
-                Station station = new Station(input);
-                StationRepository.addStation(station);
+                StationRepository.addStation(new Station(input));
                 Print.infoMessage(Constant.ADD_STATION_DONE);
                 break;
             } catch (IllegalArgumentException e){
