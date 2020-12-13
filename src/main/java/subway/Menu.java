@@ -109,7 +109,7 @@ public class Menu {
             Station.printList(STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
-            return false;
+            MenuController.selectedMenus.clear();
         }
         return true;
     }

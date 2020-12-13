@@ -19,6 +19,9 @@ public class OutputView {
     private static final String NAME_MESSAGE = "이름을 입력하세요.";
     private static final String LIST_MESSAGE = "목록";
     private static final String INFO_TAG = "[INFO] ";
+    private static final String SUBWAY_MESSAGE = "지하철 ";
+    private static final String ADD_FINISH_MESSAGE = "이 등록되었습니다.";
+    private static final String DELETE_FINISH_MESSAGE = "이 삭제되었습니다.";
 
     private OutputView() {
     }
@@ -84,5 +87,15 @@ public class OutputView {
 
     private static void printListTitle(String title) {
         System.out.println(HASH + title + LIST_MESSAGE);
+    }
+
+    public static void printAddActionFinishMessage(String title) {
+        System.out.println();
+        System.out.println(INFO_TAG + SUBWAY_MESSAGE + title.trim() + ADD_FINISH_MESSAGE);
+    }
+
+    public static void printDeleteActionFinishMessage(String title) {
+        System.out.println();
+        System.out.println(INFO_TAG + SUBWAY_MESSAGE + title.trim() + DELETE_FINISH_MESSAGE);
     }
 }

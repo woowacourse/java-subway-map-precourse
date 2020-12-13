@@ -18,6 +18,7 @@ public class Application {
         do {
             MenuController.scanMenu(inputView);
             runStatus = MenuController.runMenus(inputView);
-        } while(!runStatus);
+            MenuController.selectedMenus.clear();
+        } while(runStatus);
     }
 }

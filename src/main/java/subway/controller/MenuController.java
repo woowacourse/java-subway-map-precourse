@@ -21,7 +21,6 @@ public class MenuController {
     private static final int SUB_MENU_ACTION_INDEX = 1;
     private static final String NORMAL_SIGN = "NORMAL";
     private static final String ERROR_SIGN = "ERROR";
-    private static final String BREAK_SIGN = "BREAK";
     public static ArrayList<String> selectedMenus = new ArrayList<String>();
 
     private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
@@ -41,8 +40,7 @@ public class MenuController {
             scanSubMenu(inputView, mainMenu.get(selectedMenus.get(SUB_MENU_INDEX)));
             runStatus = checkRunStatus(inputView);
         }
-        if (runStatus.equals(BREAK_SIGN)) {
-            selectedMenus.clear();
+        if (runStatus.equals(QUIT_SIGN)) {
             return false;
         }
         return true;
@@ -50,10 +48,10 @@ public class MenuController {
 
     private static String checkRunStatus(InputView inputView) {
         try {
-            if (Menu.runMenu(inputView, selectedMenus)) {
-                return NORMAL_SIGN;
+            if (!Menu.runMenu(inputView, selectedMenus)) {
+                return QUIT_SIGN;
             }
-            return BREAK_SIGN;
+            return NORMAL_SIGN;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return ERROR_SIGN;

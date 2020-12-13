@@ -29,6 +29,7 @@ public class Station {
             Station newStation = new Station(newStationName);
             StationRepository.addStation(newStation);
         }
+        OutputView.printAddActionFinishMessage(stationMessage);
     }
 
     public static void delete(InputView inputView, String stationMessage) {
@@ -36,6 +37,7 @@ public class Station {
         String deleteStationName = inputView.getInput();
         if (validateDeleteStationName(deleteStationName)) {
             StationRepository.deleteStation(deleteStationName);
+            OutputView.printDeleteActionFinishMessage(stationMessage);
         }
     }
 
