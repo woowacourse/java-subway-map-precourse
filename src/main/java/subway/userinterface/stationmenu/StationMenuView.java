@@ -11,6 +11,7 @@ public class StationMenuView implements MenuView {
 
     private static StationMenuView stationMenuView;
     public static LinkedHashMap<String, Menu> stationMenu = new LinkedHashMap<>();
+    private static StationViewInputController stationViewInputController = new StationViewInputController();
 
     private StationMenuView() {
         setMenu();
@@ -42,6 +43,6 @@ public class StationMenuView implements MenuView {
 
     @Override
     public void getUserInput(Scanner scanner) {
-
+        stationViewInputController.getUserInput(scanner);
     }
 }
