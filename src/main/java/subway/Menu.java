@@ -122,6 +122,9 @@ public class Menu {
         if (subMenuAction.equals(DELETE_SIGN)) {
             Line.delete(inputView, LINE_MENU_TITLE);
         }
+        if (subMenuAction.equals(LIST_SIGN)) {
+            Line.printList(LINE_MENU_TITLE);
+        }
         return true;
     }
 

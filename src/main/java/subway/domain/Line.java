@@ -70,6 +70,19 @@ public class Line {
         }
     }
 
+    public static void printList(String lineMessage) {
+        OutputView.printList(lineMessage, getLineNameList());
+    }
+
+    private static List<String> getLineNameList() {
+        List<String> lineNames = new ArrayList<String>();
+        List<Line> lines = LineRepository.lines();
+        for (int i = 0; i < lines.size(); i++) {
+            lineNames.add(lines.get(i).getName());
+        }
+        return lineNames;
+    }
+
     private static boolean validateAddLineName(String stationName, String lineMessage) {
         if (!LineRepository.validateNewLineName(stationName)) {
             throw new ExistentNameException(lineMessage);
