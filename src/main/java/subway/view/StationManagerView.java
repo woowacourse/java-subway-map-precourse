@@ -6,7 +6,7 @@ public class StationManagerView extends ManagerView {
 	private static final String SECOND_MENU_MESSAGE = "역 삭제";
 	private static final String THIRD_MENU_MESSAGE = "역 조회";
 	private static final String BACK_MENU_MESSAGE = "돌아가기";
-	
+
 	@Override
 	public void print() {
 		printTopMenu(TOP_MENU_MESSAGE);
