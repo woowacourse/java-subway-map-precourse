@@ -13,6 +13,7 @@ public class OutputView {
     private static final String LINE_DELETE_SUCCESS = "\n[INFO] 지하철 노선이 삭제되었습니다\n";
     private static final String SECTION_MAIN = "\n## 구간 관리 화면";
     private static final String SECTION_FUNCTION = "1. 구간 등록\n" + "2. 구간 삭제\n" + "B. 돌아가기";
+    private static final String PRINT_SUBWAY_MAP = "\n## 지하철 노선도";
 
     public static void mainView() {
         System.out.println(MAIN_VIEW);
@@ -56,5 +57,10 @@ public class OutputView {
     public static void sectionManageView() {
         System.out.println(SECTION_MAIN);
         System.out.println(SECTION_FUNCTION);
+    }
+
+    public static void printSubwayMap(String subwayMap) {
+        System.out.println(PRINT_SUBWAY_MAP);
+        System.out.print(subwayMap);
     }
 }

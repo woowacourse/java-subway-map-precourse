@@ -1,6 +1,6 @@
 package subway.Manager;
 
-import subway.domain.Line;
+import subway.domain.SubwayRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -15,10 +15,12 @@ public class SubwayManager {
     private final Scanner scanner;
     private StationManager stationManager;
     private LineManager lineManager;
+    private SubwayRepository subwayRepository;
 
     public SubwayManager(Scanner scanner) {
         stationManager = new StationManager(scanner);
         lineManager = new LineManager(scanner);
+        subwayRepository = new SubwayRepository();
         this.scanner = scanner;
     }
 
@@ -32,13 +34,11 @@ public class SubwayManager {
             lineManager.execute(InputView.inputLineFunction(scanner));
         }
         if (input.equals(SECTION_MANAGE)) {
-
+            OutputView.sectionManageView();
         }
         if (input.equals(SUBWAY_SECTION_PRINT)) {
-
+            OutputView.printSubwayMap(subwayRepository.toString());
         }
         return input;
     }
-
-
 }
