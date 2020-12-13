@@ -15,6 +15,7 @@ public class LineManagementView {
                 OutputView.printError(ERROR_MESSAGE);
                 continue;
             }
+            if (user_input.compareTo("B") == 0) break;
             if (nextMenu(Integer.parseInt(user_input))) break;
         }
     }

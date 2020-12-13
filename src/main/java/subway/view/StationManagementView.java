@@ -13,7 +13,7 @@ public class StationManagementView {
                 OutputView.printError(ERROR_MESSAGE);
                 continue;
             }
-            System.out.println(user_input + "??");
+            if (user_input.compareTo("B") == 0) break;
             if(nextMenu(Integer.parseInt(user_input))) break;
         }
     }
