@@ -27,6 +27,7 @@ public class SubwayManagement {
             return;
         }
         if (select.equals(Constants.FUNCTION_3)) {
+            sectionManagementFunction(user.getInput());
             return;
         }
         if (select.equals(Constants.FUNCTION_4)) {
@@ -109,7 +110,22 @@ public class SubwayManagement {
         printScreen.printLineList(LineRepository.retrieveLine());
     }
 
-    private void sectionManagementFunction() {
+    private void sectionManagementFunction(String select) {
+        printScreen.printSectionManagementScreen();
+        if (select.equals(Constants.FUNCTION_1)) {
+            addLine();
+            return;
+        }
+        if (select.equals(Constants.FUNCTION_2)) {
+            deleteLine();
+            return;
+        }
+        if (select.equals(Constants.FUNCTION_B)) {
+            return;
+        }
+    }
+
+    private void addSection() {
 
     }
 }
