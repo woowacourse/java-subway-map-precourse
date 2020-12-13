@@ -15,11 +15,13 @@ public class StationManager {
     public static final String ERROR_PREFIX = "[ERROR] ";
     public static final String OPTION_ERROR_MESSAGE = "1~3 또는 B 옵션 중 하나를 입력하세요";
     public static final String STATION_NAME_ERROR_MESSAGE = "존재하지 않는 2자 이상의 역 이름을 입력하세요";
+    public static final String STATION_EXIST_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
     public static final String INFO_PREFIX = "[INFO] ";
     private static final String INPUT_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
     public static final String ENROLLMENT_INFO_MESSAGE = "지하철 역이 등록되었습니다";
+    public static final String ASK_DELETION_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
     public static final String DELETION_INFO_MESSAGE = "지하철 역이 삭제되었습니다";
-    public static final String DELETION_FAIL_INFO_MESSAGE = "지하철 역이 존재하지 않습니다";
+    public static final String DELETION_FAIL_INFO_MESSAGE = "지하철 역이 존재하지 않거나 삭제할 수 없습니다";
     private static final int OPTION_MIN = 1;
     private static final int OPTION_MAX = 3;
     private static final int MIN_NAME_LENGTH = 2;
@@ -53,14 +55,25 @@ public class StationManager {
         }
     }
 
-    public static String inputStationName(Scanner scanner) {
+    public static String inputStationNameForEnrollment(Scanner scanner) {
         String stationName = scanner.nextLine();
         try {
-            validateStationName(stationName);
+            validateStationNameForEnrollment(stationName);
             return stationName;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
-            return inputStationName(scanner);
+            return inputStationNameForEnrollment(scanner);
+        }
+    }
+
+    public static String inputStationNameForDeletion(Scanner scanner) {
+        String stationName = scanner.nextLine();
+        try {
+            validateStationNameForDeletion(stationName);
+            return stationName;
+        } catch (IllegalArgumentException iae) {
+            System.out.println(ERROR_PREFIX + iae.getMessage());
+            return inputStationNameForDeletion(scanner);
         }
     }
 
@@ -79,12 +92,21 @@ public class StationManager {
         }
     }
 
-    public static void validateStationName(String stationName) throws IllegalArgumentException {
+    public static void validateStationNameForEnrollment(String stationName) throws IllegalArgumentException {
         if (stationName.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
         }
         if (SubwayManager.isDuplicated(stationName)) {
             throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateStationNameForDeletion(String stationName) throws IllegalArgumentException {
+        if (stationName.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
+        }
+        if (!SubwayManager.isExist(stationName)) {
+            throw new IllegalArgumentException(STATION_EXIST_ERROR_MESSAGE);
         }
     }
 
@@ -106,7 +128,7 @@ public class StationManager {
 
     public static void enrollStation(Scanner scanner) {
         System.out.println(INPUT_STATION_MESSAGE);
-        String stationName = inputStationName(scanner);
+        String stationName = inputStationNameForEnrollment(scanner);
         SubwayManager.addStation(stationName);
         System.out.println();
         System.out.println(INFO_PREFIX + ENROLLMENT_INFO_MESSAGE);
@@ -114,12 +136,15 @@ public class StationManager {
     }
 
     public static void deleteStation(Scanner scanner) {
-        String stationName = inputStationName(scanner);
+        System.out.println(ASK_DELETION_MESSAGE);
+        String stationName = inputStationNameForDeletion(scanner);
         if (SubwayManager.deleteStation(stationName)) {
             System.out.println(INFO_PREFIX + DELETION_INFO_MESSAGE);
+            System.out.println();
             return;
         }
         System.out.println(INFO_PREFIX + DELETION_FAIL_INFO_MESSAGE);
+        System.out.println();
     }
 
     public static void searchStation(Scanner scanner) {

@@ -44,7 +44,19 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (isDefaultStation(name)) {
+            return false;
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static boolean isDefaultStation(String name) {
+        for (Station station : defaultStations) {
+            if (station.isSameName(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isDuplicated(String name) {

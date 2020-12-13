@@ -63,7 +63,7 @@ public class SubwayManager {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR_PREFIX + ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
@@ -107,5 +107,14 @@ public class SubwayManager {
 
     public static boolean isDuplicated(String stationName) {
         return stationRepository.isDuplicated(stationName);
+    }
+
+    public static boolean isExist(String stationName) {
+        for (Station station : stationRepository.stations()) {
+            if (station.isSameName(stationName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
