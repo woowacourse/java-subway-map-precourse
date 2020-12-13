@@ -1,4 +1,6 @@
-package subway.userinterface;
+package subway.userinterface.mainmenu;
+
+import subway.userinterface.Menu;
 
 public class StationController implements Menu {
 

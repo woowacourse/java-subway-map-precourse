@@ -1,6 +1,6 @@
 package subway.service;
 
-import subway.userinterface.MainView;
+import subway.userinterface.mainmenu.MainView;
 
 import java.util.Scanner;
 

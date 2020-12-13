@@ -1,6 +1,8 @@
-package subway.userinterface;
+package subway.userinterface.mainmenu;
 
-public class LineController implements Menu{
+import subway.userinterface.Menu;
+
+public class LineController implements Menu {
 
     private final static String MENU_NAME = "2. 노선 관리";
     private final static String MENU_KEY = "2";

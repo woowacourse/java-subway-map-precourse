@@ -1,4 +1,4 @@
-package subway.userinterface;
+package subway.userinterface.mainmenu;
 
 import subway.util.InputValidator;
 
