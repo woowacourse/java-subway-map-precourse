@@ -72,4 +72,12 @@ public class Subway {
 			Output.info(line.getName());
 		}
 	}
+	
+	public static void removeLine(String name) {
+		if (LineRepository.deleteLineByName(name)) {
+			Output.info("지하철 노선이 삭제되었습니다.");
+			return;
+		}
+		Output.error("등록되지 않은 노선 이름입니다.");
+	}
 }
