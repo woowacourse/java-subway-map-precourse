@@ -1,10 +1,9 @@
 package subway.domain;
 
-import java.nio.charset.CharacterCodingException;
-import java.time.temporal.ChronoField;
 import java.util.Scanner;
 
 public class SectionService {
+    private static final int SECTION_SIZE_CONDITION = 2;
     public void addLineStartEndSection(Section section) {
         SectionRepository.addSection(section.getLineName(), section.getStationName(), section.getOrder());
     }
@@ -29,6 +28,27 @@ public class SectionService {
         System.out.println();
         SectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
         System.out.println("[INFO] 구간이 등록되었습니다.\n");
+    }
+
+    public void deleteSection(Scanner scanner) {
+        String lineName;
+        String stationName;
+        do {
+            System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+            lineName = scanner.next();
+        } while (!validateLineName(lineName));
+        do {
+            System.out.println("## 삭제할 구간의 역을 입력하세요.");
+            stationName = scanner.next();
+        } while (!validateStationName(stationName));
+        if(SectionRepository.getLineSectionSize(lineName) <= SECTION_SIZE_CONDITION) {
+            System.out.println("[ERROR] 해당 노선의 역이 2개이하 이므로 삭제할 수 없습니다.\n");
+            return;
+        }
+        if(!SectionRepository.deleteSectionByName(lineName, stationName)) {
+            System.out.println("[ERROR] 해당 노선에 +" + stationName + "이 등록되어 있지 않습니다.\n");
+        }
+        System.out.println("[INFO] 구간이 삭제되었습니다.\n");
     }
 
     private boolean validateLineName(String lineName) {
@@ -60,8 +80,5 @@ public class SectionService {
             return false;
         }
         return true;
-    }
-
-    public void deleteSection(Scanner scanner) {
     }
 }
