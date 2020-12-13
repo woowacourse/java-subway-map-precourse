@@ -37,10 +37,10 @@ public final class StationRepository {
     }
 
     public StationRepository addStation(final String stationName) {
-        return insert(stations.size(), stationName);
+        return add(stations.size(), stationName);
     }
 
-    public StationRepository insertStation(final int index, final String stationName) {
+    public StationRepository addRange(final int index, final String stationName) {
         int size = stations.size();
 
         boolean canInsert = (index > MINIMUM_INDEX) && (index < size);
@@ -50,24 +50,24 @@ public final class StationRepository {
                     String.format(OUT_OF_BOUNDS_ERROR, MINIMUM_INDEX, size));
         }
 
-        return insert(index, stationName);
-    }
-
-    public StationRepository removeStation(final String stationName) {
-        return remove(stationName);
+        return add(index, stationName);
     }
 
     public StationRepository removeStation(final String stationName,
                                            final LineRepository lineRepository) {
+        if (lineRepository.contains(stationName)) {
+            throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
+        }
+
+        return remove(stationName);
+    }
+
+    public StationRepository removeRange(final String stationName) {
         boolean canRemove = stations.size() > MINIMUM_STATION_SIZE;
 
         if (!canRemove) {
             throw new IllegalArgumentException(
                     String.format(TOO_LESS_STATIONS_ERROR, MINIMUM_STATION_SIZE));
-        }
-
-        if (lineRepository.contains(stationName)) {
-            throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
         }
 
         return remove(stationName);
@@ -81,7 +81,7 @@ public final class StationRepository {
         return stations.stream().map(Station::getName).collect(Collectors.toList());
     }
 
-    private StationRepository insert(final int index, final String stationName) {
+    private StationRepository add(final int index, final String stationName) {
         if (contains(stationName)) {
             throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, stationName));
         }

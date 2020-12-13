@@ -27,11 +27,11 @@ public class Line {
     }
 
     public Line insert(final int index, final String stationName) {
-        return new Line(this.name, stations.insertStation(index, stationName));
+        return new Line(this.name, stations.addRange(index, stationName));
     }
 
     public Line remove(final String stationName) {
-        return new Line(this.name, stations.removeStation(stationName));
+        return new Line(this.name, stations.removeRange(stationName));
     }
 
     public boolean contains(final String stationName) {
