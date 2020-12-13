@@ -51,7 +51,7 @@ public class Controller {
             userChoice = currentScreen.getChoiceByCommand(userCommand);
             operateUserChoice(userChoice);
         } catch (IllegalArgumentException exception) {
-            view.printMessage(exception.getMessage());
+            view.printErrorMessage(exception);
         }
     }
     

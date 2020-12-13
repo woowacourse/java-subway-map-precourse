@@ -36,7 +36,7 @@ public class StationManager {
             StationRepository.addStation(newStation);
             view.printSuccessMessage(EntityType.STATION, ActionType.REGISTER);
         } catch (Exception exception) {
-            view.printMessage(exception.getMessage());
+            view.printErrorMessage(exception);
         }
     }
 }

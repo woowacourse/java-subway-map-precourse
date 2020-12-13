@@ -8,6 +8,7 @@ import subway.screen.Screen;
 
 public class OutputView {
     private static String NEW_MESSAGE_PREFIX = "##";
+    private static String ERROR_MESSAGE_PREFIX = "[ERROR]";
     private static String INFO_MESSAGE_PREFIX = "[INFO]";
     private static String SELECT_FEATURE_MESSAGE = "원하는 기능을 선택하세요.";
     private static String STATION_REGISTER_ASK_MESSAGE = "등록할 역 이름을 입력하세요.";
@@ -41,6 +42,10 @@ public class OutputView {
         if (entityType == EntityType.ROUTE) {
             printRouteAskMessage(actionType);
         }
+    }
+    
+    void printErrorMessage(Exception exception) {
+        System.out.println(ERROR_MESSAGE_PREFIX + CommonConstants.SPACE + exception.getMessage());
     }
     
     void printSuccessMessage(EntityType entityType, ActionType actionType) {

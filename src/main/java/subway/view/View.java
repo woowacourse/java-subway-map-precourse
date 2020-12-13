@@ -37,6 +37,11 @@ public class View {
         outputView.printEmptyLine();
     }
     
+    public void printErrorMessage(Exception exception) {
+        outputView.printErrorMessage(exception);
+        outputView.printEmptyLine();
+    }
+    
     public void printSuccessMessage(EntityType entityType, ActionType actionType) {
         outputView.printSuccessMessage(entityType, actionType);
         outputView.printEmptyLine();
