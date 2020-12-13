@@ -1,9 +1,9 @@
 package subway.domain;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class StationService {
+    private static final int STATION_NAME_SIZE_CONDITION = 2;
     public void addStation(Scanner scanner) {
         String stationName;
         do {
@@ -27,7 +27,7 @@ public class StationService {
 
     public void getStation() {
         System.out.println("## 역 목록");
-        StationRepository.stations().forEach(station -> System.out.println("[INFO]" + station.getName()));
+        StationRepository.stations().forEach(station -> System.out.println("[INFO] " + station.getName()));
     }
 
     private boolean validateStationName(String stationName) {
@@ -35,7 +35,7 @@ public class StationService {
             System.out.println("[ERROR] 이미 같은 이름의 역이 있습니다.");
             return false;
         }
-        if(stationName.length() < 2) {
+        if(stationName.length() < STATION_NAME_SIZE_CONDITION) {
             System.out.println("[ERROR] 역 이름은 2자 이상이어야 합니다.");
             return false;
         }

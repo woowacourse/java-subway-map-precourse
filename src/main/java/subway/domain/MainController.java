@@ -46,6 +46,7 @@ public class MainController implements MenuSelectManager {
     public void forward(Scanner scanner) {
         StationController stationController = new StationController();
         LineController lineController = new LineController();
+        SectionController sectionController = new SectionController();
         MenuPrinter.printMainMenu();
         String menuInput = scanner.next();
         while(!menuInput.equals(QUIT)) {
@@ -53,8 +54,11 @@ public class MainController implements MenuSelectManager {
             if (menuInput.equals(MANAGE_STATION)) {
                 stationController.forward(scanner);
             }
-            if (menuInput.equals(MANAGE_LINE) || menuInput.equals(MANAGE_SECTION) || menuInput.equals(PRINT_SUBWAY_MAP)) {
+            if (menuInput.equals(MANAGE_LINE)) {
                 lineController.forward(scanner);
+            }
+            if (menuInput.equals(MANAGE_SECTION) || menuInput.equals(PRINT_SUBWAY_MAP)) {
+                sectionController.forward(scanner);
             }
             MenuPrinter.printMainMenu();
             menuInput = scanner.next();

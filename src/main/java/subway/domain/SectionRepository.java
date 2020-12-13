@@ -30,4 +30,8 @@ public class SectionRepository {
         }
         return false;
     }
+
+    public static int getLineSectionSize(String lineName) {
+        return section.get(lineName).size();
+    }
 }
