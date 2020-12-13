@@ -1,4 +1,4 @@
-package subway.function.line;
+package subway.function.line.printer;
 
 import subway.common.print.Prefix;
 

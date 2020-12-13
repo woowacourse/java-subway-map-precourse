@@ -1,4 +1,4 @@
-package subway.function.line;
+package subway.function.line.printer;
 
 public class PrintLineManagementScreen {
     private static final String SCREEN
