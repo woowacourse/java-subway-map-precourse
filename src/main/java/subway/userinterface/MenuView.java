@@ -1,0 +1,10 @@
+package subway.userinterface;
+
+import java.util.Scanner;
+
+public interface MenuView {
+
+    void printMenu();
+    void getUserInput(Scanner scanner);
+
+}
