@@ -43,11 +43,9 @@ public class SectionManager {
         if (command.equals(SectionButton.BACK.getSymbol())) {
             MainManager.execute();
             return;
-        }
-        if (command.equals(SectionButton.REGISTER.getSymbol())) {
+        } else if (command.equals(SectionButton.REGISTER.getSymbol())) {
             registerSection();
-        }
-        if (command.equals(SectionButton.DELETE.getSymbol())) {
+        } else if (command.equals(SectionButton.DELETE.getSymbol())) {
             deleteSection();
         }
         MainManager.execute();

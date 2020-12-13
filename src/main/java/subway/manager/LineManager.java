@@ -41,14 +41,11 @@ public class LineManager {
         if (command.equals(LineButton.BACK.getSymbol())) {
             MainManager.execute();
             return;
-        }
-        if (command.equals(LineButton.REGISTER.getSymbol())) {
+        } else if (command.equals(LineButton.REGISTER.getSymbol())) {
             registerLine();
-        }
-        if (command.equals(LineButton.DELETE.getSymbol())) {
+        } else if (command.equals(LineButton.DELETE.getSymbol())) {
             deleteLine();
-        }
-        if (command.equals(LineButton.INQUIRY.getSymbol())) {
+        } else if (command.equals(LineButton.INQUIRY.getSymbol())) {
             OutputView.printTotalLine();
         }
         MainManager.execute();

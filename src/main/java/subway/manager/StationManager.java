@@ -41,14 +41,11 @@ public class StationManager {
         if (command.equals(StationButton.BACK.getSymbol())) {
             MainManager.execute();
             return;
-        }
-        if (command.equals(StationButton.REGISTER.getSymbol())) {
+        } else if (command.equals(StationButton.REGISTER.getSymbol())) {
             registerStation();
-        }
-        if (command.equals(StationButton.DELETE.getSymbol())) {
+        } else if (command.equals(StationButton.DELETE.getSymbol())) {
             deleteStation();
-        }
-        if (command.equals(StationButton.INQUIRY.getSymbol())) {
+        } else if (command.equals(StationButton.INQUIRY.getSymbol())) {
             OutputView.printTotalStation();
         }
         MainManager.execute();
