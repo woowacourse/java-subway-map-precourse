@@ -1,9 +1,12 @@
 package subway.view;
 
 import static subway.resource.TextResource.ASK_LINE_NAME_WHEN_ADD_SECTION;
+import static subway.resource.TextResource.ASK_LINE_NAME_WHEN_DELETE_SECTION;
 import static subway.resource.TextResource.ASK_ORDER_WHEN_ADD_SECTION;
 import static subway.resource.TextResource.ASK_STATION_NAME_WHEN_ADD_SECTION;
+import static subway.resource.TextResource.ASK_STATION_NAME_WHEN_DELETE_SECTION;
 import static subway.resource.TextResource.COMPLETE_SECTION_ADD;
+import static subway.resource.TextResource.COMPLETE_SECTION_DELETE;
 import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_SECTION_ADD;
@@ -56,7 +59,7 @@ public class SectionManagementView extends View {
         }
 
         if (KEY_DELETE_SECTION.equals(selection)) {
-
+            deleteSection();
         }
     }
 
@@ -70,6 +73,16 @@ public class SectionManagementView extends View {
         SectionManagementController.getInstance()
             .addStationInSections(lineName, stationName, position);
         System.out.println(COMPLETE_SECTION_ADD);
+        onBackListener.onBack();
+    }
+
+    private void deleteSection() {
+        System.out.println(ASK_LINE_NAME_WHEN_DELETE_SECTION);
+        String lineName = scanner.nextLine();
+        System.out.println(ASK_STATION_NAME_WHEN_DELETE_SECTION);
+        String stationName = scanner.nextLine();
+        SectionManagementController.getInstance().deleteStationInSection(lineName, stationName);
+        System.out.println(COMPLETE_SECTION_DELETE);
         onBackListener.onBack();
     }
 
