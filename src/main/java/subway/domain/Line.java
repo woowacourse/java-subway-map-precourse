@@ -64,7 +64,7 @@ public class Line {
     public static void delete(InputView inputView, String lineMessage) {
         OutputView.printDeleteActionMessage(lineMessage);
         String deleteLineName = inputView.getInput();
-        if (validateDeleteLineName(deleteLineName, lineMessage)) {
+        if (validateExistentLineName(deleteLineName, lineMessage)) {
             LineRepository.deleteLineByName(deleteLineName);
             OutputView.printDeleteActionFinishMessage(lineMessage);
         }
@@ -93,7 +93,7 @@ public class Line {
         return true;
     }
 
-    private static boolean validateDeleteLineName(String lineName, String lineMessage) {
+    public static boolean validateExistentLineName(String lineName, String lineMessage) {
         if (LineRepository.validateNewLineName(lineName)) {
             throw new NonExistentNameException(lineMessage);
         }
