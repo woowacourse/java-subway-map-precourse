@@ -142,4 +142,10 @@ public class SubwayManager {
         return false;
     }
 
+    public static void printLine() {
+        for (Line line : lineRepository.lines()) {
+            System.out.println(INFO_PREFIX + line.getName());
+        }
+        System.out.println();
+    }
 }

@@ -83,9 +83,9 @@ public class LineManager {
         if (optionNumber == 2) {
             deleteLine(scanner);
         }
-//        if (optionNumber == 3) {
-//            searchStation(scanner);
-//        }
+        if (optionNumber == 3) {
+            searchLine(scanner);
+        }
     }
 
     public static void enrollLine(Scanner scanner) {
@@ -176,4 +176,7 @@ public class LineManager {
         }
     }
 
+    public static void searchLine(Scanner scanner) {
+        SubwayManager.printLine();
+    }
 }
