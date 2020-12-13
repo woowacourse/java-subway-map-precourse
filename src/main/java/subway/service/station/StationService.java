@@ -1,7 +1,8 @@
-package subway.service;
+package subway.service.station;
 
 import subway.domain.Station;
 import subway.repository.StationRepository;
+import subway.service.InputService;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.validation.NameAddingValidation;

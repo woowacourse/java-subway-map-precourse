@@ -1,6 +1,6 @@
 package subway.controller;
 
-import subway.service.StationService;
+import subway.service.station.StationService;
 
 import java.util.Scanner;
 
