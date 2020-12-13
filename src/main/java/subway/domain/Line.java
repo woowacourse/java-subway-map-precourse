@@ -71,7 +71,6 @@ public class Line {
         return stations.contains(station);
     }
 
-    // 추가 기능 구현
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

@@ -1,12 +1,10 @@
 package subway.view.menuView;
 
-import subway.menuType.FunctionType;
+import subway.menuType.ManagementMenuType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class StationView extends ManagementView {
     private static final String ITEM_PREFIX = "역 ";
@@ -20,7 +18,7 @@ public class StationView extends ManagementView {
 
     private StationView() {
         initializeSelections();
-        initializeHashMapToFunctionType(this.selections.toList(), Arrays.asList(FunctionType.values()));
+        initializeHashMapToMenuType(this.selections.toList(), Arrays.asList(ManagementMenuType.values()));
 
         viewName = ITEM_PREFIX + VIEW_NAME;
         itemPrefix = ITEM_PREFIX;

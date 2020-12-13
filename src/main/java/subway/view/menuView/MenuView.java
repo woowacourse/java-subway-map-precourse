@@ -31,7 +31,7 @@ public abstract class MenuView<T> {
         this.selections = new Selections(selections);
     }
 
-    protected void initializeHashMapToFunctionType(List<Selection> selections, List<T> menuTypes) {
+    protected void initializeHashMapToMenuType(List<Selection> selections, List<T> menuTypes) {
         if (selections.size() != menuTypes.size()) {
             throw new IllegalArgumentException(FATAL_MENU_DATA_CRAHSED);
         }

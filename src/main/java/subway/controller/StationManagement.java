@@ -1,7 +1,7 @@
 package subway.controller;
 
 import subway.exception.AttemptToDeleteDependentObjectException;
-import subway.menuType.FunctionType;
+import subway.menuType.ManagementMenuType;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -15,7 +15,7 @@ public class StationManagement {
     private static final String ERROR_CANNOT_REMOVE = "노선에 등록된 역은 삭제할 수 없습니다.";
 
     private static StationView stationView = StationView.getInstance();
-    private static FunctionType menu;
+    private static ManagementMenuType menu;
 
     public static void run() {
         do {
@@ -26,17 +26,17 @@ public class StationManagement {
             } catch (RuntimeException e) {
                 stationView.printErrorMessage(e);
             }
-        } while (!menu.equals(FunctionType.ESCAPE));
+        } while (!menu.equals(ManagementMenuType.ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(FunctionType.CREATE)) {
+        if (menu.equals(ManagementMenuType.CREATE)) {
             registerStation();
         }
-        if (menu.equals(FunctionType.DELETE)) {
+        if (menu.equals(ManagementMenuType.DELETE)) {
             deleteStation();
         }
-        if (menu.equals(FunctionType.READ)) {
+        if (menu.equals(ManagementMenuType.READ)) {
             printAllStation();
         }
     }

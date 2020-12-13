@@ -1,6 +1,6 @@
 package subway.controller;
 
-import subway.menuType.FunctionType;
+import subway.menuType.ManagementMenuType;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class LineManagement {
 
     private static LineView lineView = LineView.getInstance();
-    private static FunctionType menu;
+    private static ManagementMenuType menu;
 
     public static void run() {
         do {
@@ -25,17 +25,17 @@ public class LineManagement {
             } catch (RuntimeException e) {
                 lineView.printErrorMessage(e);
             }
-        } while (!menu.equals(FunctionType.ESCAPE));
+        } while (!menu.equals(ManagementMenuType.ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(FunctionType.CREATE)) {
+        if (menu.equals(ManagementMenuType.CREATE)) {
             registerLine();
         }
-        if (menu.equals(FunctionType.DELETE)) {
+        if (menu.equals(ManagementMenuType.DELETE)) {
             deleteLine();
         }
-        if (menu.equals(FunctionType.READ)) {
+        if (menu.equals(ManagementMenuType.READ)) {
             printAllLines();
         }
     }

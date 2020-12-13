@@ -4,12 +4,12 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.menuType.FunctionType;
+import subway.menuType.ManagementMenuType;
 import subway.view.menuView.SectionView;
 
 public class SectionManagement {
     private static SectionView sectionView = SectionView.getInstance();
-    private static FunctionType menu;
+    private static ManagementMenuType menu;
 
     public static void run() {
         do {
@@ -20,14 +20,14 @@ public class SectionManagement {
             } catch (RuntimeException e) {
                 sectionView.printErrorMessage(e);
             }
-        } while (!menu.equals(FunctionType.ESCAPE));
+        } while (!menu.equals(ManagementMenuType.ESCAPE));
     }
 
     private static void runSelectedMenuFunction() {
-        if (menu.equals(FunctionType.CREATE)) {
+        if (menu.equals(ManagementMenuType.CREATE)) {
             createSection();
         }
-        if (menu.equals(FunctionType.DELETE)) {
+        if (menu.equals(ManagementMenuType.DELETE)) {
             deleteSection();
         }
     }

@@ -26,7 +26,7 @@ public class MainView extends MenuView<MainMenuType> {
         viewName = VIEW_NAME;
 
         initializeSelections();
-        initializeHashMapToFunctionType(this.selections.toList(), Arrays.asList(MainMenuType.values()));
+        initializeHashMapToMenuType(this.selections.toList(), Arrays.asList(MainMenuType.values()));
     }
 
     private void initializeSelections() {

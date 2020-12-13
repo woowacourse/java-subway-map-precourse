@@ -1,6 +1,5 @@
 package subway.domain;
 
-import subway.SampleDataInitializer;
 import subway.dto.LineDTO;
 import subway.exception.DuplicatedObjectException;
 import subway.exception.NoSuchObjectException;

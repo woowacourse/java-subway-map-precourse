@@ -1,12 +1,12 @@
 package subway.view.menuView;
 
-import subway.menuType.FunctionType;
+import subway.menuType.ManagementMenuType;
 import subway.dto.DTO;
 import subway.view.InputView;
 import subway.view.OutputView;
 import java.util.List;
 
-public abstract class ManagementView extends MenuView<FunctionType> {
+public abstract class ManagementView extends MenuView<ManagementMenuType> {
     protected static final String VIEW_NAME = "관리 화면";
     protected static final String TO_CREATE_PREFIX = "등록할 ";
     protected static final String TO_DELETE_PREFIX = "삭제할 ";

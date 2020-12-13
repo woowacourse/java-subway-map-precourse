@@ -1,5 +1,5 @@
 package subway.menuType;
 
-public enum FunctionType {
+public enum ManagementMenuType {
     CREATE, DELETE, READ, ESCAPE
 }

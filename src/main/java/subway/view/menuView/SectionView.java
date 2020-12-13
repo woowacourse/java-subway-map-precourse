@@ -1,13 +1,12 @@
 package subway.view.menuView;
 
-import subway.menuType.FunctionType;
+import subway.menuType.ManagementMenuType;
 import subway.view.InputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class SectionView extends ManagementView {
     private static final String ITEM_PREFIX = "구간 ";
@@ -49,11 +48,11 @@ public class SectionView extends ManagementView {
     }
 
     private void initializeHashMapToFunctionType() {
-        List<FunctionType> functionTypes = Arrays.stream(FunctionType.values())
-                .filter(e -> e != FunctionType.READ)
+        List<ManagementMenuType> managementMenuTypes = Arrays.stream(ManagementMenuType.values())
+                .filter(e -> e != ManagementMenuType.READ)
                 .collect(Collectors.toList());
 
-        initializeHashMapToFunctionType(this.selections.toList(), functionTypes);
+        initializeHashMapToMenuType(this.selections.toList(), managementMenuTypes);
     }
 
     public static SectionView getInstance() {
