@@ -4,6 +4,7 @@ import subway.service.station.StationService;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
 import subway.view.output.ScreenView;
+import subway.view.output.section.SectionTextView;
 
 import java.util.Scanner;
 
@@ -28,12 +29,10 @@ public class SectionService extends StationService {
     @Override
     public boolean chooseFeature(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
-            // TODO: 구간 등록 기능 구현
-            return false;
+            return add(scanner);
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
-            // TODO: 구간 삭제 기능 구현
-            return false;
+            return delete(scanner);
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
             System.out.println();
@@ -44,11 +43,23 @@ public class SectionService extends StationService {
 
     @Override
     public boolean add(Scanner scanner) {
-        return false;
+        SectionTextView.printSectionAddingLineText();
+        String lineName = scanner.nextLine();
+        SectionTextView.printSectionAddingStationText();
+        String stationName = scanner.nextLine();
+        SectionTextView.printSectionAddingOrderText();
+        String order = scanner.nextLine();
+
+        return true;
     }
 
     @Override
     public boolean delete(Scanner scanner) {
-        return false;
+        SectionTextView.printSectionDeletionLineText();
+        String lineName = scanner.nextLine();
+        SectionTextView.printSectionDeletionStationText();
+        String stationName = scanner.nextLine();
+
+        return true;
     }
 }
