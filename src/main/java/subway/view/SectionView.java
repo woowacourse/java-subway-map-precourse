@@ -11,15 +11,23 @@ import subway.util.MessageUtils;
 
 public class SectionView {
 
-    public static String menuSelector(Scanner userInput) {
+    private Subway subway;
+    private Scanner userInput;
+
+    public SectionView(Subway subway, Scanner scanner) {
+        this.subway = subway;
+        this.userInput = scanner;
+    }
+
+    public String menuSelector(Scanner userInput) {
         String input = userInput.next();
         MessageUtils.printBlankLine();
         String thisMenuState = Constants.SECTION_MENU_STATE;
         if (input.equals("1")) {
-            insertSection(userInput);
+            this.insertSection(userInput);
         }
         if (input.equals("2")) {
-            deleteSection(userInput);
+            this.deleteSection(userInput);
         }
         if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
@@ -31,7 +39,7 @@ public class SectionView {
         return thisMenuState;
     }
 
-    private static boolean insertSection(Scanner userInput) {
+    private boolean insertSection(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_LINE_INPUT_COMMENT);
         String sectionTitle = userInput.next();
         MessageUtils.printBlankLine();
@@ -49,27 +57,29 @@ public class SectionView {
         return true;
     }
 
-    private static boolean insertByName(String sectionTitle, String stationName,
+    private boolean insertByName(String sectionTitle, String stationName,
         String indexString) {
         int index = Integer.parseInt(indexString);
         if (!InputUtils.isPositiveInt(index)) {
             MessageUtils.printError(Constants.INVALID_LENGTH_ERROR_COMMENT);
             return false;
         }
-        int listSize = Subway.Map.getSize(Subway.lines.findByName(sectionTitle));
+        int listSize = subway.getSectionRepository()
+            .getSize(subway.getLineRepository().findByName(sectionTitle));
         if (index <= listSize) {
-            Subway.Map.addSection(Subway.lines.findByName(sectionTitle),
-                Subway.stations.findByName(stationName), index);
+            subway.getSectionRepository()
+                .addSection(subway.getLineRepository().findByName(sectionTitle),
+                    subway.getStationRepository().findByName(stationName), index);
             MessageUtils.printInfo(Constants.ADD_SECTION_OUTPUT_COMMENT);
             return true;
         }
         return false;
     }
 
-    private static boolean checkExistInInsertSection(String sectionTitle, String stationName,
+    private boolean checkExistInInsertSection(String sectionTitle, String stationName,
         String indexString) {
-        if (isExistStationInLine(Subway.lines.findByName(sectionTitle),
-            Subway.stations.findByName(stationName))) {
+        if (isExistStationInLine(subway.getLineRepository().findByName(sectionTitle),
+            subway.getStationRepository().findByName(stationName))) {
             MessageUtils.printError(Constants.EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
@@ -79,7 +89,7 @@ public class SectionView {
             return false;
         }
 
-        if (!StationView.isExistStationName(stationName)) {
+        if (!isExistStationName(stationName)) {
             MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
             return false;
         }
@@ -94,11 +104,21 @@ public class SectionView {
         return true;
     }
 
-    public static boolean isExistStationInLine(Line sectionTitle, Station station) {
+    private boolean isExistStationName(String sectionTitle) {
+        if (sectionTitle == null) {
+            return false;
+        }
+        if (subway.getLineRepository().findByName(sectionTitle) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isExistStationInLine(Line sectionTitle, Station station) {
         if (sectionTitle == null || station == null) {
             return false;
         }
-        List<Station> stations = Subway.Map.getStationListInLine(sectionTitle);
+        List<Station> stations = subway.getSectionRepository().getStationListInLine(sectionTitle);
         for (Station instanceStation : stations) {
             if (instanceStation.equals(station)) {
                 return true;
@@ -107,50 +127,51 @@ public class SectionView {
         return false;
     }
 
-    public static boolean isExistLineName(String sectionTitle) {
+    private boolean isExistLineName(String sectionTitle) {
         if (sectionTitle == null) {
             return false;
         }
-        if (Subway.lines.findByName(sectionTitle) != null) {
+        if (subway.getLineRepository().findByName(sectionTitle) != null) {
             return true;
         }
         return false;
     }
 
-    private static boolean checkValidationSectionListLength(String sectionTitle,
+    private boolean checkValidationSectionListLength(String sectionTitle,
         String indexString) {
-        if (Integer.parseInt(indexString) > Subway.Map
-            .getSize(Subway.lines.findByName(sectionTitle))) {
+        if (Integer.parseInt(indexString) > subway.getSectionRepository()
+            .getSize(subway.getLineRepository().findByName(sectionTitle))) {
             MessageUtils.printError(Constants.INVALID_LENGTH_ERROR_COMMENT);
             return false;
         }
         return true;
     }
 
-    private static boolean deleteSection(Scanner userInput) {
+    private boolean deleteSection(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_LINE_INPUT_COMMENT);
         String sectionTitle = userInput.next();
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_STATION_INPUT_COMMENT);
         String stationName = userInput.next();
         MessageUtils.printBlankLine();
-        if (Subway.lines.findByName(sectionTitle) == null) {
+        if (subway.getLineRepository().findByName(sectionTitle) == null) {
             MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
-        if (Subway.stations.findByName(stationName) == null) {
+        if (subway.getStationRepository().findByName(stationName) == null) {
             MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
             return false;
         }
-        if (!isExistStationInLine(Subway.lines.findByName(sectionTitle),
-            Subway.stations.findByName(stationName))) {
+        if (!isExistStationInLine(subway.getLineRepository().findByName(sectionTitle),
+            subway.getStationRepository().findByName(stationName))) {
             MessageUtils.printError(Constants.NO_EXIST_SECTION_OUTPUT_COMMENT);
             return false;
         }
-        if (Subway.stations.findByName(stationName) != null
-            && Subway.stations.findByName(stationName) != null) {
-            Subway.Map.deleteSection(Subway.lines.findByName(sectionTitle),
-                Subway.stations.findByName(stationName));
+        if (subway.getStationRepository().findByName(stationName) != null
+            && subway.getStationRepository().findByName(stationName) != null) {
+            subway.getSectionRepository()
+                .deleteSection(subway.getLineRepository().findByName(sectionTitle),
+                    subway.getStationRepository().findByName(stationName));
             MessageUtils.printInfo(Constants.DELETE_SECTION_OUTPUT_COMMENT);
             return true;
         }

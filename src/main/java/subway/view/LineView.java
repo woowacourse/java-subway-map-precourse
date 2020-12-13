@@ -11,18 +11,26 @@ import subway.util.MessageUtils;
 
 public class LineView {
 
-    public static String menuSelector(Scanner userInput) {
+    private Subway subway;
+    private Scanner userInput;
+
+    public LineView(Subway subway, Scanner scanner) {
+        this.subway = subway;
+        this.userInput = scanner;
+    }
+
+    public String menuSelector(Scanner userInput) {
         String input = userInput.next();
         MessageUtils.printBlankLine();
         String thisMenuState = Constants.LINE_MENU_STATE;
         if (input.equals("1")) {
-            insertLine(userInput);
+            this.insertLine(userInput);
         }
         if (input.equals("2")) {
-            deleteLine(userInput);
+            this.deleteLine(userInput);
         }
         if (input.equals("3")) {
-            showLines();
+            this.showLines();
         }
         if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
             thisMenuState = Constants.MAIN_MENU_STATE;
@@ -34,7 +42,7 @@ public class LineView {
         return thisMenuState;
     }
 
-    private static boolean insertLine(Scanner userInput) {
+    private boolean insertLine(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_NAME_INPUT_COMMENT);
         String lineName = userInput.next();
         MessageUtils.printBlankLine();
@@ -44,45 +52,52 @@ public class LineView {
         }
         List<Station> p2pStations = p2pStation(userInput);
         if (p2pStations != null) {
-            Subway.lines.addLine(new Line(lineName));
-            Line newLine = Subway.lines.findByName(lineName);
-            Subway.Map.addLine(newLine, p2pStations.get(0), p2pStations.get(1));
+            subway.getLineRepository().addLine(new Line(lineName));
+            Line newLine = subway.getLineRepository().findByName(lineName);
+            subway.getSectionRepository().addLine(newLine, p2pStations.get(0), p2pStations.get(1));
             MessageUtils.printInfo(Constants.ADD_LINE_OUTPUT_COMMENT);
             return true;
         }
         return false;
     }
 
-    private static List<Station> p2pStation(Scanner userInput) {
+    private List<Station> p2pStation(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_START_STATION_NAME_INPUT_COMMENT);
         String startStationInLineName = userInput.next();
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_END_STATION_NAME_INPUT_COMMENT);
         String endStationInLineName = userInput.next();
         MessageUtils.printBlankLine();
-        if (!StationView.isExistStationName(startStationInLineName) || !StationView
-            .isExistStationName(endStationInLineName)) {
+        if (!isExistStationName(startStationInLineName) || !isExistStationName(
+            endStationInLineName)) {
             MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
             return null;
         }
-        if (StationView.isExistStationName(startStationInLineName) && StationView
-            .isExistStationName(endStationInLineName)) {
+        if (isExistStationName(startStationInLineName) && isExistStationName(
+            endStationInLineName)) {
             List<Station> stationList = new ArrayList<>();
-            stationList.add(Subway.stations.findByName(startStationInLineName));
-            stationList.add(Subway.stations.findByName(endStationInLineName));
+            stationList.add(subway.getStationRepository().findByName(startStationInLineName));
+            stationList.add(subway.getStationRepository().findByName(endStationInLineName));
             return stationList;
         }
         return null;
     }
 
-    public static boolean isExistLineName(String lineName) {
-        if (Subway.lines.findByName(lineName) == null) {
+    private boolean isExistStationName(String stationName) {
+        if (subway.getStationRepository().findByName(stationName) == null) {
             return false;
         }
         return true;
     }
 
-    private static boolean deleteLine(Scanner userInput) {
+    private boolean isExistLineName(String lineName) {
+        if (subway.getLineRepository().findByName(lineName) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean deleteLine(Scanner userInput) {
         MessageUtils.printInputAnnouncement(Constants.DELETE_LINE_END_STATION_NAME_INPUT_COMMENT);
         String targetLineName = userInput.next();
         MessageUtils.printBlankLine();
@@ -90,15 +105,16 @@ public class LineView {
             MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
-        Subway.Map.deleteLine(Subway.lines.findByName(targetLineName));
-        Subway.lines.deleteLineByName(targetLineName);
+        subway.getSectionRepository()
+            .deleteLine(subway.getLineRepository().findByName(targetLineName));
+        subway.getLineRepository().deleteLineByName(targetLineName);
         MessageUtils.printInfo(Constants.DELETE_LINE_OUTPUT_COMMENT);
         return true;
     }
 
-    private static void showLines() {
+    private void showLines() {
         MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_LINE_TEXT);
-        for (Object line : Subway.lines.findAll()) {
+        for (Object line : subway.getLineRepository().findAll()) {
             MessageUtils.printInfo((String) line);
         }
     }

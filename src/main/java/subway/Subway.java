@@ -13,52 +13,64 @@ import subway.view.MainView;
 
 public class Subway {
 
-    public static StationRepository stations = new StationRepository();
-    public static LineRepository lines = new LineRepository();
-    public static SectionRepository Map = new SectionRepository();
+    private StationRepository stationRepository = new StationRepository();
+    private LineRepository lineRepository = new LineRepository();
+    private SectionRepository sectionRepository = new SectionRepository();
 
     private static boolean systemState = true;
 
     public Subway() {
-        setInitData();
+        loadInitData();
     }
 
     public void launch(Scanner scanner) {
-        MainView showScreen = new MainView(scanner);
+        MainView showScreen = new MainView(scanner, this);
         while (this.systemState) {
             this.systemState = showScreen.start();
         }
     }
 
-    private void setInitData() {
-        initStationGenerator(InitConstants.STATION_LIST, stations);
-        initLineGenerator(InitConstants.LINE_LIST, lines);
-        initSectionGenerator(InitConstants.LINE_TITLE_GREEN_TEXT,
-            InitConstants.STATION_IN_GREEN_LINE_LIST, Map);
-        initSectionGenerator(InitConstants.LINE_TITLE_ORANGE_TEXT,
-            InitConstants.STATION_IN_ORANGE_LINE_LIST, Map);
-        initSectionGenerator(InitConstants.LINE_TITLE_SHINBUNDANG_TEXT,
-            InitConstants.STATION_IN_SHINBUNDANG_LINE_LIST, Map);
+    private void loadInitData() {
+        loadInitStationData(InitConstants.STATION_LIST, stationRepository);
+        loadInitLineData(InitConstants.LINE_LIST, lineRepository);
+        loadInitSectionData(InitConstants.LINE_TITLE_GREEN_TEXT,
+            InitConstants.STATION_IN_GREEN_LINE_LIST, sectionRepository);
+        loadInitSectionData(InitConstants.LINE_TITLE_ORANGE_TEXT,
+            InitConstants.STATION_IN_ORANGE_LINE_LIST, sectionRepository);
+        loadInitSectionData(InitConstants.LINE_TITLE_SHINBUNDANG_TEXT,
+            InitConstants.STATION_IN_SHINBUNDANG_LINE_LIST, sectionRepository);
     }
 
-    private void initStationGenerator(String[] stationNames, StationRepository stations) {
+    private void loadInitStationData(String[] stationNames, StationRepository stations) {
         for (String stationName : stationNames) {
             stations.addStation(new Station(stationName));
         }
     }
 
-    private void initLineGenerator(String[] lineNames, LineRepository lines) {
+    private void loadInitLineData(String[] lineNames, LineRepository lines) {
         for (String lineName : lineNames) {
             lines.addLine(new Line(lineName));
         }
     }
 
-    private void initSectionGenerator(String lineName, String[] stationNames,
+    private void loadInitSectionData(String lineName, String[] stationNames,
         SectionRepository subwayMap) {
         List<Station> initLineStations = new ArrayList<>();
         for (String stationName : stationNames) {
-            initLineStations.add(stations.findByName(stationName));
+            initLineStations.add(stationRepository.findByName(stationName));
         }
-        subwayMap.addStationList(lines.findByName(lineName), initLineStations);
+        subwayMap.addStationList(lineRepository.findByName(lineName), initLineStations);
+    }
+
+    public StationRepository getStationRepository() {
+        return stationRepository;
+    }
+
+    public LineRepository getLineRepository() {
+        return lineRepository;
+    }
+
+    public SectionRepository getSectionRepository() {
+        return sectionRepository;
     }
 }
