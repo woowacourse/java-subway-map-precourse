@@ -1,5 +1,6 @@
 package subway.line.view;
 
+import subway.line.EachLineStations;
 import subway.line.Line;
 import subway.line.LineRepository;
 import subway.station.Station;
@@ -21,6 +22,7 @@ public class LineOutputView {
     private static final String DELETE_SECTION = "2. 구간 삭제";
     private static final String COMPLETE_ADD_SECTION = RESULT_PREFIX + "구간이 등록되었습니다.";
     private static final String COMPLETE_DELETE_SECTION = RESULT_PREFIX + "구간이 삭제되었습니다.";
+    private static final String DIVIDER = RESULT_PREFIX + "---";
 
     public static void printLineManagement() {
         System.out.println(LINE_MANAGEMENT_TITLE);
@@ -66,6 +68,15 @@ public class LineOutputView {
 
     public static void deleteSectionComplete() {
         System.out.println(COMPLETE_DELETE_SECTION);
+        System.out.println();
+    }
+
+    public static void printLineInformation(String lineName, EachLineStations stations) {
+        System.out.println(RESULT_PREFIX + lineName);
+        System.out.println(DIVIDER);
+        for (Station station : stations.getStations()) {
+            System.out.println(RESULT_PREFIX + station.getName());
+        }
         System.out.println();
     }
 }

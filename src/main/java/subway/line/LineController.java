@@ -80,4 +80,8 @@ public class LineController {
     private static void printRegisteredLine() {
         LineOutputView.printAllLine();
     }
+
+    public static void printSubwayMap() {
+        LineService.printAllLineInformation();
+    }
 }

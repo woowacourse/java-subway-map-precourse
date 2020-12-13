@@ -16,6 +16,10 @@ public class EachLineStations {
         this.stations = stations;
     }
 
+    public List<Station> getStations() {
+        return stations;
+    }
+
     public void addStation(Station station) {
         stations.add(station);
     }

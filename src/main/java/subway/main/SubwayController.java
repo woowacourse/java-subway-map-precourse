@@ -40,5 +40,8 @@ public class SubwayController {
         if (option == SECTION_MANAGEMENT) {
             LineController.sectionManagement(mainInputView);
         }
+        if (option == PRINT_LINE_MAP) {
+            LineController.printSubwayMap();
+        }
     }
 }

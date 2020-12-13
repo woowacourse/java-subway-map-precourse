@@ -24,6 +24,10 @@ public class Line {
         return name;
     }
 
+    public EachLineStations getStations() {
+        return stations;
+    }
+
     public void addStation(Station station) {
         stations.addStation(station);
     }

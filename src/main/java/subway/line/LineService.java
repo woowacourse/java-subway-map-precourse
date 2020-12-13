@@ -115,4 +115,14 @@ public class LineService {
         CheckNotExistStation.validation(line, stationName);
         return StationService.findStation(stationName);
     }
+
+    public static void printAllLineInformation() {
+        List<Line> lines = LineRepository.lines();
+
+        for (Line line : lines) {
+            String lineName = line.getName();
+            EachLineStations stations = line.getStations();
+            LineOutputView.printLineInformation(lineName, stations);
+        }
+    }
 }
