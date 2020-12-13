@@ -4,6 +4,7 @@ import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
+import subway.domain.section.dto.SectionStationAddReqDto;
 import subway.domain.section.dto.SectionStationDeleteReqDto;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
@@ -44,9 +45,10 @@ public class SectionService {
         return sectionRepository.addSection(section);
     }
 
-    public void addStation(String lineName, String stationName, int sequence) {
-        Section section = findByName(lineName);
-        Station station = stationRepository.findByName(stationName);
+    public void addStation(SectionStationAddReqDto sectionStationAddReqDto) {
+        Section section = findByName(sectionStationAddReqDto.getLineName());
+        Station station = stationRepository.findByName(sectionStationAddReqDto.getStationName());
+        int sequence = sectionStationAddReqDto.getSequence();
         if (sequence > section.getStationsLength()) {
             sequence = section.getStationsLength() + CONVERT_SEQUENCE;
         }

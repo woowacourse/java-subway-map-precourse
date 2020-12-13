@@ -59,8 +59,7 @@ public class StationServiceImpl implements StationService {
 
     public boolean containLine(String stationName) {
         final boolean[] hasStation = {false};
-        sectionRepository.sections()
-                .stream()
+        sectionRepository.sections().stream()
                 .forEach(section -> {
                     if (section.getStationsName().contains(stationName)) {
                         hasStation[0] = true;

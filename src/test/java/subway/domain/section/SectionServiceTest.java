@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import subway.domain.line.MemoryLineRepository;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
+import subway.domain.section.dto.SectionStationAddReqDto;
 import subway.domain.section.dto.SectionStationDeleteReqDto;
 import subway.domain.station.MemoryStationRepository;
 import subway.domain.station.Station;
@@ -40,7 +41,7 @@ class SectionServiceTest {
         String upwardName = "행복역";
         String downwardName = "사랑역";
         sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName));
-        sectionService.addStation(lineName, stationName3, 2);
+        sectionService.addStation(new SectionStationAddReqDto(lineName, stationName3, 2));
     }
 
     @AfterEach
@@ -174,7 +175,7 @@ class SectionServiceTest {
         int sequence = 2;
 
         //when
-        sectionService.addStation(lineName, stationName, sequence);
+        sectionService.addStation(new SectionStationAddReqDto(lineName, stationName, sequence));
         Section section = sectionService.findByName(lineName);
 
         //then
@@ -190,7 +191,7 @@ class SectionServiceTest {
         int sequence = 3;
 
         //when
-        sectionService.addStation(lineName, stationName, sequence);
+        sectionService.addStation(new SectionStationAddReqDto(lineName, stationName, sequence));
         Section section = sectionService.findByName(lineName);
 
         //then

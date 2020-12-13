@@ -2,6 +2,7 @@ package subway;
 
 import subway.domain.section.SectionService;
 import subway.domain.section.dto.SectionSaveReqDto;
+import subway.domain.section.dto.SectionStationAddReqDto;
 import subway.domain.station.StationService;
 import subway.domain.station.dto.StationSaveReqDto;
 
@@ -35,14 +36,14 @@ public class DataInitService {
 
     private void saveSection() {
         sectionService.saveSection(new SectionSaveReqDto(LINE_TWO, STATION_GYODAE, STATION_YEOKSAM));
-        sectionService.addStation(LINE_TWO, STATION_GANGNAM, SECOND);
+        sectionService.addStation(new SectionStationAddReqDto(LINE_TWO, STATION_GANGNAM, SECOND));
 
         sectionService.saveSection(new SectionSaveReqDto(LINE_THREE, STATION_GYODAE, STATION_MAEBONG));
-        sectionService.addStation(LINE_THREE, STATION_SOUTH_TERMINAL, SECOND);
-        sectionService.addStation(LINE_THREE, STATION_YANGJAE, THIRD);
+        sectionService.addStation(new SectionStationAddReqDto(LINE_THREE, STATION_SOUTH_TERMINAL, SECOND));
+        sectionService.addStation(new SectionStationAddReqDto(LINE_THREE, STATION_YANGJAE, THIRD));
 
         sectionService.saveSection(new SectionSaveReqDto(LINE_SINBUNDANG, STATION_GANGNAM, STATION_CITIZEN_FOREST));
-        sectionService.addStation(LINE_SINBUNDANG, STATION_YANGJAE, SECOND);
+        sectionService.addStation(new SectionStationAddReqDto(LINE_SINBUNDANG, STATION_YANGJAE, SECOND));
     }
 
     private void saveStation() {
