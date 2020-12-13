@@ -26,6 +26,7 @@ public class Line {
     }
 
     public void remove(Station station) {
+        station.removeLine(this);
         this.route.remove(station);
     }
 

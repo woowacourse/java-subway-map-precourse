@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 class SectionServiceTest {
     private static final String LINE_NUMBER_ONE = "1호선";
     private static final String TOP_STATION = "대구역";
-    private static final String BOTTOM_STATION = "대구역";
+    private static final String BOTTOM_STATION = "동대구역";
     private static final String EXTRA_STATION = "반월당역";
 
     @BeforeEach
@@ -142,5 +142,19 @@ class SectionServiceTest {
         //when & then
         assertThatExceptionOfType(TooShortToRemoveException.class)
                 .isThrownBy(() -> SectionService.remove(LINE_NUMBER_ONE, TOP_STATION));
+    }
+
+    @Test
+    void 구간_삭제시_삭제된_구간에_등록된_노선_정보를_삭제해야함() {
+        //given
+        String targetLine = LINE_NUMBER_ONE;
+        String targetSection = EXTRA_STATION;
+
+        //when
+        SectionService.remove(targetLine, targetSection);
+        Station removedSection = StationRepository.findByName(targetSection);
+
+        //then
+        assertThat(removedSection.isRegistered()).isFalse();
     }
 }
