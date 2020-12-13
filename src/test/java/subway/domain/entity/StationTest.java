@@ -39,4 +39,23 @@ class StationTest {
 
         assertThat(isEqual).isFalse();
     }
+
+    @DisplayName("Station 객체의 노선의 구간 등록 여부 기본값은 false")
+    @Test
+    void isRegisteredAsSection_기본값은_false다() {
+        boolean isRegisteredAsSection = station.isRegisteredAsSection();
+
+        assertThat(isRegisteredAsSection).isFalse();
+    }
+
+    @DisplayName("Station 객체를 노선의 구간으로 등록하면 상태가 변경")
+    @Test
+    void registerAsSection_상태가_true가_된다() {
+        Station testStation = new Station("테스터");
+        testStation.registerAsSection();
+
+        boolean isRegisteredAsSection = testStation.isRegisteredAsSection();
+
+        assertThat(isRegisteredAsSection).isTrue();
+    }
 }
