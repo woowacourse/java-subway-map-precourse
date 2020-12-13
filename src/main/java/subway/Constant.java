@@ -37,6 +37,7 @@ public class Constant {
     static final String FOUR = "4";
     static final String Q = "Q";
     static final String B = "B";
+    static final String STATION = "역";
 
     static final String MAIN_MENU_TITLE = "메인 화면";
     static final String STATION_MENU_TITLE = "역 관리 화면";
@@ -70,4 +71,11 @@ public class Constant {
     static final String DELETE_LINE_DONE = "지하철 노선이 삭제되었습니다.";
     static final String ADD_SECTION_DONE = "구간이 등록되었습니다.";
     static final String DELETE_SECTION_DONE = "구간이 삭제되었습니다.";
+
+    static final String IS_NOT_EMPTY = "입력이 없습니다.";
+    static final String IS_NOT_SPACE = "공백은 허용되지 않습니다.";
+    static final String IS_IN_MENU = "존재하지 않는 항목입니다.";
+    static final String IS_STATION = "역을 입력해주세요";
+    static final String IS_LENGTH_TWO_OR_MORE = "2자 이상 입력해야합니다.";
+    static final String IS_NOT_IN_STATION_LIST = "이미 등록된 역입니다.";
 }

@@ -26,14 +26,14 @@ public class Exception {
         if (!input.equals("")) {
             return input;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_EMPTY);
     }
 
     static String isNotSpace(String input) {
         if (!input.contains(" ")) {
             return input;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_SPACE);
     }
 
     static String isInMenu(String input, List<String> menuItemList) {
@@ -43,7 +43,7 @@ public class Exception {
                 return input;
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_MENU);
     }
 
     static String isStation(String input) {
@@ -51,20 +51,20 @@ public class Exception {
         if (lastChar.equals(Constant.STATION)) {
             return input;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_STATION);
     }
 
     static String isLengthTwoOrMore(String input) {
         if (input.length() >= 2) {
             return input;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_LENGTH_TWO_OR_MORE);
     }
 
     static String isNotInStationList(String name) {
         if (!StationRepository.has(name)) {
             return name;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_IN_STATION_LIST);
     }
 }

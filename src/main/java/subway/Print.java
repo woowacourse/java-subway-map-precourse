@@ -14,4 +14,8 @@ public class Print {
         System.out.println();
         System.out.println(Constant.HEAD_HASH + text);
     }
+
+    public static void infoMessage(String text) {
+        System.out.println(Constant.HEAD_INFO + text);
+    }
 }
