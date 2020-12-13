@@ -2,10 +2,10 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.validator.StationValidation;
 import subway.view.*;
-import subway.validator.Validation;
 import subway.view.stationoutput.StationInfoView;
-import subway.view.stationoutput.StationOptionView;
+import subway.view.stationoutput.StationOutputView;
 
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class StationController {
         String userChoice = "";
         boolean stationControllerDone = false;
         while (!stationControllerDone) {
-            StationOptionView.printOption();
+            StationOutputView.printOption();
             userChoice = getUserChoice(scanner);
             stationControllerDone = startChosenStationFunction(userChoice, scanner);
         }
@@ -33,9 +33,9 @@ public class StationController {
         String userChoice = null;
         boolean validChoice = false;
         while (!validChoice) {
-            StationOptionView.printOptionInstruction();
+            StationOutputView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
-            validChoice = Validation.checkStationControllerInput(userChoice);
+            validChoice = StationValidation.checkControllerInput(userChoice);
         }
         return userChoice;
     }
@@ -57,9 +57,9 @@ public class StationController {
     }
 
     private static boolean registerStation(Scanner scanner) {
-        StationOptionView.printStationRegisterInstruction();
+        StationOutputView.printStationRegisterInstruction();
         String userInputStation = InputView.getInput(scanner);
-        boolean validInput = Validation.checkRegisterStationInput(userInputStation);
+        boolean validInput = StationValidation.checkRegisterStationInput(userInputStation);
         if (!validInput) {
             return false;
         }
@@ -70,9 +70,9 @@ public class StationController {
     }
 
     private static boolean deleteStation(Scanner scanner) {
-        StationOptionView.printStationDeleteInstruction();
+        StationOutputView.printStationDeleteInstruction();
         String userInputStation = InputView.getInput(scanner);
-        boolean validInput = Validation.checkDeleteStationInput(userInputStation);
+        boolean validInput = StationValidation.checkDeleteStationInput(userInputStation);
         if (!validInput) {
             return false;
         }
@@ -82,7 +82,8 @@ public class StationController {
     }
 
     private static boolean printStation(Scanner scanner) {
-        StationRepository.printStation();
+        StationOutputView.printStationList();
+        StationInfoView.printStation();
         return true;
     }
 

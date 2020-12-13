@@ -1,8 +1,8 @@
 package subway.controller;
 
+import subway.validator.MainValidation;
 import subway.view.InputView;
-import subway.view.mainoutput.MainOptionView;
-import subway.validator.Validation;
+import subway.view.mainoutput.MainOutputView;
 
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class MainController {
     private void runMainController(Scanner scanner) {
         String userChoice = "";
         while (!userChoice.equals(QUIT)) {
-            MainOptionView.printOption();
+            MainOutputView.printOption();
             userChoice = getUserChoice(scanner);
             startChosenController(userChoice, scanner);
         }
@@ -31,9 +31,9 @@ public class MainController {
         String userChoice = null;
         boolean validChoice = false;
         while (!validChoice) {
-            MainOptionView.printOptionInstruction();
+            MainOutputView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
-            validChoice = Validation.checkMainControllerInput(userChoice);
+            validChoice = MainValidation.checkControllerInput(userChoice);
         }
         return userChoice;
     }

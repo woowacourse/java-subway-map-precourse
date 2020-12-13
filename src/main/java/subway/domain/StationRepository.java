@@ -1,8 +1,5 @@
 package subway.domain;
 
-import subway.view.stationoutput.StationInfoView;
-import subway.view.stationoutput.StationOptionView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,12 +27,5 @@ public class StationRepository {
             }
         }
         return false;
-    }
-
-    public static void printStation() {
-        StationOptionView.printStationList();
-        for (Station station : stations) {
-            StationInfoView.printStation(station.getName());
-        }
     }
 }
