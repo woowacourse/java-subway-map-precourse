@@ -6,8 +6,6 @@ import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.validation.StationValidation;
 import subway.type.InputType;
-import subway.type.StationType;
-import subway.view.output.ExceptionView;
 import subway.view.output.InformationView;
 import subway.view.output.ScreenView;
 import subway.view.output.TextView;
