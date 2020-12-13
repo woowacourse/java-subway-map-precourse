@@ -1,18 +1,24 @@
 package subway.controller;
 
+import subway.domain.Name;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.StationView;
 
 import java.util.Scanner;
+import java.util.List;
 
 public class StationController {
     private static StationController stationController = null;
-    private final Scanner scanner;
 
-    private StationController(Scanner scanner){
+    private final Scanner scanner;
+    private final StationView stationView;
+
+    private StationController(Scanner scanner) {
         this.scanner = scanner;
+        stationView = StationView.getInstance(scanner);
     }
 
     public static StationController getInstance(Scanner scanner){
@@ -23,24 +29,30 @@ public class StationController {
         return stationController;
     }
 
-    public void addStation(){
-        OutputView.printMsg("## 등록할 역 이름을 입력하세요.\n");
-        String name = InputView.getInput(scanner);
-        StationRepository.addStation(new Station(name));
-        OutputView.printInfoMsg("지하철 역이 등록되었습니다.");
+    public void addStation() {
+        Station station = new Station(stationView.getStationNameToAdd());
+        StationRepository.addStation(station);
+        stationView.announceAdditionSuccess();
     }
 
-    public void deleteStation(){
-        OutputView.printMsg("## 삭제할 역 이름을 입력하세요.\n");
-        String name = InputView.getInput(scanner);
-        StationRepository.deleteStation(name);
-        OutputView.printInfoMsg("지하철 역이 삭제되었습니다.");
+    public void deleteStation() {
+        Station station = getStationToDelete();
+        StationRepository.remove(station);
+        stationView.announceDeletionSuccess();
     }
 
-    public void printStations(){
-        OutputView.printMsg("## 역 목록\n");
-        StationRepository.getStationNames()
-                .stream()
-                .forEach(OutputView::printInfoMsg);
+    private Station getStationToDelete() {
+        try {
+            Name name = stationView.getStationNameToDelete();
+            return StationRepository.getByName(name);
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getStationToDelete();
+        }
+    }
+
+    public void printStations() {
+        List<String> names = StationRepository.getStationNames();
+        stationView.printStationList(names);
     }
 }

@@ -17,7 +17,11 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public static void remove(Station station) {
+        stations.remove(station);
+    }
+
+    public static boolean deleteStation(Name name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
@@ -27,7 +31,7 @@ public class StationRepository {
                 .collect(Collectors.toList());
     }
 
-    public static Station getStationByName(Name name) {
+    public static Station getByName(Name name) {
         return stations.stream()
                 .filter(station -> station.isSameName(name))
                 .findFirst()
