@@ -51,7 +51,7 @@ public class InputView {
 
     public String menuInputNumber(String userInput) {
         if (!userInput.matches(validMenuRegex.get(screenName))) {
-            throw new IllegalArgumentException("[ERROR] 올바른 입력을 해주세요(1~4, Q)");
+            throw new IllegalArgumentException("[ERROR] 올바른 입력을 해주세요");
         }
         return userInput;
     }

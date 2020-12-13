@@ -26,9 +26,6 @@ public class StationManager {
         } else if (menuNumber.equals("3")) {
             printStation();
         }
-//        else if (stationMenuNumber == 0) {
-//
-//        }
     }
 
     private void addStation() {
@@ -39,6 +36,7 @@ public class StationManager {
             run();
         }
         StationRepository.addStation(new Station(station));
+        System.out.println("[INFO] 지하철 역이 등록되었습니다.");
     }
 
     //TODO 노선에 등록된 역은 삭제 안되게 하기
@@ -50,6 +48,7 @@ public class StationManager {
             run();
         }
         StationRepository.deleteStation(station);
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
     }
 
     private boolean isDuplicate(String station) {

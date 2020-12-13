@@ -39,7 +39,6 @@ public class StationRepository {
         return false;
     }
 
-//    @Override
     public static void print() {
         StringBuilder sb = new StringBuilder();
         for (Station station: stations) {
@@ -47,7 +46,6 @@ public class StationRepository {
             sb.append(station.getName());
             sb.append("\n");
         }
-//        return sb.toString();
         System.out.println(sb.toString());
     }
 }
