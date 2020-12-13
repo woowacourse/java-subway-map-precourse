@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import subway.domain.station.StationRepository;
 import subway.view.OutputView;
 
 public class LineRepository {
@@ -30,7 +29,7 @@ public class LineRepository {
     }
 
     private static void validateDeletion(String name) {
-        validateDuplicate(name);
+        validateExisting(name);
     }
 
     private static void validateNoDuplicate(Line line) {
@@ -39,7 +38,7 @@ public class LineRepository {
         }
     }
 
-    private static void validateDuplicate(String name) {
+    private static void validateExisting(String name) {
         if (!isDuplicate(name)) {
             throw new IllegalArgumentException(OutputView.ERROR_NOTHING);
         }
@@ -48,7 +47,7 @@ public class LineRepository {
     private static boolean isDuplicate(Line line) {
         return lines.stream()
                 .map(Line::getName)
-                .anyMatch(x -> x.equals(line.getName()));
+                .anyMatch(lineName -> lineName.equals(line.getName()));
     }
 
     private static boolean isDuplicate(String name) {
@@ -59,12 +58,12 @@ public class LineRepository {
 
     public static boolean hasLineWithStation(String name) {
         return lines().stream()
-                .anyMatch(x -> x.hasStation(name));
+                .anyMatch(line -> line.hasStation(name));
     }
 
     public static Line get(String name) {
         return lines.stream()
-                .filter(x -> x.getName().equals(name))
+                .filter(line -> line.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NO_NAME));
     }

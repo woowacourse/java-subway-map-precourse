@@ -18,16 +18,23 @@ public class LineAddController implements Controller {
     @Override
     public void run() {
         try {
-            String rawLineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
-            Line.validateName(rawLineName);
-            Line line = new Line(rawLineName);
-            line.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_BEGINNING)));
-            line.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_ENDING)));
-            LineRepository.addLine(line);
-
+            Line newLine = createLine();
+            addStationsToLine(newLine);
+            LineRepository.addLine(newLine);
             OutputView.printInfo(OutputView.INFO_LINE_ADD);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
+    }
+
+    private Line createLine() {
+        String lineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
+        Line.validateName(lineName);
+        return new Line(lineName);
+    }
+
+    private void addStationsToLine(Line newLine) {
+        newLine.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_BEGINNING)));
+        newLine.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_ENDING)));
     }
 }

@@ -8,7 +8,7 @@ import subway.view.OutputView;
 
 public abstract class MenuController implements Controller {
 
-    private static final int MIN_DECISION_VALUE = 1;
+    private static final int MINIMUM_DECISION_VALUE = 1;
     private static final String GO_BACK_DECISION = "B";
 
     protected final InputView inputView;
@@ -67,6 +67,6 @@ public abstract class MenuController implements Controller {
     }
 
     private boolean outOfRange(int decision, int maxDecisionValue) {
-        return (decision > maxDecisionValue || decision < MIN_DECISION_VALUE);
+        return (decision > maxDecisionValue || decision < MINIMUM_DECISION_VALUE);
     }
 }

@@ -127,23 +127,23 @@ public class OutputView {
         System.out.println(INFO_LABEL + DIVIDER);
         lines.stream()
                 .map(Line::getName)
-                .map(x -> INFO_LABEL + x)
+                .map(line -> INFO_LABEL + line)
                 .forEach(System.out::println);
     }
 
     public static void printMap() {
         System.out.println();
         System.out.println(SHOW_MAP_LABEL);
-        LineRepository.lines().forEach(x -> {
-            System.out.println(INFO_LABEL + x.getName());
+        LineRepository.lines().forEach(line -> {
+            System.out.println(INFO_LABEL + line.getName());
             System.out.println(INFO_LABEL + DIVIDER);
-            printStationsOfLine(x);
+            printStationsOfLine(line);
             System.out.println();
         });
     }
 
     private static void printStationsOfLine(Line line) {
-        line.getStations().forEach( x -> System.out.println(INFO_LABEL + x.getName()));
+        line.getStations().forEach(station -> System.out.println(INFO_LABEL + station.getName()));
     }
 
     public static void printError(Exception e) {

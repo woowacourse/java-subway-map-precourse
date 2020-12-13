@@ -6,12 +6,12 @@ import subway.domain.station.Station;
 import subway.view.OutputView;
 
 public class Line {
-    public static final int MIN_NAME_LENGTH = 2;
-    public static final int MIN_STATION_AMOUNT = 2;
-    public static final int MIN_INDEX = 0;
+    public static final int MINIMUM_NAME_LENGTH = 2;
+    public static final int MINIMUM_STATION_AMOUNT = 2;
+    public static final int MINIMUM_INDEX = 0;
 
-    private String name;
-    private List<Station> stations = new ArrayList<>();
+    private final String name;
+    private final List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -67,7 +67,7 @@ public class Line {
     }
 
     private static boolean shorterThanMinimalLength(String name) {
-        return name.length() < MIN_NAME_LENGTH;
+        return name.length() < MINIMUM_NAME_LENGTH;
     }
 
     private void validateDuplicate(Station station) {
@@ -95,24 +95,21 @@ public class Line {
     }
 
     private boolean isLessThanEqualToMinimumAmount(int size) {
-        return size <= MIN_STATION_AMOUNT;
+        return size <= MINIMUM_STATION_AMOUNT;
     }
 
     private void validateIndex(int index) {
-        validateIndexRange(index);
-    }
-
-    private void validateIndexRange(int index) {
-        if(lowerThanMinIndex(index) || higherThanMaxIndex(index)) {
+        if(lowerThanMinimumIndex(index) || higherThanMaximumIndex(index)) {
             throw new IllegalArgumentException(OutputView.ERROR_INDEX);
         }
     }
 
-    private boolean lowerThanMinIndex(int index) {
-        return index < MIN_INDEX;
+
+    private boolean lowerThanMinimumIndex(int index) {
+        return index < MINIMUM_INDEX;
     }
 
-    private boolean higherThanMaxIndex(int index) {
+    private boolean higherThanMaximumIndex(int index) {
         return index > stations.size();
     }
 }
