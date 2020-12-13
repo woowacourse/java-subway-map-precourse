@@ -27,7 +27,7 @@ public class StationRepository {
                 .collect(Collectors.toList());
     }
 
-    public static Station getStationByName(String name) {
+    public static Station getStationByName(Name name) {
         return stations.stream()
                 .filter(station -> station.isSameName(name))
                 .findFirst()
