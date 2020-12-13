@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.utils.InputValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,11 @@ public abstract class SelectionView extends AbstractView {
         while (true) {
             try {
                 printMenu();
-                /** TODO : 메뉴 선택 입력 기능 구현 */
+                int input = inputMenuOption();
+                if (input == GO_BACK_CODE) {
+                    return;
+                }
+                /** TODO: 다른 뷰 방문 기능 구현 */
             } catch (Exception e) {
             }
         }
@@ -46,12 +52,40 @@ public abstract class SelectionView extends AbstractView {
         printMenuOptions();
     }
 
-    protected void printMenuOptions() {
+    private void printMenuOptions() {
         int cnt = 1;
         for (View view : visitableViews) {
             println((cnt++) + DOT + view.getName());
         }
         println(this.goBackText);
         println();
+    }
+
+    protected int inputMenuOption() {
+        int numOfMenu = this.visitableViews.size();
+        while (true) {
+            try {
+                println(INPUT_MESSAGE);
+                String input = scanner.nextLine();
+                if (isGoBack(input)) {
+                    return GO_BACK_CODE;
+                }
+                InputValidator.validateMenuInput(input, numOfMenu);
+                return Integer.parseInt(input);
+            } catch (Exception e) {
+                printExceptionMessage(e);
+            }
+        }
+    }
+
+    private boolean isGoBack(String input) {
+        if (input.equals(parseFirstWord(goBackText))) {
+            return true;
+        }
+        return false;
+    }
+
+    private String parseFirstWord(String input) {
+        return input.substring(0, 1);
     }
 }
