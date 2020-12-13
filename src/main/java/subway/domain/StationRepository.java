@@ -21,9 +21,16 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static List<String> getStationNames(){
+    public static List<String> getStationNames() {
         return stations.stream()
                 .map(Station::toString)
                 .collect(Collectors.toList());
+    }
+
+    public static Station getStationByName(String name) {
+        return stations.stream()
+                .filter(station -> station.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 역입니다."));
     }
 }
