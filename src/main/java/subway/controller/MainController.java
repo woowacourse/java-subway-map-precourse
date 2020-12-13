@@ -33,13 +33,13 @@ public class MainController {
             if (option.equals(EXIT)) {
                 break;
             }
-            menuSelector(option);
+            menuSelector(option, inputView);
         }
     }
 
-    public void menuSelector(String option) {
+    public void menuSelector(String option, InputView inputView) {
         if (option.equals(STATION_CONTROLLER)) {
-            
+            new StationController().service(inputView);
         }
         if (option.equals(LINE_CONTROLLER)) {
 
