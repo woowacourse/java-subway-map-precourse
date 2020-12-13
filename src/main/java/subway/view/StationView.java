@@ -1,11 +1,13 @@
 package subway.view;
 
+import static subway.message.Output.printLine;
+import static subway.message.Output.printPage;
+import static subway.message.Output.printStations;
+
 import java.util.Arrays;
 import java.util.List;
 import subway.controller.StationController;
-import subway.domain.Station;
 import subway.message.Message;
-import subway.message.Output;
 
 /**
  * @author yhh1056
@@ -37,7 +39,7 @@ public class StationView {
     }
 
     private String inputButton() {
-        Output.printPage(STATION_PAGE);
+        printPage(STATION_PAGE);
         return input.nextButton(STATION_BUTTONS);
     }
 
@@ -56,11 +58,11 @@ public class StationView {
     }
 
     private boolean isCreateStation() {
-        Message.printCreateStation();
+        printLine(Message.INPUT_CREATE_STATION);
         String name = input.nextStation();
         if (input.validName(name)) {
             if (stationController.createStation(name)) {
-                Message.printSuccessStation();
+                printLine(Message.INFO_CREATE_STATION);
                 return true;
             }
         }
@@ -75,9 +77,9 @@ public class StationView {
     }
 
     private boolean isDeleteStation() {
-        Message.printDeleteStation();
+        printLine(Message.INPUT_DELETE_STATION);
         if (stationController.deleteStation(input.nextStation())) {
-            Message.deleteStationInfo();
+            printLine(Message.INFO_DELETE_STATION);
             return true;
         }
         return false;
@@ -92,7 +94,7 @@ public class StationView {
     }
 
     private void readStations() {
-        Output.printStations(stationController.getStations());
+        printStations(stationController.getStations());
     }
 
     private boolean isBack(String button) {

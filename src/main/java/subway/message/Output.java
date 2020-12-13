@@ -16,14 +16,22 @@ public class Output {
         page.forEach(System.out::println);
     }
 
-    public static void printLine(String output) {
-        System.out.println(output);
-    }
-
     public static void printStations(List<Station> stations) {
         if (!stations.isEmpty()) {
-            Message.printStations();
-            stations.stream().map(Station::getName).forEach(Message::printStation);
+            printLine(Message.STATIONS);
+            stations.forEach(station -> printLine(combineName(station)));
         }
+    }
+
+    private static String combineName(Station station) {
+        return Message.INFO + station.getName();
+    }
+
+    public static void printLine(String message) {
+        System.out.println(message);
+    }
+
+    public static void printBlankLine() {
+        System.out.println();
     }
 }

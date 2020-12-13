@@ -1,5 +1,7 @@
 package subway.view;
 
+import static subway.message.Output.printLine;
+
 import subway.message.Message;
 
 /**
@@ -9,6 +11,6 @@ import subway.message.Message;
 public class SubwayLineView {
 
     public void showSubwayLine() {
-        Message.printSubwayLineMessage();
+        printLine(Message.SUBWAY_LINE);
     }
 }

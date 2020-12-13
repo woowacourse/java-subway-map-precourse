@@ -2,7 +2,6 @@ package subway.view;
 
 import java.util.Arrays;
 import java.util.List;
-import subway.message.Message;
 import subway.message.Output;
 
 /**
@@ -56,7 +55,7 @@ public class MainView {
     }
 
     private void loopMainPage() {
-        Message.printLine();
+        Output.printBlankLine();
         selectMainPage();
     }
 
