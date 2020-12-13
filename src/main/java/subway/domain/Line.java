@@ -8,8 +8,8 @@ public class Line {
     private Name name;
     private List<Station> stations;
 
-    private Line(Name name, Station firstStation, Station lastStation) {
-        if (firstStation.equals(lastStation)) {
+    private Line(Name name, Station startStation, Station endStation) {
+        if (startStation.equals(endStation)) {
             throw new IllegalArgumentException("상행 종점과 하행 종점이 같을 수 없습니다.");
         }
 
@@ -17,19 +17,15 @@ public class Line {
 
         stations = new LinkedList<>();
 
-        stations.add(firstStation);
-        firstStation.onLine();
+        stations.add(startStation);
+        startStation.onLine();
 
-        stations.add(lastStation);
-        lastStation.onLine();
+        stations.add(endStation);
+        endStation.onLine();
     }
 
     public static Line create(Name name, Station firstStation, Station lastStation) {
         return new Line(name, firstStation, lastStation);
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public boolean isName(Name name) {
