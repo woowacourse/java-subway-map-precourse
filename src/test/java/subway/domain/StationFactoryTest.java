@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class StationRepositoryTest {
+class StationFactoryTest {
     @DisplayName("역을 생성한다")
     @Test
     void 역을_생성한다() {
