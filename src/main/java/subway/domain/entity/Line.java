@@ -6,10 +6,12 @@ public class Line {
     private static final int MINIMUM_LINE_NAME_LENGTH = 2;
 
     private final String name;
+    private final Sections sections;
 
-    public Line(String name) {
+    public Line(String name, Sections sections) {
         validateLineName(name);
         this.name = name;
+        this.sections = sections;
     }
 
     private void validateLineName(String name) {
