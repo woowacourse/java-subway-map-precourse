@@ -18,6 +18,9 @@ public class Line {
 
     // 추가 기능 구현
     public void addStation(Station station) {
+        if (getStation().contains(station)) {
+            return;
+        }
         if (StationRepository.stations().contains(station)) {
             stations.add(station);
         }

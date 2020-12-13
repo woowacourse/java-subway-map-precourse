@@ -1,6 +1,6 @@
 package subway.domain.input;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
+
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -13,7 +13,6 @@ public class SectionManageInput {
     static final String FUNCTION_ONE = "1";
     static final String FUNCTION_TWO = "2";
     static final String FUNCTION_BACK = "B";
-    static final int NUMBER_MINUS_INDEX = 1;
 
     List<String> functionList = new ArrayList<>();
 
