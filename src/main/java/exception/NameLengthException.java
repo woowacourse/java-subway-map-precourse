@@ -7,3 +7,4 @@ public class NameLengthException extends RuntimeException{
         super(ERROR + CAUSE);
     }
 }
+
