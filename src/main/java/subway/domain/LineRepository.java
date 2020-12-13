@@ -64,6 +64,12 @@ public class LineRepository {
         return lines.stream().map(Line::getName).collect(Collectors.toList());
     }
 
+    public List<String> getStationNamesByLineName(String lineName) {
+        Line line = getLineByLineName(lineName);
+
+        return line.getStations().stationNames();
+    }
+
     private LineRepository perform(final String lineName, final Function<Line, Line> lineFunction) {
         Line line = getLineByLineName(lineName);
 
