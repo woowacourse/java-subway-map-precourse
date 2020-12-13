@@ -59,6 +59,17 @@ public class LineManageInput {
         return lineName;
     }
 
+    public Station inputUpDownTrainLine(Scanner scanner) throws IllegalArgumentException{
+        String upTrainLastStop = scanner.next();
+        Optional<Station> searchedStation = StationRepository.stations()
+                .stream().filter(station -> station.getName().equals(upTrainLastStop)).findAny();
+        if (searchedStation.isPresent()) {
+            return searchedStation.get();
+        }
+        //해당 역은 없다는 메시지 출력
+        throw new IllegalArgumentException();
+    }
+
 
 
 }
