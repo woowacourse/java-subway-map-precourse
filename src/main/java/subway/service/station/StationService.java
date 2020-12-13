@@ -3,7 +3,6 @@ package subway.service.station;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.service.InputService;
-import subway.service.StringBuilderService;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.validation.NameAddingValidation;
@@ -13,6 +12,7 @@ import subway.view.output.station.StationInformationView;
 import subway.view.output.ScreenView;
 import subway.view.output.station.StationTextView;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -80,10 +80,21 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
     @Override
     public boolean show() {
         StringBuilder stringBuilder = new StringBuilder();
-        List<String> stationNames = StationRepository.getStationNames();
+
+        List<Station> stations = StationRepository.stations();
+        List<String> stationNames = getStationNames(stations);
 
         StationNameService.readStationName(stringBuilder, stationNames);
         System.out.println(stringBuilder);
         return true;
+    }
+
+    public static List<String> getStationNames(List<Station> stations) {
+        List<String> stationNames = new LinkedList<>();
+
+        for (Station station : stations) {
+            stationNames.add(station.getName());
+        }
+        return stationNames;
     }
 }
