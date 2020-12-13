@@ -133,7 +133,34 @@ class LineTest {
                 () -> assertThat(line.getStations()).hasSize(2),
                 () -> assertThat(line.getStations())
                         .usingElementComparatorOnFields("name")
-                .contains(new Station("강남역"), new Station("잠실역"))
+                .containsExactlyInAnyOrder(new Station("강남역"), new Station("잠실역"))
+        );
+    }
+
+    @DisplayName("종점을 제거할 경우 다음 역이 종점이 되는 기능을 테스트한다")
+    @Test
+    void testRemoveStationIfRemoveStationIsBoundTerminus() {
+        //given
+        String name = "2호선";
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(name, stations);
+
+        Station newStation = new Station("사당역");
+        int newStationLocation = 1;
+        line.addStation(newStationLocation, newStation);
+
+        //when
+        line.removeStation("강남역");
+
+        //then
+        assertAll(
+                () -> assertThat(line.getStations()).hasSize(2),
+                () -> assertThat(line.getStations())
+                        .usingElementComparatorOnFields("name")
+                .containsExactlyInAnyOrder(new Station("잠실역"), new Station("사당역"))
         );
     }
 }
