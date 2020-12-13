@@ -6,31 +6,32 @@ import java.util.Scanner;
 
 public class Input {
     final Scanner scanner;
-    public Input(Scanner scanner){
+
+    public Input(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public String inputFunction(){
+    public String inputFunction() {
         return scanner.next();
     }
 
-    public String inputStationName(){
+    public String inputStationName() {
         String answer = scanner.next();
-        if(answer.length() < 3){
+        if (answer.length() < 3) {
             throw new NameLengthException();
         }
         return answer;
     }
 
-    public String inputLineName(){
+    public String inputLineName() {
         String answer = scanner.next();
-        if(answer.length() < 3){
+        if (answer.length() < 3) {
             throw new NameLengthException();
         }
         return answer;
     }
 
-    public String inputOrder(){
+    public String inputOrder() {
         return scanner.next();
     }
 }
