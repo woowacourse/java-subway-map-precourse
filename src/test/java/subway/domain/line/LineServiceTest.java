@@ -4,11 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import subway.domain.line.dto.LineSaveReqDto;
-import subway.domain.station.Station;
-import subway.domain.station.dto.StationSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.LineException;
-import subway.exception.StationException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

@@ -1,7 +1,6 @@
 package subway.exception;
 
 import subway.view.Prefix;
-import subway.view.Screen;
 
 public enum ErrorCode {
     CANNOT_CHOOSE_OPTION("I001", Prefix.ERROR.getPrefix() + "선택할 수 없는 기능입니다."),
