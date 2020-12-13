@@ -38,7 +38,8 @@ public class DeleteAction extends Action {
     }
 
     private void printDeleteMessage(String type) {
-        System.out.print(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_DELETE + CommonMessage.SPACE + category + ActionMessage.INPUT_POSTPOSITION + CommonMessage.SPACE);
+        System.out.print(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_DELETE
+                + CommonMessage.SPACE + category + ActionMessage.INPUT_POSTPOSITION + CommonMessage.SPACE);
 
         if (type.equals(CategoryType.LINE)) {
             System.out.print(CategoryType.LINE + ActionMessage.DELETE_SECTION_POSTPOSITION + CommonMessage.SPACE);
@@ -72,7 +73,8 @@ public class DeleteAction extends Action {
         printDeleteMessage(CategoryType.STATION);
         String name = inputDelete();
 
-        LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().deleteStation(name);
+        LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get()
+                .deleteStation(name);
 
         printSuccessMessage();
     }

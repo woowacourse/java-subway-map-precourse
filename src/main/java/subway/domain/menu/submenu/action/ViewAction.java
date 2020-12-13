@@ -31,12 +31,14 @@ public class ViewAction extends Action {
     }
 
     private void viewStation() {
-        StationRepository.stations().stream().forEach(station -> System.out.println(CommonMessage.INFO + CommonMessage.SPACE + station.getName()));
+        StationRepository.stations().stream()
+                .forEach(station -> System.out.println(CommonMessage.INFO + CommonMessage.SPACE + station.getName()));
         System.out.println();
     }
 
     private void viewLine() {
-        LineRepository.lines().stream().forEach(line -> System.out.println(CommonMessage.INFO + CommonMessage.SPACE + line.getName()));
+        LineRepository.lines().stream()
+                .forEach(line -> System.out.println(CommonMessage.INFO + CommonMessage.SPACE + line.getName()));
         System.out.println();
     }
 }

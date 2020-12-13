@@ -1,6 +1,5 @@
 package subway.domain.menu.submenu.action;
 
-import java.util.List;
 import java.util.Scanner;
 
 import subway.domain.Line;
@@ -105,8 +104,9 @@ public class RegisterAction extends Action {
         printRegisterSectionMessage(ActionMessage.INPUT_SECTION_ORDER);
         int order = Integer.parseInt(inputRegister()) - 1;
 
-        LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList().add(order, new Station(name));
-        
+        LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList()
+                .add(order, new Station(name));
+
         printSuccessMessage();
     }
 
