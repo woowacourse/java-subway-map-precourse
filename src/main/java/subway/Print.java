@@ -11,7 +11,6 @@ public class Print {
     }
 
     public static void enterMessage(String text) {
-        System.out.println();
         System.out.println(Constant.HEAD_HASH + text);
     }
 

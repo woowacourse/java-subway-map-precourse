@@ -73,6 +73,7 @@ public class FlowChart {
                     break;
                 } catch (IllegalArgumentException e){
                     System.out.println(e.getMessage());
+                    System.out.println();
                 }
             }
             System.out.println();
