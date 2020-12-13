@@ -16,6 +16,7 @@ public class Line {
 
     public void addStation(Station station) {
         stations.add(station);
+        station.addNumberOnLines();
     }
 
     public List<Station> getStations() {

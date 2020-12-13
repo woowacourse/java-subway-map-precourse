@@ -5,7 +5,6 @@ import static subway.dashboard.DashboardWords.*;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import subway.domain.Line;
@@ -95,7 +94,7 @@ public class StretchDashboard {
         while (true) {
             String chosenLineName = inputView.readLineName();
             if (validLineNameSubmitted(new Line(chosenLineName))) {
-                chosenLine = pushChosenLine(chosenLineName);
+                chosenLine = LineRepository.getLineByName(chosenLineName);
                 break;
             }
         }
@@ -130,7 +129,7 @@ public class StretchDashboard {
         while (true) {
             String chosenLineName = inputView.readDeletingLineName();
             if (validLineNameSubmitted(new Line(chosenLineName))) {
-                chosenLine = pushChosenLine(chosenLineName);
+                chosenLine = LineRepository.getLineByName(chosenLineName);
                 break;
             }
         }
@@ -148,23 +147,25 @@ public class StretchDashboard {
         return false;
     }
 
-    public Line pushChosenLine(String lineName) {
-        for (Line line : LineRepository.lines()) {
-            if (line.getName().equals(lineName)) {
-                return line;
-            }
-        }
-        return null;
-    }
 
-    public void deleteChosenStretch(Line chosenLine, String StationName) {
+    public void deleteChosenStretch(Line chosenLine, String stationName) {
         if (chosenLine.getStations()
-            .removeIf(station -> Objects.equals(station.getName(), StationName))) {
+            .removeIf(station -> Objects.equals(station.getName(), stationName))) {
+            checkOnLineStatus(stationName);
             System.out.println(INFO_STRETCH_DELETE_SUCCESS);
             return;
         }
         System.out.println(ERROR_STATION_NAME_NO_EXISTS);
     }
+
+    public void checkOnLineStatus(String stationName) {
+        StationRepository.getStationByName(stationName).subtractNumberOnLines();
+        if(StationRepository.getStationByName(stationName).isNotOnLines()) {
+            StationRepository.deleteStation(stationName);
+        }
+    }
+
+
 
 
 }

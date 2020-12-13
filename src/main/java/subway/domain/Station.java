@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Station {
 
     private String name;
+    private int numberOnLines = 0;
 
     public Station(String name) {
         this.name = name;
@@ -12,6 +13,23 @@ public class Station {
 
     public String getName() {
         return name;
+    }
+
+    public int getNumberOnLines() { return numberOnLines; }
+
+    public void addNumberOnLines() {
+        numberOnLines++;
+    }
+
+    public void subtractNumberOnLines() {
+        numberOnLines--;
+    }
+
+    public boolean isNotOnLines() {
+        if(numberOnLines == 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean equals(Object object) {
