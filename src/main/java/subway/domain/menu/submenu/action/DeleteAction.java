@@ -15,6 +15,11 @@ public class DeleteAction extends Action {
 
     @Override
     public void runAction() {
+        if (category.equals(CategoryType.SECTION)) {
+            deleteSection();
+            return;
+        }
+
         printDeleteMessage();
         String name = inputDelete();
         if (category.equals(CategoryType.STATION)) {
@@ -32,6 +37,20 @@ public class DeleteAction extends Action {
                 + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_DELETE_NAME);
     }
 
+    private void printDeleteMessage(String type) {
+        System.out.print(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_DELETE + CommonMessage.SPACE + category + ActionMessage.INPUT_POSTPOSITION + CommonMessage.SPACE);
+
+        if (type.equals(CategoryType.LINE)) {
+            System.out.print(CategoryType.LINE + ActionMessage.DELETE_SECTION_POSTPOSITION + CommonMessage.SPACE);
+        }
+
+        if (type.equals(CategoryType.STATION)) {
+            System.out.print(CategoryType.STATION + ActionMessage.DELETE_SECTION_POSTPOSITION + CommonMessage.SPACE);
+        }
+
+        System.out.println(ActionMessage.INPUT_SECTION_MESSAGE);
+    }
+
     private String inputDelete() {
         String name = scanner.nextLine();
         System.out.println();
@@ -44,6 +63,18 @@ public class DeleteAction extends Action {
 
     private void deleteLine(String name) {
         LineRepository.deleteLineByName(name);
+    }
+
+    private void deleteSection() {
+        printDeleteMessage(CategoryType.LINE);
+        String line = inputDelete();
+
+        printDeleteMessage(CategoryType.STATION);
+        String name = inputDelete();
+
+        LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().deleteStation(name);
+
+        printSuccessMessage();
     }
 
     private void printSuccessMessage() {

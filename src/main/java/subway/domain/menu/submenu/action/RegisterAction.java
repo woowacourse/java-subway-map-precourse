@@ -106,6 +106,8 @@ public class RegisterAction extends Action {
         int order = Integer.parseInt(inputRegister()) - 1;
 
         LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList().add(order, new Station(name));
+        
+        printSuccessMessage();
     }
 
     private void printSuccessMessage() {

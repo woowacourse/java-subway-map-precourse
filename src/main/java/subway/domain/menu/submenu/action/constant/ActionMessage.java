@@ -22,4 +22,6 @@ public class ActionMessage {
     public static final String INPUT_SECTION_STATION = "역이름을";
     public static final String INPUT_SECTION_ORDER = "순서를";
     public static final String INPUT_SECTION_MESSAGE = "입력하세요.";
+
+    public static final String DELETE_SECTION_POSTPOSITION = "을";
 }
