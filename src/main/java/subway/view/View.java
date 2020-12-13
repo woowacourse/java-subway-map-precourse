@@ -1,5 +1,7 @@
 package subway.view;
 
+import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -24,10 +26,9 @@ public abstract class View {
         }
     }
 
-    protected boolean hasKey(String selection) {
-        if (menu.containsKey(selection)) {
-            return true;
+    protected void checkKey(String selection) {
+        if (!menu.containsKey(selection)) {
+            throw new IllegalArgumentException(ERROR_INVALID_FUNCTION);
         }
-        return false;
     }
 }

@@ -28,12 +28,12 @@ public class MainView extends View {
         System.out.println(HEADER_MAIN_VIEW);
         printMenu();
         String selection = scanner.nextLine();
-        if (hasKey(selection)) {
+        try {
             doFunction(selection);
-            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            startView();
         }
-        System.out.println(ERROR_INVALID_FUNCTION);
-        startView();
     }
 
     private void doFunction(String selection) {

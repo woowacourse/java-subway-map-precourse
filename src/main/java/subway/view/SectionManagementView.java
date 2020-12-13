@@ -26,12 +26,12 @@ public class SectionManagementView extends View {
         System.out.println(HEADER_SECTION_MANAGEMENT_VIEW);
         printMenu();
         String selection = scanner.nextLine();
-        if (hasKey(selection)) {
+        try {
             doFunction(selection);
-            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            startView();
         }
-        System.out.println(ERROR_INVALID_FUNCTION);
-        startView();
     }
 
     private void doFunction(String selection) {
