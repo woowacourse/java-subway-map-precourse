@@ -19,6 +19,10 @@ public class Station {
         this.lines.addLine(line);
     }
 
+    public void removeLine(Line line) {
+        this.lines.removeLine(line);
+    }
+
     public boolean isRegistered() {
         return this.lines.isRegistered();
     }

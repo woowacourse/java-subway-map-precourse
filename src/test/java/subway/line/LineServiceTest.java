@@ -136,4 +136,27 @@ public class LineServiceTest {
         assertThat(topStation.isRegistered()).isTrue();
         assertThat(bottomStation.isRegistered()).isTrue();
     }
+
+    @Test
+    public void 노선이_삭제될때_해당_노선에_등록된_각각의_역에_삭제될_노선_정보를_삭제해야함() {
+        //given
+        String lineName = "1호선";
+        String topStationName = "잠실역";
+        String bottomStationName = "강남역";
+
+        StationRepository.register(new Station(topStationName));
+        StationRepository.register(new Station(bottomStationName));
+
+        LineService.register(lineName, bottomStationName, bottomStationName);
+
+        //when
+        LineService.remove(lineName);
+        Station topStation = StationRepository.findByName(topStationName);
+        Station bottomStation = StationRepository.findByName(bottomStationName);
+
+        //then
+
+        assertThat(topStation.isRegistered()).isFalse();
+        assertThat(bottomStation.isRegistered()).isFalse();
+    }
 }

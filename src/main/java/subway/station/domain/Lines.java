@@ -14,6 +14,10 @@ public class Lines {
         this.lines.add(line);
     }
 
+    public void removeLine(Line line) {
+        this.lines.remove(line);
+    }
+
     public boolean isRegistered() {
         return lines.size() >= MIN_COUNT_IF_REGISTERED;
     }

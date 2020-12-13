@@ -29,6 +29,10 @@ public class Line {
         this.route.remove(station);
     }
 
+    public void clearUp() {
+        route.getStations().forEach(station -> station.removeLine(this));
+    }
+
     public boolean isExist(String stationName) {
         return route.isExist(stationName);
     }

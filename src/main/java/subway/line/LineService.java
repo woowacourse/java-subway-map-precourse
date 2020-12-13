@@ -16,6 +16,7 @@ public class LineService {
 
     public static void remove(String name) {
         Line line = LineRepository.findByName(name);
+        line.clearUp();
         LineRepository.remove(line);
     }
 }

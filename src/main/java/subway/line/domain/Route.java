@@ -26,7 +26,6 @@ public class Route {
         stations.remove(station);
     }
 
-
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
