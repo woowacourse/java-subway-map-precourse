@@ -20,7 +20,11 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        if (stations.removeIf(station -> Objects.equals(station.getName(), name))) {
+            LineRepository.deleteStationsOnLineByName(name);
+            return true;
+        }
+        return false;
     }
 
     public static Station getStationByName(String stationName) {
