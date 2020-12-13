@@ -5,6 +5,7 @@ import subway.domain.entity.Sections;
 import subway.domain.entity.Station;
 import subway.domain.repository.LineRepository;
 import subway.dto.SectionDto;
+import subway.dto.SubwayMapDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +50,13 @@ public class LineService {
         return lineRepository.findAll()
                 .stream()
                 .map(Line::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<SubwayMapDto> getSubwayMapDtos() {
+        return lineRepository.findAll()
+                .stream()
+                .map(SubwayMapDto::from)
                 .collect(Collectors.toList());
     }
 }

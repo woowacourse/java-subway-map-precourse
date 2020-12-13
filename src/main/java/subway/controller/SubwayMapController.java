@@ -4,6 +4,7 @@ import subway.domain.entity.Sections;
 import subway.domain.entity.Station;
 import subway.dto.LineDto;
 import subway.dto.SectionDto;
+import subway.dto.SubwayMapDto;
 import subway.service.LineService;
 import subway.service.StationService;
 
@@ -43,11 +44,19 @@ public class SubwayMapController {
         lineService.addSection(sectionDto, station);
     }
 
+    public void deleteSection(SectionDto sectionDto) {
+        lineService.deleteSection(sectionDto);
+    }
+
     public List<String> getStationNames() {
         return stationService.getStationNames();
     }
 
     public List<String> getLineNames() {
         return lineService.getLineNames();
+    }
+
+    public List<SubwayMapDto> getSubwayMapDtos() {
+        return lineService.getSubwayMapDtos();
     }
 }
