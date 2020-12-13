@@ -6,6 +6,7 @@ import subway.domain.station.dto.StationSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.StationException;
 
+import java.util.Collections;
 import java.util.List;
 
 public class StationServiceImpl implements StationService {
@@ -37,6 +38,7 @@ public class StationServiceImpl implements StationService {
     @Override
     public Stations getStations() {
         List<Station> stationList = stationRepository.stations();
+        Collections.sort(stationList);
         Stations stations = Stations.of(stationList);
         return stations;
     }

@@ -3,7 +3,7 @@ package subway.domain.station;
 import subway.exception.ErrorCode;
 import subway.exception.StationException;
 
-public class Station {
+public class Station implements Comparable<Station> {
     private static final int MIN_SIZE = 2;
     private static final String MUST_CONTAIN_LAST = "역";
     private static final String PERMIT_CHARACTER = "^[가-힣|0-9]*$";
@@ -34,5 +34,13 @@ public class Station {
         if (!name.matches(PERMIT_CHARACTER)) {
             throw new StationException(ErrorCode.STATION_INVALID_CHARACTER);
         }
+    }
+
+    @Override
+    public int compareTo(Station o) {
+        if (this.name.compareTo(o.name) > 0) {
+            return 1;
+        }
+        return -1;
     }
 }
