@@ -12,7 +12,5 @@ public class MainViewOutputController {
         for (String key: mainMenu.keySet()) {
             System.out.println(mainMenu.get(key).getMenuName());
         }
-
-        System.out.print("/n");
     }
 }
