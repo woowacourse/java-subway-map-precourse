@@ -1,14 +1,15 @@
 package subway.view;
 
-
-
-import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
+import static subway.resource.TextResource.ASK_ADD_LINE_END;
+import static subway.resource.TextResource.ASK_ADD_LINE_NAME;
+import static subway.resource.TextResource.ASK_ADD_LINE_START;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_LINE_ADD;
 import static subway.resource.TextResource.FUNCTION_LINE_DELETE;
 import static subway.resource.TextResource.FUNCTION_LINE_LIST_SHOW;
 
 import java.util.Scanner;
+import subway.controller.LineManagementController;
 import subway.view.MainView.OnBackListener;
 
 public class LineManagementView extends View {
@@ -46,6 +47,7 @@ public class LineManagementView extends View {
 
     private void doStationManageFunction(String selection) {
         if (KEY_ADD_LINE.equals(selection)) {
+            addLine();
             return;
         }
 
@@ -55,6 +57,17 @@ public class LineManagementView extends View {
 
         if (KEY_SHOW_LINE_LIST.equals(selection)) {
         }
+    }
+
+    private void addLine() throws IllegalArgumentException {
+        System.out.println(ASK_ADD_LINE_NAME);
+        String name = scanner.nextLine();
+        System.out.println(ASK_ADD_LINE_START);
+        String start = scanner.nextLine();
+        System.out.println(ASK_ADD_LINE_END);
+        String end = scanner.nextLine();
+        LineManagementController.getInstance().addLine(name, start, end);
+        onBackListener.onBack();
     }
 
     private void initMenu() {

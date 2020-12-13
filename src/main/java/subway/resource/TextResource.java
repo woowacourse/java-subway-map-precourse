@@ -16,6 +16,12 @@ public class TextResource {
         = String.format(PREFIX_ERROR + "노선의 이름은 %d 글자 이상이어야 합니다.",
         MIN_LINE_NAME_LENGTH);
 
+    public static final String ERROR_NOT_EXISTENCE_STATION = PREFIX_ERROR
+        + "노선에 등록하려는 역이 존재 하지 않습니다.";
+
+    public static final String ERROR_START_END_STATION_DUPLICATED = PREFIX_ERROR
+        + "상행 종점역과 하행 종점역이 같을 수 없습니다.";
+
     public static final String ERROR_STATION_NAME_DUPLICATED = PREFIX_ERROR
         + "이미 해당 지하철역이 존재 합니다. 등록 할 수 없습니다.";
 
@@ -50,4 +56,8 @@ public class TextResource {
     public static String ASK_FUNCTION = "## 원하는 기능을 선택하세요.";
     public static String ASK_ADD_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
     public static String ASK_DELETE_STATION_NAME = "## 삭제할 역 이름을 입력하세요.";
+
+    public static String ASK_ADD_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
+    public static String ASK_ADD_LINE_START = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static String ASK_ADD_LINE_END = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 }
