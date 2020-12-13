@@ -45,7 +45,7 @@ public class LineService {
     }
 
     public void getLine() {
-        // TODO [INFO] 붙여서 출력하기
-        System.out.println(Arrays.toString(LineRepository.lines().toArray()));
+        System.out.println("## 노선 목록");
+        LineRepository.lines().forEach(line -> System.out.println("[INFO] " + line.getName()));
     }
 }

@@ -16,6 +16,7 @@ public class LineController implements MenuSelectManager {
         LineService lineService = new LineService();
         MenuPrinter.printLineMenu();
         String menuInput = scanner.next();
+        System.out.println();
         if (menuInput.equals(BACK)) {
             return;
         }
