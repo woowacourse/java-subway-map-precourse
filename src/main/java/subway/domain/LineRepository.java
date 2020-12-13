@@ -38,4 +38,16 @@ public class LineRepository {
         }
         return false;
     }
+
+    public static Line getLineByName(String name) {
+        if (hasLine(name)) {
+            throw new IllegalArgumentException(ERROR_LINE_NOT_EXISTENCE);
+        }
+        for (Line line : lines()) {
+            if (line.getName().equals(name)) {
+                return line;
+            }
+        }
+        return null;
+    }
 }
