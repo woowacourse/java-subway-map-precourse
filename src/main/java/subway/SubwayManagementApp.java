@@ -4,6 +4,7 @@ import subway.domain.*;
 import subway.view.OutputView;
 import subway.view.page.MainMenu;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.List;
@@ -45,5 +46,9 @@ public class SubwayManagementApp {
 
         Line sinboondang = Line.create(lineNames.get(2), stations.get(1), stations.get(5));
         sinboondang.addStation(new Order(1), stations.get(4));
+
+        LineRepository.addLine(ihoseon);
+        LineRepository.addLine(samhoseon);
+        LineRepository.addLine(sinboondang);
     }
 }
