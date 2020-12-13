@@ -41,7 +41,7 @@ public class StationMenuController {
         Arrays.stream(Menu.values())
                 .filter(menu -> menu.button.equals(input))
                 .findAny()
-                .orElseThrow(InvalidChoiceInputException::new)
+                .orElseThrow(() -> {throw new InvalidChoiceInputException(input);})
                 .goToMenu();
     }
 
