@@ -15,7 +15,7 @@ public class SubwayMap {
     private InputView inputView;
 
     public SubwayMap(Scanner scanner) {
-        InputView.initScanner(scanner);
+        InputView.initInputView(scanner);
         this.inputView = InputView.getInstance();
     }
 
@@ -30,38 +30,28 @@ public class SubwayMap {
         }
     }
 
-
     private boolean checkState() {
         return state != null;
     }
 
     private void selectMenu() {
-
         String input = inputView.selectMenu();
-
         try {
-            this.state = change(input);
-            menuRen();
+            this.state = searchMenuList(input);
+            menuRun();
         } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
-
-
     }
 
-    private void menuRen() {
+    private void menuRun() {
         this.state = state.run();
-    }
-
-    private Menu change(String input) {
-        return searchMenuList(input);
     }
 
     private Menu searchMenuList(String input) {
         return Arrays.stream(state.getValues())
                 .filter(menu -> menu.getOrder().equals(input))
-                .findFirst().orElseThrow(() ->
-                        new MenuNotFountException(input)
+                .findFirst().orElseThrow(() -> new MenuNotFountException(input)
                 );
     }
 

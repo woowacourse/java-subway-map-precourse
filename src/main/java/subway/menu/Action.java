@@ -2,39 +2,55 @@ package subway.menu;
 
 import subway.controller.ControllerFactory;
 import subway.controller.SubwayController;
+import subway.view.OutputView;
 
 public enum Action {
 
     REGISTER("등록") {
         @Override
         public Menu action(Menu menu) {
-            SubwayController controller = ControllerFactory.of(menu);
-            controller.save();
-            return MainMenu.SECTION;
+
+            try {
+                SubwayController controller = ControllerFactory.of(menu);
+                controller.save();
+                return MainMenu.SECTION;
+            } catch (Exception e) {
+                OutputView.printErrorMessage(e);
+                return menu;
+            }
+
+
         }
     },
     DELETE("삭제") {
         @Override
         public Menu action(Menu menu) {
-            SubwayController controller = ControllerFactory.of(menu);
-            controller.delete();
-            return MainMenu.SECTION;
 
+            try {
+                SubwayController controller = ControllerFactory.of(menu);
+                controller.delete();
+                return MainMenu.SECTION;
+            } catch (Exception e) {
+                OutputView.printErrorMessage(e);
+                return menu;
+            }
         }
     },
     SEARCH("조회") {
         @Override
         public Menu action(Menu menu) {
-            SubwayController controller = ControllerFactory.of(menu);
-            controller.findAll();
-            return MainMenu.SECTION;
-
+            try {
+                SubwayController controller = ControllerFactory.of(menu);
+                controller.findAll();
+                return MainMenu.SECTION;
+            } catch (Exception e) {
+                return menu;
+            }
         }
     },
     BACK("") {
         @Override
         public Menu action(Menu menu) {
-            //아무것도 안함
             return MainMenu.SECTION;
         }
     };

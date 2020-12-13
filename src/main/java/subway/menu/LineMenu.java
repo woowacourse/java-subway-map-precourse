@@ -1,12 +1,5 @@
 package subway.menu;
 
-import subway.controller.ControllerFactory;
-import subway.controller.SubwayController;
-import subway.exception.MenuNotFountException;
-import subway.view.OutputView;
-
-import java.util.Arrays;
-
 public enum LineMenu implements Menu {
 
     REGISTER("1", "노선 등록", Action.REGISTER),
@@ -19,7 +12,6 @@ public enum LineMenu implements Menu {
     final Action action;
 
     private static final String MENU_TITLE = "노선 관리 ";
-    private static SubwayController controller = ControllerFactory.of(LineMenu.BACK);
     private static final String MENU_TYPE = "노선";
 
     LineMenu(String order, String menu, Action action) {
@@ -30,14 +22,7 @@ public enum LineMenu implements Menu {
 
     @Override
     public Menu run() {
-
-        try {
-            action.action(this);
-            return MainMenu.QUIT;
-        } catch (Exception e) {
-            OutputView.printErrorMessage(e);
-        }
-        return LineMenu.BACK;
+        return action.action(this);
     }
 
     @Override
@@ -55,6 +40,7 @@ public enum LineMenu implements Menu {
         return MENU_TITLE;
     }
 
+    @Override
     public String getType() {
         return MENU_TYPE;
     }
