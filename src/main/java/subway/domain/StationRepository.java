@@ -1,10 +1,13 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import subway.service.LineService;
+import subway.service.SectionService;
 
 public class StationRepository {
 
@@ -37,19 +40,19 @@ public class StationRepository {
         }
     }
 
-    public static Station findStation(String name) {
-        Station foundStation = null;
-        for (Station station : stations) {
-            if (station.getName().equals(name)) {
-                foundStation = station;
-                break;
-            }
+    public static Station getStationByName(String name) {
+        try {
+            return stations().stream()
+                .filter(station -> station.getName().equals(name))
+                .findAny()
+                .get();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException("해당 지하철 역은 존재하지 않습니다.");
         }
-        return foundStation;
     }
 
     private static void validateRegistered(String name) {
-        if (LineService.contain(name)) {
+        if (SectionService.contain(name)) {
             throw new IllegalArgumentException("지하철 노선에 등록되어 있는 지하철 역은 삭제할 수 없습니다.");
         }
     }
