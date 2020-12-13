@@ -74,9 +74,15 @@ public class ScannerInputService implements InputService {
         return sequence;
     }
 
-    private void validateSequence(int sequence) {
-        if (sequence < 1) {
-            throw new InputServiceException(ErrorCode.INVALID_SEQUENCE);
+    private String getNextLine() {
+        return scanner.nextLine();
+    }
+
+    private int stringToInt(String inputMainOption) {
+        try {
+            return Integer.parseInt(inputMainOption);
+        } catch (IllegalArgumentException IllegalArgumentException) {
+            throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);
         }
     }
 
@@ -108,19 +114,6 @@ public class ScannerInputService implements InputService {
         checkOption(option, ADD, DELETE, FIND);
     }
 
-    private void checkOption(int option, int add, int delete, int find) {
-        if (option == add) {
-            return;
-        }
-        if (option == delete) {
-            return;
-        }
-        if (option == find) {
-            return;
-        }
-        throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);
-    }
-
     private void validateMainOption(int option) {
         if (option == MANAGE_STATION) {
             return;
@@ -137,15 +130,22 @@ public class ScannerInputService implements InputService {
         throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);
     }
 
-    private int stringToInt(String inputMainOption) {
-        try {
-            return Integer.parseInt(inputMainOption);
-        } catch (IllegalArgumentException IllegalArgumentException) {
-            throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);
+    private void checkOption(int option, int add, int delete, int find) {
+        if (option == add) {
+            return;
         }
+        if (option == delete) {
+            return;
+        }
+        if (option == find) {
+            return;
+        }
+        throw new InputServiceException(ErrorCode.CANNOT_CHOOSE_OPTION);
     }
 
-    private String getNextLine() {
-        return scanner.nextLine();
+    private void validateSequence(int sequence) {
+        if (sequence < 1) {
+            throw new InputServiceException(ErrorCode.INVALID_SEQUENCE);
+        }
     }
 }
