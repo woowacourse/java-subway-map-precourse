@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class SubwayRepository {
 
@@ -14,8 +15,31 @@ public class SubwayRepository {
         return subway;
     }
 
-    public static void addStationOnTheLine(Line line, List<Station> sections) {
-        subway.put(line, sections);
+    public static void addStationOnTheLine(Line line, List<Station> stations) {
+        subway.put(line, stations);
+    }
+
+    public static void deleteLineOnSubway(String lineName) {
+        for (Line line : subway.keySet()) {
+            if (Objects.equals(line.getName(), lineName))
+                subway.remove(line);
+        }
+    }
+
+    public static void addSectionOnTheLine(String lineName, String sectionName, String order) {
+
+    }
+
+    public static void deleteSectionOnTheLine(String stationName) {
+
+    }
+
+    public static boolean isLineInStationsOverTwo(String lineName) {
+        Line line = LineRepository.getLine(lineName);
+        List<Station> stations = subway.get(line);
+        if (stations.size() == 2)
+            return false;
+        return true;
     }
 
     @Override

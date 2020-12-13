@@ -2,6 +2,7 @@ package view;
 
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
+import subway.domain.SubwayRepository;
 import validator.ExceptionMessage;
 import validator.Validator;
 
@@ -124,8 +125,10 @@ public class InputView {
             System.out.println(DELETE_lINE_NAME);
             String input = scanner.next();
 
-            if(!LineRepository.deleteLineByName(input))
+            if(!LineRepository.deleteLineByName(input)) {
                 throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_LINE);
+            }
+            SubwayRepository.deleteLineOnSubway(input);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             inputDeleteLine(scanner);
