@@ -117,7 +117,10 @@ public class Menu {
 
     private static boolean runLineMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
-            Line.add(inputView, LINE_MENU_TITLE);
+            Line.add(inputView, LINE_MENU_TITLE, STATION_MENU_TITLE);
+        }
+        if (subMenuAction.equals(DELETE_SIGN)) {
+            Line.delete(inputView, LINE_MENU_TITLE);
         }
         return true;
     }

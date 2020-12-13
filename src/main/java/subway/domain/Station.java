@@ -35,7 +35,7 @@ public class Station {
     public static void delete(InputView inputView, String stationMessage) {
         OutputView.printDeleteActionMessage(stationMessage);
         String deleteStationName = inputView.getInput();
-        if (validateDeleteStationName(deleteStationName)) {
+        if (validateDeleteStationName(deleteStationName, stationMessage)) {
             StationRepository.deleteStation(deleteStationName);
             OutputView.printDeleteActionFinishMessage(stationMessage);
         }
@@ -51,9 +51,9 @@ public class Station {
         return true;
     }
 
-    private static boolean validateDeleteStationName(String stationName) {
+    private static boolean validateDeleteStationName(String stationName, String stationMessage) {
         if (StationRepository.validateNewName(stationName)) {
-            throw new NonExistentNameException();
+            throw new NonExistentNameException(stationMessage);
         }
         if (!LineRepository.validateNewStationName(stationName)) {
             throw new RegisteredStationException();

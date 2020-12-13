@@ -1,6 +1,7 @@
 package subway.domain;
 
 import subway.domain.exception.ExistentNameException;
+import subway.domain.exception.RegisteredStationException;
 import subway.domain.exception.UnvalidNameLengthException;
 import subway.domain.exception.NonExistentNameException;
 import subway.domain.exception.SameBoundStationException;
@@ -48,16 +49,25 @@ public class Line {
         return true;
     }
 
-    public static void add(InputView inputView, String lineMessage) {
+    public static void add(InputView inputView, String lineMessage, String stationMessage) {
         OutputView.printAddActionMessage(lineMessage);
         String newLineName = inputView.getInput();
         if (validateAddLineName(newLineName, lineMessage)) {
-            List<String> boundStations = getBoundsStation(inputView);
+            List<String> boundStations = getBoundsStation(inputView, stationMessage);
             Line newLine = new Line(newLineName);
             newLine.setBoundStations(boundStations);
             LineRepository.addLine(newLine);
         }
         OutputView.printAddActionFinishMessage(lineMessage);
+    }
+
+    public static void delete(InputView inputView, String lineMessage) {
+        OutputView.printDeleteActionMessage(lineMessage);
+        String deleteLineName = inputView.getInput();
+        if (validateDeleteLineName(deleteLineName, lineMessage)) {
+            LineRepository.deleteLineByName(deleteLineName);
+            OutputView.printDeleteActionFinishMessage(lineMessage);
+        }
     }
 
     private static boolean validateAddLineName(String stationName, String lineMessage) {
@@ -70,6 +80,13 @@ public class Line {
         return true;
     }
 
+    private static boolean validateDeleteLineName(String lineName, String lineMessage) {
+        if (LineRepository.validateNewLineName(lineName)) {
+            throw new NonExistentNameException(lineMessage);
+        }
+        return true;
+    }
+
     private static boolean validateLineNameLength(String stationName) {
         if (stationName.length() >=  MINIMUM_LENGTH) {
             return true;
@@ -77,21 +94,21 @@ public class Line {
         return false;
     }
 
-    private static List<String> getBoundsStation(InputView inputView) {
+    private static List<String> getBoundsStation(InputView inputView, String stationMessage) {
         OutputView.printUpBoundStationMessage();
         String upBoundStationName = inputView.getInput();
-        validateBoundStation(upBoundStationName);
+        validateBoundStation(upBoundStationName, stationMessage);
         OutputView.printDownBoundStationMessage();
         String downBoundStationName = inputView.getInput();
-        validateBoundStation(downBoundStationName);
+        validateBoundStation(downBoundStationName, stationMessage);
         List<String> boundStations = Arrays.asList(upBoundStationName, downBoundStationName);
         validateSameBoundStations(boundStations);
         return boundStations;
     }
 
-    private static boolean validateBoundStation(String boundStationName) {
+    private static boolean validateBoundStation(String boundStationName, String stationMessage) {
         if (!validateExistentStation(boundStationName)) {
-            throw new NonExistentNameException();
+            throw new NonExistentNameException(stationMessage);
         }
         return true;
     }
