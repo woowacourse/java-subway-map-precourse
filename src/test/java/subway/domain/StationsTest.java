@@ -60,4 +60,26 @@ class StationsTest {
                 .isInstanceOf(NoSuchElementException.class)
                 .hasMessage("[ERROR] 해당 역이 없습니다.");
     }
+
+    @DisplayName("역을 삭제한다")
+    @Test
+    void 역을_삭제한다() {
+        String testName = "노들역";
+        stations.addStation(StationFactory.makeStation(testName));
+
+        stations.deleteStation(testName);
+        assertThat(stations.size()).isEqualTo(0);
+    }
+
+    @DisplayName("예외 : 삭제하려는 역이 없으면 에러를 발생시킨다")
+    @Test
+    void 삭제하려는_역이_없다() {
+        String testName = "상도역";
+        stations.addStation(StationFactory.makeStation(testName));
+
+        String errorName = "장승역";
+        assertThatThrownBy(() -> stations.deleteStation(errorName))
+            .isInstanceOf(NoSuchElementException.class)
+            .hasMessage("[ERROR] 해당 역이 없습니다.");
+    }
 }
