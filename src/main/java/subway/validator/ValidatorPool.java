@@ -1,7 +1,7 @@
 package subway.validator;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ValidatorPool {
 
@@ -14,7 +14,7 @@ public class ValidatorPool {
     private static class ValidatorFactory {
 
         private static final Map<Class<? extends Validator>, Validator> validatorPool =
-                new ConcurrentHashMap<>();
+                new HashMap<>();
 
         static {
             validatorPool.put(IndexValidator.class, new IndexValidator());
