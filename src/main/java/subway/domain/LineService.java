@@ -35,8 +35,13 @@ public class LineService {
     }
 
     public void deleteLine(Scanner scanner) {
+        System.out.println("## 삭제할 노선 이름을 입력하세요.");
         String lineName = scanner.next();
-        LineRepository.deleteLineByName(lineName);
+        if(!LineRepository.deleteLineByName(lineName)) {
+            System.out.println("[ERROR] 해당 이름으로 등록된 노선이 없습니다.");
+            return;
+        }
+        System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
     public void getLine() {
