@@ -31,7 +31,7 @@ public class Exception {
         return input;
     }
 
-    public static String checkLineAdd(String input) {
+    public static String checkLineNameAdd(String input) {
         input = isNotEmpty(input);
         input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
