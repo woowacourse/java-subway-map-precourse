@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import subway.controller.ManageController;
+import subway.controller.ManageControllerTest;
 
 class StationRepositoryTest {
 
@@ -20,7 +21,7 @@ class StationRepositoryTest {
     public void initStationRepository() {
         stationRepository = new StationRepository();
 
-        lineRepository = ManageController.initializeWithEmptyStations().lines();
+        lineRepository = ManageControllerTest.initializeWithEmptyStations().lines();
     }
 
     @Test

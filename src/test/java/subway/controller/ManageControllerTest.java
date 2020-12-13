@@ -6,13 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ManageControllerTest {
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
+
+public class ManageControllerTest {
 
     private ManageController manageController;
 
     @BeforeEach
     public void initManageController() {
-        manageController = ManageController.initializeWithEmptyStations();
+        manageController = initializeWithEmptyStations();
     }
 
     @Test
@@ -103,5 +106,18 @@ class ManageControllerTest {
         //then
         assertThat(manageController.lines().getStationNamesByLineName("2호선"))
                 .containsExactly("강남역", "역삼역");
+    }
+
+    public static ManageController initializeWithEmptyStations() {
+        String[] secondLine = {"교대역", "강남역", "역삼역"};
+        String[] thirdLine = {"교대역", "남부터미널역", "양재역", "매봉역"};
+        String[] sinbundangLine = {"강남역", "양재역", "양재시민의숲역"};
+
+        LineRepository lineRepository = new LineRepository()
+                .addLine("2호선", secondLine)
+                .addLine("3호선", thirdLine)
+                .addLine("신분당선", sinbundangLine);
+
+        return new ManageController(lineRepository, new StationRepository());
     }
 }
