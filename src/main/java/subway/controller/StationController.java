@@ -23,8 +23,8 @@ public class StationController {
         stationView = StationView.getInstance(scanner);
     }
 
-    public static StationController getInstance(Scanner scanner){
-        if(stationController == null){
+    public static StationController getInstance(Scanner scanner) {
+        if (stationController == null) {
             stationController = new StationController(scanner);
             return stationController;
         }
