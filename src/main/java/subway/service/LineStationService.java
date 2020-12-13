@@ -1,15 +1,13 @@
 package subway.service;
 
 import subway.domain.*;
-import subway.utils.InputValidation;
 
 import java.util.Scanner;
 
-import static subway.view.InputView.*;
 import static subway.view.OutputView.printAddLineStationSuccessMessage;
 import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 
-public class LineStationService extends InputValidation {
+public class LineStationService extends InputService {
 
     public void selectLineStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
         if (menu.equals(MenuType.LINE_STATION_ADD.getKey())) {
@@ -24,16 +22,9 @@ public class LineStationService extends InputValidation {
     }
 
     private void addLineStation(Scanner scanner, LineStationRepository lineStation) {
-        inputAddLineNameRequestMessage();
-        String lineName = scanner.nextLine();
-        inputAddStartStationNameRequestMessage();
-        String startStationName = scanner.nextLine();
-        inputAddEndStationNameRequestMessage();
-        String endStationName = scanner.nextLine();
-        validateNameLengthIsMoreThan2(lineName);
-        validateLineNameIsDuplicate(lineName);
-        validateStationNameIsContains(startStationName);
-        validateStationNameIsContains(endStationName);
+        String lineName = inputAddLineName(scanner);
+        String startStationName = inputAddStartStationName(scanner);
+        String endStationName = inputAddEndStationName(scanner);
         Line line = new Line(lineName);
         LineRepository.addLine(line);
         lineStation.addLineStation(line, StationRepository.findStation(startStationName).get());
@@ -42,9 +33,7 @@ public class LineStationService extends InputValidation {
     }
 
     private void deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
-        inputDeleteLineNameRequestMessage();
-        String lineName = scanner.nextLine();
-        validateLineNameIsContains(lineName);
+        String lineName = inputDeleteLineName(scanner);
         lineStation.deleteLineStation(LineRepository.findLine(lineName).get());
         LineRepository.deleteLineByName(lineName);
         printDeleteLineStationSuccessMessage();
