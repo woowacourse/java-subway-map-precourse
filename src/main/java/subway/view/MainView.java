@@ -15,20 +15,10 @@ public class MainView extends ManagerView {
 		selectMenu(scanner);
 	}
 	
-	@Override
-	public void print() {
-		printTopMenu(TOP_MENU_MESSAGE);
-		printFirstMenu(FIRST_MENU_MESSAGE);
-		printSecondMenu(SECOND_MENU_MESSAGE);
-		printThirdMenu(THIRD_MENU_MESSAGE);
-		printFourthMenu(FOURTH_MENU_MESSAGE);
-		printQuitMenu(QUIT_MENU_MESSAGE);
-	}
-
 	private void selectMenu(Scanner scanner) {
 		String menuSelected = scanner.nextLine();
 		if (menuSelected.equals(FIRST_MENU)) {
-			new StationManagerView();
+			new StationManagerView(scanner);
 		} else if (menuSelected.equals(SECOND_MENU)) {
 			new LineManagerView();
 		} else if (menuSelected.equals(THIRD_MENU)) {
@@ -38,5 +28,15 @@ public class MainView extends ManagerView {
 		} else if (menuSelected.equals(QUIT_MENU)) {
 			// Do nothing;
 		}
+	}
+	
+	@Override
+	public void print() {
+		printTopMenu(TOP_MENU_MESSAGE);
+		printFirstMenu(FIRST_MENU_MESSAGE);
+		printSecondMenu(SECOND_MENU_MESSAGE);
+		printThirdMenu(THIRD_MENU_MESSAGE);
+		printFourthMenu(FOURTH_MENU_MESSAGE);
+		printQuitMenu(QUIT_MENU_MESSAGE);
 	}
 }
