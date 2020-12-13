@@ -20,12 +20,11 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public void addStation(Station station) {    //기존
+    public void addStation(Station station) {
 
         if (stations().contains(station)) {
             throw new AlreadyAddStationException(station);
         }
-
         stations.add(station);
     }
 

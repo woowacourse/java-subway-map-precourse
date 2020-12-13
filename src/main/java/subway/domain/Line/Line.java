@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line implements Comparable<Line> {
+
     private LineName name;
-    // 추가 기능 구현
+
     private final List<Station> stations = new LinkedList<>();
     private static final int STATIONS_MIN_INDEX = 1;
     private static final int ONE_INDEX = 1;
@@ -73,7 +74,7 @@ public class Line implements Comparable<Line> {
         stations.remove(station);
     }
 
-    public boolean isContains(Station station) {
+    private boolean isContains(Station station) {
         return stations.contains(station);
     }
 
@@ -116,7 +117,7 @@ public class Line implements Comparable<Line> {
         return name.toString();
     }
 
-    public boolean canRemoveStation() {
+    private boolean canRemoveStation() {
         return stations.size() > STATIONS_MIN_CAPACITY;
     }
 

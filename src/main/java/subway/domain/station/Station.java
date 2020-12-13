@@ -69,8 +69,4 @@ public class Station implements Comparable<Station> {
         lines.add(line);
     }
 
-    public boolean containLine(LineName lineName) {
-        return lines.stream().anyMatch(line -> line.isSameName(lineName.toString()));
-    }
-
 }
