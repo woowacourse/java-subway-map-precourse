@@ -12,6 +12,8 @@ public class Menu {
     public static final String STATION_TO_ADD_PATH_GUIDE = "역이름을 입력하세요.";
     public static final String INDEX_TO_ADD_PATH_GUIDE = "순서를 입력하세요.";
 
+    public static final String SUBWAY_MAP = "지하철노선도";
+
 
     private Menu() {
     }
@@ -59,5 +61,9 @@ public class Menu {
     }
     public static void printIndexToAddPath() {
         System.out.println(GUIDE_PREFIX + INDEX_TO_ADD_PATH_GUIDE);
+    }
+
+    public static void printSubwayMap() {
+        System.out.println(GUIDE_PREFIX + SUBWAY_MAP);
     }
 }

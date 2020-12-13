@@ -18,6 +18,10 @@ public class SubwayRepository {
         subwayRealLines.put(newline, path);
     }
 
+    public static PathRepository getPathByLine(Line line){
+        return subwayRealLines.get(line);
+    }
+
     public static PathRepository getPathByLineName(String lineName) {
         Line line = LineRepository.findLine(lineName);
         return subwayRealLines.get(line);

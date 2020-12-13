@@ -1,10 +1,13 @@
 package subway.controller;
 
 import java.util.Scanner;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.MenuItemsRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
+import subway.view.InfoMessage;
 import subway.view.Menu;
 
 public class SubwaySystem {
@@ -64,7 +67,19 @@ public class SubwaySystem {
             pathSystem.run();
         }
         if (input.equals("4")) {
-            System.out.println("노선도 출력");
+            printSubwayMap();
+        }
+    }
+
+    private void printSubwayMap() {
+        Menu.printSubwayMap();
+        for(Line line: LineRepository.lines()){
+            InfoMessage.printName(line.getName());
+            InfoMessage.printName("---");
+            for(Station station : SubwayRepository.getPathByLine(line).getPath()){
+                InfoMessage.printName(station.getName());
+            }
+            System.out.println();
         }
     }
 }
