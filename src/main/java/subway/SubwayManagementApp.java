@@ -1,10 +1,8 @@
 package subway;
 
 import subway.domain.*;
-import subway.view.OutputView;
-import subway.view.page.MainMenu;
+import subway.menu.MainMenu;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.List;
