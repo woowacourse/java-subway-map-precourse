@@ -38,6 +38,14 @@ public class OutputView {
     public static final String INFO_LABEL = "[INFO] ";
     public static final String ERROR_LABEL = "[ERROR] ";
     public static final String DIVIDER = "---";
+
+    public static final String INFO_STATION_ADD = INFO_LABEL + "지하철 역이 등록되었습니다.";
+    public static final String INFO_STATION_DELETE = INFO_LABEL + "지하철 역이 삭제되었습니다.";
+    public static final String INFO_LINE_ADD = INFO_LABEL + "지하철 노선이 등록되었습니다.";
+    public static final String INFO_LINE_DELETE = INFO_LABEL + "지하철 노선이 삭제되었습니다.";
+    public static final String INFO_SECTION_ADD = INFO_LABEL + "구간이 등록되었습니다.";
+    public static final String INFO_SECTION_DELETE = INFO_LABEL + "구간이 삭제되었습니다.";
+
     public static final String ERROR_NOT_NUMERIC = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_OUT_OF_RANGE = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_NAME_SHORT = ERROR_LABEL + "이름의 길이가 너무 짧습니다";
@@ -135,6 +143,11 @@ public class OutputView {
     public static void printError(Exception e) {
         System.out.println();
         System.out.println(e.getMessage());
+    }
+
+    public static void printInfo(String info) {
+        System.out.println();
+        System.out.println(info);
     }
 
 }

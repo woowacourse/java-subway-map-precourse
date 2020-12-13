@@ -51,6 +51,8 @@ public class LineController extends Controller {
             line.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_BEGINNING)));
             line.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_ENDING)));
             LineRepository.addLine(line);
+
+            OutputView.printInfo(OutputView.INFO_LINE_ADD);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             addLine();
@@ -62,6 +64,8 @@ public class LineController extends Controller {
             String rawLineName = inputView.inputName(InputView.CHOOSE_DELETE_LINE);
             Line.validateName(rawLineName);
             LineRepository.deleteLineByName(rawLineName);
+
+            OutputView.printInfo(OutputView.INFO_LINE_DELETE);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             deleteLine();

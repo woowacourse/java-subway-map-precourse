@@ -48,6 +48,8 @@ public class SectionController extends Controller {
             Line modifyingLine = LineRepository.get(targetLine);
             Station addingStation = StationRepository.get(targetStation);
             modifyingLine.add(index, addingStation);
+
+            OutputView.printInfo(OutputView.INFO_SECTION_ADD);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
@@ -60,6 +62,8 @@ public class SectionController extends Controller {
             Line modifyingLine = LineRepository.get(targetLine);
             Station deletingStation = StationRepository.get(targetStation);
             modifyingLine.remove(deletingStation);
+
+            OutputView.printInfo(OutputView.INFO_SECTION_DELETE);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

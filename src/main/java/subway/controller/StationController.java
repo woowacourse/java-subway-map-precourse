@@ -47,6 +47,8 @@ public class StationController extends Controller {
             String rawStationName = inputView.inputName(InputView.CHOOSE_ADD_STATION);
             Station.validateName(rawStationName);
             StationRepository.addStation(new Station(rawStationName));
+
+            OutputView.printInfo(OutputView.INFO_STATION_ADD);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
@@ -57,6 +59,8 @@ public class StationController extends Controller {
             String rawStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
             Station.validateName(rawStationName);
             StationRepository.deleteStation(rawStationName);
+
+            OutputView.printInfo(OutputView.INFO_STATION_DELETE);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
