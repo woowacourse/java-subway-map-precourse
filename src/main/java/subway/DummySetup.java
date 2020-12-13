@@ -52,23 +52,23 @@ public class DummySetup {
 
     private static void connectSecondLine() {
         Line secondLine = LineRepository.get("2호선");
-        secondLine.add(StationRepository.get("교대역"));
-        secondLine.add(StationRepository.get("강남역"));
-        secondLine.add(StationRepository.get("역삼역"));
+        secondLine.addStation(StationRepository.get("교대역"));
+        secondLine.addStation(StationRepository.get("강남역"));
+        secondLine.addStation(StationRepository.get("역삼역"));
     }
 
     private static void connectThirdLine() {
         Line thirdLine = LineRepository.get("3호선");
-        thirdLine.add(StationRepository.get("교대역"));
-        thirdLine.add(StationRepository.get("남부터미널역"));
-        thirdLine.add(StationRepository.get("양재역"));
-        thirdLine.add(StationRepository.get("매봉역"));
+        thirdLine.addStation(StationRepository.get("교대역"));
+        thirdLine.addStation(StationRepository.get("남부터미널역"));
+        thirdLine.addStation(StationRepository.get("양재역"));
+        thirdLine.addStation(StationRepository.get("매봉역"));
     }
 
     private static void connectNewBundangLine() {
         Line newBundangLine = LineRepository.get("신분당선");
-        newBundangLine.add(StationRepository.get("강남역"));
-        newBundangLine.add(StationRepository.get("양재역"));
-        newBundangLine.add(StationRepository.get("양재시민의숲역"));
+        newBundangLine.addStation(StationRepository.get("강남역"));
+        newBundangLine.addStation(StationRepository.get("양재역"));
+        newBundangLine.addStation(StationRepository.get("양재시민의숲역"));
     }
 }

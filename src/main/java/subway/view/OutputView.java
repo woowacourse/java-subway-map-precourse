@@ -113,6 +113,7 @@ public class OutputView {
     }
 
     public static void printStations(List<Station> stations) {
+        System.out.println();
         System.out.println(STATION_VIEW_LABEL);
         stations.stream()
                 .map(Station::getName)

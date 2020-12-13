@@ -1,7 +1,6 @@
 package subway.controller.station;
 
 import subway.controller.Controller;
-import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -17,10 +16,11 @@ public class StationDeleteController implements Controller {
     @Override
     public void run() {
         try {
-            String rawStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
-            Station.validateName(rawStationName);
-            StationRepository.deleteStation(rawStationName);
-
+            String deletingStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
+            if (!StationRepository.deleteStation(deletingStationName)) {
+                throw new IllegalArgumentException(OutputView.ERROR_NO_NAME);
+            }
+            StationRepository.deleteStation(deletingStationName);
             OutputView.printInfo(OutputView.INFO_STATION_DELETE);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);

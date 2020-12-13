@@ -4,6 +4,7 @@ import subway.controller.Controller;
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
+import subway.utils.LineValidator;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -29,12 +30,14 @@ public class LineAddController implements Controller {
 
     private Line createLine() {
         String lineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
-        Line.validateName(lineName);
+        LineValidator.validateName(lineName);
         return new Line(lineName);
     }
 
     private void addStationsToLine(Line newLine) {
-        newLine.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_BEGINNING)));
-        newLine.add(StationRepository.get(inputView.inputName(InputView.CHOOSE_LINE_ENDING)));
+        String beginningStationName = inputView.inputName(InputView.CHOOSE_LINE_BEGINNING);
+        String endingStationName = inputView.inputName(InputView.CHOOSE_LINE_ENDING);
+        newLine.addStation(StationRepository.get(beginningStationName));
+        newLine.addStation(StationRepository.get(endingStationName));
     }
 }

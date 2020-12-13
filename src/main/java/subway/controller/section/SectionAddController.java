@@ -22,10 +22,11 @@ public class SectionAddController implements Controller {
             String targetLine = inputView.inputName(InputView.CHOOSE_LINE);
             String targetStation = inputView.inputName(InputView.CHOOSE_STATION_NAME);
             String index = inputView.inputIndex(InputView.CHOOSE_ORDER);
+
             Line modifyingLine = LineRepository.get(targetLine);
             Station addingStation = StationRepository.get(targetStation);
-            modifyingLine.add(index, addingStation);
 
+            modifyingLine.addStationAtSection(index, addingStation);
             OutputView.printInfo(OutputView.INFO_SECTION_ADD);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);

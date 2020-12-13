@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.utils.LineRepositoryValidator;
 import subway.view.OutputView;
 
 public class LineRepository {
@@ -15,45 +16,13 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        validateAddition(line);
+        LineRepositoryValidator.validateAddition(line);
         lines.add(line);
     }
 
     public static boolean deleteLineByName(String name) {
-        validateDeletion(name);
+        LineRepositoryValidator.validateDeletion(name);
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
-    }
-
-    private static void validateAddition(Line line) {
-        validateNoDuplicate(line);
-    }
-
-    private static void validateDeletion(String name) {
-        validateExisting(name);
-    }
-
-    private static void validateNoDuplicate(Line line) {
-        if (isDuplicate(line)) {
-            throw new IllegalArgumentException(OutputView.ERROR_DUPLICATE_NAME);
-        }
-    }
-
-    private static void validateExisting(String name) {
-        if (!isDuplicate(name)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NOTHING);
-        }
-    }
-
-    private static boolean isDuplicate(Line line) {
-        return lines.stream()
-                .map(Line::getName)
-                .anyMatch(lineName -> lineName.equals(line.getName()));
-    }
-
-    private static boolean isDuplicate(String name) {
-        return lines.stream()
-                .map(Line::getName)
-                .anyMatch(x -> x.equals(name));
     }
 
     public static boolean hasLineWithStation(String name) {
