@@ -17,18 +17,12 @@ import subway.repository.StationRepository;
 public class LineService {
     private static final int STATION_NAME_LENGTH = 2;
 
-    public boolean addSection(String name, String firstStationName, String lastStationName) {
-        if (!isValidate(name)) {
-            return false;
+    public boolean addLine(String name) {
+        if (isValidate(name)) {
+            LineRepository.addLine(new Line(name));
+            return true;
         }
-        Station firstStation = StationRepository.findOne(firstStationName);
-        Station lastStation = StationRepository.findOne(lastStationName);
-
-        Line line = LineRepository.findOne(name);
-
-        SectionRepository.addSection(line, firstStation);
-        SectionRepository.addSection(line, lastStation);
-        return true;
+        return false;
     }
 
     private boolean isValidate(String name) {
@@ -41,6 +35,14 @@ public class LineService {
         return true;
     }
 
+    public boolean addSection(String name, String stationName) {
+        Station station = StationRepository.findOne(stationName);
+        Line line = LineRepository.findOne(name);
+
+        SectionRepository.addSection(line, station);
+        return true;
+    }
+
     private void validateNameLength(String name) {
         if (name.length() < STATION_NAME_LENGTH) {
             throw new IllegalArgumentException(Message.ERROR_NAME_LENGTH);
@@ -48,10 +50,7 @@ public class LineService {
     }
 
     public boolean deleteLine(String name) {
-        if (LineRepository.deleteLineByName(name)) {
-            return true;
-        }
-        return false;
+        return LineRepository.deleteLineByName(name);
     }
 
     public List<Line> findAll() {
