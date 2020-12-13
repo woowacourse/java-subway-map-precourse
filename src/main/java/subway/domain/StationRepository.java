@@ -25,4 +25,10 @@ public class StationRepository {
                 .filter(station -> station.getName().equals(terminus))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(("존재하지 않는 역입니다용")));
     }
+
+    public static boolean exists(String name) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst().isPresent();
+    }
 }

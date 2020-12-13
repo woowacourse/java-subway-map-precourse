@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.menu.LineMenu;
 import subway.menu.MainMenu;
+import subway.utils.Validator;
 
 import java.util.Scanner;
 
@@ -15,9 +16,11 @@ public class MainInputView {
         System.out.println(newLine + "## 원하는 기능을 선택하세요.");
 
         try {
-            return scanner.nextLine();
+            String input = scanner.nextLine();
+            Validator.menu(MainMenu.class, input);
+            return input;
         } catch (IllegalArgumentException e) {
-            System.out.println(newLine + "[ERROR] 입력이 잘못되었습니다." + newLine);
+            System.out.println(e.getMessage());
             return mainMenu(scanner);
         }
     }

@@ -11,12 +11,7 @@ public class LineInputView {
         System.out.println(LineMenu.getMenu());
         System.out.println("## 원하는 기능을 선택하세요.");
 
-        try {
-            return scanner.nextLine();
-        } catch (IllegalArgumentException e) {
-            System.out.println("\n[ERROR] 입력이 잘못되었습니다.\n");
-            return menu(scanner);
-        }
+        return scanner.nextLine();
     }
 
     public static String register (Scanner scanner) {
