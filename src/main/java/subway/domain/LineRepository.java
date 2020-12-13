@@ -104,7 +104,16 @@ public class LineRepository {
     }
 
     public static void addStationInLine(String lineName, String stationName, String order) {
-         
+        Iterator<Line> itr = lines.iterator();
+        while (itr.hasNext()) {
+            Line line = (Line)itr.next();
+            if (line.isEqual(lineName) == true){
+                Station newStation = new Station(stationName);
+                line.insertStationInLineIndex(newStation, Integer.parseInt(order));
+            }
+        }
+
+
     }
 
 }

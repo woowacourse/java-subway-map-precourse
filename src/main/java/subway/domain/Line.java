@@ -26,6 +26,9 @@ public class Line {
     public void insertStationInLine(Station station) {
         this.stationOfLine.add(station);
     }
+    public void insertStationInLineIndex(Station station, int idx) {
+        this.stationOfLine.add(idx,station);
+    }
 
     public boolean isEqual(String name) {
         if (this.name.compareTo(name) == 0) return true;
