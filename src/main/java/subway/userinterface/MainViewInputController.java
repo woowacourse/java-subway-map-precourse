@@ -5,27 +5,25 @@ import subway.util.InputValidator;
 import java.util.Scanner;
 
 public class MainViewInputController {
-    private final static String MAIN_INPUT = "## 원하는 기능을 선택하세요.";
+    private final static String MAIN_INPUT = "\n## 원하는 기능을 선택하세요.";
     private static String mainInput;
 
     public static void getMainMenuInput(Scanner scanner) {
 
         System.out.println(MAIN_INPUT);
         mainInput = scanner.nextLine();
-        validateInput();
+        validateInput(scanner);
 
     }
 
-    private static void validateInput() {
-        boolean inputValidity = false;
+    private static void validateInput(Scanner scanner) {
 
-        while (!inputValidity) {
-            try {
-                InputValidator.validateMainMenuInput(mainInput);
-                inputValidity = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            InputValidator.validateMainMenuInput(mainInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getMainMenuInput(scanner);
         }
+
     }
 }
