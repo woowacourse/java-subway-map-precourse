@@ -1,6 +1,7 @@
 package subway;
 
 import subway.controller.MenuController;
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -94,6 +95,9 @@ public class Menu {
     }
 
     private static void runStationMenu(String subMenuAction) {
+        if (subMenuAction.equals(INSERT_SIGN)) {
+            Station.add(STATION_MENU_TITLE);
+        }
     }
 
     private static void runLineMenu(String subMenuAction) {

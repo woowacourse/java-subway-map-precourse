@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 public class Station {
     private String name;
 
@@ -11,5 +13,7 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public static void add(String stationMessage) {
+        OutputView.printAddActionMessage(stationMessage);
+    }
 }
