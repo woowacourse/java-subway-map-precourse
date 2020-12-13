@@ -27,9 +27,9 @@ class SectionsTest {
     void Sections_생성_성공하면_내부_객체_상태가_변경된다() {
         Sections.of(upwardLastStation, downwardLastStation);
 
-        boolean isRegisteredAsSection = upwardLastStation.isRegisteredAsLineSection();
+        boolean isRegisteredAsLineSection = upwardLastStation.isRegisteredAsLineSection();
 
-        assertThat(isRegisteredAsSection).isTrue();
+        assertThat(isRegisteredAsLineSection).isTrue();
     }
 
     @DisplayName("Sections에 구간(역) 추가 등록 실패 : 순서 번호가 1 이하 or 등록된 역 개수 + 1 보다 큰 경우")
@@ -63,8 +63,8 @@ class SectionsTest {
         Station targetStation = new Station("추가할역");
         sections.addSection(targetStation, 1);
 
-        boolean isRegisteredAsSection = targetStation.isRegisteredAsLineSection();
+        boolean isRegisteredAsLineSection = targetStation.isRegisteredAsLineSection();
 
-        assertThat(isRegisteredAsSection).isTrue();
+        assertThat(isRegisteredAsLineSection).isTrue();
     }
 }
