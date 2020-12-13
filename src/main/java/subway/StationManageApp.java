@@ -42,7 +42,7 @@ public class StationManageApp {
             mainView.showOptions();
             try {
                 option = inputService.getMainOption();
-                chooseOption(option);
+                checkOptions(option);
             } catch (Exception exception) {
                 System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
                 continue;
@@ -53,7 +53,19 @@ public class StationManageApp {
         }
     }
 
-    private void chooseOption(int mainOption) {
+    private void checkOptions(int mainOption) {
+        while (true) {
+            try {
+                chooseOptions(mainOption);
+                break;
+            } catch (Exception exception) {
+                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
+                continue;
+            }
+        }
+    }
+
+    private void chooseOptions(int mainOption) {
         if (mainOption == InputService.MANAGE_STATION) {
             manageStation();
         }
@@ -70,55 +82,31 @@ public class StationManageApp {
 
     private void manageStation() {
         StationView stationView = new StationView(outputService);
-        while (true) {
-            stationView.showOptions();
-            int manageStationOption;
-            try {
-                manageStationOption = inputService.getManageStationOption();
-                chooseManageStationOption(manageStationOption, stationView);
-            } catch (Exception exception) {
-                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
-                continue;
-            }
-            if (isBack(manageStationOption)) {
-                return;
-            }
+        stationView.showOptions();
+        int manageStationOption = inputService.getManageStationOption();
+        chooseManageStationOption(manageStationOption, stationView);
+        if (isBack(manageStationOption)) {
+            return;
         }
     }
 
     private void manageLine() {
         LineView lineView = new LineView(outputService);
-        while (true) {
-            lineView.showOptions();
-            int manageLineOption;
-            try {
-                manageLineOption = inputService.getManageLineOption();
-                chooseManageLineOption(manageLineOption, lineView);
-            } catch (Exception exception) {
-                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
-                continue;
-            }
-            if (isBack(manageLineOption)) {
-                return;
-            }
+        lineView.showOptions();
+        int manageLineOption = inputService.getManageLineOption();
+        chooseManageLineOption(manageLineOption, lineView);
+        if (isBack(manageLineOption)) {
+            return;
         }
     }
 
     private void mangeSection() {
         SectionView sectionView = new SectionView(outputService);
-        while (true) {
-            sectionView.showOptions();
-            int manageSectionOption;
-            try {
-                manageSectionOption = inputService.getManageSectionOption();
-                chooseManageSectionOption(manageSectionOption, sectionView);
-            } catch (Exception exception) {
-                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
-                continue;
-            }
-            if (isBack(manageSectionOption)) {
-                return;
-            }
+        sectionView.showOptions();
+        int manageSectionOption = inputService.getManageSectionOption();
+        chooseManageSectionOption(manageSectionOption, sectionView);
+        if (isBack(manageSectionOption)) {
+            return;
         }
     }
 
@@ -259,4 +247,3 @@ public class StationManageApp {
         return false;
     }
 }
-
