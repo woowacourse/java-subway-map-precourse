@@ -54,9 +54,6 @@ public class LineController {
     }
 
     public void printLineList() {
-        OutputView.printMsg("## 노선 목록\n");
-        LineRepository.getLineNames()
-                .stream()
-                .forEach(OutputView::printInfoMsg);
+        lineView.printLineList(LineRepository.getLineNames());
     }
 }
