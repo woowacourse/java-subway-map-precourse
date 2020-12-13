@@ -15,6 +15,8 @@ public class Line {
         this.name = name;
         this.firstStation = firstStation;
         this.lastStation = lastStation;
+        this.section.add(new Station(firstStation));
+        this.section.add(new Station(lastStation));
     }
 
     public String getName() {
@@ -22,6 +24,7 @@ public class Line {
     }
 
     // 추가 기능 구현
+
     public boolean isContain(String name) {
         return section.contains(new Station(name));
     }

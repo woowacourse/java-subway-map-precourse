@@ -136,5 +136,6 @@ public class printScreen {
                 System.out.println("[INFO] " + station.getName());
             }
         }
+        System.out.println();
     }
 }
