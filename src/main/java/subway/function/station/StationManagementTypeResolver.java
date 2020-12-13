@@ -1,10 +1,9 @@
 package subway.function.station;
 
 import java.util.Scanner;
-import subway.common.ResolveResultType;
 import subway.main.UserSelections;
 
-public class TypeResolver {
+public class StationManagementTypeResolver {
 
     public static StationManagementSelectionType getStationManagementSelectionType(
         String userInput) {
@@ -20,17 +19,16 @@ public class TypeResolver {
         return StationManagementSelectionType.GO_BACK;
     }
 
-    public static ResolveResultType resolveStationManagement(StationManagementSelectionType type,
-        Scanner scanner) {
+    public static void resolveStationManagement(StationManagementSelectionType type,
+        Scanner scanner) throws Exception {
         if (type == StationManagementSelectionType.STATION_REGISTRATION) {
-            return StationManagement.registerNewStation(scanner);
+            StationManagement.registerNewStation(scanner);
         }
         if (type == StationManagementSelectionType.STATION_DELETE) {
-            return StationManagement.deleteStation(scanner);
+            StationManagement.deleteStation(scanner);
         }
         if (type == StationManagementSelectionType.STATION_PRINT_ALL) {
-            return StationManagement.printAllStations();
+            StationManagement.printAllStations();
         }
-        return ResolveResultType.ERROR;
     }
 }

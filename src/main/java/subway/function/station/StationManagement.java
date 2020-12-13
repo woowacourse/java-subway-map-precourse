@@ -1,7 +1,6 @@
 package subway.function.station;
 
 import java.util.Scanner;
-import subway.common.ResolveResultType;
 import subway.common.print.info.CommonInfoPrinter;
 import subway.common.validator.CommonValidator;
 import subway.function.station.printer.PrintStationManagementScreen;
@@ -12,22 +11,19 @@ import subway.domain.station.StationRepository;
 public class StationManagement {
 
     public static void start(Scanner scanner) {
-        String selectionInputPattern = "^[123B]$";
         while (true) {
-            String userInput = printAndGetUserSelectionInput(scanner);
-            if (!CommonValidator.isValidSelectionInput(selectionInputPattern, userInput)) {
-                continue;
+            StationManagementSelectionType type = null;
+            try {
+                type = printAndGetUserSelectionInput(scanner);
+            } catch (Exception ignored) {
             }
-            StationManagementSelectionType type = TypeResolver
-                .getStationManagementSelectionType(userInput);
             if (type == StationManagementSelectionType.GO_BACK) {
-                break;
+                return;
             }
-            ResolveResultType result = TypeResolver.resolveStationManagement(type, scanner);
-            if (result == ResolveResultType.ERROR) {
-                continue;
+            try {
+                StationManagementTypeResolver.resolveStationManagement(type, scanner);
+            } catch (Exception ignored) {
             }
-            break;
         }
     }
 
@@ -35,36 +31,33 @@ public class StationManagement {
         PrintStationManagementScreen.printStationManagementScreen();
     }
 
-    private static String printAndGetUserSelectionInput(Scanner scanner) {
+    private static StationManagementSelectionType printAndGetUserSelectionInput(Scanner scanner)
+        throws Exception {
         printScreen();
         CommonInfoPrinter.printUserFunctionSelectionMessage();
-        return scanner.nextLine();
+        String userInput = scanner.nextLine();
+        CommonValidator
+            .validateSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B, userInput);
+        return StationManagementTypeResolver.getStationManagementSelectionType(userInput);
     }
 
-    public static ResolveResultType registerNewStation(Scanner scanner) {
+    public static void registerNewStation(Scanner scanner) throws Exception {
         StationManagementPrinter.printUserInputStationRegistrationMessage();
         String newStationName = scanner.nextLine();
-        if (!Validator.isValidStationNameToRegister(newStationName)) {
-            return ResolveResultType.ERROR;
-        }
+        StationManagementValidator.validateStationNameToRegister(newStationName);
         StationRepository.addStation(new Station(newStationName));
         StationManagementPrinter.printRegisterNewStationSuccessMessage();
-        return ResolveResultType.SUCCESS;
     }
 
-    public static ResolveResultType deleteStation(Scanner scanner) {
+    public static void deleteStation(Scanner scanner) throws Exception {
         StationManagementPrinter.printUserInputStationToDeleteMessage();
         String stationName = scanner.nextLine();
-        if (!Validator.isValidStationNameToDelete(stationName)) {
-            return ResolveResultType.ERROR;
-        }
+        StationManagementValidator.validateStationNameToDelete(stationName);
         StationRepository.deleteStation(stationName);
         StationManagementPrinter.printDeleteStationSuccessMessage();
-        return ResolveResultType.SUCCESS;
     }
 
-    public static ResolveResultType printAllStations() {
+    public static void printAllStations() {
         StationRepository.printAll();
-        return ResolveResultType.SUCCESS;
     }
 }
