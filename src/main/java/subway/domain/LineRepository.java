@@ -19,10 +19,15 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static void deleteLineByName(String name) {
+    public static void deleteLine(String name) {
         getLineByName(name).removeAllSections();
         lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    public static void deleteAllLine() {
+        lines.clear();
+    }
+
 
     public static boolean hasLine(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).count() > 0;

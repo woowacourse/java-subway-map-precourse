@@ -57,11 +57,17 @@
   - LineManagementView(class): 노선 관리 화면
   - SectionManagementView(class): 구간 관리 화면
 - Command(class): 메인 화면에 존재하는 하나의 기능의 이름과 함수를 연결
+### domain(package)
+- Line: 하나의 노선과 노선이 가지고 있는 구간들 관리
+- Station: 하나의 역
+- StationRepository: 현재 존재하는 역들 관리
+- LineRepository: 현재 존재하는 노선들을 관리
+- SectionRepository: 구간을 관리하는 메소드들 관리
 ### io(package)
 지하철 관리 프로그램에서 사용할 I/O들을 관리
 - Response(class): 프로그램에서 발생하는 출력 관리
 - Request(class): 프로그램에서 발생하는 입력을 관리하고 예외 발생 처리
-- ExceptionManager(class): 발생할 수 있는 예외 사항 체크 및 관리
+- ExceptionManager(class): 발생할 수 있는 예외 상황 체크 및 관리
   - Error(inner enum): 에러 상태
 ### SubwayManager(class)
 지하철 관리 프로그램에 필요한 I/O 정보와 화면들을 관리
@@ -75,19 +81,10 @@ method inference를 위한 인터페이스
 <br>
 
 ## 💯테스트
-- RequestTest
-  - requestStationRegisterTest: 지하철 역 등록 기능 테스트
-    - 2글자 이하 입력
-    - 중복된 입력
-  - requestStationRemovalTest: 지하철 역 삭제 기능 테스트
-    - 존재하지 않는 지하철역 이름 이력
-  - requestLineRegisterTest: 노선 이름 테스트
-    - 2글자 이하 입력
-  - requestTerminatingStationTest: 종점 역 이름 테스트
-    - 2글자 이하 입력
-    - 존재하지 않는 지하철역 이름 입력
-  - isValidTerminatingStationPairTest: 종점 역 쌍 테스트
-    - 상행 종점역과 하행 종점역이 같은 입력
+[구현할 기능 목록](#-구현할-기능-목록)에 기록해놓은 예외상황이 전부 제대로 작동하는지 테스트
+- StationTest: 역 관리 기능에서 발생하는 예외 상황
+- LineTest: 노선 관리 기능에서 발생하는 예외 상황
+- SectionTest: 구간 관리 기능에서 발생하는 예외 상황
 
 <br>
 

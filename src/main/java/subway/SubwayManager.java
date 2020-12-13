@@ -7,10 +7,10 @@ import subway.io.Response;
 
 public class SubwayManager {
     private static final String COMMAND_REQUEST_MESSAGE = "원하는 기능을 선택하세요.";
-    
+
     private final Request request;
     private final Response response;
-    private Scene scene;
+    private final Scene scene;
 
     public SubwayManager(Scanner scanner, PrintStream printStream) {
         request = new Request(scanner, printStream);

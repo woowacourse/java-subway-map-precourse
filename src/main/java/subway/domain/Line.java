@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class Line {
     private String name;
-    private List<Station> sections = new ArrayList<>();
+    private final List<Station> sections = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
     }
-    
-    public void pushSections(String...stationNames) {
+
+    public void pushSections(String... stationNames) {
         for (String stationName : stationNames) {
             Station station = StationRepository.getByName(stationName);
             station.addLine();

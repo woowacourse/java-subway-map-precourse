@@ -26,7 +26,8 @@ public class ExceptionManager {
         INVALID_NUMBER_TYPE("순서는 숫자입니다."),
         INVALID_STATION_INDEX("해당 위치에는 구간을 추가할 수 없습니다."),
         NON_EXISTENT_STATION_IN_LINE("노선에 해당 역이 존재하지 않습니다."),
-        INVALID_NUMBER_OF_STATION_IN_LINE("노선에는 최소 " + MINIMUM_STATION_NUMBER_IN_LINE + "개의 역이 필요합니다.");
+        INVALID_NUMBER_OF_STATION_IN_LINE(
+                "노선에는 최소 " + MINIMUM_STATION_NUMBER_IN_LINE + "개의 역이 필요합니다.");
 
         private static final String ERROR_FORMAT = "[ERROR] %s\n\n";
 
@@ -163,10 +164,14 @@ public class ExceptionManager {
         if (!LineRepository.hasLine(lineName)) {
             return Error.NON_EXISTENT_LINE_NAME;
         }
+        if (SectionRepository
+                .getNumberOfStationInLine(lineName) <= MINIMUM_STATION_NUMBER_IN_LINE) {
+            return Error.INVALID_NUMBER_OF_STATION_IN_LINE;
+        }
         return Error.OK;
     }
 
-    public static Error checkValidStationOfSectoinRemoval(String stationName, String lineName) {
+    public static Error checkValidStationOfSectionRemoval(String stationName, String lineName) {
         if (!isValidStationNameLength(stationName)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
@@ -175,9 +180,6 @@ public class ExceptionManager {
         }
         if (!SectionRepository.isStationInLine(stationName, lineName)) {
             return Error.NON_EXISTENT_STATION_IN_LINE;
-        }
-        if (SectionRepository.getNumberOfStationInLine(lineName) <= MINIMUM_STATION_NUMBER_IN_LINE) {
-            return Error.INVALID_NUMBER_OF_STATION_IN_LINE;
         }
         return Error.OK;
     }

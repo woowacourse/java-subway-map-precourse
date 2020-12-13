@@ -78,7 +78,7 @@ public class LineManagementView extends View {
     private static void removeLine(Scene scene, Request request, Response response) {
         response.printHeadlineMessage(LINE_REMOVAL_MESSAGE);
         if (request.applyInput(ExceptionManager::checkValidLineRemoval,
-                LineRepository::deleteLineByName)) {
+                LineRepository::deleteLine)) {
             response.printInfoMessage(LINE_REMOVAL_SUCCESS_MESSAGE);
             scene.back();
         }

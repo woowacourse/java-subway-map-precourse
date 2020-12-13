@@ -16,6 +16,7 @@ public class SectionManagementView extends View {
     private static final String SECTION_REGISTER_SUCCESS_MESSAGE = "구간이 등록되었습니다.\n";
     private static final String LINE_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
     private static final String STATION_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 역을 입력하세요.";
+    private static final String SECTION_REMOVAL_SUCCESS_MESSAGE = "구간이 삭제되었습니다.\n";
     private static final String VIEW_NAME = "구간 관리 화면";
     private static final LinkedHashMap<String, Command> MENUS =
             new LinkedHashMap<String, Command>();
@@ -77,6 +78,7 @@ public class SectionManagementView extends View {
             return;
         }
         SectionRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
+        response.printInfoMessage(SECTION_REMOVAL_SUCCESS_MESSAGE);
         scene.back();
     }
 
@@ -95,7 +97,7 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REMOVAL_MESSAGE);
         String stationName = request.requestInputInLine(
-                ExceptionManager::checkValidStationOfSectoinRemoval, inputs.get(0));
+                ExceptionManager::checkValidStationOfSectionRemoval, inputs.get(0));
         if (stationName == null) {
             return false;
         }
