@@ -140,16 +140,16 @@
 
 ## 프로그래밍 요구사항
 
-* [ ] [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)를 준수한다. (단 indent는 4)
-* [ ] indent depth는 2까지 허용한다.
-* [ ] 3항 연산자를 쓰지 않는다.
-* [ ] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-* [ ] else, switch/case 예약어를 쓰지 않는다.
-* [ ] 예외 상황 시 `[ERROR]`로 시작하는 에러 문구를 출력한다.
-* [ ] Application의 패키지 구조는 변경하지 않는다.
-* [ ] Station, Line 클래스의 기본 생성자를 추가할 수 없다.
-* [ ] Station, Line의 필드인 name의 private를 변경할 수 없다.
-* [ ] 가능한 한 Station, Line 클래스에 setter 메소드를 추가하지 않는다.
-* [ ] 추가로 생성되는 객체에 대해 XXXRepository 네이밍으로 저장 클래스를 추가한다.
-* [ ] 객체들의 상태를 관리하기 위해 XXXRepository 클래스를 활용해 저장 로직을 구현한다.
+* [x] [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)를 준수한다. (단 indent는 4)
+* [x] indent depth는 2까지 허용한다.
+* [x] 3항 연산자를 쓰지 않는다.
+* [x] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+* [x] else, switch/case 예약어를 쓰지 않는다.
+* [x] 예외 상황 시 `[ERROR]`로 시작하는 에러 문구를 출력한다.
+* [x] Application의 패키지 구조는 변경하지 않는다.
+* [x] Station, Line 클래스의 기본 생성자를 추가할 수 없다.
+* [x] Station, Line의 필드인 name의 private를 변경할 수 없다.
+* [x] 가능한 한 Station, Line 클래스에 setter 메소드를 추가하지 않는다.
+* [x] 추가로 생성되는 객체에 대해 XXXRepository 네이밍으로 저장 클래스를 추가한다.
+* [x] 객체들의 상태를 관리하기 위해 XXXRepository 클래스를 활용해 저장 로직을 구현한다.
 
