@@ -24,6 +24,7 @@ public class LineMenu {
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
+        OutputView.printLineSeparator();
     }
 
     public static Menu getMenuSelection(Scanner scanner) {
@@ -31,15 +32,15 @@ public class LineMenu {
         return Menu.getSelection(InputView.getInput(scanner));
     }
 
-    public static void printGoBack() {
-        OutputView.printInfoMsg("이전 메뉴로 돌아갑니다.");
+    public static void goBack() {
+        OutputView.printInfoMsg("이전 메뉴로 돌아갑니다.\n");
     }
 
     private enum Menu {
         REGISTER_LINE("1", "1. 노선 등록", () -> lineController.addLine()),
         DELETE_LINE("2", "2. 노선 삭제", () -> lineController.deleteLine()),
         PRINT_LINES("3", "3. 노선 조회", () -> lineController.printLineList()),
-        BACK("B", "B. 돌아가기", () -> printGoBack());
+        BACK("B", "B. 돌아가기", () -> goBack());
 
         private String userInput;
         private String menuName;

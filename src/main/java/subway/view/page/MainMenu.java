@@ -25,6 +25,7 @@ public class MainMenu {
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
+        OutputView.printLineSeparator();
     }
 
     public static Menu getMenuSelection(Scanner scanner) {
