@@ -20,4 +20,8 @@ public class Line {
     public void addStation(Station station) {
         stationList.add(station);
     }
+
+    public List<Station> getStationList() {
+        return stationList;
+    }
 }

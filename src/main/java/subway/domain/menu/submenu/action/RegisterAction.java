@@ -1,5 +1,6 @@
 package subway.domain.menu.submenu.action;
 
+import java.util.List;
 import java.util.Scanner;
 
 import subway.domain.Line;
@@ -17,6 +18,11 @@ public class RegisterAction extends Action {
 
     @Override
     public void runAction() {
+        if (category.equals(CategoryType.SECTION)) {
+            registerSection();
+            return;
+        }
+
         printRegisterMessage();
         String name = inputRegister();
         if (category.equals(CategoryType.STATION)) {
@@ -47,6 +53,23 @@ public class RegisterAction extends Action {
         System.out.println(ActionMessage.INPUT_DOWN_TERMIANL_STATION);
     }
 
+    private void printRegisterSectionMessage(String type) {
+        System.out.print(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE);
+        if (type.equals(ActionMessage.INPUT_SECTION_LINE)) {
+            System.out.print(ActionMessage.INPUT_SECTION_LINE + CommonMessage.SPACE);
+        }
+
+        if (type.equals(ActionMessage.INPUT_SECTION_STATION)) {
+            System.out.print(ActionMessage.INPUT_SECTION_STATION + CommonMessage.SPACE);
+        }
+
+        if (type.equals(ActionMessage.INPUT_SECTION_ORDER)) {
+            System.out.print(ActionMessage.INPUT_SECTION_ORDER + CommonMessage.SPACE);
+        }
+
+        System.out.println(ActionMessage.INPUT_SECTION_MESSAGE);
+    }
+
     private String inputRegister() {
         String name = scanner.nextLine();
         System.out.println();
@@ -62,7 +85,7 @@ public class RegisterAction extends Action {
 
         printRegisterMessage(ActionMessage.INPUT_UPWARD_TERMINAL_STATION);
         String upward = inputRegister();
-        
+
         printRegisterMessage(ActionMessage.INPUT_DOWN_TERMIANL_STATION);
         String down = inputRegister();
 
@@ -70,6 +93,20 @@ public class RegisterAction extends Action {
         line.addStation(new Station(down));
 
         LineRepository.addLine(new Line(name));
+    }
+
+    private void registerSection() {
+        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_LINE);
+        String line = inputRegister();
+
+        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_STATION);
+        String station = inputRegister();
+
+        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_ORDER);
+        int order = Integer.parseInt(inputRegister());
+
+        List<Station> list = LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList();
+        System.out.println(list.size());
     }
 
     private void printSuccessMessage() {
