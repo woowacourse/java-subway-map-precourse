@@ -27,4 +27,8 @@ public class StationRepository {
     public List<Station> findAll() {
         return Collections.unmodifiableList(stations);
     }
+
+    public boolean delete(Station targetStation) {
+        return stations.removeIf(station -> station.equals(targetStation));
+    }
 }

@@ -1,5 +1,6 @@
 package subway.domain.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,11 @@ class StationRepositoryTest {
     @BeforeEach
     void setUp() {
         stationRepository.save(station);
+    }
+
+    @AfterEach
+    void tearDown() {
+        stationRepository.delete(station);
     }
 
     @DisplayName("Station 저장 성공")
@@ -49,5 +55,28 @@ class StationRepositoryTest {
         boolean isPresent = station.isPresent();
 
         assertThat(isPresent).isFalse();
+    }
+
+    @DisplayName("Station 삭제 성공")
+    @Test
+    void delete_삭제에_성공한다() {
+        Station station = new Station("테스트역");
+        stationRepository.save(station);
+        int beforeStationCounts = stationRepository.findAll().size();
+
+        stationRepository.delete(station);
+        int afterStationCounts = stationRepository.findAll().size();
+
+        assertThat(beforeStationCounts).isNotEqualTo(afterStationCounts);
+    }
+
+    @DisplayName("Station 삭제 실패 : 존재하지 않는 역")
+    @Test
+    void delete_삭제_실패하면_false가_반환된다() {
+        Station station = new Station("없는역");
+
+        boolean isRemoved = stationRepository.delete(station);
+
+        assertThat(isRemoved).isFalse();
     }
 }
