@@ -34,7 +34,7 @@ public class MainController {
             sectionController.run(inputView);
         }
         if (functionIndex.equals(mapController.getControllerIndex())) {
-            mapController.run();
+            mapController.run(inputView);
         }
         if (functionIndex.equals(FINISH_INDEX)) {
         }
