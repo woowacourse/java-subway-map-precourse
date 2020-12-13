@@ -89,6 +89,6 @@ public class LineService {
             return;
         }
         lines().
-                forEach(line -> stationMessage(line.getName()));
+                forEach(line -> infoMessage(line.getName()));
     }
 }

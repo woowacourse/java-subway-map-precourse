@@ -37,6 +37,6 @@ public class StationService {
             return;
         }
         stations()
-                .forEach(station -> stationMessage(station.getName()));
+                .forEach(station -> infoMessage(station.getName()));
     }
 }

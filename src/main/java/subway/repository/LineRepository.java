@@ -49,7 +49,7 @@ public class LineRepository {
 
     public static boolean addSection(Line findLine, Station findStation, int orderNum) {
         findLine.addSection(orderNum, findStation);
-        sectionAddMessage(SECTION_ADD_SUCCESS);
+        infoMessage(SECTION_ADD_SUCCESS);
         return true;
     }
 
@@ -59,7 +59,7 @@ public class LineRepository {
             return false;
         }
         findLine.deleteSection(findStation);
-        sectionDeleteMessage(SECTION_DELETE_SUCCESS);
+        infoMessage(SECTION_DELETE_SUCCESS);
         return true;
     }
 

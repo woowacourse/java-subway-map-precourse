@@ -32,26 +32,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void stationMessage(String stationName) {
-        System.out.println(INFO_PREFIX + stationName + STATION_SUFFIX);
-    }
-
-    public static void lineMessage(String lineName) {
-        System.out.println(INFO_PREFIX + lineName);
-    }
-
-    public static void sectionAddMessage(String message) {
-        System.out.println(INFO_PREFIX + message);
-    }
-
-    public static void sectionDeleteMessage(String message) {
-        System.out.println(INFO_PREFIX + message);
-    }
-
     public static void lineDetailPrint(String name, List<Station> stations) {
         System.out.println(INFO_PREFIX + name);
         System.out.println(INFO_PREFIX + DASH);
-        stations.forEach(station -> stationMessage(station.getName()));
+        stations.forEach(station -> infoMessage(station.getName()));
         System.out.println();
     }
 }
