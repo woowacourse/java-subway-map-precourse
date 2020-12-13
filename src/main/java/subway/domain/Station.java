@@ -19,4 +19,12 @@ public class Station {
     public String toString() {
         return name.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Station) {
+            return ((Station) o).name.equals(this.name);
+        }
+        return false;
+    }
 }
