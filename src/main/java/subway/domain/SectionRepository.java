@@ -7,6 +7,7 @@ import subway.enums.InitialStations;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class SectionRepository {
@@ -39,18 +40,6 @@ public class SectionRepository {
     public static boolean deleteStationOnLine(Line line, Station targetStation) {
         Section section = getSectionByLineName(line.getName());
         return section.getStations().removeIf(station -> station == targetStation);
-    }
-
-    public static void initializeSections() {
-        for (InitialSections initialSection : InitialSections.values()) {
-            Line initialLine = LineRepository.getLineByName(initialSection.getLine().getName());
-            List<Station> initialStations = initialSection.getStations()
-                    .stream()
-                    .map(InitialStations::getName)
-                    .map(StationRepository::getStationByName)
-                    .collect(Collectors.toList());
-            SectionRepository.addLineToSection(initialLine, initialStations);
-        }
     }
 
     public static boolean isLineOnSectionDuplicated(String nameOfLine) {
@@ -97,9 +86,25 @@ public class SectionRepository {
                 .anyMatch(stations -> stations.contains(targetStation));
     }
 
-    public static boolean isStationUnder2onLine(String name) {
-        Section section = getSectionByLineName(name);
+    public static boolean isStationUnder2onLine(String nameOfLine) {
+        Section section = getSectionByLineName(nameOfLine);
         return section.getStations().size()
                 <= Criteria.MINIMUM_NUMBER_OF_STATIONS_ON_LINE.getValue();
+    }
+
+    public static boolean deleteSectionByNameOfLine(String nameOfLine) {
+        return sections.removeIf(section -> section.getLine().getName().equals(nameOfLine));
+    }
+
+    public static void initializeSections() {
+        for (InitialSections initialSection : InitialSections.values()) {
+            Line initialLine = LineRepository.getLineByName(initialSection.getLine().getName());
+            List<Station> initialStations = initialSection.getStations()
+                    .stream()
+                    .map(InitialStations::getName)
+                    .map(StationRepository::getStationByName)
+                    .collect(Collectors.toList());
+            SectionRepository.addLineToSection(initialLine, initialStations);
+        }
     }
 }

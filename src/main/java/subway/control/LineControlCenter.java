@@ -111,6 +111,7 @@ public class LineControlCenter {
         LineView.printAskLineNameToDelete();
         String nameOfLine = MainControlCenter.inputCommand(scanner);
         if (LineRepository.deleteLineByName(nameOfLine)) {
+            SectionRepository.deleteSectionByNameOfLine(nameOfLine);
             LineView.informLineDeleted();
             return LineMenu.DELETE.getCommand();
         }
