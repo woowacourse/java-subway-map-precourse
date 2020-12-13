@@ -5,7 +5,10 @@ import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.exceptions.*;
+import subway.exceptions.DuplicatedStartAndEndStationNameException;
+import subway.exceptions.LineNotExistException;
+import subway.exceptions.MinimumLineLengthException;
+import subway.exceptions.StationNotExistException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.SectionManagementViewComponent;
 import subway.view.logger.ViewLogger;
@@ -46,13 +49,13 @@ public class SectionManagementViewState extends ViewState{
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
         checkAndAddSection(feature, application, scanner);
         checkAndRemoveSection(feature, application, scanner);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddSection(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    private void checkAndAddSection(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_ADD_SECTION)){
             Line line = printRegisterInputLogAndGetInputLineName(scanner);
             Station station = printRegisterLogAndGetInputStationNameAtLine(scanner, line);
@@ -62,8 +65,7 @@ public class SectionManagementViewState extends ViewState{
         }
     }
 
-    private void checkAndRemoveSection(String feature, SubwayLineMap application, Scanner scanner) throws
-            LineNotExistException, StationNotExistException, MinimumLineLengthException {
+    private void checkAndRemoveSection(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_DELETE_SECTION)){
             Line line = printRemoveInputLogAndGetInputLineName(scanner);
             printRemoveInputLogAndGetInputStationNameAtLine(scanner, line);
@@ -72,7 +74,7 @@ public class SectionManagementViewState extends ViewState{
         }
     }
 
-    private Line printRegisterInputLogAndGetInputLineName(Scanner scanner) throws LineNotExistException {
+    private Line printRegisterInputLogAndGetInputLineName(Scanner scanner){
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
         String lineName = getStationOrLineName(scanner);
         ViewLogger.printWhiteSpace();
@@ -83,8 +85,7 @@ public class SectionManagementViewState extends ViewState{
         return lineOptional.get();
     }
 
-    private Station printRegisterLogAndGetInputStationNameAtLine(Scanner scanner, Line line) throws StationNotExistException,
-            DuplicatedStartAndEndStationNameException {
+    private Station printRegisterLogAndGetInputStationNameAtLine(Scanner scanner, Line line){
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
         String stationName = getStationOrLineName(scanner);
         Station station = stationController.getStation(stationName);
@@ -95,15 +96,14 @@ public class SectionManagementViewState extends ViewState{
         return station;
     }
 
-    private void printLogAndGetInputStationPositionAtLine(Scanner scanner, Station station, Line line) throws
-            InvalidPositionException {
+    private void printLogAndGetInputStationPositionAtLine(Scanner scanner, Station station, Line line){
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterStationOrderComponent());
         int position = getPosition(scanner);
         ViewLogger.printWhiteSpace();
         lineController.addStationInLineAtCertainPosition(station, line, position);
     }
 
-    private Line printRemoveInputLogAndGetInputLineName(Scanner scanner) throws LineNotExistException {
+    private Line printRemoveInputLogAndGetInputLineName(Scanner scanner){
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveLineNameInputComponent());
         String lineName = getStationOrLineName(scanner);
         ViewLogger.printWhiteSpace();
@@ -114,8 +114,7 @@ public class SectionManagementViewState extends ViewState{
         return lineOptional.get();
     }
 
-    private void printRemoveInputLogAndGetInputStationNameAtLine(Scanner scanner, Line line) throws
-            StationNotExistException, MinimumLineLengthException {
+    private void printRemoveInputLogAndGetInputStationNameAtLine(Scanner scanner, Line line){
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveStationNameInputComponent());
         String stationName = getStationOrLineName(scanner);
         Station station = stationController.getStation(stationName);

@@ -29,7 +29,7 @@ public class LineController {
         return LineRepository.getLine(lineName);
     }
 
-    public void addLine(String name, Station startStation, Station endStation) throws Exception {
+    public void addLine(String name, Station startStation, Station endStation){
         if(checkIfLineExist(name)) {
             throw new DuplicatedLineNameException();
         }
@@ -39,14 +39,14 @@ public class LineController {
         LineRepository.addLine(line);
     }
 
-    public void removeLine(String name) throws LineNotExistException {
+    public void removeLine(String name){
         if(!checkIfLineExist(name)) {
             throw new LineNotExistException();
         }
         LineRepository.deleteLineByName(name);
     }
 
-    public void addStationInLineAtCertainPosition(Station station, Line line, int position) throws InvalidPositionException{
+    public void addStationInLineAtCertainPosition(Station station, Line line, int position){
         if(position > line.getStations().size() || position < 0){
             throw new InvalidPositionException();
         }

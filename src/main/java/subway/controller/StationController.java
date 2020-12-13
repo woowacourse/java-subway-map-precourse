@@ -26,7 +26,7 @@ public class StationController {
         return StationRepository.getStations();
     }
 
-    public Station getStation(String name) throws StationNotExistException {
+    public Station getStation(String name){
         Optional<Station> stationOptional = StationRepository.getStation(name);
         if(!stationOptional.isPresent()){
             throw new StationNotExistException();
@@ -34,7 +34,7 @@ public class StationController {
         return stationOptional.get();
     }
 
-    public void addStation(String name) throws DuplicatedStationNameException {
+    public void addStation(String name){
         if(checkIfStationExist(name)) {
             throw new DuplicatedStationNameException();
         }
@@ -42,7 +42,7 @@ public class StationController {
         StationRepository.addStation(newStation);
     }
 
-    public void removeStation(String name) throws StationNotExistException {
+    public void removeStation(String name){
         if(!checkIfStationExist(name)){
             throw new StationNotExistException();
         }

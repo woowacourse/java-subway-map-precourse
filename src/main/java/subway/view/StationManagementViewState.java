@@ -47,14 +47,14 @@ public class StationManagementViewState extends ViewState{
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
         checkAndAddStation(feature, application, scanner);
         checkAndRemoveStation(feature, application, scanner);
         checkAndPrintStations(feature, application);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddStation(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    private void checkAndAddStation(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_ADD_STATION)){
             ViewLogger.printLog(StationManagementViewComponent.getRegisterStationComponent());
             String stationName = getStationName(scanner);
@@ -65,7 +65,7 @@ public class StationManagementViewState extends ViewState{
         }
     }
 
-    private void checkAndRemoveStation(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    private void checkAndRemoveStation(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_DELETE_STATION)){
             ViewLogger.printLog(StationManagementViewComponent.getRemoveStationComponent());
             String stationName = checkAndGetStationName(scanner);
@@ -90,7 +90,7 @@ public class StationManagementViewState extends ViewState{
         }
     }
 
-    private String checkAndGetStationName(Scanner scanner) throws StationNameLengthException {
+    private String checkAndGetStationName(Scanner scanner){
         String stationName = getStationName(scanner);
         if(stationName.length() < 2){
             throw new StationNameLengthException();
@@ -102,11 +102,11 @@ public class StationManagementViewState extends ViewState{
         return scanner.nextLine();
     }
 
-    private void addStation(String name) throws Exception {
+    private void addStation(String name){
         stationController.addStation(name);
     }
 
-    private void removeStation(String name) throws Exception {
+    private void removeStation(String name){
         stationController.removeStation(name);
     }
 

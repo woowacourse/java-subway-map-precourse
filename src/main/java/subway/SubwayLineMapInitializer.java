@@ -4,15 +4,11 @@ import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.exceptions.DuplicatedStationNameException;
-import subway.exceptions.StationNotExistException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class SubwayLineMapInitializer {
+public class SubwayLineMapInitializer{
     private final List<String> stationsToAdd = Arrays
             .asList("교대역", "강남역", "역삼역", "남부터미녈역", "양재역", "매봉역", "양재시민의숲역");
     private final List<String> linesToAdd = Arrays.asList("2호선", "3호선", "신분당선");
@@ -29,13 +25,13 @@ public class SubwayLineMapInitializer {
         }
     }
 
-    private void addStations() throws DuplicatedStationNameException {
+    private void addStations(){
         for(String stationName : stationsToAdd){
             stationController.addStation(stationName);
         }
     }
 
-    private void addLines() throws Exception {
+    private void addLines(){
         Station stationGyoDe = stationController.getStation(stationsToAdd.get(0));
         Station stationGangNam = stationController.getStation(stationsToAdd.get(1));
         Station stationYeokSam = stationController.getStation(stationsToAdd.get(2));

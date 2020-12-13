@@ -28,7 +28,7 @@ public abstract class ViewState {
         return continuable;
     }
 
-    protected String getMenuInputBtn(Scanner scanner) throws Exception {
+    protected String getMenuInputBtn(Scanner scanner){
         String menuInput = scanner.nextLine();
         ViewLogger.printWhiteSpace();
         if(!featureSet.contains(menuInput)){

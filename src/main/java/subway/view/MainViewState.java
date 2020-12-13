@@ -48,11 +48,11 @@ public class MainViewState extends ViewState{
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
         checkAndSwitchViewToStationManagement(feature, application);
         checkAndSwitchViewToLineManagement(feature, application);
         checkAndSwitchViewToSectionManagement(feature, application);
-        checkAndPrintSubwayLineMap(feature, application);
+        checkAndPrintSubwayLineMap(feature);
         checkAndQuit(feature);
     }
 
@@ -74,7 +74,7 @@ public class MainViewState extends ViewState{
         }
     }
 
-    private void checkAndPrintSubwayLineMap(String feature, SubwayLineMap application) throws Exception {
+    private void checkAndPrintSubwayLineMap(String feature){
         if(feature.equals(BTN_PRINT_SUBWAY_LINEMAP)){
             printSubwayLineList();
         }

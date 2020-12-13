@@ -6,8 +6,6 @@ import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.exceptions.DuplicatedLineNameException;
-import subway.exceptions.LineNotExistException;
-import subway.exceptions.StationNotExistException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.LineManagementViewComponent;
 import subway.view.component.StationManagementViewComponent;
@@ -52,14 +50,14 @@ public class LineManagementViewState extends ViewState {
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
         checkAndAddLine(feature, application, scanner);
         checkAndRemoveLine(feature, application, scanner);
         checkAndPrintSubwayLineMap(feature);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddLine(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
+    private void checkAndAddLine(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_ADD_LINE)){
             String lineName = getLineName(scanner);
             Station startStation = getStartStation(scanner);
@@ -70,7 +68,7 @@ public class LineManagementViewState extends ViewState {
         }
     }
 
-    private void checkAndRemoveLine(String feature, SubwayLineMap application, Scanner scanner) throws LineNotExistException {
+    private void checkAndRemoveLine(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_DELETE_LINE)){
             ViewLogger.printLog(LineManagementViewComponent.getRemoveLineBeginComponent());
             String lineName = getLineOrStationName(scanner);
@@ -80,7 +78,7 @@ public class LineManagementViewState extends ViewState {
         }
     }
 
-    private void checkAndPrintSubwayLineMap(String feature) throws Exception {
+    private void checkAndPrintSubwayLineMap(String feature){
         if(feature.equals(BTN_READ_LINE)){
             printSubwayLineMap();
         }
@@ -109,7 +107,7 @@ public class LineManagementViewState extends ViewState {
         }
     }
 
-    private String getLineName(Scanner scanner) throws DuplicatedLineNameException {
+    private String getLineName(Scanner scanner){
         ViewLogger.printLog(LineManagementViewComponent.getLineRegisterComponent());
         String lineName = getLineOrStationName(scanner);
         ViewLogger.printWhiteSpace();
@@ -119,14 +117,14 @@ public class LineManagementViewState extends ViewState {
         return lineName;
     }
 
-    private Station getStartStation(Scanner scanner) throws StationNotExistException {
+    private Station getStartStation(Scanner scanner){
         ViewLogger.printLog(LineManagementViewComponent.getStationRequiringBeginComponent());
         String startStationName = getLineOrStationName(scanner);
         ViewLogger.printWhiteSpace();
         return stationController.getStation(startStationName);
     }
 
-    private Station getEndStation(Scanner scanner) throws StationNotExistException {
+    private Station getEndStation(Scanner scanner){
         ViewLogger.printLog(LineManagementViewComponent.getStationRequiringEndComponent());
         String endStationName = getLineOrStationName(scanner);
         ViewLogger.printWhiteSpace();
