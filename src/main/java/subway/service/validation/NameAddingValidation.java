@@ -11,7 +11,7 @@ import java.util.List;
 public class NameAddingValidation implements NameAddingValidationInterface {
     @Override
     public boolean checkNameDuplication(String stationName) {
-        List<String> stationNames = StationRepository.getStationNames();
+        List<String> stationNames = StationRepository.stationNames();
         return stationNames.contains(stationName);
     }
 

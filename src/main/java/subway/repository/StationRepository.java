@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
-    private static final List<String> stationNames = new ArrayList<>();
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -23,7 +22,9 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static List<String> getStationNames() {
+    public static List<String> stationNames() {
+        List<String> stationNames = new ArrayList<>();
+
         for (Station station : stations) {
             stationNames.add(station.getName());
         }

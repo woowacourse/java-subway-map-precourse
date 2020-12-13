@@ -80,21 +80,10 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
     @Override
     public boolean show() {
         StringBuilder stringBuilder = new StringBuilder();
-
-        List<Station> stations = StationRepository.stations();
-        List<String> stationNames = getStationNames(stations);
+        List<String> stationNames = StationRepository.stationNames();
 
         StationNameService.readStationName(stringBuilder, stationNames);
         System.out.println(stringBuilder);
         return true;
-    }
-
-    public static List<String> getStationNames(List<Station> stations) {
-        List<String> stationNames = new LinkedList<>();
-
-        for (Station station : stations) {
-            stationNames.add(station.getName());
-        }
-        return stationNames;
     }
 }
