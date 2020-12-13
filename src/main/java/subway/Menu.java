@@ -2,6 +2,7 @@ package subway;
 
 import subway.controller.MenuController;
 import subway.domain.Station;
+import subway.domain.Line;
 import subway.view.InputView;
 
 import java.util.ArrayList;
@@ -115,6 +116,9 @@ public class Menu {
     }
 
     private static boolean runLineMenu(InputView inputView, String subMenuAction) {
+        if (subMenuAction.equals(INSERT_SIGN)) {
+            Line.add(inputView, LINE_MENU_TITLE);
+        }
         return true;
     }
 

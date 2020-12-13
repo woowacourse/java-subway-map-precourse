@@ -20,9 +20,18 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static boolean validateNewName(String name) {
+    public static boolean validateNewStationName(String name) {
         for (int i = 0; i < lines.size(); i++) {
             if (!lines.get(i).validateNewName(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean validateNewLineName(String name) {
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).getName().equals(name)) {
                 return false;
             }
         }

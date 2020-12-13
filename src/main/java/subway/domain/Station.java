@@ -25,7 +25,7 @@ public class Station {
     public static void add(InputView inputView, String stationMessage) {
         OutputView.printAddActionMessage(stationMessage);
         String newStationName = inputView.getInput();
-        if (validateAddStationName(newStationName)) {
+        if (validateAddStationName(newStationName, stationMessage)) {
             Station newStation = new Station(newStationName);
             StationRepository.addStation(newStation);
         }
@@ -41,9 +41,9 @@ public class Station {
         }
     }
 
-    private static boolean validateAddStationName(String stationName) {
+    private static boolean validateAddStationName(String stationName, String stationMessage) {
         if (!StationRepository.validateNewName(stationName)) {
-            throw new ExistentNameException();
+            throw new ExistentNameException(stationMessage);
         }
         if (!validateStationNameLength(stationName)) {
             throw new UnvalidNameLengthException();
@@ -55,7 +55,7 @@ public class Station {
         if (StationRepository.validateNewName(stationName)) {
             throw new NonExistentNameException();
         }
-        if (!LineRepository.validateNewName(stationName)) {
+        if (!LineRepository.validateNewStationName(stationName)) {
             throw new RegisteredStationException();
         }
         return true;

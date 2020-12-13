@@ -22,6 +22,9 @@ public class OutputView {
     private static final String SUBWAY_MESSAGE = "지하철 ";
     private static final String ADD_FINISH_MESSAGE = "이 등록되었습니다.";
     private static final String DELETE_FINISH_MESSAGE = "이 삭제되었습니다.";
+    private static final String ADD_LINE_BOUND_START_MESSAGE = "등록할 노선의 ";
+    private static final String UPBOUND = "상행 종점역 ";
+    private static final String DOWNBOUND = "하행 종점역 ";
 
     private OutputView() {
     }
@@ -97,5 +100,13 @@ public class OutputView {
     public static void printDeleteActionFinishMessage(String title) {
         System.out.println();
         System.out.println(INFO_TAG + SUBWAY_MESSAGE + title.trim() + DELETE_FINISH_MESSAGE);
+    }
+
+    public static void printUpBoundStationMessage() {
+        System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + UPBOUND + NAME_MESSAGE);
+    }
+
+    public static void printDownBoundStationMessage() {
+        System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + DOWNBOUND + NAME_MESSAGE);
     }
 }
