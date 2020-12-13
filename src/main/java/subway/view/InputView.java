@@ -1,7 +1,5 @@
 package subway.view;
 
-import util.validator.Validation;
-
 import java.util.Scanner;
 
 public class InputView {

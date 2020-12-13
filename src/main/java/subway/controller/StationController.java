@@ -2,9 +2,9 @@ package subway.controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.InputView;
-import subway.view.OutputView;
-import util.validator.Validation;
+import subway.view.*;
+import subway.validator.Validation;
+import subway.view.stationoutput.StationOptionView;
 
 import java.util.Scanner;
 
@@ -22,7 +22,7 @@ public class StationController {
         String userChoice = "";
         boolean stationControllerDone = false;
         while (!stationControllerDone) {
-            OutputView.printStationControllerOption();
+            StationOptionView.printStationControllerOption();
             userChoice = getUserStationControllerChoice(scanner);
             if (userChoice.equals(STATION_REGISTER)) {
                 stationControllerDone = registerStation(scanner);
@@ -40,7 +40,7 @@ public class StationController {
         String userChoice = null;
         boolean validChoice = false;
         while (!validChoice) {
-            OutputView.printOptionInstruction();
+            StationOptionView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
             validChoice = Validation.checkStationControllerInput(userChoice);
         }
@@ -48,7 +48,7 @@ public class StationController {
     }
 
     private static boolean registerStation(Scanner scanner) {
-        OutputView.printEnterStationRegisterInstruction();
+        StationOptionView.printEnterStationRegisterInstruction();
         String userInputStation = InputView.getInput(scanner);
         boolean validInput = Validation.checkRegisterStationInput(userInputStation);
         if (validInput == false) {
@@ -56,19 +56,19 @@ public class StationController {
         }
         Station newStation = new Station(userInputStation);
         StationRepository.addStation(newStation);
-        OutputView.printInfo("지하철 역이 등록되었습니다.");
+        InfoView.printRegisterInfo();
         return true;
     }
 
     private static boolean deleteStation(Scanner scanner) {
-        OutputView.printEnterStationDeleteInstruction();
+        StationOptionView.printEnterStationDeleteInstruction();
         String userInputStation = InputView.getInput(scanner);
         boolean validInput = Validation.checkDeleteStationInput(userInputStation);
         if (validInput == false) {
             return false;
         }
         StationRepository.deleteStation(userInputStation);
-        OutputView.printInfo("지하철 역이 삭제되었습니다.");
+        InfoView.printDeleteInfo();
         return true;
     }
 

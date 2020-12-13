@@ -1,6 +1,7 @@
 package subway.domain;
 
-import subway.view.OutputView;
+import subway.view.InfoView;
+import subway.view.stationoutput.StationOptionView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,7 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean has(String name) {
+    public static boolean haveStation(String name) {
         for (Station station : stations) {
             if(station.checkSameName(name)) {
                 return true;
@@ -32,9 +33,9 @@ public class StationRepository {
     }
 
     public static void printStation() {
-        OutputView.printStationList();
+        StationOptionView.printStationList();
         for (Station station : stations) {
-            OutputView.printInfo(station.getName());
+            InfoView.printStation(station.getName());
         }
     }
 }

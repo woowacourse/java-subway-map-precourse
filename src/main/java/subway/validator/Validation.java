@@ -1,8 +1,9 @@
-package util.validator;
+package subway.validator;
 
 import subway.domain.StationRepository;
-import subway.view.OutputView;
-import util.exception.UserInputException;
+import subway.view.ErrorView;
+import subway.exception.UserInputException;
+import subway.view.stationoutput.StationErrorView;
 
 public class Validation {
     private static final String OPTION_ONE = "1";
@@ -22,7 +23,7 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printOptionError();
+            ErrorView.printOptionError();
             return false;
         }
         return true;
@@ -35,7 +36,7 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printOptionError();
+            ErrorView.printOptionError();
             return false;
         }
         return true;
@@ -63,7 +64,7 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printLengthError();
+            StationErrorView.printLengthError();
             return false;
         }
         return true;
@@ -71,11 +72,11 @@ public class Validation {
 
     private static boolean checkNotDuplicateStation(String userInputStation) {
         try {
-            if (StationRepository.has(userInputStation)) {
+            if (StationRepository.haveStation(userInputStation)) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printDuplicateStationError();
+            StationErrorView.printDuplicateStationError();
             return false;
         }
         return true;
@@ -88,7 +89,7 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printInputIsSpaceError();
+            StationErrorView.printInputIsSpaceError();
             return false;
         }
         return true;
@@ -112,7 +113,7 @@ public class Validation {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printEndWithWordStationError();
+            StationErrorView.printEndWithWordStationError();
             return false;
         }
         return true;
@@ -127,11 +128,11 @@ public class Validation {
 
     private static boolean checkIsInStationRepository(String userInputStation) {
         try {
-            if (StationRepository.has(userInputStation) == false) {
+            if (StationRepository.haveStation(userInputStation) == false) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            OutputView.printNotInStationRepositoryError();
+            StationErrorView.printNotInStationRepositoryError();
             return false;
         }
         return true;

@@ -1,4 +1,4 @@
-package util.exception;
+package subway.exception;
 
 public class UserInputException extends Exception{
 

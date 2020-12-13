@@ -5,8 +5,9 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
-import subway.view.OutputView;
-import util.validator.Validation;
+import subway.view.mainoutput.MainOptionView;
+import subway.view.OptionView;
+import subway.validator.Validation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +39,7 @@ public class MainController {
     private void chooseController(Scanner scanner) {
         String userChoice = "";
         while (!userChoice.equals(QUIT)) {
-            OutputView.printMainControllerOption();
+            MainOptionView.printMainControllerOption();
             userChoice = getUserMainControllerChoice(scanner);
             if (userChoice.equals(STATION_CONTROL)) {
                 StationController.start(scanner);
@@ -56,10 +57,9 @@ public class MainController {
         String userChoice = null;
         boolean validChoice = false;
         while (!validChoice) {
-            OutputView.printOptionInstruction();
+            MainOptionView.printOptionInstruction();
             userChoice = InputView.getInput(scanner);
             validChoice = Validation.checkMainControllerInput(userChoice);
-            OutputView.printNewLine();
         }
         return userChoice;
     }
