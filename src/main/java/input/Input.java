@@ -23,7 +23,11 @@ public class Input {
     }
 
     public String inputLineName(){
-        return scanner.next();
+        String answer = scanner.next();
+        if(answer.length() < 3){
+            throw new NameLengthException();
+        }
+        return answer;
     }
 
     public String inputOrder(){
