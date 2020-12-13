@@ -1,7 +1,5 @@
 package subway.domain.type;
 
-import subway.domain.type.exception.UnsupportedFunctionException;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
