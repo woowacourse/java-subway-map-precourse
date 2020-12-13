@@ -35,7 +35,7 @@ public class LineService {
     private static void validateStation(Station station) {
         List<Station> registeredStations = StationRepository.stations();
         registeredStations.stream()
-                .filter(registeredStation -> registeredStation.isEqualTo(station))
+                .filter(registeredStation -> registeredStation.isEqualTo(station.getName()))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_STATION_MESSAGE));
     }

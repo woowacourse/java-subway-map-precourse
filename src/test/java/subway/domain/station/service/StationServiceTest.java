@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import subway.domain.line.model.Line;
+import subway.domain.line.model.LineRepository;
 import subway.domain.station.model.Station;
 import subway.domain.station.model.StationRepository;
 
@@ -94,17 +96,41 @@ class StationServiceTest {
         Arrays.stream(stationsNames)
                 .map(Station::new)
                 .forEach(StationRepository::addStation);
-        Station removedStation = new Station(removedStationName);
 
         //when
-        StationService.remove(removedStation);
+        StationService.remove(removedStationName);
 
         //then
         List<Station> stations = StationService.findAll();
         assertAll(
                 () -> assertThat(stations).hasSize(expectedStationsNumber),
                 () -> assertThat(stations).usingElementComparatorOnFields("name")
-                        .doesNotContain(removedStation)
+                        .doesNotContain(new Station(removedStationName))
         );
+    }
+
+    @DisplayName("노선에 등록된 역을 삭제하면 예외를 발생시키는 기능을 테스트한다")
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "강남역,잠실역,사당역:잠실역", "신림역,봉천역,서울대입구역,낙성대역실:봉천역"
+            }, delimiter = ':'
+    )
+    void testRemoveIfStationIsContainLine(String input, String removedStationName) {
+        //given
+        String[] stationsNames = input.split(",");
+        Arrays.stream(stationsNames)
+                .map(Station::new)
+                .forEach(StationRepository::addStation);
+
+        List<Station> stations = Arrays.stream(stationsNames)
+                .map(Station::new)
+                .collect(Collectors.toList());
+
+        LineRepository.addLine(new Line("2호선", stations));
+
+        //when //then
+        assertThatThrownBy(() -> StationService.remove(removedStationName))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

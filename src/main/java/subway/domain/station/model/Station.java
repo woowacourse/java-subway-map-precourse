@@ -23,7 +23,7 @@ public class Station {
         return name;
     }
 
-    public boolean isEqualTo(Station station) {
-        return Objects.equals(name, station.name);
+    public boolean isEqualTo(String stationName) {
+        return Objects.equals(name, stationName);
     }
 }

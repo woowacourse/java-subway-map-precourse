@@ -51,10 +51,10 @@ class LineTest {
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("노선의 구간이 초기 구간제한 갯수와 다르면 예외를 던지는 기능을 테스트한다")
+    @DisplayName("노선의 구간이 초기 구간제한 갯수보다 작으면 예외를 던지는 기능을 테스트한다")
     @ParameterizedTest
     @ValueSource(strings = {
-            "잠실역", "잠실역,강남역,서울역"
+            "잠실역"
     })
     void testInitLineIfStationsNumberLessThanInitStationsNumber(String stationNames) {
         //given
