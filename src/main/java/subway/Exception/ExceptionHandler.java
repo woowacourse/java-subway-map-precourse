@@ -4,19 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import subway.Controller.LineController;
 import subway.Controller.MainController;
 import subway.Controller.StationController;
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.view.OutputView;
 
 public class ExceptionHandler {
 
-    public static void unselectable(String selection, String[] pattern) {
+    public static void unselectableMain(String selection, String[] pattern) {
         try {
             ExceptionHandler.isUnSelectable(selection, pattern);
         } catch (CustomException e) {
             OutputView.printError(e.getMessage());
-            MainController.run();
+            MainController.select();
         }
     }
 
@@ -65,7 +67,48 @@ public class ExceptionHandler {
 
     private static void isShorterThanTwo(String name) {
         if (name.length() < 2) {
-            throwError("지하철 역 이름은 2글자 이상이어야 합니다.");
+            throwError("지하철 역/노선 이름은 2글자 이상이어야 합니다.");
+        }
+    }
+
+    public static void stationContainedInLine(String name) {
+        try {
+            isStationContainedInLine(name);
+        } catch (CustomException e) {
+            OutputView.printError(e.getMessage());
+            StationController.run();
+        }
+    }
+
+    private static void isStationContainedInLine(String name) {
+        if (LineRepository.containsStation(name)) {
+            throwError("노선에 등록된 역은 삭제할 수 없습니다.");
+        }
+    }
+
+    public static void lineContained(String line) {
+        try {
+            isLineContained(line);
+        } catch (CustomException e) {
+            OutputView.printError(e.getMessage());
+            LineController.run();
+        }
+    }
+
+    private static void isLineContained(String line) {
+        if (LineRepository.containsLine(line)) {
+            throwError("중복된 지하철 노선 이름은 등록될 수 없습니다.");
+        }
+    }
+
+    public static void stationSame(String upwardStation, String downwardStation) {
+        try {
+            if (upwardStation.equals(downwardStation)) {
+                throwError("상행/하행 종점역은 달라야 합니다.");
+            }
+        } catch (CustomException e) {
+            OutputView.printError(e.getMessage());
+            LineController.run();
         }
     }
 }

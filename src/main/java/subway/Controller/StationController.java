@@ -31,6 +31,17 @@ public class StationController {
         if (selection.equals(TRAVERSE)) {
             traverse();
         }
+        if (selection.equals(DELETE)) {
+            delete();
+        }
+    }
+
+    private static void delete() {
+        String name = InputView.getDeleteStation();
+        ExceptionHandler.stationContainedInLine(name);
+        StationRepository.deleteStation(name);
+        OutputView.printDeleteStationSuccess();
+        MainController.run();
     }
 
     private static void add() {
@@ -45,5 +56,6 @@ public class StationController {
     private static void traverse() {
         OutputView.printLineView();
         StationRepository.stations().forEach(station -> OutputView.printInfo(station.getName()));
+        MainController.run();
     }
 }

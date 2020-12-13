@@ -32,6 +32,8 @@ public class OutputView {
 
     private static final String STATION_LIST = "## 역 목록\n";
 
+    private static final String LINE_LIST = "## 노선 목록\n";
+
     private static final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.\n";
 
     private static final String ADD_LINE_SUCCESS = "지하철 노선이 등록되었습니다.\n";
@@ -86,6 +88,10 @@ public class OutputView {
         printInfo(DELETE_STATION_FROM_LINE_SUCCESS);
     }
 
+    public static void printLineList() {
+        print(LINE_LIST);
+    }
+
     public static void printError(String error) {
         System.out.println(error);
     }
@@ -97,5 +103,6 @@ public class OutputView {
     public static void printInfo(String message) {
         System.out.println(INFO + message);
     }
+
 }
 
