@@ -1,6 +1,6 @@
-package subway.service.abstraction.exception;
+package subway.service.abstraction.validation;
 
-public interface ExceptionInterface {
+public interface NameValidationInterface {
     boolean checkNameDuplication(String name);
     boolean checkNameLength(String name);
     boolean checkNameLastCharacter(String name);
