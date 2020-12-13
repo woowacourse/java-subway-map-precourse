@@ -1,6 +1,6 @@
 package subway.view;
 
-public class MainManagerView extends ManagerView {
+public class MainView extends ManagerView {
 	private static final String TOP_MENU_MESSAGE = "메인 화면";
 	private static final String FIRST_MENU_MESSAGE = "역 관리";
 	private static final String SECOND_MENU_MESSAGE = "노선 관리";
