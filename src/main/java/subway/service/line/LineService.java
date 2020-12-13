@@ -12,6 +12,7 @@ import subway.view.output.line.LineInformationView;
 import subway.view.output.line.LineTextView;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LineService implements FeatureChoiceInterface, FeatureInterface {
@@ -39,8 +40,7 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
             return delete(scanner);
         }
         if (input.equals(InputType.INPUT_THREE.getInput())) {
-            // TODO: 노선 조회 기능 구현
-            return false;
+            return show();
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
             System.out.println();
@@ -86,6 +86,11 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
 
     @Override
     public boolean show() {
-        return false;
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> lineNames = LineRepository.lineNames();
+
+        LineNameService.readLineNames(stringBuilder, lineNames);
+        System.out.println(stringBuilder);
+        return true;
     }
 }
