@@ -1,5 +1,6 @@
 package management;
 
+import exception.NoExistStationNameException;
 import input.Input;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -32,11 +33,16 @@ public class StationManagement {
 
     private static void delete(Input input){
         System.out.println(DELETE_STATION_NAME);
-        StationRepository.deleteStation(input.inputStationName());
+        if(!StationRepository.deleteStation(input.inputStationName())){
+            throw new NoExistStationNameException();
+        }
     }
 
     private static void allList(){
         //리스트가 없으면 말해주기
+        if(StationRepository.stations().size() == 0){
+            throw new IllegalArgumentException();
+        }
         for(Station station : StationRepository.stations()){
             System.out.println(INFO + station.getName());
         }

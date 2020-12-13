@@ -11,7 +11,7 @@ public class ScreenManager {
     final Input input;
     final MainScreen mainScreen = new MainScreen();
     private Menu selectedMenu;
-    private boolean reTry = true;
+    private boolean mainRetry = true;
 
     public ScreenManager(Scanner scanner){
         this.scanner = scanner;
@@ -19,26 +19,51 @@ public class ScreenManager {
     }
 
     public void startMainScreen(){
-        while(reTry) {
+        while(mainRetry) {
             mainScreen.visualize();
-            mainScreen.logic(input);
-            logic();
+            handleMainException();
         }
     }
 
     private void logic(){
-        ManagementScreen managementScreen = null;
+        ManagementScreen managementScreen;
         selectedMenu = mainScreen.getSelectedScreen();
         if(selectedMenu == Menu.SUBWAY_MAP){
-
+            SubwayMap.visualize();
         }
         if(selectedMenu == Menu.QUIT){
-            reTry = false;
+            mainRetry = false;
         }
         if(selectedMenu != Menu.SUBWAY_MAP && selectedMenu != Menu.QUIT){
-            managementScreen = new ManagementScreen(selectedMenu);
-            managementScreen.visualize();
-            managementScreen.logic(input);
+            startManagementScreen(new ManagementScreen(selectedMenu));
+        }
+    }
+
+    private void startManagementScreen(ManagementScreen managementScreen){ //여기서 오류 처리 하면 예외 복구가 가능할 거 같음
+        handleManagementException(managementScreen);
+    }
+
+    private void handleManagementException(ManagementScreen managementScreen){
+        while(true) {
+            try {
+                managementScreen.visualize();
+                managementScreen.logic(input);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void handleMainException() {
+        while (true){
+            try {
+                mainScreen.logic(input);
+                logic();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
