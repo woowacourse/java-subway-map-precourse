@@ -26,19 +26,21 @@ public class StationService {
     }
 
     public boolean deleteStationByName(String name) {
-        Station station = stationRepository.findByName(name)
-                .orElseThrow(CannotFindStationException::new);
+        Station station = findStationByName(name);
         if (station.isRegisteredAsSection()) {
             throw new CannotDeleteStationException();
         }
         return stationRepository.delete(station);
     }
 
+    public Station findStationByName(String name) {
+        return stationRepository.findByName(name)
+                .orElseThrow(CannotFindStationException::new);
+    }
+
     public Sections createSections(LineDto lineDto) {
-        Station upwardLastStation = stationRepository.findByName(lineDto.getUpwardLastStationName())
-                .orElseThrow(CannotFindStationException::new);
-        Station downwardLastStation = stationRepository.findByName(lineDto.getDownwardLastStationName())
-                .orElseThrow(CannotFindStationException::new);
+        Station upwardLastStation = findStationByName(lineDto.getUpwardLastStationName());
+        Station downwardLastStation = findStationByName(lineDto.getDownwardLastStationName());
         return Sections.of(upwardLastStation, downwardLastStation);
     }
 
