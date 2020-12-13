@@ -37,7 +37,7 @@ public class StationManagement {
         CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
         CommonValidator
-            .validateSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B, userInput);
+            .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B, userInput);
         return StationManagementTypeResolver.getStationManagementSelectionType(userInput);
     }
 

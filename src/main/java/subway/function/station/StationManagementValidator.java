@@ -7,19 +7,19 @@ import subway.function.station.printer.error.StationManagementErrorPrinter;
 public class StationManagementValidator {
 
     public static void validateStationNameToRegister(String newStationName) throws Exception {
-        CommonValidator.validateNameMinLength(newStationName);
-        CommonValidator.validateStationNameExisting(newStationName);
+        CommonValidator.validateIsNameLengthMinLengthOrMore(newStationName);
+        CommonValidator.validateIsNotStationNameExisting(newStationName);
     }
 
     public static void validateRegisteredInLineStationName(String stationName) throws Exception {
         if (LineStationMappingRepository.isStationNameRegisteredInLine(stationName)) {
+            StationManagementErrorPrinter.printRegisteredInLineStationNameErrorMessage();
             throw new IllegalArgumentException();
         }
-        StationManagementErrorPrinter.printRegisteredInLineStationNameErrorMessage();
     }
 
     public static void validateStationNameToDelete(String stationName) throws Exception {
-        CommonValidator.validateStationNameExisting(stationName);
+        CommonValidator.validateIsStationNameExisting(stationName);
         validateRegisteredInLineStationName(stationName);
     }
 }

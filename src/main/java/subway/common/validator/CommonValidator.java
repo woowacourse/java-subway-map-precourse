@@ -10,23 +10,31 @@ public class CommonValidator {
     public static final String SELECTION_INPUT_PATTERN_1234Q = "^[1234Q]$";
     public static final String SELECTION_INPUT_PATTERN_123B = "^[123B]$";
 
-    public static void validateNameMinLength(String inputStr) throws Exception{
+    public static void validateIsNameLengthMinLengthOrMore(String inputStr) throws Exception {
         if (inputStr.length() < MIN_LENGTH) {
             StationManagementErrorPrinter.printNewStationNameLengthThanMinLengthErrorMessage();
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateSelectionInput(String selectionInputPattern, String userInput) throws Exception{
+    public static void validateIsCorrectSelectionInput(String selectionInputPattern,
+        String userInput) throws Exception {
         if (!Pattern.matches(selectionInputPattern, userInput)) {
             CommonErrorPrinter.printSelectionInputErrorMessage();
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateStationNameExisting(String stationName) throws Exception{
-        if (StationRepository.findByName(stationName) == null) {
+    public static void validateIsNotStationNameExisting(String stationName) throws Exception {
+        if (StationRepository.findByName(stationName) != null) {
             StationManagementErrorPrinter.printAlreadyExistsStationNameErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateIsStationNameExisting(String stationName) throws Exception{
+        if (StationRepository.findByName(stationName) == null) {
+            CommonErrorPrinter.printNotExistsStationNameErrorMessage();
             throw new IllegalArgumentException();
         }
     }

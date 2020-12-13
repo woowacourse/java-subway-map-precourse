@@ -25,7 +25,7 @@ public class SubwayMapProgram {
             userInput = scanner.nextLine();
             try {
                 CommonValidator
-                    .validateSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_1234Q,
+                    .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_1234Q,
                         userInput);
             } catch (Exception ignored) {
                 continue;
