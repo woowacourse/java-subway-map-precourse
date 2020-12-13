@@ -1,22 +1,19 @@
 package subway.menu;
 
-import subway.view.LineInputView;
+import subway.view.MainInputView;
 import subway.view.SectionInputView;
-import subway.view.StationInputView;
 
 import java.util.Scanner;
 
 public enum MainMenu implements MenuModel {
     MANAGE_STATION("1", "역 관리") {
         public void moveView(Scanner scanner) {
-            String stationViewInput = StationInputView.menu(scanner);
-            StationMenu.select(stationViewInput).moveView(scanner);
+            StationMenu.openScreen(scanner);
         }
     },
     MANAGE_LINE("2", "노선 관리") {
         public void moveView(Scanner scanner) {
-            String lineViewInput = LineInputView.menu(scanner);
-            LineMenu.select(lineViewInput).moveView(scanner);
+            LineMenu.openScreen(scanner);
         }
     },
     MANAGE_SECTION("3", "구간 관리") {
@@ -56,6 +53,18 @@ public enum MainMenu implements MenuModel {
 
     public static String getMenu() {
         return MenuFeature.getMenu(MainMenu.class);
+    }
+
+    public static void openScreen(Scanner scanner) {
+        String mainMenuInput = "";
+        do {
+            // output print로 묶기
+            System.out.println("## 메인 화면");
+            System.out.println(MainMenu.getMenu());
+            //
+            mainMenuInput = MainInputView.mainMenu(scanner);
+            select(mainMenuInput).moveView(scanner);
+        } while (canContinue(mainMenuInput));
     }
 
     @Override

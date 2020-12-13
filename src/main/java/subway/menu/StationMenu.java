@@ -1,24 +1,20 @@
 package subway.menu;
 
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.feature.StationFeature;
 import subway.view.OutputView;
 import subway.view.StationInputView;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public enum StationMenu implements MenuModel {
     REGISTER("1", "역 등록") {
         public void moveView(Scanner scanner) {
-            String station = StationInputView.register(scanner);
-            StationRepository.addStation(new Station(station));
+            StationFeature.registerStation(scanner);
         }
     },
     REMOVE("2", "역 삭제") {
         public void moveView(Scanner scanner) {
-            String station = StationInputView.remove(scanner);
-            StationRepository.deleteStation(station);
+            StationFeature.removeStation(scanner);
         }
     },
     INQUIRY("3", "역 조회") {
@@ -49,6 +45,15 @@ public enum StationMenu implements MenuModel {
 
     public static String getMenu() {
         return MenuFeature.getMenu(StationMenu.class);
+    }
+
+    public static void openScreen(Scanner scanner) {
+        // output print로 묶기
+        System.out.println("## 역 관리 화면");
+        System.out.println(StationMenu.getMenu());
+        //
+        String stationMenuInput = StationInputView.menu(scanner);
+        select(stationMenuInput).moveView(scanner);
     }
 
     @Override

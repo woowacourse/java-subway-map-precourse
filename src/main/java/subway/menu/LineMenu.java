@@ -1,31 +1,20 @@
 package subway.menu;
 
-import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.feature.LineFeature;
 import subway.view.LineInputView;
-import subway.view.StationInputView;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public enum LineMenu implements MenuModel {
     REGISTER("1", "노선 등록") {
         public void moveView(Scanner scanner) {
-            String line = LineInputView.register(scanner);
-            String upBoundTerminus = LineInputView.upBoundTerminus(scanner);
-            String downBoundTerminus = LineInputView.downBoundTerminus(scanner);
-
-            Line newLine = new Line(line);
-            newLine.addTerminus(upBoundTerminus, downBoundTerminus);
-            LineRepository.addLine(newLine);
+            LineFeature.registerLine(scanner);
         }
     },
     REMOVE("2", "노선 삭제") {
         public void moveView(Scanner scanner) {
-            LineInputView lineInputView = new LineInputView();
-            lineInputView.remove(scanner);
+            LineFeature.removeLine(scanner);
         }
     },
     INQUIRY("3", "노선 조회") {
@@ -43,6 +32,15 @@ public enum LineMenu implements MenuModel {
 
     final private String selection;
     final private String feature;
+
+    public static void openScreen(Scanner scanner) {
+        // output print로 묶기
+        System.out.println("## 노선 관리 화면");
+        System.out.println(LineMenu.getMenu());
+        //
+        String lineMenuInput = LineInputView.menu(scanner);
+        select(lineMenuInput).moveView(scanner);
+    }
 
     abstract public void moveView(Scanner scanner);
 

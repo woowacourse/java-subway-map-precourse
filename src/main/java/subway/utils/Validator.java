@@ -13,7 +13,7 @@ public class Validator {
     public static final int STATION_NAME_LENGTH_MINIMUM = 2;
 
     public static void menu (Class<? extends MenuModel> menuType, String input) {
-        if (!MenuFeature.exist(MainMenu.class, input)) {
+        if (!MenuFeature.exist(menuType, input)) {
             throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
         }
     }

@@ -3,27 +3,20 @@ package subway;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.menu.MainMenu;
-import subway.menu.MenuFeature;
-import subway.view.MainInputView;
 
 import java.util.Scanner;
 
 public class Controller {
 
     private final Scanner SCANNER;
+
     public Controller(Scanner scanner) {
         this.SCANNER = scanner;
     }
 
     public void run() {
         initialize();
-        String mainMenuInput = "";
-
-        do {
-            mainMenuInput = MainInputView.mainMenu(SCANNER);
-            MainMenu.select(mainMenuInput).moveView(SCANNER);
-        } while (MainMenu.canContinue(mainMenuInput));
-
+        MainMenu.openScreen(SCANNER);
     }
 
     // 사전 등록 정보로 초기 설정
