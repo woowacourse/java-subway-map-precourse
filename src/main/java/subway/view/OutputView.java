@@ -48,6 +48,7 @@ public class OutputView {
     public static final String ERROR_DUPLICATE_STATION = ERROR_LABEL + "역이 이미 노선에 등록되어 있습니다.";
     public static final String ERROR_NO_NAME = ERROR_LABEL + "해당 이름의 역/노선이 없습니다.";
     public static final String ERROR_INDEX = ERROR_LABEL + "유효하지 않은 순서입니다.";
+    public static final String ERROR_NO_STATION = ERROR_LABEL + "해당 역은 노선에 존재하지 않습니다.";
 
     public static void printMenu(int currentMenu) {
         if (currentMenu == Function.MAIN_MENU) {

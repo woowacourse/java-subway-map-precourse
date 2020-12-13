@@ -43,6 +43,7 @@ public class Line {
 
     public void remove(Station station) {
         validateMinimumAmount();
+        validateExisting(station);
         stations.remove(station);
     }
 
@@ -72,6 +73,12 @@ public class Line {
     private void validateDuplicate(Station station) {
         if(isDuplicate(station)) {
             throw new IllegalArgumentException(OutputView.ERROR_DUPLICATE_STATION);
+        }
+    }
+
+    private void validateExisting(Station station) {
+        if(!isDuplicate(station)) {
+            throw new IllegalArgumentException(OutputView.ERROR_NO_STATION);
         }
     }
 
