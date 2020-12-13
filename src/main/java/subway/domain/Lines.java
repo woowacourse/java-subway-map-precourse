@@ -11,7 +11,7 @@ public class Lines {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public void add(Line line) {
+    public void addLine(Line line) {
         lines.add(line);
     }
 
