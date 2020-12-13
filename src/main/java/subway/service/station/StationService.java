@@ -3,6 +3,7 @@ package subway.service.station;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.service.InputService;
+import subway.service.StringBuilderService;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.validation.NameAddingValidation;
@@ -12,6 +13,7 @@ import subway.view.output.station.StationInformationView;
 import subway.view.output.ScreenView;
 import subway.view.output.station.StationTextView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StationService implements FeatureChoiceInterface, FeatureInterface {
@@ -39,13 +41,9 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
             return delete(scanner);
         }
         if (input.equals(InputType.INPUT_THREE.getInput())) {
-            // TODO: 역 조회 기능 구현
-            return false;
+            return show();
         }
-        if (input.equals(InputType.INPUT_BACK.getInput())) {
-            return true;
-        }
-        return false;
+        return input.equals(InputType.INPUT_BACK.getInput());
     }
 
     @Override
@@ -81,6 +79,11 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean show() {
-        return false;
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> stationNames = StationRepository.getStationNames();
+
+        StationNameService.readStationName(stringBuilder, stationNames);
+        System.out.println(stringBuilder);
+        return true;
     }
 }
