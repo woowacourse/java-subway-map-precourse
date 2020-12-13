@@ -1,6 +1,6 @@
 package subway.function.section;
 
-import subway.commonprint.Prefix;
+import subway.common.print.Prefix;
 
 public class SectionManagementPrinter {
     private static final String LINE_NAME_TO_REGISTER_SECTION_INPUT_MESSAGE

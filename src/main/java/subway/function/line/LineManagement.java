@@ -1,7 +1,7 @@
 package subway.function.line;
 
 import java.util.Scanner;
-import subway.commonprint.info.CommonInfoPrinter;
+import subway.common.print.info.CommonInfoPrinter;
 import subway.domain.line.LineRepository;
 import subway.domain.LineStationMappingRepository;
 import subway.main.UserSelections;

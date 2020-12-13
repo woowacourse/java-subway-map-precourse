@@ -1,6 +1,6 @@
-package subway.commonprint.error;
+package subway.common.print.error;
 
-import subway.commonprint.Prefix;
+import subway.common.print.Prefix;
 
 public class CommonErrorPrinter {
     private static final String SELECTION_INPUT_ERROR_MESSAGE

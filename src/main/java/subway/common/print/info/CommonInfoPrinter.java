@@ -1,4 +1,4 @@
-package subway.commonprint.info;
+package subway.common.print.info;
 
 public class CommonInfoPrinter {
     private static final String USER_FUNCTION_SELECTION_MESSAGE

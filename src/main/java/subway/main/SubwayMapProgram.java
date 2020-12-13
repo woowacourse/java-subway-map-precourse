@@ -2,12 +2,12 @@ package subway.main;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import subway.commonprint.error.CommonErrorPrinter;
+import subway.common.print.error.CommonErrorPrinter;
 import subway.function.line.LineManagement;
 import subway.function.printsubwaymap.PrintSubwayMap;
 import subway.function.section.SectionManagement;
 import subway.function.station.StationManagement;
-import subway.commonprint.info.CommonInfoPrinter;
+import subway.common.print.info.CommonInfoPrinter;
 
 public class SubwayMapProgram {
 

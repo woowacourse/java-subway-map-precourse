@@ -1,6 +1,6 @@
-package subway.function.station;
+package subway.function.station.printer;
 
-import subway.commonprint.Prefix;
+import subway.common.print.Prefix;
 
 public class StationManagementPrinter {
     private static final String USER_INPUT_STATION_REGISTRATION_MESSAGE

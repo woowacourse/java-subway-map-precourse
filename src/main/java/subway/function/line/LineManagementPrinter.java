@@ -1,6 +1,6 @@
 package subway.function.line;
 
-import subway.commonprint.Prefix;
+import subway.common.print.Prefix;
 
 public class LineManagementPrinter {
     private static final String NEW_LINE_NAME_INPUT_MESSAGE
