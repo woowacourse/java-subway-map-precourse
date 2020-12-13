@@ -23,9 +23,9 @@ public class StationManager {
             addStation();
         } else if (menuNumber.equals("2")) {
             deleteStation();
+        } else if (menuNumber.equals("3")) {
+            printStation();
         }
-//        else if (menuNumber.equals("3")) {
-//        }
 //        else if (stationMenuNumber == 0) {
 //
 //        }
@@ -62,5 +62,8 @@ public class StationManager {
         return userInput;
     }
 
+    public void printStation() {
+        StationRepository.print();
+    }
 
 }
