@@ -8,12 +8,15 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Lines {
+    private static final String ERR_ALREADY_ADD_LINE_NAME_MSG = "[ERROR] 이미 등록된 역명입니다.";
     private static final String ERR_NO_SUCH_NAME_LINE_MSG = "[ERROR] 해당 노선이 없습니다.";
 
     private List<Line> lines = new ArrayList<>();
 
-    public boolean deleteLine(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public void deleteLine(String name) {
+        if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
+            throw new NoSuchElementException(ERR_ALREADY_ADD_LINE_NAME_MSG);
+        }
     }
 
     public void addLine(Line line) {
