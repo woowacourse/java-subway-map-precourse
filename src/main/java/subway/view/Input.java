@@ -33,23 +33,23 @@ public class Input {
     }
 
     public boolean validName(String name) {
-        return validNameLength(name) && validNameEndWord(name);
-    }
-
-    private boolean validNameLength(String name) {
-        if (name.length() >= STATION_NAME_LENGTH) {
-            return true;
+        if (!validNameLength(name)) {
+            Message.printNameLengthError();
+            return false;
         }
-        Message.printNameLengthError();
+        if (!validNameEndWord(name)) {
+            Message.printNameError();
+            return false;
+        }
         return true;
     }
 
+    private boolean validNameLength(String name) {
+        return name.length() >= STATION_NAME_LENGTH;
+    }
+
     private boolean validNameEndWord(String name) {
-        if (name.endsWith(STATION_END_NAME)) {
-            return true;
-        }
-        Message.printNameError();
-        return false;
+        return name.endsWith(STATION_END_NAME);
     }
 
     private String toUpperNextLine() {
