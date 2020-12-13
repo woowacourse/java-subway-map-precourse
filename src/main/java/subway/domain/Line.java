@@ -1,5 +1,6 @@
 package subway.domain;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
@@ -12,6 +13,8 @@ public class Line {
         }
 
         this.name = name;
+
+        stations = new LinkedList<>();
 
         stations.add(firstStation);
         firstStation.onLine();
