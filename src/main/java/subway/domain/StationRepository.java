@@ -39,14 +39,15 @@ public class StationRepository {
         return false;
     }
 
-    @Override
-    public String toString() {
+//    @Override
+    public static void print() {
         StringBuilder sb = new StringBuilder();
         for (Station station: stations) {
             sb.append("[INFO] ");
             sb.append(station.getName());
             sb.append("\n");
         }
-        return sb.toString();
+//        return sb.toString();
+        System.out.println(sb.toString());
     }
 }

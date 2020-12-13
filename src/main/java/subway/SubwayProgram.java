@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SubwayProgram {
     private final Scanner scanner;
-    private StationRepository newStationRepository;
+//    private StationRepository newStationRepository;
     private LineRepository newLineRepository;
 
     public SubwayProgram(Scanner scanner) {
@@ -17,9 +17,8 @@ public class SubwayProgram {
         MainMenu mainMenu = new MainMenu(scanner);
         do {
             String mainMenuNumber = mainMenu.run();
-            newStationRepository = new StationRepository();
             selectMainMenu(mainMenuNumber);
-            System.out.println(newStationRepository);
+            StationRepository.print();
         } while (mainMenu.doNext());
     }
 

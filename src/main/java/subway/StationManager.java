@@ -22,12 +22,11 @@ public class StationManager {
         if (menuNumber.equals("1")) {
             addStation();
         } else if (menuNumber.equals("2")) {
-            String station = askStationName();
-            StationRepository.deleteStation(station);
+            deleteStation();
         }
-//        else if (stationMenuNumber == 3) {
-//
-//        } else if (stationMenuNumber == 0) {
+//        else if (menuNumber.equals("3")) {
+//        }
+//        else if (stationMenuNumber == 0) {
 //
 //        }
     }
@@ -42,16 +41,26 @@ public class StationManager {
         StationRepository.addStation(new Station(station));
     }
 
-    private boolean isDuplicate(String station) {
-        return StationRepository.hasStation(station);
-
+    //TODO 노선에 등록된 역은 삭제 안되게 하기
+    private void deleteStation() {
+        System.out.println("\n## 삭제할 역 이름을 입력하세요");
+        String station = askStationName();
+        if (!isDuplicate(station)) {
+            System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
+            run();
+        }
+        StationRepository.deleteStation(station);
     }
 
+    private boolean isDuplicate(String station) {
+        return StationRepository.hasStation(station);
+    }
 
     public String askStationName() {
         String userInput = scanner.nextLine();
         //Todo validate userInput
         return userInput;
     }
+
 
 }
