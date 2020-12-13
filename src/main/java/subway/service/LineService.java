@@ -1,6 +1,9 @@
 package subway.service;
 
+import static subway.console.Output.print;
+
 import java.util.List;
+import subway.console.Message;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
@@ -12,12 +15,12 @@ import subway.repository.StationRepository;
  * @since 2020/12/13
  */
 public class LineService {
-    public boolean addLine(String name) {
-        LineRepository.addLine(new Line(name));
-        return true;
-    }
+    private static final int STATION_NAME_LENGTH = 2;
 
     public boolean addSection(String name, String firstStationName, String lastStationName) {
+        if (!isValidate(name)) {
+            return false;
+        }
         Station firstStation = StationRepository.findOne(firstStationName);
         Station lastStation = StationRepository.findOne(lastStationName);
 
@@ -26,6 +29,22 @@ public class LineService {
         SectionRepository.addSection(line, firstStation);
         SectionRepository.addSection(line, lastStation);
         return true;
+    }
+
+    private boolean isValidate(String name) {
+        try {
+            validateNameLength(name);
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private void validateNameLength(String name) {
+        if (name.length() < STATION_NAME_LENGTH) {
+            throw new IllegalArgumentException(Message.ERROR_NAME_LENGTH);
+        }
     }
 
     public boolean deleteLine(String name) {
