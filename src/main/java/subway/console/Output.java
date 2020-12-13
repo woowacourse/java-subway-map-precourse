@@ -1,6 +1,7 @@
 package subway.console;
 
 import java.util.List;
+import subway.domain.Line;
 import subway.domain.Station;
 
 /**
@@ -33,5 +34,10 @@ public class Output {
 
     public static void printBlankLine() {
         System.out.println();
+    }
+
+    public static void printLines(List<Line> lines) {
+        printLine(Message.LINES);
+        lines.stream().map(line -> Message.INFO + line.getName()).forEach(Output::printLine);
     }
 }

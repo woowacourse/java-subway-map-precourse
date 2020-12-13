@@ -2,12 +2,14 @@ package subway.view;
 
 import static subway.console.Output.printLine;
 import static subway.console.Output.printPage;
+import static subway.console.Output.printStations;
 
 import java.util.Arrays;
 import java.util.List;
 import subway.console.Button;
 import subway.console.Input;
 import subway.console.Message;
+import subway.console.Output;
 import subway.controller.LineController;
 
 /**
@@ -46,12 +48,9 @@ public class LineView {
 
     private boolean isEndLinePage(String button) {
         return !isCreate(button)
-                && !isBack(button)
-                && !isDelete(button);
-    }
-
-    private boolean isBack(final String button) {
-        return button.equals(Button.BACK);
+                && !isDelete(button)
+                && !isRead(button)
+                && !isBack(button);
     }
 
     private boolean isCreate(String button) {
@@ -92,8 +91,19 @@ public class LineView {
         return lineController.deleteLine(input.nextLine());
     }
 
-    private void readLine(String button) {
+    private boolean isRead(String button) {
         if (button.equals(Button.THREE)) {
+            readLines();
+            return true;
         }
+        return false;
+    }
+
+    private void readLines() {
+        Output.printLines(lineController.getLines());
+    }
+
+    private boolean isBack(final String button) {
+        return button.equals(Button.BACK);
     }
 }

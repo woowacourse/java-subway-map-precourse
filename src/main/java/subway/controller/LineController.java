@@ -1,5 +1,7 @@
 package subway.controller;
 
+import java.util.List;
+import subway.domain.Line;
 import subway.service.LineService;
 
 /**
@@ -23,5 +25,9 @@ public class LineController {
 
     public boolean deleteLine(String name) {
         return lineService.deleteLine(name);
+    }
+
+    public List<Line> getLines() {
+        return lineService.findAll();
     }
 }

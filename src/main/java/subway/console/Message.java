@@ -7,6 +7,7 @@ package subway.console;
 public class Message {
     public static final String SUBWAY_LINE = "\n## 지하철 노선도";
     public static final String STATIONS = "\n## 역목록";
+    public static final String LINES = "\n## 노선목록";;
     public static final String INPUT_SELECT_BUTTON = "\n## 원하는 기능을 선택하세요.";
     public static final String INPUT_CREATE_STATION = "\n## 등록할 역 이름을 입력하세요.";
     public static final String INPUT_DELETE_STATION = "\n## 삭제할 역 이름을 입력하세요.";

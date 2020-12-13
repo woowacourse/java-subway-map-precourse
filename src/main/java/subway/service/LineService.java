@@ -1,5 +1,6 @@
 package subway.service;
 
+import java.util.List;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
@@ -32,5 +33,9 @@ public class LineService {
             return true;
         }
         return false;
+    }
+
+    public List<Line> findAll() {
+        return LineRepository.lines();
     }
 }
