@@ -1,4 +1,4 @@
-package subway;
+package subway.common;
 
 import subway.line.domain.LineRepository;
 import subway.view.OutputView;

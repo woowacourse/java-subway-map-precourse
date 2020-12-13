@@ -1,4 +1,4 @@
-package subway;
+package subway.common;
 
 import subway.common.exception.NotSupportedFunctionException;
 import subway.line.LineController;

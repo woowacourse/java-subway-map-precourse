@@ -1,4 +1,4 @@
-package subway;
+package subway.common;
 
 import subway.view.InputView;
 import subway.view.OutputView;
