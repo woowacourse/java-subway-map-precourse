@@ -31,6 +31,7 @@ public class SubwayManagement {
             return;
         }
         if (select.equals(Constants.FUNCTION_4)) {
+            printSubwayLine();
             return;
         }
         if (select.equals(Constants.FUNCTION_Q)) {
@@ -143,5 +144,9 @@ public class SubwayManagement {
         String name = user.getInput();
         LineRepository.deleteSection(line, name);
         printScreen.printAlarmDeleteSection();
+    }
+
+    private void printSubwayLine() {
+        printScreen.printAllSubwayLine();
     }
 }
