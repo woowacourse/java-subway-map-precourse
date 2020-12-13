@@ -15,13 +15,14 @@ public class Lines {
 
     public void deleteLine(String name) {
         if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
-            throw new NoSuchElementException(ERR_ALREADY_ADD_LINE_NAME_MSG);
+            throw new NoSuchElementException(ERR_NO_SUCH_NAME_LINE_MSG);
         }
     }
 
     public void addLine(Line line) {
         if (!lines.contains(line)) {
             lines.add(line);
+            return;
         }
         throw new IllegalStateException(ERR_ALREADY_ADD_LINE_NAME_MSG);
     }
