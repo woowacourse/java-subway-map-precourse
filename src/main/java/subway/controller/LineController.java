@@ -39,14 +39,14 @@ public class LineController {
         OutputView.printInputRegisterValue(LineText.screenName());
         Line line = new Line(inputView.getInputRegisterLine());
         LineRepository.addLine(line);
-        registerSection(inputView,line);
+        registerSection(inputView, line);
         OutputView.printRegisterSuccess(LineText.screenName());
         goBackToMain(inputView);
     }
 
     private void deleteLine(InputView inputView) {
         OutputView.printInputDeleteValue(LineText.screenName());
-        if (LineRepository.deleteLineByName(inputView.getInputDeleteLine())){
+        if (LineRepository.deleteLineByName(inputView.getInputDeleteLine())) {
             OutputView.printDeleteSuccess(LineText.screenName());
         }
         goBackToMain(inputView);
@@ -66,9 +66,9 @@ public class LineController {
 
     private void registerSection(InputView inputView, Line line) {
         OutputView.printRegisterFirstStation();
-        String firstStation = inputView.getInputRegisterStationForSection();
+        String firstStation = inputView.getInputRegisterStationForSection(line.getName());
         OutputView.printRegisterLastStation();
-        String lastStation = inputView.getInputRegisterStationForSection(firstStation);
+        String lastStation = inputView.getInputRegisterStationForSection(firstStation, line.getName());
         SectionRepository.addSection(line.getName(), firstStation, lastStation);
     }
 

@@ -45,12 +45,12 @@ public class InputView {
         return validateInputRegisterStation(scanner.nextLine());
     }
 
-    public String getInputRegisterStationForSection() {
-        return validateInputRegisterStationForSection(scanner.nextLine());
+    public String getInputRegisterStationForSection(String line) {
+        return validateInputRegisterStationForSection(line, scanner.nextLine());
     }
 
-    public String getInputRegisterStationForSection(String firstStation) {
-        return validateInputRegisterStationForSection(firstStation, scanner.nextLine());
+    public String getInputRegisterStationForSection(String line, String firstStation) {
+        return validateInputRegisterStationForSection(line, firstStation, scanner.nextLine());
     }
 
     public String getInputDeleteStation() {
@@ -88,19 +88,25 @@ public class InputView {
         return station;
     }
 
-    public String validateInputRegisterStationForSection(String station) {
+    public String validateInputRegisterStationForSection(String line, String station) {
         if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+        }
+        if (SectionRepository.searchStationInLine(line, station)) {
+            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_IN_SECTION_ERROR_MESSAGE);
         }
         return station;
     }
 
-    public String validateInputRegisterStationForSection(String firstStation, String station) {
+    public String validateInputRegisterStationForSection(String line, String firstStation, String station) {
         if (firstStation.equals(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + EQUAL_STATION_ERROR_MESSAGE);
         }
         if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+        }
+        if (SectionRepository.searchStationInLine(line, station)) {
+            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_IN_SECTION_ERROR_MESSAGE);
         }
         return station;
     }

@@ -35,7 +35,7 @@ public class SectionController {
         OutputView.printInputValue(LineText.screenName());
         String line = inputView.getInputDeleteLine();
         OutputView.printInputValue(StationText.screenName());
-        String station = inputView.getInputRegisterStationForSection();
+        String station = inputView.getInputRegisterStationForSection(line);
         OutputView.printInputIndex();
         int index = inputView.getInputIndex(SectionRepository.getLengthByLineName(line));
         SectionRepository.insertSection(line, station, index);
