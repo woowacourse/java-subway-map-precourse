@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class StationRepository {
@@ -15,8 +14,7 @@ public class StationRepository {
     private static final String ERROR_INVALID_STATION_NAME_LENGTH = "[ERROR] 역 이름이 너무 짧습니다.";
     private static final String ERROR_DUPLICATED_STATION_NAME_IN_REPOSITORY = "[ERROR] 같은 역 이름이 이미 있습니다.";
     private static final String SYMBOL_INFO = "[INFO] ";
-
-
+    private static final String ERROR_HAS_LINE = "[ERROR] 노선에 등록되어 있는 역이므로 삭제할 수 없습니다.";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -41,21 +39,26 @@ public class StationRepository {
         }
     }
 
-    public static void deleteStation(Scanner scanner) {
-        String stationName = getDeleteStationName(scanner);
-        stations.removeIf(station -> Objects.equals(station.getName(), stationName));
-    }
-
-    private static String getDeleteStationName(Scanner scanner) {
-        String stationName = scanner.nextLine();
+    public static void deleteStation(String stationName) {
         validateStationNameDeleted(stationName);
-        return stationName;
+        stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
     private static void validateStationNameDeleted(String stationName) {
         if (!isStationInRepository(stationName)) {
             throw new IllegalArgumentException(ERROR_NO_STATION_IN_REPOSITORY);
         }
+        if (hasLine(stationName)) {
+            throw new IllegalArgumentException(ERROR_HAS_LINE);
+        }
+    }
+
+    private static boolean hasLine(String stationName) {
+        Stream<Station> stationStream = stations().stream();
+        Station stationSelected = stationStream.
+            filter(station -> station.getName().equals(stationName)).
+            findFirst().get();
+        return stationSelected.isEnrolled();
     }
 
     private static boolean isStationInRepository(String stationName) {

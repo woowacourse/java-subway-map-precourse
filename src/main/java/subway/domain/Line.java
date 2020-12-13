@@ -1,7 +1,9 @@
 package subway.domain;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Line {
@@ -24,7 +26,13 @@ public class Line {
         return name;
     }
 
+    public List<Station> stations() {
+        return Collections.unmodifiableList(stationsOnLine);
+    }
+
     public void initializeEndStations(Station upEndStation, Station downEndStation) {
+        upEndStation.enroll(this);
+        downEndStation.enroll(this);
         stationsOnLine.add(upEndStation);
         stationsOnLine.add(downEndStation);
     }
@@ -37,6 +45,7 @@ public class Line {
         if(!isIndexInRange(index - 1)) { // 순서는 1부터 입력 가능하므로
             throw new IllegalArgumentException(ERROR_INDEX_NOT_IN_RANGE);
         }
+        station.enroll(this);
         stationsOnLine.add(index - 1, station);
     }
 
@@ -57,6 +66,7 @@ public class Line {
         if(!isStationInLine(station)) {
             throw new IllegalArgumentException(ERROR_STATION_NOT_ON_LINE);
         }
+        station.disEnroll(this);
         stationsOnLine.remove(station);
     }
 
