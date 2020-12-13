@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,4 +32,10 @@ public class Line {
         return false;
     }
 
+    public boolean isContainStation(String name) {
+        for (Station station : stationOfLine) {
+            if (station.getName().compareTo(name) == 0) return true;
+        }
+        return false;
+    }
 }

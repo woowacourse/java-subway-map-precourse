@@ -30,6 +30,7 @@ public class MainView {
     protected static void nextMenu(int menu) {
         if (menu == 1) StationManagementView.StationMenu();
         if (menu == 2) LineManagementView.LineManagementMenu();
+        if (menu == 3) SectionManagementView.SectionMenu();
         if (menu == 4) LineRepository.lookUpStationOfLine();
     }
 }

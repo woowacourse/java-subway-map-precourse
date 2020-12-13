@@ -9,7 +9,7 @@ public class StationManagementView {
         while (true) {
             showView();
             String user_input = InputView.mainInput();
-            if (InputTool.isStationInputVaild(user_input) == false) {
+            if (InputTool.isStationAndLineInputVaild(user_input) == false) {
                 OutputView.printError(ERROR_MESSAGE);
                 continue;
             }

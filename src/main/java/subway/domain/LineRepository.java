@@ -8,10 +8,6 @@ import java.util.*;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-    public static List<Line> lines() {
-        return Collections.unmodifiableList(lines);
-    }
-
     public static boolean addLine(Line line) {
         lines.add(line);
         return true;
@@ -48,10 +44,25 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static List<Line> getLines() {
-        return lines;
+    public static boolean isContainStationInTargetLine(String lineName, String stationName) {
+        Iterator<Line> itr = lines.iterator();
+        while (itr.hasNext()) {
+            Line tempLine = (Line) itr.next();
+            if(tempLine.getName().compareTo(lineName) ==0){
+                if(tempLine.isContainStation(stationName)) return true;
+            }
+        }
+        return false;
     }
 
+    public static int getTargetLineSize(String lineName) {
+        Iterator<Line> itr = lines.iterator();
+        while (itr.hasNext()) {
+            Line tempLine = (Line) itr.next();
+            if(tempLine.getName().compareTo(lineName) ==0) return tempLine.getStationOfLine().size();
+        }
+        return -1;
+    }
     public static boolean lookUpLine() {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
@@ -70,11 +81,10 @@ public class LineRepository {
             for (Station station : stationList)
                 OutputView.printInfo(station.getName());
             System.out.println();
-
         }
         return true;
     }
-
+    //해당 이름의 역이 모든 노선 중 하나라도 포함되어 있는지
     public static boolean isContainStationInLines(String name) {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
@@ -92,4 +102,9 @@ public class LineRepository {
         }
         return false;
     }
+
+    public static void addStationInLine(String lineName, String stationName, String order) {
+         
+    }
+
 }

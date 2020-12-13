@@ -11,7 +11,7 @@ public class LineManagementView {
         while (true) {
             showView();
             String user_input = InputView.mainInput();
-            if (InputTool.isLineInputVaild(user_input) == false) {
+            if (InputTool.isStationAndLineInputVaild(user_input) == false) {
                 OutputView.printError(ERROR_MESSAGE);
                 continue;
             }
