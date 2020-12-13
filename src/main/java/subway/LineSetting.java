@@ -2,6 +2,7 @@ package subway;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 
 import java.util.Scanner;
 
@@ -10,8 +11,19 @@ public class LineSetting {
         String inputName = lineName(scanner);
         String firstStation = firstStation(scanner);
         String lastStation = lastStation(scanner, firstStation);
-        LineRepository.addLine(new Line(inputName));
+        Line line = new Line(inputName);
+        addStationToLine(line, firstStation);
+        addStationToLine(line, lastStation);
+        LineRepository.addLine(line);
         Print.infoMessage(Constant.ADD_LINE_DONE);
+    }
+
+    public static void addStationToLine(Line line, String stationName){
+        StationRepository.stations().forEach(station -> {
+            if(station.getName().equals(stationName)){
+                line.addStation(station);
+            }
+        });
     }
 
     public static String lineName(Scanner scanner) {
