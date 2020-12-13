@@ -1,4 +1,4 @@
-package subway.service.validation;
+package subway.service.station;
 
 import subway.repository.StationRepository;
 import subway.repository.TransitMapRepository;
@@ -8,7 +8,7 @@ import subway.view.output.station.StationExceptionView;
 import java.util.LinkedList;
 import java.util.List;
 
-public class NameDeletionValidation implements NameDeletionValidationInterface {
+public class StationNameDeletionValidation implements NameDeletionValidationInterface {
     @Override
     public boolean checkNameInTransitMap(String stationName) {
         List<LinkedList<String>> transitMapsStationsNames

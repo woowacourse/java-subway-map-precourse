@@ -1,4 +1,4 @@
-package subway.service.validation;
+package subway.service.station;
 
 import subway.repository.StationRepository;
 import subway.service.abstraction.validation.NameAddingValidationInterface;
@@ -8,7 +8,7 @@ import subway.view.output.station.StationExceptionView;
 
 import java.util.List;
 
-public class NameAddingValidation implements NameAddingValidationInterface {
+public class StationNameAddingValidation implements NameAddingValidationInterface {
     @Override
     public boolean checkNameDuplication(String stationName) {
         List<String> stationNames = StationRepository.stationNames();
