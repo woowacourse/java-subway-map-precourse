@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +22,14 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public List<Station> stations() {
+        return Collections.unmodifiableList(stationList);
+    }
+
+    public void printLineDetail() {
+        OutputView.lineDetailPrint(name, stations());
+    }
+
     public void addSection(int index, Station station) {
         stationList.add(index, station);
     }

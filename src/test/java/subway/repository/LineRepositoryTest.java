@@ -59,4 +59,14 @@ class LineRepositoryTest {
         assertFalse(LineRepository.deleteSection(line, new Station("잠실역")));
     }
 
+    @Test
+    @DisplayName("지하철 노선도를 출력할 수 있다")
+    public void subwayPrintTest() throws Exception{
+        Line line = new Line("1호선", new Station("사당"), new Station("오이도역"));
+        Line line2 = new Line("2호선", new Station("당산"), new Station("홍대역"));
+        LineRepository.addLine(line);
+        LineRepository.addLine(line2);
+
+        LineRepository.printLineAndStation();
+    }
 }

@@ -61,4 +61,8 @@ public class LineRepository {
         sectionDeleteMessage(SECTION_DELETE_SUCCESS);
         return true;
     }
+
+    public static void printLineAndStation() {
+        lines.forEach(Line::printLineDetail);
+    }
 }
