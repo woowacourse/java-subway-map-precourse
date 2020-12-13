@@ -24,6 +24,7 @@ public class SubwayMapMain {
             if(choiceNumberStationFunction==1){
                 scanner.nextLine();
                 String tmpSaveStation=scanner.nextLine();
+
                 stationRepository.addStation(new Station(tmpSaveStation));
                 stationRepository.print();
             }

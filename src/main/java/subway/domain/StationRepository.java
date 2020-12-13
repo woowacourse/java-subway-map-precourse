@@ -13,12 +13,23 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        stations.add(station);
+        if(lengthStationName(station.getName())) {
+            stations.add(station);
+        }
     }
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+    public static boolean lengthStationName(String name){
+        if(name.length()<2){
+            System.out.println("[ERROR] 역 이름이 2자 미만 입니다.");
+            return false;
+        }
+
+        return true;
+    }
+    public boolean
     public void print(){
         for(int i=0;i<stations.size();i++){
             System.out.println(stations.get(i).getName());
