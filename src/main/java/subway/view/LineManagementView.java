@@ -29,8 +29,10 @@ public class LineManagementView {
 
     protected static boolean nextMenu(int menu) {
         if (menu == 1) {
-            String user_input =InputView.LineNameInsertInput();
-            return LineRepository.isPossibleLine(user_input);
+            String lineName =InputView.LineNameInsertInput();
+            String startName =InputView.LineStartInput();
+            String endName =InputView.LineEndInput();
+            return LineRepository.isPossibleLine(lineName, startName, endName);
         }
         if (menu == 2) {
         }

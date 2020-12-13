@@ -28,4 +28,16 @@ public class InputView {
         String user_input = scanner.nextLine();
         return user_input;
     }
+
+    public static String LineStartInput() {
+        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        String user_input = scanner.nextLine();
+        return user_input;
+    }
+
+    public static String LineEndInput() {
+        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        String user_input = scanner.nextLine();
+        return user_input;
+    }
 }

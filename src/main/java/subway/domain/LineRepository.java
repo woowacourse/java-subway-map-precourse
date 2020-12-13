@@ -17,13 +17,17 @@ public class LineRepository {
         return true;
     }
 
-    public static boolean isPossibleLine(String lineName) {
+    public static boolean isPossibleLine(String lineName, String startName, String endName) {
         if(!InputTool.isValidName(lineName)){
             OutputView.printError("노선 이름은 2글자 이상이어야 합니다.");
             return false;
         }
         if(isExistLine(lineName)){
             OutputView.printError("노선 이름은 중복될 수 없습니다.");
+            return false;
+        }
+        if(StationRepository.isExistStation(startName)==false || StationRepository.isExistStation(endName) == false){
+            OutputView.printError("종점역이 존재하지 않습니다.");
             return false;
         }
         Line newLine = new Line(lineName);
