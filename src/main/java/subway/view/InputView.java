@@ -20,6 +20,7 @@ public class InputView {
     private static final String NOT_EXISTING_STATION_ERROR_MESSAGE = "등록되지 않은 역 이름입니다.";
     private static final String NOT_EXISTING_LINE_ERROR_MESSAGE = "등록되지 않은 노선 이름입니다.";
     private static final String EXISTING_IN_SECTION_ERROR_MESSAGE = "노선에 등록된 역입니다.";
+    private static final String EQUAL_STATION_ERROR_MESSAGE = "상행 종점역과 하행 종점역이 같습니다.";
     private static final String REGEX_LETTER = "^[0-9가-힣]*$";
     private static final String STATION = "역";
     private static final String LINE = "노선";
@@ -39,6 +40,14 @@ public class InputView {
 
     public String getInputRegisterStation() {
         return validateInputRegisterStation(scanner.nextLine());
+    }
+
+    public String getInputRegisterStationForSection() {
+        return validateInputRegisterStationForSection(scanner.nextLine());
+    }
+
+    public String getInputRegisterStationForSection(String firstStation) {
+        return validateInputRegisterStationForSection(firstStation, scanner.nextLine());
     }
 
     public String getInputDeleteStation() {
@@ -68,6 +77,23 @@ public class InputView {
         }
         if (isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + EXISTING_STATION_ERROR_MESSAGE);
+        }
+        return station;
+    }
+
+    public String validateInputRegisterStationForSection(String station) {
+        if (!isExistingStation(station)) {
+            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+        }
+        return station;
+    }
+
+    public String validateInputRegisterStationForSection(String firstStation, String station) {
+        if (firstStation.equals(station)) {
+            throw new IllegalArgumentException(ERROR_HEADER + EQUAL_STATION_ERROR_MESSAGE);
+        }
+        if (!isExistingStation(station)) {
+            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
         }
         return station;
     }
