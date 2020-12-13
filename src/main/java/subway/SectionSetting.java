@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class SectionSetting {
     public static void add(Scanner scanner) {
+        Print.hashMessage(Constant.ENTER_LINE_SECTION_TO_ADD);
         String lineName = lineName(scanner);
         LineRepository.lines().forEach(line -> {
             if (line.getName().equals(lineName)) {
@@ -20,7 +21,6 @@ public class SectionSetting {
     }
 
     public static String lineName(Scanner scanner) {
-        Print.hashMessage(Constant.ENTER_LINE_SECTION_TO_ADD);
         String input = scanner.next();
         System.out.println();
         return Exceptions.isInLineList(input);
