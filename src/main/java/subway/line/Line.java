@@ -40,4 +40,8 @@ public class Line {
     public void addSection(Station station, int sectionNumber) {
         stations.addSection(station, sectionNumber);
     }
+
+    public boolean isNotExistSection(int number) {
+        return stations.isNotExistSection(number);
+    }
 }

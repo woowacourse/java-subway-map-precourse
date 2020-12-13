@@ -43,8 +43,8 @@ public class LineInputView {
         return scanner.next();
     }
 
-    public int sectionNumber() {
+    public String sectionNumber() {
         System.out.println(ENTER_SECTION_NUMBER);
-        return scanner.nextInt();
+        return scanner.next();
     }
 }

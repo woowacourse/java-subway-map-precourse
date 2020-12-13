@@ -1,7 +1,6 @@
 package subway.line;
 
 import subway.station.Station;
-import subway.station.StationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +31,11 @@ public class EachLineStations {
 
     public void addSection(Station station, int sectionNumber) {
         stations.add(sectionNumber, station);
+    }
+
+    public boolean isNotExistSection(int number) {
+        int minimumNumber = 1;
+        int maximumNumber = stations.size() - 1;
+        return number < minimumNumber || number > maximumNumber;
     }
 }

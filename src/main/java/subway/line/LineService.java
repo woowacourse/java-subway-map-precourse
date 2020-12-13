@@ -1,6 +1,7 @@
 package subway.line;
 
 import subway.line.validation.CheckRegisteredLine;
+import subway.line.validation.CheckRightSectionNumber;
 import subway.line.view.LineInputView;
 import subway.line.view.LineOutputView;
 import subway.station.Station;
@@ -54,7 +55,7 @@ public class LineService {
         try {
             Line line = findLine(lineName);
             Station station = getSectionStation(stationInputView);
-            int sectionNumber = getSectionPosition(lineInputView);
+            int sectionNumber = getSectionPosition(line, lineInputView);
             line.addSection(station, sectionNumber);
             LineOutputView.addSectionComplete();
         } catch (IllegalArgumentException e) {
@@ -67,8 +68,10 @@ public class LineService {
         return StationService.findStation(stationName);
     }
 
-    private static int getSectionPosition(LineInputView lineInputView) {
-        return lineInputView.sectionNumber();
+    private static int getSectionPosition(Line line, LineInputView lineInputView) {
+        String number = lineInputView.sectionNumber();
+        CheckRightSectionNumber.validation(line, number);
+        return Integer.parseInt(number);
     }
 
     public static Line findLine(String lineName) {
