@@ -21,8 +21,6 @@ public class StationRepository {
     }
 
     public static boolean findByName(String name) {
-        return stations.stream().anyMatch(station ->
-            station.getName().equals(name)
-        );
+        return stations.stream().anyMatch(station -> station.getName().equals(name));
     }
 }

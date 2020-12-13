@@ -1,6 +1,5 @@
 package subway.userinterface.stationmenu;
 
-import subway.domain.Station;
 import subway.userinterface.InputController;
 import subway.util.InputValidator;
 

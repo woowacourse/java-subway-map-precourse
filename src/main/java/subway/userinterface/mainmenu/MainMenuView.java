@@ -12,8 +12,9 @@ public class MainMenuView implements MenuView {
     private final static String MENU_INTRO = "\n## 메인 화면";
 
     private static MainMenuView mainMenuView;
-    public static LinkedHashMap<String, Menu> mainMenu = new LinkedHashMap<>();
     private static MainViewInputController mainViewInputController = new MainViewInputController();
+
+    public static LinkedHashMap<String, Menu> mainMenu = new LinkedHashMap<>();
 
     private MainMenuView() {
         setMenu();

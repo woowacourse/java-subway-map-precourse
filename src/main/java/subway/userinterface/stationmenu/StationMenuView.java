@@ -13,8 +13,9 @@ public class StationMenuView implements MenuView {
     private final static String MENU_INTRO = "\n## 역 관리 화면";
 
     private static StationMenuView stationMenuView;
-    public static LinkedHashMap<String, Menu> stationMenu = new LinkedHashMap<>();
     private static StationViewInputController stationViewInputController = new StationViewInputController();
+
+    public static LinkedHashMap<String, Menu> stationMenu = new LinkedHashMap<>();
 
     private StationMenuView() {
         setMenu();

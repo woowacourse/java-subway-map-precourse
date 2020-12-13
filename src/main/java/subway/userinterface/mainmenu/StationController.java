@@ -46,5 +46,6 @@ public class StationController implements Menu {
             System.out.println(e.getMessage());
             this.run(scanner);
         }
+
     }
 }

@@ -1,7 +1,5 @@
 package subway.userinterface;
 
-import subway.userinterface.stationmenu.StationRegisterController;
-
 import java.util.Scanner;
 
 public class ReturnController implements Menu {
