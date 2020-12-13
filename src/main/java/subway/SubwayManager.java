@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -21,6 +22,7 @@ public class SubwayManager {
     private static final int OPTION_MAX = 4;
     private static String userOption = "";
     private static StationRepository stationRepository = new StationRepository();
+    private static LineRepository lineRepository = new LineRepository();
 
     public void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
@@ -75,9 +77,9 @@ public class SubwayManager {
         if (optionNumber == 1) {
             new StationManager().manage(scanner);
         }
-//        if (optionNumber == 2) {
-//            LineManagement.manage(scanner);
-//        }
+        if (optionNumber == 2) {
+            LineManager.manage(scanner);
+        }
 //        if (optionNumber == 3) {
 //            SectionManagement.manage(scanner);
 //        }
@@ -105,8 +107,17 @@ public class SubwayManager {
         System.out.println();
     }
 
-    public static boolean isDuplicated(String stationName) {
+    public static boolean isDuplicatedStation(String stationName) {
         return stationRepository.isDuplicated(stationName);
+    }
+
+    public static void addLine(String lineName, String upwardStationName,
+        String downwardStationName) {
+        lineRepository.addLine(lineName, upwardStationName, downwardStationName);
+    }
+
+    public static boolean isDuplicatedLine(String lineName) {
+        return lineRepository.isDuplicated(lineName);
     }
 
     public static boolean isExist(String stationName) {

@@ -49,7 +49,22 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static void addLine(String lineName, String upwardStationName,
+        String downwardStationName) {
+        lines.add(new Line(lineName).addStation(new Station(upwardStationName))
+            .addStation(new Station(downwardStationName)));
+    }
+
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static boolean isDuplicated(String name) {
+        for (Line line : lines) {
+            if (line.isSameName(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

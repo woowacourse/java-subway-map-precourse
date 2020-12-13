@@ -13,13 +13,13 @@ public class Station {
     }
 
     // 추가 기능 구현
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof Station) {
-            return this.isSameName(((Station) o).getName());
-        }
-        return false;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (o instanceof Station) {
+//            return this.isSameName(((Station) o).getName());
+//        }
+//        return false;
+//    }
 
     public boolean isSameName(String name) {
         return this.getName().equals(name);

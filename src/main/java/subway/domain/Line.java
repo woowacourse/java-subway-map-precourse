@@ -18,6 +18,10 @@ public class Line {
     // 추가 기능 구현
     public Line addStation(Station station){
         stationLine.add(station);
-        return (Line) stationLine;
+        return this;
+    }
+
+    public boolean isSameName(String name) {
+        return this.getName().equals(name);
     }
 }
