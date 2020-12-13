@@ -28,8 +28,10 @@ public class OutputView {
     private static final String SECTION_MANAGEMENT_VIEW = "## 구간 관리 화면";
     private static final String SECTION_RESITER_MENU = "1. 구간 등록";
     private static final String SECTION_DELETE_MENU = "2. 구간 삭제";
+    private static final String INFO_EXIT_MESSAGE = "## 지하철 노선 프로그램을 종료햡니다.";
+    private static final String LINES_LIST_MESSAGE = "## 노선 목록";
 
-    public static void printLines(List<Line> lines) {
+    public static void printSubwayRouteMap(List<Line> lines) {
         System.out.println(SUBWAY_ROUTE_MAP_LIST_MESSAGE);
         for (Line line : lines) {
             printLine(line);
@@ -84,5 +86,9 @@ public class OutputView {
         System.out.println(SECTION_RESITER_MENU);
         System.out.println(SECTION_DELETE_MENU);
         System.out.println(RETURN_MENU);
+    }
+
+    public static void printExit() {
+        System.out.println(INFO_EXIT_MESSAGE);
     }
 }
