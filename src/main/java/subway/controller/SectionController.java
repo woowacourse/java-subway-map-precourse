@@ -44,9 +44,14 @@ public class SectionController {
     }
 
     public void deleteSection() {
-        Line line = getLineOfSectionToDelete();
-        line.deleteSection(getStationOfSectionToDelete());
-        sectionView.announceDeleteSectionSuccess();
+        try {
+            Line line = getLineOfSectionToDelete();
+            line.deleteSection(getStationOfSectionToDelete());
+            sectionView.announceDeleteSectionSuccess();
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            deleteSection();
+        }
     }
 
     private Line getLineOfSectionToDelete() {
