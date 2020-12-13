@@ -8,13 +8,14 @@ import java.util.*;
 
 public class TransitMapRepository {
     private static final Map<Line, LinkedList<Station>> transitMaps = new LinkedHashMap<>();
-    private static final List<LinkedList<String>> transitMapsStationNames = new ArrayList<>();
 
     public static Map<Line, LinkedList<Station>> transitMaps() {
         return Collections.unmodifiableMap(transitMaps);
     }
 
     public static List<LinkedList<String>> transitMapsStationNames() {
+        List<LinkedList<String>> transitMapsStationNames = new ArrayList<>();
+
         for (Map.Entry<Line, LinkedList<Station>> entry : transitMaps.entrySet()) {
             LinkedList<String> transitMapStationNames = new LinkedList<>();
             LinkedList<Station> values = entry.getValue();
