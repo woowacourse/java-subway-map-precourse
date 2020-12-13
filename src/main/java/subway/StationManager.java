@@ -26,11 +26,9 @@ public class StationManager {
     public static String userOption = "";
 
     public static void manage(Scanner scanner) {
-        while (!userOption.equals(WANT_QUIT_CODE)) {
-            printStationManagementScreen();
-            userOption = getUserOption(scanner);
-            callOptionMenu(userOption, scanner);
-        }
+        printStationManagementScreen();
+        userOption = getUserOption(scanner);
+        callOptionMenu(userOption, scanner);
     }
 
     public static void printStationManagementScreen() {
