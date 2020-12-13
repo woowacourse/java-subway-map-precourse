@@ -24,16 +24,8 @@ public class Line {
         return this.name.equals(name);
     }
 
-    public void addStation(int order, Station station) {
-        if (order < 1) {
-            throw new IllegalArgumentException("순서는 1부터 가능합니다.");
-        }
-
-        if (order > stations.size()) {
-            throw new IllegalArgumentException("순서는 현재 노선의 크기보다 클 수 없습니다.");
-        }
-
-        stations.add(order, station);
+    public void addStation(Order order, Station station) {
+        stations.add(order.getValue(), station);
         station.onLine();
     }
 
@@ -49,6 +41,14 @@ public class Line {
     public void removeAllStations() {
         stations.stream().forEach(Station::outOfLine);
         stations = null;
+    }
+
+    public int getStationCount() {
+        return stations.size();
+    }
+
+    public boolean isContains(Station station) {
+        return stations.contains(station);
     }
 
     @Override
