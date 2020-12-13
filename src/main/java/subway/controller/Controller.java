@@ -2,6 +2,8 @@ package subway.controller;
 
 import java.util.Scanner;
 import java.util.Stack;
+import subway.controller.manager.Manager;
+import subway.domain.Station;
 import subway.exception.Validator;
 import subway.screen.ActionType;
 import subway.screen.Choice;
@@ -15,11 +17,13 @@ import subway.view.View;
 public class Controller {
     private final Stack<Screen> screenStack = new Stack<>();
     private final View view;
+    private final Manager manager;
     
     public Controller(Scanner scanner) {
         ScreenRepositoryInitializer.initialize();
         screenStack.add(ScreenRepository.getScreenByType(ScreenType.MAIN));
         view = new View(scanner);
+        manager = new Manager(this, view);
     }
     
     public void run() {
@@ -31,6 +35,12 @@ public class Controller {
             userCommand = view.askUserCommand(currentScreen);
             operateUserCommand(userCommand, currentScreen);
         }
+    }
+    
+    public Station askStation(ActionType actionType) throws IllegalArgumentException {
+        String StationName = view.askStationName(actionType);
+        Validator.checkValidStationName(StationName);
+        return new Station(StationName);
     }
     
     private void operateUserCommand(String userCommand, Screen currentScreen) {
@@ -54,7 +64,7 @@ public class Controller {
             popScreen();
             return;
         }
-        manageEntity(userChoice);
+        manager.manageEntity(userChoice);
     }
     
     private void addScreenByEntityType(EntityType entityType) {
@@ -71,9 +81,5 @@ public class Controller {
     
     private void popScreen() {
         screenStack.pop();
-    }
-    
-    private void manageEntity(Choice userChoice) {
-        //  TODO: 구현 예정
     }
 }
