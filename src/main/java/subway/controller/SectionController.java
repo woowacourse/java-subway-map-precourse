@@ -1,20 +1,20 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
+import subway.domain.validator.SectionValidator;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.SectionView;
+import subway.view.StationView;
 
 import java.util.Scanner;
 
 public class SectionController {
     private static SectionController sectionController = null;
-    private final Scanner scanner;
+    private final SectionView sectionView;
 
     private SectionController(Scanner scanner) {
-        this.scanner = scanner;
+        sectionView = SectionView.getInstance(scanner);
     }
 
     public static SectionController getInstance(Scanner scanner) {
@@ -26,32 +26,60 @@ public class SectionController {
     }
 
     public void addSection() {
-        OutputView.printMsg("## 노선을 입력하세요.\n");
-        String lineName = InputView.getInput(scanner);
-        Line line = LineRepository.getByName(lineName);
-        //TODO :: 존재하는 노선 인지 확인
-        OutputView.printMsg("## 역이름을 입력하세요.\n");
-        String stationName = InputView.getInput(scanner);
-        Station station = StationRepository.getByName(stationName);
+        Line line = getExistingLine();
+        Station station = getStationToAddSection(line);
+        line.addStation(getOrder(line), station);
 
-        OutputView.printMsg("## 순서를 입력하세요.\n");
-        int order = Integer.parseInt(InputView.getInput(scanner));
-        line.addStation(order, station);
+        sectionView.announceAddSectionSuccess();
+    }
 
-        OutputView.printInfoMsg("구간이 등록되었습니다.");
+    private Line getExistingLine() {
+        try {
+            Name lineName = sectionView.getLineNameToAddSection();
+            return LineRepository.getByName(lineName);
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getExistingLine();
+        }
+    }
+
+    private Station getStationToAddSection(Line line) {
+        try {
+            Name stationName = sectionView.getStationNameOfSection();
+            Station station = StationRepository.getByName(stationName);
+            SectionValidator.checkStationNotOnLine(station, line);
+            return station;
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getStationToAddSection(line);
+        }
+    }
+
+    private Order getOrder(Line line) {
+        try {
+            Order order = sectionView.getOrder();
+            SectionValidator.checkValidOrderInLine(order, line);
+            return order;
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getOrder(line);
+        }
     }
 
     public void deleteSection() {
-        OutputView.printMsg("## 삭제할 노선을 입력하세요.\n");
-        String lineName = InputView.getInput(scanner);
-        Line line = LineRepository.getByName(lineName);
-        //TODO :: 존재하는 노선 인지 확인
-        OutputView.printMsg("## 역이름을 입력하세요.\n");
-        String stationName = InputView.getInput(scanner);
-        Station station = StationRepository.getByName(stationName);
-
+        Line line = getLineOfSectionToDelete();
+        Station station = getStationOfSectionToDelete();
         line.deleteSection(station);
+        sectionView.announceDeleteSectionSuccess();
+    }
 
-        OutputView.printInfoMsg("구간이 삭제되었습니다.");
+    private Line getLineOfSectionToDelete() {
+        Name lineName = sectionView.getLineNameOfSection();
+        return LineRepository.getByName(lineName);
+    }
+
+    private Station getStationOfSectionToDelete() {
+        Name stationName = sectionView.getStationNameOfSection();
+        return StationRepository.getByName(stationName);
     }
 }

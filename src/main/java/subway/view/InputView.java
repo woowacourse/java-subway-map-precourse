@@ -8,6 +8,15 @@ public class InputView {
     private InputView() {
     }
 
+    public static int getInteger(Scanner scanner) {
+        try {
+            return Integer.parseInt(getInput(scanner));
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getInteger(scanner);
+        }
+    }
+
     public static Name getName(Scanner scanner) {
         try {
             return new Name(getInput(scanner));
