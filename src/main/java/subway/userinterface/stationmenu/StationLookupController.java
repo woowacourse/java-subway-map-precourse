@@ -2,6 +2,8 @@ package subway.userinterface.stationmenu;
 
 import subway.userinterface.Menu;
 
+import java.util.Scanner;
+
 public class StationLookupController implements Menu {
 
     private final static String MENU_NAME = "3. 역 조회";
@@ -19,6 +21,11 @@ public class StationLookupController implements Menu {
     @Override
     public String getMenuKey() {
         return MENU_KEY;
+    }
+
+    @Override
+    public void run(Scanner scanner) {
+
     }
 
     public static Menu getInstance() {

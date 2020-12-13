@@ -2,6 +2,8 @@ package subway.userinterface.mainmenu;
 
 import subway.userinterface.Menu;
 
+import java.util.Scanner;
+
 public class IntervalController implements Menu {
 
     private final static String MENU_NAME = "3. 구간 관리";
@@ -19,6 +21,11 @@ public class IntervalController implements Menu {
     @Override
     public String getMenuKey() {
         return MENU_KEY;
+    }
+
+    @Override
+    public void run(Scanner scanner) {
+
     }
 
     public static Menu getInstance() {

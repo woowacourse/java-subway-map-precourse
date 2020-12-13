@@ -2,6 +2,8 @@ package subway.userinterface;
 
 import subway.userinterface.stationmenu.StationRegisterController;
 
+import java.util.Scanner;
+
 public class ReturnController implements Menu {
 
     private final static String MENU_NAME = "B. 돌아가기";
@@ -19,6 +21,11 @@ public class ReturnController implements Menu {
     @Override
     public String getMenuKey() {
         return MENU_KEY;
+    }
+
+    @Override
+    public void run(Scanner scanner) {
+
     }
 
     public static Menu getInstance() {
