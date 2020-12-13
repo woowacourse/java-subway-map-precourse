@@ -19,4 +19,13 @@ public class LineRepository {
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    public static boolean validateNewName(String name) {
+        for (int i = 0; i < lines.size(); i++) {
+            if (!lines.get(i).validateNewName(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

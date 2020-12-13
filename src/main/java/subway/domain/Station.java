@@ -2,6 +2,8 @@ package subway.domain;
 
 import subway.domain.exception.ExistentNameException;
 import subway.domain.exception.UnvalidNameLengthException;
+import subway.domain.exception.NonExistentNameException;
+import subway.domain.exception.RegisteredStationException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -20,18 +22,36 @@ public class Station {
     public static void add(InputView inputView, String stationMessage) {
         OutputView.printAddActionMessage(stationMessage);
         String newStationName = inputView.getInput();
-        if (validateStationName(newStationName)) {
+        if (validateAddStationName(newStationName)) {
             Station newStation = new Station(newStationName);
             StationRepository.addStation(newStation);
         }
     }
 
-    private static boolean validateStationName(String stationName) {
+    public static void delete(InputView inputView, String stationMessage) {
+        OutputView.printDeleteActionMessage(stationMessage);
+        String deleteStationName = inputView.getInput();
+        if (validateDeleteStationName(deleteStationName)) {
+            StationRepository.deleteStation(deleteStationName);
+        }
+    }
+
+    private static boolean validateAddStationName(String stationName) {
         if (!StationRepository.validateNewName(stationName)) {
             throw new ExistentNameException();
         }
         if (!validateStationNameLength(stationName)) {
             throw new UnvalidNameLengthException();
+        }
+        return true;
+    }
+
+    private static boolean validateDeleteStationName(String stationName) {
+        if (StationRepository.validateNewName(stationName)) {
+            throw new NonExistentNameException();
+        }
+        if (!LineRepository.validateNewName(stationName)) {
+            throw new RegisteredStationException();
         }
         return true;
     }

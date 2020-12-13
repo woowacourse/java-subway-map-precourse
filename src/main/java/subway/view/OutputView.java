@@ -13,7 +13,8 @@ public class OutputView {
     private static final String MENU_SELECT_SCREEN = "\n## 원하는 기능을 선택하세요.";
     private static final String BACK_SIGN = "B";
     private static final String ADD_ORDER_START_MESSAGE = "등록할 ";
-    private static final String ADD_NAME_MESSAGE = "이름을 입력하세요.";
+    private static final String DELETE_ORDER_START_MESSAGE = "삭제할 ";
+    private static final String NAME_MESSAGE = "이름을 입력하세요.";
 
     private OutputView() {
     }
@@ -63,6 +64,10 @@ public class OutputView {
     }
 
     public static void printAddActionMessage(String title) {
-        System.out.println(HASH + ADD_ORDER_START_MESSAGE + title + ADD_NAME_MESSAGE);
+        System.out.println(HASH + ADD_ORDER_START_MESSAGE + title + NAME_MESSAGE);
+    }
+
+    public static void printDeleteActionMessage(String title) {
+        System.out.println(HASH + DELETE_ORDER_START_MESSAGE + title + NAME_MESSAGE);
     }
 }
