@@ -41,7 +41,7 @@ public class LineRepository {
     }
 
     public static Line getLineByName(String name) {
-        if (hasLine(name)) {
+        if (!hasLine(name)) {
             throw new IllegalArgumentException(ERROR_LINE_NOT_EXISTENCE);
         }
         for (Line line : lines()) {
