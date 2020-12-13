@@ -135,7 +135,7 @@ public class printScreen {
             for (Station station : section) {
                 System.out.println("[INFO] " + station.getName());
             }
+            System.out.println();
         }
-        System.out.println();
     }
 }
