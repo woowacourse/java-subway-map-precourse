@@ -1,6 +1,6 @@
 package subway.controller;
 
-import subway.service.LineService;
+import subway.service.line.LineService;
 
 import java.util.Scanner;
 

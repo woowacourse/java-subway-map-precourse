@@ -5,8 +5,6 @@ import subway.repository.StationRepository;
 import subway.service.InputService;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
-import subway.service.validation.NameAddingValidation;
-import subway.service.validation.NameDeletionValidation;
 import subway.type.InputType;
 import subway.view.output.station.StationInformationView;
 import subway.view.output.ScreenView;
@@ -47,7 +45,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean add(Scanner scanner) {
-        NameAddingValidation nameAddingValidation = new NameAddingValidation();
+        StationNameAddingValidation nameAddingValidation = new StationNameAddingValidation();
 
         StationTextView.printStationAddingText();
         String stationName = scanner.nextLine();
@@ -63,7 +61,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean delete(Scanner scanner) {
-        NameDeletionValidation nameDeletionValidation = new NameDeletionValidation();
+        StationNameDeletionValidation nameDeletionValidation = new StationNameDeletionValidation();
 
         StationTextView.printStationDeletionText();
         String stationName = scanner.nextLine();
