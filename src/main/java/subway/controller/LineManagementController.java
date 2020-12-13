@@ -20,4 +20,8 @@ public class LineManagementController {
     public void addLine(String name, String start, String end) {
         LineRepository.addLine(new Line(name, start, end));
     }
+
+    public void deleteLine(String name) {
+        LineRepository.deleteLineByName(name);
+    }
 }

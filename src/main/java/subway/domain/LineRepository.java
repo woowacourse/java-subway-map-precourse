@@ -1,6 +1,7 @@
 package subway.domain;
 
 import static subway.resource.TextResource.ERROR_LINE_NAME_DUPLICATED;
+import static subway.resource.TextResource.ERROR_LINE_NOT_EXISTENCE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +24,10 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+        if (hasLine(name)) {
+            return lines.removeIf(line -> Objects.equals(line.getName(), name));
+        }
+        throw new IllegalArgumentException(ERROR_LINE_NOT_EXISTENCE);
     }
 
     public static Boolean hasLine(String stationName) {
