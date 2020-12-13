@@ -5,6 +5,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class Constant {
+    static final String[] defaultStations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
+    static final String[] defaultLines = {"2호선", "3호선", "신분당선"};
+
+    private static final List<String> defaultStationList = Arrays.asList(defaultStations);
+    private static final List<String> defaultLineList = Arrays.asList(defaultLines);
+
+    public static List<String> defaultStationList() {
+        return Collections.unmodifiableList(defaultStationList);
+    }
+    public static List<String> defaultLineList() {
+        return Collections.unmodifiableList(defaultLineList);
+    }
+
     static final String[] mainMenuItems = {"1. 역 관리", "2. 노선 관리", "3. 구간 관리", "4. 지하철 노선도 출력", "Q. 종료"};
     static final String[] stationMenuItems = {"1. 역 등록", "2. 역 삭제", "3. 역 조회", "B. 돌아가기"};
     static final String[] lineMenuItems = {"1. 노선 등록", "2. 노선 삭제", "3. 노선 조회", "B. 돌아가기"};
