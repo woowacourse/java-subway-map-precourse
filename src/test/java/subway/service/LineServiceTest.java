@@ -88,4 +88,15 @@ class LineServiceTest {
 
         assertThat(isRegisteredAsLineSection).isTrue();
     }
+
+    @DisplayName("Line의 구간 삭제 실패 : 등록되지 않은 Line 이름으로 요청")
+    @Test
+    void deleteSectionByName_존재하지_않는_Line_예외가_발생한다() {
+        SectionDto sectionDto = new SectionDto("90호선", "의정부역", 0);
+
+        assertThatCode(() -> {
+            lineService.deleteSection(sectionDto);
+        }).isInstanceOf(CannotFindLineException.class)
+                .hasMessage("등록되지 않은 지하철 노선 이름을 입력하셨습니다.");
+    }
 }

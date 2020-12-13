@@ -28,6 +28,10 @@ public class Line {
         sections.addSection(station, sectionOrderNumber);
     }
 
+    public void deleteSectionByName(String stationName) {
+        sections.deleteSectionByName(stationName);
+    }
+
     public boolean matchesName(String name) {
         return Objects.equals(this.name, name);
     }

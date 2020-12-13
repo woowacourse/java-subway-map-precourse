@@ -39,6 +39,12 @@ public class LineService {
         line.addSection(station, sectionOrderNumber);
     }
 
+    public void deleteSection(SectionDto sectionDto) {
+        Line line = lineRepository.findByName(sectionDto.getLineName())
+                .orElseThrow(CannotFindLineException::new);
+        line.deleteSectionByName(sectionDto.getStationName());
+    }
+
     public List<String> getLineNames() {
         return lineRepository.findAll()
                 .stream()
