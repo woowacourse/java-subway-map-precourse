@@ -29,8 +29,13 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        OutputView.printInfo("지하철 역이 삭제되었습니다.");
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        boolean isDelete =stations.removeIf(station -> Objects.equals(station.getName(), name));
+        if(isDelete){
+            OutputView.printInfo("지하철 역이 삭제되었습니다.");
+            return true;
+        }
+        OutputView.printError("삭제할 지하철 역이 없습니다");
+        return false;
     }
 
     public static boolean lookUpStation() {
