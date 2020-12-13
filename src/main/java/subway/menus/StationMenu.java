@@ -1,6 +1,6 @@
-package subway.views.stationviews;
+package subway.menus;
 
-enum StationMenu {
+public enum StationMenu {
     STATION_INSERT("1", "역 등록"),
     STATION_DELETE("2", "역 삭제"),
     STATION_SELECT("3", "역 조회"),
