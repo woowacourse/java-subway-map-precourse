@@ -60,7 +60,6 @@ public class StationManageProgram {
             System.out.println(STATION_CATEGORY);
             controller.printAllStations();
         }
-
     }
 
     public void checkGoBack(String function) {
