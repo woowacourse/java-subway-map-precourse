@@ -22,4 +22,10 @@ public class Validator {
         if (!lineFunc.contains(input))
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_VALID_FUNCTION);
     }
+
+    public void isValidSectionFunction(String input) {
+        List<String> lineFunc = Arrays.asList("1", "2", "B");
+        if (!lineFunc.contains(input))
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_VALID_FUNCTION);
+    }
 }

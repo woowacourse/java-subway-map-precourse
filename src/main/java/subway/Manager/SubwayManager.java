@@ -15,16 +15,30 @@ public class SubwayManager {
     private final Scanner scanner;
     private StationManager stationManager;
     private LineManager lineManager;
+    private SectionManger sectionManager;
     private SubwayRepository subwayRepository;
 
     public SubwayManager(Scanner scanner) {
+        this.scanner = scanner;
+        subwayRepository = new SubwayRepository();
+
         stationManager = new StationManager(scanner);
         lineManager = new LineManager(scanner);
-        subwayRepository = new SubwayRepository();
-        this.scanner = scanner;
+        sectionManager = new SectionManger(scanner);
     }
 
-    public String execute(String input) {
+    public void manage() {
+        while (true)
+        {
+            OutputView.mainView();
+            String status = execute(InputView.inputFunction(scanner));
+            if (status.equals("Q")) {
+                break;
+            }
+        }
+    }
+
+    private String execute(String input) { // 지하철 관리 실행
         if (input.equals(STATION_MANAGE)) {
             OutputView.stationManageView();
             stationManager.execute(InputView.inputStationFunction(scanner));
@@ -35,6 +49,7 @@ public class SubwayManager {
         }
         if (input.equals(SECTION_MANAGE)) {
             OutputView.sectionManageView();
+            sectionManager.execute(InputView.inputSectionFunction(scanner));
         }
         if (input.equals(SUBWAY_SECTION_PRINT)) {
             OutputView.printSubwayMap(subwayRepository.toString());

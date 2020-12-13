@@ -1,5 +1,6 @@
 package view;
 
+import subway.Manager.SectionManger;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
@@ -110,7 +111,7 @@ public class InputView {
 
     public static String inputDownTerminalStation(Scanner scanner) {
         try {
-            System.out.println(UP_TERMINAL_STATION);
+            System.out.println(DOWN_TERMINAL_STATION);
             String downTerminal = scanner.next();
             LineRepository.isPossibleTerminalStation(downTerminal);
             return downTerminal;
@@ -132,6 +133,47 @@ public class InputView {
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             inputDeleteLine(scanner);
+        }
+    }
+
+    public static String inputSectionFunction(Scanner scanner) {
+        try {
+            System.out.println(INPUT_FUNCTION);
+            String input = scanner.next();
+
+            validator.isValidSectionFunction(input);
+            return input;
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return inputSectionFunction(scanner);
+        }
+    }
+
+    public static void inputSection(Scanner scanner) {
+        try {
+            System.out.println("\n## 노선을 입력하세요");
+            String line = scanner.next();
+            System.out.println("\n## 역을 입력하세요");
+            String station = scanner.next();
+            System.out.println("\n## 순서를 입력하세요");
+            String order = scanner.next();
+            SubwayRepository.addSectionOnTheLine(line, station, order);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            inputSection(scanner);
+        }
+    }
+
+    public static void inputDeleteSection(Scanner scanner) {
+        try {
+            System.out.println("\n## 삭제할 구간의 노선을 입력하세요");
+            String line = scanner.next();
+            System.out.println("\n## 삭제할 구간의 역을 입력하세요");
+            String deleteStation = scanner.next();
+            SubwayRepository.deleteSectionOnTheLine(line, deleteStation);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            inputDeleteSection(scanner);
         }
     }
 }

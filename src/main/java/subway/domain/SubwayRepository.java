@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SubwayRepository {
 
@@ -26,20 +23,54 @@ public class SubwayRepository {
         }
     }
 
-    public static void addSectionOnTheLine(String lineName, String sectionName, String order) {
+    public static void addSectionOnTheLine(String lineName, String stationName, String order) {
+        isPossibleSection(lineName, stationName, order);
+        List<Station> updateSection = subway.get(LineRepository.getLine(lineName));
 
+        updateSection.add(Integer.parseInt(order), StationRepository.getStation(stationName));
     }
 
-    public static void deleteSectionOnTheLine(String stationName) {
+    private static void isPossibleSection(String lineName, String stationName, String order) {
+        List<Station> updateSection = subway.get(LineRepository.getLine(lineName));
+        Station station = StationRepository.getStation(stationName);
 
+        if (!LineRepository.isLineExist(lineName)){
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 노선입니다");
+        }
+        if (!StationRepository.isStationExist(stationName)){
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 입니다");
+        }
+        if (updateSection.contains(station)) {
+            throw new IllegalArgumentException("[ERROR] 노선에 같은 역이 존재합니다");
+        }
+        if (updateSection.size() < Integer.parseInt(order)) {
+            throw new IllegalArgumentException("[ERROR] 넣을 수 없는 구간 순서 입니다");
+        }
     }
 
-    public static boolean isLineInStationsOverTwo(String lineName) {
+    public static void deleteSectionOnTheLine(String lineName, String stationName) {
+        isPossibleDeleteSection(lineName, stationName);
         Line line = LineRepository.getLine(lineName);
-        List<Station> stations = subway.get(line);
-        if (stations.size() == 2)
-            return false;
-        return true;
+        Station deleteStation = StationRepository.getStation(stationName);
+        List<Station> selections = subway.get(line);
+        selections.remove(deleteStation);
+    }
+
+    private static void isPossibleDeleteSection(String lineName, String stationName) {
+        if (!LineRepository.isLineExist(lineName)){
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 노선입니다");
+        }
+        if (!StationRepository.isStationExist(stationName)){
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 입니다");
+        }
+        List<Station> sections = subway.get(LineRepository.getLine(lineName));
+        Station station = StationRepository.getStation(stationName);
+        if (!sections.contains(station)) {
+            throw new IllegalArgumentException("[ERROR] 노선에 존재하지 않는 역입니다");
+        }
+        if (sections.size() <= 2) {
+            throw new IllegalArgumentException("[ERROR] 노선에 역이 2개 이하 이므로 삭제할 수 없습니다.");
+        }
     }
 
     @Override
