@@ -1,6 +1,5 @@
 package subway.option;
 
-import subway.service.MainService;
 import subway.service.SectionService;
 
 public enum SectionOption implements BaseOption {

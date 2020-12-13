@@ -1,7 +1,6 @@
 package subway.option;
 
 import subway.service.LineService;
-import subway.service.MainService;
 
 public enum LineOption implements BaseOption {
     REGISTER_STATION("1. 노선 등록", "1") {
