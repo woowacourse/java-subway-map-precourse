@@ -1,5 +1,6 @@
 package subway.line.domain;
 
+import subway.line.LineValidator;
 import subway.station.domain.Station;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Route {
     private final List<Station> stations = new ArrayList<>();
 
     public Route(Station topStation, Station bottomStation) {
+        LineValidator.validateFinalStation(topStation, bottomStation);
         stations.add(topStation);
         stations.add(bottomStation);
     }

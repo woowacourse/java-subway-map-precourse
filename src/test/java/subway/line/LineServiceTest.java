@@ -5,10 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
-import subway.line.exception.AlreadyExistLineException;
-import subway.line.exception.IllegalTypeOfNameException;
-import subway.line.exception.NotExistLineException;
-import subway.line.exception.TooShortLineNameException;
+import subway.line.exception.*;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 import subway.station.exception.NotExistStationException;
@@ -147,7 +144,7 @@ public class LineServiceTest {
         StationRepository.register(new Station(topStationName));
         StationRepository.register(new Station(bottomStationName));
 
-        LineService.register(lineName, bottomStationName, bottomStationName);
+        LineService.register(lineName, topStationName, bottomStationName);
 
         //when
         LineService.remove(lineName);
@@ -158,5 +155,18 @@ public class LineServiceTest {
 
         assertThat(topStation.isRegistered()).isFalse();
         assertThat(bottomStation.isRegistered()).isFalse();
+    }
+
+    @Test
+    void 노선등록시_상행종점과_하행종점이_같으면_예외_발생해야함() {
+        //given
+        String lineName = "1호선";
+        String topStationName = "상하행종점역";
+
+        StationRepository.register(new Station(topStationName));
+
+        //when & then
+        assertThatExceptionOfType(SameFinalStationException.class)
+                .isThrownBy(() -> LineService.register(lineName, topStationName, topStationName));
     }
 }

@@ -5,7 +5,9 @@ import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.exception.AlreadyExistLineException;
 import subway.line.exception.IllegalTypeOfNameException;
+import subway.line.exception.SameFinalStationException;
 import subway.line.exception.TooShortLineNameException;
+import subway.station.domain.Station;
 
 public class LineValidator {
     private LineValidator() {
@@ -36,6 +38,12 @@ public class LineValidator {
     private static void validateDuplication(String name) {
         if (LineRepository.isExist(name)) {
             throw new AlreadyExistLineException();
+        }
+    }
+
+    public static void validateFinalStation(Station topStation, Station bottomStation) {
+        if (topStation.equals(bottomStation)) {
+            throw new SameFinalStationException();
         }
     }
 }
