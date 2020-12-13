@@ -42,6 +42,7 @@ public abstract class SelectionView extends AbstractView {
                     return;
                 }
                 visitView(input);
+                return;
             } catch (Exception e) {
             }
         }
