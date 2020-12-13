@@ -17,6 +17,7 @@ public class LineRepository {
     private static final String ERROR_NOT_IN_STATION_REPOSITORY = "[ERROR] 기존 데이터에 없는 역이 입력됐습니다.";
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final int UP_DOWN_END_STATION_TOTAL = 2;
+    private static final String ERROR_NOT_FOUND_LINE_NAME = "[ERROR] 해당 노선이 기존 데이터에 없습니다.";
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -62,8 +63,10 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLineByName(String name) {
+        if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
+            throw new IllegalArgumentException(ERROR_NOT_FOUND_LINE_NAME);
+        }
     }
 
     public static void printSubwayMap() {

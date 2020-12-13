@@ -60,11 +60,18 @@ class LineScreen implements SubwayScreen {
 
     private void inputDisplayAllLines() {
         if (lineScreenInput.equals(LINE_SCREEN_SELECT_DISPLAY_ALL)) {
+            System.out.println(MESSAGE_STATION_LIST);
             LineRepository.displayAllLines();
         }
     }
 
     private void inputDeleteLine(Scanner scanner) {
+        if (lineScreenInput.equals(LINE_SCREEN_SELECT_DELETE)) {
+            System.out.println(MESSAGE_DELETE_LINE_INPUT_LINE_NAME);
+            String lineName = scanner.nextLine();
+            LineRepository.deleteLineByName(lineName);
+            System.out.println(MESSAGE_LINE_DELETED);
+        }
     }
 
     private void inputAddLine(Scanner scanner) {
@@ -78,6 +85,7 @@ class LineScreen implements SubwayScreen {
             String downEndStation = scanner.nextLine();
             LineRepository.validateEndStationNames(upEndStation, downEndStation);
             LineRepository.initializeLine(lineName, upEndStation, downEndStation);
+            System.out.println(MESSAGE_LINE_ADDED);
         }
     }
 
