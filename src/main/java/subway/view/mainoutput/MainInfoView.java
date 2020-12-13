@@ -1,4 +1,6 @@
 package subway.view.mainoutput;
 
-public class MainInfoView {
+import subway.view.InfoView;
+
+public class MainInfoView extends InfoView {
 }
