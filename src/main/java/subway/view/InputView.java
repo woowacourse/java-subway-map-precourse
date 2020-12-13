@@ -14,6 +14,8 @@ public class InputView {
     }
 
     public int inputNumber() {
-        return scanner.nextInt();
+        int value = scanner.nextInt();
+        scanner.nextLine();
+        return value;
     }
 }
