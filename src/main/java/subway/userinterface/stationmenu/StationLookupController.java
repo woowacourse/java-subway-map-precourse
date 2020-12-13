@@ -1,6 +1,7 @@
 package subway.userinterface.stationmenu;
 
 import subway.userinterface.Menu;
+import subway.userinterface.OutputController;
 
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class StationLookupController implements Menu {
 
     @Override
     public void run(Scanner scanner) {
-
+        OutputController.printStationInfo();
     }
 
     public static Menu getInstance() {
