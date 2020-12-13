@@ -1,28 +1,27 @@
-package subway.view.page;
+package subway.menu;
 
+import subway.controller.StationController;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.function.Consumer;
 
-public class MainMenu {
-    private static boolean isEnd = false;
+public class StationMenu {
+    private static StationController stationController;
 
-    private MainMenu() {
+    private StationMenu() {
     }
 
     public static void run(Scanner scanner) {
-        do {
-            printMenu();
-            Menu selected = getMenuSelection(scanner);
-            selected.execute(scanner);
-        } while (!isEnd);
+        stationController = StationController.getInstance(scanner);
+        printMenu();
+        Menu selected = getMenuSelection(scanner);
+        selected.execute();
     }
 
     public static void printMenu() {
-        OutputView.printMsg("## 메인 화면\n");
+        OutputView.printMsg("## 역 관리 화면\n");
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
@@ -34,37 +33,32 @@ public class MainMenu {
         return Menu.getSelection(InputView.getInput(scanner));
     }
 
-    public static void setEnd() {
-        isEnd = true;
-    }
-
-    public static void printSubwayMap() {
-
+    public static void goBack() {
+        OutputView.printInfoMsg("이전 메뉴로 돌아갑니다.\n");
     }
 
     private enum Menu {
-        STATION_MENU("1", "1. 역 관리", (scanner) -> StationMenu.run(scanner)),
-        LINE_MENU("2", "2. 노선 관리", (scanner) -> LineMenu.run(scanner)),
-        SECTION_MENU("3", "3. 구간 관리", (scanner) -> SectionMenu.run(scanner)),
-        PRINT_MAP("4", "4. 지하철 노선도 출력", (scanner) -> printSubwayMap()),
-        QUIT("Q", "Q. 종료", (scanner) -> setEnd());
+        REGISTER_STATION("1", "1. 역 등록", () -> stationController.addStation()),
+        DELETE_STATION("2", "2. 역 삭제", () -> stationController.deleteStation()),
+        PRINT_STATIONS("3", "3. 역 조회", () -> stationController.printStations()),
+        BACK("B", "B. 돌아가기", () -> goBack());
 
         private String userInput;
         private String menuName;
-        private Consumer<Scanner> nextMove;
+        private Runnable action;
 
-        Menu(String userInput, String menuName, Consumer<Scanner> nextMove) {
+        Menu(String userInput, String menuName, Runnable action) {
             this.userInput = userInput;
             this.menuName = menuName;
-            this.nextMove = nextMove;
+            this.action = action;
         }
 
         public String getMenuName() {
             return menuName;
         }
 
-        public void execute(Scanner scanner) {
-            nextMove.accept(scanner);
+        public void execute() {
+            action.run();
         }
 
         public static Menu getSelection(String input) {

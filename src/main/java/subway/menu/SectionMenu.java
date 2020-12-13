@@ -1,27 +1,27 @@
-package subway.view.page;
+package subway.menu;
 
-import subway.controller.LineController;
+import subway.controller.SectionController;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class LineMenu {
-    private static LineController lineController;
+public class SectionMenu {
+    private static SectionController sectionController;
 
-    private LineMenu() {
+    private SectionMenu() {
     }
 
     public static void run(Scanner scanner) {
-        lineController = LineController.getInstance(scanner);
+        sectionController = SectionController.getInstance(scanner);
         printMenu();
         Menu selected = getMenuSelection(scanner);
         selected.execute();
     }
 
     public static void printMenu() {
-        OutputView.printMsg("## 노선 관리 화면\n");
+        OutputView.printMsg("## 구간 관리 화면\n");
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
@@ -38,9 +38,8 @@ public class LineMenu {
     }
 
     private enum Menu {
-        REGISTER_LINE("1", "1. 노선 등록", () -> lineController.addLine()),
-        DELETE_LINE("2", "2. 노선 삭제", () -> lineController.deleteLine()),
-        PRINT_LINES("3", "3. 노선 조회", () -> lineController.printLineList()),
+        REGISTER_STATION("1", "1. 구간 등록", () -> sectionController.addSection()),
+        DELETE_STATION("2", "2. 구간 삭제", () -> sectionController.deleteSection()),
         BACK("B", "B. 돌아가기", () -> goBack());
 
         private String userInput;
