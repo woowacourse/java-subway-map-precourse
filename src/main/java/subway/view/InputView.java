@@ -77,6 +77,8 @@ public class InputView {
             input = scanner.nextLine();
         }
 
+        System.out.println();
+
         return input;
     }
 
