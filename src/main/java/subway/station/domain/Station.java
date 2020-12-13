@@ -7,7 +7,7 @@ public class Station {
     public static final int MIN_NAME_LENGTH = 2;
 
     private final Lines lines;
-    private String name;
+    private final String name;
 
     public Station(String name) {
         StationValidator.validateRegistration(name);
@@ -16,15 +16,15 @@ public class Station {
     }
 
     public void addLine(Line line) {
-        this.lines.addLine(line);
+        lines.addLine(line);
     }
 
     public void removeLine(Line line) {
-        this.lines.removeLine(line);
+        lines.removeLine(line);
     }
 
     public boolean isRegistered() {
-        return this.lines.isRegistered();
+        return lines.isRegistered();
     }
 
     public String getName() {

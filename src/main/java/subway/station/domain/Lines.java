@@ -11,11 +11,11 @@ public class Lines {
     private final List<Line> lines = new ArrayList<>();
 
     public void addLine(Line line) {
-        this.lines.add(line);
+        lines.add(line);
     }
 
     public void removeLine(Line line) {
-        this.lines.remove(line);
+        lines.remove(line);
     }
 
     public boolean isRegistered() {

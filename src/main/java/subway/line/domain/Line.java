@@ -8,12 +8,8 @@ import java.util.List;
 public class Line {
     public static final int MIN_NAME_LENGTH = 2;
 
-    private String name;
-    private Route route;
-
-    public Line(String name) {
-        this.name = name;
-    }
+    private final String name;
+    private final Route route;
 
     public Line(String name, Route route) {
         LineValidator.validateRegistration(name);
@@ -22,12 +18,12 @@ public class Line {
     }
 
     public void insert(int index, Station station) {
-        this.route.insert(index, station);
+        route.insert(index, station);
     }
 
     public void remove(Station station) {
         station.removeLine(this);
-        this.route.remove(station);
+        route.remove(station);
     }
 
     public void clearUp() {
@@ -43,11 +39,11 @@ public class Line {
     }
 
     public boolean isEnoughSize() {
-        return this.route.isEnoughSize();
+        return route.isEnoughSize();
     }
 
     public List<Station> getStations() {
-        return this.route.getStations();
+        return route.getStations();
     }
 
     public String getName() {
