@@ -10,7 +10,7 @@ public class StationController {
     }
 
     public static void execute() {
-        OutputView.printGuideMessage(StationMessage.SELECT_FUNCTION);
+        OutputView.printGuide(StationMessage.SELECT_FUNCTION);
         String command = InputView.getFunction();
         Runnable function = StationFunctionMapper.matchFunction(command);
         function.run();
@@ -19,13 +19,13 @@ public class StationController {
     public static void register() {
         String name = InputView.getStationNameForRegistration();
         StationService.register(name);
-        OutputView.printResultMessage(StationMessage.COMPLETE_REGISTRATION);
+        OutputView.printlnResult(StationMessage.COMPLETE_REGISTRATION);
     }
 
     public static void remove() {
         String name = InputView.getStationNameForRemoval();
         StationService.remove(name);
-        OutputView.printResultMessage(StationMessage.COMPLETE_REMOVAL);
+        OutputView.printlnResult(StationMessage.COMPLETE_REMOVAL);
     }
 
     public static void inquire() {

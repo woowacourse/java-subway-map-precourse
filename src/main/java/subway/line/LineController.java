@@ -10,7 +10,7 @@ public class LineController {
     }
 
     public static void execute() {
-        OutputView.printGuideMessage(LineMessage.SELECT_FUNCTION);
+        OutputView.printGuide(LineMessage.SELECT_FUNCTION);
         String command = InputView.getFunction();
         Runnable function = LineFunctionMapper.matchFunction(command);
         function.run();
@@ -21,13 +21,13 @@ public class LineController {
         String topStation = InputView.getTopStation();
         String bottomStation = InputView.getBottomStation();
         LineService.register(name, topStation, bottomStation);
-        OutputView.printResultMessage(LineMessage.COMPLETE_REGISTRATION);
+        OutputView.printlnResult(LineMessage.COMPLETE_REGISTRATION);
     }
 
     public static void remove() {
         String name = InputView.getLineNameForRemoval();
         LineService.remove(name);
-        OutputView.printResultMessage(LineMessage.COMPLETE_REMOVAL);
+        OutputView.printlnResult(LineMessage.COMPLETE_REMOVAL);
     }
 
     public static void inquire() {

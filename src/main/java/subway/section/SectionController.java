@@ -9,7 +9,7 @@ public class SectionController {
     }
 
     public static void execute() {
-        OutputView.printGuideMessage(SectionMessage.SELECT_FUNCTION);
+        OutputView.printGuide(SectionMessage.SELECT_FUNCTION);
         String command = InputView.getFunction();
         Runnable function = SectionFunctionMapper.matchFunction(command);
         function.run();
@@ -20,13 +20,13 @@ public class SectionController {
         String stationName = InputView.getStationName();
         int order = InputView.getOrder();
         SectionService.register(lineName, stationName, order);
-        OutputView.printResultMessage(SectionMessage.COMPLETE_REGISTRATION);
+        OutputView.printlnResult(SectionMessage.COMPLETE_REGISTRATION);
     }
 
     public static void remove() {
         String lineName = InputView.getLineNameForRemoval();
         String stationName = InputView.getStationNameForRemoval();
         SectionService.remove(lineName, stationName);
-        OutputView.printResultMessage(SectionMessage.COMPLETE_REMOVAL);
+        OutputView.printlnResult(SectionMessage.COMPLETE_REMOVAL);
     }
 }

@@ -10,12 +10,12 @@ public class MainController {
 
     public static void execute() {
         try {
-            OutputView.printGuideMessage(CommonMessage.SELECT_ACTIVITY);
+            OutputView.printGuide(CommonMessage.SELECT_ACTIVITY);
             String command = InputView.getFunction();
             Runnable function = MainFunctionMapper.matchFunction(command);
             function.run();
         } catch (RuntimeException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
+            OutputView.printError(exception.getMessage());
         }
     }
 }

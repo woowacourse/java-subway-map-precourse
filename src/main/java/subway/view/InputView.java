@@ -17,52 +17,52 @@ public class InputView {
     }
 
     public static String getStationNameForRegistration() {
-        OutputView.printGuideMessage(INPUT_STATION_NAME_FOR_REGISTRATION);
+        OutputView.printGuide(INPUT_STATION_NAME_FOR_REGISTRATION);
         return SCANNER.nextLine();
     }
 
     public static String getStationNameForRemoval() {
-        OutputView.printGuideMessage(INPUT_STATION_NAME_FOR_REMOVAL);
+        OutputView.printGuide(INPUT_STATION_NAME_FOR_REMOVAL);
         return SCANNER.nextLine();
     }
 
     public static String getFunction() {
-        OutputView.printGuideMessage(CommonMessage.SELECT_FUNCTION);
+        OutputView.printGuide(CommonMessage.SELECT_FUNCTION);
         return SCANNER.nextLine();
     }
 
     public static String getLineNameForRegistration() {
-        OutputView.printGuideMessage(INPUT_LINE_NAME_FOR_REGISTRATION);
+        OutputView.printGuide(INPUT_LINE_NAME_FOR_REGISTRATION);
         return SCANNER.nextLine();
     }
 
     public static String getTopStation() {
-        OutputView.printGuideMessage(INPUT_TOP_STATION);
+        OutputView.printGuide(INPUT_TOP_STATION);
         return SCANNER.nextLine();
     }
 
     public static String getBottomStation() {
-        OutputView.printGuideMessage(INPUT_BOTTOM_STATION);
+        OutputView.printGuide(INPUT_BOTTOM_STATION);
         return SCANNER.nextLine();
     }
 
     public static String getLineNameForRemoval() {
-        OutputView.printGuideMessage(INPUT_LINE_NAME_FOR_REMOVAL);
+        OutputView.printGuide(INPUT_LINE_NAME_FOR_REMOVAL);
         return SCANNER.nextLine();
     }
 
     public static String getLineName() {
-        OutputView.printGuideMessage(INPUT_LINE);
+        OutputView.printGuide(INPUT_LINE);
         return SCANNER.nextLine();
     }
 
     public static String getStationName() {
-        OutputView.printGuideMessage(INPUT_STATION);
+        OutputView.printGuide(INPUT_STATION);
         return SCANNER.nextLine();
     }
 
     public static int getOrder() {
-        OutputView.printGuideMessage(INPUT_ORDER);
+        OutputView.printGuide(INPUT_ORDER);
         return Integer.parseInt(SCANNER.nextLine());
     }
 }
