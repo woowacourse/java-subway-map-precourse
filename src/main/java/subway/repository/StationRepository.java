@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.console.Message;
 import subway.domain.Station;
 
 public class StationRepository {
@@ -29,6 +30,6 @@ public class StationRepository {
         return stations.stream()
                 .filter(station -> station.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException(Message.ERROR_NOT_EXIST_STATION));
     }
 }

@@ -57,9 +57,15 @@ public class LineService {
     }
 
     public boolean addSection(String name, String stationName) {
-        Station station = StationRepository.findOne(stationName);
         Line line = LineRepository.findOne(name);
-
+        Station station;
+        try {
+            station = StationRepository.findOne(stationName);
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            LineRepository.deleteLineByName(name);
+            return false;
+        }
         SectionRepository.addSection(line, station);
         return true;
     }
