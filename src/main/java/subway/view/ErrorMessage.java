@@ -17,6 +17,8 @@ public class ErrorMessage {
     private static final String NOT_OVER_ONE = "순서는 1이상의 정수로 가능합니다.";
     private static final String OVER_SIZE_PATH = "구간의 크기가 기존 사이즈를 넘어갑니다.";
 
+    private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
+
     private ErrorMessage() {
     }
 
@@ -67,6 +69,10 @@ public class ErrorMessage {
     }
     public static void printOverSizePath(){
         System.out.println(ERROR_PREFIX+OVER_SIZE_PATH);
+    }
+
+    public static void printNotEnrolledStationOnPath(){
+        System.out.println(ERROR_PREFIX+NOT_EXIST_STATION_ON_PATH);
     }
 
 }

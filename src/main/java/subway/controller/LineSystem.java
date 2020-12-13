@@ -54,12 +54,6 @@ public class LineSystem {
         }
         SubwayRepository.createSubwayRealLine(lineInfo);
         InfoMessage.printLineAdded();
-      //  Line wantLine = LineRepository.findLine(lineInfo[0]);
-//        PathRepository wantLinks = SubwayRepository.getStationLinksByLine(wantLine);
-//        for (Station station : wantLinks.getPath()) {
-//            System.out.println(station.getName());
-//        }
-
     }
 
     private void deleteLine() {

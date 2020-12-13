@@ -1,12 +1,7 @@
 package subway.controller;
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
-import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.PathRepository;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
 import subway.view.ErrorMessage;
@@ -19,18 +14,18 @@ public class PathInputManager {
         this.scanner = scanner;
     }
 
-    public String[] getPathToAdd() {
-        String[] lineInfo = new String[3];
-        lineInfo[0] = getLineNameToAdd();
-        if (lineInfo[0].equals(ErrorMessage.OUT)) {
-            return lineInfo;
+    public String[] getPathInfoToAdd() {
+        String[] pathInfo = new String[3];
+        pathInfo[0] = getLineName();
+        if (pathInfo[0].equals(ErrorMessage.OUT)) {
+            return pathInfo;
         }
-        lineInfo[1] = getStationNameToAdd(lineInfo[0]);
-        if (lineInfo[1].equals(ErrorMessage.OUT)) {
-            return lineInfo;
+        pathInfo[1] = getStationNameToAdd(pathInfo[0]);
+        if (pathInfo[1].equals(ErrorMessage.OUT)) {
+            return pathInfo;
         }
-        lineInfo[2] = getIndexToAdd(lineInfo[0]);
-        return lineInfo;
+        pathInfo[2] = getIndexToAdd(pathInfo[0]);
+        return pathInfo;
     }
 
     private String getIndexToAdd(String lineName) {
@@ -68,10 +63,11 @@ public class PathInputManager {
         return true;
     }
 
-    private String getStationNameToAdd(String line) {
+    //todo: refactor 검사할 조건을 넣어주는 것으로 가능할까?
+    private String getStationNameToAdd(String lineName) {
         Menu.printStationToAddPath();
         String stationName = scanner.nextLine().trim();
-        if (checkEnrolledStationNameOnPath(stationName, line) || !checkEnrolledStation(stationName)) {
+        if (checkEnrolledStationNameOnPath(stationName, lineName) || !checkEnrolledStation(stationName)) {
             return ErrorMessage.OUT;
         }
         return stationName;
@@ -95,20 +91,46 @@ public class PathInputManager {
     }
 
 
-    private String getLineNameToAdd() {
+    private String getLineName() {
         Menu.printLineToAddPath();
         String lineName = scanner.nextLine().trim();
-        if (!checkLineNameExist(lineName)) {
+        if (!checkEnrolledLineName(lineName)) {
             return ErrorMessage.OUT;
         }
         return lineName;
     }
 
-    private boolean checkLineNameExist(String lineName) {
-        if (!LineRepository.containsName(lineName)) {
-            ErrorMessage.printNotExistLine();
-            return false;
+    private boolean checkEnrolledLineName(String lineName) {
+        if (LineRepository.containsName(lineName)) {
+            return true;
         }
-        return true;
+        ErrorMessage.printNotExistLine();
+        return false;
+    }
+
+    public String[] getPathInfoToDelete() {
+        String[] pathInfo = new String[2];
+        pathInfo[0] = getLineName(); // print 삭제할 으로 변경해야함
+        if (pathInfo[0].equals(ErrorMessage.OUT)) {
+            return pathInfo;
+        }
+        pathInfo[1] = getStationNameToDelete(pathInfo[0]);
+        return pathInfo;
+    }
+
+    private String getStationNameToDelete(String lineName) {
+        Menu.printStationToAddPath(); // print 변경
+        String stationName = scanner.nextLine().trim();
+        if (!checkEnrolledStationNameOnPathToDelete(stationName, lineName)) {
+            return ErrorMessage.OUT;
+        }
+        return stationName;
+    }
+    private boolean checkEnrolledStationNameOnPathToDelete(String stationName, String lineName) {
+        if (SubwayRepository.containsStationOnLine(stationName, lineName)) {
+            return true;
+        }
+        ErrorMessage.printNotEnrolledStationOnPath();
+        return false;
     }
 }

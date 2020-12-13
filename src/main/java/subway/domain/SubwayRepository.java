@@ -3,7 +3,6 @@ package subway.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import javax.xml.bind.SchemaOutputResolver;
 
 public class SubwayRepository {
     private static final Map<Line, PathRepository> subwayRealLines = new HashMap<>();
@@ -40,6 +39,12 @@ public class SubwayRepository {
     public static boolean containsStationOnLine(String station, String lineName){
         return getPathByLineName(lineName).containsStationName(station);
 
+    }
+
+    public static void deleteStationOnPathByLineName(String[] pathInfo){
+        String lineName = pathInfo[0];
+        String stationName = pathInfo[1];
+        getPathByLineName(lineName).deletePathByName(stationName);
     }
 
 

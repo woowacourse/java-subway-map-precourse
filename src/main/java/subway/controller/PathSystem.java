@@ -1,11 +1,8 @@
 package subway.controller;
 
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
 import subway.domain.MenuItemsRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
 import subway.view.ErrorMessage;
 import subway.view.InfoMessage;
@@ -35,27 +32,28 @@ public class PathSystem {
     private void runSystemByInput(String input) {
         if (input.equals("1")) {
             addPath();
-            System.out.println("구간 등록");
         }
         if (input.equals("2")) {
             deletePath();
-            System.out.println("구간 삭제");
         }
     }
 
     private void deletePath() {
+        String[] pathInfo = pathInputManager.getPathInfoToDelete();
+        if (Arrays.asList(pathInfo).contains(ErrorMessage.OUT)) {
+            return;
+        }
+        SubwayRepository.deleteStationOnPathByLineName(pathInfo);
+        InfoMessage.printPathDeleted();
     }
-    //TODO : 구간등록 기존에 없는 line 입력하면 프로그램이 죽음;;;
-    // 역 이름 validcheck 안됨;; 기존 없는 역도 그냥 ㄷ지나감;;
+
     private void addPath() {
-        String[] pathInfo = pathInputManager.getPathToAdd();
+        String[] pathInfo = pathInputManager.getPathInfoToAdd();
         if (Arrays.asList(pathInfo).contains(ErrorMessage.OUT)) {
             return;
         }
         SubwayRepository.addPathByLineName(pathInfo[0],Integer.parseInt(pathInfo[2]),pathInfo[1]);
         InfoMessage.printPathAdded();
-
     }
-
 
 }
