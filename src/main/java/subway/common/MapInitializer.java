@@ -1,8 +1,8 @@
 package subway.common;
 
+import subway.line.LineCreator;
 import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
-import subway.line.domain.Route;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
 
@@ -27,14 +27,14 @@ public class MapInitializer {
         StationRepository.register(station6);
         StationRepository.register(station7);
 
-        Line line1 = new Line("2호선", new Route(station1, station3));
+        Line line1 = LineCreator.createLine("2호선", station1, station3);
         line1.insert(2, station2);
 
-        Line line2 = new Line("3호선", new Route(station1, station7));
+        Line line2 = LineCreator.createLine("3호선", station1, station7);
         line2.insert(2, station5);
         line2.insert(2, station4);
 
-        Line line3 = new Line("신분당선", new Route(station2, station6));
+        Line line3 = LineCreator.createLine("신분당선", station2, station6);
         line3.insert(2, station5);
 
         LineRepository.register(line1);
