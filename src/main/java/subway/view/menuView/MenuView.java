@@ -13,7 +13,6 @@ import java.util.List;
 public abstract class MenuView<T> {
     protected static final String FATAL_MENU_DATA_CRAHSED = "메뉴를 생성할 수 없습니다. ";
     protected static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
-    protected static final String MENU_FORMAT = "%s. %s";
     protected static final int MENU_START_INDEX = 1;
 
     protected String viewName;
@@ -48,7 +47,7 @@ public abstract class MenuView<T> {
     public void printMenu() {
         OutputView.printWithSharpPrefix(viewName);
         for (Selection selection : selections.toList()) {
-            System.out.println(String.format(MENU_FORMAT, selection.getValue(), selection.getDescription()));
+            System.out.println(selection);
         }
         newLine();
     }
@@ -57,14 +56,14 @@ public abstract class MenuView<T> {
         try{
             String input = InputView.getStringWithMessage(MENU_SELECTION);
             Selection selection = selections.searchByValue(input.toUpperCase());
-            return  convertToFunctionType(selection);
+            return  convertToMenuType(selection);
         } catch (RuntimeException e) {
             OutputView.printErrorMessage(e);
             return getMenuSelection();
         }
     }
 
-    protected T convertToFunctionType(Selection selection){
+    protected T convertToMenuType(Selection selection){
         return mapToMenuType.get(selection);
     }
 

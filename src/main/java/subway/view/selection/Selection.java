@@ -1,6 +1,8 @@
 package subway.view.selection;
 
 public class Selection {
+    private static final String SELECTION_FORMAT = "%s. %s";
+
     private String value;
     private String description;
 
@@ -20,5 +22,10 @@ public class Selection {
     @Override
     public int hashCode() {
         return this.value.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return String.format(SELECTION_FORMAT, this.value, this.description);
     }
 }
