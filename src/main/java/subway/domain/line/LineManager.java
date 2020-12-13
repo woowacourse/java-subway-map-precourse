@@ -4,6 +4,7 @@ import subway.domain.State;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.AlreadyExistLineException;
+import subway.exception.NoSuchLineException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -58,6 +59,10 @@ public class LineManager {
     }
 
     public static void removeLine(String name) {
+        if (!LineRepository.isExistLine(name)) {
+            throw new NoSuchLineException();
+        }
+
         LineRepository.deleteLineByName(name);
         OutputView.printRemovedLineMessage();
     }
