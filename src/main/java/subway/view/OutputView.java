@@ -10,6 +10,10 @@ public class OutputView {
         newLine();
     }
 
+    public static void print(Object object) {
+        System.out.println(object.toString());
+    }
+
     public static void printWithSharpPrefix(String string) {
         System.out.println(SHARP_PREFIX + string);
     }
