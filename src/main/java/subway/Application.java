@@ -106,8 +106,11 @@ public class Application {
     private static final List<String> initialStationList = Arrays
         .asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
 
-    private static final List<String> initialLineList = Arrays
-        .asList("2호선", "3호선", "신분당선");
+    private static final List<String[]> initialLineList = Arrays
+        .asList(new String[]{"2호선", "교대역", "역삼역"}, new String[]{"3호선", "교대역","매봉역"}, new String[]{"신분당선", "강남역", "양재시민의숲역"});
+
+    private static final List<String[]> initialRouteList = Arrays
+        .asList(new String[]{"2호선", "강남역", "1"}, new String[]{"3호선", "남부터미널역","1"}, new String[]{"3호선", "양재역","2"}, new String[]{"신분당선", "양재역", "1"});
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
@@ -119,6 +122,7 @@ public class Application {
 
         initializeStation();
         initializeLines();
+        initializeRoutes();
         while (true) {
             mainFunction = mainMenu();
             if (mainFunction == MainFunction.QUIT.getMenu()) {
@@ -135,8 +139,18 @@ public class Application {
     }
 
     private static void initializeLines() {
-        for (String lineList : initialLineList) {
-            lineRepository.addLine(new Line(lineList));
+        for (String[] lineList : initialLineList) {
+            Line line = new Line(lineList[0]);
+            Station upboundTerminal = new Station(lineList[1]);
+            Station downboundTerminal = new Station(lineList[2]);
+            lineRepository.addLine(line);
+            routeRepository.addRoute(new Route(line,upboundTerminal,downboundTerminal));
+        }
+    }
+
+    private static void initializeRoutes(){
+        for(String[] routeList: initialRouteList) {
+            routeRepository.addStationToLine(routeList[0], new Station(routeList[1]), Integer.parseInt(routeList[2]));
         }
     }
 
@@ -365,6 +379,9 @@ public class Application {
     }
 
     private static void subwayMapPrint() {
-
+        System.out.println();
+        for (Route route : routeRepository.routes()) {
+            route.getInfo();
+        }
     }
 }

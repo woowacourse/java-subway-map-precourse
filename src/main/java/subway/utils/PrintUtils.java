@@ -108,6 +108,12 @@ public class PrintUtils {
         System.out.println("\n## 순서를 입력하세요.");
     }
 
+    public void printLineName(String lineName){ System.out.println("[INFO] "+lineName); }
+
+    public void printHyphenLine(){System.out.println("[INFO] ---");}
+
+    public void printStationName(String stationName){ System.out.println("[INFO] "+stationName); }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }

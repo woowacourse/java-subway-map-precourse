@@ -2,11 +2,14 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import subway.utils.PrintUtils;
 
 public class Route {
 
     private Line line;
     private List<Station> stations;
+
+    private final PrintUtils printUtils = new PrintUtils();
 
     public Route(Line line, Station upboundTerminal, Station downbounTerminal) {
         this.line = line;
@@ -16,9 +19,10 @@ public class Route {
     }
 
     public void getInfo(){
-        System.out.println(line.getName());
-        for(Station s:stations)
-            System.out.printf(s.getName()+" ");
+        printUtils.printLineName(line.getName());
+        printUtils.printHyphenLine();
+        for(Station station: stations)
+            printUtils.printStationName(station.getName());
         System.out.println("");
     }
 
