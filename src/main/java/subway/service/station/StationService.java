@@ -12,7 +12,6 @@ import subway.view.output.station.StationInformationView;
 import subway.view.output.ScreenView;
 import subway.view.output.station.StationTextView;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 

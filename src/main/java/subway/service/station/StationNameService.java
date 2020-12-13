@@ -1,6 +1,5 @@
 package subway.service.station;
 
-import subway.domain.Station;
 import subway.type.InformationType;
 import subway.type.TextType;
 
