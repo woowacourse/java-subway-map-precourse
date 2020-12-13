@@ -1,11 +1,16 @@
 package subway.view;
 
+import subway.Constants;
 import subway.Load;
 
 import java.util.Scanner;
 
 public class InputUtils {
     static Scanner scanner = new Scanner(System.in);
+
+    public static String getUserInput() {
+        return scanner.nextLine();
+    }
 
     public static Integer createUserSelectionInput(int endInclusive, String returnOption) {
         boolean isValidInput = false;
@@ -21,21 +26,17 @@ public class InputUtils {
         return null;
     }
 
-    public static String getUserInput() {
-        return scanner.nextLine();
-    }
-
     public static Integer validateUserSelectionInput(String userInput, int endInclusive, String returnOption) {
         userInput = userInput.toUpperCase();
-        if (userInput.equals(returnOption) && returnOption.equals("Q")) {
+        if (userInput.equals(returnOption) && returnOption.equals(Constants.QUIT)) {
             System.exit(0);
         }
-        if (userInput.equals(returnOption) && returnOption.equals("B")) {
+        if (userInput.equals(returnOption) && returnOption.equals(Constants.BACK)) {
             Load.loadMainScreen();
             return null;
         }
-        if(!userInput.matches("[1-"+endInclusive+"]")){
-            System.out.println(userInput);
+        if (!userInput.matches( Constants.USER_INPUT_REGEX_START +
+                endInclusive + Constants.USER_INPUT_REGEX_END)) {
             throw new IllegalArgumentException();
         }
         return Integer.parseInt(userInput);
