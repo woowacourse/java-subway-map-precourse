@@ -37,6 +37,13 @@ public class PrintUtils {
         System.out.println("B. 돌아가기\n");
     }
 
+    public void printRouteManagementMenu(){
+        System.out.println("\n## 구간 관리 화면");
+        System.out.println("1. 구간 등록");
+        System.out.println("2. 구간 삭제");
+        System.out.println("B. 돌아가기\n");
+    }
+
     public void printAddStationGuide(){
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
     }
@@ -89,6 +96,18 @@ public class PrintUtils {
         System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
 
+    public void printLineNameInputGuide(){
+        System.out.println("\n## 노선을 입력하세요.");
+    }
+
+    public void printStationNameInputGuide(){
+        System.out.println("\n## 역이름을 입력하세요.");
+    }
+
+    public void printOrderInputGuide(){
+        System.out.println("\n## 순서를 입력하세요.");
+    }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }
@@ -102,22 +121,26 @@ public class PrintUtils {
     }
 
     public void duplicateStationError(){
-        System.out.println("[ERROR] 이미 존재하는 역입니다.");
+        System.out.println("\n[ERROR] 이미 존재하는 역입니다.");
     }
 
     public void nonExistentStationError(){
-        System.out.println("[ERROR] 존재하지 않는 역입니다.");
+        System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
     }
 
     public void duplicateLineError(){
-        System.out.println("[ERROR] 이미 존재하는 노선입니다.");
+        System.out.println("\n[ERROR] 이미 존재하는 노선입니다.");
     }
 
     public void nonExistentLineError(){
-        System.out.println("[ERROR] 존재하지 않는 노선입니다.");
+        System.out.println("\n[ERROR] 존재하지 않는 노선입니다.");
     }
 
     public void sameTerminalNameError(){
-        System.out.println("[ERROR] 상행 종점역과 하행 종점역은 달라야 합니다.");
+        System.out.println("\n[ERROR] 상행 종점역과 하행 종점역은 달라야 합니다.");
+    }
+
+    public void stationOrderError(int stationNumber){
+        System.out.println("\n[ERROR] 순서는 "+stationNumber+"이하의 양의 정수를 입력해주세요.");
     }
 }

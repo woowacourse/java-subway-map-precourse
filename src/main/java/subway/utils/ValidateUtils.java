@@ -13,14 +13,16 @@ public class ValidateUtils {
             return false;
         }
         char selectChar = selectMenu.charAt(0);
-        if (selectChar == quit || (selectChar >= '1' && selectChar <= bound+'0')) {
+        if (selectChar == quit || (selectChar >= '1' && selectChar <= bound + '0')) {
             return true;
         }
         return false;
     }
 
-    public boolean isValidStationName(String stationName){
-        if(stationName.length()<2)return false;
+    public boolean isValidStationName(String stationName) {
+        if (stationName.length() < 2) {
+            return false;
+        }
         return true;
     }
 
@@ -29,6 +31,16 @@ public class ValidateUtils {
             return false;
         }
         if (lineName.charAt(lineName.length() - 1) != '선') {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isValidOrder(int stationNumber, int inputOrder) {
+        if (inputOrder < 0) {
+            return false;
+        }
+        if (inputOrder >= stationNumber) {
             return false;
         }
         return true;

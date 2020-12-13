@@ -54,4 +54,16 @@ public class InputUtils {
             return inputLineName();
         }
     }
+
+    public int inputStationOrder(int stationNumber){
+        try{
+            int stationOrder=Integer.parseInt(scanner.nextLine());
+            if(!validateUtils.isValidOrder(stationNumber,stationOrder))
+                throw new IllegalArgumentException();
+            return stationOrder;
+        }catch (IllegalArgumentException e){
+            printUtils.stationOrderError(stationNumber);
+            return inputStationOrder(stationNumber);
+        }
+    }
 }

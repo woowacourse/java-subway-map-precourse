@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Route;
+import subway.domain.RouteRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.InputUtils;
@@ -73,8 +75,31 @@ public class Application {
 
     }
 
+    enum RouteFunction {
+        ADD('1'), DELETE('2'), GET_BACK('B');
+
+        final private char menu;
+
+        RouteFunction(char menu) {
+            this.menu = menu;
+        }
+
+        public char getMenu() {
+            return menu;
+        }
+
+        public boolean matchMenu(char menu) {
+            if (this.menu == menu) {
+                return true;
+            }
+            return false;
+        }
+
+    }
+
     private static StationRepository stationRepository;
     private static LineRepository lineRepository;
+    private static RouteRepository routeRepository;
     private static PrintUtils printUtils;
     private static InputUtils inputUtils;
 
@@ -129,7 +154,7 @@ public class Application {
             lineManagementMenu();
         }
         if (menu == MainFunction.SECTION_MANAGEMENT.getMenu()) {
-            sectionManagementMenu();
+            routeManagementMenu();
         }
         if (menu == MainFunction.SUBWAY_MAP.getMenu()) {
             subwayMapPrint();
@@ -211,13 +236,14 @@ public class Application {
     }
 
     private static void addLine() {
-        registerNewLine();
-        String upboundStation = upboundTerminal();
-        String downboundStation = downboundTerminal(upboundStation);
+        Line line = registerNewLine();
+        Station upboundStation = new Station(upboundTerminal());
+        Station downboundStation = new Station(downboundTerminal(upboundStation.getName()));
+        routeRepository.addRoute(new Route(line,upboundStation,downboundStation));
         printUtils.printCompleteAddLine();
     }
 
-    private static void registerNewLine() {
+    private static Line registerNewLine() {
         printUtils.printAddNewLineNameGuide();
         try {
             Line newline = new Line(inputUtils.inputLineName());
@@ -225,9 +251,10 @@ public class Application {
                 throw new IllegalArgumentException();
             }
             lineRepository.addLine(newline);
+            return newline;
         } catch (IllegalArgumentException e) {
             printUtils.duplicateLineError();
-            registerNewLine();
+            return registerNewLine();
         }
     }
 
@@ -284,8 +311,57 @@ public class Application {
         lineRepository.printLinesList();
     }
 
-    private static void sectionManagementMenu() {
+    private static void routeManagementMenu() {
+        printUtils.printRouteManagementMenu();
+        printUtils.printSelectFunction();
 
+        char menu = inputUtils.inputFunctionSelect(2, RouteFunction.GET_BACK.getMenu());
+        if (RouteFunction.GET_BACK.matchMenu(menu)) {
+            return;
+        }
+        if(RouteFunction.ADD.matchMenu(menu)){
+            addRoute();
+        }
+
+    }
+
+    private static void addRoute() {
+        String lineName = whichLineAdded();
+        String stationName = whichStationAdd(lineName);
+        int inputOrder = whichOrderAdd(routeRepository.numberOfStationsLineHave(lineName));
+
+        routeRepository.addStationToLine(lineName,new Station(stationName),inputOrder);
+    }
+
+    private static String whichLineAdded(){
+        printUtils.printLineNameInputGuide();
+        try{
+            String lineName = inputUtils.inputLineName();
+            if(!routeRepository.isLineIncluded(lineName))
+                throw new IllegalArgumentException();
+            return lineName;
+        }catch(IllegalArgumentException e){
+            printUtils.nonExistentLineError();
+            return whichLineAdded();
+        }
+    }
+
+    private static String whichStationAdd(String lineName){
+        printUtils.printStationNameInputGuide();
+        try{
+            String stationName = inputUtils.inputStationName();
+            if(routeRepository.doesLineIncludeStation(lineName, stationName))
+                throw new IllegalArgumentException();
+            return stationName;
+        }catch(IllegalArgumentException e){
+            printUtils.duplicateStationError();
+            return whichStationAdd(lineName);
+        }
+    }
+
+    private static int whichOrderAdd(int stationNumber){
+        printUtils.printOrderInputGuide();
+        return inputUtils.inputStationOrder(stationNumber);
     }
 
     private static void subwayMapPrint() {
