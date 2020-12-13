@@ -61,7 +61,7 @@ public class LineMenu {
         return downStation;
     }
 
-    private static void makeNewLine(String lineName, String upStation, String downStation) {
+    public static void makeNewLine(String lineName, String upStation, String downStation) {
         Line line = new Line(lineName);
         line.addStation(upStation);
         line.addStation(downStation);
