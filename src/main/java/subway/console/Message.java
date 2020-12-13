@@ -7,7 +7,7 @@ package subway.console;
 public class Message {
     public static final String SUBWAY_LINE = "\n## 지하철 노선도";
     public static final String STATIONS = "\n## 역목록";
-    public static final String LINES = "\n## 노선목록";;
+    public static final String LINES = "\n## 노선목록";
     public static final String INPUT_SELECT_BUTTON = "\n## 원하는 기능을 선택하세요.";
     public static final String INPUT_CREATE_STATION = "\n## 등록할 역 이름을 입력하세요.";
     public static final String INPUT_DELETE_STATION = "\n## 삭제할 역 이름을 입력하세요.";
@@ -26,7 +26,8 @@ public class Message {
 
     public static final String ERROR_NOT_BUTTON = "\n[ERROR] 선택할 수 없는 기능입니다.";
     public static final String ERROR_NAME_LENGTH = "\n[ERROR] 이름은 2글자 이상이어야 합니다.";
-    public static final String ERROR_NAME_END = "\n[ERROR] 이름은 역으로 끝나야 합니다.";
+    public static final String ERROR_STATION_NAME_END = "\n[ERROR] 이름은 역으로 끝나야 합니다.";
+    public static final String ERROR_LINE_NAME_END = "\n[ERROR] 이름은 선으로 끝나야 합니다.";
     public static final String ERROR_NOT_EXIST_STATION = "\n[ERROR] 존재하지 않는 역입니다.";
     public static final String ERROR_EXIST_STATION = "\n[ERROR] 이미 존재하는 역입니다.";
     public static final String ERROR_EMPTY_STATION = "\n[ERROR] 등록된 역이 없습니다.";

@@ -16,6 +16,7 @@ import subway.repository.StationRepository;
  */
 public class LineService {
     private static final int STATION_NAME_LENGTH = 2;
+    private static final String STATION_END_NAME = "선";
 
     public boolean addLine(String name) {
         if (isValidate(name)) {
@@ -28,11 +29,24 @@ public class LineService {
     private boolean isValidate(String name) {
         try {
             validateNameLength(name);
+            validateNameEndWord(name);
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
             return false;
         }
         return true;
+    }
+
+    private void validateNameLength(String name) {
+        if (name.length() < STATION_NAME_LENGTH) {
+            throw new IllegalArgumentException(Message.ERROR_NAME_LENGTH);
+        }
+    }
+
+    private void validateNameEndWord(String name) {
+        if (!name.endsWith(STATION_END_NAME)) {
+            throw new IllegalArgumentException(Message.ERROR_LINE_NAME_END);
+        }
     }
 
     public boolean addSection(String name, String stationName) {
@@ -41,12 +55,6 @@ public class LineService {
 
         SectionRepository.addSection(line, station);
         return true;
-    }
-
-    private void validateNameLength(String name) {
-        if (name.length() < STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException(Message.ERROR_NAME_LENGTH);
-        }
     }
 
     public boolean deleteLine(String name) {
