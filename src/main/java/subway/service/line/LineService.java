@@ -51,16 +51,33 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
     public boolean add(Scanner scanner) {
         LineNameAddingValidation lineNameAddingValidation = new LineNameAddingValidation();
 
-        LineTextView.printLineAddingText();
-        String lineName = scanner.nextLine();
+        String lineName = scanLineName(scanner);
+        String upStationName = scanUpStationName(scanner);
+        String downStationName = scanDownStationName(scanner);
 
-        if (lineNameAddingValidation.checkAddingValidation(lineName)) {
+        if ((lineNameAddingValidation.checkAddingValidation(lineName))
+                && (lineNameAddingValidation.checkStationNamesAddingValidation(upStationName, downStationName))) {
             LineRepository.addLine(new Line(lineName));
             LineInformationView.printLineAddingInformation();
             System.out.println();
             return true;
         }
         return false;
+    }
+
+    public static String scanLineName(Scanner scanner) {
+        LineTextView.printLineAddingText();
+        return scanner.nextLine();
+    }
+
+    public static String scanUpStationName(Scanner scanner) {
+        LineTextView.printLineUpStationNameText();
+        return scanner.nextLine();
+    }
+
+    public static String scanDownStationName(Scanner scanner) {
+        LineTextView.printLineDownStationNameText();
+        return scanner.nextLine();
     }
 
     @Override

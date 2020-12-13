@@ -7,4 +7,14 @@ public class LineTextView {
         System.out.println();
         System.out.println(TextType.LINE_ADDING_TEXT.getText());
     }
+
+    public static void printLineUpStationNameText() {
+        System.out.println();
+        System.out.println(TextType.LINE_UP_STATION_NAME_TEXT.getText());
+    }
+
+    public static void printLineDownStationNameText() {
+        System.out.println();
+        System.out.println(TextType.LINE_DOWN_STATION_NAME_TEXT.getText());
+    }
 }

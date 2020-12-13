@@ -42,4 +42,8 @@ public class LineNameAddingValidation implements NameAddingValidationInterface {
         }
         return true;
     }
+
+    public boolean checkStationNamesAddingValidation(String upStationName, String downStationName) {
+        return false;
+    }
 }
