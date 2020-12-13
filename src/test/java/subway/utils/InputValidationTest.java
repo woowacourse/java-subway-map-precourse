@@ -3,8 +3,6 @@ package subway.utils;
 import org.junit.jupiter.api.Test;
 import subway.domain.*;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InputValidationTest {

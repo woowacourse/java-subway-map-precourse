@@ -1,11 +1,14 @@
 package subway.service;
 
-import subway.domain.*;
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.LineStationRepository;
+import subway.domain.MenuType;
 
 import java.util.Scanner;
 
 import static subway.domain.LineRepository.*;
-import static subway.domain.StationRepository.*;
+import static subway.domain.StationRepository.findStation;
 import static subway.view.OutputView.printAddLineStationSuccessMessage;
 import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 
