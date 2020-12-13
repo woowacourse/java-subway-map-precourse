@@ -32,7 +32,11 @@ public class SectionService extends StationService implements InputInterface {
         if (input.equals(InputType.INPUT_TWO.getInput())) {
             return true;
         }
-        return input.equals(InputType.INPUT_BACK.getInput());
+        if (input.equals(InputType.INPUT_BACK.getInput())) {
+            System.out.println();
+            return true;
+        }
+        return false;
     }
 
     @Override

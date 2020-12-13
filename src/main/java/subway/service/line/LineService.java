@@ -42,6 +42,7 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
             return false;
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
+            System.out.println();
             return true;
         }
         return false;

@@ -40,7 +40,11 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
         if (input.equals(InputType.INPUT_THREE.getInput())) {
             return show();
         }
-        return input.equals(InputType.INPUT_BACK.getInput());
+        if (input.equals(InputType.INPUT_BACK.getInput())) {
+            System.out.println();
+            return true;
+        }
+        return false;
     }
 
     @Override
