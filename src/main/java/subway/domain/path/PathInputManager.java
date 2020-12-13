@@ -78,7 +78,7 @@ public class PathInputManager {
 
     private boolean checkEnrolledStation(String stationName) {
         if(!StationRepository.containsName(stationName)){
-            ErrorMessage.printNotExistStation();
+            System.out.println("등록되지 않은 역입니다.");
             return false;
         }
         return true;
@@ -106,7 +106,7 @@ public class PathInputManager {
         if (LineRepository.containsName(lineName)) {
             return true;
         }
-        ErrorMessage.printNotExistLine();
+        System.out.println("존재하지 않는 노선입니다.");
         return false;
     }
 

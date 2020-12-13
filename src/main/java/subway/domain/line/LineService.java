@@ -45,7 +45,7 @@ public class LineService {
     }
 
     private void addLine() {
-        String[] lineInfo = lineInputManager.getAddLineInfo();
+        String[] lineInfo = lineInputManager.getLineInfoToAdd();
         if (Arrays.asList(lineInfo).contains(ErrorMessage.OUT)) {
             return;
         }

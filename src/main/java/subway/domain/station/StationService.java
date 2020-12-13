@@ -58,6 +58,9 @@ public class StationService {
 
     private void addStation() {
         String name = stationInputManager.getStationNameToAdd();
+        if (name.contains(ErrorMessage.OUT)) {
+            return;
+        }
         Station station = new Station(name);
         StationRepository.addStation(station);
         InfoMessage.printStationAdded();

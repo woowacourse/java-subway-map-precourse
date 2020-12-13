@@ -7,125 +7,116 @@ import subway.common.ErrorMessage;
 import subway.common.Guide;
 
 public class LineInputManager {
-    private Scanner scanner;
+    private final Scanner scanner;
+
+    private static final String LINE = "호선";
+    private static final String LAST_LETTER_LINE = "노선이름 끝에는 호선이라고 붙여주세요.";
+    private static final String ALREADY_ENROLLED_NAME = "이미 존재하는 이름입니다.";
+    private static final String SAME_UP_DOWN_STATION = "상행과 하행은 같은 역을 등록할 수 없습니다.";
+    private static final String NOT_EXIST_LINE = "등록되어 있지 않은 노선입니다.";
+    private static final String NOT_EXIST_STATION = "등록되어 있지 않은 역입니다.";
+    private static final String OVER_TWO = "노선이름은 2글자 이상이어야 한다.";
 
     public LineInputManager(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public String[] getAddLineInfo() {
+    public String[] getLineInfoToAdd() {
         String[] lineInfo = new String[3];
-        lineInfo[0] = getLineName();
-        lineInfo[1] = getUpStationName();
-        if (invalidUpDownStation(lineInfo[1])) {
+        try {
+            lineInfo[0] = getLineName();
+            lineInfo[1] = getUpStationName();
+            lineInfo[2] = getDownStationName(lineInfo[1]);
+            return lineInfo;
+        } catch (ErrorMessage error) {
+            System.out.println(error.getMessage());
+            lineInfo[0] = ErrorMessage.OUT;
             return lineInfo;
         }
-        lineInfo[2] = getDownStationName(lineInfo[1]);
-        return lineInfo;
-    }
-
-    private String getDownStationName(String upStation) {
-        Guide.print(LineOutputManager.DOWN_STATION_GUIDE);
-        String name = scanner.nextLine().trim();
-        if (isEqualToUpStation(upStation, name)) {
-            return ErrorMessage.OUT;
-        }
-        if (!checkEnrolledStation(name)) {
-            return ErrorMessage.OUT;
-        }
-        return name;
-
-    }
-
-    private boolean isEqualToUpStation(String upStation, String name) {
-        if (name.equals(upStation)) {
-            ErrorMessage.printSameUpDownStation();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean invalidUpDownStation(String lineInfo) {
-        return lineInfo.contains(ErrorMessage.OUT);
-    }
-
-    private String getLineName() {
-        while (true) {
-            Guide.print(LineOutputManager.LINE_GUIDE);
-            String name = scanner.nextLine().trim();
-            if (!checkName(name)) {
-                continue;
-            }
-            return name;
-        }
-    }
-
-    /*
-    예외상황 - 등록되지 않은 역, 상행과 종점이 같은 경우
-     */
-    public String getUpStationName() {
-        Guide.print(LineOutputManager.UP_STATION_GUIDE);
-        String name = scanner.nextLine().trim();
-        if (!checkEnrolledStation(name)) {
-            return ErrorMessage.OUT;
-        }
-        return name;
-    }
-
-    private boolean checkEnrolledStation(String name) {
-        if (!StationRepository.stationNames().contains(name)) {
-            ErrorMessage.printNotExistStation();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkName(String name) {
-        return checkLength(name) && checkLastLetter(name) && checkNotAlreadyExist(name);
-    }
-
-    private boolean checkNotAlreadyExist(String name) {
-        if (LineRepository.lineNames().contains(name)) {
-            ErrorMessage.printValueAlreadyExist();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkLastLetter(String name) {
-        if (name.substring(name.length() - 3).equals("호선")) {
-            ErrorMessage.printLastLetterLine();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkLength(String name) {
-        if (name.length() < 2) {
-            ErrorMessage.printNameLength();
-            return false;
-        }
-        return true;
     }
 
     public String getLineNameToDelete() {
         Guide.print(StationOutputManager.STATION_DELETE_GUIDE);
         String name = scanner.nextLine().trim();
-        if (!checkNameToDelete(name)) {
+        try{
+            checkNameToDelete(name);
+        }catch (ErrorMessage error){
+            System.out.println(error.getMessage());
             return ErrorMessage.OUT;
         }
         return name;
     }
 
-    private boolean checkNameToDelete(String name) {
-        return checkAlreadyExist(name);
+    private String getLineName() {
+        Guide.print(LineOutputManager.LINE_GUIDE);
+        String name = scanner.nextLine().trim();
+        checkName(name);
+        return name;
     }
 
-    private boolean checkAlreadyExist(String name) {
-        if (!LineRepository.lineNames().contains(name)) {
-            ErrorMessage.printNotExistLine();
-            return false;
-        }
-        return true;
+    private void checkName(String name) {
+        checkLength(name);
+        checkLastLetter(name);
+        checkEnrolledLine(name);
     }
+
+    private void checkLength(String name) {
+        if (name.length() < 2) {
+            throw new ErrorMessage(OVER_TWO);
+        }
+    }
+
+    private void checkLastLetter(String name) {
+        if (name.substring(name.length() - 3).equals(LINE)) {
+            throw new ErrorMessage(LAST_LETTER_LINE);
+        }
+    }
+
+    private void checkEnrolledLine(String name) {
+        if (LineRepository.lineNames().contains(name)) {
+            throw new ErrorMessage(ALREADY_ENROLLED_NAME);
+        }
+    }
+
+    public String getUpStationName() {
+        Guide.print(LineOutputManager.UP_STATION_GUIDE);
+        String name = scanner.nextLine().trim();
+        checkEnrolledStation(name);
+        return name;
+    }
+
+    private void checkEnrolledStation(String name) {
+        if (!StationRepository.stationNames().contains(name)) {
+            throw new ErrorMessage(NOT_EXIST_STATION);
+        }
+    }
+
+    private String getDownStationName(String upStation) {
+        Guide.print(LineOutputManager.DOWN_STATION_GUIDE);
+        String name = scanner.nextLine().trim();
+        checkDownStationName(upStation, name);
+        return name;
+    }
+
+    private void checkDownStationName(String upStation, String name) {
+        isEqualToUpStation(upStation, name);
+        checkEnrolledStation(name);
+    }
+
+    private void isEqualToUpStation(String upStation, String name) {
+        if (name.equals(upStation)) {
+            throw new ErrorMessage(SAME_UP_DOWN_STATION);
+        }
+    }
+
+    private void checkNameToDelete(String name) {
+        checkAlreadyExist(name);
+    }
+
+    private void checkAlreadyExist(String name) {
+        if (!LineRepository.lineNames().contains(name)) {
+            throw new ErrorMessage(NOT_EXIST_LINE);
+        }
+    }
+
 }
