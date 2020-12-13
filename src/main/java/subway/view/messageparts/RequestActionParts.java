@@ -2,7 +2,8 @@ package subway.view.messageparts;
 
 public enum RequestActionParts {
     TO_ADD("등록할 "),
-    TO_DELETE("삭제할 ");
+    TO_DELETE("삭제할 "),
+    EMPTY("");
 
     private String messageParts;
 

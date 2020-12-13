@@ -8,21 +8,21 @@ import subway.view.messageparts.RequestObjectParts;
 public class SectionOutputView extends OutputView {
     public static void requestLineForAddSection() {
         String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
+            RequestActionParts.EMPTY, 
             RequestObjectParts.LINE_FOR_ADD_SECTION);
         printMessage(message);
     }
 
     public static void requestStationForAddSection() {
         String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
+            RequestActionParts.EMPTY, 
             RequestObjectParts.STATION_FOR_ADD_SECTION);
         printMessage(message);
     }
 
     public static void requestSectionOrder() {
         String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
+            RequestActionParts.EMPTY, 
             RequestObjectParts.SECTION_ORDER);
         printMessage(message);
     }
