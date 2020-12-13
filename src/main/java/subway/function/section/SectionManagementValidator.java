@@ -7,6 +7,7 @@ import subway.domain.station.Station;
 import subway.function.section.printer.error.SectionManagementErrorPrinter;
 
 public class SectionManagementValidator {
+    private static final int MIN_LINE_SIZE_TO_DELETE_SECTION = 3;
     private static final int FIRST_ORDER = 1;
     private static final String ORDER_PATTERN = "^\\d+$";
 
@@ -45,5 +46,26 @@ public class SectionManagementValidator {
             throw new IllegalArgumentException();
         }
         return stationToRegisterSection;
+    }
+
+    public static Station validateStationInThatLine(Station stationToDeleteSection,
+        Line lineToDeleteSection) throws IllegalArgumentException {
+        if (!LineStationMappingRepository
+            .isStationRegisteredInThatLine(stationToDeleteSection,
+                lineToDeleteSection)) {
+            SectionManagementErrorPrinter.printNotExistsStationInLineErrorMessage();
+            throw new IllegalArgumentException();
+        }
+        return stationToDeleteSection;
+    }
+
+    public static Line validateLineHasMoreThanMinSizeToDeleteSection(Line lineToDeleteSection)
+        throws IllegalArgumentException {
+        if (LineStationMappingRepository.lineSize(lineToDeleteSection)
+            < MIN_LINE_SIZE_TO_DELETE_SECTION) {
+            SectionManagementErrorPrinter.printNoMoreThanMinStationsExistsInLineErrorMessage();
+            throw new IllegalArgumentException();
+        }
+        return lineToDeleteSection;
     }
 }

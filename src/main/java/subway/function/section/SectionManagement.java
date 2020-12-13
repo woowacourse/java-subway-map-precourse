@@ -35,7 +35,7 @@ public class SectionManagement {
     }
 
     public static void registerNewSection(Scanner scanner) throws IllegalArgumentException {
-        Line lineToRegisterSection = getLineToRegisterSection(scanner);
+        Line lineToRegisterSection = getLineToRegisterNewSection(scanner);
         Station stationToRegisterSection = getStationToRegisterSection(scanner,
             lineToRegisterSection);
         int orderToRegisterSection = getOrderToRegisterSection(scanner, lineToRegisterSection);
@@ -45,7 +45,7 @@ public class SectionManagement {
         SectionManagementPrinter.printSectionRegistrationSuccessMessage();
     }
 
-    private static Line getLineToRegisterSection(Scanner scanner) {
+    private static Line getLineToRegisterNewSection(Scanner scanner) {
         SectionManagementPrinter.printLineNameToRegisterSectionInputMessage();
         String lineNameToRegisterSection = scanner.nextLine();
         return CommonValidator.validateIsLineNameExists(lineNameToRegisterSection);
@@ -70,17 +70,28 @@ public class SectionManagement {
     }
 
     public static void deleteSection(Scanner scanner) throws IllegalArgumentException {
-        SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
-        String lineNameToDeleteSection = scanner.nextLine();
-
-        SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
-        String stationNameToDeleteSection = scanner.nextLine();
-
+        Line lineToDeleteSection = getLineToDeleteSection(scanner);
+        Station stationToDeleteSection = getStationToDeleteSection(scanner, lineToDeleteSection);
         LineStationMappingRepository
-            .deleteSection(lineNameToDeleteSection, stationNameToDeleteSection);
-
+            .deleteSection(lineToDeleteSection, stationToDeleteSection);
         SectionManagementPrinter.printSectionDeleteSuccessMessage();
     }
 
+    private static Line getLineToDeleteSection(Scanner scanner) {
+        SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
+        String lineNameToDeleteSection = scanner.nextLine();
+        Line lineToDeleteSection = CommonValidator
+            .validateIsLineNameExists(lineNameToDeleteSection);
+        return SectionManagementValidator.validateLineHasMoreThanMinSizeToDeleteSection(lineToDeleteSection);
+    }
 
+    private static Station getStationToDeleteSection(Scanner scanner,
+        Line lineToRegisterSection) {
+        SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
+        String stationNameToDeleteSection = scanner.nextLine();
+        Station stationToDeleteSection = CommonValidator
+            .validateIsStationNameExists(stationNameToDeleteSection);
+        return SectionManagementValidator
+            .validateStationInThatLine(stationToDeleteSection, lineToRegisterSection);
+    }
 }
