@@ -18,6 +18,22 @@ public class LineSetting {
         Print.infoMessage(Constant.ADD_LINE_DONE);
     }
 
+    public static void delete(Scanner scanner) {
+        while (true) {
+            try {
+                Print.hashMessage(Constant.ENTER_LINE_TO_DELETE);
+                String input = scanner.next();
+                System.out.println();
+                input = Exception.checkLineNameDelete(input);
+                LineRepository.deleteLineByName(input);
+                Print.infoMessage(Constant.DELETE_LINE_DONE);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
+
     public static void addStationToLine(Line line, String stationName){
         StationRepository.stations().forEach(station -> {
             if(station.getName().equals(stationName)){

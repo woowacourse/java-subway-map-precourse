@@ -99,7 +99,7 @@ public class FlowChart {
 
     public static void lineDelete(Scanner scanner, String lineInput) {
         if (lineInput.equals(Constant.TWO)) {
-            System.out.println("lineDelete");
+            LineSetting.delete(scanner);
             System.out.println();
             main(scanner);
         }
