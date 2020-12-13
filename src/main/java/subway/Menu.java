@@ -22,7 +22,7 @@ public class Menu {
                 System.out.println();
                 return Exception.checkMenu(input, this.itemList);
             } catch (IllegalArgumentException e) {
-                System.out.printf(e.getMessage() + "%n");
+                System.out.printf(e.getMessage() + "%n%n");
             }
         }
     }
