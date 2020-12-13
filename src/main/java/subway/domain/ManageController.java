@@ -46,7 +46,7 @@ public class ManageController {
     }
 
     public ManageController loadStations() {
-        OutputView.printStations(stationRepository);
+        OutputView.printTitleAndStations(stationRepository);
 
         return this;
     }

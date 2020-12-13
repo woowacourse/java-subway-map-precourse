@@ -30,12 +30,9 @@ public class OutputView {
         printSuccessMessage(String.format(REMOVED, type));
     }
 
-    public static void printStations(StationRepository stationRepository) {
+    public static void printTitleAndStations(StationRepository stationRepository) {
         printListTitle(ManageController.STATION);
-
-        for (String stationName : stationRepository.stationNames()) {
-            System.out.printf("%s %s\n", SUCCESS_PREFIX, stationName);
-        }
+        printStations(stationRepository);
     }
 
     public static void printLines(LineRepository lineRepository) {
@@ -47,13 +44,12 @@ public class OutputView {
     }
 
     public static void printSubwayMap(LineRepository lineRepository) {
-        System.out.printf("%s %s", TITLE_PREFIX, SUBWAY_MAP);
+        System.out.printf("\n%s %s\n", TITLE_PREFIX, SUBWAY_MAP);
 
         for (Line line : lineRepository.lines()) {
-            printSuccessMessage(line.getName());
-            printSuccessMessage(HORIZONTAL_RULE);
+            System.out.printf("%s %s\n", SUCCESS_PREFIX, line.getName());
+            System.out.printf("%s %s\n", SUCCESS_PREFIX, HORIZONTAL_RULE);
             printStations(line.getStations());
-            System.out.println();
         }
     }
 
@@ -63,6 +59,12 @@ public class OutputView {
         for (Functionable functionable : functionables) {
             System.out
                     .printf("%s. %s\n", functionable.getIdentifier(), functionable.getDescription());
+        }
+    }
+
+    private static void printStations(StationRepository stationRepository) {
+        for (String stationName : stationRepository.stationNames()) {
+            System.out.printf("%s %s\n", SUCCESS_PREFIX, stationName);
         }
     }
 
