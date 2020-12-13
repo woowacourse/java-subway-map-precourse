@@ -12,6 +12,8 @@ public class StationRepository {
     private static final String STATION_DUPLICATE_WARN = "역 이름은 중복이 되어서는 안됩니다.";
     private static final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 이름입니다.";
     private static final String STATION_EXIST_IN_LINE_WARN = "노선에 등록된 역은 삭제할 수 없습니다.";
+    private static final String STATION_ADD_SUCCESS = "지하철 역이 등록되었습니다.";
+    private static final String STATION_DELETE_SUCCESS = "지하철 역이 삭제되었습니다.";
 
     private static final List<Station> stations = new ArrayList<>();
 
@@ -25,6 +27,7 @@ public class StationRepository {
             return false;
         }
         stations.add(station);
+        infoMessage(STATION_ADD_SUCCESS);
         return true;
     }
 
@@ -36,6 +39,7 @@ public class StationRepository {
         if (isStationExistInLine(findStation)) {
             warnMessage(STATION_EXIST_IN_LINE_WARN);
         }
+        infoMessage(STATION_DELETE_SUCCESS);
         return stations.remove(findStation);
     }
 

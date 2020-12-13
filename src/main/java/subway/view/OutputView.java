@@ -27,6 +27,11 @@ public class OutputView {
         System.out.println(SHARP_PREFIX + askMessage);
     }
 
+    public static void infoMessage(String infoMessage) {
+        System.out.println(INFO_PREFIX + infoMessage);
+        System.out.println();
+    }
+
     public static void stationMessage(String stationName) {
         System.out.println(INFO_PREFIX + stationName + STATION_SUFFIX);
     }
