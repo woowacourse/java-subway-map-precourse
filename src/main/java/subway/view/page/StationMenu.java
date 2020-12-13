@@ -21,6 +21,7 @@ public class StationMenu {
     }
 
     public static void printMenu() {
+        OutputView.printMsg("## 역 관리 화면\n");
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);

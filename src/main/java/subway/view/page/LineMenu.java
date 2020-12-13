@@ -21,6 +21,7 @@ public class LineMenu {
     }
 
     public static void printMenu() {
+        OutputView.printMsg("## 노선 관리 화면\n");
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
