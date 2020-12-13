@@ -1,9 +1,6 @@
 package subway.line;
 
-import subway.line.validation.CheckNotExistStation;
-import subway.line.validation.CheckRegisteredLine;
-import subway.line.validation.CheckRightSectionNumber;
-import subway.line.validation.CheckStationRegisteredLine;
+import subway.line.validation.*;
 import subway.line.view.LineInputView;
 import subway.line.view.LineOutputView;
 import subway.station.Station;
@@ -57,7 +54,7 @@ public class LineService {
     public static void addSection(String lineName, LineInputView lineInputView, StationInputView stationInputView) {
         try {
             Line line = findLine(lineName);
-            Station station = getSectionStation(stationInputView);
+            Station station = getSectionStation(line, stationInputView);
             int sectionNumber = getSectionPosition(line, lineInputView);
             line.addSection(station, sectionNumber);
             LineOutputView.addSectionComplete();
@@ -66,9 +63,9 @@ public class LineService {
         }
     }
 
-    private static Station getSectionStation(StationInputView stationInputView) {
+    private static Station getSectionStation(Line line, StationInputView stationInputView) {
         String stationName = stationInputView.stationName();
-        CheckStationRegisteredLine.validation(stationName);
+        CheckAlreadyRegisteredStation.validation(line, stationName);
         return StationService.findStation(stationName);
     }
 
