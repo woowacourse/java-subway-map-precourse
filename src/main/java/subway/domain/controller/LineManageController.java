@@ -2,6 +2,7 @@ package subway.domain.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.input.LineManageInput;
 
 import java.util.Scanner;
@@ -18,6 +19,11 @@ public class LineManageController {
     public void processDeleteLine(Scanner scanner) {
         String line = input.inputDeleteLine(scanner);
         LineRepository.deleteLineByName(line);
+    }
+
+    public void processUpDownTrain(Scanner scanner, Line line) {
+        Station train = input.inputUpDownTrainLine(scanner);
+        line.addStation(train);
     }
 
 }
