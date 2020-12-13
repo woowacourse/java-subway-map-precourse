@@ -39,23 +39,21 @@ public class Initializer {
     private static void registerSections() {
         LineStationMappingRepository
             .registerNewSection(LINE_2, GANGNAM_STATION, SECOND_ORDER);
-
         LineStationMappingRepository
             .registerNewSection(LINE_3, YANGJAE_STATION, SECOND_ORDER);
         LineStationMappingRepository
             .registerNewSection(LINE_3, NAMBU_TERMINAL_STATION, SECOND_ORDER);
-
         LineStationMappingRepository
             .registerNewSection(SINBUNDANG_LINE, YANGJAE_STATION, SECOND_ORDER);
     }
 
     private static void registerLines() {
         LineStationMappingRepository
-            .createNewLine(LINE_2, GYODAE_STATION, YEOKSAM_STATION);
+            .createNewLineByStationNames(LINE_2, GYODAE_STATION, YEOKSAM_STATION);
         LineStationMappingRepository
-            .createNewLine(LINE_3, GYODAE_STATION, MAEBONG_STATION);
+            .createNewLineByStationNames(LINE_3, GYODAE_STATION, MAEBONG_STATION);
         LineStationMappingRepository
-            .createNewLine(SINBUNDANG_LINE, GANGNAM_STATION, YANGJAE_CITIZENS_FOREST_STATION);
+            .createNewLineByStationNames(SINBUNDANG_LINE, GANGNAM_STATION, YANGJAE_CITIZENS_FOREST_STATION);
     }
 
     private static void registerStations() {

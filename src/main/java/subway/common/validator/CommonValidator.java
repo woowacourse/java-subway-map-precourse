@@ -2,6 +2,9 @@ package subway.common.validator;
 
 import java.util.regex.Pattern;
 import subway.common.print.error.CommonErrorPrinter;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.function.station.printer.error.StationManagementErrorPrinter;
 
@@ -10,32 +13,36 @@ public class CommonValidator {
     public static final String SELECTION_INPUT_PATTERN_1234Q = "^[1234Q]$";
     public static final String SELECTION_INPUT_PATTERN_123B = "^[123B]$";
 
-    public static void validateIsNameLengthMinLengthOrMore(String inputStr) throws Exception {
-        if (inputStr.length() < MIN_LENGTH) {
-            StationManagementErrorPrinter.printNewStationNameLengthThanMinLengthErrorMessage();
-            throw new IllegalArgumentException();
-        }
-    }
-
     public static void validateIsCorrectSelectionInput(String selectionInputPattern,
-        String userInput) throws Exception {
+        String userInput) throws IllegalArgumentException {
         if (!Pattern.matches(selectionInputPattern, userInput)) {
             CommonErrorPrinter.printSelectionInputErrorMessage();
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateIsNotStationNameExisting(String stationName) throws Exception {
+    public static void validateIsNotStationNameExists(String stationName) throws IllegalArgumentException {
         if (StationRepository.findByName(stationName) != null) {
             StationManagementErrorPrinter.printAlreadyExistsStationNameErrorMessage();
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateIsStationNameExisting(String stationName) throws Exception{
-        if (StationRepository.findByName(stationName) == null) {
+    public static Station validateIsStationNameExists(String stationName) throws IllegalArgumentException {
+        Station foundStation = StationRepository.findByName(stationName);
+        if (foundStation == null) {
             CommonErrorPrinter.printNotExistsStationNameErrorMessage();
             throw new IllegalArgumentException();
         }
+        return foundStation;
+    }
+
+    public static Line validateIsLineNameExists(String lineName) throws IllegalArgumentException {
+        Line foundLine = LineRepository.findByName(lineName);
+        if (foundLine == null) {
+            CommonErrorPrinter.printNotExistsLineNameErrorMessage();
+            throw new IllegalArgumentException();
+        }
+        return foundLine;
     }
 }

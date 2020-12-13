@@ -14,7 +14,19 @@ import subway.function.printsubwaymap.PrintSubwayMapPrinter;
 public class LineStationMappingRepository {
     private static final Map<Line, List<Station>> lineStationMapping = new LinkedHashMap<>();
 
-    public static void createNewLine(String newLineName, String upEndStationName,
+    public static void createNewLineByStations(String newLineName, Station upEndStation,
+        Station downEndStation) {
+        Line newLine = new Line(newLineName);
+        LineRepository.addLine(newLine);
+        lineStationMapping.put(newLine, new ArrayList<>() {
+            {
+                add(upEndStation);
+                add(downEndStation);
+            }
+        });
+    }
+
+    public static void createNewLineByStationNames(String newLineName, String upEndStationName,
         String downEndStationName) {
         Line newLine = new Line(newLineName);
         Station upEndStation = StationRepository.findByName(upEndStationName);

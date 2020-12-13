@@ -1,73 +1,80 @@
-//package subway.function.line;
-//
-//import java.util.Scanner;
-//import subway.common.ResolveResultType;
-//import subway.common.SelectionValidationResultDto;
-//import subway.common.print.info.CommonInfoPrinter;
-//import subway.common.validator.CommonValidator;
-//import subway.domain.line.LineRepository;
-//import subway.domain.LineStationMappingRepository;
-//import subway.function.line.printer.LineManagementPrinter;
-//import subway.function.line.printer.PrintLineManagementScreen;
-//
-//public class LineManagement {
-//    public static void start(Scanner scanner) {
-//        while (true) {
-//            SelectionValidationResultDto resultDto = validateUserSelection(scanner);
-//            if (!resultDto.isValid()) {
-//                continue;
-//            }
-//            LineManagementSelectionType type = LineManagementTypeResolver
-//                .getLineManagementSelectionType(resultDto.getUserInput());
-//            if (type == LineManagementSelectionType.GO_BACK) {
-//                return;
-//            }
-//            ResolveResultType resultType = LineManagementTypeResolver
-//                .resolveUserSelection(type, scanner);
-//            if (resultType == ResolveResultType.ERROR) {
-//                continue;
-//            }
-//            return;
-//        }
-//    }
-//
-//    private static void validateUserSelection(Scanner scanner) throws Exception{
-//        String userInput = printAndGetUserSelection(scanner);
-//        CommonValidator.validateSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B, userInput)
-//    }
-//
-//    private static String printAndGetUserSelection(Scanner scanner) {
-//        PrintLineManagementScreen.printLineManagementScreen();
-//        CommonInfoPrinter.printUserFunctionSelectionMessage();
-//        return scanner.nextLine();
-//    }
-//
-//    public static ResolveResultType registerNewLine(Scanner scanner) {
-//        LineManagementPrinter.printNewLineNameInputMessage();
-//        String newLineNameInput = scanner.nextLine();
-//
-//        LineManagementPrinter.printLineUpEndStationNameInputMessage();
-//        String upEndStationNameInput = scanner.nextLine();
-//
-//        LineManagementPrinter.printLineDownEndStationNameInputMessage();
-//        String downEndStationNameInput = scanner.nextLine();
-//
-//        LineStationMappingRepository
-//            .createNewLine(newLineNameInput, upEndStationNameInput, downEndStationNameInput);
-//
-//        LineManagementPrinter.printNewLineRegistrationSuccessMessage();
-//    }
-//
-//    public static ResolveResultType deleteLine(Scanner scanner) {
-//        LineManagementPrinter.printLineNameToDeleteInputMessage();
-//        String lineNameToDeleteInput = scanner.nextLine();
-//        LineStationMappingRepository.deleteLine(lineNameToDeleteInput);
-//        LineManagementPrinter.printLineDeleteSuccessMessage();
-//    }
-//
-//    public static ResolveResultType printLineList() {
-//        LineManagementPrinter.printLineListTitle();
-//        LineRepository.printAllLines();
-//        return ResolveResultType.SUCCESS;
-//    }
-//}
+package subway.function.line;
+
+import java.util.Scanner;
+import subway.common.print.info.CommonInfoPrinter;
+import subway.common.validator.CommonValidator;
+import subway.domain.line.LineRepository;
+import subway.domain.LineStationMappingRepository;
+import subway.domain.station.Station;
+import subway.function.line.printer.LineManagementPrinter;
+import subway.function.line.printer.PrintLineManagementScreen;
+
+public class LineManagement {
+    public static void start(Scanner scanner) {
+        while (true) {
+            LineManagementSelectionType type = null;
+            type = printAndGetUserSelection(scanner);
+            if (type == LineManagementSelectionType.GO_BACK) {
+                return;
+            }
+            LineManagementTypeResolver.resolveUserSelection(type, scanner);
+        }
+    }
+
+    private static LineManagementSelectionType printAndGetUserSelection(Scanner scanner) {
+        PrintLineManagementScreen.printLineManagementScreen();
+        CommonInfoPrinter.printUserFunctionSelectionMessage();
+        String userInput = scanner.nextLine();
+        try {
+            CommonValidator
+                .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B,
+                    userInput);
+        } catch (IllegalArgumentException e) {
+            return LineManagementSelectionType.ERROR;
+        }
+        return LineManagementTypeResolver.getLineManagementSelectionType(userInput);
+    }
+
+    public static void registerNewLine(Scanner scanner) throws IllegalArgumentException {
+        String newLineName = getNewLineNameInput(scanner);
+        Station upEndStation = getEndStationNameInput(scanner);
+        Station downEndStation = getDownEndStationNameInput(scanner);
+        LineManagementValidator.validateIsNotEqual(upEndStation, downEndStation);
+        LineStationMappingRepository
+            .createNewLineByStations(newLineName, upEndStation, downEndStation);
+        LineManagementPrinter.printNewLineRegistrationSuccessMessage();
+    }
+
+    private static Station getDownEndStationNameInput(Scanner scanner) throws IllegalArgumentException {
+        LineManagementPrinter.printLineDownEndStationNameInputMessage();
+        String downEndStationName = scanner.nextLine();
+        return CommonValidator.validateIsStationNameExists(downEndStationName);
+    }
+
+    private static Station getEndStationNameInput(Scanner scanner) throws IllegalArgumentException {
+        LineManagementPrinter.printLineUpEndStationNameInputMessage();
+        String upEndStationName = scanner.nextLine();
+        return CommonValidator.validateIsStationNameExists(upEndStationName);
+    }
+
+    private static String getNewLineNameInput(Scanner scanner) throws IllegalArgumentException {
+        LineManagementPrinter.printNewLineNameInputMessage();
+        String newLineName = scanner.nextLine();
+        LineManagementValidator.validateIsLineNameLengthMinLengthOrMore(newLineName);
+        LineManagementValidator.validateIsLineNameNotExists(newLineName);
+        return newLineName;
+    }
+
+    public static void deleteLine(Scanner scanner) throws IllegalArgumentException {
+        LineManagementPrinter.printLineNameToDeleteInputMessage();
+        String lineNameToDeleteInput = scanner.nextLine();
+        CommonValidator.validateIsLineNameExists(lineNameToDeleteInput);
+        LineStationMappingRepository.deleteLine(lineNameToDeleteInput);
+        LineManagementPrinter.printLineDeleteSuccessMessage();
+    }
+
+    public static void printLineList() {
+        LineManagementPrinter.printLineListTitle();
+        LineRepository.printAllLines();
+    }
+}

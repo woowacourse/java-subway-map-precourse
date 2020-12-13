@@ -13,17 +13,11 @@ public class StationManagement {
     public static void start(Scanner scanner) {
         while (true) {
             StationManagementSelectionType type = null;
-            try {
-                type = printAndGetUserSelectionInput(scanner);
-            } catch (Exception ignored) {
-            }
+            type = printAndGetUserSelectionInput(scanner);
             if (type == StationManagementSelectionType.GO_BACK) {
                 return;
             }
-            try {
-                StationManagementTypeResolver.resolveStationManagement(type, scanner);
-            } catch (Exception ignored) {
-            }
+            StationManagementTypeResolver.resolveStationManagement(type, scanner);
         }
     }
 
@@ -31,17 +25,21 @@ public class StationManagement {
         PrintStationManagementScreen.printStationManagementScreen();
     }
 
-    private static StationManagementSelectionType printAndGetUserSelectionInput(Scanner scanner)
-        throws Exception {
+    private static StationManagementSelectionType printAndGetUserSelectionInput(Scanner scanner) {
         printScreen();
         CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
-        CommonValidator
-            .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B, userInput);
+        try {
+            CommonValidator
+                .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B,
+                    userInput);
+        } catch (IllegalArgumentException e) {
+            return StationManagementSelectionType.ERROR;
+        }
         return StationManagementTypeResolver.getStationManagementSelectionType(userInput);
     }
 
-    public static void registerNewStation(Scanner scanner) throws Exception {
+    public static void registerNewStation(Scanner scanner) throws IllegalArgumentException {
         StationManagementPrinter.printUserInputStationRegistrationMessage();
         String newStationName = scanner.nextLine();
         StationManagementValidator.validateStationNameToRegister(newStationName);
@@ -49,7 +47,7 @@ public class StationManagement {
         StationManagementPrinter.printRegisterNewStationSuccessMessage();
     }
 
-    public static void deleteStation(Scanner scanner) throws Exception {
+    public static void deleteStation(Scanner scanner) throws IllegalArgumentException {
         StationManagementPrinter.printUserInputStationToDeleteMessage();
         String stationName = scanner.nextLine();
         StationManagementValidator.validateStationNameToDelete(stationName);

@@ -1,6 +1,7 @@
 package subway.main;
 
 import java.util.Scanner;
+import subway.function.line.LineManagement;
 import subway.function.printsubwaymap.PrintSubwayMap;
 import subway.function.section.SectionManagement;
 import subway.function.station.StationManagement;
@@ -28,7 +29,7 @@ public class MainTypeResolver {
             StationManagement.start(scanner);
         }
         if (type == MainSelectionType.LINE_MANAGEMENT) {
-            //LineManagement.start(scanner);
+            LineManagement.start(scanner);
         }
         if (type == MainSelectionType.SECTION_MANAGEMENT) {
             SectionManagement.start(scanner);
