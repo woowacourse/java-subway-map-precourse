@@ -33,7 +33,7 @@ public class LineManager {
         }
     }
 
-    private void createLine() { // 노선 만들기위한 정보 초기화
+    private void createLine() { // 노선 만들기위한 정보 가져오기
         String lineName = InputView.inputLineName(scanner);
         String upTerminal = InputView.inputUpTerminalStation(scanner);
         String downTerminal = InputView.inputDownTerminalStation(scanner);
