@@ -89,43 +89,52 @@ public class StretchDashboard {
     }
 
     public void insertStretch(InputView inputView) {
-        Line chosenLine;
-        // 노선 입력
+        Line chosenLine = insertLineName();
+        Station newStation = insertStationName(chosenLine);
+        if (newStation == null) {
+            return;
+        }
+
+        insertPosition(chosenLine, newStation);
+    }
+
+    public Line insertLineName() {
         while (true) {
             String chosenLineName = inputView.readLineName();
             if (validLineNameSubmitted(new Line(chosenLineName))) {
-                chosenLine = LineRepository.getLineByName(chosenLineName);
-                break;
+                return LineRepository.getLineByName(chosenLineName);
             }
         }
-        // 역 입력
+    }
+
+    public Station insertStationName(Line chosenLine) {
         Station newStation = new Station(inputView.readStationName());
         if (chosenLine.getStations().contains(newStation)) {
             System.out.println(ERROR_STATION_NAME_DUPLICATED);
-            return;
+            return null;
         }
-        // 위치 입력
+        return newStation;
+    }
+
+    public void insertPosition(Line chosenLine, Station newStation) {
         String tempOrder = inputView.readStationOrder();
-        int order;
         try {
-            order = Integer.parseInt(tempOrder);
+            int order = Integer.parseInt(tempOrder);
+            if (order < 0 || order > chosenLine.getStations().size()) {
+                System.out.println(ERROR_ORDER_OUT_OF_RANGE);
+                return;
+            }
+            StationRepository.addStation(newStation);
+            chosenLine.getStations().add(order, newStation);
+            System.out.println(INFO_STRETCH_INSERT_SUCCESS);
         } catch (NumberFormatException e) {
             System.out.println(ERROR_ORDER_OUT_OF_RANGE);
             return;
         }
-
-        if (order < 0 || order > chosenLine.getStations().size()) {
-            System.out.println(ERROR_ORDER_OUT_OF_RANGE);
-            return;
-        }
-        StationRepository.addStation(newStation);
-        chosenLine.getStations().add(order, newStation);
-        System.out.println(INFO_STRETCH_INSERT_SUCCESS);
     }
 
     public void deleteStretch(InputView inputView) {
         Line chosenLine;
-//      존재하지 않는 노선 입력시 다시 입력받도록 함
         while (true) {
             String chosenLineName = inputView.readDeletingLineName();
             if (validLineNameSubmitted(new Line(chosenLineName))) {
@@ -133,7 +142,6 @@ public class StretchDashboard {
                 break;
             }
         }
-//        존재하지 않는 역 이름 입력시 종료시킴
         String chosenStationName = inputView.readDeletingStationName();
         deleteChosenStretch(chosenLine, chosenStationName);
 
@@ -160,12 +168,10 @@ public class StretchDashboard {
 
     public void checkOnLineStatus(String stationName) {
         StationRepository.getStationByName(stationName).subtractNumberOnLines();
-        if(StationRepository.getStationByName(stationName).isNotOnLines()) {
+        if (StationRepository.getStationByName(stationName).isNotOnLines()) {
             StationRepository.deleteStation(stationName);
         }
     }
-
-
 
 
 }
