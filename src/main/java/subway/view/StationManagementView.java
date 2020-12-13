@@ -1,6 +1,6 @@
 package subway.view;
 
-import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
+import static subway.resource.TextResource.ASK_ADD_STATION_NAME;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_STATION_ADD;
 import static subway.resource.TextResource.FUNCTION_STATION_DELETE;
@@ -8,6 +8,7 @@ import static subway.resource.TextResource.FUNCTION_STATION_LIST_SHOW;
 import static subway.resource.TextResource.HEADER_STATION_MANAGEMENT_VIEW;
 
 import java.util.Scanner;
+import subway.controller.StationManagementController;
 import subway.view.MainView.OnBackListener;
 
 public class StationManagementView extends View {
@@ -46,8 +47,9 @@ public class StationManagementView extends View {
         doStationManageFunction(selection);
     }
 
-    private void doStationManageFunction(String selection) {
+    private void doStationManageFunction(String selection) throws IllegalArgumentException {
         if (KEY_ADD_STATION.equals(selection)) {
+            addStation();
             return;
         }
 
@@ -57,6 +59,13 @@ public class StationManagementView extends View {
 
         if (KEY_SHOW_STATION_LIST.equals(selection)) {
         }
+    }
+
+    private void addStation() throws IllegalArgumentException {
+        System.out.println(ASK_ADD_STATION_NAME);
+        String name = scanner.nextLine();
+        StationManagementController.getInstance().addStation(name);
+        onBackListener.onBack();
     }
 
     private void initMenu() {
