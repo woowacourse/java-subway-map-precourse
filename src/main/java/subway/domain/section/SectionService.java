@@ -30,7 +30,7 @@ public class SectionService {
 
     public Section saveSection(SectionSaveReqDto saveReqDto) {
         Line line = Line.of(saveReqDto.getLineName());
-        checkExistLine(line.getName());
+        checkAlreadyExist(line.getName());
 
         Station upwardStation = Station.of(saveReqDto.getUpwardStationName());
         checkUpwardNotFound(upwardStation.getName());
@@ -111,7 +111,7 @@ public class SectionService {
         }
     }
 
-    private void checkExistLine(String name) {
+    private void checkAlreadyExist(String name) {
         Line findLine = lineRepository.findByName(name);
         if (findLine != null) {
             throw new SectionException(ErrorCode.LINE_ALREADY_EXIST);

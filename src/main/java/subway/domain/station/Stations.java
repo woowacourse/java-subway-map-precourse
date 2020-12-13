@@ -20,16 +20,16 @@ public class Stations {
         return new Stations(stations);
     }
 
+    public void addStation(Station station, int sequence) {
+        stations.add(sequence, station);
+    }
+
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
 
     public int size() {
         return stations.size();
-    }
-
-    public void addStation(Station station, int sequence) {
-        stations.add(sequence, station);
     }
 
     public boolean deleteStation(Station station) {

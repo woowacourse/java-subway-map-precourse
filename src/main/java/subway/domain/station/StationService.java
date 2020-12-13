@@ -12,9 +12,11 @@ public interface StationService {
 
     boolean deleteStation(StationDeleteReqDto deleteReqDto);
 
-    void checkExist(String stationName);
+    void removeAll();
+
+    boolean containLine(String stationName);
+
+    void checkAlreadyExist(String stationName);
 
     void checkNotFound(String stationName);
-
-    void removeAll();
 }

@@ -1,8 +1,5 @@
 package subway.domain.station;
 
-import subway.exception.ErrorCode;
-import subway.exception.StationException;
-
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,11 +16,6 @@ public class MemoryStationRepository implements StationRepository {
     }
 
     @Override
-    public List<Station> stations() {
-        return stations.values().stream().collect(Collectors.toList());
-    }
-
-    @Override
     public Station addStation(Station station) {
         stations.put(station.getName(), station);
         return station;
@@ -33,6 +25,11 @@ public class MemoryStationRepository implements StationRepository {
     public Station findByName(String name) {
         Station station = stations.get(name);
         return station;
+    }
+
+    @Override
+    public List<Station> stations() {
+        return stations.values().stream().collect(Collectors.toList());
     }
 
     @Override

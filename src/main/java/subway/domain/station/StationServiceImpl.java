@@ -20,7 +20,7 @@ public class StationServiceImpl implements StationService {
     @Override
     public Station saveStation(StationSaveReqDto saveReqDto) {
         Station station = Station.of(saveReqDto.getName());
-        checkExist(station.getName());
+        checkAlreadyExist(station.getName());
         stationRepository.addStation(station);
         return station;
     }
@@ -53,22 +53,6 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public void checkExist(String stationName) {
-        Station stationFindByName = stationRepository.findByName(stationName);
-        if (stationFindByName != null) {
-            throw new StationException(ErrorCode.STATION_ALREADY_EXIST);
-        }
-    }
-
-    @Override
-    public void checkNotFound(String stationName) {
-        Station stationFindByName = stationRepository.findByName(stationName);
-        if (stationFindByName == null) {
-            throw new StationException(ErrorCode.STATION_NOT_FOUND);
-        }
-    }
-
-    @Override
     public void removeAll() {
         stationRepository.removeAll();
     }
@@ -83,5 +67,21 @@ public class StationServiceImpl implements StationService {
                     }
                 });
         return hasStation[0];
+    }
+
+    @Override
+    public void checkAlreadyExist(String stationName) {
+        Station stationFindByName = stationRepository.findByName(stationName);
+        if (stationFindByName != null) {
+            throw new StationException(ErrorCode.STATION_ALREADY_EXIST);
+        }
+    }
+
+    @Override
+    public void checkNotFound(String stationName) {
+        Station stationFindByName = stationRepository.findByName(stationName);
+        if (stationFindByName == null) {
+            throw new StationException(ErrorCode.STATION_NOT_FOUND);
+        }
     }
 }
