@@ -68,6 +68,8 @@ public class Subway {
 	}
 	
 	public static void readLine() {
-		
+		for (Line line: LineRepository.getLines()) {
+			Output.info(line.getName());
+		}
 	}
 }
