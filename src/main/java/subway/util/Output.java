@@ -2,30 +2,47 @@ package subway.util;
 
 public class Output {
 	public static void mainView() {
-		System.out.println(Message.MAIN_VIEW);
-		System.out.println(Message.MAIN_STATION_MANAGEMENT);
-		System.out.println(Message.MAIN_LINE_MANAGEMENT);
-		System.out.println(Message.MAIN_SUBWAY_LINE_PRINT);
-		System.out.println(Message.MAIN_QUITE);
-		System.out.println(Message.FUNCTION_CHOICE);
+		Output.title(Message.MAIN_VIEW);
+		Output.print(Message.MAIN_STATION_MANAGEMENT);
+		Output.print(Message.MAIN_LINE_MANAGEMENT);
+		Output.print(Message.MAIN_LINE_SECTION);
+		Output.print(Message.MAIN_SUBWAY_LINE_PRINT);
+		Output.print(Message.MAIN_QUITE);
+		Output.title(Message.FUNCTION_CHOICE);
 	}
 	
 	public static void stationManagement() {
-		System.out.println(Message.STATION_VIEW);
-		System.out.println(Message.STATION_CREATE);
-		System.out.println(Message.STATION_REMOVE);
-		System.out.println(Message.STATION_READ);
-		System.out.println(Message.BACK);
-		System.out.println(Message.FUNCTION_CHOICE);
+		Output.title(Message.STATION_VIEW);
+		Output.print(Message.STATION_CREATE);
+		Output.print(Message.STATION_REMOVE);
+		Output.print(Message.STATION_READ);
+		Output.print(Message.BACK);
+		Output.title(Message.FUNCTION_CHOICE);
 	}
 	
  	public static void lineManagement() {
- 		System.out.println(Message.LINE_VIEW);
- 		System.out.println(Message.LINE_CREATE);
- 		System.out.println(Message.LINE_REMOVE);
- 		System.out.println(Message.LINE_READ);
- 		System.out.println(Message.BACK);
- 		System.out.println(Message.FUNCTION_CHOICE);
+ 		Output.title(Message.LINE_VIEW);
+ 		Output.print(Message.LINE_CREATE);
+ 		Output.print(Message.LINE_REMOVE);
+ 		Output.print(Message.LINE_READ);
+ 		Output.print(Message.BACK);
+ 		Output.title(Message.FUNCTION_CHOICE);
+ 	}
+ 	
+ 	public static void sectionManagement() {
+ 		Output.title(Message.SECTION_VIEW);
+ 		Output.print(Message.SECTION_CREATE);
+ 		Output.print(Message.SECTION_REMOVE);
+ 		Output.print(Message.BACK);
+ 		Output.title(Message.FUNCTION_CHOICE);
+ 	}
+ 	
+ 	public static void title(String message) {
+ 		System.out.println("\n## " + message);
+ 	}
+ 	
+ 	public static void print(String message) {
+ 		System.out.println(message);
  	}
 	
 	public static void info(String message) {

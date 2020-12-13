@@ -1,5 +1,6 @@
 package subway;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 import subway.domain.Line;
@@ -45,17 +46,12 @@ public class Subway {
 	}
 	
 	public static void addLine(String name, String lineUpBoundTerminus, String downstreamTerminus) {
-		if (!LineRepository.contains(name)) {
-			if (!StationRepository.contains(lineUpBoundTerminus) || !StationRepository.contains(downstreamTerminus)) {
-				Output.info("등록되지 않은 역 이름입니다.");
-				return;
-			}
-			
-			LineRepository.addLine(new Line(name, lineUpBoundTerminus, downstreamTerminus));
-			Output.info("지하철 노선이 등록되었습니다.");
+		if (!StationRepository.contains(lineUpBoundTerminus) || !StationRepository.contains(downstreamTerminus)) {
+			Output.info("등록되지 않은 역 이름입니다.");
 			return;
 		}
-		Output.error("이미 등록된 노선 이름입니다.");
+		LineRepository.addLine(new Line(name, lineUpBoundTerminus, downstreamTerminus));
+		Output.info("지하철 노선이 등록되었습니다.");
 	}
 	
 	public static void addLineUpBoundTerminus(String name) {
@@ -79,5 +75,31 @@ public class Subway {
 			return;
 		}
 		Output.error("등록되지 않은 노선 이름입니다.");
+	}
+	
+	public static void addSection(String lineName, String stationName, String seq) {
+		if (isUseableSection(lineName, stationName, seq)) {
+			for (Line line: LineRepository.getLines()) {
+				addSectionByLine(line, lineName, stationName, seq);
+			}
+		}
+		
+	}
+	
+	private static boolean isUseableSection(String lineName, String stationName, String seq) {
+		if (!LineRepository.contains(lineName)) {
+			Output.error("등록되지 않은 노선 이름입니다.");
+			return false;
+		} else if (!StationRepository.contains(stationName)) {
+			Output.error("등록되지 않은 역 이름입니다.");
+			return false;
+		}
+		return true;
+	}
+	 
+	private static void addSectionByLine(Line line, String lineName, String stationName, String seq) {
+		if (Objects.equals(line.getName(), lineName)) {
+			line.addStation(Integer.parseInt(seq) - 1, stationName);
+		}
 	}
 }

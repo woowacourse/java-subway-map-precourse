@@ -31,6 +31,8 @@ public class Line {
     public String getName() {
         return name;
     }
-
-    // 추가 기능 구현
+    
+    public void addStation(int idx, String station) {
+    	stations.add(idx, station);
+    }
 }

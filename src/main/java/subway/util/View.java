@@ -23,6 +23,8 @@ public class View {
 			stationManagement();
 		} else if (selector.equals("2")) {
 			lineManagement();
+		} else if (selector.equals("3")) {
+			sectionManagement();
 		}
 	}
 	
@@ -55,6 +57,20 @@ public class View {
 			ViewManager.removeLine();
 		} else if (selector.equals("3")) {
 			Subway.readLine();
+		}
+	}
+	
+	private void sectionManagement() {
+		Output.sectionManagement();
+		selector = Input.nextLine(scanner);
+		moveSectionViewBySelector(selector);
+	}
+	
+	private void moveSectionViewBySelector(String selector) {
+		if (selector.equals("1")) {
+			ViewManager.createSection();
+		} else if (selector.equals("2")) {
+			ViewManager.removeSection();
 		}
 	}
 }
