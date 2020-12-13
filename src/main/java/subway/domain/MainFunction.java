@@ -7,19 +7,22 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public enum MainFunction {
-    STATION("1", StationFunction::perform),
-    LINE("2", LineFunction::perform),
-    RANGE("3", RangeFunction::perform),
-    SUBWAY_MAP("4", Function.identity()),
-    QUIT("Q", null);
+    STATION("1", "역 관리", StationFunction::perform),
+    LINE("2", "노선 관리", LineFunction::perform),
+    RANGE("3", "구간 관리", RangeFunction::perform),
+    SUBWAY_MAP("4", "지하철 노선도 출력", Function.identity()),
+    QUIT("Q", "종료", null);
 
     private final String identifier;
 
+    private final String description;
+
     private final Function<ManageController, ManageController> function;
 
-    MainFunction(String identifier,
+    MainFunction(String identifier, String description,
                  Function<ManageController, ManageController> function) {
         this.identifier = identifier;
+        this.description = description;
         this.function = function;
     }
 

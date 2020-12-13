@@ -7,17 +7,20 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public enum RangeFunction {
-    ADD("1", ManageController::addRange),
-    REMOVE("2", ManageController::removeRange),
-    BACK("B", Function.identity());
+    ADD("1", "구간 등록", ManageController::addRange),
+    REMOVE("2", "구간 삭제", ManageController::removeRange),
+    BACK("B", "돌아가기", Function.identity());
 
     private final String identifier;
 
+    private final String description;
+
     private final Function<ManageController, ManageController> function;
 
-    RangeFunction(String identifier,
+    RangeFunction(String identifier, String description,
                   Function<ManageController, ManageController> function) {
         this.identifier = identifier;
+        this.description = description;
         this.function = function;
     }
 
