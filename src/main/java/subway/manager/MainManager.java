@@ -42,23 +42,18 @@ public class MainManager {
             Power.off();
             OutputView.printInformation(OutputView.EXIT_PROGRAM);
             return;
-        }
-        if (command.equals(MainButton.STATION_MANAGER.getSymbol())) {
+        } else if (command.equals(MainButton.STATION_MANAGER.getSymbol())) {
             StationManager.execute();
-        }
-        if (command.equals(MainButton.LINE_MANAGER.getSymbol())) {
+        } else if (command.equals(MainButton.LINE_MANAGER.getSymbol())) {
             LineManager.execute();
-        }
-        if (command.equals(MainButton.SECTION_MANAGER.getSymbol())) {
+        } else if (command.equals(MainButton.SECTION_MANAGER.getSymbol())) {
             SectionManager.execute();
-        }
-        if (command.equals(MainButton.PRINT_TOTAL_MAP.getSymbol())) {
+        } else if (command.equals(MainButton.PRINT_TOTAL_MAP.getSymbol())) {
             OutputView.printTotalMap();
         }
-        if (!Power.isOn()) {
-            return;
+        if (Power.isOn()) {
+            MainManager.execute();
         }
-        MainManager.execute();
     }
 
 }
