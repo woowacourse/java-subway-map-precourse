@@ -9,23 +9,26 @@ public class InputView {
     }
 
     public static int getInteger(Scanner scanner) {
+        String input = getInput(scanner);
+
+        if (!isNumeric(input)) {
+            throw new IllegalArgumentException("정수 범위의 숫자를 입력하세요.");
+        }
+
+        return Integer.parseInt(input);
+    }
+
+    private static boolean isNumeric(String input) {
         try {
-            return Integer.parseInt(getInput(scanner));
+            Integer.parseInt(input);
+            return true;
         } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            OutputView.printMsg("다시 입력해주세요\n");
-            return getInteger(scanner);
+            return false;
         }
     }
 
     public static Name getName(Scanner scanner) {
-        try {
-            return new Name(getInput(scanner));
-        } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            OutputView.printMsg("다시 입력해주세요\n");
-            return getName(scanner);
-        }
+        return new Name(getInput(scanner));
     }
 
     public static String getInput(Scanner scanner) {
