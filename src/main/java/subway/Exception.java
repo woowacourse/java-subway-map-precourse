@@ -7,11 +7,6 @@ import subway.domain.StationRepository;
 import java.util.List;
 
 public class Exception {
-    public static String checkMenu(String input, List<String> menuItemList) {
-        input = isInMenu(input, menuItemList);
-        return input;
-    }
-
     public static String checkStationAdd(String input) {
         input = isStation(input);
         input = isLengthTwoOrMore(input);
@@ -20,8 +15,6 @@ public class Exception {
     }
 
     public static String checkStationDelete(String input) {
-        input = isStation(input);
-        input = isLengthTwoOrMore(input);
         input = isInStationList(input);
         input = isNotInLine(input);
         return input;
@@ -33,20 +26,7 @@ public class Exception {
         return input;
     }
 
-    public static String checkLineNameDelete(String input) {
-        input = isLengthTwoOrMore(input);
-        input = isInLineList(input);
-        return input;
-    }
-
-    public static String checkFirstStation(String input) {
-        input = isLengthTwoOrMore(input);
-        input = isInStationList(input);
-        return input;
-    }
-
     public static String checkLastStation(String input, String firstStation) {
-        input = isLengthTwoOrMore(input);
         input = isInStationList(input);
         if (input.equals(firstStation)) {
             throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.FIRST_STATION_CANNOT_BE_LAST_STATION);

@@ -20,7 +20,7 @@ public class Menu {
                 Print.hashMessage(Constant.CHOOSE_FUNCTION);
                 String input = scanner.next();
                 System.out.println();
-                return Exception.checkMenu(input, this.itemList);
+                return Exception.isInMenu(input, this.itemList);
             } catch (IllegalArgumentException e) {
                 System.out.printf(e.getMessage() + "%n%n");
             }

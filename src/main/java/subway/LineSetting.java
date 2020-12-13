@@ -22,7 +22,7 @@ public class LineSetting {
         Print.hashMessage(Constant.ENTER_LINE_TO_DELETE);
         String input = scanner.next();
         System.out.println();
-        input = Exception.checkLineNameDelete(input);
+        input = Exception.isInStationList(input);
         LineRepository.deleteLineByName(input);
         Print.infoMessage(Constant.DELETE_LINE_DONE);
     }
@@ -54,7 +54,7 @@ public class LineSetting {
         Print.hashMessage(Constant.ENTER_FIRST_STATION);
         String input = scanner.next();
         System.out.println();
-        return Exception.checkFirstStation(input);
+        return Exception.isInStationList(input);
     }
 
     public static String lastStation(Scanner scanner, String firstStation) {
