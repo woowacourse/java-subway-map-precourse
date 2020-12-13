@@ -30,4 +30,13 @@ class LineServiceTest {
         }).isInstanceOf(LineDuplicationException.class)
                 .hasMessage("이미 등록된 노선 이름입니다.");
     }
+
+    @DisplayName("Line 삭제 실패 : 등록되지 않은 노선 이름")
+    @Test
+    void deleteLineByName_없는_노선_예외가_발생한다() {
+        assertThatCode(() -> {
+            lineService.deleteLineByName("없는노선");
+        }).isInstanceOf(CannotFindLineException.class)
+                .hasMessage("등록되지 않은 지하철 노선 이름을 입력하셨습니다.");
+    }
 }

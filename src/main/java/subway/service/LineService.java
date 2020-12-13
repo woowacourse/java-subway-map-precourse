@@ -20,4 +20,10 @@ public class LineService {
         Line line = new Line(name, sections);
         lineRepository.save(line);
     }
+
+    public void deleteLineByName(String name) {
+        Line line = lineRepository.findByName(name)
+                .orElseThrow(CannotFindLineException::new);
+        lineRepository.delete(line);
+    }
 }
