@@ -34,7 +34,7 @@ public class SubMenu {
 
     public void makeActionList(Scanner scanner) {
         actionList = new ArrayList<>();
-        actionList.addAll(Arrays.asList(new RegisterAction(REGISTER_SEL, category, ActionType.MANAGE, scanner),
+        actionList.addAll(Arrays.asList(new RegisterAction(REGISTER_SEL, category, ActionType.REGISTER, scanner),
                 new DeleteAction(DELETE_SEL, category, ActionType.DELETE, scanner),
                 new ViewAction(VIEW_SEL, category, ActionType.VIEW, scanner)));
 
