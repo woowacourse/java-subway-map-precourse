@@ -20,7 +20,7 @@ public class MainFunctionMapper {
         mapper.put(STATION_MANAGEMENT, StationController::execute);
         mapper.put(LINE_MANAGEMENT, LineController::execute);
         mapper.put(SECTION_MANAGEMENT, SectionController::execute);
-        mapper.put(PRINT_SUBWAY_MAP, SubwayMapPrinter::print);
+        mapper.put(PRINT_SUBWAY_MAP, SubwayMapController::print);
         mapper.put(TERMINATE, () -> {
         });
     }
