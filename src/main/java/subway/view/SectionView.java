@@ -27,14 +27,15 @@ public class SectionView {
     }
 
     public Order getOrder() {
-        return new Order(Integer.parseInt(InputView.getInput(scanner)));
+        OutputView.printMsg("## 순서를 입력하세요.\n");
+        return new Order(InputView.getInteger(scanner));
     }
 
     public void announceAddSectionSuccess() {
         OutputView.printInfoMsg("구간이 등록되었습니다.");
     }
 
-    public Name getLineNameOfSection() {
+    public Name getLineNameOfDeleteSection() {
         OutputView.printMsg("## 삭제할 노선을 입력하세요.\n");
         return InputView.getName(scanner);
     }

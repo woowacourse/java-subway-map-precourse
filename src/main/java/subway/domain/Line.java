@@ -6,7 +6,11 @@ public class Line {
     private Name name;
     private List<Station> stations;
 
-    public Line(Name name, Station firstStation, Station lastStation) {
+    private Line(Name name, Station firstStation, Station lastStation) {
+        if (firstStation.equals(lastStation)) {
+            throw new IllegalArgumentException("상행 종점과 하행 종점이 같을 수 없습니다.");
+        }
+
         this.name = name;
 
         stations.add(firstStation);
@@ -14,6 +18,10 @@ public class Line {
 
         stations.add(lastStation);
         lastStation.onLine();
+    }
+
+    public static Line create(Name name, Station firstStation, Station lastStation) {
+        return new Line(name, firstStation, lastStation);
     }
 
     public Name getName() {
@@ -25,6 +33,14 @@ public class Line {
     }
 
     public void addStation(Order order, Station station) {
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException("이미 노선에 포함된 역입니다.");
+        }
+
+        if (order.isBiggerThan(stations.size())) {
+            throw new IllegalArgumentException("순서는 현재 포함된 역 개수보다 클 수 없습니다.");
+        }
+
         stations.add(order.getValue(), station);
         station.onLine();
     }
@@ -41,14 +57,6 @@ public class Line {
     public void removeAllStations() {
         stations.stream().forEach(Station::outOfLine);
         stations = null;
-    }
-
-    public int getStationCount() {
-        return stations.size();
-    }
-
-    public boolean isContains(Station station) {
-        return stations.contains(station);
     }
 
     @Override
