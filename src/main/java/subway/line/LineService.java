@@ -2,6 +2,7 @@ package subway.line;
 
 import subway.line.validation.CheckRegisteredLine;
 import subway.line.validation.CheckRightSectionNumber;
+import subway.line.validation.CheckStationRegisteredLine;
 import subway.line.view.LineInputView;
 import subway.line.view.LineOutputView;
 import subway.station.Station;
@@ -65,6 +66,7 @@ public class LineService {
 
     private static Station getSectionStation(StationInputView stationInputView) {
         String stationName = stationInputView.stationName();
+        CheckStationRegisteredLine.validation(stationName);
         return StationService.findStation(stationName);
     }
 
