@@ -185,12 +185,12 @@ public class StationManageApp {
         Section section = sectionService.findByName(getName());
         int stationsLength = section.getStationsLength();
 
-        outputService.printSharp(SectionView.PRINT_ADD_STATION);
+        sectionView.showAddStation();
         Station station = stationService.findByName(getName());
         sectionService.checkContainStation(section, station);
 
-        outputService.printSharp(SectionView.PRINT_ADD_SEQUENCE);
-        outputService.printSharp(String.format(SectionView.PRINT_AVAILABLE_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE));
+        sectionView.showAddSequence();
+        sectionView.showAvailableSequence(stationsLength);
         int sequence = inputService.getSequence();
         sectionService.addStation(new SectionStationAddReqDto(section.getLineName(), station.getName(), sequence));
         sectionView.showAfterAdd();
@@ -201,7 +201,7 @@ public class StationManageApp {
         String lineName = getName();
         Section section = sectionService.findByName(lineName);
 
-        outputService.printSharp(SectionView.PRINT_DELETE_STATION);
+        sectionView.showDeleteStation();
         String stationName = getName();
         Station station = stationService.findByName(stationName);
         sectionService.deleteStation(new SectionStationDeleteReqDto(section.getLineName(), station.getName()));

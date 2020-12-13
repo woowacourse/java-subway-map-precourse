@@ -10,10 +10,9 @@ public enum Prefix {
     FOUR("4. "),
     QUIT("Q. "),
     BACK("B. "),
-    ENTER ("\n"),
+    ENTER("\n"),
     CONTOUR("---"),
     CHOOSE_FUNCTION(SHARP.getPrefix() + "원하는 기능을 선택하세요.");
-
 
     private String prefix;
 
