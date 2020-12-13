@@ -8,14 +8,14 @@ public class Line {
 
     private final StationRepository stations;
 
-    public Line(final String name, final String startStation, final String finalStation) {
-        this.name = new LineName(name);
-        this.stations = new StationRepository().addStation(startStation).addStation(finalStation);
-    }
-
     public Line(final LineName name, final StationRepository stations) {
         this.name = name;
         this.stations = stations;
+    }
+
+    public Line(String name, String... stations) {
+        this.name = new LineName(name);
+        this.stations = new StationRepository().addStations(stations);
     }
 
     public String getName() {

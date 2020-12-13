@@ -27,6 +27,10 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public LineRepository addLine(String lineName, String... stations) {
+        return addLine(new Line(lineName, stations));
+    }
+
     public LineRepository addLine(final Line line) {
         if (lines.contains(line)) {
             throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, line.getName()));

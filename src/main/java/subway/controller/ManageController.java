@@ -104,4 +104,22 @@ public class ManageController {
 
         return this;
     }
+
+    public static ManageController initialize() {
+        String[] stations = { "교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역" };
+
+        String[] secondLine = {"교대역", "강남역", "역삼역"};
+        String[] thirdLine = {"교대역", "남부터미널역", "양재역", "매봉역"};
+        String[] sinbundangLine = {"강남역", "양재역", "양재시민의숲역"};
+
+        StationRepository stationRepository = new StationRepository()
+                .addStations(stations);
+
+        LineRepository lineRepository = new LineRepository()
+                .addLine("2호선", secondLine)
+                .addLine("3호선", thirdLine)
+                .addLine("신분당선", sinbundangLine);
+
+        return new ManageController(lineRepository, stationRepository);
+    }
 }

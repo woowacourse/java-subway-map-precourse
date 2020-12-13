@@ -31,6 +31,18 @@ class ManageControllerTest {
     }
 
     @Test
+    @DisplayName("Manage Controller 초기화 테스트")
+    public void initialize_ManageController_InitializedManageController() {
+
+        // when
+        ManageController initialize = ManageController.initialize();
+
+        //then
+        assertThat(initialize.lines().lineNames()).containsExactly("2호선", "3호선", "신분당선");
+        assertThat(initialize.lines().getStationNamesByLineName("2호선")).containsExactly("교대역", "강남역", "역삼역");
+    }
+
+    @Test
     @DisplayName("새로운 역 추가 테스트")
     public void addStation_NewStation_StationAdded() {
 

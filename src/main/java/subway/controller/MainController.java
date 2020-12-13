@@ -9,7 +9,7 @@ public class MainController {
 
         boolean quit = false;
 
-        ManageController manageController = new ManageController();
+        ManageController manageController = ManageController.initialize();
 
         while (!quit) {
             manageController = Functionable
