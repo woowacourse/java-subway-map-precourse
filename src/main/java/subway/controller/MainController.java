@@ -1,11 +1,13 @@
 package subway.controller;
 
+import subway.repository.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static subway.repository.LineRepository.*;
 import static subway.view.OutputView.*;
 
 public class MainController {
@@ -42,10 +44,13 @@ public class MainController {
             new StationController().service(inputView);
         }
         if (option.equals(LINE_CONTROLLER)) {
-
+            new LineController().service(inputView);
         }
         if (option.equals(SECTION_CONTROLLER)) {
-
+            new SectionController().service(inputView);
+        }
+        if (option.equals(PRINT_SUBWAY)) {
+            printLineAndStation();
         }
     }
 }
