@@ -33,6 +33,10 @@ public class Line {
         return name;
     }
     
+    public List<String> getStations() {
+    	return stations;
+    }
+    
     public void addStation(int idx, String station) {
     	stations.add(idx, station);
     }

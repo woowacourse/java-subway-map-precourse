@@ -25,6 +25,9 @@ public class View {
 			lineManagement();
 		} else if (selector.equals("3")) {
 			sectionManagement();
+		} else if (selector.equals("4")) {
+			Output.title(Message.SUBWAY_LINE_VIEW);
+			Subway.show();
 		}
 	}
 	

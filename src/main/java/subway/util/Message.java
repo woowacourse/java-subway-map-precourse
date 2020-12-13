@@ -26,6 +26,9 @@ public class Message {
 	public static final String SECTION_REMOVE_LINE = "삭제할 구간의 노선을 입력하세요.";
 	public static final String SECTION_REMOVE_STATION = "삭제할 구간의 역을 입력하세요.";
 	
+	// sub-section subway
+	public static final String SUBWAY_LINE_VIEW = "지하철 노선도";
+	
 	// main-view
 	public static final String MAIN_STATION_MANAGEMENT = "1. 역 관리";
 	public static final String MAIN_LINE_MANAGEMENT = "2. 노선 관리";

@@ -1,7 +1,9 @@
 package subway;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -116,6 +118,17 @@ public class Subway {
 		if (isUseableSection(lineName, stationName)) {
 			for (Line line: LineRepository.getLines()) {
 				removeSectionByLine(line, lineName, stationName);
+			}
+		}
+	}
+	
+	public static void show() {
+		for (Line line: LineRepository.getLines()) {
+			System.out.println();
+			Output.info(line.getName());
+			Output.info("---");
+			for (String station: line.getStations()) {
+				Output.info(station);
 			}
 		}
 	}
