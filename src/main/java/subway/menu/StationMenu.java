@@ -23,7 +23,7 @@ public class StationMenu {
     public static void printMenu() {
         OutputView.printMsg("## 역 관리 화면\n");
         Arrays.stream(Menu.values())
-                .map(Menu -> Menu.getMenuName() + "\n")
+                .map(Menu -> Menu.getMenuName())
                 .forEach(OutputView::printMsg);
         OutputView.printLineSeparator();
     }
@@ -43,10 +43,10 @@ public class StationMenu {
     }
 
     private enum Menu {
-        REGISTER_STATION("1", "1. 역 등록", () -> stationController.addStation()),
-        DELETE_STATION("2", "2. 역 삭제", () -> stationController.deleteStation()),
-        PRINT_STATIONS("3", "3. 역 조회", () -> stationController.printStations()),
-        BACK("B", "B. 돌아가기", () -> goBack());
+        REGISTER_STATION("1", "1. 역 등록\n", () -> stationController.addStation()),
+        DELETE_STATION("2", "2. 역 삭제\n", () -> stationController.deleteStation()),
+        PRINT_STATIONS("3", "3. 역 조회\n", () -> stationController.printStations()),
+        BACK("B", "B. 돌아가기\n", () -> goBack());
 
         private String userInput;
         private String menuName;

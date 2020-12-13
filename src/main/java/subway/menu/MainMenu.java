@@ -26,7 +26,7 @@ public class MainMenu {
     public static void printMenu() {
         OutputView.printMsg("## 메인 화면\n");
         Arrays.stream(Menu.values())
-                .map(Menu -> Menu.getMenuName() + "\n")
+                .map(Menu -> Menu.getMenuName())
                 .forEach(OutputView::printMsg);
         OutputView.printLineSeparator();
     }
@@ -57,11 +57,11 @@ public class MainMenu {
     }
 
     private enum Menu {
-        STATION_MENU("1", "1. 역 관리", (scanner) -> StationMenu.run(scanner)),
-        LINE_MENU("2", "2. 노선 관리", (scanner) -> LineMenu.run(scanner)),
-        SECTION_MENU("3", "3. 구간 관리", (scanner) -> SectionMenu.run(scanner)),
-        PRINT_MAP("4", "4. 지하철 노선도 출력", (scanner) -> printSubwayMap()),
-        QUIT("Q", "Q. 종료", (scanner) -> setEnd());
+        STATION_MENU("1", "1. 역 관리\n", (scanner) -> StationMenu.run(scanner)),
+        LINE_MENU("2", "2. 노선 관리\n", (scanner) -> LineMenu.run(scanner)),
+        SECTION_MENU("3", "3. 구간 관리\n", (scanner) -> SectionMenu.run(scanner)),
+        PRINT_MAP("4", "4. 지하철 노선도 출력\n", (scanner) -> printSubwayMap()),
+        QUIT("Q", "Q. 종료\n", (scanner) -> setEnd());
 
         private String userInput;
         private String menuName;

@@ -43,10 +43,10 @@ public class LineMenu {
     }
 
     private enum Menu {
-        REGISTER_LINE("1", "1. 노선 등록", () -> lineController.addLine()),
-        DELETE_LINE("2", "2. 노선 삭제", () -> lineController.deleteLine()),
-        PRINT_LINES("3", "3. 노선 조회", () -> lineController.printLineList()),
-        BACK("B", "B. 돌아가기", () -> goBack());
+        REGISTER_LINE("1", "1. 노선 등록\n", () -> lineController.addLine()),
+        DELETE_LINE("2", "2. 노선 삭제\n", () -> lineController.deleteLine()),
+        PRINT_LINES("3", "3. 노선 조회\n", () -> lineController.printLineList()),
+        BACK("B", "B. 돌아가기\n", () -> goBack());
 
         private String userInput;
         private String menuName;
