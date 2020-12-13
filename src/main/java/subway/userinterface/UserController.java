@@ -5,17 +5,17 @@ import subway.domain.MenuRepository;
 import java.util.Scanner;
 
 public class UserController {
-    private static boolean runStatus = true;
-
     public static void runApp(Scanner scanner) {
+        boolean runStatus = true;
+
         while (runStatus) {
             ApplicationMenu.printMainMenu();
-            runStatus = runMainMenu(scanner);
+            String mainInput = scanner.next();
+            runStatus = runMainMenu(scanner, mainInput);
         }
     }
 
-    private static boolean runMainMenu(Scanner scanner) {
-        String mainInput = scanner.next();
+    private static boolean runMainMenu(Scanner scanner, String mainInput) {
         if (Error.isWrongMainMenuInput(mainInput)) {
             return true;
         }
