@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Map;
+import java.util.ArrayList;
 
 public class SubMenu {
     public final String menuTitle;
@@ -10,5 +11,8 @@ public class SubMenu {
         this.menuTitle = actionSign.get(Menu.MENU_TITLE_SIGN);
         actionSign.remove(Menu.MENU_TITLE_SIGN);
         this.actionSign = actionSign;
+    }
+
+    public void runSubMenu(String action) {
     }
 }

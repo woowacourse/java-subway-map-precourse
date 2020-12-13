@@ -1,5 +1,8 @@
 package subway;
 
+import subway.controller.MenuController;
+
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class Menu {
@@ -64,10 +67,19 @@ public class Menu {
         new LinkedHashMap<String, String>() {}
     );
 
+    private Menu() {
+    }
+
     public static boolean isCategoricalMenu(SubMenu menu) {
         if (menu.actionSign.isEmpty()) {
             return false;
         }
         return true;
+    }
+
+    public static void runMenu(ArrayList<String> selectedMenus) {
+        SubMenu menu = MenuController.getSubMenu(selectedMenus.get(0));
+        String subMenuAction = selectedMenus.get(1);
+        menu.runSubMenu(subMenuAction);
     }
 }

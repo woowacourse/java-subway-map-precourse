@@ -18,6 +18,7 @@ public class MenuController {
     private static final String EDGE_MANAGEMENT_SIGN = "3";
     private static final String LINE_MAP_SIGN = "4";
     private static final String QUIT_SIGN = "Q";
+    public static ArrayList<String> selectedMenus = new ArrayList<String>();
 
     private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
         {
@@ -29,32 +30,34 @@ public class MenuController {
         }
     };
 
-    public static SubMenu scanMenu(Scanner scanner) {
-        SubMenu selectedMainMenu = scanMainMenu(scanner);
-        if (Menu.isCategoricalMenu(selectedMainMenu)) {
-            return scanSubMenu(scanner, selectedMainMenu);
+    public static void scanMenu(Scanner scanner) {
+        String selectedMainMenu = scanMainMenu(scanner);
+        if (Menu.isCategoricalMenu(mainMenu.get(selectedMainMenu))) {
+            scanSubMenu(scanner, mainMenu.get(selectedMainMenu));
         }
+    }
+
+    public static String scanMainMenu(Scanner scanner) {
+        OutputView.printMainScreen();
+        List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
+        String selectedMainMenu = scanValidMenu(scanner, mainMenuSigns);
+        selectedMenus.add(selectedMainMenu);
         return selectedMainMenu;
     }
 
-    public static SubMenu scanMainMenu(Scanner scanner) {
-        OutputView.printMainScreen();
-        List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
-        return scanValidMenu(scanner, mainMenuSigns);
-    }
-
-    private static SubMenu scanSubMenu(Scanner scanner, SubMenu menu) {
+    private static void scanSubMenu(Scanner scanner, SubMenu menu) {
         OutputView.printSubScreen(menu);
         List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
-        return scanValidMenu(scanner, subMenuSigns);
+        String selectedSubMenu = scanValidMenu(scanner, subMenuSigns);
+        selectedMenus.add(selectedSubMenu);
     }
 
-    private static SubMenu scanValidMenu(Scanner scanner, List<String> signs) {
+    private static String scanValidMenu(Scanner scanner, List<String> signs) {
         String menu = scanMenuCommand(scanner);
         while (!isValidMenu(menu, signs)) {
             menu = scanMenuCommand(scanner);
         }
-        return mainMenu.get(menu);
+        return menu;
     }
 
     private static String scanMenuCommand(Scanner scanner) {
@@ -77,5 +80,9 @@ public class MenuController {
             throw new NonExistentMenuException();
         }
         return true;
+    }
+
+    public static SubMenu getSubMenu(String menuSign) {
+        return mainMenu.get(menuSign);
     }
 }
