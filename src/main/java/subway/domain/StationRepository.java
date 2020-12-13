@@ -11,7 +11,7 @@ public class StationRepository {
         stations.addStation(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.deleteStation(name);
+    public static void deleteStation(String name) {
+        stations.deleteStation(name);
     }
 }
