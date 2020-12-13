@@ -33,13 +33,13 @@ public class LineRepositoryTest {
     }
 
     private void testEnoughStations() {
-        StationRepository.addStation(Station.newStation("뭔데역"));
+        StationRepository.addStation(Station.newStationWithName("뭔데역"));
         LineRepository.enrollStartStation("뭔데역");
     }
 
     private void testExistStation() {
-        StationRepository.addStation(Station.newStation("그래역"));
-        StationRepository.addStation(Station.newStation("싫어역"));
+        StationRepository.addStation(Station.newStationWithName("그래역"));
+        StationRepository.addStation(Station.newStationWithName("싫어역"));
         LineRepository.enrollStartStation("없는건데역");
     }
 

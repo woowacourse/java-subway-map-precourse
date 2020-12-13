@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StationServiceTest {
+
     private static final String TEST_STATION_NAME = "테스트역";
 
     public void setUp() {
@@ -30,8 +31,8 @@ public class StationServiceTest {
 
     @DisplayName("Station 출력 기능 테스트")
     @Test
-    public void testPrintStation(){
+    public void testPrintStation() {
         StationService.save("오리역");
-        StationService.printAll();
+        StationService.print();
     }
 }

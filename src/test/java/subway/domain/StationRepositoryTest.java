@@ -12,7 +12,7 @@ public class StationRepositoryTest {
     @Test
     public void testAddStation() {
         final String testName1 = "뭔데역";
-        Station newStation = Station.newStation(testName1);
+        Station newStation = Station.newStationWithName(testName1);
         StationRepository.addStation(newStation);
         IllegalArgumentException throwNameDuplicate = assertThrows(
             IllegalArgumentException.class, () -> StationRepository.addStation(newStation));

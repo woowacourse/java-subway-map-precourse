@@ -8,6 +8,6 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
         SubwayMap subwayMap = SubwayMap.newSubwayMap();
-        subwayMap.runnable(scanner);
+        subwayMap.runnable();
     }
 }

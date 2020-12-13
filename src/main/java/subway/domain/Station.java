@@ -16,7 +16,7 @@ public class Station {
         this.name = name;
     }
 
-    public static Station newStation(String stationName) {
+    public static Station newStationWithName(String stationName) {
         return new Station(stationName);
     }
 

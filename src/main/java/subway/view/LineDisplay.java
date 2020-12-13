@@ -1,7 +1,6 @@
 package subway.view;
 
 public class LineDisplay {
-
-    public static void selectMenu() {
+    public static void loadLineMenu() {
     }
 }

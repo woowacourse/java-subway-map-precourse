@@ -26,14 +26,14 @@ public class StationTest {
     }
 
     public void testNameContainWhitespace() {
-        Station.newStation("길동 역");
+        Station.newStationWithName("길동 역");
     }
 
     private void testNameEndWithRule() {
-        Station.newStation("길동");
+        Station.newStationWithName("길동");
     }
 
     public void testNameLength() {
-        Station.newStation("길역");
+        Station.newStationWithName("길역");
     }
 }
