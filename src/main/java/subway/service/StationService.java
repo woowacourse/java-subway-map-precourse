@@ -3,6 +3,9 @@ package subway.service;
 import subway.domain.entity.Station;
 import subway.domain.repository.StationRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StationService {
 
     private final StationRepository stationRepository;
@@ -27,5 +30,12 @@ public class StationService {
             throw new CannotDeleteStationException();
         }
         return stationRepository.delete(station);
+    }
+
+    public List<String> getStationNames() {
+        return stationRepository.findAll()
+                .stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
     }
 }

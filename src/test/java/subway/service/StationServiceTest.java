@@ -28,6 +28,14 @@ class StationServiceTest {
         stationService.deleteStationByName("이수역");
     }
 
+    @DisplayName("Station 저장 성공")
+    @Test
+    void addStationByName_성공한다() {
+        String name = stationService.getStationNames().get(0);
+
+        assertThat(name).isEqualTo("이수역");
+    }
+
     @DisplayName("Station 등록 실패 : 이름의 형식이 잘못된 경우")
     @Test
     void addStationByName_잘못된_이름_예외가_발생한다() {
