@@ -13,6 +13,9 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (stations.contains(station)) {
+            return;
+        }
         stations.add(station);
     }
 
