@@ -12,23 +12,23 @@ public enum LineFunction {
     LOAD("3", ManageController::loadLines),
     BACK("B", Function.identity());
 
-    private final String functionIndex;
+    private final String identifier;
 
     private final Function<ManageController, ManageController> function;
 
-    LineFunction(String functionIndex,
+    LineFunction(String identifier,
                  Function<ManageController, ManageController> function) {
-        this.functionIndex = functionIndex;
+        this.identifier = identifier;
         this.function = function;
     }
 
     public static ManageController perform(ManageController lineController) {
         OutputView.printView(LineFunction.values());
 
-        String functionIndex = InputView.inputFunctionIdentifier();
+        String identifier = InputView.inputFunctionIdentifier();
 
         return Arrays.stream(LineFunction.values())
-                .filter(function -> function.functionIndex.equals(functionIndex))
+                .filter(function -> function.identifier.equals(identifier))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 기능입니다."))
                 .function
