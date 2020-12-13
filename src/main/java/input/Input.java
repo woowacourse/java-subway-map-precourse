@@ -1,5 +1,7 @@
 package input;
 
+import exception.NameLengthException;
+
 import java.util.Scanner;
 
 public class Input {
@@ -13,7 +15,11 @@ public class Input {
     }
 
     public String inputStationName(){
-        return scanner.next();
+        String answer = scanner.next();
+        if(answer.length() < 3){
+            throw new NameLengthException();
+        }
+        return answer;
     }
 
     public String inputLineName(){

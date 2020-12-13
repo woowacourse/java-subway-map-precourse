@@ -1,12 +1,13 @@
 package output.screen;
 
+import exception.NoneFunctionException;
 import input.Input;
 import output.Menu;
 
 public class MainScreen implements Screen{
     public final static String MAIN_SCREEN_MESSAGE = "메인 화면";
     public final static int SET_NUMBER = 1;
-    private Menu selectedMenu;
+    private Menu selectedMenu = null;
 
     @Override
     public void visualize() {
@@ -25,6 +26,7 @@ public class MainScreen implements Screen{
     }
 
     private void setSelectedScreen(String answer){
+        selectedMenu = null;
         if(answer.equals("1")){
             selectedMenu = Menu.STATION;
         }else if(answer.equals("2")){
@@ -35,6 +37,8 @@ public class MainScreen implements Screen{
             selectedMenu = Menu.SUBWAY_MAP;
         }else if(answer.equals("Q")){
             selectedMenu = Menu.QUIT;
+        }else if(selectedMenu == null) {
+            throw new NoneFunctionException(); // 선택할 수 없는 기능
         }
     }
     public Menu getSelectedScreen(){

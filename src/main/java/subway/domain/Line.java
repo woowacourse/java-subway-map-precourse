@@ -17,6 +17,10 @@ public class Line {
         return name;
     }
 
+    public List<Station> getLineStations(){
+        return lineStations;
+    }
+
     // 추가 기능 구현
     public void addLineStation(Station station){
         lineStations.add(station);
@@ -27,4 +31,5 @@ public class Line {
     public boolean deleteLineStation(String name){
         return lineStations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
 }
