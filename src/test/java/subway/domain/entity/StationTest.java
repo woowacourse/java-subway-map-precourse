@@ -1,10 +1,12 @@
 package subway.domain.entity;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class StationTest {
@@ -20,5 +22,21 @@ class StationTest {
             new Station(name);
         }).isInstanceOf(StationNameException.class)
                 .hasMessage("이미 등록된 역 이름입니다.");
+    }
+
+    @DisplayName("Station 객체와 이름이 같은 경우")
+    @Test
+    void matchesName_이름이_같으면_true를_반환한다() {
+        boolean isEqual = station.matchesName("이수역");
+
+        assertThat(isEqual).isTrue();
+    }
+
+    @DisplayName("Station 객체와 이름이 다른 경우")
+    @Test
+    void matchesName_이름이_다르면_false를_반환한다() {
+        boolean isEqual = station.matchesName("다른역");
+
+        assertThat(isEqual).isFalse();
     }
 }
