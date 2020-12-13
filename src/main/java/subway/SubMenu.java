@@ -1,7 +1,6 @@
 package subway;
 
 import java.util.Map;
-import java.util.ArrayList;
 
 public class SubMenu {
     public final String menuTitle;
