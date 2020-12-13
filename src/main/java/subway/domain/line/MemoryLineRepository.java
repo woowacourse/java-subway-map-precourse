@@ -44,7 +44,7 @@ public class MemoryLineRepository implements LineRepository {
             lines.remove(name);
             return true;
         }
-        throw new LineException(ErrorCode.LINE_NOT_FOUND_NAME);
+        throw new LineException(ErrorCode.LINE_NOT_FOUND);
     }
 
     @Override

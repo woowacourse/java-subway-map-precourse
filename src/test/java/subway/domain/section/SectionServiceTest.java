@@ -133,7 +133,7 @@ class SectionServiceTest {
         assertThat(isDelete).isEqualTo(true);
         assertThatThrownBy(() -> sectionService.findByName(lineName))
                 .isInstanceOf(SectionException.class)
-                .hasMessage(ErrorCode.SECTION_NOT_EXIST_NAME.getMessage());
+                .hasMessage(ErrorCode.SECTION_NOT_FOUND.getMessage());
     }
 
     @Test
@@ -145,7 +145,7 @@ class SectionServiceTest {
         //then
         assertThatThrownBy(() -> sectionService.deleteSection(new SectionDeleteReqDto(lineName)))
                 .isInstanceOf(SectionException.class)
-                .hasMessage(ErrorCode.SECTION_NOT_EXIST_NAME.getMessage());
+                .hasMessage(ErrorCode.SECTION_NOT_FOUND.getMessage());
     }
 
     @Test

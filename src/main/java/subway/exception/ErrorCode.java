@@ -15,24 +15,24 @@ public enum ErrorCode {
     STATION_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 역입니다."),
     STATION_NOT_EXIST("S005", Screen.PREFIX_ERROR + "등록된 지하철 역이 없습니다."),
     STATION_NOT_FOUND("S006", Screen.PREFIX_ERROR + "입력된 이름으로 등록된 지하철 역이 없습니다."),
-    STATION_IN_LINE("S007", Screen.PREFIX_ERROR + "삭제하려는 역이 노선에 포함되어 있습니다."),
+    STATION_CONTAIN_LINE("S007", Screen.PREFIX_ERROR + "삭제하려는 역이 노선에 포함되어 있습니다."),
 
     //Line
     LINE_NAME_LENGTH_ERROR("L001", Screen.PREFIX_ERROR + "노선 이름은 2글자 이상이어야 합니다."),
     LINE_INVALID_LAST_NAME("L002", Screen.PREFIX_ERROR + "마지막 글자에 선이 들어가야합니다."),
     LINE_INVALID_CHARACTER("L003", Screen.PREFIX_ERROR + "한글, 숫자만 입력 가능합니다."),
     LINE_ALREADY_EXIST("S004", Screen.PREFIX_ERROR + "이미 등록된 지하철 노선입니다."),
-    LINE_NOT_FOUND_NAME("S005", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
-    LINE_NOT_EXIST("S006", Screen.PREFIX_ERROR + "등록된 노선이 없습니다."),
+    LINE_NOT_EXIST("S005", Screen.PREFIX_ERROR + "등록된 노선이 없습니다."),
+    LINE_NOT_FOUND("S006", Screen.PREFIX_ERROR + "입력된 이름으로 등록된 노선이 없습니다."),
 
     //Section
     SECTION_UPWARD_STATION_NOT_FOUND("SE001", Screen.PREFIX_ERROR + "상행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),
     SECTION_DOWNWARD_STATION_NOT_FOUND("SE002", Screen.PREFIX_ERROR + "하행 종점역으로 입력된 이름의 지하철 역이 등록되지 않았습니다."),
     SECTION_SAME_STATION_NAME("SE003", Screen.PREFIX_ERROR + "상행 좀점역과 하행 종점역의 이름이 같을 수 없습니다."),
-    SECTION_NOT_EXIST_NAME("SE004", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
-    SECTION_HAS_STATION("SE005", Screen.PREFIX_ERROR + "현재 노선에 추가되어있는 역입니다."),
-    SECTION_NOT_HAS_STATION("SE006", Screen.PREFIX_ERROR + "현재 노선에 없는 역입니다."),
-    SECTION_NOT_EXIST("SE007", Screen.PREFIX_ERROR + "등록된 노선이 없습니다."),
+    SECTION_NOT_EXIST("SE004", Screen.PREFIX_ERROR + "등록된 노선이 없습니다."),
+    SECTION_NOT_FOUND("SE005", Screen.PREFIX_ERROR + "입력된 이름으로 등록된 노선이 없습니다."),
+    SECTION_HAS_STATION("SE006", Screen.PREFIX_ERROR + "현재 노선에 추가되어있는 역입니다."),
+    SECTION_NOT_HAS_STATION("SE007", Screen.PREFIX_ERROR + "현재 노선에 포함되어 있지 않는 역입니다."),
     SECTION_CANNOT_DELETE_STATION("SE008", Screen.PREFIX_ERROR + "노선에 등록된 역이 2개 이하라 삭제할 수 없습니다.");
 
     private final String code;

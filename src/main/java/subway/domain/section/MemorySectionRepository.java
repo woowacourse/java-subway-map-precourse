@@ -40,7 +40,7 @@ public class MemorySectionRepository {
             sections.remove(lineName);
             return true;
         }
-        throw new SectionException(ErrorCode.SECTION_NOT_EXIST_NAME);
+        throw new SectionException(ErrorCode.SECTION_NOT_FOUND);
     }
 
     public void removeAll() {

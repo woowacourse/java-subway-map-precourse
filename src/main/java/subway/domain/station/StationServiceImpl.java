@@ -44,7 +44,7 @@ public class StationServiceImpl implements StationService {
     @Override
     public boolean deleteStation(StationDeleteReqDto deleteReqDto) {
         if (containLine(deleteReqDto.getName())) {
-            throw new StationException(ErrorCode.STATION_IN_LINE);
+            throw new StationException(ErrorCode.STATION_CONTAIN_LINE);
         }
         if (stationRepository.deleteStationByName(deleteReqDto.getName())) {
             return true;

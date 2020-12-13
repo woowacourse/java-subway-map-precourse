@@ -86,6 +86,6 @@ class StationServiceImplTest {
         //then
         assertThatThrownBy(() -> stationService.deleteStation(new StationDeleteReqDto(name)))
                 .isInstanceOf(StationException.class)
-                .hasMessage(ErrorCode.STATION_IN_LINE.getMessage());
+                .hasMessage(ErrorCode.STATION_CONTAIN_LINE.getMessage());
     }
 }
