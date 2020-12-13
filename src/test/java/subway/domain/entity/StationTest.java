@@ -50,12 +50,24 @@ class StationTest {
 
     @DisplayName("Station 객체를 노선의 구간으로 등록하면 상태가 변경")
     @Test
-    void registerAsSection_상태가_true가_된다() {
+    void registerAsLineSection_상태가_true가_된다() {
         Station testStation = new Station("테스터");
         testStation.registerAsLineSection();
 
         boolean isRegisteredAsLineSection = testStation.isRegisteredAsLineSection();
 
         assertThat(isRegisteredAsLineSection).isTrue();
+    }
+
+    @DisplayName("Station 객체를 노선의 구간으로 등록 해제하면 상태가 변경")
+    @Test
+    void unregisterFromLineSection_상태가_false가_된다() {
+        Station testStation = new Station("테스터");
+        testStation.registerAsLineSection();
+        testStation.unregisterFromLineSection();
+
+        boolean isRegisteredAsLineSection = testStation.isRegisteredAsLineSection();
+
+        assertThat(isRegisteredAsLineSection).isFalse();
     }
 }
