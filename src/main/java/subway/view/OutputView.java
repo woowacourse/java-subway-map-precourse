@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.Functionable;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.ManageController;
@@ -14,8 +15,6 @@ public class OutputView {
     public static final String SAVED = "지하철 %s이 등록되었습니다.";
 
     public static final String REMOVED = "지하철 %s이 삭제되었습니다.";
-
-    public static final String LIST = "목록";
 
     public static final String SUBWAY_MAP = "지하철 노선도";
 
@@ -58,11 +57,20 @@ public class OutputView {
         }
     }
 
+    public static void printFunctions(String viewTitle, Functionable[] functionables) {
+        System.out.printf("%s %s 화면\n", TITLE_PREFIX, viewTitle);
+
+        for (Functionable functionable : functionables) {
+            System.out
+                    .printf("%s. %s", functionable.getIdentifier(), functionable.getDescription());
+        }
+    }
+
     private static void printSuccessMessage(String message) {
         System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
     }
 
     private static void printListTitle(String type) {
-        System.out.printf("%s %s %s\n", TITLE_PREFIX, type, LIST);
+        System.out.printf("%s %s 목록\n", TITLE_PREFIX, type);
     }
 }

@@ -8,13 +8,17 @@ import subway.view.OutputView;
 
 public interface Functionable {
 
+    String getIdentifier();
+
+    String getDescription();
+
     Function<ManageController, ManageController> getFunction();
 
     boolean equalsIdentifier(String identifier);
 
-    static ManageController function(ManageController manageController,
+    static ManageController function(ManageController manageController, String viewTitle,
                                      Functionable[] functionables) {
-        OutputView.printView(functionables);
+        OutputView.printFunctions(viewTitle, functionables);
 
         String identifier = InputView.inputFunctionIdentifier();
 

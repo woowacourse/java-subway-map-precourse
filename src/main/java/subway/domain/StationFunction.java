@@ -8,6 +8,8 @@ public enum StationFunction implements Functionable {
     LOAD("3", "역 조회", ManageController::loadStations),
     BACK("B", "돌아가기", Function.identity());
 
+    public static final String TITLE = "역 관리";
+
     private final String identifier;
 
     private final String description;
@@ -19,6 +21,16 @@ public enum StationFunction implements Functionable {
         this.identifier = identifier;
         this.description = description;
         this.function = function;
+    }
+
+    @Override
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     @Override
