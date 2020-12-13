@@ -1,13 +1,10 @@
-package subway.controller;
+package subway.controller.map;
 
+import subway.controller.Controller;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class MapController extends Controller {
-
-    public MapController(InputView inputView) {
-        super(inputView);
-    }
+public class MapController implements Controller {
 
     @Override
     public void run() {
