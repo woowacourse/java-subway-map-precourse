@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Line {
     private final String name;
     private final List<Station> stations = new ArrayList<>();
+    static final int ORDER_SUBTRACT_INDEX = 1;
 
     public Line(String name) {
         this.name = name;
@@ -31,7 +32,7 @@ public class Line {
     }
 
     public void addOrderedStation(Station station, int order) {
-        int orderIndex = order - 1;
+        int orderIndex = order - ORDER_SUBTRACT_INDEX;
         if (StationRepository.stations().contains(station)) {
             stations.add(orderIndex, station);
         }
