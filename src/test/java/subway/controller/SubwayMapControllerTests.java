@@ -17,8 +17,7 @@ class SubwayMapControllerTests {
 
     @BeforeEach
     public void 초기화() {
-        StationService stationService = new StationService();
-        subwayMapController = new SubwayMapController(stationService);
+        subwayMapController = new SubwayMapController(null);
     }
 
     @ParameterizedTest
