@@ -58,8 +58,8 @@ public class SectionService {
         }
     }
 
-    public Section findByName(String sectionName) {
-        Section findSection = sectionRepository.findByName(sectionName);
+    public Section findByName(String lineName) {
+        Section findSection = sectionRepository.findByName(lineName);
         if (findSection == null) {
             throw new SectionException(ErrorCode.SECTION_NOT_EXIST_NAME);
         }

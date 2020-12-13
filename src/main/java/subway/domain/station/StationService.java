@@ -6,7 +6,7 @@ import subway.domain.station.dto.StationSaveReqDto;
 public interface StationService {
     Station saveStation(StationSaveReqDto saveReqDto);
 
-    Station findByName(String name);
+    Station findByName(String stationName);
 
     Stations getStations();
 

@@ -125,7 +125,19 @@ public class StationManageApp {
             addSection(sectionView);
         }
         if (manageSectionOption == InputService.DELETE) {
+            deleteSection(sectionView);
         }
+    }
+
+    private void deleteSection(SectionView sectionView) {
+        outputService.printDelete(sectionView);
+        String lineName = getName();
+        Section section = sectionService.findByName(lineName);
+        outputService.printSharp(SectionView.PRINT_DELETE_STATION);
+        String stationName = getName();
+        Station station = stationService.findByName(stationName);
+
+        outputService.printAfterDelete(sectionView);
     }
 
     private void addSection(SectionView sectionView) {
