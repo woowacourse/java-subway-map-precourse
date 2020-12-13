@@ -3,7 +3,7 @@ package subway.view;
 
 public class MainPage {
     public static void printMainPage(){
-        System.out.println("## 메인 화면");
+        System.out.println("\n## 메인 화면");
         System.out.println("1. 역 관리");
         System.out.println("2. 노선 관리");
         System.out.println("3. 구간 관리");
