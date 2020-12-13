@@ -22,6 +22,15 @@ public class Exception {
         return input;
     }
 
+    public static String checkStationDelete(String input) {
+        input = isNotEmpty(input);
+        input = isNotSpace(input);
+        input = isStation(input);
+        input = isLengthTwoOrMore(input);
+        input = isInStationList(input);
+        return input;
+    }
+
     static String isNotEmpty(String input) {
         if (!input.equals("")) {
             return input;
@@ -66,5 +75,12 @@ public class Exception {
             return name;
         }
         throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_IN_STATION_LIST);
+    }
+
+    static String isInStationList(String name) {
+        if (StationRepository.has(name)) {
+            return name;
+        }
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_STATION_LIST);
     }
 }

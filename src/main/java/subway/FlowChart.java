@@ -75,7 +75,7 @@ public class FlowChart {
 
     public static void stationDelete(Scanner scanner, String stationInput) {
         if (stationInput.equals(Constant.TWO)) {
-            System.out.println("stationDelete");
+            StationSetting.delete(scanner);
             System.out.println();
             main(scanner);
         }
