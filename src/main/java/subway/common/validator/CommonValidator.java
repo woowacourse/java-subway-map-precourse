@@ -12,6 +12,7 @@ public class CommonValidator {
     public static final int MIN_LENGTH = 2;
     public static final String SELECTION_INPUT_PATTERN_1234Q = "^[1234Q]$";
     public static final String SELECTION_INPUT_PATTERN_123B = "^[123B]$";
+    public static final String SELECTION_INPUT_PATTERN_12B = "^[12B]$";
 
     public static void validateIsCorrectSelectionInput(String selectionInputPattern,
         String userInput) throws IllegalArgumentException {

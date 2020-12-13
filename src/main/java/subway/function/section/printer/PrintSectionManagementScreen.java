@@ -1,4 +1,4 @@
-package subway.function.section;
+package subway.function.section.printer;
 
 public class PrintSectionManagementScreen {
     private static final String SCREEN

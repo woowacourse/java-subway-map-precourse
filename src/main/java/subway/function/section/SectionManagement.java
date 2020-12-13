@@ -2,44 +2,37 @@ package subway.function.section;
 
 import java.util.Scanner;
 import subway.common.print.info.CommonInfoPrinter;
+import subway.common.validator.CommonValidator;
 import subway.domain.LineStationMappingRepository;
-import subway.main.UserSelections;
+import subway.function.section.printer.PrintSectionManagementScreen;
+import subway.function.section.printer.SectionManagementPrinter;
 
 public class SectionManagement {
     public static void start(Scanner scanner) {
+        while (true) {
+            SectionManagementType type = printAndGetUserSelectionInput(scanner);
+            if (type == SectionManagementType.GO_BACK) {
+                return;
+            }
+            SectionManagementTypeResolver.resolveSectionManagement(type, scanner);
+        }
+    }
+
+    private static SectionManagementType printAndGetUserSelectionInput(Scanner scanner) {
         PrintSectionManagementScreen.printSectionManagementScreen();
         CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
-        if (userInput.equals(UserSelections.GO_BACK)) {
-            return;
+        try {
+            CommonValidator
+                .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_12B,
+                    userInput);
+        } catch (IllegalArgumentException e) {
+            return SectionManagementType.ERROR;
         }
-        SectionManagementType type = getSectionManagementType(userInput);
-        resolveSectionManagement(type, scanner);
+        return SectionManagementTypeResolver.getSectionManagementType(userInput);
     }
 
-    private static void resolveSectionManagement(SectionManagementType type, Scanner scanner) {
-        if (type == SectionManagementType.SECTION_REGISTRATION) {
-            registerNewSection(scanner);
-        }
-        if (type == SectionManagementType.DELETE_SECTION) {
-            deleteSection(scanner);
-        }
-    }
-
-    private static void deleteSection(Scanner scanner) {
-        SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
-        String lineNameToDeleteSection = scanner.nextLine();
-
-        SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
-        String stationNameToDeleteSection = scanner.nextLine();
-
-        LineStationMappingRepository
-            .deleteSection(lineNameToDeleteSection, stationNameToDeleteSection);
-
-        SectionManagementPrinter.printSectionDeleteSuccessMessage();
-    }
-
-    private static void registerNewSection(Scanner scanner) {
+    public static void registerNewSection(Scanner scanner) {
         SectionManagementPrinter.printLineNameToRegisterSectionInputMessage();
         String lineNameToRegisterSection = scanner.nextLine();
 
@@ -56,10 +49,18 @@ public class SectionManagement {
         SectionManagementPrinter.printSectionRegistrationSuccessMessage();
     }
 
-    private static SectionManagementType getSectionManagementType(String userInput) {
-        if (userInput.equals(UserSelections.FIRST)) {
-            return SectionManagementType.SECTION_REGISTRATION;
-        }
-        return SectionManagementType.DELETE_SECTION;
+    public static void deleteSection(Scanner scanner) {
+        SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
+        String lineNameToDeleteSection = scanner.nextLine();
+
+        SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
+        String stationNameToDeleteSection = scanner.nextLine();
+
+        LineStationMappingRepository
+            .deleteSection(lineNameToDeleteSection, stationNameToDeleteSection);
+
+        SectionManagementPrinter.printSectionDeleteSuccessMessage();
     }
+
+
 }
