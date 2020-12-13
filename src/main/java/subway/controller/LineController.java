@@ -53,6 +53,11 @@ public class LineController {
     }
 
     private void lookUpLine(InputView inputView) {
+        OutputView.printFunctionTitle(LineText.listTitle());
+        for (Line line : LineRepository.lines()) {
+            System.out.println(line.toString());
+        }
+        goBackToMain(inputView);
     }
 
     private void goBackToMain(InputView inputView) {
