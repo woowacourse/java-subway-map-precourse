@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import subway.domain.entity.Station;
-import subway.domain.entity.StationNameException;
 import subway.domain.repository.StationRepository;
 import subway.dto.LineDto;
 
@@ -31,15 +30,6 @@ class StationServiceTest {
         String name = stationService.getStationNames().get(0);
 
         assertThat(name).isEqualTo("이수역");
-    }
-
-    @DisplayName("Station 등록 실패 : 이름의 형식이 잘못된 경우")
-    @Test
-    void addStationByName_잘못된_이름_예외가_발생한다() {
-        assertThatCode(() -> {
-            stationService.addStationByName("역");
-        }).isInstanceOf(StationNameException.class)
-                .hasMessage("지하철 역 이름은 공백이 아닌 2글자 이상이어야 합니다.");
     }
 
     @DisplayName("Station 등록 실패 : 중복된 역 이름인 경우")
