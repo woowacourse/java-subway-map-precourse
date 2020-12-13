@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class SectionSetting {
     public static void add(Scanner scanner) {
-        String lineName = lineNameToAdd(scanner);
+        String lineName = lineName(scanner);
         LineRepository.lines().forEach(line -> {
             if (line.getName().equals(lineName)) {
                 String station = stationToAdd(scanner, line);
@@ -19,7 +19,7 @@ public class SectionSetting {
         });
     }
 
-    public static String lineNameToAdd(Scanner scanner) {
+    public static String lineName(Scanner scanner) {
         Print.hashMessage(Constant.ENTER_LINE_SECTION_TO_ADD);
         String input = scanner.next();
         System.out.println();
