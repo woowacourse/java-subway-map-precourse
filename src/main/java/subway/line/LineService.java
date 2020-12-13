@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.line.validation.CheckNotExistStation;
 import subway.line.validation.CheckRegisteredLine;
 import subway.line.validation.CheckRightSectionNumber;
 import subway.line.validation.CheckStationRegisteredLine;
@@ -15,6 +16,7 @@ import java.util.List;
 public class LineService {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 노선입니다.";
+    private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
 
     public static void addLine(String lineName, LineInputView lineInputView) {
         try {
@@ -93,5 +95,24 @@ public class LineService {
         }
 
         return findLine;
+    }
+
+    public static void deleteSection(String lineName, StationInputView stationInputView) {
+        try {
+            Line line = findLine(lineName);
+            Station station = getDeleteSectionStation(line, stationInputView);
+            if (!line.deleteSection(station)) {
+                throw new IllegalArgumentException(STATION_NUMBER_LACK);
+            }
+            LineOutputView.deleteSectionComplete();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static Station getDeleteSectionStation(Line line, StationInputView stationInputView) {
+        String stationName = stationInputView.stationSectionName();
+        CheckNotExistStation.validation(line, stationName);
+        return StationService.findStation(stationName);
     }
 }

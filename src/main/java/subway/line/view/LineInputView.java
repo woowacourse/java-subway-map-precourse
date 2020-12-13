@@ -11,6 +11,7 @@ public class LineInputView {
     private static final String ENTER_DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
     private static final String ENTER_LINE_NAME = "## 노선을 입력하세요.";
     private static final String ENTER_SECTION_NUMBER = "## 순서를 입력하세요.";
+    private static final String ENTER_DELETE_SECTION_LINE_NAME = "## 삭제할 구간의 노선을 입력하세요.";
 
     private Scanner scanner;
 
@@ -45,6 +46,11 @@ public class LineInputView {
 
     public String sectionNumber() {
         System.out.println(ENTER_SECTION_NUMBER);
+        return scanner.next();
+    }
+
+    public String deleteSectionLine() {
+        System.out.println(ENTER_DELETE_SECTION_LINE_NAME);
         return scanner.next();
     }
 }

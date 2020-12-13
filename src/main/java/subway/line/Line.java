@@ -44,4 +44,8 @@ public class Line {
     public boolean isNotExistSection(int number) {
         return stations.isNotExistSection(number);
     }
+
+    public boolean deleteSection(Station station) {
+        return stations.deleteStation(station);
+    }
 }

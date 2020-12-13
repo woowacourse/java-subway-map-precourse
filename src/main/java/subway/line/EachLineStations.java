@@ -38,4 +38,13 @@ public class EachLineStations {
         int maximumNumber = stations.size() - 1;
         return number < minimumNumber || number > maximumNumber;
     }
+
+    public boolean deleteStation(Station station) {
+        int minimumStationNumber = 2;
+        if (stations.size() > minimumStationNumber) {
+            stations.remove(station);
+            return true;
+        }
+        return false;
+    }
 }

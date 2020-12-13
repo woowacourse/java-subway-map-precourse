@@ -38,6 +38,14 @@ public class LineController {
         if (option == ADD_SECTION) {
             addNewSection(lineInputView, stationInputView);
         }
+        if (option == DELETE_SECTION) {
+            deleteSection(lineInputView, stationInputView);
+        }
+    }
+
+    private static void deleteSection(LineInputView lineInputView, StationInputView stationInputView) {
+        String lineName = lineInputView.deleteSectionLine();
+        LineService.deleteSection(lineName, stationInputView);
     }
 
     private static void addNewSection(LineInputView lineInputView, StationInputView stationInputView) {

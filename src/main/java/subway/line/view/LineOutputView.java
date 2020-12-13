@@ -20,6 +20,7 @@ public class LineOutputView {
     private static final String ADD_SECTION = "1. 구간 등록";
     private static final String DELETE_SECTION = "2. 구간 삭제";
     private static final String COMPLETE_ADD_SECTION = RESULT_PREFIX + "구간이 등록되었습니다.";
+    private static final String COMPLETE_DELETE_SECTION = RESULT_PREFIX + "구간이 삭제되었습니다.";
 
     public static void printLineManagement() {
         System.out.println(LINE_MANAGEMENT_TITLE);
@@ -60,6 +61,11 @@ public class LineOutputView {
 
     public static void addSectionComplete() {
         System.out.println(COMPLETE_ADD_SECTION);
+        System.out.println();
+    }
+
+    public static void deleteSectionComplete() {
+        System.out.println(COMPLETE_DELETE_SECTION);
         System.out.println();
     }
 }
