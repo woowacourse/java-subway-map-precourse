@@ -4,7 +4,6 @@ import static subway.console.Output.printLine;
 
 import java.util.List;
 import java.util.Scanner;
-import subway.console.Message;
 
 /**
  * @author yhh1056
@@ -13,8 +12,6 @@ import subway.console.Message;
 public class Input {
     private static final String REGEX = "\\p{Z}";
     private static final String REPLACEMENT = "";
-    private static final int STATION_NAME_LENGTH = 2;
-    private static final String STATION_END_NAME = "역";
 
     private final Scanner scanner;
 
@@ -32,35 +29,11 @@ public class Input {
         return button;
     }
 
-    public boolean validName(String name) {
-        if (!validNameLength(name)) {
-            printLine(Message.ERROR_NAME_LENGTH);
-            return false;
-        }
-        if (!validNameEndWord(name)) {
-            printLine(Message.ERROR_NAME_END);
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validNameLength(String name) {
-        return name.length() >= STATION_NAME_LENGTH;
-    }
-
-    private boolean validNameEndWord(String name) {
-        return name.endsWith(STATION_END_NAME);
-    }
-
     private String toUpper(String input) {
         return input.toUpperCase();
     }
 
-    private String nextLine() {
+    public String nextLine() {
         return scanner.nextLine().replaceAll(REGEX, REPLACEMENT);
-    }
-
-    public String nextStation() {
-        return nextLine();
     }
 }
