@@ -19,19 +19,12 @@ public class LineSetting {
     }
 
     public static void delete(Scanner scanner) {
-        while (true) {
-            try {
-                Print.hashMessage(Constant.ENTER_LINE_TO_DELETE);
-                String input = scanner.next();
-                System.out.println();
-                input = Exception.checkLineNameDelete(input);
-                LineRepository.deleteLineByName(input);
-                Print.infoMessage(Constant.DELETE_LINE_DONE);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.printf(e.getMessage() + "%n%n");
-            }
-        }
+        Print.hashMessage(Constant.ENTER_LINE_TO_DELETE);
+        String input = scanner.next();
+        System.out.println();
+        input = Exception.checkLineNameDelete(input);
+        LineRepository.deleteLineByName(input);
+        Print.infoMessage(Constant.DELETE_LINE_DONE);
     }
 
     public static void lookUp() {
@@ -42,50 +35,32 @@ public class LineSetting {
         });
     }
 
-    public static void addStationToLine(Line line, String stationName){
+    public static void addStationToLine(Line line, String stationName) {
         StationRepository.stations().forEach(station -> {
-            if(station.getName().equals(stationName)){
+            if (station.getName().equals(stationName)) {
                 line.addStation(station);
             }
         });
     }
 
     public static String lineName(Scanner scanner) {
-        while (true) {
-            try {
-                Print.hashMessage(Constant.ENTER_LINE_TO_ADD);
-                String input = scanner.next();
-                System.out.println();
-                return Exception.checkLineNameAdd(input);
-            } catch (IllegalArgumentException e) {
-                System.out.printf(e.getMessage() + "%n%n");
-            }
-        }
+        Print.hashMessage(Constant.ENTER_LINE_TO_ADD);
+        String input = scanner.next();
+        System.out.println();
+        return Exception.checkLineNameAdd(input);
     }
 
     public static String firstStation(Scanner scanner) {
-        while (true) {
-            try {
-                Print.hashMessage(Constant.ENTER_FIRST_STATION);
-                String input = scanner.next();
-                System.out.println();
-                return Exception.checkFirstStation(input);
-            } catch (IllegalArgumentException e) {
-                System.out.printf(e.getMessage() + "%n%n");
-            }
-        }
+        Print.hashMessage(Constant.ENTER_FIRST_STATION);
+        String input = scanner.next();
+        System.out.println();
+        return Exception.checkFirstStation(input);
     }
 
     public static String lastStation(Scanner scanner, String firstStation) {
-        while (true) {
-            try {
-                Print.hashMessage(Constant.ENTER_LAST_STATION);
-                String input = scanner.next();
-                System.out.println();
-                return Exception.checkLastStation(input, firstStation);
-            } catch (IllegalArgumentException e) {
-                System.out.printf(e.getMessage() + "%n%n");
-            }
-        }
+        Print.hashMessage(Constant.ENTER_LAST_STATION);
+        String input = scanner.next();
+        System.out.println();
+        return Exception.checkLastStation(input, firstStation);
     }
 }

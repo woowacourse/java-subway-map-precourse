@@ -6,11 +6,17 @@ public class FlowChart {
     public static void main(Scanner scanner) {
         Menu mainPage = new Menu(Constant.MAIN_MENU_TITLE, Constant.mainMenuItemList());
         String mainInput = mainPage.load(scanner);
-        station(scanner, mainInput);
-        line(scanner, mainInput);
-        section(scanner, mainInput);
-        map(scanner, mainInput);
-        quit(mainInput);
+        while (true) {
+            try {
+                station(scanner, mainInput);
+                line(scanner, mainInput);
+                section(scanner, mainInput);
+                map(scanner, mainInput);
+                quit(mainInput);
+            } catch (IllegalArgumentException e) {
+                System.out.printf(e.getMessage() + "%n%n");
+            }
+        }
     }
 
     public static void station(Scanner scanner, String mainInput) {
