@@ -8,27 +8,23 @@ public enum LineOption implements BaseOption {
         @Override
         public void nextAction() {
             LineService.register();
-            MainService.view();
         }
     },
     DELETE_STATION("2. 노선 삭제", "2") {
         @Override
         public void nextAction() {
             LineService.delete();
-            MainService.view();
         }
     },
     SHOW_STATIONS("3. 노선 조회", "3") {
         @Override
         public void nextAction() {
             LineService.printSubwayLineList();
-            MainService.view();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction() {
-            MainService.view();
         }
     };
 

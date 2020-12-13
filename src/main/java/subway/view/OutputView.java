@@ -13,8 +13,6 @@ public class OutputView {
     private static final String ENTIRE_SUBWAY_LINE_HEADER = "## 지하철 노선도";
     private static final String STATION_LIST_HEADER = "## 역 목록";
     private static final String SUBWAY_LINE_LIST_HEADER = "## 노선 목록";
-
-
     private static final String DASH = "---";
 
     private OutputView() {

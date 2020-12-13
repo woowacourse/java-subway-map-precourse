@@ -8,27 +8,23 @@ public enum StationOption implements BaseOption {
         @Override
         public void nextAction() {
             StationService.register();
-            MainService.view();
         }
     },
     DELETE_STATION("2. 역 삭제", "2") {
         @Override
         public void nextAction() {
             StationService.delete();
-            MainService.view();
         }
     },
     SHOW_STATIONS("3. 역 조회", "3") {
         @Override
         public void nextAction() {
             StationService.printStationList();
-            MainService.view();
         }
     },
     BACK("B. 돌아가기", "B") {
         @Override
         public void nextAction() {
-            MainService.view();
         }
     };
 
