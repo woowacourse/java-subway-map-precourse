@@ -11,6 +11,8 @@ public class LineRemovalView extends ManagerView {
 
 	public LineRemovalView(Scanner scanner) {
 		print();
+		removeLine(scanner);
+		new MainView(scanner);
 	}
 
 	public void removeLine(Scanner scanner) {
