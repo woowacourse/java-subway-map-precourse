@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import subway.domain.entity.Sections;
 import subway.domain.entity.Station;
 import subway.domain.repository.LineRepository;
+import subway.dto.SectionDto;
 
 import java.util.ArrayList;
 
@@ -15,11 +16,12 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 class LineServiceTest {
 
     private final LineRepository lineRepository = new LineRepository(new ArrayList<>());
-    private final Sections sections = Sections.of(new Station("의정부역"), new Station("시청역"));
     private final LineService lineService = new LineService(lineRepository);
+    private Sections sections;
 
     @BeforeEach
     void setUp() {
+        sections = Sections.of(new Station("의정부역"), new Station("시청역"));
         lineService.addLine("1호선", sections);
     }
 
@@ -61,5 +63,29 @@ class LineServiceTest {
         int afterLineCounts = lineRepository.findAll().size();
 
         assertThat(beforeLineCounts).isGreaterThan(afterLineCounts);
+    }
+
+    @DisplayName("Line에 구간 추가 등록 실패 : 등록되지 않은 Line")
+    @Test
+    void addSection_등록되지_않은_Line_예외가_발생한다() {
+        SectionDto sectionDto = new SectionDto("0호선", "강릉역", 1);
+        Station station = new Station("강릉역");
+
+        assertThatCode(() -> {
+            lineService.addSection(sectionDto, station);
+        }).isInstanceOf(CannotFindLineException.class)
+                .hasMessage("등록되지 않은 지하철 노선 이름을 입력하셨습니다.");
+    }
+
+    @DisplayName("Line에 구간이 정상 등록된다")
+    @Test
+    void addSection_성공한다() {
+        SectionDto sectionDto = new SectionDto("1호선", "강릉역", 1);
+        Station station = new Station("강릉역");
+        lineService.addSection(sectionDto, station);
+
+        boolean isRegisteredAsSection = station.isRegisteredAsSection();
+
+        assertThat(isRegisteredAsSection).isTrue();
     }
 }

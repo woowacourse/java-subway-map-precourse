@@ -24,6 +24,10 @@ public class Line {
         }
     }
 
+    public void addSection(Station station, int sectionOrderNumber) {
+        sections.addSection(station, sectionOrderNumber);
+    }
+
     public boolean matchesName(String name) {
         return Objects.equals(this.name, name);
     }
