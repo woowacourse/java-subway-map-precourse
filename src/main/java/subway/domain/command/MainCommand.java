@@ -23,7 +23,23 @@ public enum MainCommand implements Command {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(CHOICE_ERROR_MESSAGE));
     }
-    
+
+    public boolean isStationManagement() {
+        return equals(STATION_MANAGEMENT);
+    }
+
+    public boolean isLineManagement() {
+        return equals(LINE_MANAGEMENT);
+    }
+
+    public boolean isSectionManagement() {
+        return equals(SECTION_MANAGEMENT);
+    }
+
+    public boolean isSubwayMapPrint() {
+        return equals(SUBWAY_MAP_PRINT);
+    }
+
     @Override
     public boolean isMatched(String userMessage) {
         return selector.equals(userMessage);
