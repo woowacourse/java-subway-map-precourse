@@ -15,9 +15,15 @@ public class Menu {
     public String load(Scanner scanner) {
         Print.menu(this.title, this.itemList);
         System.out.println();
-        Print.hashMessage(Constant.CHOOSE_FUNCTION);
-        String input = scanner.next();
-        System.out.println();
-        return Exception.checkMenu(input, this.itemList);
+        while (true) {
+            try {
+                Print.hashMessage(Constant.CHOOSE_FUNCTION);
+                String input = scanner.next();
+                System.out.println();
+                return Exception.checkMenu(input, this.itemList);
+            } catch (IllegalArgumentException e) {
+                System.out.printf(e.getMessage() + "%n");
+            }
+        }
     }
 }
