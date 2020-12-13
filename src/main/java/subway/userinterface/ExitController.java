@@ -16,7 +16,7 @@ public class ExitController implements Menu {
 
     @Override
     public String getMenuKey() {
-        return null;
+        return MENU_KEY;
     }
 
     public static Menu getInstance() {
