@@ -31,16 +31,7 @@ public class StationView {
 
     public void selectStationPage() {
         String button = inputButton();
-        while (!isBack(button)) {
-            if (isCreate(button)) {
-                break;
-            }
-            if (isDelete(button)) {
-                break;
-            }
-            if (isRead(button)) {
-                break;
-            }
+        while (isEndStationPage(button)) {
             button = inputButton();
         }
     }
@@ -50,8 +41,11 @@ public class StationView {
         return input.nextButton(STATION_BUTTONS);
     }
 
-    private boolean isBack(String button) {
-        return button.equals(Button.BACK);
+    private boolean isEndStationPage(String button) {
+        return !isCreate(button)
+                && !isDelete(button)
+                && !isRead(button)
+                && !isBack(button);
     }
 
     private boolean isCreate(String button) {
@@ -93,7 +87,6 @@ public class StationView {
             Message.deleteStationInfo();
             return true;
         }
-        Message.printIsNotExist();
         return false;
     }
 
@@ -110,5 +103,9 @@ public class StationView {
         stationController.findAll().stream()
                 .map(Station::getName)
                 .forEach(Message::printStation);
+    }
+
+    private boolean isBack(String button) {
+        return button.equals(Button.BACK);
     }
 }
