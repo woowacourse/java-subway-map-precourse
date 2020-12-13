@@ -3,4 +3,5 @@ package subway.service.abstraction.exception;
 public interface ExceptionInterface {
     boolean checkNameDuplication(String name);
     boolean checkNameLength(String name);
+    boolean checkNameLastCharacter(String name);
 }

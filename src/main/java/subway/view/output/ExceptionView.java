@@ -17,4 +17,9 @@ public class ExceptionView {
         System.out.println();
         System.out.println(ExceptionType.INVALID_STATION_NAME_LENGTH.getException());
     }
+
+    public static void printInvalidStationNameLastCharacter() {
+        System.out.println();
+        System.out.println(ExceptionType.INVALID_STATION_NAME_LAST_CHARACTER.getException());;
+    }
 }

@@ -72,6 +72,10 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
             ExceptionView.printInvalidStationNameLengthException();
             return false;
         }
+        if (!stationValidation.checkNameLastCharacter(stationName)) {
+            ExceptionView.printInvalidStationNameLastCharacter();
+            return false;
+        }
         return true;
     }
 
