@@ -6,6 +6,7 @@ import subway.domain.Station;
 import subway.exceptions.StationNameLengthException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.StationManagementViewComponent;
+import subway.view.logger.ViewLogger;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,22 +56,22 @@ public class StationManagementViewState extends ViewState{
 
     private void checkAndAddStation(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         if(feature.equals(BTN_ADD_STATION)){
-            printStationRegisterLog();
+            ViewLogger.printLog(StationManagementViewComponent.getRegisterStationComponent());
             String stationName = getStationName(scanner);
-            printWhiteSpace();
+            ViewLogger.printWhiteSpace();
             addStation(stationName);
-            printStationRegisterFinishLog();
+            ViewLogger.printLogWithWhiteSpace(StationManagementViewComponent.getRegisterStationFinishComponent());
             switchViewToStationManagement(application);
         }
     }
 
     private void checkAndRemoveStation(String feature, SubwayLineMap application, Scanner scanner) throws Exception {
         if(feature.equals(BTN_DELETE_STATION)){
-            printStationRemoveLog();
+            ViewLogger.printLog(StationManagementViewComponent.getRemoveStationComponent());
             String stationName = checkAndGetStationName(scanner);
-            printWhiteSpace();
+            ViewLogger.printWhiteSpace();
             removeStation(stationName);
-            printStationRemoveFinishLog();
+            ViewLogger.printLogWithWhiteSpace(StationManagementViewComponent.getRemoveStationFinishComponent());
             switchViewToStationManagement(application);
         }
     }
@@ -99,32 +100,6 @@ public class StationManagementViewState extends ViewState{
 
     private String getStationName(Scanner scanner){
         return scanner.nextLine();
-    }
-
-    private void printStationRegisterLog(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(StationManagementViewComponent.getRegisterStationComponent());
-        System.out.println(viewStringBuilder.toString());
-    }
-
-    private void printStationRegisterFinishLog(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(StationManagementViewComponent.getRegisterStationFinishComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        System.out.println(viewStringBuilder.toString());
-    }
-
-    private void printStationRemoveLog(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(StationManagementViewComponent.getRemoveStationComponent());
-        System.out.println(viewStringBuilder.toString());
-    }
-
-    private void printStationRemoveFinishLog(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(StationManagementViewComponent.getRemoveStationFinishComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        System.out.println(viewStringBuilder.toString());
     }
 
     private void addStation(String name) throws Exception {

@@ -11,6 +11,7 @@ import subway.exceptions.StationNotExistException;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.LineManagementViewComponent;
 import subway.view.component.StationManagementViewComponent;
+import subway.view.logger.ViewLogger;
 
 import java.util.List;
 import java.util.Optional;
@@ -64,14 +65,14 @@ public class LineManagementViewState extends ViewState {
             Station startStation = getStartStation(scanner);
             Station endStation = getEndStation(scanner);
             lineController.addLine(lineName, startStation, endStation);
-            printStationRegisterFinishLog();
+            ViewLogger.printLogWithWhiteSpace(LineManagementViewComponent.getRegisterFinishComponent());
             switchViewToStationManagement(application);
         }
     }
 
     private void checkAndRemoveLine(String feature, SubwayLineMap application, Scanner scanner) throws LineNotExistException {
         if(feature.equals(BTN_DELETE_LINE)){
-            printRemoveLineBeginLog();
+            ViewLogger.printLog(LineManagementViewComponent.getRemoveLineBeginComponent());
             String lineName = getLineOrStationName(scanner);
             lineController.removeLine(lineName);
             printLineRemoveFinishLog();
@@ -83,37 +84,6 @@ public class LineManagementViewState extends ViewState {
         if(feature.equals(BTN_READ_LINE)){
             printSubwayLineMap();
         }
-    }
-
-    public void printLineRegisterLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(LineManagementViewComponent.getLineRegisterComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    public void printRequiringStationBeginLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(LineManagementViewComponent.getStationRequiringBeginComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    public void printRequiringStationEndLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(LineManagementViewComponent.getStationRequiringEndComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    public void printStationRegisterFinishLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(LineManagementViewComponent.getRegisterFinishComponent());
-        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    public void printRemoveLineBeginLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(LineManagementViewComponent.getRemoveLineBeginComponent());
-        System.out.println(stringBuilder.toString());
     }
 
     public void printLineRemoveFinishLog(){
@@ -140,9 +110,9 @@ public class LineManagementViewState extends ViewState {
     }
 
     private String getLineName(Scanner scanner) throws DuplicatedLineNameException {
-        printLineRegisterLog();
+        ViewLogger.printLog(LineManagementViewComponent.getLineRegisterComponent());
         String lineName = getLineOrStationName(scanner);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         if(lineController.checkIfLineExist(lineName)){
             throw new DuplicatedLineNameException();
         }
@@ -150,16 +120,16 @@ public class LineManagementViewState extends ViewState {
     }
 
     private Station getStartStation(Scanner scanner) throws StationNotExistException {
-        printRequiringStationBeginLog();
+        ViewLogger.printLog(LineManagementViewComponent.getStationRequiringBeginComponent());
         String startStationName = getLineOrStationName(scanner);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         return stationController.getStation(startStationName);
     }
 
     private Station getEndStation(Scanner scanner) throws StationNotExistException {
-        printRequiringStationEndLog();
+        ViewLogger.printLog(LineManagementViewComponent.getStationRequiringEndComponent());
         String endStationName = getLineOrStationName(scanner);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         return stationController.getStation(endStationName);
     }
 

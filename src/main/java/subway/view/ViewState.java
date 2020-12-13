@@ -2,6 +2,8 @@ package subway.view;
 
 import subway.SubwayLineMap;
 import subway.exceptions.UnselectableFeatureException;
+import subway.view.component.CommonViewComponent;
+import subway.view.logger.ViewLogger;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -28,15 +30,11 @@ public abstract class ViewState {
 
     protected String getMenuInputBtn(Scanner scanner) throws Exception {
         String menuInput = scanner.nextLine();
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         if(!featureSet.contains(menuInput)){
             throw new UnselectableFeatureException();
         }
         return menuInput;
-    }
-
-    protected void printWhiteSpace(){
-        System.out.println();
     }
 
     protected abstract void printMenuWithInputRequirementMsg();

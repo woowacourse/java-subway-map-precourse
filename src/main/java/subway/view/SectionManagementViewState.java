@@ -8,6 +8,7 @@ import subway.domain.Station;
 import subway.exceptions.*;
 import subway.view.component.CommonViewComponent;
 import subway.view.component.SectionManagementViewComponent;
+import subway.view.logger.ViewLogger;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -56,7 +57,7 @@ public class SectionManagementViewState extends ViewState{
             Line line = printRegisterInputLogAndGetInputLineName(scanner);
             Station station = printRegisterLogAndGetInputStationNameAtLine(scanner, line);
             printLogAndGetInputStationPositionAtLine(scanner, station, line);
-            printSectionRegisterFinishLog();
+            ViewLogger.printLogWithWhiteSpace(SectionManagementViewComponent.getSectionRegisterFinishComponent());
             switchViewToStationManagement(application);
         }
     }
@@ -66,15 +67,15 @@ public class SectionManagementViewState extends ViewState{
         if(feature.equals(BTN_DELETE_SECTION)){
             Line line = printRemoveInputLogAndGetInputLineName(scanner);
             printRemoveInputLogAndGetInputStationNameAtLine(scanner, line);
-            printSectionRemoveFinishLog();
+            ViewLogger.printLogWithWhiteSpace(SectionManagementViewComponent.getSectionRemoveFinishComponent());
             switchViewToStationManagement(application);
         }
     }
 
     private Line printRegisterInputLogAndGetInputLineName(Scanner scanner) throws LineNotExistException {
-        printSectionRegisterLineNameInputLog();
+        ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
         String lineName = getStationOrLineName(scanner);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         Optional<Line> lineOptional = lineController.getLine(lineName);
         if(!lineOptional.isPresent()){
             throw new LineNotExistException();
@@ -84,10 +85,10 @@ public class SectionManagementViewState extends ViewState{
 
     private Station printRegisterLogAndGetInputStationNameAtLine(Scanner scanner, Line line) throws StationNotExistException,
             DuplicatedStartAndEndStationNameException {
-        printSectionRegisterStationNameInputLog();
+        ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
         String stationName = getStationOrLineName(scanner);
         Station station = stationController.getStation(stationName);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         if(line.getStations().contains(station)){
             throw new DuplicatedStartAndEndStationNameException();
         }
@@ -96,16 +97,16 @@ public class SectionManagementViewState extends ViewState{
 
     private void printLogAndGetInputStationPositionAtLine(Scanner scanner, Station station, Line line) throws
             InvalidPositionException {
-        printSectionRegisterPositionInputLog();
+        ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterStationOrderComponent());
         int position = getPosition(scanner);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         lineController.addStationInLineAtCertainPosition(station, line, position);
     }
 
     private Line printRemoveInputLogAndGetInputLineName(Scanner scanner) throws LineNotExistException {
-        printSectionRemoveLineNameInputLog();
+        ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveLineNameInputComponent());
         String lineName = getStationOrLineName(scanner);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         Optional<Line> lineOptional = lineController.getLine(lineName);
         if(!lineOptional.isPresent()){
             throw new LineNotExistException();
@@ -115,10 +116,10 @@ public class SectionManagementViewState extends ViewState{
 
     private void printRemoveInputLogAndGetInputStationNameAtLine(Scanner scanner, Line line) throws
             StationNotExistException, MinimumLineLengthException {
-        printSectionRemoveStationNameInputLog();
+        ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveStationNameInputComponent());
         String stationName = getStationOrLineName(scanner);
         Station station = stationController.getStation(stationName);
-        printWhiteSpace();
+        ViewLogger.printWhiteSpace();
         if(!line.getStations().contains(station)){
             throw new StationNotExistException();
         }
@@ -127,51 +128,6 @@ public class SectionManagementViewState extends ViewState{
         }
         line.removeStation(station);
     }
-
-    private void printSectionRegisterLineNameInputLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    private void printSectionRegisterStationNameInputLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterStationNameInputComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    private void printSectionRegisterPositionInputLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterStationOrderComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    private void printSectionRegisterFinishLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRegisterFinishComponent());
-        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    private void printSectionRemoveLineNameInputLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRemoveLineNameInputComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    private void printSectionRemoveStationNameInputLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRemoveStationNameInputComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
-    private void printSectionRemoveFinishLog(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SectionManagementViewComponent.getSectionRemoveFinishComponent());
-        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        System.out.println(stringBuilder.toString());
-    }
-
 
     private int getPosition(Scanner scanner){
         return Integer.parseInt(scanner.nextLine());
