@@ -92,7 +92,7 @@ public class RegisterAction extends Action {
         line.addStation(new Station(upward));
         line.addStation(new Station(down));
 
-        LineRepository.addLine(new Line(name));
+        LineRepository.addLine(line);
     }
 
     private void registerSection() {
@@ -100,13 +100,12 @@ public class RegisterAction extends Action {
         String line = inputRegister();
 
         printRegisterSectionMessage(ActionMessage.INPUT_SECTION_STATION);
-        String station = inputRegister();
+        String name = inputRegister();
 
         printRegisterSectionMessage(ActionMessage.INPUT_SECTION_ORDER);
-        int order = Integer.parseInt(inputRegister());
+        int order = Integer.parseInt(inputRegister()) - 1;
 
-        List<Station> list = LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList();
-        System.out.println(list.size());
+        LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList().add(order, new Station(name));
     }
 
     private void printSuccessMessage() {
