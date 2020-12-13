@@ -1,5 +1,6 @@
-package subway.domain;
+package subway.domain.station;
 
+import subway.domain.State;
 import subway.view.InputView;
 import subway.view.OutputView;
 

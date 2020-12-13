@@ -1,5 +1,10 @@
-package subway.domain;
+package subway.domain.section;
 
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.State;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 

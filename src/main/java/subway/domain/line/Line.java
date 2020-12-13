@@ -1,7 +1,8 @@
-package subway.domain;
+package subway.domain.line;
 
-import java.util.List;
-import java.util.Objects;
+import subway.domain.section.SectionStations;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class Line {
     private String name;

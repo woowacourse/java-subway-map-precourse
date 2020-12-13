@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.domain.section;
+
+import subway.domain.station.Station;
 
 public class SectionStation {
     private Station station;

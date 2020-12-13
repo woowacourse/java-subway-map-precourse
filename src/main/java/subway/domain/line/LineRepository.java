@@ -1,4 +1,7 @@
-package subway.domain;
+package subway.domain.line;
+
+import subway.domain.station.StationRepository;
+import subway.exception.NoSuchLineException;
 
 import java.util.ArrayList;
 import java.util.Collections;

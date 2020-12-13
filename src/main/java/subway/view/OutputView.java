@@ -1,7 +1,7 @@
 package subway.view;
 
-import subway.domain.Line;
-import subway.domain.Station;
+import subway.domain.line.Line;
+import subway.domain.station.Station;
 
 import java.util.List;
 
