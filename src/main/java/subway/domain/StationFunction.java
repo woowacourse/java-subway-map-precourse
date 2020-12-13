@@ -1,12 +1,8 @@
 package subway.domain;
 
-import java.util.Arrays;
 import java.util.function.Function;
 
-import subway.view.InputView;
-import subway.view.OutputView;
-
-public enum StationFunction {
+public enum StationFunction implements Functionable {
     ADD("1", "역 등록", ManageController::addStation),
     REMOVE("2", "역 삭제", ManageController::removeStation),
     LOAD("3", "역 조회", ManageController::loadStations),
@@ -25,16 +21,13 @@ public enum StationFunction {
         this.function = function;
     }
 
-    public static ManageController perform(ManageController stationController) {
-        OutputView.printView(StationFunction.values());
+    @Override
+    public Function<ManageController, ManageController> getFunction() {
+        return function;
+    }
 
-        String identifier = InputView.inputFunctionIdentifier();
-
-        return Arrays.stream(StationFunction.values())
-                .filter(function -> function.identifier.equals(identifier))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 기능입니다."))
-                .function
-                .apply(stationController);
+    @Override
+    public boolean equalsIdentifier(String identifier) {
+        return this.identifier.equals(identifier);
     }
 }
