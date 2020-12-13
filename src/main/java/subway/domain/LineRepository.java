@@ -16,6 +16,10 @@ public class LineRepository {
         lines.add(line);
         return true;
     }
+    public static void insertStationInLine(Line line, String name){
+        Station station = new Station(name);
+        line.insertStationInLine(station);
+    }
 
     public static boolean isPossibleLine(String lineName, String startName, String endName) {
         if(!InputTool.isValidName(lineName)){
@@ -31,6 +35,8 @@ public class LineRepository {
             return false;
         }
         Line newLine = new Line(lineName);
+        insertStationInLine(newLine, startName);
+        insertStationInLine(newLine, endName);
         addLine(newLine);
         OutputView.printInfo("노선이 등록되었습니다.");
         return true;
