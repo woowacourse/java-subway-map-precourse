@@ -4,16 +4,15 @@ import java.util.Arrays;
 import subway.utils.Message;
 import subway.view.OutputView;
 
-public enum MainMenu implements Message{
-    MANAGE_STATION("1", SubwayManager::manageStation),
-    MANAGE_LINE("2", SubwayManager::manageLine),
-    MANAGE_SECTION("3", SubwayManager::manageSection),
-    PRINT_SUBWAY("4", OutputView::printWholeSection);
+public enum LineMenu implements Message {
+    REGISTER_LINE("1", LineManager::register),
+    DELETE_LINE("2", LineManager::delete),
+    PRINT_LINE("3", OutputView::printLines);
 
     private final String input;
     private final Runnable handler;
 
-    MainMenu(String input, Runnable handler) {
+    LineMenu(String input, Runnable handler) {
         this.input = input;
         this.handler = handler;
     }

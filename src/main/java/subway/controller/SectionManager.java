@@ -7,21 +7,9 @@ import subway.utils.Message;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionManager extends Manager implements Message {
+public class SectionManager implements Message {
 
-    public static void request(String selection) {
-        if (selection.equals(REGISTER)) {
-            insertStationInLine();
-            return;
-        }
-        if (selection.equals(DELETE)) {
-            removeStationFromLine();
-            return;
-        }
-        OutputView.printError(ERROR_INVALID_SELECTION);
-    }
-
-    private static void insertStationInLine() {
+    protected static void insertStationInLine() {
         try {
             Line line = LineRepository.getLine(InputView.getLineNameInSection());
             Station station = StationManager.getStation(InputView.getStationNameInSection());
@@ -33,7 +21,7 @@ public class SectionManager extends Manager implements Message {
         }
     }
 
-    private static void removeStationFromLine() {
+    protected static void removeStationFromLine() {
         try {
             Line line = LineRepository.getLine(InputView.getLineNameToDeleteInSection());
             Station station = StationManager.getStation(InputView.getStationNameToDeleteInSection());

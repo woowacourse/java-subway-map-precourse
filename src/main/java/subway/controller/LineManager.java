@@ -7,25 +7,9 @@ import subway.utils.Message;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineManager extends Manager implements Message {
+public class LineManager implements Message {
 
-    public static void request(String selection) {
-        if (selection.equals(REGISTER)) {
-            registerLine();
-            return;
-        }
-        if (selection.equals(DELETE)) {
-            deleteLine();
-            return;
-        }
-        if (selection.equals(PRINT)) {
-            OutputView.printLines();
-            return;
-        }
-        OutputView.printError(ERROR_INVALID_SELECTION);
-    }
-
-    private static void registerLine() {
+    protected static void register() {
         try {
             Line newLine = new Line(InputView.getLineName());
 
@@ -42,7 +26,7 @@ public class LineManager extends Manager implements Message {
         }
     }
 
-    private static void deleteLine() {
+    protected static void delete() {
         if (LineRepository.deleteLineByName(InputView.getLineNameToDelete())) {
             OutputView.printInfo(INFO_LINE_DELETED);
             return;

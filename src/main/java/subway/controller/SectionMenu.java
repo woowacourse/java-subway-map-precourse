@@ -2,18 +2,15 @@ package subway.controller;
 
 import java.util.Arrays;
 import subway.utils.Message;
-import subway.view.OutputView;
 
-public enum MainMenu implements Message{
-    MANAGE_STATION("1", SubwayManager::manageStation),
-    MANAGE_LINE("2", SubwayManager::manageLine),
-    MANAGE_SECTION("3", SubwayManager::manageSection),
-    PRINT_SUBWAY("4", OutputView::printWholeSection);
+public enum SectionMenu implements Message {
+    INSERT("1", SectionManager::insertStationInLine),
+    REMOVE("2", SectionManager::removeStationFromLine);
 
     private final String input;
     private final Runnable handler;
 
-    MainMenu(String input, Runnable handler) {
+    SectionMenu(String input, Runnable handler) {
         this.input = input;
         this.handler = handler;
     }

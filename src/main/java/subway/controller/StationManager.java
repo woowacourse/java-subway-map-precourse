@@ -6,25 +6,9 @@ import subway.utils.Message;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationManager extends Manager implements Message {
+public class StationManager implements Message {
 
-    public static void request(String selection) {
-        if (selection.equals(REGISTER)) {
-            registerStation();
-            return;
-        }
-        if (selection.equals(DELETE)) {
-            deleteStation();
-            return;
-        }
-        if (selection.equals(PRINT)) {
-            OutputView.printStations();
-            return;
-        }
-        OutputView.printError(ERROR_INVALID_SELECTION);
-    }
-
-    private static void registerStation() {
+    protected static void register() {
         try {
             String name = InputView.getStationName();
             StationRepository.addStation(new Station(name));
@@ -34,7 +18,7 @@ public class StationManager extends Manager implements Message {
         }
     }
 
-    private static void deleteStation() {
+    protected static void delete() {
         String stationName = InputView.getStationNameToDelete();
         try {
             StationRepository.deleteStation(stationName);

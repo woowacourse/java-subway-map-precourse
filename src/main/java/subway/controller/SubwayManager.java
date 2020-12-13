@@ -66,7 +66,7 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(BACK)) {
                 break;
             }
-            StationManager.request(selection);
+            StationMenu.request(selection);
         }
     }
 
@@ -77,7 +77,7 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(BACK)) {
                 break;
             }
-            LineManager.request(selection);
+            LineMenu.request(selection);
         }
     }
 
@@ -88,7 +88,7 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(BACK)) {
                 break;
             }
-            SectionManager.request(selection);
+            SectionMenu.request(selection);
         }
     }
 }
