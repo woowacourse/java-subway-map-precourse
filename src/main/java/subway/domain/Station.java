@@ -11,5 +11,8 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean isEqual(String name){
+        if(this.name.compareTo(name) ==0) return true;
+        return false;
+    }
 }

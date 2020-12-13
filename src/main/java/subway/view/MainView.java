@@ -1,19 +1,22 @@
 package subway.view;
 
-import subway.view.*;
+import subway.tool.InputTool;
+
 public class MainView {
-    public static boolean MainMenu(){
-        try{
-            showView();
-            String user_input = InputView.mainInput();
-            System.out.println(user_input+"??");
-            if(user_input.compareTo("Q") ==0) return true;
-            nextMenu();
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+    final static String ERROR_MESSAGE = "선택할 수 없는 기능입니다.";
+
+    public static boolean MainMenu() {
+        showView();
+        String user_input = InputView.mainInput();
+        System.out.println(user_input + "??");
+        if (InputTool.isMainInputVaild(user_input) == false) {
+            OutputView.printError(ERROR_MESSAGE);
         }
+        if (user_input.compareTo("Q") == 0) return true;
+        nextMenu(Integer.parseInt(user_input));
         return false;
     }
+
     public static void showView() {
         System.out.println("## 메인 화면");
         System.out.println("1. 역 관리");
@@ -21,9 +24,10 @@ public class MainView {
         System.out.println("3. 구간 관리");
         System.out.println("4. 지하철 노선도 출력");
         System.out.println("Q. 종료");
-    }
-    public static void nextMenu(int menu) {
-        if(menu == 1) StationManagementView
+        System.out.println();
     }
 
+    protected static void nextMenu(int menu) {
+        if (menu == 1) StationManagementView.StationMenu();
+    }
 }
