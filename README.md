@@ -494,7 +494,7 @@ public class StationRepository {
 - (O) 노선 관리 출력화면 구현
 - (O) 구간 관리 출력화면 구현
 - (O) 메인 입력화면 구현
-- () 메인 출력화면 구현
+- (O) 메인 출력화면 구현
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
