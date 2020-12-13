@@ -77,4 +77,9 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
         }
         return false;
     }
+
+    @Override
+    public boolean show() {
+        return false;
+    }
 }

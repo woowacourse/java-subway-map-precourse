@@ -52,4 +52,9 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
     public boolean delete(Scanner scanner) {
         return false;
     }
+
+    @Override
+    public boolean show() {
+        return false;
+    }
 }
