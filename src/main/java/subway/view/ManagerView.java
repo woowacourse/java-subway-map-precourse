@@ -2,12 +2,14 @@ package subway.view;
 
 public abstract class ManagerView {
 	private static final String TOP_MENU_PREFIX = "\n## ";
-	private static final String FIRST_MENU = "1";
-	private static final String SECOND_MENU = "2";
-	private static final String THIRD_MENU = "3";
-	private static final String FOURTH_MENU = "4";
-	private static final String BACK_MENU = "B";
-	private static final String QUIT_MENU = "Q";
+	
+	protected static final String FIRST_MENU = "1";
+	protected static final String SECOND_MENU = "2";
+	protected static final String THIRD_MENU = "3";
+	protected static final String FOURTH_MENU = "4";
+	protected static final String BACK_MENU = "B";
+	protected static final String QUIT_MENU = "Q";
+	
 	private static final String MENU_LISTING_SEPARATOR = ". ";
 
 	public abstract void print();

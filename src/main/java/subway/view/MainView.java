@@ -27,15 +27,15 @@ public class MainView extends ManagerView {
 
 	private void selectMenu(Scanner scanner) {
 		String menuSelected = scanner.nextLine();
-		if (menuSelected.equals("1")) {
+		if (menuSelected.equals(FIRST_MENU)) {
 			new StationManagerView();
-		} else if (menuSelected.equals("2")) {
+		} else if (menuSelected.equals(SECOND_MENU)) {
 			new LineManagerView();
-		} else if (menuSelected.equals("3")) {
+		} else if (menuSelected.equals(THIRD_MENU)) {
 			new SectionManagerView();
-		} else if (menuSelected.equals("4")) {
+		} else if (menuSelected.equals(FOURTH_MENU)) {
 			new SubwayMapView();
-		} else if (menuSelected.equals("Q")) {
+		} else if (menuSelected.equals(QUIT_MENU)) {
 			// Do nothing;
 		}
 	}
