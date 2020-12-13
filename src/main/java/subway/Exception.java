@@ -8,15 +8,11 @@ import java.util.List;
 
 public class Exception {
     public static String checkMenu(String input, List<String> menuItemList) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isInMenu(input, menuItemList);
         return input;
     }
 
     public static String checkStationAdd(String input) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isStation(input);
         input = isLengthTwoOrMore(input);
         input = isNotInStationList(input);
@@ -24,8 +20,6 @@ public class Exception {
     }
 
     public static String checkStationDelete(String input) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isStation(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
@@ -34,52 +28,30 @@ public class Exception {
     }
 
     public static String checkLineNameAdd(String input) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
         input = isNotInLineList(input);
         return input;
     }
 
     public static String checkLineNameDelete(String input) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
         input = isInLineList(input);
         return input;
     }
 
     public static String checkFirstStation(String input) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
         return input;
     }
 
     public static String checkLastStation(String input, String firstStation) {
-        input = isNotEmpty(input);
-        input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
         if (input.equals(firstStation)) {
             throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.FIRST_STATION_CANNOT_BE_LAST_STATION);
         }
         return input;
-    }
-
-    static String isNotEmpty(String input) {
-        if (!input.equals("")) {
-            return input;
-        }
-        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_EMPTY);
-    }
-
-    static String isNotSpace(String input) {
-        if (!input.contains(" ")) {
-            return input;
-        }
-        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_SPACE);
     }
 
     static String isInMenu(String input, List<String> menuItemList) {
