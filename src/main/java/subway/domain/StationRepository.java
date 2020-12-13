@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -21,7 +22,7 @@ public class StationRepository {
 
     public static Station getStation(String stationName) {
         for (Station station : stations()) {
-            if (station.getName().equals(stationName)) {
+            if (Objects.equals(station.getName(), stationName)) {
                 return station;
             }
         }
