@@ -7,4 +7,9 @@ public class TextView {
         System.out.println();
         System.out.println(TextType.STATION_ADDING_TEXT.getText());
     }
+
+    public static void printStationDeletionText() {
+        System.out.println();
+        System.out.println(TextType.STATION_DELETION_TEXT.getText());
+    }
 }

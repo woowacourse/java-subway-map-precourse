@@ -64,6 +64,14 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean delete(Scanner scanner) {
+        TextView.printStationDeletionText();
+        String stationName = scanner.nextLine();
+
+        if (StationRepository.deleteStation(stationName)) {
+            InformationView.printStationDeletionInformation();
+            System.out.println();
+        }
+
         return false;
     }
 }
