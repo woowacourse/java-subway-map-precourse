@@ -7,9 +7,12 @@ import static subway.resource.TextResource.FUNCTION_STATION_ADD;
 import static subway.resource.TextResource.FUNCTION_STATION_DELETE;
 import static subway.resource.TextResource.FUNCTION_STATION_LIST_SHOW;
 import static subway.resource.TextResource.HEADER_STATION_MANAGEMENT_VIEW;
+import static subway.resource.TextResource.PREFIX_INFO;
 
 import java.util.Scanner;
 import subway.controller.StationManagementController;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.MainView.OnBackListener;
 
 public class StationManagementView extends View {
@@ -60,6 +63,7 @@ public class StationManagementView extends View {
         }
 
         if (KEY_SHOW_STATION_LIST.equals(selection)) {
+            showStationList();
         }
     }
 
@@ -74,6 +78,13 @@ public class StationManagementView extends View {
         System.out.println(ASK_DELETE_STATION_NAME);
         String name = scanner.nextLine();
         StationManagementController.getInstance().deleteStation(name);
+        onBackListener.onBack();
+    }
+
+    private void showStationList() {
+        for (Station station : StationRepository.stations()) {
+            System.out.println(PREFIX_INFO + " " + station.getName());
+        }
         onBackListener.onBack();
     }
 
