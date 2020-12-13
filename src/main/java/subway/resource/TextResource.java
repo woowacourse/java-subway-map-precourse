@@ -68,4 +68,8 @@ public class TextResource {
     public static String ASK_ADD_LINE_END = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     public static String ASK_DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
 
+    public static String COMPLETE_LINE_ADD = PREFIX_INFO + " 지하철 노선이 등록되었습니다.";
+    public static String COMPLETE_LINE_DELETE = PREFIX_INFO + " 지하철 노선이 삭제되었습니다.";
+
+
 }

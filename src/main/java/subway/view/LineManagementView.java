@@ -4,6 +4,8 @@ import static subway.resource.TextResource.ASK_ADD_LINE_END;
 import static subway.resource.TextResource.ASK_ADD_LINE_NAME;
 import static subway.resource.TextResource.ASK_ADD_LINE_START;
 import static subway.resource.TextResource.ASK_DELETE_LINE_NAME;
+import static subway.resource.TextResource.COMPLETE_LINE_ADD;
+import static subway.resource.TextResource.COMPLETE_LINE_DELETE;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_LINE_ADD;
 import static subway.resource.TextResource.FUNCTION_LINE_DELETE;
@@ -73,6 +75,7 @@ public class LineManagementView extends View {
         System.out.println(ASK_ADD_LINE_END);
         String end = scanner.nextLine();
         LineManagementController.getInstance().addLine(name, start, end);
+        System.out.println(COMPLETE_LINE_ADD);
         onBackListener.onBack();
     }
 
@@ -80,6 +83,7 @@ public class LineManagementView extends View {
         System.out.println(ASK_DELETE_LINE_NAME);
         String name = scanner.nextLine();
         LineManagementController.getInstance().deleteLine(name);
+        System.out.println(COMPLETE_LINE_DELETE);
         onBackListener.onBack();
     }
 
