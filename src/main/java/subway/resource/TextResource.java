@@ -12,6 +12,9 @@ public class TextResource {
         = String.format(PREFIX_ERROR + "지하철역의 이름은 %d 글자 이상이어야 합니다.",
         MIN_STATION_NAME_LENGTH);
 
+    public static final String ERROR_STATION_NAME_DUPLICATED = PREFIX_ERROR
+        + "이미 해당 지하철역이 존재 합니다. 등록 할 수 없습니다.";
+
     public static final String ERROR_LINE_NAME_LENGTH
         = String.format(PREFIX_ERROR + "노선의 이름은 %d 글자 이상이어야 합니다.",
         MIN_LINE_NAME_LENGTH);
@@ -22,8 +25,9 @@ public class TextResource {
     public static final String ERROR_START_END_STATION_DUPLICATED = PREFIX_ERROR
         + "상행 종점역과 하행 종점역이 같을 수 없습니다.";
 
-    public static final String ERROR_STATION_NAME_DUPLICATED = PREFIX_ERROR
-        + "이미 해당 지하철역이 존재 합니다. 등록 할 수 없습니다.";
+    public static final String ERROR_LINE_NAME_DUPLICATED = PREFIX_ERROR
+        + "이미 해당 노선이 존재 합니다. 등록 할 수 없습니다.";
+
 
     public static final String ERROR_INVALID_FUNCTION = PREFIX_ERROR
         + "선택할 수 없는 기능입니다.";
