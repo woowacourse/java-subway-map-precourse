@@ -48,4 +48,15 @@ class ManageControllerTest {
         //then
         assertThat(manageController.stations().stationNames()).containsExactly("양재역");
     }
+
+    @Test
+    @DisplayName("새로운 노선 추가 테스트")
+    public void addLine_NewLine_LineAdded() {
+
+        // when
+        manageController = manageController.addLine("1호선", "인천역", "소요산역");
+
+        //then
+        assertThat(manageController.lines().lineNames()).containsExactly("2호선", "1호선");
+    }
 }

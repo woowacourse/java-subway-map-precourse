@@ -7,7 +7,9 @@ import subway.view.InputView;
 
 public enum LineFunction implements Functionable {
     ADD("1", "노선 등록",
-            manageController -> manageController.addLine(InputView.inputLineName())),
+            manageController -> manageController
+                    .addLine(InputView.inputLineName(), InputView.inputStartStation(),
+                            InputView.inputFinalStation())),
 
     REMOVE("2", "노선 삭제",
             manageController -> manageController.removeLine(InputView.inputLineName())),

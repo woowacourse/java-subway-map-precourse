@@ -28,6 +28,10 @@ public class ManageController {
         this.stationRepository = stationRepository;
     }
 
+    public LineRepository lines() {
+        return lineRepository;
+    }
+
     public StationRepository stations() {
         return stationRepository;
     }
@@ -55,10 +59,7 @@ public class ManageController {
         return this;
     }
 
-    public ManageController addLine(String lineName) {
-        String startStation = InputView.inputStartStation();
-        String finalStation = InputView.inputFinalStation();
-
+    public ManageController addLine(String lineName, String startStation, String finalStation) {
         LineRepository addedLineRepository =
                 lineRepository.addLine(new Line(lineName, startStation, finalStation));
 
