@@ -4,9 +4,9 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.input.SectionManageInput;
 
-
-
 public class SectionManageController {
+
+    static final int MIN_STATIONS = 2;
 
     SectionManageInput input = new SectionManageInput();
 
@@ -15,8 +15,11 @@ public class SectionManageController {
     }
 
     public void processDeleteSection(Line line, Station station) {
-        line.removeOrderedStation(station);
-        station.removeOrderedLine(line);
+        if (line.getStation().size() > MIN_STATIONS) {
+            line.removeOrderedStation(station);
+            station.removeOrderedLine(line);
+        }
+
     }
 
 
