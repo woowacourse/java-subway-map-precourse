@@ -17,10 +17,10 @@ public class OutputView {
         }
     }
 
-    private static void printLine(Line line) { // 노선의 상행 종점부터 하행 종점까지 연결된 순서대로 역 목록을 조회하는 기능
+    private static void printLine(Line line) {
         List<Station> stations = line.getStations();
         System.out.println(INFO_MESSAGE + line.getName());
-        System.out.println(RESULT_VIEW_DIVIDER);
+        System.out.println(INFO_MESSAGE + RESULT_VIEW_DIVIDER);
         for (Station station : stations) {
             System.out.println(INFO_MESSAGE + station.getName());
         }
