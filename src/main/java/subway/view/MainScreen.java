@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.Constants;
 import subway.Load;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -7,36 +8,7 @@ import subway.domain.Station;
 
 public class MainScreen implements Screen {
 
-    @Override
-    public void start() {
-        System.out.println("\n## 메인 화면 \n" +
-                "1. 역 관리\n" +
-                "2. 노선 관리\n" +
-                "3. 구간 관리\n" +
-                "4. 지하철 노선도 출력\n" +
-                "Q. 종료\n");
-
-        int userInput = InputUtils.createUserSelectionInput(4, "Q");
-
-        if (userInput == 1) {
-            Load.loadStationManagementScreen();
-            return;
-        }
-        if (userInput == 2) {
-            Load.loadLineManagementScreen();
-            return;
-        }
-        if (userInput == 3) {
-            Load.loadStationManagementScreen();
-            return;
-        }
-        if (userInput == 4) {
-            printTransitMap();
-            start();
-        }
-    }
-
-    public void printTransitMap(){
+    private void printTransitMap() {
         System.out.println("\n## 지하철 노선도");
         for (Line line : LineRepository.lines()) {
             System.out.println("[INFO] " + line.getName() + "\n[INFO] ---");
@@ -45,5 +17,26 @@ public class MainScreen implements Screen {
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public void start() {
+        System.out.println(Constants.MAIN_SCREEN_USER_PROMPT);
+        int userInput = UserInputNumberSelection.createUserSelectionInput(
+                Constants.COUNT_MAIN_USER_PROMPT, Constants.QUIT);
+        if (userInput == Constants.USER_ANSWER_STATION_MANAGEMENT_SCREEN) {
+            Load.loadStationManagementScreen();
+        }
+        if (userInput == Constants.USER_ANSWER_LINE_MANAGEMENT_SCREEN) {
+            Load.loadLineManagementScreen();
+        }
+        if (userInput == Constants.USER_ANSWER_SECTION_MANAGEMENT_SCREEN) {
+            Load.loadSectionManagementScreen();
+        }
+        if (userInput == Constants.USER_ANSWER_PRINT_TRANSIT_MAP) {
+            printTransitMap();
+            start();
+        }
+        return;
     }
 }

@@ -1,62 +1,56 @@
 package subway.view;
 
+import subway.Constants;
 import subway.Load;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class StationManagementScreen implements Screen {
 
-    @Override
-    public void start() {
-        System.out.println("\n## 역 관리 화면\n" +
-                "1. 역 등록\n" +
-                "2. 역 삭제\n" +
-                "3. 역 조회\n" +
-                "B. 돌아가기\n");
-        int userInput = InputUtils.createUserSelectionInput(3, "B");
-
-        if (userInput == 1) {
-            registerNewStation();
-            return;
-        }
-        if (userInput == 2) {
-            deleteStation();
-            return;
-        }
-        if (userInput == 3) {
-            printStations();
-        }
-    }
-
-    public void registerNewStation() {
+    private void registerNewStation() {
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
         try {
-            StationRepository.addStation(new Station(InputUtils.getUserInput()));
+            StationRepository.addStation(new Station(UserInputNumberSelection.getUserInput()));
         } catch (IllegalArgumentException e) {
-            System.err.println("[ERROR] 잘못된 입력입니다.");
+            System.out.println("[ERROR] 잘못된 입력입니다.");
             registerNewStation();
             return;
         }
-        Load.loadMainScreen();
     }
 
-    public void deleteStation() {
+    private void deleteStation() {
         System.out.println("\n## 삭제할 역 이름을 입력하세요.");
         try {
-            StationRepository.deleteStation(InputUtils.getUserInput());
+            StationRepository.deleteStation(UserInputNumberSelection.getUserInput());
         } catch (IllegalArgumentException e) {
-            System.err.println("[ERROR] 잘못된 입력입니다.");
-            Load.loadMainScreen();
+            System.out.println("\n[ERROR] 잘못된 입력입니다.");
+            return;
         }
         System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
-        Load.loadMainScreen();
     }
 
-    public void printStations() {
+    private void printStations() {
         System.out.println("\n## 역 목록");
         for (Station station : StationRepository.stations()) {
             System.out.println("[INFO] " + station.getName());
         }
+    }
+
+    @Override
+    public void start() {
+        System.out.println(Constants.STATION_MANAGEMENT_USER_PROMPT);
+        int userInput = UserInputNumberSelection.createUserSelectionInput(
+                Constants.COUNT_STATION_MANAGEMENT_USER_PROMPT, Constants.BACK);
+        if (userInput == Constants.USER_ANSWER_REGISTER) {
+            registerNewStation();
+        }
+        if (userInput == Constants.USER_ANSWER_DELETE) {
+            deleteStation();
+        }
+        if (userInput == Constants.USER_ANSWER_SHOW) {
+            printStations();
+        }
         Load.loadMainScreen();
+        return;
     }
 }

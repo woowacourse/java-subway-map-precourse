@@ -5,7 +5,7 @@ import subway.Load;
 
 import java.util.Scanner;
 
-public class InputUtils {
+public class UserInputNumberSelection {
     static Scanner scanner = new Scanner(System.in);
 
     public static String getUserInput() {
