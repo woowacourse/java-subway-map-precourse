@@ -79,4 +79,13 @@ public class LineRepository {
             System.out.println(SYMBOL_INFO + line.getName());
         }
     }
+
+    public static Line getLine(String lineName) {
+        Stream<Line> lineStream = lines().stream();
+        try {
+            return lineStream.filter(line -> line.getName().equals(lineName)).findFirst().get();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ERROR_NOT_FOUND_LINE_NAME);
+        }
+    }
 }
