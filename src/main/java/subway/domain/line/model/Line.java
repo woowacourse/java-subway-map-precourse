@@ -60,4 +60,8 @@ public class Line {
 
         stations.add(newStationLocation, newStation);
     }
+
+    public void removeStation(String name) {
+        stations.removeIf(station -> station.isEqualTo(new Station(name)));
+    }
 }

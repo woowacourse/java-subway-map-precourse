@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
@@ -107,5 +108,32 @@ class LineTest {
         //when //then
         assertThatThrownBy(() -> line.addStation(newStationLocation, newStation))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("노선에 등록된 역을 제거하는 기능을 테스트한다")
+    @Test
+    void testRemoveStation() {
+        //given
+        String name = "2호선";
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(name, stations);
+
+        Station newStation = new Station("사당역");
+        int newStationLocation = 1;
+        line.addStation(newStationLocation, newStation);
+
+        //when
+        line.removeStation("사당역");
+
+        //then
+        assertAll(
+                () -> assertThat(line.getStations()).hasSize(2),
+                () -> assertThat(line.getStations())
+                        .usingElementComparatorOnFields("name")
+                .contains(new Station("강남역"), new Station("잠실역"))
+        );
     }
 }
