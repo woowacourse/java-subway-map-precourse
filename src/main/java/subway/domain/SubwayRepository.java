@@ -29,7 +29,10 @@ public class SubwayRepository {
         Line line = LineRepository.findLine(lineName);
         return subwayRealLines.get(line);
     }
-    public static void addPathByLineName(String lineName, int index, String station){
+    public static void addPathByLineName(String[] pathInfo){
+        String lineName = pathInfo[0];
+        int index = Integer.parseInt(pathInfo[1]);
+        String station = pathInfo[2];
         Line line = LineRepository.findLine(lineName);
         PathRepository pathRepository = subwayRealLines.get(line);
         pathRepository.addPath(index,station);

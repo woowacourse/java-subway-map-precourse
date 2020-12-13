@@ -43,7 +43,7 @@ public class PathService {
         if (Arrays.asList(pathInfo).contains(ErrorMessage.OUT)) {
             return;
         }
-        SubwayRepository.addPathByLineName(pathInfo[0], Integer.parseInt(pathInfo[2]), pathInfo[1]);
+        SubwayRepository.addPathByLineName(pathInfo);
         PathOutputManager.printAddedInfo();
     }
 
