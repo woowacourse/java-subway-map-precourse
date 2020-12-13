@@ -20,7 +20,7 @@ public class MainView extends ManagerView {
 		if (menuSelected.equals(FIRST_MENU)) {
 			new StationManagerView(scanner);
 		} else if (menuSelected.equals(SECOND_MENU)) {
-			new LineManagerView();
+			new LineManagerView(scanner);
 		} else if (menuSelected.equals(THIRD_MENU)) {
 			new SectionManagerView();
 		} else if (menuSelected.equals(FOURTH_MENU)) {
