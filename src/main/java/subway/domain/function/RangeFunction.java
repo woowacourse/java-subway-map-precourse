@@ -3,10 +3,18 @@ package subway.domain.function;
 import java.util.function.Function;
 
 import subway.controller.ManageController;
+import subway.view.InputView;
 
 public enum RangeFunction implements Functionable {
-    ADD("1", "구간 등록", ManageController::addRange),
-    REMOVE("2", "구간 삭제", ManageController::removeRange),
+    ADD("1", "구간 등록",
+            manageController -> manageController
+                    .addRange(InputView.inputLineName(), InputView.inputStation(),
+                            InputView.inputIndex())),
+
+    REMOVE("2", "구간 삭제",
+            manageController -> manageController
+                    .removeRange(InputView.inputLineName(), InputView.inputStation())),
+
     BACK("B", "돌아가기", Function.identity());
 
     public static final String TITLE = "구간 관리";

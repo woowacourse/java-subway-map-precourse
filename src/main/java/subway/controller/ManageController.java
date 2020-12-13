@@ -28,9 +28,11 @@ public class ManageController {
         this.stationRepository = stationRepository;
     }
 
-    public ManageController addStation() {
-        String stationName = InputView.inputStation();
+    public StationRepository stations() {
+        return stationRepository;
+    }
 
+    public ManageController addStation(String stationName) {
         StationRepository addedRepository = stationRepository.addStation(stationName);
 
         OutputView.printSaved(STATION);
@@ -38,9 +40,7 @@ public class ManageController {
         return new ManageController(this.lineRepository, addedRepository);
     }
 
-    public ManageController removeStation() {
-        String stationName = InputView.inputStation();
-
+    public ManageController removeStation(String stationName) {
         StationRepository removedRepository =
                 stationRepository.removeStation(stationName, lineRepository);
 
@@ -55,8 +55,7 @@ public class ManageController {
         return this;
     }
 
-    public ManageController addLine() {
-        String lineName = InputView.inputLineName();
+    public ManageController addLine(String lineName) {
         String startStation = InputView.inputStartStation();
         String finalStation = InputView.inputFinalStation();
 
@@ -68,9 +67,7 @@ public class ManageController {
         return new ManageController(addedLineRepository, this.stationRepository);
     }
 
-    public ManageController removeLine() {
-        String lineName = InputView.inputLineName();
-
+    public ManageController removeLine(String lineName) {
         LineRepository removedLineRepository = lineRepository.removeLine(lineName);
 
         OutputView.printRemoved(LINE);
@@ -84,11 +81,7 @@ public class ManageController {
         return this;
     }
 
-    public ManageController addRange() {
-        String lineName = InputView.inputLineName();
-        String stationName = InputView.inputStation();
-        int stationIndex = InputView.inputIndex();
-
+    public ManageController addRange(String lineName, String stationName, int stationIndex) {
         LineRepository rangeInsertedLineRepository =
                 lineRepository.addRange(lineName, stationIndex, stationName);
 
@@ -97,10 +90,7 @@ public class ManageController {
         return new ManageController(rangeInsertedLineRepository, this.stationRepository);
     }
 
-    public ManageController removeRange() {
-        String lineName = InputView.inputLineName();
-        String stationName = InputView.inputStation();
-
+    public ManageController removeRange(String lineName, String stationName) {
         LineRepository rangeRemovedLineRepository =
                 lineRepository.removeRange(lineName, stationName);
 
