@@ -11,11 +11,15 @@ public class OutputView {
     private static final String SUBWAY_ROUTE_MAP_LIST_MESSAGE = "## 지하철 노선도";
     private static final String STATIONS_LIST_MESSAGE = "## 역 목록";
     private static final String MAIN_VIEW = "## 메인화면";
-    private static final String STATION_MANAGEMENT_VIEW = "1. 역 관리";
-    private static final String LINE_MANAGEMENT_VIEW = "2. 노선 관리";
-    private static final String SECTION_MANAGEMENT_VIEW = "3. 구간 관리";
-    private static final String SUBWAY_ROUTE_MAP_PRINT_VIEW = "4. 지하철 노선도 출력";
-    private static final String QUIT_VIEW = "Q. 종료";
+    private static final String STATION_MANAGEMENT_MENU = "1. 역 관리";
+    private static final String LINE_MANAGEMENT_MENU = "2. 노선 관리";
+    private static final String SECTION_MANAGEMENT_MENU = "3. 구간 관리";
+    private static final String SUBWAY_ROUTE_MAP_PRINT_MENU = "4. 지하철 노선도 출력";
+    private static final String QUIT_MENU = "Q. 종료";
+    private static final String STATION_MANAGEMENT_VIEW = "## 역 관리 화면";
+    private static final String STATION_RESITER_MENU = "1. 역 등록";
+    private static final String STATION_CHECK_MENU = "2. 역 조회";
+    private static final String RETURN_MENU = "B. 돌아가기";
 
     public static void printLines(List<Line> lines) {
         System.out.println(SUBWAY_ROUTE_MAP_LIST_MESSAGE);
@@ -42,12 +46,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printMain() {
+    public static void printMainMenu() {
         System.out.println(MAIN_VIEW);
+        System.out.println(STATION_MANAGEMENT_MENU);
+        System.out.println(LINE_MANAGEMENT_MENU);
+        System.out.println(SECTION_MANAGEMENT_MENU);
+        System.out.println(SUBWAY_ROUTE_MAP_PRINT_MENU);
+        System.out.println(QUIT_MENU);
+    }
+
+    public static void printStationManagementMenu() {
         System.out.println(STATION_MANAGEMENT_VIEW);
-        System.out.println(LINE_MANAGEMENT_VIEW);
-        System.out.println(SECTION_MANAGEMENT_VIEW);
-        System.out.println(SUBWAY_ROUTE_MAP_PRINT_VIEW);
-        System.out.println(QUIT_VIEW);
+        System.out.println(STATION_RESITER_MENU);
+        System.out.println(STATION_CHECK_MENU);
+        System.out.println(RETURN_MENU);
     }
 }
