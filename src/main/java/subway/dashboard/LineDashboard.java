@@ -64,20 +64,25 @@ public class LineDashboard {
 
         if (option.equals(OPTION_NUM_1)) {
             if (updateLine(inputView)) {
+                System.out.println();
                 return true;
             }
             System.out.println(INFO_LINE_ENROLL_SUCCESS);
+            System.out.println();
             return false;
         }
         if (option.equals(OPTION_NUM_2)) {
             if (deleteLine(inputView)) {
+                System.out.println();
                 return true;
             }
             System.out.println(INFO_LINE_DELETE_SUCCESS);
+            System.out.println();
             return false;
         }
         if (option.equals(OPTION_NUM_3)) {
             showLines();
+            System.out.println();
         }
         return false;
     }
