@@ -1,6 +1,6 @@
 package subway.userinterface.mainmenu;
 
-import subway.userinterface.*;
+import subway.userinterface.Menu;
 
 import java.util.LinkedHashMap;
 import java.util.Scanner;
