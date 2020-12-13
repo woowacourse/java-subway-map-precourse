@@ -67,7 +67,7 @@ class StationRepositoryTest {
         stationRepository.delete(station);
         int afterStationCounts = stationRepository.findAll().size();
 
-        assertThat(beforeStationCounts).isNotEqualTo(afterStationCounts);
+        assertThat(beforeStationCounts).isGreaterThan(afterStationCounts);
     }
 
     @DisplayName("Station 삭제 실패 : 존재하지 않는 역")

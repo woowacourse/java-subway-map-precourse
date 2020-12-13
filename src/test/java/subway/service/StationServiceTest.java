@@ -28,7 +28,7 @@ class StationServiceTest {
         stationService.deleteStationByName("이수역");
     }
 
-    @DisplayName("Station 저장 성공")
+    @DisplayName("Station 등록 성공")
     @Test
     void addStationByName_성공한다() {
         String name = stationService.getStationNames().get(0);
@@ -71,9 +71,9 @@ class StationServiceTest {
         station.registerAsSection();
 
         assertThatCode(() -> {
-            stationService.deleteStationByName("테스트");
-        }).isInstanceOf(CannotFindStationException.class)
-                .hasMessage("등록되지 않은 지하철 역 이름을 입력하셨습니다.");
+            stationService.deleteStationByName("테스트역");
+        }).isInstanceOf(CannotDeleteStationException.class)
+                .hasMessage("노선에 등록된 지하철 역은 삭제할 수 없습니다.");
 
         stationRepository.delete(station);
     }
