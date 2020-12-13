@@ -59,19 +59,12 @@ public class StationView {
         Message.printCreateStation();
         String name = input.nextStation();
         if (input.validName(name)) {
-            return isNotExistNameCreateStation(name);
+            if (stationController.createStation(name)) {
+                Message.printSuccessStation();
+                return true;
+            }
         }
         return false;
-    }
-
-    private boolean isNotExistNameCreateStation(String name) {
-        if (stationController.isExist(name)) {
-            Message.printIsExist();
-            return false;
-        }
-        stationController.createStation(name);
-        Message.printSuccessStation();
-        return true;
     }
 
     private boolean isDelete(String button) {
@@ -100,7 +93,7 @@ public class StationView {
 
     private void readStations() {
         Message.printStations();
-        stationController.findAll().stream()
+        stationController.readStations().stream()
                 .map(Station::getName)
                 .forEach(Message::printStation);
     }
