@@ -1,6 +1,6 @@
 package subway;
 
-import subway.domain.Station;
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 import java.util.List;
@@ -28,6 +28,14 @@ public class Exception {
         input = isStation(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
+        return input;
+    }
+
+    public static String checkLineAdd(String input) {
+        input = isNotEmpty(input);
+        input = isNotSpace(input);
+        input = isLengthTwoOrMore(input);
+        input = isNotInLineList(input);
         return input;
     }
 
@@ -82,5 +90,19 @@ public class Exception {
             return name;
         }
         throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_STATION_LIST);
+    }
+
+    static String isNotInLineList(String name) {
+        if (!LineRepository.has(name)) {
+            return name;
+        }
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_IN_LINE_LIST);
+    }
+
+    static String isInLineList(String name) {
+        if (LineRepository.has(name)) {
+            return name;
+        }
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_LINE_LIST);
     }
 }
