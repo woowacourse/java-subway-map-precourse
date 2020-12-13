@@ -2,8 +2,8 @@ package subway.domain.menu.submenu.action;
 
 import java.util.Scanner;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
 import subway.domain.menu.submenu.action.constant.ActionMessage;
@@ -36,7 +36,7 @@ public class RegisterAction extends Action {
     }
 
     private void registerStation(String item) {
-        LineRepository.addLine(new Line(item));
+        StationRepository.addStation(new Station(item));
     }
 
     private void printSuccessMessage() {
