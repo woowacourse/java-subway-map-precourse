@@ -19,25 +19,25 @@ public class Output {
 
     public static void printStations(List<Station> stations) {
         if (!stations.isEmpty()) {
-            printLine(Message.STATIONS);
-            stations.forEach(station -> printLine(combineName(station)));
+            print(Message.STATIONS);
+            stations.forEach(station -> print(combine(station.getName())));
         }
     }
 
-    private static String combineName(Station station) {
-        return Message.INFO + station.getName();
+    public static void printLines(List<Line> lines) {
+        print(Message.LINES);
+        lines.forEach(line -> print(combine(combine(line.getName()))));
     }
 
-    public static void printLine(String message) {
+    private static String combine(String name) {
+        return Message.INFO + name;
+    }
+
+    public static void print(String message) {
         System.out.println(message);
     }
 
     public static void printBlankLine() {
         System.out.println();
-    }
-
-    public static void printLines(List<Line> lines) {
-        printLine(Message.LINES);
-        lines.stream().map(line -> Message.INFO + line.getName()).forEach(Output::printLine);
     }
 }

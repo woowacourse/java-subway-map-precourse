@@ -1,6 +1,6 @@
 package subway.service;
 
-import static subway.console.Output.printLine;
+import static subway.console.Output.print;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +30,7 @@ public class StationService {
             validateNameEndWord(name);
             validateExistStation(name);
         } catch (IllegalArgumentException error) {
-            printLine(error.getMessage());
+            print(error.getMessage());
             return false;
         }
         return true;
@@ -58,13 +58,13 @@ public class StationService {
         if (StationRepository.deleteStation(name)) {
             return true;
         }
-        printLine(Message.ERROR_NOT_EXIST_STATION);
+        print(Message.ERROR_NOT_EXIST_STATION);
         return false;
     }
 
     public List<Station> findAll() {
         if (StationRepository.stations().isEmpty()) {
-            printLine(Message.ERROR_EMPTY_STATION);
+            print(Message.ERROR_EMPTY_STATION);
             return Collections.emptyList();
         }
         return StationRepository.stations();

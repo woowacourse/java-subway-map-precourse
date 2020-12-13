@@ -1,8 +1,7 @@
 package subway.view;
 
-import static subway.console.Output.printLine;
+import static subway.console.Output.print;
 import static subway.console.Output.printPage;
-import static subway.console.Output.printStations;
 
 import java.util.Arrays;
 import java.util.List;
@@ -55,10 +54,10 @@ public class LineView {
 
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
-            printLine(Message.INPUT_CREATE_LINE);
+            print(Message.INPUT_CREATE_LINE);
 
             if (isCreateLine(input.nextLine())) {
-                printLine(Message.INFO_CREATE_LINE);
+                print(Message.INFO_CREATE_LINE);
                 return true;
             }
         }
@@ -66,10 +65,10 @@ public class LineView {
     }
 
     private boolean isCreateLine(String name) {
-        printLine(Message.INPUT_FIRST_STATION);
+        print(Message.INPUT_FIRST_STATION);
         String firstStation = input.nextLine();
 
-        printLine(Message.INPUT_LAST_STATION);
+        print(Message.INPUT_LAST_STATION);
         String lastStation = input.nextLine();
 
         return lineController.createSection(name, firstStation, lastStation);
@@ -77,10 +76,10 @@ public class LineView {
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            printLine(Message.INPUT_DELETE_LINE);
+            print(Message.INPUT_DELETE_LINE);
 
             if (isDeleteLine()) {
-                printLine(Message.INFO_DELETE_LINE);
+                print(Message.INFO_DELETE_LINE);
                 return true;
             }
         }

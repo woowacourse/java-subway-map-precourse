@@ -1,6 +1,6 @@
 package subway.console;
 
-import static subway.console.Output.printLine;
+import static subway.console.Output.print;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,8 +22,8 @@ public class Input {
     public String nextButton(List<String> buttons) {
         String button = toUpper(nextLine());
         while (!buttons.contains(button)) {
-            printLine(Message.ERROR_NOT_BUTTON);
-            printLine(Message.INPUT_SELECT_BUTTON);
+            print(Message.ERROR_NOT_BUTTON);
+            print(Message.INPUT_SELECT_BUTTON);
             button = toUpper(nextLine());
         }
         return button;

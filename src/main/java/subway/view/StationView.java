@@ -1,6 +1,6 @@
 package subway.view;
 
-import static subway.console.Output.printLine;
+import static subway.console.Output.print;
 import static subway.console.Output.printPage;
 import static subway.console.Output.printStations;
 
@@ -54,10 +54,10 @@ public class StationView {
 
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
-            printLine(Message.INPUT_CREATE_STATION);
+            print(Message.INPUT_CREATE_STATION);
 
             if (isCreateStation()) {
-                printLine(Message.INFO_CREATE_STATION);
+                print(Message.INFO_CREATE_STATION);
                 return true;
             }
         }
@@ -70,10 +70,10 @@ public class StationView {
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            printLine(Message.INPUT_DELETE_STATION);
+            print(Message.INPUT_DELETE_STATION);
 
             if (isDeleteStation()) {
-                printLine(Message.INFO_DELETE_STATION);
+                print(Message.INFO_DELETE_STATION);
                 return true;
             }
         }
