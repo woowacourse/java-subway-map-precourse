@@ -4,6 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.*;
 import subway.validator.Validation;
+import subway.view.stationoutput.StationInfoView;
 import subway.view.stationoutput.StationOptionView;
 
 import java.util.Scanner;
@@ -15,28 +16,20 @@ public class StationController {
     private static final String BACK = "B";
 
     public static void start(Scanner scanner) {
-        chooseStationFunction(scanner);
+        runStationController(scanner);
     }
 
-    private static void chooseStationFunction(Scanner scanner) {
+    private static void runStationController(Scanner scanner) {
         String userChoice = "";
         boolean stationControllerDone = false;
         while (!stationControllerDone) {
-            StationOptionView.printStationControllerOption();
-            userChoice = getUserStationControllerChoice(scanner);
-            if (userChoice.equals(STATION_REGISTER)) {
-                stationControllerDone = registerStation(scanner);
-            } else if (userChoice.equals(STATION_DELETE)) {
-                stationControllerDone = deleteStation(scanner);
-            } else if (userChoice.equals(STATION_PRINT)) {
-                stationControllerDone = printStation(scanner);
-            } else if (userChoice.equals(BACK)) {
-                stationControllerDone = true;
-            }
+            StationOptionView.printOption();
+            userChoice = getUserChoice(scanner);
+            stationControllerDone = startChosenStationFunction(userChoice, scanner);
         }
     }
 
-    private static String getUserStationControllerChoice(Scanner scanner) {
+    private static String getUserChoice(Scanner scanner) {
         String userChoice = null;
         boolean validChoice = false;
         while (!validChoice) {
@@ -47,28 +40,44 @@ public class StationController {
         return userChoice;
     }
 
+    private static boolean startChosenStationFunction(String userChoice, Scanner scanner) {
+        if (userChoice.equals(STATION_REGISTER)) {
+            return registerStation(scanner);
+        }
+        if (userChoice.equals(STATION_DELETE)) {
+            return deleteStation(scanner);
+        }
+        if (userChoice.equals(STATION_PRINT)) {
+            return printStation(scanner);
+        }
+        if (userChoice.equals(BACK)) {
+            return true;
+        }
+        return false;
+    }
+
     private static boolean registerStation(Scanner scanner) {
-        StationOptionView.printEnterStationRegisterInstruction();
+        StationOptionView.printStationRegisterInstruction();
         String userInputStation = InputView.getInput(scanner);
         boolean validInput = Validation.checkRegisterStationInput(userInputStation);
-        if (validInput == false) {
+        if (!validInput) {
             return false;
         }
         Station newStation = new Station(userInputStation);
         StationRepository.addStation(newStation);
-        InfoView.printRegisterInfo();
+        StationInfoView.printRegisterInfo();
         return true;
     }
 
     private static boolean deleteStation(Scanner scanner) {
-        StationOptionView.printEnterStationDeleteInstruction();
+        StationOptionView.printStationDeleteInstruction();
         String userInputStation = InputView.getInput(scanner);
         boolean validInput = Validation.checkDeleteStationInput(userInputStation);
-        if (validInput == false) {
+        if (!validInput) {
             return false;
         }
         StationRepository.deleteStation(userInputStation);
-        InfoView.printDeleteInfo();
+        StationInfoView.printDeleteInfo();
         return true;
     }
 

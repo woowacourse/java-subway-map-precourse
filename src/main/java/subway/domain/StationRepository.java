@@ -1,6 +1,6 @@
 package subway.domain;
 
-import subway.view.InfoView;
+import subway.view.stationoutput.StationInfoView;
 import subway.view.stationoutput.StationOptionView;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class StationRepository {
     public static void printStation() {
         StationOptionView.printStationList();
         for (Station station : stations) {
-            InfoView.printStation(station.getName());
+            StationInfoView.printStation(station.getName());
         }
     }
 }

@@ -15,27 +15,19 @@ public class MainController {
 
     public void start(Scanner scanner) {
         InitialSetupController.initialSetup();
-        chooseController(scanner);
+        runMainController(scanner);
     }
 
-    private void chooseController(Scanner scanner) {
+    private void runMainController(Scanner scanner) {
         String userChoice = "";
         while (!userChoice.equals(QUIT)) {
-            MainOptionView.printMainControllerOption();
-            userChoice = getUserMainControllerChoice(scanner);
-            if (userChoice.equals(STATION_CONTROL)) {
-                StationController.start(scanner);
-            } else if (userChoice.equals(LINE_CONTROL)) {
-                LineController.start(scanner);
-            } else if (userChoice.equals(LINE_SECTION_CONTROL)) {
-                LineSectionController.start(scanner);
-            } else if (userChoice.equals(MAP_PRINT_CONTROL)) {
-                MapPrintController.start(scanner);
-            }
+            MainOptionView.printOption();
+            userChoice = getUserChoice(scanner);
+            startChosenController(userChoice, scanner);
         }
     }
 
-    private String getUserMainControllerChoice(Scanner scanner) {
+    private String getUserChoice(Scanner scanner) {
         String userChoice = null;
         boolean validChoice = false;
         while (!validChoice) {
@@ -44,5 +36,20 @@ public class MainController {
             validChoice = Validation.checkMainControllerInput(userChoice);
         }
         return userChoice;
+    }
+
+    private void startChosenController(String userChoice, Scanner scanner) {
+        if (userChoice.equals(STATION_CONTROL)) {
+            StationController.start(scanner);
+        }
+        if (userChoice.equals(LINE_CONTROL)) {
+            LineController.start(scanner);
+        }
+        if (userChoice.equals(LINE_SECTION_CONTROL)) {
+            LineSectionController.start(scanner);
+        }
+        if (userChoice.equals(MAP_PRINT_CONTROL)) {
+            MapPrintController.start(scanner);
+        }
     }
 }

@@ -5,8 +5,6 @@ public class ErrorView {
     private static final String ERROR_WRONG_OPTION = "선택할 수 없는 기능입니다.";
 
     public static void printOptionError() {
-        System.out.println(ERROR_WRONG_OPTION);
+        System.out.println(ERROR + ERROR_WRONG_OPTION);
     }
-
-
 }
