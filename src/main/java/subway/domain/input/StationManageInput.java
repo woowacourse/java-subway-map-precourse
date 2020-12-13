@@ -7,7 +7,7 @@ import java.util.*;
 
 public class StationManageInput {
 
-    final String FUNCTION_ONE = "1";
+    static final String FUNCTION_ONE = "1";
     static final String FUNCTION_TWO = "2";
     static final String FUNCTION_THREE = "3";
     static final String FUNCTION_BACK = "B";
