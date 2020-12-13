@@ -2,6 +2,8 @@ package subway.domain.menu.submenu.action;
 
 import java.util.Scanner;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.menu.constant.CategoryType;
@@ -20,6 +22,10 @@ public class RegisterAction extends Action {
         if (category.equals(CategoryType.STATION)) {
             registerStation(name);
         }
+
+        if (category.equals(CategoryType.LINE)) {
+            registerLine(name);
+        }
         printSuccessMessage();
     }
 
@@ -27,6 +33,18 @@ public class RegisterAction extends Action {
         System.out
                 .println(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
                         + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME);
+    }
+
+    private void printRegisterMessage(String pos) {
+        System.out.print(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
+                + CommonMessage.SPACE + category + ActionMessage.INPUT_POSTPOSITION + CommonMessage.SPACE);
+
+        if (pos.equals(ActionMessage.INPUT_UPWARD_TERMINAL_STATION)) {
+            System.out.println(ActionMessage.INPUT_UPWARD_TERMINAL_STATION);
+            return;
+        }
+
+        System.out.println(ActionMessage.INPUT_DOWN_TERMIANL_STATION);
     }
 
     private String inputRegister() {
@@ -39,10 +57,24 @@ public class RegisterAction extends Action {
         StationRepository.addStation(new Station(name));
     }
 
+    private void registerLine(String name) {
+        Line line = new Line(name);
+
+        printRegisterMessage(ActionMessage.INPUT_UPWARD_TERMINAL_STATION);
+        String upward = inputRegister();
+        
+        printRegisterMessage(ActionMessage.INPUT_DOWN_TERMIANL_STATION);
+        String down = inputRegister();
+
+        line.addStation(new Station(upward));
+        line.addStation(new Station(down));
+
+        LineRepository.addLine(new Line(name));
+    }
+
     private void printSuccessMessage() {
-        System.out.println(CommonMessage.INFO + CommonMessage.SPACE + ActionMessage.SUCCESS_SUBWAY
-                + CommonMessage.SPACE + category + ActionMessage.SUCCESS_POSTPOSITION + CommonMessage.SPACE
-                + ActionMessage.SUCCESS_REGISTER);
+        System.out.println(CommonMessage.INFO + CommonMessage.SPACE + ActionMessage.SUCCESS_SUBWAY + CommonMessage.SPACE
+                + category + ActionMessage.SUCCESS_POSTPOSITION + CommonMessage.SPACE + ActionMessage.SUCCESS_REGISTER);
         System.out.println();
     }
 }

@@ -13,4 +13,8 @@ public class ActionMessage {
     public static final String SUCCESS_DELETE = "삭제되었습니다.";
 
     public static final String VIEW_MESSAGE = "목록";
+
+    public static final String INPUT_POSTPOSITION = "의";
+    public static final String INPUT_UPWARD_TERMINAL_STATION = "상행 종점역";
+    public static final String INPUT_DOWN_TERMIANL_STATION = "하행 종점역";
 }
