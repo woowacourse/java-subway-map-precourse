@@ -52,7 +52,7 @@ public class Line {
     }
 
     private boolean isIndexInRange(int index) {
-        return index < stationsOnLine.size() && index >= 0;
+        return index <= stationsOnLine.size() && index >= 0;
     }
 
     private boolean isStationInLine(Station station) {
