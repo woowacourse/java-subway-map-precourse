@@ -35,8 +35,7 @@ public class StationManager implements Message {
     }
 
     private static void deleteStation() {
-        OutputView.printAnnouncement(ANN_DELETE_STATION);
-        String stationName = InputView.getInput();
+        String stationName = InputView.getStationNameToDelete();
         try {
             StationRepository.deleteStation(stationName);
             OutputView.printInfo(INFO_STATION_DELETED);
@@ -45,8 +44,7 @@ public class StationManager implements Message {
         }
     }
 
-    protected static Station getStation() {
-        String name = InputView.getInput();
+    protected static Station getStation(String name) {
         if (!StationRepository.hasStation(name)) {
             throw new IllegalArgumentException(ERROR_NOT_REGISTERED_STATION);
         }

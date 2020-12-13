@@ -10,18 +10,24 @@ import subway.utils.Message;
 
 public class OutputView implements Message {
 
-    public static void printAnnouncement(final String Ann) {
-        System.out.println("## " + Ann);
+    private static final String TITLE = "## ";
+    private static final String INFO = "[INFO] ";
+    private static final String ERROR = "[ERROR] ";
+    private static final String SEPARATOR = "---";
+
+
+    public static void printAnnouncement(final String message) {
+        System.out.println(TITLE + message);
         breakLine();
     }
 
-    public static void printInfo(final String info) {
-        System.out.println("[INFO] " + info);
+    public static void printInfo(final String message) {
+        System.out.println(INFO + message);
         breakLine();
     }
 
-    public static void printError(final String error) {
-        System.out.println("[ERROR] " + error);
+    public static void printError(final String message) {
+        System.out.println(ERROR + message);
         breakLine();
     }
 
@@ -49,7 +55,7 @@ public class OutputView implements Message {
         ArrayList<Station> stations = StationRepository.getAllStations();
         printAnnouncement(DISPLAY_STATION_LIST);
         for (Station station : stations) {
-            System.out.println("[INFO] " + station.getName());
+            System.out.println(INFO + station.getName());
         }
         breakLine();
     }
@@ -58,18 +64,19 @@ public class OutputView implements Message {
         ArrayList<Line> lines = LineRepository.getAllLines();
         printAnnouncement(DISPLAY_LINE_LIST);
         for (Line line : lines) {
-            System.out.println("[INFO] " + line.getName());
+            System.out.println(INFO + line.getName());
         }
+        breakLine();
     }
 
     public static void printWholeSection() {
         printAnnouncement(DISPLAY_WHOLE_SECTION);
         ArrayList<Line> lines = LineRepository.getAllLines();
         for (Line line : lines) {
-            System.out.println("[INFO] " + line.getName());
-            System.out.println("[INFO] ---");
+            System.out.println(INFO + line.getName());
+            System.out.println(INFO + SEPARATOR);
             for (Station station : line.getStations()) {
-                System.out.println("[INFO] " + station.getName());
+                System.out.println(INFO + station.getName());
             }
             breakLine();
         }

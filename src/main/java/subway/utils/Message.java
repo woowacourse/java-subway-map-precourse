@@ -11,17 +11,18 @@ public interface Message {
     String DISPLAY_LINE_LIST = "노선 목록";
     String DISPLAY_WHOLE_SECTION = "지하철 노선도";
 
-    String ANN_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
-    String ANN_REGISTER_LINE = "등록할 노선 이름을 입력하세요.";
-    String ANN_REGISTER_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    String ANN_REGISTER_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
-    String ANN_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
-    String ANN_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
-    String ANN_DELETE_SECTION_LINE = "삭제할 구간의 노선을 입력하세요";
-    String ANN_DELETE_SECTION_STATION = "삭제할 구간의 역을 입력하세요";
-    String ANN_SELECT_LINE = "노선을 입력하세요";
-    String ANN_SELECT_STATION = "역 이름을 입력하세요";
-    String ANN_INPUT_ORDER = "순서를 입력하세요";
+    String INPUT_SELECTION = "원하는 기능을 선택하세요.";
+    String INPUT_GET_STATION = "등록할 역 이름을 입력하세요.";
+    String INPUT_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
+    String INPUT_GET_LINE = "등록할 노선 이름을 입력하세요.";
+    String INPUT_GET_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    String INPUT_GET_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    String INPUT_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
+    String INPUT_GET_LINE_IN_SECTION = "노선을 입력하세요.";
+    String INPUT_GET_STATION_IN_SECTION = "역 이름을 입력하세요.";
+    String INPUT_GET_ORDER = "순서를 입력하세요.";
+    String INPUT_DELETE_LINE_IN_SECTION = "삭제할 구간의 노선을 입력하세요.";
+    String INPUT_DELETE_STATION_IN_SECTION = "삭제할 구간의 역을 입력하세요.";
 
     String INFO_STATION_REGISTERED = "지하철 역이 등록되었습니다.";
     String INFO_LINE_REGISTERED = "지하철 노선이 등록되었습니다.";
@@ -37,4 +38,5 @@ public interface Message {
     String ERROR_INVALID_STATION_NAME_LENGTH = "역 이름은 2 글자 이상이어야 합니다.";
     String ERROR_INVALID_LINE_NAME_LENGTH = "노선 이름은 2 글자 이상이어야 합니다.";
     String ERROR_STATION_REGISTERED_IN_LINE = "노선에 등록된 역은 삭제할 수 없습니다.";
+
 }

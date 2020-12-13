@@ -23,12 +23,9 @@ public class SectionManager implements Message {
 
     private static void insertStationInLine() {
         try {
-            OutputView.printAnnouncement(ANN_SELECT_LINE);
-            Line line = LineRepository.getLine(InputView.getInput());
-            OutputView.printAnnouncement(ANN_SELECT_STATION);
-            Station station = StationManager.getStation();
-            OutputView.printAnnouncement(ANN_INPUT_ORDER);
-            int index = Integer.parseInt(InputView.getInput());
+            Line line = LineRepository.getLine(InputView.getLineNameInSection());
+            Station station = StationManager.getStation(InputView.getStationNameInSection());
+            int index = Integer.parseInt(InputView.getOrderInSection());
             line.insertStation(index, station);
             OutputView.printInfo(INFO_SECTION_REGISTERED);
         } catch (IllegalArgumentException e) {
@@ -38,11 +35,8 @@ public class SectionManager implements Message {
 
     private static void removeStationFromLine() {
         try {
-            OutputView.printAnnouncement(ANN_DELETE_SECTION_LINE);
-            Line line = LineRepository.getLine(InputView.getInput());
-            OutputView.printAnnouncement(ANN_DELETE_SECTION_STATION);
-            // TODO : getStation을 StationRepository의 클래스 메서드로 리팩토링
-            Station station = StationManager.getStation();
+            Line line = LineRepository.getLine(InputView.getLineNameToDeleteInSection());
+            Station station = StationManager.getStation(InputView.getStationNameToDeleteInSection());
             line.removeStation(station);
             OutputView.printInfo(INFO_SECTION_DELETED);
         } catch (IllegalArgumentException e) {

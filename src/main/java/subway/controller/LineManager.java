@@ -26,15 +26,12 @@ public class LineManager implements Message {
 
     private static void registerLine() {
         try {
-            String name = InputView.getLineName();
-            Line newLine = new Line(name);
+            Line newLine = new Line(InputView.getLineName());
 
-            OutputView.printAnnouncement(ANN_REGISTER_FIRST_STATION);
-            Station firstStation = StationManager.getStation();
+            Station firstStation = StationManager.getStation(InputView.getFirstStationName());
             newLine.addFirst(firstStation);
 
-            OutputView.printAnnouncement(ANN_REGISTER_LAST_STATION);
-            Station lastStation = StationManager.getStation();
+            Station lastStation = StationManager.getStation(InputView.getLastStationName());
             newLine.addLast(lastStation);
 
             LineRepository.addLine(newLine);
@@ -45,9 +42,7 @@ public class LineManager implements Message {
     }
 
     private static void deleteLine() {
-        OutputView.printAnnouncement(ANN_DELETE_LINE);
-        String name = InputView.getInput();
-        if (LineRepository.deleteLineByName(name)) {
+        if (LineRepository.deleteLineByName(InputView.getLineNameToDelete())) {
             OutputView.printInfo(INFO_LINE_DELETED);
             return;
         }
