@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import subway.service.CannotFindStationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -66,5 +67,43 @@ class SectionsTest {
         boolean isRegisteredAsLineSection = targetStation.isRegisteredAsLineSection();
 
         assertThat(isRegisteredAsLineSection).isTrue();
+    }
+
+    @DisplayName("Sections 구간 삭제 실패 : 구간에 포함된 역이 2개 이하인 경우")
+    @Test
+    void deleteSectionByName_역이_2개_이하_예외가_발생한다() {
+        Sections sections = Sections.of(upwardLastStation, downwardLastStation);
+
+        assertThatCode(() -> {
+            sections.deleteSectionByName("상행종점");
+        }).isInstanceOf(CannotDeleteSectionException.class)
+                .hasMessage("노선 구간에 포함된 역이 2개 이하인 경우, 구간을 삭제할 수 없습니다.");
+    }
+
+    @DisplayName("Sections 구간 삭제 실패 : 구간에 포함된 역 이름이 아닌 경우")
+    @Test
+    void deleteSectionByName_존재하지_않는_역_예외가_발생한다() {
+        Sections sections = Sections.of(upwardLastStation, downwardLastStation);
+        Station station = new Station("노원역");
+        sections.addSection(station, 1);
+
+        assertThatCode(() -> {
+            sections.deleteSectionByName("없는역");
+        }).isInstanceOf(CannotFindStationException.class)
+                .hasMessage("등록되지 않은 지하철 역 이름을 입력하셨습니다.");
+    }
+
+    @DisplayName("Sections 구간 삭제 성공")
+    @Test
+    void deleteSectionByName_성공한다() {
+        Sections sections = Sections.of(upwardLastStation, downwardLastStation);
+        Station station = new Station("개화역");
+        sections.addSection(station, 1);
+        boolean beforeState = station.isRegisteredAsLineSection();
+
+        sections.deleteSectionByName("개화역");
+        boolean afterState = station.isRegisteredAsLineSection();
+
+        assertThat(beforeState).isNotEqualTo(afterState);
     }
 }
