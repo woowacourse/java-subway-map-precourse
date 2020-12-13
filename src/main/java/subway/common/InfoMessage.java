@@ -1,4 +1,4 @@
-package subway.view;
+package subway.common;
 
 public class InfoMessage {
     private static final String INFO_PREFIX = "[INFO] ";

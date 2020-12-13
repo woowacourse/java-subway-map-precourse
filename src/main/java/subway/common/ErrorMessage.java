@@ -1,4 +1,4 @@
-package subway.view;
+package subway.common;
 
 public class ErrorMessage {
     public static final String OUT = "OUT";

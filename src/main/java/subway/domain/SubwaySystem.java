@@ -1,26 +1,29 @@
-package subway.controller;
+package subway.domain;
 
 import java.util.Scanner;
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.MenuItemsRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-import subway.domain.SubwayRepository;
-import subway.view.InfoMessage;
-import subway.view.Menu;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.menu.MenuItemsRepository;
+import subway.domain.menu.MenuInputManager;
+import subway.domain.path.PathService;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
+import subway.domain.line.LineService;
+import subway.domain.station.StationService;
+import subway.common.InfoMessage;
+import subway.common.Guide;
 
 public class SubwaySystem {
     private MenuInputManager menuInputManager;
-    private StationSystem stationSystem;
-    private LineSystem lineSystem;
-    private PathSystem pathSystem;
+    private StationService stationService;
+    private LineService lineService;
+    private PathService pathService;
 
     public SubwaySystem(Scanner scanner) {
         menuInputManager = new MenuInputManager(scanner);
-        stationSystem = new StationSystem(scanner, menuInputManager);
-        lineSystem = new LineSystem(scanner, menuInputManager);
-        pathSystem = new PathSystem(scanner, menuInputManager);
+        stationService = new StationService(scanner, menuInputManager);
+        lineService = new LineService(scanner, menuInputManager);
+        pathService = new PathService(scanner, menuInputManager);
         initInfo();
     }
 
@@ -47,7 +50,7 @@ public class SubwaySystem {
 
     public void run() {
         while (true) {
-            Menu.printMenu(MenuItemsRepository.getMainItems());
+            Guide.printMenu(MenuItemsRepository.getMainItems());
             String input = menuInputManager.getMainInput();
             if (input.equals("Q")) {
                 return;
@@ -58,13 +61,13 @@ public class SubwaySystem {
 
     private void runSystemByInput(String input) {
         if (input.equals("1")) {
-            stationSystem.run();
+            stationService.run();
         }
         if (input.equals("2")) {
-            lineSystem.run();
+            lineService.run();
         }
         if (input.equals("3")) {
-            pathSystem.run();
+            pathService.run();
         }
         if (input.equals("4")) {
             printSubwayMap();
@@ -72,7 +75,7 @@ public class SubwaySystem {
     }
 
     private void printSubwayMap() {
-        Menu.printSubwayMap();
+        Guide.printSubwayMap();
         for(Line line: LineRepository.lines()){
             InfoMessage.printName(line.getName());
             InfoMessage.printName("---");

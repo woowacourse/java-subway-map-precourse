@@ -1,9 +1,8 @@
-package subway.controller;
+package subway.domain.menu;
 
 import java.util.Scanner;
-import subway.domain.MenuItemsRepository;
-import subway.view.ErrorMessage;
-import subway.view.Menu;
+import subway.common.ErrorMessage;
+import subway.common.Guide;
 
 public class MenuInputManager {
     private Scanner scanner;
@@ -14,7 +13,7 @@ public class MenuInputManager {
 
     public String getMainInput() {
         while (true) {
-            Menu.printWhatMenu();
+            Guide.printWhatMenu();
             String input = scanner.nextLine().toUpperCase().trim();
             if (!checkMainSelection(input)) {
                 continue;
@@ -25,7 +24,7 @@ public class MenuInputManager {
 
     public String getStationInput() {
         while (true) {
-            Menu.printWhatMenu();
+            Guide.printWhatMenu();
             String input = scanner.nextLine().toUpperCase().trim();
             if (!checkStationSelection(input)) {
                 continue;
@@ -36,7 +35,7 @@ public class MenuInputManager {
 
     public String getLineInput() {
         while (true) {
-            Menu.printWhatMenu();
+            Guide.printWhatMenu();
             String input = scanner.nextLine().toUpperCase().trim();
             if (!checkLineSelection(input)) {
                 continue;

@@ -3,6 +3,9 @@ package subway.domain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.path.PathRepository;
 
 public class SubwayRepository {
     private static final Map<Line, PathRepository> subwayRealLines = new HashMap<>();

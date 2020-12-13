@@ -1,6 +1,6 @@
-package subway.view;
+package subway.common;
 
-public class Menu {
+public class Guide {
     public static final String GUIDE_PREFIX = "## ";
     public static final String WHAT_MENU = "원하는 기능을 선택하세요.";
     public static final String STATION_GUIDE = " 역 이름을 입력하세요.";
@@ -11,11 +11,10 @@ public class Menu {
     public static final String LINE_TO_ADD_PATH_GUIDE = "노선을 입력하세요.";
     public static final String STATION_TO_ADD_PATH_GUIDE = "역이름을 입력하세요.";
     public static final String INDEX_TO_ADD_PATH_GUIDE = "순서를 입력하세요.";
-
     public static final String SUBWAY_MAP = "지하철노선도";
 
 
-    private Menu() {
+    private Guide() {
     }
 
     public static void printMenu(String[] menuItems) {

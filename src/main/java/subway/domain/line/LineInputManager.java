@@ -1,10 +1,9 @@
-package subway.controller;
+package subway.domain.line;
 
 import java.util.Scanner;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
-import subway.view.ErrorMessage;
-import subway.view.Menu;
+import subway.domain.station.StationRepository;
+import subway.common.ErrorMessage;
+import subway.common.Guide;
 
 public class LineInputManager {
     private Scanner scanner;
@@ -25,7 +24,7 @@ public class LineInputManager {
     }
 
     private String getDownStationName(String upStation) {
-        Menu.printDownStationGuide();
+        Guide.printDownStationGuide();
         String name = scanner.nextLine().trim();
         if (isEqualToUpStation(upStation, name)) {
             return ErrorMessage.OUT;
@@ -51,7 +50,7 @@ public class LineInputManager {
 
     private String getLineName(String function) {
         while (true) {
-            Menu.printLineGuide(function);
+            Guide.printLineGuide(function);
             String name = scanner.nextLine().trim();
             if (!checkName(name)) {
                 continue;
@@ -64,7 +63,7 @@ public class LineInputManager {
     예외상황 - 등록되지 않은 역, 상행과 종점이 같은 경우
      */
     public String getUpStationName() {
-        Menu.printUpStationGuide();
+        Guide.printUpStationGuide();
         String name = scanner.nextLine().trim();
         if (!checkEnrolledStation(name)) {
             return ErrorMessage.OUT;
@@ -109,7 +108,7 @@ public class LineInputManager {
     }
 
     public String getLineNameToDelete() {
-        Menu.printStationDeleteGuide();
+        Guide.printStationDeleteGuide();
         String name = scanner.nextLine().trim();
         if (!checkNameToDelete(name)) {
             return ErrorMessage.OUT;

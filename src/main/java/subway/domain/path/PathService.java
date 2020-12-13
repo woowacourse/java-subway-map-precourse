@@ -1,26 +1,27 @@
-package subway.controller;
+package subway.domain.path;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import subway.domain.MenuItemsRepository;
 import subway.domain.SubwayRepository;
-import subway.view.ErrorMessage;
-import subway.view.InfoMessage;
-import subway.view.Menu;
+import subway.domain.menu.MenuInputManager;
+import subway.domain.menu.MenuItemsRepository;
+import subway.common.ErrorMessage;
+import subway.common.InfoMessage;
+import subway.common.Guide;
 
-public class PathSystem {
+public class PathService {
 
     private MenuInputManager menuInputManager;
     private PathInputManager pathInputManager;
 
-    public PathSystem(Scanner scanner, MenuInputManager menuInputManager){
+    public PathService(Scanner scanner, MenuInputManager menuInputManager){
         this.menuInputManager = menuInputManager;
         pathInputManager = new PathInputManager(scanner);
     }
 
     public void run() {
         while (true) {
-            Menu.printMenu(MenuItemsRepository.getPathItems());
+            Guide.printMenu(MenuItemsRepository.getPathItems());
             String input = menuInputManager.getStationInput();
             if (input.equals("B")) {
                 return;

@@ -1,23 +1,19 @@
-package subway.controller;
+package subway.domain.line;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import subway.domain.Line;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.menu.MenuInputManager;
 import subway.domain.SubwayRepository;
-import subway.domain.LineRepository;
-import subway.domain.PathRepository;
-import subway.domain.MenuItemsRepository;
-import subway.view.ErrorMessage;
-import subway.view.InfoMessage;
-import subway.view.Menu;
+import subway.domain.menu.MenuItemsRepository;
+import subway.common.ErrorMessage;
+import subway.common.InfoMessage;
+import subway.common.Guide;
 
-public class LineSystem {
+public class LineService {
     private MenuInputManager menuInputManager;
     private LineInputManager lineInputManager;
 
-    public LineSystem(Scanner scanner, MenuInputManager menuInputManager) {
+    public LineService(Scanner scanner, MenuInputManager menuInputManager) {
         this.menuInputManager = menuInputManager;
         lineInputManager = new LineInputManager(scanner);
 
@@ -25,7 +21,7 @@ public class LineSystem {
 
     public void run() {
         while (true) {
-            Menu.printMenu(MenuItemsRepository.getLineItems());
+            Guide.printMenu(MenuItemsRepository.getLineItems());
             String input = menuInputManager.getLineInput();
             if (input.equals("B")) {
                 return;

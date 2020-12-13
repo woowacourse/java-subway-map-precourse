@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.path;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class PathRepository {
     private final LinkedList<Station> path = new LinkedList<>();

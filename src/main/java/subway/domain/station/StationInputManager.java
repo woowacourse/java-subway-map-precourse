@@ -1,9 +1,8 @@
-package subway.controller;
+package subway.domain.station;
 
 import java.util.Scanner;
-import subway.domain.StationRepository;
-import subway.view.ErrorMessage;
-import subway.view.Menu;
+import subway.common.ErrorMessage;
+import subway.common.Guide;
 
 public class StationInputManager {
     private Scanner scanner;
@@ -14,7 +13,7 @@ public class StationInputManager {
 
 
     public String getStationNameToDelete() {
-        Menu.printStationDeleteGuide();
+        Guide.printStationDeleteGuide();
         String name = scanner.nextLine().trim();
         if (!checkNameToDelete(name)) {
             return ErrorMessage.OUT;
@@ -36,7 +35,7 @@ public class StationInputManager {
 
     public String getStationNameToAdd(String function) {
         while (true) {
-            Menu.printStationGuide(function);
+            Guide.printStationGuide(function);
             String name = scanner.nextLine().trim();
             if (!checkName(name)) {
                 continue;

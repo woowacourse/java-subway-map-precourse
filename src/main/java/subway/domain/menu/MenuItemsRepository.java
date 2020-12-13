@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.menu;
 
 import java.util.Arrays;
 import java.util.List;

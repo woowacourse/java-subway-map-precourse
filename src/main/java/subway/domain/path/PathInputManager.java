@@ -1,11 +1,11 @@
-package subway.controller;
+package subway.domain.path;
 
 import java.util.Scanner;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 import subway.domain.SubwayRepository;
-import subway.view.ErrorMessage;
-import subway.view.Menu;
+import subway.domain.line.LineRepository;
+import subway.domain.station.StationRepository;
+import subway.common.ErrorMessage;
+import subway.common.Guide;
 
 public class PathInputManager {
     private Scanner scanner;
@@ -29,7 +29,7 @@ public class PathInputManager {
     }
 
     private String getIndexToAdd(String lineName) {
-        Menu.printIndexToAddPath();
+        Guide.printIndexToAddPath();
         String index = scanner.nextLine().trim();
         if (!checkValidIndex(index, lineName)) {
             return ErrorMessage.OUT;
@@ -65,7 +65,7 @@ public class PathInputManager {
 
     //todo: refactor 검사할 조건을 넣어주는 것으로 가능할까?
     private String getStationNameToAdd(String lineName) {
-        Menu.printStationToAddPath();
+        Guide.printStationToAddPath();
         String stationName = scanner.nextLine().trim();
         if (checkEnrolledStationNameOnPath(stationName, lineName) || !checkEnrolledStation(stationName)) {
             return ErrorMessage.OUT;
@@ -92,7 +92,7 @@ public class PathInputManager {
 
 
     private String getLineName() {
-        Menu.printLineToAddPath();
+        Guide.printLineToAddPath();
         String lineName = scanner.nextLine().trim();
         if (!checkEnrolledLineName(lineName)) {
             return ErrorMessage.OUT;
@@ -119,7 +119,7 @@ public class PathInputManager {
     }
 
     private String getStationNameToDelete(String lineName) {
-        Menu.printStationToAddPath(); // print 변경
+        Guide.printStationToAddPath(); // print 변경
         String stationName = scanner.nextLine().trim();
         if (!checkEnrolledStationNameOnPathToDelete(stationName, lineName)) {
             return ErrorMessage.OUT;

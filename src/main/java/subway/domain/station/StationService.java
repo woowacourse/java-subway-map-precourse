@@ -1,18 +1,17 @@
-package subway.controller;
+package subway.domain.station;
 
 import java.util.Scanner;
-import subway.domain.MenuItemsRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-import subway.view.ErrorMessage;
-import subway.view.InfoMessage;
-import subway.view.Menu;
+import subway.domain.menu.MenuInputManager;
+import subway.domain.menu.MenuItemsRepository;
+import subway.common.ErrorMessage;
+import subway.common.InfoMessage;
+import subway.common.Guide;
 
-public class StationSystem {
+public class StationService {
     private MenuInputManager menuInputManager;
     private StationInputManager stationInputManager;
 
-    public StationSystem(Scanner scanner, MenuInputManager menuInputManager) {
+    public StationService(Scanner scanner, MenuInputManager menuInputManager) {
         this.menuInputManager = menuInputManager;
         stationInputManager = new StationInputManager(scanner);
 
@@ -20,7 +19,7 @@ public class StationSystem {
 
     public void run() {
         while (true) {
-            Menu.printMenu(MenuItemsRepository.getStationItems());
+            Guide.printMenu(MenuItemsRepository.getStationItems());
             String input = menuInputManager.getStationInput();
             if (input.equals("B")) {
                 return;
