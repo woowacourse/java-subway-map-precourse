@@ -10,9 +10,10 @@ import java.util.Scanner;
 public class StationMenu {
     private static StationController stationController;
 
-    private StationMenu(){}
+    private StationMenu() {
+    }
 
-    public static void run(Scanner scanner){
+    public static void run(Scanner scanner) {
         stationController = StationController.getInstance(scanner);
         printMenu();
         Menu selected = getMenuSelection(scanner);

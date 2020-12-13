@@ -10,16 +10,17 @@ import java.util.Scanner;
 public class LineMenu {
     private static LineController lineController;
 
-    private LineMenu(){}
+    private LineMenu() {
+    }
 
-    public static void run(Scanner scanner){
+    public static void run(Scanner scanner) {
         lineController = LineController.getInstance(scanner);
         printMenu();
         Menu selected = getMenuSelection(scanner);
         selected.execute();
     }
 
-    public static void printMenu(){
+    public static void printMenu() {
         Arrays.stream(Menu.values())
                 .map(Menu -> Menu.getMenuName() + "\n")
                 .forEach(OutputView::printMsg);
