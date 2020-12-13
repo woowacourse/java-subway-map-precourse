@@ -1,6 +1,83 @@
 package subway.util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 public class Constants {
+
+    public static class Menu {
+
+        private String title;
+        private List<MenuItem> items;
+
+        public Menu(String title, List<MenuItem> items) {
+            this.title = title;
+            this.items = items;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public List<MenuItem> getItems() {
+            return items;
+        }
+    }
+
+    public static class MenuItem {
+
+        private String code;
+        private String title;
+
+        public MenuItem(String code, String title) {
+            this.code = code;
+            this.title = title;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+    }
+
+    public final static List<MenuItem> MAIN_MENU_ITEMS = Arrays.asList(
+        new MenuItem("1", "역 관리"),
+        new MenuItem("2", "노선 관리"),
+        new MenuItem("3", "구간 관리"),
+        new MenuItem("4", "지하철 노선도 출력"),
+        new MenuItem("Q", "종료")
+    );
+
+    public final static List<MenuItem> STATION_MENU_ITEMS = Arrays.asList(
+        new MenuItem("1", "역 등록"),
+        new MenuItem("2", "역 삭제"),
+        new MenuItem("3", "역 조회"),
+        new MenuItem("B", "돌아가기")
+    );
+
+    public final static List<MenuItem> LINE_MENU_ITEMS = Arrays.asList(
+        new MenuItem("1", "노선 등록"),
+        new MenuItem("2", "노선 삭제"),
+        new MenuItem("3", "노선 조회"),
+        new MenuItem("B", "돌아가기")
+    );
+
+    public final static List<MenuItem> SECTION_MENU_ITEMS = Arrays.asList(
+        new MenuItem("1", "구간 등록"),
+        new MenuItem("2", "구간 삭제"),
+        new MenuItem("B", "돌아가기")
+    );
+
+    public final static Map<String, Menu> MENU_GROUPS = Map.of(
+        Constants.MAIN_MENU_STATE, new Menu("메인 화면", Constants.MAIN_MENU_ITEMS),
+        Constants.STATION_MENU_STATE, new Menu("역 관리 화면", Constants.STATION_MENU_ITEMS),
+        Constants.LINE_MENU_STATE, new Menu("노선 관리 화면", Constants.LINE_MENU_ITEMS),
+        Constants.SECTION_MENU_STATE, new Menu("구간 관리 화면", Constants.SECTION_MENU_ITEMS)
+    );
 
     public static final String MAIN_MENU_STATE = "MAIN";
     public static final String STATION_MENU_STATE = "STATION";
@@ -24,23 +101,8 @@ public class Constants {
         "문자 길이가 " + MIN_NAME_STRING_LENGTH + " 이상 필요 합니다.";
 
 
-    public final static String[] SCREEN_MENU_MAIN = {
-        "## 메인 화면"
-        , "1. 역 관리"
-        , "2. 노선 관리"
-        , "3. 구간 관리"
-        , "4. 지하철 노선도 출력"
-        , "Q. 종료"};
-
     public final static String ANNOUNCEMENT_FEATURE_SELECT_COMMENT = "## 원하는 기능을 선택하세요.";
 
-    public final static String[] SCREEN_MENU_STATION_MANAGEMENT = {
-        "",
-        "## 역 관리 화면"
-        , "1. 역 등록"
-        , "2. 역 삭제"
-        , "3. 역 조회"
-        , "B. 돌아가기"};
 
     public final static String ADD_STATION_INPUT_COMMENT = "## 등록할 역 이름을 입력하세요.";
     public final static String ADD_STATION_OUTPUT_COMMENT = "지하철 역이 등록되었습니다.";
@@ -51,14 +113,6 @@ public class Constants {
     public final static String EXIST_STATION_IN_SECTION_OUTPUT_COMMENT = "구간에 등록되어 있는 역 입니다. 구간을 먼저 삭제해 주세요.";
     public final static String NO_EXIST_STATION_OUTPUT_COMMENT = "존재하지 않는 역 이름입니다.";
 
-    public final static String[] SCREEN_MENU_LINE_MANAGEMENT = {
-        "",
-        "## 노선 관리 화면"
-        , "1. 노선 등록"
-        , "2. 노선 삭제"
-        , "3. 노선 조회"
-        , "B. 돌아가기"
-    };
 
     public final static String ADD_LINE_NAME_INPUT_COMMENT = "## 등록할 노선 이름을 입력하세요.";
     public final static String ADD_LINE_START_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
@@ -70,13 +124,6 @@ public class Constants {
     public final static String EXIST_LINE_OUTPUT_COMMENT = "이미 등록된 노선 이름입니다.";
     public final static String NO_EXIST_LINE_OUTPUT_COMMENT = "존재하지 않는 노선 이름입니다.";
 
-    public final static String[] SCREEN_MENU_SECTION_MANAGEMENT = {
-        "",
-        "## 구간 관리 화면"
-        , "1. 구간 등록"
-        , "2. 구간 삭제"
-        , "B. 돌아가기"
-    };
 
     public final static String ADD_SECTION_LINE_INPUT_COMMENT = "## 노선을 입력하세요.";
     public final static String ADD_SECTION_STATION_INPUT_COMMENT = "## 역이름을 입력하세요.";

@@ -2,10 +2,11 @@ package subway.util;
 
 public class MessageUtils {
 
-    public static void printMenu(String[] texts) {
-        for (String text : texts) {
-            System.out.println(text);
-        }
+    public static void printMenu(Constants.Menu menu) {
+        System.out.println("## " + menu.getTitle());
+        menu.getItems().forEach(
+            menuItem -> System.out.println(menuItem.getCode() + ". " + menuItem.getTitle())
+        );
         printBlankLine();
     }
 

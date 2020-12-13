@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import subway.Subway;
 import subway.domain.Line;
@@ -11,46 +12,55 @@ import subway.util.MessageUtils;
 
 public class LineView {
 
+    private boolean isRunning = true;
+
     private Subway subway;
-    private Scanner userInput;
+    private Scanner scanner;
+    private Map<String, Runnable> menuActionMap;
 
     public LineView(Subway subway, Scanner scanner) {
         this.subway = subway;
-        this.userInput = scanner;
+        this.scanner = scanner;
+
+        menuActionMap = Map.of(
+            "1", this::insertLine,
+            "2", this::deleteLine,
+            "3", this::showLines,
+            Constants.BACKWARD_INPUT_CHARACTER, this::goBackward
+        );
     }
 
-    public String menuSelector(Scanner userInput) {
-        String input = userInput.next();
+    public void start() {
+        isRunning = true;
+        while (isRunning) {
+            menuSelector();
+        }
+    }
+
+    private void menuSelector() {
+        MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.LINE_MENU_STATE));
+        MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
+
+        String input = scanner.next().toUpperCase();
         MessageUtils.printBlankLine();
-        String thisMenuState = Constants.LINE_MENU_STATE;
-        if (input.equals("1")) {
-            this.insertLine(userInput);
-        }
-        if (input.equals("2")) {
-            this.deleteLine(userInput);
-        }
-        if (input.equals("3")) {
-            this.showLines();
-        }
-        if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
-            thisMenuState = Constants.MAIN_MENU_STATE;
-        }
-        if (!(input.equals("1") || input.equals("2") || input.equals("3")
-            || input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER))) {
+        Runnable action = menuActionMap.get(input);
+
+        if (action == null) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
+            return;
         }
-        return thisMenuState;
+        action.run();
     }
 
-    private boolean insertLine(Scanner userInput) {
+    private boolean insertLine() {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_NAME_INPUT_COMMENT);
-        String lineName = userInput.next();
+        String lineName = scanner.next();
         MessageUtils.printBlankLine();
         if (isExistLineName(lineName)) {
             MessageUtils.printError(Constants.EXIST_LINE_OUTPUT_COMMENT);
             return false;
         }
-        List<Station> p2pStations = p2pStation(userInput);
+        List<Station> p2pStations = p2pStation();
         if (p2pStations != null) {
             subway.getLineRepository().addLine(new Line(lineName));
             Line newLine = subway.getLineRepository().findByName(lineName);
@@ -61,12 +71,12 @@ public class LineView {
         return false;
     }
 
-    private List<Station> p2pStation(Scanner userInput) {
+    private List<Station> p2pStation() {
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_START_STATION_NAME_INPUT_COMMENT);
-        String startStationInLineName = userInput.next();
+        String startStationInLineName = scanner.next();
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_LINE_END_STATION_NAME_INPUT_COMMENT);
-        String endStationInLineName = userInput.next();
+        String endStationInLineName = scanner.next();
         MessageUtils.printBlankLine();
         if (!isExistStationName(startStationInLineName) || !isExistStationName(
             endStationInLineName)) {
@@ -97,9 +107,9 @@ public class LineView {
         return true;
     }
 
-    private boolean deleteLine(Scanner userInput) {
+    private boolean deleteLine() {
         MessageUtils.printInputAnnouncement(Constants.DELETE_LINE_END_STATION_NAME_INPUT_COMMENT);
-        String targetLineName = userInput.next();
+        String targetLineName = scanner.next();
         MessageUtils.printBlankLine();
         if (!isExistLineName(targetLineName)) {
             MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
@@ -117,5 +127,10 @@ public class LineView {
         for (Object line : subway.getLineRepository().findAll()) {
             MessageUtils.printInfo((String) line);
         }
+    }
+
+
+    public void goBackward() {
+        isRunning = false;
     }
 }

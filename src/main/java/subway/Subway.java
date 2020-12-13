@@ -16,18 +16,14 @@ public class Subway {
     private StationRepository stationRepository = new StationRepository();
     private LineRepository lineRepository = new LineRepository();
     private SectionRepository sectionRepository = new SectionRepository();
-
-    private static boolean systemState = true;
-
+    
     public Subway() {
         loadInitData();
     }
 
     public void launch(Scanner scanner) {
-        MainView showScreen = new MainView(scanner, this);
-        while (this.systemState) {
-            this.systemState = showScreen.start();
-        }
+        MainView mainView = new MainView(scanner, this);
+        mainView.start();
     }
 
     private void loadInitData() {

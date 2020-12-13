@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import subway.Subway;
 import subway.domain.Line;
@@ -11,43 +12,54 @@ import subway.util.MessageUtils;
 
 public class SectionView {
 
+    private boolean isRunning = true;
+
     private Subway subway;
-    private Scanner userInput;
+    private Scanner scanner;
+    private Map<String, Runnable> menuActionMap;
 
     public SectionView(Subway subway, Scanner scanner) {
         this.subway = subway;
-        this.userInput = scanner;
+        this.scanner = scanner;
+
+        menuActionMap = Map.of(
+            "1", this::insertSection,
+            "2", this::deleteSection,
+            Constants.BACKWARD_INPUT_CHARACTER, this::goBackward
+        );
     }
 
-    public String menuSelector(Scanner userInput) {
-        String input = userInput.next();
+    public void start() {
+        isRunning = true;
+        while (isRunning) {
+            menuSelector();
+        }
+    }
+
+    private void menuSelector() {
+        MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.SECTION_MENU_STATE));
+        MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
+
+        String input = scanner.next().toUpperCase();
         MessageUtils.printBlankLine();
-        String thisMenuState = Constants.SECTION_MENU_STATE;
-        if (input.equals("1")) {
-            this.insertSection(userInput);
-        }
-        if (input.equals("2")) {
-            this.deleteSection(userInput);
-        }
-        if (input.equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER)) {
-            thisMenuState = Constants.MAIN_MENU_STATE;
-        }
-        if (!(input.equals("1") || input.equals("2") || input.equals("3") || input
-            .equalsIgnoreCase(Constants.BACKWARD_INPUT_CHARACTER))) {
+        Runnable action = menuActionMap.get(input);
+
+        if (action == null) {
             MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
+            return;
         }
-        return thisMenuState;
+        action.run();
     }
 
-    private boolean insertSection(Scanner userInput) {
+    private boolean insertSection() {
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_LINE_INPUT_COMMENT);
-        String sectionTitle = userInput.next();
+        String sectionTitle = scanner.next();
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_STATION_INPUT_COMMENT);
-        String stationName = userInput.next();
+        String stationName = scanner.next();
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_INDEX_INPUT_COMMENT);
-        String indexString = userInput.next();
+        String indexString = scanner.next();
         if (!checkExistInInsertSection(sectionTitle, stationName, indexString)) {
             return false;
         }
@@ -147,12 +159,12 @@ public class SectionView {
         return true;
     }
 
-    private boolean deleteSection(Scanner userInput) {
+    private boolean deleteSection() {
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_LINE_INPUT_COMMENT);
-        String sectionTitle = userInput.next();
+        String sectionTitle = scanner.next();
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_STATION_INPUT_COMMENT);
-        String stationName = userInput.next();
+        String stationName = scanner.next();
         MessageUtils.printBlankLine();
         if (subway.getLineRepository().findByName(sectionTitle) == null) {
             MessageUtils.printError(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
@@ -176,5 +188,9 @@ public class SectionView {
             return true;
         }
         return false;
+    }
+
+    public void goBackward() {
+        isRunning = false;
     }
 }
