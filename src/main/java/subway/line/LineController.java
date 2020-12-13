@@ -42,9 +42,7 @@ public class LineController {
 
     private static void addNewSection(LineInputView lineInputView, StationInputView stationInputView) {
         String lineName = lineInputView.lineName();
-        String stationName = stationInputView.stationName();
-        int sectionNumber = lineInputView.sectionNumber();
-        LineService.addSection(lineName, stationName, sectionNumber);
+        LineService.addSection(lineName, lineInputView, stationInputView);
     }
 
     private static void selectLineManagementOption(char option, Scanner scanner) {

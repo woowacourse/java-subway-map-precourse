@@ -40,9 +40,7 @@ public class LineInputView {
 
     public String lineName() {
         System.out.println(ENTER_LINE_NAME);
-        String lineName = scanner.next();
-        CheckRegisteredLine.validation(lineName);
-        return lineName;
+        return scanner.next();
     }
 
     public int sectionNumber() {

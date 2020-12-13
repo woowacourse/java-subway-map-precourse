@@ -37,7 +37,7 @@ public class Line {
         return stations.isRegistered(name);
     }
 
-    public void addSection(String stationName, int sectionNumber) {
-        stations.addSection(stationName, sectionNumber);
+    public void addSection(Station station, int sectionNumber) {
+        stations.addSection(station, sectionNumber);
     }
 }

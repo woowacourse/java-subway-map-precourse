@@ -30,8 +30,7 @@ public class EachLineStations {
         return false;
     }
 
-    public void addSection(String stationName, int sectionNumber) {
-        Station station = StationService.findStation(stationName);
+    public void addSection(Station station, int sectionNumber) {
         stations.add(sectionNumber, station);
     }
 }

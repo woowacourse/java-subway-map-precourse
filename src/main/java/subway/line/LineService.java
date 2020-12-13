@@ -6,10 +6,14 @@ import subway.line.view.LineOutputView;
 import subway.station.Station;
 import subway.station.StationService;
 import subway.station.validation.CheckLastLetter;
+import subway.station.view.StationInputView;
 
 import java.util.List;
 
 public class LineService {
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 노선입니다.";
+
     public static void addLine(String lineName, LineInputView lineInputView) {
         try {
             Line line = new Line(lineName);
@@ -46,10 +50,25 @@ public class LineService {
         }
     }
 
-    public static void addSection(String lineName, String stationName, int sectionNumber) {
-        Line line = findLine(lineName);
-        line.addSection(stationName, sectionNumber);
-        LineOutputView.addSectionComplete();
+    public static void addSection(String lineName, LineInputView lineInputView, StationInputView stationInputView) {
+        try {
+            Line line = findLine(lineName);
+            Station station = getSectionStation(stationInputView);
+            int sectionNumber = getSectionPosition(lineInputView);
+            line.addSection(station, sectionNumber);
+            LineOutputView.addSectionComplete();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static Station getSectionStation(StationInputView stationInputView) {
+        String stationName = stationInputView.stationName();
+        return StationService.findStation(stationName);
+    }
+
+    private static int getSectionPosition(LineInputView lineInputView) {
+        return lineInputView.sectionNumber();
     }
 
     public static Line findLine(String lineName) {
@@ -62,6 +81,10 @@ public class LineService {
                 findLine = line;
                 break;
             }
+        }
+
+        if (findLine == null) {
+            throw new IllegalArgumentException(NOT_EXIST);
         }
 
         return findLine;
