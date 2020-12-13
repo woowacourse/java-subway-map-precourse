@@ -17,10 +17,11 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static Optional<Station> findStation(String name) {
+    public static Station findStation(String name) {
         return stations.stream()
                 .filter(station -> station.getName().equals(name))
-                .findAny();
+                .findAny()
+                .orElse(null);
     }
 
     public static void printStations() {

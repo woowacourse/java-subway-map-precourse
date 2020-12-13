@@ -1,12 +1,12 @@
 package subway.service;
 
-import subway.domain.LineRepository;
 import subway.domain.LineStationRepository;
 import subway.domain.MenuType;
-import subway.domain.StationRepository;
 
 import java.util.Scanner;
 
+import static subway.domain.LineRepository.findLine;
+import static subway.domain.StationRepository.findStation;
 import static subway.view.OutputView.printAddSectionSuccessMessage;
 import static subway.view.OutputView.printDeleteSectionSuccessMessage;
 
@@ -26,15 +26,14 @@ public class SectionService extends InputService {
         String stationName = inputStationNameToAddSection(scanner);
         String position = inputPositionToAddSection(scanner);
         int pos = validatePositionIsOver(lineName, position, lineStation);
-        lineStation.addStationInLine(LineRepository.findLine(lineName).get(),
-                StationRepository.findStation(stationName).get(), pos);
+        lineStation.addStationInLine(findLine(lineName), findStation(stationName), pos);
         printAddSectionSuccessMessage();
     }
 
     private void deleteSection(Scanner scanner, LineStationRepository lineStation) {
         String lineName = inputLineNameToDeleteSection(scanner, lineStation);
         String stationName = inputStationNameToDeleteSection(scanner);
-        lineStation.deleteStationInLineByName(LineRepository.findLine(lineName).get(), stationName);
+        lineStation.deleteStationInLineByName(findLine(lineName), stationName);
         printDeleteSectionSuccessMessage();
     }
 }

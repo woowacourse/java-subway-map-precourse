@@ -4,6 +4,8 @@ import subway.domain.*;
 
 import java.util.Scanner;
 
+import static subway.domain.LineRepository.*;
+import static subway.domain.StationRepository.*;
 import static subway.view.OutputView.printAddLineStationSuccessMessage;
 import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 
@@ -26,16 +28,16 @@ public class LineStationService extends InputService {
         String startStationName = inputAddStartStationName(scanner);
         String endStationName = inputAddEndStationName(scanner);
         Line line = new Line(lineName);
-        LineRepository.addLine(line);
-        lineStation.addLineStation(line, StationRepository.findStation(startStationName).get());
-        lineStation.addLineStation(line, StationRepository.findStation(endStationName).get());
+        addLine(line);
+        lineStation.addLineStation(line, findStation(startStationName));
+        lineStation.addLineStation(line, findStation(endStationName));
         printAddLineStationSuccessMessage();
     }
 
     private void deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
         String lineName = inputDeleteLineName(scanner);
-        lineStation.deleteLineStation(LineRepository.findLine(lineName).get());
-        LineRepository.deleteLineByName(lineName);
+        lineStation.deleteLineStation(findLine(lineName));
+        deleteLineByName(lineName);
         printDeleteLineStationSuccessMessage();
     }
 

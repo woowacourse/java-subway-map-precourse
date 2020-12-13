@@ -45,11 +45,11 @@ class InputValidationTest {
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
 
         //when
-        Optional<Station> findStation1 = StationRepository.findStation("강남역");
-        Optional<Station> findStation2 = StationRepository.findStation("강북역");
+        Station findStation1 = StationRepository.findStation("강남역");
+        Station findStation2 = StationRepository.findStation("강북역");
 
         //then
-        assertThat(findStation1.orElse(null)).isNotNull();
-        assertThat(findStation2.orElse(null)).isNull();
+        assertThat(findStation1).isNotNull();
+        assertThat(findStation2).isNull();
     }
 }

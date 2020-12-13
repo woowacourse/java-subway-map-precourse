@@ -26,8 +26,8 @@ class LineStationRepositoryTest {
 
         int beforeSize = lineStation.getLineStationSize();
 
-        lineStation.addLineStation(line, StationRepository.findStation("서울역").get());
-        lineStation.addLineStation(line, StationRepository.findStation("부산역").get());
+        lineStation.addLineStation(line, StationRepository.findStation("서울역"));
+        lineStation.addLineStation(line, StationRepository.findStation("부산역"));
 
         //then
         int afterSize = lineStation.getLineStationSize();
@@ -41,7 +41,7 @@ class LineStationRepositoryTest {
         List<Line> oldLines = LineRepository.lines();
 
         //when
-        lineStation.deleteLineStation(LineRepository.findLine("2호선").get());
+        lineStation.deleteLineStation(LineRepository.findLine("2호선"));
 
         //then
         List<Line> newLines = LineRepository.lines();
@@ -59,7 +59,7 @@ class LineStationRepositoryTest {
 
         //when
         Station station = new Station("우와역");
-        Line line = LineRepository.findLine("2호선").get();
+        Line line = LineRepository.findLine("2호선");
         StationRepository.addStation(station);
         lineStation.addStationInLine(line, station, 1);
 
@@ -75,7 +75,7 @@ class LineStationRepositoryTest {
         printLineStation(lineStation.getLineStation());
 
         //when
-        Line line = LineRepository.findLine("3호선").get();
+        Line line = LineRepository.findLine("3호선");
         lineStation.deleteStationInLineByName(line, "남부터미널역");
 
         //then
@@ -89,11 +89,11 @@ class LineStationRepositoryTest {
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
 
         //when
-        Optional<Line> findLine = LineRepository.findLine("2호선");
+        Line findLine = LineRepository.findLine("2호선");
 
         //then
-        assertThat(findLine.orElse(null)).isNotNull();
-        assertThat(findLine.orElse(null).getName()).isEqualTo("2호선");
+        assertThat(findLine).isNotNull();
+        assertThat(findLine.getName()).isEqualTo("2호선");
     }
 
     @Test
@@ -102,10 +102,10 @@ class LineStationRepositoryTest {
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
 
         //when
-        Optional<Line> findLine = LineRepository.findLine("1호선");
+        Line findLine = LineRepository.findLine("1호선");
 
         //then
-        assertThat(findLine.orElse(null)).isNull();
+        assertThat(findLine).isNull();
         fail("등록된 노선 정보가 존재하지 않습니다.");
     }
 
@@ -124,8 +124,8 @@ class LineStationRepositoryTest {
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
 
         //when
-        Optional<Station> findStation = StationRepository.findStation("강남역");
-        boolean isContains = lineStation.findStationInLine(findStation.get());
+        Station findStation = StationRepository.findStation("강남역");
+        boolean isContains = lineStation.findStationInLine(findStation);
 
         //then
         assertThat(isContains).isTrue();
@@ -137,8 +137,8 @@ class LineStationRepositoryTest {
         LineStationRepository lineStation = new LineStationRepository(LineStationFactory.init());
         StationRepository.addStation(new Station("수원역"));
         //when
-        Optional<Station> findStation = StationRepository.findStation("수원역");
-        boolean isContains = lineStation.findStationInLine(findStation.get());
+        Station findStation = StationRepository.findStation("수원역");
+        boolean isContains = lineStation.findStationInLine(findStation);
 
         //then
         assertThat(isContains).isFalse();

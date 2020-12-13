@@ -17,10 +17,11 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Optional<Line> findLine(String name) {
+    public static Line findLine(String name) {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
-                .findAny();
+                .findAny()
+                .orElse(null);
     }
 
     public static void printLines() {

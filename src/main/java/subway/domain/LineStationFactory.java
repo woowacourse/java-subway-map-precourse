@@ -40,7 +40,7 @@ public class LineStationFactory {
 
     private static void initLineStation(Line line, String[] stationName) {
         for (String name : stationName) {
-            addLineStation(line, StationRepository.findStation(name).get());
+            addLineStation(line, StationRepository.findStation(name));
         }
     }
 
