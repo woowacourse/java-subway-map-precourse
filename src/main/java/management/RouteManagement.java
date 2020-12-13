@@ -1,9 +1,11 @@
 package management;
 
+import exception.NoneFunctionException;
 import input.Input;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 
 public class RouteManagement {
     public final static String INPUT_LINE_NAME = "## 노선을 입력하세요.";
@@ -15,14 +17,14 @@ public class RouteManagement {
     private static Line targetLine;
 
     public static void RouteManagement(String answer, Input input){
-        if(answer.equals("1")){
+        if (answer.equals("1")) {
             insert(input);
-        }
-        if(answer.equals("2")){
+        } else if (answer.equals("2")) {
             delete(input);
-        }
-        if(answer.equals("B")){
+        } else if (answer.equals("B")) {
             //
+        } else {
+            makeException();
         }
     }
     private static void insert(Input input){
@@ -43,12 +45,16 @@ public class RouteManagement {
     }
 
     private static void inputLine(Input input){
-        String name;
+        Station station;
         int order;
         System.out.println(INPUT_STATION_NAME);
-        name = input.inputStationName();
+        station = StationRepository.getStation(input.inputStationName());
         System.out.println(INPUT_ORDER);
         order = Integer.parseInt(input.inputOrder());
-        targetLine.addLineStation(order, new Station(name));//station 있어야 넣는거니까 오류 발생 가능
+        targetLine.addLineStation(order, station);//station 있어야 넣는거니까 오류 발생 가능
+    }
+
+    private static void makeException(){
+        throw new NoneFunctionException();
     }
 }
