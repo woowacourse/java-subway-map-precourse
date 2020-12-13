@@ -1,5 +1,8 @@
 package subway.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import subway.view.OutputView;
 
 public class Function {
@@ -16,8 +19,15 @@ public class Function {
     public static final String EXIT_MAIN_DECISION = "Q";
     public static final String EXIT_NON_MAIN_DECISION = "B";
 
+    private static final List<Integer> menuMaxDecisionCounts = new ArrayList<>(Arrays.asList(
+            MAX_MAIN_FUNCTION_DECISION,
+            MAX_STATION_FUNCTION_DECISION,
+            MAX_LINE_FUNCTION_DECISION,
+            MAX_SECTION_FUNCTION_DECISION
+    ));
+
     public static boolean isExitDecision(String functionDecision, int currentMenu) {
-        if(currentMenu == MAIN_MENU) {
+        if (currentMenu == MAIN_MENU) {
             return functionDecision.equalsIgnoreCase(EXIT_MAIN_DECISION);
         }
         return functionDecision.equalsIgnoreCase(EXIT_NON_MAIN_DECISION);
@@ -49,9 +59,6 @@ public class Function {
 
 
     private static int getMaxDecision(int currentMenu) {
-        if(currentMenu == MAIN_MENU) return MAX_MAIN_FUNCTION_DECISION;
-        if(currentMenu == STATION_MENU) return MAX_STATION_FUNCTION_DECISION;
-        if(currentMenu == LINE_MENU) return MAX_LINE_FUNCTION_DECISION;
-        return MAX_SECTION_FUNCTION_DECISION;
+        return menuMaxDecisionCounts.get(currentMenu);
     }
 }
