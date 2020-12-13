@@ -57,8 +57,8 @@ public class Constant {
     static final String ENTER_STATION_TO_DELETE = "삭제할 역 이름을 입력하세요.";
     static final String ENTER_LINE_TO_ADD = "등록할 노선 이름을 입력하세요.";
     static final String ENTER_LINE_TO_DELETE = "삭제할 노선 이름을 입력하세요.";
-    static final String ENTER_ASCENDING_LINE_TO_ADD = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    static final String ENTER_DESCENDING_LINE_TO_ADD = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    static final String ENTER_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    static final String ENTER_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     static final String ENTER_LINE_SECTION_TO_ADD = "노선을 입력하세요.";
     static final String ENTER_STATION_SECTION_TO_ADD = "역이름을 입력하세요.";
     static final String ENTER_ORDER_SECTION_TO_ADD = "순서를 입력하세요.";
