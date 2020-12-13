@@ -10,6 +10,8 @@ import subway.util.View;
 public class Subway {	
 	public static void run(Scanner scanner) {
 		View view = new View(scanner);
+		Initializer.run();
+		
 		while (true) {
 			view.main();
 		}
