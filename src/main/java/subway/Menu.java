@@ -125,6 +125,9 @@ public class Menu {
         if (subMenuAction.equals(LIST_SIGN)) {
             Line.printList(LINE_MENU_TITLE);
         }
+        if (subMenuAction.equals(BACK_SIGN)) {
+            MenuController.selectedMenus.clear();
+        }
         return true;
     }
 
