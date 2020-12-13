@@ -2,7 +2,9 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 import subway.validator.LineValidation;
+import subway.validator.StationValidation;
 import subway.view.InputView;
 import subway.view.lineoutput.LineInfoView;
 import subway.view.lineoutput.LineOutputView;
@@ -63,7 +65,29 @@ public class LineController {
         if (!validInput) {
             return false;
         }
+
+        LineOutputView.printUpTerminusInstruction();
+        String upTerminus = InputView.getInput(scanner);
+        validInput = StationValidation.checkIsInStationRepository(upTerminus);
+        if (!validInput) {
+            return false;
+        }
+
+        LineOutputView.printDownTerminusInstruction();
+        String downTerminus = InputView.getInput(scanner);
+        validInput = StationValidation.checkIsInStationRepository(downTerminus);
+        if (!validInput) {
+            return false;
+        }
+
+        validInput = LineValidation.checkSameTerminus(upTerminus, downTerminus);
+        if (!validInput) {
+            return false;
+        }
+
         Line newLine = new Line(userInputLine);
+        newLine.addStationsInLine(StationRepository.getStationByName(upTerminus));
+        newLine.addStationsInLine(StationRepository.getStationByName(downTerminus));
         LineRepository.addLine(newLine);
         LineInfoView.printRegisterInfo();
         return true;

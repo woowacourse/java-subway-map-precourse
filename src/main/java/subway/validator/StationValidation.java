@@ -49,14 +49,7 @@ public class StationValidation extends Validation {
         return true;
     }
 
-    public static boolean checkDeleteStationInput(String userInputStation) {
-        if(!checkIsInStationRepository(userInputStation)) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean checkIsInStationRepository(String userInputStation) {
+    public static boolean checkIsInStationRepository(String userInputStation) {
         try {
             if (!StationRepository.haveStation(userInputStation)) {
                 throw new UserInputException();

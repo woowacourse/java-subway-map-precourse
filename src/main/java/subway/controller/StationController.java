@@ -72,7 +72,7 @@ public class StationController {
     private static boolean deleteStation(Scanner scanner) {
         StationOutputView.printStationDeleteInstruction();
         String userInputStation = InputView.getInput(scanner);
-        boolean validInput = StationValidation.checkDeleteStationInput(userInputStation);
+        boolean validInput = StationValidation.checkIsInStationRepository(userInputStation);
         if (!validInput) {
             return false;
         }

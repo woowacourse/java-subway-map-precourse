@@ -1,6 +1,7 @@
 package subway.validator;
 
 import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 import subway.exception.UserInputException;
 import subway.view.lineoutput.LineErrorView;
 
@@ -63,6 +64,18 @@ public class LineValidation extends Validation {
             }
         } catch (UserInputException e) {
             LineErrorView.printNotInLineRepositoryError();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkSameTerminus(String upTerminus, String downTerminus) {
+        try {
+            if (upTerminus.equals(downTerminus)) {
+                throw new UserInputException();
+            }
+        } catch (UserInputException e) {
+            LineErrorView.printSameTerminusInputError();
             return false;
         }
         return true;

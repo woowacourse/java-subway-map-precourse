@@ -28,4 +28,13 @@ public class StationRepository {
         }
         return false;
     }
+
+    public static Station getStationByName(String name) {
+        for (Station station : stations) {
+            if(station.checkSameName(name)) {
+                return station;
+            }
+        }
+        return null;
+    }
 }
