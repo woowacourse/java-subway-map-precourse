@@ -1,6 +1,7 @@
 package subway;
 
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class Exception {
         input = isStation(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
+        input = isNotInLine(input);
         return input;
     }
 
@@ -60,7 +62,7 @@ public class Exception {
         input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
-        if(input.equals(firstStation)){
+        if (input.equals(firstStation)) {
             throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.FIRST_STATION_CANNOT_BE_LAST_STATION);
         }
         return input;
@@ -131,5 +133,20 @@ public class Exception {
             return name;
         }
         throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_LINE_LIST);
+    }
+
+    static String isNotInLine(String name) {
+        LineRepository.lines().forEach(line -> {
+            line.stations().forEach(station -> {
+                isStationNameSame(station, name);
+            });
+        });
+        return name;
+    }
+
+    static void isStationNameSame(Station station, String name) {
+        if (station.getName().equals(name)) {
+            throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_LINE);
+        }
     }
 }
