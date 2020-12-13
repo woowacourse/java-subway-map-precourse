@@ -15,31 +15,39 @@ public class LineService {
     private final String ASK_ADD_LINE_NAME = "등록할 노선 이름을 입력하세요.";
     private final String ASK_UP_STATION_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     private final String ASK_DOWN_STATION_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    private final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 이름입니다.\n";
+    private final String UPSTATION_NOT_EXIST_WARN = "존재하지 않는 상행종점역 입니다.\n";
+    private final String DOWNSTATION_NOT_EXIST_WARN = "존재하지 않는 하행종점역 입니다\n";
+    private final String BOTH_STATION_NOT_EXIST_WARN = "둘 다 존재하지 않는 역 입니다.\n";
     private final String UP_COMMAND = "UP";
     private final String DOWN_COMMAND = "DOWN";
+    private final int MIN_NAME_LENGTH = 2;
 
     public boolean addLine(InputView inputView) {
         askMessage(ASK_ADD_LINE_NAME);
         String lineName = inputView.inputName();
-        if (lineName.length() < 2) {
+        if (lineName.length() < MIN_NAME_LENGTH) {
             warnMessage(LINE_NAME_LENGTH_WARN);
             return false;
         }
         Station upStation = getStation(inputView, UP_COMMAND);
-        if (!stationExistValidate(upStation)) {
-            return stationExistValidate(upStation);
-        }
         Station downStation = getStation(inputView, DOWN_COMMAND);
-        if (!stationExistValidate(downStation)) {
-            return stationExistValidate(downStation);
+        if (!stationExistValidate(upStation, downStation)) {
+            return false;
         }
         return LineRepository.addLine(new Line(lineName, upStation, downStation));
     }
 
-    public boolean stationExistValidate(Station station) {
-        if (station == null) {
-            warnMessage(STATION_NOT_EXIST_WARN);
+    public boolean stationExistValidate(Station upStation, Station downStation) {
+        if (upStation == null && downStation == null) {
+            warnMessage(BOTH_STATION_NOT_EXIST_WARN);
+            return false;
+        }
+        if (downStation == null) {
+            warnMessage(DOWNSTATION_NOT_EXIST_WARN);
+            return false;
+        }
+        if (upStation == null) {
+            warnMessage(UPSTATION_NOT_EXIST_WARN);
             return false;
         }
         return true;
