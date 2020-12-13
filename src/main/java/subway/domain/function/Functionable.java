@@ -3,7 +3,7 @@ package subway.domain.function;
 import java.util.Arrays;
 import java.util.function.Function;
 
-import subway.domain.ManageController;
+import subway.controller.ManageController;
 import subway.view.InputView;
 import subway.view.OutputView;
 

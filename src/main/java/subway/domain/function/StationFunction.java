@@ -2,7 +2,7 @@ package subway.domain.function;
 
 import java.util.function.Function;
 
-import subway.domain.ManageController;
+import subway.controller.ManageController;
 
 public enum StationFunction implements Functionable {
     ADD("1", "역 등록", ManageController::addStation),

@@ -1,6 +1,6 @@
 package subway;
 
-import subway.domain.MainController;
+import subway.controller.MainController;
 
 public class Application {
     public static void main(String[] args) {

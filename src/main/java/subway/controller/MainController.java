@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.controller;
 
 import subway.domain.function.Functionable;
 import subway.domain.function.MainFunction;
