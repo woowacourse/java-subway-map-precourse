@@ -17,6 +17,8 @@ public class MenuController {
     private static final String EDGE_MANAGEMENT_SIGN = "3";
     private static final String LINE_MAP_SIGN = "4";
     private static final String QUIT_SIGN = "Q";
+    private static final int SUB_MENU_INDEX = 0;
+    private static final int SUB_MENU_ACTION_INDEX = 1;
     public static ArrayList<String> selectedMenus = new ArrayList<String>();
 
     private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
@@ -28,6 +30,23 @@ public class MenuController {
             put(QUIT_SIGN, Menu.quit);
         }
     };
+
+    public static void runMenus(InputView inputView) {
+        while (!checkRunStatus(inputView)) {
+            selectedMenus.remove(SUB_MENU_ACTION_INDEX);
+            scanSubMenu(inputView, mainMenu.get(selectedMenus.get(SUB_MENU_INDEX)));
+        }
+    }
+
+    private static boolean checkRunStatus(InputView inputView) {
+        try {
+            Menu.runMenu(inputView, selectedMenus);
+            return true;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 
     public static void scanMenu(InputView inputView) {
         String selectedMainMenu = scanMainMenu(inputView);

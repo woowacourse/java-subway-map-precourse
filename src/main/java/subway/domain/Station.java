@@ -20,19 +20,9 @@ public class Station {
     public static void add(InputView inputView, String stationMessage) {
         OutputView.printAddActionMessage(stationMessage);
         String newStationName = inputView.getInput();
-        if (isValidStationName(newStationName)) {
+        if (validateStationName(newStationName)) {
             Station newStation = new Station(newStationName);
             StationRepository.addStation(newStation);
-        }
-    }
-
-    private static boolean isValidStationName(String stationName) {
-        try{
-            validateStationName(stationName);
-            return true;
-        } catch (RuntimeException stationNameError) {
-            System.out.println(stationNameError.getMessage());
-            return false;
         }
     }
 
