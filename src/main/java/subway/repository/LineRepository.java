@@ -4,10 +4,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static subway.view.OutputView.*;
@@ -33,9 +30,10 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static boolean isLineExist(String lineName) {
-        return lines.stream()
-                .anyMatch(line -> line.getName().equals(lineName));
+    public static Line findLineByName(String lineName) {
+        Optional<Line> findLine = lines.stream()
+                .filter(line -> line.getName().equals(lineName)).findAny();
+        return findLine.orElse(null);
     }
 
     public static boolean isStationExistInLine(Station station) {
@@ -43,5 +41,10 @@ public class LineRepository {
                 .anyMatch(line -> line.getStationList()
                         .stream()
                         .anyMatch(Predicate.isEqual(station)));
+    }
+
+    public static boolean addSection(Line findLine, Station findStation, int orderNum) {
+        findLine.addSection(orderNum, findStation);
+        return true;
     }
 }

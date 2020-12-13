@@ -35,4 +35,13 @@ class LineRepositoryTest {
         assertFalse(LineRepository.addLine(line2));
     }
 
+    @Test
+    @DisplayName("구간을 추가할 수 있다")
+    public void addSectionTest() throws Exception{
+        Line line = new Line("bepoz", new Station("잠실역"), new Station("당산역"));
+        LineRepository.addSection(line, new Station("구간추가역"), 1);
+        line.getStationList()
+                .forEach(station -> System.out.println(station.getName()));
+    }
+
 }

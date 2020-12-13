@@ -20,6 +20,10 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public void addSection(int index, Station station) {
+        stationList.add(index, station);
+    }
+
     public void enrollStation(Station station){
         stationList.add(station);
     }

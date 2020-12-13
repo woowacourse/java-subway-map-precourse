@@ -12,4 +12,8 @@ public class InputView {
     public String inputName() {
         return scanner.nextLine().trim();
     }
+
+    public int inputNumber() {
+        return scanner.nextInt();
+    }
 }
