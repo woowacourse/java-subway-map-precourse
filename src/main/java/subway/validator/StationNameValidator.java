@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import subway.domain.StationName;
 
-public class StationNameValidator extends Validator {
+public final class StationNameValidator extends Validator {
 
     public static final String INPUT_LENGTH_MESSAGE = "입력하신 글자는 %d자 입니다.";
 
@@ -20,13 +20,13 @@ public class StationNameValidator extends Validator {
     private static final Pattern KOREAN_PATTERN = Pattern.compile("[가-힣]+");
 
     @Override
-    public void validate(String input) {
+    public void validate(final String input) {
         super.validate(input);
         checkRange(input);
         checkKorean(input);
     }
 
-    private void checkKorean(String input) {
+    private void checkKorean(final String input) {
         Matcher matcher = KOREAN_PATTERN.matcher(input);
 
         if (!matcher.matches()) {

@@ -29,8 +29,8 @@ public enum MainFunction implements Functionable {
 
     private final Function<ManageController, ManageController> function;
 
-    MainFunction(String identifier, String description,
-                 Function<ManageController, ManageController> function) {
+    MainFunction(final String identifier, final String description,
+                 final Function<ManageController, ManageController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;

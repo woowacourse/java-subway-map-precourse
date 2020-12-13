@@ -6,44 +6,44 @@ import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.domain.function.Functionable;
 
-public class OutputView {
+public final class OutputView {
 
-    public static final String FUNCTION_FORMAT = "%s. %s\n";
+    private static final String FUNCTION_FORMAT = "%s. %s\n";
 
-    public static final String MESSAGE_FORMAT = "%s %s\n";
+    private static final String MESSAGE_FORMAT = "%s %s\n";
 
-    public static final String LIST_FORMAT = "%s 목록";
+    private static final String LIST_FORMAT = "%s 목록";
 
-    public static final String VIEW_FORMAT = "%s 화면";
+    private static final String VIEW_FORMAT = "%s 화면";
 
-    public static final String SAVED_FORMAT = "지하철 %s이 등록되었습니다.";
+    private static final String SAVED_FORMAT = "지하철 %s이 등록되었습니다.\n";
 
-    public static final String REMOVED_FORMAT = "지하철 %s이 삭제되었습니다.";
+    private static final String REMOVED_FORMAT = "지하철 %s이 삭제되었습니다.\n";
 
-    public static final String TITLE_PREFIX = "##";
+    private static final String TITLE_PREFIX = "##";
 
-    public static final String SUCCESS_PREFIX = "[INFO]";
+    private static final String SUCCESS_PREFIX = "[INFO]";
 
-    public static final String SUBWAY_MAP = "지하철 노선도";
+    private static final String SUBWAY_MAP = "지하철 노선도";
 
-    public static final String HORIZONTAL_RULE = "---";
+    private static final String HORIZONTAL_RULE = "---";
 
     private OutputView() {}
 
-    public static void printSaved(String type) {
+    public static void printSaved(final String type) {
         printMessage(String.format(SAVED_FORMAT, type));
     }
 
-    public static void printRemoved(String type) {
+    public static void printRemoved(final String type) {
         printMessage(String.format(REMOVED_FORMAT, type));
     }
 
-    public static void printTitleAndStations(StationRepository stationRepository) {
+    public static void printTitleAndStations(final StationRepository stationRepository) {
         printTitle(String.format(LIST_FORMAT, ManageController.STATION));
         printStations(stationRepository);
     }
 
-    public static void printLines(LineRepository lineRepository) {
+    public static void printLines(final LineRepository lineRepository) {
         printTitle(String.format(LIST_FORMAT, ManageController.LINE));
 
         for (String lineName : lineRepository.lineNames()) {
@@ -53,7 +53,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printSubwayMap(LineRepository lineRepository) {
+    public static void printSubwayMap(final LineRepository lineRepository) {
         printTitle(SUBWAY_MAP);
 
         for (Line line : lineRepository.lines()) {
@@ -63,17 +63,18 @@ public class OutputView {
         }
     }
 
-    public static void printFunctions(String viewTitle, Functionable[] functionables) {
+    public static void printFunctions(final String viewTitle, final Functionable[] functionables) {
         printTitle(String.format(VIEW_FORMAT, viewTitle));
 
         for (Functionable functionable : functionables) {
-            System.out
-                    .printf(FUNCTION_FORMAT, functionable.getIdentifier(),
-                            functionable.getDescription());
+            System.out.printf(FUNCTION_FORMAT, functionable.getIdentifier(),
+                    functionable.getDescription());
         }
+
+        System.out.println();
     }
 
-    private static void printStations(StationRepository stationRepository) {
+    private static void printStations(final StationRepository stationRepository) {
         for (String stationName : stationRepository.stationNames()) {
             printMessage(stationName);
         }
@@ -81,11 +82,11 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printMessage(String message) {
+    private static void printMessage(final String message) {
         System.out.printf(MESSAGE_FORMAT, SUCCESS_PREFIX, message);
     }
 
-    private static void printTitle(String message) {
+    private static void printTitle(final String message) {
         System.out.printf(MESSAGE_FORMAT, TITLE_PREFIX, message);
     }
 }

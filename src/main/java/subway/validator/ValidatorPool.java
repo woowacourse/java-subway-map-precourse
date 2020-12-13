@@ -3,11 +3,11 @@ package subway.validator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ValidatorPool {
+public final class ValidatorPool {
 
     private ValidatorPool() {}
 
-    public static Validator getValidator(Class<? extends Validator> validator) {
+    public static Validator getValidator(final Class<? extends Validator> validator) {
         return ValidatorFactory.validatorPool.get(validator);
     }
 

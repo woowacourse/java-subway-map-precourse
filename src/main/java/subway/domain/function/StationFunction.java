@@ -24,8 +24,8 @@ public enum StationFunction implements Functionable {
 
     private final Function<ManageController, ManageController> function;
 
-    StationFunction(String identifier, String description,
-                    Function<ManageController, ManageController> function) {
+    StationFunction(final String identifier, final String description,
+                    final Function<ManageController, ManageController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;

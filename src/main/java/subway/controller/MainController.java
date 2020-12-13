@@ -3,7 +3,7 @@ package subway.controller;
 import subway.domain.function.Functionable;
 import subway.domain.function.MainFunction;
 
-public class MainController {
+public final class MainController {
 
     public void run() {
 

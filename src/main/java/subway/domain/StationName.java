@@ -3,8 +3,9 @@ package subway.domain;
 import java.util.Objects;
 
 import subway.validator.StationNameValidator;
+import subway.validator.ValidatorPool;
 
-public class StationName {
+public final class StationName {
 
     public static final int LENGTH_LOWER_BOUND = 2;
 
@@ -12,8 +13,8 @@ public class StationName {
 
     private final String name;
 
-    public StationName(String name) {
-        new StationNameValidator().validate(name);
+    public StationName(final String name) {
+        ValidatorPool.getValidator(StationNameValidator.class).validate(name);
 
         this.name = name;
     }

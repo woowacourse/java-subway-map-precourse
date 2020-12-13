@@ -25,8 +25,8 @@ public enum RangeFunction implements Functionable {
 
     private final Function<ManageController, ManageController> function;
 
-    RangeFunction(String identifier, String description,
-                  Function<ManageController, ManageController> function) {
+    RangeFunction(final String identifier, final String description,
+                  final Function<ManageController, ManageController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;

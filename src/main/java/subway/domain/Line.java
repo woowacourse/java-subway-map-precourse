@@ -2,7 +2,7 @@ package subway.domain;
 
 import java.util.Objects;
 
-public class Line {
+public final class Line {
 
     private final LineName name;
 
@@ -13,7 +13,7 @@ public class Line {
         this.stations = stations;
     }
 
-    public Line(String name, String... stations) {
+    public Line(final String name, final String... stations) {
         this.name = new LineName(name);
         this.stations = new StationRepository().addStations(stations);
     }
@@ -38,7 +38,7 @@ public class Line {
         return stations.contains(stationName);
     }
 
-    public boolean equalsName(String lineName) {
+    public boolean equalsName(final String lineName) {
         return name.equals(new LineName(lineName));
     }
 

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import subway.controller.ManageController;
 import subway.controller.ManageControllerTest;
 
 class StationRepositoryTest {

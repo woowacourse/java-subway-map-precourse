@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class LineRepository {
+public final class LineRepository {
 
     public static final String DUPLICATE_NAME_ERROR = "%s은 이미 존재하는 노선 이름입니다!";
 
@@ -27,7 +27,7 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public LineRepository addLine(String lineName, String... stations) {
+    public LineRepository addLine(final String lineName, final String... stations) {
         return addLine(new Line(lineName, stations));
     }
 
@@ -68,7 +68,7 @@ public class LineRepository {
         return lines.stream().map(Line::getName).collect(Collectors.toList());
     }
 
-    public List<String> getStationNamesByLineName(String lineName) {
+    public List<String> getStationNamesByLineName(final String lineName) {
         Line line = getLineByLineName(lineName);
 
         return line.getStations().stationNames();

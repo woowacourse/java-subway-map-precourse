@@ -2,11 +2,11 @@ package subway.domain;
 
 import java.util.Objects;
 
-public class Station {
+public final class Station {
 
     private final StationName stationName;
 
-    public Station(String name) {
+    public Station(final String name) {
         this.stationName = new StationName(name);
     }
 

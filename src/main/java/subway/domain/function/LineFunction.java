@@ -26,8 +26,8 @@ public enum LineFunction implements Functionable {
 
     private final Function<ManageController, ManageController> function;
 
-    LineFunction(String identifier, String description,
-                 Function<ManageController, ManageController> function) {
+    LineFunction(final String identifier, final String description,
+                 final Function<ManageController, ManageController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;

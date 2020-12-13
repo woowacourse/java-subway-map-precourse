@@ -8,13 +8,15 @@ import subway.validator.StationNameValidator;
 import subway.validator.Validator;
 import subway.validator.ValidatorPool;
 
-public class InputView {
+public final class InputView {
 
-    public static final String VIEW_PREFIX = "##";
+    private static final String MESSAGE_FORMAT = "%s %s\n";
+
+    private static final String VIEW_PREFIX = "##";
 
     private static final String FUNCTION_IDENTIFIER_QUESTION = "원하는 기능을 선택하세요.";
 
-    public static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
+    private static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
 
     private static final String START_STATION_NAME_QUESTION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
 
@@ -44,7 +46,7 @@ public class InputView {
         return inputStationName(FINAL_STATION_NAME_QUESTION);
     }
 
-    public static String inputStationName(String message) {
+    public static String inputStationName(final String message) {
         String stationName = input(message, StationNameValidator.class);
 
         if (!stationName.endsWith(StationNameValidator.STATION_SUFFIX)) {
@@ -68,7 +70,8 @@ public class InputView {
         return Integer.parseInt(input(STATION_QUESTION, IndexValidator.class));
     }
 
-    private static String input(String message, Class<? extends Validator> validatorClass) {
+    private static String input(final String message,
+                                final Class<? extends Validator> validatorClass) {
         printQuestionAddedPrefix(message);
 
         String input = scanner.nextLine();
@@ -82,8 +85,9 @@ public class InputView {
         return input;
     }
 
-    private static boolean isValid(String input, Class<? extends Validator> validatorClass) {
-        Validator validator = ValidatorPool.getValidator(validatorClass);
+    private static boolean isValid(final String input,
+                                   final Class<? extends Validator> validatorClass) {
+        final Validator validator = ValidatorPool.getValidator(validatorClass);
 
         try {
             validator.validate(input);
@@ -95,7 +99,7 @@ public class InputView {
         return true;
     }
 
-    private static void printQuestionAddedPrefix(String message) {
-        System.out.printf("\n%s %s\n", VIEW_PREFIX, message);
+    private static void printQuestionAddedPrefix(final String message) {
+        System.out.printf(MESSAGE_FORMAT, VIEW_PREFIX, message);
     }
 }

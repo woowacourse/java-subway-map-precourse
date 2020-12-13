@@ -17,8 +17,9 @@ public interface Functionable {
 
     boolean equalsIdentifier(String identifier);
 
-    static ManageController function(ManageController manageController, String viewTitle,
-                                     Functionable[] functionables) {
+    static ManageController function(final ManageController manageController,
+                                     final String viewTitle,
+                                     final Functionable[] functionables) {
         OutputView.printFunctions(viewTitle, functionables);
 
         String identifier = InputView.inputFunctionIdentifier();
