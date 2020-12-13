@@ -33,12 +33,12 @@ public class SectionManageInput {
         throw new IllegalArgumentException();
     }
 
-    public String inputLine(Scanner scanner) throws IllegalArgumentException{
+    public Line inputLine(Scanner scanner) throws IllegalArgumentException{
         String lineName = scanner.next();
         Optional<Line> searchedLine =LineRepository.lines()
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();
         if (searchedLine.isPresent()) {
-            return lineName;
+            return searchedLine.get();
         }
         //해당 노선 이름이 존재하지 않는다는 메시지
         throw new IllegalArgumentException();
@@ -56,12 +56,13 @@ public class SectionManageInput {
     }
 
     public int inputStationOrder(Scanner scanner) throws IllegalArgumentException{
-        String stationOrder = scanner.next();
+        String order = scanner.next();
         try {
-            return Integer.parseInt(stationOrder) - NUMBER_MINUS_INDEX;
+            return Integer.parseInt(order);
         } catch (NumberFormatException numberFormatException) {
-            //자연수를 입력하라는 메시지 출력
+            //자연수를 입력하라는 메시지
             throw new IllegalArgumentException();
         }
+
     }
 }

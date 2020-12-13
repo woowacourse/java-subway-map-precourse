@@ -27,8 +27,8 @@ public class Line {
         return stations;
     }
 
-    public void addOrderedStation(Station station, String order) {
-        int orderIndex = Integer.parseInt(order) - 1;
+    public void addOrderedStation(Station station, int order) {
+        int orderIndex = order - 1;
         if (StationRepository.stations().contains(station)) {
             stations.add(orderIndex, station);
         }
