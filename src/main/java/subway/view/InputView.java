@@ -22,4 +22,10 @@ public class InputView {
         String user_input = scanner.nextLine();
         return user_input;
     }
+
+    public static String LineNameInsertInput() {
+        System.out.println("## 등록할 노선 이름을 입력하세요.");
+        String user_input = scanner.nextLine();
+        return user_input;
+    }
 }

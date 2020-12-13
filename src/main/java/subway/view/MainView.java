@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.LineRepository;
 import subway.tool.InputTool;
 
 public class MainView {
@@ -8,7 +9,6 @@ public class MainView {
     public static boolean MainMenu() {
         showView();
         String user_input = InputView.mainInput();
-        System.out.println(user_input + "??");
         if (InputTool.isMainInputVaild(user_input) == false) {
             OutputView.printError(ERROR_MESSAGE);
         }
@@ -29,5 +29,7 @@ public class MainView {
 
     protected static void nextMenu(int menu) {
         if (menu == 1) StationManagementView.StationMenu();
+        if (menu == 2) LineManagementView.LineManagementMenu();
+        if (menu == 4) LineRepository.lookUpStationOfLine();
     }
 }

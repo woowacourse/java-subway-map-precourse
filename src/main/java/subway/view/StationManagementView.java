@@ -21,7 +21,7 @@ public class StationManagementView {
     protected static boolean nextMenu(int menu) {
         if (menu == 1) {
             String user_input = InputView.stationInsertInput();
-            return StationRepository.addStation(user_input);
+            return StationRepository.isPossibleStation(user_input);
         }
         if (menu == 2) {
             String user_input = InputView.stationDeleteInput();
