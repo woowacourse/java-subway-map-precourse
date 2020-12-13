@@ -17,8 +17,7 @@ public class StationSetting {
                 Print.infoMessage(Constant.ADD_STATION_DONE);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.printf(e.getMessage() + "%n");
             }
         }
     }
@@ -34,8 +33,7 @@ public class StationSetting {
                 Print.infoMessage(Constant.DELETE_STATION_DONE);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.printf(e.getMessage() + "%n");
             }
         }
     }
