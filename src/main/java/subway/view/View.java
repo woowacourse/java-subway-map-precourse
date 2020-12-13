@@ -28,8 +28,13 @@ public class View {
     }
     
     public String askStationName(ActionType actionType) {
+        String userStationName;
+        
         outputView.printAskMessage(EntityType.STATION, actionType);
-        return inputView.userInput();
+        userStationName = inputView.userInput();
+        outputView.printEmptyLine();
+        
+        return userStationName;
     }
     
     public void printMessage(String message) {
