@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.line.model.Line;
 import subway.domain.line.model.LineRepository;
+import subway.domain.station.model.Station;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,8 +34,13 @@ class LineServiceTest {
     void testFindAll(String input, int lineNumber) {
         //given
         String[] lineNames = input.split(",");
+        String stationNames = "시청역,서울역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+
         Arrays.stream(lineNames)
-                .map(Line::new)
+                .map(name -> new Line(name, stations))
                 .forEach(LineRepository::addLine);
 
         //when
@@ -42,7 +48,7 @@ class LineServiceTest {
 
         //then
         List<Line> expectedLines = Arrays.stream(lineNames)
-                .map(Line::new)
+                .map(name -> new Line(name, stations))
                 .collect(Collectors.toList());
         assertAll(
                 () -> assertThat(lines)
@@ -59,7 +65,11 @@ class LineServiceTest {
     })
     void testSave(String lineName) {
         //when
-        Line line = new Line(lineName);
+        String stationNames = "시청역,서울역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(lineName, stations);
 
         //when
         LineService.save(line);
@@ -81,13 +91,18 @@ class LineServiceTest {
     }, delimiter = ':')
     void testSaveIfDuplicatedLineName(String input, String newLineName) {
         //given
+        String stationNames = "시청역,서울역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+
         String[] lineNames = input.split(",");
         Arrays.stream(lineNames)
-                .map(Line::new)
+                .map(name -> new Line(name, stations))
                 .forEach(LineRepository::addLine);
 
         //when //then
-        assertThatThrownBy(() -> LineService.save(new Line(newLineName)))
+        assertThatThrownBy(() -> LineService.save(new Line(newLineName, stations)))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -99,11 +114,16 @@ class LineServiceTest {
     }, delimiter = ':')
     void testRemove(String input, String removedLineName, int expectedLinesNumber) {
         //given
+        String stationNames = "시청역,서울역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+
         String[] lineNames = input.split(",");
         Arrays.stream(lineNames)
-                .map(Line::new)
+                .map(name -> new Line(name, stations))
                 .forEach(LineRepository::addLine);
-        Line removedLine = new Line(removedLineName);
+        Line removedLine = new Line(removedLineName, stations);
 
         //when
         LineService.remove(removedLine);
@@ -114,7 +134,7 @@ class LineServiceTest {
         assertAll(
                 () -> assertThat(lines).hasSize(expectedLinesNumber),
                 () -> assertThat(lines).usingElementComparatorOnFields("name")
-                        .doesNotContain(new Line(removedLineName))
+                        .doesNotContain(new Line(removedLineName, stations))
         );
     }
 }
