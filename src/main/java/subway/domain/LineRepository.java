@@ -17,6 +17,7 @@ public class LineRepository {
     public static void addLine(Line line) {
         checkOverlappedLine(line);
         lines.add(line);
+        Collections.sort(lines);
     }
 
     public static boolean deleteLineByName(String name) {

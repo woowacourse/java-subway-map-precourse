@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
+public class Line implements Comparable<Line> {
     private static final int ZERO_NUMBER = 0;
     private static final int HUMAN_NUMBER_CALIBRATION = 1;
     private static final int NAME_LIMIT_LENGTH = 2;
@@ -37,7 +37,7 @@ public class Line {
 
     public void insertStation(int location, Station station) {
         checkOverlappedStation(station);
-        stations.add(location-HUMAN_NUMBER_CALIBRATION, station);
+        stations.add(location - HUMAN_NUMBER_CALIBRATION, station);
     }
 
     public static boolean deleteStation(String name) {
@@ -64,5 +64,10 @@ public class Line {
         if (stations.size() <= 2) {
             throw new IllegalArgumentException(LACK_STATION_NUMBER_ERROR);
         }
+    }
+
+    @Override
+    public int compareTo(Line line) {
+        return this.name.compareTo(line.name);
     }
 }

@@ -17,6 +17,7 @@ public class StationRepository {
     public static void addStation(Station station) {
         checkOverlappedStation(station);
         stations.add(station);
+        Collections.sort(stations);
     }
 
     public static boolean deleteStation(String name) {
