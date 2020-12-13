@@ -18,9 +18,6 @@ public class StationRepository {
     }
 
     public static void remove(Station station) {
-        if (station.isOnLine()) {
-            throw new IllegalArgumentException("노선에 등록된 역은 제거할 수 없습니다.");
-        }
         stations.remove(station);
     }
 

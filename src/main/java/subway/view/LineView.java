@@ -16,7 +16,8 @@ public class LineView {
 
     public static LineView getInstance(Scanner scanner) {
         if (lineView == null) {
-            return new LineView(scanner);
+            lineView = new LineView(scanner);
+            return lineView;
         }
         return lineView;
     }
