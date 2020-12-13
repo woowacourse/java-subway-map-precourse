@@ -54,6 +54,11 @@ public final class StationRepository {
     }
 
     public StationRepository removeStation(final String stationName) {
+        return remove(stationName);
+    }
+
+    public StationRepository removeStation(final String stationName,
+                                           final LineRepository lineRepository) {
         boolean canRemove = stations.size() > MINIMUM_STATION_SIZE;
 
         if (!canRemove) {
@@ -61,11 +66,6 @@ public final class StationRepository {
                     String.format(TOO_LESS_STATIONS_ERROR, MINIMUM_STATION_SIZE));
         }
 
-        return remove(stationName);
-    }
-
-    public StationRepository removeStation(final String stationName,
-                                           final LineRepository lineRepository) {
         if (lineRepository.contains(stationName)) {
             throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
         }
