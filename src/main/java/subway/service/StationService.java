@@ -11,7 +11,6 @@ import subway.view.output.station.StationInformationView;
 import subway.view.output.ScreenView;
 import subway.view.output.station.StationTextView;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class StationService implements FeatureChoiceInterface, FeatureInterface {

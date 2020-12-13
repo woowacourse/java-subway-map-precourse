@@ -18,6 +18,11 @@ public class StationExceptionView {
         System.out.println(ExceptionType.INVALID_STATION_NAME_LAST_CHARACTER.getException());;
     }
 
+    public static void printInvalidStationNameInTransitMapException() {
+        System.out.println();
+        System.out.println(ExceptionType.INVALID_STATION_NAME_IN_TRANSIT_MAP.getException());
+    }
+
     public static void printInvalidStationNameExistenceException() {
         System.out.println();
         System.out.println(ExceptionType.INVALID_STATION_NAME_EXISTENCE.getException());
