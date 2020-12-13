@@ -3,6 +3,7 @@ package output;
 import input.Input;
 import output.screen.MainScreen;
 import output.screen.ManagementScreen;
+import subway.BasicData;
 
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class ScreenManager {
     public ScreenManager(Scanner scanner){
         this.scanner = scanner;
         input = new Input(scanner);
+        BasicData.setBasicData();
     }
 
     public void startMainScreen(){
@@ -45,8 +47,8 @@ public class ScreenManager {
 
     private void handleManagementException(ManagementScreen managementScreen){
         while(true) {
+            managementScreen.visualize();
             try {
-                managementScreen.visualize();
                 managementScreen.logic(input);
                 break;
             } catch (Exception e) {
