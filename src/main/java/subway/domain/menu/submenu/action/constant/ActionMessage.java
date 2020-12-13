@@ -12,4 +12,5 @@ public class ActionMessage {
     public static final String INPUT_DELETE_NAME = "이름을 입력하세요.";
     public static final String SUCCESS_DELETE = "삭제되었습니다.";
 
+    public static final String VIEW_MESSAGE = "목록";
 }
