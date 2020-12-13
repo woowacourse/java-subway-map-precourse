@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
+
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -49,5 +50,15 @@ public class LineRepository {
             }
         }
         return null;
+    }
+
+    public static Boolean hasStationInLine(String stationName) {
+        for (Line line : lines()) {
+            Sections sections = line.getSections();
+            if (sections.hasStationInSection(stationName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

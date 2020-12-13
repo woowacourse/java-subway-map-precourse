@@ -1,5 +1,6 @@
 package subway.domain;
 
+import static subway.resource.TextResource.ERROR_DELETE_STATION_IN_LINE;
 import static subway.resource.TextResource.ERROR_STATION_NAME_DUPLICATED;
 import static subway.resource.TextResource.ERROR_STATION_NAME_LENGTH;
 
@@ -25,6 +26,9 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (LineRepository.hasStationInLine(name)) {
+            throw new IllegalArgumentException(ERROR_DELETE_STATION_IN_LINE);
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

@@ -1,6 +1,7 @@
 package subway.view;
 
 import static subway.resource.TextResource.ASK_ADD_STATION_NAME;
+import static subway.resource.TextResource.ASK_DELETE_STATION_NAME;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_STATION_ADD;
 import static subway.resource.TextResource.FUNCTION_STATION_DELETE;
@@ -54,6 +55,7 @@ public class StationManagementView extends View {
         }
 
         if (KEY_DELETE_STATION.equals(selection)) {
+            deleteStation();
             return;
         }
 
@@ -65,6 +67,13 @@ public class StationManagementView extends View {
         System.out.println(ASK_ADD_STATION_NAME);
         String name = scanner.nextLine();
         StationManagementController.getInstance().addStation(name);
+        onBackListener.onBack();
+    }
+
+    private void deleteStation() {
+        System.out.println(ASK_DELETE_STATION_NAME);
+        String name = scanner.nextLine();
+        StationManagementController.getInstance().deleteStation(name);
         onBackListener.onBack();
     }
 

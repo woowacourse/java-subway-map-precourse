@@ -20,6 +20,10 @@ public class TextResource {
         = String.format(PREFIX_ERROR + "노선의 이름은 %d 글자 이상이어야 합니다.",
         MIN_LINE_NAME_LENGTH);
 
+    public static final String ERROR_DELETE_STATION_IN_LINE = PREFIX_ERROR
+        + "노선에 등록된 역은 삭제 할 수 없습니다.";
+
+
     public static final String ERROR_NOT_EXISTENCE_STATION = PREFIX_ERROR
         + "등록하려는 역이 존재 하지 않습니다.";
 

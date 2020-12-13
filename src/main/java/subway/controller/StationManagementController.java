@@ -26,6 +26,6 @@ public class StationManagementController {
     }
 
     public void deleteStation(String name) {
-
+        StationRepository.deleteStation(name);
     }
 }
