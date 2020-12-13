@@ -44,7 +44,7 @@ public class SectionManageInput {
         throw new IllegalArgumentException();
     }
 
-    public Station inputSectionEnrollStation(Scanner scanner) throws IllegalArgumentException{
+    public Station inputStation(Scanner scanner) throws IllegalArgumentException{
         String sectionStation = scanner.next();
         Optional<Station> searchedStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(sectionStation)).findAny();
