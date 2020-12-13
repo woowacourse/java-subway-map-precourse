@@ -22,6 +22,10 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static void deleteLineInStation(String lineName){
+        getLine(lineName).deleteLineStation(lineName);
+    }
+
     public static Line getLine(String name){
         for(Line line : lines()){
             if(line.getName().equals(name))

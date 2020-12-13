@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    public final static String ENROLL_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
     public final static String UP_LINE_NAME = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public final static String DOWN_LINE_NAME = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 
     private String name;
 
-    private static final List<Station> lineStations = new ArrayList<>();
+    private final List<Station> lineStations = new ArrayList<>();
 
     public Line(String name) {
         if(!LineRepository.isLine(name)){
@@ -41,6 +40,7 @@ public class Line {
         }if(!checkLineStation(station.getName())){
             throw new AlreadyExistNameException();
         }
+        station.setLines(this.name);
         lineStations.add(station);
     }
 
@@ -57,20 +57,21 @@ public class Line {
         if(index == 0){
             throw new UpLineStationException();
         }
+        station.setLines(this.name);
         lineStations.add(index, station);
     }
 
-    public boolean deleteLineStation(String name){
-        if(checkLineStation(name))
-            throw new NoExistStationNameException();
-        return lineStations.removeIf(station -> Objects.equals(station.getName(), name));
+    public void deleteLineStation(String name){
+        for(Station station : lineStations){
+            station.deleteLines(name);
+        }
     }
 
     public void makeLine(Input input){
         System.out.println(UP_LINE_NAME);
-        this.addLineStation(new Station(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
+        this.addLineStation(StationRepository.getStation(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
         System.out.println(DOWN_LINE_NAME);
-        this.addLineStation(new Station(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
+        this.addLineStation(StationRepository.getStation(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
         LineRepository.addLine(this);
     }
 

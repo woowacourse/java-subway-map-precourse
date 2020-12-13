@@ -1,5 +1,8 @@
 package management;
 
+import exception.AlreadyExistNameException;
+import exception.NoneFunctionException;
+import exception.NullRepositoryException;
 import input.Input;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -17,39 +20,43 @@ public class LineManagement {
     public static void lineManagement(String answer, Input input){
         if(answer.equals("1")){
             insert(input);
-        }
-        if(answer.equals("2")){
+        }else if(answer.equals("2")){
             delete(input);
-        }
-        if(answer.equals("3")){
+        } else if(answer.equals("3")){
             allList();
-        }
-        if(answer.equals("B")){
+        } else if(answer.equals("B")){
             //
+        } else{
+            makeException();
         }
-        //여기 포함 안되면 오류 발생
     }
 
     private static void insert(Input input){
         System.out.println(ENROLL_LINE_NAME);
         Line line = new Line(input.inputLineName());
-        System.out.println(UP_LINE_NAME);
-        line.addLineStation(new Station(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
-        System.out.println(DOWN_LINE_NAME);
-        line.addLineStation(new Station(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
-        LineRepository.addLine(line);
-        System.out.println(INFO+ENROLL_COMPLETE);
+        line.makeLine(input);
     }
 
     private static void delete(Input input){
         System.out.println(DELETE_LINE_NAME);
-        LineRepository.deleteLineByName(input.inputLineName());
+        String lineName = input.inputLineName();
+        LineRepository.deleteLineInStation(lineName);
+        if(!LineRepository.deleteLineByName(lineName)){
+            throw new NullRepositoryException();
+        }
     }
 
     private static void allList(){
         System.out.println(LINE_LIST);
+        if(LineRepository.lines().size() == 0){
+            throw new NullRepositoryException();
+        }
         for(Line line : LineRepository.lines()){
             System.out.println(INFO + line.getName());
         }
+    }
+
+    private static void makeException(){
+        throw new NoneFunctionException();
     }
 }

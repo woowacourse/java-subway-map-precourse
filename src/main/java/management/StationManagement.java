@@ -1,6 +1,8 @@
 package management;
 
 import exception.NoExistStationNameException;
+import exception.NoneFunctionException;
+import exception.NullRepositoryException;
 import input.Input;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -13,17 +15,15 @@ public class StationManagement {
     public static void stationManagement(String answer, Input input){
         if(answer.equals("1")){
             insert(input);
-        }
-        if(answer.equals("2")){
+        }else if(answer.equals("2")){
             delete(input);
-        }
-        if(answer.equals("3")){
+        } else if(answer.equals("3")){
             allList();
-        }
-        if(answer.equals("B")){
+        } else if(answer.equals("B")){
             //
+        } else{
+            makeException();
         }
-        //나머지면은 오류 발생.
     }
 
     private static void insert(Input input){
@@ -41,11 +41,15 @@ public class StationManagement {
     private static void allList(){
         //리스트가 없으면 말해주기
         if(StationRepository.stations().size() == 0){
-            throw new IllegalArgumentException();
+            throw new NullRepositoryException();
         }
         for(Station station : StationRepository.stations()){
             System.out.println(INFO + station.getName());
         }
         System.out.println();
+    }
+
+    private static void makeException(){
+        throw new NoneFunctionException();
     }
 }

@@ -1,6 +1,8 @@
 package subway.domain;
 
 import exception.AlreadyExistNameException;
+import exception.NoExistStationNameException;
+import exception.UsedStationException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +24,9 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if(getStation(name).isLineStation()){
+            throw new UsedStationException();
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
@@ -32,5 +37,13 @@ public class StationRepository {
             }
         }
         return true;
+    }
+
+    public static Station getStation(String name){
+        for(Station station : stations()){
+            if(station.getName().equals(name))
+                return station;
+        }
+        throw new NoExistStationNameException();
     }
 }
