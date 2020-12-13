@@ -5,6 +5,8 @@ import subway.common.print.Prefix;
 public class SectionManagementErrorPrinter {
     private static final String STATION_ALREADY_EXISTS_IN_LINE_ERROR_MESSAGE
         = "\n" + Prefix.ERROR_PREFIX + "선택한 노선에 선택한 역이 이미 존재합니다.";
+    private static final String ORDER_NOT_NUMBER_ERROR_MESSAGE
+        = "\n" + Prefix.ERROR_PREFIX + "숫자만 입력할 수 있습니다.";
     private static final String ORDER_RANGE_ERROR_MESSAGE
         = "\n" + Prefix.ERROR_PREFIX + "범위에서 벗어난 순서 입니다.";
     private static final String NO_MORE_THAN_TWO_STATIONS_EXISTS_IN_LINE_ERROR_MESSAGE
@@ -14,6 +16,10 @@ public class SectionManagementErrorPrinter {
 
     public static void printStationAlreadyExistsInLineErrorMessage() {
         System.out.println(STATION_ALREADY_EXISTS_IN_LINE_ERROR_MESSAGE);
+    }
+
+    public static void printOrderNotNumberErrorMessage() {
+        System.out.println(ORDER_NOT_NUMBER_ERROR_MESSAGE);
     }
 
     public static void printOrderRangeErrorMessage() {

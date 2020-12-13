@@ -38,13 +38,13 @@ public class Initializer {
 
     private static void registerSections() {
         LineStationMappingRepository
-            .registerNewSection(LINE_2, GANGNAM_STATION, SECOND_ORDER);
+            .registerNewSectionByName(LINE_2, GANGNAM_STATION, SECOND_ORDER);
         LineStationMappingRepository
-            .registerNewSection(LINE_3, YANGJAE_STATION, SECOND_ORDER);
+            .registerNewSectionByName(LINE_3, YANGJAE_STATION, SECOND_ORDER);
         LineStationMappingRepository
-            .registerNewSection(LINE_3, NAMBU_TERMINAL_STATION, SECOND_ORDER);
+            .registerNewSectionByName(LINE_3, NAMBU_TERMINAL_STATION, SECOND_ORDER);
         LineStationMappingRepository
-            .registerNewSection(SINBUNDANG_LINE, YANGJAE_STATION, SECOND_ORDER);
+            .registerNewSectionByName(SINBUNDANG_LINE, YANGJAE_STATION, SECOND_ORDER);
     }
 
     private static void registerLines() {

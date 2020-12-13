@@ -46,7 +46,14 @@ public class LineStationMappingRepository {
         LineRepository.deleteLineByName(lineNameToDeleteInput);
     }
 
-    public static void registerNewSection(String lineNameToRegisterSection,
+    public static void registerNewSectionByLineAndStation(Line lineToRegisterSection,
+        Station stationToRegisterSection, int orderToRegisterSection) {
+        List<Station> stationsToRegisterNewSection = lineStationMapping.get(lineToRegisterSection);
+        stationsToRegisterNewSection
+            .add(orderToRegisterSection - 1, stationToRegisterSection);
+    }
+
+    public static void registerNewSectionByName(String lineNameToRegisterSection,
         String stationNameToRegisterSection, String orderToRegisterSection) {
         Line lineToRegisterSection = LineRepository.findByName(lineNameToRegisterSection);
         Station stationToRegisterSection = StationRepository
@@ -86,5 +93,19 @@ public class LineStationMappingRepository {
 
     private static boolean isStationNameInLine(List<Station> stations, String stationName) {
         return stations.stream().map(Station::getName).anyMatch(name -> name.equals(stationName));
+    }
+
+    public static int lineSize(Line line) {
+        return lineStationMapping.get(line).size();
+    }
+
+    public static boolean isStationRegisteredInThatLine(Station stationToRegisterSection,
+        Line lineToRegisterSection) {
+        for (Station stationInLine : lineStationMapping.get(lineToRegisterSection)) {
+            if (stationInLine.getName().equals(stationToRegisterSection.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
