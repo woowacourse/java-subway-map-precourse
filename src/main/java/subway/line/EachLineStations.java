@@ -1,6 +1,7 @@
 package subway.line;
 
 import subway.station.Station;
+import subway.station.StationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +28,10 @@ public class EachLineStations {
             }
         }
         return false;
+    }
+
+    public void addSection(String stationName, int sectionNumber) {
+        Station station = StationService.findStation(stationName);
+        stations.add(sectionNumber, station);
     }
 }

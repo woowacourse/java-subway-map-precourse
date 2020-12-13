@@ -37,5 +37,8 @@ public class SubwayController {
         if (option == LINE_MANAGEMENT) {
             LineController.lineManagement(mainInputView);
         }
+        if (option == SECTION_MANAGEMENT) {
+            LineController.sectionManagement(mainInputView);
+        }
     }
 }

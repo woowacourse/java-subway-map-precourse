@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class StationInputView {
     private static final String ENTER_NEW_STATION = "## 등록할 역 이름을 입력하세요.";
     private static final String ENTER_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
+    private static final String ENTER_REGISTERED_STATION = "## 역이름을 입력하세요.";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
 
@@ -21,6 +22,11 @@ public class StationInputView {
 
     public String deleteStation() {
         System.out.println(ENTER_DELETE_STATION);
+        return enterStationName();
+    }
+
+    public String stationName() {
+        System.out.println(ENTER_REGISTERED_STATION);
         return enterStationName();
     }
 

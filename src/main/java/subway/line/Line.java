@@ -36,4 +36,8 @@ public class Line {
     public boolean isRegistered(String name) {
         return stations.isRegistered(name);
     }
+
+    public void addSection(String stationName, int sectionNumber) {
+        stations.addSection(stationName, sectionNumber);
+    }
 }

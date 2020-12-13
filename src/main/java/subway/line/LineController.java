@@ -3,7 +3,7 @@ package subway.line;
 import subway.line.view.LineInputView;
 import subway.line.view.LineOutputView;
 import subway.main.view.MainInputView;
-import subway.station.Station;
+import subway.station.view.StationInputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,15 +14,40 @@ public class LineController {
     private static final char DELETE_LINE = '2';
     private static final char PRINT_LINE = '3';
     private static final char GO_BACK = 'B';
+    private static final char ADD_SECTION = '1';
+    private static final char DELETE_SECTION = '2';
 
     public static void lineManagement(MainInputView mainInputView) {
         List<Character> optionList = Arrays.asList(ADD_LINE, DELETE_LINE, PRINT_LINE, GO_BACK);
 
         LineOutputView.printLineManagement();
-        selectOption(mainInputView.selectOption(optionList), mainInputView.getScanner());
+        selectLineManagementOption(mainInputView.selectOption(optionList), mainInputView.getScanner());
     }
 
-    private static void selectOption(char option, Scanner scanner) {
+    public static void sectionManagement(MainInputView mainInputView) {
+        List<Character> optionList = Arrays.asList(ADD_SECTION, DELETE_SECTION, GO_BACK);
+
+        LineOutputView.printSectionManagement();
+        selectSectionManagementOption(mainInputView.selectOption(optionList), mainInputView.getScanner());
+    }
+
+    private static void selectSectionManagementOption(char option, Scanner scanner) {
+        LineInputView lineInputView = new LineInputView(scanner);
+        StationInputView stationInputView = new StationInputView(scanner);
+
+        if (option == ADD_SECTION) {
+            addNewSection(lineInputView, stationInputView);
+        }
+    }
+
+    private static void addNewSection(LineInputView lineInputView, StationInputView stationInputView) {
+        String lineName = lineInputView.lineName();
+        String stationName = stationInputView.stationName();
+        int sectionNumber = lineInputView.sectionNumber();
+        LineService.addSection(lineName, stationName, sectionNumber);
+    }
+
+    private static void selectLineManagementOption(char option, Scanner scanner) {
         LineInputView lineInputView = new LineInputView(scanner);
 
         if (option == ADD_LINE) {

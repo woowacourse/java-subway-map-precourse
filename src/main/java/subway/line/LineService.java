@@ -7,6 +7,8 @@ import subway.station.Station;
 import subway.station.StationService;
 import subway.station.validation.CheckLastLetter;
 
+import java.util.List;
+
 public class LineService {
     public static void addLine(String lineName, LineInputView lineInputView) {
         try {
@@ -42,5 +44,26 @@ public class LineService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void addSection(String lineName, String stationName, int sectionNumber) {
+        Line line = findLine(lineName);
+        line.addSection(stationName, sectionNumber);
+        LineOutputView.addSectionComplete();
+    }
+
+    public static Line findLine(String lineName) {
+        List<Line> lines = LineRepository.lines();
+        Line findLine = null;
+
+        for (Line line : lines) {
+            String name = line.getName();
+            if (name.equals(lineName)) {
+                findLine = line;
+                break;
+            }
+        }
+
+        return findLine;
     }
 }
