@@ -1,10 +1,10 @@
 package subway.view;
 
-import subway.domain.Functionable;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.ManageController;
 import subway.domain.StationRepository;
+import subway.domain.function.Functionable;
 
 public class OutputView {
 
@@ -58,7 +58,8 @@ public class OutputView {
 
         for (Functionable functionable : functionables) {
             System.out
-                    .printf("%s. %s\n", functionable.getIdentifier(), functionable.getDescription());
+                    .printf("%s. %s\n", functionable.getIdentifier(),
+                            functionable.getDescription());
         }
     }
 

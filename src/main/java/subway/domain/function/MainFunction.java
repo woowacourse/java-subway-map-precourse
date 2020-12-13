@@ -1,6 +1,8 @@
-package subway.domain;
+package subway.domain.function;
 
 import java.util.function.Function;
+
+import subway.domain.ManageController;
 
 public enum MainFunction implements Functionable {
     STATION("1", StationFunction.TITLE,

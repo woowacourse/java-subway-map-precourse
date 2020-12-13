@@ -1,5 +1,8 @@
 package subway.domain;
 
+import subway.domain.function.Functionable;
+import subway.domain.function.MainFunction;
+
 public class MainController {
 
     public void run() {
