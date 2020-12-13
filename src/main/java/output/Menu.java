@@ -19,11 +19,11 @@ public enum Menu {
         this.menuElement = menuElement;
     }
 
-    public String getMenuName(){
+    public String getMenuName() {
         return this.menuName;
     }
 
-    public List<Function> getMenuElement(){
+    public List<Function> getMenuElement() {
         return this.menuElement;
     }
 }

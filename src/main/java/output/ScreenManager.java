@@ -14,39 +14,35 @@ public class ScreenManager {
     private Menu selectedMenu;
     private boolean mainRetry = true;
 
-    public ScreenManager(Scanner scanner){
+    public ScreenManager(Scanner scanner) {
         this.scanner = scanner;
         input = new Input(scanner);
         BasicData.setBasicData();
     }
 
-    public void startMainScreen(){
-        while(mainRetry) {
+    public void startMainScreen() {
+        while (mainRetry) {
             mainScreen.visualize();
             handleMainException();
         }
     }
 
-    private void logic(){
-        ManagementScreen managementScreen;
+    private void logic() {
         selectedMenu = mainScreen.getSelectedScreen();
-        if(selectedMenu == Menu.SUBWAY_MAP){
+        if (selectedMenu == Menu.SUBWAY_MAP)
             SubwayMap.visualize();
-        }
-        if(selectedMenu == Menu.QUIT){
+        if (selectedMenu == Menu.QUIT)
             mainRetry = false;
-        }
-        if(selectedMenu != Menu.SUBWAY_MAP && selectedMenu != Menu.QUIT){
+        if (selectedMenu != Menu.SUBWAY_MAP && selectedMenu != Menu.QUIT)
             startManagementScreen(new ManagementScreen(selectedMenu));
-        }
     }
 
-    private void startManagementScreen(ManagementScreen managementScreen){ //여기서 오류 처리 하면 예외 복구가 가능할 거 같음
+    private void startManagementScreen(ManagementScreen managementScreen) { //여기서 오류 처리 하면 예외 복구가 가능할 거 같음
         handleManagementException(managementScreen);
     }
 
-    private void handleManagementException(ManagementScreen managementScreen){
-        while(true) {
+    private void handleManagementException(ManagementScreen managementScreen) {
+        while (true) {
             managementScreen.visualize();
             try {
                 managementScreen.logic(input);
@@ -58,7 +54,7 @@ public class ScreenManager {
     }
 
     private void handleMainException() {
-        while (true){
+        while (true) {
             try {
                 mainScreen.logic(input);
                 logic();

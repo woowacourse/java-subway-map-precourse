@@ -12,11 +12,11 @@ public class SubwayMap {
     public final static String CONTOUR = "---";
 
 
-    public static void visualize(){
-        if(LineRepository.lines().size() == 0)
+    public static void visualize() {
+        if (LineRepository.lines().size() == 0)
             throw new NullRepositoryException();
 
-        System.out.println(HEAD+ SUBWAY_MAP);
+        System.out.println(HEAD + SUBWAY_MAP);
         for (Line line : LineRepository.lines()) {
             System.out.println(INFO + line.getName());
             System.out.println(CONTOUR);
@@ -25,9 +25,8 @@ public class SubwayMap {
         }
     }
 
-    private static void printLineStations(Line line){
-        for(Station station : line.getLineStations()){
+    private static void printLineStations(Line line) {
+        for (Station station : line.getLineStations())
             System.out.println(INFO + station.getName());
-        }
     }
 }

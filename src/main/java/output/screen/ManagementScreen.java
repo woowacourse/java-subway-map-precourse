@@ -39,15 +39,12 @@ public class ManagementScreen implements Screen {
         runFunction(answer);
     }
 
-    private void runFunction(String answer){
-        if(selectedMenu == Menu.STATION){
+    private void runFunction(String answer) {
+        if (selectedMenu == Menu.STATION)
             StationManagement.stationManagement(answer, input);
-        }
-        if(selectedMenu == Menu.LINE){
+        if (selectedMenu == Menu.LINE)
             LineManagement.lineManagement(answer, input);
-        }
-        if(selectedMenu == Menu.ROUTE){
+        if (selectedMenu == Menu.ROUTE)
             RouteManagement.RouteManagement(answer, input);
-        }
     }
 }

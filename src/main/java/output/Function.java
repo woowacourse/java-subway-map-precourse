@@ -5,11 +5,11 @@ public enum Function {
 
     private final String name;
 
-    Function(String name){
+    Function(String name) {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 }
