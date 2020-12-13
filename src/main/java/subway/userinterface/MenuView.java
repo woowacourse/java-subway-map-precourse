@@ -5,6 +5,6 @@ import java.util.Scanner;
 public interface MenuView {
 
     void printMenu();
-    void getUserInput(Scanner scanner);
+    String getUserInput(Scanner scanner);
 
 }
