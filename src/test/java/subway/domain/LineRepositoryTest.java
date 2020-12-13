@@ -8,19 +8,17 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LineRepositoryTest {
+import subway.controller.ManageController;
 
-    private final Line line;
+class LineRepositoryTest {
 
     private LineRepository lineRepository;
 
-    public LineRepositoryTest() {
-        line = new Line("1호선", "강남역", "잠실역");
-    }
-
     @BeforeEach
     public void initLineRepository() {
-        lineRepository = new LineRepository().addLine(line);
+        ManageController manageController = ManageController.initializeWithEmptyStations();
+
+        lineRepository = manageController.lines();
     }
 
     @Test
@@ -28,26 +26,27 @@ class LineRepositoryTest {
     public void addStation_NotDuplicateStation_NewLine() {
 
         // given
-        Line newLine = new Line("2호선", "강남역", "봉천역");
+        Line newLine = new Line("1호선", "인천역", "소요산역");
 
         // when
-        LineRepository newLineRepository = lineRepository.addLine(newLine);
+        lineRepository = lineRepository.addLine(newLine);
 
         //then
-        assertThat(newLineRepository.lines().size()).isEqualTo(2);
-        assertThat(newLineRepository.lines().get(1).getName()).isEqualTo("2호선");
+        assertThat(lineRepository.lineNames()).containsExactly("2호선", "3호선", "신분당선", "1호선");
     }
 
     @Test
     @DisplayName("중복된 노선 추가 시 예외 발생")
     public void addStation_DuplicateStation_ExceptionThrown() {
 
+        // given
+        Line newLine = new Line("2호선", "교대역", "강남역", "역삼역");
+
         // when
-        ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addLine(line);
+        ThrowableAssert.ThrowingCallable callable = () -> lineRepository.addLine(newLine);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(LineRepository.DUPLICATE_NAME_ERROR, "1호선");
+                .withMessage(LineRepository.DUPLICATE_NAME_ERROR, "2호선");
     }
 }

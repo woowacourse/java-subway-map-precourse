@@ -106,14 +106,22 @@ public class ManageController {
     }
 
     public static ManageController initialize() {
-        String[] stations = { "교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역" };
-
-        String[] secondLine = {"교대역", "강남역", "역삼역"};
-        String[] thirdLine = {"교대역", "남부터미널역", "양재역", "매봉역"};
-        String[] sinbundangLine = {"강남역", "양재역", "양재시민의숲역"};
+        String[] stations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
 
         StationRepository stationRepository = new StationRepository()
                 .addStations(stations);
+
+        return initialize(stationRepository);
+    }
+
+    public static ManageController initializeWithEmptyStations() {
+        return initialize(new StationRepository());
+    }
+
+    public static ManageController initialize(StationRepository stationRepository) {
+        String[] secondLine = {"교대역", "강남역", "역삼역"};
+        String[] thirdLine = {"교대역", "남부터미널역", "양재역", "매봉역"};
+        String[] sinbundangLine = {"강남역", "양재역", "양재시민의숲역"};
 
         LineRepository lineRepository = new LineRepository()
                 .addLine("2호선", secondLine)

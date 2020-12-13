@@ -8,13 +8,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import subway.controller.ManageController;
+
 class StationRepositoryTest {
 
     private StationRepository stationRepository;
 
+    private LineRepository lineRepository;
+
     @BeforeEach
     public void initStationRepository() {
         stationRepository = new StationRepository();
+
+        lineRepository = ManageController.initializeWithEmptyStations().lines();
     }
 
     @Test
@@ -63,15 +69,10 @@ class StationRepositoryTest {
     }
 
     @Test
-    @DisplayName("존재하는 역 삭제")
-    public void deleteStation_ExistStation_EmptyStations() {
+    @DisplayName("기존 역 삭제")
+    public void removeStation_OldStation_EmptyStations() {
 
         // given
-        StationRepository repository = new StationRepository().addStations("봉천역", "강남역", "잠실역");
-
-        LineRepository lineRepository =
-                new LineRepository().addLine(new Line(new LineName("1호선"), repository));
-
         stationRepository = stationRepository.addStation("신림역");
 
         // when
@@ -83,13 +84,7 @@ class StationRepositoryTest {
 
     @Test
     @DisplayName("존재하지 않는 역 삭제 시 예외 발생")
-    public void deleteStation_DoesNotExistStation_ExceptionThrown() {
-
-        // given
-        StationRepository repository = new StationRepository().addStations("봉천역", "강남역", "잠실역");
-
-        LineRepository lineRepository =
-                new LineRepository().addLine(new Line(new LineName("1호선"), repository));
+    public void removeStation_DoesNotExistStation_ExceptionThrown() {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
@@ -102,13 +97,7 @@ class StationRepositoryTest {
 
     @Test
     @DisplayName("노선에 등록되어 있는 역 삭제 시 예외 발생")
-    public void deleteStation_SavedStationAtLine_ExceptionThrown() {
-
-        // given
-        StationRepository repository = new StationRepository().addStations("봉천역", "강남역", "잠실역");
-
-        LineRepository lineRepository =
-                new LineRepository().addLine(new Line(new LineName("1호선"), repository));
+    public void removeStation_StationSavedAtLine_ExceptionThrown() {
 
         // when
         ThrowableAssert.ThrowingCallable callable =

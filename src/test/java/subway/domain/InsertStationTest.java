@@ -8,19 +8,21 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class InsertStationTest {
+import subway.controller.ManageController;
 
-    private final Line line;
+public class InsertStationTest {
 
     private LineRepository lineRepository;
 
-    public InsertStationTest() {
-        line = new Line("1호선", "강남역", "잠실역");
-    }
+    private Line line;
 
     @BeforeEach
     public void initLineRepository() {
-        lineRepository = new LineRepository().addLine(line);
+        ManageController manageController = ManageController.initializeWithEmptyStations();
+
+        lineRepository = manageController.lines();
+
+        line = lineRepository.lines().get(0);
     }
 
     @Test
@@ -29,15 +31,15 @@ public class InsertStationTest {
 
         // given
         int index = 1;
-        String stationName = "잠실역";
+        String stationName = "인천역";
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addRange("11호선", index, stationName);
+                () -> lineRepository.addRange("1호선", index, stationName);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(LineRepository.DOES_NOT_EXIST_ERROR, "11호선");
+                .withMessage(LineRepository.DOES_NOT_EXIST_ERROR, "1호선");
     }
 
     @Test
@@ -49,12 +51,11 @@ public class InsertStationTest {
         String stationName = "봉천역";
 
         // when
-        LineRepository newLineRepository =
-                lineRepository.addRange(line.getName(), index, stationName);
+        lineRepository = lineRepository.addRange(line.getName(), index, stationName);
 
         //then
-        assertThat(newLineRepository.lines().size()).isEqualTo(1);
-        assertThat(newLineRepository.contains(stationName)).isTrue();
+        assertThat(lineRepository.getStationNamesByLineName("2호선"))
+                .containsExactly("교대역", "봉천역", "강남역", "역삼역");
     }
 
     @Test
@@ -63,7 +64,7 @@ public class InsertStationTest {
 
         // given
         int index = 1;
-        String stationName = "잠실역";
+        String stationName = "교대역";
 
         // when
         ThrowableAssert.ThrowingCallable callable =
@@ -89,7 +90,7 @@ public class InsertStationTest {
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR,
-                        StationRepository.MINIMUM_INDEX, 2);
+                        StationRepository.MINIMUM_INDEX, 3);
     }
 
     @Test
@@ -97,7 +98,7 @@ public class InsertStationTest {
     public void insertStation_HigherThanStationSize_ExceptionThrown() {
 
         // given
-        int index = 2;
+        int index = 3;
         String stationName = "봉천역";
 
         // when
@@ -107,6 +108,6 @@ public class InsertStationTest {
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
                 .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR,
-                        StationRepository.MINIMUM_INDEX, 2);
+                        StationRepository.MINIMUM_INDEX, 3);
     }
 }
