@@ -13,7 +13,7 @@ public enum MainFunction implements Functionable {
             manageController -> Functionable
                     .function(manageController, RangeFunction.TITLE, RangeFunction.values())),
     SUBWAY_MAP("4", "지하철 노선도 출력",
-            Function.identity()),
+            ManageController::loadSubwayMap),
     QUIT("Q", "종료",
             mainController -> null);
 
