@@ -1,9 +1,8 @@
 package subway.view;
 
 import subway.domain.Line;
-import subway.domain.LineController;
 import subway.domain.LineRepository;
-import subway.domain.StationController;
+import subway.domain.ManageController;
 import subway.domain.StationRepository;
 
 public class OutputView {
@@ -33,7 +32,7 @@ public class OutputView {
     }
 
     public static void printStations(StationRepository stationRepository) {
-        printListTitle(StationController.STATION);
+        printListTitle(ManageController.STATION);
 
         for (String stationName : stationRepository.stationNames()) {
             printSuccessMessage(stationName);
@@ -41,7 +40,7 @@ public class OutputView {
     }
 
     public static void printLines(LineRepository lineRepository) {
-        printListTitle(LineController.LINE);
+        printListTitle(ManageController.LINE);
 
         for (String lineName : lineRepository.lineNames()) {
             printSuccessMessage(lineName);
