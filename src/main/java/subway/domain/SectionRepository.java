@@ -19,6 +19,11 @@ public class SectionRepository {
     }
 
     public static int getLengthByLineName(String line){
-        return sections().get(line).size();
+        return sections().get(line)
+                .size();
+    }
+
+    public static boolean searchStationInLine(String line, String station){
+        return sections().get(line).contains(station);
     }
 }
