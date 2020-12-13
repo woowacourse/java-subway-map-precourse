@@ -1,5 +1,8 @@
 package subway.domain.station;
 
+import subway.exception.ErrorCode;
+import subway.exception.StationException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,6 +20,9 @@ public class MemoryStationRepository implements StationRepository {
 
     @Override
     public Station addStation(Station station) {
+        if (findByName(station.getName()) != null) {
+            throw new StationException(ErrorCode.STATION_ALREADY_EXIST);
+        }
         stations.put(station.getName(), station);
         return station;
     }
