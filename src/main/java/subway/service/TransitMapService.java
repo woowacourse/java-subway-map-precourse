@@ -1,6 +1,5 @@
 package subway.service;
 
-import org.w3c.dom.Text;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.TransitMapRepository;
@@ -13,6 +12,14 @@ import java.util.List;
 import java.util.Map;
 
 public class TransitMapService {
+    public static void showTransitMap() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Map<Line, LinkedList<Station>> transitMaps = TransitMapRepository.transitMaps();
+
+        TransitMapService.readTransitMap(stringBuilder, transitMaps);
+        System.out.println(stringBuilder);
+    }
+
     public static void readTransitMap(StringBuilder stringBuilder, Map<Line, LinkedList<Station>> transitMaps) {
         appendTransitMapText(stringBuilder);
 

@@ -58,7 +58,7 @@ public class SubwayService implements InputInterface {
             SectionController.startSection(scanner);
         }
         if (input.equals(InputType.INPUT_FOUR.getInput())) {
-            TransitMapController.showTransitMap();
+            TransitMapController.startTransitMap();
         }
     }
 }
