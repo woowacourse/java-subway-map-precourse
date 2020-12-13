@@ -4,6 +4,7 @@ import subway.domain.entity.Station;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class StationRepository {
 
@@ -15,6 +16,12 @@ public class StationRepository {
 
     public void save(Station station) {
         stations.add(station);
+    }
+
+    public Optional<Station> findByName(String name) {
+        return stations.stream()
+                .filter(station -> station.matchesName(name))
+                .findFirst();
     }
 
     public List<Station> findAll() {
