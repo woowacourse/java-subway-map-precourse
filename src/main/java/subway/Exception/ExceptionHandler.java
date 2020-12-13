@@ -22,6 +22,24 @@ public class ExceptionHandler {
         }
     }
 
+    public static void unselectableStation(String selection, String[] pattern) {
+        try {
+            ExceptionHandler.isUnSelectable(selection, pattern);
+        } catch (CustomException e) {
+            OutputView.printError(e.getMessage());
+            StationController.select();
+        }
+    }
+
+    public static void unselectableLine(String selection, String[] pattern) {
+        try {
+            ExceptionHandler.isUnSelectable(selection, pattern);
+        } catch (CustomException e) {
+            OutputView.printError(e.getMessage());
+            StationController.select();
+        }
+    }
+
     public static void isNotInt(String string) {
         try {
             Integer.parseInt(string);
@@ -62,6 +80,15 @@ public class ExceptionHandler {
         } catch (CustomException e) {
             OutputView.printError(e.getMessage());
             StationController.run();
+        }
+    }
+
+    public static void lineNameShorterThanTwo(String name) {
+        try {
+            isShorterThanTwo(name);
+        } catch (CustomException e) {
+            OutputView.printError(e.getMessage());
+            LineController.run();
         }
     }
 

@@ -24,7 +24,7 @@ public class MainController {
             StationController.run();
         }
         if (selection.equals(LINE)) {
-
+            LineController.run();
         }
         if (selection.equals(SECTION)) {
 

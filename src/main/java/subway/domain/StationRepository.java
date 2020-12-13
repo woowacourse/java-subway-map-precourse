@@ -14,7 +14,9 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        stations.add(station);
+        if (stations.stream().noneMatch(exStation -> exStation.getName().equals(station))) {
+            stations.add(station);
+        }
     }
 
     public static boolean deleteStation(String name) {
