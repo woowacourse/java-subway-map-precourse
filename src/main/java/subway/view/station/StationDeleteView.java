@@ -1,11 +1,15 @@
 package subway.view.station;
 
+import subway.model.ResultDto;
+import subway.station.StationService;
 import subway.view.GeneralView;
 
 public class StationDeleteView extends GeneralView {
 
     private static final String VIEW_NAME = "역 삭제";
     private static final String INPUT_GUIDE_TEXT = VIEW_TEXT_PREFIX + "삭제할 역 이름을 입력하세요.";
+
+    private final StationService stationService = StationService.getInstance();
 
     @Override
     protected void initViewName() {
@@ -14,7 +18,10 @@ public class StationDeleteView extends GeneralView {
 
     @Override
     public void setVisible() {
-        String stationName = inputMoreThanTwoWords(VIEW_TEXT_PREFIX);
-        /** TODO: StationService에게 역 삭제 요청 */
+        String stationName = inputMoreThanTwoWords(INPUT_GUIDE_TEXT);
+        ResultDto result = stationService.deleteStation(stationName);
+
+        println(result.getMessage());
+        isBadResult(result);
     }
 }

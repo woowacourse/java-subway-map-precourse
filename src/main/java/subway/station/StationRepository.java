@@ -28,4 +28,13 @@ public class StationRepository {
             }
         }
     }
+
+    public static void checkStationExist(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 역입니다.");
+    }
 }
