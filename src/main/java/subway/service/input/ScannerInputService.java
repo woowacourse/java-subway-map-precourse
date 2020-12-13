@@ -81,14 +81,16 @@ public class ScannerInputService implements InputService {
     }
 
     private boolean isBack(String inputOption) {
-        if (inputOption.equals(MAIN_OPTION_BACK)) {
+        String toUpperOption = inputOption.toUpperCase();
+        if (toUpperOption.equals(MAIN_OPTION_BACK)) {
             return true;
         }
         return false;
     }
 
     private boolean isQuit(String inputOption) {
-        if (inputOption.equals(MAIN_OPTION_QUIT)) {
+        String toUpperOption = inputOption.toUpperCase();
+        if (toUpperOption.equals(MAIN_OPTION_QUIT)) {
             return true;
         }
         return false;
