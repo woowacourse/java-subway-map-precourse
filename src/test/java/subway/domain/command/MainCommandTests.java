@@ -10,7 +10,7 @@ class MainCommandTests {
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "4", "Q"})
     public void 객체생성_성공(String userMessage) {
-        assertThatCode(() -> Command.getCommand(MainCommand.values(), userMessage))
+        assertThatCode(() -> MainCommand.getCommand(userMessage))
                 .doesNotThrowAnyException();
     }
 
@@ -18,6 +18,6 @@ class MainCommandTests {
     @ValueSource(strings = {"5", "\t", "", "-1", " ", "A"})
     public void 객체생성_실패_예외발생_테스트(String userMessage) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Command.getCommand(MainCommand.values(), userMessage));
+                .isThrownBy(() -> MainCommand.getCommand(userMessage));
     }
 }

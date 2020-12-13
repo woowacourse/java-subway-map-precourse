@@ -1,5 +1,7 @@
 package subway.domain.command;
 
+import java.util.Arrays;
+
 public enum MainCommand implements Command {
     STATION_MANAGEMENT("1", "역 관리"),
     LINE_MANAGEMENT("2", "노선 관리"),
@@ -15,6 +17,13 @@ public enum MainCommand implements Command {
         this.detail = detail;
     }
 
+    public static MainCommand getCommand(String userMessage) {
+        return Arrays.stream(values())
+                .filter(command -> command.isMatched(userMessage))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(CHOICE_ERROR_MESSAGE));
+    }
+    
     @Override
     public boolean isMatched(String userMessage) {
         return selector.equals(userMessage);
