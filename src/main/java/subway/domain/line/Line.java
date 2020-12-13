@@ -1,13 +1,10 @@
 package subway.domain.line;
 
-import com.sun.javafx.binding.StringFormatter;
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Line {
     private static final int MIN_INDEX = 1;
@@ -32,10 +29,17 @@ public class Line {
         return stations;
     }
 
-    public static Line createLine(LineName lineName, StationName upLastStationName, StationName downLastStationName) {
+    public static Line of(LineName lineName, StationName upLastStationName, StationName downLastStationName) {
         Station upLastStation = Station.of(upLastStationName);
         Station downLastStation = Station.of(downLastStationName);
-        List<Station> stations = new ArrayList<>(Arrays.asList(upLastStation, downLastStation));
+        List<Station> stations = new LinkedList<>(Arrays.asList(upLastStation, downLastStation));
+        return new Line(lineName, stations);
+    }
+
+    public static Line of(LineName lineName, List<StationName> stationNames) {
+        List<Station> stations = stationNames.stream()
+                .map(Station::of)
+                .collect(Collectors.toCollection(LinkedList::new));
         return new Line(lineName, stations);
     }
 
@@ -57,7 +61,7 @@ public class Line {
         stations.remove(station);
     }
 
-    public boolean hasStationToLine(StationName stationName) {
+    public boolean hasStationInLine(StationName stationName) {
         return stations.contains(Station.of(stationName));
     }
 
