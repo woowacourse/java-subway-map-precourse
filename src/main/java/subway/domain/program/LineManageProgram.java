@@ -1,6 +1,7 @@
 package subway.domain.program;
 
 import subway.domain.Line;
+import subway.domain.Station;
 import subway.domain.controller.LineManageController;
 import subway.domain.input.LineManageInput;
 
@@ -47,10 +48,12 @@ public class LineManageProgram {
             System.out.println(INPUT_ENROLL_LINE_NAME);
             Line line = new Line(input.inputEnrollLine(scanner));
             System.out.println(INPUT_UP_TRAIN_TERMINAL);
-            controller.processUpDownTrain(scanner, line);
+            Station upTrain = input.inputUpDownTrainLine(scanner);
             System.out.println(INPUT_DOWN_TRAIN_TERMINAL);
-            controller.processUpDownTrain(scanner, line);
+            Station downTrain = input.inputUpDownTrainLine(scanner);
             controller.processEnrollLine(line);
+            controller.processUpDownTrain(upTrain, line);
+            controller.processUpDownTrain(downTrain, line);
             System.out.println(INFO + LINE_ENROLLED);
         }
     }

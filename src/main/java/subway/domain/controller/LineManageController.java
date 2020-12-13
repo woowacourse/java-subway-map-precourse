@@ -12,8 +12,9 @@ public class LineManageController {
 
     LineManageInput input = new LineManageInput();
 
-    public void processEnrollLine(Line line) {
+    public Line processEnrollLine(Line line) {
         LineRepository.addLine(line);
+        return line;
     }
 
     public void processDeleteLine(Scanner scanner) {
@@ -21,9 +22,9 @@ public class LineManageController {
         LineRepository.deleteLineByName(line);
     }
 
-    public void processUpDownTrain(Scanner scanner, Line line) {
-        Station train = input.inputUpDownTrainLine(scanner);
-        line.addStation(train);
+    public void processUpDownTrain(Station station, Line line) {
+        line.addStation(station);
+        station.addLine(line);
     }
 
     public void printAllLines() {
