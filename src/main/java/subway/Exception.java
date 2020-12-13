@@ -47,11 +47,14 @@ public class Exception {
         return input;
     }
 
-    public static String checkLastStation(String input) {
+    public static String checkLastStation(String input, String firstStation) {
         input = isNotEmpty(input);
         input = isNotSpace(input);
         input = isLengthTwoOrMore(input);
         input = isInStationList(input);
+        if(input.equals(firstStation)){
+            throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.FIRST_STATION_CANNOT_BE_LAST_STATION);
+        }
         return input;
     }
 

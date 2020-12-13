@@ -9,7 +9,7 @@ public class LineSetting {
     public static void add(Scanner scanner) {
         String inputName = lineName(scanner);
         String firstStation = firstStation(scanner);
-        String lastStation = firstStation(scanner);
+        String lastStation = lastStation(scanner, firstStation);
         LineRepository.addLine(new Line(inputName));
         Print.infoMessage(Constant.ADD_LINE_DONE);
     }
@@ -35,6 +35,20 @@ public class LineSetting {
                 String input = scanner.next();
                 System.out.println();
                 return Exception.checkFirstStation(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
+
+    public static String lastStation(Scanner scanner, String firstStation) {
+        while (true) {
+            try {
+                Print.hashMessage(Constant.ENTER_LAST_STATION);
+                String input = scanner.next();
+                System.out.println();
+                return Exception.checkLastStation(input, firstStation);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();

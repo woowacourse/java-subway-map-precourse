@@ -81,4 +81,5 @@ public class Constant {
     static final String IS_IN_STATION_LIST = "등록되지 않은 역입니다.";
     static final String IS_NOT_IN_LINE_LIST = "이미 등록된 노선입니다.";
     static final String IS_IN_LINE_LIST = "등록되지 않은 노선입니다.";
+    static final String FIRST_STATION_CANNOT_BE_LAST_STATION = "상행 종점역과 하행 종점역은 같을 수 없습니다.";
 }
