@@ -15,7 +15,7 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if(!isStation(station)){
+        if(!isStation(station.getName())){
             throw new AlreadyExistNameException();
         }
         stations.add(station);
@@ -25,9 +25,9 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    private static boolean isStation(Station targetStation){
+    public static boolean isStation(String name){
         for(Station station : stations()){
-            if(station.getName().equals(targetStation.getName())){
+            if(station.getName().equals(name)){
                 return false;
             }
         }
