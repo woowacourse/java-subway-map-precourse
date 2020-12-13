@@ -1,8 +1,8 @@
 package subway.view;
 
-import static subway.message.Output.printLine;
+import static subway.console.Output.printLine;
 
-import subway.message.Message;
+import subway.console.Message;
 
 /**
  * @author yhh1056

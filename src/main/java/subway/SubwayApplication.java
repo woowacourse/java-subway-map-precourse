@@ -2,7 +2,7 @@ package subway;
 
 import java.util.Scanner;
 import subway.setup.Setting;
-import subway.view.Input;
+import subway.console.Input;
 import subway.view.MainView;
 
 /**

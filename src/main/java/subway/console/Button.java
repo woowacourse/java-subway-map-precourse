@@ -1,4 +1,4 @@
-package subway.view;
+package subway.console;
 
 /**
  * @author yhh1056

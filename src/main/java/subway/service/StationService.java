@@ -1,11 +1,11 @@
-package subway.controller;
+package subway.service;
 
-import static subway.message.Output.printLine;
+import static subway.console.Output.printLine;
 
 import java.util.Collections;
 import java.util.List;
 import subway.domain.Station;
-import subway.message.Message;
+import subway.console.Message;
 import subway.repository.StationRepository;
 
 /**

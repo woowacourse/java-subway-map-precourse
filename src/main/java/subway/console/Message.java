@@ -1,4 +1,4 @@
-package subway.message;
+package subway.console;
 
 /**
  * @author yhh1056

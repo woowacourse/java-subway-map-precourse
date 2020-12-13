@@ -1,13 +1,15 @@
 package subway.view;
 
-import static subway.message.Output.printLine;
-import static subway.message.Output.printPage;
-import static subway.message.Output.printStations;
+import static subway.console.Output.printLine;
+import static subway.console.Output.printPage;
+import static subway.console.Output.printStations;
 
 import java.util.Arrays;
 import java.util.List;
+import subway.console.Button;
+import subway.console.Input;
 import subway.controller.StationController;
-import subway.message.Message;
+import subway.console.Message;
 
 /**
  * @author yhh1056

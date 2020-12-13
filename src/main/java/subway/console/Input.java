@@ -1,10 +1,10 @@
-package subway.view;
+package subway.console;
 
-import static subway.message.Output.printLine;
+import static subway.console.Output.printLine;
 
 import java.util.List;
 import java.util.Scanner;
-import subway.message.Message;
+import subway.console.Message;
 
 /**
  * @author yhh1056

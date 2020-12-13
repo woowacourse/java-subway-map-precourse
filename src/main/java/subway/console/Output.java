@@ -1,4 +1,4 @@
-package subway.message;
+package subway.console;
 
 import java.util.List;
 import subway.domain.Station;
