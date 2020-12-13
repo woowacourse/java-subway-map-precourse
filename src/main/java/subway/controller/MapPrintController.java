@@ -1,9 +1,15 @@
 package subway.controller;
 
-import java.util.Scanner;
+import subway.view.mapprintoutput.MapPrintInfoView;
+import subway.view.mapprintoutput.MapPrintOutputView;
 
 public class MapPrintController {
-    public static void start(Scanner scanner) {
-        System.out.println("노선 출력!");
+    public static void start() {
+        runMapPrintController();
+    }
+
+    private static void runMapPrintController() {
+        MapPrintOutputView.printMapList();
+        MapPrintInfoView.printMap();
     }
 }

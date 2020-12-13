@@ -49,7 +49,7 @@ public class MainController {
             LineSectionController.start(scanner);
         }
         if (userChoice.equals(MAP_PRINT_CONTROL)) {
-            MapPrintController.start(scanner);
+            MapPrintController.start();
         }
     }
 }
