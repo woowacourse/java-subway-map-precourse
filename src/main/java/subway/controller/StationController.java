@@ -10,7 +10,6 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class StationController {
-
     private final Scanner scanner;
     private final StationService stationService;
 
@@ -37,7 +36,7 @@ public class StationController {
             return;
         }
         if (SubMenuType.LIST_PRINT.equals(stationMenuType)) {
-            OutputView.printStationList();
+            OutputView.printStationList(category);
         }
     }
 }

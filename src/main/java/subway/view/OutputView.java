@@ -26,15 +26,15 @@ public class OutputView implements ViewConstant {
         System.out.printf(DELETE_MESSAGE, category);
     }
 
-    public static void printStationList() {
-        System.out.println(PRINT_STATION_LIST_MESSAGE);
+    public static void printStationList(String category) {
+        System.out.printf(PRINT_LIST_MESSAGE, category);
         StationRepository.stations().stream()
                 .map(Station::getName)
                 .forEach(name -> System.out.printf(PRINT_LIST, name.getName()));
     }
 
-    public static void printLineList() {
-        System.out.println(PRINT_LINE_LIST_MESSAGE);
+    public static void printLineList(String category) {
+        System.out.printf(PRINT_LIST_MESSAGE, category);
         LineRepository.lines().stream()
                 .map(Line::getName)
                 .forEach(name -> System.out.printf(PRINT_LIST, name.getName()));

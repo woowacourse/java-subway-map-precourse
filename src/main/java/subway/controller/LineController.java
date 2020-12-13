@@ -36,7 +36,7 @@ public class LineController {
             return;
         }
         if (SubMenuType.LIST_PRINT.equals(lineMenuType)) {
-            OutputView.printLineList();
+            OutputView.printLineList(category);
         }
     }
 }
