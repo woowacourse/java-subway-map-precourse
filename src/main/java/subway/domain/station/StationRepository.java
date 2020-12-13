@@ -6,6 +6,7 @@ public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
     public static final String STATION_DUPLICATE_ERROR_MESSAGE = "[ERROR] 이미 등록된 역 이름입니다. 중복되지 않는 역이름을 입력해주세요.";
+    public static final String STATION_CANNOT_FIND_ERROR_MESSAGE = "[ERROR] 존재하지 않는 역입니다.";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -23,7 +24,12 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static Station findStationName(String stationName) {
+        return stations.stream().filter(station -> station.getName().equals(stationName))
+                .findAny().orElseThrow(() -> new IllegalArgumentException(STATION_CANNOT_FIND_ERROR_MESSAGE));
+    }
+
+    public static boolean deleteStation(Station stationName) {
+        return stations.remove(stationName);
     }
 }
