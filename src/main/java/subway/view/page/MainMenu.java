@@ -28,7 +28,7 @@ public class MainMenu {
     }
 
     public static Menu getMenuSelection(Scanner scanner) {
-        OutputView.printMsg("원하는 기능을 선택하세요.");
+        OutputView.printMsg("원하는 기능을 선택하세요.\n");
         return Menu.getSelection(InputView.getInput(scanner));
     }
 
