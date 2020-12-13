@@ -16,8 +16,10 @@ public class Stations {
         throw new IllegalStateException("[ERROR] 이미 등록된 역명입니다.");
     }
 
-    public boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public void deleteStation(String name) {
+        if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
+            throw new NoSuchElementException("[ERROR] 해당 역이 없습니다.");
+        }
     }
 
     public int size() {
@@ -26,7 +28,7 @@ public class Stations {
 
     public Station findStation(String name) {
         return stations.stream()
-                .filter(s -> s.equals(new Station(name)))
+                .filter(station -> Objects.equals(station.getName(), name))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("[ERROR] 해당 역이 없습니다."));
     }
