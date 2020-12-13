@@ -113,11 +113,11 @@ public class SubwayManagement {
     private void sectionManagementFunction(String select) {
         printScreen.printSectionManagementScreen();
         if (select.equals(Constants.FUNCTION_1)) {
-            addLine();
+            addSection();
             return;
         }
         if (select.equals(Constants.FUNCTION_2)) {
-            deleteLine();
+            deleteSection();
             return;
         }
         if (select.equals(Constants.FUNCTION_B)) {
@@ -126,6 +126,22 @@ public class SubwayManagement {
     }
 
     private void addSection() {
+        printScreen.printInputAddLine();
+        String line = user.getInput();
+        printScreen.printInputAddStation();
+        String name = user.getInput();
+        printScreen.printInputOrder();
+        String order = user.getInput();
+        LineRepository.addSection(Integer.parseInt(order), line, name);
+        printScreen.printAlarmAddSection();
+    }
 
+    private void deleteSection() {
+        printScreen.printInputDeleteLine();
+        String line = user.getInput();
+        printScreen.printInputDeleteStation();
+        String name = user.getInput();
+        LineRepository.deleteSection(line, name);
+        printScreen.printAlarmDeleteSection();
     }
 }
