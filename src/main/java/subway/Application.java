@@ -12,6 +12,8 @@ public class Application {
         final InputView inputView = new InputView(scanner);
         final Controller mainController = new MainController(inputView);
 
+        DummySetup.initialize();
+
         do {
             mainController.run();
         } while (MainController.isRunning);

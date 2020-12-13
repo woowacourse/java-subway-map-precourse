@@ -124,6 +124,7 @@ public class OutputView {
             System.out.println(INFO_LABEL + x.getName());
             System.out.println(INFO_LABEL + DIVIDER);
             printStationsOfLine(x);
+            System.out.println();
         });
     }
 
