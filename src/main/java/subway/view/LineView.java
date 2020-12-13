@@ -36,8 +36,17 @@ public class LineView {
         return InputView.getName(scanner);
     }
 
+    public void announceAdditionSuccess() {
+        OutputView.printInfoMsg("지하철 노선이 등록되었습니다.");
+    }
+
     public Name getLineNameToDelete() {
         OutputView.printMsg("## 삭제할 노선 이름을 입력하세요.\n");
         return InputView.getName(scanner);
     }
+
+    public void announceDeletionSuccess() {
+        OutputView.printInfoMsg("지하철 노선이 삭제되었습니다.");
+    }
+
 }

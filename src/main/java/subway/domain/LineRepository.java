@@ -17,8 +17,8 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(Name name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void remove(Line line) {
+        lines.remove(line);
     }
 
     public static List<String> getLineNames() {
@@ -27,10 +27,15 @@ public class LineRepository {
                 .collect(Collectors.toList());
     }
 
-    public static Line getLineByName(Name name) {
+    public static Line getByName(Name name) {
         return lines.stream()
                 .filter(line -> line.isName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 노선입니다."));
+    }
+
+    public static boolean isExistingName(Name name) {
+        return lines.stream()
+                .anyMatch(line -> line.isName(name));
     }
 }

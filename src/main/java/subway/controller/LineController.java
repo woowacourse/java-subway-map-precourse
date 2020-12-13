@@ -1,20 +1,19 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-import subway.view.InputView;
+import subway.domain.*;
+import subway.domain.validator.LineValidator;
+import subway.view.LineView;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
 public class LineController {
     private static LineController lineController = null;
-    private final Scanner scanner;
+
+    private final LineView lineView;
 
     private LineController(Scanner scanner) {
-        this.scanner = scanner;
+        lineView = LineView.getInstance(scanner);
     }
 
     public static LineController getInstance(Scanner scanner) {
@@ -25,33 +24,61 @@ public class LineController {
     }
 
     public void addLine() {
-        OutputView.printMsg("## 등록할 노선 이름을 입력하세요.\n");
-        String name = InputView.getInput(scanner);
-        // TODO :: 중복된 이름 확인
+        Name newLineName = getLineNameToAdd();
+        Station firstStation = getFirstStation();
+        Station lastStation = getLastStation(firstStation);
 
-        OutputView.printMsg("## 등록할 노선의 상행 종점역 이름을 입력하세요.\n");
-        String firstStationName = InputView.getInput(scanner);
-        Station firstStation = StationRepository.getStationByName(firstStationName);
+        LineRepository.addLine(new Line(newLineName, firstStation, lastStation));
+        lineView.announceAdditionSuccess();
+    }
 
-        // TODO :: name 유효성 검사
+    private Name getLineNameToAdd() {
+        try {
+            Name name = lineView.getLineNameToAdd();
+            LineValidator.checkNonExistingName(name);
+            return name;
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getLineNameToAdd();
+        }
+    }
 
-        OutputView.printMsg("## 등록할 노선의 하행 종점역 이름을 입력하세요.\n");
-        String lastStationName = InputView.getInput(scanner);
-        Station lastStation = StationRepository.getStationByName(firstStationName);
+    private Station getFirstStation() {
+        try {
+            Name name = lineView.getFirstStationName();
+            return StationRepository.getByName(name);
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getFirstStation();
+        }
+    }
 
-        // TODO :: first, last 같진 않은지 확인
-
-        Line newLine = new Line(name, firstStation, lastStation);
-        LineRepository.addLine(newLine);
-        OutputView.printInfoMsg("지하철 노선이 등록되었습니다.");
+    private Station getLastStation(Station firstStation) {
+        try {
+            Name name = lineView.getLastStationName();
+            Station lastStation = StationRepository.getByName(name);
+            LineValidator.checkEndStationsDifferent(firstStation, lastStation);
+            return lastStation;
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getLastStation(firstStation);
+        }
     }
 
     public void deleteLine() {
-        OutputView.printMsg("## 삭제할 노선 이름을 입력하세요.\n");
-        String name = InputView.getInput(scanner);
-        // TODO :: 존재하는 노선인지 확인
-        LineRepository.deleteLineByName(name);
-        OutputView.printInfoMsg("지하철 노선이 삭제되었습니다.");
+        Line line = getLineToDelete();
+        LineRepository.remove(line);
+        lineView.announceDeletionSuccess();
+    }
+
+    private Line getLineToDelete() {
+        try {
+            Name name = lineView.getLineNameToDelete();
+            return LineRepository.getByName(name);
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getLineToDelete();
+        }
     }
 
     public void printLineList() {
