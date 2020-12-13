@@ -21,7 +21,7 @@ public class Line implements Iterable<String> {
         this.name = name;
     }
 
-    public static Line createLineWithStationInitializers(String name, String... stations) {
+    public static Line createWithInitialStations(String name, String... stations) {
         Line line = new Line(name);
         line.stationsInitialize(Arrays.asList(stations));
 
@@ -30,15 +30,11 @@ public class Line implements Iterable<String> {
 
     private void stationsInitialize(List<String> stationInitializer) {
         for (String stationName : stationInitializer) {
-            addStation(stationName);
+            ValidationUtils.validateNullStation(stationName);
+            ValidationUtils.validateDuplicatedStationInLine(this, stationName);
+
+            stations.add(stationName);
         }
-    }
-
-    private void addStation(String stationName) {
-        ValidationUtils.validateNullStation(stationName);
-        ValidationUtils.validateDuplicatedStationInLine(this, stationName);
-
-        stations.add(stationName);
     }
 
     public String getName() {

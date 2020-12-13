@@ -1,6 +1,6 @@
 package subway.view.messageparts;
 
-public enum ObjectParts {
+public enum RequestObjectParts {
     STATION_NAME("역 이름을 "),
     LINE_NAME("노선 이름을 "),
     UPSTREAM_TERMINUS("노선의 상행 종점역 이름을 "),
@@ -13,7 +13,7 @@ public enum ObjectParts {
 
     private String messageParts;
 
-    private ObjectParts(String messageParts) {
+    private RequestObjectParts(String messageParts) {
         this.messageParts = messageParts;
     }
 

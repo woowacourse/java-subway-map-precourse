@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 import subway.utils.ValidationUtils;
 
 public class StationRepository {
@@ -15,13 +14,13 @@ public class StationRepository {
     }
 
     static {
-        stations.add(new Station("교대역"));
-        stations.add(new Station("강남역"));
-        stations.add(new Station("역삼역"));
-        stations.add(new Station("남부터미널역"));
-        stations.add(new Station("양재역"));
-        stations.add(new Station("양재시민의숲역"));
-        stations.add(new Station("매봉역"));
+        addStation(new Station("교대역"));
+        addStation(new Station("강남역"));
+        addStation(new Station("역삼역"));
+        addStation(new Station("남부터미널역"));
+        addStation(new Station("양재역"));
+        addStation(new Station("양재시민의숲역"));
+        addStation(new Station("매봉역"));
     }
 
     public static void addStation(Station station) {
@@ -31,14 +30,10 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        ValidationUtils.validateDuplicatedStation(name);
-        ValidationUtils.validateResisteredStation(name);
+        ValidationUtils.validateNullStation(name);
+        ValidationUtils.validateStationResisteredInCertainLine(name);
 
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
-    }
-
-    public static boolean containsStation(Station station) {
-        return containsStation(station.getName());
     }
     
     public static boolean containsStation(String name) {

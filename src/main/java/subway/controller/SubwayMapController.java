@@ -1,7 +1,6 @@
 package subway.controller;
 
 import java.util.Scanner;
-
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuRepository;
 import subway.domain.menu.MenuType;

@@ -24,7 +24,8 @@ public class LineController {
         LineOutputView.requestDownstreamTerminus();
         String downstreamTerminus = InputView.getInput();
 
-        LineRepository.addLine(Line.createLineWithStationInitializers(name, upstreamTerminus, downstreamTerminus));
+        LineRepository.addLine(Line.createWithInitialStations(
+                name, upstreamTerminus, downstreamTerminus));
         LineOutputView.informLineAdded();
     }
     
@@ -37,15 +38,15 @@ public class LineController {
         }
     }
 
-    public static void showLines() {
-        LineOutputView.printLines();
-        backToMainMenu();
-    }
-
     private static void tryToDeleteLine() {
         LineOutputView.requestLineNameToDelete();
         LineRepository.deleteLineByName(InputView.getInput());
         LineOutputView.informLineDeleted();
+    }
+
+    public static void showLines() {
+        LineOutputView.printLines();
+        backToMainMenu();
     }
 
     public static void backToMainMenu() {

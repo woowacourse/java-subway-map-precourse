@@ -1,15 +1,14 @@
 package subway.view;
 
 import java.util.List;
-
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuItem;
-import subway.view.messageparts.ActionParts;
+import subway.view.messageparts.RequestActionParts;
 import subway.view.messageparts.InformPredicateParts;
 import subway.view.messageparts.InformSubjectParts;
-import subway.view.messageparts.ObjectParts;
+import subway.view.messageparts.RequestObjectParts;
 
 public class OutputView {
     private static final String MESSAGE_FORMAT = "## %s%n";
@@ -80,7 +79,7 @@ public class OutputView {
         System.out.println();
     }
 
-    protected static String getRequestMessage(ActionParts action, ObjectParts object) {
+    protected static String getRequestMessage(RequestActionParts action, RequestObjectParts object) {
         return String.format(REQUEST_INPUT_FORMAT, action.toString() + object.toString());
     }
 

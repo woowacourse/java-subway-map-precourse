@@ -2,7 +2,6 @@ package subway.domain.menu;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
@@ -45,62 +44,50 @@ public class MenuRepository {
     }
 
     private static void setMainMenu() {
-        Menu menu = new Menu(getMenuTitle(MAIN));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(MANAGE, STATION), 
-                SubwayMapController::callStationMenu));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(MANAGE, LINE), 
-                SubwayMapController::callLineMenu));
-        menu.addMenuItem(new MenuItem(KEY_THREE, combination(MANAGE, SECTION), 
-                SubwayMapController::callSectionMenu));
-        menu.addMenuItem(new MenuItem(KEY_FOUR, PRINT_SUBWAY_MAP, 
-                SubwayMapController::showSubwayMap));;
-        menu.addMenuItem(new MenuItem(KEY_QUIT, QUIT, 
-                SubwayMapController::Quit));
+        Menu menu = Menu.createWithMenuItems(
+            getMenuTitle(MAIN),
+            new MenuItem(KEY_ONE, getMergedName(MANAGE, STATION), SubwayMapController::callStationMenu),
+            new MenuItem(KEY_TWO, getMergedName(MANAGE, LINE), SubwayMapController::callLineMenu),
+            new MenuItem(KEY_THREE, getMergedName(MANAGE, SECTION), SubwayMapController::callSectionMenu),
+            new MenuItem(KEY_FOUR, PRINT_SUBWAY_MAP, SubwayMapController::showSubwayMap),
+            new MenuItem(KEY_QUIT, QUIT, SubwayMapController::Quit));
 
         menus.put(MenuType.MAIN, menu);
     }
 
     private static void setStationMenu() {
-        Menu menu = new Menu(getMenuTitle(combination(MANAGE, STATION)));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, STATION), 
-                StationController::addStation));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, STATION), 
-                StationController::deleteStation));
-        menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, STATION), 
-                StationController::showStations));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, 
-                StationController::backToMainMenu));
+        Menu menu = Menu.createWithMenuItems(
+            getMenuTitle(getMergedName(MANAGE, STATION)),
+            new MenuItem(KEY_ONE, getMergedName(ADD, STATION), StationController::addStation),
+            new MenuItem(KEY_TWO, getMergedName(DELETE, STATION), StationController::deleteStation),
+            new MenuItem(KEY_THREE, getMergedName(SHOW, STATION), StationController::showStations),
+            new MenuItem(KEY_BACK, BACK, StationController::backToMainMenu));
 
         menus.put(MenuType.STATION, menu);
     }
 
     private static void setLineMenu() {
-        Menu menu = new Menu(getMenuTitle(combination(MANAGE, LINE)));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, LINE), 
-                LineController::addLine));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, LINE), 
-                LineController::deleteLine));
-        menu.addMenuItem(new MenuItem(KEY_THREE, combination(SHOW, LINE),
-                LineController::showLines));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, 
-                LineController::backToMainMenu));
+        Menu menu = Menu.createWithMenuItems(
+            getMenuTitle(getMergedName(MANAGE, LINE)),
+            new MenuItem(KEY_ONE, getMergedName(ADD, LINE), LineController::addLine),
+            new MenuItem(KEY_TWO, getMergedName(DELETE, LINE), LineController::deleteLine),
+            new MenuItem(KEY_THREE, getMergedName(SHOW, LINE), LineController::showLines),
+            new MenuItem(KEY_BACK, BACK, LineController::backToMainMenu));
 
         menus.put(MenuType.LINE, menu);
     }
 
     private static void setSectionMenu() {
-        Menu menu = new Menu(getMenuTitle(combination(MANAGE, SECTION)));
-        menu.addMenuItem(new MenuItem(KEY_ONE, combination(ADD, SECTION), 
-                SectionController::addSection));
-        menu.addMenuItem(new MenuItem(KEY_TWO, combination(DELETE, SECTION),
-                SectionController::deleteSection));
-        menu.addMenuItem(new MenuItem(KEY_BACK, BACK, 
-                SectionController::backToMainMenu));
+        Menu menu = Menu.createWithMenuItems(
+            getMenuTitle(getMergedName(MANAGE, SECTION)),
+            new MenuItem(KEY_ONE, getMergedName(ADD, SECTION), SectionController::addSection),
+            new MenuItem(KEY_TWO, getMergedName(DELETE, SECTION), SectionController::deleteSection),
+            new MenuItem(KEY_BACK, BACK, SectionController::backToMainMenu));
 
         menus.put(MenuType.SECTION, menu);
     }
 
-    private static String combination(String functionFormat, String object) {
+    private static String getMergedName(String functionFormat, String object) {
         return String.format(functionFormat, object);
     }
 

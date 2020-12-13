@@ -5,15 +5,15 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.exception.BlankNameException;
-import subway.exception.DuplicatedLineNameException;
+import subway.exception.DuplicatedLineException;
 import subway.exception.DuplicatedStationInLineException;
 import subway.exception.NotPositiveIntegerException;
-import subway.exception.DuplicatedStationNameException;
+import subway.exception.DuplicatedStationException;
 import subway.exception.IllegalFunctionException;
 import subway.exception.NullLineException;
 import subway.exception.NullStationException;
 import subway.exception.NullStationInLineException;
-import subway.exception.ResisteredStationException;
+import subway.exception.StationResisteredInCertainLineException;
 import subway.exception.SectionOutOfRangeException;
 import subway.exception.TooShortNameException;
 
@@ -38,7 +38,7 @@ public class ValidationUtils {
 
     public static void validateDuplicatedStation(String stationName) {
         if (StationRepository.containsStation(stationName)) {
-            throw new DuplicatedStationNameException(stationName);
+            throw new DuplicatedStationException(stationName);
         }
     }
 
@@ -50,7 +50,7 @@ public class ValidationUtils {
 
     public static void validateDuplicatedLine(Line line) {
         if (LineRepository.containsLine(line)) {
-            throw new DuplicatedLineNameException(line.getName());
+            throw new DuplicatedLineException(line.getName());
         }
     }
 
@@ -66,9 +66,9 @@ public class ValidationUtils {
         }
     }
 
-    public static void validateResisteredStation(String stationName) {
-        if (LineRepository.anyLineContainsStation(stationName)) {
-            throw new ResisteredStationException(stationName);
+    public static void validateStationResisteredInCertainLine(String stationName) {
+        if (LineRepository.anyLineContainsThisStation(stationName)) {
+            throw new StationResisteredInCertainLineException(stationName);
         }
     }
 
