@@ -8,8 +8,12 @@ public class Line {
 
     public Line(Name name, Station firstStation, Station lastStation) {
         this.name = name;
+
         stations.add(firstStation);
+        firstStation.onLine();
+
         stations.add(lastStation);
+        lastStation.onLine();
     }
 
     public Name getName() {
@@ -29,7 +33,8 @@ public class Line {
             throw new IllegalArgumentException("순서는 현재 노선의 크기보다 클 수 없습니다.");
         }
 
-        this.stations.add(order, station);
+        stations.add(order, station);
+        station.onLine();
     }
 
     public void deleteSection(Station station) {
@@ -38,6 +43,12 @@ public class Line {
         }
 
         stations.remove(station);
+        station.outOfLine();
+    }
+
+    public void removeAllStations() {
+        stations.stream().forEach(Station::outOfLine);
+        stations = null;
     }
 
     @Override

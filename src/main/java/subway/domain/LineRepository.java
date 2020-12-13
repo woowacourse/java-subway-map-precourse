@@ -18,6 +18,7 @@ public class LineRepository {
     }
 
     public static void remove(Line line) {
+        line.removeAllStations();
         lines.remove(line);
     }
 

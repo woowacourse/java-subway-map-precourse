@@ -18,6 +18,9 @@ public class StationRepository {
     }
 
     public static void remove(Station station) {
+        if (station.isOnLine()) {
+            throw new IllegalArgumentException("노선에 등록된 역은 제거할 수 없습니다.");
+        }
         stations.remove(station);
     }
 
@@ -36,5 +39,10 @@ public class StationRepository {
                 .filter(station -> station.isSameName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 역입니다."));
+    }
+
+    public static boolean isExistingName(Name name) {
+        return stations.stream()
+                .anyMatch(station -> station.isSameName(name));
     }
 }
