@@ -55,9 +55,8 @@ public class SubwayManager implements Message {
     private void initializeSection(String lineName, String... stationNames) {
         Line line = LineRepository.getLine(lineName);
 
-        for (String stationName : stationNames) {
-            line.addLast(StationRepository.getStation(stationName));
-        }
+        Arrays.stream(stationNames)
+            .forEach(stationName -> line.addLast(StationRepository.getStation(stationName)));
     }
 
     protected static void manageStation() {

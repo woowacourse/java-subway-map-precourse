@@ -1,6 +1,7 @@
 package subway.utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -9,6 +10,9 @@ import subway.domain.StationRepository;
 public class Validator implements Message {
 
     private static final int MIN_NAME_LENGTH = 3;
+    private static final int ADJUST = 1;
+    private static final int MIN_SIZE_STATIONS_IN_LINE = 2;
+    private static final int MIN_INDEX = 1;
 
     public static void checkValidStationName(String name) {
         if (!isValidNameLength(name)) {
@@ -45,16 +49,35 @@ public class Validator implements Message {
 
     public static boolean isStationRegisteredInLine(String name) {
         ArrayList<Line> lines = LineRepository.getAllLines();
-        for (Line line : lines) {
-            if (line.hasStation(name)) {
-                return true;
-            }
-        }
-        return false;
+        return lines.stream()
+            .anyMatch(line -> line.hasStation(name));
     }
 
     public static boolean isValidNameLength(String name) {
         return name.length() >= MIN_NAME_LENGTH;
     }
 
+    public static void checkMinIndex(int index) {
+        if (index < MIN_INDEX) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_MIN_INDEX);
+        }
+    }
+
+    public static void checkDuplicateStation(List<Station> stations, Station station) {
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException(ERROR_ALREADY_REGISTERED_STATION);
+        }
+    }
+
+    public static void checkValidRange(List<Station> stations, int index) {
+        if (index > stations.size() - ADJUST) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
+        }
+    }
+
+    public static void checkMinSizeStationsInLine(List<Station> stations) {
+        if (stations.size() <= MIN_SIZE_STATIONS_IN_LINE) {
+            throw new IllegalArgumentException(ERROR_MIN_SIZE_STATIONS_IN_LINE);
+        }
+    }
 }

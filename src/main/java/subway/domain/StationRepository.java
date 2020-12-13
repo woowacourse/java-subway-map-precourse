@@ -24,12 +24,8 @@ public class StationRepository {
     }
 
     public static boolean hasStation(String stationName) {
-        for (Station station : stations) {
-            if (station.getName().equals(stationName)) {
-                return true;
-            }
-        }
-        return false;
+        return stations().stream()
+            .anyMatch(station -> station.getName().equals(stationName));
     }
 
     public static ArrayList<Station> getAllStations() {
@@ -37,17 +33,13 @@ public class StationRepository {
     }
 
     public static Station getStation(String stationName) throws NullPointerException {
-        for (Station station : stations) {
-            if (station.getName().equals(stationName)) {
-                return station;
-            }
-        }
-        return null;
+        return stations().stream()
+            .filter(station -> station.getName().equals(stationName))
+            .findFirst()
+            .orElse(null);
     }
 
     public static void setStations(ArrayList<Station> stations) {
-        for (Station station : stations) {
-            StationRepository.addStation(station);
-        }
+        stations.forEach(StationRepository::addStation);
     }
 }

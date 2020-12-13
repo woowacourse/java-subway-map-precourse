@@ -39,5 +39,7 @@ public interface Message {
     String ERROR_INVALID_LINE_NAME_LENGTH = "노선 이름은 2 글자 이상이어야 합니다.";
     String ERROR_STATION_REGISTERED_IN_LINE = "노선에 등록된 역은 삭제할 수 없습니다.";
     String ERROR_INVALID_SELECTION = "선택할 수 없는 기능입니다.";
-
+    String ERROR_OUT_OF_RANGE = "구간을 벗어났습니다.";
+    String ERROR_MIN_SIZE_STATIONS_IN_LINE = "구간에 등록된 역은 2개 이하가 될 수 없습니다.";
+    String ERROR_OUT_OF_MIN_INDEX = "구간은 1부터 시작합니다.";
 }
