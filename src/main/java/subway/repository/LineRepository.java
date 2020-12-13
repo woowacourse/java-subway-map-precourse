@@ -33,6 +33,11 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static boolean isLineExist(String lineName) {
+        return lines.stream()
+                .anyMatch(line -> line.getName().equals(lineName));
+    }
+
     public static boolean isStationExistInLine(Station station) {
         return lines.stream()
                 .anyMatch(line -> line.getStationList()
