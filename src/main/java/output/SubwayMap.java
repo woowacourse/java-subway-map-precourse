@@ -21,6 +21,7 @@ public class SubwayMap {
             System.out.println(INFO + line.getName());
             System.out.println(CONTOUR);
             printLineStations(line);
+            System.out.println();
         }
     }
 
