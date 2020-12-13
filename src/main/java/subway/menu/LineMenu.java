@@ -10,7 +10,7 @@ import subway.view.StationInputView;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum LineMenu {
+public enum LineMenu implements MenuModel {
     REGISTER("1", "노선 등록") {
         public void moveView(Scanner scanner) {
             String line = LineInputView.register(scanner);
@@ -32,7 +32,7 @@ public enum LineMenu {
         public void moveView(Scanner scanner) {
             // 모든 역 출력
             // LineRepository..
-            LineRepository.lines().stream().forEach(x -> System.out.println(x.getName()+ " "+ x.line.getFirst() + " " + x.line.getLast()));
+            LineRepository.lines().stream().forEach(x -> System.out.println(x.getName() + " " + x.line.getFirst() + " " + x.line.getLast()));
         }
     },
     BACK("B", "돌아가기") {
@@ -51,22 +51,21 @@ public enum LineMenu {
         this.feature = feature;
     }
 
-    public static LineMenu select(String lineMenuInput) {
-        return Arrays.stream(LineMenu.values())
-                .filter(menu -> menu.selection.equals(lineMenuInput))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    public static String validateInput(String lineMenuInput) {
-        return select(lineMenuInput).selection;
+    public static MenuModel select(String lineMenuInput) {
+        return MenuFeature.findOne(LineMenu.class, lineMenuInput);
     }
 
     public static String getMenu() {
-        String menuText = "";
-        for (LineMenu lineMenu : LineMenu.values()) {
-            menuText += lineMenu.selection + ". " + lineMenu.feature + "\n";
-        }
-        return menuText;
+        return MenuFeature.getMenu(LineMenu.class);
+    }
+
+    @Override
+    public String getSelection() {
+        return selection;
+    }
+
+    @Override
+    public String getFeature() {
+        return feature;
     }
 }

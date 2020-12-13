@@ -8,7 +8,7 @@ import subway.view.StationInputView;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum StationMenu {
+public enum StationMenu implements MenuModel {
     REGISTER("1", "역 등록") {
         public void moveView(Scanner scanner) {
             String station = StationInputView.register(scanner);
@@ -43,23 +43,21 @@ public enum StationMenu {
 
     abstract public void moveView(Scanner scanner);
 
-    public static StationMenu select(String stationMenuInput) {
-        return Arrays.stream(StationMenu.values())
-                .filter(menu -> menu.selection.equals(stationMenuInput))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    public static String validateInput(String stationMenuInput) {
-        return select(stationMenuInput).selection;
+    public static MenuModel select(String stationMenuInput) {
+        return MenuFeature.findOne(StationMenu.class, stationMenuInput);
     }
 
     public static String getMenu() {
-        String menuText = "";
-        for (StationMenu stationMenu : StationMenu.values()) {
-            menuText += stationMenu.selection + ". " + stationMenu.feature + "\n";
-        }
-        return menuText;
+        return MenuFeature.getMenu(StationMenu.class);
     }
 
+    @Override
+    public String getSelection() {
+        return selection;
+    }
+
+    @Override
+    public String getFeature() {
+        return feature;
+    }
 }

@@ -4,11 +4,9 @@ import subway.view.LineInputView;
 import subway.view.SectionInputView;
 import subway.view.StationInputView;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-public enum MainMenu {
+public enum MainMenu implements MenuModel {
     MANAGE_STATION("1", "역 관리") {
         public void moveView(Scanner scanner) {
             String stationViewInput = StationInputView.menu(scanner);
@@ -48,26 +46,25 @@ public enum MainMenu {
 
     abstract public void moveView(Scanner scanner);
 
-    public static MainMenu select(String mainMenuInput) {
-        return Arrays.stream(MainMenu.values())
-                .filter(menu -> menu.selection.equals(mainMenuInput))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+    public static boolean canContinue(String mainMenuInput) {
+        return !MainMenu.QUIT.selection.equals(mainMenuInput);
     }
 
-    public static String validateInput(String mainMenuInput) {
-        return select(mainMenuInput).selection;
+    public static MenuModel select(String mainMenuInput) {
+        return MenuFeature.findOne(MainMenu.class, mainMenuInput);
     }
 
     public static String getMenu() {
-        String menuText = "";
-        for (MainMenu mainMenu : MainMenu.values()) {
-            menuText += mainMenu.selection + ". " + mainMenu.feature + "\n";
-        }
-        return menuText;
+        return MenuFeature.getMenu(MainMenu.class);
     }
 
-    public static boolean canContinue(String mainMenuInput) {
-        return !MainMenu.QUIT.selection.equals(mainMenuInput);
+    @Override
+    public String getFeature() {
+        return feature;
+    }
+
+    @Override
+    public String getSelection() {
+        return selection;
     }
 }

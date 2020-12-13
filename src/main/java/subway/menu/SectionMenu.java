@@ -5,7 +5,7 @@ import subway.view.SectionInputView;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public enum SectionMenu {
+public enum SectionMenu implements MenuModel {
     REGISTER("1", "구간 등록") {
         public void moveView(Scanner scanner) {
             SectionInputView sectionInputView = new SectionInputView();
@@ -34,22 +34,21 @@ public enum SectionMenu {
 
     abstract public void moveView(Scanner scanner);
 
-    public static SectionMenu select(String sectionMenuInput) {
-        return Arrays.stream(SectionMenu.values())
-                .filter(menu -> menu.selection.equals(sectionMenuInput))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    public static String validateInput(String sectionMenuInput) {
-        return select(sectionMenuInput).selection;
+    public static MenuModel select(String sectionMenuInput) {
+        return MenuFeature.findOne(SectionMenu.class, sectionMenuInput);
     }
 
     public static String getMenu() {
-        String menuText = "";
-        for (SectionMenu lineInput : SectionMenu.values()) {
-            menuText += lineInput.selection + ". " + lineInput.feature + "\n";
-        }
-        return menuText;
+        return MenuFeature.getMenu(SectionMenu.class);
+    }
+
+    @Override
+    public String getFeature() {
+        return feature;
+    }
+
+    @Override
+    public String getSelection() {
+        return selection;
     }
 }

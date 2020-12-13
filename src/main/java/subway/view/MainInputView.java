@@ -15,7 +15,7 @@ public class MainInputView {
         System.out.println(newLine + "## 원하는 기능을 선택하세요.");
 
         try {
-            return MainMenu.validateInput(scanner.nextLine());
+            return scanner.nextLine();
         } catch (IllegalArgumentException e) {
             System.out.println(newLine + "[ERROR] 입력이 잘못되었습니다." + newLine);
             return mainMenu(scanner);
