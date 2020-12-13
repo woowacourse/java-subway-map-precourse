@@ -12,10 +12,6 @@ public class Station {
         return new Station(name);
     }
 
-    public Name getName() {
-        return name;
-    }
-
     public boolean isSameName(Name name) {
         return this.name.equals(name);
     }
