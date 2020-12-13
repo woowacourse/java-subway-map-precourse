@@ -69,7 +69,7 @@ public class SectionMenu {
             return Arrays.stream(values())
                     .filter(menu -> menu.userInput.equals(input))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("적절하지 않은 입력입니다."));
+                    .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 기능입니다."));
         }
     }
 }
