@@ -3,7 +3,7 @@ package subway.setup;
 import java.util.Arrays;
 import java.util.List;
 import subway.domain.Line;
-import subway.domain.LineRepository;
+import subway.repository.LineRepository;
 
 /**
  * @author yhh1056

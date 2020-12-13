@@ -24,4 +24,11 @@ public class StationRepository {
     public static boolean isExist(String name) {
         return stations.stream().anyMatch(station -> station.getName().equals(name));
     }
+
+    public static Station findOne(String name) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
+    }
 }
