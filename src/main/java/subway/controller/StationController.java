@@ -51,8 +51,7 @@ public class StationController {
     }
 
     private void lookUpStation(InputView inputView) {
-        String functionHeader = StationText.screenName() + " 목록";
-        OutputView.printFunctionTitle(functionHeader);
+        OutputView.printFunctionTitle(StationText.listTitle());
         for (Station station : StationRepository.stations()) {
             System.out.println(station.toString());
         }

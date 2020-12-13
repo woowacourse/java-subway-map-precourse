@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StationText {
     private static String SCREEN_NAME = "역";
+    private static String LIST_TITLE = SCREEN_NAME + " 목록";
     private static String FUNCTION_TITLE = SCREEN_NAME + " 관리 화면";
     private static List<String> FUNCTION_INDEX_LIST = new ArrayList<>(Arrays.asList(
             "1",
@@ -25,6 +26,10 @@ public class StationText {
 
     public static String screenName() {
         return SCREEN_NAME;
+    }
+
+    public static String listTitle() {
+        return LIST_TITLE;
     }
 
     public static String functionTitle() {

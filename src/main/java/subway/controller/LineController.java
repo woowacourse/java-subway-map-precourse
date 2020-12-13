@@ -53,7 +53,6 @@ public class LineController {
     }
 
     private void lookUpLine(InputView inputView) {
-
     }
 
     private void goBackToMain(InputView inputView) {
