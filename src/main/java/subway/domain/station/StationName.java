@@ -23,17 +23,6 @@ public class StationName {
         validateStationNameForm(name);
     }
 
-    public void compareName(StationName stationName) {
-        if (this.equals(stationName)) {
-            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
     private void validateNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
@@ -50,6 +39,16 @@ public class StationName {
         if (name.charAt(name.length() - 1) != NAME_END) {
             throw new IllegalArgumentException(NAME_FORM_ERROR);
         }
+    }
+
+    public void compareName(StationName stationName) {
+        if (this.equals(stationName)) {
+            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
+        }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.domain.line.LineName;
+import subway.domain.line.LineRepository;
 import subway.domain.menu.MainMenuType;
 import subway.domain.menu.SubMenuType;
 import subway.domain.station.StationName;
@@ -81,9 +82,7 @@ public class InputView implements ViewConstant{
 
     public static StationName inputStationNameToAddSection(Scanner scanner) {
         System.out.printf(INPUT_SECTION_ADD_MESSAGE, STATION+NAME);
-        StationName stationName = new StationName(scanner.nextLine());
-        StationRepository.validateNameExist(stationName);
-        return stationName;
+        return new StationName(scanner.nextLine());
     }
 
     public static int inputIndexToAddSection(Scanner scanner) {

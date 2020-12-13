@@ -1,9 +1,11 @@
 package subway.domain.line;
 
+import com.sun.javafx.binding.StringFormatter;
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,16 +13,14 @@ public class Line {
     private static final int MIN_INDEX = 1;
     private static final int MIN_STATIONS_SIZE = 2;
     private static final String INDEX_RANGE_ERROR = "\n[ERROR] 순서의 범위를 벗어났습니다. 1 ~ %d 까지 입력 가능합니다.";
-    private static final String STATION_DUPLICATE_ERROR = "\n[ERROR] 이미 노선에 해당 역이 동록되어 있습니다.";
-    private static final String STATION_EXIST_ERROR = "\n[ERROR] 노선에 해당 역이 존재하지 않습니다.";
     private static final String STATIONS_SIZE_ERROR = "\n[ERROR] 노선에 포함된 역이 2개 이하일 때는 제거할 수 없습니다.";
 
-    private List<Station> stations;
+    private final List<Station> stations;
     private final LineName lineName;
 
-    private Line(LineName lineName) {
+    private Line(LineName lineName, List<Station> stations) {
         this.lineName = lineName;
-        stations = new ArrayList<>();
+        this.stations = stations;
     }
 
     public LineName getName() {
@@ -32,22 +32,22 @@ public class Line {
         return stations;
     }
 
-    public static Line createLine(LineName lineName, StationName firstStationName, StationName lastStationName) {
-        Line line = Line.of(lineName);
-        Station firstStation = Station.of(firstStationName);
-        Station lastStation = Station.of(lastStationName);
-        line.addStationToLine(firstStation, 1);
-        line.addStationToLine(lastStation, 2);
-        return line;
-    }
-
-    public static Line of(LineName lineName) {
-        return new Line(lineName);
+    public static Line createLine(LineName lineName, StationName upLastStationName, StationName downLastStationName) {
+        Station upLastStation = Station.of(upLastStationName);
+        Station downLastStation = Station.of(downLastStationName);
+        List<Station> stations = new ArrayList<>(Arrays.asList(upLastStation, downLastStation));
+        return new Line(lineName, stations);
     }
 
     public void addStationToLine(Station newStation, int index) {
-        validateIndexRange(index);
+        if (!isIndexInRange(index)) {
+            throw new IllegalArgumentException(String.format(INDEX_RANGE_ERROR, stations.size() + 1));
+        }
         stations.add(index - 1, newStation);
+    }
+
+    private boolean isIndexInRange(int index) {
+        return ((index >= MIN_INDEX) && (index <= stations.size() + 1));
     }
 
     public void deleteStationToLine(Station station) {
@@ -57,23 +57,8 @@ public class Line {
         stations.remove(station);
     }
 
-    private void validateIndexRange(int index) {
-        if (index < MIN_INDEX || index > stations.size() + 1) {
-            throw new IllegalArgumentException(String.format(INDEX_RANGE_ERROR, stations.size() + 1));
-        }
-    }
-
-    public void validateDuplicateStationToLine(Station newStation) {
-        if (stations.contains(newStation)) {
-            throw new IllegalArgumentException(STATION_DUPLICATE_ERROR);
-        }
-    }
-
     public boolean hasStationToLine(StationName stationName) {
-        if (!stations.contains(Station.of(stationName))) {
-            throw new IllegalArgumentException(STATION_EXIST_ERROR);
-        }
-        return true;
+        return stations.contains(Station.of(stationName));
     }
 
     @Override
