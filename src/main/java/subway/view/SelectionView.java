@@ -41,7 +41,7 @@ public abstract class SelectionView extends AbstractView {
                 if (input == GO_BACK_CODE) {
                     return;
                 }
-                /** TODO: 다른 뷰 방문 기능 구현 */
+                visitView(input);
             } catch (Exception e) {
             }
         }
@@ -87,5 +87,10 @@ public abstract class SelectionView extends AbstractView {
 
     private String parseFirstWord(String input) {
         return input.substring(0, 1);
+    }
+
+    protected void visitView(int input) {
+        int visitIdx = input - 1;
+        this.visitableViews.get(visitIdx).setVisible();
     }
 }
