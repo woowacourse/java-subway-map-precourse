@@ -1,10 +1,12 @@
 package subway;
 
 import java.util.Scanner;
+import subway.view.MainView;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        // TODO: 프로그램 구현
+        MainView mainView = new MainView(scanner);
+        mainView.startView();
     }
 }
