@@ -5,6 +5,7 @@ import subway.domain.section.Section;
 import subway.domain.section.SectionService;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
+import subway.domain.section.dto.SectionStationDeleteReqDto;
 import subway.domain.station.Station;
 import subway.domain.station.StationService;
 import subway.domain.station.dto.StationDeleteReqDto;
@@ -133,10 +134,11 @@ public class StationManageApp {
         outputService.printDelete(sectionView);
         String lineName = getName();
         Section section = sectionService.findByName(lineName);
+
         outputService.printSharp(SectionView.PRINT_DELETE_STATION);
         String stationName = getName();
         Station station = stationService.findByName(stationName);
-
+        sectionService.deleteStation(new SectionStationDeleteReqDto(section.getLineName(), station.getName()));
         outputService.printAfterDelete(sectionView);
     }
 
@@ -147,7 +149,7 @@ public class StationManageApp {
 
         outputService.printSharp(SectionView.PRINT_ADD_STATION);
         Station station = stationService.findByName(getName());
-        sectionService.validateStation(section.getLineName(), station.getName());
+        sectionService.validateStation(section, station);
 
         outputService.printSharp(SectionView.PRINT_ADD_SEQUENCE);
         outputService.printSharp(String.format(SectionView.PRINT_AVAILABLE_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE));

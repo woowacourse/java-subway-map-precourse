@@ -31,7 +31,9 @@ public enum ErrorCode {
     SECTION_SAME_STATION_NAME("SE003", Screen.PREFIX_ERROR + "상행 좀점역과 하행 종점역의 이름이 같을 수 없습니다."),
     SECTION_NOT_EXIST_NAME("SE004", Screen.PREFIX_ERROR + "등록되지 않은 노선 이름입니다."),
     SECTION_HAS_STATION("SE005", Screen.PREFIX_ERROR + "현재 노선에 추가되어있는 역입니다."),
-    SECTION_NOT_EXIST("SE005", Screen.PREFIX_ERROR + "등록된 노선이 없습니다.");
+    SECTION_NOT_HAS_STATION("SE006", Screen.PREFIX_ERROR + "현재 노선에 없는 역입니다."),
+    SECTION_NOT_EXIST("SE007", Screen.PREFIX_ERROR + "등록된 노선이 없습니다."),
+    SECTION_CANNOT_DELETE_STATION("SE008", Screen.PREFIX_ERROR + "노선에 등록된 역이 2개 이하라 삭제할 수 없습니다.");
 
     private final String code;
     private final String message;

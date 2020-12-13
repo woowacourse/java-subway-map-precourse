@@ -4,6 +4,7 @@ import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
+import subway.domain.section.dto.SectionStationDeleteReqDto;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.domain.station.Stations;
@@ -101,9 +102,8 @@ public class SectionService {
         return false;
     }
 
-    public void validateStation(String lineName, String stationName) {
-        Section section = findByName(lineName);
-        if (section.getStationsName().contains(stationName)) {
+    public void validateStation(Section section, Station station) {
+        if (section.getStationsName().contains(station.getName())) {
             throw new SectionException(ErrorCode.SECTION_HAS_STATION);
         }
     }
@@ -112,5 +112,22 @@ public class SectionService {
         List<Section> sections = sectionRepository.sections();
         Collections.sort(sections);
         return sections;
+    }
+
+    public boolean deleteStation(SectionStationDeleteReqDto deleteReqDto) {
+        Section section = sectionRepository.findByName(deleteReqDto.getLineName());
+        Station station = stationRepository.findByName(deleteReqDto.getStationName());
+        if (!containStation(section, station)) {
+            throw new SectionException(ErrorCode.SECTION_NOT_HAS_STATION);
+        }
+        boolean isDelete = section.deleteStationByStation(station);
+        return isDelete;
+    }
+
+    private boolean containStation(Section section, Station station) {
+        if (section.getStationsName().contains(station.getName())) {
+            return true;
+        }
+        return false;
     }
 }

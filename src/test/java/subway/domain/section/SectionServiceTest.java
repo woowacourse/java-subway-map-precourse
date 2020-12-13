@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import subway.domain.line.MemoryLineRepository;
 import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
+import subway.domain.section.dto.SectionStationDeleteReqDto;
 import subway.domain.station.MemoryStationRepository;
+import subway.domain.station.Station;
 import subway.domain.station.StationService;
 import subway.domain.station.StationServiceImpl;
 import subway.domain.station.dto.StationSaveReqDto;
@@ -38,6 +40,7 @@ class SectionServiceTest {
         String upwardName = "행복역";
         String downwardName = "사랑역";
         sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downwardName));
+        sectionService.addStation(lineName, stationName3, 2);
     }
 
     @AfterEach
@@ -152,8 +155,12 @@ class SectionServiceTest {
         String lineName = "1호선";
         String stationName = "행복역";
 
+        //when
+        Section section = sectionService.findByName(lineName);
+        Station station = stationService.findByName(stationName);
+
         //then
-        assertThatThrownBy(() -> sectionService.validateStation(lineName, stationName))
+        assertThatThrownBy(() -> sectionService.validateStation(section, station))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_HAS_STATION.getMessage());
     }
@@ -188,5 +195,57 @@ class SectionServiceTest {
 
         //then
         assertThat(section.getStationsName().get(2)).isEqualTo(stationName);
+    }
+
+    @Test
+    @DisplayName("노선에 포함되어있는 역 삭제 테스트")
+    void testDeleteStation() {
+        //given
+        String lineName = "1호선";
+        String stationName = "희망역";
+
+
+        //when
+        boolean isDelete = sectionService.deleteStation(new SectionStationDeleteReqDto(lineName, stationName));
+
+        //then
+        assertThat(isDelete).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("노선에 포함되어있는 역이 두개 이하면 에러가 발생한다.")
+    void testDeleteStationLengthError() {
+        //given
+        String lineName = "1호선";
+        String stationName = "희망역";
+        String stationName2 = "행복역";
+
+
+        //when
+        boolean isDelete = sectionService.deleteStation(new SectionStationDeleteReqDto(lineName, stationName));
+
+        //then
+        assertThat(isDelete).isEqualTo(true);
+        assertThatThrownBy(() -> sectionService.deleteStation(new SectionStationDeleteReqDto(lineName, stationName2)))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_CANNOT_DELETE_STATION.getMessage());
+    }
+
+    @Test
+    @DisplayName("삭제하려는 역이 노선에 포함되있지 않으면 에러가 발생한다.")
+    void testDeleteStationNotHasError() {
+        //given
+        String lineName = "1호선";
+        String stationName = "희망역";
+        String stationName2 = "희망역";
+
+        //when
+        boolean isDelete = sectionService.deleteStation(new SectionStationDeleteReqDto(lineName, stationName));
+
+        //then
+        assertThat(isDelete).isEqualTo(true);
+        assertThatThrownBy(() -> sectionService.deleteStation(new SectionStationDeleteReqDto(lineName, stationName2)))
+                .isInstanceOf(SectionException.class)
+                .hasMessage(ErrorCode.SECTION_NOT_HAS_STATION.getMessage());
     }
 }

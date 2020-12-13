@@ -7,7 +7,7 @@ import subway.domain.station.Stations;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Section implements Comparable<Section>{
+public class Section implements Comparable<Section> {
     private final Line line;
     private final Stations stations;
 
@@ -44,5 +44,9 @@ public class Section implements Comparable<Section>{
             return 1;
         }
         return -1;
+    }
+
+    public boolean deleteStationByStation(Station station) {
+        return stations.deleteStation(station);
     }
 }
