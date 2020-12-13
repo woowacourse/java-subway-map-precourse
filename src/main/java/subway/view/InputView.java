@@ -10,7 +10,7 @@ public class InputView implements Message {
 
 
     public static String getSelection() {
-        OutputView.displaySelection();
+        System.out.println("## 원하는 기능을 선택하세요.");
         return getInput();
     }
 

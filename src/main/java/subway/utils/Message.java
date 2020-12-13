@@ -7,6 +7,9 @@ public interface Message {
     String DISPLAY_STATION_MANAGEMENT = "역 관리 화면\n1. 역 등록\n2. 역 삭제\n3. 역 조회\nB. 돌아가기";
     String DISPLAY_LINE_MANAGEMENT = "노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB. 돌아가기";
     String DISPLAY_SECTION_MANAGEMENT = "구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기";
+    String DISPLAY_STATION_LIST = "역 목록";
+    String DISPLAY_LINE_LIST = "노선 목록";
+    String DISPLAY_WHOLE_SECTION = "지하철 노선도";
 
     String ANN_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
     String ANN_REGISTER_LINE = "등록할 노선 이름을 입력하세요.";
@@ -19,7 +22,6 @@ public interface Message {
     String ANN_SELECT_LINE = "노선을 입력하세요";
     String ANN_SELECT_STATION = "역 이름을 입력하세요";
     String ANN_INPUT_ORDER = "순서를 입력하세요";
-    String ANN_PRINT_WHOLE_LINES = "지하철 노선도";
 
     String INFO_STATION_REGISTERED = "지하철 역이 등록되었습니다.";
     String INFO_LINE_REGISTERED = "지하철 노선이 등록되었습니다.";
