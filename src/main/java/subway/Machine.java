@@ -6,12 +6,13 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class Machine {
+    private static final String QUIT_NUMBER = "Q";
 
     public void start(Scanner scanner) {
         try {
             OutputView.printMainFunctions();
             String mainFunctionNumber = InputView.inputFunctionNumber(scanner);
-            if (mainFunctionNumber.equals("Q")) {
+            if (mainFunctionNumber.equals(QUIT_NUMBER)) {
                 return;
             }
             MainFunction.getMainFunctionByNumber(mainFunctionNumber).operate(scanner);
