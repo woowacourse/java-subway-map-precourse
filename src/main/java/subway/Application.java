@@ -1,6 +1,7 @@
 package subway;
 
 import subway.common.MainController;
+import subway.common.domain.Status;
 
 public class Application {
     public static void main(String[] args) {
@@ -8,6 +9,8 @@ public class Application {
     }
 
     private static void operateSubwaySystem() {
-        MainController.execute();
+        do {
+            MainController.execute();
+        } while (Status.isContinue());
     }
 }

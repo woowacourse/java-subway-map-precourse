@@ -1,5 +1,6 @@
 package subway.common;
 
+import subway.common.domain.Status;
 import subway.common.exception.NotSupportedFunctionException;
 import subway.line.LineController;
 import subway.section.SectionController;
@@ -21,8 +22,7 @@ public class MainFunctionMapper {
         mapper.put(LINE_MANAGEMENT, LineController::execute);
         mapper.put(SECTION_MANAGEMENT, SectionController::execute);
         mapper.put(PRINT_SUBWAY_MAP, SubwayMapController::print);
-        mapper.put(TERMINATE, () -> {
-        });
+        mapper.put(TERMINATE, Status::terminate);
     }
 
     public static Runnable matchFunction(String command) {
