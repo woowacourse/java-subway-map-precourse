@@ -13,6 +13,7 @@ public class OutputMessage {
     private static final String MAIN_MANAGE_LINE="2. 노선 관리";
     private static final String MAIN_MANAGE_IN_LINE="3. 구간 관리";
     private static final String MAIN_QUIT="Q. 종료";
+
     private static final String MENU_BACK="B. 돌아가기";
 
     private static final String STATION_MANAGE_MESSAGE="## 역 관리 화면";
@@ -30,6 +31,7 @@ public class OutputMessage {
     private static final String IN_LINE_MANAGE_DELETE="2. 구간 삭제";
 
     private static final String CHOICE_FUNCTION_MESSAGE="## 원하는 기능을 선택하세요";
+
     public void mainOutputMessage(){
         System.out.println(MAIN_DISPLAY_MESSAGE);
         System.out.println(MAIN_MANAGE_STATION);
@@ -41,6 +43,14 @@ public class OutputMessage {
     public int choiceOutputMessage(Scanner scanner){
         System.out.println(CHOICE_FUNCTION_MESSAGE);
         return scanner.nextInt();
+    }
+    public void choiceStationOutputMessage(){
+        System.out.println(STATION_MANAGE_MESSAGE);
+        System.out.println(STATION_MANAGE_REGISTRATION);
+        System.out.println(STATION_MANAGE_DELETE);
+        System.out.println(STATION_MANAGE_SEARCH);
+        System.out.println(MENU_BACK);
+        System.out.println();
     }
 
 }
