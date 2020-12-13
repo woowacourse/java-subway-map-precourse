@@ -11,6 +11,11 @@ public class LineManager {
     public static final String QUIT_OPTION = "B. 돌아가기";
     public static final String ASK_OPTION_MESSAGE = "## 원하는 기능을 선택하세요.";
     public static final String ERROR_PREFIX = "[ERROR] ";
+    public static final String WANT_QUIT_CODE = "B";
+    public static final String OPTION_ERROR_MESSAGE = "1~3 또는 B 옵션 중 하나를 입력하세요";
+    private static final int OPTION_MIN = 1;
+    private static final int OPTION_MAX = 3;
+    
     public static String userOption = "";
 
     public static void manage(Scanner scanner) {
@@ -38,6 +43,21 @@ public class LineManager {
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
             return getUserOption(scanner);
+        }
+    }
+
+    public static void validateUserOption(String userOption) throws IllegalArgumentException {
+        if (userOption.equals(WANT_QUIT_CODE)) {
+            return;
+        }
+        int optionNumber;
+        try {
+            optionNumber = Integer.parseInt(userOption);
+            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ERROR_PREFIX + OPTION_ERROR_MESSAGE);
         }
     }
 }

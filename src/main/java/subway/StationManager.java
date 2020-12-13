@@ -17,7 +17,7 @@ public class StationManager {
     public static final String STATION_NAME_ERROR_MESSAGE = "존재하지 않는 2자 이상의 역 이름을 입력하세요";
     public static final String STATION_EXIST_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
     public static final String INFO_PREFIX = "[INFO] ";
-    private static final String INPUT_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
+    public static final String INPUT_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
     public static final String ENROLLMENT_INFO_MESSAGE = "지하철 역이 등록되었습니다";
     public static final String ASK_DELETION_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
     public static final String DELETION_INFO_MESSAGE = "지하철 역이 삭제되었습니다";
