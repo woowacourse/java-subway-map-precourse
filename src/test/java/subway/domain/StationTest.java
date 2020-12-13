@@ -10,7 +10,7 @@ public class StationTest {
 
     @DisplayName("지하철 역 이름은 MIN_STATION_NAME_LENGTH 설정 값 이상이어야 한다")
     @Test
-    public void checkStationNameOverTwo() {
+    public void checkStationNameOverConfigLength() {
         assertThatThrownBy(() -> {
             Station station = new Station("가");
         }).isInstanceOf(IllegalArgumentException.class).hasMessage(
