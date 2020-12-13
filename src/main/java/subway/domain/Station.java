@@ -16,5 +16,7 @@ public class Station {
 
     public static void add(InputView inputView, String stationMessage) {
         OutputView.printAddActionMessage(stationMessage);
+        Station newStation = new Station(inputView.getInput());
+        StationRepository.addStation(newStation);
     }
 }
