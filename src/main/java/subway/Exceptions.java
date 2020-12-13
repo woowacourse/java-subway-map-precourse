@@ -146,7 +146,7 @@ public class Exceptions {
 
     static void NumberOfStationsInLineOverTwo(Line line) {
         if(line.stations().size() <= 2){
-            throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_VALID_RANGE);
+            throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.NUMBER_OF_STATIONS_IN_LINE_OVER_TWO);
         }
     }
 }

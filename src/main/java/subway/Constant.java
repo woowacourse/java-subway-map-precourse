@@ -87,4 +87,5 @@ public class Constant {
     static final String IS_NATURAL_NUMBER = "순서는 0이 아닌 자연수만 입력해야합니다.";
     static final String IS_VALID_RANGE = "순서는 해당 노선의 역 갯수를 초과할 수 없습니다.";
     static final String IS_NOT_IN_THIS_LINE = "이미 해당 노선에 등록된 역입니다.";
+    static final String NUMBER_OF_STATIONS_IN_LINE_OVER_TWO = "해당 노선이 포함하는 역이 2개 이하일 때는 역을 삭제할 수 없습니다.";
 }
