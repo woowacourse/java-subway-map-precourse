@@ -33,11 +33,13 @@ public class View {
 	
 	private void moveStationViewBySelector(int selectorInt) {
 		if (selectorInt == 1) {
-			System.out.println(Message.STATION_NAME_INPUT);
+			System.out.println(Message.STATION_CREATE_NAME_INPUT);
 			stationName = Input.nextLine(scanner);
 			Subway.addStation(stationName);
 		} else if (selectorInt == 2) {
-			
+			System.out.println(Message.STATION_REMOVE_NAME_INPUT);
+			stationName = Input.nextLine(scanner);
+			Subway.removeStation(stationName);
 		} else if (selectorInt == 3) {
 			Subway.readStation();
 		}

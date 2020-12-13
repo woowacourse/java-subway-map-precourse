@@ -19,8 +19,8 @@ public class Output {
 		System.out.println(Message.FUNCTION_CHOICE);
 	}
 	
-	public static void info(String name) {
-		System.out.println("[INFO] " + name);
+	public static void info(String message) {
+		System.out.println("[INFO] " + message);
 	}
 	
 	public static void error(String message) {

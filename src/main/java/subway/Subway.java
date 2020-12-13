@@ -15,9 +15,9 @@ public class Subway {
 		}
 	}
 	
-	public static void addStation(String stationName) {
-		if (!StationRepository.contains(stationName)) {
-			Station station = new Station(stationName);
+	public static void addStation(String name) {
+		if (!StationRepository.contains(name)) {
+			Station station = new Station(name);
 			StationRepository.addStation(station);
 			return;
 		}
@@ -28,5 +28,13 @@ public class Subway {
 		for (Station station: StationRepository.getStations()) {
 			Output.info(station.getName());
 		}
+	}
+	
+	public static void removeStation(String name) {
+		if (StationRepository.deleteStation(name)) {
+			Output.info("지하철 역이 삭제되었습니다.");
+			return;
+		}
+		Output.error("등록되지 않은 역 이름입니다.");
 	}
 }
