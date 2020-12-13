@@ -34,19 +34,18 @@ public class StationService {
         return stationRepository.delete(station);
     }
 
-
-    public List<String> getStationNames() {
-        return stationRepository.findAll()
-                .stream()
-                .map(Station::getName)
-                .collect(Collectors.toList());
-    }
-
     public Sections createSections(LineDto lineDto) {
         Station upwardLastStation = stationRepository.findByName(lineDto.getUpwardLastStationName())
                 .orElseThrow(CannotFindStationException::new);
         Station downwardLastStation = stationRepository.findByName(lineDto.getDownwardLastStationName())
                 .orElseThrow(CannotFindStationException::new);
         return Sections.of(upwardLastStation, downwardLastStation);
+    }
+
+    public List<String> getStationNames() {
+        return stationRepository.findAll()
+                .stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
     }
 }
