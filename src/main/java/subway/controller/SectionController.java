@@ -25,7 +25,8 @@ public class SectionController {
     public void addSection() {
         try {
             Line line = getLineToAddSection();
-            line.addStation(sectionView.getOrder(), getStationToAddSection());
+            Station station = getStationToAddSection();
+            line.addStation(sectionView.getOrder(), station);
             sectionView.announceAddSectionSuccess();
         } catch (Exception e) {
             OutputView.printErrorMsg(e);
