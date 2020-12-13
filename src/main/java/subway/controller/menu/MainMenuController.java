@@ -1,11 +1,12 @@
 package subway.controller.menu;
 
-import subway.controller.Function;
 import subway.controller.map.MapController;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class MainMenuController extends MenuController {
+
+    private static final String QUIT_DECISION = "Q";
 
     public static boolean isRunning = true;
 
@@ -18,24 +19,23 @@ public class MainMenuController extends MenuController {
     }
 
     @Override
-    public void run() {
-        try {
-            String functionDecision = inputView.inputFunction(Function.MAIN_MENU);
-            if (Function.isExitDecision(functionDecision, Function.MAIN_MENU)) {
-                isRunning = false;
-                return;
-            }
-            Function.validate(functionDecision, Function.MAIN_MENU);
-            runChildController(functionDecision);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
-            run();
-        }
+    protected void printMenu() {
+        OutputView.printMainMenu();
     }
 
     @Override
-    protected void runChildController(String input) {
-        int validInput = Integer.parseInt(input) - 1;
-        childControllers.get(validInput).run();
+    protected void decideNextController() {
+        String decision = inputView.inputFunction();
+        if (isExitDecision(decision)) {
+            isRunning = false;
+            return;
+        }
+        validateDecision(decision, childControllers.size());
+        runChildController(decision);
+    }
+
+    @Override
+    protected boolean isExitDecision(String decision) {
+        return decision.equalsIgnoreCase(QUIT_DECISION);
     }
 }

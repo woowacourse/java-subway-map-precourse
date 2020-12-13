@@ -1,7 +1,7 @@
 package subway.view;
 
+import java.util.Arrays;
 import java.util.List;
-import subway.controller.Function;
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
@@ -9,9 +9,9 @@ import subway.domain.station.Station;
 public class OutputView {
 
     private static final String MAIN_MENU_LABEL = "## 메인 화면";
-    private static final String MAIN_MENU_STATION_CARE = "1. 역 관리";
-    private static final String MAIN_MENU_LINE_CARE = "2. 노선 관리";
-    private static final String MAIN_MENU_SECTION_CARE = "3. 구간 관리";
+    private static final String MAIN_MENU_STATION = "1. 역 관리";
+    private static final String MAIN_MENU_LINE = "2. 노선 관리";
+    private static final String MAIN_MENU_SECTION = "3. 구간 관리";
     private static final String MAIN_MENU_SHOW_MAP = "4. 지하철 노선도 출력";
     private static final String MAIN_MENU_QUIT = "Q. 종료";
 
@@ -58,61 +58,67 @@ public class OutputView {
     public static final String ERROR_INDEX = ERROR_LABEL + "유효하지 않은 순서입니다.";
     public static final String ERROR_NO_STATION = ERROR_LABEL + "해당 역은 노선에 존재하지 않습니다.";
 
-    public static void printMenu(int currentMenu) {
-        if (currentMenu == Function.MAIN_MENU) {
-            printMainMenu();
-        }
-        if (currentMenu == Function.STATION_MENU) {
-            printStationMenu();
-        }
-        if (currentMenu == Function.LINE_MENU) {
-            printLineMenu();
-        }
-        if (currentMenu == Function.SECTION_MENU) {
-            printSectionMenu();
-        }
+    private static final List<String> mainMenuOptions = Arrays.asList(
+            MAIN_MENU_LABEL,
+            MAIN_MENU_STATION,
+            MAIN_MENU_LINE,
+            MAIN_MENU_SECTION,
+            MAIN_MENU_SHOW_MAP,
+            MAIN_MENU_QUIT
+    );
+
+    private static final List<String> stationMenuOptions = Arrays.asList(
+            STATION_MENU_LABEL,
+            STATION_MENU_ADD,
+            STATION_MENU_DELETE,
+            STATION_MENU_VIEW,
+            NON_MAIN_MENU_QUIT
+    );
+
+    private static final List<String> lineMenuOptions = Arrays.asList(
+            LINE_MENU_LABEL,
+            LINE_MENU_ADD,
+            LINE_MENU_DELETE,
+            LINE_MENU_VIEW,
+            NON_MAIN_MENU_QUIT
+    );
+
+    private static final List<String> sectionMenuOptions = Arrays.asList(
+            SECTION_MENU_LABEL,
+            SECTION_MENU_ADD,
+            SECTION_MENU_DELETE,
+            NON_MAIN_MENU_QUIT
+    );
+
+    public static void printMainMenu() {
+        printMenu(mainMenuOptions);
     }
 
-    private static void printMainMenu() {
-        System.out.println(MAIN_MENU_LABEL);
-        System.out.println(MAIN_MENU_STATION_CARE);
-        System.out.println(MAIN_MENU_LINE_CARE);
-        System.out.println(MAIN_MENU_SECTION_CARE);
-        System.out.println(MAIN_MENU_SHOW_MAP);
-        System.out.println(MAIN_MENU_QUIT);
-
+    public static void printStationMenu() {
+        printMenu(stationMenuOptions);
     }
 
-    private static void printStationMenu() {
-        System.out.println(STATION_MENU_LABEL);
-        System.out.println(STATION_MENU_ADD);
-        System.out.println(STATION_MENU_DELETE);
-        System.out.println(STATION_MENU_VIEW);
-        System.out.println(NON_MAIN_MENU_QUIT);
+    public static void printLineMenu() {
+        printMenu(lineMenuOptions);
     }
 
-    private static void printLineMenu() {
-        System.out.println(LINE_MENU_LABEL);
-        System.out.println(LINE_MENU_ADD);
-        System.out.println(LINE_MENU_DELETE);
-        System.out.println(LINE_MENU_VIEW);
-        System.out.println(NON_MAIN_MENU_QUIT);
+    public static void printSectionMenu() {
+        printMenu(sectionMenuOptions);
     }
 
-    private static void printSectionMenu() {
-        System.out.println(SECTION_MENU_LABEL);
-        System.out.println(SECTION_MENU_ADD);
-        System.out.println(SECTION_MENU_DELETE);
-        System.out.println(NON_MAIN_MENU_QUIT);
+    private static void printMenu(List<String> menuOptions) {
+        System.out.println();
+        menuOptions.forEach(System.out::println);
+        System.out.println();
     }
 
     public static void printStations(List<Station> stations) {
-        System.out.println();
         System.out.println(STATION_VIEW_LABEL);
         stations.stream()
                 .map(Station::getName)
                 .map(x -> INFO_LABEL + x)
                 .forEach(System.out::println);
+        System.out.println();
     }
 
     public static void printLines(List<Line> lines) {
@@ -143,11 +149,13 @@ public class OutputView {
     public static void printError(Exception e) {
         System.out.println();
         System.out.println(e.getMessage());
+        System.out.println();
     }
 
     public static void printInfo(String info) {
         System.out.println();
         System.out.println(info);
+        System.out.println();
     }
 
 }

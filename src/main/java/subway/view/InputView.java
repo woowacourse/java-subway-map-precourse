@@ -1,7 +1,6 @@
 package subway.view;
 
 import java.util.Scanner;
-import subway.controller.Function;
 
 public class InputView {
 
@@ -15,30 +14,26 @@ public class InputView {
     public static final String CHOOSE_LINE = "## 노선을 입력하세요.";
     public static final String CHOOSE_STATION_NAME = "## 역이름을 입력하세요.";
     public static final String CHOOSE_ORDER = "## 순서를 입력하세요.";
+
     private Scanner scanner;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public String inputFunction(int currentMenu) {
-        System.out.println();
-        OutputView.printMenu(currentMenu);
+    public String inputFunction() {
         return userStringInput(CHOOSE_FUNCTION);
     }
 
     public String inputName(String specificInfo) {
-        System.out.println();
         return userStringInput(specificInfo);
     }
 
     public String inputIndex(String specificInfo) {
-        System.out.println();
         return userStringInput(specificInfo);
     }
 
     private String userStringInput(String specificInfo) {
-        System.out.println();
         System.out.println(specificInfo);
         return scanner.nextLine();
     }
