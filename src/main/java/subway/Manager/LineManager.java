@@ -19,7 +19,7 @@ public class LineManager {
         this.scanner = scanner;
     }
 
-    public void execute(String input) {
+    public void execute(String input) { // 노선 관리 실행
         if (input.equals(LINE_INSERT)) {
             createLine();
             OutputView.lineInsertSuccess();

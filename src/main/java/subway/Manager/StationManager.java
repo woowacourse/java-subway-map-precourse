@@ -20,7 +20,7 @@ public class StationManager {
         this.scanner = scanner;
     }
 
-    public void execute(String input) {
+    public void execute(String input) { // 역 관리 실행
         if (input.equals(STATION_INSERT)) {
             String stationName = InputView.inputStation(scanner);
             StationRepository.addStation(new Station(stationName));
