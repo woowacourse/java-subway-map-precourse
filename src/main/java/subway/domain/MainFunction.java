@@ -15,7 +15,7 @@ public enum MainFunction implements Functionable {
     SUBWAY_MAP("4", "지하철 노선도 출력",
             Function.identity()),
     QUIT("Q", "종료",
-            null);
+            mainController -> null);
 
     public static final String TITLE = "메인";
 
