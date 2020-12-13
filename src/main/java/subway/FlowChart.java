@@ -107,7 +107,7 @@ public class FlowChart {
 
     public static void lineLookUp(Scanner scanner, String lineInput) {
         if (lineInput.equals(Constant.THREE)) {
-            System.out.println("lineLookUp");
+            LineSetting.lookUp();
             System.out.println();
             main(scanner);
         }

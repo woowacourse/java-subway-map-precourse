@@ -34,6 +34,14 @@ public class LineSetting {
         }
     }
 
+    public static void lookUp() {
+        Print.hashMessage(Constant.LINE_LIST_TITLE);
+        LineRepository.lines().forEach(line -> {
+            System.out.print(Constant.HEAD_INFO);
+            System.out.println(line.getName());
+        });
+    }
+
     public static void addStationToLine(Line line, String stationName){
         StationRepository.stations().forEach(station -> {
             if(station.getName().equals(stationName)){
