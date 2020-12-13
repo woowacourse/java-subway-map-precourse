@@ -26,4 +26,11 @@ public class LineRepository {
                 .map(Line::getName)
                 .collect(Collectors.toList());
     }
+
+    public static Line getLineByName(String name) {
+        return lines.stream()
+                .filter(line -> line.isName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 노선입니다."));
+    }
 }

@@ -34,7 +34,6 @@ public class LineMenu {
         OutputView.printInfoMsg("이전 메뉴로 돌아갑니다.");
     }
 
-
     private enum Menu {
         REGISTER_LINE("1", "1. 노선 등록", () -> lineController.addLine()),
         DELETE_LINE("2", "2. 노선 삭제", () -> lineController.deleteLine()),
