@@ -124,4 +124,17 @@ public class printScreen {
     public static void printAlarmDeleteSection() {
         System.out.println("[INFO] 구간이 삭제되었습니다.");
     }
+
+    public static void printAllSubwayLine() {
+        List<Line> lines = LineRepository.retrieveLine();
+
+        for (Line line : lines) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("---");
+            List<Station> section = line.getSection();
+            for (Station station : section) {
+                System.out.println("[INFO] " + station.getName());
+            }
+        }
+    }
 }
