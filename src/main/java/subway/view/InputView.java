@@ -21,12 +21,15 @@ public class InputView {
     private static final String NOT_EXISTING_LINE_ERROR_MESSAGE = "등록되지 않은 노선 이름입니다.";
     private static final String EXISTING_IN_SECTION_ERROR_MESSAGE = "노선에 등록된 역입니다.";
     private static final String EQUAL_STATION_ERROR_MESSAGE = "상행 종점역과 하행 종점역이 같습니다.";
+    private static final String NOT_DIGIT_ERROR_MESSAGE = "순서는 숫자여야 합니다.";
+    private static final String INVALID_RANGE_ERROR_MESSAGE = "순서는 1에서 구간의 길이 -1까지여야 합니다.";
     private static final String REGEX_LETTER = "^[0-9가-힣]*$";
     private static final String STATION = "역";
     private static final String LINE = "노선";
     private static final char STATION_LAST_CHAR = '역';
     private static final char LINE_LAST_CHAR = '선';
     private static final int MIN_VALUE_LENGTH = 2;
+    private static final int START_INDEX = 1;
 
     private final Scanner scanner;
 
@@ -60,6 +63,10 @@ public class InputView {
 
     public String getInputDeleteLine() {
         return validateInputDeleteLine(scanner.nextLine());
+    }
+
+    public int getInputIndex(int length) {
+        return validateInputIndex(length, converseStringToInt(scanner.nextLine()));
     }
 
     public String validateInputFunctionIndex(List<String> functionIndexList, String functionIndex) {
@@ -136,6 +143,13 @@ public class InputView {
         }
     }
 
+    private int validateInputIndex(int length, int index) {
+        if ((index < START_INDEX) || (index > length - 1)) {
+            throw new IllegalArgumentException(ERROR_HEADER + INVALID_RANGE_ERROR_MESSAGE);
+        }
+        return index;
+    }
+
     private static boolean isNotLetter(String value) {
         return !Pattern.matches(REGEX_LETTER, value);
     }
@@ -180,4 +194,13 @@ public class InputView {
         }
         return false;
     }
+
+    private static int converseStringToInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ERROR_HEADER + NOT_DIGIT_ERROR_MESSAGE);
+        }
+    }
+
 }

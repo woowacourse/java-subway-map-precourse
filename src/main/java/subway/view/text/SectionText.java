@@ -21,6 +21,10 @@ public class SectionText {
     private SectionText() {
     }
 
+    public static String screenName() {
+        return SCREEN_NAME;
+    }
+
     public static String functionTitle() {
         return FUNCTION_TITLE;
     }
