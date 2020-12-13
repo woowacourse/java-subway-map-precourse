@@ -12,8 +12,7 @@ public class LineManageController {
 
     LineManageInput input = new LineManageInput();
 
-    public void processEnrollLine(Scanner scanner) {
-        Line line = new Line(input.inputEnrollLine(scanner));
+    public void processEnrollLine(Line line) {
         LineRepository.addLine(line);
     }
 
