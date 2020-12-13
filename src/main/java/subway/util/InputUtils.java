@@ -2,20 +2,17 @@ package subway.util;
 
 public class InputUtils {
 
-    public static boolean isValidateInt(String inputString) {
+    public static int getPositiveIntOrThrow(String inputString) {
         for (int i = 0; i < inputString.length(); i++) {
             if (!Character.isDigit(inputString.charAt(i))) {
-                return false;
+                throw new RuntimeException(Constants.INVALID_STRING_ERROR_COMMENT);
             }
         }
-        return true;
-    }
-
-    public static boolean isPositiveInt(int inputInt) {
-        if (inputInt <= 0) {
-            return false;
+        int refinedInt = Integer.parseInt(inputString);
+        if (refinedInt <= 0) {
+            throw new RuntimeException(Constants.INVALID_LENGTH_ERROR_COMMENT);
         }
-        return true;
+        return refinedInt;
     }
 
     public static boolean isMinLengthString(String inputString) {

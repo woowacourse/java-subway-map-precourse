@@ -43,6 +43,8 @@ public class Constants {
         Constants.SECTION_MENU_STATE, new Menu("구간 관리 화면", Constants.SECTION_MENU_ITEMS)
     );
 
+    public static final String MENU_GROUP_PREFIX = "## ";
+
     public static final String MAIN_MENU_STATE = "MAIN";
     public static final String STATION_MENU_STATE = "STATION";
     public static final String LINE_MENU_STATE = "LINE";
