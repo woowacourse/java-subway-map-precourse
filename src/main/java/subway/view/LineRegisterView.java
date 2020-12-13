@@ -5,6 +5,6 @@ public class LineRegisterView extends ManagerView {
 
 	@Override
 	public void print() {
-		printThirdMenu(TOP_MENU_MESSAGE);
+		printTopMenu(TOP_MENU_MESSAGE);
 	}
 }
