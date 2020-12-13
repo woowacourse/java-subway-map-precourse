@@ -67,15 +67,7 @@ public class FlowChart {
 
     public static void stationAdd(Scanner scanner, String stationInput) {
         if (stationInput.equals(Constant.ONE)) {
-            while (true){
-                try {
-                    StationSetting.add(scanner);
-                    break;
-                } catch (IllegalArgumentException e){
-                    System.out.println(e.getMessage());
-                    System.out.println();
-                }
-            }
+            StationSetting.add(scanner);
             System.out.println();
             main(scanner);
         }
