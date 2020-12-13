@@ -1,28 +1,19 @@
 package subway.userinterface.mainmenu;
 
+import subway.userinterface.InputController;
 import subway.util.InputValidator;
 
 import java.util.Scanner;
 
-public class MainViewInputController {
-    private final static String MAIN_INPUT = "\n## 원하는 기능을 선택하세요.";
-    private static String mainInput;
+public class MainViewInputController extends InputController {
 
-    public static void getMainMenuInput(Scanner scanner) {
-
-        System.out.println(MAIN_INPUT);
-        mainInput = scanner.nextLine();
-        validateInput(scanner);
-
-    }
-
-    private static void validateInput(Scanner scanner) {
+    protected void validateInput(Scanner scanner) {
 
         try {
-            InputValidator.validateMainMenuInput(mainInput);
+            InputValidator.validateMainMenuInput(userInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getMainMenuInput(scanner);
+            getUserInput(scanner);
         }
 
     }
