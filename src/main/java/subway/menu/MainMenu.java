@@ -41,11 +41,11 @@ public class MainMenu {
     }
 
     public static void printSubwayMap() {
+        OutputView.printMsg("## 지하철 노선도 \n");
         for (Line line : LineRepository.lines()) {
             OutputView.printInfoMsg(line.toString());
             OutputView.printInfoMsg("---");
-            line.getStationNames()
-                    .stream()
+            line.getStationNames().stream()
                     .forEach(OutputView::printInfoMsg);
             OutputView.printLineSeparator();
         }

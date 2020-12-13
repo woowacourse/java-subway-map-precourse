@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private Name name;
@@ -60,6 +61,12 @@ public class Line {
     public void removeAllStations() {
         stations.stream().forEach(Station::outOfLine);
         stations = null;
+    }
+
+    public List<String> getStationNames() {
+        return stations.stream()
+                .map(Station::toString)
+                .collect(Collectors.toList());
     }
 
     @Override
