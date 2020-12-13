@@ -21,7 +21,7 @@ public class StationManagerView extends ManagerView {
 		} else if (menuSelected.equals(SECOND_MENU)) {
 			new StationRemovalView(scanner);
 		} else if (menuSelected.equals(THIRD_MENU)) {
-			new StationListView(scanner);
+			new StationListView();
 		} else if (menuSelected.equals(BACK_MENU)) {
 			new MainView(scanner);
 		}
