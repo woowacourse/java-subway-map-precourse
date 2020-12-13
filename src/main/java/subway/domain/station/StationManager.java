@@ -1,6 +1,7 @@
 package subway.domain.station;
 
 import subway.domain.State;
+import subway.exception.AlreadyExistStationException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -20,6 +21,10 @@ public class StationManager {
     }
 
     public static void addStation(String name) {
+        if (StationRepository.isExistStation(name)) {
+            throw new AlreadyExistStationException();
+        }
+
         StationRepository.addStation(new Station(name));
         OutputView.printRegisteredStationMessage();
     }

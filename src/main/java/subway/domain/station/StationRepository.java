@@ -38,4 +38,8 @@ public class StationRepository {
                 .findFirst()
                 .orElseThrow(NoSuchStationException::new);
     }
+
+    public static boolean isExistStation(String name) {
+        return stations.stream().anyMatch(station -> station.getName().equals(name));
+    }
 }
