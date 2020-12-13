@@ -14,6 +14,7 @@ public class OutputView {
     private static final String INPUT_LAST_STATION_MESSAGE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String INPUT_VALUE_MESSAGE = "%s 이름을 입력하세요.";
     private static final String INPUT_INDEX_MESSAGE = "순서를 입력하세요.";
+    private static final String INPUT_VALUE_OF_DELETE_SECTION = "삭제할 구간의 %s을 입력하세요.";
 
     public static void printFunctionTitle(String functionHeader) {
         System.out.println();
@@ -69,5 +70,10 @@ public class OutputView {
     public static void printInputIndex() {
         System.out.println();
         System.out.println(HEADER_SHARP + INPUT_INDEX_MESSAGE);
+    }
+
+    public static void printInputValueOfDeleteSection(String screenName) {
+        System.out.println();
+        System.out.printf(HEADER_SHARP + INPUT_VALUE_OF_DELETE_SECTION + "\n", screenName);
     }
 }

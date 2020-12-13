@@ -23,6 +23,7 @@ public class InputView {
     private static final String EQUAL_STATION_ERROR_MESSAGE = "상행 종점역과 하행 종점역이 같습니다.";
     private static final String NOT_DIGIT_ERROR_MESSAGE = "순서는 숫자여야 합니다.";
     private static final String INVALID_RANGE_ERROR_MESSAGE = "순서는 1에서 구간의 길이 -1까지여야 합니다.";
+    private static final String LESS_THAN_MIN_STATION_ERROR_MESSAGE = "선택한 노선의 역 개수가 2개 이하입니다.";
     private static final String REGEX_LETTER = "^[0-9가-힣]*$";
     private static final String STATION = "역";
     private static final String LINE = "노선";
@@ -30,6 +31,7 @@ public class InputView {
     private static final char LINE_LAST_CHAR = '선';
     private static final int MIN_VALUE_LENGTH = 2;
     private static final int START_INDEX = 1;
+    private static final int MIN_STATION_OF_SECTION = 2;
 
     private final Scanner scanner;
 
@@ -67,6 +69,14 @@ public class InputView {
 
     public int getInputIndex(int length) {
         return validateInputIndex(length, converseStringToInt(scanner.nextLine()));
+    }
+
+    public String getInputLineOfDeleteSection() {
+        return validateInputLineOfDeleteSection(scanner.nextLine());
+    }
+
+    public String getInputStationOfDeleteSection() {
+        return validateInputStationOfDeleteSection(scanner.nextLine());
     }
 
     public String validateInputFunctionIndex(List<String> functionIndexList, String functionIndex) {
@@ -128,7 +138,7 @@ public class InputView {
                     String.format(INVALID_STATION_LAST_CHAR, LINE_LAST_CHAR));
         }
         if (isExistingLine(line)) {
-            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_STATION_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
         }
         return line;
     }
@@ -154,6 +164,23 @@ public class InputView {
             throw new IllegalArgumentException(ERROR_HEADER + INVALID_RANGE_ERROR_MESSAGE);
         }
         return index;
+    }
+
+    private String validateInputLineOfDeleteSection(String line) {
+        if (!isExistingLine(line)) {
+            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
+        }
+        if (SectionRepository.getLengthByLineName(line) <= MIN_STATION_OF_SECTION) {
+            throw new IllegalArgumentException(ERROR_HEADER + LESS_THAN_MIN_STATION_ERROR_MESSAGE);
+        }
+        return line;
+    }
+
+    private String validateInputStationOfDeleteSection(String station){
+        if(!isExistingStation(station)){
+            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+        }
+        return station;
     }
 
     private static boolean isNotLetter(String value) {

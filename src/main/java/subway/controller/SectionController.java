@@ -24,7 +24,7 @@ public class SectionController {
             registerSection(inputView);
         }
         if (functionIndex.equals(DELETE_INDEX)) {
-            deleteSection();
+            deleteSection(inputView);
         }
         if (functionIndex.equals(MainController.getControllerIndex())) {
             goBackToMain(inputView);
@@ -43,8 +43,15 @@ public class SectionController {
         goBackToMain(inputView);
     }
 
-    private void deleteSection() {
-
+    private void deleteSection(InputView inputView) {
+        OutputView.printInputValueOfDeleteSection(LineText.screenName());
+        String line = inputView.getInputLineOfDeleteSection();
+        OutputView.printInputValueOfDeleteSection(StationText.screenName());
+        String station = inputView.getInputStationOfDeleteSection();
+        if (SectionRepository.deleteSection(line, station)) {
+            OutputView.printDeleteSuccess(SectionText.screenName());
+        }
+        goBackToMain(inputView);
     }
 
     private void goBackToMain(InputView inputView) {
