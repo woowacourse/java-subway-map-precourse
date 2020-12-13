@@ -7,14 +7,17 @@
 4. 지하철 노선 리스트 생성 및 오류 체크. 중복 체크 기능 추가.
 5. 입력값에 대한 InputViewer 추가.
 6. 결과값에 대한 OutputViewer 추가.
-7. Error 발생시에 ErrorViewer 추가.
-8. Initiator 생성.
-9. 역 관리 Controller 생성.
-10. 노선 관리 Controller 생성.
-11. 구간 관리 Controller 생성.
-12. 지하철 노선도 출력 Controller 생성.
-13. 전체 관리 Controller 생성.
+7. Initiator 및 전체 시스템 관리자 생성
+8. 역 관리 Controller 생성.
+9. 노선 관리 Controller 생성.
+10. 구간 관리 Controller 생성.
+11. 지하철 노선도 출력 Controller 생성.
+12. 전체 관리 Controller 생성.
 
+### SubwaySystem
+- 전체 관리하는 시스템
+- 생성 시에 기본 요구 조건 맞추면서 시작
+- 번호를 받으면 처리
 
 ### domain
 #### Station
@@ -25,6 +28,8 @@
 #### StationRepository
 - 지하철역 모음 중복 체크 해주기.
 - 지하철역 전체 리스트에서 삭제 및 추가.
+- 역 등록시에 순서 정렬
+- 역 삭제시 노선에서도 전체 삭제, 노선이 역을 가진 갯수가 2개 미만 발생시 삭제 취소
 
 #### Line
 - 지하철 노선 생성 및 생성 시 오류 체크.
@@ -32,11 +37,16 @@
 - 노선에 지하철역 추가 및 삭제.
 - 중복된 역이 들어가 있으지 확인.
 - 노선 안 지하철 역 삭제시 최소 2개의 역 있는지 확인.
+- 노선에 등록 전 역이 실제로 등록되어 있는지 확인
 
 #### LineRepository
 - 노선 모음 및 중복 체크 해주기.
+- 노선 등록시 순서 정렬
 - 노선 자체에 중복이 있으면 안된다.
 - 노선 전체 리스트에서 삭제 및 추가.
+
+#### Constants
+- domain에서 자주 쓰이는 상수 모음
 
 ### Viewer
 #### SystemInputViewer
@@ -55,15 +65,8 @@
 - 구간 관련 아웃풋을 보여주는 객체.
 #### SystemOutputViewer
 - 전체 시스템 관련 아웃풋을 보여주는 객체.
-#### SystemErrorViewer
-- 시스템 관련 오류를 보여주는 객체.
-#### StationErrorViewer
-- 역 관련 오류를 보여주는 객체.
-#### LineErrorViewer
-- 노선 관련 오류를 보여주는 객체.
-#### IntervalErrorViewer
-- 구간 관련 오류를 보여주는 객체.
-
+#### Constants
+- Viewer에서 자수 쓰이는 상수 모음
 
 
 ### Controller
