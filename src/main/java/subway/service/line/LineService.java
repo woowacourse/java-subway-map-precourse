@@ -71,14 +71,15 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
     @Override
     public boolean delete(Scanner scanner) {
         LineNameDeletionValidation lineNameDeletionValidation = new LineNameDeletionValidation();
+        List<Line> lines = LineRepository.lines();
 
         LineTextView.printLineDeletionText();
         String lineName = scanner.nextLine();
 
+        Line lineForDeletion = LineNameDeletionService.getLineForDeletion(lineName);
+
         if (lineNameDeletionValidation.checkDeletionValidation(lineName)) {
-            LineNameDeletionService.deleteLineName(lineName);
-            LineInformationView.printLineDeletionInformation();
-            System.out.println();
+            LineNameDeletionService.deleteName(lineForDeletion);
             return true;
         }
         return false;
