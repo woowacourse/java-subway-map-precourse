@@ -2,8 +2,10 @@ package subway.view;
 
 import subway.Menu;
 import subway.SubMenu;
+import subway.domain.Station;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class OutputView {
 
@@ -15,6 +17,8 @@ public class OutputView {
     private static final String ADD_ORDER_START_MESSAGE = "등록할 ";
     private static final String DELETE_ORDER_START_MESSAGE = "삭제할 ";
     private static final String NAME_MESSAGE = "이름을 입력하세요.";
+    private static final String LIST_MESSAGE = "목록";
+    private static final String INFO_TAG = "[INFO] ";
 
     private OutputView() {
     }
@@ -69,5 +73,16 @@ public class OutputView {
 
     public static void printDeleteActionMessage(String title) {
         System.out.println(HASH + DELETE_ORDER_START_MESSAGE + title + NAME_MESSAGE);
+    }
+
+    public static void printList(String title, List<String> stationNames) {
+        printListTitle(title);
+        for (int i = 0; i < stationNames.size(); i++) {
+            System.out.println(INFO_TAG + stationNames.get(i));
+        }
+    }
+
+    private static void printListTitle(String title) {
+        System.out.println(HASH + title + LIST_MESSAGE);
     }
 }

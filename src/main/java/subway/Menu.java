@@ -104,6 +104,9 @@ public class Menu {
         if (subMenuAction.equals(DELETE_SIGN)) {
             Station.delete(inputView, STATION_MENU_TITLE);
         }
+        if (subMenuAction.equals(LIST_SIGN)) {
+            Station.printList(STATION_MENU_TITLE);
+        }
     }
 
     private static void runLineMenu(InputView inputView, String subMenuAction) {

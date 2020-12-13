@@ -7,6 +7,9 @@ import subway.domain.exception.RegisteredStationException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Station {
     private String name;
     private static final int MINIMUM_LENGTH = 2;
@@ -61,5 +64,18 @@ public class Station {
             return true;
         }
         return false;
+    }
+
+    public static void printList(String stationMessage) {
+        OutputView.printList(stationMessage, getStationNameList());
+    }
+
+    private static List<String> getStationNameList() {
+        List<String> stationNames = new ArrayList<String>();
+        List<Station> stations = StationRepository.stations();
+        for (int i = 0; i < stations.size(); i++) {
+            stationNames.add(stations.get(i).getName());
+        }
+        return stationNames;
     }
 }
