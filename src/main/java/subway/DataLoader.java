@@ -7,36 +7,34 @@ import subway.domain.station.Station;
 import subway.domain.station.StationName;
 import subway.domain.station.StationRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataLoader {
-    private static final String[] DATA_STATION_NAMES = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
-    private static final String FIRST_DATA_LINE = "2호선";
-    private static final String SECOND_DATA_LINE = "3호선";
-    private static final String THIRD_DATA_LINE = "신분당선";
+    private static final String[] STATION_DATA_NAMES = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
+    private static final String[] LINE_DATA_NAMES = {"2호선", "3호선", "신분당선"};
 
     public static void load() {
-        List<StationName> stationNameData = Arrays.stream(DATA_STATION_NAMES)
+        List<StationName> stationNameData = Arrays.stream(STATION_DATA_NAMES)
                 .map(stationName -> new StationName(stationName))
                 .collect(Collectors.toList());
+        stationNameData.forEach(stationName -> StationRepository.addStation(Station.of(stationName)));
 
-        for (int i = 0; i < stationNameData.size(); i++) {
-            StationRepository.addStation(stationNameData.get(i));
-        }
-
-        Line lineData1 = Line.createLine(new LineName(FIRST_DATA_LINE), stationNameData.get(0), stationNameData.get(2));
+        List<StationName> firstLineDataStation = new ArrayList<>(Arrays.asList(stationNameData.get(0), stationNameData.get(1),
+                stationNameData.get(2)));
+        Line lineData1 = Line.of(new LineName(LINE_DATA_NAMES[0]), firstLineDataStation);
         LineRepository.addLine(lineData1);
-        lineData1.addStationToLine(Station.of(stationNameData.get(1)), 2);
 
-        Line lineData2 = Line.createLine(new LineName(SECOND_DATA_LINE), stationNameData.get(0), stationNameData.get(6));
+        List<StationName> secondLineDataStation = new ArrayList<>(Arrays.asList(stationNameData.get(0), stationNameData.get(3),
+                stationNameData.get(4), stationNameData.get(6)));
+        Line lineData2 = Line.of(new LineName(LINE_DATA_NAMES[1]), secondLineDataStation);
         LineRepository.addLine(lineData2);
-        lineData2.addStationToLine(Station.of(stationNameData.get(3)), 2);
-        lineData2.addStationToLine(Station.of(stationNameData.get(4)), 3);
 
-        Line lineData3 = Line.createLine(new LineName(THIRD_DATA_LINE), stationNameData.get(1), stationNameData.get(5));
+        List<StationName> thirdLineDataStation = new ArrayList<>(Arrays.asList(stationNameData.get(1), stationNameData.get(4),
+                stationNameData.get(5)));
+        Line lineData3 = Line.of(new LineName(LINE_DATA_NAMES[2]), thirdLineDataStation);
         LineRepository.addLine(lineData3);
-        lineData3.addStationToLine(Station.of(stationNameData.get(4)), 2);
     }
 }
