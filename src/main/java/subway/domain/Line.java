@@ -1,6 +1,6 @@
 package subway.domain;
 
-import exception.AlreadyExistNameException;
+import exception.AlreadyExistLineNameException;
 import exception.DownLineStationException;
 import exception.NoExistStationNameException;
 import exception.UpLineStationException;
@@ -19,7 +19,7 @@ public class Line {
 
     public Line(String name) {
         if (!LineRepository.isLine(name)) {
-            throw new AlreadyExistNameException();
+            throw new AlreadyExistLineNameException();
         }
         this.name = name;
     }
@@ -38,7 +38,7 @@ public class Line {
             throw new NoExistStationNameException();
         }
         if (!checkLineStation(station.getName())) {
-            throw new AlreadyExistNameException();
+            throw new AlreadyExistLineNameException();
         }
         station.setLines(this.name);
         lineStations.add(station);
@@ -49,7 +49,7 @@ public class Line {
             throw new NoExistStationNameException();
         }
         if (!checkLineStation(station.getName())) {
-            throw new AlreadyExistNameException();
+            throw new AlreadyExistLineNameException();
         }
         if (index == lineStations.size()) {
             throw new DownLineStationException();
