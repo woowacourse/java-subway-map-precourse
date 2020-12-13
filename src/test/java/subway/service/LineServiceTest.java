@@ -9,6 +9,7 @@ import subway.domain.repository.LineRepository;
 
 import java.util.ArrayList;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LineServiceTest {
@@ -20,6 +21,15 @@ class LineServiceTest {
     @BeforeEach
     void setUp() {
         lineService.addLine("1호선", sections);
+    }
+
+    @DisplayName("Line 등록 성공")
+    @Test
+    void addLine_성공한다() {
+        String name = lineService.getLineNames()
+                .get(0);
+
+        assertThat(name).isEqualTo("1호선");
     }
 
     @DisplayName("Line 등록 실패 : 중복된 노선")
@@ -38,5 +48,18 @@ class LineServiceTest {
             lineService.deleteLineByName("없는노선");
         }).isInstanceOf(CannotFindLineException.class)
                 .hasMessage("등록되지 않은 지하철 노선 이름을 입력하셨습니다.");
+    }
+
+    @DisplayName("Line 삭제 성공")
+    @Test
+    void deleteLineByName_성공한다() {
+        Sections sections = Sections.of(new Station("강화도역"), new Station("제주도역"));
+        lineService.addLine("9호선", sections);
+        int beforeLineCounts = lineRepository.findAll().size();
+
+        lineService.deleteLineByName("9호선");
+        int afterLineCounts = lineRepository.findAll().size();
+
+        assertThat(beforeLineCounts).isGreaterThan(afterLineCounts);
     }
 }

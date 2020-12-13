@@ -34,4 +34,8 @@ public class SubwayMapController {
     public List<String> getStationNames() {
         return stationService.getStationNames();
     }
+
+    public List<String> getLineNames() {
+        return lineService.getLineNames();
+    }
 }

@@ -4,6 +4,9 @@ import subway.domain.entity.Line;
 import subway.domain.entity.Sections;
 import subway.domain.repository.LineRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LineService {
 
     private final LineRepository lineRepository;
@@ -25,5 +28,12 @@ public class LineService {
         Line line = lineRepository.findByName(name)
                 .orElseThrow(CannotFindLineException::new);
         lineRepository.delete(line);
+    }
+
+    public List<String> getLineNames() {
+        return lineRepository.findAll()
+                .stream()
+                .map(Line::getName)
+                .collect(Collectors.toList());
     }
 }

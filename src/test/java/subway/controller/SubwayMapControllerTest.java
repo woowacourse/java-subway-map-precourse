@@ -47,10 +47,10 @@ class SubwayMapControllerTest {
     @Test
     void deleteStationByName_삭제_성공한다() {
         subwayMapController.addStationByName("테스트역");
-        int beforeStationCounts = subwayMapController.getStationNames().size();
+        int beforeStationCounts = stationRepository.findAll().size();
 
         subwayMapController.deleteStationByName("테스트역");
-        int afterStationCounts = subwayMapController.getStationNames().size();
+        int afterStationCounts = stationRepository.findAll().size();
 
         assertThat(beforeStationCounts).isGreaterThan(afterStationCounts);
     }
@@ -62,9 +62,8 @@ class SubwayMapControllerTest {
         LineDto lineDto = new LineDto("1호선", "이수역", "강릉역");
         subwayMapController.addLine(lineDto);
 
-        String name = lineRepository.findByName("1호선")
-                .get()
-                .getName();
+        String name = subwayMapController.getLineNames()
+                .get(0);
 
         assertThat(name).isEqualTo("1호선");
     }
