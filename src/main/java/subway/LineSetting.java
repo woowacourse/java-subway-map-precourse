@@ -27,9 +27,9 @@ public class LineSetting {
                 input = Exception.checkLineNameDelete(input);
                 LineRepository.deleteLineByName(input);
                 Print.infoMessage(Constant.DELETE_LINE_DONE);
+                break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.printf(e.getMessage() + "%n");
             }
         }
     }
@@ -50,8 +50,7 @@ public class LineSetting {
                 System.out.println();
                 return Exception.checkLineNameAdd(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.printf(e.getMessage() + "%n");
             }
         }
     }
@@ -64,8 +63,7 @@ public class LineSetting {
                 System.out.println();
                 return Exception.checkFirstStation(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.printf(e.getMessage() + "%n");
             }
         }
     }
@@ -78,8 +76,7 @@ public class LineSetting {
                 System.out.println();
                 return Exception.checkLastStation(input, firstStation);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.printf(e.getMessage() + "%n");
             }
         }
     }
