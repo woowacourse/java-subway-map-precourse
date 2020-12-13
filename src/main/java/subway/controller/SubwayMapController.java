@@ -1,7 +1,9 @@
 package subway.controller;
 
 import subway.domain.entity.Sections;
+import subway.domain.entity.Station;
 import subway.dto.LineDto;
+import subway.dto.SectionDto;
 import subway.service.LineService;
 import subway.service.StationService;
 
@@ -29,6 +31,16 @@ public class SubwayMapController {
         String lineName = lineDto.getLineName();
         Sections sections = stationService.createSections(lineDto);
         lineService.addLine(lineName, sections);
+    }
+
+    public void deleteLineByName(String lineName) {
+        lineService.deleteLineByName(lineName);
+    }
+
+    public void addSection(SectionDto sectionDto) {
+        String stationName = sectionDto.getStationName();
+        Station station = stationService.findStationByName(stationName);
+        lineService.addSection(sectionDto, station);
     }
 
     public List<String> getStationNames() {

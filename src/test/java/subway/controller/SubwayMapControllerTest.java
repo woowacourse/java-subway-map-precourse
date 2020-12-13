@@ -3,6 +3,9 @@ package subway.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.domain.entity.Line;
+import subway.domain.entity.Sections;
+import subway.domain.entity.Station;
 import subway.domain.repository.LineRepository;
 import subway.domain.repository.StationRepository;
 import subway.dto.LineDto;
@@ -66,5 +69,19 @@ class SubwayMapControllerTest {
                 .get(0);
 
         assertThat(name).isEqualTo("1호선");
+    }
+
+    @DisplayName("Line 삭제 성공")
+    @Test
+    void deleteLineByName_성공한다() {
+        Sections sections = Sections.of(new Station("강화도역"), new Station("울릉도역"));
+        Line line = new Line("11호선", sections);
+        lineRepository.save(line);
+        int beforeLineCounts = lineRepository.findAll().size();
+
+        subwayMapController.deleteLineByName("11호선");
+        int afterLineCounts = lineRepository.findAll().size();
+
+        assertThat(beforeLineCounts).isGreaterThan(afterLineCounts);
     }
 }
