@@ -23,8 +23,8 @@ public class DataInitialization {
     }
 
     private static void initializeStations() {
-        for (int i = 0, total = initialStation.length; i < total; i++) {
-            StationRepository.addStation(initialStation[i]);
+        for (String stationName : initialStation) {
+            StationRepository.addStation(stationName);
         }
     }
 }
