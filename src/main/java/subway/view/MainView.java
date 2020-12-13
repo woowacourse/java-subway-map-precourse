@@ -25,6 +25,7 @@ public class MainView extends View {
 
     @Override
     public void startView() {
+        System.out.println(HEADER_MAIN_VIEW);
         printMenu();
         String selection = scanner.nextLine();
         if (hasKey(selection)) {

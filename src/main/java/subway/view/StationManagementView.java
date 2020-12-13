@@ -5,6 +5,7 @@ import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_STATION_ADD;
 import static subway.resource.TextResource.FUNCTION_STATION_DELETE;
 import static subway.resource.TextResource.FUNCTION_STATION_LIST_SHOW;
+import static subway.resource.TextResource.HEADER_STATION_MANAGEMENT_VIEW;
 
 import java.util.Scanner;
 import subway.view.MainView.OnBackListener;
@@ -25,6 +26,7 @@ public class StationManagementView extends View {
 
     @Override
     public void startView() {
+        System.out.println(HEADER_STATION_MANAGEMENT_VIEW);
         printMenu();
         String selection = scanner.nextLine();
         if (hasKey(selection)) {

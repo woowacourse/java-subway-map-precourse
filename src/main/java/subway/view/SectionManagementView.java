@@ -4,6 +4,7 @@ import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_SECTION_ADD;
 import static subway.resource.TextResource.FUNCTION_SECTION_DELETE;
+import static subway.resource.TextResource.HEADER_SECTION_MANAGEMENT_VIEW;
 
 import java.util.Scanner;
 import subway.view.MainView.OnBackListener;
@@ -22,6 +23,7 @@ public class SectionManagementView extends View {
 
     @Override
     public void startView() {
+        System.out.println(HEADER_SECTION_MANAGEMENT_VIEW);
         printMenu();
         String selection = scanner.nextLine();
         if (hasKey(selection)) {

@@ -23,6 +23,10 @@ public class TextResource {
         + "선택할 수 없는 기능입니다.";
 
     public static String HEADER_MAIN_VIEW = "## 메인 화면";
+    public static String HEADER_STATION_MANAGEMENT_VIEW = "## 역 관리 화면";
+    public static String HEADER_LINE_MANAGEMENT_VIEW = "## 노선 관리 화면";
+    public static String HEADER_SECTION_MANAGEMENT_VIEW = "## 구간 관리 화면";
+    public static String HEADER_ROUTE_MAP_PRINT_VIEW = "## 지하철 노선도";
 
     public static String FUNCTION_STATION_MANAGEMENT = "역 관리";
     public static String FUNCTION_LINE_MANAGEMENT = "노선 관리";
