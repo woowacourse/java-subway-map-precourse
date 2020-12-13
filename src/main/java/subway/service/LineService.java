@@ -3,6 +3,7 @@ package subway.service;
 import subway.domain.line.Line;
 import subway.domain.line.LineName;
 import subway.domain.line.LineRepository;
+import subway.domain.station.Station;
 import subway.domain.station.StationName;
 import subway.domain.station.StationRepository;
 import subway.view.InputView;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 public class LineService implements ServiceConstant {
     private static final String UP = "상";
     private static final String DOWN = "하";
+
     private final Scanner scanner;
 
     public LineService(Scanner scanner) {
@@ -21,36 +23,36 @@ public class LineService implements ServiceConstant {
 
     public void addLineInLineRepository(String category) {
         try {
-            LineName lineName = InputView.inputLineNameAdd(scanner, category);
+            LineName lineName = InputView.inputLineNameToAdd(scanner, category);
             if (LineRepository.hasLine(lineName)) {
                 throw new IllegalArgumentException(LINE_EXIST_ERROR);
             }
-            addLine(lineName, category);
+            addLine(lineName);
+            OutputView.printAddMessage(category);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void addLine(LineName lineName, String category) {
+    private void addLine(LineName lineName) {
         StationName upLastStationName = InputView.inputUpOrDownLastStationName(scanner, UP);
         validateExistStation(upLastStationName);
         StationName downLastStationName = InputView.inputUpOrDownLastStationName(scanner, DOWN);
         validateExistStation(downLastStationName);
-        upLastStationName.compareName(downLastStationName);
-        Line newLine = Line.createLine(lineName, upLastStationName, downLastStationName);
+        upLastStationName.isSame(downLastStationName);
+        Line newLine = Line.of(lineName, upLastStationName, downLastStationName);
         LineRepository.addLine(newLine);
-        OutputView.printAddMessage(category);
     }
 
     private void validateExistStation(StationName stationName) {
-        if (!StationRepository.hasStation(stationName)) {
+        if (!StationRepository.hasStation(Station.of(stationName))) {
             throw new IllegalArgumentException(STATION_NOT_EXIST_ERROR);
         }
     }
 
     public void deleteLineInLineRepository(String category) {
         try {
-            LineName lineName = InputView.inputLineNameDelete(scanner, category);
+            LineName lineName = InputView.inputLineNameToDelete(scanner, category);
             if (!LineRepository.hasLine(lineName)) {
                 throw new IllegalArgumentException(LINE_NOT_EXIST_ERROR);
             }

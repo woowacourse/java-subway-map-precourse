@@ -52,5 +52,4 @@ public class OutputView implements ViewConstant {
             System.out.println();
         }
     }
-
 }

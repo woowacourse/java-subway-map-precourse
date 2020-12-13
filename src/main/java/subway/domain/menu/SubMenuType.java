@@ -8,15 +8,15 @@ public enum SubMenuType implements Menu {
     LIST_PRINT("3"),
     BACK("B");
 
-    private String menuInput;
+    private String text;
 
-    SubMenuType(String menuInput) {
-        this.menuInput = menuInput;
+    SubMenuType(String text) {
+        this.text = text;
     }
 
-    public static SubMenuType validateMenu(String menuInput) {
+    public static SubMenuType of(String menuInput) {
         return Arrays.stream(SubMenuType.values())
-                .filter(menu -> menu.menuInput.equals(menuInput.toUpperCase()))
+                .filter(menu -> menu.text.equals(menuInput.toUpperCase()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
     }

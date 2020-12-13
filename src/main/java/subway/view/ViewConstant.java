@@ -7,8 +7,7 @@ public interface ViewConstant {
     String SUBWAY = "지하철 ";
     String SECTION = "구간";
     String DASH = "---";
-    String MAIN_MENU_MESSAGE = "\n## 메인 화면\n1. 역 관리\n2. 노선 관리\n" +
-            "3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
+    String MAIN_MENU_MESSAGE = "\n## 메인 화면\n1. 역 관리\n2. 노선 관리\n3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
     String SUB_MENU_MESSAGE_TOP = "\n## %s 관리 화면\n";
     String SUB_MENU_MESSAGE_ONE = "1. %s 등록\n";
     String SUB_MENU_MESSAGE_TWO = "2. %s 삭제\n";
@@ -26,6 +25,4 @@ public interface ViewConstant {
     String PRINT_LIST = "[INFO] %s\n";
     String ADD_MESSAGE = "\n[INFO] %s이 등록되었습니다.\n";
     String DELETE_MESSAGE = "\n[INFO] %s이 삭제되었습니다.\n";
-
-
 }

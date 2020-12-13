@@ -20,16 +20,16 @@ public enum MainMenuType implements Menu {
         this.subMenuTypeList = subMenuTypeList;
     }
 
-    public static MainMenuType validateMenu(String menuInput) {
-        return Arrays.stream(MainMenuType.values())
+    public static MainMenuType of(String menuInput) {
+        return (MainMenuType)Arrays.stream(MainMenuType.values())
                 .filter(menu -> menu.text.equals(menuInput.toUpperCase()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
     }
 
     public SubMenuType validateSubMenu(String menuInput) {
-        return subMenuTypeList.stream()
-                .filter(subMenu -> subMenu == SubMenuType.validateMenu(menuInput))
+        return (SubMenuType)subMenuTypeList.stream()
+                .filter(subMenu -> subMenu == SubMenuType.of(menuInput))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
     }

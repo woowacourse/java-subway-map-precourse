@@ -1,7 +1,6 @@
 package subway.controller;
 
 import subway.domain.menu.MainMenuType;
-import subway.domain.menu.Menu;
 import subway.domain.menu.SubMenuType;
 import subway.service.LineService;
 import subway.view.InputView;
@@ -26,7 +25,7 @@ public class LineController {
         } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
-    private void selectLineMenu(Menu lineMenuType, String category) {
+    private void selectLineMenu(SubMenuType lineMenuType, String category) {
         if (SubMenuType.ADD.equals(lineMenuType)) {
             lineService.addLineInLineRepository(category);
             return;

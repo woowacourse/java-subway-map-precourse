@@ -10,12 +10,12 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(StationName stationName) {
-        stations.add(Station.of(stationName));
+    public static void addStation(Station station) {
+        stations.add(station);
     }
 
-    public static boolean hasStation(StationName stationName) {
-        return stations.contains(Station.of(stationName));
+    public static boolean hasStation(Station station) {
+        return stations.contains(station);
     }
 
     public static boolean deleteStation(StationName stationName) {

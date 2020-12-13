@@ -1,7 +1,6 @@
 package subway.controller;
 
 import subway.domain.menu.MainMenuType;
-import subway.domain.menu.Menu;
 import subway.domain.menu.SubMenuType;
 import subway.service.StationService;
 import subway.view.InputView;
@@ -26,7 +25,7 @@ public class StationController {
         } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
-    private void selectStationMenu(Menu stationMenuType, String category) {
+    private void selectStationMenu(SubMenuType stationMenuType, String category) {
         if (SubMenuType.ADD.equals(stationMenuType)) {
             stationService.addStationInStationRepository(category);
             return;

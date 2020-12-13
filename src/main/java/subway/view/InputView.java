@@ -1,11 +1,9 @@
 package subway.view;
 
 import subway.domain.line.LineName;
-import subway.domain.line.LineRepository;
 import subway.domain.menu.MainMenuType;
 import subway.domain.menu.SubMenuType;
 import subway.domain.station.StationName;
-import subway.domain.station.StationRepository;
 import subway.utils.InputValidator;
 
 import java.util.Scanner;
@@ -19,7 +17,7 @@ public class InputView implements ViewConstant{
         try {
             System.out.println(MAIN_MENU_MESSAGE);
             System.out.println(CHOOSE_MENU_MESSAGE);
-            return MainMenuType.validateMenu(scanner.nextLine());
+            return MainMenuType.of(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMainMenu(scanner);
@@ -50,17 +48,17 @@ public class InputView implements ViewConstant{
         }
     }
 
-    public static StationName inputStationNameAdd(Scanner scanner, String category) {
+    public static StationName inputStationNameToAdd(Scanner scanner, String category) {
         System.out.printf(INPUT_NAME_ADD_MESSAGE, category);
         return new StationName(scanner.nextLine());
     }
 
-    public static StationName inputStationNameDelete(Scanner scanner, String category) {
+    public static StationName inputStationNameToDelete(Scanner scanner, String category) {
         System.out.printf(INPUT_NAME_DELETE_MESSAGE, category);
         return new StationName(scanner.nextLine());
     }
 
-    public static LineName inputLineNameAdd(Scanner scanner, String category) {
+    public static LineName inputLineNameToAdd(Scanner scanner, String category) {
         System.out.printf(INPUT_NAME_ADD_MESSAGE, category);
         return new LineName(scanner.nextLine());
     }
@@ -70,7 +68,7 @@ public class InputView implements ViewConstant{
         return new StationName(scanner.nextLine());
     }
 
-    public static LineName inputLineNameDelete(Scanner scanner, String category) {
+    public static LineName inputLineNameToDelete(Scanner scanner, String category) {
         System.out.printf(INPUT_NAME_DELETE_MESSAGE, category);
         return new LineName(scanner.nextLine());
     }

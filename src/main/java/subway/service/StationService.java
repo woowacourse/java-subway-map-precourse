@@ -21,13 +21,13 @@ public class StationService implements ServiceConstant {
 
     public void addStationInStationRepository(String category) {
         try {
-            StationName stationName = InputView.inputStationNameAdd(scanner, category);
-            if (StationRepository.hasStation(stationName)) {
+            StationName stationName = InputView.inputStationNameToAdd(scanner, category);
+            Station station = Station.of(stationName);
+            if (StationRepository.hasStation(station)) {
                 throw new IllegalArgumentException(STATION_EXIST_ERROR);
             }
-            StationRepository.addStation(stationName);
+            StationRepository.addStation(station);
             OutputView.printAddMessage(category);
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -35,11 +35,11 @@ public class StationService implements ServiceConstant {
 
     public void deleteStationInStationRepository(String category) {
         try {
-            StationName stationName = InputView.inputStationNameDelete(scanner, category);
-            if (!StationRepository.hasStation(stationName)) {
+            StationName stationName = InputView.inputStationNameToDelete(scanner, category);
+            if (!StationRepository.hasStation(Station.of(stationName))) {
                 throw new IllegalArgumentException(STATION_NOT_EXIST_ERROR);
             }
-            validateStationRegisterOnLine(stationName);
+            validateStationRegisterInLine(stationName);
             StationRepository.deleteStation(stationName);
             OutputView.printDeleteMessage(category);
         } catch (IllegalArgumentException e) {
@@ -47,10 +47,10 @@ public class StationService implements ServiceConstant {
         }
     }
 
-    private void validateStationRegisterOnLine(StationName stationName) {
+    private void validateStationRegisterInLine(StationName stationName) {
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
-            if (line.hasStationToLine(stationName)) {
+            if (line.hasStationInLine(stationName)) {
                 throw new IllegalArgumentException(STATION_LINE_REGISTER_ERROR);
             }
         }

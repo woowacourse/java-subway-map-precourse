@@ -1,7 +1,6 @@
 package subway.controller;
 
 import subway.domain.menu.MainMenuType;
-import subway.domain.menu.Menu;
 import subway.domain.menu.SubMenuType;
 import subway.service.SectionService;
 import subway.view.InputView;
@@ -25,7 +24,7 @@ public class SectionController {
         } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
-    private void selectSectionMenu(Menu sectionMenuType, String category) {
+    private void selectSectionMenu(SubMenuType sectionMenuType, String category) {
         if (SubMenuType.ADD.equals(sectionMenuType)) {
             sectionService.addSection(category);
             return;
