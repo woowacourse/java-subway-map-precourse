@@ -38,14 +38,14 @@ public class InputView {
     public static String getStationName() {
         String stationName = scanner.nextLine().strip();
         validateStringLength(stationName, MIN_STATION_LENGTH);
-        validateContainSpace(stationName);
+        validateNotContainSpace(stationName);
         return stationName;
     }
 
     public static String getLineName() {
         String lineName = scanner.nextLine().strip();
         validateStringLength(lineName, MIN_LINE_LENGTH);
-        validateContainSpace(lineName);
+        validateNotContainSpace(lineName);
         return lineName;
     }
 
@@ -55,7 +55,7 @@ public class InputView {
         }
     }
 
-    private static void validateContainSpace(String string) {
+    private static void validateNotContainSpace(String string) {
         if (string.contains(SPACE)) {
             throw new IllegalArgumentException(ERR_CONTAIN_SPACE);
         }
