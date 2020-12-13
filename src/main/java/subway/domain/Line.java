@@ -26,6 +26,10 @@ public class Line {
         stations.add(station);
     }
 
+    public void addStation(int index, Station station) {
+        stations.add(index, station);
+    }
+
     public boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }

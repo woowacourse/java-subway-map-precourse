@@ -1,12 +1,13 @@
 package subway;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
 import java.util.List;
 
-public class Exception {
+public class Exceptions {
     public static String checkStationAdd(String input) {
         input = isStation(input);
         input = isLengthTwoOrMore(input);
@@ -100,5 +101,34 @@ public class Exception {
         if (station.getName().equals(name)) {
             throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_LINE);
         }
+    }
+
+    static String isAlreadyAddedInThisLine(String stationName, Line line) {
+        line.stations().forEach(station -> {
+            if (station.getName().equals(stationName)) {
+                throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_ALREADY_ADDED_IN_IT);
+            }
+        });
+        return stationName;
+    }
+
+    static int checkOrderInput(String inputString) {
+        int input = isInteger(inputString);
+        return isNaturalNumber(input);
+    }
+
+    static int isInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (Exception e){
+            throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NATURAL_NUMBER);
+        }
+    }
+
+    static int isNaturalNumber(int input) {
+        if (input > 0) {
+            return input;
+        }
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NATURAL_NUMBER);
     }
 }

@@ -10,7 +10,7 @@ public class StationSetting {
                 Print.hashMessage(Constant.ENTER_STATION_TO_ADD);
                 String input = scanner.next();
                 System.out.println();
-                input = Exception.checkStationAdd(input);
+                input = Exceptions.checkStationAdd(input);
                 StationRepository.addStation(new Station(input));
                 Print.infoMessage(Constant.ADD_STATION_DONE);
     }
@@ -19,7 +19,7 @@ public class StationSetting {
                 Print.hashMessage(Constant.ENTER_STATION_TO_DELETE);
                 String input = scanner.next();
                 System.out.println();
-                input = Exception.checkStationDelete(input);
+                input = Exceptions.checkStationDelete(input);
                 StationRepository.deleteStation(input);
                 Print.infoMessage(Constant.DELETE_STATION_DONE);
     }

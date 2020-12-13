@@ -22,7 +22,7 @@ public class LineSetting {
         Print.hashMessage(Constant.ENTER_LINE_TO_DELETE);
         String input = scanner.next();
         System.out.println();
-        input = Exception.isInStationList(input);
+        input = Exceptions.isInStationList(input);
         LineRepository.deleteLineByName(input);
         Print.infoMessage(Constant.DELETE_LINE_DONE);
     }
@@ -47,20 +47,20 @@ public class LineSetting {
         Print.hashMessage(Constant.ENTER_LINE_TO_ADD);
         String input = scanner.next();
         System.out.println();
-        return Exception.checkLineNameAdd(input);
+        return Exceptions.checkLineNameAdd(input);
     }
 
     public static String firstStation(Scanner scanner) {
         Print.hashMessage(Constant.ENTER_FIRST_STATION);
         String input = scanner.next();
         System.out.println();
-        return Exception.isInStationList(input);
+        return Exceptions.isInStationList(input);
     }
 
     public static String lastStation(Scanner scanner, String firstStation) {
         Print.hashMessage(Constant.ENTER_LAST_STATION);
         String input = scanner.next();
         System.out.println();
-        return Exception.checkLastStation(input, firstStation);
+        return Exceptions.checkLastStation(input, firstStation);
     }
 }

@@ -121,7 +121,7 @@ public class FlowChart {
 
     public static void sectionAdd(Scanner scanner, String sectionInput) {
         if (sectionInput.equals(Constant.ONE)) {
-            System.out.println("sectionAdd");
+            SectionSetting.add(scanner);
             System.out.println();
             main(scanner);
         }
