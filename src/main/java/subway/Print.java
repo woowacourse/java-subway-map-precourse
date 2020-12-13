@@ -10,7 +10,7 @@ public class Print {
         }
     }
 
-    public static void enterMessage(String text) {
+    public static void hashMessage(String text) {
         System.out.println(Constant.HEAD_HASH + text);
     }
 
