@@ -1,15 +1,12 @@
 package subway.userinterface;
 
-import subway.util.InputValidator;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class MainView {
 
     private static MainView mainView;
-    public static Map<String, Menu> mainMenu = new HashMap<>();
+    public static LinkedHashMap<String, Menu> mainMenu = new LinkedHashMap<>();
 
     private MainView() {
         setMenu();
