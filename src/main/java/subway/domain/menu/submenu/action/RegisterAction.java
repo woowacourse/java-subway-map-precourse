@@ -16,9 +16,9 @@ public class RegisterAction extends Action {
     @Override
     public void runAction() {
         printRegisterMessage();
-        String item = inputRegister();
+        String name = inputRegister();
         if (category.equals(CategoryType.STATION)) {
-            registerStation(item);
+            registerStation(name);
         }
         printSuccessMessage();
     }
@@ -30,13 +30,13 @@ public class RegisterAction extends Action {
     }
 
     private String inputRegister() {
-        String input = scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println();
-        return input;
+        return name;
     }
 
-    private void registerStation(String item) {
-        StationRepository.addStation(new Station(item));
+    private void registerStation(String name) {
+        StationRepository.addStation(new Station(name));
     }
 
     private void printSuccessMessage() {
