@@ -38,7 +38,7 @@ public class Line implements Comparable<Line> {
 
     @Override
     public int compareTo(Line o) {
-        if (this.getName().compareTo(o.getName()) > 0) {
+        if (this.name.compareTo(o.name) > 0) {
             return 1;
         }
         return -1;
