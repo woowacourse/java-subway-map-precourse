@@ -79,7 +79,29 @@ public class Menu {
 
     public static void runMenu(ArrayList<String> selectedMenus) {
         SubMenu menu = MenuController.getSubMenu(selectedMenus.get(0));
-        String subMenuAction = selectedMenus.get(1);
-        menu.runSubMenu(subMenuAction);
+        if (menu == stationMenu) {
+            runStationMenu(selectedMenus.get(1));
+        }
+        if (menu == lineMenu) {
+            runLineMenu(selectedMenus.get(1));
+        }
+        if (menu == edgeMenu) {
+            runEdgeMenu(selectedMenus.get(1));
+        }
+        if (menu == lineMap) {
+            runLineMapMenu();
+        }
+    }
+
+    private static void runStationMenu(String subMenuAction) {
+    }
+
+    private static void runLineMenu(String subMenuAction) {
+    }
+
+    private static void runEdgeMenu(String subMenuAction) {
+    }
+
+    private static void runLineMapMenu() {
     }
 }

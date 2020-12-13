@@ -11,7 +11,4 @@ public class SubMenu {
         actionSign.remove(Menu.MENU_TITLE_SIGN);
         this.actionSign = actionSign;
     }
-
-    public void runSubMenu(String action) {
-    }
 }
