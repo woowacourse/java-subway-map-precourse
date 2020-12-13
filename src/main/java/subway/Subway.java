@@ -2,23 +2,23 @@ package subway;
 
 import java.util.Scanner;
 
-import subway.util.Input;
-import subway.util.Output;
+import subway.domain.Station;
+import subway.domain.StationRepository;
+import subway.util.View;
 
-public class Subway {
-	private int selectorInt;
-	
-	public void run(Scanner scanner) {
+public class Subway {	
+	public static void run(Scanner scanner) {
+		View view = new View(scanner);
 		while (true) {
-			Output.mainView();
-			selectorInt = Input.nextInt(scanner);
-			moveViewBySelector(selectorInt);
+			view.main();
 		}
 	}
 	
-	private void moveViewBySelector(int selectorInt) {
-		if (selectorInt == 1) {
-			System.out.println("1을 선택");
+	public static void addStation(String stationName) {
+		if (!StationRepository.contains(stationName)) {
+			Station station = new Station(stationName);
+			StationRepository.addStation(station);
 		}
+		System.out.println(StationRepository.stations());
 	}
 }
