@@ -21,4 +21,12 @@ public class OutputView {
     public static void lineMessage(String lineName) {
         System.out.println(INFO_PREFIX + lineName);
     }
+
+    public static void sectionAddMessage(String message) {
+        System.out.println(INFO_PREFIX + message);
+    }
+
+    public static void sectionDeleteMessage(String message) {
+        System.out.println(INFO_PREFIX + message);
+    }
 }

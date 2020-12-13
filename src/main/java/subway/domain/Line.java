@@ -24,6 +24,10 @@ public class Line {
         stationList.add(index, station);
     }
 
+    public void deleteSection(Station station) {
+        stationList.remove(station);
+    }
+
     public void enrollStation(Station station){
         stationList.add(station);
     }

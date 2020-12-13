@@ -44,4 +44,19 @@ class LineRepositoryTest {
                 .forEach(station -> System.out.println(station.getName()));
     }
 
+    @Test
+    @DisplayName("구간을 삭제할 수 있다")
+    public void deleteSectionTest() throws Exception{
+        Line line = new Line("bepoz", new Station("잠실역"), new Station("당산역"));
+        LineRepository.addSection(line, new Station("구간추가역"), 1);
+        assertTrue(LineRepository.deleteSection(line, new Station("구간추가역")));
+    }
+
+    @Test
+    @DisplayName("역이 2개 이하인 노선은 구간을 삭제할 수 없다")
+    public void deleteSectionFailTest() throws Exception{
+        Line line = new Line("bepoz", new Station("잠실역"), new Station("당산역"));
+        assertFalse(LineRepository.deleteSection(line, new Station("잠실역")));
+    }
+
 }
