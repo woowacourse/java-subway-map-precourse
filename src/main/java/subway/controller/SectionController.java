@@ -29,7 +29,7 @@ public class SectionController {
                 warnMessage(OPTION_SELECT_WARN);
                 continue;
             }
-            if (option.equals(BACK)) {
+            if (option.equals(String.valueOf(BACK.charAt(0)))) {
                 break;
             }
             menuSelector(option, inputView);
@@ -37,19 +37,19 @@ public class SectionController {
     }
 
     public void menuSelector(String option, InputView inputView) {
-        if (option.equals(ADD_SECTION)) {
+        if (option.equals(String.valueOf(ADD_SECTION.charAt(0)))) {
             addSection(inputView);
         }
-        if (option.equals(DELETE_SECTION)) {
+        if (option.equals(String.valueOf(DELETE_SECTION.charAt(0)))) {
             deleteSection(inputView);
         }
     }
 
     public void addSection(InputView inputView) {
-        while (!new SectionService().addSection(inputView)) {}
+        new SectionService().addSection(inputView);
     }
 
     public void deleteSection(InputView inputView) {
-        while (!new SectionService().deleteSection(inputView)) {}
+        new SectionService().deleteSection(inputView);
     }
 }

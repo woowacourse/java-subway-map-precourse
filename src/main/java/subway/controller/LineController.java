@@ -30,7 +30,7 @@ public class LineController {
                 warnMessage(OPTION_SELECT_WARN);
                 continue;
             }
-            if (option.equals(BACK)) {
+            if (option.equals(String.valueOf(BACK.charAt(0)))) {
                 break;
             }
             menuSelector(option, inputView);
@@ -38,23 +38,23 @@ public class LineController {
     }
 
     public void menuSelector(String option, InputView inputView) {
-        if (option.equals(ADD_LINE)) {
+        if (option.equals(String.valueOf(ADD_LINE.charAt(0)))) {
             addLine(inputView);
         }
-        if (option.equals(DELETE_LINE)) {
+        if (option.equals(String.valueOf(DELETE_LINE.charAt(0)))) {
             deleteLine(inputView);
         }
-        if (option.equals(PRINT_LINE)) {
+        if (option.equals(String.valueOf(PRINT_LINE.charAt(0)))) {
             printLine();
         }
     }
 
     public void addLine(InputView inputView) {
-        while (!new LineService().addLine(inputView)) {}
+        new LineService().addLine(inputView);
     }
 
     public void deleteLine(InputView inputView) {
-        while (!new LineService().deleteLine(inputView)) {}
+        new LineService().deleteLine(inputView);
     }
 
     public void printLine() {

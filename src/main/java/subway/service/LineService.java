@@ -12,16 +12,16 @@ import static subway.repository.StationRepository.*;
 import static subway.view.OutputView.*;
 
 public class LineService {
-    private final String LINE_NAME_LENGTH_WARN = "노선 이름은 2글자 이상이어야 합니다.\n";
+    private final String LINE_NAME_LENGTH_WARN = "노선 이름은 2글자 이상이어야 합니다.";
     private final String ASK_ADD_LINE_NAME = "등록할 노선 이름을 입력하세요.";
     private final String ASK_DELETE_LINE_NAME = "삭제할 노선 이름을 입력하세요.";
     private final String ASK_UP_STATION_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     private final String ASK_DOWN_STATION_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    private final String UPSTATION_NOT_EXIST_WARN = "존재하지 않는 상행종점역 입니다.\n";
-    private final String DOWNSTATION_NOT_EXIST_WARN = "존재하지 않는 하행종점역 입니다.\n";
-    private final String BOTH_STATION_NOT_EXIST_WARN = "둘 다 존재하지 않는 역 입니다.\n";
-    private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.\n";
-    private final String LINE_LIST_MESSAGE = "노선 목록\n";
+    private final String UPSTATION_NOT_EXIST_WARN = "존재하지 않는 상행종점역 입니다.";
+    private final String DOWNSTATION_NOT_EXIST_WARN = "존재하지 않는 하행종점역 입니다.";
+    private final String BOTH_STATION_NOT_EXIST_WARN = "둘 다 존재하지 않는 역 입니다.";
+    private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.";
+    private final String LINE_LIST_MESSAGE = "노선 목록";
     private final String UP_COMMAND = "UP";
     private final String DOWN_COMMAND = "DOWN";
     private final int MIN_NAME_LENGTH = 2;

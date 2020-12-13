@@ -20,10 +20,11 @@ public class OutputView {
 
     public static void warnMessage(String warnMessage) {
         System.out.println(ERROR_PREFIX + warnMessage);
+        System.out.println();
     }
 
     public static void askMessage(String askMessage) {
-        System.out.print(SHARP_PREFIX + askMessage);
+        System.out.println(SHARP_PREFIX + askMessage);
     }
 
     public static void stationMessage(String stationName) {

@@ -18,8 +18,8 @@ public class SectionService {
     private final String ASK_STATION_NAME = "역 이름을 입력하세요.";
     private final String ASK_DELETE_STATION_NAME = "삭제할 역 이름을 입력하세요.";
     private final String ASK_ORDER_NAME = "순서를 입력하세요.";
-    private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.\n";
-    private final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 입니다.\n";
+    private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.";
+    private final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 입니다.";
 
     public boolean addSection(InputView inputView) {
         askMessage(ASK_LINE_NAME);

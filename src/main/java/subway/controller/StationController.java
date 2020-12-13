@@ -29,7 +29,7 @@ public class StationController {
                 warnMessage(OPTION_SELECT_WARN);
                 continue;
             }
-            if (option.equals(BACK)) {
+            if (option.equals(String.valueOf(BACK.charAt(0)))) {
                 break;
             }
             menuSelector(option, inputView);
@@ -37,23 +37,23 @@ public class StationController {
     }
 
     public void menuSelector(String option, InputView inputView) {
-        if (option.equals(ADD_STATION)) {
+        if (option.equals(String.valueOf(ADD_STATION.charAt(0)))) {
             addStation(inputView);
         }
-        if (option.equals(DELETE_STATION)) {
+        if (option.equals(String.valueOf(DELETE_STATION.charAt(0)))) {
             deleteStation(inputView);
         }
-        if (option.equals(PRINT_STATION)) {
+        if (option.equals(String.valueOf(PRINT_STATION.charAt(0)))) {
             printStation();
         }
     }
 
     public void addStation(InputView inputView) {
-        while (!new StationService().addStation(inputView)) {}
+        new StationService().addStation(inputView);
     }
 
     public void deleteStation(InputView inputView) {
-        while (!new StationService().deleteStation(inputView)) {}
+        new StationService().deleteStation(inputView);
     }
 
     public void printStation() {

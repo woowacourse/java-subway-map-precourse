@@ -32,7 +32,7 @@ public class MainController {
                 warnMessage(OPTION_SELECT_WARN);
                 continue;
             }
-            if (option.equals(EXIT)) {
+            if (option.equals(String.valueOf(EXIT.charAt(0)))) {
                 break;
             }
             menuSelector(option, inputView);
@@ -40,16 +40,16 @@ public class MainController {
     }
 
     public void menuSelector(String option, InputView inputView) {
-        if (option.equals(STATION_CONTROLLER)) {
+        if (option.equals(String.valueOf(STATION_CONTROLLER.charAt(0)))) {
             new StationController().service(inputView);
         }
-        if (option.equals(LINE_CONTROLLER)) {
+        if (option.equals(String.valueOf(LINE_CONTROLLER.charAt(0)))) {
             new LineController().service(inputView);
         }
-        if (option.equals(SECTION_CONTROLLER)) {
+        if (option.equals(String.valueOf(SECTION_CONTROLLER.charAt(0)))) {
             new SectionController().service(inputView);
         }
-        if (option.equals(PRINT_SUBWAY)) {
+        if (option.equals(String.valueOf(PRINT_SUBWAY.charAt(0)))) {
             printLineAndStation();
         }
     }
