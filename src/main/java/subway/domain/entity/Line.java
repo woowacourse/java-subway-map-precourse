@@ -1,5 +1,6 @@
 package subway.domain.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
@@ -38,5 +39,9 @@ public class Line {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getStationNames() {
+        return sections.getStationNames();
     }
 }

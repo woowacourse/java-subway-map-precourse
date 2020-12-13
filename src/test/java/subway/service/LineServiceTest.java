@@ -9,18 +9,22 @@ import subway.domain.repository.LineRepository;
 import subway.dto.SectionDto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LineServiceTest {
 
-    private final LineRepository lineRepository = new LineRepository(new ArrayList<>());
-    private final LineService lineService = new LineService(lineRepository);
+    private LineRepository lineRepository = new LineRepository(new ArrayList<>());
+    private LineService lineService = new LineService(lineRepository);
     private Sections sections;
 
     @BeforeEach
     void setUp() {
+        lineRepository = new LineRepository(new ArrayList<>());
+        lineService = new LineService(lineRepository);
         sections = Sections.of(new Station("의정부역"), new Station("시청역"));
         lineService.addLine("1호선", sections);
     }
@@ -84,9 +88,11 @@ class LineServiceTest {
         Station station = new Station("강릉역");
         lineService.addSection(sectionDto, station);
 
-        boolean isRegisteredAsLineSection = station.isRegisteredAsLineSection();
+        List<String> stationNames = lineRepository.findByName("1호선")
+                .get()
+                .getStationNames();
 
-        assertThat(isRegisteredAsLineSection).isTrue();
+        assertThat(stationNames).hasSameElementsAs(Arrays.asList("강릉역", "의정부역", "시청역"));
     }
 
     @DisplayName("Line의 구간 삭제 실패 : 등록되지 않은 Line 이름으로 요청")

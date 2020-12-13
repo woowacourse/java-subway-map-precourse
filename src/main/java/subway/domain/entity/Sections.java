@@ -59,4 +59,10 @@ public class Sections {
                 .findFirst()
                 .orElseThrow(CannotFindStationException::new);
     }
+
+    public List<String> getStationNames() {
+        return stations.stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
+    }
 }

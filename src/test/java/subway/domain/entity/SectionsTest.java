@@ -6,6 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.service.CannotFindStationException;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -23,14 +26,14 @@ class SectionsTest {
                 .hasMessage("상행 종점역과 하행 종점역은 중복될 수 없습니다.");
     }
 
-    @DisplayName("Sections 생성 성공하면, 구간으로 등록된 Station의 등록 여부 상태가 변경")
+    @DisplayName("Sections 생성 성공")
     @Test
-    void Sections_생성_성공하면_내부_객체_상태가_변경된다() {
-        Sections.of(upwardLastStation, downwardLastStation);
+    void Sections_생성_성공한다() {
+        Sections sections = Sections.of(upwardLastStation, downwardLastStation);
 
-        boolean isRegisteredAsLineSection = upwardLastStation.isRegisteredAsLineSection();
+        List<String> stationNames = sections.getStationNames();
 
-        assertThat(isRegisteredAsLineSection).isTrue();
+        assertThat(stationNames).hasSameElementsAs(Arrays.asList("상행종점", "하행종점"));
     }
 
     @DisplayName("Sections에 구간(역) 추가 등록 실패 : 순서 번호가 1 이하 or 등록된 역 개수 + 1 보다 큰 경우")
@@ -99,11 +102,10 @@ class SectionsTest {
         Sections sections = Sections.of(upwardLastStation, downwardLastStation);
         Station station = new Station("개화역");
         sections.addSection(station, 1);
-        boolean beforeState = station.isRegisteredAsLineSection();
 
         sections.deleteSectionByName("개화역");
-        boolean afterState = station.isRegisteredAsLineSection();
+        List<String> stationNames = sections.getStationNames();
 
-        assertThat(beforeState).isNotEqualTo(afterState);
+        assertThat(stationNames).doesNotContain("개화역");
     }
 }
