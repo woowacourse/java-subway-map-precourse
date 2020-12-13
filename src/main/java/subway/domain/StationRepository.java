@@ -23,7 +23,6 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-
     private static boolean checkNameLength(String name) {
         return name.length() >= Constants.MIN_NAME_LENGTH;
     }
