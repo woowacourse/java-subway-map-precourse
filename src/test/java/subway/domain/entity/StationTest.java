@@ -21,7 +21,7 @@ class StationTest {
         assertThatCode(() -> {
             new Station(name);
         }).isInstanceOf(StationNameException.class)
-                .hasMessage("이미 등록된 역 이름입니다.");
+                .hasMessage("지하철 역 이름은 공백이 아닌 2글자 이상이어야 합니다.");
     }
 
     @DisplayName("Station 객체와 이름이 같은 경우")
