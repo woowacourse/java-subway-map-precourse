@@ -5,6 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import subway.commonprint.Prefix;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 import subway.function.printsubwaymap.PrintSubwayMapPrinter;
 
 public class LineStationMappingRepository {

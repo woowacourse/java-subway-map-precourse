@@ -3,8 +3,8 @@ package subway.main;
 import java.util.ArrayList;
 import java.util.List;
 import subway.domain.LineStationMappingRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class Initializer {
     private static final String GYODAE_STATION = "교대역";

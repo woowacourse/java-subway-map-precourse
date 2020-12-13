@@ -1,10 +1,10 @@
 package subway.function.station;
 
 import java.util.Scanner;
-import subway.commonprint.CommonPrinter;
+import subway.commonprint.info.CommonInfoPrinter;
 import subway.main.UserSelections;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class StationManagement {
     public static void start(Scanner scanner) {
@@ -15,7 +15,7 @@ public class StationManagement {
 
     private static StationManagementSelectionType getStationManagementSelectionType(
         Scanner scanner) {
-        CommonPrinter.printUserFunctionSelectionMessage();
+        CommonInfoPrinter.printUserFunctionSelectionMessage();
         String stationManagementSelectionInput = scanner.nextLine();
         if (stationManagementSelectionInput.equals(UserSelections.FIRST)) {
             return StationManagementSelectionType.STATION_REGISTRATION;

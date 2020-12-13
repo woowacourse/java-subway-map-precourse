@@ -1,15 +1,15 @@
 package subway.function.line;
 
 import java.util.Scanner;
-import subway.commonprint.CommonPrinter;
-import subway.domain.LineRepository;
+import subway.commonprint.info.CommonInfoPrinter;
+import subway.domain.line.LineRepository;
 import subway.domain.LineStationMappingRepository;
 import subway.main.UserSelections;
 
 public class LineManagement {
     public static void start(Scanner scanner) {
         PrintLineManagementScreen.printLineManagementScreen();
-        CommonPrinter.printUserFunctionSelectionMessage();
+        CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
         if (userInput.equals(UserSelections.GO_BACK)) {
             return;

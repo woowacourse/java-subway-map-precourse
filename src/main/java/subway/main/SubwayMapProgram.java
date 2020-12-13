@@ -1,24 +1,39 @@
 package subway.main;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import subway.commonprint.error.CommonErrorPrinter;
 import subway.function.line.LineManagement;
 import subway.function.printsubwaymap.PrintSubwayMap;
 import subway.function.section.SectionManagement;
 import subway.function.station.StationManagement;
-import subway.commonprint.CommonPrinter;
+import subway.commonprint.info.CommonInfoPrinter;
 
 public class SubwayMapProgram {
+
     public void start(Scanner scanner) {
         Initializer.initialize();
         while (true) {
             PrintMainScreen.printMainScreen();
-            CommonPrinter.printUserFunctionSelectionMessage();
-            String mainInput = scanner.nextLine();
+            String mainInput = getMainScreenSelectionInput(scanner);
             if (mainInput.equals(UserSelections.QUIT)) {
                 break;
             }
             MainScreenSelectionType type = getMainScreenUserSelectionType(mainInput);
             resolveUserSelection(type, scanner);
+        }
+    }
+
+    private String getMainScreenSelectionInput(Scanner scanner) {
+        String mainScreenSelectionPattern = "^[1234Q]$";
+        String mainInput;
+        while (true) {
+            CommonInfoPrinter.printUserFunctionSelectionMessage();
+            mainInput = scanner.nextLine();
+            if (Pattern.matches(mainScreenSelectionPattern, mainInput)) {
+                return mainInput;
+            }
+            CommonErrorPrinter.printSelectionInputErrorMessage();
         }
     }
 

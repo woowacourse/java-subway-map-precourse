@@ -1,6 +1,6 @@
-package subway.commonprint;
+package subway.commonprint.info;
 
-public class CommonPrinter {
+public class CommonInfoPrinter {
     private static final String USER_FUNCTION_SELECTION_MESSAGE
         = "\n## 원하는 기능을 선택하세요.";
 
