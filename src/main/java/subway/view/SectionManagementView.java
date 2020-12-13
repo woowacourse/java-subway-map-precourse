@@ -27,11 +27,10 @@ public class SectionManagementView {
 
     protected static boolean nextMenu(int menu) {
         if (menu == 1) {
-            return InputView.SectionLineInput();
+            return InputView.SectionInsertLineInput();
         }
         if (menu == 2) {
-            String user_input = InputView.stationDeleteInput();
-            return StationRepository.deleteStation(user_input);
+            return InputView.SectionDeleteLineInput();
         }
         return false;
     }

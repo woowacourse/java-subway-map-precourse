@@ -48,7 +48,7 @@ public class InputView {
         String user_input = scanner.nextLine();
         return user_input;
     }
-    public static boolean SectionLineInput() {
+    public static boolean SectionInsertLineInput() {
         System.out.println("## 노선을 입력하세요");
         String lineName = scanner.nextLine();
         System.out.println("## 역이름을 입력하세요.");
@@ -74,4 +74,5 @@ public class InputView {
         LineRepository.addStationInLine(lineName,stationName,order);
         return true;
     }
+
 }
