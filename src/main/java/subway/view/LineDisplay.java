@@ -1,2 +1,7 @@
-package subway.view;public class LineDisplay {
+package subway.view;
+
+public class LineDisplay {
+
+    public static void selectMenu() {
+    }
 }
