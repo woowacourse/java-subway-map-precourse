@@ -8,6 +8,8 @@ public class Line {
     private static final String ERROR_STATION_ALREADY_ON_LINE = "[ERROR] 이미 존재하는 역입니다.";
     private static final String ERROR_STATION_NOT_ON_LINE = "[ERROR] 노선에 해당 역이 없습니다.";
     private static final String ERROR_STATION_NOT_ON_STATION_REPOSITORY = "[ERROR] 데이터베이스에 등록되지 않은 역입니다.";
+    private static final int MINIMUM_STATIONS_WHEN_SECTION_TO_BE_DELETED = 3;
+    private static final String ERROR_NOT_BE_ABLE_TO_DELETE_SECTION = "[ERROR] 역이 너무 적어 구간을 삭제할 수 없습니다.";
     private String name; // 변경 불가능
     private LinkedList<Station> stationsOnLine = new LinkedList<>(); // 해당 노선에 소속된 역(들)
 
@@ -44,11 +46,19 @@ public class Line {
         }
     }
 
-    public void deleteStation(Station station) {
+    public void deleteStation(String stationName) {
+        if(!isSectionAbleToBeDeleted()) {
+            throw new IllegalArgumentException(ERROR_NOT_BE_ABLE_TO_DELETE_SECTION);
+        }
+        Station station = getStation(stationName);
         if(!isStationInLine(station)) {
             throw new IllegalArgumentException(ERROR_STATION_NOT_ON_LINE);
         }
         stationsOnLine.remove(station);
+    }
+
+    private boolean isSectionAbleToBeDeleted() {
+        return stationsOnLine.size() >= MINIMUM_STATIONS_WHEN_SECTION_TO_BE_DELETED;
     }
 
     private boolean isIndexInRange(int index) {
