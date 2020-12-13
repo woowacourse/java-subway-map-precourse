@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.model.ResultDto;
+import subway.model.Status;
 import subway.utils.InputValidator;
 
 /**
@@ -37,6 +39,12 @@ public abstract class GeneralView extends AbstractView{
             } catch (Exception e) {
                 printExceptionMessage(e);
             }
+        }
+    }
+
+    protected void isBadResult(ResultDto resultDto) {
+        if (resultDto.getStatus() == Status.BAD) {
+            throw new IllegalArgumentException(resultDto.getMessage());
         }
     }
 }
