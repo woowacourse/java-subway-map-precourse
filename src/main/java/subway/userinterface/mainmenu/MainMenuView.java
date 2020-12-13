@@ -11,6 +11,7 @@ public class MainMenuView implements MenuView {
     private static MainMenuView mainMenuView;
     public static LinkedHashMap<String, Menu> mainMenu = new LinkedHashMap<>();
     private static MainViewInputController mainViewInputController = new MainViewInputController();
+    private static MainViewOutputController mainViewOutputController = new MainViewOutputController();
 
     private MainMenuView() {
         setMenu();
@@ -39,7 +40,7 @@ public class MainMenuView implements MenuView {
 
     @Override
     public void printMenu() {
-        MainViewOutputController.printMainMenu(mainMenu);
+        mainViewOutputController.printMainMenu(mainMenu);
     }
 
     @Override
