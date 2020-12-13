@@ -10,7 +10,7 @@ public class StationManager {
 
     public static State addStation(State state, Scanner scanner) {
         if (state.equals(State.STATION_ADD)) {
-            OutputView.printInputStation();
+            OutputView.printInputRegisterStation();
             addStation(InputView.inputStationName(scanner));
 
             return State.MAIN_SCENE;
