@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Lines {
-    private static final String ERR_ALREADY_ADD_LINE_NAME_MSG = "[ERROR] 이미 등록된 역명입니다.";
+    private static final String ERR_ALREADY_ADD_LINE_NAME_MSG = "[ERROR] 이미 등록된 노선명입니다.";
     private static final String ERR_NO_SUCH_NAME_LINE_MSG = "[ERROR] 해당 노선이 없습니다.";
 
     private List<Line> lines = new ArrayList<>();
@@ -20,7 +20,14 @@ public class Lines {
     }
 
     public void addLine(Line line) {
-        lines.add(line);
+        if (!lines.contains(line)) {
+            lines.add(line);
+        }
+        throw new IllegalStateException(ERR_ALREADY_ADD_LINE_NAME_MSG);
+    }
+
+    public int size() {
+        return lines.size();
     }
 
     public Line findLine(String name) {
