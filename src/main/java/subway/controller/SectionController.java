@@ -27,7 +27,6 @@ public class SectionController implements SubwayController {
         int order = inputOrder();
 
         line.addTo(order, station);
-        station.addLine(line);
     }
 
     private int inputOrder() {

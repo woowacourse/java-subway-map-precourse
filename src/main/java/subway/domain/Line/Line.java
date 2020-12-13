@@ -15,7 +15,7 @@ public class Line implements Comparable<Line> {
     private final List<Station> stations = new LinkedList<>();
     private static final int STATIONS_MIN_INDEX = 1;
     private static final int ONE_INDEX = 1;
-    private static final int MIN_STATION_CAPACITY = 2;
+    private static final int STATIONS_MIN_CAPACITY = 2;
 
 
     private Line(LineName name) {
@@ -99,13 +99,13 @@ public class Line implements Comparable<Line> {
         if (!isValidOrder(order)) {
             throw new InvalidOrderException();
         }
-
+        station.addLine(this);
         stations.add(order - ONE_INDEX, station);
     }
 
     private boolean isValidOrder(int order) {
 
-        if (order >= STATIONS_MIN_INDEX && order <= stations.size() +ONE_INDEX) {
+        if (order >= STATIONS_MIN_INDEX && order <= stations.size() + ONE_INDEX) {
             return true;
         }
         return false;
@@ -117,7 +117,7 @@ public class Line implements Comparable<Line> {
     }
 
     public boolean canRemoveStation() {
-        return stations.size() > MIN_STATION_CAPACITY;
+        return stations.size() > STATIONS_MIN_CAPACITY;
     }
 
     @Override
