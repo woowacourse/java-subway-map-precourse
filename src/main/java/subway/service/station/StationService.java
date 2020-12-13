@@ -65,12 +65,12 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean delete(Scanner scanner) {
-        StationNameDeletionValidation nameDeletionValidation = new StationNameDeletionValidation();
+        StationNameDeletionValidation stationNameDeletionValidation = new StationNameDeletionValidation();
 
         StationTextView.printStationDeletionText();
         String stationName = scanner.nextLine();
 
-        if (nameDeletionValidation.checkDeletionValidation(stationName)) {
+        if (stationNameDeletionValidation.checkDeletionValidation(stationName)) {
             StationInformationView.printStationDeletionInformation();
             System.out.println();
             return true;

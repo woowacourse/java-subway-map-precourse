@@ -1,6 +1,6 @@
 package subway.type;
 
-public enum  BoundaryType {
+public enum BoundaryType {
     NAME_LENGTH_BOUNDARY(2);
 
     private final int boundary;
