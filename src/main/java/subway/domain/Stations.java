@@ -1,9 +1,11 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Stations {
     private static final String ERR_ALREADY_ADD_STATION_NAME_MSG = "[ERROR] 이미 등록된 역명입니다.";
@@ -34,5 +36,25 @@ public class Stations {
                 .filter(station -> Objects.equals(station.getName(), name))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException(ERR_NO_SUCH_NAME_STATION_MSG));
+    }
+
+    public List<String> stationNames() {
+        return stations.stream()
+                .map(Station::getName)
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Stations)) return false;
+        Stations stations1 = (Stations) o;
+        return Objects.equals(stations, stations1.stations);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stations);
     }
 }
