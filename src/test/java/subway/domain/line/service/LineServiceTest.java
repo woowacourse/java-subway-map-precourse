@@ -1,13 +1,13 @@
 package subway.domain.line.service;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.line.model.Line;
 import subway.domain.line.model.LineRepository;
 import subway.domain.station.model.Station;
+import subway.domain.station.model.StationRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,9 +19,20 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineServiceTest {
 
+    @BeforeAll
+    static void beforeAll() {
+        StationRepository.addStation(new Station("강남역"));
+        StationRepository.addStation(new Station("잠실역"));
+    }
+
     @AfterEach
     void tearDown() {
         LineRepository.deleteAll();
+    }
+
+    @AfterAll
+    static void afterAll() {
+        StationRepository.deleteAll();
     }
 
     @DisplayName("지하철 노선의 목록을 조회하는 기능을 테스트한다")
@@ -34,7 +45,7 @@ class LineServiceTest {
     void testFindAll(String input, int lineNumber) {
         //given
         String[] lineNames = input.split(",");
-        String stationNames = "시청역,서울역";
+        String stationNames = "강남역,잠실역";
         List<Station> stations = Arrays.stream(stationNames.split(","))
                 .map(Station::new)
                 .collect(Collectors.toList());
@@ -65,7 +76,7 @@ class LineServiceTest {
     })
     void testSave(String lineName) {
         //when
-        String stationNames = "시청역,서울역";
+        String stationNames = "강남역,잠실역";
         List<Station> stations = Arrays.stream(stationNames.split(","))
                 .map(Station::new)
                 .collect(Collectors.toList());
@@ -91,7 +102,7 @@ class LineServiceTest {
     }, delimiter = ':')
     void testSaveIfDuplicatedLineName(String input, String newLineName) {
         //given
-        String stationNames = "시청역,서울역";
+        String stationNames = "강남역,잠실역";
         List<Station> stations = Arrays.stream(stationNames.split(","))
                 .map(Station::new)
                 .collect(Collectors.toList());
@@ -114,7 +125,7 @@ class LineServiceTest {
     }, delimiter = ':')
     void testRemove(String input, String removedLineName, int expectedLinesNumber) {
         //given
-        String stationNames = "시청역,서울역";
+        String stationNames = "강남역,잠실역";
         List<Station> stations = Arrays.stream(stationNames.split(","))
                 .map(Station::new)
                 .collect(Collectors.toList());
@@ -136,5 +147,21 @@ class LineServiceTest {
                 () -> assertThat(lines).usingElementComparatorOnFields("name")
                         .doesNotContain(new Line(removedLineName, stations))
         );
+    }
+
+    @DisplayName("상행, 하행 종점역이 등록되지 않은 역인 경우 예외를 던지는 기능을 테스트한다")
+    @Test
+    void testInitLineIfStationsAreNotFound() {
+        //given
+        String stationNames = "강남역,봉천역";
+        String lineName = "2호선";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line savedLine = new Line(lineName, stations);
+
+        //when //then
+        assertThatThrownBy(() -> LineService.save(savedLine))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

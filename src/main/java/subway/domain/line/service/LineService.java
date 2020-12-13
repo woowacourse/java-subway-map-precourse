@@ -2,19 +2,41 @@ package subway.domain.line.service;
 
 import subway.domain.line.model.Line;
 import subway.domain.line.model.LineRepository;
+import subway.domain.station.model.Station;
+import subway.domain.station.model.StationRepository;
 
 import java.util.List;
 
 public class LineService {
     private static final String NOT_DUPLICATION_LINE_NAME_MESSAGE = "[ERROR] 중복된 노선 이름은 등록할 수 없습니다.";
+    private static final String NOT_FOUND_STATION_MESSAGE = "[ERROR] 존재하지 않는 역입니다.";
 
     public static List<Line> findAll() {
         return LineRepository.lines();
     }
 
     public static void save(Line line) {
-        validateDuplicationLine(line);
+        validateLine(line);
         LineRepository.addLine(line);
+    }
+
+    private static void validateLine(Line line) {
+        validateDuplicationLine(line);
+        validateStations(line);
+    }
+
+    private static void validateStations(Line line) {
+        List<Station> stations = line.getStations();
+        stations.stream()
+                .forEach(LineService::validateStation);
+    }
+
+    private static void validateStation(Station station) {
+        List<Station> registeredStations = StationRepository.stations();
+        registeredStations.stream()
+                .filter(registeredStation -> registeredStation.isEqualTo(station))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_STATION_MESSAGE));
     }
 
     private static void validateDuplicationLine(Line line) {
