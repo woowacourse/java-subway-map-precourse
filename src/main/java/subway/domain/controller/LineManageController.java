@@ -15,4 +15,9 @@ public class LineManageController {
         LineRepository.addLine(line);
     }
 
+    public void processDeleteLine(Scanner scanner) {
+        String line = input.inputDeleteLine(scanner);
+        LineRepository.deleteLineByName(line);
+    }
+
 }
