@@ -5,11 +5,9 @@ import subway.menus.MainMenu;
 import subway.menus.SectionMenu;
 import subway.menus.StationMenu;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {
-    private static final String NOT_EXIST_MAIN_MENU_SELECTION = "[ERROR] 선택할 수 없는 기능입니다.";
 
     private InputView() {
     }
@@ -18,75 +16,43 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String selectMainMenu(Scanner scanner) {
-        String selection = userInput(scanner);
-        checkExistMainMenu(selection);
-        return selection;
-    }
-
-    private static void checkExistMainMenu(String selection) {
-        if (!isExistMainMenu(selection)) {
-            throw new IllegalArgumentException(NOT_EXIST_MAIN_MENU_SELECTION);
+    public static MainMenu selectMainMenu(Scanner scanner) {
+        try {
+            OutputView.printFeatureSelectMessage();
+            return MainMenu.getMenu(userInput(scanner));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return selectMainMenu(scanner);
         }
     }
 
-    private static boolean isExistMainMenu(String selection) {
-        boolean isExist = Arrays.stream(MainMenu.values())
-            .anyMatch(menu -> menu.getOption().equals(selection));
-        return isExist;
-    }
-
-    public static String selectStationMenu(Scanner scanner) {
-        String selection = userInput(scanner);
-        checkExistStationMenu(selection);
-        return selection;
-    }
-
-    private static void checkExistStationMenu(String selection) {
-        if (!isExistStationMenu(selection)) {
-            throw new IllegalArgumentException(NOT_EXIST_MAIN_MENU_SELECTION);
+    public static StationMenu selectStationMenu(Scanner scanner) {
+        try {
+            OutputView.printFeatureSelectMessage();
+            return StationMenu.getMenu(userInput(scanner));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return selectStationMenu(scanner);
         }
     }
 
-    private static boolean isExistStationMenu(String selection) {
-        boolean isExist = Arrays.stream(StationMenu.values())
-            .anyMatch(menu -> menu.getOption().equals(selection));
-        return isExist;
-    }
-
-    public static String selectLineMenu(Scanner scanner) {
-        String selection = userInput(scanner);
-        checkExistLineMenu(selection);
-        return selection;
-    }
-
-    private static void checkExistLineMenu(String selection) {
-        if (!isExistLineMenu(selection)) {
-            throw new IllegalArgumentException(NOT_EXIST_MAIN_MENU_SELECTION);
+    public static LineMenu selectLineMenu(Scanner scanner) {
+        try {
+            OutputView.printFeatureSelectMessage();
+            return LineMenu.getMenu(userInput(scanner));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return selectLineMenu(scanner);
         }
     }
 
-    private static boolean isExistLineMenu(String selection) {
-        boolean isExist = Arrays.stream(LineMenu.values())
-            .anyMatch(menu -> menu.getOption().equals(selection));
-        return isExist;
-    }
-
-    public static String selectSectionMenu(Scanner scanner) {
-        String selection = userInput(scanner);
-        checkExistSectionMenu(selection);
-        return selection;
-    }
-
-    private static void checkExistSectionMenu(String selection) {
-        if (!isExistSectionMenu(selection)) {
-            throw new IllegalArgumentException(NOT_EXIST_MAIN_MENU_SELECTION);
+    public static SectionMenu selectSectionMenu(Scanner scanner) {
+        try {
+            OutputView.printFeatureSelectMessage();
+            return SectionMenu.getMenu(userInput(scanner));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return selectSectionMenu(scanner);
         }
-    }
-
-    private static boolean isExistSectionMenu(String selection) {
-        boolean isExist = Arrays.stream(SectionMenu.values())
-            .anyMatch(menu -> menu.getOption().equals(selection));
-        return isExist;
     }
 }
