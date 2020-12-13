@@ -36,6 +36,10 @@ public class View {
 			System.out.println(Message.STATION_NAME_INPUT);
 			stationName = Input.nextLine(scanner);
 			Subway.addStation(stationName);
+		} else if (selectorInt == 2) {
+			
+		} else if (selectorInt == 3) {
+			Subway.readStation();
 		}
 	}
 }

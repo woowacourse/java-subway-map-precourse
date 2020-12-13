@@ -18,4 +18,12 @@ public class Output {
 		System.out.println(Message.BACK);
 		System.out.println(Message.FUNCTION_CHOICE);
 	}
+	
+	public static void info(String name) {
+		System.out.println("[INFO] " + name);
+	}
+	
+	public static void error(String message) {
+		System.out.println("[ERROR] " + message);
+	}
 }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.util.Output;
 import subway.util.View;
 
 public class Subway {	
@@ -18,7 +19,14 @@ public class Subway {
 		if (!StationRepository.contains(stationName)) {
 			Station station = new Station(stationName);
 			StationRepository.addStation(station);
+			return;
 		}
-		System.out.println(StationRepository.stations());
+		Output.error("이미 등록된 역 이름입니다.");
+	}
+	
+	public static void readStation() {
+		for (Station station: StationRepository.getStations()) {
+			Output.info(station.getName());
+		}
 	}
 }
