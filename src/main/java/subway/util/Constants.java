@@ -3,46 +3,10 @@ package subway.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import subway.model.MenuGroup.Menu;
+import subway.model.MenuGroup.MenuItem;
 
 public class Constants {
-
-    public static class Menu {
-
-        private String title;
-        private List<MenuItem> items;
-
-        public Menu(String title, List<MenuItem> items) {
-            this.title = title;
-            this.items = items;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public List<MenuItem> getItems() {
-            return items;
-        }
-    }
-
-    public static class MenuItem {
-
-        private String code;
-        private String title;
-
-        public MenuItem(String code, String title) {
-            this.code = code;
-            this.title = title;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-    }
 
     public final static List<MenuItem> MAIN_MENU_ITEMS = Arrays.asList(
         new MenuItem("1", "역 관리"),

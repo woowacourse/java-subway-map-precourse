@@ -1,8 +1,10 @@
 package subway.util;
 
+import subway.model.MenuGroup.Menu;
+
 public class MessageUtils {
 
-    public static void printMenu(Constants.Menu menu) {
+    public static void printMenu(Menu menu) {
         System.out.println("## " + menu.getTitle());
         menu.getItems().forEach(
             menuItem -> System.out.println(menuItem.getCode() + ". " + menuItem.getTitle())
