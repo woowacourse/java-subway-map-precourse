@@ -2,6 +2,7 @@ package subway.domain.menu.submenu.action;
 
 import java.util.Scanner;
 
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
@@ -19,6 +20,10 @@ public class DeleteAction extends Action {
         if (category.equals(CategoryType.STATION)) {
             deleteStation(name);
         }
+
+        if (category.equals(CategoryType.LINE)) {
+            deleteLine(name);
+        }
         printSuccessMessage();
     }
 
@@ -35,6 +40,10 @@ public class DeleteAction extends Action {
 
     private void deleteStation(String name) {
         StationRepository.deleteStation(name);
+    }
+
+    private void deleteLine(String name) {
+        LineRepository.deleteLineByName(name);
     }
 
     private void printSuccessMessage() {
