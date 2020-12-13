@@ -20,6 +20,8 @@ public class Menu {
     private static final String LINE_MENU_TITLE = "노선 ";
     private static final String EDGE_MENU_TITLE = "구간 ";
     private static final String LIST_MENU_TITLE = "지하철 노선도";
+    private static final int SUB_MENU_INDEX = 0;
+    private static final int SUB_MENU_ACTION_INDEX = 1;
     public static final String MENU_TITLE_SIGN = "title";
 
     public static final SubMenu stationMenu = new SubMenu(
@@ -80,15 +82,15 @@ public class Menu {
     }
 
     public static void runMenu(InputView inputView, ArrayList<String> selectedMenus) {
-        SubMenu menu = MenuController.getSubMenu(selectedMenus.get(0));
+        SubMenu menu = MenuController.getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
         if (menu == stationMenu) {
-            runStationMenu(inputView, selectedMenus.get(1));
+            runStationMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == lineMenu) {
-            runLineMenu(inputView, selectedMenus.get(1));
+            runLineMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == edgeMenu) {
-            runEdgeMenu(inputView, selectedMenus.get(1));
+            runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == lineMap) {
             runLineMapMenu();
