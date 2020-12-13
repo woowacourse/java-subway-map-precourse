@@ -54,7 +54,7 @@ class StationServiceTest {
     @Test
     void deleteStationByName_노선에_등록된_역_예외가_발생한다() {
         Station station = new Station("테스트역");
-        station.registerAsSection();
+        station.registerAsLineSection();
         stationRepository.save(station);
 
         assertThatCode(() -> {

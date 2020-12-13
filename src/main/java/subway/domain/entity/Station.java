@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Station {
     private static final int MINIMUM_STATION_NAME_LENGTH = 2;
-    private static final boolean DEFAULT_STATE = false;
+    private static final int DEFAULT_SECTION_REGISTRATION_COUNTS = 0;
 
     private final String name;
-    private boolean isRegisteredAsSection = DEFAULT_STATE;
+    private int sectionRegistrationCounts = DEFAULT_SECTION_REGISTRATION_COUNTS;
 
     public Station(String name) {
         validateStationName(name);
@@ -28,15 +28,15 @@ public class Station {
         return Objects.equals(this.name, name);
     }
 
-    public void registerAsSection() {
-        this.isRegisteredAsSection = true;
+    public void registerAsLineSection() {
+        this.sectionRegistrationCounts++;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean isRegisteredAsSection() {
-        return isRegisteredAsSection;
+    public boolean isRegisteredAsLineSection() {
+        return sectionRegistrationCounts != DEFAULT_SECTION_REGISTRATION_COUNTS;
     }
 }

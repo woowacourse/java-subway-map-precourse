@@ -27,7 +27,7 @@ public class StationService {
 
     public boolean deleteStationByName(String name) {
         Station station = findStationByName(name);
-        if (station.isRegisteredAsSection()) {
+        if (station.isRegisteredAsLineSection()) {
             throw new CannotDeleteStationException();
         }
         return stationRepository.delete(station);

@@ -84,7 +84,7 @@ class LineServiceTest {
         Station station = new Station("강릉역");
         lineService.addSection(sectionDto, station);
 
-        boolean isRegisteredAsSection = station.isRegisteredAsSection();
+        boolean isRegisteredAsSection = station.isRegisteredAsLineSection();
 
         assertThat(isRegisteredAsSection).isTrue();
     }

@@ -27,7 +27,7 @@ class SectionsTest {
     void Sections_생성_성공하면_내부_객체_상태가_변경된다() {
         Sections.of(upwardLastStation, downwardLastStation);
 
-        boolean isRegisteredAsSection = upwardLastStation.isRegisteredAsSection();
+        boolean isRegisteredAsSection = upwardLastStation.isRegisteredAsLineSection();
 
         assertThat(isRegisteredAsSection).isTrue();
     }
@@ -63,7 +63,7 @@ class SectionsTest {
         Station targetStation = new Station("추가할역");
         sections.addSection(targetStation, 1);
 
-        boolean isRegisteredAsSection = targetStation.isRegisteredAsSection();
+        boolean isRegisteredAsSection = targetStation.isRegisteredAsLineSection();
 
         assertThat(isRegisteredAsSection).isTrue();
     }

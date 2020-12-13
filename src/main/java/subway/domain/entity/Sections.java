@@ -11,7 +11,7 @@ public class Sections {
     private final List<Station> stations;
 
     private Sections(List<Station> stations) {
-        stations.forEach(Station::registerAsSection);
+        stations.forEach(Station::registerAsLineSection);
         this.stations = stations;
     }
 
@@ -26,7 +26,7 @@ public class Sections {
 
     public void addSection(Station station, int sectionOrderNumber) {
         validateSectionRegistrationRequest(station, sectionOrderNumber);
-        station.registerAsSection();
+        station.registerAsLineSection();
         stations.add(sectionOrderNumber - INDEX_ADJUSTMENT_NUMBER, station);
     }
 
@@ -38,5 +38,8 @@ public class Sections {
         if (stations.contains(station)) {
             throw new SectionDuplicationException();
         }
+    }
+
+    public void deleteSection(String stationName) {
     }
 }
