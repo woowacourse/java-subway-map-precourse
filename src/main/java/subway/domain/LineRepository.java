@@ -8,7 +8,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        lines.add(line);
+        lines.addLine(line);
     }
 
     public static boolean deleteLineByName(String name) {
