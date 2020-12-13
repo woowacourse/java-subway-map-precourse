@@ -75,4 +75,24 @@ public class InputView {
         return true;
     }
 
+    public static boolean SectionDeleteLineInput() {
+        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        String lineName = scanner.nextLine();
+        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        String stationName = scanner.nextLine();
+        if(LineRepository.isExistLine(lineName) == false){
+            OutputView.printError("노선 이름이 존재하지 않습니다.");
+            return false;
+        }
+        if(LineRepository.isContainStationInTargetLine(lineName, stationName) ==false){
+            OutputView.printError("노선에 삭제하려는 역이 존재하지 않습니다.");
+            return false;
+        }
+        if(InputTool.isPossibleDeleteLineSize(lineName) == false){
+            OutputView.printError("노선에 포함된 역이 2개 이하일 때는 제거할 수 없습니다.");
+            return false;
+        }
+        LineRepository.deleteStationFromLine(lineName,stationName);
+        return true;
+    }
 }

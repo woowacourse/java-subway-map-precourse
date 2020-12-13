@@ -12,21 +12,22 @@ public class LineRepository {
         lines.add(line);
         return true;
     }
-    public static void insertStationInLine(Line line, String name){
+
+    public static void insertStationInLine(Line line, String name) {
         Station station = new Station(name);
         line.insertStationInLine(station);
     }
 
     public static boolean isPossibleLine(String lineName, String startName, String endName) {
-        if(!InputTool.isValidName(lineName)){
+        if (!InputTool.isValidName(lineName)) {
             OutputView.printError("노선 이름은 2글자 이상이어야 합니다.");
             return false;
         }
-        if(isExistLine(lineName)){
+        if (isExistLine(lineName)) {
             OutputView.printError("노선 이름은 중복될 수 없습니다.");
             return false;
         }
-        if(StationRepository.isExistStation(startName)==false || StationRepository.isExistStation(endName) == false){
+        if (StationRepository.isExistStation(startName) == false || StationRepository.isExistStation(endName) == false) {
             OutputView.printError("종점역이 존재하지 않습니다.");
             return false;
         }
@@ -48,8 +49,8 @@ public class LineRepository {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
             Line tempLine = (Line) itr.next();
-            if(tempLine.getName().compareTo(lineName) ==0){
-                if(tempLine.isContainStation(stationName)) return true;
+            if (tempLine.getName().compareTo(lineName) == 0) {
+                if (tempLine.isContainStation(stationName)) return true;
             }
         }
         return false;
@@ -59,10 +60,11 @@ public class LineRepository {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
             Line tempLine = (Line) itr.next();
-            if(tempLine.getName().compareTo(lineName) ==0) return tempLine.getStationOfLine().size();
+            if (tempLine.getName().compareTo(lineName) == 0) return tempLine.getStationOfLine().size();
         }
         return -1;
     }
+
     public static boolean lookUpLine() {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
@@ -74,7 +76,7 @@ public class LineRepository {
     public static boolean lookUpStationOfLine() {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
-            Line line = (Line)itr.next();
+            Line line = (Line) itr.next();
             List<Station> stationList = line.getStationOfLine();
             OutputView.printInfo(line.getName());
             OutputView.printInfo("---");
@@ -84,17 +86,19 @@ public class LineRepository {
         }
         return true;
     }
+
     //해당 이름의 역이 모든 노선 중 하나라도 포함되어 있는지
     public static boolean isContainStationInLines(String name) {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
-            Line line = (Line)itr.next();
+            Line line = (Line) itr.next();
             List<Station> stationList = line.getStationOfLine();
             for (Station station : stationList)
-                if(station.isEqual(name) ==true) return true;
+                if (station.isEqual(name) == true) return true;
         }
         return false;
     }
+
     public static boolean isExistLine(String name) {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
@@ -106,14 +110,23 @@ public class LineRepository {
     public static void addStationInLine(String lineName, String stationName, String order) {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {
-            Line line = (Line)itr.next();
-            if (line.isEqual(lineName) == true){
+            Line line = (Line) itr.next();
+            if (line.isEqual(lineName) == true) {
                 Station newStation = new Station(stationName);
                 line.insertStationInLineIndex(newStation, Integer.parseInt(order));
             }
         }
-
-
+        OutputView.printInfo("구간이 등록되었습니다.");
     }
 
+    public static void deleteStationFromLine(String lineName, String stationName) {
+        Iterator<Line> itr = lines.iterator();
+        while (itr.hasNext()) {
+            Line line = (Line) itr.next();
+            if (line.isEqual(lineName) == true) {
+                line.getStationOfLine().removeIf(station -> Objects.equals(station.getName(), stationName));
+            }
+        }
+        OutputView.printInfo("구간이 삭제되었습니다.");
+    }
 }

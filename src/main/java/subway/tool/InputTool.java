@@ -36,9 +36,14 @@ public class InputTool {
 
     public static boolean isPossibleInsertLineSize(String lineName, String input) {
         final int lineSize = LineRepository.getTargetLineSize(lineName);
-        System.out.println(lineSize);
-        if(lineSize>=Integer.parseInt(input)) return true;
+        if (lineSize >= Integer.parseInt(input)) return true;
         return false;
+    }
+
+    public static boolean isPossibleDeleteLineSize(String lineName) {
+        final int lineSize = LineRepository.getTargetLineSize(lineName);
+        if (lineSize <=2) return false;
+        return true;
     }
 
     public static boolean isNumber(String input) {
