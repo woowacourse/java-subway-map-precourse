@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import subway.utils.PrintUtils;
 
 public class Route {
@@ -28,6 +29,10 @@ public class Route {
 
     public void insertStation(Station station, int index) {
         stations.add(index, station);
+    }
+
+    public boolean deleteStation(String stationName) {
+        return stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
     public boolean matchLineName(String lineName) {

@@ -114,6 +114,12 @@ public class PrintUtils {
 
     public void printStationName(String stationName){ System.out.println("[INFO] "+stationName); }
 
+    public void printLineOfRouteDeletedGuide(){ System.out.println("\n## 삭제할 구간의 노선을 입력하세요."); }
+
+    public void printStationOfRouteDeletedGuide(){ System.out.println("\n## 삭제할 구간의 역을 입력하세요."); }
+
+    public void printCompleteRouteDeletion(){ System.out.println("\n[INFO] 구간이 삭제되었습니다.\n"); }
+
     public void invalidMenuError(){
         System.out.println("[ERROR] 목록에 있는 메뉴 번호를 입력해주세요.");
     }

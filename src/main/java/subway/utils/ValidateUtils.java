@@ -40,7 +40,7 @@ public class ValidateUtils {
         if (inputOrder < 0) {
             return false;
         }
-        if (inputOrder >= stationNumber) {
+        if (inputOrder > stationNumber) {
             return false;
         }
         return true;

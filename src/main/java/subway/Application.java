@@ -336,6 +336,9 @@ public class Application {
         if(RouteFunction.ADD.matchMenu(menu)){
             addRoute();
         }
+        if(RouteFunction.DELETE.matchMenu(menu)){
+            deleteRoute();
+        }
 
     }
 
@@ -345,6 +348,7 @@ public class Application {
         int inputOrder = whichOrderAdd(routeRepository.numberOfStationsLineHave(lineName));
 
         routeRepository.addStationToLine(lineName,new Station(stationName),inputOrder);
+        System.out.println();
     }
 
     private static String whichLineAdded(){
@@ -366,16 +370,53 @@ public class Application {
             String stationName = inputUtils.inputStationName();
             if(routeRepository.doesLineIncludeStation(lineName, stationName))
                 throw new IllegalArgumentException();
+            if(!stationRepository.isStationExist(new Station(stationName)))
+                throw new IllegalCallerException();
             return stationName;
         }catch(IllegalArgumentException e){
             printUtils.duplicateStationError();
-            return whichStationAdd(lineName);
+        }catch(IllegalCallerException e){
+            printUtils.nonExistentStationError();
         }
+        return whichStationAdd(lineName);
     }
 
     private static int whichOrderAdd(int stationNumber){
         printUtils.printOrderInputGuide();
         return inputUtils.inputStationOrder(stationNumber);
+    }
+
+    private static void deleteRoute() {
+        String deleteLine = whichLineOfRouteDeleted();
+        String deleteStation = whichStationOfRouteDeleted(deleteLine);
+        routeRepository.deleteRoute(deleteLine,deleteStation);
+        printUtils.printCompleteRouteDeletion();
+    }
+
+    private static String whichLineOfRouteDeleted(){
+        printUtils.printLineOfRouteDeletedGuide();
+        try{
+            String lineName = inputUtils.inputLineName();
+            if(!routeRepository.isLineIncluded(lineName))
+                throw new IllegalArgumentException();
+            return lineName;
+        }catch(IllegalArgumentException e){
+            printUtils.nonExistentLineError();
+            return whichLineAdded();
+        }
+    }
+
+    private static String whichStationOfRouteDeleted(String lineName){
+        printUtils.printStationOfRouteDeletedGuide();
+        try{
+            String stationName = inputUtils.inputStationName();
+            if(!routeRepository.doesLineIncludeStation(lineName,stationName))
+                throw new IllegalArgumentException();
+            return stationName;
+        }catch(IllegalArgumentException e){
+            printUtils.nonExistentStationError();
+            return whichStationOfRouteDeleted(lineName);
+        }
     }
 
     private static void subwayMapPrint() {

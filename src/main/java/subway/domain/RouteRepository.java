@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class RouteRepository {
     private static final List<Route> routes = new ArrayList<>();
@@ -15,6 +16,15 @@ public class RouteRepository {
         for(Route route: routes){
             if(route.matchLineName(lineName))
                 route.insertStation(station,index);
+        }
+    }
+
+    public static void deleteRoute(String lineName,String stationName){
+        for(Route route:routes){
+            if(route.matchLineName(lineName)){
+                route.deleteStation(stationName);
+                return;
+            }
         }
     }
 
