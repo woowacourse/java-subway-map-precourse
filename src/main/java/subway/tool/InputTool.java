@@ -23,4 +23,11 @@ public class InputTool {
         if(name.length() < MIN_NAME_LENGTH) return false;
         return true;
     }
+    public static boolean isLineInputVaild(String input){
+        if(input.compareTo("1") ==0) return true;
+        if(input.compareTo("2") ==0) return true;
+        if(input.compareTo("3") ==0) return true;
+        if(input.compareTo("B") ==0) return true;
+        return false;
+    }
 }

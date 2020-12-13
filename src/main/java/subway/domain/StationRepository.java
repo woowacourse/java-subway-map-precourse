@@ -13,7 +13,12 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static boolean addStation(String stationName) {
+    public static boolean addStation(Station station) {
+        stations.add(station);
+        return true;
+    }
+
+    public static boolean isPossibleStation(String stationName) {
         if (InputTool.isValidName(stationName) == false) {
             OutputView.printError("지하철 역 이름은 2글자 이상이어야 합니다.");
             return false;
@@ -23,7 +28,7 @@ public class StationRepository {
             return false;
         }
         Station newStation = new Station(stationName);
-        stations.add(newStation);
+        addStation(newStation);
         OutputView.printInfo("지하철 역이 등록되었습니다.");
         return true;
     }
@@ -43,6 +48,7 @@ public class StationRepository {
         while (itr.hasNext()) {
             OutputView.printInfo(itr.next().getName());
         }
+        System.out.println();
         return true;
     }
 
