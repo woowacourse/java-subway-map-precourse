@@ -2,7 +2,8 @@ package subway.common;
 
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.resource.CommonMessage;
+
+import static subway.view.resource.Strings.SELECT_ACTIVITY;
 
 public class MainController {
     private MainController() {
@@ -10,7 +11,7 @@ public class MainController {
 
     public static void execute() {
         try {
-            OutputView.printGuide(CommonMessage.SELECT_ACTIVITY);
+            OutputView.printGuide(SELECT_ACTIVITY);
             String command = InputView.getFunction();
             Runnable function = MainFunctionMapper.matchFunction(command);
             function.run();

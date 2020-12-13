@@ -2,11 +2,10 @@ package subway.view;
 
 import subway.line.domain.Line;
 import subway.station.domain.Station;
-import subway.view.resource.LineMessage;
-import subway.view.resource.StationMessage;
-import subway.view.resource.SubwayMapMessage;
 
 import java.util.List;
+
+import static subway.view.resource.Strings.*;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -17,7 +16,7 @@ public class OutputView {
     }
 
     public static void printStations(List<Station> stations) {
-        printGuide(StationMessage.STATION_LIST);
+        printGuide(STATION_LIST);
         stations.forEach(OutputView::printStation);
     }
 
@@ -26,18 +25,18 @@ public class OutputView {
     }
 
     public static void printLines(List<Line> lines) {
-        printGuide(LineMessage.LINE_LIST);
+        printGuide(LINE_LIST);
         lines.forEach(OutputView::printLine);
     }
 
     public static void printSubwayMap(List<Line> lines) {
-        printGuide(SubwayMapMessage.SUBWAY_MAP);
+        printGuide(SUBWAY_MAP);
         lines.forEach(OutputView::printOneLineMap);
     }
 
     private static void printOneLineMap(Line line) {
         printResult(line.getName());
-        printResult(SubwayMapMessage.DIVIDING_LINE);
+        printResult(DIVIDING_LINE);
         line.getStations().forEach(OutputView::printStation);
         System.out.println();
     }

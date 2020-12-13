@@ -1,14 +1,8 @@
 package subway.view;
 
-import subway.view.resource.CommonMessage;
-
 import java.util.Scanner;
 
-import static subway.view.resource.LineMessage.*;
-import static subway.view.resource.SectionMessage.*;
-import static subway.view.resource.StationMessage.INPUT_STATION_NAME_FOR_REGISTRATION;
-import static subway.view.resource.StationMessage.INPUT_STATION_NAME_FOR_REMOVAL;
-
+import static subway.view.resource.Strings.*;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -27,7 +21,7 @@ public class InputView {
     }
 
     public static String getFunction() {
-        OutputView.printGuide(CommonMessage.SELECT_FUNCTION);
+        OutputView.printGuide(SELECT_FUNCTION);
         return SCANNER.nextLine();
     }
 
