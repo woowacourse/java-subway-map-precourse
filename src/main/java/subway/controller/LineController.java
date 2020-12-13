@@ -45,7 +45,11 @@ public class LineController {
     }
 
     private void deleteLine(InputView inputView) {
-
+        OutputView.printInputDeleteValue(LineText.screenName());
+        if (LineRepository.deleteLineByName(inputView.getInputDeleteLine())){
+            OutputView.printDeleteSuccess(LineText.screenName());
+        }
+        goBackToMain(inputView);
     }
 
     private void lookUpLine(InputView inputView) {
@@ -53,7 +57,7 @@ public class LineController {
     }
 
     private void goBackToMain(InputView inputView) {
-
+        MainController.run(inputView);
     }
 
     private void registerSection(InputView inputView, Line line) {
