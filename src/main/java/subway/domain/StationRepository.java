@@ -21,6 +21,11 @@ public class StationRepository {
     }
 
     public static boolean validateNewName(String name) {
-        return !stations.contains(name);
+        for (int i = 0; i < stations.size(); i++) {
+            if (stations.get(i).getName().equals(name)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
