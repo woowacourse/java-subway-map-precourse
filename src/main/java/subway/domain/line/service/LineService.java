@@ -10,6 +10,7 @@ import java.util.List;
 public class LineService {
     private static final String NOT_DUPLICATION_LINE_NAME_MESSAGE = "[ERROR] 중복된 노선 이름은 등록할 수 없습니다.";
     private static final String NOT_FOUND_STATION_MESSAGE = "[ERROR] 존재하지 않는 역입니다.";
+    private static final String NOT_FOUND_Line_MESSAGE = "[ERROR] 존재하지 않는 노선입니다.";
 
     public static List<Line> findAll() {
         return LineRepository.lines();
@@ -42,7 +43,7 @@ public class LineService {
     private static void validateDuplicationLine(Line line) {
         List<Line> lines = LineRepository.lines();
         boolean isDuplicated = lines.stream()
-                .anyMatch(savedLine -> savedLine.isEqualTo(line));
+                .anyMatch(savedLine -> savedLine.isEqualTo(line.getName()));
 
         if (isDuplicated) {
             throw new IllegalArgumentException(NOT_DUPLICATION_LINE_NAME_MESSAGE);
@@ -51,5 +52,12 @@ public class LineService {
 
     public static void remove(Line removedLine) {
         LineRepository.deleteLineByName(removedLine.getName());
+    }
+
+    public static void addStation(String lineName, Station newStation, int newStationLocation) {
+        Line line = LineRepository.findLineByName(lineName)
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_Line_MESSAGE));
+        validateStation(newStation);
+        line.addStation(newStationLocation, newStation);
     }
 }

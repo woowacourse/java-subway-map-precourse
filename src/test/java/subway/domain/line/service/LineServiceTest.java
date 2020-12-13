@@ -1,5 +1,6 @@
 package subway.domain.line.service;
 
+import org.assertj.core.data.Index;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -163,5 +164,35 @@ class LineServiceTest {
         //when //then
         assertThatThrownBy(() -> LineService.save(savedLine))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("지하철 노선에 구간을 추가하는 기능을 테스트한다")
+    @Test
+    public void testAddStation() {
+        //when
+        String lineName = "2호선";
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(lineName, stations);
+        LineService.save(line);
+
+        Station newStation = new Station("사당역");
+        StationRepository.addStation(newStation);
+        int newStationLocation = 1;
+
+        //when
+        LineService.addStation(lineName, newStation, newStationLocation);
+
+        //then
+        List<Line> lines = LineRepository.lines();
+        assertAll(
+                () -> assertThat(lines).hasSize(1),
+                () -> assertThat(lines.get(0).getStations()).hasSize(3),
+                () -> assertThat(lines.get(0).getStations())
+                        .usingElementComparatorOnFields("name")
+                        .contains(newStation, Index.atIndex(newStationLocation))
+        );
     }
 }

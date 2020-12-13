@@ -39,15 +39,19 @@ public class Line {
         }
     }
 
+    public boolean isEqualTo(String lineName) {
+        return Objects.equals(name, lineName);
+    }
+
     public String getName() {
         return name;
     }
 
-    public boolean isEqualTo(Line line) {
-        return Objects.equals(name, line.name);
-    }
-
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
+    }
+
+    public void addStation(int newStationLocation, Station newStation) {
+        stations.add(newStationLocation, newStation);
     }
 }
