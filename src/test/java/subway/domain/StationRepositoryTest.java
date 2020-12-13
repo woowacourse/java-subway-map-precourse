@@ -49,16 +49,21 @@ class StationRepositoryTest {
     }
 
     @Test
-    @DisplayName("존재하는 역 삭제 시 예외 미발생")
-    public void deleteStation_ExistStation_ExceptionThrown() {
+    @DisplayName("존재하는 역 삭제")
+    public void deleteStation_ExistStation_EmptyStations() {
 
         // given
-        stationRepository = stationRepository.addStation("강남역");
+        StationRepository repository = new StationRepository().addStation("강남역")
+                .addStation("잠실역")
+                .addStation("건대입구역");
 
-        LineRepository lineRepository = new LineRepository();
+        LineRepository lineRepository =
+                new LineRepository().addLine(new Line(new LineName("1호선"), repository));
+
+        stationRepository = stationRepository.addStation("봉천역");
 
         // when
-        stationRepository = stationRepository.removeStation("강남역", lineRepository);
+        stationRepository = stationRepository.removeStation("봉천역", lineRepository);
 
         //then
         assertThat(stationRepository.stations()).isEmpty();
@@ -69,15 +74,20 @@ class StationRepositoryTest {
     public void deleteStation_DoesNotExistStation_ExceptionThrown() {
 
         // given
-        LineRepository lineRepository = new LineRepository();
+        StationRepository repository = new StationRepository().addStation("강남역")
+                .addStation("잠실역")
+                .addStation("건대입구역");
+
+        LineRepository lineRepository =
+                new LineRepository().addLine(new Line(new LineName("1호선"), repository));
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.removeStation("강남역", lineRepository);
+                () -> stationRepository.removeStation("봉천역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "강남역");
+                .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "봉천역");
     }
 
     @Test
@@ -85,9 +95,12 @@ class StationRepositoryTest {
     public void deleteStation_SavedStationAtLine_ExceptionThrown() {
 
         // given
-        stationRepository = stationRepository.addStation("강남역");
+        stationRepository = stationRepository.addStation("강남역")
+                .addStation("잠실역")
+                .addStation("건대입구역");
 
-        LineRepository lineRepository = new LineRepository().addLine(new Line("1호선", "강남역", "잠실역"));
+        LineRepository lineRepository =
+                new LineRepository().addLine(new Line(new LineName("1호선"), stationRepository));
 
         // when
         ThrowableAssert.ThrowingCallable callable =

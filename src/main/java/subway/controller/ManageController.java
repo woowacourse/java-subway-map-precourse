@@ -41,7 +41,8 @@ public class ManageController {
     public ManageController removeStation() {
         String stationName = InputView.inputStation();
 
-        StationRepository removedRepository = stationRepository.removeStation(stationName);
+        StationRepository removedRepository =
+                stationRepository.removeStation(stationName, lineRepository);
 
         OutputView.printRemoved(STATION);
 
