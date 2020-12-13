@@ -20,4 +20,17 @@ public class InputValidator {
             throw new IllegalArgumentException(MENU_SELECTION_ERROR);
         }
     }
+
+    public static void validateMoreThanTwoWords(String input) {
+        int inputLength = input.length();
+        if (inputLength <= 2) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 두 글자이상이여야 합니다.");
+        }
+    }
+
+    public static void validatePositiveNumber(int input) {
+        if (input <= 0) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 0보다 큰 양수이여야 합니다.");
+        }
+    }
 }
