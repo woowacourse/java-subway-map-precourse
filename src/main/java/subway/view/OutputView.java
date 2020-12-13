@@ -34,7 +34,7 @@ public class OutputView {
         printListTitle(ManageController.STATION);
 
         for (String stationName : stationRepository.stationNames()) {
-            printSuccessMessage(stationName);
+            System.out.printf("%s %s\n", SUCCESS_PREFIX, stationName);
         }
     }
 
@@ -58,19 +58,19 @@ public class OutputView {
     }
 
     public static void printFunctions(String viewTitle, Functionable[] functionables) {
-        System.out.printf("%s %s 화면\n", TITLE_PREFIX, viewTitle);
+        System.out.printf("\n%s %s 화면\n", TITLE_PREFIX, viewTitle);
 
         for (Functionable functionable : functionables) {
             System.out
-                    .printf("%s. %s", functionable.getIdentifier(), functionable.getDescription());
+                    .printf("%s. %s\n", functionable.getIdentifier(), functionable.getDescription());
         }
     }
 
     private static void printSuccessMessage(String message) {
-        System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
+        System.out.printf("\n%s %s\n", SUCCESS_PREFIX, message);
     }
 
     private static void printListTitle(String type) {
-        System.out.printf("%s %s 목록\n", TITLE_PREFIX, type);
+        System.out.printf("\n%s %s 목록\n", TITLE_PREFIX, type);
     }
 }

@@ -16,6 +16,10 @@ public class InputView {
 
     public static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
 
+    private static final String START_STATION_NAME_QUESTION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+
+    private static final String FINAL_STATION_NAME_QUESTION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+
     private static final String LINE_NAME_QUESTION = "등록할 노선 이름을 입력하세요.";
 
     private static final String STATION_QUESTION = "순서를 입력하세요.";
@@ -28,8 +32,20 @@ public class InputView {
         return input(FUNCTION_IDENTIFIER_QUESTION, Validator.class);
     }
 
-    public static String inputStationName() {
-        String stationName = input(STATION_NAME_QUESTION, StationNameValidator.class);
+    public static String inputStation() {
+        return inputStationName(STATION_NAME_QUESTION);
+    }
+
+    public static String inputStartStation() {
+        return inputStationName(START_STATION_NAME_QUESTION);
+    }
+
+    public static String inputFinalStation() {
+        return inputStationName(FINAL_STATION_NAME_QUESTION);
+    }
+
+    public static String inputStationName(String message) {
+        String stationName = input(message, StationNameValidator.class);
 
         if (!stationName.endsWith(StationNameValidator.STATION_SUFFIX)) {
             stationName += StationNameValidator.STATION_SUFFIX;
@@ -78,6 +94,6 @@ public class InputView {
     }
 
     private static void printQuestionAddedPrefix(String message) {
-        System.out.printf("%s %s", VIEW_PREFIX, message);
+        System.out.printf("\n%s %s\n", VIEW_PREFIX, message);
     }
 }
