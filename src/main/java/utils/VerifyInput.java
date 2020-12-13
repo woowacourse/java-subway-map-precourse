@@ -10,6 +10,7 @@ import java.util.List;
 
 public class VerifyInput {
 
+    private static final int ZERO = 0; // 음수, 양수 판단하기 위함
     private static final int PREVIOUS_INDEX = -1;
     private static final int MIN_NAME_LENGTH = 2;
     private static final int NUM_MIN_STATION = 2;
@@ -112,7 +113,7 @@ public class VerifyInput {
     }
 
     public static void sectionOrderIn(Line line, int order) {
-        if (order < 0) {
+        if (order < ZERO) {
             OutputView.printError(OutputView.MESSAGE_ERROR_NOT_POSITIVE_INTEGER);
             throw new IllegalArgumentException();
         }
