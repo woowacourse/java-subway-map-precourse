@@ -83,7 +83,7 @@ public class FlowChart {
 
     public static void stationLookUp(Scanner scanner, String stationInput) {
         if (stationInput.equals(Constant.THREE)) {
-            System.out.println("stationLookUp");
+            StationSetting.lookUp();
             System.out.println();
             main(scanner);
         }

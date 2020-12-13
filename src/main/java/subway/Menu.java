@@ -15,7 +15,7 @@ public class Menu {
     public String load(Scanner scanner) {
         Print.menu(this.title, this.itemList);
         System.out.println();
-        Print.enterMessage(Constant.CHOOSE_FUNCTION);
+        Print.hashMessage(Constant.CHOOSE_FUNCTION);
         String input = scanner.next();
         System.out.println();
         return Exception.checkMenu(input, this.itemList);
