@@ -8,57 +8,51 @@ import subway.service.LineService;
 import subway.view.OutputView;
 
 public class LineController {
-    private OutputView monitor;
-
-    public LineController(OutputView monitor) {
-        this.monitor = monitor;
-    }
-
-    public boolean registerLine(String lineName
+    public static boolean registerLine(String lineName
         , String upTrainLastStationName, String downTrainLastStationName) {
         try {
             LineService.register(lineName, upTrainLastStationName, downTrainLastStationName);
-            monitor.print(OutputView.SUCCESS_TO_REGISTER_LINE_MESSAGE);
+            subway.view.OutputView.print(OutputView.SUCCESS_TO_REGISTER_LINE_MESSAGE);
             return false;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            subway.view.OutputView.print(e.getMessage());
             return true;
         }
     }
 
-    public boolean deleteLine(String lineName) {
+    public static boolean deleteLine(String lineName) {
         try {
             LineService.delete(lineName);
-            monitor.print(OutputView.SUCCESS_TO_DELETE_LINE_MESSAGE);
+            subway.view.OutputView.print(OutputView.SUCCESS_TO_DELETE_LINE_MESSAGE);
             return false;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            subway.view.OutputView.print(e.getMessage());
             return true;
         }
     }
 
-    public Map<Line, List<Station>> searchLine() {
+    public static Map<Line, List<Station>> searchLine() {
         return LineService.search();
     }
 
-    public boolean registerSection(String lineName, String stationName, int sequence) {
+    public static boolean registerSection(String lineName, String stationName, int sequence) {
         try {
             LineService.join(lineName, stationName, sequence);
-            monitor.print(OutputView.SUCCESS_TO_REGISTER_SECTION_MESSAGE);
+            subway.view.OutputView.print(OutputView.SUCCESS_TO_REGISTER_SECTION_MESSAGE);
             return false;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            subway.view.OutputView.print(e.getMessage());
             return true;
         }
     }
 
-    public boolean deleteSection(String lineName, String stationName) {
+    public static boolean deleteSection(String lineName, String stationName) {
         try {
             LineService.deleteStationInLine(lineName, stationName);
-            monitor.print(OutputView.SUCCESS_TO_DELETE_SECTION_MESSAGE);
+            subway.view.OutputView.print(OutputView.SUCCESS_TO_DELETE_SECTION_MESSAGE);
             return false;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            subway.view.OutputView.print(e.getMessage());
             return true;
         }
     }

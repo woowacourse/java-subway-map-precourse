@@ -9,40 +9,37 @@ public class InputView {
     private static final String NEW_LINE = "";
     private static final int LENGTH = 2;
 
-    private OutputView monitor;
     private Scanner scanner;
 
-    public InputView(OutputView monitor, Scanner scanner) {
-        this.monitor = monitor;
+    public InputView(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public String getScreenCommand(String screen, String message) {
         try {
-            monitor.print(message);
+            OutputView.print(message);
             String command = scanner.nextLine();
-            monitor.print(NEW_LINE);
+            OutputView.print(NEW_LINE);
             validateScreenCommand(screen, command);
             return command;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            OutputView.print(e.getMessage());
             return getScreenCommand(screen, message);
         }
     }
 
     public String getName(String message) {
         try {
-            monitor.print(message);
+            OutputView.print(message);
             String name = scanner.nextLine();
-            monitor.print(NEW_LINE);
+            OutputView.print(NEW_LINE);
             validateLength(name);
             return name;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            OutputView.print(e.getMessage());
             return getName(message);
         }
     }
-
 
     private void validateScreenCommand(String screen, String command) {
         FeatureGroup specificScreen = FeatureGroup.valueOf(screen);
@@ -59,13 +56,13 @@ public class InputView {
 
     public int getSequence(String message) {
         try {
-            monitor.print(message);
+            OutputView.print(message);
             int number = scanner.nextInt();
             scanner.nextLine();
-            monitor.print(NEW_LINE);
+            OutputView.print(NEW_LINE);
             return number;
         } catch (Exception e) {
-            monitor.print(e.getMessage());
+            OutputView.print(e.getMessage());
             return getSequence(message);
         }
     }

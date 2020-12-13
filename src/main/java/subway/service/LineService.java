@@ -3,7 +3,6 @@ package subway.service;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -45,19 +44,19 @@ public class LineService {
         validateStationExistence(stationName);
         Map<Line, List<Station>> lines = LineRepository.lines();
         Line findLine = LineRepository.findByName(lineName).get();
-        Optional<Station> findStation = StationRepository.findByName(stationName);
+        Station findStation = StationRepository.findByName(stationName).get();
         validateBound(sequence, findLine, lines);
-        LineRepository.addSection(findLine, findStation.get(), sequence);
+        LineRepository.addSection(findLine, findStation, sequence);
     }
 
     public static void deleteStationInLine(String lineName, String stationName) {
         Map<Line, List<Station>> lines = LineRepository.lines();
         Line findLine = LineRepository.findByName(lineName).get();
         Station findStation = StationRepository.findByName(stationName).get();
-        if( lines.get(findLine).size() <= 2){
+        if (lines.get(findLine).size() <= 2) {
             throw new IllegalArgumentException(STATION_COUNT_ERROR);
         }
-        if(!LineRepository.subtractSection(findLine,findStation)){
+        if (!LineRepository.subtractSection(findLine, findStation)) {
             throw new IllegalArgumentException(NOT_DELETE_ERROR);
         }
     }
