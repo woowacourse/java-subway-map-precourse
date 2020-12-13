@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -79,7 +82,24 @@ class StationsTest {
 
         String errorName = "장승역";
         assertThatThrownBy(() -> stations.deleteStation(errorName))
-            .isInstanceOf(NoSuchElementException.class)
-            .hasMessage("[ERROR] 해당 역이 없습니다.");
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("[ERROR] 해당 역이 없습니다.");
+    }
+
+    @DisplayName("지하철역 목록을 조회한다")
+    @Test
+    void 역_목록을_조회한다() {
+        String testName1 = "신도림역";
+        String testName2 = "9와4/3역";
+        String testName3 = "울릉도역";
+
+        stations.addStation(StationFactory.makeStation(testName1));
+        stations.addStation(StationFactory.makeStation(testName2));
+        stations.addStation(StationFactory.makeStation(testName3));
+
+        // 9와4/3역, 신도림역, 울릉도역 순서
+        List<String> expectedNames = Arrays.asList(testName2,testName1,testName3);
+
+        assertThat(stations.stationNames()).isEqualTo(expectedNames);
     }
 }
