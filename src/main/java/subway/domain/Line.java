@@ -6,6 +6,7 @@ public class Line {
 
     private static final int FIRST_INDEX = 0;
     private static final int PREVIOUS_INDEX = -1;
+    private static final int NEXT_INDEX = 1;
 
     private final String name;
     private String northboundTerminal;
@@ -54,11 +55,11 @@ public class Line {
         int index = stationsIncludedLine.indexOf(stationName);
         stationsIncludedLine.remove(stationName);
         if (index == FIRST_INDEX) {
-            northboundTerminal = stationsIncludedLine.get(index + 1);
+            northboundTerminal = stationsIncludedLine.get(index + NEXT_INDEX);
             return;
         }
         if (index == getLineLength() + PREVIOUS_INDEX) {
-            southboundTerminal = stationsIncludedLine.get(index - 1);
+            southboundTerminal = stationsIncludedLine.get(index + PREVIOUS_INDEX);
         }
     }
 
