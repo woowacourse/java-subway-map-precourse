@@ -12,6 +12,10 @@ public class SectionManageController {
     SectionManageInput input = new SectionManageInput();
 
     public void processEnrollSection(Line line, Station station, int order) throws IllegalArgumentException{
+        if (line.getStation().contains(station)) {
+            //해당 역이 노선 안에 존재한다는 메시지
+            throw new IllegalArgumentException();
+        }
         if (order - ORDER_SUBTRACT_INDEX > line.getStation().size()) {
             //해당 번째로 구간 삽입 불가능 메시지
             throw new IllegalArgumentException();
@@ -19,11 +23,12 @@ public class SectionManageController {
         line.addOrderedStation(station, order);
     }
 
-    public void processDeleteSection(Line line, Station station) {
+    public void processDeleteSection(Line line, Station station) throws IllegalArgumentException{
         if (line.getStation().size() > MIN_STATIONS) {
             line.removeOrderedStation(station);
             station.removeOrderedLine(line);
         }
+        throw new IllegalArgumentException();
     }
 
 }
