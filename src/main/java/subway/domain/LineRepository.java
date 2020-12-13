@@ -1,6 +1,6 @@
 package subway.domain;
 
-import input.Input;
+import exception.NoExistLineNameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +23,7 @@ public class LineRepository {
     }
 
     public static void deleteLineInStation(String lineName){
-        getLine(lineName).deleteLineStation(lineName);
+        getLine(lineName).deleteLineNameInStation(lineName);
     }
 
     public static Line getLine(String name){
@@ -31,7 +31,7 @@ public class LineRepository {
             if(line.getName().equals(name))
                 return line;
         }
-        throw new IllegalArgumentException();
+        throw new NoExistLineNameException();
     }
 
     public static boolean isLine(String name){

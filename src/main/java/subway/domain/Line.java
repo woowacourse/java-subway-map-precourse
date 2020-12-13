@@ -8,7 +8,6 @@ import input.Input;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Line {
     public final static String UP_LINE_NAME = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
@@ -45,10 +44,10 @@ public class Line {
     }
 
     public void addLineStation(int index, Station station){
-        if (!StationRepository.isStation(station.getName())){
+        if (StationRepository.isStation(station.getName())){
             throw new NoExistStationNameException();
         }
-        if(checkLineStation(station.getName())){
+        if(!checkLineStation(station.getName())){
             throw new AlreadyExistNameException();
         }
         if(index == lineStations.size()){
@@ -62,10 +61,21 @@ public class Line {
     }
 
     public void deleteLineStation(String name){
+        Station deleteStation = StationRepository.getStation(name);
+
+        if(checkLineStation(name)){
+            throw new NoExistStationNameException();
+        }
+        deleteStation.deleteLines(this.name);
+        lineStations.remove(deleteStation);
+    }
+
+    public void deleteLineNameInStation(String name){
         for(Station station : lineStations){
             station.deleteLines(name);
         }
     }
+
 
     public void makeLine(Input input){
         System.out.println(UP_LINE_NAME);
