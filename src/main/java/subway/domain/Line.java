@@ -13,8 +13,8 @@ public class Line {
     private Sections sections;
 
     public Line(String name, String start, String end) {
-        checkValidation(start, end);
         this.name = name;
+        checkValidation(start, end);
         LinkedList<String> stations = new LinkedList();
         stations.addFirst(start);
         stations.addLast(end);
@@ -42,5 +42,7 @@ public class Line {
     public Sections getSections() {
         return sections;
     }
+
+
 
 }
