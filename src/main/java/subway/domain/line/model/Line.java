@@ -31,7 +31,7 @@ public class Line {
     }
 
     private void validateStationsSize(List<Station> stations) {
-        if (stations.size() != INITIAL_STATIONS_SIZE_NUMBER) {
+        if (stations.size() <= INITIAL_STATIONS_SIZE_NUMBER) {
             throw new IllegalArgumentException(INITIAL_STATIONS_SIZE_ERROR_MESSAGE);
         }
     }
