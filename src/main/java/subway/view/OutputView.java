@@ -22,15 +22,17 @@ public class OutputView {
 
     public static final String HORIZONTAL_RULE = "---";
 
-    public void printSaved(String type) {
+    private OutputView() {}
+
+    public static void printSaved(String type) {
         printSuccessMessage(String.format(SAVED, type));
     }
 
-    public void printRemoved(String type) {
+    public static void printRemoved(String type) {
         printSuccessMessage(String.format(REMOVED, type));
     }
 
-    public void printStations(StationRepository stationRepository) {
+    public static void printStations(StationRepository stationRepository) {
         printListTitle(StationController.STATION);
 
         for (String stationName : stationRepository.stationNames()) {
@@ -38,7 +40,7 @@ public class OutputView {
         }
     }
 
-    public void printLines(LineRepository lineRepository) {
+    public static void printLines(LineRepository lineRepository) {
         printListTitle(LineController.LINE);
 
         for (String lineName : lineRepository.lineNames()) {
@@ -46,7 +48,7 @@ public class OutputView {
         }
     }
 
-    public void printSubwayMap(LineRepository lineRepository) {
+    public static void printSubwayMap(LineRepository lineRepository) {
         System.out.printf("%s %s", TITLE_PREFIX, SUBWAY_MAP);
 
         for (Line line : lineRepository.lines()) {
@@ -57,11 +59,11 @@ public class OutputView {
         }
     }
 
-    private void printSuccessMessage(String message) {
+    private static void printSuccessMessage(String message) {
         System.out.printf("%s %s\n", SUCCESS_PREFIX, message);
     }
 
-    private void printListTitle(String type) {
+    private static void printListTitle(String type) {
         System.out.printf("%s %s %s\n", TITLE_PREFIX, type, LIST);
     }
 }

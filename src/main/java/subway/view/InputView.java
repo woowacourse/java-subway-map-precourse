@@ -20,17 +20,15 @@ public class InputView {
 
     private static final String STATION_QUESTION = "순서를 입력하세요.";
 
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-        this.scanner = new Scanner(System.in);
-    }
+    private InputView() {}
 
-    public String inputFunctionIdentifier() {
+    public static String inputFunctionIdentifier() {
         return input(FUNCTION_IDENTIFIER_QUESTION, Validator.class);
     }
 
-    public String inputStationName() {
+    public static String inputStationName() {
         String stationName = input(STATION_NAME_QUESTION, StationNameValidator.class);
 
         if (!stationName.endsWith(StationNameValidator.STATION_SUFFIX)) {
@@ -40,7 +38,7 @@ public class InputView {
         return stationName;
     }
 
-    public String inputLineName() {
+    public static String inputLineName() {
         String lineName = input(LINE_NAME_QUESTION, LineNameValidator.class);
 
         if (!lineName.endsWith(LineNameValidator.LINE_SUFFIX)) {
@@ -50,11 +48,11 @@ public class InputView {
         return lineName;
     }
 
-    public int inputIndex() {
+    public static int inputIndex() {
         return Integer.parseInt(input(STATION_QUESTION, IndexValidator.class));
     }
 
-    private String input(String message, Class<? extends Validator> validatorClass) {
+    private static String input(String message, Class<? extends Validator> validatorClass) {
         printQuestionAddedPrefix(message);
 
         String input = scanner.nextLine();
@@ -66,7 +64,7 @@ public class InputView {
         return input;
     }
 
-    private boolean isValid(String input, Class<? extends Validator> validatorClass) {
+    private static boolean isValid(String input, Class<? extends Validator> validatorClass) {
         Validator validator = ValidatorPool.getValidator(validatorClass);
 
         try {
@@ -79,7 +77,7 @@ public class InputView {
         return true;
     }
 
-    private void printQuestionAddedPrefix(String message) {
+    private static void printQuestionAddedPrefix(String message) {
         System.out.printf("%s %s", VIEW_PREFIX, message);
     }
 }

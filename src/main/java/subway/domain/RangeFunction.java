@@ -13,7 +13,7 @@ public enum RangeFunction {
     private final Function<LineController, LineController> function;
 
     RangeFunction(String functionIndex,
-                 Function<LineController, LineController> function) {
+                  Function<LineController, LineController> function) {
         this.functionIndex = functionIndex;
         this.function = function;
     }

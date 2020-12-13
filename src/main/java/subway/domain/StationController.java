@@ -26,27 +26,27 @@ public class StationController {
     }
 
     public StationController add() {
-        String stationName = inputView.inputStationName();
+        String stationName = InputView.inputStationName();
 
         StationRepository addedRepository = stationRepository.addStation(stationName);
 
-        outputView.printSaved(STATION);
+        OutputView.printSaved(STATION);
 
         return new StationController(addedRepository, this.inputView, this.outputView);
     }
 
     public StationController remove() {
-        String stationName = inputView.inputStationName();
+        String stationName = InputView.inputStationName();
 
         StationRepository removedRepository = stationRepository.removeStation(stationName);
 
-        outputView.printRemoved(STATION);
+        OutputView.printRemoved(STATION);
 
         return new StationController(removedRepository, this.inputView, this.outputView);
     }
 
     public StationController load() {
-        outputView.printStations(stationRepository);
+        OutputView.printStations(stationRepository);
 
         return this;
     }

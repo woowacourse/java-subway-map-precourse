@@ -27,61 +27,61 @@ public class LineController {
     }
 
     public LineController addLine() {
-        String lineName = inputView.inputLineName();
-        String startStation = inputView.inputStationName();
-        String finalStation = inputView.inputStationName();
+        String lineName = InputView.inputLineName();
+        String startStation = InputView.inputStationName();
+        String finalStation = InputView.inputStationName();
 
         LineRepository addedLineRepository =
                 lineRepository.addLine(new Line(lineName, startStation, finalStation));
 
-        outputView.printSaved(LINE);
+        OutputView.printSaved(LINE);
 
         return new LineController(addedLineRepository, this.inputView, this.outputView);
     }
 
     public LineController removeLine() {
-        String lineName = inputView.inputLineName();
+        String lineName = InputView.inputLineName();
 
         LineRepository removedLineRepository = lineRepository.removeLine(lineName);
 
-        outputView.printRemoved(LINE);
+        OutputView.printRemoved(LINE);
 
         return new LineController(removedLineRepository, this.inputView, this.outputView);
     }
 
     public LineController loadLines() {
-        outputView.printLines(lineRepository);
+        OutputView.printLines(lineRepository);
 
         return this;
     }
 
     public LineController addRange() {
-        String lineName = inputView.inputLineName();
-        String stationName = inputView.inputStationName();
-        int stationIndex = inputView.inputIndex();
+        String lineName = InputView.inputLineName();
+        String stationName = InputView.inputStationName();
+        int stationIndex = InputView.inputIndex();
 
         LineRepository rangeInsertedLineRepository =
                 lineRepository.addRange(lineName, stationIndex, stationName);
 
-        outputView.printSaved(RANGE);
+        OutputView.printSaved(RANGE);
 
         return new LineController(rangeInsertedLineRepository, this.inputView, this.outputView);
     }
 
     public LineController removeRange() {
-        String lineName = inputView.inputLineName();
-        String stationName = inputView.inputStationName();
+        String lineName = InputView.inputLineName();
+        String stationName = InputView.inputStationName();
 
         LineRepository rangeRemovedLineRepository =
                 lineRepository.removeRange(lineName, stationName);
 
-        outputView.printRemoved(RANGE);
+        OutputView.printRemoved(RANGE);
 
         return new LineController(rangeRemovedLineRepository, this.inputView, this.outputView);
     }
 
     public LineController printSubwayMap() {
-        outputView.printSubwayMap(lineRepository);
+        OutputView.printSubwayMap(lineRepository);
 
         return this;
     }
