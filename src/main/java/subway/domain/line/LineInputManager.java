@@ -1,6 +1,7 @@
 package subway.domain.line;
 
 import java.util.Scanner;
+import subway.domain.station.StationOutputManager;
 import subway.domain.station.StationRepository;
 import subway.common.ErrorMessage;
 import subway.common.Guide;
@@ -14,7 +15,7 @@ public class LineInputManager {
 
     public String[] getAddLineInfo() {
         String[] lineInfo = new String[3];
-        lineInfo[0] = getLineName("등록할");
+        lineInfo[0] = getLineName();
         lineInfo[1] = getUpStationName();
         if (invalidUpDownStation(lineInfo[1])) {
             return lineInfo;
@@ -24,7 +25,7 @@ public class LineInputManager {
     }
 
     private String getDownStationName(String upStation) {
-        Guide.printDownStationGuide();
+        Guide.print(LineOutputManager.DOWN_STATION_GUIDE);
         String name = scanner.nextLine().trim();
         if (isEqualToUpStation(upStation, name)) {
             return ErrorMessage.OUT;
@@ -48,9 +49,9 @@ public class LineInputManager {
         return lineInfo.contains(ErrorMessage.OUT);
     }
 
-    private String getLineName(String function) {
+    private String getLineName() {
         while (true) {
-            Guide.printLineGuide(function);
+            Guide.print(LineOutputManager.LINE_GUIDE);
             String name = scanner.nextLine().trim();
             if (!checkName(name)) {
                 continue;
@@ -63,7 +64,7 @@ public class LineInputManager {
     예외상황 - 등록되지 않은 역, 상행과 종점이 같은 경우
      */
     public String getUpStationName() {
-        Guide.printUpStationGuide();
+        Guide.print(LineOutputManager.UP_STATION_GUIDE);
         String name = scanner.nextLine().trim();
         if (!checkEnrolledStation(name)) {
             return ErrorMessage.OUT;
@@ -108,7 +109,7 @@ public class LineInputManager {
     }
 
     public String getLineNameToDelete() {
-        Guide.printStationDeleteGuide();
+        Guide.print(StationOutputManager.STATION_DELETE_GUIDE);
         String name = scanner.nextLine().trim();
         if (!checkNameToDelete(name)) {
             return ErrorMessage.OUT;

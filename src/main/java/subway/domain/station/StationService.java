@@ -6,6 +6,7 @@ import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
 import subway.common.InfoMessage;
 import subway.common.Guide;
+import subway.domain.menu.MenuOutputManager;
 
 public class StationService {
     private MenuInputManager menuInputManager;
@@ -19,7 +20,7 @@ public class StationService {
 
     public void run() {
         while (true) {
-            Guide.printMenu(MenuItemsRepository.getStationItems());
+            MenuOutputManager.printMenu(MenuItemsRepository.getStationItems());
             String input = menuInputManager.getStationInput();
             if (input.equals("B")) {
                 return;
@@ -56,7 +57,7 @@ public class StationService {
     }
 
     private void addStation() {
-        String name = stationInputManager.getStationNameToAdd("등록할");
+        String name = stationInputManager.getStationNameToAdd();
         Station station = new Station(name);
         StationRepository.addStation(station);
         InfoMessage.printStationAdded();

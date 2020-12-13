@@ -8,6 +8,7 @@ import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
 import subway.common.InfoMessage;
 import subway.common.Guide;
+import subway.domain.menu.MenuOutputManager;
 
 public class LineService {
     private MenuInputManager menuInputManager;
@@ -21,7 +22,7 @@ public class LineService {
 
     public void run() {
         while (true) {
-            Guide.printMenu(MenuItemsRepository.getLineItems());
+            MenuOutputManager.printMenu(MenuItemsRepository.getLineItems());
             String input = menuInputManager.getLineInput();
             if (input.equals("B")) {
                 return;

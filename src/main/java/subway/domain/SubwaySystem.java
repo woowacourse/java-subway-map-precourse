@@ -5,6 +5,7 @@ import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.menu.MenuItemsRepository;
 import subway.domain.menu.MenuInputManager;
+import subway.domain.menu.MenuOutputManager;
 import subway.domain.path.PathService;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
@@ -50,7 +51,7 @@ public class SubwaySystem {
 
     public void run() {
         while (true) {
-            Guide.printMenu(MenuItemsRepository.getMainItems());
+            MenuOutputManager.printMenu(MenuItemsRepository.getMainItems());
             String input = menuInputManager.getMainInput();
             if (input.equals("Q")) {
                 return;
@@ -75,7 +76,7 @@ public class SubwaySystem {
     }
 
     private void printSubwayMap() {
-        Guide.printSubwayMap();
+        Guide.print(SubwayOutputManager.SUBWAY_MAP);
         for(Line line: LineRepository.lines()){
             InfoMessage.printName(line.getName());
             InfoMessage.printName("---");

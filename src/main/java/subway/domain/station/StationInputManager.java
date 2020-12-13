@@ -13,7 +13,7 @@ public class StationInputManager {
 
 
     public String getStationNameToDelete() {
-        Guide.printStationDeleteGuide();
+        Guide.print(StationOutputManager.STATION_DELETE_GUIDE);
         String name = scanner.nextLine().trim();
         if (!checkNameToDelete(name)) {
             return ErrorMessage.OUT;
@@ -33,9 +33,9 @@ public class StationInputManager {
         return true;
     }
 
-    public String getStationNameToAdd(String function) {
+    public String getStationNameToAdd() {
         while (true) {
-            Guide.printStationGuide(function);
+            Guide.print(StationOutputManager.STATION_ADD_GUIDE);
             String name = scanner.nextLine().trim();
             if (!checkName(name)) {
                 continue;

@@ -1,9 +1,8 @@
 package subway.common;
 
-public class ErrorMessage {
+public class ErrorMessage extends IllegalArgumentException {
     public static final String OUT = "OUT";
     private static final String ERROR_PREFIX = "[ERROR] ";
-    private static final String INPUT_NEEDED = " 중에서 입력해 주세요.";
     private static final String OVER_TWO = "2글자 이상이어야 한다.";
     private static final String LAST_LETTER_STATION = "역이름 끝에는 역이라고 붙여주세요.";
     private static final String LAST_LETTER_LINE = "노선이름 끝에는 호선이라고 붙여주세요.";
@@ -19,11 +18,8 @@ public class ErrorMessage {
 
     private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
 
-    private ErrorMessage() {
-    }
-
-    public static void printMenu(String selections) {
-        System.out.println(ERROR_PREFIX + selections + INPUT_NEEDED);
+    public ErrorMessage(String message) {
+        super(ERROR_PREFIX+message);
     }
 
     public static void printNameLength() {
