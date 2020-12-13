@@ -4,6 +4,7 @@ import subway.domain.entity.Line;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class LineRepository {
 
@@ -15,6 +16,12 @@ public class LineRepository {
 
     public void save(Line line) {
         lines.add(line);
+    }
+
+    public Optional<Line> findByName(String name) {
+        return lines.stream()
+                .filter(line -> line.matchesName(name))
+                .findFirst();
     }
 
     public List<Line> findAll() {
