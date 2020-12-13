@@ -112,8 +112,9 @@ public class Exceptions {
         return stationName;
     }
 
-    static int checkOrderInput(String inputString) {
+    static int checkOrderInput(String inputString, int stationsSize) {
         int input = isInteger(inputString);
+        input = isValidRange(input, stationsSize);
         return isNaturalNumber(input);
     }
 
@@ -130,5 +131,12 @@ public class Exceptions {
             return input;
         }
         throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NATURAL_NUMBER);
+    }
+
+    static int isValidRange(int input, int stationsSize) {
+        if(input <= stationsSize){
+            return input;
+        }
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_VALID_RANGE);
     }
 }
