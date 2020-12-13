@@ -35,6 +35,10 @@ public class LineRepository {
         return false;
     }
 
+    public static boolean subtractSection(Line line, Station station) {
+        return lines.get(line).removeIf(stationInSection -> stationInSection.equals(station));
+    }
+
     public static Optional<Line> findByName(String name) {
         return lines.keySet()
             .stream()

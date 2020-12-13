@@ -137,11 +137,12 @@ public class Router {
             String lineName = inputView.getName(OutputView.ORDER_TO_ENTER_LINE);
             String stationName = inputView.getName(OutputView.ORDER_TO_ENTER_STATION);
             int sequence = inputView.getSequence(OutputView.ORDER_TO_ENTER_SEQUENCE);
-            return lineController.registerSection(lineName,stationName,sequence);
+            return lineController.registerSection(lineName, stationName, sequence);
         }
         if (command.equals(TWO)) {
-            String lineName = inputView.getName(OutputView.ORDER_TO_DELETE_LINE);
-            return lineController.deleteLine(lineName);
+            String lineName = inputView.getName(OutputView.ORDER_TO_ENTER_LINE_TO_DELETE);
+            String stationName = inputView.getName(OutputView.ORDER_TO_ENTER_STATION_TO_DELETE);
+            return lineController.deleteSection(lineName, stationName);
         }
         return false;
     }

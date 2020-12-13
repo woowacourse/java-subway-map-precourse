@@ -51,4 +51,15 @@ public class LineController {
             return true;
         }
     }
+
+    public boolean deleteSection(String lineName, String stationName) {
+        try {
+            LineService.deleteStationInLine(lineName, stationName);
+            monitor.print(OutputView.SUCCESS_TO_DELETE_SECTION_MESSAGE);
+            return false;
+        } catch (Exception e) {
+            monitor.print(e.getMessage());
+            return true;
+        }
+    }
 }

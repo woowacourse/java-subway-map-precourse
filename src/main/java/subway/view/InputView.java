@@ -57,11 +57,11 @@ public class InputView {
         }
     }
 
-
     public int getSequence(String message) {
         try {
             monitor.print(message);
             int number = scanner.nextInt();
+            scanner.nextLine();
             monitor.print(NEW_LINE);
             return number;
         } catch (Exception e) {
