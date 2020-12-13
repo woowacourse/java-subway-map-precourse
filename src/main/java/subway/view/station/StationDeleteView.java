@@ -20,8 +20,6 @@ public class StationDeleteView extends GeneralView {
     public void setVisible() {
         String stationName = inputMoreThanTwoWords(INPUT_GUIDE_TEXT);
         ResultDto result = stationService.deleteStation(stationName);
-
-        println(result.getMessage());
-        isBadResult(result);
+        processRequestResult(result);
     }
 }

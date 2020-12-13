@@ -42,7 +42,12 @@ public abstract class GeneralView extends AbstractView{
         }
     }
 
-    protected void isBadResult(ResultDto resultDto) {
+    protected void processRequestResult(ResultDto result) {
+        println(result.getMessage());
+        isBadResult(result);
+    }
+
+    private void isBadResult(ResultDto resultDto) {
         if (resultDto.getStatus() == Status.BAD) {
             throw new IllegalArgumentException(resultDto.getMessage());
         }

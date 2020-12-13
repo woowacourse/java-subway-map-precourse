@@ -20,8 +20,6 @@ public class StationRegisterView extends GeneralView {
     public void setVisible() {
         String stationName = inputMoreThanTwoWords(INPUT_GUIDE_TEXT);
         ResultDto result = stationService.registerStation(stationName);
-
-        println(result.getMessage());
-        isBadResult(result);
+        processRequestResult(result);
     }
 }
