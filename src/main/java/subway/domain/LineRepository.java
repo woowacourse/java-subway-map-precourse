@@ -74,6 +74,16 @@ public class LineRepository {
         return true;
     }
 
+    public static boolean isContainStationInLines(String name) {
+        Iterator<Line> itr = lines.iterator();
+        while (itr.hasNext()) {
+            Line line = (Line)itr.next();
+            List<Station> stationList = line.getStationOfLine();
+            for (Station station : stationList)
+                if(station.isEqual(name) ==true) return true;
+        }
+        return false;
+    }
     public static boolean isExistLine(String name) {
         Iterator<Line> itr = lines.iterator();
         while (itr.hasNext()) {

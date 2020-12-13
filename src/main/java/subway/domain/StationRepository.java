@@ -32,8 +32,11 @@ public class StationRepository {
         OutputView.printInfo("지하철 역이 등록되었습니다.");
         return true;
     }
-
     public static boolean deleteStation(String name) {
+        if(LineRepository.isContainStationInLines(name)){
+            OutputView.printError("노션에 등록된 역은 삭제할 수 없습니다");
+            return false;
+        }
         boolean isDelete =stations.removeIf(station -> Objects.equals(station.getName(), name));
         if(isDelete){
             OutputView.printInfo("지하철 역이 삭제되었습니다.");
