@@ -1,5 +1,6 @@
 package subway.domain.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,11 @@ class LineRepositoryTest {
     @BeforeEach
     void setUp() {
         lineRepository.save(line);
+    }
+
+    @AfterEach
+    void tearDown() {
+        lineRepository.delete(line);
     }
 
     @DisplayName("Line 저장 성공")
@@ -52,5 +58,30 @@ class LineRepositoryTest {
         boolean isPresent = line.isPresent();
 
         assertThat(isPresent).isFalse();
+    }
+
+    @DisplayName("Line 삭제 성공")
+    @Test
+    void delete_성공한다() {
+        Sections sections = Sections.of(new Station("테스트1"), new Station("테스트2"));
+        Line line = new Line("9호선", sections);
+        lineRepository.save(line);
+        int beforeLineCounts = lineRepository.findAll().size();
+
+        lineRepository.delete(line);
+        int afterLineCounts = lineRepository.findAll().size();
+
+        assertThat(beforeLineCounts).isGreaterThan(afterLineCounts);
+    }
+
+    @DisplayName("Line 삭제 실패하면 false 반환")
+    @Test
+    void delete_실패한다() {
+        Sections sections = Sections.of(new Station("테스트1"), new Station("테스트2"));
+        Line line = new Line("9호선", sections);
+
+        boolean isRemoved = lineRepository.delete(line);
+
+        assertThat(isRemoved).isFalse();
     }
 }

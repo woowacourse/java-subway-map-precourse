@@ -27,4 +27,8 @@ public class LineRepository {
     public List<Line> findAll() {
         return Collections.unmodifiableList(lines);
     }
+
+    public boolean delete(Line targetLine) {
+        return lines.removeIf(line -> line.equals(targetLine));
+    }
 }
