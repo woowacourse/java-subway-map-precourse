@@ -33,7 +33,7 @@ public class StationService {
      * 역 조회
      */
     public static void listAllStations() {
-        StationRepository.stations().forEach(OutputView::printInfo);
+        StationRepository.stations().forEach(station -> OutputView.printInfo(station.getName()));
     }
 
 }

@@ -9,18 +9,19 @@ public class OutputView {
     public static final String NOTICE_HEADER = "## ";
     public static final String INFO_HEADER = "[INFO] ";
     public static final String ERROR_HEADER = "[ERROR] ";
-    public static final String SYSTEM_EXIT_MESSAGE = "지하철 시스템이 종료되었습니다.";
-
-    public static void printSystemExit() {
-        printInfo(SYSTEM_EXIT_MESSAGE);
-    }
+    public static final String NEWLINE = "\n";
+    public static final String DOT = ". ";
+    public static final String CHOOSE_ACTION = "원하는 기능을 선택하세요.";
 
     public static void printInfo(String info) {
         print(INFO_HEADER + info);
     }
 
-    public static void printInfo(Object obj) {
-        printInfo(String.valueOf(obj));
+    public static void printMenu(String TITLE, String menuString) {
+        print(NOTICE_HEADER + TITLE + NEWLINE +
+                menuString + NEWLINE +
+                NEWLINE +
+                CHOOSE_ACTION);
     }
 
     public static void printNotice(String notice) {

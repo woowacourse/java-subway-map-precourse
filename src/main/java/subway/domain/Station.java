@@ -39,5 +39,4 @@ public class Station {
             throw new StationAlreadyExistsException(name);
         }
     }
-
 }

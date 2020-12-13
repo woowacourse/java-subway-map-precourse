@@ -1,5 +1,8 @@
 package subway.controller;
 
+import static subway.view.OutputView.DOT;
+import static subway.view.OutputView.NEWLINE;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import subway.exception.ExitSystemException;
@@ -10,25 +13,24 @@ import subway.view.OutputView;
 public class MainMenuController {
 
     public static final String TITLE = "메인 화면";
-    public static final String NEWLINE = "\n";
 
     private MainMenuController() {
     }
 
     public static void main() {
-        printMenu();
         while (true) {
+            printMenu();
             try {
                 route(InputView.getInput());
             } catch (ExitSystemException e) {
-                OutputView.printError(e);
+                OutputView.print(e.getMessage());
                 return;
             }
         }
     }
 
     private static void printMenu() {
-        OutputView.printInfo(TITLE + NEWLINE + Menu.getMenus());
+        OutputView.printMenu(TITLE, Menu.getMenus());
     }
 
     private static void route(String input) {
@@ -53,8 +55,6 @@ public class MainMenuController {
         MANAGE_SECTION("3", "구간 관리", SectionMenuController::main),
         PRINT_SUBWAY_MAP("4", "지하철 노선도 출력", MainMenuController::printSubwayMap),
         EXIT_SYSTEM("Q", "종료", MainMenuController::exitSystem);
-
-        public static final String DOT = ". ";
 
         private final String button;
         private final String detail;
