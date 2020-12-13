@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import subway.controller.ManageControllerTest;
+import subway.controller.ManagementControllerTest;
 
 class StationRepositoryTest {
 
@@ -20,7 +20,7 @@ class StationRepositoryTest {
     public void initStationRepository() {
         stationRepository = new StationRepository();
 
-        lineRepository = ManageControllerTest.initializeWithEmptyStations().lines();
+        lineRepository = ManagementControllerTest.initializeWithEmptyStations().lines();
     }
 
     @Test

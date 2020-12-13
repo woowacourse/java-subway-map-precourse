@@ -9,13 +9,13 @@ public final class MainController {
 
         boolean quit = false;
 
-        ManageController manageController = ManageController.initialize();
+        ManagementController managementController = ManagementController.initialize();
 
         while (!quit) {
-            manageController = Functionable
-                    .function(manageController, MainFunction.TITLE, MainFunction.values());
+            managementController = Functionable
+                    .function(managementController, MainFunction.TITLE, MainFunction.values());
 
-            if (manageController == null) {
+            if (managementController == null) {
                 quit = true;
             }
         }

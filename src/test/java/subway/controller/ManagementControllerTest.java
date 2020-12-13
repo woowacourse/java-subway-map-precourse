@@ -9,30 +9,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
-public class ManageControllerTest {
+public class ManagementControllerTest {
 
-    private ManageController manageController;
+    private ManagementController managementController;
 
     @BeforeEach
-    public void initManageController() {
-        manageController = initializeWithEmptyStations();
+    public void initManagementController() {
+        managementController = initializeWithEmptyStations();
     }
 
     @Test
     @DisplayName("Manage Controller 초기화 테스트")
-    public void initialize_ManageController_InitializedManageController() {
+    public void initialize_ManagementController_InitializedManagementController() {
 
         // when
-        ManageController hasStationsManageController = ManageController.initialize();
+        ManagementController hasStationsManagementController = ManagementController.initialize();
 
         //then
-        assertThat(hasStationsManageController.stations().stationNames())
+        assertThat(hasStationsManagementController.stations().stationNames())
                 .containsExactly("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
 
-        assertThat(hasStationsManageController.lines().lineNames())
+        assertThat(hasStationsManagementController.lines().lineNames())
                 .containsExactly("2호선", "3호선", "신분당선");
 
-        assertThat(hasStationsManageController.lines().getStationNamesByLineName("2호선"))
+        assertThat(hasStationsManagementController.lines().getStationNamesByLineName("2호선"))
                 .containsExactly("교대역", "강남역", "역삼역");
     }
 
@@ -41,10 +41,10 @@ public class ManageControllerTest {
     public void addStation_NewStation_StationAdded() {
 
         // when
-        manageController = manageController.addStation("대치역");
+        managementController = managementController.addStation("대치역");
 
         //then
-        assertThat(manageController.stations().stationNames()).containsExactly("대치역");
+        assertThat(managementController.stations().stationNames()).containsExactly("대치역");
     }
 
     @Test
@@ -52,13 +52,13 @@ public class ManageControllerTest {
     public void removeStation_OldStation_StationRemoved() {
 
         // given
-        manageController = manageController.addStation("대치역");
+        managementController = managementController.addStation("대치역");
 
         // when
-        manageController = manageController.removeStation("대치역");
+        managementController = managementController.removeStation("대치역");
 
         //then
-        assertThat(manageController.stations().stationNames()).isEmpty();
+        assertThat(managementController.stations().stationNames()).isEmpty();
     }
 
     @Test
@@ -66,10 +66,10 @@ public class ManageControllerTest {
     public void addLine_NewLine_LineAdded() {
 
         // when
-        manageController = manageController.addLine("1호선", "인천역", "소요산역");
+        managementController = managementController.addLine("1호선", "인천역", "소요산역");
 
         //then
-        assertThat(manageController.lines().lineNames())
+        assertThat(managementController.lines().lineNames())
                 .containsExactly("2호선", "3호선", "신분당선", "1호선");
     }
 
@@ -78,10 +78,10 @@ public class ManageControllerTest {
     public void removeLine_OldLine_LineRemoved() {
 
         // when
-        manageController = manageController.removeLine("2호선");
+        managementController = managementController.removeLine("2호선");
 
         //then
-        assertThat(manageController.lines().lineNames()).containsExactly("3호선", "신분당선");
+        assertThat(managementController.lines().lineNames()).containsExactly("3호선", "신분당선");
     }
 
     @Test
@@ -89,10 +89,10 @@ public class ManageControllerTest {
     public void addRange_NewRange_RangeAdded() {
 
         // when
-        manageController = manageController.addRange("2호선", "신림역", 1);
+        managementController = managementController.addRange("2호선", "신림역", 1);
 
         //then
-        assertThat(manageController.lines().getStationNamesByLineName("2호선"))
+        assertThat(managementController.lines().getStationNamesByLineName("2호선"))
                 .containsExactly("교대역", "신림역", "강남역", "역삼역");
     }
 
@@ -101,14 +101,14 @@ public class ManageControllerTest {
     public void removeRange_OldRange_RangeRemoved() {
 
         // when
-        manageController = manageController.removeRange("2호선", "교대역");
+        managementController = managementController.removeRange("2호선", "교대역");
 
         //then
-        assertThat(manageController.lines().getStationNamesByLineName("2호선"))
+        assertThat(managementController.lines().getStationNamesByLineName("2호선"))
                 .containsExactly("강남역", "역삼역");
     }
 
-    public static ManageController initializeWithEmptyStations() {
+    public static ManagementController initializeWithEmptyStations() {
         String[] secondLine = {"교대역", "강남역", "역삼역"};
         String[] thirdLine = {"교대역", "남부터미널역", "양재역", "매봉역"};
         String[] sinbundangLine = {"강남역", "양재역", "양재시민의숲역"};
@@ -118,6 +118,6 @@ public class ManageControllerTest {
                 .addLine("3호선", thirdLine)
                 .addLine("신분당선", sinbundangLine);
 
-        return new ManageController(lineRepository, new StationRepository());
+        return new ManagementController(lineRepository, new StationRepository());
     }
 }

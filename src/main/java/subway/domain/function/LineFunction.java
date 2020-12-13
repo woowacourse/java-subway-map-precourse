@@ -2,12 +2,12 @@ package subway.domain.function;
 
 import java.util.function.Function;
 
-import subway.controller.ManageController;
+import subway.controller.ManagementController;
 
 public enum LineFunction implements Functionable {
-    ADD("1", "노선 등록", ManageController::addLine),
-    REMOVE("2", "노선 삭제", ManageController::removeLine),
-    LOAD("3", "노선 조회", ManageController::loadLines),
+    ADD("1", "노선 등록", ManagementController::addLine),
+    REMOVE("2", "노선 삭제", ManagementController::removeLine),
+    LOAD("3", "노선 조회", ManagementController::loadLines),
     BACK("B", "돌아가기", Function.identity());
 
     public static final String TITLE = "노선 관리";
@@ -16,10 +16,10 @@ public enum LineFunction implements Functionable {
 
     private final String description;
 
-    private final Function<ManageController, ManageController> function;
+    private final Function<ManagementController, ManagementController> function;
 
     LineFunction(final String identifier, final String description,
-                 final Function<ManageController, ManageController> function) {
+                 final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;
@@ -36,7 +36,7 @@ public enum LineFunction implements Functionable {
     }
 
     @Override
-    public Function<ManageController, ManageController> getFunction() {
+    public Function<ManagementController, ManagementController> getFunction() {
         return function;
     }
 

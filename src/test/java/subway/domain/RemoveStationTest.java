@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import subway.controller.ManageController;
-import subway.controller.ManageControllerTest;
+import subway.controller.ManagementController;
+import subway.controller.ManagementControllerTest;
 
 public class RemoveStationTest {
 
@@ -17,9 +17,9 @@ public class RemoveStationTest {
 
     @BeforeEach
     public void initLineRepository() {
-        ManageController manageController = ManageControllerTest.initializeWithEmptyStations();
+        ManagementController managementController = ManagementControllerTest.initializeWithEmptyStations();
 
-        lineRepository = manageController.lines();
+        lineRepository = managementController.lines();
     }
 
     @Test

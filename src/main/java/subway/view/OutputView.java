@@ -1,6 +1,6 @@
 package subway.view;
 
-import subway.controller.ManageController;
+import subway.controller.ManagementController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
@@ -39,12 +39,12 @@ public final class OutputView {
     }
 
     public static void printTitleAndStations(final StationRepository stationRepository) {
-        printTitle(String.format(LIST_FORMAT, ManageController.STATION));
+        printTitle(String.format(LIST_FORMAT, ManagementController.STATION));
         printStations(stationRepository);
     }
 
     public static void printLines(final LineRepository lineRepository) {
-        printTitle(String.format(LIST_FORMAT, ManageController.LINE));
+        printTitle(String.format(LIST_FORMAT, ManagementController.LINE));
 
         for (String lineName : lineRepository.lineNames()) {
             printMessage(lineName);

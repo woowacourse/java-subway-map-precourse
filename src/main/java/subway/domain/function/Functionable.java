@@ -3,7 +3,7 @@ package subway.domain.function;
 import java.util.Arrays;
 import java.util.function.Function;
 
-import subway.controller.ManageController;
+import subway.controller.ManagementController;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -13,13 +13,13 @@ public interface Functionable {
 
     String getDescription();
 
-    Function<ManageController, ManageController> getFunction();
+    Function<ManagementController, ManagementController> getFunction();
 
     boolean equalsIdentifier(String identifier);
 
-    static ManageController function(final ManageController manageController,
-                                     final String viewTitle,
-                                     final Functionable[] functionables) {
+    static ManagementController function(final ManagementController managementController,
+                                         final String viewTitle,
+                                         final Functionable[] functionables) {
         OutputView.printFunctions(viewTitle, functionables);
 
         String identifier = InputView.inputFunctionIdentifier();
@@ -29,6 +29,6 @@ public interface Functionable {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 기능입니다."))
                 .getFunction()
-                .apply(manageController);
+                .apply(managementController);
     }
 }

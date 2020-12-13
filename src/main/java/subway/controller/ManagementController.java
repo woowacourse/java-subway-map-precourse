@@ -6,7 +6,7 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public final class ManageController {
+public final class ManagementController {
 
     public static final String STATION = "역";
 
@@ -18,12 +18,12 @@ public final class ManageController {
 
     private final StationRepository stationRepository;
 
-    public ManageController() {
+    public ManagementController() {
         this(new LineRepository(), new StationRepository());
     }
 
-    public ManageController(final LineRepository lineRepository,
-                            final StationRepository stationRepository) {
+    public ManagementController(final LineRepository lineRepository,
+                                final StationRepository stationRepository) {
         this.lineRepository = lineRepository;
         this.stationRepository = stationRepository;
     }
@@ -36,42 +36,42 @@ public final class ManageController {
         return stationRepository;
     }
 
-    public ManageController addStation() {
+    public ManagementController addStation() {
         final String stationName = InputView.inputStation();
 
         return addStation(stationName);
     }
 
-    public ManageController addStation(final String stationName) {
+    public ManagementController addStation(final String stationName) {
         StationRepository addedRepository = stationRepository.addStation(stationName);
 
         OutputView.printSaved(STATION);
 
-        return new ManageController(this.lineRepository, addedRepository);
+        return new ManagementController(this.lineRepository, addedRepository);
     }
 
-    public ManageController removeStation() {
+    public ManagementController removeStation() {
         final String stationName = InputView.inputStation();
 
         return removeStation(stationName);
     }
 
-    public ManageController removeStation(final String stationName) {
+    public ManagementController removeStation(final String stationName) {
         StationRepository removedRepository =
                 stationRepository.removeStation(stationName, lineRepository);
 
         OutputView.printRemoved(STATION);
 
-        return new ManageController(this.lineRepository, removedRepository);
+        return new ManagementController(this.lineRepository, removedRepository);
     }
 
-    public ManageController loadStations() {
+    public ManagementController loadStations() {
         OutputView.printTitleAndStations(stationRepository);
 
         return this;
     }
 
-    public ManageController addLine() {
+    public ManagementController addLine() {
         final String lineName = InputView.inputLineName();
         final String startStation = InputView.inputStartStation();
         final String finalStation = InputView.inputFinalStation();
@@ -79,37 +79,37 @@ public final class ManageController {
         return addLine(lineName, startStation, finalStation);
     }
 
-    public ManageController addLine(final String lineName, final String startStation,
-                                    final String finalStation) {
+    public ManagementController addLine(final String lineName, final String startStation,
+                                        final String finalStation) {
         LineRepository addedLineRepository =
                 lineRepository.addLine(new Line(lineName, startStation, finalStation));
 
         OutputView.printSaved(LINE);
 
-        return new ManageController(addedLineRepository, this.stationRepository);
+        return new ManagementController(addedLineRepository, this.stationRepository);
     }
 
-    public ManageController removeLine() {
+    public ManagementController removeLine() {
         final String lineName = InputView.inputLineName();
 
         return removeLine(lineName);
     }
 
-    public ManageController removeLine(final String lineName) {
+    public ManagementController removeLine(final String lineName) {
         LineRepository removedLineRepository = lineRepository.removeLine(lineName);
 
         OutputView.printRemoved(LINE);
 
-        return new ManageController(removedLineRepository, this.stationRepository);
+        return new ManagementController(removedLineRepository, this.stationRepository);
     }
 
-    public ManageController loadLines() {
+    public ManagementController loadLines() {
         OutputView.printLines(lineRepository);
 
         return this;
     }
 
-    public ManageController addRange() {
+    public ManagementController addRange() {
         final String lineName = InputView.inputLineName();
         final String stationName = InputView.inputStation();
         final int stationIndex = InputView.inputIndex();
@@ -117,39 +117,39 @@ public final class ManageController {
         return addRange(lineName, stationName, stationIndex);
     }
 
-    public ManageController addRange(final String lineName, final String stationName,
-                                     final int stationIndex) {
+    public ManagementController addRange(final String lineName, final String stationName,
+                                         final int stationIndex) {
         LineRepository rangeInsertedLineRepository =
                 lineRepository.addRange(lineName, stationIndex, stationName);
 
         OutputView.printSaved(RANGE);
 
-        return new ManageController(rangeInsertedLineRepository, this.stationRepository);
+        return new ManagementController(rangeInsertedLineRepository, this.stationRepository);
     }
 
-    public ManageController removeRange() {
+    public ManagementController removeRange() {
         final String lineName = InputView.inputLineName();
         final String stationName = InputView.inputStation();
 
         return removeRange(lineName, stationName);
     }
 
-    public ManageController removeRange(final String lineName, final String stationName) {
+    public ManagementController removeRange(final String lineName, final String stationName) {
         LineRepository rangeRemovedLineRepository =
                 lineRepository.removeRange(lineName, stationName);
 
         OutputView.printRemoved(RANGE);
 
-        return new ManageController(rangeRemovedLineRepository, this.stationRepository);
+        return new ManagementController(rangeRemovedLineRepository, this.stationRepository);
     }
 
-    public ManageController loadSubwayMap() {
+    public ManagementController loadSubwayMap() {
         OutputView.printSubwayMap(lineRepository);
 
         return this;
     }
 
-    public static ManageController initialize() {
+    public static ManagementController initialize() {
         String[] stations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
 
         StationRepository stationRepository = new StationRepository()
@@ -164,6 +164,6 @@ public final class ManageController {
                 .addLine("3호선", thirdLine)
                 .addLine("신분당선", sinbundangLine);
 
-        return new ManageController(lineRepository, stationRepository);
+        return new ManagementController(lineRepository, stationRepository);
     }
 }

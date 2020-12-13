@@ -2,11 +2,11 @@ package subway.domain.function;
 
 import java.util.function.Function;
 
-import subway.controller.ManageController;
+import subway.controller.ManagementController;
 
 public enum RangeFunction implements Functionable {
-    ADD("1", "구간 등록", ManageController::addRange),
-    REMOVE("2", "구간 삭제", ManageController::removeRange),
+    ADD("1", "구간 등록", ManagementController::addRange),
+    REMOVE("2", "구간 삭제", ManagementController::removeRange),
     BACK("B", "돌아가기", Function.identity());
 
     public static final String TITLE = "구간 관리";
@@ -15,10 +15,10 @@ public enum RangeFunction implements Functionable {
 
     private final String description;
 
-    private final Function<ManageController, ManageController> function;
+    private final Function<ManagementController, ManagementController> function;
 
     RangeFunction(final String identifier, final String description,
-                  final Function<ManageController, ManageController> function) {
+                  final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;
@@ -35,7 +35,7 @@ public enum RangeFunction implements Functionable {
     }
 
     @Override
-    public Function<ManageController, ManageController> getFunction() {
+    public Function<ManagementController, ManagementController> getFunction() {
         return function;
     }
 
