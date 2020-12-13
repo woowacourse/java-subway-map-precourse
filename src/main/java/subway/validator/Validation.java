@@ -1,9 +1,7 @@
 package subway.validator;
 
-import subway.domain.StationRepository;
 import subway.view.ErrorView;
 import subway.exception.UserInputException;
-import subway.view.stationoutput.StationErrorView;
 
 public class Validation {
     protected static final String OPTION_ONE = "1";
@@ -15,15 +13,27 @@ public class Validation {
 
     protected static final int MIN_LENGTH = 2;
     protected static final char EMPTY_CHAR = ' ';
-    protected static final char WORD_STATION = '역';
 
-    protected static boolean checkInputLength(String userInputStation) {
+    public static boolean checkControllerInput(String userInput) {
         try {
-            if (userInputStation.length() < MIN_LENGTH) {
+            if (!((userInput.equals(OPTION_ONE)) || (userInput.equals(OPTION_TWO)) || (userInput.equals(OPTION_THREE)) ||
+                    (userInput.equals(OPTION_BACK)))) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            StationErrorView.printLengthError();
+            ErrorView.printOptionError();
+            return false;
+        }
+        return true;
+    }
+
+    protected static boolean checkInputLengthLongerThanTwo(String userInput) {
+        try {
+            if (userInput.length() < MIN_LENGTH) {
+                throw new UserInputException();
+            }
+        } catch (UserInputException e) {
+            ErrorView.printLengthError();
             return false;
         }
         return true;
@@ -31,11 +41,11 @@ public class Validation {
 
     protected static boolean checkInputIsNotSpace(String userInput) {
         try {
-            if (checkNotOnlySpace(userInput) == false) {
+            if (!checkNotOnlySpace(userInput)) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
-            StationErrorView.printInputIsSpaceError();
+            ErrorView.printInputIsSpaceError();
             return false;
         }
         return true;

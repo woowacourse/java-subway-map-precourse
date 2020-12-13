@@ -19,4 +19,8 @@ public class Line {
     public void addStationsInLine(Station station) {
         stationsInLine.add(station);
     }
+
+    public boolean checkSameName(String name) {
+        return (this.name.equals(name));
+    }
 }

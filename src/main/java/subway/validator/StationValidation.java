@@ -2,35 +2,23 @@ package subway.validator;
 
 import subway.domain.StationRepository;
 import subway.exception.UserInputException;
-import subway.view.ErrorView;
 import subway.view.stationoutput.StationErrorView;
 
 public class StationValidation extends Validation {
-    public static boolean checkControllerInput(String userInput) {
-        try {
-            if (!((userInput.equals(OPTION_ONE)) || (userInput.equals(OPTION_TWO)) || (userInput.equals(OPTION_THREE)) ||
-                    (userInput.equals(OPTION_BACK)))) {
-                throw new UserInputException();
-            }
-        } catch (UserInputException e) {
-            ErrorView.printOptionError();
-            return false;
-        }
-        return true;
-    }
+    private static final char WORD_STATION = '역';
 
     /* 해당 조건 중 만족하지 않는 것이 있다면 재입력 받도록 한다 */
     public static boolean checkRegisterStationInput(String userInputStation) {
-        if (checkInputLength(userInputStation) == false) {
+        if (!checkInputLengthLongerThanTwo(userInputStation)) {
             return false;
         }
-        if (checkNotDuplicateStation(userInputStation) == false) {
+        if (!checkNotDuplicateStation(userInputStation)) {
             return false;
         }
-        if (checkInputIsNotSpace(userInputStation) == false) {
+        if (!checkInputIsNotSpace(userInputStation)) {
             return false;
         }
-        if (checkEndWithWordStation(userInputStation) == false) {
+        if (!checkEndWithWordStation(userInputStation)) {
             return false;
         }
         return true;
@@ -62,7 +50,7 @@ public class StationValidation extends Validation {
     }
 
     public static boolean checkDeleteStationInput(String userInputStation) {
-        if(checkIsInStationRepository(userInputStation) == false) {
+        if(!checkIsInStationRepository(userInputStation)) {
             return false;
         }
         return true;
@@ -70,7 +58,7 @@ public class StationValidation extends Validation {
 
     private static boolean checkIsInStationRepository(String userInputStation) {
         try {
-            if (StationRepository.haveStation(userInputStation) == false) {
+            if (!StationRepository.haveStation(userInputStation)) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
