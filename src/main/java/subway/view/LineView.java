@@ -26,12 +26,12 @@ public class LineView {
         return InputView.getName(scanner);
     }
 
-    public Name getFirstStationName() {
+    public Name getStartStationName() {
         OutputView.printMsg("## 등록할 노선의 상행 종점역 이름을 입력하세요.\n");
         return InputView.getName(scanner);
     }
 
-    public Name getLastStationName() {
+    public Name getEndStationName() {
         OutputView.printMsg("## 등록할 노선의 하행 종점역 이름을 입력하세요.\n");
         return InputView.getName(scanner);
     }
