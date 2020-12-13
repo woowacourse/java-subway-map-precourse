@@ -28,6 +28,9 @@ public class StationController {
         if (selection.equals(ADD)) {
             add();
         }
+        if (selection.equals(TRAVERSE)) {
+            traverse();
+        }
     }
 
     private static void add() {
@@ -36,5 +39,11 @@ public class StationController {
         ExceptionHandler.stationNameShorterThanTwo(name);
         StationRepository.addStation(new Station(name));
         OutputView.printAddStationSuccess();
+        MainController.run();
+    }
+
+    private static void traverse() {
+        OutputView.printLineView();
+        StationRepository.stations().forEach(station -> OutputView.printInfo(station.getName()));
     }
 }

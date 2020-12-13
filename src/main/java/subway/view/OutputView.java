@@ -94,8 +94,8 @@ public class OutputView {
         System.out.print(message);
     }
 
-    private static void printInfo(String message) {
-        System.out.print(INFO + message);
+    public static void printInfo(String message) {
+        System.out.println(INFO + message);
     }
 }
 
