@@ -22,6 +22,7 @@ public class LineService {
     private final String BOTH_STATION_NOT_EXIST_WARN = "둘 다 존재하지 않는 역 입니다.";
     private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.";
     private final String LINE_LIST_MESSAGE = "노선 목록";
+    private final String LINE_SIZE_ZERO = "등록된 노선이 없습니다.";
     private final String UP_COMMAND = "UP";
     private final String DOWN_COMMAND = "DOWN";
     private final int MIN_NAME_LENGTH = 2;
@@ -83,6 +84,10 @@ public class LineService {
 
     public void printLineList() {
         askMessage(LINE_LIST_MESSAGE);
+        if (lines().size() == 0) {
+            warnMessage(LINE_SIZE_ZERO);
+            return;
+        }
         lines().
                 forEach(line -> stationMessage(line.getName()));
     }

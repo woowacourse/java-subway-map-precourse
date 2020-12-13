@@ -12,6 +12,7 @@ public class StationService {
     private final String ASK_ADD_STATION_NAME = "등록할 역 이름을 입력하세요.";
     private final String ASK_DELETE_STATION_NAME = "삭제할 역 이름을 입력하세요.";
     private final String STATION_LIST_MESSAGE = "역 목록";
+    private final String STATION_SIZE_ZERO = "등록된 역이 없습니다.";
 
     public boolean addStation(InputView inputView) {
         askMessage(ASK_ADD_STATION_NAME);
@@ -31,6 +32,10 @@ public class StationService {
 
     public void printStationList() {
         askMessage(STATION_LIST_MESSAGE);
+        if (stations().size() == 0) {
+            warnMessage(STATION_SIZE_ZERO);
+            return;
+        }
         stations()
                 .forEach(station -> stationMessage(station.getName()));
     }
