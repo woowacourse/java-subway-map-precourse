@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.Load;
+
 import java.util.Scanner;
 
 public class InputUtils {
@@ -29,14 +31,13 @@ public class InputUtils {
             System.exit(0);
         }
         if (userInput.equals(returnOption) && returnOption.equals("B")) {
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            Load.loadMainScreen();
             return null;
         }
-        int userIntInput = Integer.parseInt(userInput);
-        if (!(userIntInput > 0 && userIntInput <= endInclusive)) {
+        if(!userInput.matches("[1-"+endInclusive+"]")){
+            System.out.println(userInput);
             throw new IllegalArgumentException();
         }
-        return userIntInput;
+        return Integer.parseInt(userInput);
     }
 }

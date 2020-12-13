@@ -10,14 +10,14 @@ public class Station {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validateLength(String userInput) {
         if (!(userInput.length() >= 2)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

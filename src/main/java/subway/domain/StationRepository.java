@@ -48,12 +48,4 @@ public class StationRepository {
         }
         throw new IllegalArgumentException();
     }
-
-    public static void printStations() {
-        for (Station station : stations) {
-            System.out.println("[INFO] " + station.getName());
-        }
-    }
-
-
 }

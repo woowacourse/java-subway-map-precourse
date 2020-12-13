@@ -1,6 +1,5 @@
 package subway.domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Line {
@@ -11,6 +10,24 @@ public class Line {
         validateLength(name);
         this.name = name;
         this.lineStations = new ArrayList<>();
+    }
+
+    private void validateIfDuplicate(Station firstStation, Station lastStation) {
+        if (firstStation.equals(lastStation)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateIfStationsAtLeastTwo() {
+        if (StationRepository.stations().size() < 2) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateLength(String userInput) {
+        if (!(userInput.length() >= 2)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getName() {
@@ -34,24 +51,4 @@ public class Line {
         this.lineStations.add(firstStation);
         this.lineStations.add(lastStation);
     }
-
-    public void validateIfDuplicate(Station firstStation, Station lastStation) {
-        if (firstStation.equals(lastStation)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public void validateIfStationsAtLeastTwo() {
-        if (StationRepository.stations().size() < 2) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateLength(String userInput) {
-        if (!(userInput.length() >= 2)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    // 추가 기능 구현
 }

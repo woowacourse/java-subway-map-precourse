@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.Load;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -36,8 +37,7 @@ public class StationManagementScreen implements Screen {
             registerNewStation();
             return;
         }
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        Load.loadMainScreen();
     }
 
     public void deleteStation() {
@@ -46,18 +46,17 @@ public class StationManagementScreen implements Screen {
             StationRepository.deleteStation(InputUtils.getUserInput());
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            Load.loadMainScreen();
         }
         System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        Load.loadMainScreen();
     }
 
     public void printStations() {
         System.out.println("\n## 역 목록");
-        StationRepository.printStations();
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        for (Station station : StationRepository.stations()) {
+            System.out.println("[INFO] " + station.getName());
+        }
+        Load.loadMainScreen();
     }
 }

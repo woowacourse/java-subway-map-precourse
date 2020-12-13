@@ -1,6 +1,9 @@
 package subway.view;
 
+import subway.Load;
+import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 
 public class MainScreen implements Screen {
 
@@ -16,24 +19,31 @@ public class MainScreen implements Screen {
         int userInput = InputUtils.createUserSelectionInput(4, "Q");
 
         if (userInput == 1) {
-            StationManagementScreen stationManagementScreen = new StationManagementScreen();
-            stationManagementScreen.start();
+            Load.loadStationManagementScreen();
             return;
         }
         if (userInput == 2) {
-            LineManagementScreen lineManagementScreen = new LineManagementScreen();
-            lineManagementScreen.start();
+            Load.loadLineManagementScreen();
             return;
         }
         if (userInput == 3) {
-            SectionManagementScreen sectionManagementScreen = new SectionManagementScreen();
-            sectionManagementScreen.start();
+            Load.loadStationManagementScreen();
             return;
         }
         if (userInput == 4) {
-            System.out.println("\n## 지하철 노선도");
-            LineRepository.printLinesAndStations();
+            printTransitMap();
             start();
+        }
+    }
+
+    public void printTransitMap(){
+        System.out.println("\n## 지하철 노선도");
+        for (Line line : LineRepository.lines()) {
+            System.out.println("[INFO] " + line.getName() + "\n[INFO] ---");
+            for (Station station : line.getLineStations()) {
+                System.out.println("[INFO] " + station.getName());
+            }
+            System.out.println();
         }
     }
 }

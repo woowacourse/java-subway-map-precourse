@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.Load;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -38,13 +39,11 @@ public class SectionManagementScreen implements Screen {
 
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            Load.loadMainScreen();
             return;
         }
         System.out.println("\n[INFO] 구간이 등록되었습니다.");
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        Load.loadMainScreen();
     }
 
     public Station getStationToAdd() {
@@ -73,13 +72,11 @@ public class SectionManagementScreen implements Screen {
 
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            Load.loadMainScreen();
             return;
         }
         System.out.println("\n[INFO] 구간이 삭제되었습니다.");
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        Load.loadMainScreen();
     }
 
     public Station getStationToDelete() {

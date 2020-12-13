@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.Load;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -33,13 +34,11 @@ public class LineManagementScreen implements Screen {
             LineRepository.deleteLineByName(InputUtils.getUserInput());
         } catch (IllegalArgumentException e) {
             System.err.println("[ERROR] 잘못된 입력입니다.");
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.start();
+            Load.loadMainScreen();
             return;
         }
         System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        Load.loadMainScreen();
     }
 
     public void registerNewLine() {
@@ -54,8 +53,7 @@ public class LineManagementScreen implements Screen {
             return;
         }
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        Load.loadMainScreen();
     }
 
     public void initiateLinetations(Line line) {
@@ -70,9 +68,9 @@ public class LineManagementScreen implements Screen {
 
     public void printLines() {
         System.out.println("\n## 노선 목록");
-        LineRepository.printLines();
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.start();
+        for (Line line : LineRepository.lines()) {
+            System.out.println("[INFO] " + line.getName());
+        }
+        Load.loadMainScreen();
     }
-
 }
