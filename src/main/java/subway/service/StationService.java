@@ -19,4 +19,13 @@ public class StationService {
         Station station = new Station(name);
         stationRepository.save(station);
     }
+
+    public boolean deleteStationByName(String name) {
+        Station station = stationRepository.findByName(name)
+                .orElseThrow(CannotFindStationException::new);
+        if (station.isRegisteredAsSection()) {
+            throw new CannotDeleteStationException();
+        }
+        return stationRepository.delete(station);
+    }
 }
