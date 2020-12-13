@@ -4,7 +4,6 @@ import java.util.Scanner;
 import subway.domain.SubwayRepository;
 import subway.domain.line.LineOutputManager;
 import subway.domain.line.LineRepository;
-import subway.domain.menu.MenuOutputManager;
 import subway.domain.station.StationRepository;
 import subway.common.ErrorMessage;
 import subway.common.Guide;
@@ -12,127 +11,116 @@ import subway.common.Guide;
 public class PathInputManager {
     private Scanner scanner;
 
+    private static final String NOT_EXIST_LINE = "존재하지 않는 노선입니다.";
+    private static final String NOT_ENROLLED_STATION = "등록되지 않은 역입니다.";
+    private static final String STATION_ALREADY_ON_PATH = "입력하신 역은 구간에 이미 등록되어 있습니다.";
+    private static final String NOT_NUMBER = "정수가 아닙니다. 순서는 1이상의 정수를 입력해 주세요.";
+    private static final String NOT_OVER_ONE = "순서는 1이상의 정수로 가능합니다.";
+    private static final String OVER_SIZE_PATH = "구간의 크기가 기존 사이즈를 넘어갑니다.";
+    private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
+
+
     public PathInputManager(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public String[] getPathInfoToAdd() {
         String[] pathInfo = new String[3];
-        pathInfo[0] = getLineName();
-        if (pathInfo[0].equals(ErrorMessage.OUT)) {
-            return pathInfo;
+        try {
+            pathInfo[0] = getLineName();
+            pathInfo[1] = getStationNameToAdd(pathInfo[0]);
+            pathInfo[2] = getIndexToAdd(pathInfo[0]);
+        } catch (ErrorMessage error) {
+            System.out.println(error.getMessage());
+            pathInfo[0] = ErrorMessage.OUT;
         }
-        pathInfo[1] = getStationNameToAdd(pathInfo[0]);
-        if (pathInfo[1].equals(ErrorMessage.OUT)) {
-            return pathInfo;
-        }
-        pathInfo[2] = getIndexToAdd(pathInfo[0]);
         return pathInfo;
+    }
+
+    private String getLineName() {
+        Guide.print(LineOutputManager.LINE_TO_ADD_PATH_GUIDE);
+        String lineName = scanner.nextLine().trim();
+        checkEnrolledLineName(lineName);
+        return lineName;
+    }
+
+    private void checkEnrolledLineName(String lineName) {
+        if (!LineRepository.containsName(lineName)) {
+            throw new ErrorMessage(NOT_EXIST_LINE);
+        }
+    }
+
+    private String getStationNameToAdd(String lineName) {
+        Guide.print(PathOutputManager.STATION_TO_ADD_PATH_GUIDE);
+        String stationName = scanner.nextLine().trim();
+        checkEnrolledStationNameOnPath(stationName, lineName);
+        checkEnrolledStation(stationName);
+        return stationName;
+    }
+
+    private void checkEnrolledStationNameOnPath(String stationName, String lineName) {
+        if (SubwayRepository.containsStationOnLine(stationName, lineName)) {
+            throw new ErrorMessage(STATION_ALREADY_ON_PATH);
+        }
+    }
+
+    private void checkEnrolledStation(String stationName) {
+        if (!StationRepository.containsName(stationName)) {
+            throw new ErrorMessage(NOT_ENROLLED_STATION);
+        }
     }
 
     private String getIndexToAdd(String lineName) {
         Guide.print(PathOutputManager.INDEX_TO_ADD_PATH_GUIDE);
         String index = scanner.nextLine().trim();
-        if (!checkValidIndex(index, lineName)) {
-            return ErrorMessage.OUT;
-        }
+        checkValidIndex(index, lineName);
         return index;
     }
 
-    private boolean checkValidIndex(String index, String lineName) {
+    private void checkValidIndex(String index, String lineName) {
         try {
             int indexNumber = Integer.parseInt(index);
-            return checkOverOne(indexNumber) && checkNotOverSize(indexNumber, lineName);
+            checkOverOne(indexNumber);
+            checkNotOverSize(indexNumber, lineName);
         } catch (NumberFormatException n) {
-            ErrorMessage.printNotNumber();
-            return false;
+            throw new ErrorMessage(NOT_NUMBER);
         }
     }
 
-    private boolean checkNotOverSize(int indexNumber, String lineName) {
-        if (indexNumber > SubwayRepository.getSizeOfPathByLineName(lineName) - 1) {
-            ErrorMessage.printOverSizePath();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkOverOne(int indexNumber) {
+    private void checkOverOne(int indexNumber) {
         if (indexNumber < 1) {
-            ErrorMessage.printNotOverOne();
-            return false;
+            throw new ErrorMessage(NOT_OVER_ONE);
         }
-        return true;
     }
 
-    //todo: refactor 검사할 조건을 넣어주는 것으로 가능할까?
-    private String getStationNameToAdd(String lineName) {
-        Guide.print(PathOutputManager.STATION_TO_ADD_PATH_GUIDE);
-        String stationName = scanner.nextLine().trim();
-        if (checkEnrolledStationNameOnPath(stationName, lineName) || !checkEnrolledStation(stationName)) {
-            return ErrorMessage.OUT;
+    private void checkNotOverSize(int indexNumber, String lineName) {
+        if (indexNumber > SubwayRepository.getSizeOfPathByLineName(lineName) - 1) {
+            throw new ErrorMessage(OVER_SIZE_PATH);
         }
-        return stationName;
-
-    }
-
-    private boolean checkEnrolledStation(String stationName) {
-        if(!StationRepository.containsName(stationName)){
-            System.out.println("등록되지 않은 역입니다.");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkEnrolledStationNameOnPath(String stationName, String lineName) {
-        if (SubwayRepository.containsStationOnLine(stationName, lineName)) {
-            ErrorMessage.printStationAlreadyOnPath();
-            return true;
-        }
-        return false;
-    }
-
-
-    private String getLineName() {
-        Guide.print(LineOutputManager.LINE_TO_ADD_PATH_GUIDE);
-        String lineName = scanner.nextLine().trim();
-        if (!checkEnrolledLineName(lineName)) {
-            return ErrorMessage.OUT;
-        }
-        return lineName;
-    }
-
-    private boolean checkEnrolledLineName(String lineName) {
-        if (LineRepository.containsName(lineName)) {
-            return true;
-        }
-        System.out.println("존재하지 않는 노선입니다.");
-        return false;
     }
 
     public String[] getPathInfoToDelete() {
         String[] pathInfo = new String[2];
-        pathInfo[0] = getLineName(); // print 삭제할 으로 변경해야함
-        if (pathInfo[0].equals(ErrorMessage.OUT)) {
-            return pathInfo;
+        try {
+            pathInfo[0] = getLineName(); //삭제할으로 문구 변경
+            pathInfo[1] = getStationNameToDelete(pathInfo[0]);
+        } catch (ErrorMessage error) {
+            System.out.println(error.getMessage());
+            pathInfo[0] = ErrorMessage.OUT;
         }
-        pathInfo[1] = getStationNameToDelete(pathInfo[0]);
         return pathInfo;
     }
 
     private String getStationNameToDelete(String lineName) {
         Guide.print(PathOutputManager.STATION_TO_DELETE_PATH_GUIDE);
         String stationName = scanner.nextLine().trim();
-        if (!checkEnrolledStationNameOnPathToDelete(stationName, lineName)) {
-            return ErrorMessage.OUT;
-        }
+        checkEnrolledStationOnPathToDelete(stationName, lineName);
         return stationName;
     }
-    private boolean checkEnrolledStationNameOnPathToDelete(String stationName, String lineName) {
-        if (SubwayRepository.containsStationOnLine(stationName, lineName)) {
-            return true;
+
+    private void checkEnrolledStationOnPathToDelete(String stationName, String lineName) {
+        if (!SubwayRepository.containsStationOnLine(stationName, lineName)) {
+            throw new ErrorMessage(NOT_EXIST_STATION_ON_PATH);
         }
-        ErrorMessage.printNotEnrolledStationOnPath();
-        return false;
     }
 }
