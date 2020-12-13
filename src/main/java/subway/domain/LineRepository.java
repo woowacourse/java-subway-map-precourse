@@ -11,7 +11,7 @@ public class LineRepository {
         lines.addLine(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.deleteLine(name);
+    public static void deleteLineByName(String name) {
+        lines.deleteLine(name);
     }
 }
