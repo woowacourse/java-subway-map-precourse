@@ -4,6 +4,7 @@ import subway.domain.line.dto.LineSaveReqDto;
 import subway.exception.ErrorCode;
 import subway.exception.LineException;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LineServiceImpl implements LineService {
@@ -33,6 +34,7 @@ public class LineServiceImpl implements LineService {
     @Override
     public List<Line> getLines() {
         List<Line> lines = lineRepository.lines();
+        Collections.sort(lines);
         return lines;
     }
 }

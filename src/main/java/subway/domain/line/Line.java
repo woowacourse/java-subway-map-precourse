@@ -3,7 +3,7 @@ package subway.domain.line;
 import subway.exception.ErrorCode;
 import subway.exception.LineException;
 
-public class Line {
+public class Line implements Comparable<Line> {
     private static final int MIN_SIZE = 2;
     private static final String MUST_CONTAIN_LAST = "선";
     private static final String PERMIT_CHARACTER = "^[가-힣|0-9]*$";
@@ -34,5 +34,13 @@ public class Line {
         if (!name.matches(PERMIT_CHARACTER)) {
             throw new LineException(ErrorCode.LINE_INVALID_CHARACTER);
         }
+    }
+
+    @Override
+    public int compareTo(Line o) {
+        if (this.getName().compareTo(o.getName()) > 0) {
+            return 1;
+        }
+        return -1;
     }
 }
