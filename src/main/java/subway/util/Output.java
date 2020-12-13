@@ -19,6 +19,15 @@ public class Output {
 		System.out.println(Message.FUNCTION_CHOICE);
 	}
 	
+ 	public static void lineManagement() {
+ 		System.out.println(Message.LINE_VIEW);
+ 		System.out.println(Message.LINE_CREATE);
+ 		System.out.println(Message.LINE_REMOVE);
+ 		System.out.println(Message.LINE_READ);
+ 		System.out.println(Message.BACK);
+ 		System.out.println(Message.FUNCTION_CHOICE);
+ 	}
+	
 	public static void info(String message) {
 		System.out.println("[INFO] " + message);
 	}

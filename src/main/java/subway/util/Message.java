@@ -5,6 +5,10 @@ public class Message {
 	public static final String FUNCTION_CHOICE = "\n## 원하는 기능을 선택하세요.";
 	public static final String STATION_CREATE_NAME_INPUT = "\n## 등록할 역 이름을 입력하세요.";
 	public static final String STATION_REMOVE_NAME_INPUT = "\n## 삭제할 역 이름을 입혁하세요.";
+	public static final String LINE_CREATE_NAME_INPUT = "\n## 등록할 노선 이름을 입력하세요.";
+	public static final String LINE_REMOVE_NAME_INPUT = "\n## 삭제할 노선 이름을 입혁하세요.";
+	public static final String LINE_UP_BOUND_TERMINUS = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+	public static final String LINE_DOWNSTREAM_TERMINUS = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 	public static final String BACK = "B. 돌아가기";
 	
 	public static final String MAIN_STATION_MANAGEMENT = "1. 역 관리";
