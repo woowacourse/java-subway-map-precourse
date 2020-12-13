@@ -17,4 +17,8 @@ public class SectionRepository {
         sections.get(line)
                 .add(index, station);
     }
+
+    public static int getLengthByLineName(String line){
+        return sections().get(line).size();
+    }
 }
