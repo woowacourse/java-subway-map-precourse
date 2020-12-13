@@ -91,7 +91,7 @@ public class FlowChart {
 
     public static void lineAdd(Scanner scanner, String lineInput) {
         if (lineInput.equals(Constant.ONE)) {
-            System.out.println("lineAdd");
+            LineSetting.add(scanner);
             System.out.println();
             main(scanner);
         }
