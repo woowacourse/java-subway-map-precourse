@@ -3,6 +3,7 @@ package subway.utils;
 import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.ResisteredStations;
 import subway.domain.StationRepository;
 import subway.exception.BlankNameException;
 import subway.exception.DuplicatedLineException;
@@ -54,14 +55,14 @@ public class ValidationUtils {
         }
     }
 
-    public static void validateNullStationInLine(Line line, String stationName) {
-        if (!line.containsStation(stationName)) {
+    public static void validateNullStationInLine(ResisteredStations stations, String stationName) {
+        if (!stations.contains(stationName)) {
             throw new NullStationInLineException(stationName);
         }
     }
 
-    public static void validateDuplicatedStationInLine(Line line, String stationName) {
-        if (line.containsStation(stationName)) {
+    public static void validateDuplicatedStationInLine(ResisteredStations stations, String stationName) {
+        if (stations.contains(stationName)) {
             throw new DuplicatedStationInLineException(stationName);
         }
     }
