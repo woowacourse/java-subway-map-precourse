@@ -7,13 +7,11 @@ import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Sections;
-import subway.domain.Station;
 import subway.view.MainView.OnBackListener;
-import sun.swing.SwingUtilities2.Section;
 
 public class RouteMapPrintView extends View {
 
-    private static final String line = "---";
+    private static final String DIVISION_LINE = "---";
 
     private OnBackListener onBackListener;
 
@@ -32,7 +30,7 @@ public class RouteMapPrintView extends View {
     private void printRouteMap() {
         for (Line line : LineRepository.lines()) {
             System.out.println(PREFIX_INFO + " " + line.getName());
-            System.out.println(line);
+            System.out.println(DIVISION_LINE);
             Sections sections = line.getSections();
             for (String station : sections.getSections()) {
                 System.out.println(PREFIX_INFO + " " + station);
