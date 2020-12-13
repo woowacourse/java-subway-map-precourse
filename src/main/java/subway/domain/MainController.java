@@ -11,6 +11,8 @@ public class MainController implements MenuSelectManager {
     private static final String MANAGE_LINE = "2";
     private static final String MANAGE_SECTION = "3";
     private static final String PRINT_SUBWAY_MAP = "4";
+    private static MenuSelectManager menuSelectManager;
+
     public void init() {
         // 역 등록 (교대역, 강남역, 역삼역, 남부터미널역, 양재역, 양재시민의숲역, 매봉역)
         StationRepository.addStation(new Station("교대역"));
@@ -44,22 +46,23 @@ public class MainController implements MenuSelectManager {
 
     @Override
     public void forward(Scanner scanner) {
-        StationController stationController = new StationController();
-        LineController lineController = new LineController();
-        SectionController sectionController = new SectionController();
         MenuPrinter.printMainMenu();
         String menuInput = scanner.next();
-        while(!menuInput.equals(QUIT)) {
+        while (!menuInput.equals(QUIT)) {
             System.out.println();
             if (menuInput.equals(MANAGE_STATION)) {
-                stationController.forward(scanner);
+                menuSelectManager = new StationController();
             }
             if (menuInput.equals(MANAGE_LINE)) {
-                lineController.forward(scanner);
+                menuSelectManager = new LineController();
             }
-            if (menuInput.equals(MANAGE_SECTION) || menuInput.equals(PRINT_SUBWAY_MAP)) {
-                sectionController.forward(scanner);
+            if (menuInput.equals(MANAGE_SECTION)) {
+                menuSelectManager = new SectionController();
             }
+            if (menuInput.equals(PRINT_SUBWAY_MAP)) {
+                menuSelectManager = new SubwayMapPrinter();
+            }
+            menuSelectManager.forward(scanner);
             MenuPrinter.printMainMenu();
             menuInput = scanner.next();
         }
