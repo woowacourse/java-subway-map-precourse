@@ -22,7 +22,7 @@ public class SubwayManager {
     private static String userOption = "";
     private static StationRepository stationRepository = new StationRepository();
 
-    public static void manage(Scanner scanner) {
+    public void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
             printMainScreen();
             userOption = getUserOption(scanner);
