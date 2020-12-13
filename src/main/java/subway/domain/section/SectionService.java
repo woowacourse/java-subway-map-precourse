@@ -53,18 +53,48 @@ public class SectionService {
         section.addStation(station, sequence - CONVERT_SEQUENCE);
     }
 
-    private void checkSameName(String upwardStationName, String downwardStationName) {
-        if (upwardStationName.equals(downwardStationName)) {
-            throw new SectionException(ErrorCode.SECTION_SAME_STATION_NAME);
-        }
-    }
-
     public Section findByName(String lineName) {
         Section findSection = sectionRepository.findByName(lineName);
         if (findSection == null) {
             throw new SectionException(ErrorCode.SECTION_NOT_EXIST_NAME);
         }
         return findSection;
+    }
+
+    public List<Section> findAll() {
+        List<Section> sections = sectionRepository.sections();
+        Collections.sort(sections);
+        return sections;
+    }
+
+    public boolean deleteSection(SectionDeleteReqDto deleteReqDto) {
+        boolean isSectionDelete = sectionRepository.deleteLineByName(deleteReqDto.getLineName());
+        if (isSectionDelete) {
+            lineRepository.deleteLineByName(deleteReqDto.getLineName());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteStation(SectionStationDeleteReqDto deleteReqDto) {
+        Section section = sectionRepository.findByName(deleteReqDto.getLineName());
+        Station station = stationRepository.findByName(deleteReqDto.getStationName());
+        if (!containStation(section, station)) {
+            throw new SectionException(ErrorCode.SECTION_NOT_HAS_STATION);
+        }
+        boolean isDelete = section.deleteStationByStation(station);
+        return isDelete;
+    }
+
+    public void removeAll() {
+        sectionRepository.removeAll();
+        lineRepository.removeAll();
+    }
+
+    private void checkSameName(String upwardStationName, String downwardStationName) {
+        if (upwardStationName.equals(downwardStationName)) {
+            throw new SectionException(ErrorCode.SECTION_SAME_STATION_NAME);
+        }
     }
 
     public void checkUpwardNotFound(String stationName) {
@@ -88,40 +118,10 @@ public class SectionService {
         }
     }
 
-    public void removeAll() {
-        sectionRepository.removeAll();
-        lineRepository.removeAll();
-    }
-
-    public boolean deleteByName(SectionDeleteReqDto deleteReqDto) {
-        boolean isSectionDelete = sectionRepository.deleteLineByName(deleteReqDto.getLineName());
-        if (isSectionDelete) {
-            lineRepository.deleteLineByName(deleteReqDto.getLineName());
-            return true;
-        }
-        return false;
-    }
-
-    public void validateStation(Section section, Station station) {
-        if (section.getStationsName().contains(station.getName())) {
+    public void checkContainStation(Section section, Station station) {
+        if (containStation(section, station)) {
             throw new SectionException(ErrorCode.SECTION_HAS_STATION);
         }
-    }
-
-    public List<Section> findAll() {
-        List<Section> sections = sectionRepository.sections();
-        Collections.sort(sections);
-        return sections;
-    }
-
-    public boolean deleteStation(SectionStationDeleteReqDto deleteReqDto) {
-        Section section = sectionRepository.findByName(deleteReqDto.getLineName());
-        Station station = stationRepository.findByName(deleteReqDto.getStationName());
-        if (!containStation(section, station)) {
-            throw new SectionException(ErrorCode.SECTION_NOT_HAS_STATION);
-        }
-        boolean isDelete = section.deleteStationByStation(station);
-        return isDelete;
     }
 
     private boolean containStation(Section section, Station station) {

@@ -127,7 +127,7 @@ class SectionServiceTest {
         String lineName = "1호선";
 
         //when
-        boolean isDelete = sectionService.deleteByName(new SectionDeleteReqDto(lineName));
+        boolean isDelete = sectionService.deleteSection(new SectionDeleteReqDto(lineName));
 
         //then
         assertThat(isDelete).isEqualTo(true);
@@ -143,7 +143,7 @@ class SectionServiceTest {
         String lineName = "2호선";
 
         //then
-        assertThatThrownBy(() -> sectionService.deleteByName(new SectionDeleteReqDto(lineName)))
+        assertThatThrownBy(() -> sectionService.deleteSection(new SectionDeleteReqDto(lineName)))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_NOT_EXIST_NAME.getMessage());
     }
@@ -160,7 +160,7 @@ class SectionServiceTest {
         Station station = stationService.findByName(stationName);
 
         //then
-        assertThatThrownBy(() -> sectionService.validateStation(section, station))
+        assertThatThrownBy(() -> sectionService.checkContainStation(section, station))
                 .isInstanceOf(SectionException.class)
                 .hasMessage(ErrorCode.SECTION_HAS_STATION.getMessage());
     }

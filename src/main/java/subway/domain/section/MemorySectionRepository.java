@@ -18,11 +18,10 @@ public class MemorySectionRepository {
         return new MemorySectionRepository();
     }
 
-    public List<Section> sections() {
-        return sections.values().stream().collect(Collectors.toList());
-    }
-
     public Section addSection(Section section) {
+        if (findByName(section.getLineName()) != null) {
+            throw new SectionException(ErrorCode.LINE_ALREADY_EXIST);
+        }
         sections.put(section.getLineName(), section);
         return section;
     }
@@ -30,6 +29,10 @@ public class MemorySectionRepository {
     public Section findByName(String lineName) {
         Section section = sections.get(lineName);
         return section;
+    }
+
+    public List<Section> sections() {
+        return sections.values().stream().collect(Collectors.toList());
     }
 
     public boolean deleteLineByName(String lineName) {

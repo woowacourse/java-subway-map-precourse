@@ -20,6 +20,10 @@ public class Section implements Comparable<Section> {
         return new Section(line, stations);
     }
 
+    public void addStation(Station station, int sequence) {
+        stations.addStation(station, sequence);
+    }
+
     public String getLineName() {
         return line.getName();
     }
@@ -33,9 +37,8 @@ public class Section implements Comparable<Section> {
                 .map(Station::getName)
                 .collect(Collectors.toList());
     }
-
-    public void addStation(Station station, int sequence) {
-        stations.addStation(station, sequence);
+    public boolean deleteStationByStation(Station station) {
+        return stations.deleteStation(station);
     }
 
     @Override
@@ -44,9 +47,5 @@ public class Section implements Comparable<Section> {
             return 1;
         }
         return -1;
-    }
-
-    public boolean deleteStationByStation(Station station) {
-        return stations.deleteStation(station);
     }
 }
