@@ -45,8 +45,8 @@ public class SubwayManager {
     }
 
     public State setSectionState(State state, Scanner scanner) {
-        state = registerSection(state, scanner);
-        state = removeSection(state, scanner);
+        state = SectionManager.registerSection(state, scanner);
+        state = SectionManager.removeSection(state, scanner);
 
         return state;
     }
@@ -99,66 +99,6 @@ public class SubwayManager {
         }
 
         return state;
-    }
-
-    public State registerSection(State state, Scanner scanner) {
-        if (state.equals(State.SECTION_ADD)) {
-            registerSection(scanner);
-
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
-
-    public void registerSection(Scanner scanner) {
-        OutputView.printInputLine();
-        Line line = findLineToRegister(InputView.inputLineName(scanner));
-
-        OutputView.printInputStation();
-        Station station = findStationToRegister(InputView.inputStationName(scanner));
-
-        OutputView.printInputOrder();
-        int index = InputView.inputStationIndex(scanner);
-
-        line.addStation(station, index);
-
-        OutputView.printRegisteredSectionMessage();
-    }
-    
-    public State removeSection(State state, Scanner scanner) {
-        if (state.equals(State.SECTION_REMOVE)) {
-            removeSection(scanner);
-
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
-
-    public void removeSection(Scanner scanner) {
-        findLineToRemove(scanner).deleteStation(findStationToRemove(scanner).getName());
-        OutputView.printRemovedSectionMessage();
-    }
-
-    private Line findLineToRegister(String name) {
-        return LineRepository.findLineByName(name);
-    }
-
-    private Station findStationToRegister(String name) {
-        return StationRepository.findStationByName(name);
-    }
-
-    private Line findLineToRemove(Scanner scanner) {
-        OutputView.printInputRemoveSectionLine();
-
-        return LineRepository.findLineByName(InputView.inputLineName(scanner));
-    }
-
-    private Station findStationToRemove(Scanner scanner) {
-        OutputView.printInputRemoveSectionStation();
-
-        return StationRepository.findStationByName(InputView.inputStationName(scanner));
     }
 
     public State inquirySubwayMap(State state) {
