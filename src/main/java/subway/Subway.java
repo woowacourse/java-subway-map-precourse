@@ -13,6 +13,33 @@ import subway.util.Output;
 import subway.util.View;
 
 public class Subway {	
+	private static boolean isUseableSection(String lineName, String stationName) {
+		if (!LineRepository.contains(lineName)) {
+			Output.error("등록되지 않은 노선 이름입니다.");
+			return false;
+		} else if (!StationRepository.contains(stationName)) {
+			Output.error("등록되지 않은 역 이름입니다.");
+			return false;
+		}
+		return true;
+	}
+	 
+	private static void addSectionByLine(Line line, String lineName, String stationName, String seq) {
+		if (Objects.equals(line.getName(), lineName)) {
+			line.addStation(Integer.parseInt(seq) - 1, stationName);
+		}
+	}
+	
+	private static void removeSectionByLine(Line line, String lineName, String stationName) {
+		if (Objects.equals(line.getName(), lineName)) {
+			if (line.removeStation(stationName)) {
+				Output.info("구간이 삭제되었습니다.");
+				return;
+			}
+			Output.error(lineName + "내에 일치하는 지하철 역 이름이 없습니다.");
+		}
+	}
+	
 	public static void run(Scanner scanner) {
 		View view = new View(scanner);
 		Initializer.run();
@@ -78,28 +105,18 @@ public class Subway {
 	}
 	
 	public static void addSection(String lineName, String stationName, String seq) {
-		if (isUseableSection(lineName, stationName, seq)) {
+		if (isUseableSection(lineName, stationName)) {
 			for (Line line: LineRepository.getLines()) {
 				addSectionByLine(line, lineName, stationName, seq);
 			}
 		}
-		
 	}
 	
-	private static boolean isUseableSection(String lineName, String stationName, String seq) {
-		if (!LineRepository.contains(lineName)) {
-			Output.error("등록되지 않은 노선 이름입니다.");
-			return false;
-		} else if (!StationRepository.contains(stationName)) {
-			Output.error("등록되지 않은 역 이름입니다.");
-			return false;
-		}
-		return true;
-	}
-	 
-	private static void addSectionByLine(Line line, String lineName, String stationName, String seq) {
-		if (Objects.equals(line.getName(), lineName)) {
-			line.addStation(Integer.parseInt(seq) - 1, stationName);
+	public static void removeSection(String lineName, String stationName) {
+		if (isUseableSection(lineName, stationName)) {
+			for (Line line: LineRepository.getLines()) {
+				removeSectionByLine(line, lineName, stationName);
+			}
 		}
 	}
 }

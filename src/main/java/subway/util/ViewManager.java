@@ -53,10 +53,17 @@ public class ViewManager {
 		
 		Output.title(Message.SECTION_SEQUENCE);
 		String sequence = Input.nextLine(scanner);
+		
 		Subway.addSection(lineName, stationName, sequence);
 	}
 	
 	public static void removeSection() {
+		Output.title(Message.SECTION_REMOVE_LINE);
+		String lineName = Input.nextLine(scanner);
 		
+		Output.title(Message.SECTION_REMOVE_STATION);
+		String stationName = Input.nextLine(scanner);
+		
+		Subway.removeSection(lineName, stationName);
 	}
 }

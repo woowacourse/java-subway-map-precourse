@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private String name;
@@ -34,5 +35,9 @@ public class Line {
     
     public void addStation(int idx, String station) {
     	stations.add(idx, station);
+    }
+    
+    public boolean removeStation(String compareName) {
+    	return stations.removeIf(originName -> Objects.equals(originName, compareName));
     }
 }
