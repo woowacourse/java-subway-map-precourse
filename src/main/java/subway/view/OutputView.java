@@ -71,4 +71,8 @@ public class OutputView {
             System.out.println("[INFO] " + line.getName());
         }
     }
+    
+    public static void printSectionRegisterSuccess() {
+        System.out.println("\n[INFO] 구간이 등록되었습니다.");
+    }
 }

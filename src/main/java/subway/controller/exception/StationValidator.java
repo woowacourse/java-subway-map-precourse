@@ -10,7 +10,7 @@ public class StationValidator {
         validateDuplication(stationName);
     }
 
-    public static void validateUpAndDownStation(String stationName) {
+    public static void validateAddStationToLine(String stationName) {
         validateFormat(stationName);
         validateLength(stationName);
         validateNotExistedStation(stationName);

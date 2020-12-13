@@ -36,28 +36,28 @@ public class LineMenu {
             LineValidator.validateLine(lineName);
             addLineToRepository(lineName);
             OutputView.printLineRegisterSuccess();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             goToLineMenu();
         }
     }
 
     private static void addLineToRepository(String lineName) {
-        String upStation = LineMenu.receiveUpStation();
-        String downStation = LineMenu.receiveDownStation();
+        String upStation = receiveUpStationAndValidate();
+        String downStation = receiveDownStationAndValidate();
         LineValidator.validateUpAndDownIsEqual(upStation, downStation);
         makeNewLine(lineName, upStation, downStation);
     }
 
-    private static String receiveUpStation() {
+    private static String receiveUpStationAndValidate() {
         String upStation = InputView.receiveName(UP_STATION_MESSAGE);
-        StationValidator.validateUpAndDownStation(upStation);
+        StationValidator.validateAddStationToLine(upStation);
         return upStation;
     }
 
-    private static String receiveDownStation() {
+    private static String receiveDownStationAndValidate() {
         String downStation = InputView.receiveName(DOWN_STATION_MESSAGE);
-        StationValidator.validateUpAndDownStation(downStation);
+        StationValidator.validateAddStationToLine(downStation);
         return downStation;
     }
 
