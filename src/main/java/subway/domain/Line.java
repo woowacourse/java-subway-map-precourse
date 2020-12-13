@@ -2,7 +2,6 @@ package subway.domain;
 
 import java.util.LinkedList;
 import subway.utils.Message;
-import subway.utils.Validator;
 
 public class Line implements Message {
 

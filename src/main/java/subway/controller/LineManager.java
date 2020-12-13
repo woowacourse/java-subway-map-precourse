@@ -15,13 +15,17 @@ public class LineManager implements Message {
     public static void request(String selection) {
         if (selection.equals(REGISTER)) {
             registerLine();
+            return;
         }
         if (selection.equals(DELETE)) {
             deleteLine();
+            return;
         }
         if (selection.equals(PRINT)) {
             OutputView.printLines();
+            return;
         }
+        OutputView.printError(ERROR_INVALID_SELECTION);
     }
 
     private static void registerLine() {

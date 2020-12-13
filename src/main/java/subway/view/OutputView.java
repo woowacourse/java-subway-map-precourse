@@ -31,10 +31,6 @@ public class OutputView implements Message {
         breakLine();
     }
 
-    public static void displaySelection() {
-        printAnnouncement(DISPLAY_SELECTION);
-    }
-
     public static void displayMain() {
         printAnnouncement(DISPLAY_MAIN);
     }

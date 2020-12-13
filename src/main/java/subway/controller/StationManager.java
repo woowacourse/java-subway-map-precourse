@@ -15,13 +15,17 @@ public class StationManager implements Message {
     public static void request(String selection) {
         if (selection.equals(REGISTER)) {
             registerStation();
+            return;
         }
         if (selection.equals(DELETE)) {
             deleteStation();
+            return;
         }
         if (selection.equals(PRINT)) {
             OutputView.printStations();
+            return;
         }
+        OutputView.printError(ERROR_INVALID_SELECTION);
     }
 
     private static void registerStation() {

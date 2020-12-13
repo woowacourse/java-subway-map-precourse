@@ -15,10 +15,13 @@ public class SectionManager implements Message {
     public static void request(String selection) {
         if (selection.equals(INSERT)) {
             insertStationInLine();
+            return;
         }
         if (selection.equals(REMOVE)) {
             removeStationFromLine();
+            return;
         }
+        OutputView.printError(ERROR_INVALID_SELECTION);
     }
 
     private static void insertStationInLine() {

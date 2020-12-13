@@ -1,7 +1,5 @@
 package subway.view;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.Scanner;
 import subway.utils.Message;
 import subway.utils.Validator;
