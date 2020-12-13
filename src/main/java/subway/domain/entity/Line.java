@@ -24,6 +24,10 @@ public class Line {
         }
     }
 
+    public boolean matchesName(String name) {
+        return Objects.equals(this.name, name);
+    }
+
     public String getName() {
         return name;
     }

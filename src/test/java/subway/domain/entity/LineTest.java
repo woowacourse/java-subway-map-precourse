@@ -1,10 +1,12 @@
 package subway.domain.entity;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LineTest {
@@ -21,5 +23,21 @@ class LineTest {
             new Line(name, sections);
         }).isInstanceOf(LineNameException.class)
                 .hasMessage("지하철 노선 이름은 공백이 아닌 2글자 이상이어야 합니다.");
+    }
+
+    @DisplayName("Line 객체와 같은 이름 비교")
+    @Test
+    void matchesName_이름이_같으면_true를_반환한다() {
+        boolean isEqual = line.matchesName("1호선");
+
+        assertThat(isEqual).isTrue();
+    }
+
+    @DisplayName("Line 객체와 다른 이름 비교")
+    @Test
+    void matchesName_이름이_다르면_false를_반환한다() {
+        boolean isEqual = line.matchesName("111호선");
+
+        assertThat(isEqual).isFalse();
     }
 }
