@@ -32,25 +32,6 @@ public class SectionView extends Screen {
         outputService.printOptions(new String[]{SECTION_MAIN, SECTION_ONE, SECTION_TWO, SECTION_BACK});
     }
 
-    public void printAllSection(List<Section> sections) {
-        outputService.printSharp(PRINT_LINE_MAP);
-        validateSectionsLength(sections.size());
-        for (Section section : sections) {
-            outputService.printInfos(section.getLineName());
-            outputService.printInfos(Prefix.CONTOUR.getPrefix());
-            for (String stationName : section.getStationsName()) {
-                outputService.printInfos(stationName);
-            }
-            outputService.printEnter();
-        }
-    }
-
-    private void validateSectionsLength(int sectionsSize) {
-        if (sectionsSize == ZERO) {
-            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
-        }
-    }
-
     @Override
     public void showAdd() {
         outputService.printSharp(PRINT_ADD);
@@ -69,5 +50,24 @@ public class SectionView extends Screen {
     @Override
     public void showAfterDelete() {
         outputService.printInfo(PRINT_AFTER_DELETE);
+    }
+
+    public void printAllSection(List<Section> sections) {
+        outputService.printSharp(PRINT_LINE_MAP);
+        validateSectionsLength(sections.size());
+        for (Section section : sections) {
+            outputService.printInfos(section.getLineName());
+            outputService.printInfos(Prefix.CONTOUR.getPrefix());
+            for (String stationName : section.getStationsName()) {
+                outputService.printInfos(stationName);
+            }
+            outputService.printEnter();
+        }
+    }
+
+    private void validateSectionsLength(int sectionsSize) {
+        if (sectionsSize == ZERO) {
+            throw new SectionException(ErrorCode.SECTION_NOT_EXIST);
+        }
     }
 }

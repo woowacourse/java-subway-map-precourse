@@ -14,6 +14,7 @@ public class MainView extends Screen {
         super(outputService);
     }
 
+    @Override
     public void showOptions() {
         outputService.printOptions(new String[]{MAIN, MAIN_ONE, MAIN_TWO, MAIN_THREE, MAIN_FOUR, MAIN_QUIT});
     }

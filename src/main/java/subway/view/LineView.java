@@ -32,21 +32,6 @@ public class LineView extends Screen {
         outputService.printOptions(new String[]{LINE_MAIN, LINE_ONE, LINE_TWO, LINE_THREE, LINE_BACK});
     }
 
-    public void printAllLines(List<Line> lines) {
-        validateLength(lines);
-        outputService.printSharp(PRINT_LINE);
-        for (Line line : lines) {
-            SectionFindResDto sectionFindResDto = new SectionFindResDto(line.getName());
-            outputService.printInfos(sectionFindResDto.getLineName());
-        }
-    }
-
-    private void validateLength(List<Line> lines) {
-        if (lines.size() == ZERO) {
-            throw new LineException(ErrorCode.LINE_NOT_EXIST);
-        }
-    }
-
     @Override
     public void showAdd() {
         outputService.printSharp(PRINT_ADD);
@@ -65,6 +50,21 @@ public class LineView extends Screen {
     @Override
     public void showAfterDelete() {
         outputService.printInfo(PRINT_AFTER_DELETE);
+    }
+
+    public void printAllLines(List<Line> lines) {
+        validateLength(lines);
+        outputService.printSharp(PRINT_LINE);
+        for (Line line : lines) {
+            SectionFindResDto sectionFindResDto = new SectionFindResDto(line.getName());
+            outputService.printInfos(sectionFindResDto.getLineName());
+        }
+    }
+
+    private void validateLength(List<Line> lines) {
+        if (lines.size() == ZERO) {
+            throw new LineException(ErrorCode.LINE_NOT_EXIST);
+        }
     }
 
     public void showAddUpward() {
