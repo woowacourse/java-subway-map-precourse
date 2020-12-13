@@ -14,8 +14,15 @@ public class MainController {
 
     public static void run() {
         OutputView.printMainView();
+        select();
+    }
+
+    public static void select() {
         String selection = InputView.getSelectionView();
-        ExceptionHandler.unselectable(selection, MAIN_PATTERN);
+        if (selection.equals("Q")) {
+            return;
+        }
+        ExceptionHandler.unselectableMain(selection, MAIN_PATTERN);
         execute(selection);
     }
 

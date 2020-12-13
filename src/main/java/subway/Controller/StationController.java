@@ -16,11 +16,14 @@ public class StationController {
 
     public static void run() {
         OutputView.printStationView();
+    }
+
+    public static void select() {
         String selection = InputView.getSelectionView();
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        ExceptionHandler.unselectable(selection, STATION_PATTERN);
+        ExceptionHandler.unselectableStation(selection, STATION_PATTERN);
         execute(selection);
     }
 
