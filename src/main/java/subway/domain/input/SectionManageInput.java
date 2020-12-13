@@ -24,7 +24,7 @@ public class SectionManageInput {
         return Collections.unmodifiableList(functionList);
     }
 
-    public String inputLineManageScreen(Scanner scanner) throws IllegalArgumentException{
+    public String inputSectionManageScreen(Scanner scanner) throws IllegalArgumentException{
         String sectionManageChoice = scanner.next();
         if (functionList().contains(sectionManageChoice)) {
             return sectionManageChoice;
