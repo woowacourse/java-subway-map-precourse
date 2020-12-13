@@ -28,21 +28,23 @@ public class LineService {
     }
 
     public void deleteLineByName(String name) {
-        Line line = lineRepository.findByName(name)
-                .orElseThrow(CannotFindLineException::new);
+        Line line = findLineByName(name);
         lineRepository.delete(line);
     }
 
-    public void addSection(SectionDto sectionDto, Station station) {
-        Line line = lineRepository.findByName(sectionDto.getLineName())
+    private Line findLineByName(String name) {
+        return lineRepository.findByName(name)
                 .orElseThrow(CannotFindLineException::new);
+    }
+
+    public void addSection(SectionDto sectionDto, Station station) {
+        Line line = findLineByName(sectionDto.getLineName());
         int sectionOrderNumber = sectionDto.getSectionOrderNumber();
         line.addSection(station, sectionOrderNumber);
     }
 
     public void deleteSection(SectionDto sectionDto) {
-        Line line = lineRepository.findByName(sectionDto.getLineName())
-                .orElseThrow(CannotFindLineException::new);
+        Line line = findLineByName(sectionDto.getLineName());
         line.deleteSectionByName(sectionDto.getStationName());
     }
 
