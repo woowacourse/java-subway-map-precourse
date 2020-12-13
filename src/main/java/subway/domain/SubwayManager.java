@@ -37,9 +37,9 @@ public class SubwayManager {
     }
 
     public State setLineState(State state, Scanner scanner) {
-        state = addLine(state, scanner);
-        state = removeLine(state, scanner);
-        state = inquiryLine(state);
+        state = LineManager.addLine(state, scanner);
+        state = LineManager.removeLine(state, scanner);
+        state = LineManager.inquiryLine(state);
 
         return state;
     }
@@ -96,66 +96,6 @@ public class SubwayManager {
             OutputView.printChoiceFunction();
 
             return InputView.inputSectionSceneChoice(scanner);
-        }
-
-        return state;
-    }
-
-
-
-    public State addLine(State state, Scanner scanner) {
-        if (state.equals(State.LINE_ADD)) {
-            OutputView.printInputRegisterLine();
-            addLine(InputView.inputLineName(scanner), scanner);
-
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
-
-    public void addLine(String name, Scanner scanner) {
-        Line line = new Line(name);
-
-        line.initializeSectionStation(setLineUpStation(scanner), setLineDownStation(scanner));
-
-        LineRepository.addLine(line);
-        OutputView.printRegisteredLineMessage();
-    }
-
-    private Station setLineUpStation(Scanner scanner) {
-        OutputView.printInputRegisterLineUpStation();
-
-        return StationRepository.findStationByName(scanner.next());
-    }
-
-    private Station setLineDownStation(Scanner scanner) {
-        OutputView.printInputRegisterLineDownStation();
-
-        return StationRepository.findStationByName(scanner.next());
-    }
-    
-    public State removeLine(State state, Scanner scanner) {
-        if (state.equals(State.LINE_REMOVE)) {
-            OutputView.printInputRemoveLine();
-            removeLine(InputView.inputLineName(scanner));
-
-            return State.MAIN_SCENE;
-        }
-
-        return state;
-    }
-
-    public void removeLine(String name) {
-        LineRepository.deleteLineByName(name);
-        OutputView.printRemovedLineMessage();
-    }
-    
-    public State inquiryLine(State state) {
-        if (state.equals(State.LINE_INQUIRY)) {
-            OutputView.printLineList(LineRepository.lines());
-
-            return State.MAIN_SCENE;
         }
 
         return state;
