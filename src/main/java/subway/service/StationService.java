@@ -50,33 +50,18 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean add(Scanner scanner) {
+        StationValidation stationValidation = new StationValidation();
+
         TextView.printStationAddingText();
         String stationName = scanner.nextLine();
-        if (checkValidation(stationName)) {
+
+        if (stationValidation.checkValidation(stationName)) {
             StationRepository.addStation(new Station(stationName));
             InformationView.printStationAddingInformation();
             System.out.println();
             return true;
         }
         return false;
-    }
-
-    public static boolean checkValidation(String stationName) {
-        StationValidation stationValidation = new StationValidation();
-
-        if (stationValidation.checkNameDuplication(stationName)) {
-            ExceptionView.printInvalidStationNameException();
-            return false;
-        }
-        if (!stationValidation.checkNameLength(stationName)) {
-            ExceptionView.printInvalidStationNameLengthException();
-            return false;
-        }
-        if (!stationValidation.checkNameLastCharacter(stationName)) {
-            ExceptionView.printInvalidStationNameLastCharacter();
-            return false;
-        }
-        return true;
     }
 
     @Override

@@ -4,6 +4,7 @@ import subway.repository.StationRepository;
 import subway.service.abstraction.validation.NameValidationInterface;
 import subway.type.BoundaryType;
 import subway.type.CheckType;
+import subway.view.output.ExceptionView;
 
 import java.util.List;
 
@@ -23,5 +24,22 @@ public class StationValidation implements NameValidationInterface {
     public boolean checkNameLastCharacter(String stationName) {
         String lastCharacter = stationName.substring(stationName.length() - 1);
         return lastCharacter.equals(CheckType.STATION_CHECK.getCheck());
+    }
+
+    @Override
+    public boolean checkValidation(String stationName) {
+        if (checkNameDuplication(stationName)) {
+            ExceptionView.printInvalidStationNameException();
+            return false;
+        }
+        if (!checkNameLength(stationName)) {
+            ExceptionView.printInvalidStationNameLengthException();
+            return false;
+        }
+        if (!checkNameLastCharacter(stationName)) {
+            ExceptionView.printInvalidStationNameLastCharacter();
+            return false;
+        }
+        return true;
     }
 }
