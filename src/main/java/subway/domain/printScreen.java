@@ -88,4 +88,40 @@ public class printScreen {
         }
         System.out.println();
     }
+
+    public static void printSectionManagementScreen() {
+        System.out.println("## 구간 관리 화면");
+        System.out.println("1. 구간 등록");
+        System.out.println("2. 구간 삭제");
+        System.out.println("B. 돌아가기\n");
+        printSelectFunction();
+    }
+
+    public static void printInputAddLine() {
+        System.out.println("## 노선을 입력하세요.");
+    }
+
+    public static void printInputAddStation() {
+        System.out.println("## 역이름을 입력하세요.");
+    }
+
+    public static void printInputOrder() {
+        System.out.println("## 순서를 입력하세요.");
+    }
+
+    public static void printAlarmAddSection() {
+        System.out.println("[INFO] 구간이 등록되었습니다.");
+    }
+
+    public static void printInputDeleteLine() {
+        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+    }
+
+    public static void printInputDeleteStation() {
+        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+    }
+
+    public static void printAlarmDeleteSection() {
+        System.out.println("[INFO] 구간이 삭제되었습니다.");
+    }
 }
