@@ -6,17 +6,9 @@ import subway.menu.Menu;
 
 import java.util.List;
 
-public class OutputView {
+import static subway.view.OutputViewMessage.*;
 
-    private static final String INFO_PREFIX = "[INFO] ";
-    private static final String INPUT_PREFIX = "## ";
-    private static final String PRINT_STATIONS_TITLE = INPUT_PREFIX + "%s 목록";
-    private static final String MENU_SUFFIX = "화면";
-    private static final String RESULT_MESSAGE = INFO_PREFIX + "지하철 %s이 %s 되었습니다.";
-    private static final String ACTION_PRINT_MESSAGE = "## %s할 %s 이름을 입력하세요.";
-    private static final String LIST_TITLE_MESSAGE = "## %s 목록";
-    private static final String SUBWAY_MAP_LIST = INPUT_PREFIX + "지하철 노선도";
-    private static String LIST_BOUNDARY = "[INFO] ---";
+public class OutputView {
 
     private static void addBlankLine() {
         System.out.println();
@@ -24,12 +16,12 @@ public class OutputView {
 
     private static <T> void printList(final List<T> objs) {
         for (T obj : objs) {
-            System.out.println(INFO_PREFIX + obj.toString());
+            System.out.println(OutputViewMessage.INFO_PREFIX + obj.toString());
         }
     }
 
-    public static void printStations(final List<Station> stations,Menu menu) {
-        System.out.println(String.format(PRINT_STATIONS_TITLE,menu.getType()));
+    public static void printStations(final List<Station> stations, Menu menu) {
+        System.out.println(String.format(PRINT_STATIONS_TITLE, menu.getType()));
         printList(stations);
     }
 
@@ -62,12 +54,12 @@ public class OutputView {
 
     public static void printResultMessage(final Menu menu) {
 
-        String message = String.format(RESULT_MESSAGE, menu.getType(), menu.getActionType());
+        String message = String.format(RESULT_MESSAGE, menu.getType(), menu.getAction());
         System.out.println(message);
     }
 
     public static void printInputMessage(final Menu menu) {
-        String message = String.format(ACTION_PRINT_MESSAGE, menu.getActionType(), menu.getType());
+        String message = String.format(ACTION_PRINT_MESSAGE, menu.getAction(), menu.getType());
         System.out.println(message);
     }
 
@@ -76,7 +68,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printErrorMessage(Exception exception){
+    public static void printErrorMessage(Exception exception) {
         System.out.println(exception.getMessage());
     }
 
