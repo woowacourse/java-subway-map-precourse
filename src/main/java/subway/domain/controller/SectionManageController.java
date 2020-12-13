@@ -4,7 +4,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.input.SectionManageInput;
 
-import java.util.Scanner;
+
 
 public class SectionManageController {
 
@@ -12,6 +12,11 @@ public class SectionManageController {
 
     public void processEnrollSection(Line line, Station station, int order) {
         line.addOrderedStation(station, order);
+    }
+
+    public void processDeleteSection(Line line, Station station) {
+        line.removeOrderedStation(station);
+        station.removeOrderedLine(line);
     }
 
 

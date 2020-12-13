@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Station {
     private final String name;
@@ -24,5 +25,17 @@ public class Station {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public void removeOrderedLine(Line line) {
+        for (Station station : StationRepository.fixedStations()) {
+            if (station.getName().equals(getName()) && station.getLines().contains(line)) {
+                //삭제할 수 없는 노선입니다
+                return;
+            }
+        }
+        if (LineRepository.lines().contains(line)) {
+            lines.removeIf(line1 -> Objects.equals(line1.getName(), line.getName()));
+        }
     }
 }
