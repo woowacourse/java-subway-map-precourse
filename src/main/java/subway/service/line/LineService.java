@@ -8,6 +8,8 @@ import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.view.output.ScreenView;
+import subway.view.output.line.LineInformationView;
+import subway.view.output.line.LineTextView;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -34,8 +36,7 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
             return add(scanner);
         }
         if (input.equals(InputType.INPUT_TWO.getInput())) {
-            // TODO: 노선 삭제 기능 구현
-            return false;
+            return delete(scanner);
         }
         if (input.equals(InputType.INPUT_THREE.getInput())) {
             // TODO: 노선 조회 기능 구현
@@ -69,6 +70,17 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
 
     @Override
     public boolean delete(Scanner scanner) {
+        LineNameDeletionValidation lineNameDeletionValidation = new LineNameDeletionValidation();
+
+        LineTextView.printLineDeletionText();
+        String lineName = scanner.nextLine();
+
+        if (lineNameDeletionValidation.checkDeletionValidation(lineName)) {
+            LineNameDeletionService.deleteLineName(lineName);
+            LineInformationView.printLineDeletionInformation();
+            System.out.println();
+            return true;
+        }
         return false;
     }
 

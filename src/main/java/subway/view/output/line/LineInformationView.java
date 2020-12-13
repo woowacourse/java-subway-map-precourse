@@ -7,4 +7,9 @@ public class LineInformationView {
         System.out.println();
         System.out.println(InformationType.LINE_ADDING_INFORMATION.getInformation());
     }
+
+    public static void printLineDeletionInformation() {
+        System.out.println();
+        System.out.println(InformationType.LINE_DELETION_INFORMATION.getInformation());
+    }
 }

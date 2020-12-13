@@ -17,4 +17,9 @@ public class LineTextView {
         System.out.println();
         System.out.println(TextType.LINE_DOWN_STATION_NAME_TEXT.getText());
     }
+
+    public static void printLineDeletionText() {
+        System.out.println();
+        System.out.println(TextType.LINE_DELETION_TEXT.getText());
+    }
 }

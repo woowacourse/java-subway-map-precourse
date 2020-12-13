@@ -27,4 +27,9 @@ public class LineExceptionView {
         System.out.println();
         System.out.println(ExceptionType.INVALID_LINE_SAME_STATION_NAMES.getException());
     }
+
+    public static void printInvalidLineNameExistenceException() {
+        System.out.println();
+        System.out.println(ExceptionType.INVALID_LINE_NAME_EXISTENCE.getException());
+    }
 }

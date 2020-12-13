@@ -7,10 +7,18 @@ import subway.domain.TransitMap;
 import java.util.*;
 
 public class TransitMapRepository {
-    private static final Map<Line, LinkedList<Station>> transitMaps = new LinkedHashMap<>();
+    private static Map<Line, LinkedList<Station>> transitMaps = new LinkedHashMap<>();
 
     public static Map<Line, LinkedList<Station>> transitMaps() {
         return Collections.unmodifiableMap(transitMaps);
+    }
+
+    public static void addTransitMap(TransitMap transitMap) {
+        transitMaps.put(transitMap.getTransitMapLine(), transitMap.getTransitMapStations());
+    }
+
+    public static void deleteTransitMap(Line line) {
+        transitMaps.remove(line);
     }
 
     public static List<LinkedList<String>> transitMapsStationNames() {
@@ -26,9 +34,5 @@ public class TransitMapRepository {
             transitMapsStationNames.add(transitMapStationNames);
         }
         return transitMapsStationNames;
-    }
-
-    public static void addTransitMap(TransitMap transitMap) {
-        transitMaps.put(transitMap.getTransitMapLine(), transitMap.getTransitMapStations());
     }
 }
