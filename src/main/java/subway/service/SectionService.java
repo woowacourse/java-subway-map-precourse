@@ -1,7 +1,5 @@
 package subway.service;
 
-import subway.service.abstraction.feature.FeatureChoiceInterface;
-import subway.service.abstraction.feature.FeatureInterface;
 import subway.service.abstraction.input.InputInterface;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
@@ -9,7 +7,7 @@ import subway.view.output.ScreenView;
 
 import java.util.Scanner;
 
-public class SectionService implements InputInterface, FeatureChoiceInterface, FeatureInterface {
+public class SectionService extends StationService implements InputInterface {
     public static void manageSection(Scanner scanner) {
         SectionService sectionService = new SectionService();
 
