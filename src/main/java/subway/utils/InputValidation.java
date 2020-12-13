@@ -71,7 +71,7 @@ public class InputValidation {
     public void validateStationSizeOfLineIsMoreThan2(String lineName, LineStationRepository lineStation) {
         int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName));
         if (stationSizeOfLine <= MIN_COUNT_OF_DELETE_SECTION) {
-            throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하힙니다.");
+            throw new IllegalArgumentException("[ERROR] 노선에 포함된 역이 두개 이하입니다.");
         }
     }
 
