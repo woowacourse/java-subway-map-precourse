@@ -1,11 +1,11 @@
 package subway.section;
 
 import subway.line.domain.Line;
+import subway.section.exception.AlreadyRegisteredStationException;
 import subway.section.exception.InvalidOrderException;
 import subway.section.exception.NotRegisteredStationException;
 import subway.section.exception.TooShortToRemoveException;
 import subway.station.domain.Station;
-import subway.station.exception.AlreadyExistStationException;
 
 public class SectionValidator {
     private SectionValidator() {
@@ -18,7 +18,7 @@ public class SectionValidator {
 
     private static void validateDuplication(Line line, Station station) {
         if (line.isExist(station.getName())) {
-            throw new AlreadyExistStationException();
+            throw new AlreadyRegisteredStationException();
         }
     }
 

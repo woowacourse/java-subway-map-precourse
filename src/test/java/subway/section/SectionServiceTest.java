@@ -7,12 +7,12 @@ import subway.line.domain.Line;
 import subway.line.domain.LineRepository;
 import subway.line.domain.Route;
 import subway.line.exception.NotExistLineException;
+import subway.section.exception.AlreadyRegisteredStationException;
 import subway.section.exception.InvalidOrderException;
 import subway.section.exception.NotRegisteredStationException;
 import subway.section.exception.TooShortToRemoveException;
 import subway.station.domain.Station;
 import subway.station.domain.StationRepository;
-import subway.station.exception.AlreadyExistStationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -82,7 +82,7 @@ class SectionServiceTest {
         int order = 1;
 
         //when & then
-        assertThatExceptionOfType(AlreadyExistStationException.class)
+        assertThatExceptionOfType(AlreadyRegisteredStationException.class)
                 .isThrownBy(() -> SectionService.register(LINE_NUMBER_ONE, alreadyExistStation, order));
     }
 
