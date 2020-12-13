@@ -13,8 +13,9 @@ public class OutputView {
     private static final String MENU_SELECT = "원하는 기능을 선택하세요.";
 
     public static void printMenuMessage(List<String> menuMessages) {
+        System.out.print(SHARP_PREFIX);
         menuMessages.forEach(System.out::println);
-        System.out.println(MENU_SELECT);
+        System.out.println(SHARP_PREFIX + MENU_SELECT);
     }
 
     public static void warnMessage(String warnMessage) {
