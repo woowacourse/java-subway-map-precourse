@@ -8,7 +8,6 @@ import subway.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
@@ -30,39 +29,39 @@ public class MenuController {
         }
     };
 
-    public static void scanMenu(Scanner scanner) {
-        String selectedMainMenu = scanMainMenu(scanner);
+    public static void scanMenu(InputView inputView) {
+        String selectedMainMenu = scanMainMenu(inputView);
         if (Menu.isCategoricalMenu(mainMenu.get(selectedMainMenu))) {
-            scanSubMenu(scanner, mainMenu.get(selectedMainMenu));
+            scanSubMenu(inputView, mainMenu.get(selectedMainMenu));
         }
     }
 
-    public static String scanMainMenu(Scanner scanner) {
+    public static String scanMainMenu(InputView inputView) {
         OutputView.printMainScreen();
         List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
-        String selectedMainMenu = scanValidMenu(scanner, mainMenuSigns);
+        String selectedMainMenu = scanValidMenu(inputView, mainMenuSigns);
         selectedMenus.add(selectedMainMenu);
         return selectedMainMenu;
     }
 
-    private static void scanSubMenu(Scanner scanner, SubMenu menu) {
+    private static void scanSubMenu(InputView inputView, SubMenu menu) {
         OutputView.printSubScreen(menu);
         List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
-        String selectedSubMenu = scanValidMenu(scanner, subMenuSigns);
+        String selectedSubMenu = scanValidMenu(inputView, subMenuSigns);
         selectedMenus.add(selectedSubMenu);
     }
 
-    private static String scanValidMenu(Scanner scanner, List<String> signs) {
-        String menu = scanMenuCommand(scanner);
+    private static String scanValidMenu(InputView inputView, List<String> signs) {
+        String menu = scanMenuCommand(inputView);
         while (!isValidMenu(menu, signs)) {
-            menu = scanMenuCommand(scanner);
+            menu = scanMenuCommand(inputView);
         }
         return menu;
     }
 
-    private static String scanMenuCommand(Scanner scanner) {
+    private static String scanMenuCommand(InputView inputView) {
         OutputView.printMenuSelectScreen();
-        return InputView.getInput(scanner);
+        return inputView.getInput();
     }
 
     public static boolean isValidMenu(String menu, List<String> signs) {

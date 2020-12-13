@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.view.InputView;
 import subway.view.OutputView;
 
 public class Station {
@@ -13,7 +14,7 @@ public class Station {
         return name;
     }
 
-    public static void add(String stationMessage) {
+    public static void add(InputView inputView, String stationMessage) {
         OutputView.printAddActionMessage(stationMessage);
     }
 }

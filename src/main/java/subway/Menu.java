@@ -2,6 +2,7 @@ package subway;
 
 import subway.controller.MenuController;
 import subway.domain.Station;
+import subway.view.InputView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -78,32 +79,32 @@ public class Menu {
         return true;
     }
 
-    public static void runMenu(ArrayList<String> selectedMenus) {
+    public static void runMenu(InputView inputView, ArrayList<String> selectedMenus) {
         SubMenu menu = MenuController.getSubMenu(selectedMenus.get(0));
         if (menu == stationMenu) {
-            runStationMenu(selectedMenus.get(1));
+            runStationMenu(inputView, selectedMenus.get(1));
         }
         if (menu == lineMenu) {
-            runLineMenu(selectedMenus.get(1));
+            runLineMenu(inputView, selectedMenus.get(1));
         }
         if (menu == edgeMenu) {
-            runEdgeMenu(selectedMenus.get(1));
+            runEdgeMenu(inputView, selectedMenus.get(1));
         }
         if (menu == lineMap) {
             runLineMapMenu();
         }
     }
 
-    private static void runStationMenu(String subMenuAction) {
+    private static void runStationMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
-            Station.add(STATION_MENU_TITLE);
+            Station.add(inputView, STATION_MENU_TITLE);
         }
     }
 
-    private static void runLineMenu(String subMenuAction) {
+    private static void runLineMenu(InputView inputView, String subMenuAction) {
     }
 
-    private static void runEdgeMenu(String subMenuAction) {
+    private static void runEdgeMenu(InputView inputView, String subMenuAction) {
     }
 
     private static void runLineMapMenu() {

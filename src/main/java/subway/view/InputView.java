@@ -3,11 +3,13 @@ package subway.view;
 import java.util.Scanner;
 
 public class InputView {
+    private final Scanner scanner;
 
-    private InputView() {
+    public InputView(Scanner scanner) {
+        this.scanner = scanner;
     }
 
-    public static String getInput(Scanner scanner) {
+    public String getInput() {
         return scanner.nextLine();
     }
 }
