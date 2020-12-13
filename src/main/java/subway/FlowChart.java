@@ -129,7 +129,7 @@ public class FlowChart {
 
     public static void sectionDelete(Scanner scanner, String sectionInput) {
         if (sectionInput.equals(Constant.TWO)) {
-            System.out.println("sectionDelete");
+            SectionSetting.delete(scanner);
             System.out.println();
             main(scanner);
         }

@@ -83,7 +83,8 @@ public class Constant {
     static final String IS_IN_LINE_LIST = "등록되지 않은 노선입니다.";
     static final String FIRST_STATION_CANNOT_BE_LAST_STATION = "상행 종점역과 하행 종점역은 같을 수 없습니다.";
     static final String IS_IN_LINE = "노선에 등록된 역은 삭제할 수 없습니다.";
-    static final String IS_ALREADY_ADDED_IN_IT = "이미 해당 노선에 등록된 역입니다.";
+    static final String IS_IN_THIS_LINE = "이미 해당 노선에 등록된 역입니다.";
     static final String IS_NATURAL_NUMBER = "순서는 0이 아닌 자연수만 입력해야합니다.";
     static final String IS_VALID_RANGE = "순서는 해당 노선의 역 갯수를 초과할 수 없습니다.";
+    static final String IS_NOT_IN_THIS_LINE = "이미 해당 노선에 등록된 역입니다.";
 }

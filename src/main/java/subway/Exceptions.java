@@ -103,13 +103,17 @@ public class Exceptions {
         }
     }
 
-    static String isAlreadyAddedInThisLine(String stationName, Line line) {
+    static String isInThisLine(String stationName, Line line) {
         line.stations().forEach(station -> {
             if (station.getName().equals(stationName)) {
-                throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_ALREADY_ADDED_IN_IT);
+                throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_IN_THIS_LINE);
             }
         });
         return stationName;
+    }
+
+    static void isNotInThisLine() {
+        throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NOT_IN_THIS_LINE);
     }
 
     static int checkOrderInput(String inputString, int stationsSize) {
@@ -121,7 +125,7 @@ public class Exceptions {
     static int isInteger(String input) {
         try {
             return Integer.parseInt(input);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_NATURAL_NUMBER);
         }
     }
@@ -134,9 +138,11 @@ public class Exceptions {
     }
 
     static int isValidRange(int input, int stationsSize) {
-        if(input <= stationsSize){
+        if (input <= stationsSize) {
             return input;
         }
         throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_VALID_RANGE);
     }
+
+
 }

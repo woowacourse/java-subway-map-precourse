@@ -20,6 +20,20 @@ public class SectionSetting {
         });
     }
 
+    public static void delete(Scanner scanner) {
+        Print.hashMessage(Constant.ENTER_LINE_SECTION_TO_DELETE);
+        String lineName = lineName(scanner);
+        LineRepository.lines().forEach(line -> {
+            if (line.getName().equals(lineName)) {
+                String station = stationToDelete(scanner, line);
+                if (!line.deleteStation(station)){
+                    Exceptions.isNotInThisLine();
+                }
+                Print.infoMessage(Constant.DELETE_SECTION_DONE);
+            }
+        });
+    }
+
     public static String lineName(Scanner scanner) {
         String input = scanner.next();
         System.out.println();
@@ -30,7 +44,14 @@ public class SectionSetting {
         Print.hashMessage(Constant.ENTER_STATION_SECTION_TO_ADD);
         String input = scanner.next();
         System.out.println();
-        return Exceptions.isAlreadyAddedInThisLine(input, line);
+        return Exceptions.isInThisLine(input, line);
+    }
+
+    public static String stationToDelete(Scanner scanner, Line line) {
+        Print.hashMessage(Constant.ENTER_STATION_SECTION_TO_ADD);
+        String input = scanner.next();
+        System.out.println();
+        return input;
     }
 
     public static int orderToAdd(Scanner scanner, Line line) {
