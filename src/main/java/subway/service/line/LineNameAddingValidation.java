@@ -1,6 +1,7 @@
 package subway.service.line;
 
 import subway.repository.LineRepository;
+import subway.repository.StationRepository;
 import subway.service.abstraction.validation.NameAddingValidationInterface;
 import subway.type.BoundaryType;
 import subway.type.CheckType;
@@ -43,7 +44,24 @@ public class LineNameAddingValidation implements NameAddingValidationInterface {
         return true;
     }
 
+    public static boolean checkExistingStationNames(String upStationName, String downStationName) {
+        List<String> stationNames = StationRepository.stationNames();
+        return (stationNames.contains(upStationName)) && (stationNames.contains(downStationName));
+    }
+
+    public static boolean checkSameStationNames(String upStationName, String downStationName) {
+        return upStationName.equals(downStationName);
+    }
+
     public boolean checkStationNamesAddingValidation(String upStationName, String downStationName) {
-        return false;
+        if (!checkExistingStationNames(upStationName, downStationName)) {
+            LineExceptionView.printInvalidLineExistingStationNamesException();
+            return false;
+        }
+        if (checkSameStationNames(upStationName, downStationName)) {
+            LineExceptionView.printInvalidLineSameStationNamesException();
+            return false;
+        }
+        return true;
     }
 }

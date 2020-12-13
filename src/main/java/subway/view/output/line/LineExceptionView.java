@@ -17,4 +17,14 @@ public class LineExceptionView {
         System.out.println();
         System.out.println(ExceptionType.INVALID_LINE_NAME_LAST_CHARACTER.getException());
     }
+
+    public static void printInvalidLineExistingStationNamesException() {
+        System.out.println();
+        System.out.println(ExceptionType.INVALID_LINE_EXISTING_STATION_NAMES.getException());
+    }
+
+    public static void printInvalidLineSameStationNamesException() {
+        System.out.println();
+        System.out.println(ExceptionType.INVALID_LINE_SAME_STATION_NAMES.getException());
+    }
 }

@@ -1,15 +1,15 @@
 package subway.service.line;
 
 import subway.domain.Line;
+import subway.domain.Station;
 import subway.repository.LineRepository;
 import subway.service.InputService;
 import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.view.output.ScreenView;
-import subway.view.output.line.LineInformationView;
-import subway.view.output.line.LineTextView;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class LineService implements FeatureChoiceInterface, FeatureInterface {
@@ -51,33 +51,19 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
     public boolean add(Scanner scanner) {
         LineNameAddingValidation lineNameAddingValidation = new LineNameAddingValidation();
 
-        String lineName = scanLineName(scanner);
-        String upStationName = scanUpStationName(scanner);
-        String downStationName = scanDownStationName(scanner);
-
-        if ((lineNameAddingValidation.checkAddingValidation(lineName))
-                && (lineNameAddingValidation.checkStationNamesAddingValidation(upStationName, downStationName))) {
-            LineRepository.addLine(new Line(lineName));
-            LineInformationView.printLineAddingInformation();
-            System.out.println();
-            return true;
+        String lineName = LineNameAddingService.scanLineName(scanner);
+        if (!lineNameAddingValidation.checkAddingValidation(lineName)) {
+            return false;
         }
-        return false;
-    }
+        String upStationName = LineNameAddingService.scanUpStationName(scanner);
+        String downStationName = LineNameAddingService.scanDownStationName(scanner);
+        if (!lineNameAddingValidation.checkStationNamesAddingValidation(upStationName, downStationName)) {
+            return false;
+        }
 
-    public static String scanLineName(Scanner scanner) {
-        LineTextView.printLineAddingText();
-        return scanner.nextLine();
-    }
-
-    public static String scanUpStationName(Scanner scanner) {
-        LineTextView.printLineUpStationNameText();
-        return scanner.nextLine();
-    }
-
-    public static String scanDownStationName(Scanner scanner) {
-        LineTextView.printLineDownStationNameText();
-        return scanner.nextLine();
+        LinkedList<Station> stationNames = LineNameAddingService.addStationNames(upStationName, downStationName);
+        LineNameAddingService.addNames(lineName, stationNames);
+        return true;
     }
 
     @Override
