@@ -29,8 +29,13 @@ public class SectionMenu {
     }
 
     public static Menu getMenuSelection(Scanner scanner) {
-        OutputView.printMsg("## 원하는 기능을 선택하세요.\n");
-        return Menu.getSelection(InputView.getInput(scanner));
+        try {
+            OutputView.printMsg("## 원하는 기능을 선택하세요.\n");
+            return Menu.getSelection(InputView.getInput(scanner));
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            return getMenuSelection(scanner);
+        }
     }
 
     public static void goBack() {
