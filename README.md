@@ -17,19 +17,19 @@
         - [x] 중복된 이름
         - [x] ~~특수문자~~ (`전대.에버랜드, 운동장.송담대` 등 특수문자 포함역 존재)
     2. StationRepository에서 Station 객체 삭제
-        - [ ] 등록된 Station이 없을 경우
-        - [ ] 존재하지 않는 이름
+        - [x] 등록된 Station이 없을 경우
+        - [x] 존재하지 않는 이름
         - [ ] 노선 등록 여부에 의한 삭제불가
     3. StationRepository에 저장된 Station 이름 출력
-        - [ ] 등록된 Station이 없을 경우
+        - [x] 등록된 Station이 없을 경우
     
 - Line 관리
     1. LineRepository에 새로운 Line 객체 저장
         - [ ] StationRepository에 등록되어 있는 Station이 2개 미만
-        - [ ] 이름 마지막 '선' 포함 여부
-        - [ ] 이름 내 띄어쓰기(공백 포함 여부)
-        - [ ] 2 글자 미만 ('선' 포함 3글자 미만)
-        - [ ] 중복된 이름
+        - [x] 이름 마지막 '선' 포함 여부
+        - [x] 이름 내 띄어쓰기(공백 포함 여부)
+        - [x] 2 글자 미만 ('선' 포함 3글자 미만)
+        - [x] 중복된 이름
         - [ ] Station이 존재하지 않는 경우
         - [ ] 상행/하행으로 같은 Station을 입력한 경우
         - [x] ~~상행, 하행 종점이 같은 노선~~  
@@ -41,12 +41,11 @@
     3. LineRepository에 저장된 Line 이름 출력
         - [ ] 등록된 Line이 없는 경우
     
-- 구간 관리
-    1. Line 객체의 필드에 Station 객체 등록
-        - [ ] 등록된 Line이 없는 경우
-        - [ ] 등록된 Station이 없는 경우
-        - [ ] 존재하지 않는 Line 이름
-        - [ ] 존재하지 않는 Station 이름
+- Section 관리
+    1. Section 객체의 필드에 Line, Stations 등록
+        - [x] 등록된 Station이 없는 경우
+        - [ ] 이미 존재하는 Line 이름
+        - [ ] 이미 등록되어 있는 Station 이름
     2. Line 객체의 필드에서 Station 객체 제거
         - [ ] 등록되어 있는 Station이 2개일 경우
     3. 전체 구간(노선) 조회
