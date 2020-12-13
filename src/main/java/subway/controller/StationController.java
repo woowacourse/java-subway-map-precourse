@@ -3,14 +3,11 @@ package subway.controller;
 import subway.domain.Name;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.domain.validator.StationValidator;
-import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.StationView;
 
 import java.util.Scanner;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class StationController {
     private static StationController stationController = null;
@@ -32,38 +29,35 @@ public class StationController {
     }
 
     public void addStation() {
-        Station station = getStationToAdd();
-        StationRepository.addStation(station);
-        stationView.announceAdditionSuccess();
-    }
-
-    public Station getStationToAdd() {
         try {
-            Name name = stationView.getStationNameToAdd();
-            StationValidator.checkNonExistingName(name);
-            return Station.create(name);
+            Station station = getStationToAdd();
+            StationRepository.addStation(station);
+            stationView.announceAdditionSuccess();
         } catch (Exception e) {
             OutputView.printErrorMsg(e);
-            return getStationToAdd();
+            addStation();
         }
+    }
+
+    private Station getStationToAdd() {
+        Name name = stationView.getStationNameToAdd();
+        return Station.create(name);
     }
 
     public void deleteStation() {
-        Station station = getStationToDelete();
-        StationRepository.remove(station);
-        stationView.announceDeletionSuccess();
+        try {
+            Station station = getStationToDelete();
+            StationRepository.remove(station);
+            stationView.announceDeletionSuccess();
+        } catch (Exception e) {
+            OutputView.printErrorMsg(e);
+            deleteStation();
+        }
     }
 
     private Station getStationToDelete() {
-        try {
-            Name name = stationView.getStationNameToDelete();
-            Station station = StationRepository.getByName(name);
-            StationValidator.checkIsNotOnLine(station);
-            return station;
-        } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            return getStationToDelete();
-        }
+        Name name = stationView.getStationNameToDelete();
+        return StationRepository.getByName(name);
     }
 
     public void printStations() {

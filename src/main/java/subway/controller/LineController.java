@@ -1,7 +1,6 @@
 package subway.controller;
 
 import subway.domain.*;
-import subway.domain.validator.LineValidator;
 import subway.view.LineView;
 import subway.view.OutputView;
 
@@ -25,45 +24,22 @@ public class LineController {
     }
 
     public void addLine() {
-        Name newLineName = getLineNameToAdd();
+        Name lineName = lineView.getLineNameToAdd();
         Station firstStation = getFirstStation();
-        Station lastStation = getLastStation(firstStation);
+        Station lastStation = getLastStation();
 
-        LineRepository.addLine(new Line(newLineName, firstStation, lastStation));
+        LineRepository.addLine(Line.create(lineName, firstStation, lastStation));
         lineView.announceAdditionSuccess();
     }
 
-    private Name getLineNameToAdd() {
-        try {
-            Name name = lineView.getLineNameToAdd();
-            LineValidator.checkNonExistingName(name);
-            return name;
-        } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            return getLineNameToAdd();
-        }
-    }
-
     private Station getFirstStation() {
-        try {
-            Name name = lineView.getFirstStationName();
-            return StationRepository.getByName(name);
-        } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            return getFirstStation();
-        }
+        Name name = lineView.getFirstStationName();
+        return StationRepository.getByName(name);
     }
 
-    private Station getLastStation(Station firstStation) {
-        try {
-            Name name = lineView.getLastStationName();
-            Station lastStation = StationRepository.getByName(name);
-            LineValidator.checkEndStationsDifferent(firstStation, lastStation);
-            return lastStation;
-        } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            return getLastStation(firstStation);
-        }
+    private Station getLastStation() {
+        Name name = lineView.getLastStationName();
+        return StationRepository.getByName(name);
     }
 
     public void deleteLine() {
@@ -73,13 +49,8 @@ public class LineController {
     }
 
     private Line getLineToDelete() {
-        try {
-            Name name = lineView.getLineNameToDelete();
-            return LineRepository.getByName(name);
-        } catch (Exception e) {
-            OutputView.printErrorMsg(e);
-            return getLineToDelete();
-        }
+        Name name = lineView.getLineNameToDelete();
+        return LineRepository.getByName(name);
     }
 
     public void printLineList() {
