@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.List;
+import java.util.Map;
 import subway.domain.Line;
 import subway.domain.Station;
 
@@ -9,6 +10,9 @@ public interface OutputView {
     String PREFIX_INFO = "[INFO] ";
     String STATION_LIST = "## 역 목록";
     String LINE_LIST = "## 노선 목록";
+    String ROUTE_MAP = "## 지하철 노선도";
+    String DIVISION_LINE = "---";
+
 
     String ORDER_TO_REGISTER_STATION = "## 등록할 역 이름을 입력하세요.";
     String ORDER_TO_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
@@ -38,15 +42,25 @@ public interface OutputView {
     String SECTION_MANAGEMENT_SCREEN = "## 구간 관리 화면\n1. 구간 등록\n"
         + "2. 구간 삭제\nB. 돌아가기\n\n## 원하는 기능을 선택하세요.";
 
-
-
     void print(String message);
 
-    static void printList(List<?> stations) {
-        for (Object object : stations) {
+    static void printList(List<?> list) {
+        for (Object object : list) {
             System.out.println(PREFIX_INFO + object);
         }
         System.out.println();
+    }
+
+    static void printMap(Map<Line, List<Station>> lines) {
+        System.out.println(ROUTE_MAP);
+        for (Line line : lines.keySet()){
+            System.out.println(PREFIX_INFO+line);
+            System.out.println(PREFIX_INFO+DIVISION_LINE);
+            lines.get(line)
+                .stream()
+                .forEach(station -> System.out.println(PREFIX_INFO+station));
+            System.out.println();
+        }
     }
 
 }

@@ -3,7 +3,6 @@ package subway;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
@@ -51,7 +50,10 @@ public class Router {
         if (command.equals(THREE)) {
             return enterSectionManagementScreen();
         }
-        return false;
+        if (command.equals(FOUR)) {
+            OutputView.printMap(lineController.searchLine());
+        }
+        return true;
     }
 
     private boolean enterStationManagementScreen() {
