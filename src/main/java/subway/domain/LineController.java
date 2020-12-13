@@ -34,7 +34,7 @@ public class LineController {
         String upward = scanner.next();
         System.out.println(String.join(" 노선의 하행 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String downward = scanner.next();
-        lineRepository.addLine(line);
+        lineRepository.addLine(line, new Station(upward), new Station(downward));
     }
 
     void deleteLine(){

@@ -15,7 +15,7 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if(stations.stream().anyMatch(o -> o.getName().equals(station.getName()))){
+        if(checkExistStation(station)){
             System.out.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
             return;
         }
@@ -31,5 +31,9 @@ public class StationRepository {
         for(int i=0; i<stations.size(); i++){
             System.out.println(String.join(" ", Constant.INFO_PREFIX, stations.get(i).getName()));
         }
+    }
+
+    public static boolean checkExistStation(Station station){
+        return stations.stream().anyMatch(o -> o.getName().equals(station.getName()));
     }
 }

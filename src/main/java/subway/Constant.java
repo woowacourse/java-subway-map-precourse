@@ -28,5 +28,4 @@ public class Constant {
     public static final String DELETE_PREFIX = "## 삭제할";
     public static final String NAME_POSTFIX = "이름을 입력해주세요.";
     public static final String LINE_STATION_POSTFIX = "종점역 이름을 입력하세요.";
-
 }
