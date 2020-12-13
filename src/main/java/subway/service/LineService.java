@@ -21,6 +21,7 @@ public class LineService {
     private final String DOWNSTATION_NOT_EXIST_WARN = "존재하지 않는 하행종점역 입니다.\n";
     private final String BOTH_STATION_NOT_EXIST_WARN = "둘 다 존재하지 않는 역 입니다.\n";
     private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.\n";
+    private final String LINE_LIST_MESSAGE = "노선 목록\n";
     private final String UP_COMMAND = "UP";
     private final String DOWN_COMMAND = "DOWN";
     private final int MIN_NAME_LENGTH = 2;
@@ -78,5 +79,11 @@ public class LineService {
             return findStationByName(stationName);
         }
         return null;
+    }
+
+    public void printLineList() {
+        askMessage(LINE_LIST_MESSAGE);
+        lines().
+                forEach(line -> stationMessage(line.getName()));
     }
 }

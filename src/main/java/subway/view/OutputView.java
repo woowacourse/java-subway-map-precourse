@@ -17,4 +17,8 @@ public class OutputView {
     public static void stationMessage(String stationName) {
         System.out.println(INFO_PREFIX + stationName + STATION_SUFFIX);
     }
+
+    public static void lineMessage(String lineName) {
+        System.out.println(INFO_PREFIX + lineName);
+    }
 }
