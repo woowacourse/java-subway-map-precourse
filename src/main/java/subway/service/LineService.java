@@ -30,6 +30,7 @@ public class LineService {
         try {
             validateNameLength(name);
             validateNameEndWord(name);
+            validateExistLine(name);
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
             return false;
@@ -46,6 +47,12 @@ public class LineService {
     private void validateNameEndWord(String name) {
         if (!name.endsWith(STATION_END_NAME)) {
             throw new IllegalArgumentException(Message.ERROR_LINE_NAME_END);
+        }
+    }
+
+    private void validateExistLine(String name) throws IllegalArgumentException {
+        if (LineRepository.isExist(name)) {
+            throw new IllegalArgumentException(Message.ERROR_EXIST_LINE);
         }
     }
 

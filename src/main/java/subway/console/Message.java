@@ -31,6 +31,7 @@ public class Message {
     public static final String ERROR_NOT_EXIST_STATION = "\n[ERROR] 존재하지 않는 역입니다.";
     public static final String ERROR_EXIST_STATION = "\n[ERROR] 이미 존재하는 역입니다.";
     public static final String ERROR_EMPTY_STATION = "\n[ERROR] 등록된 역이 없습니다.";
+    public static final String ERROR_EXIST_LINE = "\n[ERROR] 이미 존재하는 노선입니다.";
 
     private Message() {
     }

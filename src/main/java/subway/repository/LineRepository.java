@@ -27,4 +27,8 @@ public class LineRepository {
                 .findFirst()
                 .orElse(new Line(name));
     }
+
+    public static boolean isExist(String name) {
+        return lines.stream().anyMatch(station -> station.getName().equals(name));
+    }
 }
