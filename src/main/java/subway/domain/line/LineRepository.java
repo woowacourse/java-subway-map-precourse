@@ -48,4 +48,8 @@ public class LineRepository {
                 .findFirst()
                 .orElseThrow(NoSuchLineException::new);
     }
+
+    public static boolean isExistLine(String name) {
+        return lines.stream().anyMatch(line -> line.getName().equals(name));
+    }
 }

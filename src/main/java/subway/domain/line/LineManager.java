@@ -3,6 +3,7 @@ package subway.domain.line;
 import subway.domain.State;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.exception.AlreadyExistLineException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -21,6 +22,10 @@ public class LineManager {
     }
 
     public static void addLine(String name, Scanner scanner) {
+        if (LineRepository.isExistLine(name)) {
+            throw new AlreadyExistLineException();
+        }
+
         Line line = new Line(name);
 
         line.initializeSectionStation(setLineUpStation(scanner), setLineDownStation(scanner));
