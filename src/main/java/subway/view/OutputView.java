@@ -109,7 +109,6 @@ public class OutputView {
     private static void printMenu(List<String> menuOptions) {
         System.out.println();
         menuOptions.forEach(System.out::println);
-        System.out.println();
     }
 
     public static void printStations(List<Station> stations) {
@@ -119,7 +118,6 @@ public class OutputView {
                 .map(Station::getName)
                 .map(x -> INFO_LABEL + x)
                 .forEach(System.out::println);
-        System.out.println();
     }
 
     public static void printLines(List<Line> lines) {
@@ -150,13 +148,11 @@ public class OutputView {
     public static void printError(Exception e) {
         System.out.println();
         System.out.println(e.getMessage());
-        System.out.println();
     }
 
     public static void printInfo(String info) {
         System.out.println();
         System.out.println(info);
-        System.out.println();
     }
 
 }

@@ -34,6 +34,7 @@ public class InputView {
     }
 
     private String userStringInput(String specificInfo) {
+        System.out.println();
         System.out.println(specificInfo);
         return scanner.nextLine();
     }

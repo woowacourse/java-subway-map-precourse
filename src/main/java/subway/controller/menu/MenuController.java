@@ -3,12 +3,12 @@ package subway.controller.menu;
 import java.util.ArrayList;
 import java.util.List;
 import subway.controller.Controller;
+import subway.utils.MenuControllerValidator;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public abstract class MenuController implements Controller {
 
-    private static final int MINIMUM_DECISION_VALUE = 1;
     private static final String GO_BACK_DECISION = "B";
 
     protected final InputView inputView;
@@ -23,14 +23,14 @@ public abstract class MenuController implements Controller {
     public void run() {
         try {
             printMenu();
-            decideNextController();
+            runNextDecidedController();
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             run();
         }
     }
 
-    protected void decideNextController() {
+    protected void runNextDecidedController() {
         String decision = inputView.inputFunction();
         if (isExitDecision(decision)) {
             return;
@@ -43,30 +43,7 @@ public abstract class MenuController implements Controller {
     }
 
     protected void runChildController(String decision) {
-        validateDecision(decision, childControllers.size());
+        MenuControllerValidator.validateDecision(decision, childControllers.size());
         childControllers.get(Integer.parseInt(decision) - 1).run();
-    }
-
-    protected void validateDecision(String decision, int maxDecisionValue) {
-        validateNumeric(decision);
-        validateRange(decision, maxDecisionValue);
-    }
-
-    private void validateNumeric(String decision) {
-        try {
-            Integer.parseInt(decision);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(OutputView.ERROR_NOT_NUMERIC);
-        }
-    }
-
-    private void validateRange(String decision, int maxDecisionValue) {
-        if (outOfRange(Integer.parseInt(decision), maxDecisionValue)) {
-            throw new IllegalArgumentException(OutputView.ERROR_OUT_OF_RANGE);
-        }
-    }
-
-    private boolean outOfRange(int decision, int maxDecisionValue) {
-        return (decision > maxDecisionValue || decision < MINIMUM_DECISION_VALUE);
     }
 }

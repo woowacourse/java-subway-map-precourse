@@ -1,6 +1,7 @@
 package subway.controller.menu;
 
 import subway.controller.map.MapController;
+import subway.utils.MenuControllerValidator;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -24,13 +25,13 @@ public class MainMenuController extends MenuController {
     }
 
     @Override
-    protected void decideNextController() {
+    protected void runNextDecidedController() {
         String decision = inputView.inputFunction();
         if (isExitDecision(decision)) {
             isRunning = false;
             return;
         }
-        validateDecision(decision, childControllers.size());
+        MenuControllerValidator.validateDecision(decision, childControllers.size());
         runChildController(decision);
     }
 
