@@ -1,9 +1,13 @@
 package subway.domain.line.model;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.station.model.Station;
+import subway.domain.station.model.StationRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +18,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
 
+    @BeforeEach
+    void setUp() {
+        StationRepository.addStation(new Station("강남역"));
+        StationRepository.addStation(new Station("잠실역"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        StationRepository.deleteAll();
+    }
+
     @DisplayName("Line 객체를 생성하는 기능을 테스트한다")
     @ParameterizedTest()
     @ValueSource(strings = {
@@ -21,7 +36,7 @@ class LineTest {
     })
     void testInitLine(String name) {
         //given
-        String stationNames = "시청역,서울역";
+        String stationNames = "강남역,잠실역";
         List<Station> stations = Arrays.stream(stationNames.split(","))
                 .map(Station::new)
                 .collect(Collectors.toList());
@@ -40,7 +55,7 @@ class LineTest {
     })
     void testInitLineIfLineNameIsShorterThanMinLineName(String name) {
         //given
-        String stationName = "시청역";
+        String stationName = "잠실역";
         List<Station> stations = Arrays.asList(new Station(stationName));
 
         //when //then
@@ -51,11 +66,26 @@ class LineTest {
     @DisplayName("노선의 구간이 초기 구간제한 갯수와 다르면 예외를 던지는 기능을 테스트한다")
     @ParameterizedTest
     @ValueSource(strings = {
-            "시청역", "시청역,까치산역,서울역"
+            "잠실역", "잠실역,강남역,서울역"
     })
     void testInitLineIfStationsNumberLessThanInitStationsNumber(String stationNames) {
         //given
-        String lineName = "1호선";
+        String lineName = "2호선";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+
+        //when //then
+        assertThatThrownBy(() -> new Line(lineName, stations))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("상행, 하행 종점역이 등록되지 않은 역인 경우 예외를 던지는 기능을 테스트한다")
+    @Test
+    void testInitLineIfStationsAreNotFound() {
+        //given
+        String stationNames = "강남역,봉천역";
+        String lineName = "2호선";
         List<Station> stations = Arrays.stream(stationNames.split(","))
                 .map(Station::new)
                 .collect(Collectors.toList());

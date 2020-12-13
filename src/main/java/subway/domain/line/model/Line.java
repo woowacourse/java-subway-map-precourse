@@ -1,6 +1,7 @@
 package subway.domain.line.model;
 
 import subway.domain.station.model.Station;
+import subway.domain.station.model.StationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class Line {
     private static final int MIN_LINE_NAME_LIMIT = 2;
     private static final int INITIAL_STATIONS_SIZE_NUMBER = 2;
     private static final String INITIAL_STATIONS_SIZE_ERROR_MESSAGE = "[ERROR] 노선의 초기 역 갯수는 2개여야 합니다.";
+    private static final String NOT_FOUND_STATION_MESSAGE = "[ERROR] 존재하지 않는 역입니다.";
 
     private final String name;
     private final List<Station> stations;
@@ -24,6 +26,20 @@ public class Line {
     private void validateLine(String name, List<Station> stations) {
         validateLineNameLength(name);
         validateStationsSize(stations);
+        validateStationsExist(stations);
+    }
+
+    private void validateStationsExist(List<Station> stations) {
+        stations.stream()
+                .forEach(this::validateStationExist);
+    }
+
+    private void validateStationExist(Station station) {
+        List<Station> registeredStations = StationRepository.stations();
+        registeredStations.stream()
+                .filter(registeredStation -> registeredStation.isEqualTo(station))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_STATION_MESSAGE));
     }
 
     private void validateStationsSize(List<Station> stations) {
