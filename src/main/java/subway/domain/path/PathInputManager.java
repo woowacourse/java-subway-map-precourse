@@ -6,11 +6,8 @@ import subway.domain.line.LineOutputManager;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
 import subway.common.ErrorMessage;
-import subway.common.Guide;
 
 public class PathInputManager {
-    private Scanner scanner;
-
     private static final String NOT_EXIST_LINE = "존재하지 않는 노선입니다.";
     private static final String NOT_ENROLLED_STATION = "등록되지 않은 역입니다.";
     private static final String STATION_ALREADY_ON_PATH = "입력하신 역은 구간에 이미 등록되어 있습니다.";
@@ -19,6 +16,7 @@ public class PathInputManager {
     private static final String OVER_SIZE_PATH = "구간의 크기가 기존 사이즈를 넘어갑니다.";
     private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
 
+    private final Scanner scanner;
 
     public PathInputManager(Scanner scanner) {
         this.scanner = scanner;
@@ -38,7 +36,7 @@ public class PathInputManager {
     }
 
     private String getLineName() {
-        Guide.print(LineOutputManager.LINE_TO_ADD_PATH_GUIDE);
+        LineOutputManager.printLineInputOnPath();
         String lineName = scanner.nextLine().trim();
         checkEnrolledLineName(lineName);
         return lineName;
@@ -51,7 +49,7 @@ public class PathInputManager {
     }
 
     private String getStationNameToAdd(String lineName) {
-        Guide.print(PathOutputManager.STATION_TO_ADD_PATH_GUIDE);
+        PathOutputManager.printStationToAddGuide();
         String stationName = scanner.nextLine().trim();
         checkEnrolledStationNameOnPath(stationName, lineName);
         checkEnrolledStation(stationName);
@@ -71,7 +69,7 @@ public class PathInputManager {
     }
 
     private String getIndexToAdd(String lineName) {
-        Guide.print(PathOutputManager.INDEX_TO_ADD_PATH_GUIDE);
+        PathOutputManager.printIndexToAddGuide();
         String index = scanner.nextLine().trim();
         checkValidIndex(index, lineName);
         return index;
@@ -112,7 +110,7 @@ public class PathInputManager {
     }
 
     private String getStationNameToDelete(String lineName) {
-        Guide.print(PathOutputManager.STATION_TO_DELETE_PATH_GUIDE);
+        PathOutputManager.printStationToDeleteGuide();
         String stationName = scanner.nextLine().trim();
         checkEnrolledStationOnPathToDelete(stationName, lineName);
         return stationName;

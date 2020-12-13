@@ -1,14 +1,10 @@
 package subway.domain.line;
 
 import java.util.Scanner;
-import subway.domain.station.StationOutputManager;
 import subway.domain.station.StationRepository;
 import subway.common.ErrorMessage;
-import subway.common.Guide;
 
 public class LineInputManager {
-    private final Scanner scanner;
-
     private static final String LINE = "호선";
     private static final String LAST_LETTER_LINE = "노선이름 끝에는 호선이라고 붙여주세요.";
     private static final String ALREADY_ENROLLED_NAME = "이미 존재하는 이름입니다.";
@@ -16,6 +12,8 @@ public class LineInputManager {
     private static final String NOT_EXIST_LINE = "등록되어 있지 않은 노선입니다.";
     private static final String NOT_EXIST_STATION = "등록되어 있지 않은 역입니다.";
     private static final String OVER_TWO = "노선이름은 2글자 이상이어야 한다.";
+
+    private final Scanner scanner;
 
     public LineInputManager(Scanner scanner) {
         this.scanner = scanner;
@@ -36,7 +34,7 @@ public class LineInputManager {
     }
 
     public String getLineNameToDelete() {
-        Guide.print(StationOutputManager.STATION_DELETE_GUIDE);
+        LineOutputManager.printDeleteGuide();
         String name = scanner.nextLine().trim();
         try{
             checkNameToDelete(name);
@@ -48,7 +46,7 @@ public class LineInputManager {
     }
 
     private String getLineName() {
-        Guide.print(LineOutputManager.LINE_GUIDE);
+        LineOutputManager.printAddGuide();
         String name = scanner.nextLine().trim();
         checkName(name);
         return name;
@@ -79,7 +77,7 @@ public class LineInputManager {
     }
 
     public String getUpStationName() {
-        Guide.print(LineOutputManager.UP_STATION_GUIDE);
+        LineOutputManager.printUpStationGuide();
         String name = scanner.nextLine().trim();
         checkEnrolledStation(name);
         return name;
@@ -92,7 +90,7 @@ public class LineInputManager {
     }
 
     private String getDownStationName(String upStation) {
-        Guide.print(LineOutputManager.DOWN_STATION_GUIDE);
+        LineOutputManager.printDownStationGuide();
         String name = scanner.nextLine().trim();
         checkDownStationName(upStation, name);
         return name;

@@ -7,12 +7,11 @@ import subway.domain.SubwayRepository;
 import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
 import subway.common.InfoMessage;
-import subway.common.Guide;
 import subway.domain.menu.MenuOutputManager;
 
 public class LineService {
-    private MenuInputManager menuInputManager;
-    private LineInputManager lineInputManager;
+    private final MenuInputManager menuInputManager;
+    private final LineInputManager lineInputManager;
 
     public LineService(Scanner scanner, MenuInputManager menuInputManager) {
         this.menuInputManager = menuInputManager;
@@ -37,7 +36,6 @@ public class LineService {
         }
         if (input.equals("2")) {
             deleteLine();
-            System.out.println("노선 삭제");
         }
         if (input.equals("3")) {
             lookupLines();
@@ -50,7 +48,7 @@ public class LineService {
             return;
         }
         SubwayRepository.createSubwayRealLine(lineInfo);
-        InfoMessage.printLineAdded();
+        LineOutputManager.printAddedInfo();
     }
 
     private void deleteLine() {
@@ -59,13 +57,11 @@ public class LineService {
             return;
         }
         LineRepository.deleteLineByName(name);
-        InfoMessage.printLineDeleted();
+        LineOutputManager.printDeletedInfo();
     }
 
     private void lookupLines() {
-        for (Line line : LineRepository.lines()) {
-            InfoMessage.printName(line.getName());
-        }
+        LineOutputManager.printLines();
     }
 
 }

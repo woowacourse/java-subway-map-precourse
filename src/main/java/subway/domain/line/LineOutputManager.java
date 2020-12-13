@@ -1,32 +1,54 @@
 package subway.domain.line;
 
-import subway.common.Guide;
+import subway.common.GuideMessage;
+import subway.common.InfoMessage;
 
 public class LineOutputManager {
-    public static final String LINE_GUIDE = "등록할 노선 이름을 입력하세요.";
-    public static final String UP_STATION_GUIDE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-    public static final String DOWN_STATION_GUIDE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
-    public static final String LINE_TO_ADD_PATH_GUIDE = "노선을 입력하세요.";
+    private static final String LINE_ADD_GUIDE = "등록할 노선 이름을 입력하세요.";
+    private static final String LINE_DELETE_GUIDE = "삭제할 노선 이름을 입력하세요.";
+    private static final String UP_STATION_GUIDE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String DOWN_STATION_GUIDE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String LINE_INPUT_GUIDE = "노선을 입력하세요.";
+    private static final String LINE_ADDED = "지하철 노선이 등록되었습니다.";
+    private static final String LINE_DELETED = "지하철 노선이 삭제되었습니다.";
+    private static final String LINE_LIST = "노선 목록";
 
     private LineOutputManager() {
     }
 
+    public static void printAddGuide() {
+        GuideMessage.print(LINE_ADD_GUIDE);
+    }
 
-    public static void printLineGuide(String function) {
-        Guide.print(function +LINE_GUIDE);
+    public static void printDeleteGuide() {
+        GuideMessage.print(LINE_DELETE_GUIDE);
     }
 
     public static void printUpStationGuide() {
-        Guide.print(UP_STATION_GUIDE);
+        GuideMessage.print(UP_STATION_GUIDE);
     }
-
 
     public static void printDownStationGuide() {
-        Guide.print(DOWN_STATION_GUIDE);
+        GuideMessage.print(DOWN_STATION_GUIDE);
     }
 
-
-    public static void printLineToAddPath() {
-        Guide.print(LINE_TO_ADD_PATH_GUIDE);
+    public static void printLineInputOnPath() {
+        GuideMessage.print(LINE_INPUT_GUIDE);
     }
+
+    public static void printAddedInfo() {
+        InfoMessage.print(LINE_ADDED);
+    }
+
+    public static void printDeletedInfo() {
+        InfoMessage.print(LINE_DELETED);
+    }
+
+    public static void printLines() {
+        GuideMessage.print(LINE_LIST);
+        for (Line line : LineRepository.lines()) {
+            InfoMessage.print(line.getName());
+        }
+    }
+
 }

@@ -4,13 +4,11 @@ import java.util.Scanner;
 import subway.domain.menu.MenuInputManager;
 import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
-import subway.common.InfoMessage;
-import subway.common.Guide;
 import subway.domain.menu.MenuOutputManager;
 
 public class StationService {
-    private MenuInputManager menuInputManager;
-    private StationInputManager stationInputManager;
+    private final MenuInputManager menuInputManager;
+    private final StationInputManager stationInputManager;
 
     public StationService(Scanner scanner, MenuInputManager menuInputManager) {
         this.menuInputManager = menuInputManager;
@@ -41,10 +39,15 @@ public class StationService {
         }
     }
 
-    private void lookupStations() {
-        for (Station station : StationRepository.stations()) {
-            InfoMessage.printName(station.getName());
+    private void addStation() {
+        String name = stationInputManager.getStationNameToAdd();
+        if (name.contains(ErrorMessage.OUT)) {
+            return;
         }
+        Station station = new Station(name);
+        StationRepository.addStation(station);
+        StationOutputManager.printAddedInfo();
+
     }
 
     private void deleteStation() {
@@ -53,19 +56,11 @@ public class StationService {
             return;
         }
         StationRepository.deleteStation(name);
-        InfoMessage.printStationDeleted();
+        StationOutputManager.printDeletedInfo();
     }
 
-    private void addStation() {
-        String name = stationInputManager.getStationNameToAdd();
-        if (name.contains(ErrorMessage.OUT)) {
-            return;
-        }
-        Station station = new Station(name);
-        StationRepository.addStation(station);
-        InfoMessage.printStationAdded();
-
+    private void lookupStations() {
+        StationOutputManager.printStations();
     }
-
 
 }

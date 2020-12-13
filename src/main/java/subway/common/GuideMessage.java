@@ -1,9 +1,9 @@
 package subway.common;
 
-public class Guide {
+public class GuideMessage {
     public static final String GUIDE_PREFIX = "\n## ";
 
-    private Guide() {
+    private GuideMessage() {
     }
 
     public static void print(String message){

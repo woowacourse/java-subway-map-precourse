@@ -12,7 +12,7 @@ import subway.domain.station.StationRepository;
 import subway.domain.line.LineService;
 import subway.domain.station.StationService;
 import subway.common.InfoMessage;
-import subway.common.Guide;
+import subway.common.GuideMessage;
 
 public class SubwaySystem {
     private MenuInputManager menuInputManager;
@@ -76,12 +76,12 @@ public class SubwaySystem {
     }
 
     private void printSubwayMap() {
-        Guide.print(SubwayOutputManager.SUBWAY_MAP);
+        GuideMessage.print(SubwayOutputManager.SUBWAY_MAP);
         for(Line line: LineRepository.lines()){
-            InfoMessage.printName(line.getName());
-            InfoMessage.printName("---");
+            InfoMessage.print(line.getName());
+            InfoMessage.print("---");
             for(Station station : SubwayRepository.getPathByLine(line).getPath()){
-                InfoMessage.printName(station.getName());
+                InfoMessage.print(station.getName());
             }
             System.out.println();
         }

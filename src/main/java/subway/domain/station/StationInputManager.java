@@ -2,24 +2,22 @@ package subway.domain.station;
 
 import java.util.Scanner;
 import subway.common.ErrorMessage;
-import subway.common.Guide;
 
 public class StationInputManager {
-    private Scanner scanner;
-
-
     private static final String OVER_TWO = "2글자 이상이어야 한다.";
     private static final String LAST_LETTER_STATION = "역이름 끝에는 역이라고 붙여주세요.";
     private static final String VALUE_EXIST = "이미 존재하는 이름입니다.";
     private static final String NOT_EXIST_STATION = "등록되어 있지 않은 역입니다.";
     private static final String ON_PATH_STATION = "노선에 등록된 역은 삭제할 수 없습니다.";
 
+    private final Scanner scanner;
+
     public StationInputManager(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public String getStationNameToAdd() {
-        Guide.print(StationOutputManager.STATION_ADD_GUIDE);
+        StationOutputManager.printAddSGuide();
         String name = scanner.nextLine().trim();
         try {
             checkNameToAdd(name);
@@ -31,7 +29,7 @@ public class StationInputManager {
     }
 
     public String getStationNameToDelete() {
-        Guide.print(StationOutputManager.STATION_DELETE_GUIDE);
+        StationOutputManager.printDeleteGuide();
         String name = scanner.nextLine().trim();
         try {
             checkNameToDelete(name);
