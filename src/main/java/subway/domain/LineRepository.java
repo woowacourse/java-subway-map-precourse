@@ -1,5 +1,7 @@
 package subway.domain;
 
+import input.Input;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,5 +28,14 @@ public class LineRepository {
                 return line;
         }
         throw new IllegalArgumentException();
+    }
+
+    public static boolean isLine(String name){
+        for(Line line : lines()){
+            if(line.getName().equals(name)){
+                return false;
+            }
+        }
+        return true;
     }
 }
