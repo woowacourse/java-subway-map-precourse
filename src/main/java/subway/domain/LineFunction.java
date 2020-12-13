@@ -3,24 +3,30 @@ package subway.domain;
 import java.util.Arrays;
 import java.util.function.Function;
 
+import subway.view.InputView;
+import subway.view.OutputView;
+
 public enum LineFunction {
-    ADD("1", LineController::addLine),
-    REMOVE("2", LineController::removeLine),
-    LOAD("3", LineController::loadLines),
+    ADD("1", ManageController::addLine),
+    REMOVE("2", ManageController::removeLine),
+    LOAD("3", ManageController::loadLines),
     BACK("B", Function.identity());
 
     private final String functionIndex;
 
-    private final Function<LineController, LineController> function;
+    private final Function<ManageController, ManageController> function;
 
     LineFunction(String functionIndex,
-                 Function<LineController, LineController> function) {
+                 Function<ManageController, ManageController> function) {
         this.functionIndex = functionIndex;
         this.function = function;
     }
 
-    public static LineController perform(String functionIndex,
-                                         LineController lineController) {
+    public static ManageController perform(ManageController lineController) {
+        OutputView.printView(LineFunction.values());
+
+        String functionIndex = InputView.inputFunctionIdentifier();
+
         return Arrays.stream(LineFunction.values())
                 .filter(function -> function.functionIndex.equals(functionIndex))
                 .findAny()
