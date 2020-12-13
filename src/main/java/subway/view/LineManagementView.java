@@ -8,9 +8,12 @@ import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_LINE_ADD;
 import static subway.resource.TextResource.FUNCTION_LINE_DELETE;
 import static subway.resource.TextResource.FUNCTION_LINE_LIST_SHOW;
+import static subway.resource.TextResource.PREFIX_INFO;
 
 import java.util.Scanner;
 import subway.controller.LineManagementController;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.view.MainView.OnBackListener;
 
 public class LineManagementView extends View {
@@ -58,6 +61,7 @@ public class LineManagementView extends View {
         }
 
         if (KEY_SHOW_LINE_LIST.equals(selection)) {
+            showLineList();
         }
     }
 
@@ -76,6 +80,13 @@ public class LineManagementView extends View {
         System.out.println(ASK_DELETE_LINE_NAME);
         String name = scanner.nextLine();
         LineManagementController.getInstance().deleteLine(name);
+        onBackListener.onBack();
+    }
+
+    private void showLineList() {
+        for (Line line : LineRepository.lines()) {
+            System.out.println(PREFIX_INFO + " " + line.getName());
+        }
         onBackListener.onBack();
     }
 
