@@ -92,10 +92,7 @@ public class StationView {
     }
 
     private void readStations() {
-        Message.printStations();
-        stationController.readStations().stream()
-                .map(Station::getName)
-                .forEach(Message::printStation);
+        Output.printStations(stationController.getStations());
     }
 
     private boolean isBack(String button) {

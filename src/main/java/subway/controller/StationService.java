@@ -1,5 +1,6 @@
 package subway.controller;
 
+import java.util.Collections;
 import java.util.List;
 import subway.domain.Station;
 import subway.message.Message;
@@ -33,6 +34,10 @@ public class StationService {
     }
 
     public List<Station> findAll() {
+        if (StationRepository.stations().isEmpty()) {
+            Message.printIsEmptyStation();
+            return Collections.emptyList();
+        }
         return StationRepository.stations();
     }
 }

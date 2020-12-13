@@ -14,9 +14,10 @@ public class Message {
     private static final String INPUT_DELETE_STATION = "\n## 삭제할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_INFO = "\n[INFO] 지하철 역이 삭제되었습니다.";
     private static final String NOT_EXIST_STATION = "\n[ERROR] 존재하지 않는 역입니다.";
-    private static final String STATIONS = "\n역목록";
+    private static final String STATIONS = "\n## 역목록";
     private static final String INFO = "[INFO] ";
     private static final String EXIST_STATION = "\n[ERROR] 이미 존재하는 역입니다.";
+    private static final String NO_STATION = "\n[ERROR] 등록된 역이 없습니다.";
 
     private Message() {
     }
@@ -71,5 +72,9 @@ public class Message {
 
     public static void printIsExist() {
         System.out.println(EXIST_STATION);
+    }
+
+    public static void printIsEmptyStation() {
+        System.out.println(NO_STATION);
     }
 }

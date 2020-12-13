@@ -27,7 +27,7 @@ public class SetStation {
     static final Station maebong = new Station(MAEBONG);
 
     private static final List<Station> setUpStation = Arrays.asList(
-            gyodae, yeoksan, nambuTerminal, yangjae, yangjaeCitizenForest, maebong);
+            gangNam, gyodae, yeoksan, nambuTerminal, yangjae, yangjaeCitizenForest, maebong);
 
     private SetStation() {
     }

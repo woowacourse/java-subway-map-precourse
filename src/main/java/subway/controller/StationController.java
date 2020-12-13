@@ -22,7 +22,7 @@ public class StationController {
         return stationService.deleteStation(name);
     }
 
-    public List<Station> readStations() {
+    public List<Station> getStations() {
         return stationService.findAll();
     }
 }
