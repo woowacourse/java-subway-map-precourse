@@ -5,7 +5,6 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.menuType.FunctionType;
-import subway.view.OutputView;
 import subway.view.menuView.SectionView;
 
 public class SectionManagement {
@@ -19,7 +18,7 @@ public class SectionManagement {
                 menu = sectionView.getFunctionSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
-                OutputView.printErrorMessage(e);
+                sectionView.printErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
     }

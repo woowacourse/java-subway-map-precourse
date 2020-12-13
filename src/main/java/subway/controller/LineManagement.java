@@ -7,7 +7,6 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.dto.DTO;
 import subway.view.menuView.LineView;
-import subway.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +23,7 @@ public class LineManagement {
                 menu = lineView.getFunctionSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
-                OutputView.printErrorMessage(e);
+                lineView.printErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
     }

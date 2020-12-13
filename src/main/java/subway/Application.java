@@ -14,7 +14,6 @@ import subway.controller.StationManagement;
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.menuView.MainView;
-import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -61,7 +60,7 @@ public class Application {
         try {
             MainView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
         } catch (RuntimeException e) {
-            OutputView.printErrorMessage(e);
+            mainView.printErrorMessage(e);
         }
     }
 }

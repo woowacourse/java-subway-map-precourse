@@ -6,7 +6,6 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.dto.DTO;
-import subway.view.OutputView;
 import subway.view.menuView.StationView;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class StationManagement {
                 menu = stationView.getFunctionSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
-                OutputView.printErrorMessage(e);
+                stationView.printErrorMessage(e);
             }
         } while (!menu.equals(FunctionType.ESCAPE));
     }

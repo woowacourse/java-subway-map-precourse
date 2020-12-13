@@ -59,4 +59,8 @@ public abstract class MenuView<T> {
     protected static void newLine() {
         OutputView.newLine();
     }
+
+    public void printErrorMessage(Exception e) {
+        OutputView.printErrorMessage(e);
+    }
 }
