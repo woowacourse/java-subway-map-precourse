@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import subway.exception.IllegalFunctionException;
+import java.util.stream.Collectors;
+import subway.utils.ValidationUtils;
 
 public class Menu implements Iterable<MenuItem> {
     private String title;
@@ -28,15 +28,17 @@ public class Menu implements Iterable<MenuItem> {
     }
 
     public void executeMenuItem(String key) {
+        ValidationUtils.validateIllegalFunction(key, getKeys());
+
         MenuItem matchedMenuItem = menuItems.stream()
-                .filter(streamMenuItem -> key.equals(streamMenuItem.getKey()))
-                .findAny()
-                .orElse(null);
-        if (matchedMenuItem == null) {
-            throw new IllegalFunctionException(key);
-        }
+            .filter(streamMenuItem -> key.equals(streamMenuItem.getKey()))
+            .findAny().orElse(null);
 
         matchedMenuItem.execute();
+    }
+    
+    private List<String> getKeys() {
+        return menuItems.stream().map(MenuItem::getName).collect(Collectors.toList());
     }
 
     @Override

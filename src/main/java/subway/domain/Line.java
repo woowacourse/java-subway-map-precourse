@@ -5,14 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-
-import subway.exception.BlankNameException;
-import subway.exception.DuplicatedStationInLineException;
-import subway.exception.NullStationException;
-import subway.exception.NullStationInLineException;
-import subway.exception.SectionOutOfRangeException;
-import subway.exception.TooShortNameException;
-import subway.utils.RegexUtils;
+import subway.utils.ValidationUtils;
 
 public class Line implements Iterable<String> {
     private static final int NAME_LENGTH_MINIMUM = 2;
@@ -22,13 +15,8 @@ public class Line implements Iterable<String> {
     private final List<String> stations = new ArrayList<>();
 
     public Line(String name) {
-        if (name.length() < NAME_LENGTH_MINIMUM) {
-            throw new TooShortNameException(name, NAME_LENGTH_MINIMUM);
-        }
-
-        if (RegexUtils.isBlank(name)) {
-            throw new BlankNameException();
-        }
+        ValidationUtils.validateTooShortName(name, NAME_LENGTH_MINIMUM);
+        ValidationUtils.validateBlankName(name);
 
         this.name = name;
     }
@@ -47,13 +35,8 @@ public class Line implements Iterable<String> {
     }
 
     private void addStation(String stationName) {
-        if (!StationRepository.containsStation(stationName)) {
-            throw new NullStationException(stationName);
-        }
-
-        if (stations.contains(stationName)) {
-            throw new DuplicatedStationInLineException(stationName);
-        }
+        ValidationUtils.validateNullStation(stationName);
+        ValidationUtils.validateDuplicatedStationInLine(this, stationName);
 
         stations.add(stationName);
     }
@@ -67,17 +50,9 @@ public class Line implements Iterable<String> {
     }
 
     public void addSection(int order, String stationName) {
-        if (!StationRepository.containsStation(stationName)) {
-            throw new NullStationException(stationName);
-        }
-
-        if (stations.contains(stationName)) {
-            throw new DuplicatedStationInLineException(stationName);
-        }
-
-        if (order <= FIRST_STATION_ORDER || order > getLastStationOrder()) {
-            throw new SectionOutOfRangeException(order);
-        }
+        ValidationUtils.validateNullStation(stationName);
+        ValidationUtils.validateDuplicatedStationInLine(this, stationName);
+        ValidationUtils.validateSectionOutOfRange(order, FIRST_STATION_ORDER, getLastStationOrder());
 
         int index = order - 1;
         stations.add(index, stationName);
@@ -88,9 +63,7 @@ public class Line implements Iterable<String> {
     }
 
     public boolean deleteSection(String stationName) {
-        if (!stations.contains(stationName)) {
-            throw new NullStationInLineException(stationName);
-        }
+        ValidationUtils.validateNullStationInLine(this, stationName);
 
         return stations.removeIf(station -> Objects.equals(station, stationName));
     }
