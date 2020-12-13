@@ -102,6 +102,7 @@ public class LineDashboard {
         String submittedLineName = inputView.readLineName();
         if (submittedLineName.length() < 2) {
             System.out.println(ERROR_NAME_LENGTH);
+            return true;
         }
         Line line = new Line(submittedLineName);
         if (LineRepository.lines().contains(line)) {
