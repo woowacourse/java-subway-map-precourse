@@ -12,6 +12,8 @@ public class Line {
     private static final int MIN_LINE_NAME_LIMIT = 2;
     private static final int INITIAL_STATIONS_SIZE_NUMBER = 2;
     private static final String INITIAL_STATIONS_SIZE_ERROR_MESSAGE = "[ERROR] 노선의 초기 역 갯수는 2개여야 합니다.";
+    private static final String NOT_REGISTER_SECTION_ERROR_MESSAGE = "[ERROR] 등록할 수 있는 구간의 순서는 1이상 노선 길이 미만입니다.";
+    private static final int MIN_SECTION_NUMBER_LIMIT = 1;
 
     private final String name;
     private final List<Station> stations;
@@ -52,6 +54,10 @@ public class Line {
     }
 
     public void addStation(int newStationLocation, Station newStation) {
+        if (newStationLocation < MIN_SECTION_NUMBER_LIMIT || newStationLocation >= stations.size()) {
+            throw new IllegalArgumentException(NOT_REGISTER_SECTION_ERROR_MESSAGE);
+        }
+
         stations.add(newStationLocation, newStation);
     }
 }

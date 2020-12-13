@@ -1,6 +1,8 @@
 package subway.domain.line.model;
 
+import org.assertj.core.data.Index;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.station.model.Station;
@@ -62,6 +64,48 @@ class LineTest {
 
         //when //then
         assertThatThrownBy(() -> new Line(lineName, stations))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("노선에 구간을 추가하는 기능을 테스트한다")
+    @Test
+    void testAddStation() {
+        //given
+        String name = "2호선";
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(name, stations);
+
+        Station newStation = new Station("사당역");
+        int newStationLocation = 1;
+
+        //when
+        line.addStation(newStationLocation, newStation);
+
+        //then
+        assertThat(line.getStations()).contains(newStation, Index.atIndex(newStationLocation));
+    }
+
+    @DisplayName("적절하지 않은 위치에 구간을 추가할 때, 예외를 던지는 기능을 테스트한다")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            0, 2, 3
+    })
+    void testAddStationIfNotSatisfiedIndexNumber(int newStationLocation) {
+        //given
+        String name = "2호선";
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+        Line line = new Line(name, stations);
+
+        Station newStation = new Station("사당역");
+
+        //when //then
+        assertThatThrownBy(() -> line.addStation(newStationLocation, newStation))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }
