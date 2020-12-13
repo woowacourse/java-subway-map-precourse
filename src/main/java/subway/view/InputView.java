@@ -1,19 +1,28 @@
 package subway.view;
 
 import subway.exception.NoneInputException;
-import subway.view.selection.Selection;
-import subway.view.selection.Selections;
-
 import java.util.Scanner;
 
 public class InputView {
     private static final String ERROR_NONE_INPUT_VALUE = "입력값이 없습니다.";
-    private static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
 
     private static Scanner scanner;
 
     public static void setScanner(Scanner scanner) {
         InputView.scanner = scanner;
+    }
+
+    public static String getStringWithMessage(String requestMessage) {
+        try {
+            OutputView.printWithSharpPrefix(requestMessage);
+            String string = deleteWhiteSpaces(scanner.nextLine());
+            isNotEmptyStringOrThrowException(string);
+            OutputView.newLine();
+            return string;
+        }catch (RuntimeException e) {
+            OutputView.printErrorMessage(e);
+            return getStringWithMessage(requestMessage);
+        }
     }
 
     private static String deleteWhiteSpaces(String string) {
@@ -27,30 +36,4 @@ public class InputView {
         return true;
     }
 
-    public static Selection getSelection(Selections selections) {
-        try{
-            String input = getStringWithMessage(MENU_SELECTION);
-            return selections.searchByValue(input.toUpperCase());
-        } catch (RuntimeException e) {
-            OutputView.printErrorMessage(e);
-            return getSelection(selections);
-        }
-    }
-
-    public static String getStringWithMessage(String requestMessage) {
-        try {
-            OutputView.printWithSharpPrefix(requestMessage);
-            String string = deleteWhiteSpaces(scanner.nextLine());
-            isNotEmptyStringOrThrowException(string);
-            newLine();
-            return string;
-        }catch (RuntimeException e) {
-            OutputView.printErrorMessage(e);
-            return getStringWithMessage(requestMessage);
-        }
-    }
-
-    private static void newLine() {
-        System.out.println();
-    }
 }

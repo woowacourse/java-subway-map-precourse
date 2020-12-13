@@ -12,10 +12,12 @@ import java.util.List;
 
 public abstract class MenuView<T> {
     protected static final String FATAL_MENU_DATA_CRAHSED = "메뉴를 생성할 수 없습니다. ";
+    protected static final String MENU_SELECTION = "원하는 기능을 선택하세요.";
+    protected static final String MENU_FORMAT = "%s. %s";
     protected static final int MENU_START_INDEX = 1;
 
     protected String viewName;
-    protected HashMap<Selection, T> mapToFunctionType;
+    protected HashMap<Selection, T> mapToMenuType;
     protected Selections selections;
 
     protected void initializeSelections(List<String> menuIndexs, List<String> descriptions) {
@@ -34,26 +36,36 @@ public abstract class MenuView<T> {
         if (selections.size() != menuTypes.size()) {
             throw new IllegalArgumentException(FATAL_MENU_DATA_CRAHSED);
         }
-        Iterator<T> functionType = menuTypes.iterator();
+        Iterator<T> menuType = menuTypes.iterator();
         Iterator<Selection> selection = selections.iterator();
 
-        this.mapToFunctionType = new HashMap<>();
-        while (selection.hasNext() && functionType.hasNext()) {
-            this.mapToFunctionType.put(selection.next(), functionType.next());
+        this.mapToMenuType = new HashMap<>();
+        while (selection.hasNext() && menuType.hasNext()) {
+            this.mapToMenuType.put(selection.next(), menuType.next());
         }
     }
 
     public void printMenu() {
-        OutputView.printMenu(selections, viewName);
+        OutputView.printWithSharpPrefix(viewName);
+        for (Selection selection : selections.toList()) {
+            System.out.println(String.format(MENU_FORMAT, selection.getValue(), selection.getDescription()));
+        }
+        newLine();
+    }
+
+    public T getMenuSelection() {
+        try{
+            String input = InputView.getStringWithMessage(MENU_SELECTION);
+            Selection selection = selections.searchByValue(input.toUpperCase());
+            return  convertToFunctionType(selection);
+        } catch (RuntimeException e) {
+            OutputView.printErrorMessage(e);
+            return getMenuSelection();
+        }
     }
 
     protected T convertToFunctionType(Selection selection){
-        return mapToFunctionType.get(selection);
-    }
-
-    public T getFunctionSelection() {
-        Selection selection = InputView.getSelection(selections);
-        return convertToFunctionType(selection);
+        return mapToMenuType.get(selection);
     }
 
     protected static void newLine() {

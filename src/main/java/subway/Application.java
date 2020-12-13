@@ -36,7 +36,7 @@ public class Application {
     private static void run() {
         do {
             mainView.printMenu();
-            menu = mainView.getFunctionSelection();
+            menu = mainView.getMenuSelection();
             runSelectedMenuFunction();
         } while (!menu.equals(MainMenuType.ESCAPE));
     }

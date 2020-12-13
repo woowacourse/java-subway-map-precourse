@@ -20,7 +20,7 @@ public class LineManagement {
         do {
             try {
                 lineView.printMenu();
-                menu = lineView.getFunctionSelection();
+                menu = lineView.getMenuSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
                 lineView.printErrorMessage(e);

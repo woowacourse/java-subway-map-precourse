@@ -32,10 +32,13 @@ public class StationView extends ManagementView {
         List<String> descriptions = new ArrayList<>(Arrays.asList(
                 MENU_CREATE, MENU_DELETE, MENU_READ, MENU_ESCAPE
         ));
-        List<String> menuIndexs = new ArrayList<>(IntStream.range(MENU_START_INDEX, descriptions.size())
-                .mapToObj(Integer::toString)
-                .collect(Collectors.toList()));
+
+        List<String> menuIndexs = new ArrayList<>();
+        for (int i = MENU_START_INDEX; i < descriptions.size(); i++) {
+            menuIndexs.add(Integer.toString(i));
+        }
         menuIndexs.add(MENU_ESCAPE_VALUE);
+
         initializeSelections(menuIndexs, descriptions);
     }
 

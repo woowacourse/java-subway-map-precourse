@@ -21,7 +21,7 @@ public class StationManagement {
         do {
             try {
                 stationView.printMenu();
-                menu = stationView.getFunctionSelection();
+                menu = stationView.getMenuSelection();
                 runSelectedMenuFunction();
             } catch (RuntimeException e) {
                 stationView.printErrorMessage(e);
