@@ -3,6 +3,8 @@ package subway.userinterface;
 public class IntervalController implements Menu {
 
     private final static String MENU_NAME = "3. 구간 관리";
+    private final static String MENU_KEY = "3";
+
 
     private static IntervalController intervalController;
 
@@ -12,6 +14,12 @@ public class IntervalController implements Menu {
     public String getMenuName() {
         return MENU_NAME;
     }
+
+    @Override
+    public String getMenuKey() {
+        return MENU_KEY;
+    }
+
 
     public static Menu getInstance() {
         if (intervalController == null) {

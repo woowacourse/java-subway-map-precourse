@@ -3,6 +3,7 @@ package subway.userinterface;
 public class StationController implements Menu {
 
     private final static String MENU_NAME = "1. 역 관리";
+    private final static String MENU_KEY = "1";
 
     private static StationController stationController;
 
@@ -11,6 +12,11 @@ public class StationController implements Menu {
     @Override
     public String getMenuName() {
         return MENU_NAME;
+    }
+
+    @Override
+    public String getMenuKey() {
+        return MENU_KEY;
     }
 
     public static Menu getInstance() {

@@ -3,6 +3,7 @@ package subway.userinterface;
 public class ExitController implements Menu {
 
     private final static String MENU_NAME = "Q. 종료";
+    private final static String MENU_KEY = "Q";
 
     private static ExitController exitController;
 
@@ -11,6 +12,11 @@ public class ExitController implements Menu {
     @Override
     public String getMenuName() {
         return MENU_NAME;
+    }
+
+    @Override
+    public String getMenuKey() {
+        return null;
     }
 
     public static Menu getInstance() {

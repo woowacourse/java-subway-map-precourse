@@ -1,15 +1,15 @@
 package subway.userinterface;
 
-import java.util.ArrayList;
-import java.util.List;
+import subway.util.InputValidator;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class MainView {
 
-    private final static String INTRO_STATEMENT = "## 메인 화면";
-    private final static int NUM_OF_MENU = 5;
-
     private static MainView mainView;
-    public static List<Menu> mainMenu = new ArrayList<>();
+    public static Map<String, Menu> mainMenu = new HashMap<>();
 
     private MainView() {
         setMenu();
@@ -24,21 +24,19 @@ public class MainView {
     }
 
     private void setMenu() {
-        mainMenu.add(StationController.getInstance());
-        mainMenu.add(LineController.getInstance());
-        mainMenu.add(IntervalController.getInstance());
-        mainMenu.add(SubwayInfoController.getInstance());
-        mainMenu.add(ExitController.getInstance());
+        mainMenu.put(StationController.getInstance().getMenuKey(), StationController.getInstance());
+        mainMenu.put(LineController.getInstance().getMenuKey(), LineController.getInstance());
+        mainMenu.put(IntervalController.getInstance().getMenuKey(), IntervalController.getInstance());
+        mainMenu.put(SubwayInfoController.getInstance().getMenuKey(), SubwayInfoController.getInstance());
+        mainMenu.put(ExitController.getInstance().getMenuKey(), ExitController.getInstance());
     }
 
     public static void printMainMenu() {
-        System.out.println(INTRO_STATEMENT);
+        MainViewOutputController.printMainMenu(mainMenu);
+    }
 
-        for (int m = 0; m < NUM_OF_MENU; m++) {
-            System.out.println(mainMenu.get(m).getMenuName());
-        }
-
-        System.out.print("/n");
+    public static void getUserInput(Scanner scanner) {
+        MainViewInputController.getMainMenuInput(scanner);
     }
 
 }
