@@ -1,6 +1,8 @@
 package subway.menus;
 
-public enum MainMenu implements Menu{
+import java.util.stream.Stream;
+
+public enum MainMenu implements Menu {
     STATION_MANAGEMENT("1", "역 관리"),
     LINE_MANAGEMENT("2", "노선 관리"),
     SECTION_MANAGEMENT("3", "구간 관리"),
@@ -15,8 +17,11 @@ public enum MainMenu implements Menu{
         this.description = description;
     }
 
-    public String getOption() {
-        return option;
+    public static MainMenu getMenu(String input) {
+        return Stream.of(MainMenu.values())
+            .filter(mainMenu -> mainMenu.option.equals(input))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_MENU_EXCEPTION_MESSAGE));
     }
 
     @Override
