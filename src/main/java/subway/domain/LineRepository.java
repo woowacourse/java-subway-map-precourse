@@ -70,6 +70,13 @@ public class LineRepository {
     }
 
     public static void printSubwayMap() {
+        Iterator iterator = lines().iterator();
+        while (iterator.hasNext()) {
+            Line line = (Line)iterator.next();
+            System.out.println(SYMBOL_INFO + line.getName());
+            line.printStations();
+            System.out.println();
+        }
     }
 
     public static void displayAllLines() {
