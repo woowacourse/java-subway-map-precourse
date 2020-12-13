@@ -21,7 +21,8 @@ public class LineRepository {
     }
 
     public static boolean addLine(Line line) {
-        if (lines.contains(line)) {
+        if (lines.stream()
+                .anyMatch(line1 -> line1.getName().equals(line.getName()))) {
             warnMessage(LINE_DUPLICATE_WARN);
             return false;
         }
