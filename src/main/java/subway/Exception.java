@@ -1,5 +1,8 @@
 package subway;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
+
 import java.util.List;
 
 public class Exception {
@@ -10,26 +13,57 @@ public class Exception {
         return input;
     }
 
-    static String isNotEmpty(String input){
-        if(!input.equals("")){
+    public static String checkStationAdd(String input) {
+        input = isNotEmpty(input);
+        input = isNotSpace(input);
+        input = isStation(input);
+        input = isLengthTwoOrMore(input);
+        input = isNotInStationList(input);
+        return input;
+    }
+
+    static String isNotEmpty(String input) {
+        if (!input.equals("")) {
             return input;
         }
         throw new IllegalArgumentException();
     }
 
-    static String isNotSpace(String input){
-        if(!input.contains(" ")){
+    static String isNotSpace(String input) {
+        if (!input.contains(" ")) {
             return input;
         }
         throw new IllegalArgumentException();
     }
 
-    static String isInMenu(String input, List<String> menuItemList){
+    static String isInMenu(String input, List<String> menuItemList) {
         for (int i = 0; i < menuItemList.size(); i++) {
             String number = menuItemList.get(i).substring(0, 1);
-            if(input.equals(number)){
+            if (input.equals(number)) {
                 return input;
             }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    static String isStation(String input) {
+        String lastChar = input.substring(input.length() - 1, input.length());
+        if (lastChar.equals(Constant.STATION)) {
+            return input;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    static String isLengthTwoOrMore(String input) {
+        if (input.length() >= 2) {
+            return input;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    static String isNotInStationList(String name) {
+        if (!StationRepository.has(name)) {
+            return name;
         }
         throw new IllegalArgumentException();
     }
