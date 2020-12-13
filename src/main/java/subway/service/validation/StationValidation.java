@@ -16,7 +16,7 @@ public class StationValidation implements ExceptionInterface {
 
     @Override
     public boolean checkNameLength(String stationName) {
-        return stationName.length() < BoundaryType.NAME_LENGTH_BOUNDARY.getBoundary();
+        return stationName.length() >= BoundaryType.NAME_LENGTH_BOUNDARY.getBoundary();
     }
 
     @Override
