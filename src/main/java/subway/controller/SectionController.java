@@ -51,11 +51,11 @@ public class SectionController {
     }
 
     public static void backToMainMenu() {
-        SubwayMapController.callMainMenu();
+        MenuController.callMainMenu();
     }
 
     private static void catchError(Exception exception) {
         OutputView.printError(exception);
-        SubwayMapController.callSectionMenu();
+        MenuController.callSectionMenu();
     }
 }

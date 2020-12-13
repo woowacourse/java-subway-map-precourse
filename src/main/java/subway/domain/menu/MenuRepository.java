@@ -5,7 +5,8 @@ import java.util.Map;
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
-import subway.controller.SubwayMapController;
+import subway.controller.SubwayMapApplicationController;
+import subway.controller.MenuController;
 
 public class MenuRepository {
     private static final Map<MenuType, Menu> menus = new HashMap<>();
@@ -46,11 +47,11 @@ public class MenuRepository {
     private static void setMainMenu() {
         Menu menu = Menu.createWithMenuItems(
             getMenuTitle(MAIN),
-            new MenuItem(KEY_ONE, getMergedName(MANAGE, STATION), SubwayMapController::callStationMenu),
-            new MenuItem(KEY_TWO, getMergedName(MANAGE, LINE), SubwayMapController::callLineMenu),
-            new MenuItem(KEY_THREE, getMergedName(MANAGE, SECTION), SubwayMapController::callSectionMenu),
-            new MenuItem(KEY_FOUR, PRINT_SUBWAY_MAP, SubwayMapController::showSubwayMap),
-            new MenuItem(KEY_QUIT, QUIT, SubwayMapController::Quit));
+            new MenuItem(KEY_ONE, getMergedName(MANAGE, STATION), MenuController::callStationMenu),
+            new MenuItem(KEY_TWO, getMergedName(MANAGE, LINE), MenuController::callLineMenu),
+            new MenuItem(KEY_THREE, getMergedName(MANAGE, SECTION), MenuController::callSectionMenu),
+            new MenuItem(KEY_FOUR, PRINT_SUBWAY_MAP, SubwayMapApplicationController::showSubwayMap),
+            new MenuItem(KEY_QUIT, QUIT, SubwayMapApplicationController::Quit));
 
         menus.put(MenuType.MAIN, menu);
     }

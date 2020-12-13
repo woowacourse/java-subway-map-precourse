@@ -50,11 +50,11 @@ public class LineController {
     }
 
     public static void backToMainMenu() {
-        SubwayMapController.callMainMenu();
+        MenuController.callMainMenu();
     }
 
     private static void catchError(Exception exception) {
         OutputView.printError(exception);
-        SubwayMapController.callLineMenu();
+        MenuController.callLineMenu();
     }
 }
