@@ -76,24 +76,17 @@ public enum MainMenu implements Menu {
     }
 
     @Override
-    public Menu change(String command) {
-        return Arrays
-                .stream(values())
-                .filter(menu -> menu.order.equals(command))
-                .findFirst().orElseThrow(() ->
-                        new MenuNotFountException(command)
-                );
-    }
-
-    @Override
     public String getType() {
         return MENU_TYPE;
     }
 
     @Override
-    public String getActionType() {
-        return getType();
+    public Action getAction() {
+        return action;
     }
 
-
+    @Override
+    public String getOrder() {
+        return order;
+    }
 }

@@ -6,6 +6,7 @@ import subway.menu.Menu;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SubwayMap {
@@ -26,7 +27,6 @@ public class SubwayMap {
 
             selectMenu();
 
-            menuRen();
         }
     }
 
@@ -40,14 +40,29 @@ public class SubwayMap {
         String input = inputView.selectMenu();
 
         try {
-            this.state = state.change(input);
-        } catch (MenuNotFountException e) {
+            this.state = change(input);
+            menuRen();
+        } catch (Exception e) {
             OutputView.printErrorMessage(e);
         }
+
+
     }
 
     private void menuRen() {
         this.state = state.run();
+    }
+
+    private Menu change(String input) {
+        return searchMenuList(input);
+    }
+
+    private Menu searchMenuList(String input) {
+        return Arrays.stream(state.getValues())
+                .filter(menu -> menu.getOrder().equals(input))
+                .findFirst().orElseThrow(() ->
+                        new MenuNotFountException(input)
+                );
     }
 
     private void printMenu() {

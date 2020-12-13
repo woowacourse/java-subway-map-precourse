@@ -8,10 +8,10 @@ public interface Menu {
 
     String getTitle();
 
-    Menu change(String command);
+    String getOrder();
 
     String getType();
 
-    String getActionType();
+    Action getAction();
 
 }
