@@ -37,4 +37,15 @@ class ManageControllerTest {
         //then
         assertThat(manageController.stations().stationNames()).containsExactly("양재역", "교대역", "대치역");
     }
+
+    @Test
+    @DisplayName("기존 역 삭제 테스트")
+    public void removeStation_OldStation_StationRemoved() {
+
+        // when
+        manageController = manageController.removeStation("교대역");
+
+        //then
+        assertThat(manageController.stations().stationNames()).containsExactly("양재역");
+    }
 }
