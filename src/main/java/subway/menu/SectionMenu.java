@@ -23,7 +23,7 @@ public class SectionMenu {
     public static void printMenu() {
         OutputView.printMsg("## 구간 관리 화면\n");
         Arrays.stream(Menu.values())
-                .map(Menu -> Menu.getMenuName() + "\n")
+                .map(Menu -> Menu.getMenuName())
                 .forEach(OutputView::printMsg);
         OutputView.printLineSeparator();
     }
@@ -43,9 +43,9 @@ public class SectionMenu {
     }
 
     private enum Menu {
-        REGISTER_STATION("1", "1. 구간 등록", () -> sectionController.addSection()),
-        DELETE_STATION("2", "2. 구간 삭제", () -> sectionController.deleteSection()),
-        BACK("B", "B. 돌아가기", () -> goBack());
+        REGISTER_STATION("1", "1. 구간 등록\n", () -> sectionController.addSection()),
+        DELETE_STATION("2", "2. 구간 삭제\n", () -> sectionController.deleteSection()),
+        BACK("B", "B. 돌아가기\n", () -> goBack());
 
         private String userInput;
         private String menuName;
