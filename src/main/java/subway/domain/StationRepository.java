@@ -36,6 +36,16 @@ public final class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public StationRepository addStations(final String... stationNames) {
+        StationRepository stationRepository = new StationRepository();
+
+        for (String stationName : stationNames) {
+            stationRepository = add(stations.size(), stationName);
+        }
+
+        return stationRepository;
+    }
+
     public StationRepository addStation(final String stationName) {
         return add(stations.size(), stationName);
     }

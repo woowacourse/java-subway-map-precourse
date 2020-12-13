@@ -18,8 +18,8 @@ class StationRepositoryTest {
     }
 
     @Test
-    @DisplayName("중복되지 않은 역 추가 시 예외 미발생")
-    public void addStation_NotDuplicateStation_NoExceptionThrown() {
+    @DisplayName("중복되지 않은 역 추가")
+    public void addStation_NotDuplicateStation_StationAdded() {
 
         // given
         stationRepository = stationRepository.addStation("강남역");
@@ -29,7 +29,21 @@ class StationRepositoryTest {
 
         //then
         assertThat(stationRepository.stations())
-                .containsExactly(new Station("강남역"), new Station("봉천역"));
+                .extracting(Station::getName)
+                .containsExactly("강남역", "봉천역");
+    }
+
+    @Test
+    @DisplayName("여러 역을 한 번에 추가")
+    public void addStations_NotDuplicateStations_StationsAdded() {
+
+        // when
+        stationRepository = stationRepository.addStations("봉천역", "강남역", "잠실역");
+
+        //then
+        assertThat(stationRepository.stations())
+                .extracting(Station::getName)
+                .containsExactly("봉천역", "강남역", "잠실역");
     }
 
     @Test
@@ -53,17 +67,15 @@ class StationRepositoryTest {
     public void deleteStation_ExistStation_EmptyStations() {
 
         // given
-        StationRepository repository = new StationRepository().addStation("강남역")
-                .addStation("잠실역")
-                .addStation("건대입구역");
+        StationRepository repository = new StationRepository().addStations("봉천역", "강남역", "잠실역");
 
         LineRepository lineRepository =
                 new LineRepository().addLine(new Line(new LineName("1호선"), repository));
 
-        stationRepository = stationRepository.addStation("봉천역");
+        stationRepository = stationRepository.addStation("신림역");
 
         // when
-        stationRepository = stationRepository.removeStation("봉천역", lineRepository);
+        stationRepository = stationRepository.removeStation("신림역", lineRepository);
 
         //then
         assertThat(stationRepository.stations()).isEmpty();
@@ -74,20 +86,18 @@ class StationRepositoryTest {
     public void deleteStation_DoesNotExistStation_ExceptionThrown() {
 
         // given
-        StationRepository repository = new StationRepository().addStation("강남역")
-                .addStation("잠실역")
-                .addStation("건대입구역");
+        StationRepository repository = new StationRepository().addStations("봉천역", "강남역", "잠실역");
 
         LineRepository lineRepository =
                 new LineRepository().addLine(new Line(new LineName("1호선"), repository));
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> stationRepository.removeStation("봉천역", lineRepository);
+                () -> stationRepository.removeStation("신림역", lineRepository);
 
         //then
         assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "봉천역");
+                .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "신림역");
     }
 
     @Test
@@ -95,12 +105,10 @@ class StationRepositoryTest {
     public void deleteStation_SavedStationAtLine_ExceptionThrown() {
 
         // given
-        stationRepository = stationRepository.addStation("강남역")
-                .addStation("잠실역")
-                .addStation("건대입구역");
+        StationRepository repository = new StationRepository().addStations("봉천역", "강남역", "잠실역");
 
         LineRepository lineRepository =
-                new LineRepository().addLine(new Line(new LineName("1호선"), stationRepository));
+                new LineRepository().addLine(new Line(new LineName("1호선"), repository));
 
         // when
         ThrowableAssert.ThrowingCallable callable =

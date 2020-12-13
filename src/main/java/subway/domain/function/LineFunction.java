@@ -25,7 +25,6 @@ public enum LineFunction implements Functionable {
         this.function = function;
     }
 
-
     @Override
     public String getIdentifier() {
         return identifier;
