@@ -1,13 +1,16 @@
 package subway.controller;
 
-import subway.domain.command.Command;
+import subway.domain.command.MainCommand;
+import subway.domain.command.StationCommand;
 import subway.domain.screen.MainScreen;
 import subway.domain.screen.ScreenType;
+import subway.domain.screen.StationManagementScreen;
 import subway.domain.station.Station;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SubwayMapController {
@@ -31,25 +34,64 @@ public class SubwayMapController {
     }
 
     private void runScreen(ScreenType currentScreenType) {
-        runMainScreen(currentScreenType);
+        runMainScreenIfAble(currentScreenType);
+        runStationManagementScreenIfAble(currentScreenType);
     }
 
-    private void runMainScreen(ScreenType currentScreenType) {
+    private void runMainScreenIfAble(ScreenType currentScreenType) {
         if (!currentScreenType.isMainScreen()) {
             return;
         }
         OutputView.showMainScreen();
-        Command command = inputView.inputMainCommand();
-        currentScreen = MainScreen.getInstance().getNextScreen(command);
+        MainCommand mainCommand = inputView.inputMainCommand();
+        currentScreen = MainScreen.getInstance().getNextScreen(mainCommand);
+    }
+
+    private void runStationManagementScreenIfAble(ScreenType currentScreenType) {
+        if (!currentScreenType.isStationManagementScreen()) {
+            return;
+        }
+        OutputView.showStationManagementScreen();
+        StationCommand stationCommand = inputView.inputStationCommand();
+        manageStation(stationCommand);
+        currentScreen = StationManagementScreen.getInstance().getNextScreen(stationCommand);
+    }
+
+    private void manageStation(StationCommand stationCommand) {
+        manageIfStationRegistrationCommand(stationCommand);
+        manageIfStationDeletionCommand(stationCommand);
+        manageIfPrintStationsCommand(stationCommand);
+    }
+
+    private void manageIfStationRegistrationCommand(StationCommand stationCommand) {
+        if (!stationCommand.isStationRegistration()) {
+            return;
+        }
+        Station station = inputView.inputRegistrationStation();
+        registerStation(station);
     }
 
     public void registerStation(Station station) {
         stationService.addStation(station);
     }
 
+    private void manageIfStationDeletionCommand(StationCommand stationCommand) {
+        if (!stationCommand.isStationDeletion()) {
+            return;
+        }
+        String stationName = inputView.inputDeletionStation();
+        unregisterStation(stationName);
+    }
+
     public void unregisterStation(String stationName) {
-        // TODO : 노선에 등록되어 있는지 체크
-        // lineService.isExistent(stationName)
         stationService.deleteStation(stationName);
+    }
+
+    private void manageIfPrintStationsCommand(StationCommand stationCommand) {
+        if (!stationCommand.isPrintStations()) {
+            return;
+        }
+        List<String> stationNames = stationService.getStationNamesWithoutRedundancy();
+        OutputView.showStationList(stationNames);
     }
 }
