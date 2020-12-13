@@ -45,13 +45,13 @@ public class ScannerInputService implements InputService {
     }
 
     @Override
-    public int getManageRouteOption() {
+    public int getManageLineOption() {
         String inputOption = getNextLine();
         if (isBack(inputOption)) {
             return OPTION_BACK;
         }
         int option = stringToInt(inputOption);
-        validateManageRouteOption(option);
+        validateManageLineOption(option);
         return option;
     }
 
@@ -106,7 +106,7 @@ public class ScannerInputService implements InputService {
         checkOption(option, ADD, DELETE, OPTION_BACK);
     }
 
-    private void validateManageRouteOption(int option) {
+    private void validateManageLineOption(int option) {
         checkOption(option, ADD, DELETE, FIND);
     }
 
@@ -118,7 +118,7 @@ public class ScannerInputService implements InputService {
         if (option == MANAGE_STATION) {
             return;
         }
-        if (option == MANAGE_ROUTE) {
+        if (option == MANAGE_LINE) {
             return;
         }
         if (option == MANAGE_SECTION) {

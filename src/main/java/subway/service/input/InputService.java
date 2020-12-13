@@ -2,7 +2,7 @@ package subway.service.input;
 
 public interface InputService {
     int MANAGE_STATION = 1;
-    int MANAGE_ROUTE = 2;
+    int MANAGE_LINE = 2;
     int MANAGE_SECTION = 3;
     int MANAGE_MAP = 4;
     String MAIN_OPTION_QUIT = "Q";
@@ -19,7 +19,7 @@ public interface InputService {
 
     int getManageStationOption();
 
-    int getManageRouteOption();
+    int getManageLineOption();
 
     int getManageSectionOption();
 

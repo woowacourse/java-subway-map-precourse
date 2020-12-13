@@ -57,7 +57,7 @@ class ScannerInputServiceTest {
 
         //then
         assertThat(mainOptionOne).isEqualTo(InputService.MANAGE_STATION);
-        assertThat(mainOptionTwo).isEqualTo(InputService.MANAGE_ROUTE);
+        assertThat(mainOptionTwo).isEqualTo(InputService.MANAGE_LINE);
         assertThat(mainOptionQuit).isEqualTo(InputService.OPTION_QUIT);
     }
 

@@ -12,9 +12,7 @@ import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.service.output.OutputService;
-import subway.view.LineView;
-import subway.view.SectionView;
-import subway.view.StationView;
+import subway.view.*;
 
 import java.util.List;
 
@@ -38,14 +36,15 @@ public class StationManageApp {
     }
 
     public void startManage() {
+        MainView mainView = new MainView(outputService);
         while (true) {
             int option;
-            outputService.printMain();
+            mainView.showOptions();
             try {
                 option = inputService.getMainOption();
                 chooseOption(option);
             } catch (Exception exception) {
-                System.out.println(OutputService.ENTER + exception.getMessage());
+                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
                 continue;
             }
             if (isQuit(option)) {
@@ -72,8 +71,8 @@ public class StationManageApp {
         if (mainOption == InputService.MANAGE_STATION) {
             manageStation();
         }
-        if (mainOption == InputService.MANAGE_ROUTE) {
-            manageRoute();
+        if (mainOption == InputService.MANAGE_LINE) {
+            manageLine();
         }
         if (mainOption == InputService.MANAGE_SECTION) {
             mangeSection();
@@ -83,9 +82,7 @@ public class StationManageApp {
         }
     }
 
-    private void chooseManageStationOption(int manageStationOption) {
-        StationView stationView = new StationView(outputService);
-
+    private void chooseManageStationOption(int manageStationOption, StationView stationView) {
         if (manageStationOption == InputService.ADD) {
             addStation(stationView);
         }
@@ -98,36 +95,32 @@ public class StationManageApp {
     }
 
     private void addStation(StationView stationView) {
-        outputService.printAdd(stationView);
+        stationView.showAdd();
         String stationName = getName();
         stationService.saveStation(new StationSaveReqDto(stationName));
-        outputService.printAfterAdd(stationView);
+        stationView.showAfterAdd();
     }
 
     private void deleteStation(StationView stationView) {
-        outputService.printDelete(stationView);
+        stationView.showDelete();
         String stationName = getName();
         stationService.deleteStation(new StationDeleteReqDto(stationName));
-        outputService.printAfterDelete(stationView);
+        stationView.showAfterDelete();
     }
 
-    private void chooseManageRouteOption(int manageRouteOption) {
-        LineView lineView = new LineView(outputService);
-
-        if (manageRouteOption == InputService.ADD) {
+    private void chooseManageLineOption(int manageLineOption, LineView lineView) {
+        if (manageLineOption == InputService.ADD) {
             addLine(lineView);
         }
-        if (manageRouteOption == InputService.DELETE) {
+        if (manageLineOption == InputService.DELETE) {
             deleteLine(lineView);
         }
-        if (manageRouteOption == InputService.FIND) {
+        if (manageLineOption == InputService.FIND) {
             lineView.printAllLines(lineService.getLines());
         }
     }
 
-    private void chooseManageSectionOption(int manageSectionOption) {
-        SectionView sectionView = new SectionView(outputService);
-
+    private void chooseManageSectionOption(int manageSectionOption, SectionView sectionView) {
         if (manageSectionOption == InputService.ADD) {
             addSection(sectionView);
         }
@@ -137,7 +130,7 @@ public class StationManageApp {
     }
 
     private void deleteSection(SectionView sectionView) {
-        outputService.printDelete(sectionView);
+        sectionView.showDelete();
         String lineName = getName();
         Section section = sectionService.findByName(lineName);
 
@@ -145,11 +138,11 @@ public class StationManageApp {
         String stationName = getName();
         Station station = stationService.findByName(stationName);
         sectionService.deleteStation(new SectionStationDeleteReqDto(section.getLineName(), station.getName()));
-        outputService.printAfterDelete(sectionView);
+        sectionView.showAfterDelete();
     }
 
     private void addSection(SectionView sectionView) {
-        outputService.printAdd(sectionView);
+        sectionView.showAdd();
         Section section = sectionService.findByName(getName());
         int stationsLength = section.getStationsLength();
 
@@ -161,14 +154,14 @@ public class StationManageApp {
         outputService.printSharp(String.format(SectionView.PRINT_AVAILABLE_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE, stationsLength + SectionService.CONVERT_SEQUENCE));
         int sequence = inputService.getSequence();
         sectionService.addStation(section.getLineName(), station.getName(), sequence);
-        outputService.printAfterAdd(sectionView);
+        sectionView.showAfterAdd();
     }
 
     private void deleteLine(LineView lineView) {
-        outputService.printDelete(lineView);
+        lineView.showDelete();
         String lineName = getName();
         sectionService.deleteSection(new SectionDeleteReqDto(lineName));
-        outputService.printAfterDelete(lineView);
+        lineView.showAfterDelete();
     }
 
     private void addLine(LineView lineView) {
@@ -177,25 +170,25 @@ public class StationManageApp {
         String downWard = getDownwardName(lineView);
 
         sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downWard));
-        outputService.printAfterAdd(lineView);
+        lineView.showAfterAdd();
     }
 
     private String getDownwardName(LineView lineView) {
-        outputService.printSharp(lineView.getAddDownward());
+        lineView.showAddDownward();
         String downwardName = inputService.getName();
         stationService.checkNotFound(downwardName);
         return downwardName;
     }
 
     private String getUpwardName(LineView lineView) {
-        outputService.printSharp(lineView.getAddUpward());
+        lineView.showAddUpward();
         String upwardName = inputService.getName();
         stationService.checkNotFound(upwardName);
         return upwardName;
     }
 
     private String getLineName(LineView lineView) {
-        outputService.printAdd(lineView);
+        lineView.showAdd();
         String lineName = inputService.getName();
         lineService.checkExist(lineName);
         return lineName;
@@ -213,14 +206,15 @@ public class StationManageApp {
     }
 
     private void mangeSection() {
+        SectionView sectionView = new SectionView(outputService);
         while (true) {
-            outputService.printManageSection();
+            sectionView.showOptions();
             int manageSectionOption;
             try {
                 manageSectionOption = inputService.getManageSectionOption();
-                chooseManageSectionOption(manageSectionOption);
+                chooseManageSectionOption(manageSectionOption, sectionView);
             } catch (Exception exception) {
-                System.out.println(OutputService.ENTER + exception.getMessage());
+                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
                 continue;
             }
             if (isBack(manageSectionOption)) {
@@ -229,32 +223,34 @@ public class StationManageApp {
         }
     }
 
-    private void manageRoute() {
+    private void manageLine() {
+        LineView lineView = new LineView(outputService);
         while (true) {
-            outputService.printManageRoute();
-            int manageRouteOption;
+            lineView.showOptions();
+            int manageLineOption;
             try {
-                manageRouteOption = inputService.getManageRouteOption();
-                chooseManageRouteOption(manageRouteOption);
+                manageLineOption = inputService.getManageLineOption();
+                chooseManageLineOption(manageLineOption, lineView);
             } catch (Exception exception) {
-                System.out.println(OutputService.ENTER + exception.getMessage());
+                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
                 continue;
             }
-            if (isBack(manageRouteOption)) {
+            if (isBack(manageLineOption)) {
                 return;
             }
         }
     }
 
     private void manageStation() {
+        StationView stationView = new StationView(outputService);
         while (true) {
-            outputService.printManageStation();
+            stationView.showOptions();
             int manageStationOption;
             try {
                 manageStationOption = inputService.getManageStationOption();
-                chooseManageStationOption(manageStationOption);
+                chooseManageStationOption(manageStationOption, stationView);
             } catch (Exception exception) {
-                System.out.println(OutputService.ENTER + exception.getMessage());
+                System.out.println(Prefix.ENTER.getPrefix() + exception.getMessage());
                 continue;
             }
             if (isBack(manageStationOption)) {

@@ -8,10 +8,14 @@ import subway.service.output.OutputService;
 import java.util.List;
 
 public class SectionView extends Screen {
+    private static final String SECTION_MAIN = Prefix.SHARP.getPrefix() + "구간 관리 화면";
+    private static final String SECTION_ONE = Prefix.ONE.getPrefix() + "구간 등록";
+    private static final String SECTION_TWO = Prefix.THREE.getPrefix() + "구간 삭제";
+    private static final String SECTION_BACK = Prefix.BACK.getPrefix() + "돌아가기";
     public static final String PRINT_ADD = "노선을 입력하세요.";
     public static final String PRINT_DELETE = "삭제할 구간의 노선을 입력하세요.";
     public static final String PRINT_DELETE_STATION = "삭제할 구간의 역을 입력하세요.";
-    public static final String PRINT_ROUTE_MAP = "지하철 노선도";
+    public static final String PRINT_LINE_MAP = "지하철 노선도";
     public static final String PRINT_ADD_STATION = "역이름을 입력하세요.";
     public static final String PRINT_ADD_SEQUENCE = "순서를 입력하세요.";
     public static final String PRINT_AFTER_ADD = "구간이 등록되었습니다.";
@@ -23,12 +27,17 @@ public class SectionView extends Screen {
         super(outputService);
     }
 
+    @Override
+    public void showOptions() {
+        outputService.printOptions(new String[]{SECTION_MAIN, SECTION_ONE, SECTION_TWO, SECTION_BACK});
+    }
+
     public void printAllSection(List<Section> sections) {
-        outputService.printSharp(PRINT_ROUTE_MAP);
+        outputService.printSharp(PRINT_LINE_MAP);
         validateSectionsLength(sections.size());
         for (Section section : sections) {
             outputService.printInfos(section.getLineName());
-            outputService.printInfos(CONTOUR);
+            outputService.printInfos(Prefix.CONTOUR.getPrefix());
             for (String stationName : section.getStationsName()) {
                 outputService.printInfos(stationName);
             }
@@ -43,22 +52,22 @@ public class SectionView extends Screen {
     }
 
     @Override
-    public String getAdd() {
-        return PREFIX_SHARP + PRINT_ADD;
+    public void showAdd() {
+        outputService.printSharp(PRINT_ADD);
     }
 
     @Override
-    public String getDelete() {
-        return PREFIX_SHARP + PRINT_DELETE;
+    public void showDelete() {
+        outputService.printSharp(PRINT_DELETE);
     }
 
     @Override
-    public String getAfterAdd() {
-        return PREFIX_SHARP + PRINT_AFTER_ADD;
+    public void showAfterAdd() {
+        outputService.printInfo(PRINT_AFTER_ADD);
     }
 
     @Override
-    public String getAfterDelete() {
-        return PREFIX_SHARP + PRINT_AFTER_DELETE;
+    public void showAfterDelete() {
+        outputService.printInfo(PRINT_AFTER_DELETE);
     }
 }
