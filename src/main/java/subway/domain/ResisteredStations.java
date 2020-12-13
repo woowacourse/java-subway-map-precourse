@@ -9,6 +9,7 @@ import subway.utils.ValidationUtils;
 
 public class ResisteredStations implements Iterable<String> {
     private static final int FIRST_STATION_ORDER = 1;
+    private static final int MINIMUM_STATION_COUNT = 2;
 
     private final List<String> stations = new ArrayList<>();
 
@@ -36,12 +37,17 @@ public class ResisteredStations implements Iterable<String> {
 
     public boolean deleteSection(String stationName) {
         ValidationUtils.validateNullStationInLine(this, stationName);
+        ValidationUtils.validateCannotDeleteStationMore(this, MINIMUM_STATION_COUNT);
 
         return stations.removeIf(station -> Objects.equals(station, stationName));
     }
     
     public boolean contains(String stationName) {
         return stations.contains(stationName);
+    }
+
+    public int size() {
+        return stations.size();
     }
 
     private int getLastStationOrder() {

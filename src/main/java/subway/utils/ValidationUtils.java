@@ -6,6 +6,7 @@ import subway.domain.LineRepository;
 import subway.domain.ResisteredStations;
 import subway.domain.StationRepository;
 import subway.exception.BlankNameException;
+import subway.exception.CannotDeleteStationMoreException;
 import subway.exception.DuplicatedLineException;
 import subway.exception.DuplicatedStationInLineException;
 import subway.exception.NotPositiveIntegerException;
@@ -64,6 +65,12 @@ public class ValidationUtils {
     public static void validateDuplicatedStationInLine(ResisteredStations stations, String stationName) {
         if (stations.contains(stationName)) {
             throw new DuplicatedStationInLineException(stationName);
+        }
+    }
+
+    public static void validateCannotDeleteStationMore(ResisteredStations stations, int minimumStationCount) {
+        if (stations.size() <= minimumStationCount) {
+            throw new CannotDeleteStationMoreException(minimumStationCount);
         }
     }
 
