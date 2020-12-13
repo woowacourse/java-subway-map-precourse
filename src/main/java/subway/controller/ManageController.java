@@ -3,7 +3,6 @@ package subway.controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
-import subway.view.InputView;
 import subway.view.OutputView;
 
 public class ManageController {
