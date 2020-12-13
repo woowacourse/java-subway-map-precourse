@@ -30,8 +30,7 @@ public class StationController {
 
     public void addStation() {
         try {
-            Station station = getStationToAdd();
-            StationRepository.addStation(station);
+            StationRepository.addStation(getStationToAdd());
             stationView.announceAdditionSuccess();
         } catch (Exception e) {
             OutputView.printErrorMsg(e);
@@ -46,8 +45,7 @@ public class StationController {
 
     public void deleteStation() {
         try {
-            Station station = getStationToDelete();
-            StationRepository.remove(station);
+            StationRepository.remove(getStationToDelete());
             stationView.announceDeletionSuccess();
         } catch (Exception e) {
             OutputView.printErrorMsg(e);

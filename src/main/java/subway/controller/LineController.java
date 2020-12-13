@@ -2,7 +2,6 @@ package subway.controller;
 
 import subway.domain.*;
 import subway.view.LineView;
-import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -24,27 +23,23 @@ public class LineController {
     }
 
     public void addLine() {
-        Name lineName = lineView.getLineNameToAdd();
-        Station firstStation = getFirstStation();
-        Station lastStation = getLastStation();
-
-        LineRepository.addLine(Line.create(lineName, firstStation, lastStation));
+        Name name = lineView.getLineNameToAdd();
+        LineRepository.addLine(Line.create(name, getStartStation(), getEndStation()));
         lineView.announceAdditionSuccess();
     }
 
-    private Station getFirstStation() {
-        Name name = lineView.getFirstStationName();
+    private Station getStartStation() {
+        Name name = lineView.getStartStationName();
         return StationRepository.getByName(name);
     }
 
-    private Station getLastStation() {
-        Name name = lineView.getLastStationName();
+    private Station getEndStation() {
+        Name name = lineView.getEndStationName();
         return StationRepository.getByName(name);
     }
 
     public void deleteLine() {
-        Line line = getLineToDelete();
-        LineRepository.remove(line);
+        LineRepository.remove(getLineToDelete());
         lineView.announceDeletionSuccess();
     }
 

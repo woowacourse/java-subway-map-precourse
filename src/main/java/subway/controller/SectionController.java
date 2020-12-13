@@ -25,8 +25,7 @@ public class SectionController {
     public void addSection() {
         try {
             Line line = getLineToAddSection();
-            Station station = getStationToAddSection();
-            line.addStation(sectionView.getOrder(), station);
+            line.addStation(sectionView.getOrder(), getStationToAddSection());
             sectionView.announceAddSectionSuccess();
         } catch (Exception e) {
             OutputView.printErrorMsg(e);
@@ -46,13 +45,12 @@ public class SectionController {
 
     public void deleteSection() {
         Line line = getLineOfSectionToDelete();
-        Station station = getStationOfSectionToDelete();
-        line.deleteSection(station);
+        line.deleteSection(getStationOfSectionToDelete());
         sectionView.announceDeleteSectionSuccess();
     }
 
     private Line getLineOfSectionToDelete() {
-        Name name = sectionView.getLineNameOfDeleteSection();
+        Name name = sectionView.getLineNameToDeleteSection();
         return LineRepository.getByName(name);
     }
 
