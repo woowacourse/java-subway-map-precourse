@@ -29,6 +29,7 @@ public class Line implements Message {
     }
 
     public void addLast(Station station) {
+        checkDuplicateStation(station);
         this.stations.addLast(station);
     }
 
