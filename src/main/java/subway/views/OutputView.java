@@ -2,6 +2,7 @@ package subway.views;
 
 import subway.menus.LineMenu;
 import subway.menus.MainMenu;
+import subway.menus.SectionMenu;
 import subway.menus.StationMenu;
 
 import java.util.Arrays;
@@ -50,6 +51,18 @@ public class OutputView {
     private static void printLineManageMenus() {
         Arrays.stream(LineMenu.values())
             .map(LineMenu::toString)
+            .forEach(System.out::println);
+    }
+
+    public static void printSectionManagePage() {
+        System.out.println(LINE_MANAGE_PAGE);
+        printLineManageMenus();
+        System.out.println();
+    }
+
+    private static void printSectionManageMenus() {
+        Arrays.stream(SectionMenu.values())
+            .map(SectionMenu::toString)
             .forEach(System.out::println);
     }
 }

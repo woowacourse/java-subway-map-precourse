@@ -2,6 +2,7 @@ package subway.views;
 
 import subway.menus.LineMenu;
 import subway.menus.MainMenu;
+import subway.menus.SectionMenu;
 import subway.menus.StationMenu;
 
 import java.util.Arrays;
@@ -67,6 +68,24 @@ public class InputView {
 
     private static boolean isExistLineMenu(String selection) {
         boolean isExist = Arrays.stream(LineMenu.values())
+            .anyMatch(menu -> menu.getOption().equals(selection));
+        return isExist;
+    }
+
+    public static String selectSectionMenu(Scanner scanner) {
+        String selection = userInput(scanner);
+        checkExistSectionMenu(selection);
+        return selection;
+    }
+
+    private static void checkExistSectionMenu(String selection) {
+        if (!isExistSectionMenu(selection)) {
+            throw new IllegalArgumentException(NOT_EXIST_MAIN_MENU_SELECTION);
+        }
+    }
+
+    private static boolean isExistSectionMenu(String selection) {
+        boolean isExist = Arrays.stream(SectionMenu.values())
             .anyMatch(menu -> menu.getOption().equals(selection));
         return isExist;
     }
