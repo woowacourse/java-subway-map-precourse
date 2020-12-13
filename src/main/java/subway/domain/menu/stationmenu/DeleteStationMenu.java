@@ -13,8 +13,8 @@ public class DeleteStationMenu implements StationManageMenu {
     @Override
     public void run(Scanner scanner) {
         ApplicationMenu.printDeleteStation();
-        String stationNameInput = scanner.next();
 
+        String stationNameInput = scanner.next();
         if (Error.printNotExistStationError(stationNameInput) || Error.printStationExistInLineError(stationNameInput)) {
             return;
         }

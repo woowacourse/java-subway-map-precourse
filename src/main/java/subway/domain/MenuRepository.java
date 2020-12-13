@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.domain.menu.linemenu.*;
 import subway.domain.menu.mainmenu.*;
 import subway.domain.menu.stationmenu.*;
 
@@ -10,13 +11,14 @@ public class MenuRepository {
             (StationMenu.MENU_BUTTON, LineMenu.MENU_BUTTON, IntervalMenu.MENU_BUTTON, PrintIntervalsMenu.MENU_BUTTON, ExitMenu.MENU_BUTTON));
     public static final List<String> stationMenuButtons = new ArrayList<>(Arrays.asList
             (RegisterStationMenu.MENU_BUTTON, DeleteStationMenu.MENU_BUTTON, PrintStationsMenu.MENU_BUTTON, ExitToStationMenu.MENU_BUTTON));
-    public static final List<String> lineMenuButtons =
-            new ArrayList<>(Arrays.asList("1", "2", "3", "B"));
+    public static final List<String> lineMenuButtons = new ArrayList<>(Arrays.asList
+            (RegisterLineMenu.MENU_BUTTON, DeleteLineMenu.MENU_BUTTON, PrintLinesMenu.MENU_BUTTON, ExitToLineMenu.MENU_BUTTON));
     public static final List<String> intervalMenuButtons =
             new ArrayList<>(Arrays.asList("1", "2", "B"));
 
     public static final Map<String, Menu> mainMenu = new HashMap<>();
     public static final Map<String, StationManageMenu> stationMenu = new HashMap<>();
+    public static final Map<String, LineManageMenu> lineMenu = new HashMap<>();
 
     static {
         mainMenu.put(StationMenu.MENU_BUTTON, new StationMenu());
@@ -27,5 +29,9 @@ public class MenuRepository {
         stationMenu.put(RegisterStationMenu.MENU_BUTTON, new RegisterStationMenu());
         stationMenu.put(DeleteStationMenu.MENU_BUTTON, new DeleteStationMenu());
         stationMenu.put(PrintStationsMenu.MENU_BUTTON, new PrintStationsMenu());
+
+        lineMenu.put(RegisterLineMenu.MENU_BUTTON, new RegisterLineMenu());
+        lineMenu.put(DeleteLineMenu.MENU_BUTTON, new DeleteLineMenu());
+        lineMenu.put(PrintLinesMenu.MENU_BUTTON, new PrintLinesMenu());
     }
 }

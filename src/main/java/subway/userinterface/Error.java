@@ -1,5 +1,6 @@
 package subway.userinterface;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.MenuRepository;
 import subway.domain.StationRepository;
@@ -32,9 +33,9 @@ public class Error {
         return false;
     }
 
-    public static boolean printNotExistStationError(String stationNameInput) {
-        if (!StationRepository.isStationExists(stationNameInput)) {
-            System.out.println(ERROR + "존재하지 않는 역 이름입니다.");
+    public static boolean printAlreadyExistLineError(String lineNameInput) {
+        if (LineRepository.isLineExists(lineNameInput)) {
+            System.out.println(ERROR + "이미 존재하는 노선 이름입니다.");
             return true;
         }
         return false;
@@ -47,4 +48,30 @@ public class Error {
         }
         return false;
     }
+
+    public static boolean printNotExistStationError(String stationNameInput) {
+        if (!StationRepository.isStationExists(stationNameInput)) {
+            System.out.println(ERROR + "존재하지 않는 역 이름입니다.");
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean printNotExistLineError(String lineNameInput) {
+        if (!LineRepository.isLineExists(lineNameInput)) {
+            System.out.println(ERROR + "존재하지 않는 노선 이름입니다.");
+            return true;
+        }
+        return false;
+    }
+
+//    public static boolean printStationAlreadyExistInLineError(String lineName, String stationName) {
+//        Line line = LineRepository.findLineByName(lineName);
+//        if (LineRepository.hasStationInCertainLine(line, stationName)) {
+//            System.out.println(ERROR + lineName + "안에 존재하는 역 이름입니다.");
+//            return true;
+//        }
+//        return false;
+
+//    }
 }

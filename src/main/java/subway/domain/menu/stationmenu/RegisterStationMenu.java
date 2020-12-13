@@ -14,8 +14,8 @@ public class RegisterStationMenu implements StationManageMenu {
     @Override
     public void run(Scanner scanner) {
         ApplicationMenu.printAddStation();
-        String stationNameInput = scanner.next();
 
+        String stationNameInput = scanner.next();
         if (Error.printAlreadyExistStationError(stationNameInput)) {
             return;
         }

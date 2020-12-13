@@ -28,11 +28,27 @@ public class Info {
         System.out.println();
     }
 
+    public static void printLines() {
+        System.out.println("\n 노선 목록");
+        for (Line line : LineRepository.lines().keySet()) {
+            System.out.print(INFO + line);
+        }
+        System.out.println();
+    }
+
     public static void printStationRegistered(String stationName) {
         System.out.println(INFO + stationName + "이 등록되었습니다.");
     }
 
+    public static void printLineRegistered(String lineName) {
+        System.out.println(INFO + lineName + "이 등록되었습니다.");
+    }
+
     public static void printStationDeleted(String stationName) {
         System.out.println(INFO + stationName + "이 삭제되었습니다.");
+    }
+
+    public static void printLineDeleted(String lineName) {
+        System.out.println(INFO + lineName + "이 삭제되었습니다.");
     }
 }

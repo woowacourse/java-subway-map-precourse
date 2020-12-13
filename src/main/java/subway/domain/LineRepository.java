@@ -49,11 +49,19 @@ public class LineRepository {
     }
 
     public static boolean hasStationInLine(String name) {
-        for (List<Station> stations : lines().values()) {
-            if (stations.stream().anyMatch(station -> station.getName().equals(name))) {
+        for (Line line : lines.keySet()) {
+            if (hasStationInCertainLine(line, name)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static boolean hasStationInCertainLine(Line line, String stationName) {
+        return lines.get(line).stream().anyMatch(station -> station.getName().equals(stationName));
+    }
+
+    public static boolean isLineExists(String name) {
+        return lines.keySet().stream().anyMatch(line -> line.getName().equals(name));
     }
 }
