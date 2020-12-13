@@ -6,7 +6,6 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Scanner;
-import java.util.List;
 
 public class StationController {
     private static StationController stationController = null;
@@ -18,7 +17,8 @@ public class StationController {
 
     public static StationController getInstance(Scanner scanner){
         if(stationController == null){
-            return new StationController(scanner);
+            stationController = new StationController(scanner);
+            return stationController;
         }
         return stationController;
     }

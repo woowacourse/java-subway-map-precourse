@@ -18,7 +18,8 @@ public class LineController {
 
     public static LineController getInstance(Scanner scanner) {
         if (lineController == null) {
-            return new LineController(scanner);
+            lineController = new LineController(scanner);
+            return lineController;
         }
         return lineController;
     }
