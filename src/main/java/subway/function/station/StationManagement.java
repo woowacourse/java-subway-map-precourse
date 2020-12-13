@@ -6,6 +6,8 @@ import subway.common.ResolveResultType;
 import subway.common.print.error.CommonErrorPrinter;
 import subway.common.print.info.CommonInfoPrinter;
 import subway.common.validator.CommonValidator;
+import subway.domain.LineStationMappingRepository;
+import subway.function.station.printer.PrintStationManagementScreen;
 import subway.function.station.printer.StationManagementPrinter;
 import subway.function.station.printer.error.StationManagementErrorPrinter;
 import subway.main.UserSelections;
@@ -79,15 +81,34 @@ public class StationManagement {
     private static ResolveResultType deleteStation(Scanner scanner) {
         StationManagementPrinter.printUserInputStationToDeleteMessage();
         String stationName = scanner.nextLine();
+        if (!isValidStationNameToDelete(stationName)) {
+            return ResolveResultType.ERROR;
+        }
         StationRepository.deleteStation(stationName);
         StationManagementPrinter.printDeleteStationSuccessMessage();
         return ResolveResultType.SUCCESS;
     }
 
+    private static boolean isValidStationNameToDelete(String stationName) {
+        if (!isExistsStationName(stationName)) {
+            StationManagementErrorPrinter.printNotExistsStationNameErrorMessage();
+            return false;
+        }
+        if (isRegisteredInLineStationName(stationName)) {
+            StationManagementErrorPrinter.printRegisteredInLineStationNameErrorMessage();
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isRegisteredInLineStationName(String stationName) {
+        return LineStationMappingRepository.isStationNameRegisteredInLine(stationName);
+    }
+
     private static ResolveResultType registerNewStation(Scanner scanner) {
         StationManagementPrinter.printUserInputStationRegistrationMessage();
         String newStationName = scanner.nextLine();
-        if (!isValidStationName(newStationName)) {
+        if (!isValidStationNameToRegister(newStationName)) {
             return ResolveResultType.ERROR;
         }
         StationRepository.addStation(new Station(newStationName));
@@ -95,20 +116,20 @@ public class StationManagement {
         return ResolveResultType.SUCCESS;
     }
 
-    private static boolean isValidStationName(String newStationName) {
+    private static boolean isValidStationNameToRegister(String newStationName) {
         if (CommonValidator.isLengthLessThanMinLength(newStationName)) {
             StationManagementErrorPrinter.printNewStationNameLengthErrorMessage();
             return false;
         }
-        if (isAlreadyExistsStationName(newStationName)) {
+        if (isExistsStationName(newStationName)) {
             StationManagementErrorPrinter.printAlreadyExistsStationNameErrorMessage();
             return false;
         }
         return true;
     }
 
-    private static boolean isAlreadyExistsStationName(String newStationName) {
-        return StationRepository.findByName(newStationName) != null;
+    private static boolean isExistsStationName(String stationName) {
+        return StationRepository.findByName(stationName) != null;
     }
 
     private static void printScreen() {

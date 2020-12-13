@@ -62,4 +62,17 @@ public class LineStationMappingRepository {
             System.out.println();
         }
     }
+
+    public static boolean isStationNameRegisteredInLine(String stationName) {
+        for (Line line : lineStationMapping.keySet()) {
+            if (isStationNameInLine(lineStationMapping.get(line), stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isStationNameInLine(List<Station> stations, String stationName) {
+        return stations.stream().map(Station::getName).anyMatch(name -> name.equals(stationName));
+    }
 }
