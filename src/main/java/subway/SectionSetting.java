@@ -25,6 +25,7 @@ public class SectionSetting {
         String lineName = lineName(scanner);
         LineRepository.lines().forEach(line -> {
             if (line.getName().equals(lineName)) {
+                Exceptions.NumberOfStationsInLineOverTwo(line);
                 String station = stationToDelete(scanner, line);
                 if (!line.deleteStation(station)){
                     Exceptions.isNotInThisLine();
