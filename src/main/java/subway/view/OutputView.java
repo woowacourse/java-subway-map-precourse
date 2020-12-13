@@ -16,7 +16,8 @@ public class OutputView {
     private static final String BACK_SIGN = "B";
     private static final String ADD_ORDER_START_MESSAGE = "등록할 ";
     private static final String DELETE_ORDER_START_MESSAGE = "삭제할 ";
-    private static final String NAME_MESSAGE = "이름을 입력하세요.";
+    private static final String NAME_MESSAGE = "이름";
+    private static final String INPUT_MESSAGE = "을 입력하세요.";
     private static final String LIST_MESSAGE = "목록";
     private static final String INFO_TAG = "[INFO] ";
     private static final String SUBWAY_MESSAGE = "지하철 ";
@@ -74,11 +75,11 @@ public class OutputView {
     }
 
     public static void printAddActionMessage(String title) {
-        System.out.println(HASH + ADD_ORDER_START_MESSAGE + title + NAME_MESSAGE);
+        System.out.println(HASH + ADD_ORDER_START_MESSAGE + title + NAME_MESSAGE + INPUT_MESSAGE);
     }
 
     public static void printDeleteActionMessage(String title) {
-        System.out.println(HASH + DELETE_ORDER_START_MESSAGE + title + NAME_MESSAGE);
+        System.out.println(HASH + DELETE_ORDER_START_MESSAGE + title + NAME_MESSAGE + INPUT_MESSAGE);
     }
 
     public static void printList(String title, List<String> stationNames) {
@@ -103,10 +104,14 @@ public class OutputView {
     }
 
     public static void printUpBoundStationMessage() {
-        System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + UPBOUND + NAME_MESSAGE);
+        System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + UPBOUND + NAME_MESSAGE +INPUT_MESSAGE);
     }
 
     public static void printDownBoundStationMessage() {
-        System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + DOWNBOUND + NAME_MESSAGE);
+        System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + DOWNBOUND + NAME_MESSAGE + INPUT_MESSAGE);
+    }
+
+    public static void printInputMessage(String title) {
+        System.out.println(HASH + title + INPUT_MESSAGE);
     }
 }

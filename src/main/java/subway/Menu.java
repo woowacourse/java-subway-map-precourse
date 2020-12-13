@@ -1,5 +1,6 @@
 package subway;
 
+import subway.controller.Edge;
 import subway.controller.MenuController;
 import subway.domain.Station;
 import subway.domain.Line;
@@ -132,6 +133,9 @@ public class Menu {
     }
 
     private static boolean runEdgeMenu(InputView inputView, String subMenuAction) {
+        if (subMenuAction.equals(INSERT_SIGN)) {
+            Edge.add(inputView);
+        }
         return true;
     }
 
