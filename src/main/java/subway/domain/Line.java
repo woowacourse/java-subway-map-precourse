@@ -18,7 +18,7 @@ public class Line {
     private final List<Station> lineStations = new ArrayList<>();
 
     public Line(String name) {
-        if(!LineRepository.isLine(name)){
+        if (!LineRepository.isLine(name)) {
             throw new AlreadyExistNameException();
         }
         this.name = name;
@@ -28,66 +28,66 @@ public class Line {
         return name;
     }
 
-    public List<Station> getLineStations(){
+    public List<Station> getLineStations() {
         return lineStations;
     }
 
     // 추가 기능 구현
-    public void addLineStation(Station station){
-        if (StationRepository.isStation(station.getName())){
+    public void addLineStation(Station station) {
+        if (StationRepository.isStation(station.getName())) {
             throw new NoExistStationNameException();
-        }if(!checkLineStation(station.getName())){
+        }
+        if (!checkLineStation(station.getName())) {
             throw new AlreadyExistNameException();
         }
         station.setLines(this.name);
         lineStations.add(station);
     }
 
-    public void addLineStation(int index, Station station){
-        if (StationRepository.isStation(station.getName())){
+    public void addLineStation(int index, Station station) {
+        if (StationRepository.isStation(station.getName())) {
             throw new NoExistStationNameException();
         }
-        if(!checkLineStation(station.getName())){
+        if (!checkLineStation(station.getName())) {
             throw new AlreadyExistNameException();
         }
-        if(index == lineStations.size()){
+        if (index == lineStations.size()) {
             throw new DownLineStationException();
         }
-        if(index == 0){
+        if (index == 0) {
             throw new UpLineStationException();
         }
         station.setLines(this.name);
         lineStations.add(index, station);
     }
 
-    public void deleteLineStation(String name){
+    public void deleteLineStation(String name) {
         Station deleteStation = StationRepository.getStation(name);
 
-        if(checkLineStation(name)){
+        if (checkLineStation(name))
             throw new NoExistStationNameException();
-        }
         deleteStation.deleteLines(this.name);
         lineStations.remove(deleteStation);
     }
 
-    public void deleteLineNameInStation(String name){
-        for(Station station : lineStations){
+    public void deleteLineNameInStation(String name) {
+        for (Station station : lineStations) {
             station.deleteLines(name);
         }
     }
 
 
-    public void makeLine(Input input){
+    public void makeLine(Input input) {
         System.out.println(UP_LINE_NAME);
-        this.addLineStation(StationRepository.getStation(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
+        this.addLineStation(StationRepository.getStation(input.inputStationName()));
         System.out.println(DOWN_LINE_NAME);
-        this.addLineStation(StationRepository.getStation(input.inputStationName())); // 있는 역에서 넣어야하기 때문에 변경이 필요함.
+        this.addLineStation(StationRepository.getStation(input.inputStationName()));
         LineRepository.addLine(this);
     }
 
-    private boolean checkLineStation(String name){
-        for(Station station : lineStations){
-            if(station.getName().equals(name))
+    private boolean checkLineStation(String name) {
+        for (Station station : lineStations) {
+            if (station.getName().equals(name))
                 return false;
         }
         return true;

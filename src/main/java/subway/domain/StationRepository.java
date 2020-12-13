@@ -17,31 +17,31 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if(!isStation(station.getName())){
+        if (!isStation(station.getName())) {
             throw new AlreadyExistNameException();
         }
         stations.add(station);
     }
 
     public static boolean deleteStation(String name) {
-        if(getStation(name).isLineStation()){
+        if (getStation(name).isLineStation()) {
             throw new UsedStationException();
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isStation(String name){
-        for(Station station : stations()){
-            if(station.getName().equals(name)){
+    public static boolean isStation(String name) {
+        for (Station station : stations()) {
+            if (station.getName().equals(name)) {
                 return false;
             }
         }
         return true;
     }
 
-    public static Station getStation(String name){
-        for(Station station : stations()){
-            if(station.getName().equals(name))
+    public static Station getStation(String name) {
+        for (Station station : stations()) {
+            if (station.getName().equals(name))
                 return station;
         }
         throw new NoExistStationNameException();
