@@ -1,6 +1,7 @@
 package subway.menu;
 
 import subway.controller.StationController;
+import subway.domain.exception.WrongAccessException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -70,7 +71,7 @@ public class StationMenu {
             return Arrays.stream(values())
                     .filter(menu -> menu.userInput.equals(input))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 기능입니다."));
+                    .orElseThrow(() -> new WrongAccessException());
         }
     }
 }

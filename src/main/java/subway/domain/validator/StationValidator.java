@@ -1,6 +1,8 @@
 package subway.domain.validator;
 
 import subway.domain.Station;
+import subway.domain.exception.AlreadyExistingStationException;
+import subway.domain.exception.NonExistingStationException;
 
 public class StationValidator {
     private StationValidator() {
@@ -8,13 +10,13 @@ public class StationValidator {
 
     public static void checkNotExistingName(boolean isContain) {
         if (isContain) {
-            throw new IllegalArgumentException("중복된 역 이름 입니다.");
+            throw new AlreadyExistingStationException();
         }
     }
 
     public static void checkIsNotOnLine(Station station) {
         if (station.isOnLine()) {
-            throw new IllegalArgumentException("노선에 등록된 역은 삭제할 수 없습니다.");
+            throw new NonExistingStationException();
         }
     }
 }

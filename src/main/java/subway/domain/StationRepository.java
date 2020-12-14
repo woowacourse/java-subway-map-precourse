@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.domain.exception.NonExistingStationException;
 import subway.domain.validator.StationValidator;
 
 import java.util.ArrayList;
@@ -29,6 +30,6 @@ public class StationRepository {
         return stations.stream()
                 .filter(station -> station.isSameName(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 역입니다."));
+                .orElseThrow(() -> new NonExistingStationException());
     }
 }

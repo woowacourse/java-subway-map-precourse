@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.domain.exception.NonExistingLineException;
 import subway.domain.validator.LineValidator;
 
 import java.util.ArrayList;
@@ -34,6 +35,6 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.isName(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 노선입니다."));
+                .orElseThrow(() -> new NonExistingLineException());
     }
 }

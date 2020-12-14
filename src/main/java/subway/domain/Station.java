@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.domain.exception.WrongAccessException;
+
 public class Station {
     private Name name;
     private int countOnLine;
@@ -22,7 +24,7 @@ public class Station {
 
     public void outOfLine() {
         if (countOnLine <= 0) {
-            throw new IllegalArgumentException("잘못된 접근 입니다.");
+            throw new WrongAccessException();
         }
         countOnLine--;
     }
