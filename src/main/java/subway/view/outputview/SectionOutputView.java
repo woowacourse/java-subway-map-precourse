@@ -43,4 +43,22 @@ public class SectionOutputView {
         stringBuilder.append(SUCCESS_ADD_SECTION);
         print();
     }
+
+    public static void deleteSectionLineName() {
+        stringBuilder.append(MENU_SYMBOL);
+        stringBuilder.append(DELETE_SECTION_LINE);
+        print();
+    }
+
+    public static void deleteSectionStationName() {
+        stringBuilder.append(MENU_SYMBOL);
+        stringBuilder.append(DELETE_SECTION_STATION);
+        print();
+    }
+
+    public static void successRemove() {
+        stringBuilder.append(INFO_SYMBOL);
+        stringBuilder.append(SUCCESS_DELETE_SECTION);
+        print();
+    }
 }

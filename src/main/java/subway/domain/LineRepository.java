@@ -47,6 +47,14 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static void deleteSectionOfLine(String lineName, String station) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .findFirst()
+                .get()
+                .deleteLineByName(station);
+    }
+
     public static void duplicateStationInLine(String name) {
         lines.stream()
                 .map(line -> line.getStations())
@@ -67,6 +75,16 @@ public class LineRepository {
                     throw new DuplicateStationOfLineException();
                 });
     }
+
+    public static void notExistStationSelectLine(String stationName, String lineName) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .map(line -> line.getStations())
+                .filter(station -> station.contains(stationName))
+                .findAny()
+                .orElseThrow(() -> new NotStationInSelectLineException());
+    }
+
 
     public void duplicateLineName(String lineName) {
         lines.stream()

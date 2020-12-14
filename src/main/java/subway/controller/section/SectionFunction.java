@@ -1,6 +1,7 @@
 package subway.controller.section;
 
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.exception.*;
 import subway.utils.InputValidator;
@@ -27,9 +28,8 @@ public class SectionFunction {
             String line = InputView.input();
             InputValidator.validLineName(line);
             LineRepository.notExistLineName(line);
-            LineRepository.twoMoreLines(line);
             return line;
-        } catch (InvalidLineNameException | NotExistLineException | InvalidLineLengthException e) {
+        } catch (InvalidLineNameException | NotExistLineException e) {
             throw new NullPointerException();
         }
     }
@@ -60,6 +60,40 @@ public class SectionFunction {
     }
 
     public static Object delete(Object o) {
+        try {
+            String line = inputDeleteLine();
+            String station = inputDeleteStation(line);
+            LineRepository.deleteSectionOfLine(line, station);
+            SectionOutputView.successRemove();
+        } catch (NullPointerException e) {
+
+        }
         return null;
+    }
+
+    private static String inputDeleteLine() {
+        try {
+            SectionOutputView.deleteSectionLineName();
+            String line = InputView.input();
+            InputValidator.validLineName(line);
+            LineRepository.notExistLineName(line);
+            LineRepository.twoMoreLines(line);
+            return line;
+        } catch (InvalidLineNameException | NotExistLineException | InvalidLineLengthException e) {
+            throw new NullPointerException();
+        }
+    }
+
+    private static String inputDeleteStation(String line) {
+        try {
+            SectionOutputView.deleteSectionStationName();
+            String station = InputView.input();
+            InputValidator.validStationName(station);
+            StationRepository.notExistStationName(station);
+            LineRepository.notExistStationSelectLine(station, line);
+            return station;
+        } catch (InvalidStationNameException | NotExistStationException | NotStationInSelectLineException e) {
+            throw new NullPointerException();
+        }
     }
 }
