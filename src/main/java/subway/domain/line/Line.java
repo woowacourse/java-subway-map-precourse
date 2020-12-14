@@ -15,11 +15,11 @@ public class Line {
         this.sections = sections;
     }
 
-    public static Line createLine(String name, String upwardEndStationName, String downwardEndStationName) {
-        LineValidator.validate(name, upwardEndStationName, downwardEndStationName);
+    public static Line createLine(String name, Station upwardEndStation, Station downwardEndStation) {
+        LineNameValidator.validate(name);
         List<Station> sections = new ArrayList<>();
-        sections.add(new Station(upwardEndStationName));
-        sections.add(new Station(downwardEndStationName));
+        sections.add(upwardEndStation);
+        sections.add(downwardEndStation);
         return new Line(name, sections);
     }
 
