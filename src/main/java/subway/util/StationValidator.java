@@ -1,16 +1,16 @@
 package subway.util;
 
-import subway.domain.Line;
+import subway.domain.Station;
 
 import java.util.List;
 
-public class LineError {
+public class StationValidator {
 
     private static final int SIZE = 2;
 
-    public static boolean checkDuplicateName(String name, List<Line> lines) {
-        for (Line line : lines) {
-            if (line.getName().equals(name)) {
+    public static boolean checkDuplicateName(String name, List<Station> stations) {
+        for(Station station : stations) {
+            if (station.getName().equals(name)) {
                 return true;
             }
         }
