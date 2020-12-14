@@ -6,7 +6,7 @@ import subway.exception.station.StationNameFormatException;
 import subway.exception.station.StationNameLengthException;
 import subway.exception.SubwayApplicationException;
 
-public class GenerateNewStationService {
+public class StationGenerateService {
     public Station generate(String name) {
         Station station;
 

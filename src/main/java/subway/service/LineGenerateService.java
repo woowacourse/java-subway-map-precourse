@@ -5,14 +5,14 @@ import subway.exception.station.SameUpLineAndDownLineException;
 import subway.exception.station.StationNotFoundException;
 import subway.exception.SubwayApplicationException;
 import subway.repository.station.StationRepository;
-import subway.specification.AlreadyRegisteredStationSpecification;
+import subway.specification.StationAlreadyRegisteredSpecification;
 import subway.specification.SameUpLineAndDownLineSpecification;
 import subway.domain.line.Line;
 
-public class GenerateNewLineService {
+public class LineGenerateService {
     private final StationRepository stationRepository;
 
-    public GenerateNewLineService(StationRepository stationRepository) {
+    public LineGenerateService(StationRepository stationRepository) {
         this.stationRepository = stationRepository;
     }
 
@@ -38,10 +38,10 @@ public class GenerateNewLineService {
     }
 
     private void validateIsRegisteredStation(Station station) {
-        AlreadyRegisteredStationSpecification alreadyRegisteredStationSpecification =
-                new AlreadyRegisteredStationSpecification(stationRepository);
+        StationAlreadyRegisteredSpecification stationAlreadyRegisteredSpecification =
+                new StationAlreadyRegisteredSpecification(stationRepository);
 
-        if (!alreadyRegisteredStationSpecification.isSatisfiedBy(station)) {
+        if (!stationAlreadyRegisteredSpecification.isSatisfiedBy(station)) {
             throw new StationNotFoundException();
         }
     }

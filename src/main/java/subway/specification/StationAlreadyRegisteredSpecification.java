@@ -4,10 +4,10 @@ import subway.domain.station.Station;
 import subway.exception.station.StationNotFoundException;
 import subway.repository.station.StationRepository;
 
-public class AlreadyRegisteredStationSpecification {
+public class StationAlreadyRegisteredSpecification {
     StationRepository stationRepository;
 
-    public AlreadyRegisteredStationSpecification(StationRepository stationRepository) {
+    public StationAlreadyRegisteredSpecification(StationRepository stationRepository) {
         this.stationRepository = stationRepository;
     }
 
