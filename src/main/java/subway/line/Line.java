@@ -55,7 +55,7 @@ public class Line {
 
         for (Station station : stations) {
             if (station.getName().equals(stationName)) {
-                stations.remove();
+                stations.remove(station);
                 return;
             }
         }
