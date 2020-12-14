@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import subway.exception.LineErrorMessage;
 
@@ -13,18 +12,20 @@ public class LineRepository implements LineErrorMessage {
     private static final int LINE_NAME_LENGTH_LIMIT = 2;
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final int UP_DOWN_END_STATION_TOTAL = 2;
+    private static final List<Station> stations = StationRepository.stations();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void initializeLine(String lineName, String upEndStationName, String downEndStationName) {
+    public static void initializeLine(String lineName, String upEndStationName,
+            String downEndStationName) {
         Line newLine = new Line(lineName);
-        Stream<Station> stationStream = StationRepository.stations().stream();
-        ArrayList<Station> bothEndStations = stationStream.filter(station -> station.getName().
-            equals(upEndStationName) || station.getName().equals(downEndStationName)).
-            collect(Collectors.toCollection(ArrayList<Station>::new));
-        newLine.initializeEndStations(bothEndStations.get(0), bothEndStations.get(1));
+        Station upEndStations = stations.stream().filter(station ->
+            station.getName().equals(upEndStationName)).findAny().get();
+        Station downEndStations = stations.stream().filter(station ->
+            station.getName().equals(downEndStationName)).findAny().get();
+        newLine.initializeEndStations(upEndStations, downEndStations);
         addLine(newLine);
     }
 
