@@ -61,7 +61,7 @@ public class InputValidation {
         }
     }
 
-    public int validatePositionIsOver(String lineName, String position, LineStationRepository lineStation) {
+    public int validatePositionIsOutOfRange(String lineName, String position, LineStationRepository lineStation) {
         int pos = parseStringToInt(position) - SECTION_POINT_ONE;
         int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName));
         if (pos > stationSizeOfLine) {

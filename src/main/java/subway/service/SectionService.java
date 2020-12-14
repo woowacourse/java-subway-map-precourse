@@ -25,7 +25,7 @@ public class SectionService extends InputService {
         String lineName = inputLineNameToAddSection(scanner);
         String stationName = inputStationNameToAddSection(scanner);
         String position = inputPositionToAddSection(scanner);
-        int pos = validatePositionIsOver(lineName, position, lineStation);
+        int pos = validatePositionIsOutOfRange(lineName, position, lineStation);
         lineStation.addStationInLine(findLine(lineName), findStation(stationName), pos);
         printAddSectionSuccessMessage();
     }
