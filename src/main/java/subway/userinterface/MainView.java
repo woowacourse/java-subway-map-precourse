@@ -29,7 +29,7 @@ public class MainView extends View {
                         "2. 노선 관리\n" +
                         "3. 구간 관리\n" +
                         "4. 지하철 노선도 출력\n" +
-                        "Q. 종료\n");
+                        "Q. 종료");
     }
 
     @Override
@@ -70,8 +70,7 @@ public class MainView extends View {
         LineRepository.lines().forEach(line -> outputBuilder
                 .append(line)
                 .append("[INFO] ---\n")
-                .append(getStringAllStation(line))
-                .append("\n"));
+                .append(getStringAllStation(line)));
 
         System.out.print(outputBuilder.toString());
     }
