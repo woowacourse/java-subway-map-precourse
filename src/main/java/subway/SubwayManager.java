@@ -14,5 +14,6 @@ public class SubwayManager {
 
     public void run() {
         nowView.printGuideMessage();
+        String input = nowView.input();
     }
 }
