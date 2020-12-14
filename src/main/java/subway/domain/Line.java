@@ -31,6 +31,10 @@ public class Line {
     	}
     }
     
+    public List<Station> getStations(){
+    	return stations;
+    }
+    
     public void print_stationOfLine() {
     	System.out.println("[INFO] "+this.name);
     	System.out.println("[INFO] ---");
