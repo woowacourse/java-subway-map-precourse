@@ -22,6 +22,22 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
+    public static boolean findStationFromName(String stationName) {
+        return StationRepository
+            .stations()
+            .stream()
+            .map(Station::getName)
+            .collect(Collectors.toList())
+            .contains(stationName);
+    }
+
+    public static Station getStationFromName(String stationName){
+        return (Station) StationRepository
+            .stations()
+            .stream()
+            .filter(station->station.getName().equals(stationName));
+    }
+
     public static List<String> registeredStationsInLine() { // 라인에 등록된 역 출력
         List<String> allStations = new ArrayList<>();
         for (Line line : LineRepository.lines()) {
