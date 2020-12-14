@@ -2,8 +2,10 @@ package subway.domain;
 
 import subway.view.LineMessages;
 import subway.view.SectionMessages;
+import subway.view.StationMessages;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,6 +55,22 @@ public class Sections {
 	public static void validateRegistration(String lineName, String stationName) throws IllegalArgumentException {
 		if (!getSectionNames(lineName).contains(stationName)) {
 			throw new IllegalArgumentException(SectionMessages.UNREGISTERED_STATION_NAME_ERROR.getMessage());
+		}
+	}
+
+	private static boolean isInUse(String stationName) {
+		return LineRepository.lines()
+				.stream()
+				.map(Line::getSections)
+				.map(line -> line.sections)
+				.flatMap(Collection::stream)
+				.map(Station::getName)
+				.anyMatch(stationName::equals);
+	}
+
+	public static void validateStationInUse(String stationName) throws IllegalArgumentException {
+		if (isInUse(stationName)) {
+			throw new IllegalArgumentException(StationMessages.IN_USE_ERROR.getMessage());
 		}
 	}
 

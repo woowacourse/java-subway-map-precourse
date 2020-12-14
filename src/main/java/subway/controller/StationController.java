@@ -4,7 +4,9 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.View;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class StationController {
@@ -34,13 +36,15 @@ public class StationController {
 	}
 
 	private static void deregisterStation(Scanner scanner) {
-		String name = View.getStationNameToDelete(scanner);
-		System.out.println();
-		if (StationRepository.deleteStation(name)) {
+		try {
+			String name = View.getStationNameToDelete(scanner);
+			System.out.println();
+			StationRepository.deleteStation(name);
 			View.printStationDeleteCompletion();
-			return;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			System.out.println();
 		}
-		View.printStationDeleteError();
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {

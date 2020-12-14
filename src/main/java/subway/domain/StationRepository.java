@@ -28,17 +28,19 @@ public class StationRepository {
 		stations.add(station);
 	}
 
-	public static Station getStation(String stationName) throws IllegalArgumentException {
+	public static Station getStation(String name) throws IllegalArgumentException {
 		return StationRepository
 				.stations()
 				.stream()
-				.filter(station -> station.getName().equals(stationName))
+				.filter(station -> station.getName().equals(name))
 				.findAny()
 				.orElseThrow(() -> new IllegalArgumentException(StationMessages.UNREGISTERED_NAME_ERROR.getMessage()));
 	}
 
-	public static boolean deleteStation(String name) {
-		return stations.removeIf(station -> Objects.equals(station.getName(), name));
+	public static void deleteStation(String name) throws IllegalArgumentException {
+		validateRegistration(name);
+		Sections.validateStationInUse(name);
+		stations.removeIf(station -> Objects.equals(station.getName(), name));
 	}
 
 	private static boolean hasName(String name) {

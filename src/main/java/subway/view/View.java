@@ -56,11 +56,6 @@ public class View {
 		System.out.println();
 	}
 
-	public static void printStationDeleteError() {
-		System.out.println(StationMessages.UNREGISTERED_NAME_ERROR.getMessage());
-		System.out.println();
-	}
-
 	public static void printStationDeleteCompletion() {
 		System.out.println(StationMessages.DELETE_COMPLETE.getMessage());
 		System.out.println();

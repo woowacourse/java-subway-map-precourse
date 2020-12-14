@@ -19,7 +19,8 @@ public enum StationMessages {
 	DUPLICATE_NAME_ERROR(GeneralMessages.ERROR.getMessage() + "이미 등록된 역 이름입니다"),
 	NAME_LENGTH_ERROR(GeneralMessages.ERROR.getMessage() + "역 이름은 "
 			+ Station.NAME_LENGTH_LOWER_BOUND + "이상이어야 합니다."),
-	UNREGISTERED_NAME_ERROR(GeneralMessages.ERROR.getMessage() + "등록되지 않은 역입니다.");
+	UNREGISTERED_NAME_ERROR(GeneralMessages.ERROR.getMessage() + "등록되지 않은 역입니다."),
+	IN_USE_ERROR(GeneralMessages.ERROR.getMessage() + "현재 노선에 등록되어 있는 역입니다. 해당 구간 삭제 후 다시 시도해주세요.");
 
 	final private String message;
 
