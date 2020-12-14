@@ -36,6 +36,8 @@ public class OutputView {
     private static final String WRITE_END_STATION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String WRITE_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
     private static final String COMPLETE_REGISTER_LINE = "[INFO] 지하철 노선이 등록되었습니다.\n";
+    private static final String DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
+    private static final String COMPLETE_DELETE_LINE = "[INFO] 지하철 노선이 삭제되었습니다.\n";
 
     public static void print(String string){
         System.out.println(string);
@@ -99,5 +101,13 @@ public class OutputView {
 
     public static void writeEndStation() {
         print(WRITE_END_STATION);
+    }
+
+    public static void deleteLineName() {
+        print(DELETE_LINE_NAME); 
+    }
+
+    public static void completeDeleteLine() {
+        print(COMPLETE_DELETE_LINE);
     }
 }

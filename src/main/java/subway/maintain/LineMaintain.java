@@ -52,6 +52,13 @@ public class LineMaintain {
     }
 
     private void deleteLine() {
+        OutputView.deleteLineName();
+        if(!LineRepository.deleteLineByName(scanner.next())){
+            ErrorView.notExistName();
+            maintainPage();
+        }
+        OutputView.completeDeleteLine();
+        new Controller(scanner);
     }
 
     private void registerLine() {

@@ -31,4 +31,13 @@ class LineRepositoryTest {
         assertThat(false).isEqualTo(line.addStation(lengthError));
     }
 
+    @Test void 노선_삭제_테스트(){
+        Application.init();
+        String lineTwo = "2호선";
+        String lineOne = "1호선";
+
+        assertThat(true).isEqualTo(LineRepository.deleteLineByName(lineTwo));
+        assertThat(false).isEqualTo(LineRepository.deleteLineByName(lineOne));
+    }
+
 }
