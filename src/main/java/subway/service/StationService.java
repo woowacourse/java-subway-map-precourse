@@ -18,8 +18,7 @@ public class StationService {
 
     public boolean insert() {
         OutputView.printQuestion(TextCollection.REGISTER_STATION_MESSAGE);
-        String stationName = InputView.inputValue();
-        Station station = new Station(stationName);
+        Station station = new Station(InputView.inputValue());
         StationRepository.addStation(station);
         OutputView.printInformation(TextCollection.REGISTERED_STATION_MESSAGE);
         return true;
@@ -27,8 +26,7 @@ public class StationService {
 
     public boolean delete() {
         OutputView.printQuestion(TextCollection.DELETE_STATION_MESSAGE);
-        String stationName = InputView.inputValue();
-        StationRepository.deleteStation(stationName);
+        StationRepository.deleteStation(InputView.inputValue());
         OutputView.printInformation(TextCollection.DELETED_STATION_MESSAGE);
         return true;
     }
