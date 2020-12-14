@@ -14,6 +14,7 @@ public class Application {
 
     public static void init() {
         StationRepository.init();
+        LineRepository.init();
 
     }
 }
