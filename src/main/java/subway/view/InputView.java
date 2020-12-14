@@ -61,4 +61,13 @@ public class InputView {
         OutputView.NotSelectableError();
         return false;
     }
+
+    public static String scanStationName(Scanner scanner) {
+        String stationName;
+
+        OutputView.stationAddGuidePrint();
+        stationName = scanner.nextLine();
+
+        return stationName;
+    }
 }

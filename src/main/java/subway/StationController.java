@@ -15,39 +15,35 @@ public class StationController {
         OutputView.stationMenuPrint();
         String choiceMenu = InputView.scanStationMenu(scanner);
         boolean workStatus = false;
-        while (isWorkSuccess(workStatus)) {
+        while (choiceMenuIsNotBack(choiceMenu)) {
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_ADD.getUserChoiceOptionToName())) {
-                workStatus = stationAdd();
+                stationAdd(scanner);
             }
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_DELETE.getUserChoiceOptionToName())) {
-                workStatus = stationDelete();
             }
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_CHECK.getUserChoiceOptionToName())) {
-                workStatus = stationCheck();
-            }
-            if (choiceMenu.equals(UserChoiceOptionToName.BACK.getUserChoiceOptionToName())){
-                workStatus = true;
             }
         }
     }
 
-    private static boolean isWorkSuccess(boolean workStatus){
-        return !workStatus;
+    private static boolean choiceMenuIsNotBack(String choiceMenu) {
+        return !choiceMenu.equals(UserChoiceOptionToName.BACK.getUserChoiceOptionToName());
     }
 
-    private static boolean stationAdd() {
-        return true;
+    private static void stationAdd(Scanner scanner) {
+        String stationName;
+
+        stationName = InputView.scanStationName(scanner);
+        System.out.println("임시 출력 문구 : 당신이 선택한 역 이름은 : " + stationName);
     }
 
-    private static boolean stationCheck() {
-        return true;
+    private static void stationCheck() {
     }
 
-    private static boolean stationDelete() {
-        return true;
+    private static void stationDelete() {
     }
 
 

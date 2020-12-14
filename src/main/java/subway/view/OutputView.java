@@ -27,4 +27,8 @@ public class OutputView {
     public static void stationMenuPrint() {
         System.out.println(StationMessage.STATION_FUNCTION_LIST.getStationMessage());
     }
+
+    public static void stationAddGuidePrint() {
+        System.out.println(StationMessage.STATION_ADD_GUIDE.getStationMessage());
+    }
 }
