@@ -51,62 +51,71 @@ public class StationView {
         action.run();
     }
 
-    private boolean insertStation() {
-        MessageUtils.printInputAnnouncement(Constants.ADD_STATION_INPUT_COMMENT);
-        String stationName = scanner.next();
-        MessageUtils.printBlankLine();
-        if (!InputUtils.isMinLengthString(stationName)) {
-            MessageUtils.printError(Constants.INVALID_MIN_LENGTH_ERROR_COMMENT);
-            return false;
-        }
-        if (isExistStationName(stationName)) {
-            MessageUtils.printError(Constants.EXIST_STATION_OUTPUT_COMMENT);
-            return false;
-        }
-        Station newStation = new Station(stationName);
-        subway.getStationRepository().addStation(newStation);
-        MessageUtils.printInfo(Constants.ADD_STATION_OUTPUT_COMMENT);
-        return true;
-    }
+    private void insertStation() {
+        try {
+            MessageUtils.printInputAnnouncement(Constants.ADD_STATION_INPUT_COMMENT);
+            String stationName = scanner.next();
+            MessageUtils.printBlankLine();
+            checkValidationStationNameOrThrow(stationName);
 
-    private boolean isExistStationName(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
+            Station station = new Station(stationName);
+            subway.getStationRepository().addStation(station);
+            MessageUtils.printInfo(Constants.ADD_STATION_OUTPUT_COMMENT);
+        } catch (Exception e) {
+            MessageUtils.printError(e.getMessage());
         }
-        return true;
     }
 
     private void deleteStation() {
-        MessageUtils.printInputAnnouncement(Constants.DELETE_STATION_INPUT_COMMENT);
-        String targetStationName = scanner.next();
-        MessageUtils.printBlankLine();
-        Set<String> existStationInSection = subway.getSectionRepository().findIncludedStationSet();
-        if (!existStationInSection.contains(targetStationName)) {
-            deleteByName(targetStationName);
-        }
-        if (existStationInSection.contains(targetStationName)) {
-            MessageUtils.printError(Constants.EXIST_STATION_IN_SECTION_OUTPUT_COMMENT);
-        }
-    }
-
-    private void deleteByName(String targetStationName) {
-        if (subway.getStationRepository().findByName(targetStationName) == null) {
-            MessageUtils.printError(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-        }
-        if (subway.getStationRepository().findByName(targetStationName) != null) {
-            subway.getStationRepository().deleteStationByName(targetStationName);
+        try {
+            MessageUtils.printInputAnnouncement(Constants.DELETE_STATION_INPUT_COMMENT);
+            String stationName = scanner.next();
+            checkExistStationOrThrow(stationName);
+            checkExistStationInSectionOrThrow(stationName);
+            subway.getStationRepository().deleteStationByName(stationName);
             MessageUtils.printInfo(Constants.DELETE_STATION_OUTPUT_COMMENT);
-        }
-    }
-
-    private void showStations() {
-        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
-        for (Object station : subway.getStationRepository().findAll()) {
-            MessageUtils.printInfo((String) station);
+        } catch (Exception e) {
+            MessageUtils.printError(e.getMessage());
         }
     }
 
     public void goBackward() {
         isRunning = false;
     }
+
+    private void checkValidationStationNameOrThrow(String stationName) {
+        InputUtils.isMinLengthString(stationName);
+        if (isExistStation(stationName)) {
+            throw new RuntimeException(Constants.EXIST_STATION_OUTPUT_COMMENT);
+        }
+    }
+
+    private void checkExistStationOrThrow(String stationName) {
+        if (!isExistStation(stationName)) {
+            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+        }
+    }
+
+    private void checkExistStationInSectionOrThrow(String stationName) {
+        Set<String> stationsInSection = subway.getSectionRepository().getSetStations();
+        if (stationsInSection.contains(stationName)) {
+            throw new RuntimeException(Constants.EXIST_STATION_IN_SECTION_OUTPUT_COMMENT);
+        }
+    }
+
+    private boolean isExistStation(String stationName) {
+        if (subway.getStationRepository().findByName(stationName) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private void showStations() {
+        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
+        for (Object station : subway.getStationRepository().findAll()) {
+            MessageUtils.printInfoEntry((String) station);
+        }
+        MessageUtils.printBlankLine();
+    }
+
 }

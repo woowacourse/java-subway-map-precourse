@@ -54,9 +54,9 @@ public class SectionView {
         try {
             MessageUtils.printBlankLine();
             MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_LINE_INPUT_COMMENT);
-            Line line = getLineOrNullCheckThrow(scanner.next());
+            Line line = getLineOrThrow(scanner.next());
             MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_STATION_INPUT_COMMENT);
-            Station station = getStationOrNullCheckThrow(scanner.next());
+            Station station = getStationOrThrow(scanner.next());
             checkEmptySectionOrThrow(line, station);
             MessageUtils.printInputAnnouncement(Constants.ADD_SECTION_INDEX_INPUT_COMMENT);
             int refinedIndex = InputUtils.getPositiveIntOrThrow(scanner.next());
@@ -69,6 +69,73 @@ public class SectionView {
         }
     }
 
+    private void deleteSection() {
+        try {
+            MessageUtils.printBlankLine();
+            MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_LINE_INPUT_COMMENT);
+            Line line = getLineOrThrow(scanner.next());
+            MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_STATION_INPUT_COMMENT);
+            Station station = getStationOrThrow(scanner.next());
+            checkExistSectionOrThrow(line, station);
+
+            subway.getSectionRepository().deleteSection(line, station);
+            MessageUtils.printInfo(Constants.DELETE_SECTION_OUTPUT_COMMENT);
+            MessageUtils.printBlankLine();
+        } catch (Exception e) {
+            MessageUtils.printError(e.getMessage());
+        }
+    }
+
+    public void goBackward() {
+        isRunning = false;
+    }
+
+    private void checkValidationLengthOrThrow(Line line, int index) {
+        if (index > subway.getSectionRepository().getSize(line)) {
+            throw new RuntimeException(Constants.INVALID_LENGTH_ERROR_COMMENT);
+        }
+    }
+
+    private void checkEmptySectionOrThrow(Line line, Station station) {
+        if (isExistCheckStationInLine(line, station)) {
+            throw new RuntimeException(Constants.EXIST_STATION_OUTPUT_COMMENT);
+        }
+    }
+
+    private void checkExistSectionOrThrow(Line line, Station station) {
+        if (!isExistCheckStationInLine(line, station)) {
+            throw new RuntimeException(Constants.NO_EXIST_SECTION_OUTPUT_COMMENT);
+        }
+    }
+
+    private Line getLineOrThrow(String lineName) {
+        if (!isExistLine(lineName)) {
+            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
+        }
+        return subway.getLineRepository().findByName(lineName);
+    }
+
+    private Station getStationOrThrow(String stationName) {
+        if (!isExistStation(stationName)) {
+            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+        }
+        return subway.getStationRepository().findByName(stationName);
+    }
+
+    private boolean isExistLine(String lineName) {
+        if (subway.getLineRepository().findByName(lineName) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isExistStation(String stationName) {
+        if (subway.getStationRepository().findByName(stationName) == null) {
+            return false;
+        }
+        return true;
+    }
+
     private boolean isExistCheckStationInLine(Line line, Station station) {
         List<Station> stations = subway.getSectionRepository().getStationListInLine(line);
         for (Station instanceStation : stations) {
@@ -79,61 +146,4 @@ public class SectionView {
         return false;
     }
 
-    private void checkEmptySectionOrThrow(Line line, Station station) {
-        if (isExistCheckStationInLine(line, station)) {
-            throw new RuntimeException(Constants.EXIST_STATION_OUTPUT_COMMENT);
-        }
-    }
-
-    private void checkValidationLengthOrThrow(Line line, int index) {
-        if (index > subway.getSectionRepository().getSize(line)) {
-            throw new RuntimeException(Constants.INVALID_LENGTH_ERROR_COMMENT);
-        }
-    }
-
-    private void deleteSection() {
-        try {
-            MessageUtils.printBlankLine();
-            MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_LINE_INPUT_COMMENT);
-            Line line = getLineOrNullCheckThrow(scanner.next());
-            MessageUtils.printInputAnnouncement(Constants.DELETE_SECTION_STATION_INPUT_COMMENT);
-            Station station = getStationOrNullCheckThrow(scanner.next());
-            checkExistSectionOrThrow(line, station);
-
-            subway.getSectionRepository().deleteSection(line, station);
-            MessageUtils.printInfo(Constants.DELETE_SECTION_OUTPUT_COMMENT);
-            MessageUtils.printBlankLine();
-        } catch (Exception e) {
-            MessageUtils.printError(e.getMessage());
-            MessageUtils.printBlankLine();
-        }
-    }
-
-    private Line getLineOrNullCheckThrow(String lineName) {
-        Line line = subway.getLineRepository().findByName(lineName);
-        if (line == null) {
-            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
-        }
-        MessageUtils.printBlankLine();
-        return line;
-    }
-
-    private Station getStationOrNullCheckThrow(String stationName) {
-        Station station = subway.getStationRepository().findByName(stationName);
-        if (station == null) {
-            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-        }
-        MessageUtils.printBlankLine();
-        return station;
-    }
-
-    private void checkExistSectionOrThrow(Line line, Station station) {
-        if (!isExistCheckStationInLine(line, station)) {
-            throw new RuntimeException(Constants.NO_EXIST_SECTION_OUTPUT_COMMENT);
-        }
-    }
-
-    public void goBackward() {
-        isRunning = false;
-    }
 }

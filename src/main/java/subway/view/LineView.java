@@ -56,63 +56,21 @@ public class LineView {
             MessageUtils.printInputAnnouncement(Constants.ADD_LINE_NAME_INPUT_COMMENT);
             String lineName = scanner.next();
             MessageUtils.printBlankLine();
-            
+            checkValidationLineNameOrThrow(lineName);
+
             MessageUtils.printInputAnnouncement(Constants.ADD_START_STATION_NAME_INPUT_COMMENT);
             Station startStation = getStationOrThrow(scanner.next());
             MessageUtils.printBlankLine();
             MessageUtils.printInputAnnouncement(Constants.ADD_END_STATION_NAME_INPUT_COMMENT);
             Station endStation = getStationOrThrow(scanner.next());
 
-            Line line = newLineOrThrow(lineName);
+            Line line = new Line(lineName);
+            subway.getLineRepository().addLine(line);
             subway.getSectionRepository().addNewLine(line, startStation, endStation);
             MessageUtils.printInfo(Constants.ADD_LINE_OUTPUT_COMMENT);
         } catch (Exception e) {
             MessageUtils.printError(e.getMessage());
         }
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private void checkExistStationOrThrow(String stationName) {
-        if (isExistStation(stationName)) {
-            throw new RuntimeException(Constants.EXIST_STATION_OUTPUT_COMMENT);
-        }
-    }
-
-    private Station getStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
-            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-        }
-        return subway.getStationRepository().findByName(stationName);
-    }
-
-
-    private boolean isExistLine(String lineName) {
-        if (subway.getLineRepository().findByName(lineName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private Line newLineOrThrow(String lineName) {
-        InputUtils.isMinLengthString(lineName);
-        if (isExistLine(lineName)) {
-            throw new RuntimeException(Constants.EXIST_LINE_OUTPUT_COMMENT);
-        }
-        subway.getLineRepository().addLine(new Line(lineName));
-        return subway.getLineRepository().findByName(lineName);
-    }
-
-    private Line getLineOrThrow(String lineName) {
-        if (!isExistLine(lineName)) {
-            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
-        }
-        return subway.getLineRepository().findByName(lineName);
     }
 
     private void deleteLine() {
@@ -129,6 +87,45 @@ public class LineView {
             MessageUtils.printError(e.getMessage());
         }
     }
+    
+    public void goBackward() {
+        isRunning = false;
+    }
+
+    private void checkValidationLineNameOrThrow(String lineName) {
+        InputUtils.isMinLengthString(lineName);
+        if (isExistLine(lineName)) {
+            throw new RuntimeException(Constants.EXIST_LINE_OUTPUT_COMMENT);
+        }
+    }
+
+    private Line getLineOrThrow(String lineName) {
+        if (!isExistLine(lineName)) {
+            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
+        }
+        return subway.getLineRepository().findByName(lineName);
+    }
+
+    private Station getStationOrThrow(String stationName) {
+        if (!isExistStation(stationName)) {
+            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+        }
+        return subway.getStationRepository().findByName(stationName);
+    }
+
+    private boolean isExistLine(String lineName) {
+        if (subway.getLineRepository().findByName(lineName) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isExistStation(String stationName) {
+        if (subway.getStationRepository().findByName(stationName) == null) {
+            return false;
+        }
+        return true;
+    }
 
     private void showLines() {
         MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_LINE_TEXT);
@@ -138,7 +135,4 @@ public class LineView {
         MessageUtils.printBlankLine();
     }
 
-    public void goBackward() {
-        isRunning = false;
-    }
 }

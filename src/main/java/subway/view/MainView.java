@@ -32,7 +32,7 @@ public class MainView {
             "1", stationView::start,
             "2", lineView::start,
             "3", sectionView::start,
-            "4", this::showWholeSubwayMap,
+            "4", this::showWholeSubway,
             Constants.EXIT_INPUT_CHARACTER, this::goBackward
         );
     }
@@ -59,15 +59,15 @@ public class MainView {
         action.run();
     }
 
-    public void showWholeSubwayMap() {
+    public void showWholeSubway() {
         MessageUtils.printBlankLine();
         MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_SUBWAY_MAP_TEXT);
-        Map<String, List> wholeSubwayMap = subway.getSectionRepository().findAll();
+        Map<String, List<String>> wholeSubwayMap = subway.getSectionRepository().findAll();
         for (String lineTitle : wholeSubwayMap.keySet()) {
-            MessageUtils.printInfo(lineTitle);
-            MessageUtils.printInfo(Constants.SEPARATE_STRING_WHOLE_SUBWAY_MAP_TEXT);
+            MessageUtils.printInfoEntry(lineTitle);
+            MessageUtils.printInfoEntry(Constants.SEPARATE_STRING_WHOLE_SUBWAY_MAP_TEXT);
             for (Object stationTitle : wholeSubwayMap.get(lineTitle)) {
-                MessageUtils.printInfo((String) stationTitle);
+                MessageUtils.printInfoEntry((String) stationTitle);
             }
             MessageUtils.printBlankLine();
         }

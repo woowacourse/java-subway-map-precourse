@@ -13,10 +13,10 @@ import subway.view.MainView;
 
 public class Subway {
 
-    private StationRepository stationRepository = new StationRepository();
-    private LineRepository lineRepository = new LineRepository();
-    private SectionRepository sectionRepository = new SectionRepository();
-    
+    private final StationRepository stationRepository = new StationRepository();
+    private final LineRepository lineRepository = new LineRepository();
+    private final SectionRepository sectionRepository = new SectionRepository();
+
     public Subway() {
         loadInitData();
     }
