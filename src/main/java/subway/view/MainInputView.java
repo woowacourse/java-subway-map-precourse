@@ -1,7 +1,7 @@
 package subway.view;
 
 import subway.menu.MainMenu;
-import subway.utils.Validator;
+import subway.menu.MenuFeature;
 
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class MainInputView {
 
         try {
             String input = scanner.nextLine();
-            Validator.menu(MainMenu.class, input);
+            MenuFeature.validate(MainMenu.class, input);
             return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

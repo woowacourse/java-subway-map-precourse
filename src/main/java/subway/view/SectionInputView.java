@@ -2,7 +2,6 @@ package subway.view;
 
 import subway.menu.SectionMenu;
 import subway.menu.StationMenu;
-import subway.utils.Validator;
 
 import java.util.Scanner;
 

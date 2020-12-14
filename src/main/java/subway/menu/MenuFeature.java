@@ -18,6 +18,12 @@ public class MenuFeature {
         return menuText;
     }
 
+    public static void validate(Class<? extends MenuModel> menuType, String input) {
+        if (!MenuFeature.exist(menuType, input)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
+        }
+    }
+
     public static boolean exist(Class<? extends MenuModel> menuType, String menuInput) {
         return Arrays.stream(menuType.getEnumConstants())
                 .filter(menu -> menu.getSelection().equals(menuInput))

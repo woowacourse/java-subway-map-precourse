@@ -14,9 +14,8 @@ public class StationFeature {
         try {
             String station = StationInputView.register(scanner);
             StationRepository.addStation(new Station(station));
-
             System.out.println("[INFO] 지하철 역이 추가되었습니다.");
-        }  catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             StationMenu.openScreen(scanner);
         }
@@ -25,12 +24,17 @@ public class StationFeature {
     public static void removeStation(Scanner scanner) {
         try {
             String station = StationInputView.remove(scanner);
-            StationRepository.deleteStation(station);
-
-            System.out.println("[INFO] 지하철 역이 추가되었습니다.");
-        }  catch (IllegalArgumentException e) {
+            removeStation(StationRepository.deleteStation(station));
+            System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             StationMenu.openScreen(scanner);
+        }
+    }
+
+    private static void removeStation(boolean success) {
+        if (!success) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
         }
     }
 
