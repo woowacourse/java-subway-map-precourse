@@ -30,4 +30,8 @@ public class LineRepository {
     public static boolean isContainedLineName(String name) {
         return lines.stream().anyMatch(line -> Objects.equals(line.getName(), name));
     }
+
+    public static boolean isContainedStationInLines(String name) {
+        return lines().stream().anyMatch(line -> line.isContainedStationName(name));
+    }
 }

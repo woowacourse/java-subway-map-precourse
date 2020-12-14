@@ -1,5 +1,6 @@
 package subway.userinterface;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.DomainIsNotExistedException;
@@ -81,12 +82,15 @@ public class StationManagementView extends View {
         System.out.println("[INFO] 지하철 역이 등록되었습니다.");
     }
 
-    private void removeStation(){
+    private void removeStation() {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
         String input = scanner.nextLine();
 
-        if(!StationRepository.isContainedStationName(input)){
+        if (!StationRepository.isContainedStationName(input)) {
             throw new DomainIsNotExistedException();
+        }
+        if (LineRepository.isContainedStationInLines(input)) {
+            throw new IllegalStateException("[ERROR] 노선에 등록된 역은 삭제 할 수 없습니다.");
         }
 
         StationRepository.deleteStation(input);
