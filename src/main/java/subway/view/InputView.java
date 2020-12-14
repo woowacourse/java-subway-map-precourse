@@ -21,8 +21,6 @@ public class InputView {
     private static final String SECTION_REGISTRATION_ORDER_NUMBER_NOTICE = "\n## 순서를 입력하세요.";
     private static final String SECTION_DELETION_LINE_NAME_NOTICE = "\n## 삭제할 구간의 노선을 입력하세요.";
     private static final String SECTION_DELETION_STATION_NAME_NOTICE = "\n## 삭제할 구간의 역을 입력하세요.";
-    private static final String EMPTY_STRING_VALUE = "";
-    private static final int EMPTY_NUMBER_VALUE = 0;
 
     private final Scanner scanner;
 
@@ -65,7 +63,7 @@ public class InputView {
     public LineDto inputLineRequest(FunctionType functionType) {
         if (functionType == FunctionType.DELETE) {
             String lineName = scanInputLineWithNotice(LINE_NAME_DELETION_NOTICE);
-            return new LineDto(lineName, EMPTY_STRING_VALUE, EMPTY_STRING_VALUE);
+            return new LineDto(lineName);
         }
         String lineName = scanInputLineWithNotice(LINE_NAME_REGISTRATION_NOTICE);
         String upwardLastStationName = scanInputLineWithNotice(UPWARD_LAST_STATION_NAME_NOTICE);
@@ -77,7 +75,7 @@ public class InputView {
         if (functionType == FunctionType.DELETE) {
             String lineName = scanInputLineWithNotice(SECTION_DELETION_LINE_NAME_NOTICE);
             String stationName = scanInputLineWithNotice(SECTION_DELETION_STATION_NAME_NOTICE);
-            return new SectionDto(lineName, stationName, EMPTY_NUMBER_VALUE);
+            return new SectionDto(lineName, stationName);
         }
         String lineName = scanInputLineWithNotice(SECTION_REGISTRATION_LINE_NAME_NOTICE);
         String stationName = scanInputLineWithNotice(SECTION_REGISTRATION_STATION_NAME_NOTICE);

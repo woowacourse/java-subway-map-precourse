@@ -1,10 +1,15 @@
 package subway.dto;
 
 public class LineDto {
+    private static final String EMPTY_STATION_NAME = "";
 
     private final String lineName;
     private final String upwardLastStationName;
     private final String downwardLastStationName;
+
+    public LineDto(String lineName) {
+        this(lineName, EMPTY_STATION_NAME, EMPTY_STATION_NAME);
+    }
 
     public LineDto(String lineName, String upwardLastStationName, String downwardLastStationName) {
         this.lineName = lineName;
