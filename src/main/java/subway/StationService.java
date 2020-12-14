@@ -14,7 +14,7 @@ public class StationService {
             return false;
         }
         if (StationRepository.isEqualStationName(name)) {
-            // TODO - 역 중복관련 메시지 출력함수 호출하기
+            OutPut.printStationNameDuplicateError();
             return false;
         }
         StationRepository.addStation(new Station(name));
