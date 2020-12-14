@@ -19,7 +19,7 @@ public class SectionController {
         if (functionIndex.equals(Function.REGISTER.getIndex())) {
             registerSection(inputView);
         }
-        if (functionIndex.equals(Function.REGISTER.getIndex())) {
+        if (functionIndex.equals(Function.DELETE.getIndex())) {
             deleteSection(inputView);
         }
         if (functionIndex.equals(Function.BACK.getIndex())) {
@@ -31,7 +31,7 @@ public class SectionController {
         OutputView.printInputValue(Screen.LINE.getName());
         String line = inputView.getInputDeleteLine();
         OutputView.printInputValue(Screen.STATION.getName());
-        String station = inputView.getInputRegisterStationForSection(line);
+        String station = inputView.getInputRegisterFirstStation(line);
         OutputView.printInputIndex();
         int index = inputView.getInputIndex(SectionRepository.getLengthByLineName(line));
         SectionRepository.insertSection(line, station, index);
