@@ -3,11 +3,14 @@ package subway.line;
 import subway.model.ResultDto;
 import subway.station.Station;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Line {
+
+    private static final String ADD_STATION_ERROR_MESSAGE = "추가할 수 없는 순서 입니다.";
+    private static final String REMOVE_STATION_ERROR_MESSAGE = "노선에 포함된 역이 두개 이하이므로 삭제할 수 없습니다.";
+    private static final String NOT_EXISTS_STATION_ERROR_MESSAGE = "해당 노선에 존재하지 않는 역입니다.";
+
     private String name;
     private LinkedList<Station> stations;
 
@@ -26,7 +29,7 @@ public class Line {
         int orderIdx = order - 1;
         int numOfStations = stations.size();
         if (orderIdx > numOfStations || numOfStations < 0) {
-            throw new IllegalArgumentException("추가할 수 없는 순서 입니다.");
+            throw new IllegalArgumentException(ADD_STATION_ERROR_MESSAGE);
         }
         stations.add(orderIdx, station);
     }
@@ -42,7 +45,7 @@ public class Line {
 
     public void removeStationByName(String stationName) {
         if (stations.size() <= 2) {
-            throw new IllegalArgumentException("노선에 포함된 역이 두개 이하이므로 삭제할 수 없습니다.");
+            throw new IllegalArgumentException(REMOVE_STATION_ERROR_MESSAGE);
         }
 
         for (Station station : stations) {
@@ -51,7 +54,7 @@ public class Line {
                 return;
             }
         }
-        throw new IllegalArgumentException("해당 노선에 존재하지 않는 역입니다.");
+        throw new IllegalArgumentException(NOT_EXISTS_STATION_ERROR_MESSAGE);
     }
 
     @Override

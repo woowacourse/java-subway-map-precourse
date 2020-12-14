@@ -11,6 +11,9 @@ public class LineService {
 
     private static final String REGISTER_RESULT_OK_MESSAGE = "지하철 노선이 등록되었습니다.";
     private static final String DELETE_RESULT_OK_MESSAGE = "지하철 노선이 삭제되었습니다.";
+    private static final String TWO_STATIONS_SAME_ERROR_MESSAGE = "상행 종점과 하행 종점은 같을 수 없습니다.";
+    private static final String ALREADY_EXISTS_ON_LINE_STATION_ERROR_MESSAGE = "노선에 등록된 역입니다.";
+    private static final String ALREADY_EXISTS_ERROR_MESSAGE = "해당 노선에 이미 존재하는 역이 있습니다.";
     private static final LineRepository repository = new LineRepository();
 
     private LineService() {}
@@ -36,7 +39,7 @@ public class LineService {
 
     private static void checkUpEndStationNotEqualsToDownEndStation(String upEndStation, String downEndStation) {
         if (upEndStation.equals(downEndStation)) {
-            throw new IllegalArgumentException("상행 종점과 하행 종점은 같을 수 없습니다.");
+            throw new IllegalArgumentException(TWO_STATIONS_SAME_ERROR_MESSAGE);
         }
     }
 
@@ -66,14 +69,14 @@ public class LineService {
 
     public static void checkStationOnAnySubwayLine(String stationName) {
         if (repository.isStationOnLine(stationName)) {
-            throw new IllegalArgumentException("노선에 등록된 역입니다.");
+            throw new IllegalArgumentException(ALREADY_EXISTS_ON_LINE_STATION_ERROR_MESSAGE);
         }
     }
 
     public static void checkStationOnSubwayLine(String stationName, String lineName) {
         Line line = repository.findByName(lineName);
         if (line.isStationInLine(stationName)) {
-            throw new IllegalArgumentException("해당 노선에 이미 존재하는 역이 있습니다.");
+            throw new IllegalArgumentException(ALREADY_EXISTS_ERROR_MESSAGE);
         }
     }
 
