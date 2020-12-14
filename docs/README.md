@@ -57,22 +57,22 @@ pkeugine 브랜치 구현물은 다음과 같은 특징을 갖고 있습니다:
     |- controller
         ㄴ Controller.java
         |- menu
-            ㄴ MenuController
-            ㄴ MainMenuController
-            ㄴ StationMenuController
-            ㄴ LineMenuController
-            ㄴ SectionMenuController
+            ㄴ MenuController.java
+            ㄴ MainMenuController.java
+            ㄴ StationMenuController.java
+            ㄴ LineMenuController.java
+            ㄴ SectionMenuController.java
         |- station
-            ㄴ StationAddController
-            ㄴ StationDeleteController
-            ㄴ StationViewController
+            ㄴ StationAddController.java
+            ㄴ StationDeleteController.java
+            ㄴ StationViewController.java
         |- line
             ㄴ LineAddController.java
             ㄴ LineDeleteController.java
             ㄴ LineViewController.java
         |- section
-            ㄴ SectionAddController
-            ㄴ SectionDeleteController
+            ㄴ SectionAddController.java
+            ㄴ SectionDeleteController.java
         |- map
             ㄴ MapController.java
     |- domain
