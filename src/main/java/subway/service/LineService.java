@@ -10,8 +10,9 @@ public class LineService {
         Line newLine = new Line(lineName);
         newLine.addIntervals(topStation);
         newLine.addIntervals(bottomStation);
+        topStation.addRegisteredLine(newLine);
+        bottomStation.addRegisteredLine(newLine);
         LineRepository.addLine(newLine);
-
     }
 
     public void deleteLine(String lineName) {
