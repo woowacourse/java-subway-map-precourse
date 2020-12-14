@@ -4,7 +4,11 @@ import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import subway.exception.SubwayRuntimeException;
+import subway.exception.function.RangeIndexOutOfBoundsException;
+import subway.exception.validator.NotNumberException;
 
 public class IndexValidatorTest {
 
@@ -21,8 +25,9 @@ public class IndexValidatorTest {
         ThrowableAssert.ThrowingCallable callable = () -> validator.validate(notNumeric);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(IndexValidator.NOT_NUMERIC_ERROR);
+        assertThatThrownBy(callable).isExactlyInstanceOf(NotNumberException.class)
+                .hasMessage(SubwayRuntimeException.ERROR +
+                        NotNumberException.NOT_NUMBER_ERROR);
     }
 
     @Test
@@ -36,7 +41,8 @@ public class IndexValidatorTest {
         ThrowableAssert.ThrowingCallable callable = () -> validator.validate(index);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(IndexValidator.LOWER_THAN_MINIMUM_ERROR);
+        assertThatThrownBy(callable).isExactlyInstanceOf(RangeIndexOutOfBoundsException.class)
+                .hasMessage(SubwayRuntimeException.ERROR +
+                        RangeIndexOutOfBoundsException.LOWER_THAN_MINIMUM_ERROR);
     }
 }

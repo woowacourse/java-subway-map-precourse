@@ -1,13 +1,10 @@
 package subway.validator;
 
 import subway.domain.StationRepository;
+import subway.exception.function.RangeIndexOutOfBoundsException;
+import subway.exception.validator.NotNumberException;
 
 public final class IndexValidator extends Validator {
-
-    public static final String LOWER_THAN_MINIMUM_ERROR =
-            StationRepository.MINIMUM_INDEX + "초과의 값을 입력해주세요.";
-
-    public static final String NOT_NUMERIC_ERROR = "숫자만 입력해주세요.";
 
     @Override
     public void validate(final String input) {
@@ -20,7 +17,7 @@ public final class IndexValidator extends Validator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
+            throw new NotNumberException();
         }
     }
 
@@ -29,7 +26,7 @@ public final class IndexValidator extends Validator {
                 Integer.parseInt(input) <= StationRepository.MINIMUM_INDEX;
 
         if (lessThanOrEqualToMinimum) {
-            throw new IllegalArgumentException(LOWER_THAN_MINIMUM_ERROR);
+            throw new RangeIndexOutOfBoundsException();
         }
     }
 }
