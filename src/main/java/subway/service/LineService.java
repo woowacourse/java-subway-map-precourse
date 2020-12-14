@@ -2,6 +2,7 @@ package subway.service;
 
 import static subway.console.Output.print;
 
+import java.util.Collections;
 import java.util.List;
 import subway.console.Message;
 import subway.domain.Line;
@@ -80,6 +81,11 @@ public class LineService {
     }
 
     public List<Line> findAll() {
-        return LineRepository.lines();
+        try {
+            return LineRepository.lines();
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return Collections.emptyList();
+        }
     }
 }

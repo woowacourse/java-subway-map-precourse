@@ -11,6 +11,9 @@ public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
+        if (lines.isEmpty()) {
+            throw new IllegalArgumentException(Message.ERROR_EMPTY_LINE);
+        }
         return Collections.unmodifiableList(lines);
     }
 
