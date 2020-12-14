@@ -11,9 +11,15 @@ import subway.exception.InvalidChoiceException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class MainMenuController {
+public class MainMenuController extends MenuController {
 
     public static final String TITLE = "메인 화면";
+
+    public static final String MANAGE_STATION_DETAIL = "역 관리";
+    public static final String MANAGE_LINE_DETAIL = "노선 관리";
+    public static final String MANAGE_SECTION_DETAIL = "구간 관리";
+    public static final String PRINT_SUBWAY_MAP_DETAIL = "지하철 노선도 출력";
+    public static final String EXIT_SYSTEM_DETAIL = "종료";
 
     private MainMenuController() {
     }
@@ -53,24 +59,39 @@ public class MainMenuController {
     }
 
     enum Menu {
-        MANAGE_STATION("1", "역 관리", StationMenuController::main),
-        MANAGE_LINE("2", "노선 관리", LineMenuController::main),
-        MANAGE_SECTION("3", "구간 관리", SectionMenuController::main),
-        PRINT_SUBWAY_MAP("4", "지하철 노선도 출력", MainMenuController::printSubwayMap),
-        EXIT_SYSTEM("Q", "종료", MainMenuController::exitSystem);
+        MANAGE_STATION(
+                BUTTON_1,
+                MANAGE_STATION_DETAIL,
+                StationMenuController::main),
+        MANAGE_LINE(
+                BUTTON_2,
+                MANAGE_LINE_DETAIL,
+                LineMenuController::main),
+        MANAGE_SECTION(
+                BUTTON_3,
+                MANAGE_SECTION_DETAIL,
+                SectionMenuController::main),
+        PRINT_SUBWAY_MAP(
+                BUTTON_4,
+                PRINT_SUBWAY_MAP_DETAIL,
+                MainMenuController::printSubwayMap),
+        EXIT_SYSTEM(
+                BUTTON_QUIT,
+                EXIT_SYSTEM_DETAIL,
+                MainMenuController::exitSystem);
 
         private final String button;
         private final String detail;
-        private final Runnable runnable;
+        private final Runnable function;
 
-        Menu(String button, String detail, Runnable runnable) {
+        Menu(String button, String detail, Runnable function) {
             this.button = button;
             this.detail = detail;
-            this.runnable = runnable;
+            this.function = function;
         }
 
         public void goToMenu() {
-            runnable.run();
+            function.run();
         }
 
         public static String getMenus() {
