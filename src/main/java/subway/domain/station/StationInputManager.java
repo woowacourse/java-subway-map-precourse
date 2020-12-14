@@ -38,7 +38,6 @@ public class StationInputManager {
         checkEnrolledStation(stationName);
     }
 
-    //2글자이상
     private void checkLength(String stationName) {
         if (stationName.length() < MIN_TWO_LETTERS) {
             throw new ErrorMessage(OVER_TWO);
@@ -46,14 +45,12 @@ public class StationInputManager {
         }
     }
 
-    //끝에는 역이라고 붙였는지
     private void checkLastLetter(String stationName) {
         if (stationName.charAt(stationName.length() - 1) != STATION) {
             throw new ErrorMessage(LAST_LETTER_STATION);
         }
     }
 
-    //기존 역에 포함되어 있는지 중복여부
     private void checkEnrolledStation(String stationName) {
         if (StationRepository.containsName(stationName)) {
             throw new ErrorMessage(VALUE_EXIST);
@@ -65,14 +62,12 @@ public class StationInputManager {
         checkNotOnPath(stationName);
     }
 
-    //이미 있는 역이어야 함 그래야 삭제가능
     private void checkAlreadyExist(String stationName) {
         if (!StationRepository.containsName(stationName)) {
             throw new ErrorMessage(NOT_EXIST_STATION);
         }
     }
 
-    //구간에 등록된 역이 아니어야 함
     private void checkNotOnPath(String stationName) {
         if (!StationRepository.isAvailableToDelete(stationName)) {
             throw new ErrorMessage(ON_PATH_STATION);
