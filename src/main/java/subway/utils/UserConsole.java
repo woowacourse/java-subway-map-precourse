@@ -78,11 +78,11 @@ public class UserConsole {
         return name;
     }
 
-    public static int getZeroOrNaturalNumber() throws IllegalArgumentException {
+    public static int getNaturalNumber() throws IllegalArgumentException {
         String index = scanner.nextLine();
         System.out.println();
-        if (!Validator.isZeroOrNaturalNumber(index)) {
-            System.out.println("\n[ERROR] 순서는 자연수이어야 한다");
+        if (!Validator.isNaturalNumber(index)) {
+            System.out.println("[ERROR] 순서는 1부터 시작해야 한다.\n");
             throw new IllegalArgumentException();
         }
         return Integer.parseInt(index);

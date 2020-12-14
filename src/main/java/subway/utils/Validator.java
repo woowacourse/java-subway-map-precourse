@@ -2,7 +2,7 @@ package subway.utils;
 
 public class Validator {
     private static final int MINIMUM_LEGNTH = 2;
-    private static final int INDEX_START = 0;
+    private static final int INDEX_START = 1;
 
     public static boolean isAppropriateLength(String name) {
         if (name.length() < MINIMUM_LEGNTH) {
@@ -12,7 +12,7 @@ public class Validator {
         return true;
     }
 
-    public static boolean isZeroOrNaturalNumber(String index) {
+    public static boolean isNaturalNumber(String index) {
         try {
             int number = Integer.parseInt(index);
             if (number >= INDEX_START) {

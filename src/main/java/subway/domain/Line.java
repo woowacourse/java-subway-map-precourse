@@ -17,7 +17,7 @@ public class Line {
     }
 
     public void addStationName(int index, String stationName) {
-        stationNamesInLine.add(index, stationName);
+        stationNamesInLine.add(index - 1, stationName);
     }
 
     public boolean deleteStationName(String deleteName) {

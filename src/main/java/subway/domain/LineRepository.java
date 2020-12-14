@@ -40,7 +40,7 @@ public class LineRepository {
 
     public static boolean containsSpecificLineWithCapacityForIndex(String lineName, int index) {
         Line line = getLineByName(lineName);
-        return line.size() >= index;
+        return line.size() + 1 >= index;
     }
 
     public static void updateLineByAddingStation(String lineName, String stationName, int index) {

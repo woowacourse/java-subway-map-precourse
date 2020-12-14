@@ -76,7 +76,7 @@ public class IntervalManager {
 
     private static int getIndex(String lineName) throws IllegalArgumentException {
         System.out.println("## 순서를 입력하세요.");
-        int index = UserConsole.getZeroOrNaturalNumber();
+        int index = UserConsole.getNaturalNumber();
         LogicChecker.checkIfLineHasCapacityForIndex(index, lineName);
         return index;
     }
