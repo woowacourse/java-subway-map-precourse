@@ -1,14 +1,17 @@
 package subway.service.section;
 
+import subway.repository.TransitMapRepository;
 import subway.view.output.line.LineExceptionView;
 import subway.view.output.station.StationExceptionView;
+
+import java.util.List;
 
 public class SectionDeletionValidation {
     public boolean checkSectionDeletionValidation(String lineName, String stationName) {
         if (!checkLineNameValidation(lineName)) {
             return false;
         }
-        if (!checkStationNameValidation(stationName)) {
+        if (!checkStationNameValidation(lineName, stationName)) {
             return false;
         }
         return true;
@@ -22,8 +25,8 @@ public class SectionDeletionValidation {
         return true;
     }
 
-    public boolean checkStationNameValidation(String stationName) {
-        if (!checkExistingStationNameInTransitMap(stationName)) {
+    public boolean checkStationNameValidation(String lineName, String stationName) {
+        if (!checkExistingStationNameInTransitMap(lineName, stationName)) {
             StationExceptionView.printInvalidStationNameExistenceException();
             return false;
         }
@@ -31,10 +34,12 @@ public class SectionDeletionValidation {
     }
 
     public static boolean checkExistingLineNameInTransitMap(String lineName) {
-        return false;
+        List<String> transitMapsLineNames = TransitMapRepository.transitMapsLineNames();
+        return transitMapsLineNames.contains(lineName);
     }
 
-    public static boolean checkExistingStationNameInTransitMap(String stationName) {
-        return false;
+    public static boolean checkExistingStationNameInTransitMap(String lienName, String stationName) {
+        List<String> transitMapStations = TransitMapRepository.transitMapStationsByLine(lienName);
+        return transitMapStations.contains(stationName);
     }
 }
