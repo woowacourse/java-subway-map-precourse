@@ -19,7 +19,7 @@ public class LineRepository {
             lines.add(line);
             return;
         }
-        OutputView.printDuplicatedLineErrorMessage(line.toString());
+        OutputView.printDuplicatedErrorMessage(line.toString());
     }
 
     public static void addLines(List<Line> lines) {

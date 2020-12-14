@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +15,11 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if (stations.contains(station)) {
-            // 중복된 역이 존재한다는 에러 던지기
+        if (!hasDuplicatedStation(station)) {
+            stations.add(station);
+            return;
         }
-        stations.add(station);
+        OutputView.printDuplicatedErrorMessage(station.toString());
     }
 
     public static boolean deleteStation(String name) {
@@ -25,5 +28,9 @@ public class StationRepository {
 
     public static void addStations(List<Station> stations) {
         stations.forEach(StationRepository::addStation);
+    }
+
+    public static boolean hasDuplicatedStation(Station station){
+        return stations.contains(station);
     }
 }
