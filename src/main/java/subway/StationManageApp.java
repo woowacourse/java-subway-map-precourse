@@ -23,6 +23,8 @@ public class StationManageApp {
     private final StationService stationService;
     private final LineService lineService;
     private final SectionService sectionService;
+    private final StationManage stationManage;
+
 
     public StationManageApp(StationManageConfig stationManageConfig) {
         this.inputService = stationManageConfig.inputService();
@@ -30,6 +32,7 @@ public class StationManageApp {
         this.stationService = stationManageConfig.stationService();
         this.lineService = stationManageConfig.lineService();
         this.sectionService = stationManageConfig.sectionService();
+        this.stationManage = new StationManage(inputService, outputService, stationService);
     }
 
     public static StationManageApp of(StationManageConfig stationManageConfig) {
@@ -68,7 +71,7 @@ public class StationManageApp {
 
     private void chooseOptions(int mainOption) {
         if (mainOption == InputService.MANAGE_STATION) {
-            manageStation();
+            stationManage.startMange();
         }
         if (mainOption == InputService.MANAGE_LINE) {
             manageLine();
@@ -78,16 +81,6 @@ public class StationManageApp {
         }
         if (mainOption == InputService.MANAGE_MAP) {
             manageMap();
-        }
-    }
-
-    private void manageStation() {
-        StationView stationView = new StationView(outputService);
-        stationView.showOptions();
-        int manageStationOption = inputService.getManageStationOption();
-        chooseManageStationOption(manageStationOption, stationView);
-        if (isBack(manageStationOption)) {
-            return;
         }
     }
 
@@ -117,31 +110,6 @@ public class StationManageApp {
         sectionView.printAllSection(sections);
     }
 
-    private void chooseManageStationOption(int manageStationOption, StationView stationView) {
-        if (manageStationOption == InputService.ADD) {
-            addStation(stationView);
-        }
-        if (manageStationOption == InputService.DELETE) {
-            deleteStation(stationView);
-        }
-        if (manageStationOption == InputService.FIND) {
-            stationView.printAllStations(stationService.getStations());
-        }
-    }
-
-    private void addStation(StationView stationView) {
-        stationView.showAdd();
-        String stationName = getName();
-        stationService.saveStation(new StationSaveReqDto(stationName));
-        stationView.showAfterAdd();
-    }
-
-    private void deleteStation(StationView stationView) {
-        stationView.showDelete();
-        String stationName = getName();
-        stationService.deleteStation(new StationDeleteReqDto(stationName));
-        stationView.showAfterDelete();
-    }
 
     private void chooseManageLineOption(int manageLineOption, LineView lineView) {
         if (manageLineOption == InputService.ADD) {
