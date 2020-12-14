@@ -1,6 +1,7 @@
 package subway.userinterface.linemenu;
 
 import subway.userinterface.Menu;
+import subway.userinterface.OutputController;
 
 import java.util.Scanner;
 
@@ -31,6 +32,6 @@ public class LineLookupController implements Menu {
 
     @Override
     public void run(Scanner scanner) {
-
+        OutputController.printLineInfo();
     }
 }
