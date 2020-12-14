@@ -39,7 +39,7 @@ public class RemoveStationTest {
 
     @Test
     @DisplayName("존재하지 않는 노선 삭제 시 예외 발생")
-    public void removeRange_DoesNotExistLine_ExceptionThrown() {
+    public void removeLine_DoesNotExistLine_ExceptionThrown() {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
@@ -53,10 +53,10 @@ public class RemoveStationTest {
 
     @Test
     @DisplayName("구간 삭제")
-    public void removeRange_oldStation_RangeRemoved() {
+    public void removeSection_oldSection_SectionRemoved() {
 
         // when
-        lineRepository = lineRepository.removeRange("2호선", "역삼역");
+        lineRepository = lineRepository.removeSection("2호선", "역삼역");
 
         //then
         assertThat(lineRepository.getStationNamesByLineName("2호선")).containsExactly("교대역", "강남역");
@@ -64,14 +64,14 @@ public class RemoveStationTest {
 
     @Test
     @DisplayName("노선의 역 개수가 최소 역 개수 이하일 경우 역 제거 시 예외 발생")
-    public void removeRange_LessThanMinimumStationSize_ExceptionThrown() {
+    public void removeSection_LessThanMinimumStationSize_ExceptionThrown() {
 
         // given
-        lineRepository = lineRepository.removeRange("2호선", "역삼역");
+        lineRepository = lineRepository.removeSection("2호선", "역삼역");
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.removeRange("2호선", "교대역");
+                () -> lineRepository.removeSection("2호선", "교대역");
 
         //then
         assertThatThrownBy(callable).isExactlyInstanceOf(TooLessStationException.class)
@@ -81,10 +81,10 @@ public class RemoveStationTest {
 
     @Test
     @DisplayName("상행 종점을 제거할 경우 그 다음 역이 종점")
-    public void removeRange_StartStation_StartsWithNextStation() {
+    public void removeSection_StartStation_StartsWithNextStation() {
 
         // when
-        lineRepository = lineRepository.removeRange("2호선", "교대역");
+        lineRepository = lineRepository.removeSection("2호선", "교대역");
 
         //then
         assertThat(lineRepository.getStationNamesByLineName("2호선")).containsExactly("강남역", "역삼역");
@@ -92,10 +92,10 @@ public class RemoveStationTest {
 
     @Test
     @DisplayName("하행 종점을 제거할 경우 그 다음 역이 종점")
-    public void removeRange_FinalStation_EndWithNextStation() {
+    public void removeSection_FinalStation_EndWithNextStation() {
 
         // when
-        lineRepository = lineRepository.removeRange("2호선", "역삼역");
+        lineRepository = lineRepository.removeSection("2호선", "역삼역");
 
         //then
         assertThat(lineRepository.getStationNamesByLineName("2호선")).containsExactly("교대역", "강남역");

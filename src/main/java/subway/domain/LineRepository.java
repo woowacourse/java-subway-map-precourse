@@ -51,12 +51,12 @@ public final class LineRepository {
         return new LineRepository(lines);
     }
 
-    public LineRepository addRange(final String lineName, final int index,
-                                   final String stationName) {
-        return perform(lineName, line -> line.insert(index, stationName));
+    public LineRepository addSection(final String lineName, final int index,
+                                     final String stationName) {
+        return perform(lineName, line -> line.add(index, stationName));
     }
 
-    public LineRepository removeRange(final String lineName, final String stationName) {
+    public LineRepository removeSection(final String lineName, final String stationName) {
         return perform(lineName, line -> line.remove(stationName));
     }
 

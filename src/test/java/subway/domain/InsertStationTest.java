@@ -41,7 +41,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addRange("1호선", index, stationName);
+                () -> lineRepository.addSection("1호선", index, stationName);
 
         //then
         assertThatThrownBy(callable).isExactlyInstanceOf(NotFoundElementException.class)
@@ -58,7 +58,7 @@ public class InsertStationTest {
         String stationName = "봉천역";
 
         // when
-        lineRepository = lineRepository.addRange(line.getName(), index, stationName);
+        lineRepository = lineRepository.addSection(line.getName(), index, stationName);
 
         //then
         assertThat(lineRepository.getStationNamesByLineName("2호선"))
@@ -75,7 +75,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addRange(line.getName(), index, stationName);
+                () -> lineRepository.addSection(line.getName(), index, stationName);
 
         //then
         assertThatThrownBy(callable).isExactlyInstanceOf(AlreadyExistsException.class)
@@ -94,7 +94,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addRange(line.getName(), index, stationName);
+                () -> lineRepository.addSection(line.getName(), index, stationName);
 
         //then
         assertThatThrownBy(callable).isExactlyInstanceOf(RangeIndexOutOfBoundsException.class)
@@ -113,7 +113,7 @@ public class InsertStationTest {
 
         // when
         ThrowableAssert.ThrowingCallable callable =
-                () -> lineRepository.addRange(line.getName(), index, stationName);
+                () -> lineRepository.addSection(line.getName(), index, stationName);
 
         //then
         assertThatThrownBy(callable).isExactlyInstanceOf(RangeIndexOutOfBoundsException.class)

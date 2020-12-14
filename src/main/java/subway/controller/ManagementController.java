@@ -12,7 +12,7 @@ public final class ManagementController {
 
     public static final String LINE = "노선";
 
-    public static final String RANGE = "구간";
+    public static final String SECTION = "구간";
 
     private final LineRepository lineRepository;
 
@@ -109,38 +109,38 @@ public final class ManagementController {
         return this;
     }
 
-    public ManagementController addRange() {
+    public ManagementController addSection() {
         final String lineName = InputView.inputLineName();
         final String stationName = InputView.inputStation();
         final int stationIndex = InputView.inputIndex();
 
-        return addRange(lineName, stationName, stationIndex);
+        return addSection(lineName, stationName, stationIndex);
     }
 
-    public ManagementController addRange(final String lineName, final String stationName,
-                                         final int stationIndex) {
-        LineRepository rangeInsertedLineRepository =
-                lineRepository.addRange(lineName, stationIndex, stationName);
+    public ManagementController addSection(final String lineName, final String stationName,
+                                           final int stationIndex) {
+        LineRepository sectionAddedLineRepository =
+                lineRepository.addSection(lineName, stationIndex, stationName);
 
-        OutputView.printSaved(RANGE);
+        OutputView.printSaved(SECTION);
 
-        return new ManagementController(rangeInsertedLineRepository, this.stationRepository);
+        return new ManagementController(sectionAddedLineRepository, this.stationRepository);
     }
 
-    public ManagementController removeRange() {
+    public ManagementController removeSection() {
         final String lineName = InputView.inputLineName();
         final String stationName = InputView.inputStation();
 
-        return removeRange(lineName, stationName);
+        return removeSection(lineName, stationName);
     }
 
-    public ManagementController removeRange(final String lineName, final String stationName) {
-        LineRepository rangeRemovedLineRepository =
-                lineRepository.removeRange(lineName, stationName);
+    public ManagementController removeSection(final String lineName, final String stationName) {
+        LineRepository sectionRemovedLineRepository =
+                lineRepository.removeSection(lineName, stationName);
 
-        OutputView.printRemoved(RANGE);
+        OutputView.printRemoved(SECTION);
 
-        return new ManagementController(rangeRemovedLineRepository, this.stationRepository);
+        return new ManagementController(sectionRemovedLineRepository, this.stationRepository);
     }
 
     public ManagementController loadSubwayMap() {

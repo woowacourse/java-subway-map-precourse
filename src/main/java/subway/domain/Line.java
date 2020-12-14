@@ -26,12 +26,12 @@ public final class Line {
         return stations;
     }
 
-    public Line insert(final int index, final String stationName) {
-        return new Line(this.name, stations.addRange(index, stationName));
+    public Line add(final int index, final String stationName) {
+        return new Line(this.name, stations.addSection(index, stationName));
     }
 
     public Line remove(final String stationName) {
-        return new Line(this.name, stations.removeRange(stationName));
+        return new Line(this.name, stations.removeSection(stationName));
     }
 
     public boolean contains(final String stationName) {

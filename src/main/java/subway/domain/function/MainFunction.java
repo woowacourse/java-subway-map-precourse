@@ -14,9 +14,10 @@ public enum MainFunction implements Functionable {
             managementController -> Functionable
                     .function(managementController, LineFunction.TITLE, LineFunction.values())),
 
-    RANGE("3", RangeFunction.TITLE,
+    SECTION("3", SectionFunction.TITLE,
             managementController -> Functionable
-                    .function(managementController, RangeFunction.TITLE, RangeFunction.values())),
+                    .function(managementController, SectionFunction.TITLE,
+                            SectionFunction.values())),
 
     SUBWAY_MAP("4", "지하철 노선도 출력", ManagementController::loadSubwayMap),
 

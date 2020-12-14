@@ -86,10 +86,10 @@ public class ManagementControllerTest {
 
     @Test
     @DisplayName("새로운 구간 추가 테스트")
-    public void addRange_NewRange_RangeAdded() {
+    public void addSection_NewSection_SectionAdded() {
 
         // when
-        managementController = managementController.addRange("2호선", "신림역", 1);
+        managementController = managementController.addSection("2호선", "신림역", 1);
 
         //then
         assertThat(managementController.lines().getStationNamesByLineName("2호선"))
@@ -98,10 +98,10 @@ public class ManagementControllerTest {
 
     @Test
     @DisplayName("기존 구간 삭제 테스트")
-    public void removeRange_OldRange_RangeRemoved() {
+    public void removeSection_OldSection_SectionRemoved() {
 
         // when
-        managementController = managementController.removeRange("2호선", "교대역");
+        managementController = managementController.removeSection("2호선", "교대역");
 
         //then
         assertThat(managementController.lines().getStationNamesByLineName("2호선"))

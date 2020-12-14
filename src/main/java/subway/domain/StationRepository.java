@@ -47,7 +47,7 @@ public final class StationRepository {
         return add(stations.size(), stationName);
     }
 
-    public StationRepository addRange(final int index, final String stationName) {
+    public StationRepository addSection(final int index, final String stationName) {
         int size = stations.size();
 
         boolean canInsert = (index > MINIMUM_INDEX) && (index < size);
@@ -68,7 +68,7 @@ public final class StationRepository {
         return remove(stationName);
     }
 
-    public StationRepository removeRange(final String stationName) {
+    public StationRepository removeSection(final String stationName) {
         boolean canRemove = stations.size() > MINIMUM_STATION_SIZE;
 
         if (!canRemove) {
