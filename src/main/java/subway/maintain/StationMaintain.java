@@ -47,6 +47,7 @@ public class StationMaintain {
     }
 
     private void stationStatus() {
+        OutputView.stationStatus();
         StationRepository.status();
         new Controller(scanner);
     }

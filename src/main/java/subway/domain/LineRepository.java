@@ -1,9 +1,9 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import subway.view.ErrorView;
+import subway.view.OutputView;
+
+import java.util.*;
 
 public class LineRepository {
     private static final String[] LINES = {"2호선","3호선","신분당선"};
@@ -16,6 +16,10 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        if(existLine(line.getName())){
+            ErrorView.duplicateName();
+            return;
+        }
         lines.add(line);
     }
 
@@ -35,6 +39,15 @@ public class LineRepository {
     public static boolean lineRegisterStation(String name) {
         for(Line line : lines){
             if(line.existStation(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean existLine(String name) {
+        for(Line line : lines){
+            if(line.getName().equals(name)){
                 return true;
             }
         }

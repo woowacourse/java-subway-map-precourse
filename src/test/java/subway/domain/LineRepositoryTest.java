@@ -22,4 +22,13 @@ class LineRepositoryTest {
 
     }
 
+    @Test
+    public void 노선_등록_테스트(){
+        String test = "test";
+        String lengthError = "a";
+        Line line = new Line(test);
+
+        assertThat(false).isEqualTo(line.addStation(lengthError));
+    }
+
 }

@@ -1,6 +1,8 @@
 package subway.maintain;
 
 import subway.controller.Controller;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.Util;
@@ -53,6 +55,30 @@ public class LineMaintain {
     }
 
     private void registerLine() {
+        OutputView.writeLineName();
+        Line line = new Line(scanner.next());
+        if(line.getName() == null){
+            ErrorView.nameLengthError();
+            maintainPage();
+            return;
+        }
+        registerStation(line);
+    }
+
+    private void registerStation(Line line) {
+        OutputView.writeStartStation();
+        if(!line.addStation(scanner.next())){
+            maintainPage();
+            return;
+        }
+        OutputView.writeEndStation();
+        if(!line.addStation(scanner.next())){
+            maintainPage();
+            return;
+        }
+        LineRepository.addLine(line);
+        OutputView.completeRegisterLine();
+        new Controller(scanner);
     }
 
 
