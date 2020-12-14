@@ -51,7 +51,7 @@ public class MainView extends MenuView<MainMenuType> {
     }
 
     public static void showSubwayMap(List<LineDTO> Lines) {
-        OutputView.printWithSharpPrefix(SUBWAY_MAP);
+        OutputView.printSystemMessage(SUBWAY_MAP);
 
         for (LineDTO line : Lines) {
             OutputView.printResponseMessage(line.getName());

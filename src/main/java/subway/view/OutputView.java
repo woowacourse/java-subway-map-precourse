@@ -14,7 +14,7 @@ public class OutputView {
         System.out.println(object.toString());
     }
 
-    public static void printWithSharpPrefix(String string) {
+    public static void printSystemMessage(String string) {
         System.out.println(SHARP_PREFIX + string);
     }
 

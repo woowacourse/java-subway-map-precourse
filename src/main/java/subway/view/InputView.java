@@ -15,7 +15,7 @@ public class InputView {
 
     public static String getStringWithMessage(String requestMessage) {
         try {
-            OutputView.printWithSharpPrefix(requestMessage);
+            OutputView.printSystemMessage(requestMessage);
             String string = deleteWhiteSpaces(scanner.nextLine());
             isNotEmptyStringOrThrowException(string);
             OutputView.newLine();

@@ -45,7 +45,7 @@ public abstract class MenuView<T> {
     }
 
     public void printMenu() {
-        OutputView.printWithSharpPrefix(viewName);
+        OutputView.printSystemMessage(viewName);
         for (Selection selection : selections.toList()) {
             OutputView.print(selection);
         }
