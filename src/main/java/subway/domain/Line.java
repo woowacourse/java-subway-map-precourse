@@ -36,10 +36,10 @@ public class Line implements LineErrorMessage {
     public void addStation(String stationName, String stationIndex) {
         int index = validateIndex(stationIndex);
         Station station = getStation(stationName);
-        if(isStationInLine(station)) {
+        if (isStationInLine(station)) {
             throw new IllegalArgumentException(ERROR_STATION_ALREADY_ON_LINE);
         }
-        if(!isIndexInRange(index - 1)) { // 순서는 1부터 입력 가능하므로
+        if (!isIndexInRange(index - 1)) { // 순서는 1부터 입력 가능하므로
             throw new IllegalArgumentException(ERROR_INDEX_NOT_IN_RANGE);
         }
         station.enroll(this);

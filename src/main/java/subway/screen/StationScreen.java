@@ -7,12 +7,6 @@ import subway.domain.StationRepository;
 import subway.screenMessage.StationScreenMessage;
 
 class StationScreen implements SubwayScreen, StationScreenMessage {
-    private static final String[] STATION_MENU_CHOICES = {"1", "2", "3", "B"};
-    private static final String STATION_SCREEN_SELECT_ADD = STATION_MENU_CHOICES[0];
-    private static final String STATION_SCREEN_SELECT_DELETE = STATION_MENU_CHOICES[1];
-    private static final String STATION_SCREEN_SELECT_DISPLAY_ALL = STATION_MENU_CHOICES[2];
-    private static final String STATION_SCREEN_SELECT_GO_BACK = STATION_MENU_CHOICES[3];
-
     private static String stationScreenInput;
 
     @Override
@@ -22,7 +16,7 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
             stationScreenInput = getInput(scanner);
             validateInput(stationScreenInput);
             transfer(scanner);
-        } while (!stationScreenInput.equals(STATION_SCREEN_SELECT_GO_BACK));
+        } while (!stationScreenInput.equals(BACK));
     }
 
     @Override
@@ -33,14 +27,14 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
     }
 
     private void inputDisplayAllStations() {
-        if (stationScreenInput.equals(STATION_SCREEN_SELECT_DISPLAY_ALL)) {
+        if (stationScreenInput.equals(DISPLAY_ALL)) {
             System.out.println(MESSAGE_STATION_LIST);
             StationRepository.displayAllStations();
         }
     }
 
     private void inputDeleteStation(Scanner scanner) {
-        if (stationScreenInput.equals(STATION_SCREEN_SELECT_DELETE)) {
+        if (stationScreenInput.equals(DELETE)) {
             System.out.println(MESSAGE_DELETE_STATION_INPUT_STATION_NAME);
             String stationName = scanner.nextLine();
             StationRepository.deleteStation(stationName);
@@ -49,7 +43,7 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
     }
 
     private void inputAddStation(Scanner scanner) {
-        if (stationScreenInput.equals(STATION_SCREEN_SELECT_ADD)) {
+        if (stationScreenInput.equals(ADD)) {
             System.out.println(MESSAGE_ADD_STATION_INPUT_STATION_NAME);
             String stationName = scanner.nextLine();
             StationRepository.addStation(stationName);
@@ -59,7 +53,7 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
 
     @Override
     public void printScreen() {
-        System.out.println(STATION_SCREEN_MANAGER_MENU);
+        System.out.println(MENU);
         System.out.println(MESSAGE_MENU_SELECT);
     }
 
@@ -72,7 +66,7 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
 
     @Override
     public void validateInput(String input) {
-        List<String> choices = Arrays.asList(STATION_MENU_CHOICES);
+        List<String> choices = Arrays.asList(MENU_CHOICES);
         if(!choices.contains(input)) {
             throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
