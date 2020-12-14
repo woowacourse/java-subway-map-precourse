@@ -11,11 +11,10 @@ import java.util.List;
 public class StationController implements SubwayMapController2 {
 
     private final StationService stationService;
-    private final InputView inputView;
+    private final InputView inputView = InputView.getInstance();
 
-    public StationController(StationService stationService, InputView inputView) {
+    public StationController(StationService stationService) {
         this.stationService = stationService;
-        this.inputView = inputView;
     }
 
     @Override

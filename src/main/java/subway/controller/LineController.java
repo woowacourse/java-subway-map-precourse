@@ -15,12 +15,11 @@ public class LineController implements SubwayMapController2 {
 
     private final StationService stationService;
     private final LineService lineService;
-    private final InputView inputView;
+    private final InputView inputView = InputView.getInstance();
 
-    public LineController(StationService stationService, LineService lineService, InputView inputView) {
+    public LineController(StationService stationService, LineService lineService) {
         this.stationService = stationService;
         this.lineService = lineService;
-        this.inputView = inputView;
     }
 
     @Override

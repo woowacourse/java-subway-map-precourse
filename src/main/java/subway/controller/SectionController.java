@@ -11,12 +11,11 @@ public class SectionController implements SubwayMapController2 {
 
     private final StationService stationService;
     private final LineService lineService;
-    private final InputView inputView;
+    private final InputView inputView = InputView.getInstance();
 
-    public SectionController(StationService stationService, LineService lineService, InputView inputView) {
+    public SectionController(StationService stationService, LineService lineService) {
         this.stationService = stationService;
         this.lineService = lineService;
-        this.inputView = inputView;
     }
 
     @Override

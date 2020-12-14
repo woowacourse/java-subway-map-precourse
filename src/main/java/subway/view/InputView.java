@@ -6,6 +6,7 @@ import subway.domain.type.ManagementType;
 import subway.dto.LineDto;
 import subway.dto.SectionDto;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class InputView {
@@ -22,10 +23,22 @@ public class InputView {
     private static final String SECTION_DELETION_LINE_NAME_NOTICE = "\n## 삭제할 구간의 노선을 입력하세요.";
     private static final String SECTION_DELETION_STATION_NAME_NOTICE = "\n## 삭제할 구간의 역을 입력하세요.";
 
-    private final Scanner scanner;
+    private static InputView inputView;
+    private Scanner scanner;
 
-    public InputView(Scanner scanner) {
+    private InputView(Scanner scanner) {
         this.scanner = scanner;
+    }
+
+    public static void initiate(Scanner scanner) {
+        inputView = new InputView(scanner);
+    }
+
+    public static InputView getInstance() {
+        if (Objects.isNull(inputView)) {
+            throw new NegativeArraySizeException(); //여기수정
+        }
+        return inputView;
     }
 
     public ManagementType inputManagementType() {
