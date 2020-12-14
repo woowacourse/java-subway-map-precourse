@@ -15,5 +15,22 @@ public class DataInitService {
     private static final int ONE = 1;
     private static final int TWO = 2;
 
-    
+    public static void init() {
+        addStation();
+        addLine();
+        addSections();
+    }
+
+    private static void addStation() {
+
+    }
+
+    private static void addLine() {
+
+    }
+
+    private static void addSections() {
+
+    }
+
 }
