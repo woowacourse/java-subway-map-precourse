@@ -12,6 +12,7 @@ public enum StationMenu implements StationMessage {
             System.out.println(MESSAGE_ADD_STATION_INPUT_STATION_NAME);
             String stationName = scanner.nextLine();
             StationRepository.addStation(stationName);
+
             System.out.println(MESSAGE_STATION_ADDED);
         }
     },
@@ -21,6 +22,7 @@ public enum StationMenu implements StationMessage {
             System.out.println(MESSAGE_DELETE_STATION_INPUT_STATION_NAME);
             String stationName = scanner.nextLine();
             StationRepository.deleteStation(stationName);
+
             System.out.println(MESSAGE_STATION_DELETED);
         }
     },
@@ -50,7 +52,9 @@ public enum StationMenu implements StationMessage {
     public static void executeMenuByInput(Scanner scanner, String input) {
         Arrays.stream(StationMenu.values())
             .filter(menu -> menu.getSymbol().equals(input))
-            .findAny().get().execute(scanner);
+            .findAny()
+            .get()
+            .execute(scanner);
     }
 
 }

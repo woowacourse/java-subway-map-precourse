@@ -35,6 +35,8 @@ public enum MainMenu {
     public static void executeMenuByInput(String input, Scanner scanner) {
         Arrays.stream(MainMenu.values())
             .filter(menu -> menu.getSymbol().equals(input))
-            .findAny().get().executeMenu(scanner);
+            .findAny()
+            .get()
+            .executeMenu(scanner);
     }
 }

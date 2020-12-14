@@ -56,6 +56,8 @@ public enum SectionMenu implements SectionMessage {
     public static void executeMenuByInput(Scanner scanner, String input) {
         Arrays.stream(SectionMenu.values())
             .filter(menu -> menu.getSymbol().equals(input))
-            .findAny().get().execute(scanner);
+            .findAny()
+            .get()
+            .execute(scanner);
     }
 }

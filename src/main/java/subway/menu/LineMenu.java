@@ -12,12 +12,15 @@ public enum LineMenu implements LineMessage {
             System.out.println(MESSAGE_INPUT_LINE_NAME_TO_ADD);
             String lineName = scanner.nextLine();
             LineRepository.validateLineName(lineName);
+
             System.out.println(MESSAGE_INPUT_UP_END_STATION_OF_LINE_TO_ADD);
             String upEndStation = scanner.nextLine();
+
             System.out.println(MESSAGE_INPUT_DOWN_END_STATION_OF_LINE_TO_ADD);
             String downEndStation = scanner.nextLine();
             LineRepository.validateEndStationNames(upEndStation, downEndStation);
             LineRepository.initializeLine(lineName, upEndStation, downEndStation);
+
             System.out.println(MESSAGE_LINE_ADDED);
         }
     },
@@ -27,6 +30,7 @@ public enum LineMenu implements LineMessage {
             System.out.println(MESSAGE_INPUT_LINE_NAME_TO_DELETE);
             String lineName = scanner.nextLine();
             LineRepository.deleteLineByName(lineName);
+
             System.out.println(MESSAGE_LINE_DELETED);
         }
     },
@@ -56,6 +60,8 @@ public enum LineMenu implements LineMessage {
     public static void executeMenuByInput(Scanner scanner, String input) {
         Arrays.stream(LineMenu.values())
             .filter(menu -> menu.getSymbol().equals(input))
-            .findAny().get().execute(scanner);
+            .findAny()
+            .get()
+            .execute(scanner);
     }
 }
