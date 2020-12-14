@@ -64,4 +64,8 @@ public class OutPut {
     public static void printStationDeleteMessage() {
         System.out.println(INFO + STATION_DELETE_MESSAGE);
     }
+
+    public static void printName(String name) {
+        System.out.println(INFO + name);
+    }
 }
