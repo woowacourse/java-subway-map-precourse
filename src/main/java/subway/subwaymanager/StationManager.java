@@ -23,6 +23,7 @@ public class StationManager {
                 deleteStation();
             }
             if (inputStationSelect.equals(CONTENTS_NUMBER_THIRD)) {
+                OutputView.printStations();
             }
             if (inputStationSelect.equals(CONTENTS_NUMBER_BACK)) {
                 break;

@@ -20,4 +20,8 @@ public class StationRepository {
         LineRepository.validateLineInStationCheck(name);
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static List<Station> getStations() {
+        return stations;
+    }
 }

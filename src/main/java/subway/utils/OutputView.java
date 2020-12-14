@@ -1,5 +1,10 @@
 package subway.utils;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
+
+import java.util.List;
+
 public class OutputView {
 
     public static void printMainContents() {
@@ -21,5 +26,14 @@ public class OutputView {
         System.out.println("B. 돌아가기");
 
         System.out.println("원하는 기능을 선택하세요.");
+    }
+
+    public static void printStations() {
+        System.out.println("역 목록");
+        List<Station> stations = StationRepository.getStations();
+        for (Station station : stations) {
+            System.out.println("[INFO] " + station.getName());
+        }
+        System.out.println();
     }
 }
