@@ -21,6 +21,10 @@ public class LineRepository {
     }
 
     public static void printLineList() {
+        if (lines.size() == 0) {
+            System.out.println("존재하는 노선이 없습니다.");
+            return;
+        }
         for (Line line : lines) {
             System.out.println(line.getName());
         }

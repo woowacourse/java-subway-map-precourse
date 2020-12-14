@@ -21,6 +21,10 @@ public class StationRepository {
     }
 
     public static void printStationList() {
+        if (stations.size() == 0) {
+            System.out.println("존재하는 역이 없습니다.");
+            return;
+        }
         for (Station station : stations) {
             System.out.println(station.getName());
         }
