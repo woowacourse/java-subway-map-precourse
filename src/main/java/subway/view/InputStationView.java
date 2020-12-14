@@ -12,6 +12,8 @@ public class InputStationView {
 
     private static final String FINAL_STATION_NAME_QUESTION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
 
+    private static final String REMOVE_SECTION_NAME_QUESTION = "삭제할 구간의 역을 입력하세요.";
+
     public static String inputStation() {
         return inputStationName(STATION_NAME_QUESTION);
     }
@@ -25,6 +27,10 @@ public class InputStationView {
     }
 
     public static String inputRemoveStation() {
+        return inputStationName(REMOVE_STATION_NAME_QUESTION);
+    }
+
+    public static String inputStationOfSectionToRemove() {
         return inputStationName(REMOVE_STATION_NAME_QUESTION);
     }
 

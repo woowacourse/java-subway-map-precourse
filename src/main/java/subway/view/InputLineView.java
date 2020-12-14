@@ -8,11 +8,17 @@ public class InputLineView {
 
     private static final String REMOVE_LINE_NAME_QUESTION = "삭제할 노선 이름을 입력하세요.";
 
+    private static final String SECTION_LINE_NAME_QUESTION = "삭제할 구간의 노선을 입력하세요.";
+
     public static String inputLineName() {
         return inputLineName(LINE_NAME_QUESTION);
     }
 
     public static String inputRemoveLineName() {
+        return inputLineName(REMOVE_LINE_NAME_QUESTION);
+    }
+
+    public static String inputLineNameOfSectionToRemove() {
         return inputLineName(REMOVE_LINE_NAME_QUESTION);
     }
 

@@ -35,6 +35,10 @@ public final class InputView {
         return InputStationView.inputRemoveStation();
     }
 
+    public static String inputStationOfSectionToRemove() {
+        return InputStationView.inputStationOfSectionToRemove();
+    }
+
     public static String inputLineName() {
         return InputLineView.inputLineName();
     }
@@ -42,6 +46,11 @@ public final class InputView {
     public static String inputRemoveLineName() {
         return InputLineView.inputRemoveLineName();
     }
+
+    public static String inputLineNameOfSectionToRemove() {
+        return InputLineView.inputLineNameOfSectionToRemove();
+    }
+
 
     public static int inputIndex() {
         return InputIndexView.inputIndex();

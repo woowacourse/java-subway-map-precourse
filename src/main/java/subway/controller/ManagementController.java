@@ -128,8 +128,8 @@ public final class ManagementController {
     }
 
     public ManagementController removeSection() {
-        final String lineName = InputView.inputLineName();
-        final String stationName = InputView.inputStation();
+        final String lineName = InputView.inputLineNameOfSectionToRemove();
+        final String stationName = InputView.inputStationOfSectionToRemove();
 
         return removeSection(lineName, stationName);
     }
