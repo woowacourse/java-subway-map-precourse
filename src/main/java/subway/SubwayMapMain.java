@@ -4,10 +4,13 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.OutputMessage;
+
+
 import java.util.Scanner;
 
 public class SubwayMapMain {
     OutputMessage outputMessage=new OutputMessage();
+    String END_KEY="Q";
     public SubwayMapMain(Scanner scanner){
         System.out.println("Ds");
         startSubwayMap();
@@ -18,6 +21,9 @@ public class SubwayMapMain {
             while(true) {
                 outputMessage.mainOutputMessage();
                 MainFunctionChoice choice = MainFunctionChoice.mainFunctionInput();
+                if(choice.getChoiceNumber().equals(END_KEY)){
+                    break;
+                }
                 choice.doingFunction(choice.getChoiceNumber());
             }
         }

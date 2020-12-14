@@ -24,14 +24,7 @@ public class OutputMessage {
     private static final String STATION_MANAGE_DELETE="2. 역 삭제";
     private static final String STATION_MANAGE_SEARCH="3. 역 조회";
 
-    public static void manageLineMessage(){
-        System.out.println(LINE_MANAGE_MESSAGE);
-        System.out.println(LINE_MANAGE_REGISTRATION);
-        System.out.println(LINE_MANAGE_DELETE);
-        System.out.println(LINE_MANAGE_SEARCH);
-        System.out.println(MENU_BACK);
 
-    }
     private static final String LINE_MANAGE_MESSAGE="## 노선 관리 화면";
     private static final String LINE_MANAGE_REGISTRATION="1. 노선 등록";
     private static final String LINE_MANAGE_DELETE="2. 노선 삭제";
@@ -41,17 +34,11 @@ public class OutputMessage {
     private static final String IN_LINE_MANAGE_REGISTRATION="1. 구간 등록";
     private static final String IN_LINE_MANAGE_DELETE="2. 구간 삭제";
     private static final String MENU_BACK="B. 돌아가기";
-    public static void sectionOutputMessage(){
-        System.out.println(IN_LINE_MANAGE_MESSAGE);
-        System.out.println(IN_LINE_MANAGE_REGISTRATION);
-        System.out.println(IN_LINE_MANAGE_DELETE);
-        System.out.println(MENU_BACK);
-    }
 
     private static final String CHOICE_FUNCTION_MESSAGE="## 원하는 기능을 선택하세요";
     private static final String WRITE_STATION_NAME="## 등록할 역 이름을 입력하세요";
     private static final String WRITE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
-    private static final String WRITE_DELETE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
+    private static final String WRITE_DELETE_LINE_NAME="## 삭제할 노선의 이름을 입력하세요";
 
     private static final String WRITE_SECTION_LINE_NAME="## 노선을 입력하세요";
     private static final String WRITE_SECTION_STATION_NAME="## 역이름을 입력하세요";
@@ -60,6 +47,30 @@ public class OutputMessage {
     private static final String DELETE_SECTION_STATION_NAME="## 삭제할 구간의 노선을 입력하세요.";
 
     private static final String PRINT_STATION_IN_LINE="## 지하철 노선도";
+
+    private static final String WRITE_UP_STATION_NAME="## 등록할 노선의 상행 종점역 이름을 입력하세요";
+    private static final String WRITE_DOWN_STATION_NAME="## 등록할 노선의 하행 종점역 이름을 입력하세요";
+
+    private static final String ERROR_MESSAGE_FUNCTION_CHOICE="[ERROR] 선택할 수 없는 기능입니다.";
+
+    public static void setErrorMessageFunctionChoice(){
+        System.out.println(ERROR_MESSAGE_FUNCTION_CHOICE);
+    }
+    public static void sectionOutputMessage(){
+        System.out.println(IN_LINE_MANAGE_MESSAGE);
+        System.out.println(IN_LINE_MANAGE_REGISTRATION);
+        System.out.println(IN_LINE_MANAGE_DELETE);
+        System.out.println(MENU_BACK);
+    }
+
+    public static void manageLineMessage(){
+        System.out.println(LINE_MANAGE_MESSAGE);
+        System.out.println(LINE_MANAGE_REGISTRATION);
+        System.out.println(LINE_MANAGE_DELETE);
+        System.out.println(LINE_MANAGE_SEARCH);
+        System.out.println(MENU_BACK);
+
+    }
     public static String deleteSectionLineName(){
         System.out.println(DELETE_SECTION_LINE_NAME);
         return scanner.nextLine();
@@ -87,8 +98,7 @@ public class OutputMessage {
 
 
 
-    private static final String WRITE_UP_STATION_NAME="## 등록할 노선의 상행 종점역 이름을 입력하세요";
-    private static final String WRITE_DOWN_STATION_NAME="## 등록할 노선의 하행 종점역 이름을 입력하세요";
+
     public static String deleteLineName(){
         System.out.println(WRITE_DELETE_LINE_NAME);
         return scanner.nextLine();

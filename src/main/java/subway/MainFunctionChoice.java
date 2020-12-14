@@ -11,9 +11,10 @@ import java.util.logging.Handler;
 
 public enum MainFunctionChoice {
     MANAGE_STATION("1",(choiceNumber)->StationCompute.manageStation()),
-    MANAGE_LINE("2",(choiceNumber)->LineCompute.manageLine()),
+    MANAGE_LINE("2",(choiceNumber)->ControlLine.manageLine()),
     MANAGE_SECTION("3",(choiceNumber)->SectionCompute.manageSection()),
-    LINE_LOOK("4",(choiceNumber)-> LineRepository.printAllLineInStation());
+    LINE_LOOK("4",(choiceNumber)-> LineRepository.printAllLineInStation()),
+    QUIT("Q",(choiceNumber)->ControlStation.back());
     private String choiceNumber;
     private Consumer<String> handleFunction;
     MainFunctionChoice(String choiceNumber,Consumer<String> handleFunction){
@@ -34,9 +35,12 @@ public enum MainFunctionChoice {
     }
     public static MainFunctionChoice mainFunctionInput(){
         String tmpSaveChoiceNumber=OutputMessage.choiceOutputMessage();
+
         if(checkInput(tmpSaveChoiceNumber)){
             return choiceSubwayFunction(tmpSaveChoiceNumber);
         }
+        OutputMessage.setErrorMessageFunctionChoice();
+        System.out.println();
         return mainFunctionInput();
     }
 }

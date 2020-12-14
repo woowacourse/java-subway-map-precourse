@@ -39,4 +39,5 @@ public enum StationFunctionChoice {
         }
         return stationFunctionInput();
     }
+
 }

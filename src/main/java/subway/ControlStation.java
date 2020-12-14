@@ -10,7 +10,6 @@ public class ControlStation {
 
         StationRepository.addStation(new Station(OutputMessage.registerStationName()));
         System.out.println();
-        System.out.println("등록끝");
     }
     public static void deleteStationNotLine(){
         StationRepository.deleteStation(OutputMessage.choiceOutputMessage());
