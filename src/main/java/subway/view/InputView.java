@@ -35,4 +35,16 @@ public class InputView {
 		return name;
 	}
 	
+	public static String getAscendingEndPoint() {
+		System.out.println(OutputView.ASCENDING_END_POINT);
+		String name = scanner.nextLine();
+		return name;
+	}
+	
+	public static String getDescendingEndPoint() {
+		System.out.println(OutputView.DESCENDING_END_POINT);
+		String name = scanner.nextLine();
+		return name;
+	}
+	
 }
