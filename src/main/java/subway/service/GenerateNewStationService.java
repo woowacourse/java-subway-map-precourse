@@ -2,8 +2,8 @@ package subway.service;
 
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
-import subway.exception.StationNameFormatException;
-import subway.exception.StationNameLengthException;
+import subway.exception.station.StationNameFormatException;
+import subway.exception.station.StationNameLengthException;
 import subway.exception.SubwayApplicationException;
 
 public class GenerateNewStationService {

@@ -1,7 +1,7 @@
 package subway.specification;
 
 import subway.domain.station.Station;
-import subway.exception.StationNotFoundException;
+import subway.exception.station.StationNotFoundException;
 import subway.repository.station.StationRepository;
 
 public class AlreadyRegisteredStationSpecification {

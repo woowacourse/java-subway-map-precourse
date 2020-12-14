@@ -1,7 +1,7 @@
 package subway.domain.line;
 
-import subway.exception.LineNameFormatException;
-import subway.exception.LineNameLengthException;
+import subway.exception.line.LineNameFormatException;
+import subway.exception.line.LineNameLengthException;
 
 public class LineName {
     private static final int MINIMUM_LINE_NAME_SIZE = 2;

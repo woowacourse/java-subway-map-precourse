@@ -2,7 +2,6 @@ package subway.domain.line;
 
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
-import subway.exception.SameUpLineAndDownLineException;
 
 import java.util.LinkedList;
 import java.util.List;

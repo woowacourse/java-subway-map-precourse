@@ -1,9 +1,9 @@
 package subway.service;
 
 import subway.domain.station.StationName;
-import subway.exception.StationRegisteredOnLineException;
+import subway.exception.station.StationRegisteredOnLineException;
 import subway.exception.SubwayApplicationException;
-import subway.exception.StationNotFoundException;
+import subway.exception.station.StationNotFoundException;
 import subway.repository.line.LineRepository;
 import subway.repository.station.StationRepository;
 import subway.specification.StationExistOnLineSpecification;

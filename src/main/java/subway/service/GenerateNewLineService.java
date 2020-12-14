@@ -1,13 +1,10 @@
 package subway.service;
 
 import subway.domain.station.Station;
-import subway.exception.SameUpLineAndDownLineException;
-import subway.exception.StationNotFoundException;
+import subway.exception.station.SameUpLineAndDownLineException;
+import subway.exception.station.StationNotFoundException;
 import subway.exception.SubwayApplicationException;
-import subway.repository.line.LineRepository;
-import subway.repository.line.LineRepositoryImpl;
 import subway.repository.station.StationRepository;
-import subway.repository.station.StationRepositoryImpl;
 import subway.specification.AlreadyRegisteredStationSpecification;
 import subway.specification.SameUpLineAndDownLineSpecification;
 import subway.domain.line.Line;

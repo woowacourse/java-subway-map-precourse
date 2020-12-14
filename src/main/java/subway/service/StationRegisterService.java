@@ -3,6 +3,7 @@ package subway.service;
 import subway.exception.*;
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
+import subway.exception.station.StationAlreadyExistException;
 import subway.repository.station.StationRepository;
 import subway.specification.StationExistSpecification;
 
