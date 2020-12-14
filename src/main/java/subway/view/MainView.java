@@ -46,10 +46,9 @@ public class MainView {
 
     private void menuSelector() {
         MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.MAIN_MENU_STATE));
-        MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
-
         String input = scanner.next().toUpperCase();
         MessageUtils.printBlankLine();
+
         Runnable action = menuActionMap.get(input);
 
         if (action == null) {
@@ -60,8 +59,7 @@ public class MainView {
     }
 
     public void showWholeSubway() {
-        MessageUtils.printBlankLine();
-        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_SUBWAY_MAP_TEXT);
+        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_SUBWAY_MAP_TEXT);
         Map<String, List<String>> wholeSubwayMap = subway.getSectionRepository().findAll();
         for (String lineTitle : wholeSubwayMap.keySet()) {
             MessageUtils.printInfoEntry(lineTitle);

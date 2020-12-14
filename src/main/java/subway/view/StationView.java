@@ -6,6 +6,7 @@ import java.util.Set;
 import subway.Subway;
 import subway.domain.Station;
 import subway.util.Constants;
+import subway.util.DialogUtils;
 import subway.util.InputUtils;
 import subway.util.MessageUtils;
 
@@ -38,10 +39,9 @@ public class StationView {
 
     private void menuSelector() {
         MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.STATION_MENU_STATE));
-        MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
-
         String input = scanner.next().toUpperCase();
         MessageUtils.printBlankLine();
+
         Runnable action = menuActionMap.get(input);
 
         if (action == null) {
@@ -53,9 +53,7 @@ public class StationView {
 
     private void insertStation() {
         try {
-            MessageUtils.printInputAnnouncement(Constants.ADD_STATION_INPUT_COMMENT);
-            String stationName = scanner.next();
-            MessageUtils.printBlankLine();
+            String stationName = DialogUtils.ask(scanner, Constants.ADD_STATION_INPUT_COMMENT);
             checkValidationStationNameOrThrow(stationName);
 
             Station station = new Station(stationName);
@@ -68,10 +66,10 @@ public class StationView {
 
     private void deleteStation() {
         try {
-            MessageUtils.printInputAnnouncement(Constants.DELETE_STATION_INPUT_COMMENT);
-            String stationName = scanner.next();
+            String stationName = DialogUtils.ask(scanner, Constants.DELETE_STATION_INPUT_COMMENT);
             checkExistStationOrThrow(stationName);
             checkExistStationInSectionOrThrow(stationName);
+
             subway.getStationRepository().deleteStationByName(stationName);
             MessageUtils.printInfo(Constants.DELETE_STATION_OUTPUT_COMMENT);
         } catch (Exception e) {
@@ -111,7 +109,7 @@ public class StationView {
     }
 
     private void showStations() {
-        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
+        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
         for (Object station : subway.getStationRepository().findAll()) {
             MessageUtils.printInfoEntry((String) station);
         }

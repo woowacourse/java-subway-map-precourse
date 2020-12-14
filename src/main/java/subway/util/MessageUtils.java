@@ -10,16 +10,15 @@ public class MessageUtils {
             menuItem -> System.out.println(menuItem.getCode() + ". " + menuItem.getTitle())
         );
         printBlankLine();
+        MessageUtils.printAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
     }
 
     public static void printError(String e) {
-        MessageUtils.printBlankLine();
         System.out.println(Constants.PREFIX_ERROR + e);
         MessageUtils.printBlankLine();
     }
 
     public static void printInfo(String info) {
-        MessageUtils.printBlankLine();
         System.out.println(Constants.PREFIX_INFO + info);
         MessageUtils.printBlankLine();
     }
@@ -28,11 +27,11 @@ public class MessageUtils {
         System.out.println(Constants.PREFIX_INFO + info);
     }
 
-    public static void printInputAnnouncement(String text) {
+    public static void printAnnouncement(String text) {
         System.out.println(text);
     }
 
     public static void printBlankLine() {
-        System.out.println(Constants.LINE_BLANK);
+        System.out.println();
     }
 }

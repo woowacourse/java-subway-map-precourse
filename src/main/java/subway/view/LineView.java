@@ -6,6 +6,7 @@ import subway.Subway;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.util.Constants;
+import subway.util.DialogUtils;
 import subway.util.InputUtils;
 import subway.util.MessageUtils;
 
@@ -38,10 +39,9 @@ public class LineView {
 
     private void menuSelector() {
         MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.LINE_MENU_STATE));
-        MessageUtils.printInputAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
-
         String input = scanner.next().toUpperCase();
         MessageUtils.printBlankLine();
+
         Runnable action = menuActionMap.get(input);
 
         if (action == null) {
@@ -53,16 +53,12 @@ public class LineView {
 
     private void insertLine() {
         try {
-            MessageUtils.printInputAnnouncement(Constants.ADD_LINE_NAME_INPUT_COMMENT);
-            String lineName = scanner.next();
-            MessageUtils.printBlankLine();
+            String lineName = DialogUtils.ask(scanner, Constants.ADD_LINE_NAME_INPUT_COMMENT);
             checkValidationLineNameOrThrow(lineName);
-
-            MessageUtils.printInputAnnouncement(Constants.ADD_START_STATION_NAME_INPUT_COMMENT);
-            Station startStation = getStationOrThrow(scanner.next());
-            MessageUtils.printBlankLine();
-            MessageUtils.printInputAnnouncement(Constants.ADD_END_STATION_NAME_INPUT_COMMENT);
-            Station endStation = getStationOrThrow(scanner.next());
+            Station startStation = getStationOrThrow(
+                DialogUtils.ask(scanner, Constants.ADD_START_STATION_NAME_INPUT_COMMENT));
+            Station endStation = getStationOrThrow(
+                DialogUtils.ask(scanner, Constants.ADD_END_STATION_NAME_INPUT_COMMENT));
 
             Line line = new Line(lineName);
             subway.getLineRepository().addLine(line);
@@ -75,9 +71,7 @@ public class LineView {
 
     private void deleteLine() {
         try {
-            MessageUtils.printInputAnnouncement(Constants.DELETE_LINE_NAME_INPUT_COMMENT);
-            String lineName = scanner.next();
-            MessageUtils.printBlankLine();
+            String lineName = DialogUtils.ask(scanner, Constants.DELETE_LINE_NAME_INPUT_COMMENT);
             Line line = getLineOrThrow(lineName);
 
             subway.getSectionRepository().deleteLine(line);
@@ -87,7 +81,7 @@ public class LineView {
             MessageUtils.printError(e.getMessage());
         }
     }
-    
+
     public void goBackward() {
         isRunning = false;
     }
@@ -128,7 +122,7 @@ public class LineView {
     }
 
     private void showLines() {
-        MessageUtils.printInputAnnouncement(Constants.TITLE_WHOLE_LINE_TEXT);
+        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_LINE_TEXT);
         for (Object line : subway.getLineRepository().findAll()) {
             MessageUtils.printInfoEntry((String) line);
         }

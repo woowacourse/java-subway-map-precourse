@@ -55,7 +55,6 @@ public class Constants {
 
     public final static int MIN_NAME_STRING_LENGTH = 2;
     public final static int INDEX_ARRANGE_INT = 1;
-    public final static String LINE_BLANK = " ";
 
     public final static String PREFIX_INFO = "[INFO] ";
     public final static String PREFIX_ERROR = "[ERROR] ";
@@ -66,9 +65,7 @@ public class Constants {
     public final static String INVALID_MIN_LENGTH_ERROR_COMMENT =
         "문자 길이가 " + MIN_NAME_STRING_LENGTH + " 이상 필요 합니다.";
 
-
     public final static String ANNOUNCEMENT_FEATURE_SELECT_COMMENT = "## 원하는 기능을 선택하세요.";
-
 
     public final static String ADD_STATION_INPUT_COMMENT = "## 등록할 역 이름을 입력하세요.";
     public final static String ADD_STATION_OUTPUT_COMMENT = "지하철 역이 등록되었습니다.";
@@ -79,7 +76,6 @@ public class Constants {
     public final static String EXIST_STATION_IN_SECTION_OUTPUT_COMMENT = "구간에 등록되어 있는 역 입니다. 구간을 먼저 삭제해 주세요.";
     public final static String NO_EXIST_STATION_OUTPUT_COMMENT = "존재하지 않는 역 이름입니다.";
 
-
     public final static String ADD_LINE_NAME_INPUT_COMMENT = "## 등록할 노선 이름을 입력하세요.";
     public final static String ADD_START_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public final static String ADD_END_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
@@ -89,7 +85,6 @@ public class Constants {
     public final static String TITLE_WHOLE_LINE_TEXT = "## 노선 목록";
     public final static String EXIST_LINE_OUTPUT_COMMENT = "이미 등록된 노선 이름입니다.";
     public final static String NO_EXIST_LINE_OUTPUT_COMMENT = "존재하지 않는 노선 이름입니다.";
-
 
     public final static String ADD_SECTION_LINE_INPUT_COMMENT = "## 노선을 입력하세요.";
     public final static String ADD_SECTION_STATION_INPUT_COMMENT = "## 역이름을 입력하세요.";
