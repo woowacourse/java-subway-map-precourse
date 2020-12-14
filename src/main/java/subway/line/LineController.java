@@ -37,30 +37,41 @@ public class LineController {
     public static void sectionManagement(MainInputView mainInputView) {
         List<Character> optionList = Arrays.asList(ADD_SECTION, DELETE_SECTION, GO_BACK);
 
-        LineOutputView.printSectionManagement();
-        selectSectionManagementOption(mainInputView.selectOption(optionList), mainInputView.getScanner());
+        while (true) {
+            LineOutputView.printSectionManagement();
+            char option = mainInputView.selectOption(optionList);
+
+            if (option == GO_BACK) {
+                break;
+            }
+
+            if (selectSectionManagementOption(option, mainInputView.getScanner())) {
+                break;
+            }
+        }
     }
 
-    private static void selectSectionManagementOption(char option, Scanner scanner) {
+    private static boolean selectSectionManagementOption(char option, Scanner scanner) {
         LineInputView lineInputView = new LineInputView(scanner);
         StationInputView stationInputView = new StationInputView(scanner);
 
         if (option == ADD_SECTION) {
-            addNewSection(lineInputView, stationInputView);
+            return addNewSection(lineInputView, stationInputView);
         }
         if (option == DELETE_SECTION) {
-            deleteSection(lineInputView, stationInputView);
+            return deleteSection(lineInputView, stationInputView);
         }
+        return false;
     }
 
-    private static void deleteSection(LineInputView lineInputView, StationInputView stationInputView) {
+    private static boolean deleteSection(LineInputView lineInputView, StationInputView stationInputView) {
         String lineName = lineInputView.deleteSectionLine();
-        LineService.deleteSection(lineName, stationInputView);
+        return LineService.deleteSection(lineName, stationInputView);
     }
 
-    private static void addNewSection(LineInputView lineInputView, StationInputView stationInputView) {
+    private static boolean addNewSection(LineInputView lineInputView, StationInputView stationInputView) {
         String lineName = lineInputView.lineName();
-        LineService.addSection(lineName, lineInputView, stationInputView);
+        return LineService.addSection(lineName, lineInputView, stationInputView);
     }
 
     private static boolean selectLineManagementOption(char option, Scanner scanner) {

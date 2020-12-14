@@ -55,16 +55,19 @@ public class LineService {
         return isDelete;
     }
 
-    public static void addSection(String lineName, LineInputView lineInputView, StationInputView stationInputView) {
+    public static boolean addSection(String lineName, LineInputView lineInputView, StationInputView stationInputView) {
+        boolean isAdd = false;
         try {
             Line line = findLine(lineName);
             Station station = getSectionStation(line, stationInputView);
             int sectionNumber = getSectionPosition(line, lineInputView);
             line.addSection(station, sectionNumber);
+            isAdd = true;
             LineOutputView.addSectionComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return isAdd;
     }
 
     private static Station getSectionStation(Line line, StationInputView stationInputView) {
@@ -87,17 +90,20 @@ public class LineService {
         return line;
     }
 
-    public static void deleteSection(String lineName, StationInputView stationInputView) {
+    public static boolean deleteSection(String lineName, StationInputView stationInputView) {
+        boolean isDelete = false;
         try {
             Line line = findLine(lineName);
             Station station = getDeleteSectionStation(line, stationInputView);
-            if (!line.deleteSection(station)) {
+            isDelete = line.deleteSection(station);
+            if (!isDelete) {
                 throw new IllegalArgumentException(STATION_NUMBER_LACK);
             }
             LineOutputView.deleteSectionComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return isDelete;
     }
 
     private static Station getDeleteSectionStation(Line line, StationInputView stationInputView) {
