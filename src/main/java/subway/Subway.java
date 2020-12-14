@@ -1,10 +1,9 @@
 package subway;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
@@ -15,9 +14,9 @@ import subway.view.MainView;
 
 public class Subway {
 
-    private StationRepository stationRepository = new StationRepository();
-    private LineRepository lineRepository = new LineRepository();
-    private SectionRepository sectionRepository = new SectionRepository();
+    private final StationRepository stationRepository = new StationRepository();
+    private final LineRepository lineRepository = new LineRepository();
+    private final SectionRepository sectionRepository = new SectionRepository();
 
     public Subway() {
         loadInitData();
@@ -29,31 +28,26 @@ public class Subway {
     }
 
     private void loadInitData() {
-        loadInitStationData(InitConstants.STATION_LIST);
-        loadInitLineData(InitConstants.LINE_LIST);
-        loadInitSectionData(InitConstants.SECTION_LIST);
+        loadInitStationData();
+        loadInitLineData();
+        loadInitSectionData();
     }
 
-    private void loadInitStationData(List<String> stationNames) {
-        for (String stationName : stationNames) {
-            this.stationRepository.addStation(new Station(stationName));
-        }
+    private void loadInitStationData() {
+        InitConstants.STATION_LIST.forEach(name -> stationRepository.addStation(new Station(name)));
     }
 
-    private void loadInitLineData(List<String> lineNames) {
-        for (String lineName : lineNames) {
-            this.lineRepository.addLine(new Line(lineName));
-        }
+    private void loadInitLineData() {
+        InitConstants.LINE_LIST.forEach(name -> lineRepository.addLine(new Line(name)));
     }
 
-    private void loadInitSectionData(Map<String, List<String>> sections) {
-        for (Entry<String, List<String>> sectionsEntry : sections.entrySet()) {
-            List<Station> stations = new ArrayList<>();
-            for (String stationName : sectionsEntry.getValue()) {
-                stations.add(this.stationRepository.findByName(stationName));
-            }
-            Line line = this.lineRepository.findByName(sectionsEntry.getKey());
-            this.sectionRepository.addStationList(line, stations);
+    private void loadInitSectionData() {
+        for (Entry<String, List<String>> sectionsEntry : InitConstants.SECTION_LIST.entrySet()) {
+            List<Station> stations = sectionsEntry.getValue().stream()
+                .map(stationRepository::findByName)
+                .collect(Collectors.toList());
+            Line line = lineRepository.findByName(sectionsEntry.getKey());
+            sectionRepository.addStationList(line, stations);
         }
     }
 

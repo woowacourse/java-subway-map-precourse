@@ -7,23 +7,21 @@ import java.util.Set;
 
 public class LineRepository {
 
-    private static final Set<Line> lines = new HashSet<>();
+    private final Set<Line> lines = new HashSet<>();
 
     public void addLine(Line line) {
         lines.add(line);
     }
 
-    public static Set<Line> findAll() {
+    public Set<Line> findAll() {
         return Collections.unmodifiableSet(lines);
     }
 
-    public Line findByName(String line) {
-        for (Line lineElement : lines) {
-            if (lineElement.getName().equals(line)) {
-                return lineElement;
-            }
-        }
-        return null;
+    public Line findByName(String name) {
+        return lines.stream()
+            .filter(line -> line.getName().equals(name))
+            .findFirst()
+            .orElse(null);
     }
 
     public boolean deleteLineByName(String name) {

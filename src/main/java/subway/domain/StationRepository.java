@@ -7,13 +7,13 @@ import java.util.Set;
 
 public class StationRepository {
 
-    private static final Set<Station> stations = new HashSet<>();
+    private final Set<Station> stations = new HashSet<>();
 
     public void addStation(Station station) {
         stations.add(station);
     }
 
-    public static Set<Station> findAll() {
+    public Set<Station> findAll() {
         return Collections.unmodifiableSet(stations);
     }
 
@@ -24,6 +24,10 @@ public class StationRepository {
             }
         }
         return null;
+    }
+
+    public boolean isExistByName(String name) {
+        return findByName(name) != null;
     }
 
     public boolean deleteStationByName(String name) {

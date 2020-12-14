@@ -1,6 +1,5 @@
 package subway.view;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import subway.Subway;
@@ -41,16 +40,15 @@ public class SectionView extends AbstractView {
 
     private void insertSection() {
         try {
-            Line line = getLineOrThrow(
-                DialogUtils.ask(scanner, Constants.ADD_SECTION_LINE_ASK));
-            Station station = getStationOrThrow(
-                DialogUtils.ask(scanner, Constants.ADD_SECTION_STATION_ASK));
+            Line line = getLineOrThrow(DialogUtils.ask(scanner, Constants.ADD_SECTION_LINE_ASK));
+            Station station =
+                getStationOrThrow(DialogUtils.ask(scanner, Constants.ADD_SECTION_STATION_ASK));
             checkEmptySectionOrThrow(line, station);
-            int refinedIndex = InputUtils.getPositiveIntOrThrow(
+            int index = InputUtils.parsePositiveIntOrThrow(
                 DialogUtils.ask(scanner, Constants.ADD_SECTION_INDEX_ASK));
-            checkValidationLengthOrThrow(line, refinedIndex);
+            checkValidationLengthOrThrow(line, index);
 
-            subway.getSectionRepository().addSection(line, station, refinedIndex);
+            subway.getSectionRepository().addSection(line, station, index);
             MessageUtils.printInfo(Constants.ADDED_SECTION);
         } catch (Exception e) {
             MessageUtils.printError(e.getMessage());
@@ -80,13 +78,13 @@ public class SectionView extends AbstractView {
     }
 
     private void checkEmptySectionOrThrow(Line line, Station station) {
-        if (isExistCheckStationInLine(line, station)) {
+        if (subway.getSectionRepository().isExistStationInLine(line, station)) {
             throw new RuntimeException(Constants.EXIST_STATION);
         }
     }
 
     private void checkExistSectionOrThrow(Line line, Station station) {
-        if (!isExistCheckStationInLine(line, station)) {
+        if (!subway.getSectionRepository().isExistStationInLine(line, station)) {
             throw new RuntimeException(Constants.NO_EXIST_SECTION);
         }
     }
@@ -98,40 +96,18 @@ public class SectionView extends AbstractView {
     }
 
     private Line getLineOrThrow(String lineName) {
-        if (!isExistLine(lineName)) {
+        Line line = subway.getLineRepository().findByName(lineName);
+        if (line == null) {
             throw new RuntimeException(Constants.NO_EXIST_LINE);
         }
-        return subway.getLineRepository().findByName(lineName);
+        return line;
     }
 
     private Station getStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
+        Station station = subway.getStationRepository().findByName(stationName);
+        if (station == null) {
             throw new RuntimeException(Constants.NO_EXIST_STATION);
         }
-        return subway.getStationRepository().findByName(stationName);
-    }
-
-    private boolean isExistLine(String lineName) {
-        if (subway.getLineRepository().findByName(lineName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isExistCheckStationInLine(Line line, Station station) {
-        List<Station> stations = subway.getSectionRepository().getStationListInLine(line);
-        for (Station instanceStation : stations) {
-            if (instanceStation.equals(station)) {
-                return true;
-            }
-        }
-        return false;
+        return station;
     }
 }

@@ -1,6 +1,5 @@
 package subway.view;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import subway.Subway;
@@ -10,10 +9,6 @@ import subway.util.MessageUtils;
 
 public class MainView extends AbstractView {
 
-    private LineView lineView;
-    private StationView stationView;
-    private SectionView sectionView;
-
     private Map<String, Runnable> menuActionMap;
 
     public MainView(Subway subway, Scanner scanner) {
@@ -22,9 +17,9 @@ public class MainView extends AbstractView {
 
     @Override
     public void initView() {
-        this.lineView = new LineView(subway, this.scanner);
-        this.stationView = new StationView(subway, this.scanner);
-        this.sectionView = new SectionView(subway, this.scanner);
+        LineView lineView = new LineView(subway, this.scanner);
+        StationView stationView = new StationView(subway, this.scanner);
+        SectionView sectionView = new SectionView(subway, this.scanner);
 
         menuActionMap = Map.of(
             "1", stationView::start,
@@ -47,14 +42,11 @@ public class MainView extends AbstractView {
 
     public void showWholeSubway() {
         MessageUtils.printAnnouncement(Constants.TITLE_SUBWAY_MAP);
-        Map<String, List<String>> wholeSubwayMap = subway.getSectionRepository().findAll();
-        for (String lineTitle : wholeSubwayMap.keySet()) {
-            MessageUtils.printInfoEntry(lineTitle);
+        subway.getSectionRepository().findAll().forEach((line, stations) -> {
+            MessageUtils.printInfoEntry(line.getName());
             MessageUtils.printInfoEntry(Constants.SEPARATE_STRING_SUBWAY_MAP);
-            for (Object stationTitle : wholeSubwayMap.get(lineTitle)) {
-                MessageUtils.printInfoEntry((String) stationTitle);
-            }
+            stations.forEach(station -> MessageUtils.printInfoEntry(station.getName()));
             MessageUtils.printBlankLine();
-        }
+        });
     }
 }

@@ -43,10 +43,10 @@ public class LineView extends AbstractView {
         try {
             String lineName = DialogUtils.ask(scanner, Constants.ADD_LINE_ASK);
             checkValidationLineNameOrThrow(lineName);
-            Station startStation = getStationOrThrow(
-                DialogUtils.ask(scanner, Constants.ADD_START_STATION_ASK));
-            Station endStation = getStationOrThrow(
-                DialogUtils.ask(scanner, Constants.ADD_END_STATION_ASK));
+            Station startStation =
+                getStationOrThrow(DialogUtils.ask(scanner, Constants.ADD_START_STATION_ASK));
+            Station endStation =
+                getStationOrThrow(DialogUtils.ask(scanner, Constants.ADD_END_STATION_ASK));
             checkDuplicateStartToEnd(startStation, endStation);
             Line line = new Line(lineName);
             subway.getLineRepository().addLine(line);
@@ -71,8 +71,8 @@ public class LineView extends AbstractView {
     }
 
     private void checkValidationLineNameOrThrow(String lineName) {
-        InputUtils.isMinLengthString(lineName);
-        if (isExistLine(lineName)) {
+        InputUtils.checkMinLengthOrThrow(lineName);
+        if (subway.getLineRepository().findByName(lineName) != null) {
             throw new RuntimeException(Constants.EXIST_LINE);
         }
     }
@@ -84,38 +84,25 @@ public class LineView extends AbstractView {
     }
 
     private Line getLineOrThrow(String lineName) {
-        if (!isExistLine(lineName)) {
+        Line line = subway.getLineRepository().findByName(lineName);
+        if (line == null) {
             throw new RuntimeException(Constants.NO_EXIST_LINE);
         }
-        return subway.getLineRepository().findByName(lineName);
+        return line;
     }
 
     private Station getStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
+        Station station = subway.getStationRepository().findByName(stationName);
+        if (station == null) {
             throw new RuntimeException(Constants.NO_EXIST_STATION);
         }
-        return subway.getStationRepository().findByName(stationName);
-    }
-
-    private boolean isExistLine(String lineName) {
-        if (subway.getLineRepository().findByName(lineName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
-
+        return station;
     }
 
     private void showLines() {
         MessageUtils.printAnnouncement(Constants.TITLE_LINE_LIST);
-        subway.getLineRepository().findAll()
-            .forEach(line -> MessageUtils.printInfoEntry(line.getName()));
+        subway.getLineRepository().findAll().forEach(line ->
+            MessageUtils.printInfoEntry(line.getName()));
         MessageUtils.printBlankLine();
     }
 }

@@ -1,76 +1,62 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import subway.util.Constants;
 
 public class SectionRepository {
 
-    private final Map<Line, List<Station>> sectionMap = new HashMap<>();
+    private final Map<Line, List<Station>> sections = new HashMap<>();
 
     public SectionRepository() {
     }
 
     public void addStationList(Line sectionTitle, List<Station> stations) {
-        this.sectionMap.put(sectionTitle, stations);
+        sections.put(sectionTitle, new LinkedList<>(stations)); // mutable
     }
 
-    public void addNewLine(Line sectionTitle, Station startStationInLine,
-        Station endStationInLine) {
-        List<Station> startToEndStation = new ArrayList<>();
-        startToEndStation.add(startStationInLine);
-        startToEndStation.add(endStationInLine);
-        this.addStationList(sectionTitle, startToEndStation);
+    public void addNewLine(Line line, Station startStation, Station endStation) {
+        addStationList(line, List.of(startStation, endStation)); // immutable
+
     }
 
-    public void addSection(Line sectionTitle, Station station, int index) {
-        List<Station> stations = this.sectionMap.get(sectionTitle);
+    public void addSection(Line line, Station station, int index) {
+        List<Station> stations = sections.get(line);
         stations.add(index - Constants.INDEX_ARRANGE_INT, station);
-        this.addStationList(sectionTitle, stations);
     }
 
-    public int getSize(Line sectionTitle) {
-        List<Station> stations = this.sectionMap.get(sectionTitle);
-        return stations.size();
+    public int getSize(Line line) {
+        return sections.get(line).size();
     }
 
-    public List<Station> getStationListInLine(Line sectionTitle) {
-        return this.sectionMap.get(sectionTitle);
+    public boolean isExistStationInLine(Line line, Station station) {
+        return sections.getOrDefault(line, List.of()).contains(station);
     }
 
-    public void deleteLine(Line sectionTitle) {
-        this.sectionMap.remove(sectionTitle);
+    public void deleteLine(Line line) {
+        sections.remove(line);
     }
 
-    public void deleteSection(Line sectionTitle, Station station) {
-        List<Station> stations = this.sectionMap.get(sectionTitle);
-        stations.removeIf(element -> element == station);
-        this.sectionMap.put(sectionTitle, stations);
+    public void deleteSection(Line line, Station station) {
+        sections.get(line).remove(station);
     }
 
-    public Set<String> getSetStations() {
-        Set<String> foundSet = new HashSet<>();
-        for (Line sectionTitle : this.sectionMap.keySet()) {
-            for (Station station : this.sectionMap.get(sectionTitle)) {
-                foundSet.add(station.getName());
-            }
-        }
-        return foundSet;
+    public Set<Station> findAllStations() {
+        return sections.values().stream() // List<Station>
+            .flatMap(Collection::stream) // Station
+            .collect(Collectors.toSet()); // Set.add(Station)
     }
 
-    public Map<String, List<String>> findAll() {
-        Map<String, List<String>> wholeSubwayMap = new HashMap<>();
-        for (Line sectionTitle : sectionMap.keySet()) {
-            List<String> stations = new ArrayList<>();
-            for (Station station : sectionMap.get(sectionTitle)) {
-                stations.add(station.getName());
-            }
-            wholeSubwayMap.put(sectionTitle.getName(), stations);
-        }
-        return wholeSubwayMap;
+    public Map<Line, List<Station>> findAll() {
+        Map<Line, List<Station>> copiedMap = new HashMap<>();
+        sections.forEach((line, stations) -> //Line, List<Station>
+            copiedMap.put(line, new ArrayList<>(stations)));
+        return copiedMap; // immutable
     }
 }

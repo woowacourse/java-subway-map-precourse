@@ -2,7 +2,6 @@ package subway.view;
 
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import subway.Subway;
 import subway.domain.Station;
 import subway.model.MenuGroup.Menu;
@@ -66,30 +65,23 @@ public class StationView extends AbstractView {
     }
 
     private void checkValidationStationNameOrThrow(String stationName) {
-        InputUtils.isMinLengthString(stationName);
-        if (isExistStation(stationName)) {
+        InputUtils.checkMinLengthOrThrow(stationName);
+        if (subway.getStationRepository().isExistByName(stationName)) {
             throw new RuntimeException(Constants.EXIST_STATION);
         }
     }
 
     private void checkExistStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
+        if (!subway.getStationRepository().isExistByName(stationName)) {
             throw new RuntimeException(Constants.NO_EXIST_STATION);
         }
     }
 
     private void checkExistStationInSectionOrThrow(String stationName) {
-        Set<String> stationsInSection = subway.getSectionRepository().getSetStations();
-        if (stationsInSection.contains(stationName)) {
+        Station station = subway.getStationRepository().findByName(stationName);
+        if (subway.getSectionRepository().findAllStations().contains(station)) {
             throw new RuntimeException(Constants.EXIST_STATION_IN_SECTION);
         }
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
     }
 
     private void showStations() {
