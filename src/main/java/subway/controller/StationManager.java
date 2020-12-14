@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.controller.constants.SelectOptionConstants;
 import subway.viewer.StationInputViewer;
 
 import java.util.Scanner;
@@ -12,10 +13,22 @@ public class StationManager {
     }
 
     public void processSector() {
-        StationInputViewer.askMainScreen();
-        String option = scanner.next();
-        StationOptions selectedOption = translateOption(option);
-        checkValidatedOption(selectedOption);
+        boolean happenedError;
+        do {
+            StationInputViewer.askMainScreen();
+            happenedError = checkSectorStatus();
+        } while(happenedError);
+    }
+
+    private boolean checkSectorStatus() {
+        try {
+            String option = scanner.next();
+            StationOptions selectedOption = translateOption(option);
+            turnOption(selectedOption);
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
     }
 
     private StationOptions translateOption(String option) {
@@ -24,10 +37,12 @@ public class StationManager {
                 return stationOption;
             }
         }
-        return null;
+        System.out.println(SelectOptionConstants.OPTION_ERROR);
+        System.out.println();
+        throw new IllegalArgumentException();
     }
 
-    private void checkValidatedOption(StationOptions selectedOption) {
+    private void turnOption(StationOptions selectedOption) {
         if (selectedOption != null) {
             selectedOption.processUnit(scanner);
         }

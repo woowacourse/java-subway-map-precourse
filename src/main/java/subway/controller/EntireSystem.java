@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.controller.constants.QuestionNumber;
+import subway.controller.constants.SelectOptionConstants;
 import subway.viewer.SystemInputViewer;
 
 import java.util.Scanner;
@@ -17,9 +18,25 @@ public class EntireSystem {
         do {
             SystemInputViewer.askMainScreen();
             option = scanner.next();
+            isValidatedOption(option);
             EntireOptions selectedOption = translateOption(option);
-            checkValidatedOption(selectedOption);
+            turnOption(selectedOption);
         } while (!option.equals(QuestionNumber.TERMINATE.getOption()));
+    }
+
+    private void isValidatedOption(String option) {
+        try {
+            isContainOptionList(option);
+        }catch (Exception e) {
+            System.out.println(SelectOptionConstants.OPTION_ERROR);
+            System.out.println();
+        }
+    }
+
+    private void isContainOptionList(String option) {
+        if (!SelectOptionConstants.ENTIRE_OPTION.contains(option)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private EntireOptions translateOption(String option) {
@@ -31,7 +48,7 @@ public class EntireSystem {
         return null;
     }
 
-    private void checkValidatedOption(EntireOptions selectedOption) {
+    private void turnOption(EntireOptions selectedOption) {
         if (selectedOption != null) {
             selectedOption.processSet(scanner);
         }

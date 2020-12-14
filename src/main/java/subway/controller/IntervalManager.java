@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.controller.constants.SelectOptionConstants;
 import subway.viewer.IntervalInputViewer;
 
 import java.util.Scanner;
@@ -12,10 +13,22 @@ public class IntervalManager {
     }
 
     public void processSector() {
-        IntervalInputViewer.askMainScreen();
-        String option = scanner.next();
-        IntervalOptions selectedOption = translateOption(option);
-        checkValidatedOption(selectedOption);
+        boolean happenedError;
+        do {
+            IntervalInputViewer.askMainScreen();
+            happenedError = checkSectorStatus();
+        } while(happenedError);
+    }
+
+    private boolean checkSectorStatus() {
+        try {
+            String option = scanner.next();
+            IntervalOptions selectedOption = translateOption(option);
+            turnOption(selectedOption);
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
     }
 
     private IntervalOptions translateOption(String option) {
@@ -24,10 +37,12 @@ public class IntervalManager {
                 return intervalOption;
             }
         }
-        return null;
+        System.out.println(SelectOptionConstants.OPTION_ERROR);
+        System.out.println();
+        throw new IllegalArgumentException();
     }
 
-    private void checkValidatedOption(IntervalOptions selectedOption) {
+    private void turnOption(IntervalOptions selectedOption) {
         if (selectedOption != null) {
             selectedOption.processUnit(scanner);
         }
