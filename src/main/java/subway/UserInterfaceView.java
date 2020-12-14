@@ -82,6 +82,7 @@ public class UserInterfaceView {
             if (Arrays.asList(MAIN_CHOICE_LIST).contains(userInput)) {
                 break;
             }
+            printErrorMessage();
         }
         return false;
     }
@@ -98,5 +99,9 @@ public class UserInterfaceView {
         String userInput = scanner.next();
         System.out.println();
         return userInput;
+    }
+
+    private void printErrorMessage() {
+        System.out.println(FUNCTION_ERROR_MESSAGE);
     }
 }
