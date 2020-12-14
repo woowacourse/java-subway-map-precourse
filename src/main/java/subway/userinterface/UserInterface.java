@@ -13,6 +13,7 @@ public class UserInterface {
         this.scanner = scanner;
         StationManagementView.getInstance().setScanner(scanner);
         LineManagementView.getInstance().setScanner(scanner);
+        SectionManagementView.getInstance().setScanner(scanner);
     }
 
     static void setView(View view) {
