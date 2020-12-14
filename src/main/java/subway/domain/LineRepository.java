@@ -24,8 +24,6 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
-
-
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
@@ -54,5 +52,12 @@ public class LineRepository {
             }
         }
         return false;
+    }
+
+    public static void status() {
+        for(Line line : lines){
+            OutputView.status(line.getName());
+            line.status();
+        }
     }
 }

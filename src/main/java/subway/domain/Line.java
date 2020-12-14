@@ -50,4 +50,11 @@ public class Line {
         stations.add(new Station(stationName));
         return true;
     }
+
+    public void status() {
+        for(Station station : stations){
+            OutputView.status(station.getName());
+        }
+        OutputView.space();
+    }
 }

@@ -30,10 +30,6 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        if(LineRepository.lineRegisterStation(name)){
-            ErrorView.lineRegisterStation();
-            return false;
-        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
