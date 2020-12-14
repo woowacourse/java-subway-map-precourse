@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.message.ErrorMessage;
 import subway.message.GuideMessage;
 
 public class OutputView {
@@ -15,5 +16,10 @@ public class OutputView {
 
     public static void OptionChoicePrint() {
         System.out.println(GuideMessage.CHOICE_OPTION_LIST.getGuideMessage());
+    }
+
+    public static void NotSelectableError() {
+        System.out.println(ErrorMessage.NOT_SELECTABLE_ERROR.getErrorMessage());
+        spacePrint();
     }
 }

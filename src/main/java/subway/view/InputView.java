@@ -1,6 +1,8 @@
 package subway.view;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import subway.constant.BoundaryCheckPattern;
 
 public class InputView {
 
@@ -20,9 +22,22 @@ public class InputView {
         OutputView.mainMenuPrint();
         String choiceMainMenuOption;
 
-        OutputView.OptionChoicePrint();
-        choiceMainMenuOption = scanner.nextLine();
+        do { // 유효한 값이 올 때 까지 값을 입력받는다.
+            OutputView.OptionChoicePrint();
+            choiceMainMenuOption = scanner.nextLine();
+        } while (!mainMenuValidCheck(choiceMainMenuOption));
 
         return choiceMainMenuOption;
+    }
+
+    private static boolean mainMenuValidCheck(String choiceMainMenuOption) {
+        if (Pattern.matches(
+            BoundaryCheckPattern.MAIN_MENU_OPTION_LIMIT.getRegexBoundaryCheckPattern(),
+            choiceMainMenuOption)) {
+            return true;
+        }
+
+        OutputView.NotSelectableError();
+        return false;
     }
 }
