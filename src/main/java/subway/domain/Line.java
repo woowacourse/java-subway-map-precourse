@@ -55,7 +55,7 @@ public class Line {
 
     public LineDTO toDTO() {
         List<StationDTO> stations = new ArrayList<>();
-        for (Station station: this.stations) {
+        for (Station station : this.stations) {
             stations.add(station.toDTO());
         }
         return new LineDTO(this.name, stations);

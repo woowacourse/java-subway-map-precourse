@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.exception.NoneInputException;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -19,7 +20,7 @@ public class InputView {
             isNotEmptyStringOrThrowException(string);
             OutputView.newLine();
             return string;
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             OutputView.printErrorMessage(e);
             return getStringWithMessage(requestMessage);
         }

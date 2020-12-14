@@ -4,12 +4,6 @@ import subway.domain.LineRepository;
 import subway.menuType.MainMenuType;
 import subway.view.menuView.MainView;
 
-/**
- * Application.java
- * 메인 화면에서 기능을 선택할 수 있도록 합니다.
- *
- * @author Kimun Kim, github.com/tributetothemoon
- */
 public class MainController {
     private static MainMenuType menu;
     private static MainView mainView = MainView.getInstance();

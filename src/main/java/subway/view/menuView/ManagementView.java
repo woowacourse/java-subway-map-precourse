@@ -4,6 +4,7 @@ import subway.menuType.ManagementMenuType;
 import subway.dto.DTO;
 import subway.view.InputView;
 import subway.view.OutputView;
+
 import java.util.List;
 
 public abstract class ManagementView extends MenuView<ManagementMenuType> {

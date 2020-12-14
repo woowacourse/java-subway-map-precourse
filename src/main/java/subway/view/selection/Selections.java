@@ -17,7 +17,7 @@ public class Selections {
 
     public Selection searchByKeys(String key) {
         for (Selection selection : selections) {
-            if(selection.getKey().equals(key)) {
+            if (selection.getKey().equals(key)) {
                 return selection;
             }
         }

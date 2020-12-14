@@ -24,7 +24,7 @@ public abstract class MenuView<T> {
         Iterator<String> description = descriptions.iterator();
 
         List<Selection> selections = new ArrayList<>();
-        while(menuKeys.hasNext() && description.hasNext()) {
+        while (menuKeys.hasNext() && description.hasNext()) {
             selections.add(new Selection(menuKeys.next(), description.next()));
         }
 
@@ -53,17 +53,17 @@ public abstract class MenuView<T> {
     }
 
     public T getMenuSelection() {
-        try{
+        try {
             String input = InputView.getStringWithMessage(MENU_SELECTION);
             Selection selection = selections.searchByKeys(input.toUpperCase());
-            return  convertToMenuType(selection);
+            return convertToMenuType(selection);
         } catch (RuntimeException e) {
             OutputView.printErrorMessage(e);
             return getMenuSelection();
         }
     }
 
-    protected T convertToMenuType(Selection selection){
+    protected T convertToMenuType(Selection selection) {
         return mapToMenuType.get(selection);
     }
 

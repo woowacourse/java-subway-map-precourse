@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LineManagement {
-
     private static LineView lineView = LineView.getInstance();
     private static ManagementMenuType menu;
 
