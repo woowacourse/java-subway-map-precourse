@@ -1,8 +1,8 @@
-package subway.view.logger;
+package subway.view.component.common;
 
 import subway.view.component.CommonViewComponent;
 
-public class ViewLogger {
+public class OutputViewComponent {
     public static void printWhiteSpace(){
         System.out.println();
     }
