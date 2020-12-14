@@ -23,7 +23,7 @@ public class MainMenu {
     private static final String QUIT = "종료";
     private final Scanner scanner;
 
-    List<SubMenu> subMenuList;
+    private List<SubMenu> subMenuList;
 
     public MainMenu(Scanner scanner) {
         subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION, scanner),
