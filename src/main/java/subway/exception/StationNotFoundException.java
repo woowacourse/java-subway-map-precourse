@@ -1,4 +1,4 @@
-package subway.domain.exception;
+package subway.exception;
 
 public class StationNotFoundException extends RuntimeException {
 }

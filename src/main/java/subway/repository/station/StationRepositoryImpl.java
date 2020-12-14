@@ -2,7 +2,7 @@ package subway.repository.station;
 
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
-import subway.domain.exception.StationNotFoundException;
+import subway.exception.StationNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collections;

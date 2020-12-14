@@ -1,7 +1,7 @@
 package subway.domain.station;
 
-import subway.domain.exception.StationNameFormatException;
-import subway.domain.exception.StationNameLengthException;
+import subway.exception.StationNameFormatException;
+import subway.exception.StationNameLengthException;
 
 import java.util.Objects;
 
