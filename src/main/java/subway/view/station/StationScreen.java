@@ -20,7 +20,7 @@ public class StationScreen {
     }
 
     private static void showMenu() {
-        InputView.printQuestion(TextCollection.STATION_MANAGEMENT_MESSAGE);
+        OutputView.printQuestion(TextCollection.STATION_MANAGEMENT_MESSAGE);
         Arrays.stream(StationMenu.values()).forEach(menu -> {
             System.out.println(menu.getKey() + ". " + menu.getTitle());
         });
