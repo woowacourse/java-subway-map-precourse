@@ -73,6 +73,7 @@ public class LineManagementView extends View {
         line.addStation(getLastStation());
 
         LineRepository.addLine(line);
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
     }
 
     private String getLineName() {

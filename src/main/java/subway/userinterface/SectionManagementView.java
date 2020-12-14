@@ -116,6 +116,7 @@ public class SectionManagementView extends View {
         Station station = getStationToRemove(line);
 
         line.deleteStation(station);
+        System.out.println("[INFO] 구간이 삭제되었습니다.");
     }
 
     private Line getLineToRemove() {
