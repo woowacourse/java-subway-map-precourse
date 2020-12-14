@@ -41,12 +41,11 @@ public class LineManagement {
     }
 
     private static void registerLine() {
-        Line line = new Line(lineView.getNameToCreate());
-
+        String lineName = lineView.getNameToCreate();
         Station upLineEndStation = StationRepository.searchByName(lineView.getUplineStationName());
-        line.addStation(upLineEndStation);
         Station downLineEndStation = StationRepository.searchByName(lineView.getDownlineStationName());
-        line.addStation(downLineEndStation);
+
+        Line line = new Line(lineName, upLineEndStation, downLineEndStation);
 
         LineRepository.addLine(line);
         lineView.printCreateDone();

@@ -21,10 +21,12 @@ public abstract class ManagementView extends MenuView<ManagementMenuType> {
 
     public void printCreateDone() {
         OutputView.printResponseMessage(createMessage);
+        newLine();
     }
 
     public void printDeleteDone() {
         OutputView.printResponseMessage(deleteMessage);
+        newLine();
     }
 
     public String getNameToCreate() {

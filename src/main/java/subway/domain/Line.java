@@ -5,6 +5,7 @@ import subway.dto.StationDTO;
 import subway.exception.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Line {
@@ -20,19 +21,12 @@ public class Line {
     private String name;
     private List<Station> stations;
 
-    public Line(String name) {
+    public Line(String name, Station upLineStation, Station downLineStation) {
         if (name.length() < MIN_LENGTH) {
             throw new InvalidInputLengthException(String.format(INVALID_LENGTH_FORMAT, MIN_LENGTH));
         }
         this.name = name;
-        this.stations = new ArrayList<>();
-    }
-
-    public void addStation(Station station) {
-        if (contains(station)) {
-            throw new DuplicatedObjectException(ERROR_ALREADY_EXIST);
-        }
-        stations.add(station);
+        this.stations = new ArrayList<>(Arrays.asList(upLineStation, downLineStation));
     }
 
     public void addStation(int index, Station station) {
