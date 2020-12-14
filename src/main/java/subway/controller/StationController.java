@@ -15,7 +15,7 @@ public class StationController {
     public static void stationAdd() {
         try {
             StationView.printStationAddReqMsg();
-            String StationName = stationNameInput();
+            String StationName = stationNameInputForAdd();
             StationRepository.addStation(new Station(StationName));
             StationView.printStationAddSuccessMsg();
         } catch (IllegalArgumentException e) {
@@ -25,14 +25,14 @@ public class StationController {
         }
     }
 
-    public static void stationInit(){
-        List<String> stationsNames = new ArrayList<>(Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", " 양재역", "양재시민의숲역", "매봉역"));
-        for(String stationName : stationsNames){
+    public static void stationInit() {
+        List<String> stationsNames = new ArrayList<>(Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"));
+        for (String stationName : stationsNames) {
             StationRepository.addStation(new Station(stationName));
         }
     }
 
-    private static String stationNameInput() throws IllegalArgumentException {
+    private static String stationNameInputForAdd() throws IllegalArgumentException {
         String stationName = InputView.getInput();
         stationName = stationName.replace(" ", "");
         if (!Validator.isValidNameLength(stationName)) {
@@ -45,7 +45,30 @@ public class StationController {
         return stationName;
     }
 
-    public static void stationCheck(){
+    public static void stationCheck() {
         StationView.printStationCheck();
+    }
+
+    public static void stationDelete() {
+        try {
+            StationView.printStationDeleteReqMsg();
+            String StationName = stationNameInputForDelete();
+            StationRepository.deleteStation(StationName);
+            StationView.printStationDeleteSuccessMsg();
+        } catch (IllegalArgumentException e) {
+            System.out.println();
+            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println();
+        }
+    }
+
+    private static String stationNameInputForDelete() throws IllegalArgumentException {
+        String stationName = InputView.getInput();
+        stationName = stationName.replace(" ", "");
+
+        if (!Validator.isExistStationName(stationName)) {
+            throw new IllegalArgumentException("존재하지 않는 역 입니다.");
+        }
+        return stationName;
     }
 }

@@ -24,6 +24,8 @@ public class StationManageMenu {
             @Override
             public void stationManageMenuSelect() {
                 // 역 삭제 호출
+                StationController.stationDelete();
+                stationManageMenuStop();
             }
         },
         STATION_CHECK() {
