@@ -22,6 +22,7 @@ public class SubwayController {
 
     private void Menu() {
         try {
+            MainScreen.showMenu();
             MainMenu menu = MainScreen.selectMenu();
             menu.request(menu.getKey());
         } catch (SubwayException e) {
