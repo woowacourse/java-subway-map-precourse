@@ -25,11 +25,12 @@ public class LineRepository {
     }
 
     public static boolean contains(String name) {
-        return lines.stream()
-            .filter(line -> line.getName().equals(name))
+        return LineRepository
+            .lines()
+            .stream()
+            .map(Line::getName)
             .collect(Collectors.toList())
-            .toArray()
-            .length > BoundaryCheckDigit.NOT_EMPTY.getBoundaryCheckDigit();
+            .contains(name);
     }
 
     public static Line getLineByName(String name) {
