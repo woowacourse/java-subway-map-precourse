@@ -6,20 +6,22 @@ import java.util.List;
 import java.util.Objects;
 
 public enum ManagementType {
-    STATION("1",
+    STATION("1", "역",
             Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.READ, FunctionType.BACK)),
-    LINE("2",
+    LINE("2", "노선",
             Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.READ, FunctionType.BACK)),
-    SECTION("3",
+    SECTION("3", "구간",
             Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.BACK)),
-    SUBWAY_MAP_PRINT("4", Collections.emptyList()),
-    EXIT("Q", Collections.emptyList());
+    SUBWAY_MAP_PRINT("4", "", Collections.emptyList()),
+    EXIT("Q", "", Collections.emptyList());
 
     private final String managementNumber;
+    private final String message;
     private final List<FunctionType> functionTypes;
 
-    private ManagementType(String managementNumber, List<FunctionType> functionTypes) {
+    private ManagementType(String managementNumber, String message, List<FunctionType> functionTypes) {
         this.managementNumber = managementNumber;
+        this.message = message;
         this.functionTypes = functionTypes;
     }
 
@@ -47,5 +49,10 @@ public enum ManagementType {
 
     public boolean isRunning() {
         return this != EXIT;
+    }
+
+    @Override
+    public String toString() {
+        return message;
     }
 }
