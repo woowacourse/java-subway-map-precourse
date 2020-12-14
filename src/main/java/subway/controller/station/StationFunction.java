@@ -1,7 +1,5 @@
 package subway.controller.station;
 
-import subway.controller.line.LineController;
-import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.exception.AlreadyExistStationException;
@@ -31,7 +29,7 @@ public class StationFunction {
             String station = InputView.input();
             InputValidator.validStationName(station);
             stationRepository.deleteStation(station);
-        } catch (NotExistStationException | DuplicateStationOfLineException e) {
+        } catch (NotExistStationException | DuplicateStationOfLineException | InvalidStationNameException e) {
 
         }
         return null;

@@ -12,12 +12,12 @@ public class StationController implements Controller {
 
     @Override
     public void start() {
-        StationMenu stationMenu;
+        StationMenu sectionMenu;
         do {
             StationOutputView.showMenu();
             String inputMenu = InputView.input();
-            stationMenu = selectMenu(inputMenu);
-        } while (StationMenu.isRunning(stationMenu));
+            sectionMenu = selectMenu(inputMenu);
+        } while (StationMenu.isRunning(sectionMenu));
     }
 
     private StationMenu selectMenu(String inputMenu) {

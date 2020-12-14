@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.domain.exception.DuplicateLineNameException;
 import subway.domain.exception.DuplicateStationOfLineException;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    static void addLine(Line line) {
+    public static void addLine(Line line) {
         lines.add(line);
     }
 
@@ -38,7 +39,7 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    static void duplicateStationInLine(String name) {
+    public static void duplicateStationInLine(String name) {
         lines.stream()
                 .map(line -> line.getStations())
                 .filter(station -> station.contains(name))
@@ -48,4 +49,23 @@ public class LineRepository {
                 });
     }
 
+    public static void duplicateStationSelectLine(String stationName, String lineName) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .map(line -> line.getStations())
+                .filter(station -> station.contains(stationName))
+                .findAny()
+                .ifPresent(s -> {
+                    throw new DuplicateStationOfLineException();
+                });
+    }
+
+    public void duplicateLineName(String lineName) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .findAny()
+                .ifPresent(s -> {
+                    throw new DuplicateLineNameException();
+                });
+    }
 }

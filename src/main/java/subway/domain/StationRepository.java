@@ -46,7 +46,7 @@ public class StationRepository {
                 });
     }
 
-    private void notExistStationName(String name) {
+    public static void notExistStationName(String name) {
         stations.stream()
                 .filter(station -> Objects.equals(station.getName(), name))
                 .findAny()

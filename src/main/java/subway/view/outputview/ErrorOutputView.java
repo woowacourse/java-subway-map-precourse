@@ -46,4 +46,20 @@ public class ErrorOutputView {
         stringBuilder.append(STATION_IN_LINE);
         print();
     }
+
+    public static void invalidLineName() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(INVALID_LINE_NAME);
+        print();
+    }
+
+    public static void existLine() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(EXIST_LINE_NAME);
+    }
+
+    public static void equalFirstAndLastStation() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(EQUAL_FIRST_LAST_STATION);
+    }
 }
