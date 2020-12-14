@@ -85,12 +85,14 @@ public class Application {
 
 	private static void station_regist() {
 		System.out.println("## 등록할 역 이름을 입력하세요.");
-		Station_management.add_station(scanner.next());
+		String station_name = input_name();
+		Station_management.add_station(station_name);
 	}
 
 	private static void station_delete() {
 		System.out.println("## 삭제할 역 이름을 입력하세요.");
-		Station_management.delete_station(scanner.next());
+		String station_name = input_name();
+		Station_management.delete_station(station_name);
 	}
 
 	private static boolean select_station_function() {
@@ -125,17 +127,18 @@ public class Application {
 
 	private static void line_regist() {
 		System.out.println("## 등록할 노선 이름을 입력하세요.");
-		String new_line_name = scanner.next();
+		String new_line_name = input_name();
 		System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-		String UP = scanner.next();
+		String UP = input_name();
 		System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
-		String DOWN = scanner.next();
+		String DOWN = input_name();
 		Line_management.add_line(new_line_name, UP, DOWN);
 	}
 
 	private static void line_delete() {
 		System.out.println("## 삭제할 역 이름을 입력하세요.");
-		Line_management.delete_line(scanner.next());
+		String line_name = input_name();
+		Line_management.delete_line(line_name);
 	}
 
 	private static boolean select_line_function() {
@@ -169,9 +172,9 @@ public class Application {
 
 	private static void section_regist() {
 		System.out.println("\n## 노선을 입력하세요.");
-		String line_name = scanner.next();
+		String line_name = input_name();
 		System.out.println("\n## 역이름을 입력하세요.");
-		String station_name = scanner.next();
+		String station_name = input_name();
 		System.out.println("\n## 순서를 입력하세요.");
 		int position = scanner.nextInt();
 		Section_management.add_section(line_name, station_name, position);
@@ -179,9 +182,9 @@ public class Application {
 
 	private static void section_delete() {
 		System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
-		String line_name = scanner.next();
+		String line_name = input_name();
 		System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-		String station_name = scanner.next();
+		String station_name = input_name();
 		Section_management.delete_section(line_name, station_name);
 	}
 
@@ -197,6 +200,24 @@ public class Application {
 		if (select.equals("2")) {
 			section_delete();
 		}
+		return false;
+	}
+
+	private static String input_name() {
+		while (true) {
+			String name = scanner.next();
+			if (check_name_length(name)) {
+				return name;
+			}
+		}
+	}
+
+	private boolean check_name_length(String name) {
+		if (name.length() > 2) {
+			return true;
+		}
+		System.out.println("[ERROR] 이름은 2글자 이상이어야 합니다.");
+		System.out.println("\n## 다시 입력해주세요.");
 		return false;
 	}
 
