@@ -50,4 +50,14 @@ class LineServiceTest {
         ResultDto result = LineService.registerLine(lineName, upEndStation, upEndStation);
         assertEquals(Status.BAD, result.getStatus());
     }
+
+    @Test
+    void 노선_삭제_존재하지_않는_노선_예외처리_테스트() {
+        // given
+        String lineName = "존재하지않는역";
+
+        // then
+        ResultDto result = LineService.deleteLine(lineName);
+        assertEquals(Status.BAD, result.getStatus());
+    }
 }

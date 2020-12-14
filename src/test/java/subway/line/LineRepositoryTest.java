@@ -1,5 +1,7 @@
 package subway.line;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import subway.station.Station;
 
@@ -7,10 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineRepositoryTest {
 
+    LineRepository repository;
+
+    @BeforeEach
+    void setUp() {
+        repository = new LineRepository();
+    }
+
     @Test
     void 노선에_등록된_역인지_확인_테스트() {
         // given, when
-        LineRepository repository = new LineRepository();
         String onLineStation1 = "강남역";
         String onLineStation2 = "방배역";
 
@@ -25,6 +33,17 @@ class LineRepositoryTest {
         // then
         assertTrue(repository.isStationOnLine(onLineStation1));
         assertFalse(repository.isStationOnLine(notOnLineStation));
+    }
+
+    @Test
+    void 존재하지않는_노선_예외처리_테스트() {
+        // given, when
+        String lineName = "존재하지않는노선";
+
+        // then
+        assertThrows(Exception.class, () -> {
+            repository.checkLineExist(lineName);
+        });
     }
 
 }

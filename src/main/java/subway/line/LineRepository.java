@@ -38,4 +38,13 @@ public class LineRepository {
             }
         }
     }
+
+    public void checkLineExist(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException("존재 하지 않는 노선입니다.");
+    }
 }

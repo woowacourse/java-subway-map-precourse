@@ -7,6 +7,7 @@ import subway.station.StationService;
 public class LineService {
 
     private static final String REGISTER_RESULT_OK_MESSAGE = "지하철 노선이 등록되었습니다.";
+    private static final String DELETE_RESULT_OK_MESSAGE = "지하철 노선이 삭제되었습니다.";
     private static final LineRepository repository = new LineRepository();
 
     private LineService() {}
@@ -42,5 +43,19 @@ public class LineService {
         if (upEndStation.equals(downEndStation)) {
             throw new IllegalArgumentException("상행 종점과 하행 종점은 같을 수 없습니다.");
         }
+    }
+
+    public static ResultDto deleteLine(String lineName) {
+        try {
+            checkExistLine(lineName);
+            repository.deleteLineByName(lineName);
+            return ResultDto.ok(DELETE_RESULT_OK_MESSAGE);
+        } catch (Exception e) {
+            return ResultDto.bad(e);
+        }
+    }
+
+    private static void checkExistLine(String lineName) {
+        repository.checkLineExist(lineName);
     }
 }

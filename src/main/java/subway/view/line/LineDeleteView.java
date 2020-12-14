@@ -1,5 +1,7 @@
 package subway.view.line;
 
+import subway.line.LineService;
+import subway.model.ResultDto;
 import subway.view.GeneralView;
 
 public class LineDeleteView extends GeneralView {
@@ -15,6 +17,7 @@ public class LineDeleteView extends GeneralView {
     @Override
     public void setVisible() {
         String lineName = inputMoreThanTwoWords(INPUT_GUIDE_TEXT);
-        /** TODO: LineService 노선 삭제 요청 */
+        ResultDto result = LineService.deleteLine(lineName);
+        processRequestResult(result);
     }
 }
