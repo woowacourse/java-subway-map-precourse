@@ -34,13 +34,13 @@ class StationServiceTest {
         Assertions.assertEquals(false, StationRepository.stations().contains(yangsan));
     }
 
-    @Test
-    public void 역_삭제할_때_존재하지_않으면_예외_테스트() {
-        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            StationRepository.addStation(yangsan);
-            StationService stationService = new StationService(scanner);
-            stationService.isNotExistStation(new Station("증산역"));
-        });
-        Assertions.assertEquals("\n[ERROR] 삭제할 역이 존재하지 않습니다.", exception.getMessage());
-    }
+//    @Test
+//    public void 역_삭제할_때_존재하지_않으면_예외_테스트() {
+//        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+//            StationRepository.addStation(yangsan);
+//            StationService stationService = new StationService(scanner);
+//            stationService.isNotExistStation(new Station("증산역"));
+//        });
+//        Assertions.assertEquals("\n[ERROR] 삭제할 역이 존재하지 않습니다.", exception.getMessage());
+//    }
 }

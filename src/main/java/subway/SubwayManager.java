@@ -32,7 +32,7 @@ public class SubwayManager {
     }
 
     public void run(Scanner scanner) {
-        MainMenuController mainMenuController = new MainMenuController();
+        MainMenuController mainMenuController = MainMenuController.getInstance();
         mainMenuController.mappingMainMenu(scanner);
     }
 
@@ -51,7 +51,7 @@ public class SubwayManager {
         lineThree.addLineStation(FIRST_STATION, new Station(GYODAE));
         lineThree.addLineStation(SECOND_STATION, new Station(NAMBUTERMINAL));
         lineThree.addLineStation(THIRD_STATION, new Station(YANGJAE));
-        lineThree.addLineStation(FOURTH_STATION, new Station(MAEBONG);
+        lineThree.addLineStation(FOURTH_STATION, new Station(MAEBONG));
         LineRepository.addLine(lineThree);
 
         Line lineSinBundang = new Line(LINE_SINBUNDANG);
