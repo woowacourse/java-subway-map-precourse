@@ -23,6 +23,8 @@ public class LineManageMenu {
             @Override
             public void lineManageMenuSelect() {
                 // 라인 삭제 호출
+                LineController.lineDelete();
+                lineManageMenuStop();
             }
         },
         LINE_CHECK() {

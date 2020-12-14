@@ -26,7 +26,7 @@ public class LineController {
     public static void lineAdd() {
         try {
             LineView.printLineAddReqMsg();
-            String lineName = lineNameInput();
+            String lineName = lineNameInputForAdd();
             String frontStationName = frontLineStationInput();
             String backStationName = backLineStationInput();
             if (frontStationName.equals(backStationName)) {
@@ -42,7 +42,7 @@ public class LineController {
         }
     }
 
-    private static String lineNameInput() throws IllegalArgumentException {
+    private static String lineNameInputForAdd() throws IllegalArgumentException {
         String lineName = InputView.getInput();
         lineName = lineName.replace(" ", "");
         if (!Validator.isValidNameLength(lineName)) {
@@ -82,5 +82,32 @@ public class LineController {
 
     public static void lineCheck() {
         LineView.printLineCheck();
+    }
+    public static void lineDelete() {
+        try {
+            LineView.printLineDeleteReqMsg();
+            String lineName = lineNameInputForDelete();
+            LineRepository.deleteLineMapByName(lineName);
+            LineView.printLineDeleteSuccessMsg();
+
+        } catch (IllegalArgumentException e) {
+            System.out.println();
+            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println();
+        }
+    }
+
+    private static String lineNameInputForDelete() throws IllegalArgumentException {
+        String lineName = InputView.getInput();
+//        lineName = lineName.replace(" ", "");
+//        if (!Validator.isExistLineName(lineName)) {
+//            throw new IllegalArgumentException("존재하지 않는 노선 이름 입니다");
+//        }
+
+        if (!LineRepository.deleteLineByName(lineName)) {
+            throw new IllegalArgumentException("잘못된 노선 이름 입니다");
+        }
+
+        return lineName;
     }
 }

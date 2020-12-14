@@ -37,4 +37,8 @@ public class LineRepository {
         }
         return Collections.unmodifiableList(usingStations);
     }
+
+    public static void deleteLineMapByName(String name){
+        lineMap.remove(name);
+    }
 }
