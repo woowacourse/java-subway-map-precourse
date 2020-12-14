@@ -1,6 +1,5 @@
 package subway.service.station;
 
-import subway.domain.Line;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.dto.station.StationRequestDto;
