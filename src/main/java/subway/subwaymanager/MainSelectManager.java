@@ -2,6 +2,7 @@ package subway.subwaymanager;
 
 import subway.utils.InputView;
 import subway.utils.OutputView;
+import subway.validators.ValidateMainSelect;
 
 import static subway.utils.Constant.*;
 
@@ -10,6 +11,7 @@ public class MainSelectManager {
         while (true) {
             OutputView.printMainContents();
             String inputMainSelect = InputView.inputSelect();
+            ValidateMainSelect.validateMainSelect(inputMainSelect);
 
             if (inputMainSelect.equals(CONTENTS_NUMBER_FIRST)) {
             }
