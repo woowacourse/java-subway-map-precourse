@@ -1,4 +1,4 @@
-package subway.main.view;
+package subway.view;
 
 public class MainOutputView {
     private static final String MAIN_TITLE = "## 메인 화면";
@@ -8,7 +8,9 @@ public class MainOutputView {
     private static final String PRINT_LINE_MAP = "4. 지하철 노선도 출력";
     private static final String EXIT_SERVICE = "Q. 종료";
 
-    public static void printMainSelection() {
+    private static final String ASK_OPTION_CHOICE = "## 원하는 기능을 선택하세요.";
+
+    public static void showMainMenu() {
         System.out.println(MAIN_TITLE);
         System.out.println(STATION_MANAGEMENT);
         System.out.println(LINE_MANAGEMENT);
@@ -16,5 +18,9 @@ public class MainOutputView {
         System.out.println(PRINT_LINE_MAP);
         System.out.println(EXIT_SERVICE);
         System.out.println();
+    }
+
+    public static void askOptionChoice() {
+        System.out.println(ASK_OPTION_CHOICE);
     }
 }

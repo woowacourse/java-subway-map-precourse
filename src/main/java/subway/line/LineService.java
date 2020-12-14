@@ -7,6 +7,9 @@ import subway.station.Station;
 import subway.station.StationService;
 import subway.station.validation.CheckLastLetter;
 import subway.station.view.StationInputView;
+import subway.view.InputView;
+import subway.view.line.LineManagementView;
+import subway.view.subwaymap.SubwayMapView;
 
 import java.util.List;
 
@@ -15,32 +18,31 @@ public class LineService {
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 노선입니다.";
     private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
 
-    public static boolean addLine(String lineName, LineInputView lineInputView) {
+    public static boolean addLine(String lineName, InputView inputView) {
         boolean isAdd = false;
         try {
             Line line = new Line(lineName);
-            Station startStation = getStartStation(lineInputView);
-            Station endStation = getEndStation(lineInputView);
+            Station startStation = getStartStation(inputView);
+            Station endStation = getEndStation(inputView);
             line.addStation(startStation);
             line.addStation(endStation);
             LineRepository.addLine(line);
             isAdd = true;
-            LineOutputView.addLineComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return isAdd;
     }
 
-    private static Station getStartStation(LineInputView lineInputView) {
-        String startStationName = lineInputView.startStationName();
-        CheckLastLetter.validation(startStationName);
+    private static Station getStartStation(InputView inputView) {
+        LineManagementView.askStartStationName();
+        String startStationName = inputView.stationName();
         return StationService.findStation(startStationName);
     }
 
-    private static Station getEndStation(LineInputView lineInputView) {
-        String endStationName = lineInputView.endStationName();
-        CheckLastLetter.validation(endStationName);
+    private static Station getEndStation(InputView inputView) {
+        LineManagementView.askEndStationName();
+        String endStationName = inputView.stationName();
         return StationService.findStation(endStationName);
     }
 
@@ -49,38 +51,10 @@ public class LineService {
         try {
             CheckRegisteredLine.validation(lineName);
             isDelete = LineRepository.deleteLineByName(lineName);
-            LineOutputView.deleteStationComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return isDelete;
-    }
-
-    public static boolean addSection(String lineName, LineInputView lineInputView, StationInputView stationInputView) {
-        boolean isAdd = false;
-        try {
-            Line line = findLine(lineName);
-            Station station = getSectionStation(line, stationInputView);
-            int sectionNumber = getSectionPosition(line, lineInputView);
-            line.addSection(station, sectionNumber);
-            isAdd = true;
-            LineOutputView.addSectionComplete();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return isAdd;
-    }
-
-    private static Station getSectionStation(Line line, StationInputView stationInputView) {
-        String stationName = stationInputView.stationName();
-        CheckAlreadyRegisteredStation.validation(line, stationName);
-        return StationService.findStation(stationName);
-    }
-
-    private static int getSectionPosition(Line line, LineInputView lineInputView) {
-        String number = lineInputView.sectionNumber();
-        CheckRightSectionNumber.validation(line, number);
-        return Integer.parseInt(number);
     }
 
     public static Line findLine(String lineName) {
@@ -91,41 +65,19 @@ public class LineService {
         return line;
     }
 
-    public static boolean deleteSection(String lineName, StationInputView stationInputView) {
-        boolean isDelete = false;
-        try {
-            Line line = findLine(lineName);
-            Station station = getDeleteSectionStation(line, stationInputView);
-            isDelete = line.deleteSection(station);
-            if (!isDelete) {
-                throw new IllegalArgumentException(STATION_NUMBER_LACK);
-            }
-            LineOutputView.deleteSectionComplete();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return isDelete;
-    }
-
-    private static Station getDeleteSectionStation(Line line, StationInputView stationInputView) {
-        String stationName = stationInputView.stationSectionName();
-        CheckNotExistStation.validation(line, stationName);
-        return StationService.findStation(stationName);
-    }
-
     public static void printAllLineInformation() {
         List<Line> lines = LineRepository.lines();
 
         for (Line line : lines) {
             String lineName = line.getName();
             EachLineStations stations = line.getStations();
-            LineOutputView.printLineInformation(lineName, stations);
+            SubwayMapView.showLineInformation(lineName, stations);
         }
     }
 
     public static boolean printAllLine() {
         List<Line> lines = LineRepository.lines();
-        LineOutputView.printAllLine(lines);
+        LineManagementView.showAllLine(lines);
         return true;
     }
 }

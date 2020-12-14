@@ -2,7 +2,7 @@ package subway.station;
 
 import subway.line.validation.CheckStationRegisteredLine;
 import subway.station.validation.CheckRegisteredStation;
-import subway.station.view.StationOutputView;
+import subway.view.station.StationManagementView;
 
 import java.util.List;
 
@@ -16,7 +16,6 @@ public class StationService {
             Station station = new Station(stationName);
             StationRepository.addStation(station);
             isAdd = true;
-            StationOutputView.addStationComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -29,7 +28,6 @@ public class StationService {
             CheckRegisteredStation.validation(stationName);
             CheckStationRegisteredLine.validation(stationName);
             isDelete = StationRepository.deleteStation(stationName);
-            StationOutputView.deleteStationComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -46,7 +44,7 @@ public class StationService {
 
     public static boolean printAllStation() {
         List<Station> stations = StationRepository.stations();
-        StationOutputView.printAllStation(stations);
+        StationManagementView.printAllStation(stations);
         return true;
     }
 }

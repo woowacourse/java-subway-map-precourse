@@ -1,9 +1,13 @@
 package subway.main;
 
+import subway.common.CommonService;
 import subway.line.LineController;
+import subway.main.validation.CheckValidOption;
 import subway.main.view.MainInputView;
-import subway.main.view.MainOutputView;
+import subway.section.SectionController;
 import subway.station.StationController;
+import subway.view.InputView;
+import subway.view.MainOutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,33 +19,33 @@ public class SubwayController {
     private static final char PRINT_LINE_MAP = '4';
     private static final char EXIT_SERVICE = 'Q';
 
-    public static void run(MainInputView mainInputView) {
+    public static void run(InputView inputView) {
         List<Character> optionList = Arrays.asList(STATION_MANAGEMENT, LINE_MANAGEMENT, SECTION_MANAGEMENT, PRINT_LINE_MAP, EXIT_SERVICE);
 
         while (true) {
-            MainOutputView.printMainSelection();
-            char option = mainInputView.selectOption(optionList);
+            MainOutputView.showMainMenu();
+            char option = CommonService.selectOption(optionList, inputView);
 
             if (option == EXIT_SERVICE) {
                 break;
             }
 
-            selectOption(option, mainInputView);
+            navigateSubMenu(option, inputView);
         }
     }
 
-    private static void selectOption(char option, MainInputView mainInputView) {
+    private static void navigateSubMenu(char option, InputView inputView) {
         if (option == STATION_MANAGEMENT) {
-            StationController.stationManagement(mainInputView);
+            StationController.stationManagement(inputView);
         }
         if (option == LINE_MANAGEMENT) {
-            LineController.lineManagement(mainInputView);
+            LineController.lineManagement(inputView);
         }
         if (option == SECTION_MANAGEMENT) {
-            LineController.sectionManagement(mainInputView);
+            SectionController.sectionManagement(inputView);
         }
         if (option == PRINT_LINE_MAP) {
-            LineController.printSubwayMap();
+            LineController.showSubwayMap();
         }
     }
 }
