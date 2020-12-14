@@ -4,7 +4,9 @@ import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.view.View;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class SectionController {
@@ -13,7 +15,8 @@ public class SectionController {
 	static {
 		options.put(Options.OPTION_1.getOption(), SectionController::registerSection);
 		options.put(Options.OPTION_2.getOption(), SectionController::deregisterSection);
-		options.put(Options.BACK.getOption(), (scanner) -> {});
+		options.put(Options.BACK.getOption(), (scanner) -> {
+		});
 	}
 
 	public static int getOptionLength() {

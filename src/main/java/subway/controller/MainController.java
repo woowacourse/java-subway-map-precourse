@@ -3,7 +3,9 @@ package subway.controller;
 import subway.view.MainMessages;
 import subway.view.View;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class MainController {
@@ -32,7 +34,8 @@ public class MainController {
 
 	public static void run(Scanner scanner) {
 		try {
-			String option = Options.createOption(scanner, options);;
+			String option = Options.createOption(scanner, options);
+			;
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

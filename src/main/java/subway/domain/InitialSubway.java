@@ -18,12 +18,6 @@ public enum InitialSubway {
 		this.stations = stations;
 	}
 
-	private static ArrayList<String> getReversedStations(InitialSubway subway) {
-		ArrayList<String> stationsCopy = new ArrayList<>(subway.stations);
-		Collections.reverse(stationsCopy);
-		return stationsCopy;
-	}
-
 	public static void initializeStations() {
 		Arrays.stream(values())
 				.map(subway -> subway.stations)
@@ -35,6 +29,12 @@ public enum InitialSubway {
 	public static void initializeLines() {
 		Arrays.stream(values())
 				.forEach(subway -> addLine(new Line(subway.lineName)));
+	}
+
+	private static ArrayList<String> getReversedStations(InitialSubway subway) {
+		ArrayList<String> stationsCopy = new ArrayList<>(subway.stations);
+		Collections.reverse(stationsCopy);
+		return stationsCopy;
 	}
 
 	private static void createSections(InitialSubway subway) {
