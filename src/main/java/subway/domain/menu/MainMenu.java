@@ -1,6 +1,9 @@
 package subway.domain.menu;
 
 import subway.controller.*;
+import subway.controller.line.LineController;
+import subway.controller.station.StationController;
+import subway.domain.exception.NoSuchMenuException;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -18,6 +21,10 @@ public enum MainMenu {
     MainMenu(String value, Controller controller) {
         this.button = value;
         this.controller = controller;
+    }
+
+    public static boolean isRunning(MainMenu menu) {
+        return !Objects.equals(menu, MainMenu.EXIT);
     }
 
     public Controller getController() {

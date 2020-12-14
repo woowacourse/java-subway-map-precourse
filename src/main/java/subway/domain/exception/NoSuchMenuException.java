@@ -1,4 +1,4 @@
-package subway.domain.menu;
+package subway.domain.exception;
 
 import subway.view.outputview.ErrorOutputView;
 

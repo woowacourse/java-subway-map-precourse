@@ -1,0 +1,43 @@
+package subway.domain.menu;
+
+import subway.controller.station.StationFunction;
+import subway.domain.StationRepository;
+import subway.domain.exception.NoSuchMenuException;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.function.Function;
+
+public enum StationMenu {
+    ADD("1", StationFunction::add),
+    DELETE("2", StationFunction::delete),
+    PRINT_ALL("3", StationFunction::printAll),
+    BACK("B", null);
+
+    private final String button;
+    private final Function function;
+
+    StationMenu(String button, Function<StationRepository, StationRepository> function) {
+        this.button = button;
+        this.function = function;
+    }
+
+    public boolean equals(String button) {
+        return Objects.equals(this.button, button);
+    }
+
+    public static boolean isRunning(StationMenu stationMenu) {
+        return !Objects.equals(stationMenu, StationMenu.BACK);
+    }
+
+    public static StationMenu findMenu(String inputMenu) {
+        return Arrays.stream(StationMenu.values())
+                .filter(menu -> menu.equals(inputMenu))
+                .findAny()
+                .orElseThrow(() -> new NoSuchMenuException());
+    }
+
+    public void runFunction(StationRepository stationRepository) {
+        stationRepository = (StationRepository) function.apply(stationRepository);
+    }
+}

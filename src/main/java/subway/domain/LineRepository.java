@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.domain.exception.DuplicateStationOfLineException;
+
 import java.util.*;
 
 public class LineRepository {
@@ -24,15 +26,26 @@ public class LineRepository {
         lines.add(bundang);
     }
 
-    public static List<Line> lines() {
+    public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
+    static void addLine(Line line) {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
+    static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    static void duplicateStationInLine(String name) {
+        lines.stream()
+                .map(line -> line.getStations())
+                .filter(station -> station.contains(name))
+                .findAny()
+                .ifPresent(s -> {
+                    throw new DuplicateStationOfLineException();
+                });
+    }
+
 }

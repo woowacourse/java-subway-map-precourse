@@ -1,5 +1,9 @@
 package subway.domain;
 
+import subway.domain.exception.AlreadyExistStationException;
+import subway.domain.exception.NotExistStationException;
+import subway.utils.InputValidator;
+
 import java.util.*;
 
 public class StationRepository {
@@ -21,10 +25,31 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        InputValidator.validStationName(station.getName());
+        existStationName(station.getName());
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public boolean deleteStation(String name) {
+        InputValidator.validStationName(name);
+        notExistStationName(name);
+        LineRepository.duplicateStationInLine(name);
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    private static void existStationName(String name) {
+        stations.stream()
+                .filter(station -> Objects.equals(station.getName(), name))
+                .findAny()
+                .ifPresent(s -> {
+                    throw new AlreadyExistStationException();
+                });
+    }
+
+    private void notExistStationName(String name) {
+        stations.stream()
+                .filter(station -> Objects.equals(station.getName(), name))
+                .findAny()
+                .orElseThrow(() -> new NotExistStationException());
     }
 }
