@@ -42,10 +42,23 @@ public class InputView {
 
     public static String scanStationMenu(Scanner scanner) {
         String choiceStationMenuOption;
-        OutputView.stationMenuPrint();
 
-        OutputView.OptionChoicePrint();
-        choiceStationMenuOption = scanner.nextLine();
+        do { // 유효한 값이 올 때 까지 값을 입력받는다.
+            OutputView.OptionChoicePrint();
+            choiceStationMenuOption = scanner.nextLine();
+        } while (!stationMenuValidCheck(choiceStationMenuOption));
+
         return choiceStationMenuOption;
+    }
+
+    private static boolean stationMenuValidCheck(String choiceStationMenuOption) {
+        if (Pattern.matches(
+            BoundaryCheckPattern.STATION_MENU_OPTION_LIMIT.getRegexBoundaryCheckPattern(),
+            choiceStationMenuOption)) {
+            return true;
+        }
+
+        OutputView.NotSelectableError();
+        return false;
     }
 }

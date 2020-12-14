@@ -13,9 +13,12 @@ public class SubwayController {
         this.scanner = scanner;
     }
 
+    /**
+     * 메인 메뉴 문구 출력
+     * 기능 선택
+     */
     public void mainMenu() {
         String mainMenuOptionChoice = new String();
-
 
         while (!mainMenuOptionChoice.
             equals(UserChoiceOptionToName.EXIT.getUserChoiceOptionToName())) {

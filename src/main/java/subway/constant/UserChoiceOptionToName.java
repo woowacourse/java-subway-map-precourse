@@ -9,6 +9,13 @@ public enum UserChoiceOptionToName {
     SECTION_MANAGEMENT("3"),
     STATION_MAP_PRINT("4"),
     EXIT("Q"),
+    BACK("B"),
+    /**
+     * 역 메뉴 관련 항목
+     */
+    STATION_ADD("1"),
+    STATION_DELETE("2"),
+    STATION_CHECK("3"),
     ;
 
     private final String option;
