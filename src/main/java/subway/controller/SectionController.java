@@ -7,7 +7,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.Screen;
 import subway.view.SectionScreen;
-import subway.view.CategorySelection;
+import subway.view.InputView;
 
 import java.util.ArrayList;
 
@@ -53,7 +53,7 @@ public class SectionController implements Controller {
     }
 
     private void registerNewSectionHelper() {
-        Line line = LineRepository.findLine(CategorySelection.getUserInput());
+        Line line = LineRepository.findLine(InputView.getUserInput());
         Station station = getStationToAdd();
         if (line.contains(station)) {
             throw new IllegalArgumentException();
@@ -64,12 +64,12 @@ public class SectionController implements Controller {
 
     private Station getStationToAdd() {
         System.out.println("\n## 역이름을 입력하세요.");
-        return StationRepository.findStation(CategorySelection.getUserInput());
+        return StationRepository.findStation(InputView.getUserInput());
     }
 
     private int getSectionToAdd(ArrayList<Station> lineStations) {
         System.out.println("\n## 순서를 입력하세요.");
-        int section = Integer.parseInt(CategorySelection.getUserInput());
+        int section = Integer.parseInt(InputView.getUserInput());
         if (section > lineStations.size() - 1 || section <= 0) {
             throw new IllegalArgumentException();
         }
@@ -88,7 +88,7 @@ public class SectionController implements Controller {
     }
 
     private void deleteSectionHelper() {
-        Line line = LineRepository.findLine(CategorySelection.getUserInput());
+        Line line = LineRepository.findLine(InputView.getUserInput());
         if (line.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -101,6 +101,6 @@ public class SectionController implements Controller {
 
     private Station getStationToDelete() {
         System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-        return StationRepository.findStation(CategorySelection.getUserInput());
+        return StationRepository.findStation(InputView.getUserInput());
     }
 }

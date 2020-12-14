@@ -21,19 +21,22 @@ public class MainScreen implements Screen {
     @Override
     public String show() {
         System.out.println(Constants.MAIN_SCREEN_USER_PROMPT);
-        String userInput = CategorySelection.createUserInput(
+        String userInput = InputView.createUserCategorySelection(
                 Constants.COUNT_MAIN_USER_PROMPT);
         return userInput;
     }
 
     public void printTransitMap() {
-        System.out.println("\n## 지하철 노선도");
+        StringBuilder transitMap = new StringBuilder();
+        transitMap.append("\n## 지하철 노선도");
         for (Line line : LineRepository.lines()) {
-            System.out.println("[INFO] " + line.getName() + "\n[INFO] ---");
+            transitMap.append("\n[INFO] " + line.getName() + "\n[INFO] ---");
             for (Station station : line.getLineStations()) {
-                System.out.println("[INFO] " + station.getName());
+                transitMap.append("\n[INFO] " + station.getName());
             }
-            System.out.println();
+            transitMap.append("\n");
         }
+        transitMap.setLength(transitMap.length() - 1);
+        System.out.println(transitMap.toString());
     }
 }

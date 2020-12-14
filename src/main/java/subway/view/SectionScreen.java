@@ -18,7 +18,7 @@ public class SectionScreen implements Screen {
     @Override
     public String show() {
         System.out.println(Constants.SECTION_MANAGEMENT_USER_PROMPT);
-        String userInput = CategorySelection.createUserInput(
+        String userInput = InputView.createUserCategorySelection(
                 Constants.COUNT_SECTION_MANAGEMENT_USER_PROMPT);
         return userInput;
     }

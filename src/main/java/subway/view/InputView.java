@@ -4,14 +4,14 @@ import subway.Constants;
 
 import java.util.Scanner;
 
-public class CategorySelection {
+public class InputView {
     static Scanner scanner = new Scanner(System.in);
 
     public static String getUserInput() {
         return scanner.nextLine();
     }
 
-    public static String createUserInput(int endInclusive) {
+    public static String createUserCategorySelection(int endInclusive) {
         boolean isValidInput = false;
         while (!isValidInput) {
             System.out.println("## 원하는 기능을 선택하세요.");
@@ -29,8 +29,8 @@ public class CategorySelection {
         userInput = userInput.toUpperCase();
 
         if (!(userInput.matches( Constants.USER_INPUT_REGEX_START +
-                endInclusive + Constants.USER_INPUT_REGEX_END))
-                || userInput.equals(Constants.BACK) || userInput.equals(Constants.QUIT)) {
+                endInclusive + Constants.USER_INPUT_REGEX_END)
+                || userInput.equals(Constants.BACK) || userInput.equals(Constants.QUIT))) {
             throw new IllegalArgumentException();
         }
         return userInput;

@@ -20,19 +20,19 @@ public class StationScreen implements Screen {
     @Override
     public String show() {
         System.out.println(Constants.STATION_MANAGEMENT_USER_PROMPT);
-        String userInput = CategorySelection.createUserInput(
+        String userInput = InputView.createUserCategorySelection(
                 Constants.COUNT_STATION_MANAGEMENT_USER_PROMPT);
         return userInput;
     }
 
     public String showPromptRegisterStation(){
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
-        return CategorySelection.getUserInput();
+        return InputView.getUserInput();
     }
 
     public String showPromptDeleteStation(){
         System.out.println("\n## 삭제할 역 이름을 입력하세요.");
-        return CategorySelection.getUserInput();
+        return InputView.getUserInput();
     }
 
     public void printRegistrationCompleted(){
