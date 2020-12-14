@@ -1,18 +1,12 @@
 package subway.service.section;
 
-import subway.domain.Line;
-import subway.domain.Station;
 import subway.repository.LineRepository;
-import subway.repository.StationRepository;
-import subway.repository.TransitMapRepository;
+import subway.type.BoundaryType;
 import subway.view.output.line.LineExceptionView;
 import subway.view.output.section.SectionExceptionView;
 import subway.view.output.station.StationExceptionView;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class SectionAddingValidation {
     public boolean checkLineNameValidation(String lineName) {
@@ -32,6 +26,22 @@ public class SectionAddingValidation {
         }
         if (SectionAddingService.checkExistingStationNameInLine(lineName, stationName)) {
             SectionExceptionView.printInvalidSectionExistingStationNameInLine();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkOrderValidation(String lineName, String order) {
+        if (SectionAddingService.checkOrderReplacementLength(order)) {
+            SectionExceptionView.printInvalidSectionOrderReplacementLengthException();
+            return false;
+        }
+        if (Integer.parseInt(order) < BoundaryType.ORDER_NUMBER_BOUNDARY.getBoundary()) {
+            SectionExceptionView.printInvalidSectionOrderNumberException();
+            return false;
+        }
+        if (SectionAddingService.checkOrderNumberByStations(lineName, Integer.parseInt(order))) {
+            SectionExceptionView.printInvalidSectionOrderNumberByStationsException();
             return false;
         }
         return true;

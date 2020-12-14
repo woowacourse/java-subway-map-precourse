@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.repository.TransitMapRepository;
+import subway.type.BoundaryType;
 import subway.view.output.section.SectionTextView;
 
 import java.util.*;
@@ -53,5 +54,15 @@ public class SectionAddingService {
             }
         }
         return stationValues;
+    }
+
+    public static boolean checkOrderReplacementLength(String order) {
+        return order.replaceAll("[^0-9]", "").length()
+                == BoundaryType.ORDER_REPLACEMENT_LENGTH_BOUNDARY.getBoundary();
+    }
+
+    public static boolean checkOrderNumberByStations(String lineName, int orderNumber) {
+        LinkedList<Station> stationValues = getStationValuesInLine(lineName);
+        return stationValues.size() < orderNumber;
     }
 }

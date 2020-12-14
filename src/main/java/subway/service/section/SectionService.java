@@ -54,7 +54,9 @@ public class SectionService extends StationService {
             return false;
         }
         String order = SectionAddingService.scanOrder(scanner);
-
+        if (!sectionAddingValidation.checkOrderValidation(lineName, order)) {
+            return false;
+        }
         return true;
     }
 
