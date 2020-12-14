@@ -5,18 +5,14 @@ import java.util.function.Consumer;
 import subway.service.LineService;
 
 public enum LineMenu {
-    SAVE_LINE("1", "노선 등록",
-        (menuKey) -> LineService.save(UserInput.getSaveLineName())),
-    DELETE_LINE("2", "노선 삭제",
-        (menuKey) -> LineService.delete(UserInput.getDeleteLineName())),
-    PRINT_LINES("3", "노선 조회",
-        (menuKey) -> LineService.print()),
-    BACK_TO_MAINMENU("B", "돌아가기",
-        (menuKey) -> back());
+    SAVE_LINE("1", "노선 등록", (menuKey) -> LineService.saveLine()),
+    DELETE_LINE("2", "노선 삭제", (menuKey) -> LineService.deleteLine()),
+    PRINT_LINES("3", "노선 조회", (menuKey) -> LineService.printLines()),
+    BACK_TO_MAINMENU("B", "돌아가기", (menuKey) -> back());
 
     private final String menuKey;
     private final String menuName;
-    private Consumer<String> menuSelect;
+    private final Consumer<String> menuSelect;
 
     LineMenu(String menuKey, String menuName, Consumer<String> menuSelect) {
         this.menuKey = menuKey;
@@ -25,9 +21,12 @@ public enum LineMenu {
     }
 
     public static LineMenu getMenuByInput(String input) {
-        return Arrays.stream(values()).filter(mainMenu
-            -> mainMenu.getMenuKey().equals(input))
+        return Arrays.stream(values()).filter(lineMenu
+            -> lineMenu.getMenuKey().equals(input))
             .findAny().get();
+    }
+
+    private static void back() {
     }
 
     public String getMenuKey() {
@@ -40,8 +39,5 @@ public enum LineMenu {
 
     public void executeMenu(String menuKey) {
         menuSelect.accept(menuKey);
-    }
-
-    private static void back() {
     }
 }

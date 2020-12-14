@@ -4,25 +4,26 @@ import subway.domain.Section;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.StationDisplay;
+import subway.view.UserInput;
 
 public class StationService {
 
-    public static void save(String stationName) {
-        Station newStation = Station.newStationWithName(stationName);
+    public static void saveStation() {
+        Station newStation = Station.newStationWithName(UserInput.getSaveStationName());
         StationRepository.addStation(newStation);
         StationDisplay.printSaveSuccess();
     }
 
-    public static void delete(String stationName) {
-        StationRepository.deleteStation(stationName);
+    public static void deleteStation() {
+        StationRepository.deleteStation(UserInput.getDeleteStationName());
         StationDisplay.printDeleteSuccess();
     }
 
-    public static void print() {
+    public static void printStations() {
         StationDisplay.printAllStations(StationRepository.stations());
     }
 
-    public static void registerSectionByName(Section section, String stationName, String position) {
-        section.addStationWithPosition(StationRepository.getStationByName(stationName), position);
+    public static Station getStationByName(String stationName){
+        return StationRepository.getStationByName(stationName);
     }
 }

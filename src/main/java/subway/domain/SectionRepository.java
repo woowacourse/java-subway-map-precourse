@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SectionRepository {
@@ -24,6 +25,17 @@ public class SectionRepository {
         if (!sections.removeIf(section -> Objects
             .equals(section.getLine().getName(), lineName))) {
             throw new IllegalArgumentException("일치하는 지하철 노선이 없습니다.");
+        }
+    }
+
+    public static Section getSectionByLineName(String lineName){
+        try {
+            return sections().stream()
+                .filter(section -> section.getLine().getName().equals(lineName))
+                .findAny()
+                .get();
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException("해당 지하철 노선은 존재하지 않습니다.");
         }
     }
 

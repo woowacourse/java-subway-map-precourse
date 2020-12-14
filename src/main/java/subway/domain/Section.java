@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Section {
 
@@ -33,6 +34,12 @@ public class Section {
         int integerPosition = validatePositionInteger(position)-COVER_INDEX;
         validatePositionRange(integerPosition);
         stations.add(integerPosition, station);
+    }
+
+    public void deleteStationByName(String stationName) {
+        if (!stations.removeIf(station -> Objects.equals(station.getName(), stationName))) {
+            throw new IllegalArgumentException("현재 노선에 해당 지하철 역이 존재하지 않습니다.");
+        }
     }
 
     private void validateStationDuplicate(Station station) {

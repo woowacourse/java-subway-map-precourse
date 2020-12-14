@@ -15,6 +15,11 @@ public class StationRepository {
 
     private static final List<Station> stations = new ArrayList<>();
 
+    public static List<Station> stations() {
+        validateStationsEmpty();
+        return Collections.unmodifiableList(stations);
+    }
+
     public static void addStation(Station station) {
         validateNameDuplicate(station);
         stations.add(station);
@@ -28,18 +33,6 @@ public class StationRepository {
         }
     }
 
-    public static List<Station> stations() {
-        validateStationsEmpty();
-        return Collections.unmodifiableList(stations);
-    }
-
-    private static void validateNameDuplicate(Station station) {
-        if (stations.stream()
-            .anyMatch(thisStation -> thisStation.getName().equals(station.getName()))) {
-            throw new IllegalArgumentException("동일한 지하철 역 이름이 존재합니다.");
-        }
-    }
-
     public static Station getStationByName(String name) {
         try {
             return stations().stream()
@@ -48,6 +41,13 @@ public class StationRepository {
                 .get();
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("해당 지하철 역은 존재하지 않습니다.");
+        }
+    }
+
+    private static void validateNameDuplicate(Station station) {
+        if (stations.stream()
+            .anyMatch(thisStation -> thisStation.getName().equals(station.getName()))) {
+            throw new IllegalArgumentException("동일한 지하철 역 이름이 존재합니다.");
         }
     }
 
