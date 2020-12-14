@@ -12,4 +12,12 @@ public class ScreenStack {
     public static Screen popScreen() {
         return stack.pop();
     }
+
+    public static Screen peek(){
+        return stack.peek();
+    }
+
+    public static void show(){
+        stack.peek().show();
+    }
 }

@@ -10,7 +10,9 @@ public interface Screen {
     public static final String EXIT_MARK = "Q. ";
     public static final String BACK_MARK = "B. ";
     public static final String DOT = ". ";
+    public static final String CHANGE_LINE = "\n";
 
     void show(); //화면을 출력하는 함수
     void getCommand(); //사용자의 커맨드를 받는 함수
+    int getMaxMenuNumber();
 }
