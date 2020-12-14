@@ -11,9 +11,9 @@ import javax.xml.bind.SchemaOutputResolver;
 
 public enum LineFunctionChoice {
     ADD_LINE("1", (choiceKey)->LineRepository.addLine(new Line(OutputMessage.registerLineName()))),
-    DELETE_LINE("2", (choiceKey)->LineRepository.deleteLineByName(OutputMessage.deleteLineName()));
-   // LOOK_LINE("3",),
-  //  BACK("B",);
+    DELETE_LINE("2", (choiceKey)->LineRepository.deleteLineByName(OutputMessage.deleteLineName())),
+    LOOK_LINE("3",(choiceKey)->LineRepository.printLine());
+    BACK("B",);
     private String choiceKey;
     private Consumer<String> handlerFunction;
     LineFunctionChoice(String choiceKey,Consumer<String> handlerFunction){
