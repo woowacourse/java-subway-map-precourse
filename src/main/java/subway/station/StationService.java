@@ -23,16 +23,16 @@ public class StationService {
     }
 
     public static boolean deleteStation(String stationName) {
+        boolean isDelete = false;
         try {
             CheckRegisteredStation.validation(stationName);
             CheckStationRegisteredLine.validation(stationName);
-            StationRepository.deleteStation(stationName);
+            isDelete = StationRepository.deleteStation(stationName);
             StationOutputView.deleteStationComplete();
-            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return isDelete;
     }
 
     public static Station findStation(String stationName) {
