@@ -19,4 +19,8 @@ public class LineRepository {
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    public static boolean findByName(String name) {
+        return lines().stream().anyMatch(line -> line.getName().equals(name));
+    }
 }

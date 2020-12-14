@@ -12,6 +12,6 @@ public class LineRegisterInputController extends InputController {
     @Override
     protected void validateInput() throws IllegalArgumentException {
         InputValidator.validateInputLength(userInput);
-        InputValidator.validateInputDuplication(userInput);
+        InputValidator.validateLineDuplication(userInput);
     }
 }
