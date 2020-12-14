@@ -34,7 +34,7 @@ public class ManagementScreen implements Screen {
     public void logic(Input input) {
         this.input = input;
         System.out.println(HEAD + SELECT_FUNCTION);
-        String answer = input.inputFunction(); //입력.
+        String answer = input.inputFunction();
         System.out.println();
         runFunction(answer);
     }

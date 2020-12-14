@@ -1,6 +1,6 @@
 package subway.domain;
 
-import exception.AlreadyExistLineNameException;
+import exception.AlreadyExistStationNameException;
 import exception.NoExistStationNameException;
 import exception.UsedStationException;
 
@@ -18,7 +18,7 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         if (!isStation(station.getName())) {
-            throw new AlreadyExistLineNameException();
+            throw new AlreadyExistStationNameException();
         }
         stations.add(station);
     }

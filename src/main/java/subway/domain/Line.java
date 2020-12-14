@@ -35,7 +35,7 @@ public class Line {
             throw new NoExistStationNameException();
         }
         if (!checkLineStation(station.getName())) {
-            throw new AlreadyExistLineNameException();
+            throw new AlreadyExistStationNameException();
         }
         station.setLines(this.name);
         lineStations.add(station);
@@ -45,7 +45,7 @@ public class Line {
         if (StationRepository.isStation(station.getName()))
             throw new NoExistStationNameException();
         if (!checkLineStation(station.getName()))
-            throw new AlreadyExistLineNameException();
+            throw new AlreadyExistStationNameException();
         if (index == lineStations.size())
             throw new DownLineStationException();
         if (index == 0)
@@ -59,7 +59,6 @@ public class Line {
 
     public void deleteLineStation(String name) {
         Station deleteStation = StationRepository.getStation(name);
-
         if (checkLineStation(name))
             throw new NoExistStationNameException();
         deleteStation.deleteLines(this.name);

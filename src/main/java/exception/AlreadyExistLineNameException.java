@@ -1,10 +1,10 @@
 package exception;
 
-public class AlreadyExistNameException extends RuntimeException {
+public class AlreadyExistLineNameException extends RuntimeException {
     private final static String ERROR = "[ERROR] ";
-    private final static String CAUSE = "이미 존재하는 이름입니다.";
+    private final static String CAUSE = "이미 존재하는 노선 이름입니다.";
 
-    public AlreadyExistNameException() {
+    public AlreadyExistLineNameException() {
         super(ERROR + CAUSE);
     }
 }
