@@ -1,6 +1,10 @@
 package subway;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.constant.UserChoiceOptionToName;
@@ -48,6 +52,9 @@ public class StationController {
         } catch (IllegalArgumentException error) {
             return false;
         }
+
+        Station newStation = new Station(stationName);
+        StationRepository.addStation(newStation);
         return true;
     }
 

@@ -2,8 +2,11 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import subway.constant.BoundaryCheckDigit;
 import subway.constant.BoundaryCheckPattern;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 public class InputView {
 
@@ -68,22 +71,29 @@ public class InputView {
 
         OutputView.stationAddGuidePrint();
         stationName = scanner.nextLine();
-        if (stationAddValidCheck(stationName)){
-            OutputView.stationAddSuccessPrint();
-            return stationName;
+        if (!stationAddValidCheck(stationName)) {
+            OutputView.stationAddFailPrint();
+            throw new IllegalArgumentException();
+        }
+        if (!stationDuplicationNameValidCheck(stationName)) {
+            OutputView.stationDuplcationFailPrint();
+            throw new IllegalArgumentException();
         }
 
-
-        OutputView.stationAddFailPrint();
-        throw new IllegalArgumentException();
+        OutputView.stationAddSuccessPrint();
+        return stationName;
     }
 
     private static boolean stationAddValidCheck(String stationName) {
-        if (stationName.length() < BoundaryCheckDigit.STATION_ADD_LIMIT_MINIMUM
-            .getBoundaryCheckDigit()){
-            return false;
-        }
+        return stationName.length() >= BoundaryCheckDigit.STATION_ADD_LIMIT_MINIMUM
+            .getBoundaryCheckDigit();
+    }
 
-        return true;
+    private static boolean stationDuplicationNameValidCheck(String stationName) {
+        return !StationRepository.stations()
+            .stream()
+            .map(Station::getName)
+            .collect(Collectors.toList())
+            .contains(stationName);
     }
 }

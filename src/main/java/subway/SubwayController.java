@@ -2,6 +2,8 @@ package subway;
 
 import java.util.Scanner;
 import subway.constant.UserChoiceOptionToName;
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -14,8 +16,7 @@ public class SubwayController {
     }
 
     /**
-     * 메인 메뉴 문구 출력
-     * 기능 선택
+     * 메인 메뉴 문구 출력 기능 선택
      */
     public void mainMenu() {
         String mainMenuOptionChoice = new String();
