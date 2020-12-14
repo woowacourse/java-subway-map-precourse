@@ -2,6 +2,8 @@ package subway;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -27,35 +29,32 @@ public class Subway {
     }
 
     private void loadInitData() {
-        loadInitStationData(InitConstants.STATION_LIST, stationRepository);
-        loadInitLineData(InitConstants.LINE_LIST, lineRepository);
-        loadInitSectionData(InitConstants.LINE_TITLE_GREEN_TEXT,
-            InitConstants.STATION_IN_GREEN_LINE_LIST, sectionRepository);
-        loadInitSectionData(InitConstants.LINE_TITLE_ORANGE_TEXT,
-            InitConstants.STATION_IN_ORANGE_LINE_LIST, sectionRepository);
-        loadInitSectionData(InitConstants.LINE_TITLE_SHINBUNDANG_TEXT,
-            InitConstants.STATION_IN_SHINBUNDANG_LINE_LIST, sectionRepository);
+        loadInitStationData(InitConstants.STATION_LIST);
+        loadInitLineData(InitConstants.LINE_LIST);
+        loadInitSectionData(InitConstants.SECTION_LIST);
     }
 
-    private void loadInitStationData(String[] stationNames, StationRepository stations) {
+    private void loadInitStationData(List<String> stationNames) {
         for (String stationName : stationNames) {
-            stations.addStation(new Station(stationName));
+            this.stationRepository.addStation(new Station(stationName));
         }
     }
 
-    private void loadInitLineData(String[] lineNames, LineRepository lines) {
+    private void loadInitLineData(List<String> lineNames) {
         for (String lineName : lineNames) {
-            lines.addLine(new Line(lineName));
+            this.lineRepository.addLine(new Line(lineName));
         }
     }
 
-    private void loadInitSectionData(String lineName, String[] stationNames,
-        SectionRepository subwayMap) {
-        List<Station> initLineStations = new ArrayList<>();
-        for (String stationName : stationNames) {
-            initLineStations.add(stationRepository.findByName(stationName));
+    private void loadInitSectionData(Map<String, List<String>> sections) {
+        for (Entry<String, List<String>> sectionsEntry : sections.entrySet()) {
+            List<Station> stations = new ArrayList<>();
+            for (String stationName : sectionsEntry.getValue()) {
+                stations.add(this.stationRepository.findByName(stationName));
+            }
+            Line line = this.lineRepository.findByName(sectionsEntry.getKey());
+            this.sectionRepository.addStationList(line, stations);
         }
-        subwayMap.addStationList(lineRepository.findByName(lineName), initLineStations);
     }
 
     public StationRepository getStationRepository() {
