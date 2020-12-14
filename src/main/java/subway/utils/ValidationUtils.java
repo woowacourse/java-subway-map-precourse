@@ -1,11 +1,12 @@
 package subway.utils;
 
 import java.util.List;
+import subway.domain.DomainNamingForm;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.ResisteredStations;
 import subway.domain.StationRepository;
-import subway.exception.BlankNameException;
+import subway.exception.InvalidSuffixException;
 import subway.exception.CannotDeleteStationMoreException;
 import subway.exception.DuplicatedLineException;
 import subway.exception.DuplicatedStationInLineException;
@@ -20,15 +21,15 @@ import subway.exception.SectionOutOfRangeException;
 import subway.exception.TooShortNameException;
 
 public class ValidationUtils {
-    public static void validateTooShortName(String name, int minimumLength) {
-        if (name.length() < minimumLength) {
-            throw new TooShortNameException(name, minimumLength);
+    public static void validateTooShortName(String name, DomainNamingForm namingForm) {
+        if (name.length() < namingForm.getMinimumLength()) {
+            throw new TooShortNameException(name, namingForm);
         }
     }
 
-    public static void validateBlankName(String name) {
-        if (RegexUtils.isBlank(name)) {
-            throw new BlankNameException();
+    public static void validateInvalidSuffix(String name, DomainNamingForm namingForm) {
+        if (!namingForm.isSuffixValid(name)) {
+            throw new InvalidSuffixException(name, namingForm);
         }
     }
 
