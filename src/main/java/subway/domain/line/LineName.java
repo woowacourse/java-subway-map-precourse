@@ -34,4 +34,9 @@ public class LineName {
             throw new LineNameLengthException();
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
