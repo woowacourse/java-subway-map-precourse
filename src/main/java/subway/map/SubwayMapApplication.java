@@ -70,11 +70,11 @@ public class SubwayMapApplication {
     private void executeReadFunction(ManagementType managementType) {
         if (managementType == ManagementType.STATION) {
             List<String> stationNames = subwayMapController.getStationNames();
-            OutputView.printStationNames(stationNames);
+            OutputView.printNames(managementType, stationNames);
         }
         if (managementType == ManagementType.LINE) {
             List<String> lineNames = subwayMapController.getLineNames();
-            OutputView.printLineNames(lineNames);
+            OutputView.printNames(managementType, lineNames);
         }
     }
 

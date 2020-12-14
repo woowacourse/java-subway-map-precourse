@@ -57,14 +57,14 @@ public class OutputView {
         System.out.println(STATION_DELETION_SUCCESS_MESSAGE);
     }
 
-    public static void printStationNames(List<String> stationNames) {
-        System.out.println(STATION_NAMES_HEADER);
-        stationNames.forEach(stationName -> System.out.printf(INFORMATION_HEADER, stationName));
-    }
-
-    public static void printLineNames(List<String> lineNames) {
-        System.out.println(LINE_NAMES_HEADER);
-        lineNames.forEach(lineName -> System.out.printf(INFORMATION_HEADER, lineName));
+    public static void printNames(ManagementType managementType, List<String> names) {
+        if (managementType == ManagementType.STATION) {
+            System.out.println(STATION_NAMES_HEADER);
+        }
+        if (managementType == ManagementType.LINE) {
+            System.out.println(LINE_NAMES_HEADER);
+        }
+        names.forEach(name -> System.out.printf(INFORMATION_HEADER, name));
     }
 
     public static void printLineManagementSuccessMessage(FunctionType functionType) {
