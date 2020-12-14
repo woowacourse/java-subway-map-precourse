@@ -12,7 +12,12 @@ import java.util.Scanner;
 public class StationMaintain {
     private static final int START = 1;
     private static final int END = 3;
-    
+    private static final int BACK_PAGE = 0;
+    private static final int REGISTER_STATION = 1;
+    private static final int DELETE_STATION = 2;
+    private static final int STATION_STATUS = 3;
+    private static final int ERROR = -1;
+
     private final Scanner scanner;
 
     public StationMaintain(Scanner scanner){
@@ -32,16 +37,19 @@ public class StationMaintain {
     }
 
     private void movePage(int operationNumber, Scanner scanner) {
-        if(operationNumber == 0){
+        if(operationNumber == ERROR){
             maintainPage();
         }
-        if(operationNumber == 1){
+        if(operationNumber == BACK_PAGE){
+            new Controller(scanner);
+        }
+        if(operationNumber == REGISTER_STATION){
             registerStation();
         }
-        if(operationNumber == 2){
+        if(operationNumber == DELETE_STATION){
             deleteStation();
         }
-        if(operationNumber == 3){
+        if(operationNumber == STATION_STATUS){
             stationStatus();
         }
     }
@@ -54,13 +62,14 @@ public class StationMaintain {
 
     private void deleteStation() {
         OutputView.deleteStationName();
-        if(StationRepository.deleteStation(scanner.next())){
-            OutputView.completeDeleteStation();
-            new Controller(scanner);
+        if(!StationRepository.deleteStation(scanner.next())){
+            ErrorView.notExistName();
+            maintainPage();
             return;
         }
-        ErrorView.notExistName();
-        maintainPage();
+        OutputView.completeDeleteStation();
+        new Controller(scanner);
+
     }
 
     private void registerStation() {

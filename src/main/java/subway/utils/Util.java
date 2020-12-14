@@ -4,18 +4,23 @@ import subway.view.ErrorView;
 
 public class Util {
 
+    private final static String QUIT = "Q";
+    private final static String BACK = "B";
+    private final static int BACK_NUMBER = 0;
+    private final static int ERROR = -1;
+
     public static int operationNumber(String number,int start, int end){
-        if(number.equals("Q")){
-            return 0;
+        if(number.equals(QUIT) || number.equals(BACK)){
+            return BACK_NUMBER;
         }
         if(!isNumber(number)){
             ErrorView.writeAppropriateNumber();
-            return -1;
+            return ERROR;
         }
         int operationNumber = Integer.parseInt(number);
         if(operationNumber < start || operationNumber > end){
             ErrorView.writeAppropriateNumber();
-            return -1;
+            return ERROR;
         }
         return operationNumber;
     }

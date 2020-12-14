@@ -14,6 +14,12 @@ import java.util.Scanner;
 public class LineMaintain {
     private static final int START = 1;
     private static final int END = 3;
+    private static final int BACK_PAGE = 0;
+    private static final int ERROR = -1;
+    private static final int REGISTER_LINE = 1;
+    private static final int DELETE_LINE = 2;
+    private static final int LINE_STATUS = 3;
+
 
     private final Scanner scanner;
 
@@ -34,21 +40,27 @@ public class LineMaintain {
     }
 
     private void movePage(int operationNumber, Scanner scanner) {
-        if(operationNumber == 0){
+        if(operationNumber == BACK_PAGE){
+            new Controller(scanner);
+        }
+        if(operationNumber == ERROR){
             maintainPage();
         }
-        if(operationNumber == 1){
+        if(operationNumber == REGISTER_LINE){
             registerLine();
         }
-        if(operationNumber == 2){
+        if(operationNumber == DELETE_LINE){
             deleteLine();
         }
-        if(operationNumber == 3){
+        if(operationNumber == LINE_STATUS){
             lineStatus();
         }
     }
 
     private void lineStatus() {
+        OutputView.lineStatus();
+        LineRepository.status();
+        new Controller(scanner);
     }
 
     private void deleteLine() {
