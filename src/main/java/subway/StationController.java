@@ -63,7 +63,7 @@ public class StationController {
         stationName = InputView.scanStationDeleteName(scanner);
 
         StationRepository.deleteStation(stationName);
-
+        OutputView.stationDeleteSuccessPrint();
         return true;
     }
 

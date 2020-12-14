@@ -55,7 +55,9 @@ public class OutputView {
         System.out.println(StationMessage.STATION_LIST_FIND_FAIL.getStationMessage());
     }
 
-
+    public static void stationDeleteSuccessPrint() {
+        System.out.println(StationMessage.STATION_DELETE_SUCCESS.getStationMessage());
+    }
 
     public static void stationDeleteGuidePrint() {
         System.out.println(StationMessage.STATION_DELETE_GUIDE.getStationMessage());
