@@ -2,12 +2,14 @@ package subway.domain.line;
 
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
+import subway.exception.line.SectionSizeLowException;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final int MINIMUM_SECTIONS_LENGTH = 2;
     private static final int MINIMUM_POSITION_RANGE = 1;
 
     private LineName name;
@@ -37,6 +39,14 @@ public class Line {
 
     public void add(int position, Station station) {
         sections.add(position, station);
+    }
+
+    public boolean deleteStationByName(StationName stationName) {
+        if (sections.size() == MINIMUM_SECTIONS_LENGTH) {
+            throw new SectionSizeLowException();
+        }
+
+        return sections.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
     public LineName getName() {
