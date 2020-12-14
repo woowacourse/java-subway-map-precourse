@@ -14,9 +14,8 @@ public class LineManageController {
 
     LineManageInput input = new LineManageInput();
 
-    public Line processEnrollLine(Line line) {
+    public void processEnrollLine(Line line) {
         LineRepository.addLine(line);
-        return line;
     }
 
     public void processDeleteLine(Scanner scanner) {
@@ -29,7 +28,7 @@ public class LineManageController {
         station.addLine(line);
     }
 
-    public void checkTwoTrainSame(Station upTrain, Station downTrain) throws IllegalArgumentException{
+    public void checkTwoTrainSame(Station upTrain, Station downTrain) throws IllegalArgumentException {
         if (upTrain.equals(downTrain)) {
             ErrorMessage.isTwoTrainNameSame();
             throw new IllegalArgumentException();

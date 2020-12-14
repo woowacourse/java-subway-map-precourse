@@ -42,14 +42,14 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static void isIncludedFixedStation(String name) throws IllegalArgumentException{
+    public static void isIncludedFixedStation(String name) throws IllegalArgumentException {
         if (fixedStations.removeIf(station -> Objects.equals(station.getName(), name))) {
             ErrorMessage.isNotAbleToDeleteStation();
             throw new IllegalArgumentException();
         }
     }
 
-    public static void isIncludedLine(String name) throws IllegalArgumentException{
+    public static void isIncludedLine(String name) throws IllegalArgumentException {
         for (Line line : LineRepository.lines()) {
             Optional<Station> searchedStation = line.getStation()
                     .stream().filter(station -> station.getName().equals(name)).findAny();

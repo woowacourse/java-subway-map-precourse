@@ -43,7 +43,7 @@ public class StationManageProgram {
         if (function.equals(FUNCTION_ONE)) {
             System.out.println("\n" + INPUT_ENROLL_STATION_NAME);
             controller.processEnrollStation(scanner);
-            System.out.println("\n"+ INFO + STATION_ENROLLED);
+            System.out.println("\n" + INFO + STATION_ENROLLED);
         }
     }
 

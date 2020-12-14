@@ -25,7 +25,7 @@ public class StationManageInput {
         return Collections.unmodifiableList(functionList);
     }
 
-    public String inputStationManageScreen(Scanner scanner) throws IllegalArgumentException{
+    public String inputStationManageScreen(Scanner scanner) throws IllegalArgumentException {
         String stationManageChoice = scanner.next();
         if (functionList().contains(stationManageChoice)) {
             return stationManageChoice;
@@ -34,7 +34,7 @@ public class StationManageInput {
         throw new IllegalArgumentException();
     }
 
-    private void validateStationName(String stationName) throws IllegalArgumentException{
+    private void validateStationName(String stationName) throws IllegalArgumentException {
         if (stationName.length() < MIN_STATION_NAME_LENGTH) {
             ErrorMessage.isLessThanTwoWordStation();
             throw new IllegalArgumentException();
@@ -45,7 +45,7 @@ public class StationManageInput {
         }
     }
 
-    public String inputEnrollStation(Scanner scanner) throws IllegalArgumentException{
+    public String inputEnrollStation(Scanner scanner) throws IllegalArgumentException {
         String stationName = scanner.next();
         Optional<Station> newStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();
@@ -63,7 +63,7 @@ public class StationManageInput {
         return fixedStation.isPresent();
     }
 
-    public String inputDeleteStation(Scanner scanner) throws IllegalArgumentException{
+    public String inputDeleteStation(Scanner scanner) throws IllegalArgumentException {
         String stationName = scanner.next();
         Optional<Station> searchedStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();

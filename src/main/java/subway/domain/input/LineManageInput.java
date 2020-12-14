@@ -23,7 +23,7 @@ public class LineManageInput {
         return Collections.unmodifiableList(functionList);
     }
 
-    public String inputLineManageScreen(Scanner scanner) throws IllegalArgumentException{
+    public String inputLineManageScreen(Scanner scanner) throws IllegalArgumentException {
         String lineManageChoice = scanner.next();
         if (functionList().contains(lineManageChoice)) {
             return lineManageChoice;
@@ -32,7 +32,7 @@ public class LineManageInput {
         throw new IllegalArgumentException();
     }
 
-    private String validateLineName(String lineName) throws IllegalArgumentException{
+    private String validateLineName(String lineName) throws IllegalArgumentException {
         if (lineName.length() < MIN_LINE_NAME_LENGTH) {
             ErrorMessage.isLessThanTwoWordLine();
             throw new IllegalArgumentException();
@@ -44,7 +44,7 @@ public class LineManageInput {
         return lineName;
     }
 
-    public String inputEnrollLine(Scanner scanner) throws IllegalArgumentException{
+    public String inputEnrollLine(Scanner scanner) throws IllegalArgumentException {
         String lineName = scanner.next();
         Optional<Line> newLine = LineRepository.lines()
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();
@@ -56,7 +56,7 @@ public class LineManageInput {
         return lineName;
     }
 
-    public Station inputUpDownTrainLine(Scanner scanner) throws IllegalArgumentException{
+    public Station inputUpDownTrainLine(Scanner scanner) throws IllegalArgumentException {
         String upTrainLastStop = scanner.next();
         Optional<Station> searchedStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(upTrainLastStop)).findAny();
@@ -73,7 +73,7 @@ public class LineManageInput {
         return fixedLine.isPresent();
     }
 
-    public String inputDeleteLine(Scanner scanner) throws IllegalArgumentException{
+    public String inputDeleteLine(Scanner scanner) throws IllegalArgumentException {
         String lineName = scanner.next();
         Optional<Line> searchedLine = LineRepository.lines()
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();

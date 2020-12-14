@@ -38,7 +38,7 @@ public class Line {
         }
     }
 
-    public void removeOrderedStation(Station station) throws IllegalArgumentException{
+    public void removeOrderedStation(Station station) throws IllegalArgumentException {
         if (!getStation().contains(station)) {
             ErrorMessage.isNotExistStationInLine();
             throw new IllegalArgumentException();

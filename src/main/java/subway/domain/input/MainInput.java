@@ -26,7 +26,7 @@ public class MainInput {
         return Collections.unmodifiableList(functionList);
     }
 
-    public String inputMainScreen(Scanner scanner) throws IllegalArgumentException{
+    public String inputMainScreen(Scanner scanner) throws IllegalArgumentException {
         String mainChoice = scanner.next();
         if (functionList().contains(mainChoice)) {
             return mainChoice;

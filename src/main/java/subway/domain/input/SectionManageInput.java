@@ -20,7 +20,7 @@ public class SectionManageInput {
         return Collections.unmodifiableList(functionList);
     }
 
-    public String inputSectionManageScreen(Scanner scanner) throws IllegalArgumentException{
+    public String inputSectionManageScreen(Scanner scanner) throws IllegalArgumentException {
         String sectionManageChoice = scanner.next();
         if (functionList().contains(sectionManageChoice)) {
             return sectionManageChoice;
@@ -29,9 +29,9 @@ public class SectionManageInput {
         throw new IllegalArgumentException();
     }
 
-    public Line inputLine(Scanner scanner) throws IllegalArgumentException{
+    public Line inputLine(Scanner scanner) throws IllegalArgumentException {
         String lineName = scanner.next();
-        Optional<Line> searchedLine =LineRepository.lines()
+        Optional<Line> searchedLine = LineRepository.lines()
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();
         if (searchedLine.isPresent()) {
             return searchedLine.get();
@@ -40,7 +40,7 @@ public class SectionManageInput {
         throw new IllegalArgumentException();
     }
 
-    public Station inputStation(Scanner scanner) throws IllegalArgumentException{
+    public Station inputStation(Scanner scanner) throws IllegalArgumentException {
         String sectionStation = scanner.next();
         Optional<Station> searchedStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(sectionStation)).findAny();
@@ -51,7 +51,7 @@ public class SectionManageInput {
         throw new IllegalArgumentException();
     }
 
-    public int inputStationOrder(Scanner scanner) throws IllegalArgumentException{
+    public int inputStationOrder(Scanner scanner) throws IllegalArgumentException {
         String order = scanner.next();
         try {
             return Integer.parseInt(order);
