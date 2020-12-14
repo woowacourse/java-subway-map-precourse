@@ -47,6 +47,7 @@ public class StationManageController {
         }
 
         StationRepository.addStation(new Station(input));
+        view.printMessage("\n" + INFO_PREFIX + MESSAGE_ADD_COMPLETE + "\n");
     }
 
     private void removeStation() {

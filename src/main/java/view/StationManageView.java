@@ -28,18 +28,20 @@ public class StationManageView {
     }
 
     public void run() {
-        showMenu();
-        printInputMessage();
-        String input = input();
-        while (!controller.validateInput(input)) {
-            printInvalidInputMessage();
+        while (true) {
+            showMenu();
             printInputMessage();
-            input = input();
+            String input = input();
+            while (!controller.validateInput(input)) {
+                printInvalidInputMessage();
+                printInputMessage();
+                input = input();
+            }
+            if (input.equals(INPUT_FOR_BACK)) {
+                return;
+            }
+            controller.processInput(input);
         }
-        if (input.equals(INPUT_FOR_BACK)) {
-            return;
-        }
-        controller.processInput(input);
     }
 
 
@@ -56,6 +58,6 @@ public class StationManageView {
     }
 
     public String input() {
-        return scanner.next();
+        return scanner.nextLine();
     }
 }
