@@ -44,8 +44,8 @@ public class LineRepository {
     }
 
     public static void isPossibleTerminalStation(String name) { // 상행 하행역 등록을 위해, 존재하는 역인지 확인
-        if (!StationRepository.isStationExist(name)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION_FOR_LINE);
+        if (!StationRepository.contains(name)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
         }
     }
 

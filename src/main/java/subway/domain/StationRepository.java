@@ -32,21 +32,16 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isStationExist (String name) {
-        for (Station station : stations()) {
-            String stationName = station.getName();
-            if (stationName.equals(name)) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean contains(String findStation) {
+        return stations.stream()
+                .anyMatch(station -> station.getName().equals(findStation));
     }
 
     public static void isValidStationName(String name) {
         if (name.length() < 2) {
             throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_OVER_TWO);
         }
-        if (isStationExist(name)) {
+        if (contains(name)) {
             throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_EXISTS);
         }
     }

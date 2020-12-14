@@ -18,4 +18,9 @@ public class LineStation {
     public List<Station> getStations() {
         return stations;
     }
+
+    public boolean contains(Station findStation) {
+        return stations.stream()
+                .anyMatch(station -> station.equals(findStation));
+    }
 }
