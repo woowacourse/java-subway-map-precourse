@@ -15,9 +15,10 @@ public class Line {
     }
 
     // 추가 기능 구현
-    public void addTerminus(String upBoundTerminus, String downBoundTerminus) {
+    public Line addTerminus(String upBoundTerminus, String downBoundTerminus) {
         line.addFirst(StationRepository.findStation(upBoundTerminus));
         line.addLast(StationRepository.findStation(downBoundTerminus));
+        return this;
     }
 
     public LinkedList<Station> stations() {

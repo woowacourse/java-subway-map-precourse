@@ -12,13 +12,11 @@ public class LineFeature {
 
     public static void registerLine(Scanner scanner) {
         try {
-            String line = LineInputView.register(scanner);
+            String name = LineInputView.register(scanner);
             String upBoundTerminus = LineInputView.upBoundTerminus(scanner);
             String downBoundTerminus = LineInputView.downBoundTerminus(scanner);
 
-            Line newLine = new Line(line);
-            newLine.addTerminus(upBoundTerminus, downBoundTerminus);
-            LineRepository.addLine(newLine);
+            LineRepository.addLine(new Line(name).addTerminus(upBoundTerminus, downBoundTerminus));
 
             System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
         } catch (IllegalArgumentException e) {
@@ -29,8 +27,8 @@ public class LineFeature {
 
     public static void removeLine(Scanner scanner) {
         try {
-            String line = LineInputView.remove(scanner);
-            LineRepository.deleteLineByName(line);
+            String name = LineInputView.remove(scanner);
+            LineRepository.deleteLineByName(name);
 
             System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
         } catch (IllegalArgumentException e) {
