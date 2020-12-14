@@ -51,13 +51,16 @@ public class OutputView {
     public static void printSubwayMap() {
         System.out.println(PRINT_SUBWAY_MAP_MESSAGE);
         List<Line> lines = LineRepository.lines();
-        for (Line line : lines) {
+        for (int i = 0; i < lines.size(); i++) {
+            Line line = lines.get(i);
             System.out.printf(PRINT_LIST, line.getName().getName());
             System.out.printf(PRINT_LIST, DASH);
             line.getStations().stream()
                     .map(Station::getName)
                     .forEach(name -> System.out.printf(PRINT_LIST, name.getName()));
-            System.out.println();
+            if (i != lines.size() - 1) {
+                System.out.println();
+            }
         }
     }
 }

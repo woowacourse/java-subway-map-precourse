@@ -8,7 +8,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class LineController implements Controller{
+public class LineController implements Controller {
     private final Scanner scanner;
     private final LineService lineService;
 

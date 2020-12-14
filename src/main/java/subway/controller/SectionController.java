@@ -7,7 +7,7 @@ import subway.view.InputView;
 
 import java.util.Scanner;
 
-public class SectionController implements Controller{
+public class SectionController implements Controller {
     private final Scanner scanner;
     private final SectionService sectionService;
 
