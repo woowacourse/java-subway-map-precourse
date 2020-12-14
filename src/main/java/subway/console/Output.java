@@ -43,7 +43,11 @@ public class Output {
     }
 
     public static void printSubwayLine(Map<Line, List<Station>> sections) {
-        System.out.println(Message.SUBWAY_LINE);
+        if (sections.isEmpty()) {
+            print(Message.ERROR_EMPTY_LINE);
+            return;
+        }
+        print(Message.SUBWAY_LINE);
         for (Line line : sections.keySet()) {
             print(combine(line.getName()));
             print("[INFO] ---");
