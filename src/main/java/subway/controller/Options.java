@@ -1,6 +1,6 @@
 package subway.controller;
 
-import subway.view.General;
+import subway.view.GeneralMessages;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public enum Options {
 
 	private static void validateOption(List<String> options, String input) throws IllegalArgumentException {
 		if (!hasOption(options, input)) {
-			throw new IllegalArgumentException(General.NOT_AVAILABLE_OPTION_ERROR.getMessage());
+			throw new IllegalArgumentException(GeneralMessages.NOT_AVAILABLE_OPTION_ERROR.getMessage());
 		}
 	}
 

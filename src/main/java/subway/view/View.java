@@ -6,10 +6,11 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class View {
+//	private static final int MAIN_SCREEN_OPTION_LENGTH =
+
 	public static void printMainScreen() {
 		Arrays.stream(MainMessages.values())
 				.limit(6)
@@ -18,7 +19,7 @@ public class View {
 	}
 
 	public static String getScreenOption(Scanner scanner) {
-		System.out.println(General.CHOICE.getMessage());
+		System.out.println(GeneralMessages.CHOICE.getMessage());
 		return scanner.nextLine()
 				.replaceAll("\\s+", "")
 				.toUpperCase();
@@ -64,7 +65,7 @@ public class View {
 				.stations()
 				.stream()
 				.map(Station::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+				.forEach(name -> System.out.println(GeneralMessages.INFO.getMessage() + name));
 		System.out.println();
 	}
 
@@ -119,7 +120,7 @@ public class View {
 		LineRepository.lines()
 				.stream()
 				.map(Line::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+				.forEach(name -> System.out.println(GeneralMessages.INFO.getMessage() + name));
 		System.out.println();
 	}
 
@@ -175,14 +176,14 @@ public class View {
 				.sections()
 				.stream()
 				.map(Station::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+				.forEach(name -> System.out.println(GeneralMessages.INFO.getMessage() + name));
 	}
 
 	public static void showWholeMap() {
-		System.out.println(General.MAP.getMessage());
+		System.out.println(GeneralMessages.MAP.getMessage());
 		for (Line line : LineRepository.lines()) {
-			System.out.println(General.INFO.getMessage() + line.getName());
-			System.out.println(General.DIVISION_LINE.getMessage());
+			System.out.println(GeneralMessages.INFO.getMessage() + line.getName());
+			System.out.println(GeneralMessages.DIVISION_LINE.getMessage());
 			showSections(line);
 			System.out.println();
 		}

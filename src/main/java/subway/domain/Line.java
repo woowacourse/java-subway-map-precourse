@@ -13,17 +13,17 @@ public class Line {
 		this.name = name;
 	}
 
+	public static void validateNameLength(String name) throws IllegalArgumentException {
+		if (name.length() < NAME_LENGTH_LOWER_BOUND) {
+			throw new IllegalArgumentException(LineMessages.NAME_LENGTH_ERROR.getMessage());
+		}
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public Sections getSections() {
 		return sections;
-	}
-
-	public static void validateNameLength(String name) throws IllegalArgumentException {
-		if (name.length() < NAME_LENGTH_LOWER_BOUND) {
-			throw new IllegalArgumentException(LineMessages.NAME_LENGTH_ERROR.getMessage());
-		}
 	}
 }

@@ -10,13 +10,9 @@ import java.util.stream.Collectors;
 
 public class Sections {
 	public static final int FIRST_SECTION_LOCATION = 1;
-	public static final int MINIMUM_SECTION_LENGTH = 2; // 2 Stations required for one Line
+	public static final int MINIMUM_SECTION_LENGTH = 2; // At least 2 stations required for one Line
 
 	private final List<Station> sections = new ArrayList<>();
-
-	public List<Station> sections() {
-		return Collections.unmodifiableList(sections);
-	}
 
 	private static List<String> getSectionNames(String lineName) {
 		return LineRepository.getLine(lineName)
@@ -31,7 +27,7 @@ public class Sections {
 		LineRepository.getLine(lineName)
 				.getSections()
 				.sections
-				.add(location-1, StationRepository.getStation(stationName));
+				.add(location - 1, StationRepository.getStation(stationName)); // index = user's input location - 1
 	}
 
 	public static void deleteSection(String lineName, String stationName) {
@@ -69,7 +65,7 @@ public class Sections {
 	}
 
 	public static void validateRange(String lineName, String location) throws IllegalArgumentException {
-		if (Integer.parseInt(location) - 1 < 0 || getSectionLength(lineName) < Integer.parseInt(location) - 1) {
+		if (Integer.parseInt(location) < FIRST_SECTION_LOCATION || getSectionLength(lineName) + 1 < Integer.parseInt(location)) {
 			throw new IllegalArgumentException(SectionMessages.LOCATION_OUT_OF_RANGE_ERROR.getMessage());
 		}
 	}
@@ -80,9 +76,13 @@ public class Sections {
 		}
 	}
 
-	public static void validateSectionLength(String lineName) throws IllegalArgumentException{
+	public static void validateSectionLength(String lineName) throws IllegalArgumentException {
 		if (getSectionLength(lineName) <= MINIMUM_SECTION_LENGTH) {
 			throw new IllegalArgumentException(SectionMessages.MINIMUM_SECTION_LENGTH_ERROR.getMessage());
 		}
+	}
+
+	public List<Station> sections() {
+		return Collections.unmodifiableList(sections);
 	}
 }
