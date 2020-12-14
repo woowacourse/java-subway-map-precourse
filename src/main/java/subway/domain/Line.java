@@ -31,7 +31,7 @@ public class Line {
     }
 
     public void insertStation(String stationName, int order) {
-        stationLine.add(order+1, new Station(stationName));
+        stationLine.add(order, new Station(stationName));
     }
 
     public boolean deleteStation(String stationName) {

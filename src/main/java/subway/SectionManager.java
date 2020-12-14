@@ -30,11 +30,9 @@ public class SectionManager {
     public static final String DELETION_FAIL_INFO_MESSAGE = "존재하지 않거나 삭제할 수 없습니다";
 
     public static void manage(Scanner scanner) {
-        while (!userOption.equals(WANT_QUIT_CODE)) {
-            printSectionManagementScreen();
-            userOption = getUserOption(scanner);
-            callOptionMenu(userOption, scanner);
-        }
+        printSectionManagementScreen();
+        userOption = getUserOption(scanner);
+        callOptionMenu(userOption, scanner);
     }
 
     public static void printSectionManagementScreen() {
