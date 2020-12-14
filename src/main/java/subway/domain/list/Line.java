@@ -42,4 +42,8 @@ public class Line {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public boolean contains(Station station) {
+        return stationList.contains(station);
+    }
 }

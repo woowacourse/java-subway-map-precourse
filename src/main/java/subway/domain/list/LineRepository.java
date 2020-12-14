@@ -32,6 +32,11 @@ public class LineRepository {
                 .findAny().orElseThrow(() -> new IllegalArgumentException(LINE_CANNOT_FIND_ERROR_MESSAGE));
     }
 
+    // station이 line에 포함되어있는지 확인
+    public static boolean contains(Station station) {
+        return lines.stream().anyMatch(line -> line.contains(station));
+    }
+
     public static void addLine(Line line) {
         lines.add(line);
     }
