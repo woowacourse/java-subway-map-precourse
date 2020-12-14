@@ -1,6 +1,7 @@
 package subway.domain.section;
 
 import subway.domain.station.Station;
+import subway.exception.AlreadyRegisteredSectionException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,6 +21,10 @@ public class SectionStations {
 
     public void add(Station station, int index) {
         SectionStation sectionStation = new SectionStation(station);
+
+        if (isExistStation(station)) {
+            throw new AlreadyRegisteredSectionException();
+        }
 
         if (addIfLastIndex(sectionStation, index)) {
             return;
@@ -97,5 +102,9 @@ public class SectionStations {
         Collections.reverse(sectionStations);
 
         return sectionStations;
+    }
+
+    private boolean isExistStation(Station station) {
+        return sectionStations.stream().anyMatch(sectionStation -> sectionStation.getStation().equals(station));
     }
 }
