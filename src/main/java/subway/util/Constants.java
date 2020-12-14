@@ -50,6 +50,8 @@ public class Constants {
         System.out.println(MAIN_SECTION);
         System.out.println(MAIN_PRINT);
         System.out.println(MAIN_QUIT);
+        System.out.print("\n");
+        System.out.println(Constants.ASK_COMMAND);
     }
 
     public static void printStation() {
@@ -58,6 +60,8 @@ public class Constants {
         System.out.println(STATION_REMOVE);
         System.out.println(STATION_VISIT);
         System.out.println(GO_BACK);
+        System.out.print("\n");
+        System.out.println(Constants.ASK_COMMAND);
     }
 
     public static void printLine() {
@@ -65,6 +69,8 @@ public class Constants {
         System.out.println(LINE_ADD);
         System.out.println(LINE_REMOVE);
         System.out.println(GO_BACK);
+        System.out.print("\n");
+        System.out.println(Constants.ASK_COMMAND);
     }
 
     public static void printSection() {
@@ -72,5 +78,7 @@ public class Constants {
         System.out.println(SECTION_ADD);
         System.out.println(SECTION_REMOVE);
         System.out.println(GO_BACK);
+        System.out.print("\n");
+        System.out.println(Constants.ASK_COMMAND);
     }
 }
