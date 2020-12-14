@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import subway.console.Message;
+import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 
@@ -30,14 +30,14 @@ public class SectionRepository {
     public static void findDuplicateStation(Line line, Station station) {
         if (sections.containsKey(line)) {
             if (sections.get(line).contains(station)) {
-                throw new IllegalArgumentException(Message.ERROR_DUPLICATE_STATION);
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_STATION);
             }
         }
     }
 
     private static void validateExistLine(Line line) {
         if (!sections.containsKey(line)) {
-            throw new IllegalArgumentException(Message.ERROR_NOT_EXIST_LINE);
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
         }
     }
 
@@ -50,7 +50,7 @@ public class SectionRepository {
     private static void validateOrder(Line line, int order) {
         List<Station> stations = sections.get(line);
         if (order < 1 || order >= stations.size()) {
-            throw new IllegalArgumentException(Message.ERROR_INVALID_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
         }
     }
 
@@ -58,7 +58,7 @@ public class SectionRepository {
         validateExistLine(line);
         List<Station> stations = sections.get(line);
         if (stations.size() <= VALID_STATION_SIZE) {
-            throw new IllegalArgumentException(Message.ERROR_SIZE);
+            throw new IllegalArgumentException(ErrorMessage.SIZE);
         }
         stations.remove(station);
     }

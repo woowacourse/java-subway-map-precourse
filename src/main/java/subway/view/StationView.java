@@ -8,8 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import subway.console.Button;
 import subway.console.Input;
+import subway.console.message.InfoMessage;
+import subway.console.message.InputMessage;
 import subway.controller.StationController;
-import subway.console.Message;
 
 /**
  * @author yhh1056
@@ -54,10 +55,10 @@ public class StationView {
 
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
-            print(Message.INPUT_CREATE_STATION);
+            print(InputMessage.CREATE_STATION);
 
             if (isCreateStation()) {
-                print(Message.INFO_CREATE_STATION);
+                print(InfoMessage.CREATE_STATION);
                 return true;
             }
         }
@@ -70,10 +71,10 @@ public class StationView {
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            print(Message.INPUT_DELETE_STATION);
+            print(InputMessage.DELETE_STATION);
 
             if (isDeleteStation()) {
-                print(Message.INFO_DELETE_STATION);
+                print(InfoMessage.DELETE_STATION);
                 return true;
             }
         }

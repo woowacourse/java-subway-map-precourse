@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import subway.console.Message;
+import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 
 public class LineRepository {
@@ -12,7 +12,7 @@ public class LineRepository {
 
     public static List<Line> lines() {
         if (lines.isEmpty()) {
-            throw new IllegalArgumentException(Message.ERROR_EMPTY_LINE);
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_LINE);
         }
         return Collections.unmodifiableList(lines);
     }
@@ -29,13 +29,13 @@ public class LineRepository {
 
     private static void validateEmptyLines() {
         if (lines.isEmpty()) {
-            throw new IllegalArgumentException(Message.ERROR_SIZE);
+            throw new IllegalArgumentException(ErrorMessage.SIZE);
         }
     }
 
     private static void validateExistLines(String name) {
         if (!isExist(name)) {
-            throw new IllegalArgumentException(Message.ERROR_NOT_EXIST_LINE);
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
         }
     }
 
@@ -43,7 +43,7 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(Message.ERROR_NOT_EXIST_LINE));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
     }
 
     public static boolean isExist(String name) {

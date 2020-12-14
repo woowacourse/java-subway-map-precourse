@@ -4,7 +4,7 @@ import static subway.console.Output.print;
 
 import java.util.Collections;
 import java.util.List;
-import subway.console.Message;
+import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
@@ -41,19 +41,19 @@ public class LineService {
 
     private void validateNameLength(String name) {
         if (name.length() < STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException(Message.ERROR_NAME_LENGTH);
+            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH);
         }
     }
 
     private void validateNameEndWord(String name) {
         if (!name.endsWith(STATION_END_NAME)) {
-            throw new IllegalArgumentException(Message.ERROR_LINE_NAME_END);
+            throw new IllegalArgumentException(ErrorMessage.LINE_NAME_END);
         }
     }
 
     private void validateExistLine(String name) throws IllegalArgumentException {
         if (LineRepository.isExist(name)) {
-            throw new IllegalArgumentException(Message.ERROR_EXIST_LINE);
+            throw new IllegalArgumentException(ErrorMessage.EXIST_LINE);
         }
     }
 

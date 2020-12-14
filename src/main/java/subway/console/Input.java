@@ -1,10 +1,11 @@
 package subway.console;
 
 import static subway.console.Output.print;
-import static subway.console.Output.printPage;
 
 import java.util.List;
 import java.util.Scanner;
+import subway.console.message.ErrorMessage;
+import subway.console.message.InputMessage;
 
 /**
  * @author yhh1056
@@ -23,8 +24,8 @@ public class Input {
     public String nextButton(List<String> buttons) {
         String button = toUpper(nextLine());
         while (!buttons.contains(button)) {
-            print(Message.ERROR_NOT_BUTTON);
-            print(Message.INPUT_SELECT_BUTTON);
+            print(ErrorMessage.NOT_BUTTON);
+            print(InputMessage.SELECT_BUTTON);
             button = toUpper(nextLine());
         }
         return button;
@@ -52,7 +53,7 @@ public class Input {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException error) {
-            throw new IllegalArgumentException(Message.ERROR_NUMERIC);
+            throw new IllegalArgumentException(ErrorMessage.NUMERIC);
         }
     }
 }

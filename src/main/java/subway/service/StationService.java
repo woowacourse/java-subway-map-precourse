@@ -4,7 +4,7 @@ import static subway.console.Output.print;
 
 import java.util.Collections;
 import java.util.List;
-import subway.console.Message;
+import subway.console.message.ErrorMessage;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 
@@ -38,19 +38,19 @@ public class StationService {
 
     private void validateNameLength(String name) {
         if (name.length() < STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException(Message.ERROR_NAME_LENGTH);
+            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH);
         }
     }
 
     private void validateNameEndWord(String name) {
         if (!name.endsWith(STATION_END_NAME)) {
-            throw new IllegalArgumentException(Message.ERROR_STATION_NAME_END);
+            throw new IllegalArgumentException(ErrorMessage.STATION_NAME_END);
         }
     }
 
     private void validateExistStation(String name) {
         if (StationRepository.isExist(name)) {
-            throw new IllegalArgumentException(Message.ERROR_EXIST_STATION);
+            throw new IllegalArgumentException(ErrorMessage.EXIST_STATION);
         }
     }
 
@@ -66,7 +66,7 @@ public class StationService {
 
     public List<Station> findAll() {
         if (StationRepository.stations().isEmpty()) {
-            print(Message.ERROR_EMPTY_STATION);
+            print(ErrorMessage.EMPTY_STATION);
             return Collections.emptyList();
         }
         return StationRepository.stations();

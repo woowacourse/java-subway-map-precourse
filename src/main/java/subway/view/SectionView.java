@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import subway.console.Button;
 import subway.console.Input;
-import subway.console.Message;
+import subway.console.message.InfoMessage;
+import subway.console.message.InputMessage;
 import subway.controller.SectionController;
 
 /**
@@ -52,9 +53,9 @@ public class SectionView {
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
 
-            print(Message.INPUT_CREATE_SECTION);
+            print(InputMessage.CREATE_SECTION);
             if (createSection(input.nextLine())) {
-                print(Message.INFO_CREATE_SECTION);
+                print(InfoMessage.CREATE_SECTION);
                 return true;
             }
         }
@@ -66,13 +67,13 @@ public class SectionView {
             return false;
         }
 
-        print(Message.INPUT_STATION_SECTION);
+        print(InputMessage.STATION_SECTION);
         String station = input.nextLine();
         if (!sectionController.existStation(station)) {
             return false;
         }
 
-        print(Message.INPUT_ORDER_SECTION);
+        print(InputMessage.ORDER_SECTION);
         String order = input.nextLine();
         if (!input.isNumeric(order)) {
             return false;
@@ -84,9 +85,9 @@ public class SectionView {
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            print(Message.INPUT_DELETE_SECTION);
+            print(InputMessage.DELETE_SECTION);
             if (deleteSection(input.nextLine())) {
-                print(Message.INFO_DELETE_SECTION);
+                print(InfoMessage.DELETE_SECTION);
                 return true;
             }
         }
@@ -98,7 +99,7 @@ public class SectionView {
             return false;
         }
 
-        print(Message.INPUT_DELETE_ORDER_SECTION);
+        print(InputMessage.DELETE_ORDER_SECTION);
         String station = input.nextLine();
         if (!sectionController.existStation(station)) {
             return false;

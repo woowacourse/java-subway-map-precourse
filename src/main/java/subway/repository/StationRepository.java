@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import subway.console.Message;
+import subway.console.message.ErrorMessage;
 import subway.domain.Station;
 
 public class StationRepository {
@@ -20,10 +20,10 @@ public class StationRepository {
 
     public static boolean deleteStation(String name) {
         if (SectionRepository.isExistStation(name)) {
-            throw new IllegalArgumentException(Message.ERROR_EXIST_STATION_LINE);
+            throw new IllegalArgumentException(ErrorMessage.EXIST_STATION_LINE);
         }
         if (!isExist(name)) {
-            throw new IllegalArgumentException(Message.ERROR_NOT_EXIST_STATION);
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION);
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
@@ -36,6 +36,6 @@ public class StationRepository {
         return stations.stream()
                 .filter(station -> station.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(Message.ERROR_NOT_EXIST_STATION));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION));
     }
 }

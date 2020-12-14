@@ -2,6 +2,8 @@ package subway.console;
 
 import java.util.List;
 import java.util.Map;
+import subway.console.message.ErrorMessage;
+import subway.console.message.InfoMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 
@@ -20,18 +22,18 @@ public class Output {
 
     public static void printStations(List<Station> stations) {
         if (!stations.isEmpty()) {
-            print(Message.STATIONS);
+            print(InfoMessage.STATIONS);
             stations.forEach(station -> print(combine(station.getName())));
         }
     }
 
     public static void printLines(List<Line> lines) {
-        print(Message.LINES);
+        print(InfoMessage.LINES);
         lines.forEach(line -> print(combine(line.getName())));
     }
 
     private static String combine(String name) {
-        return Message.INFO + name;
+        return InfoMessage.INFO + name;
     }
 
     public static void print(String message) {
@@ -44,11 +46,11 @@ public class Output {
 
     public static void printSubwayLine(Map<Line, List<Station>> sections) {
         if (isEmpty(sections)) {
-            print(Message.ERROR_EMPTY_LINE);
+            print(ErrorMessage.EMPTY_LINE);
             return;
         }
 
-        print(Message.SUBWAY_LINE);
+        print(InfoMessage.SUBWAY_LINE);
         printSubwayInformation(sections);
     }
 
@@ -59,7 +61,7 @@ public class Output {
     private static void printSubwayInformation(Map<Line, List<Station>> sections) {
         for (Line line : sections.keySet()) {
             print(combine(line.getName()));
-            print(Message.SUBWAY_INFO);
+            print(InfoMessage.SUBWAY_INFO);
 
             sections.get(line).forEach(station -> print(combine(station.getName())));
             printBlankLine();

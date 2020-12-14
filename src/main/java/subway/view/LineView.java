@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import subway.console.Button;
 import subway.console.Input;
-import subway.console.Message;
+import subway.console.message.InfoMessage;
+import subway.console.message.InputMessage;
 import subway.console.Output;
 import subway.controller.LineController;
 
@@ -54,10 +55,10 @@ public class LineView {
 
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
-            print(Message.INPUT_CREATE_LINE);
+            print(InputMessage.CREATE_LINE);
 
             if (createLine(input.nextLine())) {
-                print(Message.INFO_CREATE_LINE);
+                print(InfoMessage.CREATE_LINE);
                 return true;
             }
         }
@@ -71,21 +72,21 @@ public class LineView {
     }
 
     private boolean createFirstStation(String name) {
-        print(Message.INPUT_FIRST_STATION);
+        print(InputMessage.FIRST_STATION);
         return lineController.createSection(name, input.nextLine());
     }
 
     private boolean createLastStation(String name) {
-        print(Message.INPUT_LAST_STATION);
+        print(InputMessage.LAST_STATION);
         return lineController.createSection(name, input.nextLine());
     }
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            print(Message.INPUT_DELETE_LINE);
+            print(InputMessage.DELETE_LINE);
 
             if (isDeleteLine()) {
-                print(Message.INFO_DELETE_LINE);
+                print(InfoMessage.DELETE_LINE);
                 return true;
             }
         }
