@@ -1,19 +1,18 @@
-package subway.console;
+package subway.screen;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import subway.domain.LineRepository;
+import subway.screenMessage.MainScreenMessage;
 
-public class MainScreen implements SubwayScreen {
-    private static final String MAIN_SCREEN_MENU = "\n## 메인 화면\n1. 역 관리\n2. 노선 관리\n3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
+public class MainScreen implements SubwayScreen, MainScreenMessage {
     private static final String[] MAIN_MENU_CHOICES = {"1", "2", "3", "4", "Q"};
     private static final String MAIN_SCREEN_SELECT_STATION_MANAGEMENT = MAIN_MENU_CHOICES[0];
     private static final String MAIN_SCREEN_SELECT_LINE_MANAGEMENT = MAIN_MENU_CHOICES[1];
     private static final String MAIN_SCREEN_SELECT_SECTION_MANAGEMENT = MAIN_MENU_CHOICES[2];
     private static final String MAIN_SCREEN_SELECT_PRINT_SUBWAY_MAP = MAIN_MENU_CHOICES[3];
     private static final String MAIN_SCREEN_SELECT_QUIT = MAIN_MENU_CHOICES[4];
-    private static final String MAIN_SCREEN_PRINT_SUBWAY_MAP = "\n## 지하철 노선도";
 
     private static String mainScreenInput;
 

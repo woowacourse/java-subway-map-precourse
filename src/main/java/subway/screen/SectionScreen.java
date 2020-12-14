@@ -1,25 +1,18 @@
-package subway.console;
+package subway.screen;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.screenMessage.SectionScreenMessage;
 
-class SectionScreen implements SubwayScreen {
-    private static final String SECTION_SCREEN_MANAGER_MENU = "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기";
-    private static final String MESSAGE_ADD_SECTION_INPUT_LINE_NAME = "\n## 노선을 입력하세요.";
-    private static final String MESSAGE_ADD_SECTION_INPUT_STATION_NAME = "\n## 역이름을 입력하세요.";
-    private static final String MESSAGE_ADD_SECTION_INPUT_STATION_INDEX = "\n## 순서를 입력하세요.";
-    private static final String MESSAGE_SECTION_ADDED = "\n[INFO] 구간이 등록되었습니다.";
-    private static final String MESSAGE_DELETE_SECTION_INPUT_LINE_NAME = "\n## 삭제할 구간의 노선을 입력하세요.";
-    private static final String MESSAGE_DELETE_SECTION_INPUT_STATION_NAME = "\n## 삭제할 구간의 역을 입력하세요.";
-    private static final String MESSAGE_SECTION_DELETED = "\n[INFO] 구간이 삭제되었습니다.";
+class SectionScreen implements SubwayScreen, SectionScreenMessage {
     private static final String[] SECTION_MENU_CHOICES = {"1", "2", "B"};
     private static final String SECTION_SCREEN_SELECT_ADD = SECTION_MENU_CHOICES[0];
     private static final String SECTION_SCREEN_SELECT_DELETE = SECTION_MENU_CHOICES[1];
     private static final String SECTION_SCREEN_SELECT_GO_BACK = SECTION_MENU_CHOICES[2];
-    private static final String ERROR_INVALID_INPUT_INDEX = "\n[ERROR] 순서는 숫자를 입력해주세요!";
+
     private static String sectionScreenInput;
 
     @Override
@@ -80,17 +73,11 @@ class SectionScreen implements SubwayScreen {
             String stationName = scanner.nextLine();
             System.out.println(MESSAGE_ADD_SECTION_INPUT_STATION_INDEX);
             String stationIndex = scanner.nextLine();
-            int index = validateIndex(stationIndex); // 인덱스 숫자로 변환
-            line.addStation(stationName, index); // 구간 추가
+             // 인덱스 숫자로 변환
+            line.addStation(stationName, stationIndex); // 구간 추가
             System.out.println(MESSAGE_SECTION_ADDED);
         }
     }
 
-    private int validateIndex(String stationIndex) {
-        try {
-            return Integer.parseInt(stationIndex);
-        } catch (IllegalArgumentException e) {
-           throw new IllegalArgumentException(ERROR_INVALID_INPUT_INDEX);
-        }
-    }
+
 }

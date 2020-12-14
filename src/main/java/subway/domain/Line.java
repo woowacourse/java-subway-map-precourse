@@ -5,14 +5,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
+import subway.exception.LineErrorMessage;
 
-public class Line {
-    private static final String ERROR_INDEX_NOT_IN_RANGE = "[ERROR] 잘못된 순서입니다.";
-    private static final String ERROR_STATION_ALREADY_ON_LINE = "[ERROR] 이미 존재하는 역입니다.";
-    private static final String ERROR_STATION_NOT_ON_LINE = "[ERROR] 노선에 해당 역이 없습니다.";
-    private static final String ERROR_STATION_NOT_ON_STATION_REPOSITORY = "[ERROR] 데이터베이스에 등록되지 않은 역입니다.";
+public class Line implements LineErrorMessage {
     private static final int MINIMUM_STATIONS_WHEN_SECTION_TO_BE_DELETED = 3;
-    private static final String ERROR_NOT_BE_ABLE_TO_DELETE_SECTION = "[ERROR] 역이 너무 적어 구간을 삭제할 수 없습니다.";
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final String HORIZONTAL_DELIMITER = SYMBOL_INFO + "---";
     private String name; // 변경 불가능
@@ -37,7 +33,8 @@ public class Line {
         stationsOnLine.add(downEndStation);
     }
 
-    public void addStation(String stationName, int index) {
+    public void addStation(String stationName, String stationIndex) {
+        int index = validateIndex(stationIndex);
         Station station = getStation(stationName);
         if(isStationInLine(station)) {
             throw new IllegalArgumentException(ERROR_STATION_ALREADY_ON_LINE);
@@ -47,6 +44,14 @@ public class Line {
         }
         station.enroll(this);
         stationsOnLine.add(index - 1, station);
+    }
+
+    private int validateIndex(String stationIndex) {
+        try {
+            return Integer.parseInt(stationIndex);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ERROR_INVALID_INPUT_INDEX);
+        }
     }
 
     private Station getStation(String stationName) {

@@ -1,4 +1,4 @@
-package subway.console;
+package subway.screen;
 
 import java.util.Scanner;
 

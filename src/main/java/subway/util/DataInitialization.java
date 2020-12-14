@@ -1,4 +1,7 @@
-package subway.domain;
+package subway.util;
+
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 
 public class DataInitialization {
     private static final String[] initialStation = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
@@ -10,10 +13,10 @@ public class DataInitialization {
     }
 
     private static void inputStationsToLines() {
-        LineRepository.lines().get(0).addStation("강남역", 2); // 2호선
-        LineRepository.lines().get(1).addStation("남부터미널역", 2); // 3호선
-        LineRepository.lines().get(1).addStation("양재역", 3);
-        LineRepository.lines().get(2).addStation("양재역", 2); // 신분당선
+        LineRepository.lines().get(0).addStation("강남역", "2"); // 2호선
+        LineRepository.lines().get(1).addStation("남부터미널역", "2"); // 3호선
+        LineRepository.lines().get(1).addStation("양재역", "3");
+        LineRepository.lines().get(2).addStation("양재역", "2"); // 신분당선
     }
 
     private static void initializeLines() {

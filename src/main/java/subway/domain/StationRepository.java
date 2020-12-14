@@ -6,15 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
+import subway.exception.StationErrorMessage;
 
-public class StationRepository {
+public class StationRepository implements StationErrorMessage {
     private static final List<Station> stations = new ArrayList<>();
-    private static final String ERROR_NO_STATION_IN_REPOSITORY = "[ERROR] 해당 역이 없습니다.";
     private static final int STATION_NAME_LENGTH_LIMIT = 2;
-    private static final String ERROR_INVALID_STATION_NAME_LENGTH = "[ERROR] 역 이름이 너무 짧습니다.";
-    private static final String ERROR_DUPLICATED_STATION_NAME_IN_REPOSITORY = "[ERROR] 같은 역 이름이 이미 있습니다.";
     private static final String SYMBOL_INFO = "[INFO] ";
-    private static final String ERROR_HAS_LINE = "[ERROR] 노선에 등록되어 있는 역이므로 삭제할 수 없습니다.";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -71,6 +68,9 @@ public class StationRepository {
         while (iterator.hasNext()) {
             Station station = (Station)iterator.next();
             System.out.println(SYMBOL_INFO + station.getName());
+        }
+        if (stations().size() == 0) {
+            System.out.println(MESSAGE_NO_STATION);
         }
     }
 }

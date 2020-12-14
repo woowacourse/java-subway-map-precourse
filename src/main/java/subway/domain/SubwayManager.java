@@ -1,7 +1,7 @@
 package subway.domain;
 
 import java.util.Scanner;
-import subway.console.MainScreen;
+import subway.screen.MainScreen;
 
 public class SubwayManager {
     private static MainScreen mainScreen;

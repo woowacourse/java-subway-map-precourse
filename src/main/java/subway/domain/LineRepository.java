@@ -6,18 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import subway.exception.LineErrorMessage;
 
-public class LineRepository {
+public class LineRepository implements LineErrorMessage {
     private static final List<Line> lines = new ArrayList<>();
     private static final int LINE_NAME_LENGTH_LIMIT = 2;
-    private static final String ERROR_INVALID_LINE_NAME_LENGTH = "[ERROR] 노선 이름이 너무 짧습니다.";
-    private static final String ERROR_DUPLICATED_LINE_NAME_IN_REPOSITORY = "[ERROR] 같은 노선 이름이 이미 있습니다.";
-    private static final String ERROR_SAME_STATION_NAME = "[ERROR] 서로 다른 이름의 역을 입력해야 합니다.";
-    private static final String ERROR_NOT_IN_STATION_REPOSITORY = "[ERROR] 기존 데이터에 없는 역이 입력됐습니다.";
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final int UP_DOWN_END_STATION_TOTAL = 2;
-    private static final String ERROR_NOT_FOUND_LINE_NAME = "[ERROR] 해당 노선이 기존 데이터에 없습니다.";
-    private static final String EMPTY_LINE_REPOSITORY = "\n노선이 없습니다.";
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);

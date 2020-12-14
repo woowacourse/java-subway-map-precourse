@@ -1,7 +1,7 @@
 package subway;
 
 import java.util.Scanner;
-import subway.domain.DataInitialization;
+import subway.util.DataInitialization;
 import subway.domain.SubwayManager;
 
 public class Application {
