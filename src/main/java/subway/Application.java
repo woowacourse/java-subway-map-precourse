@@ -2,16 +2,12 @@ package subway;
 
 import java.util.Scanner;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-
 public class Application {
 	final static Scanner scanner = new Scanner(System.in);
 	static String select = null;
 
 	public static void main(String[] args) {
-		while(true) {
+		while (true) {
 			if (main_selected_function()) {
 				break;
 			}
@@ -29,7 +25,7 @@ public class Application {
 		select = scanner.next();
 	}
 
-	private static boolean main_selected_function() {		
+	private static boolean main_selected_function() {
 		print_main_menu();
 		if (select.equals("Q")) {
 			return true;
@@ -43,7 +39,7 @@ public class Application {
 			return false;
 		}
 		if (select.equals("3")) {
-
+			section_function();
 			return false;
 		}
 		if (select.equals("4")) {
@@ -52,15 +48,23 @@ public class Application {
 		}
 		return false;
 	}
-	
+
+	private static void section_function() {
+		while (true) {
+			if (select_section_function()) {
+				break;
+			}
+		}
+	}
+
 	private static void line_function() {
-		while(true) {
+		while (true) {
 			if (select_line_function()) {
 				break;
 			}
 		}
 	}
-	
+
 	private static void station_function() {
 		while (true) {
 			if (select_station_function()) {
@@ -132,7 +136,7 @@ public class Application {
 	private static void line_delete() {
 		System.out.println("## 삭제할 역 이름을 입력하세요.");
 		Line_management.delete_line(scanner.next());
-	}	
+	}
 
 	private static boolean select_line_function() {
 		print_line_management_menu();
@@ -162,10 +166,37 @@ public class Application {
 		System.out.println("\n## 원하는 기능을 선택하세요.");
 		select = scanner.next();
 	}
-	
+
+	private static void section_regist() {
+		System.out.println("\n## 노선을 입력하세요.");
+		String line_name = scanner.next();
+		System.out.println("\n## 역이름을 입력하세요.");
+		String station_name = scanner.next();
+		System.out.println("\n## 순서를 입력하세요.");
+		int position = scanner.nextInt();
+		Section_management.add_section(line_name, station_name, position);
+	}
+
+	private static void section_delete() {
+		System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
+		String line_name = scanner.next();
+		System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
+		String station_name = scanner.next();
+		Section_management.delete_section(line_name, station_name);
+	}
+
 	private static boolean select_section_function() {
 		print_section_management_menu();
-		
+		if (select.equals("B")) {
+			return true;
+		}
+		if (select.equals("1")) {
+			section_regist();
+			return false;
+		}
+		if (select.equals("2")) {
+			section_delete();
+		}
 		return false;
 	}
 
