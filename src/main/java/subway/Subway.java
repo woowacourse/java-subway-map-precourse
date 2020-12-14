@@ -16,8 +16,10 @@ public class Subway {
     }
 
     public void addStation(String name) {
-        Station station = new Station(name);
-        StationRepository.addStation(station);
+        if (StationRepository.contains(name)) {
+            return;
+        }
+        StationRepository.addStation(new Station(name));
     }
 
     public boolean removeStation(String name) {
