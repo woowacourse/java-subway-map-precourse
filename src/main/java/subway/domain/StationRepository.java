@@ -40,7 +40,7 @@ public class StationRepository {
             .contains(stationName);
     }
 
-    public static Station getStationFromName(String stationName) {
+    public static Station getStationByName(String stationName) {
         return StationRepository
             .stations()
             .stream()

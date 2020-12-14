@@ -4,7 +4,6 @@ import java.util.Scanner;
 import subway.constant.BoundaryCheckDigit;
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -68,8 +67,8 @@ public class LineController {
         }
 
         newLine = new Line(lineName);
-        newLine.addStation(StationRepository.getStationFromName(upTerminus));
-        newLine.addStation(StationRepository.getStationFromName(downTerminus));
+        newLine.addStation(StationRepository.getStationByName(upTerminus));
+        newLine.addStation(StationRepository.getStationByName(downTerminus));
         LineRepository.addLine(newLine);
         OutputView.lineAddSuccessPrint();
 

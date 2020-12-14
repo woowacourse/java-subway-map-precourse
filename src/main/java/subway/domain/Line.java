@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
     private String name;
     private List<Station> lineMembers = new ArrayList<>();
 
@@ -15,10 +16,15 @@ public class Line {
         return name;
     }
 
-    public void addStation(Station stationName){
+    public void addStation(Station stationName) {
         this.lineMembers.add(stationName);
     }
-    public List<Station> getLineMembers(){
+
+    public void addStation(Station stationName, int index) {
+        this.lineMembers.add(index, stationName);
+    }
+
+    public List<Station> getLineMembers() {
         return this.lineMembers;
     }
 }
