@@ -7,7 +7,6 @@ import subway.function.section.SectionManagementMain;
 import subway.function.station.StationManagementMain;
 
 public class MainTypeResolver {
-
     public static MainSelectionType getMainUserSelectionType(String userInput) {
         if (userInput.equals(UserSelections.FIRST)) {
             return MainSelectionType.STATION_MANAGEMENT;

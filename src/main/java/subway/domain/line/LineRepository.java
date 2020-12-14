@@ -37,8 +37,6 @@ public class LineRepository {
     }
 
     public static void printAllLines() {
-        lines.forEach(
-            line -> System.out.println(Prefix.INFO_PREFIX + line.getName())
-        );
+        lines.forEach(line -> System.out.println(Prefix.INFO_PREFIX + line.getName()));
     }
 }

@@ -12,6 +12,7 @@ import subway.domain.station.StationRepository;
 import subway.function.printsubwaymap.printer.PrintSubwayMapPrinter;
 
 public class LineStationMappingRepository {
+    private static final int ONE_INDEX = 1;
     private static final Map<Line, List<Station>> lineStationMapping = new LinkedHashMap<>();
 
     public static void createNewLineByStations(String newLineName, Station upEndStation,
@@ -50,7 +51,7 @@ public class LineStationMappingRepository {
         Station stationToRegisterSection, int orderToRegisterSection) {
         List<Station> stationsToRegisterNewSection = lineStationMapping.get(lineToRegisterSection);
         stationsToRegisterNewSection
-            .add(orderToRegisterSection - 1, stationToRegisterSection);
+            .add(orderToRegisterSection - ONE_INDEX, stationToRegisterSection);
     }
 
     public static void registerNewSectionByName(String lineNameToRegisterSection,
@@ -60,7 +61,8 @@ public class LineStationMappingRepository {
             .findByName(stationNameToRegisterSection);
         List<Station> stationsToRegisterNewSection = lineStationMapping.get(lineToRegisterSection);
         stationsToRegisterNewSection
-            .add(Integer.parseInt(orderToRegisterSection) - 1, stationToRegisterSection);
+            .add(Integer.parseInt(orderToRegisterSection) - ONE_INDEX,
+                stationToRegisterSection);
     }
 
     public static void deleteSection(Line lineToDeleteSection,

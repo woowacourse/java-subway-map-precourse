@@ -30,11 +30,7 @@ public class StationRepository {
 
     public static void printAll() {
         StationManagementPrinter.printStationListTitle();
-        stations.forEach(
-            station -> {
-                System.out.println(Prefix.INFO_PREFIX + station.getName());
-            }
-        );
+        stations.forEach(station -> System.out.println(Prefix.INFO_PREFIX + station.getName()));
     }
 
     public static Station findByName(String stationName) {
