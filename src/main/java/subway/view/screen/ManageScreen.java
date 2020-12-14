@@ -37,7 +37,7 @@ public class ManageScreen implements Screen {
     @Override
     public void run(Scanner scanner) {
         OutputView.printNewLine();
-        OutputView.printWithDoubleSharp(SELECT_FUNCTION);
+        OutputView.printSelectFunction();
         String command = InputView.getCommand(scanner);
         if (command.equals(BACK_COMMAND)) {
             ScreenStack.back();

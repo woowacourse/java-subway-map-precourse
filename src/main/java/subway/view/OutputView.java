@@ -5,6 +5,7 @@ public class OutputView {
     public static final String ERROR_MARK = "[ERROR] ";
     public static final String SEPARATER = "---";
     public static final String DOUBLE_SHARP = "## ";
+    public static final String SELECT_FUNCTION = "원하는 기능을 선택하세요.";
 
     public static final void printMenus(String menu) {
         System.out.println(menu);
@@ -12,6 +13,10 @@ public class OutputView {
 
     public static final void printWithDoubleSharp(String string){
         System.out.println(DOUBLE_SHARP + string);
+    }
+
+    public static final void printSelectFunction(){
+        printWithDoubleSharp(SELECT_FUNCTION);
     }
 
     public static final void printNewLine(){
