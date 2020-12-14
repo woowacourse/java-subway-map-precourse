@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import subway.Scene;
 import subway.domain.LineRepository;
-import subway.io.ExceptionManager;
+import subway.exception.LineExceptionManager;
 import subway.io.Request;
 import subway.io.Response;
 
@@ -43,7 +43,7 @@ public class LineManagementView extends View {
     private static boolean registerLineName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_REGISTER_MESSAGE);
-        String lineName = request.requestInput(ExceptionManager::checkValidLineRegister);
+        String lineName = request.requestInput(LineExceptionManager::checkValidLineRegister);
         if (lineName == null) {
             return false;
         }
@@ -55,7 +55,7 @@ public class LineManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(UPBOUND_STATION_REGISTER_MESSAGE);
         String upboundStation =
-                request.requestInput(ExceptionManager::checkValidTerminatingStation);
+                request.requestInput(LineExceptionManager::checkValidTerminatingStation);
         if (upboundStation == null) {
             return false;
         }
@@ -67,7 +67,7 @@ public class LineManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(DOWNBOUND_STATION_REGISTER_MESSAGE);
         String downboundStation =
-                request.requestInput(ExceptionManager::checkValidTerminatingStation);
+                request.requestInput(LineExceptionManager::checkValidTerminatingStation);
         if (downboundStation == null) {
             return false;
         }
@@ -77,7 +77,7 @@ public class LineManagementView extends View {
 
     private static void removeLine(Scene scene, Request request, Response response) {
         response.printHeadlineMessage(LINE_REMOVAL_MESSAGE);
-        if (request.applyInput(ExceptionManager::checkValidLineRemoval,
+        if (request.applyInput(LineExceptionManager::checkValidLineRemoval,
                 LineRepository::deleteLine)) {
             response.printInfoMessage(LINE_REMOVAL_SUCCESS_MESSAGE);
             scene.back();

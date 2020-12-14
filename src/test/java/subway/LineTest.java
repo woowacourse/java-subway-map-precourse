@@ -7,7 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import subway.domain.LineRepository;
-import subway.io.ExceptionManager;
+import subway.exception.LineExceptionManager;
 import subway.io.Request;
 
 class LineTest {
@@ -39,7 +39,7 @@ class LineTest {
         Request request = new Request(scanner, printStream);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            String result = request.requestInput(ExceptionManager::checkValidLineRegister);
+            String result = request.requestInput(LineExceptionManager::checkValidLineRegister);
             assertEquals(REGISTER_LINE_OUTPUTS[indexOutput++], result);
         }
     }
@@ -50,7 +50,8 @@ class LineTest {
         Request request = new Request(scanner, printStream);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            String result = request.requestInput(ExceptionManager::checkValidTerminatingStation);
+            String result =
+                    request.requestInput(LineExceptionManager::checkValidTerminatingStation);
             assertEquals(TERMINATING_STATION_OUTPUTS[indexOutput++], result);
         }
     }
@@ -74,7 +75,7 @@ class LineTest {
         Request request = new Request(scanner, printStream);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            boolean result = request.applyInput(ExceptionManager::checkValidLineRemoval,
+            boolean result = request.applyInput(LineExceptionManager::checkValidLineRemoval,
                     LineRepository::deleteLine);
             assertEquals(REMOVE_LINE_OUTPUTS[indexOutput++], result);
         }

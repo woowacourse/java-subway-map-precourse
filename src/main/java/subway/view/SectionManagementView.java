@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import subway.Scene;
 import subway.domain.SectionRepository;
-import subway.io.ExceptionManager;
+import subway.exception.SectionExceptionManager;
 import subway.io.Request;
 import subway.io.Response;
 
@@ -40,7 +40,8 @@ public class SectionManagementView extends View {
     private static boolean registerLineOfSectionName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_OF_SECTION_REGISTER_MESSAGE);
-        String lineName = request.requestInput(ExceptionManager::checkValidLineOfSectionRegister);
+        String lineName =
+                request.requestInput(SectionExceptionManager::checkValidLineOfSectionRegister);
         if (lineName == null) {
             return false;
         }
@@ -52,7 +53,7 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REGISETER_MESSAGE);
         String stationName = request.requestInputInLine(
-                ExceptionManager::checkValidStationOfSectionRegister, inputs.get(0));
+                SectionExceptionManager::checkValidStationOfSectionRegister, inputs.get(0));
         if (stationName == null) {
             return false;
         }
@@ -64,7 +65,7 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(INDEX_OF_SECTION_REGISTER_MESSAGE);
         String index = request.requestInputInLine(
-                ExceptionManager::checkValidIndexOfSectionRegister, inputs.get(0));
+                SectionExceptionManager::checkValidIndexOfSectionRegister, inputs.get(0));
         if (index == null) {
             return false;
         }
@@ -85,7 +86,8 @@ public class SectionManagementView extends View {
     private static boolean removeLineOfSectionName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_OF_SECTION_REMOVAL_MESSAGE);
-        String lineName = request.requestInput(ExceptionManager::checkValidLineOfSectionRemoval);
+        String lineName =
+                request.requestInput(SectionExceptionManager::checkValidLineOfSectionRemoval);
         if (lineName == null) {
             return false;
         }
@@ -97,7 +99,7 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REMOVAL_MESSAGE);
         String stationName = request.requestInputInLine(
-                ExceptionManager::checkValidStationOfSectionRemoval, inputs.get(0));
+                SectionExceptionManager::checkValidStationOfSectionRemoval, inputs.get(0));
         if (stationName == null) {
             return false;
         }

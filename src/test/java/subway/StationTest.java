@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 import subway.domain.StationRepository;
-import subway.io.ExceptionManager;
+import subway.exception.StationExceptionManager;
 import subway.io.Request;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +38,7 @@ class StationTest {
         Request request = new Request(scanner, printStream);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            boolean result = request.applyInput(ExceptionManager::checkValidStationRegister,
+            boolean result = request.applyInput(StationExceptionManager::checkValidStationRegister,
                     StationRepository::addStation);
             assertEquals(REGISTER_STATION_OUTPUTS[indexOutput++], result);
         }
@@ -51,7 +51,7 @@ class StationTest {
         StationRepository.addStation(TEST_STATION_NAME);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            boolean result = request.applyInput(ExceptionManager::checkValidStationRemoval,
+            boolean result = request.applyInput(StationExceptionManager::checkValidStationRemoval,
                     StationRepository::deleteStation);
             assertEquals(REMOVE_STATION_OUTPUTS[indexOutput++], result);
         }

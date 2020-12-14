@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
-import subway.io.ExceptionManager;
+import subway.exception.SectionExceptionManager;
 import subway.io.Request;
 
 class SectionTest {
@@ -47,7 +47,8 @@ class SectionTest {
         Request request = new Request(scanner, printStream);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            String result = request.requestInput(ExceptionManager::checkValidLineOfSectionRegister);
+            String result =
+                    request.requestInput(SectionExceptionManager::checkValidLineOfSectionRegister);
             assertEquals(REGISTER_LINE_OF_SECTION_OUTPUTS[indexOutput++], result);
         }
     }
@@ -58,9 +59,9 @@ class SectionTest {
         Request request = new Request(scanner, printStream);
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
-            String result =
-                    request.requestInputInLine(ExceptionManager::checkValidStationOfSectionRegister,
-                            TEST_LINE_OF_SECTION_NAME);
+            String result = request.requestInputInLine(
+                    SectionExceptionManager::checkValidStationOfSectionRegister,
+                    TEST_LINE_OF_SECTION_NAME);
             assertEquals(REGISTER_STATION_OF_SECTION_OUTPUTS[indexOutput++], result);
         }
     }
@@ -72,7 +73,8 @@ class SectionTest {
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
             String result = request.requestInputInLine(
-                    ExceptionManager::checkValidIndexOfSectionRegister, TEST_LINE_OF_SECTION_NAME);
+                    SectionExceptionManager::checkValidIndexOfSectionRegister,
+                    TEST_LINE_OF_SECTION_NAME);
             assertEquals(REGISTER_IDNEX_OF_SECTION_OUTPUT[indexOutput++], result);
         }
     }
@@ -85,7 +87,8 @@ class SectionTest {
         SectionRepository.deleteStationInLine(TEST_REMOVED_STATION_OF_SECTION,
                 TEST_LINE_OF_SECTION_NAME);
         while (scanner.hasNextLine()) {
-            String result = request.requestInput(ExceptionManager::checkValidLineOfSectionRemoval);
+            String result =
+                    request.requestInput(SectionExceptionManager::checkValidLineOfSectionRemoval);
             assertEquals(REMOVE_LINE_OF_SECTION_OUTPUTS[indexOutput++], result);
         }
     }
@@ -97,7 +100,8 @@ class SectionTest {
         int indexOutput = 0;
         while (scanner.hasNextLine()) {
             String result = request.requestInputInLine(
-                    ExceptionManager::checkValidStationOfSectionRemoval, TEST_LINE_OF_SECTION_NAME);
+                    SectionExceptionManager::checkValidStationOfSectionRemoval,
+                    TEST_LINE_OF_SECTION_NAME);
             assertEquals(REMOVE_STATION_OF_SECTION_OUTPUTS[indexOutput++], result);
         }
     }

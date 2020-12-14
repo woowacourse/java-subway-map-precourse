@@ -5,8 +5,10 @@ import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import subway.io.ExceptionManager.Error;
 import subway.Scene;
+import subway.exception.Error;
+import subway.exception.ExceptionManager;
+import subway.exception.LineExceptionManager;
 
 public class Request {
     private final Scanner scanner;
@@ -64,7 +66,7 @@ public class Request {
 
     public boolean isValidTerminatingStationPair(String upboundStation, String downboundStation) {
         Error error =
-                ExceptionManager.checkValidTerminatingStationPair(upboundStation, downboundStation);
+                LineExceptionManager.checkValidTerminatingStationPair(upboundStation, downboundStation);
         if (error != Error.OK) {
             printError(error);
             return false;
