@@ -23,6 +23,14 @@ public class Line_management {
 		System.out.println("[ERROR] 존재하지 않는 지하철 노선입니다.");
 	}
 	
+	public static void print_stations_of_each_lines() {
+		System.out.println("## 지하철 노선도");
+		for (Line line : LineRepository.lines()) {
+			line.print_stationOfLine();
+			System.out.println();
+		}
+	}
+	
 	public static void print_lines() {
 		System.out.println("## 노선 목록");
 		for (Line line : LineRepository.lines()) { 

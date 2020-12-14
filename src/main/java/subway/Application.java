@@ -39,7 +39,7 @@ public class Application {
 			return false;
 		}
 		if (select.equals("2")) {
-			line_function();
+			select_line_function();
 			return false;
 		}
 		if (select.equals("3")) {
