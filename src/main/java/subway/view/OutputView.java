@@ -12,6 +12,10 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final String STATION_LIST_TITLE = "## 역 목록";
     private static final String LINE_LIST_TITLE = "## 노선 목록";
+    private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.";
+    private static final String STATION_DELETION_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
+    private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
+    private static final String LINE_DELETION_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
 
     public static void showMainScreen() {
         String message = MainScreen.getInstance().toString();
@@ -21,6 +25,16 @@ public class OutputView {
     public static void showStationManagementScreen() {
         String message = StationManagementScreen.getInstance().toString();
         printGuide(message);
+    }
+
+    public static void showStationRegistrationSuccess() {
+        printInfo(STATION_REGISTRATION_SUCCESS_MESSAGE);
+        lineFeed();
+    }
+
+    public static void showStationDeletionSuccess() {
+        printInfo(STATION_DELETION_SUCCESS_MESSAGE);
+        lineFeed();
     }
 
     public static void showStationList(List<String> stationNames) {
@@ -35,10 +49,25 @@ public class OutputView {
         printGuide(message);
     }
 
+    public static void showLineRegistrationSuccess() {
+        printInfo(LINE_REGISTRATION_SUCCESS_MESSAGE);
+        lineFeed();
+    }
+
+    public static void showLineDeletionSuccess() {
+        printInfo(LINE_DELETION_SUCCESS_MESSAGE);
+        lineFeed();
+    }
+
     public static void showLineList(List<String> lineNames) {
         printGuide(LINE_LIST_TITLE);
         lineNames.stream()
                 .forEach(OutputView::printInfo);
+        lineFeed();
+    }
+
+    public static void showErrorMessage(String message) {
+        printError(message);
         lineFeed();
     }
 
