@@ -1,13 +1,14 @@
 package subway.screen;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.screenMessage.SectionScreenMessage;
+import java.util.stream.Collectors;
+import subway.menu.SectionMenu;
+import subway.message.SectionMessage;
 
-class SectionScreen implements SubwayScreen, SectionScreenMessage {
+public class SectionScreen implements SubwayScreen, SectionMessage {
     private static String sectionScreenInput;
 
     @Override
@@ -15,58 +16,24 @@ class SectionScreen implements SubwayScreen, SectionScreenMessage {
         do {
             printScreen();
             sectionScreenInput = validateInput(scanner.nextLine());
-            transfer(scanner);
-        } while (!sectionScreenInput.equals(BACK));
+            SectionMenu.executeMenuByInput(scanner, sectionScreenInput);
+        } while (!sectionScreenInput.equals(SectionMenu.BACK.getSymbol()));
     }
 
     @Override
     public void printScreen() {
-        System.out.println(MENU);
+        System.out.println(SectionMenu.getScreen());
         System.out.println(MESSAGE_MENU_SELECT);
     }
 
     @Override
     public String validateInput(String input) {
-        List<String> choices = Arrays.asList(MENU_CHOICES);
+        List<String> choices = Arrays.stream(SectionMenu.values())
+            .map(SectionMenu::getSymbol)
+            .collect(Collectors.toCollection(ArrayList::new));
         if (!choices.contains(input)) {
             throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
         return input;
-    }
-
-    @Override
-    public void transfer(Scanner scanner) {
-        inputAddSection(scanner);
-        inputDeleteSection(scanner);
-    }
-
-    private void inputDeleteSection(Scanner scanner) {
-        if (sectionScreenInput.equals(DELETE)) {
-            System.out.println(MESSAGE_DELETE_SECTION_INPUT_LINE_NAME);
-            String lineName = scanner.nextLine();
-            Line line = LineRepository.getLine(lineName); // 노선 얻기
-
-            System.out.println(MESSAGE_DELETE_SECTION_INPUT_STATION_NAME);
-            String stationName = scanner.nextLine();
-            line.deleteStation(stationName); // 노선에서 구간 삭제
-
-            System.out.println(MESSAGE_SECTION_DELETED);
-        }
-    }
-
-    private void inputAddSection(Scanner scanner) {
-        if (sectionScreenInput.equals(ADD)) {
-            System.out.println(MESSAGE_ADD_SECTION_INPUT_LINE_NAME);
-            String lineName = scanner.nextLine();
-            Line line = LineRepository.getLine(lineName); // 노선 얻기
-
-            System.out.println(MESSAGE_ADD_SECTION_INPUT_STATION_NAME);
-            String stationName = scanner.nextLine();
-            System.out.println(MESSAGE_ADD_SECTION_INPUT_STATION_INDEX);
-            String stationIndex = scanner.nextLine();
-            line.addStation(stationName, stationIndex); // 구간 추가
-
-            System.out.println(MESSAGE_SECTION_ADDED);
-        }
     }
 }

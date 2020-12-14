@@ -1,8 +1,11 @@
 package subway.screen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import subway.menu.MainMenu;
 
 public class MainScreen implements SubwayScreen {
     private String mainScreenInput;
@@ -12,12 +15,8 @@ public class MainScreen implements SubwayScreen {
         do {
             printScreen();
             mainScreenInput = validateInput(scanner.nextLine());
-            findNextStep(scanner);
+            MainMenu.executeMenuByInput(mainScreenInput, scanner);
         } while (!mainScreenInput.equals(MainMenu.QUIT.getSymbol()));
-    }
-
-    private void findNextStep(Scanner scanner) {
-        MainMenu.executeMenuByInput(mainScreenInput, scanner);
     }
 
     @Override
@@ -28,10 +27,9 @@ public class MainScreen implements SubwayScreen {
 
     @Override
     public String validateInput(String input) {
-        List<String> choices = new ArrayList<>();
-        for (MainMenu mainMenu : MainMenu.values()) {
-            choices.add(mainMenu.getSymbol());
-        }
+        List<String> choices = Arrays.stream(MainMenu.values())
+            .map(MainMenu::getSymbol)
+            .collect(Collectors.toCollection(ArrayList::new));
         if (!choices.contains(input)) {
             throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }

@@ -37,7 +37,7 @@ public class StationRepository implements StationErrorMessage {
 
     public static void deleteStation(String stationName) {
         validateStationNameDeleted(stationName);
-        stations().removeIf(station -> Objects.equals(station.getName(), stationName));
+        stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
     private static void validateStationNameDeleted(String stationName) {
