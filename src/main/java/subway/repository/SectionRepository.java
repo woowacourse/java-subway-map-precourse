@@ -18,6 +18,7 @@ public class SectionRepository {
 
     public static void addSection(Line line, Station station) {
         findDuplicateStation(line, station);
+//        validateExistLine(line);
         sections.computeIfAbsent(line, key -> new ArrayList<>()).add(station);
     }
 
@@ -29,12 +30,19 @@ public class SectionRepository {
         }
     }
 
+    private static void validateExistLine(Line line) {
+        if (!sections.containsKey(line)) {
+            throw new IllegalArgumentException(Message.ERROR_NOT_EXIST_LINE);
+        }
+    }
+
     public static void addSection(Line line, Station station, int order) {
         List<Station> stations = sections.get(line);
         stations.add(order, station);
     }
 
     public static void deleteSection(Line line, Station station) {
+        validateExistLine(line);
         List<Station> stations = sections.get(line);
         if (stations.size() <= VALID_STATION_SIZE) {
             throw new IllegalArgumentException(Message.ERROR_SIZE);

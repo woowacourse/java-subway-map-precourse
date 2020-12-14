@@ -43,7 +43,7 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(Message.ERROR_NOT_EXIST_LINE));
     }
 
     public static boolean isExist(String name) {

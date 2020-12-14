@@ -15,10 +15,17 @@ import subway.repository.StationRepository;
  */
 public class SectionService {
 
-    public void addSection(String lineName, String stationName, String order) {
-        Line line = LineRepository.findOne(lineName);
-        Station station = StationRepository.findOne(stationName);
-        SectionRepository.addSection(line, station, Integer.parseInt(order));
+    public boolean addSection(String lineName, String stationName, String order) {
+        try {
+            Line line = LineRepository.findOne(lineName);
+            Station station = StationRepository.findOne(stationName);
+
+            SectionRepository.addSection(line, station, Integer.parseInt(order));
+            return true;
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return false;
+        }
     }
 
     public boolean deleteSection(String lineName, String stationName) {
@@ -31,5 +38,15 @@ public class SectionService {
             return false;
         }
         return true;
+    }
+
+    public boolean findLine(String name) {
+        try {
+            LineRepository.findOne(name);
+            return true;
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return false;
+        }
     }
 }

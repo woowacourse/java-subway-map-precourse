@@ -13,11 +13,15 @@ public class SectionController {
         this.sectionService = new SectionService();
     }
 
-    public void createSection(String name, String line, String order) {
-        this.sectionService.addSection(name, line, order);
+    public boolean createSection(String name, String line, String order) {
+        return sectionService.addSection(name, line, order);
     }
 
     public boolean deleteSection(String name, String station) {
         return sectionService.deleteSection(name, station);
+    }
+
+    public boolean existLine(String name) {
+        return sectionService.findLine(name);
     }
 }

@@ -61,15 +61,18 @@ public class SectionView {
         return false;
     }
 
-    private boolean createSection(String name) {
+    private boolean createSection(String line) {
+        if (!sectionController.existLine(line)) {
+            return false;
+        }
+
         print(Message.INPUT_STATION_SECTION);
-        String line = input.nextLine();
+        String station = input.nextLine();
 
         print(Message.INPUT_ORDER_SECTION);
         String order = input.nextLine();
 
-        sectionController.createSection(name, line, order);
-        return true;
+        return sectionController.createSection(line, station, order);
     }
 
 
@@ -84,11 +87,15 @@ public class SectionView {
         return false;
     }
 
-    private boolean deleteSection(String name) {
+    private boolean deleteSection(String line) {
+        if (!sectionController.existLine(line)) {
+            return false;
+        }
+
         print(Message.INPUT_DELETE_ORDER_SECTION);
         String station = input.nextLine();
 
-        return sectionController.deleteSection(name, station);
+        return sectionController.deleteSection(line, station);
     }
 
     private boolean isBack(String button) {
