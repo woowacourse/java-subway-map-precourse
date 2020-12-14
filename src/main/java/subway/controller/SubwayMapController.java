@@ -24,7 +24,7 @@ public class SubwayMapController extends InputService {
         String menu = "";
         while (!MAIN_QUIT.isKeyEquals(menu)) {
             printMainMenu();
-            menu = inputSelectMenu(scanner, MAIN_MENU_RANGE.getKeys());
+            menu = inputSelectMenu(scanner, MAIN_MENU_RANGE);
             subwayMapService.selectMainMenu(scanner, menu, lineStation);
         }
     }

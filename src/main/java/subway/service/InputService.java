@@ -1,6 +1,7 @@
 package subway.service;
 
 import subway.domain.LineStationRepository;
+import subway.domain.MenuType;
 import subway.utils.InputValidation;
 
 import java.util.List;
@@ -11,10 +12,10 @@ import static subway.view.InputView.*;
 
 public class InputService extends InputValidation {
 
-    public String inputSelectMenu(Scanner scanner, List<String> menuRange) {
+    public String inputSelectMenu(Scanner scanner, MenuType menuType) {
         inputSelectMenuRequestMessage();
         String menu = scanner.nextLine();
-        validateMenuRange(menuRange, menu);
+        validateMenuRange(menuType.getKeys(), menu);
         return parseStringToTrimString(menu);
     }
 
