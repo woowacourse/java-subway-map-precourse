@@ -24,4 +24,13 @@ public class Line {
         lineInStationList.add(firstStation);
         lineInStationList.add(lastStation);
     }
+
+    public boolean isExistStation(String name) {
+        for (Station station : lineInStationList) {
+            if (station.isEqualName(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
