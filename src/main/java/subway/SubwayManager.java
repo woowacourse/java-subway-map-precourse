@@ -81,9 +81,9 @@ public class SubwayManager {
         if (optionNumber == 2) {
             LineManager.manage(scanner);
         }
-//        if (optionNumber == 3) {
-//            SectionManagement.manage(scanner);
-//        }
+        if (optionNumber == 3) {
+            SectionManager.manage(scanner);
+        }
         if (optionNumber == 4) {
             printMap();
         }
