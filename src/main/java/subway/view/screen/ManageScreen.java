@@ -43,14 +43,13 @@ public class ManageScreen implements Screen {
             ScreenStack.back();
             return;
         }
-        checkCommandValidateAndMappingAppropriateScreen(command);
+        checkCommandValidateAndMappingAppropriateController(command, scanner);
     }
 
-    // 입력 값 확인
-    private static final void checkCommandValidateAndMappingAppropriateScreen(String command) {
+    private static final void checkCommandValidateAndMappingAppropriateController(String command, Scanner scanner) {
         int parseCommandToInt = screen.isCommandValidate(command);
         if (parseCommandToInt != ERROR) {
-            ControllerMapper.mapping(name).mappingCommandToValidFunction(parseCommandToInt);
+            ControllerMapper.mapping(name).mappingCommandToValidFunction(parseCommandToInt, scanner);
         }
     }
 }

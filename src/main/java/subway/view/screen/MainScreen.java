@@ -34,7 +34,7 @@ public class MainScreen implements Screen {
     @Override
     public void run(Scanner scanner) {
         OutputView.printNewLine();
-        OutputView.printWithDoubleSharp(SELECT_FUNCTION);
+        OutputView.printSelectFunction();
         String command = InputView.getCommand(scanner);
         if (command.equals(EXIT_COMMAND)) {
             ScreenStack.exit();
