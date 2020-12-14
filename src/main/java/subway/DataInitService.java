@@ -31,7 +31,10 @@ public class DataInitService {
     }
 
     private static void addLine() {
-
+        LineService.addLine(LINE_TOW, GYODAE_STATION, YEOKSAM_STATION, false);
+        LineService.addLine(LINE_THREE, GYODAE_STATION, MAEBONG_STATION, false);
+        LineService
+            .addLine(LINE_SINBUNDANG, GANGNAM_STATION, YANGJAE_CITIZEN_FOREST_STATION, false);
     }
 
     private static void addSections() {
