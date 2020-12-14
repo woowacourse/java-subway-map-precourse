@@ -119,6 +119,7 @@ public class UserInterfaceView {
             return;
         }
         if (TWO_STRING.equals(userInput)) {
+            lineStart();
             return;
         }
         if (THREE_STRING.equals(userInput)) {
@@ -179,6 +180,17 @@ public class UserInterfaceView {
     private void printStation() {
         System.out.println(STATION_LIST);
         StationService.print();
+        System.out.println();
+    }
+
+    private void lineStart() {
+        printLineView();
+    }
+
+    private void printLineView() {
+        for (String str : LINE_INTERFACE) {
+            System.out.println(str);
+        }
         System.out.println();
     }
 }
