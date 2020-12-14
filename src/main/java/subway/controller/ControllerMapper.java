@@ -1,7 +1,7 @@
 package subway.controller;
 
-import subway.domain.type.FunctionType;
-import subway.domain.type.ManagementType;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public class ControllerMapper {
 
     public void delegateRequestToController(ManagementType managementType, FunctionType functionType) {
         SubwayMapController subwayMapController = findSubwayMapController(managementType);
-        if (managementType == ManagementType.SUBWAY_MAP_PRINT) {
+        if (managementType == ManagementType.PRINT_SUBWAY_MAP) {
             subwayMapController.readSubwayMap();
             return;
         }
-        execute(subwayMapController, functionType);
+        executeRequestFunction(subwayMapController, functionType);
     }
 
     private SubwayMapController findSubwayMapController(ManagementType managementType) {
@@ -36,10 +36,10 @@ public class ControllerMapper {
         return subwayMapControllers.stream()
                 .filter(subwayMapController -> subwayMapController.getClass() == targetClass)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(CannotFindControllerException::new);
     }
 
-    private void execute(SubwayMapController subwayMapController, FunctionType functionType) {
+    private void executeRequestFunction(SubwayMapController subwayMapController, FunctionType functionType) {
         if (functionType == FunctionType.REGISTER) {
             subwayMapController.register();
         }
