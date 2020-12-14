@@ -5,6 +5,10 @@ import java.util.Objects;
 
 public class Line {
     public static final String ERR_ALREADY_ADD_STATION_MSG = "[ERROR] 이미 등록된 역입니다.";
+    public static final int STATION_MINIMUM_SIZE = 2;
+    public static final String ERR_POOR_SIZE_OF_STATION_MSG =
+            String.format("[ERROR] 노선에 등록된 역의 개수는 %d개 보다 많아야 합니다.", STATION_MINIMUM_SIZE);
+
     private String name;
     private Stations stations = new Stations();
 
@@ -25,6 +29,13 @@ public class Line {
         }
 
         throw new IllegalStateException(ERR_ALREADY_ADD_STATION_MSG);
+    }
+
+    public void deleteStation(String name){
+        if(stations.size() > STATION_MINIMUM_SIZE){
+            throw new IllegalStateException(ERR_POOR_SIZE_OF_STATION_MSG);
+        }
+        stations.deleteStation(name);
     }
 
     public Station getUplineTerminalStation(){
