@@ -1,12 +1,12 @@
 package subway.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LineStationFactory {
-    private static final Map<Line, List<Station>> lineStation = new HashMap<>();
+    private static final Map<Line, List<Station>> lineStation = new LinkedHashMap<>();
 
     public static Map<Line, List<Station>> init() {
         initStation();
