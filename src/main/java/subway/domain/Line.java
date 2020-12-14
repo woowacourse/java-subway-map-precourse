@@ -46,6 +46,10 @@ public class Line {
         return stations.lastStation();
     }
 
+    public int size(){
+        return stations.size();
+    }
+
     public List<String> stationsNames(){
         return stations.stationNames();
     }
