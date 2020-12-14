@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.menus.MainMenu;
+import subway.views.OutPutSubwayMap;
 import subway.views.mainviews.MainInputView;
 import subway.views.mainviews.MainOutputView;
 
@@ -42,7 +43,7 @@ public class MainMenuController {
             sectionMenuController.mappingSectionMenu(scanner);
         }
         if (selectedOption.equals(MainMenu.SHOW_SUBWAY_MAP)) {
-            // 노선도 출력
+            OutPutSubwayMap.printAllSubwayMap();
         }
     }
 }
