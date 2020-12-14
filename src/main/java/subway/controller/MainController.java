@@ -3,6 +3,7 @@ package subway.controller;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.text.MainText;
+import subway.view.text.Screen;
 
 public class MainController {
     private static String CONTROLLER_INDEX = "B";
@@ -16,7 +17,7 @@ public class MainController {
     }
 
     public static void run(InputView inputView) {
-        OutputView.printFunctionTitle(MainText.functionTitle());
+        OutputView.printFunctionTitle(Screen.MAIN.getTitle());
         OutputView.printFunctionList(MainText.functionList());
         OutputView.printInputFunctionIndex();
         shiftFunctionScreen(inputView,

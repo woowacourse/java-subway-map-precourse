@@ -6,6 +6,7 @@ import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.text.LineText;
+import subway.view.text.Screen;
 
 public class LineController {
     private static String CONTROLLER_INDEX = "2";
@@ -14,7 +15,7 @@ public class LineController {
     private static String LOOK_UP_INDEX = "3";
 
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(LineText.functionTitle());
+        OutputView.printFunctionTitle(Screen.LINE.getTitle());
         OutputView.printFunctionList(LineText.functionList());
         OutputView.printInputFunctionIndex();
         callFunction(inputView, inputView.getInputFunctionIndex(LineText.functionIndexList()));
@@ -55,7 +56,7 @@ public class LineController {
     private void lookUpLine(InputView inputView) {
         OutputView.printFunctionTitle(LineText.listTitle());
         for (Line line : LineRepository.lines()) {
-            System.out.println(line.toString());
+            System.out.println(line);
         }
         goBackToMain(inputView);
     }

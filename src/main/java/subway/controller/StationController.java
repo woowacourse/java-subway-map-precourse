@@ -4,6 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.text.Screen;
 import subway.view.text.StationText;
 
 public class StationController {
@@ -43,7 +44,7 @@ public class StationController {
     }
 
     private void deleteStation(InputView inputView) {
-        OutputView.printInputDeleteValue(StationText.screenName());
+        OutputView.printInputDeleteValue(Screen.STATION.getTitle());
         if (StationRepository.deleteStation(inputView.getInputDeleteStation())) {
             OutputView.printDeleteSuccess(StationText.screenName());
         }
@@ -53,7 +54,7 @@ public class StationController {
     private void lookUpStation(InputView inputView) {
         OutputView.printFunctionTitle(StationText.listTitle());
         for (Station station : StationRepository.stations()) {
-            System.out.println(station.toString());
+            System.out.println(station);
         }
         goBackToMain(inputView);
     }

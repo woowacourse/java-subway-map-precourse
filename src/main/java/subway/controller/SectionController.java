@@ -4,6 +4,7 @@ import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.text.LineText;
+import subway.view.text.Screen;
 import subway.view.text.SectionText;
 import subway.view.text.StationText;
 
@@ -13,7 +14,7 @@ public class SectionController {
     private static String DELETE_INDEX = "2";
 
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(SectionText.functionTitle());
+        OutputView.printFunctionTitle(Screen.SECTION.getTitle());
         OutputView.printFunctionList(SectionText.functionList());
         OutputView.printInputFunctionIndex();
         callFunction(inputView, inputView.getInputFunctionIndex(SectionText.functionIndexList()));
