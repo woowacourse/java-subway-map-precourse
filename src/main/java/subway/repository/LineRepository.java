@@ -18,6 +18,7 @@ public class LineRepository {
     private static final String LINE_DELETE_SUCCESS = "노선이 삭제되었습니다.";
     private static final String LINE_SIZE_ZERO = "등록된 노선이 없습니다.";
     private static final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.";
+    private static final String ORDER_OUT_OF_STATION_CNT = "노선에 등록된 역보다 높은 수의 순서입니다.";
 
     private static final List<Line> lines = new ArrayList<>();
 
@@ -69,6 +70,10 @@ public class LineRepository {
     }
 
     public static void addSection(Line findLine, Station findStation, int orderNum) {
+        if (orderNum > findLine.stations().size() + 1) {
+            warnMessage(ORDER_OUT_OF_STATION_CNT);
+            return;
+        }
         findLine.addSection(orderNum, findStation);
         infoMessage(SECTION_ADD_SUCCESS);
     }

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class InputView {
     private final Scanner scanner;
-    private final String INPUT_NUMBER_WARN = "0 이상의 숫자를 입력해주세요.";
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;

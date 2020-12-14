@@ -44,7 +44,7 @@ public class Line {
     }
 
     public void addSection(int index, Station station) {
-        stationList.add(index, station);
+        stationList.add(index - 1, station);
     }
 
     public void deleteSection(Station station) {
