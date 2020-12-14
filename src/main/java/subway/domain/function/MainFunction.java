@@ -7,7 +7,8 @@ import subway.controller.ManagementController;
 public enum MainFunction implements Functionable {
     STATION("1", StationFunction.TITLE,
             managementController -> Functionable
-                    .function(managementController, StationFunction.TITLE, StationFunction.values())),
+                    .function(managementController, StationFunction.TITLE,
+                            StationFunction.values())),
 
     LINE("2", LineFunction.TITLE,
             managementController -> Functionable
@@ -19,7 +20,7 @@ public enum MainFunction implements Functionable {
 
     SUBWAY_MAP("4", "지하철 노선도 출력", ManagementController::loadSubwayMap),
 
-    QUIT("Q", "종료", mainController -> null);
+    QUIT("Q", "종료", managementController -> null);
 
     public static final String TITLE = "메인";
 

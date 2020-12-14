@@ -6,18 +6,15 @@ import subway.domain.function.MainFunction;
 public final class MainController {
 
     public void run() {
-
-        boolean quit = false;
-
         ManagementController managementController = ManagementController.initialize();
 
-        while (!quit) {
+        while (isProgressing(managementController)) {
             managementController = Functionable
                     .function(managementController, MainFunction.TITLE, MainFunction.values());
-
-            if (managementController == null) {
-                quit = true;
-            }
         }
+    }
+
+    private boolean isProgressing(ManagementController managementController) {
+        return managementController != null;
     }
 }
