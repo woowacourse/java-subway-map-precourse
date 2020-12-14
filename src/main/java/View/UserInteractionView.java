@@ -1,9 +1,14 @@
 package View;
 
+import Enum.Operation;
 import Enum.SubMenuType;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserInteractionView {
-    private static final String MANUAL = "";
+
+    protected String MANUAL = "";
+    protected Map<Operation, Runnable> operationToCommand= new HashMap<>();
 
     public UserInteractionView() {
 
@@ -13,8 +18,15 @@ public class UserInteractionView {
         return MANUAL;
     }
 
-    /*public SubMenuType execute(char letter) {
-        SubMenuType subMenu = SubMenuType.fromLetter(letter);
-        return subMenu;
-    }*/
+    public void execute(Operation operation) {
+        if(operationToCommand.get(operation) == null) {
+            return;
+        }
+        operationToCommand.get(operation).run();
+    }
+
+    public SubMenuType updateMenu(Operation operation, SubMenuType curMenu) {
+        return curMenu;
+    }
+
 }

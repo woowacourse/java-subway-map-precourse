@@ -19,12 +19,14 @@ public class InputView {
     private static final String DELETE_STATION_OF_INTERVAL = "## 삭제할 구간의 역을 입력하세요.";
     private static final String START_TERMINAL_NAME = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String END_TERMINAL_NAME = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String ONE_LINE = "\n";
     private static final int START = 0;
     private static Scanner scanner = new Scanner(System.in);
 
     public static char inputChoice() {
-        System.out.println(CHOOSE_FEATURE);
+        System.out.println(ONE_LINE + CHOOSE_FEATURE);
         char choice = scanner.next().charAt(START);
+        System.out.println();
         return choice;
     }
 
@@ -32,45 +34,46 @@ public class InputView {
         Map<String, String> info = Map.of();
 
         System.out.println(NEW_LINE_NAME);
-        info.put("lineName", scanner.nextLine());
+        info.put("lineName", scanner.next());
 
         System.out.println(START_TERMINAL_NAME);
-        info.put("startTerminalName", scanner.nextLine());
+        info.put("startTerminalName", scanner.next());
 
         System.out.println(END_TERMINAL_NAME);
-        info.put("endTerminalName", scanner.nextLine());
+        info.put("endTerminalName", scanner.next());
 
         return info;
     }
 
     public static String inputDeleteLineName() {
         System.out.println(DELETE_LINE_NAME);
-        String lineName = scanner.nextLine();
+        String lineName = scanner.next();
         return lineName;
     }
 
 
     public static String inputLineName() {
         System.out.println(INPUT_LINE_NAME);
-        String lineName = scanner.nextLine();
+        String lineName = scanner.next();
         return lineName;
     }
 
     public static String inputNewStationName() {
         System.out.println(INPUT_NEW_STATION_NAME);
-        String stationName = scanner.nextLine();
+        String stationName = scanner.next();
+        System.out.println();
         return stationName;
     }
 
     public static String inputDeleteStationName() {
         System.out.println(DELETE_STATION_NAME);
-        String stationName = scanner.nextLine();
+        String stationName = scanner.next();
         return stationName;
     }
 
     public static String inputStationName() {
         System.out.println(INPUT_STATION_NAME);
-        String stationName = scanner.nextLine();
+        String stationName = scanner.next();
         return stationName;
     }
 
@@ -83,9 +86,9 @@ public class InputView {
     public static String[] inputDeleteIntervalInfo() {
         String[] info = new String[2];
         System.out.println(DELETE_LINE_OF_INTERVAL);
-        info[0] = scanner.nextLine();
+        info[0] = scanner.next();
         System.out.println(DELETE_STATION_OF_INTERVAL);
-        info[1] = scanner.nextLine();
+        info[1] = scanner.next();
         return info;
     }
 }

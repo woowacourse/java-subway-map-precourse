@@ -2,7 +2,7 @@ package Enum;
 
 public enum Operation {
 
-    INSERT('1'), DELETE('2'), TRAVERSAL('3'),  GO_TO_MAIN('B');
+    INSERT('1'), DELETE('2'), TRAVERSAL('3'),  PRINT_SUBWAY_MAP('4'), GO_TO_MAIN('B');
 
     Operation(final char choice) {
         this.choice = choice;
@@ -15,12 +15,21 @@ public enum Operation {
         return choice;
     }
 
-    public static Operation fromLetter(char letter) {
-        return allOperations[letter];
+    public static Operation fromCommand(char command) {
+        for(Operation operation: allOperations) {
+            if(operation.choice == command) {
+                return operation;
+            }
+        }
+        return null;
     }
 
     public boolean isGoBack() {
         return this == Operation.GO_TO_MAIN;
+    }
+
+    public boolean isPrintMap() {
+        return this == Operation.PRINT_SUBWAY_MAP;
     }
 
 }

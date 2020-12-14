@@ -2,7 +2,7 @@ package subway.controller.RepositoryAdminister;
 
 import java.util.Map;
 
-import Validation.SubwayValidation;
+import Validation.ValidationCheck;
 import View.IoView.InputView;
 import View.IoView.OutputView;
 
@@ -29,8 +29,8 @@ public class LineAdminister {
             Line line = new Line(name,
                         new PassingRouteRepository(new String[]{info.get("startTerminalName"), info.get("endTerminalName")}));
             LineRepository.addBack(line);
-            SubwayValidation.repeatedLineCheck(line);
-            SubwayValidation.lineLengthCheck(line);
+            ValidationCheck.repeatedLineCheck(line);
+            ValidationCheck.lineLengthCheck(line);
             OutputView.printAfterCommand(LINE_REGISTERED);
         } catch (SubwayRelatedException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -41,7 +41,7 @@ public class LineAdminister {
     public static void deleteLine() {
         try {
             String name = InputView.inputDeleteLineName();
-            SubwayValidation.lineExistenceCheck(name);
+            ValidationCheck.lineExistenceCheck(name);
             StationRepository.delete(name);
             OutputView.printAfterCommand(LINE_DELETED);
         } catch (SubwayRelatedException e) {

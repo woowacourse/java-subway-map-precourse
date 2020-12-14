@@ -42,4 +42,8 @@ public class PassingRouteRepository{
         return this.routes.size();
     }
 
+    public boolean isContaining(Station station) {
+        return routes.contains(station);
+    }
+
 }

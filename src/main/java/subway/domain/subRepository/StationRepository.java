@@ -18,9 +18,12 @@ public class StationRepository{
     }
 
     public static boolean isRepeatedName(String newName) {
-        return stations.
-               stream().
-               anyMatch(station -> station.getName() == newName);
+        for(Station station: stations) {
+            if(station.getName().equals(newName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void addBack(Station station) {

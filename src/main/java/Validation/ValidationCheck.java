@@ -7,7 +7,7 @@ import subway.domain.Station;
 import subway.domain.subRepository.StationRepository;
 import subway.domain.subRepository.LineRepository;
 
-public class SubwayValidation {
+public class ValidationCheck {
 
     private static final String NAME_LENGTH_WARNING = "이름은 2글자 이상이어야 합니다.";
     private static final String REPEATED_STATION_NAME = "이미 등록된 역 이름입니다.";
@@ -42,7 +42,7 @@ public class SubwayValidation {
     }
 
     public static void RegisteredIntervalCheck(Line line, Station station) {
-        if (line.passingRoutes.isContaining(station)) {
+        if (line.getPassingRoutes().isContaining(station)) {
             throw new SubwayRelatedException(ALREADY_REGISTERED_INTERVAL);
         }
     }

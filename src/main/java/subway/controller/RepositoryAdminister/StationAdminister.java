@@ -5,7 +5,7 @@ import View.IoView.OutputView;
 import subway.Exception.SubwayRelatedException;
 import subway.domain.Station;
 import subway.domain.subRepository.StationRepository;
-import Validation.SubwayValidation;
+import Validation.ValidationCheck;
 
 public class StationAdminister {
 
@@ -21,9 +21,9 @@ public class StationAdminister {
         try {
             String name = InputView.inputNewStationName();
             Station station = new Station(name);
+            ValidationCheck.repeatedStationCheck(station);
+            ValidationCheck.stationLengthCheck(station);
             StationRepository.addBack(station);
-            SubwayValidation.repeatedStationCheck(station);
-            SubwayValidation.stationLengthCheck(station);
             OutputView.printAfterCommand(STATION_REGISTERED);
         } catch (SubwayRelatedException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -34,7 +34,7 @@ public class StationAdminister {
     public static void deleteStation() {
         try {
             String name = InputView.inputDeleteStationName();
-            SubwayValidation.StationExistenceCheck(name);
+            ValidationCheck.StationExistenceCheck(name);
             StationRepository.delete(name);
             OutputView.printAfterCommand(STATION_DELETED);
         } catch (SubwayRelatedException e) {

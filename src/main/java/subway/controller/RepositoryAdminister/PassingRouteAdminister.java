@@ -7,13 +7,13 @@ import subway.domain.Line;
 import subway.domain.subRepository.LineRepository;
 import subway.domain.Station;
 import subway.domain.subRepository.StationRepository;
-import Validation.SubwayValidation;
+import Validation.ValidationCheck;
 
 public class PassingRouteAdminister {
 
     private static final String INTERVAL_REGISTERED = "구간이 등록되었습니다.";
     private static final String INTERVAL_DELETED = "구간이 삭제되었습니다.";
-
+    private static final String SUBWAY_ROUTES = "## 지하철 노선도";
     public PassingRouteAdminister() {
 
     }
@@ -25,7 +25,7 @@ public class PassingRouteAdminister {
             int order = InputView.inputOrder();
             Line line = LineRepository.searchLine(lineName);
             Station station = StationRepository.searchStation(stationName);
-            SubwayValidation.RegisteredIntervalCheck(line, station);
+            ValidationCheck.RegisteredIntervalCheck(line, station);
             line.passingRoutes.add(order, station);
             OutputView.printAfterCommand(INTERVAL_REGISTERED);
         }
@@ -47,6 +47,10 @@ public class PassingRouteAdminister {
             OutputView.printErrorMessage(e.getMessage());
             deleteInterval();
         }
+    }
+
+    public static void inquiryAllRoutes() {
+        OutputView.printAllInfo(LineRepository.inquiryAllStations(), SUBWAY_ROUTES);
     }
 
 }
