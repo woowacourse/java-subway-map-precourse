@@ -1,25 +1,15 @@
 package subway;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import subway.controller.LineController;
-import subway.controller.StationController;
-import subway.domain.Line;
-import subway.domain.Station;
 import subway.util.LineManagementScreen;
 import subway.util.MainScreen;
+import subway.util.SectionManagementScreen;
 import subway.util.StationManagementScreen;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class Router {
-    private static final String ONE = "1";
-    private static final String TWO = "2";
-    private static final String THREE = "3";
-    private static final String FOUR = "4";
-    private static final String BACK = "B";
-    private static final String QUIT = "Q";
+    private static final Boolean BACK_TO_UPPER_SCREEN = true;
 
     private static InputView inputView;
 
@@ -45,7 +35,7 @@ public class Router {
         if (routeStationManagementScreen(command)) {
             return enterStationManagementScreen();
         }
-        return true;
+        return BACK_TO_UPPER_SCREEN;
     }
 
     public static boolean enterLineManagementScreen() {
@@ -55,7 +45,7 @@ public class Router {
         if (routeLineManagementScreen(command)) {
             return enterLineManagementScreen();
         }
-        return true;
+        return BACK_TO_UPPER_SCREEN;
     }
 
     public static boolean enterSectionManagementScreen() {
@@ -65,7 +55,7 @@ public class Router {
         if (routeSectionManagementScreen(command)) {
             return enterSectionManagementScreen();
         }
-        return true;
+        return BACK_TO_UPPER_SCREEN;
     }
 
     public static boolean routeStationManagementScreen(String command) {
@@ -77,20 +67,6 @@ public class Router {
     }
 
     public static boolean routeSectionManagementScreen(String command) {
-        if (command.equals(BACK)) {
-            return false;
-        }
-        if (command.equals(ONE)) {
-            String lineName = inputView.getName(OutputView.ORDER_TO_ENTER_LINE);
-            String stationName = inputView.getName(OutputView.ORDER_TO_ENTER_STATION);
-            int sequence = inputView.getSequence(OutputView.ORDER_TO_ENTER_SEQUENCE);
-            return LineController.registerSection(lineName, stationName, sequence);
-        }
-        if (command.equals(TWO)) {
-            String lineName = inputView.getName(OutputView.ORDER_TO_ENTER_LINE_TO_DELETE);
-            String stationName = inputView.getName(OutputView.ORDER_TO_ENTER_STATION_TO_DELETE);
-            return LineController.deleteSection(lineName, stationName);
-        }
-        return false;
+        return SectionManagementScreen.run(inputView,command);
     }
 }

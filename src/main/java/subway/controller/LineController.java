@@ -8,15 +8,18 @@ import subway.service.LineService;
 import subway.view.OutputView;
 
 public class LineController {
+    private static final Boolean BACK_TO_UPPER_SCREEN = false;
+    private static final Boolean RETRY = true;
+
     public static boolean registerLine(String lineName
         , String upTrainLastStationName, String downTrainLastStationName) {
         try {
             LineService.register(lineName, upTrainLastStationName, downTrainLastStationName);
             subway.view.OutputView.print(OutputView.SUCCESS_TO_REGISTER_LINE_MESSAGE);
-            return false;
+            return BACK_TO_UPPER_SCREEN;
         } catch (Exception e) {
             subway.view.OutputView.print(e.getMessage());
-            return true;
+            return RETRY;
         }
     }
 
@@ -24,10 +27,10 @@ public class LineController {
         try {
             LineService.delete(lineName);
             subway.view.OutputView.print(OutputView.SUCCESS_TO_DELETE_LINE_MESSAGE);
-            return false;
+            return BACK_TO_UPPER_SCREEN;
         } catch (Exception e) {
             subway.view.OutputView.print(e.getMessage());
-            return true;
+            return RETRY;
         }
     }
 
@@ -39,10 +42,10 @@ public class LineController {
         try {
             LineService.join(lineName, stationName, sequence);
             subway.view.OutputView.print(OutputView.SUCCESS_TO_REGISTER_SECTION_MESSAGE);
-            return false;
+            return BACK_TO_UPPER_SCREEN;
         } catch (Exception e) {
             subway.view.OutputView.print(e.getMessage());
-            return true;
+            return RETRY;
         }
     }
 
@@ -50,10 +53,10 @@ public class LineController {
         try {
             LineService.deleteStationInLine(lineName, stationName);
             subway.view.OutputView.print(OutputView.SUCCESS_TO_DELETE_SECTION_MESSAGE);
-            return false;
+            return BACK_TO_UPPER_SCREEN;
         } catch (Exception e) {
             subway.view.OutputView.print(e.getMessage());
-            return true;
+            return RETRY;
         }
     }
 }

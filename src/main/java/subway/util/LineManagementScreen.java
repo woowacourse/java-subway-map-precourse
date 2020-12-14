@@ -45,7 +45,7 @@ public enum LineManagementScreen {
     public static boolean run(InputView inputView, String command) {
         if (hasFeature(command)) {
             return Arrays.stream(values())
-                .filter(stationManagementScreen -> stationManagementScreen.feature.equals(command))
+                .filter(lineManagementScreen -> lineManagementScreen.feature.equals(command))
                 .findAny()
                 .orElse(LineManagementScreen.BACK)
                 .function.apply(inputView);

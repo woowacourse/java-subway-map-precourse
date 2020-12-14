@@ -10,11 +10,11 @@ import subway.view.OutputView;
 
 public enum StationManagementScreen {
     REGISTER_STATION("1", (inputView) -> {
-        String stationName = ((InputView) inputView).getName(OutputView.ORDER_TO_REGISTER_STATION);
+        String stationName = inputView.getName(OutputView.ORDER_TO_REGISTER_STATION);
         return StationController.registerStation(stationName);
     }),
     DELETE_STATION("2", (inputView) -> {
-        String stationName = ((InputView) inputView).getName(OutputView.ORDER_TO_DELETE_STATION);
+        String stationName = inputView.getName(OutputView.ORDER_TO_DELETE_STATION);
         return StationController.deleteStation(stationName);
     }),
     SEARCH_STATION("3", (inputView) -> {
