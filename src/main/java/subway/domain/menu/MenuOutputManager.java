@@ -9,8 +9,8 @@ public class MenuOutputManager {
         GuideMessage.print(WHICH_MENU);
     }
 
-    public static void printMenu(String[] menuItems) {
-        for (String item : menuItems) {
+    public static void printMenu(Menu menu) {
+        for (String item : menu.getMenuItems()) {
             System.out.println(item);
         }
     }

@@ -60,31 +60,28 @@ public class MenuInputManager {
     }
 
     private void checkMainSelection(String input) {
-        if (!MenuItemsRepository.getMainSelections().contains(input)) {
-            throw new ErrorMessage(
-                MenuItemsRepository.getMainSelections().toString() + INPUT_NEEDED);
+        if (!Menu.MAIN.containsKey(input)) {
+            throw new ErrorMessage(Menu.MAIN.getStringMenuKeys() + INPUT_NEEDED);
         }
     }
 
     private void checkStationSelection(String input) {
-        if (!MenuItemsRepository.getStationSelections().contains(input)) {
-            throw new ErrorMessage(
-                MenuItemsRepository.getStationSelections().toString() + INPUT_NEEDED);
+        if (!Menu.STATION.containsKey(input)) {
+            throw new ErrorMessage(Menu.STATION.getStringMenuKeys() + INPUT_NEEDED);
         }
     }
 
     private void checkLineSelection(String input) {
-        if (!MenuItemsRepository.getLineSelections().contains(input)) {
-            throw new ErrorMessage(
-                MenuItemsRepository.getLineSelections().toString() + INPUT_NEEDED);
+        if (!Menu.LINE.containsKey(input)) {
+            throw new ErrorMessage(Menu.LINE.getStringMenuKeys() + INPUT_NEEDED);
         }
     }
 
     private void checkPathSelection(String input) {
-        if (!MenuItemsRepository.getPathSelections().contains(input)) {
-            throw new ErrorMessage(
-                MenuItemsRepository.getPathSelections().toString() + INPUT_NEEDED);
+        if (!Menu.PATH.containsKey(input)) {
+            throw new ErrorMessage(Menu.PATH.getStringMenuKeys() + INPUT_NEEDED);
         }
     }
+
 
 }

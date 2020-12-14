@@ -1,8 +1,9 @@
 package subway.domain;
 
 import java.util.Scanner;
-import subway.domain.menu.MenuItemsRepository;
+import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
+import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 import subway.domain.path.PathService;
 import subway.domain.line.LineService;
@@ -28,9 +29,9 @@ public class SubwaySystem {
 
     public void run() {
         while (true) {
-            MenuOutputManager.printMenu(MenuItemsRepository.getMainItems());
+            MenuOutputManager.printMenu(Menu.MAIN);
             String input = menuInputManager.getMainInput();
-            if (input.equals("Q")) {
+            if (input.equals(MenuKeys.EXIT.getKey())) {
                 return;
             }
             runSystemByInput(input);
@@ -38,16 +39,16 @@ public class SubwaySystem {
     }
 
     private void runSystemByInput(String input) {
-        if (input.equals("1")) {
+        if (input.equals(MenuKeys.ONE.getKey())) {
             stationService.run();
         }
-        if (input.equals("2")) {
+        if (input.equals(MenuKeys.TWO.getKey())) {
             lineService.run();
         }
-        if (input.equals("3")) {
+        if (input.equals(MenuKeys.THREE.getKey())) {
             pathService.run();
         }
-        if (input.equals("4")) {
+        if (input.equals(MenuKeys.FOUR.getKey())) {
             SubwayOutputManager.printSubwayMap();
         }
     }

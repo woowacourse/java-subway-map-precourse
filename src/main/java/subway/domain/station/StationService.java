@@ -1,9 +1,10 @@
 package subway.domain.station;
 
 import java.util.Scanner;
+import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
-import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
+import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 
 public class StationService {
@@ -18,9 +19,9 @@ public class StationService {
 
     public void run() {
         while (true) {
-            MenuOutputManager.printMenu(MenuItemsRepository.getStationItems());
+            MenuOutputManager.printMenu(Menu.STATION);
             String input = menuInputManager.getStationInput();
-            if (input.equals("B")) {
+            if (input.equals(MenuKeys.BACK.getKey())) {
                 return;
             }
             runSystemByInput(input);
@@ -28,14 +29,14 @@ public class StationService {
     }
 
     private void runSystemByInput(String input) {
-        if (input.equals("1")) {
+        if (input.equals(MenuKeys.ONE.getKey())) {
             addStation();
         }
-        if (input.equals("2")) {
+        if (input.equals(MenuKeys.TWO.getKey())) {
             deleteStation();
         }
-        if (input.equals("3")) {
-            lookupStations();
+        if (input.equals(MenuKeys.THREE.getKey())) {
+            lookStations();
         }
     }
 
@@ -59,7 +60,7 @@ public class StationService {
         }
     }
 
-    private void lookupStations() {
+    private void lookStations() {
         StationOutputManager.printStations();
     }
 

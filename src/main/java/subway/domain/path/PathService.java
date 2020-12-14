@@ -3,9 +3,10 @@ package subway.domain.path;
 import java.util.Arrays;
 import java.util.Scanner;
 import subway.domain.SubwayRepository;
+import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
-import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
+import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 
 public class PathService {
@@ -20,9 +21,9 @@ public class PathService {
 
     public void run() {
         while (true) {
-            MenuOutputManager.printMenu(MenuItemsRepository.getPathItems());
+            MenuOutputManager.printMenu(Menu.PATH);
             String input = menuInputManager.getPathInput();
-            if (input.equals("B")) {
+            if (input.equals(MenuKeys.BACK.getKey())) {
                 return;
             }
             runSystemByInput(input);
@@ -30,10 +31,10 @@ public class PathService {
     }
 
     private void runSystemByInput(String input) {
-        if (input.equals("1")) {
+        if (input.equals(MenuKeys.ONE.getKey())) {
             addPath();
         }
-        if (input.equals("2")) {
+        if (input.equals(MenuKeys.TWO.getKey())) {
             deletePath();
         }
     }

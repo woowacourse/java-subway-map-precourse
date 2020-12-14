@@ -2,10 +2,11 @@ package subway.domain.line;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
 import subway.domain.SubwayRepository;
-import subway.domain.menu.MenuItemsRepository;
 import subway.common.ErrorMessage;
+import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 
 public class LineService {
@@ -20,9 +21,9 @@ public class LineService {
 
     public void run() {
         while (true) {
-            MenuOutputManager.printMenu(MenuItemsRepository.getLineItems());
+            MenuOutputManager.printMenu(Menu.LINE);
             String input = menuInputManager.getLineInput();
-            if (input.equals("B")) {
+            if (input.equals(MenuKeys.BACK.getKey())) {
                 return;
             }
             runSystemByInput(input);
@@ -30,13 +31,13 @@ public class LineService {
     }
 
     private void runSystemByInput(String input) {
-        if (input.equals("1")) {
+        if (input.equals(MenuKeys.ONE.getKey())) {
             addLine();
         }
-        if (input.equals("2")) {
+        if (input.equals(MenuKeys.TWO.getKey())) {
             deleteLine();
         }
-        if (input.equals("3")) {
+        if (input.equals(MenuKeys.THREE.getKey())) {
             lookupLines();
         }
     }
