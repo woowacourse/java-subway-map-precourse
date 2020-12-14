@@ -66,5 +66,6 @@ public class LineController {
 
     public void printLineList() {
         lineView.printLineList(LineRepository.getLineNames());
+        OutputView.printLineSeparator();
     }
 }

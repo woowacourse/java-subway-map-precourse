@@ -55,5 +55,6 @@ public class StationController {
 
     public void printStations() {
         stationView.printStationList(StationRepository.getStationNames());
+        OutputView.printLineSeparator();
     }
 }
