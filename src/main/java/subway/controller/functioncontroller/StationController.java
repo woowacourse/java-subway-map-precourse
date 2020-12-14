@@ -1,5 +1,6 @@
-package subway.controller;
+package subway.controller.functioncontroller;
 
+import subway.controller.FunctionController;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.validator.StationValidation;
@@ -9,14 +10,7 @@ import subway.view.stationoutput.StationOutputView;
 
 import java.util.Scanner;
 
-public class StationController {
-    private static final String STATION_REGISTER = "1";
-    private static final String STATION_DELETE = "2";
-    private static final String STATION_PRINT = "3";
-    private static final String BACK = "B";
-
-    private static final String INVALID_INPUT_STATION = "";
-
+public class StationController extends FunctionController {
     public static void start(Scanner scanner) {
         runStationController(scanner);
     }
@@ -43,13 +37,13 @@ public class StationController {
     }
 
     private static boolean startChosenStationFunction(String userChoice, Scanner scanner) {
-        if (userChoice.equals(STATION_REGISTER)) {
+        if (userChoice.equals(REGISTER)) {
             return registerStation(scanner);
         }
-        if (userChoice.equals(STATION_DELETE)) {
+        if (userChoice.equals(DELETE)) {
             return deleteStation(scanner);
         }
-        if (userChoice.equals(STATION_PRINT)) {
+        if (userChoice.equals(PRINT)) {
             return printStation(scanner);
         }
         if (userChoice.equals(BACK)) {
@@ -60,7 +54,7 @@ public class StationController {
 
     private static boolean registerStation(Scanner scanner) {
         String userInputStation = getRegisterStationUserInput(scanner);
-        if (userInputStation.equals(INVALID_INPUT_STATION)) {
+        if (userInputStation.equals(INVALID_INPUT)) {
             return false;
         }
         registerStationToDataBase(userInputStation);
@@ -71,7 +65,7 @@ public class StationController {
         StationOutputView.printRegisterStationInstruction();
         String userInputStation = InputView.getInput(scanner);
         if (!StationValidation.checkRegisterStationInput(userInputStation)) {
-            return INVALID_INPUT_STATION;
+            return INVALID_INPUT;
         }
         return userInputStation;
     }
@@ -84,7 +78,7 @@ public class StationController {
 
     private static boolean deleteStation(Scanner scanner) {
         String userInputStation = getDeleteStationUserInput(scanner);
-        if (userInputStation.equals(INVALID_INPUT_STATION)) {
+        if (userInputStation.equals(INVALID_INPUT)) {
             return false;
         }
         deleteStationFromDataBase(userInputStation);
@@ -95,7 +89,7 @@ public class StationController {
         StationOutputView.printDeleteStationInstruction();
         String userInputStation = InputView.getInput(scanner);
         if (!StationValidation.checkDeleteStationInput(userInputStation)) {
-            return INVALID_INPUT_STATION;
+            return INVALID_INPUT;
         }
         return userInputStation;
     }

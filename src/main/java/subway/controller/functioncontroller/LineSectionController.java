@@ -1,5 +1,6 @@
-package subway.controller;
+package subway.controller.functioncontroller;
 
+import subway.controller.FunctionController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -12,12 +13,7 @@ import subway.view.linesectionoutput.LineSectionOutputView;
 
 import java.util.Scanner;
 
-public class LineSectionController {
-    private static final String LINE_SECTION_REGISTER = "1";
-    private static final String LINE_SECTION_DELETE = "2";
-    private static final String BACK = "B";
-
-    private static final String INVALID_INPUT = "";
+public class LineSectionController extends FunctionController {
     private static final int ADJUST_SECTION = 1;
 
     public static void start(Scanner scanner) {
@@ -46,10 +42,10 @@ public class LineSectionController {
     }
 
     private static boolean startChosenLineSectionFunction(String userChoice, Scanner scanner) {
-        if (userChoice.equals(LINE_SECTION_REGISTER)) {
+        if (userChoice.equals(REGISTER)) {
             return registerLineSection(scanner);
         }
-        if (userChoice.equals(LINE_SECTION_DELETE)) {
+        if (userChoice.equals(DELETE)) {
             return deleteLineSection(scanner);
         }
         if (userChoice.equals(BACK)) {

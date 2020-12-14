@@ -1,9 +1,10 @@
-package subway.controller;
+package subway.controller.functioncontroller;
 
+import subway.controller.FunctionController;
 import subway.view.mapprintoutput.MapPrintInfoView;
 import subway.view.mapprintoutput.MapPrintOutputView;
 
-public class MapPrintController {
+public class MapPrintController extends FunctionController {
     public static void start() {
         runMapPrintController();
     }

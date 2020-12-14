@@ -1,5 +1,6 @@
-package subway.controller;
+package subway.controller.functioncontroller;
 
+import subway.controller.FunctionController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -12,16 +13,7 @@ import subway.view.lineoutput.LineOutputView;
 
 import java.util.Scanner;
 
-public class LineController {
-    private static final String LINE_REGISTER = "1";
-    private static final String LINE_DELETE = "2";
-    private static final String LINE_PRINT = "3";
-    private static final String BACK = "B";
-
-    private static final String INVALID_INPUT = "";
-    private static final boolean UP_TERMINUS = true;
-    private static final boolean DOWN_TERMINUS = false;
-
+public class LineController extends FunctionController {
     public static void start(Scanner scanner) {
         runLineController(scanner);
     }
@@ -48,13 +40,13 @@ public class LineController {
     }
 
     private static boolean startChosenLineFunction(String userChoice, Scanner scanner) {
-        if (userChoice.equals(LINE_REGISTER)) {
+        if (userChoice.equals(REGISTER)) {
             return registerLine(scanner);
         }
-        if (userChoice.equals(LINE_DELETE)) {
+        if (userChoice.equals(DELETE)) {
             return deleteLine(scanner);
         }
-        if (userChoice.equals(LINE_PRINT)) {
+        if (userChoice.equals(PRINT)) {
             return printLine(scanner);
         }
         if (userChoice.equals(BACK)) {
@@ -68,11 +60,11 @@ public class LineController {
         if (userInputLine.equals(INVALID_INPUT)) {
             return false;
         }
-        String upTerminusInput = getRegisterUserInputTerminus(scanner, UP_TERMINUS);
+        String upTerminusInput = getRegisterUserInputUpTerminus(scanner);
         if (upTerminusInput.equals(INVALID_INPUT)) {
             return false;
         }
-        String downTerminusInput = getRegisterUserInputTerminus(scanner, DOWN_TERMINUS);
+        String downTerminusInput = getRegisterUserInputDownTerminus(scanner);
         if (downTerminusInput.equals(INVALID_INPUT) ||
                 !LineValidation.checkSameTerminus(upTerminusInput, downTerminusInput)) {
             return false;
@@ -90,13 +82,17 @@ public class LineController {
         return userInputLine;
     }
 
-    private static String getRegisterUserInputTerminus(Scanner scanner, boolean terminus) {
-        if (terminus == UP_TERMINUS) {
-            LineOutputView.printUpTerminusInstruction();
+    private static String getRegisterUserInputUpTerminus(Scanner scanner) {
+        LineOutputView.printUpTerminusInstruction();
+        String TerminusInput = InputView.getInput(scanner);
+        if (!StationValidation.checkIsInStationRepository(TerminusInput)) {
+            return INVALID_INPUT;
         }
-        if (terminus == DOWN_TERMINUS) {
-            LineOutputView.printDownTerminusInstruction();
-        }
+        return TerminusInput;
+    }
+
+    private static String getRegisterUserInputDownTerminus(Scanner scanner) {
+        LineOutputView.printDownTerminusInstruction();
         String TerminusInput = InputView.getInput(scanner);
         if (!StationValidation.checkIsInStationRepository(TerminusInput)) {
             return INVALID_INPUT;
