@@ -4,6 +4,8 @@ import subway.model.ResultDto;
 import subway.station.Station;
 import subway.station.StationService;
 
+import java.util.List;
+
 public class LineService {
 
     private static final String REGISTER_RESULT_OK_MESSAGE = "지하철 노선이 등록되었습니다.";
@@ -57,5 +59,17 @@ public class LineService {
 
     private static void checkExistLine(String lineName) {
         repository.checkLineExist(lineName);
+    }
+
+    public static ResultDto findAllStationNames() {
+        StringBuilder lineNames = new StringBuilder();
+        List<Line> lines = repository.findAll();
+        for (Line line : lines) {
+            lineNames.append(ResultDto.RESULT_OK_PREFIX + line.getName() + "\n");
+        }
+
+        ResultDto result = ResultDto.ok("");
+        result.setContent(lineNames.toString());
+        return result;
     }
 }

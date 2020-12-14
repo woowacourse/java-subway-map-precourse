@@ -1,5 +1,7 @@
 package subway.view.line;
 
+import subway.line.LineService;
+import subway.model.ResultDto;
 import subway.view.GeneralView;
 
 public class LineQueryView extends GeneralView {
@@ -14,6 +16,8 @@ public class LineQueryView extends GeneralView {
 
     @Override
     public void setVisible() {
-        /** TODO: LineService에게 조회 요청 */
+        println(QUERY_GUIDE_TEXT);
+        ResultDto result = LineService.findAllStationNames();
+        println(result.getContent());
     }
 }
