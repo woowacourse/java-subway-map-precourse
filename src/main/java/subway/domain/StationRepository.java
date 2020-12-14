@@ -11,13 +11,7 @@ public class StationRepository {
 	private static final List<Station> stations = new ArrayList<>();
 
 	static {
-		addStation(new Station("교대역"));
-		addStation(new Station("강남역"));
-		addStation(new Station("역삼역"));
-		addStation(new Station("남부터미널역"));
-		addStation(new Station("양재역"));
-		addStation(new Station("양재시민의숲역"));
-		addStation(new Station("매봉역"));
+		InitialSubway.initializeStations();
 	}
 
 	public static List<Station> stations() {

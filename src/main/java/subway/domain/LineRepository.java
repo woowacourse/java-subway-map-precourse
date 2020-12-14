@@ -2,27 +2,14 @@ package subway.domain;
 
 import subway.view.LineMessages;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
 	private static final List<Line> lines = new ArrayList<>();
 
 	static {
-		addLine(new Line("2호선"));
-		for (String section : new String[]{"역삼역", "강남역", "교대역"}) {
-			Sections.addSection("2호선", section, Sections.FIRST_SECTION_LOCATION);
-		}
-		addLine(new Line("3호선"));
-		for (String section : new String[]{"매봉역", "양재역", "남부터미널역", "교대역"}) {
-			Sections.addSection("3호선", section, Sections.FIRST_SECTION_LOCATION);
-		}
-		addLine(new Line("신분당선"));
-		for (String section : new String[]{"양재시민의숲역", "양재역", "강남역"}) {
-			Sections.addSection("신분당선", section, Sections.FIRST_SECTION_LOCATION);
-		}
+		InitialSubway.initializeLines();
+		InitialSubway.initializeSections();
 	}
 
 	public static List<Line> lines() {
