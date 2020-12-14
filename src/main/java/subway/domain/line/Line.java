@@ -4,6 +4,7 @@ import subway.domain.section.SectionStations;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.NameLengthException;
+import subway.exception.SectionSizeException;
 
 public class Line {
     private static final int NAME_LENGTH_MIN = 2;
@@ -38,6 +39,10 @@ public class Line {
     }
 
     public boolean deleteStation(String name) {
+        if (!isSectionSizeOverMin()) {
+            throw new SectionSizeException();
+        }
+
         return sectionStations.remove(StationRepository.findStationByName(name));
     }
 
@@ -47,5 +52,9 @@ public class Line {
 
     public boolean isContainStation(Station station) {
         return sectionStations.isContainStation(station);
+    }
+
+    private boolean isSectionSizeOverMin() {
+        return sectionStations.isSectionSizeOverMin();
     }
 }

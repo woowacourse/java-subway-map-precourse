@@ -10,6 +10,7 @@ public class SectionStations {
     private static final int FIRST_STATION_INDEX = 0;
     private static final int LAST_STATION_INDEX = 1;
     private static final int USER_INTERFACE_INDEX = 1; // 사용자 입력은 1번 인덱스 부터...
+    private static final int STATION_MIN_COUNT = 2;
 
     private List<SectionStation> sectionStations = new LinkedList<>();
 
@@ -111,5 +112,9 @@ public class SectionStations {
     public boolean isContainStation(Station staiton) {
         return sectionStations.stream()
                 .anyMatch(sectionStation -> sectionStation.isEqualStation(staiton));
+    }
+
+    public boolean isSectionSizeOverMin() {
+        return sectionStations.size() > STATION_MIN_COUNT;
     }
 }
