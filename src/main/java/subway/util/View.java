@@ -21,14 +21,22 @@ public class View {
 	private void moveManagementViewBySelector(String selector) {
 		if (selector.equals("1")) {
 			stationManagement();
+			return;
 		} else if (selector.equals("2")) {
 			lineManagement();
+			return;
 		} else if (selector.equals("3")) {
 			sectionManagement();
+			return;
 		} else if (selector.equals("4")) {
 			Output.title(Message.SUBWAY_LINE_VIEW);
 			Subway.show();
+			return;
+		} else if (selector.equals("Q")) {
+			Output.print(Message.EXIT);
+			return;
 		}
+		Output.error(Message.WRONG_INPUT);
 	}
 	
 	private void stationManagement() {

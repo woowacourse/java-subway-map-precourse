@@ -51,4 +51,21 @@ public class Message {
 	public static final String SECTION_REMOVE = "2. 구간 삭제";
 	
 	public static final String BACK = "B. 돌아가기";
+	
+	public static final String EXIT = "프로그램을 종료합니다.";
+	
+	// info
+	public static final String STATION_WAS_CREATE = "지하철 역이 등록되었습니다.";
+	public static final String STATION_WAS_REMOVE = "지하철 역이 삭제되었습니다.";
+	public static final String LINE_WAS_CREATE = "지하철 노선이 등록되었습니다.";
+	public static final String LINE_WAS_REMOVE = "지하철 노선이 삭제되었습니다.";
+	public static final String SECTION_WAS_REMOVE = "구간이 삭제되었습니다.";
+	
+	// error
+	public static final String WRONG_INPUT = "잘못된 입력입니다.";
+	public static final String ALREADY_CREATED_STATION = "이미 등록된 역 이름입니다.";
+	public static final String ALREADY_CREATED_LINE = "이미 등록된 노선 이름입니다.";
+	public static final String NOT_CREATED_LINE_NAME = "등록되지 않은 노선 이름입니다.";
+	public static final String NOT_CREATED_STATION_NAME = "등록되지 않은 역 이름입니다.";
+	public static final String HAVE_NOT_STATION = "내에 일치하는 지하철 역 이름이 없습니다.";
 }

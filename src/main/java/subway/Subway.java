@@ -17,10 +17,10 @@ import subway.util.View;
 public class Subway {	
 	private static boolean isUseableSection(String lineName, String stationName) {
 		if (!LineRepository.contains(lineName)) {
-			Output.error("등록되지 않은 노선 이름입니다.");
+			Output.error(Message.NOT_CREATED_LINE_NAME);
 			return false;
 		} else if (!StationRepository.contains(stationName)) {
-			Output.error("등록되지 않은 역 이름입니다.");
+			Output.error(Message.NOT_CREATED_STATION_NAME);
 			return false;
 		}
 		return true;
@@ -35,10 +35,10 @@ public class Subway {
 	private static void removeSectionByLine(Line line, String lineName, String stationName) {
 		if (Objects.equals(line.getName(), lineName)) {
 			if (line.removeStation(stationName)) {
-				Output.info("구간이 삭제되었습니다.");
+				Output.info(Message.SECTION_WAS_REMOVE);
 				return;
 			}
-			Output.error(lineName + "내에 일치하는 지하철 역 이름이 없습니다.");
+			Output.error(lineName + Message.HAVE_NOT_STATION);
 		}
 	}
 	
@@ -54,10 +54,10 @@ public class Subway {
 	public static void addStation(String name) {
 		if (!StationRepository.contains(name)) {
 			StationRepository.addStation(new Station(name));
-			Output.info("지하철 역이 등록되었습니다.");
+			Output.info(Message.STATION_WAS_CREATE);
 			return;
 		}
-		Output.error("이미 등록된 역 이름입니다.");
+		Output.error(Message.ALREADY_CREATED_STATION);
 	}
 	
 	public static void readStation() {
@@ -68,28 +68,28 @@ public class Subway {
 	
 	public static void removeStation(String name) {
 		if (StationRepository.deleteStation(name)) {
-			Output.info("지하철 역이 삭제되었습니다.");
+			Output.info(Message.STATION_WAS_REMOVE);
 			return;
 		}
-		Output.error("등록되지 않은 역 이름입니다.");
+		Output.error(Message.NOT_CREATED_STATION_NAME);
 	}
 	
 	public static void addLine(String name, String lineUpBoundTerminus, String downstreamTerminus) {
 		if (!StationRepository.contains(lineUpBoundTerminus) || !StationRepository.contains(downstreamTerminus)) {
-			Output.info("등록되지 않은 역 이름입니다.");
+			Output.error(Message.NOT_CREATED_STATION_NAME);
 			return;
 		}
 		LineRepository.addLine(new Line(name, lineUpBoundTerminus, downstreamTerminus));
-		Output.info("지하철 노선이 등록되었습니다.");
+		Output.info(Message.LINE_WAS_CREATE);
 	}
 	
 	public static void addLineUpBoundTerminus(String name) {
 		if (!StationRepository.contains(name)) {
 			StationRepository.addStation(new Station(name));
-			Output.info("지하철 역이 등록되었습니다.");
+			Output.info(Message.STATION_WAS_REMOVE);
 			return;
 		}
-		Output.error("이미 등록된 역 이름입니다.");
+		Output.error(Message.ALREADY_CREATED_STATION);
 	}
 	
 	public static void readLine() {
@@ -100,10 +100,10 @@ public class Subway {
 	
 	public static void removeLine(String name) {
 		if (LineRepository.deleteLineByName(name)) {
-			Output.info("지하철 노선이 삭제되었습니다.");
+			Output.info(Message.LINE_WAS_REMOVE);
 			return;
 		}
-		Output.error("등록되지 않은 노선 이름입니다.");
+		Output.error(Message.NOT_CREATED_LINE_NAME);
 	}
 	
 	public static void addSection(String lineName, String stationName, String seq) {

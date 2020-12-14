@@ -36,7 +36,7 @@ public class ViewManager {
 			Subway.addLine(lineName, getUpBoundTerminus(), getDownstreamTerminus());
 			return;
 		}
-		Output.error("이미 등록된 노선 이름입니다.");
+		Output.error(Message.ALREADY_CREATED_LINE);
 	}
 	
 	public static void removeLine() {

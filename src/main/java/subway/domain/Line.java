@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,12 +22,7 @@ public class Line {
         this.name = name;
         this.upBoundTerminus = upBoundTerminus;
         this.downstreamTerminus = downstreamTerminus;
-        this.stations = new ArrayList<>() {
-        	{
-        		add(upBoundTerminus);
-        		add(downstreamTerminus);
-        	}
-        };
+        this.stations = Arrays.asList(upBoundTerminus, downstreamTerminus);
     }
 
     public String getName() {
