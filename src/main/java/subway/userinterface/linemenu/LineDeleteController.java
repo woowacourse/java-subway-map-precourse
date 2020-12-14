@@ -15,7 +15,6 @@ public class LineDeleteController implements Menu {
     private static final LineService lineService = new LineService();
     private static final LineDeleteInputController lineDeleteInputController
             = new LineDeleteInputController();
-
     private static LineDeleteController lineDeleteController;
 
     public static Menu getInstance() {
