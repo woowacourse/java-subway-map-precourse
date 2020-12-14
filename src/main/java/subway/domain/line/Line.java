@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private String name;
+    private LineName name;
     private List<Station> sections;
 
-    private Line(String name, Station upLine, Station downLine) {
+    private Line(LineName name, Station upLine, Station downLine) {
         List<Station> sections = createSectionsWithUpLineAndDownLine(upLine, downLine);
         this.name = name;
         this.sections = sections;
     }
 
-    public static Line fromNameAndUpLineAndDownLine(String name, Station upLine, Station downLine) {
+    public static Line fromNameAndUpLineAndDownLine(LineName name, Station upLine, Station downLine) {
         return new Line(name, upLine, downLine);
     }
 
@@ -29,7 +29,7 @@ public class Line {
         return sections;
     }
 
-    public String getName() {
+    public LineName getName() {
         return name;
     }
 
