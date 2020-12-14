@@ -1,6 +1,5 @@
 package subway.validator;
 
-import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.UserInputException;
@@ -10,7 +9,6 @@ public class StationValidation extends Validation {
     private static final char WORD_STATION = '역';
     private static final int STATION_IS_NOT_IN_ANY_LINE = 0;
 
-    /* 해당 조건 중 만족하지 않는 것이 있다면 재입력 받도록 한다 */
     public static boolean checkRegisterStationInput(String userInputStation) {
         if (!checkInputLengthLongerThanTwo(userInputStation)) {
             return false;
@@ -39,10 +37,9 @@ public class StationValidation extends Validation {
         return true;
     }
 
-    /* 사용자가 입력한 문장이 '역' 으로 끝나지 않으면 예외처리 */
     private static boolean checkEndWithWordStation(String userInputStation) {
         try {
-            if (userInputStation.charAt(userInputStation.length() - 1) != WORD_STATION) {
+            if (userInputStation.charAt(userInputStation.length() - LAST_CHARACTER) != WORD_STATION) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
@@ -56,7 +53,7 @@ public class StationValidation extends Validation {
         if (!checkIsInStationRepository(userInputLine)) {
             return false;
         }
-        if (!checkStationBelongLineCanDeleteStation(userInputLine)) {
+        if (!checkStationBelongToAnyLine(userInputLine)) {
             return false;
         }
         return true;
@@ -74,7 +71,7 @@ public class StationValidation extends Validation {
         return true;
     }
 
-    private static boolean checkStationBelongLineCanDeleteStation(String userInputLine) {
+    private static boolean checkStationBelongToAnyLine(String userInputLine) {
         Station station = StationRepository.getStationByName(userInputLine);
         try {
             if (station.getBelongToWhichLine().size() != STATION_IS_NOT_IN_ANY_LINE) {
@@ -86,5 +83,4 @@ public class StationValidation extends Validation {
         }
         return true;
     }
-
 }

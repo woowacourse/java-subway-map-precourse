@@ -1,17 +1,12 @@
 package subway.validator;
 
-import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.exception.UserInputException;
 import subway.view.lineoutput.LineErrorView;
-import subway.view.linesectionoutput.LineSectionErrorView;
 
 public class LineValidation extends Validation {
     private static final char WORD_LINE = '선';
 
-    /* 해당 조건 중 만족하지 않는 것이 있다면 재입력 받도록 한다 */
     public static boolean checkRegisterLineInput(String userInputLine) {
         if (!checkInputLengthLongerThanTwo(userInputLine)) {
             return false;
@@ -40,10 +35,9 @@ public class LineValidation extends Validation {
         return true;
     }
 
-    /* 사용자가 입력한 문장이 '선' 으로 끝나지 않으면 예외처리 */
     private static boolean checkEndWithWordLine(String userInputLine) {
         try {
-            if (userInputLine.charAt(userInputLine.length() - 1) != WORD_LINE) {
+            if (userInputLine.charAt(userInputLine.length() - LAST_CHARACTER) != WORD_LINE) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {

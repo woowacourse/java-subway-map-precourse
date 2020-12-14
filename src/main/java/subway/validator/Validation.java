@@ -11,7 +11,8 @@ public class Validation {
     protected static final String OPTION_QUIT = "Q";
     protected static final String OPTION_BACK = "B";
 
-    protected static final int MIN_LENGTH = 2;
+    protected static final int LAST_CHARACTER = 1;
+    protected static final int MINIMUM_INPUT_LENGTH = 2;
     protected static final char EMPTY_CHAR = ' ';
 
     public static boolean checkControllerInput(String userInput) {
@@ -29,7 +30,7 @@ public class Validation {
 
     protected static boolean checkInputLengthLongerThanTwo(String userInput) {
         try {
-            if (userInput.length() < MIN_LENGTH) {
+            if (userInput.length() < MINIMUM_INPUT_LENGTH) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {

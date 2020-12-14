@@ -83,7 +83,7 @@ public class LineSectionController extends FunctionController {
     private static String getRegisterLineSectionUserInputStation(Scanner scanner, String userInputLine) {
         LineSectionOutputView.printLineSectionRegisterStationNameInstruction();
         String userInputStation = InputView.getInput(scanner);
-        if (!LineSectionValidation.checkAvailableStation(userInputLine, userInputStation)) {
+        if (!LineSectionValidation.checkAvailableStationToRegister(userInputLine, userInputStation)) {
             return INVALID_INPUT;
         }
         return userInputStation;
@@ -92,7 +92,7 @@ public class LineSectionController extends FunctionController {
     private static String getRegisterLineSectionUserInputOrder(Scanner scanner, String userInputLine) {
         LineSectionOutputView.printLineSectionRegisterOrderInstruction();
         String userInputOrder = InputView.getInput(scanner);
-        if (!LineSectionValidation.checkAvailableOrder(userInputLine, userInputOrder)) {
+        if (!LineSectionValidation.checkAvailableOrderToRegister(userInputLine, userInputOrder)) {
             return INVALID_INPUT;
         }
         return userInputOrder;

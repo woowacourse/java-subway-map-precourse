@@ -6,7 +6,6 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.UserInputException;
 import subway.view.ErrorView;
-import subway.view.lineoutput.LineErrorView;
 import subway.view.linesectionoutput.LineSectionErrorView;
 
 public class LineSectionValidation extends Validation {
@@ -26,7 +25,7 @@ public class LineSectionValidation extends Validation {
         return true;
     }
 
-    public static boolean checkAvailableStation(String userInputLine, String userInputStation) {
+    public static boolean checkAvailableStationToRegister(String userInputLine, String userInputStation) {
         if (!StationValidation.checkIsInStationRepository(userInputStation)) {
             return false;
         }
@@ -50,7 +49,7 @@ public class LineSectionValidation extends Validation {
         return true;
     }
 
-    public static boolean checkAvailableOrder(String userInputLine, String userInputOrder) {
+    public static boolean checkAvailableOrderToRegister(String userInputLine, String userInputOrder) {
         int order = checkUserInputOrderNaturalNumber(userInputOrder);
         if (order == NOT_NATURAL_NUMBER) {
             return false;
@@ -123,7 +122,6 @@ public class LineSectionValidation extends Validation {
         return true;
     }
 
-    //Refactoring 필수 많은 중복
     private static boolean checkAlreadyInLine(String userInputLine, String userInputStation) {
         Line registerLine = LineRepository.getLineByName(userInputLine);
         Station sectionStation =  StationRepository.getStationByName(userInputStation);
