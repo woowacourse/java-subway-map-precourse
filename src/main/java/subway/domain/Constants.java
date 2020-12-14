@@ -2,7 +2,6 @@ package subway.domain;
 
 public class Constants {
     public final static int MIN_NAME_LENGTH = 2;
-    public final static int MIN_LINE_LENGTH = 2;
     public final static int START_ORDER = 2;
     public final static String FUNCTION_1 = "1";
     public final static String FUNCTION_2 = "2";
