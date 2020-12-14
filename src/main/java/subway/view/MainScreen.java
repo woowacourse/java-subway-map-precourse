@@ -23,4 +23,9 @@ public class MainScreen implements Screen {
         }
         OutputView.printMenus(EXIT_MARK + MAIN_MENU_ACTION.get(i).toString());
     }
+
+    @Override
+    public void getCommand() {
+        OutputView.print(SELECT_FUNCTION);
+    }
 }

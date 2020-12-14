@@ -12,4 +12,5 @@ public interface Screen {
     public static final String DOT = ". ";
 
     void show(); //화면을 출력하는 함수
+    void getCommand(); //사용자의 커맨드를 받는 함수
 }
