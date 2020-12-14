@@ -32,7 +32,7 @@ public class StationController implements Controller {
         OutputView.printWithAction(action);
         String station = InputView.getCommand(scanner);
         if (StationRepository.addStation(new Station(station))) {
-            OutputView.printWithInformationMark(action);
+            OutputView.printAlert(action);
             return;
         }
         OutputView.printDuplicatedErrorMessage(station.toString());
@@ -42,7 +42,7 @@ public class StationController implements Controller {
         OutputView.printWithAction(action);
         String station = InputView.getCommand(scanner);
         if (StationRepository.deleteStation(station)) {
-            OutputView.printWithInformationMark(action);
+            OutputView.printAlert(action);
             return;
         }
         OutputView.printStationDeleteErrorMessage();

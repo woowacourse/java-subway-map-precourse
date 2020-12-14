@@ -22,10 +22,12 @@ public class OutputView {
     }
 
     public static final void printWithAction(String string){
+        printNewLine();
         printWithDoubleSharp(String.format(INPUT_STATION_WITH_ACTION, string));
     }
 
     public static final void printAlert(String function){
+        printNewLine();
         printWithInformationMark(String.format(MANAGE_STATION, function));
     }
     public static final void printNewLine(){

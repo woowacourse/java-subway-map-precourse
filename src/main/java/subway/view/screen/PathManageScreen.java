@@ -16,6 +16,7 @@ public class PathManageScreen implements Screen {
             Action.INSERT, Action.DELETE, Action.BACK
     );
 
+
     @Override
     public void show() {
         OutputView.printNewLine();

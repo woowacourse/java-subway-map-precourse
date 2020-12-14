@@ -11,7 +11,7 @@ public class MainScreen implements Screen {
     private static final String TITLE = "메인 화면";
     public static final int MAX_MENU_NUMBER = 4;
     public static final String EXIT_COMMAND = "Q";
-    private static Screen screen;
+    private static Screen screen = new MainScreen();
 
     public static final List<Element> MAIN_MENU_ELEMENT = Arrays.asList(
             Element.STATION, Element.LINE, Element.PATH, Element.MAP
@@ -23,6 +23,7 @@ public class MainScreen implements Screen {
 
     @Override
     public void show() {
+        OutputView.printNewLine();
         OutputView.printWithDoubleSharp(TITLE);
         int i;
         for (i = 0; i < MAIN_MENU_ELEMENT.size(); i++) {
@@ -46,9 +47,9 @@ public class MainScreen implements Screen {
 
     // 입력 값 확인
     private static final void checkCommandValidateAndMappingAppropriateScreen(String command) {
-        int parseCommandToInt = screen.isCommandValidate(command);
+        int parseCommandToInt = screen.isCommandValidate(command, MAX_MENU_NUMBER);
         if(parseCommandToInt != ERROR) {
-            ScreenMapper.mapping(parseCommandToInt);
+            ScreenMapper.mapping(parseCommandToInt, screen);
         }
     }
 }

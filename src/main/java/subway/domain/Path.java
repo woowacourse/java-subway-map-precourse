@@ -39,7 +39,7 @@ public class Path {
 
     public void printAllPath(){
         for(Station station: paths){
-            OutputView.printStation(station.getName());
+            OutputView.printWithInformationMark(station.getName());
         }
     }
 }

@@ -19,8 +19,9 @@ public class ManageScreen implements Screen {
             Action.INSERT, Action.DELETE, Action.SELECT, Action.BACK
     );
 
-    public ManageScreen(String name) {
+    public ManageScreen(String name, Screen screen) {
         this.name = name;
+        this.screen = screen;
     }
 
     @Override
@@ -44,10 +45,11 @@ public class ManageScreen implements Screen {
             return;
         }
         checkCommandValidateAndMappingAppropriateController(command, scanner);
+        ScreenStack.popScreen();
     }
 
     private static final void checkCommandValidateAndMappingAppropriateController(String command, Scanner scanner) {
-        int parseCommandToInt = screen.isCommandValidate(command);
+        int parseCommandToInt = screen.isCommandValidate(command, MAX_MENU_NUMBER);
         if (parseCommandToInt != ERROR) {
             ControllerMapper.mapping(name).mappingCommandToValidFunction(parseCommandToInt, scanner);
         }

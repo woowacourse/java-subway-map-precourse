@@ -12,7 +12,6 @@ public interface Screen {
     public static final String DOT = ". ";
     public static final String DIGIT_REGEX = "^[0-9]*$";
     public static final int MIN_MENU_NUMBER = 1;
-    public static int MAX_MENU_NUMBER = 3;
     public static final int ERROR = -1;
 
 
@@ -20,7 +19,7 @@ public interface Screen {
 
     void run(Scanner scanner);
 
-    default int isCommandValidate(String command){
+    default int isCommandValidate(String command, int MAX_MENU_NUMBER){
         if (!command.matches(DIGIT_REGEX)) {
             OutputView.printInvalidCommandExceptionErrorMessage(command);
             return ERROR;
