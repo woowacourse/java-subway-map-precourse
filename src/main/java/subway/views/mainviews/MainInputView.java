@@ -6,7 +6,7 @@ import subway.views.OutputView;
 
 import java.util.Scanner;
 
-public class MainInputView implements OutputView {
+public class MainInputView implements InputView {
     private MainInputView() {
     }
 

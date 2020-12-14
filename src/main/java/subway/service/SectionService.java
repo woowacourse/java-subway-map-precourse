@@ -77,12 +77,12 @@ public class SectionService {
     }
 
     private void isAvailableOrder(int sectionOrder, String lineName) {
-        int maximum = LineRepository.lines().stream()
+        int maximumOrder = LineRepository.lines().stream()
                           .filter(line -> line.getName().equals(lineName))
                           .findFirst()
                           .map(line -> line.getStations().size())
                           .get();
-        if (sectionOrder < MINIMUM_AVAILABLE_ORDER_INDEX || sectionOrder > maximum) {
+        if (sectionOrder < MINIMUM_AVAILABLE_ORDER_INDEX || sectionOrder > maximumOrder+1) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_INDEX_MESSAGE);
         }
     }
@@ -92,7 +92,7 @@ public class SectionService {
                                 .filter(line -> line.getName().equals(lineName))
                                 .findFirst()
                                 .get();
-        lineToSectionAdd.addLineStation(sectionOrder, new Station(stationName));
+        lineToSectionAdd.addLineStation(sectionOrder-1, new Station(stationName));
     }
 
     public void sectionDeleteService() {
