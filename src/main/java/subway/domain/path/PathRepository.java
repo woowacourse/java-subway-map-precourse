@@ -18,8 +18,8 @@ public class PathRepository {
         Station downStation = StationRepository.findStation(down);
         path.addFirst(upStation);
         path.addLast(downStation);
-        upStation.onPath();
-        downStation.onPath();
+        upStation.addOnPath();
+        downStation.addOnPath();
         pathStationNames.add(up);
         pathStationNames.add(down);
     }
@@ -40,7 +40,7 @@ public class PathRepository {
 
     //todo:onPath 문제가 있음.. 다중으로 등록 되어있을때!
     public boolean deletePathByName(String name) {
-        StationRepository.findStation(name).onPath();
+        StationRepository.findStation(name).deleteOnPath();
         pathStationNames.remove(name);
         return path.removeIf(station -> Objects.equals(station.getName(), name));
     }

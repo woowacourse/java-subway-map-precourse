@@ -40,23 +40,23 @@ public class StationService {
     }
 
     private void addStation() {
-        String name = stationInputManager.getStationNameToAdd();
-        if (name.contains(ErrorMessage.OUT)) {
-            return;
+        try {
+            String name = stationInputManager.getStationNameToAdd();
+            StationRepository.addStation(new Station(name));
+            StationOutputManager.printAddedInfo();
+        } catch (ErrorMessage errorMessage) {
+            StationOutputManager.printErrorMessage(errorMessage);
         }
-        Station station = new Station(name);
-        StationRepository.addStation(station);
-        StationOutputManager.printAddedInfo();
-
     }
 
     private void deleteStation() {
-        String name = stationInputManager.getStationNameToDelete();
-        if (name.contains(ErrorMessage.OUT)) {
-            return;
+        try {
+            String name = stationInputManager.getStationNameToDelete();
+            StationRepository.deleteStation(name);
+            StationOutputManager.printDeletedInfo();
+        } catch (ErrorMessage errorMessage) {
+            StationOutputManager.printErrorMessage(errorMessage);
         }
-        StationRepository.deleteStation(name);
-        StationOutputManager.printDeletedInfo();
     }
 
     private void lookupStations() {

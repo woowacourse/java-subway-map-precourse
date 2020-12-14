@@ -1,5 +1,6 @@
 package subway.domain.station;
 
+import subway.common.ErrorMessage;
 import subway.common.GuideMessage;
 import subway.common.InfoMessage;
 
@@ -14,6 +15,10 @@ public class StationOutputManager {
     private StationOutputManager() {
     }
 
+    public static void printErrorMessage(ErrorMessage errorMessage) {
+        System.out.println(errorMessage.getMessage());
+    }
+
     public static void printAddSGuide() {
         GuideMessage.print(STATION_ADD_GUIDE);
     }
@@ -23,13 +28,14 @@ public class StationOutputManager {
     }
 
     public static void printAddedInfo() {
+        System.out.println();
         InfoMessage.print(STATION_ADDED);
     }
 
     public static void printDeletedInfo() {
+        System.out.println();
         InfoMessage.print(STATION_DELETED);
     }
-
 
     public static void printStations() {
         GuideMessage.print(STATION_LIST);

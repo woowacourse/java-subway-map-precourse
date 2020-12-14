@@ -6,10 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import subway.common.ErrorMessage;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
     private static final Set<String> stationNames = new HashSet<>();
+    private static final String NOT_DELETED = "삭제하지 못했습니다.";
+    private static final String NOT_VALID_STATION = "없는 역입니다.";
+
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -20,21 +24,23 @@ public class StationRepository {
         stationNames.add(station.getName());
     }
 
-    public static boolean deleteStation(String name) {
+    public static void deleteStation(String name) {
         stationNames.remove(name);
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
-    }
-
-    public static Set<String> stationNames() {
-        return Collections.unmodifiableSet(stationNames);
+        if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
+            throw new ErrorMessage(NOT_DELETED);
+        }
     }
 
     public static Station findStation(String name) {
-        return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst().
-            get();
+        return stations.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst()
+            .orElseThrow(() -> new ErrorMessage(NOT_VALID_STATION));
     }
 
-    public static boolean containsName(String lineName) {
-        return stationNames.contains(lineName);
+    public static boolean isAvailableToDelete(String name) {
+        return findStation(name).isAvailableToDelete();
+    }
+
+    public static boolean containsName(String station) {
+        return stationNames.contains(station);
     }
 }

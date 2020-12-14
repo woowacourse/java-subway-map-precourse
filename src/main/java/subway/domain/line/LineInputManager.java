@@ -84,7 +84,7 @@ public class LineInputManager {
     }
 
     private void checkEnrolledStation(String name) {
-        if (!StationRepository.stationNames().contains(name)) {
+        if (!StationRepository.containsName(name)) {
             throw new ErrorMessage(NOT_EXIST_STATION);
         }
     }

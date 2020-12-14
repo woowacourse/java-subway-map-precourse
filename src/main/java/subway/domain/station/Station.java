@@ -2,7 +2,7 @@ package subway.domain.station;
 
 public class Station {
     private String name;
-    private boolean isPathEnrolled = false;
+    private int isPathEnrolled = 0;
 
     public Station(String name) {
         this.name = name;
@@ -14,11 +14,15 @@ public class Station {
 
     // 추가 기능 구현
 
-    public void onPath() {
-        isPathEnrolled = true;
+    public void addOnPath() {
+        isPathEnrolled += 1;
     }
 
-    public boolean isOnPath() {
-        return isPathEnrolled;
+    public void deleteOnPath(){
+        isPathEnrolled -= 1;
+    }
+
+    public boolean isAvailableToDelete() {
+        return isPathEnrolled == 0;
     }
 }
