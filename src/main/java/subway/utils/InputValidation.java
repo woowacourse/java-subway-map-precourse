@@ -104,4 +104,8 @@ public class InputValidation {
         }
         return true;
     }
+
+    public String isFail() {
+        return "[ERROR] INPUT FAIL";
+    }
 }

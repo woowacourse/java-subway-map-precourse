@@ -14,37 +14,50 @@ import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 
 public class LineStationService extends InputService {
 
-    public void selectLineStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
+    public boolean selectLineStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
         if (LINE_STATION_ADD.isKeyEquals(menu)) {
-            addLineStation(scanner, lineStation);
+            return addLineStation(scanner, lineStation);
         }
         if (LINE_STATION_DELETE.isKeyEquals(menu)) {
-            deleteLineStation(scanner, lineStation);
+            return deleteLineStation(scanner, lineStation);
         }
         if (LINE_STATION_SEARCH.isKeyEquals(menu)) {
-            printLines();
+            return printLines();
         }
+        if (BACK.isKeyEquals(menu)) {
+            return true;
+        }
+        return false;
     }
 
-    private void addLineStation(Scanner scanner, LineStationRepository lineStation) {
+    private boolean addLineStation(Scanner scanner, LineStationRepository lineStation) {
         String lineName = inputAddLineName(scanner);
         String startStationName = inputAddStartStationName(scanner);
         String endStationName = inputAddEndStationName(scanner);
+        if (isInputFail(lineName) || isInputFail(startStationName) || isInputFail(endStationName)) {
+            return false;
+        }
         Line line = new Line(lineName);
         addLine(line);
         lineStation.addLineStation(line, findStation(startStationName));
         lineStation.addLineStation(line, findStation(endStationName));
         printAddLineStationSuccessMessage();
+        return true;
     }
 
-    private void deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
+    private boolean deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
         String lineName = inputDeleteLineName(scanner);
+        if (isInputFail(lineName)) {
+            return false;
+        }
         lineStation.deleteLineStation(findLine(lineName));
         deleteLineByName(lineName);
         printDeleteLineStationSuccessMessage();
+        return true;
     }
 
-    private void printLines() {
+    private boolean printLines() {
         LineRepository.printLines();
+        return true;
     }
 }

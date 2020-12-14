@@ -24,7 +24,7 @@ public class InputService extends InputValidation {
         inputAddStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
         if (!validateNameLengthIsMoreThan2(stationName) || !validateStationNameIsDuplicate(stationName)) {
-            return inputAddStationName(scanner);
+            return isFail();
         }
         return stationName;
     }
@@ -33,7 +33,7 @@ public class InputService extends InputValidation {
         inputDeleteStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
         if (!validateStationNameIsContains(stationName) || !validateStationIsContainsLineStation(stationName, lineStation)) {
-            return inputDeleteStationName(scanner, lineStation);
+            return isFail();
         }
         return stationName;
     }
@@ -42,7 +42,7 @@ public class InputService extends InputValidation {
         inputAddLineNameRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
         if (!validateNameLengthIsMoreThan2(lineName) || !validateLineNameIsDuplicate(lineName)) {
-            return inputAddLineName(scanner);
+            return isFail();
         }
         return lineName;
     }
@@ -51,7 +51,7 @@ public class InputService extends InputValidation {
         inputDeleteLineNameRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
         if (!validateLineNameIsContains(lineName)) {
-            return inputDeleteLineName(scanner);
+            return isFail();
         }
         return lineName;
     }
@@ -60,7 +60,7 @@ public class InputService extends InputValidation {
         inputAddStartStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
         if (!validateStationNameIsContains(stationName)) {
-            return inputAddStartStationName(scanner);
+            return isFail();
         }
         return stationName;
     }
@@ -69,7 +69,7 @@ public class InputService extends InputValidation {
         inputAddEndStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
         if (!validateStationNameIsContains(stationName)) {
-            return inputAddEndStationName(scanner);
+            return isFail();
         }
         return stationName;
     }
@@ -78,7 +78,7 @@ public class InputService extends InputValidation {
         inputLineNameToAddSectionRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
         if (!validateLineNameIsContains(lineName)) {
-            return inputLineNameToAddSection(scanner);
+            return isFail();
         }
         return lineName;
     }
@@ -87,7 +87,7 @@ public class InputService extends InputValidation {
         inputStationNameToAddSectionRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
         if (!validateStationNameIsContains(stationName)) {
-            return inputStationNameToAddSection(scanner);
+            return isFail();
         }
         return stationName;
     }
@@ -96,7 +96,7 @@ public class InputService extends InputValidation {
         inputPositionToAddSectionRequestMessage();
         String position = parseStringToTrimString(scanner.nextLine());
         if (!validatePositionIsDigit(position)) {
-            return inputPositionToAddSection(scanner);
+            return isFail();
         }
         return position;
     }
@@ -105,7 +105,7 @@ public class InputService extends InputValidation {
         inputLineNameToDeleteSectionRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
         if (!validateLineNameIsContains(lineName) || !validateStationSizeOfLineIsMoreThan2(lineName, lineStation)) {
-            return inputLineNameToDeleteSection(scanner, lineStation);
+            return isFail();
         }
         return lineName;
     }
@@ -114,8 +114,12 @@ public class InputService extends InputValidation {
         inputStationNameToDeleteSectionRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
         if (!validateStationNameIsContains(stationName)) {
-            return inputStationNameToDeleteSection(scanner);
+            return isFail();
         }
         return stationName;
+    }
+
+    public boolean isInputFail(String input) {
+        return input.equals(isFail());
     }
 }

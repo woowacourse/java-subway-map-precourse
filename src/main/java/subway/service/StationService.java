@@ -12,31 +12,44 @@ import static subway.view.OutputView.printDeleteStationSuccessMessage;
 
 public class StationService extends InputService {
 
-    public void selectStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
+    public boolean selectStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
         if (STATION_ADD.isKeyEquals(menu)) {
-            addStation(scanner);
+            return addStation(scanner);
         }
         if (STATION_DELETE.isKeyEquals(menu)) {
-            deleteStation(scanner, lineStation);
+            return deleteStation(scanner, lineStation);
         }
         if (STATION_SEARCH.isKeyEquals(menu)) {
-            printStations();
+            return printStations();
         }
+        if (BACK.isKeyEquals(menu)) {
+            return true;
+        }
+        return false;
     }
 
-    private void addStation(Scanner scanner) {
+    private boolean addStation(Scanner scanner) {
         String stationName = inputAddStationName(scanner);
+        if (isInputFail(stationName)) {
+            return false;
+        }
         StationRepository.addStation(new Station(stationName));
         printAddStationSuccessMessage();
+        return true;
     }
 
-    private void deleteStation(Scanner scanner, LineStationRepository lineStation) {
+    private boolean deleteStation(Scanner scanner, LineStationRepository lineStation) {
         String stationName = inputDeleteStationName(scanner, lineStation);
+        if (isInputFail(stationName)) {
+            return false;
+        }
         StationRepository.deleteStation(stationName);
         printDeleteStationSuccessMessage();
+        return true;
     }
 
-    private void printStations() {
+    private boolean printStations() {
         StationRepository.printStations();
+        return true;
     }
 }

@@ -36,19 +36,25 @@ public class SubwayMapService extends InputService {
     private void stationManagement(Scanner scanner, LineStationRepository lineStation) {
         printStationManagementMenu();
         String menu = inputSelectMenu(scanner, STATION_MENU_RANGE);
-        stationService.selectStationManagementMenu(scanner, menu, lineStation);
+        if (!stationService.selectStationManagementMenu(scanner, menu, lineStation)) {
+            stationManagement(scanner, lineStation);
+        }
     }
 
     private void lineStationManagement(Scanner scanner, LineStationRepository lineStation) {
         printLineStationManagementMenu();
         String menu = inputSelectMenu(scanner, LINE_STATION_MENU_RANGE);
-        lineStationService.selectLineStationManagementMenu(scanner, menu, lineStation);
+        if (!lineStationService.selectLineStationManagementMenu(scanner, menu, lineStation)) {
+            lineStationManagement(scanner, lineStation);
+        }
     }
 
     private void sectionManagement(Scanner scanner, LineStationRepository lineStation) {
         printSectionManagementMenu();
         String menu = inputSelectMenu(scanner, SECTION_MENU_RANGE);
-        sectionService.selectSectionManagementMenu(scanner, menu, lineStation);
+        if (!sectionService.selectSectionManagementMenu(scanner, menu, lineStation)) {
+            sectionManagement(scanner, lineStation);
+        }
     }
 
     private void printLineStation(LineStationRepository lineStation) {
