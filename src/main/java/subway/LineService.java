@@ -21,6 +21,18 @@ public class LineService {
         return false;
     }
 
+    private static boolean isNotExistStation(String firstStationName, String lastStationName) {
+        if (!StationRepository.isEqualStationName(firstStationName)) {
+            OutPut.printNonExistStationError(firstStationName);
+            return true;
+        }
+        if (!StationRepository.isEqualStationName(lastStationName)) {
+            OutPut.printNonExistStationError(lastStationName);
+            return true;
+        }
+        return false;
+    }
+
     public static boolean addLine(String lineName, String firstStationName, String lastStationName,
         boolean isPrint) {
         if (isNotLineNameState(lineName)) {
