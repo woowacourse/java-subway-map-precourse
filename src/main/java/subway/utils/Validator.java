@@ -43,8 +43,13 @@ public class Validator {
         return validMsgList.contains(inputMsg);
     }
 
-    public static boolean isValidStationManageMenuInput(String inputMsg) {
+    public static boolean isValidStationAndLineManageMenuInput(String inputMsg) {
         List<String> validMsgList = new ArrayList<>(Arrays.asList("1", "2", "3", "B"));
+        return validMsgList.contains(inputMsg);
+    }
+
+    public static boolean isValidSectionManageMenuInput(String inputMsg) {
+        List<String> validMsgList = new ArrayList<>(Arrays.asList("1", "2", "B"));
         return validMsgList.contains(inputMsg);
     }
 
