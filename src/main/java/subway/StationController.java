@@ -1,11 +1,7 @@
 package subway;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import subway.constant.BoundaryCheckDigit;
-import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -51,7 +47,7 @@ public class StationController {
     private static boolean stationAdd(Scanner scanner) {
         String stationName;
         try {
-            stationName = InputView.scanStationName(scanner);
+            stationName = InputView.scanStationAddName(scanner);
         } catch (IllegalArgumentException error) {
             return false;
         }
@@ -62,6 +58,12 @@ public class StationController {
     }
 
     private static boolean stationDelete(Scanner scanner) {
+        String stationName;
+
+        stationName = InputView.scanStationDeleteName(scanner);
+
+        StationRepository.deleteStation(stationName);
+
         return true;
     }
 

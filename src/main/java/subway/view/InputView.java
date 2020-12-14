@@ -66,7 +66,7 @@ public class InputView {
         return false;
     }
 
-    public static String scanStationName(Scanner scanner) {
+    public static String scanStationAddName(Scanner scanner) {
         String stationName;
 
         OutputView.stationAddGuidePrint();
@@ -95,5 +95,14 @@ public class InputView {
             .map(Station::getName)
             .collect(Collectors.toList())
             .contains(stationName);
+    }
+
+    public static String scanStationDeleteName(Scanner scanner) {
+        String stationName;
+
+        OutputView.stationDeleteGuidePrint();
+        stationName = scanner.nextLine();
+
+        return stationName;
     }
 }

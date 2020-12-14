@@ -54,4 +54,10 @@ public class OutputView {
     public static void zeroStationListErrorPrint() {
         System.out.println(StationMessage.STATION_LIST_FIND_FAIL.getStationMessage());
     }
+
+
+
+    public static void stationDeleteGuidePrint() {
+        System.out.println(StationMessage.STATION_DELETE_GUIDE.getStationMessage());
+    }
 }
