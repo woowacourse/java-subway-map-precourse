@@ -18,6 +18,7 @@ public class LineService extends BaseService {
     private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.";
 
     private static final String ERR_DUPLICATE_LINE_NAME = "이미 등록된 노선 이름입니다.";
+    private static final String ERR_SAME_STATION_START_END = "상행 하행 종점역이 같을 수 없습니다.";
     private static final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
 
     public static void view() {
@@ -47,10 +48,11 @@ public class LineService extends BaseService {
         }
     }
 
-    private static void registerLine(String lineName, Station startStation, Station endStation) {
-        Line line = new Line(lineName);
-        line.add(startStation,endStation);
-        LineRepository.addLine(line);
+    private static void registerLine(String lineName, Station start, Station end) {
+        if (start.equals(end)) {
+            throw new IllegalArgumentException(ERR_SAME_STATION_START_END);
+        }
+        LineRepository.addLine(new Line(lineName, start, end));
         OutputView.printInfo(REGISTER_LINE_SUCCESS);
     }
 

@@ -16,8 +16,7 @@ class LineTest {
 
     @BeforeEach
     void setup() {
-        line = new Line("test");
-        line.add(s1,s2);
+        line = new Line("test", s1, s2);
     }
 
     @Test
@@ -28,8 +27,8 @@ class LineTest {
     @Test
     void add() {
         Station s3 = new Station("합정역");
-        line.add(1,s3);
-        List<Station> stations2 = Arrays.asList(s1,s3,s2);
+        line.add(1, s3);
+        List<Station> stations2 = Arrays.asList(s1, s3, s2);
         assertEquals(stations2, line.getStations());
     }
 
@@ -37,8 +36,8 @@ class LineTest {
     void addIndexError() {
         Station s3 = new Station("합정역");
         Station s4 = new Station("교대역");
-        assertThrows(IllegalArgumentException.class, () -> line.add(-1,s3));
-        assertThrows(IllegalArgumentException.class, () -> line.add(line.getLength()+1,s4));
+        assertThrows(IllegalArgumentException.class, () -> line.add(-1, s3));
+        assertThrows(IllegalArgumentException.class, () -> line.add(line.getLength() + 1, s4));
     }
 
     @Test

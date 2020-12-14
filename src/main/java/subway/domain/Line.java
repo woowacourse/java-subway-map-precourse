@@ -13,6 +13,11 @@ public class Line {
         this.stations = new LinkedList<>();
     }
 
+    public Line(String name, Station start, Station end) {
+        this.name = name;
+        this.stations = new LinkedList<>(Arrays.asList(start, end));
+    }
+
     public String getName() {
         return name;
     }
