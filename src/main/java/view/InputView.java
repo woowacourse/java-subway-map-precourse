@@ -17,6 +17,11 @@ public class InputView {
     private static final String UP_TERMINAL_STATION = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String DOWN_TERMINAL_STATION = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String DELETE_lINE_NAME = "\n## 삭제할 노선 이름을 입력하세요.";
+    private static final String INPUT_LINE = "\n## 노선을 입력하세요";
+    private static final String INPUT_SECTION = "\n## 역을 입력하세요";
+    private static final String INPUT_SECTION_ORDER = "\n## 순서를 입력하세요";
+    private static final String INPUT_DELETE_SECTION_FOR_LINE = "\n## 삭제할 구간의 노선을 입력하세요";
+    private static final String INPUT_DELETE_SECTION = "\n## 삭제할 구간의 역을 입력하세요";
 
     public static String inputFunction(Scanner scanner) {
         try {
@@ -150,11 +155,11 @@ public class InputView {
 
     public static void inputSection(Scanner scanner) {
         try {
-            System.out.println("\n## 노선을 입력하세요");
+            System.out.println(INPUT_LINE);
             String line = scanner.next();
-            System.out.println("\n## 역을 입력하세요");
+            System.out.println(INPUT_SECTION);
             String station = scanner.next();
-            System.out.println("\n## 순서를 입력하세요");
+            System.out.println(INPUT_SECTION_ORDER);
             String order = scanner.next();
             LineStationRepository.addSectionOnTheLine(line, station, order);
         } catch (IllegalArgumentException ie) {
@@ -165,9 +170,9 @@ public class InputView {
 
     public static void inputDeleteSection(Scanner scanner) {
         try {
-            System.out.println("\n## 삭제할 구간의 노선을 입력하세요");
+            System.out.println(INPUT_DELETE_SECTION_FOR_LINE);
             String line = scanner.next();
-            System.out.println("\n## 삭제할 구간의 역을 입력하세요");
+            System.out.println(INPUT_DELETE_SECTION);
             String deleteStation = scanner.next();
             LineStationRepository.deleteSectionOnTheLine(line, deleteStation);
         } catch (IllegalArgumentException ie) {
