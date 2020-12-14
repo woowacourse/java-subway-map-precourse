@@ -86,6 +86,9 @@ pkeugine 브랜치 구현물은 다음과 같은 특징을 갖고 있습니다:
     |- view
         ㄴ OutputView.java
         ㄴ InputView.java
+        ㄴ MenuMessage.java
+        ㄴ InfoMessage.java
+        ㄴ ErrorMessage.java
 ```
 
 ## 👨‍🏫 클래스 설명
@@ -143,3 +146,6 @@ pkeugine 브랜치 구현물은 다음과 같은 특징을 갖고 있습니다:
 |---|---|
 | OutputView | 프로그램에서 정보 출력을 담당하는 클래스입니다. |
 | InputView | 사용자의 입력을 받는 클래스입니다. |
+| MenuMessage | 메뉴에 출력되는 정보를 담고 있습니다. |
+| InfoMessage | 사용자의 입력에 따라 출력하는 알림을 담고 있습니다. |
+| ErrorMessage | 사용자의 입력에 따라 출력하는 에러 정보를 담고 있습니다. |
