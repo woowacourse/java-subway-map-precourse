@@ -28,5 +28,15 @@ public class LineRepository {
             System.out.println("[INFO] "+lines.get(i).getName());
         }
     }
+    public static void back(){
 
+    }
+    public static Line getLine(String tmpSaveLine){
+        for(int i=0;i<lines.size();i++){
+            if(lines.get(i).getName().equals(tmpSaveLine)){
+                return lines.get(i);
+            }
+        }
+        return null;
+    }
 }

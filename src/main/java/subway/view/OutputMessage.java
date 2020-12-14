@@ -16,7 +16,7 @@ public class OutputMessage {
     private final String MAIN_MANAGE_IN_LINE="3. 구간 관리";
     private final String MAIN_QUIT="Q. 종료";
 
-    private static final String MENU_BACK="B. 돌아가기";
+
 
     private static final String STATION_MANAGE_MESSAGE="## 역 관리 화면";
     private static final String STATION_MANAGE_REGISTRATION="1. 역 등록";
@@ -39,11 +39,38 @@ public class OutputMessage {
     private static final String IN_LINE_MANAGE_MESSAGE="## 구간 관리 화면";
     private static final String IN_LINE_MANAGE_REGISTRATION="1. 구간 등록";
     private static final String IN_LINE_MANAGE_DELETE="2. 구간 삭제";
+    private static final String MENU_BACK="B. 돌아가기";
+    public static void sectionOutputMessage(){
+        System.out.println(IN_LINE_MANAGE_MESSAGE);
+        System.out.println(IN_LINE_MANAGE_REGISTRATION);
+        System.out.println(IN_LINE_MANAGE_DELETE);
+        System.out.println(MENU_BACK);
+    }
 
     private static final String CHOICE_FUNCTION_MESSAGE="## 원하는 기능을 선택하세요";
     private static final String WRITE_STATION_NAME="## 등록할 역 이름을 입력하세요";
     private static final String WRITE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
     private static final String WRITE_DELETE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
+
+    private static final String WRITE_SECTION_LINE_NAME="## 노선을 입력하세요";
+    private static final String WRITE_SECTION_STATION_NAME="## 역이름을 입력하세요";
+    private static final String WRITE_SECTION_ORDER="## 순서를 입력하세요.";
+
+    public static String sectionInputLine(){
+        System.out.println(WRITE_SECTION_LINE_NAME);
+        return scanner.nextLine();
+    }
+    public static String sectionInputStation(){
+        System.out.println(WRITE_SECTION_STATION_NAME);
+        return scanner.nextLine();
+    }
+    public static int sectionInputOrder(){
+        System.out.println(WRITE_SECTION_ORDER);
+        return scanner.nextInt();
+    }
+
+
+
 
     private static final String WRITE_UP_STATION_NAME="## 등록할 노선의 상행 종점역 이름을 입력하세요";
     private static final String WRITE_DOWN_STATION_NAME="## 등록할 노선의 하행 종점역 이름을 입력하세요";

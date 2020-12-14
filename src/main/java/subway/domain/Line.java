@@ -35,10 +35,13 @@ public class Line {
         }
         System.out.println("작동안되지");
         return false;
-
     }
     public String getName() {
         return name;
+    }
+    public void addSectionLine(String tmpSaveStation,int index){
+        StationRepository.addStation(new Station(tmpSaveStation));
+        stationInLine.add((index),new Station(tmpSaveStation));
     }
 
     // 추가 기능 구현
