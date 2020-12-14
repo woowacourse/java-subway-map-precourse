@@ -71,7 +71,7 @@ class StationServiceTests {
         Station station = new Station(stationName);
         StationRepository.addStation(station);
 
-        assertThat(stationService.getStationNamesWithoutRedundancy().contains(stationName))
+        assertThat(stationService.getStationNames().contains(stationName))
                 .isTrue();
     }
 }

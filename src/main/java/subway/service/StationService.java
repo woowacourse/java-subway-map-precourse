@@ -11,23 +11,26 @@ public class StationService {
     private static final String NON_EXISTENT_ERROR_MESSAGE = "해당 이름의 역이 존재하지 않습니다.";
 
     public void addStation(Station station) {
-        if (StationRepository.isAlreadyExistent(station)) {
+        if (isExistent(station)) {
             throw new IllegalArgumentException(DUPLICATION_ERROR_MESSAGE);
         }
         StationRepository.addStation(station);
     }
 
-    public boolean deleteStation(String stationName) {
-        if (!StationRepository.isAlreadyExistent(new Station(stationName))) {
-            throw new IllegalArgumentException("NON_EXISTENT_ERROR_MESSAGE");
-        }
-        return StationRepository.deleteStation(stationName);
+    public boolean isExistent(Station station) {
+        return StationRepository.isExistent(station);
     }
 
-    public List<String> getStationNamesWithoutRedundancy() {
+    public boolean deleteStation(String stationName) {
+        if (!StationRepository.deleteStation(stationName)) {
+            throw new IllegalArgumentException(NON_EXISTENT_ERROR_MESSAGE);
+        }
+        return true;
+    }
+
+    public List<String> getStationNames() {
         return StationRepository.stations()
                 .stream()
-                .distinct()
                 .map(Station::getName)
                 .collect(Collectors.toList());
     }
