@@ -31,10 +31,6 @@ public class Line {
         return stations.removeIf(station -> Objects.equals(station, target));
     }
 
-    public boolean isContainedStationName(String name) {
-        return stations.stream().anyMatch(station -> Objects.equals(station.getName(), name));
-    }
-
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
