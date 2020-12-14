@@ -1,5 +1,6 @@
 package subway;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -57,14 +58,28 @@ public class StationManager {
     private void deleteStation() {
         System.out.println("\n## 삭제할 역 이름을 입력하세요");
         String station = InputView.askName(scanner);
-        if (!StationRepository.hasStation(station)) {
-            System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
+        try {
+            validateExisting(station);
+            validateRegisteredToLine(station);
+            StationRepository.deleteStation(station);
+            System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + "\n");
             run();
         }
-        StationRepository.deleteStation(station);
-        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
     }
 
+    private void validateExisting(String station) {
+        if (!StationRepository.hasStation(station)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+        }
+    }
+
+    private void validateRegisteredToLine(String station) {
+        if (LineRepository.hasStationInSection(station)) {
+            throw new IllegalArgumentException("[ERROR] 노선에 등록되어 있는 역을 지울 수 없습니다.");
+        }
+    }
 
     public void printStation() {
         StationRepository.print();

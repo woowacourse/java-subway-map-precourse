@@ -37,7 +37,7 @@ public class SectionManager {
         try {
             validateLine(line);
             validateStation(station);
-            LineRepository.searchStationByName(line).addStationToSection(Integer.parseInt(index) - 1, station);
+            LineRepository.searchLineByName(line).addStationToSection(Integer.parseInt(index) - 1, station);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();

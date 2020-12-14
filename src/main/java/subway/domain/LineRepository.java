@@ -29,13 +29,22 @@ public class LineRepository {
         return false;
     }
 
-    public static Line searchStationByName(String name) {
+    public static Line searchLineByName(String name) {
         return  lines.stream()
-                .filter(station -> station.getName().equals(name))
+                .filter(line -> line.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> {
                     throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
                 });
+    }
+
+    public static boolean hasStationInSection(String name) {
+        for (Line line : lines) {
+            if (line.hasStation(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void printLineList() {
@@ -48,5 +57,4 @@ public class LineRepository {
         }
         System.out.println(sb);
     }
-
 }
