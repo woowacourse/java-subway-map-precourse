@@ -1,4 +1,4 @@
-package subway.domain.list;
+package subway.domain.line;
 
 import subway.domain.station.Station;
 
@@ -37,10 +37,7 @@ public class LineRepository {
         return lines.stream().anyMatch(line -> line.contains(station));
     }
 
-    public static void addLine(Line line) {
-        lines.add(line);
-    }
-
+    // 노선 삭제
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }

@@ -1,6 +1,6 @@
 package subway.domain.station;
 
-import subway.domain.list.LineRepository;
+import subway.domain.line.LineRepository;
 
 import java.util.*;
 

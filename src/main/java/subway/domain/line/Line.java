@@ -1,7 +1,6 @@
-package subway.domain.list;
+package subway.domain.line;
 
 import subway.domain.station.Station;
-import subway.domain.station.StationCheck;
 
 import java.util.Arrays;
 import java.util.List;

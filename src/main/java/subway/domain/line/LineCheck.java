@@ -1,4 +1,4 @@
-package subway.domain.list;
+package subway.domain.line;
 
 public class LineCheck {
 

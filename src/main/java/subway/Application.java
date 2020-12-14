@@ -1,14 +1,8 @@
 package subway;
 
-import subway.domain.list.Line;
+import subway.domain.line.Line;
 import subway.domain.station.Station;
-import subway.domain.station.StationRepository;
-import subway.dto.station.StationRequestDto;
-import subway.dto.station.StationResponseDto;
-import subway.service.station.StationService;
-import subway.view.main.MainMenuInputView;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Application {
