@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class LineManager {
     public State addLine(State state, Scanner scanner) {
-        if (state.equals(State.LINE_ADD)) {
+        if (state == State.LINE_ADD) {
             OutputView.printInputRegisterLine();
             addLine(InputView.inputLineName(scanner), scanner);
 
@@ -48,7 +48,7 @@ public class LineManager {
     }
 
     public State removeLine(State state, Scanner scanner) {
-        if (state.equals(State.LINE_REMOVE)) {
+        if (state == State.LINE_REMOVE) {
             OutputView.printInputRemoveLine();
             removeLine(InputView.inputLineName(scanner));
 
@@ -68,7 +68,7 @@ public class LineManager {
     }
 
     public State showLine(State state) {
-        if (state.equals(State.LINE_INQUIRY)) {
+        if (state == State.LINE_INQUIRY) {
             OutputView.printLineList(LineRepository.lines());
 
             return State.MAIN_SCENE;

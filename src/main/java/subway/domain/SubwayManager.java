@@ -69,7 +69,7 @@ public class SubwayManager {
     }
 
     public State showMainScene(State state, Scanner scanner) {
-        if (state.equals(State.MAIN_SCENE)) {
+        if (state == State.MAIN_SCENE) {
             OutputView.printMainScene();
             OutputView.printChoiceFunction();
 
@@ -80,7 +80,7 @@ public class SubwayManager {
     }
 
     public State showStationScene(State state, Scanner scanner) {
-        if (state.equals(State.STATION_SCENE)) {
+        if (state == State.STATION_SCENE) {
             OutputView.printStationManagementScene();
             OutputView.printChoiceFunction();
 
@@ -91,7 +91,7 @@ public class SubwayManager {
     }
 
     public State showLineScene(State state, Scanner scanner) {
-        if (state.equals(State.LINE_SCENE)) {
+        if (state == State.LINE_SCENE) {
             OutputView.printLineScene();
             OutputView.printChoiceFunction();
 
@@ -102,7 +102,7 @@ public class SubwayManager {
     }
 
     public State showSectionScene(State state, Scanner scanner) {
-        if (state.equals(State.SECTION_SCENE)) {
+        if (state == State.SECTION_SCENE) {
             OutputView.printSectionScene();
             OutputView.printChoiceFunction();
 
@@ -113,7 +113,7 @@ public class SubwayManager {
     }
 
     public State showSubwayMap(State state) {
-        if (state.equals(State.MAP_SCENE)) {
+        if (state == State.MAP_SCENE) {
             OutputView.printSubwayMapMessage();
             List<Line> lines = LineRepository.lines();
             lines.forEach(OutputView::printSubwayMap);

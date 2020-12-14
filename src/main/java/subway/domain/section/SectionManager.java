@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class SectionManager {
     public State registerSection(State state, Scanner scanner) {
-        if (state.equals(State.SECTION_ADD)) {
+        if (state == State.SECTION_ADD) {
             registerSection(scanner);
 
             return State.MAIN_SCENE;
@@ -37,7 +37,7 @@ public class SectionManager {
     }
 
     public State removeSection(State state, Scanner scanner) {
-        if (state.equals(State.SECTION_REMOVE)) {
+        if (state == State.SECTION_REMOVE) {
             removeSection(scanner);
 
             return State.MAIN_SCENE;

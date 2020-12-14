@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class StationManager {
     public State addStation(State state, Scanner scanner) {
-        if (state.equals(State.STATION_ADD)) {
+        if (state == State.STATION_ADD) {
             OutputView.printInputRegisterStation();
             addStation(InputView.inputStationName(scanner));
 
@@ -30,7 +30,7 @@ public class StationManager {
     }
 
     public State removeStation(State state, Scanner scanner) {
-        if (state.equals(State.STATION_REMOVE)) {
+        if (state == State.STATION_REMOVE) {
             OutputView.printInputRemoveStation();
             removeStation(InputView.inputStationName(scanner));
 
@@ -50,7 +50,7 @@ public class StationManager {
     }
 
     public State showStation(State state) {
-        if (state.equals(State.STATION_INQUIRY)) {
+        if (state == State.STATION_INQUIRY) {
             OutputView.printStationList(StationRepository.stations());
 
             return State.MAIN_SCENE;
