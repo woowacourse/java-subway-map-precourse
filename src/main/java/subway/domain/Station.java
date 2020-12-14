@@ -1,14 +1,9 @@
 package subway.domain;
 
 import subway.domain.exception.ExistentNameException;
-import subway.domain.exception.UnvalidNameLengthException;
 import subway.domain.exception.NonExistentNameException;
 import subway.domain.exception.RegisteredStationException;
-import subway.view.InputView;
-import subway.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
+import subway.domain.exception.UnvalidNameLengthException;
 
 public class Station {
     private String name;

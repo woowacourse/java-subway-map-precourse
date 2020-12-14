@@ -2,7 +2,6 @@ package subway.view;
 
 import subway.Menu;
 import subway.SubMenu;
-import subway.domain.Station;
 
 import java.util.Iterator;
 import java.util.List;

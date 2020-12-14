@@ -1,18 +1,17 @@
 package subway.domain;
 
 import subway.domain.exception.ExistentNameException;
-import subway.domain.exception.RegisteredStationException;
-import subway.domain.exception.UnvalidNameLengthException;
 import subway.domain.exception.NonExistentNameException;
 import subway.domain.exception.SameBoundStationException;
+import subway.domain.exception.UnvalidNameLengthException;
 import subway.view.InputView;
 
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import subway.view.OutputView;
+import java.util.Set;
 
 public class Line {
     private static final int MINIMUM_LENGTH = 2;

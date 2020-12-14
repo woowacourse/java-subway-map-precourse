@@ -1,14 +1,14 @@
 package subway;
 
-import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Initializer {
     private static final int ORDER_CONSTANT = 1;
