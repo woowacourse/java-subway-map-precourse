@@ -11,6 +11,7 @@ public class LineRepository implements LineErrorMessage {
     private static final List<Line> lines = new ArrayList<>();
     private static final int LINE_NAME_LENGTH_LIMIT = 2;
     private static final String SYMBOL_INFO = "[INFO] ";
+    private static final String MAIN_SCREEN_PRINT_SUBWAY_MAP = "\n## 지하철 노선도";
     private static final int UP_DOWN_END_STATION_TOTAL = 2;
     private static final List<Station> stations = StationRepository.stations();
 
@@ -84,6 +85,7 @@ public class LineRepository implements LineErrorMessage {
     }
 
     public static void displayAllLines() {
+        System.out.println(MAIN_SCREEN_PRINT_SUBWAY_MAP);
         Iterator iterator = lines().iterator();
         while (iterator.hasNext()) {
             Line line = (Line)iterator.next();

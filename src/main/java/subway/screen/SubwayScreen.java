@@ -9,5 +9,4 @@ interface SubwayScreen {
     void startProcess(Scanner scanner);
     void printScreen();
     String validateInput(String input);
-    void transfer(Scanner scanner);
 }
