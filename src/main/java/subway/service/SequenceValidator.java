@@ -14,7 +14,7 @@ public class SequenceValidator {
     }
 
     private static void validateType(String sequence) {
-        String regex = "^[0-9]*$";
+        String regex = "^[0-9]+$";
         if (!Pattern.matches(regex, sequence)) {
             throw new IllegalArgumentException(TYPE_ERROR_MESSAGE);
         }
