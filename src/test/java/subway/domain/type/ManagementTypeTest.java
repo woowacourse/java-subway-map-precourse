@@ -21,6 +21,24 @@ class ManagementTypeTest {
                 Arguments.of("Q", ManagementType.EXIT));
     }
 
+    @DisplayName("initiate 하면 EXIT가 아닌 Enum 객체 반환")
+    @Test
+    void initiate_EXIT가_아니다() {
+        ManagementType managementType = ManagementType.initiate();
+
+        assertThat(managementType).isNotEqualTo(ManagementType.EXIT);
+    }
+
+    @DisplayName("EXIT는 isRunning을 false 반환")
+    @Test
+    void isRunning_EXIT가_아니면_true를_반환한다() {
+        ManagementType managementType = ManagementType.EXIT;
+
+        boolean isRunning = managementType.isRunning();
+
+        assertThat(isRunning).isFalse();
+    }
+
     @DisplayName("managementNumber에 해당하는 Enum 객체 반환")
     @ParameterizedTest
     @MethodSource("getManagementNumberAndManagementTypeSource")

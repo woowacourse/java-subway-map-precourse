@@ -22,6 +22,10 @@ public enum ManagementType {
         this.functionTypes = functionTypes;
     }
 
+    public static ManagementType initiate() {
+        return STATION;
+    }
+
     public static ManagementType findManagementType(String managementNumber) {
         return Arrays.stream(ManagementType.values())
                 .filter(managementType -> managementType.matches(managementNumber))
@@ -38,5 +42,9 @@ public enum ManagementType {
                 .filter(functionType -> functionType.matches(functionNumber))
                 .findFirst()
                 .orElseThrow(UnsupportedFunctionException::new);
+    }
+
+    public boolean isRunning() {
+        return this != EXIT;
     }
 }
