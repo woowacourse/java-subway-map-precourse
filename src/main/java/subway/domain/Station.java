@@ -13,11 +13,11 @@ public class Station {
 
     public static Station from(String name) {
         validateLength(name);
-        validateExists(name);
         return new Station(name);
     }
 
     public void save() {
+        validateExists(name);
         StationRepository.addStation(this);
     }
 
@@ -32,7 +32,7 @@ public class Station {
     }
 
     private static void validateExists(String name) {
-        if (LineRepository.exists(name)) {
+        if (StationRepository.exists(name)) {
             throw new StationAlreadyExistsException(name);
         }
     }

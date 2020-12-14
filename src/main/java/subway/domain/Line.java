@@ -3,7 +3,9 @@ package subway.domain;
 import java.util.Arrays;
 import java.util.List;
 import subway.exception.DuplicatedStationInOneLineException;
+import subway.exception.LineAlreadyExistsException;
 import subway.exception.LineNameLengthException;
+import subway.exception.StationAlreadyExistsException;
 
 public class Line {
 
@@ -22,6 +24,7 @@ public class Line {
     }
 
     public void save() {
+        validateExists(name);
         LineRepository.addLine(this);
     }
 
@@ -42,6 +45,12 @@ public class Line {
     private static void validateDuplicatedStations(Station firstStation, Station lastStation) {
         if (firstStation.equals(lastStation)) {
             throw new DuplicatedStationInOneLineException(firstStation.getName());
+        }
+    }
+
+    private static void validateExists(String name) {
+        if (LineRepository.exists(name)) {
+            throw new LineAlreadyExistsException(name);
         }
     }
 }

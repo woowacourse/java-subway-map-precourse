@@ -1,4 +1,4 @@
- package subway.domain;
+package subway.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,14 +19,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        validateDuplicated(line);
         lines.add(line);
-    }
-
-    private static void validateDuplicated(Line line) {
-        if (exists(line.getName())) {
-            throw new LineAlreadyExistsException(line.getName());
-        }
     }
 
     public static boolean deleteLine(String name) {
@@ -48,5 +41,4 @@ public class LineRepository {
     public static void deleteAll() {
         lines.clear();
     }
-
 }

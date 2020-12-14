@@ -3,6 +3,7 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.exception.CannotFindLineByNameException;
 import subway.view.OutputView;
 
@@ -17,14 +18,20 @@ public class LineService {
     }
 
     public static void removeLineByName(String name) {
-        if (!LineRepository.exists(name)) {
-            throw new CannotFindLineByNameException(name);
+        if (LineRepository.deleteLine(name)) {
+            OutputView.printInfo(LINE_UNREGISTER_SUCCESS);
+            return;
         }
-        LineRepository.deleteLine(name);
-        OutputView.printInfo(LINE_UNREGISTER_SUCCESS);
+        throw new CannotFindLineByNameException(name);
     }
 
-    public static void listAllStations() {
+    public static void listAllLines() {
         LineRepository.lines().forEach(line -> OutputView.printInfo(line.getName()));
+    }
+
+    public static void insertStationInLine(String lineName, String stationName, Integer index) {
+        Line line = LineRepository.findByName(lineName);
+        Station station = StationRepository.findByName(stationName);
+        line.getSections().add(index, station);
     }
 }
