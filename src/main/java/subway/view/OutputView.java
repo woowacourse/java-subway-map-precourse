@@ -25,6 +25,8 @@ public class OutputView {
     private static final String WRITE_OPERATION = "## 원하는 기능을 선택하세요.";
     private static final String WRITE_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
     private static final String COMPLETE_REGISTER_STATION = "[INFO] 지하철 역이 등록되었습니다.\n";
+    private static final String DELETE_STATION_NAME = "## 삭제할 역 이름을 입력하세요.";
+    private static final String COMPLETE_DELETE_STATION = "[INFO] 지하철 역이 삭제되었습니다.\n";
 
     public static void print(String string){
         System.out.println(string);
@@ -48,5 +50,13 @@ public class OutputView {
 
     public static void completeRegisterStation() {
         print(COMPLETE_REGISTER_STATION);
+    }
+
+    public static void deleteStationName() {
+        print(DELETE_STATION_NAME);
+    }
+
+    public static void completeDeleteStation() {
+        print(COMPLETE_DELETE_STATION);
     }
 }

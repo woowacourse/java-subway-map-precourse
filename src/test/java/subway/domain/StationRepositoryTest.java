@@ -32,4 +32,19 @@ class StationRepositoryTest {
 
     }
 
+    @Test
+    public void 역_삭제_성공(){
+        String station = "강남역";
+        StationRepository.addStation(new Station(station));
+
+        assertThat(true).isEqualTo(StationRepository.deleteStation(station));
+    }
+
+    @Test
+    public void 역_삭제_실패(){
+        String station = "강남역";
+
+        assertThat(false).isEqualTo(StationRepository.deleteStation(station));
+    }
+
 }

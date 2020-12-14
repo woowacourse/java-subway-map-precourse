@@ -4,6 +4,7 @@ import subway.controller.Controller;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.Util;
+import subway.view.ErrorView;
 import subway.view.OutputView;
 
 import java.util.Scanner;
@@ -49,6 +50,14 @@ public class StationMaintain {
     }
 
     private void deleteStation() {
+        OutputView.deleteStationName();
+        if(StationRepository.deleteStation(scanner.next())){
+            OutputView.completeDeleteStation();
+            new Controller(scanner);
+            return;
+        }
+        ErrorView.notExistName();
+        maintainPage();
     }
 
     private void registerStation() {
