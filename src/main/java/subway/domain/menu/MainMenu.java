@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
+import subway.domain.menu.constant.ExceptionMessage;
+import subway.domain.menu.exception.NotAccptedInputException;
 import subway.domain.menu.submenu.LineMenu;
 import subway.domain.menu.submenu.SectionMenu;
 import subway.domain.menu.submenu.StationLineMenu;
@@ -20,12 +22,14 @@ public class MainMenu {
     private static final char SECTION_SEL = '3';
     private static final char PRINT_STATION_LINE_SEL = '4';
     private static final char QUIT_SEL = 'Q';
+    private List<Character> selMenu;
     private static final String QUIT = "종료";
     private final Scanner scanner;
 
     private List<SubMenu> subMenuList;
 
     public MainMenu(Scanner scanner) {
+        selMenu = Arrays.asList(STATION_SEL, LINE_SEL, SECTION_SEL, PRINT_STATION_LINE_SEL, QUIT_SEL);
         subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION, scanner),
                 new LineMenu(LINE_SEL, CategoryType.LINE, scanner),
                 new SectionMenu(SECTION_SEL, CategoryType.SECTION, scanner),
@@ -53,11 +57,25 @@ public class MainMenu {
     }
 
     private char inputMainMenu() {
-        System.out.println(CommonMessage.SELECT_MESSAGE);
-        char sel = scanner.nextLine().charAt(0);
-        System.out.println();
-
+        char sel;
+        while (true) {
+            try {
+                System.out.println(CommonMessage.SELECT_MESSAGE);
+                sel = isAccptedInput(scanner.nextLine().charAt(0));
+                System.out.println();
+                break;
+            } catch(NotAccptedInputException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return sel;
+    }
+
+    private char isAccptedInput(char input) {
+        if (selMenu.stream().anyMatch(menu -> menu == input)) {
+            return input;
+        }
+        throw new NotAccptedInputException(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE + ExceptionMessage.NOT_ACCPTED_INPUT_MESSAGE + CommonMessage.NEW_LINE);
     }
 
 }
