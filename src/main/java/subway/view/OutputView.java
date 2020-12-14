@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.screen.LineManagementScreen;
 import subway.domain.screen.MainScreen;
 import subway.domain.screen.StationManagementScreen;
 
@@ -10,6 +11,7 @@ public class OutputView {
     private final static String INFO_PREFIX = "[INFO]";
     private final static String SPACE = " ";
     private final static String STATION_LIST_TITLE = "## 역 목록";
+    private final static String LINE_LIST_TITLE = "## 노선 목록";
 
     public static void showMainScreen() {
         String message = MainScreen.getInstance().toString();
@@ -24,6 +26,18 @@ public class OutputView {
     public static void showStationList(List<String> stationNames) {
         printGuide(STATION_LIST_TITLE);
         stationNames.stream()
+                .forEach(OutputView::printInfo);
+        lineFeed();
+    }
+
+    public static void showLineManagementScreen() {
+        String message = LineManagementScreen.getInstance().toString();
+        printGuide(message);
+    }
+
+    public static void showLineList(List<String> lineNames) {
+        printGuide(LINE_LIST_TITLE);
+        lineNames.stream()
                 .forEach(OutputView::printInfo);
         lineFeed();
     }
