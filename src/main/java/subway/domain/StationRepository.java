@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import subway.constant.BoundaryCheckDigit;
 
 public class StationRepository {
 
@@ -31,11 +32,13 @@ public class StationRepository {
             .contains(stationName);
     }
 
-    public static Station getStationFromName(String stationName){
-        return (Station) StationRepository
+    public static Station getStationFromName(String stationName) {
+        return StationRepository
             .stations()
             .stream()
-            .filter(station->station.getName().equals(stationName));
+            .filter(station -> station.getName().equals(stationName))
+            .collect(Collectors.toList())
+            .get(BoundaryCheckDigit.LIST_GET_FIRST.getBoundaryCheckDigit());
     }
 
     public static List<String> registeredStationsInLine() { // 라인에 등록된 역 출력

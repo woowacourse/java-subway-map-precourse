@@ -74,4 +74,8 @@ public class OutputView {
     public static void lineMenuPrint() {
         System.out.println(LineMessage.LINE_FUNCTION_LIST.getLineMessage());
     }
+
+    public static void lineAddSuccessPrint() {
+        System.out.println(LineMessage.LINE_ADD_SUCCESS.getLineMessage());
+    }
 }

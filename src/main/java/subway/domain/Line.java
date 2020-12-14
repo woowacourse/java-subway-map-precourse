@@ -15,6 +15,9 @@ public class Line {
         return name;
     }
 
+    public void addStation(Station stationName){
+        this.lineMembers.add(stationName);
+    }
     public List<Station> getLineMembers(){
         return this.lineMembers;
     }
