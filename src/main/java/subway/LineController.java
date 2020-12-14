@@ -85,7 +85,7 @@ public class LineController {
 
         lineName = InputView.scanLineDeleteName(scanner);
 
-        if (!StationRepository.deleteStation(lineName)) { // 역 이름이 존재하지 않을 경우
+        if (!LineRepository.deleteLineByName(lineName)) { // 역 이름이 존재하지 않을 경우
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
