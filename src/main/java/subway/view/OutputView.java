@@ -28,6 +28,7 @@ public class OutputView {
     private static final String DOWNBOUND = "하행 종점역 ";
     private static final String ORDER_INPUT_MESSAGE = "순서를 입력하세요.";
     private static final String EDGE_MESSAGE = "구간의 ";
+    private static final String LINE_MAP_MESSAGE = "노선도";
 
     private OutputView() {
     }
@@ -123,5 +124,17 @@ public class OutputView {
 
     public static void printDeleteEdgeOptionMessage(String target) {
         System.out.println(HASH + DELETE_ORDER_START_MESSAGE + EDGE_MESSAGE + target + INPUT_MESSAGE);
+    }
+
+    public static void printLineMapTitle() {
+        System.out.println(HASH + SUBWAY_MESSAGE + LINE_MAP_MESSAGE);
+    }
+
+    public static void printLineMapElement(String element) {
+        System.out.println(INFO_TAG + element);
+    }
+
+    public static void printEmptyLine() {
+        System.out.println();
     }
 }

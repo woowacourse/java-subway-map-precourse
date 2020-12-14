@@ -1,11 +1,14 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
+    private static final String DIVIDING_LINE = "---";
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -36,5 +39,16 @@ public class LineRepository {
             }
         }
         return true;
+    }
+
+    public static void runLineMap() {
+        OutputView.printLineMapTitle();
+        for (int i = 0; i < lines.size(); i++) {
+            Line line = lines.get(i);
+            OutputView.printLineMapElement(line.getName());
+            OutputView.printLineMapElement(DIVIDING_LINE);
+            line.runLineMap();
+            OutputView.printEmptyLine();
+        }
     }
 }

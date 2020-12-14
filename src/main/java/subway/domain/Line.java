@@ -166,4 +166,11 @@ public class Line {
         }
         return true;
     }
+
+    public static void runLineMap() {
+        for (int i = 0; i < stations.size(); i++) {
+            Station station = stations.get(i);
+            OutputView.printLineMapElement(station.getName());
+        }
+    }
 }

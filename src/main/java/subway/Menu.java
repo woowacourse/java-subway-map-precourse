@@ -2,6 +2,7 @@ package subway;
 
 import subway.controller.Edge;
 import subway.controller.MenuController;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.Line;
 import subway.view.InputView;
@@ -146,6 +147,7 @@ public class Menu {
     }
 
     private static boolean runLineMapMenu() {
+        LineRepository.runLineMap();
         return true;
     }
 }
