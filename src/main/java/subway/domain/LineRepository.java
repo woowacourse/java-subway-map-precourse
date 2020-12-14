@@ -25,4 +25,10 @@ public class LineRepository {
                 .filter(line -> line.getName().equals(name))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException(("[ERROR] 존재하지 않는 노선입니다.")));
     }
+
+    public static boolean exists(String name) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(name))
+                .findFirst().isPresent();
+    }
 }
