@@ -15,7 +15,7 @@ public class SectionRepository {
 
     public static void insertSection(String line, String station, int index) {
         sections.get(line)
-                .add(index, station);
+                .add(index - 1, station);
     }
 
     public static int getLengthByLineName(String line) {

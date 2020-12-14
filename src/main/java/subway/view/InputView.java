@@ -46,12 +46,12 @@ public class InputView {
         return validateInputRegisterStation(scanner.nextLine());
     }
 
-    public String getInputRegisterStationForSection(String line) {
-        return validateInputRegisterStationForSection(line, scanner.nextLine());
+    public String getInputRegisterFirstStation(String line) {
+        return validateInputRegisterFirstStation(line, scanner.nextLine());
     }
 
-    public String getInputRegisterStationForSection(String line, String firstStation) {
-        return validateInputRegisterStationForSection(line, firstStation, scanner.nextLine());
+    public String getInputRegisterLastStation(String line, String firstStation) {
+        return validateInputRegisterLastStation(line, firstStation, scanner.nextLine());
     }
 
     public String getInputDeleteStation() {
@@ -97,7 +97,7 @@ public class InputView {
         return station;
     }
 
-    public String validateInputRegisterStationForSection(String line, String station) {
+    public String validateInputRegisterFirstStation(String line, String station) {
         if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
         }
@@ -107,7 +107,7 @@ public class InputView {
         return station;
     }
 
-    public String validateInputRegisterStationForSection(String line, String firstStation, String station) {
+    public String validateInputRegisterLastStation(String line, String firstStation, String station) {
         if (firstStation.equals(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + EQUAL_STATION_ERROR_MESSAGE);
         }
@@ -159,7 +159,7 @@ public class InputView {
     }
 
     private int validateInputIndex(int length, int index) {
-        if ((index < START_INDEX) || (index > length - 1)) {
+        if ((index < START_INDEX) || (index > length + 1)) {
             throw new IllegalArgumentException(ERROR_HEADER + INVALID_RANGE_ERROR_MESSAGE);
         }
         return index;
