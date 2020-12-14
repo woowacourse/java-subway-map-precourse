@@ -7,21 +7,33 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static subway.view.OutputView.warnMessage;
+
 public class Line {
+    private static final int MIN_NAME_LENGTH = 2;
+    private static final String LINE_NAME_LENGTH_WARN = "노선 이름은 2글자 이상이어야 합니다.";
+
     private String name;
     private final List<Station> stationList = new ArrayList<>();
 
-    public Line(String name, Station upStation, Station downStation) {
-        this.name = name;
+    public Line(String lineName, Station upStation, Station downStation) {
+        name = lineName;
         stationList.add(upStation);
         stationList.add(downStation);
+    }
+
+    public static boolean validateLineName(String lineName) {
+        if (lineName.length() < MIN_NAME_LENGTH) {
+            warnMessage(LINE_NAME_LENGTH_WARN);
+            return false;
+        }
+        return true;
     }
 
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
     public List<Station> stations() {
         return Collections.unmodifiableList(stationList);
     }
@@ -40,10 +52,6 @@ public class Line {
 
     public void enrollStation(Station station){
         stationList.add(station);
-    }
-
-    public List<Station> getStationList() {
-        return Collections.unmodifiableList(stationList);
     }
 
     @Override

@@ -8,7 +8,6 @@ public class OutputView {
     private static final String SHARP_PREFIX = "## ";
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String INFO_PREFIX = "[INFO] ";
-    private static final String STATION_SUFFIX = " 역";
     private static final String DASH = "---";
     private static final String MENU_SELECT = "원하는 기능을 선택하세요.";
 

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static subway.repository.LineRepository.isStationExistInLine;
+import static subway.repository.LineRepository.lines;
 import static subway.view.OutputView.*;
 
 public class StationRepository {
@@ -32,7 +33,7 @@ public class StationRepository {
         infoMessage(STATION_ADD_SUCCESS);
     }
 
-    public static void deleteStation(String name) {
+    public static void deleteStationByName(String name) {
         Station findStation = findStationByName(name);
         if (findStation == null) {
             warnMessage(STATION_NOT_EXIST_WARN);

@@ -4,6 +4,7 @@ import subway.repository.StationRepository;
 import subway.view.InputView;
 
 import static subway.domain.Station.createStation;
+import static subway.repository.StationRepository.*;
 import static subway.view.OutputView.askMessage;
 
 public class StationService {
@@ -18,7 +19,7 @@ public class StationService {
 
     public void deleteStation(InputView inputView) {
         askMessage(ASK_DELETE_STATION_NAME);
-        StationRepository.deleteStation(inputView.inputName());
+        deleteStationByName(inputView.inputName());
     }
 
     public void printStationList() {
