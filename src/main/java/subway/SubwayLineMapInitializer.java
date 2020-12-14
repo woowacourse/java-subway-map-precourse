@@ -40,16 +40,16 @@ public class SubwayLineMapInitializer{
         Station stationMeBong = stationController.getStation(stationsToAdd.get(5));
         Station stationYangJeForest = stationController.getStation(stationsToAdd.get(6));
         lineController.addLine(linesToAdd.get(0), stationGyoDe, stationYeokSam);
-        Line line2 = lineController.getLine(linesToAdd.get(0)).get();
+        Line line2 = lineController.getLine(linesToAdd.get(0));
         lineController.addStationInLine(stationGangNam, line2, 1);
 
         lineController.addLine(linesToAdd.get(1), stationGyoDe, stationMeBong);
-        Line line3 = lineController.getLine(linesToAdd.get(1)).get();
+        Line line3 = lineController.getLine(linesToAdd.get(1));
         lineController.addStationInLine(stationNamBu, line3, 1);
         lineController.addStationInLine(stationYangJe, line3, 2);
 
         lineController.addLine(linesToAdd.get(2), stationGangNam, stationYangJeForest);
-        Line lineShinBundang = lineController.getLine(linesToAdd.get(2)).get();
+        Line lineShinBundang = lineController.getLine(linesToAdd.get(2));
         lineController.addStationInLine(stationYangJe, lineShinBundang, 1);
     }
 }
