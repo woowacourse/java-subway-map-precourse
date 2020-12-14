@@ -29,9 +29,6 @@ public class Station {
         if (name.length() < 2) {
             throw new StationNameLengthException(name);
         }
-        if (5 < name.length()) {
-            throw new StationNameLengthException(name);
-        }
     }
 
     private static void validateExists(String name) {

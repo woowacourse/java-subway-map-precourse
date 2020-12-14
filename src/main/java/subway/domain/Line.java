@@ -29,11 +29,12 @@ public class Line {
         return name;
     }
 
+    public List<Station> getSections() {
+        return sections;
+    }
+
     private static void validateLength(String name) {
         if (name.length() < 2) {
-            throw new LineNameLengthException(name);
-        }
-        if (5 < name.length()) {
             throw new LineNameLengthException(name);
         }
     }
