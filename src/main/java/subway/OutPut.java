@@ -12,6 +12,7 @@ public class OutPut {
     private static final String LINE_CREATE_MESSAGE = "지하철 노선이 등록되었습니다.\n";
     private static final String NON_EXIST_STATION_ERROR = "은(는) 존재하지 않는 역입니다.\n";
     private static final String NON_EXIST_LINE_ERROR = "존재하지 않는 노선입니다.\n";
+    private static final String EXIST_STATION_ERROR = "노선에 이미 존재하는 역입니다.\n";
 
     public static void printStationNameLengthError() {
         System.out.println(ERROR + STATION_NAME_LENGTH_ERROR);
@@ -44,5 +45,9 @@ public class OutPut {
     public static void printNonExistLineError() {
         System.out.println(ERROR + NON_EXIST_LINE_ERROR);
     }
-    
+
+    public static void printExistStationError() {
+        System.out.println(ERROR + EXIST_STATION_ERROR);
+    }
+
 }
