@@ -1,6 +1,6 @@
 package view;
 
-public class SubwayManagerOutputView {
+public class SubwayManagerView {
 
     static final String SUBWAY_MAIN_TITLE = "## 메인 화면";
     static final String MANAGE_STATION_OPTION = "1. 역 관리";

@@ -1,7 +1,7 @@
 package subway;
 
 import java.util.Scanner;
-import view.SectionManagerOutputView;
+import view.SectionManagerView;
 
 public class SectionManager {
 
@@ -27,7 +27,7 @@ public class SectionManager {
     public static final String DELETION_FAIL_INFO_MESSAGE = "존재하지 않거나 삭제할 수 없습니다";
 
     public static void manage(Scanner scanner) {
-        SectionManagerOutputView.printSectionManagerMainScreen();
+        SectionManagerView.printSectionManagerMainScreen();
         userOption = getUserOption(scanner);
         callOptionMenu(userOption, scanner);
     }

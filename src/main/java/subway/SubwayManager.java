@@ -5,7 +5,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import view.SubwayManagerOutputView;
+import view.SubwayManagerView;
 
 public class SubwayManager {
 
@@ -16,15 +16,19 @@ public class SubwayManager {
     private static final String ERROR_MESSAGE = "1~4 또는 Q 옵션 중 하나를 입력하세요";
     private static final int OPTION_MIN = 1;
     private static final int OPTION_MAX = 4;
+    static final int OPTION_ONE = 1;
+    static final int OPTION_TWO = 2;
+    static final int OPTION_THREE = 3;
+    static final int OPTION_FOUR = 4;
     private static String userOption = "";
     private static StationRepository stationRepository = new StationRepository();
     private static LineRepository lineRepository = new LineRepository();
 
     public void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
-            SubwayManagerOutputView.printSubwayManagerMainScreen();
+            SubwayManagerView.printSubwayManagerMainScreen();
             userOption = getUserOption(scanner);
-            callOptionMenu(userOption, scanner);
+            runOptionMenu(userOption, scanner);
         }
     }
 
@@ -55,21 +59,21 @@ public class SubwayManager {
         }
     }
 
-    public static void callOptionMenu(String userOption, Scanner scanner) {
+    public static void runOptionMenu(String userOption, Scanner scanner) {
         if (!Character.isDigit(userOption.charAt(0))) {
             return;
         }
         int optionNumber = Integer.parseInt(userOption);
-        if (optionNumber == 1) {
-            new StationManager().manage(scanner);
+        if (optionNumber == OPTION_ONE) {
+            StationManager.manage(scanner);
         }
-        if (optionNumber == 2) {
+        if (optionNumber == OPTION_TWO) {
             LineManager.manage(scanner);
         }
-        if (optionNumber == 3) {
+        if (optionNumber == OPTION_THREE) {
             SectionManager.manage(scanner);
         }
-        if (optionNumber == 4) {
+        if (optionNumber == OPTION_FOUR) {
             printMap();
         }
     }

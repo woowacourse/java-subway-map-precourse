@@ -1,6 +1,6 @@
 package view;
 
-public class LineManagerOutputView {
+public class LineManagerView {
 
     public static final String LINE_MAIN_TITLE = "## 노선 관리 화면";
     public static final String LINE_ENROLLMENT = "1. 노선 등록";

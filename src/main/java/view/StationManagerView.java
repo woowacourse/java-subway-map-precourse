@@ -1,6 +1,6 @@
 package view;
 
-public class StationManagerOutputView {
+public class StationManagerView {
 
     static final String STATION_MANAGER_MAIN_TITLE = "## 역 관리 화면";
     static final String STATION_ENROLLMENT = "1. 역 등록";

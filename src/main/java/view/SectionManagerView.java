@@ -1,6 +1,6 @@
 package view;
 
-public class SectionManagerOutputView {
+public class SectionManagerView {
 
     public static final String SECTION_MAIN_TITLE = "## 구간 관리 화면";
     public static final String SECTION_ENROLLMENT = "1. 구간 등록";

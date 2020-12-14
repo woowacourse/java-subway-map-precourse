@@ -1,8 +1,7 @@
 package subway;
 
 import java.util.Scanner;
-import subway.domain.Station;
-import view.StationManagerOutputView;
+import view.StationManagerView;
 
 public class StationManager {
 
@@ -25,7 +24,7 @@ public class StationManager {
     public static String userOption = "";
 
     public static void manage(Scanner scanner) {
-        StationManagerOutputView.printStationManagerMainScreen();
+        StationManagerView.printStationManagerMainScreen();
         userOption = getUserOption(scanner);
         callOptionMenu(userOption, scanner);
     }
