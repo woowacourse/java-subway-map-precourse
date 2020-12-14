@@ -8,16 +8,19 @@ public class OutputView {
     public static final String SELECT_FUNCTION = "원하는 기능을 선택하세요.";
     public static final String INPUT_STATION_WITH_ACTION = "%s할 역 이름을 입력하세요.";
     public static final String MANAGE_STATION = "지하철 역이 %s되었습니다.";
+    public static final String LIST = " 목록";
 
     public static final void printMenus(String menu) {
         System.out.println(menu);
     }
 
     public static final void printWithDoubleSharp(String string){
+        printNewLine();
         System.out.println(DOUBLE_SHARP + string);
     }
 
     public static final void printSelectFunction(){
+        printNewLine();
         printWithDoubleSharp(SELECT_FUNCTION);
     }
 
@@ -39,7 +42,12 @@ public class OutputView {
         System.out.println(INFORMATION_MARK + SEPARATER);
     }
 
+    public static final void printList(String name){
+        printNewLine();
+        printWithDoubleSharp(name + LIST);
+    }
     public static final void printWithInformationMark(String string) {
+        printNewLine();
         System.out.println(INFORMATION_MARK + string);
     }
 

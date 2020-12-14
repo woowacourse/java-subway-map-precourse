@@ -9,6 +9,7 @@ import subway.view.screen.Action;
 import java.util.Scanner;
 
 public class StationController implements Controller {
+    private static final String name = "역";
     Scanner scanner;
 
     @Override
@@ -49,6 +50,7 @@ public class StationController implements Controller {
     }
 
     private void selectStation(String action) {
-        // 역 조회 기능 구현
+        OutputView.printList(name);
+        StationRepository.printStations();
     }
 }
