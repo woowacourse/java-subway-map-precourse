@@ -1,30 +1,26 @@
 package subway;
 
-
 import java.util.Arrays;
 import java.util.List;
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.service.LineService;
+import subway.service.StationService;
 
 public class SettingData {
     public static void load() {
-        List<Station> stations = Arrays.asList(
-            new Station("교대역"), new Station("강남역")
-            , new Station("역삼역"), new Station("남부터미널역")
-            , new Station("양재역"), new Station("양재시민의숲역"),
-            new Station("매봉역")
-        );
-        for (Station station : stations) {
-            StationRepository.addStation(station);
+        List<String> stations = Arrays.asList("교대역","강남역","역삼역","남부터미널역","양재역","양재시민의숲역","매봉역");
+        saveStations(stations);
+        LineService.register("2호선","교대역","역삼역");
+        LineService.register("3호선","교대역","매봉역");
+        LineService.register("신분당선","강남역","양재시민의숲역");
+        LineService.join("2호선","강남역",2);
+        LineService.join("3호선","남부터미널역",2);
+        LineService.join("3호선","양재역",3);
+        LineService.join("신분당선","양재역",2);
+    }
+
+    private static void saveStations(List<String> stationNames) {
+        for (String stationName : stationNames) {
+            StationService.register(stationName);
         }
-        LineRepository.addLine(new Line("2호선"),new Station("교대역"), new Station("역삼역") );
-        LineRepository.addSection(new Line("2호선"),new Station("강남역"),1);
-        LineRepository.addLine(new Line("3호선"),new Station("교대역"), new Station("매봉역") );
-        LineRepository.addSection(new Line("3호선"),new Station("남부터미널역"),1);
-        LineRepository.addSection(new Line("3호선"),new Station("양재역"),2);
-        LineRepository.addLine(new Line("신분당선"),new Station("강남역"), new Station("양재시민의숲역") );
-        LineRepository.addSection(new Line("신분당선"),new Station("양재역"),1);
     }
 }
