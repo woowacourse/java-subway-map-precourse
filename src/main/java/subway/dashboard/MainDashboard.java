@@ -35,22 +35,21 @@ public class MainDashboard {
             showOptions();
 
             String chosenOption = makeUserChooseOption(inputView);
-
             startChosenOption(chosenOption);
 
         }
     }
 
     public String makeUserChooseOption(InputView inputView) {
-        String optionChosen = chooseOption(inputView);
-        try{
-            checkOptions(optionChosen);
-        } catch (Exception e) {
-            System.out.println(ERROR_OPTION_UNAVAILABLE);
-            makeUserChooseOption(inputView);
+        while(true) {
+            String optionChosen = chooseOption(inputView);
+            try{
+                checkOptions(optionChosen);
+                return optionChosen;
+            } catch (Exception e) {
+                System.out.println(ERROR_OPTION_UNAVAILABLE);
+            }
         }
-
-        return optionChosen;
     }
 
     public void checkOptions(String input) throws Exception {
