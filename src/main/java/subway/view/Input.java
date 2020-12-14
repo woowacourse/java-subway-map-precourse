@@ -11,7 +11,9 @@ public class Input {
     }
 
     public static void init(Scanner scanner) {
-        Input.scanner = scanner;
+        if (Input.scanner == null){
+            Input.scanner = scanner;
+        }
     }
 
     public static String input( String message) {
