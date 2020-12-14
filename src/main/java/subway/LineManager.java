@@ -28,8 +28,9 @@ public class LineManager {
     public void selectMenu(String menuNumber) {
         if (menuNumber.equals("1")) {
             addLine();
+        } else if (menuNumber.equals("2")) {
+            deleteLine();
         }
-//        else if (menuNumber.equals("2"))
     }
 
     private void addLine() {
@@ -51,6 +52,10 @@ public class LineManager {
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
+    }
+
+    private void deleteLine() {
+        System.out.println("\n## ")
     }
 
     public boolean isDuplicate(String line) {
