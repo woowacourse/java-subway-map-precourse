@@ -16,4 +16,11 @@ public class LineError {
         }
         return false;
     }
+
+    public static boolean checkValidName(String name) {
+        if (name.length() >= 2) {
+            return true;
+        }
+        return false;
+    }
 }
