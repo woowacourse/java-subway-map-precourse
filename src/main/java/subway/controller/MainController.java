@@ -41,7 +41,7 @@ public class MainController {
 	}
 
 	public static void run(Scanner scanner) {
-		String option = View.getScreenOption(scanner).trim();
+		String option = View.getScreenOption(scanner);
 		try {
 			Options.validateOption(options, option);
 			controlByOption(option, scanner);

@@ -55,7 +55,7 @@ public class StationController {
 
 	public static void run(Scanner scanner) {
 		View.printStationScreen();
-		String option = View.getScreenOption(scanner).trim();
+		String option = View.getScreenOption(scanner);
 		try {
 			Options.validateOption(options, option);
 			controlByOption(option, scanner);

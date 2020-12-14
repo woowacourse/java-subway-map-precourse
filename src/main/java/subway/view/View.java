@@ -19,7 +19,8 @@ public class View {
 
 	public static String getScreenOption(Scanner scanner) {
 		System.out.println(General.CHOICE.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static void printStationScreen() {
@@ -31,12 +32,14 @@ public class View {
 
 	public static String getStationNameToRegister(Scanner scanner) {
 		System.out.println(StationMessages.REGISTER_NAME.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getStationNameToDelete(Scanner scanner) {
 		System.out.println(StationMessages.DELETE_NAME.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static void printStationRegisterCompletion() {
@@ -74,22 +77,26 @@ public class View {
 
 	public static String getLineNameToRegister(Scanner scanner) {
 		System.out.println(LineMessages.REGISTER_NAME.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getUpwardDestination(Scanner scanner) {
 		System.out.println(LineMessages.UPWARD_DESTINATION_NAME.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getDownwardDestination(Scanner scanner) {
 		System.out.println(LineMessages.DOWNWARD_DESTINATION_NAME.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getLineNameToDelete(Scanner scanner) {
 		System.out.println(LineMessages.DELETE_NAME.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static void printLineDeleteCompletion() {
@@ -121,17 +128,20 @@ public class View {
 
 	public static String getLineNameToRegisterSection(Scanner scanner) {
 		System.out.println(SectionMessages.LINE_NAME_TO_REGISTER.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getStationNameToRegisterSection(Scanner scanner) {
 		System.out.println(SectionMessages.STATION_NAME_TO_REGISTER.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getLocationToRegisterSection(Scanner scanner) {
 		System.out.println(SectionMessages.LOCATION.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static void printSectionRegisterCompletion() {
@@ -141,12 +151,14 @@ public class View {
 
 	public static String getLineNameToDeleteSection(Scanner scanner) {
 		System.out.println(SectionMessages.LINE_NAME_TO_DELETE.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static String getStationNameToDeleteSection(Scanner scanner) {
 		System.out.println(SectionMessages.STATION_NAME_TO_DELETE.getMessage());
-		return scanner.nextLine();
+		return scanner.nextLine()
+				.replaceAll("\\s+", "");
 	}
 
 	public static void printSectionDeleteCompletion() {

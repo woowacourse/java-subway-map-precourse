@@ -88,7 +88,7 @@ public class SectionController {
 
 	public static void run(Scanner scanner) {
 		View.printSectionScreen();
-		String option = View.getScreenOption(scanner).trim();
+		String option = View.getScreenOption(scanner);
 		try {
 			Options.validateOption(options, option);
 			controlByOption(option, scanner);

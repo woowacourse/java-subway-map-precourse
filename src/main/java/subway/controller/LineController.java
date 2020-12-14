@@ -4,8 +4,6 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.domain.StationRepository;
-import subway.view.General;
-import subway.view.LineMessages;
 import subway.view.View;
 
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ public class LineController {
 		return destination;
 	}
 
-	private static void createLine(String lineName, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
+	private static void createInitialLine(String lineName, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
 		Sections.validateDuplicateDestination(upwardDestination, downwardDestination);
 		LineRepository.addLine(new Line(lineName));
 		for (String destination : new String[] {downwardDestination, upwardDestination}) {
@@ -54,7 +52,7 @@ public class LineController {
 			String lineName = createLineName(scanner);
 			String upwardDestination = createUpwardDestination(scanner);
 			String downwardDestination = createDownwardDestination(scanner);
-			createLine(lineName, upwardDestination, downwardDestination);
+			createInitialLine(lineName, upwardDestination, downwardDestination);
 			View.printStationRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -88,7 +86,7 @@ public class LineController {
 
 	public static void run(Scanner scanner) {
 		View.printLineScreen();
-		String option = View.getScreenOption(scanner).trim();
+		String option = View.getScreenOption(scanner);
 		try {
 			Options.validateOption(options, option);
 			controlByOption(option, scanner);
