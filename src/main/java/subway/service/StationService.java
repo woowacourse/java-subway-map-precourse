@@ -24,11 +24,11 @@ public class StationService {
     }
 
     public boolean deleteStation(String stationName) {
-        if (!StationRepository.deleteStation(stationName)) {
-            throw new IllegalArgumentException(NON_EXISTENT_ERROR_MESSAGE);
-        }
         if (LineRepository.isIncludedAnyLines(stationName)) {
             throw new IllegalArgumentException(INCLUDED_STATION_IN_LINE_ERROR_MESSAGE);
+        }
+        if (!StationRepository.deleteStation(stationName)) {
+            throw new IllegalArgumentException(NON_EXISTENT_ERROR_MESSAGE);
         }
         return true;
     }
