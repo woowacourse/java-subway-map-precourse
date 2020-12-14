@@ -8,7 +8,6 @@ import java.util.Objects;
 import subway.utils.ValidationUtils;
 
 public class ResisteredStations implements Iterable<String> {
-    private static final int FIRST_STATION_ORDER = 1;
     private static final int MINIMUM_STATION_COUNT = 2;
 
     private final List<String> stations = new ArrayList<>();
@@ -29,9 +28,9 @@ public class ResisteredStations implements Iterable<String> {
     public void addSection(int order, String stationName) {
         ValidationUtils.validateNullStation(stationName);
         ValidationUtils.validateDuplicatedStationInLine(this, stationName);
-        ValidationUtils.validateSectionOutOfRange(order, FIRST_STATION_ORDER, getLastStationOrder());
+        ValidationUtils.validateSectionOutOfRange(order, getLastSectionOrder());
 
-        int index = order - 1;
+        int index = getAddIndexFromSectionOrder(order);
         stations.add(index, stationName);
     }
 
@@ -50,8 +49,12 @@ public class ResisteredStations implements Iterable<String> {
         return stations.size();
     }
 
-    private int getLastStationOrder() {
-        return stations.size();
+    private int getLastSectionOrder() {
+        return size() + 1;
+    }
+
+    private int getAddIndexFromSectionOrder(int order) {
+        return order - 1;
     }
 
     @Override

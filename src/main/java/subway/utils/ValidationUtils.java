@@ -81,9 +81,9 @@ public class ValidationUtils {
         }
     }
 
-    public static void validateSectionOutOfRange(int inputOrder, int firstOrder, int lastOrder) {
-        if (inputOrder <= firstOrder || inputOrder > lastOrder) {
-            throw new SectionOutOfRangeException(inputOrder);
+    public static void validateSectionOutOfRange(int inputOrder, int lastOrder) {
+        if (inputOrder > lastOrder) {
+            throw new SectionOutOfRangeException(inputOrder, lastOrder);
         }
     }
 
