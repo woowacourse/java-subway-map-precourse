@@ -95,7 +95,7 @@ public class LineController {
 
     private static boolean lineCheck() {
         String[] lineList;
-        lineList = (String[]) LineRepository.getAllLineNames().toArray();
+        lineList = LineRepository.getAllLineNames().toArray(String[]::new);
 
         if (lineList.length < BoundaryCheckDigit.LINE_LIST_LIMIT_MINIMUM
             .getBoundaryCheckDigit()) {
