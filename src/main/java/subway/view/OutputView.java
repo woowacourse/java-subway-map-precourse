@@ -83,11 +83,11 @@ public class OutputView {
                 .forEachOrdered(System.out::println);
     }
     
-    void printAskUpwardEndRouteMessage() {
+    void printAskUpwardEndStationMessage() {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + UPWARD_END_STATION_ASK_MESSAGE);
     }
     
-    void printAskDownwardEndRouteMessage() {
+    void printAskDownwardEndStationMessage() {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + DOWNWARD_END_STATION_ASK_MESSAGE);
     }
 

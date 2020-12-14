@@ -41,7 +41,7 @@ public class View {
     public String askUpwardEndStationName() {
         String userInputName;
         
-        outputView.printAskUpwardEndRouteMessage();
+        outputView.printAskUpwardEndStationMessage();
         userInputName = inputView.userInput();
         outputView.printEmptyLine();
         
@@ -51,7 +51,7 @@ public class View {
     public String askDownwardEndStationName() {
         String userInputName;
         
-        outputView.printAskDownwardEndRouteMessage();
+        outputView.printAskDownwardEndStationMessage();
         userInputName = inputView.userInput();
         outputView.printEmptyLine();
         
