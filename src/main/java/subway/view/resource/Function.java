@@ -1,4 +1,4 @@
-package subway.view.text;
+package subway.view.resource;
 
 public enum Function {
     REGISTER("1"),

@@ -1,4 +1,4 @@
-package subway.view.text;
+package subway.view.resource;
 
 import java.util.Arrays;
 import java.util.Collections;

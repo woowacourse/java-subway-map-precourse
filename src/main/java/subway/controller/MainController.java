@@ -2,7 +2,7 @@ package subway.controller;
 
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.text.Screen;
+import subway.view.resource.Screen;
 
 public class MainController {
     private static StationController stationController = new StationController();

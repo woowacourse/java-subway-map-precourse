@@ -3,7 +3,7 @@ package subway.controller;
 import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.text.Screen;
+import subway.view.resource.Screen;
 
 public class MapController {
     public void run(InputView inputView) {

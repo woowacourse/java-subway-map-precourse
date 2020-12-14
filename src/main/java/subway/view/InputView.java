@@ -3,7 +3,7 @@ package subway.view;
 import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
-import subway.view.text.Screen;
+import subway.view.resource.Screen;
 
 import java.util.List;
 import java.util.Scanner;
@@ -175,8 +175,8 @@ public class InputView {
         return line;
     }
 
-    private String validateInputStationOfDeleteSection(String station){
-        if(!isExistingStation(station)){
+    private String validateInputStationOfDeleteSection(String station) {
+        if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
         }
         return station;

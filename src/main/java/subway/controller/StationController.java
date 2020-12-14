@@ -4,8 +4,8 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.text.Function;
-import subway.view.text.Screen;
+import subway.view.resource.Function;
+import subway.view.resource.Screen;
 
 public class StationController {
     public void run(InputView inputView) {
