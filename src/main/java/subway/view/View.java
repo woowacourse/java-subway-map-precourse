@@ -108,6 +108,10 @@ public class View {
         outputView.printEmptyLine();
     }
 
+    public void printPrintMapMessage() {
+        outputView.printPrintMapMessage();
+    }
+
     public void printRoute(String lineName, List<String> stationNames) {
         outputView.printRoute(lineName, stationNames);
         outputView.printEmptyLine();

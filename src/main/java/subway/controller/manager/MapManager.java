@@ -20,8 +20,10 @@ public class MapManager {
     }
     
     private void printMap() {
+        view.printPrintMapMessage();
         for (Line line : LineRepository.lines()) {
-            view.printRoute(line.getName(), line.getRoute().stream().map(station -> station.getName()).collect(Collectors.toList()));
+            view.printRoute(line.getName(),
+                    line.getRoute().stream().map(station -> station.getName()).collect(Collectors.toList()));
         }
     }
 }
