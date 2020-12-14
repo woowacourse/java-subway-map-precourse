@@ -2,7 +2,10 @@ package subway.validator;
 
 import org.assertj.core.api.ThrowableAssert;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import subway.exception.SubwayRuntimeException;
+import subway.exception.validator.ValidationException;
 
 public class ValidatorUtils {
 
@@ -15,7 +18,8 @@ public class ValidatorUtils {
         ThrowableAssert.ThrowingCallable callable = () -> validator.validate(input);
 
         // then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(message, parameters);
+        assertThatThrownBy(callable)
+                .isInstanceOf(ValidationException.class)
+                .hasMessage(SubwayRuntimeException.ERROR + message, parameters);
     }
 }

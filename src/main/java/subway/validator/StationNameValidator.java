@@ -4,14 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import subway.domain.StationName;
+import subway.exception.validator.PatternSyntaxException;
+import subway.exception.validator.StationNameOutOfRangeException;
 
 public final class StationNameValidator extends Validator {
-
-    public static final String INPUT_LENGTH_MESSAGE = "입력하신 글자는 %d자 입니다.";
-
-    public static final String RANGE_ERROR =
-            String.format("역 이름은 %d글자 이상, %d글자 이하이어야 합니다. ", StationName.LENGTH_LOWER_BOUND,
-                    StationName.LENGTH_UPPER_BOUND);
 
     public static final String STATION_SUFFIX = "역";
 
@@ -30,7 +26,7 @@ public final class StationNameValidator extends Validator {
         Matcher matcher = KOREAN_PATTERN.matcher(input);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(NOT_KOREAN_ERROR);
+            throw new PatternSyntaxException(NOT_KOREAN_ERROR);
         }
     }
 
@@ -42,8 +38,7 @@ public final class StationNameValidator extends Validator {
         int length = input.length();
 
         if (length < StationName.LENGTH_LOWER_BOUND || length > StationName.LENGTH_UPPER_BOUND) {
-            throw new IllegalArgumentException(
-                    RANGE_ERROR + String.format(INPUT_LENGTH_MESSAGE, length));
+            throw new StationNameOutOfRangeException(length);
         }
     }
 }

@@ -3,6 +3,9 @@ package subway.validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import subway.domain.LineName;
+import subway.exception.validator.LineNameOutOfRangeException;
+
 class LineNameValidatorTest {
 
     private final Validator validator = new LineNameValidator();
@@ -15,8 +18,9 @@ class LineNameValidatorTest {
         String input = "선";
 
         // when, then
-        ValidatorUtils.assertValidationFailure(input, validator, LineNameValidator.RANGE_ERROR +
-                LineNameValidator.INPUT_LENGTH_MESSAGE, input.length());
+        ValidatorUtils
+                .assertValidationFailure(input, validator, LineNameOutOfRangeException.LENGTH_ERROR,
+                        LineName.LENGTH_LOWER_BOUND, LineName.LENGTH_UPPER_BOUND, input.length());
     }
 
     @Test
@@ -27,8 +31,9 @@ class LineNameValidatorTest {
         String input = "서울특별시강남구강남선";
 
         // when, then
-        ValidatorUtils.assertValidationFailure(input, validator, LineNameValidator.RANGE_ERROR +
-                LineNameValidator.INPUT_LENGTH_MESSAGE, input.length());
+        ValidatorUtils
+                .assertValidationFailure(input, validator, LineNameOutOfRangeException.LENGTH_ERROR,
+                        LineName.LENGTH_LOWER_BOUND, LineName.LENGTH_UPPER_BOUND, input.length());
     }
 
     @Test

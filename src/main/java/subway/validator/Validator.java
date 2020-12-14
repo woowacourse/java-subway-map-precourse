@@ -1,8 +1,8 @@
 package subway.validator;
 
-public class Validator {
+import subway.exception.validator.ValidationException;
 
-    static final String NULL_ERROR = "null 값을 입력하셨습니다.";
+public class Validator {
 
     public void validate(final String input) {
         checkNull(input);
@@ -10,7 +10,7 @@ public class Validator {
 
     private void checkNull(final String input) {
         if (input == null) {
-            throw new IllegalArgumentException(NULL_ERROR);
+            throw new ValidationException();
         }
     }
 }

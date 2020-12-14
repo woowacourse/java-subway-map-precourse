@@ -3,6 +3,8 @@ package subway.validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import subway.exception.validator.ValidationException;
+
 public class ValidatorTest {
 
     private final Validator validator = new Validator();
@@ -15,6 +17,6 @@ public class ValidatorTest {
         String input = null;
 
         // when, then
-        ValidatorUtils.assertValidationFailure(input, validator, Validator.NULL_ERROR);
+        ValidatorUtils.assertValidationFailure(input, validator, ValidationException.NULL_ERROR);
     }
 }
