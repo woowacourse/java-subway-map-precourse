@@ -47,7 +47,7 @@ public class LineController {
         String upTerminus;
         String downTerminus;
         try {
-            OutputView.LineAddGuidePrint();
+            OutputView.lineAddGuidePrint();
             lineName = InputView.scanLineAddName(scanner);
 
             OutputView.upTerminusAddGuidePrint();
@@ -103,7 +103,7 @@ public class LineController {
             OutputView.zeroLineListErrorPrint();
             return false;
         }
-        OutputView.LineListPrint(lineList);
+        OutputView.lineListPrint(lineList);
         return true;
     }
 

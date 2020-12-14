@@ -27,7 +27,7 @@ public class InputView {
         String choiceMainMenuOption;
 
         do { // 유효한 값이 올 때 까지 값을 입력받는다.
-            OutputView.OptionChoicePrint();
+            OutputView.optionChoicePrint();
             choiceMainMenuOption = scanner.nextLine();
         } while (!mainMenuValidCheck(choiceMainMenuOption));
 
@@ -41,7 +41,7 @@ public class InputView {
             return true;
         }
 
-        OutputView.NotSelectableError();
+        OutputView.notSelectableError();
         return false;
     }
 
@@ -49,7 +49,7 @@ public class InputView {
         String choiceStationMenuOption;
 
         do { // 유효한 값이 올 때 까지 값을 입력받는다.
-            OutputView.OptionChoicePrint();
+            OutputView.optionChoicePrint();
             choiceStationMenuOption = scanner.nextLine();
         } while (!stationMenuValidCheck(choiceStationMenuOption));
 
@@ -63,7 +63,7 @@ public class InputView {
             return true;
         }
 
-        OutputView.NotSelectableError();
+        OutputView.notSelectableError();
         return false;
     }
 
@@ -111,7 +111,7 @@ public class InputView {
         String choiceLineMenu;
 
         do { // 유효한 값이 올 때 까지 값을 입력받는다.
-            OutputView.OptionChoicePrint();
+            OutputView.optionChoicePrint();
             choiceLineMenu = scanner.nextLine();
         } while (!lineMenuValidCheck(choiceLineMenu));
 
@@ -125,7 +125,7 @@ public class InputView {
             return true;
         }
 
-        OutputView.NotSelectableError();
+        OutputView.notSelectableError();
         return false;
     }
 
@@ -134,12 +134,12 @@ public class InputView {
         String lineName = scanner.nextLine();
 
         if (LineNameDuplicationCheck(lineName)) {
-            OutputView.LineNameDuplicationFailPrint();
+            OutputView.lineNameDuplicationFailPrint();
             throw new IllegalArgumentException();
         }
 
         if (lineNameLessThanLimit(lineName.length())) {
-            OutputView.LineNameCountLimitFailPrint();
+            OutputView.lineNameCountLimitFailPrint();
             throw new IllegalArgumentException();
         }
         return lineName;
@@ -158,7 +158,7 @@ public class InputView {
         if (StationRepository.contains(TerminusName)) {
             return TerminusName;
         }
-        OutputView.LineAddFailPrint();
+        OutputView.lineAddFailPrint();
         throw new IllegalArgumentException();
     }
 
@@ -175,7 +175,7 @@ public class InputView {
         String choiceMenu;
 
         do { // 유효한 값이 올 때 까지 값을 입력받는다.
-            OutputView.OptionChoicePrint();
+            OutputView.optionChoicePrint();
             choiceMenu = scanner.nextLine();
         } while (!sectionMenuValidCheck(choiceMenu));
 
@@ -189,7 +189,7 @@ public class InputView {
             return true;
         }
 
-        OutputView.NotSelectableError();
+        OutputView.notSelectableError();
         return false;
     }
 

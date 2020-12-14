@@ -16,11 +16,11 @@ public class OutputView {
         spacePrint();
     }
 
-    public static void OptionChoicePrint() {
+    public static void optionChoicePrint() {
         System.out.println(CommonMessage.CHOICE_OPTION_LIST.getCommonMessage());
     }
 
-    public static void NotSelectableError() {
+    public static void notSelectableError() {
         System.out.println(CommonMessage.NOT_SELECTABLE_ERROR.getCommonMessage());
         spacePrint();
     }
@@ -80,19 +80,15 @@ public class OutputView {
         System.out.println(LineMessage.LINE_ADD_SUCCESS.getLineMessage());
     }
 
-    public static void LineAddGuidePrint() {
+    public static void lineAddGuidePrint() {
         System.out.println(LineMessage.LINE_ADD_GUIDE.getLineMessage());
-    }
-
-    public static void LineAddSuccessPrint() {
-        System.out.println(LineMessage.LINE_ADD_SUCCESS.getLineMessage());
     }
 
     public static void upTerminusAddGuidePrint() {
         System.out.println(LineMessage.LINE_UPTERMINUS_ADD_GUIDE.getLineMessage());
     }
 
-    public static void LineNameDuplicationFailPrint() {
+    public static void lineNameDuplicationFailPrint() {
         System.out.println(LineMessage.LINE_NAME_DUPLICATION_ERROR.getLineMessage());
     }
 
@@ -100,11 +96,11 @@ public class OutputView {
         System.out.println(LineMessage.LINE_DOWNTERMINUS_ADD_GUIDE.getLineMessage());
     }
 
-    public static void LineAddFailPrint() {
+    public static void lineAddFailPrint() {
         System.out.println(LineMessage.LINE_ADD_STATION_NAME_FAIL.getLineMessage());
     }
 
-    public static void LineNameCountLimitFailPrint() {
+    public static void lineNameCountLimitFailPrint() {
         System.out.println(LineMessage.LINE_ADD_LIMIT_FAIL.getLineMessage());
     }
 
@@ -116,7 +112,7 @@ public class OutputView {
         System.out.println(LineMessage.LINE_LIST_FIND_FAIL.getLineMessage());
     }
 
-    public static void LineListPrint(String[] lineList) {
+    public static void lineListPrint(String[] lineList) {
         System.out.println(LineMessage.LINE_LIST.getLineMessage());
         for (String line : lineList) {
             System.out.println(CommonMessage.INFO.getCommonMessage() + line);
