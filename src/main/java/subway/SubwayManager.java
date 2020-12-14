@@ -10,8 +10,22 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SubwayManager {
+    private static final String GYODAE = "교대역";
+    private static final String GANGNAM = "강남역";
+    private static final String YUKSAM = "역삼역";
+    private static final String NAMBUTERMINAL = "남부터미널역";
+    private static final String YANGJAE = "양재역";
+    private static final String YANGJAECITIZENFOREST = "양재시민의숲역";
+    private static final String MAEBONG = "매봉역";
     private static final String[] INITIAL_STATIONS =
-        {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
+        {GYODAE, GANGNAM, YUKSAM, NAMBUTERMINAL, YANGJAE, YANGJAECITIZENFOREST, MAEBONG};
+    private static final String LINE_TWO = "2호선";
+    private static final String LINE_THREE = "3호선";
+    private static final String LINE_SINBUNDANG = "신분당선";
+    private static final int FIRST_STATION = 0;
+    private static final int SECOND_STATION = 1;
+    private static final int THIRD_STATION = 2;
+    private static final int FOURTH_STATION = 3;
 
     public SubwayManager() {
         settingInitialSubways();
@@ -27,43 +41,23 @@ public class SubwayManager {
             .map(Station::new)
             .forEach(StationRepository::addStation);
 
-        Line line1 = new Line("2호선");
-        line1.addLineStation(0, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("교대역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line1.addLineStation(1, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("강남역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line1.addLineStation(2, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("역삼역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        LineRepository.addLine(line1);
+        Line lineTwo = new Line(LINE_TWO);
+        lineTwo.addLineStation(FIRST_STATION, new Station(GYODAE));
+        lineTwo.addLineStation(SECOND_STATION, new Station(GANGNAM));
+        lineTwo.addLineStation(THIRD_STATION, new Station(YUKSAM));
+        LineRepository.addLine(lineTwo);
 
-        Line line2 = new Line("3호선");
-        line2.addLineStation(0, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("교대역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line2.addLineStation(1, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("남부터미널역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line2.addLineStation(2, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("양재역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line2.addLineStation(3, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("매봉역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        LineRepository.addLine(line2);
+        Line lineThree = new Line(LINE_THREE);
+        lineThree.addLineStation(FIRST_STATION, new Station(GYODAE));
+        lineThree.addLineStation(SECOND_STATION, new Station(NAMBUTERMINAL));
+        lineThree.addLineStation(THIRD_STATION, new Station(YANGJAE));
+        lineThree.addLineStation(FOURTH_STATION, new Station(MAEBONG);
+        LineRepository.addLine(lineThree);
 
-        Line line3 = new Line("신분당선");
-        line3.addLineStation(0, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("강남역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line3.addLineStation(1, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("양재역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        line3.addLineStation(2, StationRepository.stations().stream()
-            .filter(s -> s.getName().equals("양재시민의숲역")).findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 역이 없습니다.")));
-        LineRepository.addLine(line3);
+        Line lineSinBundang = new Line(LINE_SINBUNDANG);
+        lineSinBundang.addLineStation(FIRST_STATION, new Station(GANGNAM));
+        lineSinBundang.addLineStation(SECOND_STATION, new Station(YANGJAE));
+        lineSinBundang.addLineStation(THIRD_STATION, new Station(YANGJAECITIZENFOREST));
+        LineRepository.addLine(lineSinBundang);
     }
 }
