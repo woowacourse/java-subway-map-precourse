@@ -1,25 +1,27 @@
 package subway.service.section;
 
-import subway.repository.LineRepository;
+import subway.domain.Section;
 import subway.type.BoundaryType;
 import subway.view.output.line.LineExceptionView;
 import subway.view.output.section.SectionExceptionView;
 import subway.view.output.station.StationExceptionView;
 
-import java.util.List;
-
 public class SectionAddingValidation {
-    public boolean checkLineNameValidation(String lineName) {
-        List<String> lineNames = LineRepository.lineNames();
-
-        if (!lineNames.contains(lineName)) {
-            LineExceptionView.printInvalidLineNameExistenceException();
+    public boolean checkSectionAddingValidation(Section section) {
+        if (!checkNamesValidation(section.getLineName(), section.getStationName())) {
+            return false;
+        }
+        if (!checkOrderValidation(section.getLineName(), section.getOrder())) {
             return false;
         }
         return true;
     }
 
-    public boolean checkStationNameValidation(String lineName, String stationName) {
+    public boolean checkNamesValidation(String lineName, String stationName) {
+        if (!SectionAddingService.checkExistingLineName(lineName)) {
+            LineExceptionView.printInvalidLineNameExistenceException();
+            return false;
+        }
         if (!SectionAddingService.checkExistingStationName(stationName)) {
             StationExceptionView.printInvalidStationNameExistenceException();
             return false;

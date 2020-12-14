@@ -2,9 +2,11 @@ package subway.service.section;
 
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.repository.TransitMapRepository;
 import subway.type.BoundaryType;
+import subway.view.output.line.LineExceptionView;
 import subway.view.output.section.SectionTextView;
 
 import java.util.*;
@@ -23,6 +25,11 @@ public class SectionAddingService {
     public static String scanOrder(Scanner scanner) {
         SectionTextView.printSectionAddingOrderText();
         return scanner.nextLine();
+    }
+
+    public static boolean checkExistingLineName(String lineName) {
+        List<String> lineNames = LineRepository.lineNames();
+        return lineNames.contains(lineName);
     }
 
     public static boolean checkExistingStationName(String stationName) {

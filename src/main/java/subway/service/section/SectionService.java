@@ -1,5 +1,6 @@
 package subway.service.section;
 
+import subway.domain.Section;
 import subway.service.station.StationService;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
@@ -46,18 +47,14 @@ public class SectionService extends StationService {
         SectionAddingValidation sectionAddingValidation = new SectionAddingValidation();
 
         String lineName = SectionAddingService.scanLineName(scanner);
-        if (!sectionAddingValidation.checkLineNameValidation(lineName)) {
-            return false;
-        }
         String stationName = SectionAddingService.scanStationName(scanner);
-        if (!sectionAddingValidation.checkStationNameValidation(lineName, stationName)) {
-            return false;
-        }
         String order = SectionAddingService.scanOrder(scanner);
-        if (!sectionAddingValidation.checkOrderValidation(lineName, order)) {
-            return false;
+
+        if (sectionAddingValidation
+                .checkSectionAddingValidation(new Section(lineName, stationName, order))) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
