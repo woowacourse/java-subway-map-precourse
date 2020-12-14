@@ -1,5 +1,7 @@
 package subway.userinterface.linemenu;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.service.LineService;
 import subway.userinterface.Menu;
 import subway.userinterface.OutputController;
@@ -15,6 +17,10 @@ public class LineRegisterController implements Menu {
     private final static LineService lineService = new LineService();
     private final static LineRegisterInputController lineRegisterInputController
             = new LineRegisterInputController();
+    private static final LineRegisterTopStationInputController topStationInput
+            = new LineRegisterTopStationInputController();
+    private static final LineRegisterBottomStationController bottomStationInput
+            = new LineRegisterBottomStationController();
 
     private static LineRegisterController lineRegisterController;
 
@@ -40,10 +46,13 @@ public class LineRegisterController implements Menu {
 
     @Override
     public void run(Scanner scanner) throws IllegalArgumentException {
+        Station topStation =
+                StationRepository.findStationByName(topStationInput.getUserInput(scanner));
+        Station bottomStation =
+                StationRepository.findStationByName(bottomStationInput.getUserInput(scanner));
 
-        lineService.registerLine(lineRegisterInputController.getUserInput(scanner));
-
-        //TODO 상행하행
+        lineService.registerLine(
+                lineRegisterInputController.getUserInput(scanner), topStation, bottomStation);
 
         OutputController.printInfo(LINE_REGISTERED);
     }
