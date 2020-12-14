@@ -1,8 +1,6 @@
 package subway.view;
 
-import subway.domain.Station;
-import subway.message.ErrorMessage;
-import subway.message.GuideMessage;
+import subway.message.CommonMessage;
 import subway.message.LineMessage;
 import subway.message.StationMessage;
 
@@ -13,16 +11,16 @@ public class OutputView {
     }
 
     public static void mainMenuPrint() {
-        System.out.println(GuideMessage.MAIN_FUNCTION_LIST.getGuideMessage());
+        System.out.println(CommonMessage.MAIN_FUNCTION_LIST.getCommonMessage());
         spacePrint();
     }
 
     public static void OptionChoicePrint() {
-        System.out.println(GuideMessage.CHOICE_OPTION_LIST.getGuideMessage());
+        System.out.println(CommonMessage.CHOICE_OPTION_LIST.getCommonMessage());
     }
 
     public static void NotSelectableError() {
-        System.out.println(ErrorMessage.NOT_SELECTABLE_ERROR.getErrorMessage());
+        System.out.println(CommonMessage.NOT_SELECTABLE_ERROR.getCommonMessage());
         spacePrint();
     }
 
@@ -49,7 +47,7 @@ public class OutputView {
     public static void stationListPrint(String[] stationList) {
         System.out.println(StationMessage.STATION_LIST.getStationMessage());
         for (String station : stationList) {
-            System.out.println(GuideMessage.INFO.getGuideMessage() + station);
+            System.out.println(CommonMessage.INFO.getCommonMessage() + station);
         }
     }
 
