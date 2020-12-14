@@ -51,6 +51,7 @@ public class LineManageProgram {
             Station upTrain = input.inputUpDownTrainLine(scanner);
             System.out.println("\n" + INPUT_DOWN_TRAIN_TERMINAL);
             Station downTrain = input.inputUpDownTrainLine(scanner);
+            controller.checkTwoTrainSame(upTrain, downTrain);
             controller.processEnrollLine(line);
             controller.processUpDownTrain(upTrain, line);
             controller.processUpDownTrain(downTrain, line);

@@ -54,7 +54,7 @@ public class StationRepository {
             Optional<Station> searchedStation = line.getStation()
                     .stream().filter(station -> station.getName().equals(name)).findAny();
             if (searchedStation.isPresent()) {
-                ErrorMessage.isIncludedInLineError();
+                ErrorMessage.isIncludedInLine();
                 throw new IllegalArgumentException();
             }
         }

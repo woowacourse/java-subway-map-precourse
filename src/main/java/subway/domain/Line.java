@@ -3,7 +3,6 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Line {
     private final String name;
@@ -39,7 +38,11 @@ public class Line {
         }
     }
 
-    public void removeOrderedStation(Station station) {
+    public void removeOrderedStation(Station station) throws IllegalArgumentException{
+        if (!getStation().contains(station)) {
+            ErrorMessage.isNotExistStationInLine();
+            throw new IllegalArgumentException();
+        }
         if (StationRepository.stations().contains(station)) {
             stations.removeIf(station1 -> Objects.equals(station1.getName(), station.getName()));
         }

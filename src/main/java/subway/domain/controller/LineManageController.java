@@ -1,5 +1,6 @@
 package subway.domain.controller;
 
+import subway.domain.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -27,6 +28,13 @@ public class LineManageController {
     public void processUpDownTrain(Station station, Line line) {
         line.addStation(station);
         station.addLine(line);
+    }
+
+    public void checkTwoTrainSame(Station upTrain, Station downTrain) throws IllegalArgumentException{
+        if (upTrain.equals(downTrain)) {
+            ErrorMessage.isTwoTrainNameSame();
+            throw new IllegalArgumentException();
+        }
     }
 
     public void printAllLines() {

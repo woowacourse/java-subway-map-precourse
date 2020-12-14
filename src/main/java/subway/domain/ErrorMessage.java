@@ -19,6 +19,8 @@ public class ErrorMessage {
     static final String CANNOT_INPUT_INDEX_ERROR = "해당 번째로 구간 삽입 불가능합니다";
     static final String LESS_THAN_TWO_STATION_ERROR = "해당 노선의 역이 2개 이하일 때 삭제 불가능합니다";
     static final String INCLUDED_IN_LINE_ERROR = "노선에 등록되어 있는 역은 삭제할 수 없습니다";
+    static final String NOT_EXIST_STATION_IN_LINE_ERROR = "해당 역이 노선 안에 존재하지 않습니다";
+    static final String TWO_TRAIN_NAME_SAME_ERROR = "상행, 하행 역 이름이 동일합니다";
 
     public static void isInvalidFunction() {
         System.out.println(PREFIX + INVALID_FUNCTION_ERROR);
@@ -80,8 +82,16 @@ public class ErrorMessage {
         System.out.println(PREFIX + LESS_THAN_TWO_STATION_ERROR);
     }
 
-    public static void isIncludedInLineError() {
+    public static void isIncludedInLine() {
         System.out.println(PREFIX + INCLUDED_IN_LINE_ERROR);
+    }
+
+    public static void isNotExistStationInLine() {
+        System.out.println(PREFIX + NOT_EXIST_STATION_IN_LINE_ERROR);
+    }
+
+    public static void isTwoTrainNameSame() {
+        System.out.println(PREFIX + TWO_TRAIN_NAME_SAME_ERROR);
     }
 }
 
