@@ -5,6 +5,7 @@ import subway.domain.command.MainCommand;
 import subway.domain.command.SectionCommand;
 import subway.domain.command.StationCommand;
 import subway.dto.LineDto;
+import subway.dto.SectionDeletionDto;
 import subway.dto.SectionRegistrationDto;
 import subway.dto.StationDto;
 
@@ -21,6 +22,8 @@ public class InputView {
     private static final String LINE_INPUT_GUIDE_MESSAGE = "## 노선을 입력하세요.";
     private static final String STATION_INPUT_GUIDE_MESSAGE = "## 역이름을 입력하세요.";
     private static final String SEQUENCE_INPUT_GUIDE_MESSAGE = "## 순서를 입력하세요.";
+    private static final String DELETION_SECTION_LINE_GUIDE_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
+    private static final String DELETION_SECTION_STATION_GUIDE_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
 
     private final Scanner scanner;
 
@@ -131,6 +134,26 @@ public class InputView {
         String sequence = inputWithTrimming();
         lineFeed();
         return sequence;
+    }
+
+    public SectionDeletionDto inputDeletionSection() {
+        String lineName = inputDeletionSectionLine();
+        String stationName = inputDeletionSectionLine();
+        return new SectionDeletionDto(lineName, stationName);
+    }
+
+    private String inputDeletionSectionLine() {
+        println(DELETION_SECTION_LINE_GUIDE_MESSAGE);
+        String lineName = inputWithTrimming();
+        lineFeed();
+        return lineName;
+    }
+
+    private String inputDeletionSectionStation() {
+        println(DELETION_SECTION_STATION_GUIDE_MESSAGE);
+        String stationName = inputWithTrimming();
+        lineFeed();
+        return stationName;
     }
 
     private void printSelectionGuideMessage() {
