@@ -4,6 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.NameLengthException;
 import subway.exception.StationNameDuplicateException;
+import subway.exception.StationNameNotFoundException;
 
 public class StationService {
     private static final int MIN_NAME_LENGTH = 2;
@@ -12,6 +13,13 @@ public class StationService {
         validateNameLength(station.getName());
         validateDuplicateName(station.getName());
         StationRepository.addStation(station);
+    }
+
+    public static void remove(String name) {
+        validateNameLength(name);
+        StationRepository.deleteStation(
+                StationRepository.findByName(name)
+                        .orElseThrow(StationNameNotFoundException::new).getName());
     }
 
     private static void validateNameLength(String name) {

@@ -23,6 +23,13 @@ public class StationController implements IController{
 
     @Override
     public void remove() {
+        try{
+            Output.printNewLine();
+            StationService.remove(Input.input(Input.PLEASE_INPUT_REMOVE_STATION_NAME));
+        } catch (IllegalArgumentException e) {
+            Output.printNewLine();
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
