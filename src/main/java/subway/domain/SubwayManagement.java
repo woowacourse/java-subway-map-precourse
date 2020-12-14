@@ -7,13 +7,11 @@ public class SubwayManagement {
     private static String[][] initLine = {{"2호선", "교대역", "역삼역"}, {"3호선", "교대역", "매봉역"}, {"신분당선", "강남역", "양재시민의숲역"}};
     private static String[][] initSection = {{"강남역"}, {"남부터미널역", "양재역"}, {"양재역"}};
 
-    public SubwayManagement(User user) {
-        this.user = user;
-    }
-
     public void start() {
 
         initStats();
+
+        user = new User();
 
         while (true) {
             printScreen.printMainScreen();

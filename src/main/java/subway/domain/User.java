@@ -4,11 +4,7 @@ import java.util.Scanner;
 
 public class User {
 
-    private final Scanner scanner;
-
-    public User(Scanner scanner){
-        this.scanner = scanner;
-    }
+    final Scanner scanner = new Scanner(System.in);
 
     public String getInput(){
         return scanner.nextLine();
