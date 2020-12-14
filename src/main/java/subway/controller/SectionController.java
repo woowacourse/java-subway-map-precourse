@@ -4,33 +4,35 @@ import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class SectionController {
-	private static final List<String> options = new ArrayList<>();
+	private static final Map<String, Consumer<Scanner>> options = new HashMap<>();
 
 	static {
-		options.add(Options.OPTION_1.getOption());
-		options.add(Options.OPTION_2.getOption());
-		options.add(Options.BACK.getOption());
+		options.put(Options.OPTION_1.getOption(), SectionController::registerSection);
+		options.put(Options.OPTION_2.getOption(), SectionController::deregisterSection);
+		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
 	private static String createLineNameToRegister(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameToRegisterSection(scanner);
+		System.out.println();
 		LineRepository.validateRegistration(lineName);
 		return lineName;
 	}
 
 	private static String createStationNameToRegister(String lineName, Scanner scanner) throws IllegalArgumentException {
 		String stationName = View.getStationNameToRegisterSection(scanner);
+		System.out.println();
 		Sections.validateDuplicate(lineName, stationName);
 		return stationName;
 	}
 
 	private static int createLocationToRegister(String lineName, Scanner scanner) throws IllegalArgumentException {
 		String location = View.getLocationToRegisterSection(scanner);
+		System.out.println();
 		Sections.validateInteger(location);
 		Sections.validateRange(lineName, location);
 		return Integer.parseInt(location);
@@ -77,20 +79,14 @@ public class SectionController {
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
-		if (option.equals(Options.OPTION_1.getOption())) {
-			registerSection(scanner);
-		} else if (option.equals(Options.OPTION_2.getOption())) {
-			deregisterSection(scanner);
-		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			System.out.println();
-		}
+		options.get(option).accept(scanner);
 	}
 
 	public static void run(Scanner scanner) {
 		View.printSectionScreen();
 		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(options, option);
+			Options.validateOption(Options.getOptionList(options), option);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

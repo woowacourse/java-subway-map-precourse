@@ -3,47 +3,33 @@ package subway.controller;
 import subway.view.MainMessages;
 import subway.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class MainController {
-	private static final List<String> options = new ArrayList<>();
+	private static final Map<String, Consumer<Scanner>> options = new HashMap<>();
 
 	static {
-		options.add(Options.OPTION_1.getOption());
-		options.add(Options.OPTION_2.getOption());
-		options.add(Options.OPTION_3.getOption());
-		options.add(Options.OPTION_4.getOption());
-		options.add(Options.QUIT.getOption());
+		options.put(Options.OPTION_1.getOption(), StationController::run);
+		options.put(Options.OPTION_2.getOption(), LineController::run);
+		options.put(Options.OPTION_3.getOption(), SectionController::run);
+		options.put(Options.OPTION_4.getOption(), (scanner) -> View.showWholeMap());
+		options.put(Options.QUIT.getOption(), (scanner) -> System.out.println(MainMessages.QUIT.getMessage()));
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
-		if (option.equals(Options.OPTION_1.getOption())) {
-			StationController.run(scanner);
-			View.printMainScreen();
-			run(scanner);
-		} else if (option.equals(Options.OPTION_2.getOption())) {
-			LineController.run(scanner);
-			View.printMainScreen();
-			run(scanner);
-		} else if (option.equals(Options.OPTION_3.getOption())) {
-			SectionController.run(scanner);
-			View.printMainScreen();
-			run(scanner);
-		} else if (option.equals(Options.OPTION_4.getOption())) {
-			View.showWholeMap();
-			View.printMainScreen();
-			run(scanner);
-		} else if (option.equalsIgnoreCase(Options.QUIT.getOption())) {
-			System.out.println(MainMessages.QUIT.getMessage());
+		options.get(option).accept(scanner);
+		if (option.equals(Options.QUIT.getOption())) {
+			return;
 		}
+		View.printMainScreen();
+		run(scanner);
 	}
 
 	public static void run(Scanner scanner) {
 		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(options, option);
+			Options.validateOption(Options.getOptionList(options), option); // check if option is available
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

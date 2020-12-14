@@ -6,18 +6,17 @@ import subway.domain.Sections;
 import subway.domain.StationRepository;
 import subway.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class LineController {
-	private static final List<String> options = new ArrayList<>();
+	private static final Map<String, Consumer<Scanner>> options = new HashMap<>();
 
 	static {
-		options.add(Options.OPTION_1.getOption());
-		options.add(Options.OPTION_2.getOption());
-		options.add(Options.OPTION_3.getOption());
-		options.add(Options.BACK.getOption());
+		options.put(Options.OPTION_1.getOption(), LineController::registerLine);
+		options.put(Options.OPTION_2.getOption(), LineController::deregisterLine);
+		options.put(Options.OPTION_3.getOption(), (scanner) -> View.showLines());
+		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
 	private static String createLineName(Scanner scanner) throws IllegalArgumentException {
@@ -72,22 +71,14 @@ public class LineController {
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
-		if (option.equals(Options.OPTION_1.getOption())) {
-			registerLine(scanner);
-		} else if (option.equals(Options.OPTION_2.getOption())) {
-			deregisterLine(scanner);
-		} else if (option.equals(Options.OPTION_3.getOption())) {
-			View.showLines();
-		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			System.out.println();
-		}
+		options.get(option).accept(scanner);
 	}
 
 	public static void run(Scanner scanner) {
 		View.printLineScreen();
 		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(options, option);
+			Options.validateOption(Options.getOptionList(options), option);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

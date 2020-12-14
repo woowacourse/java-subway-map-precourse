@@ -20,7 +20,8 @@ public class View {
 	public static String getScreenOption(Scanner scanner) {
 		System.out.println(General.CHOICE.getMessage());
 		return scanner.nextLine()
-				.replaceAll("\\s+", "");
+				.replaceAll("\\s+", "")
+				.toUpperCase();
 	}
 
 	public static void printStationScreen() {

@@ -4,18 +4,17 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class StationController {
-	private static final List<String> options = new ArrayList<>();
+	private static final Map<String, Consumer<Scanner>> options = new HashMap<>();
 
 	static {
-		options.add(Options.OPTION_1.getOption());
-		options.add(Options.OPTION_2.getOption());
-		options.add(Options.OPTION_3.getOption());
-		options.add(Options.BACK.getOption());
+		options.put(Options.OPTION_1.getOption(), StationController::registerStation);
+		options.put(Options.OPTION_2.getOption(), StationController::deregisterStation);
+		options.put(Options.OPTION_3.getOption(), (scanner) -> View.showStations());
+		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
 	private static void registerStation(Scanner scanner) {
@@ -41,22 +40,14 @@ public class StationController {
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
-		if (option.equals(Options.OPTION_1.getOption())) {
-			registerStation(scanner);
-		} else if (option.equals(Options.OPTION_2.getOption())) {
-			deregisterStation(scanner);
-		} else if (option.equals(Options.OPTION_3.getOption())) {
-			View.showStations();
-		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
-			System.out.println();
-		}
+		options.get(option).accept(scanner);
 	}
 
 	public static void run(Scanner scanner) {
 		View.printStationScreen();
 		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(options, option);
+			Options.validateOption(Options.getOptionList(options), option);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
