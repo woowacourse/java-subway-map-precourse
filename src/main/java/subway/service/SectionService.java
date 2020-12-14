@@ -30,6 +30,18 @@ public class SectionService {
         LineRepository.addSection(lineName, station, Integer.parseInt(sequence));
     }
 
+    public void deleteSection(SectionDeletionDto sectionDeletionDto) {
+        String lineName = sectionDeletionDto.getLineName();
+        String stationName = sectionDeletionDto.getStationName();
+
+        validateExistentLine(lineName);
+        validateExistentStation(stationName);
+        validateMinimumStationCount(lineName);
+        validateIncludedStationInLine(lineName, stationName);
+
+        LineRepository.deleteSection(lineName, stationName);
+    }
+
     private void validateExistentLine(String lineName) {
         if (!LineRepository.isExistentName(lineName)) {
             throw new IllegalArgumentException(NON_EXISTENT_LINE_ERROR_MESSAGE);

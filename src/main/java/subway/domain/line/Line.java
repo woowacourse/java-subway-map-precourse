@@ -28,6 +28,10 @@ public class Line {
         sections.add(sequence, station);
     }
 
+    public void deleteSection(String stationName) {
+        sections.removeIf(station -> Objects.equals(station.getName(), stationName));
+    }
+
     public String getName() {
         return name;
     }

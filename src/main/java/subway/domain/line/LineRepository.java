@@ -34,6 +34,11 @@ public class LineRepository {
         return line.countSections();
     }
 
+    public static void deleteSection(String lineName, String stationName) {
+        Line line = selectLine(lineName);
+        line.deleteSection(stationName);
+    }
+
     private static Line selectLine(String name) {
         return lines.stream()
                 .filter(line -> line.isMatchedName(name))
