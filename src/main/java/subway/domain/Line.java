@@ -23,7 +23,7 @@ public class Line {
         stations.addStation(order.getIndex(), station);
     }
 
-    public void deleteSection(Station station) {
+    public void deleteStation(Station station) {
         stations.deleteSection(station);
     }
 
