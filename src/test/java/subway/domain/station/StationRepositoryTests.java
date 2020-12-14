@@ -12,9 +12,9 @@ class StationRepositoryTests {
         Station sameNameStation = new Station(stationName);
         StationRepository.addStation(station);
 
-        assertThat(StationRepository.isAlreadyExistent(station))
+        assertThat(StationRepository.isExistent(station))
                 .isTrue();
-        assertThat(StationRepository.isAlreadyExistent(sameNameStation))
+        assertThat(StationRepository.isExistent(sameNameStation))
                 .isTrue();
     }
 }

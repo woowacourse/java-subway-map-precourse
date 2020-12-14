@@ -20,7 +20,7 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isAlreadyExistent(Station station) {
+    public static boolean isExistent(Station station) {
         return stations.contains(station);
     }
 }
