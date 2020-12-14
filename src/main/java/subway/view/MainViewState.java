@@ -3,10 +3,7 @@ package subway.view;
 import subway.SubwayLineMap;
 import subway.controller.LineController;
 import subway.domain.Line;
-import subway.domain.Station;
-import subway.view.component.CommonViewComponent;
-import subway.view.component.MainViewComponent;
-import subway.view.component.StationManagementViewComponent;
+import subway.view.output.MainOutputView;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,13 +35,8 @@ public class MainViewState extends ViewState{
     }
 
     @Override
-    protected void printMenuWithInputRequirementMsg(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(MainViewComponent.getMenuComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        viewStringBuilder.append(CommonViewComponent.getSelectFeatureViewComponent());
-        System.out.println(viewStringBuilder.toString());
+    protected void printMenu(){
+        MainOutputView.printMenuLog();
     }
 
     @Override
@@ -98,30 +90,8 @@ public class MainViewState extends ViewState{
         application.setViewState(SectionManagementViewState.getSectionManagementViewState());
     }
 
-    public void printSubwayLineList(){
+    private void printSubwayLineList(){
         List<Line> lineList = lineController.getLines();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(MainViewComponent.getSubwayLineMapComponent());
-        stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        appendSubwayLineListLog(stringBuilder, lineList);
-        System.out.print(stringBuilder.toString());
-    }
-
-    private void appendSubwayLineListLog(StringBuilder stringBuilder, List<Line> lineList){
-        for(Line line : lineList){
-            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
-            stringBuilder.append(line.getName());
-            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-            appendStationsInLine(stringBuilder, line);
-            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        }
-    }
-
-    private void appendStationsInLine(StringBuilder stringBuilder, Line line){
-        for(Station station : line.getStations()){
-            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
-            stringBuilder.append(station.getName());
-            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        }
+        MainOutputView.printSubwayLineList(lineList);
     }
 }
