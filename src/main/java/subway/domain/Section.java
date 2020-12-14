@@ -37,7 +37,7 @@ public class Section {
 
     private void validateStationDuplicate(Station station) {
         if (stations.contains(station)) {
-            throw new IllegalArgumentException("이미 현재 노선에 등록 되어 있는 지하철 역 입니다.");
+            throw new IllegalArgumentException("이미 노선에 등록되어 있거나, 등록 진행 중인 지하철 역 입니다.");
         }
     }
 
@@ -45,7 +45,7 @@ public class Section {
         try {
             return Integer.parseInt(position);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바른 순서 값이 아닙니다.");
+            throw new IllegalArgumentException("순서 값은 정수어야만 합니다.");
         }
     }
 

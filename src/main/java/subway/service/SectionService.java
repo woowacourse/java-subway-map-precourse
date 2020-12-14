@@ -3,6 +3,7 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.Section;
 import subway.domain.SectionRepository;
+import subway.view.SectionDisplay;
 import subway.view.UserInput;
 
 public class SectionService {
@@ -20,7 +21,11 @@ public class SectionService {
     }
 
     public static void delete(String lineName) {
-//        SectionRepository.deleteSection(lineName);
+        SectionRepository.deleteSection(lineName);
+    }
+
+    public static void print(){
+        SectionDisplay.printAllSections(SectionRepository.sections());
     }
 
     public static boolean contain(String name) {

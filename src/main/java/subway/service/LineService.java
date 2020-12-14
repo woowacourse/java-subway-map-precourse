@@ -7,8 +7,9 @@ import subway.view.LineDisplay;
 public class LineService {
     public static void save(String lineName) {
         Line newLine = Line.newLineWithName(lineName);
-        LineRepository.addLine(newLine);
+        LineRepository.validateNameDuplicate(newLine);
         SectionService.save(newLine);
+        LineRepository.addLine(newLine);
         LineDisplay.printSaveSuccess();
     }
 
