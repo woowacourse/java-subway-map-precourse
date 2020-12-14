@@ -8,6 +8,7 @@ import subway.domain.MenuType;
 import java.util.Scanner;
 
 import static subway.domain.LineRepository.*;
+import static subway.domain.MenuType.*;
 import static subway.domain.StationRepository.findStation;
 import static subway.view.OutputView.printAddLineStationSuccessMessage;
 import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
@@ -15,13 +16,13 @@ import static subway.view.OutputView.printDeleteLineStationSuccessMessage;
 public class LineStationService extends InputService {
 
     public void selectLineStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if (menu.equals(MenuType.LINE_STATION_ADD.getKey())) {
+        if (LINE_STATION_ADD.isKeyEquals(menu)) {
             addLineStation(scanner, lineStation);
         }
-        if (menu.equals(MenuType.LINE_STATION_DELETE.getKey())) {
+        if (LINE_STATION_DELETE.isKeyEquals(menu)) {
             deleteLineStation(scanner, lineStation);
         }
-        if (menu.equals(MenuType.LINE_STATION_SEARCH.getKey())) {
+        if (LINE_STATION_SEARCH.isKeyEquals(menu)) {
             printLines();
         }
     }

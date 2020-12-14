@@ -6,6 +6,7 @@ import subway.domain.MenuType;
 import java.util.Scanner;
 
 import static subway.domain.LineRepository.findLine;
+import static subway.domain.MenuType.*;
 import static subway.domain.StationRepository.findStation;
 import static subway.view.OutputView.printAddSectionSuccessMessage;
 import static subway.view.OutputView.printDeleteSectionSuccessMessage;
@@ -13,10 +14,10 @@ import static subway.view.OutputView.printDeleteSectionSuccessMessage;
 public class SectionService extends InputService {
 
     public void selectSectionManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if (menu.equals(MenuType.SECTION_ADD.getKey())) {
+        if (SECTION_ADD.isKeyEquals(menu)) {
             addSection(scanner, lineStation);
         }
-        if (menu.equals(MenuType.SECTION_DELETE.getKey())) {
+        if (SECTION_DELETE.isKeyEquals(menu)) {
             deleteSection(scanner, lineStation);
         }
     }

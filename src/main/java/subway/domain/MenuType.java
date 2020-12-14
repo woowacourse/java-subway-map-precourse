@@ -36,11 +36,11 @@ public enum MenuType {
         this.keys = keys;
     }
 
-    public String getKey() {
-        return key;
-    }
-
     public List<String> getKeys() {
         return keys;
+    }
+
+    public boolean isKeyEquals(String menu) {
+        return this.key.equals(menu);
     }
 }

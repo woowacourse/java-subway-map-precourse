@@ -20,16 +20,16 @@ public class SubwayMapService extends InputService {
     }
 
     public void selectMainMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if (menu.equals(MenuType.MAIN_STATION.getKey())) {
+        if (MAIN_STATION.isKeyEquals(menu)) {
             stationManagement(scanner, lineStation);
         }
-        if (menu.equals(MenuType.MAIN_LINE_STATION.getKey())) {
+        if (MAIN_LINE_STATION.isKeyEquals(menu)) {
             lineStationManagement(scanner, lineStation);
         }
-        if (menu.equals(MenuType.MAIN_SECTION.getKey())) {
+        if (MAIN_SECTION.isKeyEquals(menu)) {
             sectionManagement(scanner, lineStation);
         }
-        if (menu.equals(MenuType.MAIN_PRINT_LINE_STATION.getKey())) {
+        if (MAIN_PRINT_LINE_STATION.isKeyEquals(menu)) {
             printLineStation(lineStation);
         }
     }

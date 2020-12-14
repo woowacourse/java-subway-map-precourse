@@ -7,19 +7,20 @@ import subway.domain.StationRepository;
 
 import java.util.Scanner;
 
+import static subway.domain.MenuType.*;
 import static subway.view.OutputView.printAddStationSuccessMessage;
 import static subway.view.OutputView.printDeleteStationSuccessMessage;
 
 public class StationService extends InputService {
 
     public void selectStationManagementMenu(Scanner scanner, String menu, LineStationRepository lineStation) {
-        if (menu.equals(MenuType.STATION_ADD.getKey())) {
+        if (STATION_ADD.isKeyEquals(menu)) {
             addStation(scanner);
         }
-        if (menu.equals(MenuType.STATION_DELETE.getKey())) {
+        if (STATION_DELETE.isKeyEquals(menu)) {
             deleteStation(scanner, lineStation);
         }
-        if (menu.equals(MenuType.STATION_SEARCH.getKey())) {
+        if (STATION_SEARCH.isKeyEquals(menu)) {
             printStations();
         }
     }
