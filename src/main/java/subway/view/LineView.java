@@ -41,17 +41,17 @@ public class LineView extends AbstractView {
 
     private void insertLine() {
         try {
-            String lineName = DialogUtils.ask(scanner, Constants.ADD_LINE_NAME_INPUT_COMMENT);
+            String lineName = DialogUtils.ask(scanner, Constants.ADD_LINE_ASK);
             checkValidationLineNameOrThrow(lineName);
             Station startStation = getStationOrThrow(
-                DialogUtils.ask(scanner, Constants.ADD_START_STATION_NAME_INPUT_COMMENT));
+                DialogUtils.ask(scanner, Constants.ADD_START_STATION_ASK));
             Station endStation = getStationOrThrow(
-                DialogUtils.ask(scanner, Constants.ADD_END_STATION_NAME_INPUT_COMMENT));
-
+                DialogUtils.ask(scanner, Constants.ADD_END_STATION_ASK));
+            checkDuplicateStartToEnd(startStation, endStation);
             Line line = new Line(lineName);
             subway.getLineRepository().addLine(line);
             subway.getSectionRepository().addNewLine(line, startStation, endStation);
-            MessageUtils.printInfo(Constants.ADD_LINE_OUTPUT_COMMENT);
+            MessageUtils.printInfo(Constants.ADDED_LINE);
         } catch (Exception e) {
             MessageUtils.printError(e.getMessage());
         }
@@ -59,12 +59,12 @@ public class LineView extends AbstractView {
 
     private void deleteLine() {
         try {
-            String lineName = DialogUtils.ask(scanner, Constants.DELETE_LINE_NAME_INPUT_COMMENT);
+            String lineName = DialogUtils.ask(scanner, Constants.DELETE_LINE_NAME_ASK);
             Line line = getLineOrThrow(lineName);
 
             subway.getSectionRepository().deleteLine(line);
             subway.getLineRepository().deleteLineByName(lineName);
-            MessageUtils.printInfo(Constants.DELETE_LINE_OUTPUT_COMMENT);
+            MessageUtils.printInfo(Constants.DELETED_LINE);
         } catch (RuntimeException e) {
             MessageUtils.printError(e.getMessage());
         }
@@ -73,34 +73,47 @@ public class LineView extends AbstractView {
     private void checkValidationLineNameOrThrow(String lineName) {
         InputUtils.isMinLengthString(lineName);
         if (isExistLine(lineName)) {
-            throw new RuntimeException(Constants.EXIST_LINE_OUTPUT_COMMENT);
+            throw new RuntimeException(Constants.EXIST_LINE);
+        }
+    }
+
+    private void checkDuplicateStartToEnd(Station startStation, Station endStation) {
+        if (startStation.equals(endStation)) {
+            throw new RuntimeException(Constants.INVALID_START_TO_END_STATION);
         }
     }
 
     private Line getLineOrThrow(String lineName) {
         if (!isExistLine(lineName)) {
-            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
+            throw new RuntimeException(Constants.NO_EXIST_LINE);
         }
         return subway.getLineRepository().findByName(lineName);
     }
 
     private Station getStationOrThrow(String stationName) {
         if (!isExistStation(stationName)) {
-            return subway.getStationRepository().findByName(stationName);
+            throw new RuntimeException(Constants.NO_EXIST_STATION);
         }
-        throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+        return subway.getStationRepository().findByName(stationName);
     }
 
     private boolean isExistLine(String lineName) {
-        return subway.getLineRepository().findByName(lineName) != null;
+        if (subway.getLineRepository().findByName(lineName) == null) {
+            return false;
+        }
+        return true;
     }
 
     private boolean isExistStation(String stationName) {
-        return subway.getStationRepository().findByName(stationName) != null;
+        if (subway.getStationRepository().findByName(stationName) == null) {
+            return false;
+        }
+        return true;
+
     }
 
     private void showLines() {
-        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_LINE_TEXT);
+        MessageUtils.printAnnouncement(Constants.TITLE_LINE_LIST);
         subway.getLineRepository().findAll()
             .forEach(line -> MessageUtils.printInfoEntry(line.getName()));
         MessageUtils.printBlankLine();

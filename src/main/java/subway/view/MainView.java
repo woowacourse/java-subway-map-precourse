@@ -46,11 +46,11 @@ public class MainView extends AbstractView {
     }
 
     public void showWholeSubway() {
-        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_SUBWAY_MAP_TEXT);
+        MessageUtils.printAnnouncement(Constants.TITLE_SUBWAY_MAP);
         Map<String, List<String>> wholeSubwayMap = subway.getSectionRepository().findAll();
         for (String lineTitle : wholeSubwayMap.keySet()) {
             MessageUtils.printInfoEntry(lineTitle);
-            MessageUtils.printInfoEntry(Constants.SEPARATE_STRING_WHOLE_SUBWAY_MAP_TEXT);
+            MessageUtils.printInfoEntry(Constants.SEPARATE_STRING_SUBWAY_MAP);
             for (Object stationTitle : wholeSubwayMap.get(lineTitle)) {
                 MessageUtils.printInfoEntry((String) stationTitle);
             }

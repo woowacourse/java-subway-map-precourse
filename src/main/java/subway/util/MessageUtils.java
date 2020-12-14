@@ -10,7 +10,7 @@ public class MessageUtils {
             menuItem -> System.out.println(menuItem.getCode() + ". " + menuItem.getTitle())
         );
         printBlankLine();
-        MessageUtils.printAnnouncement(Constants.ANNOUNCEMENT_FEATURE_SELECT_COMMENT);
+        MessageUtils.printAnnouncement(Constants.ASK_FEATURE_SELECT_ANNOUNCEMENT);
     }
 
     public static void printError(String e) {

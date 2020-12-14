@@ -41,7 +41,7 @@ public abstract class AbstractView {
 
         Runnable action = getMenuActionMap().get(input);
         if (action == null) {
-            MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
+            MessageUtils.printError(Constants.INVALID_ASK);
             return;
         }
         action.run();

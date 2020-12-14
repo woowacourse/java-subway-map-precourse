@@ -41,12 +41,12 @@ public class StationView extends AbstractView {
 
     private void insertStation() {
         try {
-            String stationName = DialogUtils.ask(scanner, Constants.ADD_STATION_INPUT_COMMENT);
+            String stationName = DialogUtils.ask(scanner, Constants.ADD_STATION_ASK);
             checkValidationStationNameOrThrow(stationName);
 
             Station station = new Station(stationName);
             subway.getStationRepository().addStation(station);
-            MessageUtils.printInfo(Constants.ADD_STATION_OUTPUT_COMMENT);
+            MessageUtils.printInfo(Constants.ADDED_STATION);
         } catch (Exception e) {
             MessageUtils.printError(e.getMessage());
         }
@@ -54,12 +54,12 @@ public class StationView extends AbstractView {
 
     private void deleteStation() {
         try {
-            String stationName = DialogUtils.ask(scanner, Constants.DELETE_STATION_INPUT_COMMENT);
+            String stationName = DialogUtils.ask(scanner, Constants.DELETE_STATION_ASK);
             checkExistStationOrThrow(stationName);
             checkExistStationInSectionOrThrow(stationName);
 
             subway.getStationRepository().deleteStationByName(stationName);
-            MessageUtils.printInfo(Constants.DELETE_STATION_OUTPUT_COMMENT);
+            MessageUtils.printInfo(Constants.DELETED_STATION);
         } catch (Exception e) {
             MessageUtils.printError(e.getMessage());
         }
@@ -68,29 +68,32 @@ public class StationView extends AbstractView {
     private void checkValidationStationNameOrThrow(String stationName) {
         InputUtils.isMinLengthString(stationName);
         if (isExistStation(stationName)) {
-            throw new RuntimeException(Constants.EXIST_STATION_OUTPUT_COMMENT);
+            throw new RuntimeException(Constants.EXIST_STATION);
         }
     }
 
     private void checkExistStationOrThrow(String stationName) {
         if (!isExistStation(stationName)) {
-            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+            throw new RuntimeException(Constants.NO_EXIST_STATION);
         }
     }
 
     private void checkExistStationInSectionOrThrow(String stationName) {
         Set<String> stationsInSection = subway.getSectionRepository().getSetStations();
         if (stationsInSection.contains(stationName)) {
-            throw new RuntimeException(Constants.EXIST_STATION_IN_SECTION_OUTPUT_COMMENT);
+            throw new RuntimeException(Constants.EXIST_STATION_IN_SECTION);
         }
     }
 
     private boolean isExistStation(String stationName) {
-        return subway.getStationRepository().findByName(stationName) != null;
+        if (subway.getStationRepository().findByName(stationName) == null) {
+            return false;
+        }
+        return true;
     }
 
     private void showStations() {
-        MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
+        MessageUtils.printAnnouncement(Constants.TITLE_STATION_LIST);
         subway.getStationRepository().findAll()
             .forEach(station -> MessageUtils.printInfoEntry(station.getName()));
         MessageUtils.printBlankLine();
