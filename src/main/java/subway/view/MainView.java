@@ -22,7 +22,7 @@ public class MainView extends ManagerView {
 		} else if (menuSelected.equals(SECOND_MENU)) {
 			new LineManagerView(scanner);
 		} else if (menuSelected.equals(THIRD_MENU)) {
-			new SectionManagerView();
+			new SectionManagerView(scanner);
 		} else if (menuSelected.equals(FOURTH_MENU)) {
 			new SubwayMapView();
 		} else if (menuSelected.equals(QUIT_MENU)) {
