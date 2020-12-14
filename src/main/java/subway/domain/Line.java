@@ -1,7 +1,13 @@
 package subway.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Line {
-    private String name;
+    static final int ORDER_SUBTRACT_INDEX = 1;
+    private final String name;
+    private final List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -12,4 +18,33 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public void addStation(Station station) {
+        if (getStation().contains(station)) {
+            return;
+        }
+        if (StationRepository.stations().contains(station)) {
+            stations.add(station);
+        }
+    }
+
+    public List<Station> getStation() {
+        return stations;
+    }
+
+    public void addOrderedStation(Station station, int order) {
+        int orderIndex = order - ORDER_SUBTRACT_INDEX;
+        if (StationRepository.stations().contains(station)) {
+            stations.add(orderIndex, station);
+        }
+    }
+
+    public void removeOrderedStation(Station station) throws IllegalArgumentException {
+        if (!getStation().contains(station)) {
+            ErrorMessage.isNotExistStationInLine();
+            throw new IllegalArgumentException();
+        }
+        if (StationRepository.stations().contains(station)) {
+            stations.removeIf(station1 -> Objects.equals(station1.getName(), station.getName()));
+        }
+    }
 }

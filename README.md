@@ -464,6 +464,38 @@ public class StationRepository {
   - [프리코스 과제 FAQ](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse/faq) 문서를 참고하여 진행할 수 있다.
 <br>
 
+## 기능 목록
+- (O) 역, 노선 등 정보를 미리 세팅하기 
+- (O) 미리 세팅된 정보만 저장하는 repository 내 멤버변수 리스트 설정
+- (O) 등록할 역 입력받기(2자 이상)
+- (O) 삭제할 역 입력받기
+- (O) 역 등록하기
+- (O) 역 삭제하기
+- (O) 지하철 역 목록 조회하기
+- (O) 뒤로가기 기능 구현
+- (O) 노선 등록하기 
+- (O) 노선 삭제하기
+- (O) 등록할 노선 입력받기(2자 이상)
+- (O) 삭제할 노선 입력받기
+- (O) 상행, 하행 종점 입력받기
+- (O) 노선 목록 조회하기
+- (O) 구간 등록할 노선 입력받기
+- (O) 구간 등록할 역, 순서 입력받기
+- (O) 삭제할 구간 노선 입력받기
+- (O) 삭제할 구간 역 입력받기
+- (O) 구간 추가하기
+- (O) 구간 삭제하기
+- (O) 노선에 포함된 역이 2개 이하면 역 제거 불가능하도록 조건설정
+- (O) 노선 역 조회하기
+- (O) 역 관리 입력화면 구현
+- (O) 노선 관리 입력화면 구현
+- (O) 구간 관리 입력화면 구현
+- (O) 역 관리 출력화면 구현
+- (O) 노선 관리 출력화면 구현
+- (O) 구간 관리 출력화면 구현
+- (O) 메인 입력화면 구현
+- (O) 메인 출력화면 구현
+- (O) 에러 메시지 클래스 생성
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
