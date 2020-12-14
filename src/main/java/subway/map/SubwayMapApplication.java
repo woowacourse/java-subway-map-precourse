@@ -1,10 +1,10 @@
 package subway.map;
 
 import subway.controller.ControllerMapper;
-import subway.type.FunctionType;
-import subway.type.ManagementType;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.vo.FunctionType;
+import subway.vo.ManagementType;
 
 public class SubwayMapApplication {
 

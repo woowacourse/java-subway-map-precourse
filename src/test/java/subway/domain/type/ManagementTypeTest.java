@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import subway.type.FunctionType;
-import subway.type.ManagementType;
-import subway.type.UnsupportedFunctionException;
+import subway.vo.FunctionType;
+import subway.vo.ManagementType;
+import subway.vo.UnsupportedFunctionException;
 
 import java.util.stream.Stream;
 

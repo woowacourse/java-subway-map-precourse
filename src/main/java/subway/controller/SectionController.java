@@ -4,8 +4,8 @@ import subway.domain.entity.Station;
 import subway.dto.SectionDto;
 import subway.service.LineService;
 import subway.service.StationService;
-import subway.type.FunctionType;
 import subway.view.InputView;
+import subway.vo.FunctionType;
 
 public class SectionController implements SubwayMapController {
 

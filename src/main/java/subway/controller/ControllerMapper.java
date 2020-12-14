@@ -1,7 +1,7 @@
 package subway.controller;
 
-import subway.type.FunctionType;
-import subway.type.ManagementType;
+import subway.vo.FunctionType;
+import subway.vo.ManagementType;
 
 import java.util.List;
 

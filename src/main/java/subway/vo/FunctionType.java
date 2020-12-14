@@ -1,4 +1,4 @@
-package subway.type;
+package subway.vo;
 
 import java.util.Objects;
 

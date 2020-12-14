@@ -3,8 +3,8 @@ package subway.view;
 import subway.domain.entity.InvalidSectionOrderException;
 import subway.dto.LineDto;
 import subway.dto.SectionDto;
-import subway.type.FunctionType;
-import subway.type.ManagementType;
+import subway.vo.FunctionType;
+import subway.vo.ManagementType;
 
 import java.util.Objects;
 import java.util.Scanner;

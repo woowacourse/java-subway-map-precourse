@@ -5,10 +5,10 @@ import subway.dto.LineDto;
 import subway.dto.SubwayMapDto;
 import subway.service.LineService;
 import subway.service.StationService;
-import subway.type.FunctionType;
-import subway.type.ManagementType;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.vo.FunctionType;
+import subway.vo.ManagementType;
 
 import java.util.List;
 
