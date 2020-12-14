@@ -46,14 +46,6 @@ public class LineRepository {
         lineBoon.addTo(1, station5);
         lineRepository.addLine(lineBoon);
 
-        stationRepository.addStation(Station.of("갓우정역"));
-        stationRepository.addStation(Station.of("킹우정역"));
-        stationRepository.addStation(Station.of("우정역"));
-
-        Station sample1 = stationRepository.findBy("갓우정역");
-        Station sample2 = stationRepository.findBy("킹우정역");
-        Station sample3 = stationRepository.findBy("우정역");
-
     }
 
     public List<Line> lines() {
