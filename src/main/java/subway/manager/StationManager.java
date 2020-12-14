@@ -7,12 +7,13 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.menu.MainMenu;
+import subway.view.InputView;
 
 public class StationManager {
     MainMenu mainMenu;
 
     public StationManager(Scanner scanner) {
-        mainMenu = new MainMenu(scanner);
+        mainMenu = new MainMenu(scanner, new InputView(scanner));
     }
 
     private void init() {

@@ -6,13 +6,12 @@ import java.util.Scanner;
 
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
-import subway.domain.menu.constant.ExceptionMessage;
-import subway.domain.menu.exception.NotAccptedInputException;
 import subway.domain.menu.submenu.LineMenu;
 import subway.domain.menu.submenu.SectionMenu;
 import subway.domain.menu.submenu.StationLineMenu;
 import subway.domain.menu.submenu.StationMenu;
 import subway.domain.menu.submenu.SubMenu;
+import subway.view.InputView;
 
 public class MainMenu {
     private static final String MAIN_TITLE = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE
@@ -22,25 +21,25 @@ public class MainMenu {
     private static final char SECTION_SEL = '3';
     private static final char PRINT_STATION_LINE_SEL = '4';
     private static final char QUIT_SEL = 'Q';
-    private List<Character> selMenu;
     private static final String QUIT = "종료";
-    private final Scanner scanner;
+    private InputView inputView;
 
+    private List<Character> selMenu;
     private List<SubMenu> subMenuList;
 
-    public MainMenu(Scanner scanner) {
+    public MainMenu(Scanner scanner, InputView inputView) {
         selMenu = Arrays.asList(STATION_SEL, LINE_SEL, SECTION_SEL, PRINT_STATION_LINE_SEL, QUIT_SEL);
         subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION, scanner),
                 new LineMenu(LINE_SEL, CategoryType.LINE, scanner),
                 new SectionMenu(SECTION_SEL, CategoryType.SECTION, scanner),
                 new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE, scanner));
-        this.scanner = scanner;
+        this.inputView = inputView;
     }
 
     public void runMainMenu() {
         while (true) {
             printMainMenu();
-            char sel = inputMainMenu();
+            char sel = requestInputMainMenu();
 
             if (sel == QUIT_SEL) {
                 break;
@@ -56,26 +55,7 @@ public class MainMenu {
         System.out.println();
     }
 
-    private char inputMainMenu() {
-        char sel;
-        while (true) {
-            try {
-                System.out.println(CommonMessage.SELECT_MESSAGE);
-                sel = isAccptedInput(scanner.nextLine().charAt(0));
-                System.out.println();
-                break;
-            } catch(NotAccptedInputException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return sel;
+    private char requestInputMainMenu() {
+        return inputView.inputMainMenu(selMenu);
     }
-
-    private char isAccptedInput(char input) {
-        if (selMenu.stream().anyMatch(menu -> menu == input)) {
-            return input;
-        }
-        throw new NotAccptedInputException(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE + ExceptionMessage.NOT_ACCPTED_INPUT_MESSAGE + CommonMessage.NEW_LINE);
-    }
-
 }
