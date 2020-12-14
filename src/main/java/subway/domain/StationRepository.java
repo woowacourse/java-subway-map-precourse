@@ -15,7 +15,7 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if (!hasDuplicatedStation(station)) {
+        if (!hasDuplicatedStation(station) && station.isNameMoreThan2Letters()) {
             stations.add(station);
             return;
         }
@@ -23,7 +23,7 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name) && !station.isStationhasLine());
+        return stations.removeIf(station -> Objects.equals(station.getName(), name) && !station.isStationHasLine());
     }
 
     public static void addStations(List<Station> stations) {

@@ -12,10 +12,12 @@ public class Station {
         return name;
     }
 
-    public boolean isStationhasLine(){
-        if (line != null){
-            return true;
-        }
-        return false;
+    public boolean isStationHasLine(){
+        return line == null;
     }
+
+    public boolean isNameMoreThan2Letters(){
+        return name.length() >= 2;
+    }
+
 }
