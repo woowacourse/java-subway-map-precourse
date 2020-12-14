@@ -62,4 +62,9 @@ public class Validator {
         List<String> stations = LineRepository.getLineContainStations(lineName);
         return stations.contains(stationName);
     }
+
+    public static boolean isValidSectionRange(String lineName, int location){
+        int lineSize = LineRepository.getLineSize(lineName);
+        return location >= 0 && location <= (lineSize + 1);
+    }
 }
