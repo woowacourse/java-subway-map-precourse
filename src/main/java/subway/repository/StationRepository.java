@@ -19,6 +19,9 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        if (SectionRepository.isExistStation(name)) {
+            throw new IllegalArgumentException(Message.ERROR_EXIST_STATION_LINE);
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

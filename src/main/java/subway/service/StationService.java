@@ -55,8 +55,11 @@ public class StationService {
     }
 
     public boolean deleteStation(String name) {
-        if (StationRepository.deleteStation(name)) {
+        try {
+            StationRepository.deleteStation(name);
             return true;
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
         }
         print(Message.ERROR_NOT_EXIST_STATION);
         return false;

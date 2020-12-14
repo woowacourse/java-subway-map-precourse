@@ -62,4 +62,10 @@ public class SectionRepository {
         }
         stations.remove(station);
     }
+
+    public static boolean isExistStation(String name) {
+        return sections.keySet().stream()
+                .flatMap(line -> sections.get(line).stream())
+                .anyMatch(station -> station.getName().equals(name));
+    }
 }
