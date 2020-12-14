@@ -15,29 +15,24 @@ public class OutputView {
             "\n## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB. 돌아가기";
     private static final String SECTION_MANAGEMENT_DISPLAY =
             "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기";
-    private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] %s\n";
     private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 등록되었습니다.";
     private static final String STATION_DELETION_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 삭제되었습니다.";
-    private static final String STATION_NAMES_HEADER = "\n## 역 목록";
-    private static final String LINE_NAMES_HEADER = "\n## 노선 목록";
-    private static final String SUBWAY_MAP_PRINT_HEADER = "\n## 지하철 노선도";
-    private static final String INFORMATION_HEADER = "[INFO] %s\n";
-    private static final String INFORMATION_HEADER_PRINT = "\n[INFO] %s";
-    private static final String DELIMITER = "\n[INFO] ---";
     private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 지하철 노선이 등록되었습니다.";
     private static final String LINE_DELETION_SUCCESS_MESSAGE = "\n[INFO] 지하철 노선이 삭제되었습니다.";
     private static final String SECTION_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 구간이 등록되었습니다.";
     private static final String SECTION_DELETION_SUCCESS_MESSAGE = "\n[INFO] 구간이 삭제되었습니다.";
+    private static final String STATION_NAMES_PRINT_HEADER = "\n## 역 목록";
+    private static final String LINE_NAMES_PRINT_HEADER = "\n## 노선 목록";
+    private static final String SUBWAY_MAP_PRINT_HEADER = "\n## 지하철 노선도";
+    private static final String SUBWAY_MAP_DELIMITER = "\n[INFO] ---";
+    private static final String INFORMATION_MESSAGE_FORMAT = "\n[INFO] %s";
+    private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] %s\n";
 
     private OutputView() {
     }
 
     public static void printMainDisplay() {
         System.out.println(MAIN_DISPLAY);
-    }
-
-    public static void printErrorMessage(RuntimeException runtimeException) {
-        System.out.printf(ERROR_MESSAGE_FORMAT, runtimeException.getMessage());
     }
 
     public static void printManagementDisplay(ManagementType managementType) {
@@ -55,22 +50,17 @@ public class OutputView {
         return SECTION_MANAGEMENT_DISPLAY;
     }
 
+    public static void printErrorMessage(RuntimeException runtimeException) {
+        String errorMessage = runtimeException.getMessage();
+        System.out.printf(ERROR_MESSAGE_FORMAT, errorMessage);
+    }
+
     public static void printStationManagementSuccessMessage(FunctionType functionType) {
         if (functionType == FunctionType.REGISTER) {
             System.out.println(STATION_REGISTRATION_SUCCESS_MESSAGE);
             return;
         }
         System.out.println(STATION_DELETION_SUCCESS_MESSAGE);
-    }
-
-    public static void printNames(ManagementType managementType, List<String> names) {
-        if (managementType == ManagementType.STATION) {
-            System.out.println(STATION_NAMES_HEADER);
-        }
-        if (managementType == ManagementType.LINE) {
-            System.out.println(LINE_NAMES_HEADER);
-        }
-        names.forEach(name -> System.out.printf(INFORMATION_HEADER, name));
     }
 
     public static void printLineManagementSuccessMessage(FunctionType functionType) {
@@ -89,21 +79,32 @@ public class OutputView {
         System.out.println(SECTION_DELETION_SUCCESS_MESSAGE);
     }
 
+    public static void printNames(ManagementType managementType, List<String> names) {
+        if (managementType == ManagementType.STATION) {
+            System.out.print(STATION_NAMES_PRINT_HEADER);
+        }
+        if (managementType == ManagementType.LINE) {
+            System.out.print(LINE_NAMES_PRINT_HEADER);
+        }
+        names.forEach(name -> System.out.printf(INFORMATION_MESSAGE_FORMAT, name));
+        System.out.println();
+    }
 
     public static void printSubwayMap(List<SubwayMapDto> subwayMapDtos) {
         System.out.print(SUBWAY_MAP_PRINT_HEADER);
-        subwayMapDtos.forEach(OutputView::printEachSubwayMap);
+        subwayMapDtos.forEach(OutputView::printEachSubwayLine);
     }
 
-    public static void printEachSubwayMap(SubwayMapDto subwayMapDto) {
-        System.out.printf(INFORMATION_HEADER_PRINT, subwayMapDto.getLineName());
-        System.out.print(DELIMITER);
-        subwayMapDto.getStationNames()
-                .forEach(OutputView::printEachStationName);
+    public static void printEachSubwayLine(SubwayMapDto subwayMapDto) {
+        String lineName = subwayMapDto.getLineName();
+        System.out.printf(INFORMATION_MESSAGE_FORMAT, lineName);
+        System.out.print(SUBWAY_MAP_DELIMITER);
+        List<String> stationNamesOfLine = subwayMapDto.getStationNames();
+        stationNamesOfLine.forEach(OutputView::printEachStationName);
         System.out.println();
     }
 
     private static void printEachStationName(String stationName) {
-        System.out.printf(INFORMATION_HEADER_PRINT, stationName);
+        System.out.printf(INFORMATION_MESSAGE_FORMAT, stationName);
     }
 }
