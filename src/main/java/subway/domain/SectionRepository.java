@@ -11,6 +11,8 @@ public class SectionRepository {
         line.add(sequence, station);
     }
 
-//    public static boolean deleteSectionByName(String name) {
-//    }
+    public static boolean deleteSection(String lineName, String stationName) {
+        LinkedList<Station> line = LineRepository.findLine(lineName).getLine();
+        return line.removeIf(station -> Objects.equals(station.getName(), stationName));
+    }
 }

@@ -19,18 +19,28 @@ public class SectionInputView {
         }
     }
 
-    public static String lineForRegister(Scanner scanner) {
+    public static String lineToRegister(Scanner scanner) {
         System.out.println("## 노선을 입력하세요.");
         return scanner.nextLine();
     }
 
-    public static String stationForRegister(Scanner scanner) {
+    public static String stationToRegister(Scanner scanner) {
         System.out.println("## 역을 입력하세요.");
         return scanner.nextLine();
     }
 
-    public static int sequenceForRegister(Scanner scanner) {
+    public static int sequenceToRegister(Scanner scanner) {
         System.out.println("## 순서를 입력하세요.");
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static String lineToRemove(Scanner scanner) {
+        System.out.println("## 노선을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public static String stationToRemove(Scanner scanner) {
+        System.out.println("## 역을 입력하세요.");
+        return scanner.nextLine();
     }
 }
