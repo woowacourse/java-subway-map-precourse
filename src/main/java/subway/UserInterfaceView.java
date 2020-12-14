@@ -217,5 +217,12 @@ public class UserInterfaceView {
         }
     }
 
-    
+    private void addLine() {
+        String lineName = getUserInput(INPUT_ADD_LINE_NAME);
+        String firstStationName = getUserInput(INPUT_LINE_IN_FIRST_STATION);
+        String lastStationName = getUserInput(INPUT_LINE_IN_LAST_STATION);
+        if (!LineService.addLine(lineName, firstStationName, lastStationName, true)) {
+            lineStart();
+        }
+    }
 }
