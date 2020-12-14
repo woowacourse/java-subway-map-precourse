@@ -1,0 +1,19 @@
+package subway.domain;
+
+public enum State {
+    QUIT,
+    MAIN_SCENE,
+    STATION_SCENE,
+    LINE_SCENE,
+    SECTION_SCENE,
+    MAP_SCENE,
+    STATION_ADD,
+    STATION_REMOVE,
+    STATION_INQUIRY,
+    LINE_ADD,
+    LINE_REMOVE,
+    LINE_INQUIRY,
+    SECTION_ADD,
+    SECTION_REMOVE,
+    SECTION_INQUIRY
+}
