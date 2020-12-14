@@ -35,6 +35,10 @@ public class Line {
     	return stations;
     }
     
+    public int get_size_of_stations() {
+    	return stations.size();
+    }
+    
     public void print_stationOfLine() {
     	System.out.println("[INFO] "+this.name);
     	System.out.println("[INFO] ---");
