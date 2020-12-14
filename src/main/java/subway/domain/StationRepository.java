@@ -14,7 +14,7 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         //길이 2이상, 중복 체크
-        if (checkNameLength(station) && !checkContainInStations(station.getName())) {
+        if (checkNameLength(station) && !checkNameInStations(station.getName())) {
             stations.add(station);
             return;
         }
@@ -24,7 +24,7 @@ public class StationRepository {
 
     public static void deleteStation(String name) {
 
-        if (checkContainInStations(name) && !checkContainInLines(name)) {
+        if (checkNameInStations(name) && !checkStationInLines(name)) {
             stations.removeIf(station -> Objects.equals(station.getName(), name));
             return;
         }
@@ -32,7 +32,7 @@ public class StationRepository {
         throw new IllegalArgumentException();
     }
 
-    private static boolean checkContainInLines(String name) {
+    public static boolean checkStationInLines(String name) {
         List<Line> lines = LineRepository.retrieveLine();
 
         for (Line line : lines) {
@@ -44,13 +44,13 @@ public class StationRepository {
         return false;
     }
 
-    private static boolean checkNameLength(Station station) {
+    public static boolean checkNameLength(Station station) {
         return station.getName().length() >= Constants.MIN_NAME_LENGTH;
     }
 
-    private static boolean checkContainInStations(String name) {
-        for (Station curStation : stations) {
-            if (curStation.getName().equals(name)) {
+    public static boolean checkNameInStations(String name) {
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
                 return true;
             }
         }
