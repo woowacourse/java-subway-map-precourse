@@ -1,4 +1,4 @@
-package View;
+package View.IoView;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class OutputView {
 
     }
 
-    public void printManual(String manual) {
+    public static void printManual(String manual) {
         System.out.println(manual);
     }
 

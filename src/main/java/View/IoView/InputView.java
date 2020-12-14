@@ -1,4 +1,4 @@
-package View;
+package View.IoView;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -20,11 +20,7 @@ public class InputView {
     private static final String START_TERMINAL_NAME = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String END_TERMINAL_NAME = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final int START = 0;
-    private static Scanner scanner = null;
-
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
-    }
+    private static Scanner scanner = new Scanner(System.in);
 
     public static char inputChoice() {
         System.out.println(CHOOSE_FEATURE);

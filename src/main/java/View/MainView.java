@@ -1,8 +1,6 @@
 package View;
 
-import Enum.SubMenuType;
-
-public class MainView{
+public class MainView {
     private static final String MANUAL = "## 메인 화면\n"
         + "1. 역 관리\n"
         + "2. 노선 관리\n"
@@ -18,8 +16,9 @@ public class MainView{
         return MANUAL;
     }
 
-    public SubMenuType execute(char letter) {
+    /*public SubMenuType execute(char letter) {
         SubMenuType subMenu = SubMenuType.fromLetter(letter);
         return subMenu;
-    }
+    }*/
 }
+

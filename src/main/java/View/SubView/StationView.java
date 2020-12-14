@@ -1,11 +1,13 @@
 package View.SubView;
 
 import Enum.Operation;
+import Interface.RepositoryView;
+import View.UserInteractionView;
 import java.util.HashMap;
 import java.util.Map;
 import subway.controller.RepositoryAdminister.StationAdminister;
 
-public class StationView {
+public class StationView extends UserInteractionView implements RepositoryView {
 
     private static final String MANUAL = "## 역 관리 화면\n"
         + "1. 역 등록\n"
@@ -14,7 +16,7 @@ public class StationView {
         + "B. 돌아가기";
     private static Map<Operation, Runnable> operationToCommand= new HashMap<>();
 
-    StationView() {
+    public StationView() {
         operationToCommand = Map.of(
             Operation.INSERT, StationAdminister::addStation,
             Operation.DELETE, StationAdminister::deleteStation,
@@ -22,11 +24,7 @@ public class StationView {
         );
     }
 
-    public static String getManual() {
-        return MANUAL;
-    }
-
-    void executeOperation(Operation operation) {
+    public void executeOperation(Operation operation) {
         operationToCommand.get(operation).run();
     }
 

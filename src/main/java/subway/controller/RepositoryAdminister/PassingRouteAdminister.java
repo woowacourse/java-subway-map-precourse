@@ -1,7 +1,7 @@
 package subway.controller.RepositoryAdminister;
 
-import View.InputView;
-import View.OutputView;
+import View.IoView.InputView;
+import View.IoView.OutputView;
 import subway.Exception.SubwayRelatedException;
 import subway.domain.Line;
 import subway.domain.subRepository.LineRepository;
