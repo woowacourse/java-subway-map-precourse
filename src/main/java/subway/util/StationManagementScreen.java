@@ -46,7 +46,7 @@ public enum StationManagementScreen {
 
     public static boolean hasFeature(String command) {
         return Arrays.stream(values())
-            .anyMatch(mainScreen -> mainScreen.feature.equals(command));
+            .anyMatch(stationManagementScreen -> stationManagementScreen.feature.equals(command));
     }
 
 }

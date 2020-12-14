@@ -7,6 +7,7 @@ import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.util.LineManagementScreen;
 import subway.util.MainScreen;
 import subway.util.StationManagementScreen;
 import subway.view.InputView;
@@ -72,28 +73,7 @@ public class Router {
     }
 
     public static boolean routeLineManagementScreen(String command) {
-        if (command.equals(BACK)) {
-            return false;
-        }
-        if (command.equals(ONE)) {
-            String lineName = inputView.getName(OutputView.ORDER_TO_REGISTER_LINE);
-            String upTrainLastStationName = inputView
-                .getName(OutputView.ORDER_TO_REGISTER_UP_TRAIN_LAST_STATION);
-            String downTrainLastStationName = inputView
-                .getName(OutputView.ORDER_TO_REGISTER_DOWN_TRAIN_LAST_STATION);
-            return LineController
-                .registerLine(lineName, upTrainLastStationName, downTrainLastStationName);
-        }
-        if (command.equals(TWO)) {
-            String lineName = inputView.getName(OutputView.ORDER_TO_DELETE_LINE);
-            return LineController.deleteLine(lineName);
-        }
-        if (command.equals(THREE)) {
-            List<Line> lines = new ArrayList<>(LineController.searchLine().keySet());
-            OutputView.print(OutputView.LINE_LIST);
-            OutputView.printList(lines);
-        }
-        return false;
+        return LineManagementScreen.run(inputView, command);
     }
 
     public static boolean routeSectionManagementScreen(String command) {
