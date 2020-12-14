@@ -42,6 +42,13 @@ public class SectionControlCenter {
         int positionToRegisterStationOnLine = inputPositionToRegisterStation(scanner);
         SectionRepository.addStationOnLine(
                 lineToRegisterStationOn, stationToRegisterOnLine, positionToRegisterStationOnLine);
+        if (SectionRepository.hasTotallySameOrderOfStations(lineToRegisterStationOn)
+                || SectionRepository.hasTotallyReverseOrderOfStations(lineToRegisterStationOn)) {
+            SectionView.informSameOrReverseOrderOfStations();
+            SectionRepository.deleteStationOnLine(
+                    lineToRegisterStationOn, stationToRegisterOnLine);
+            return SectionMenu.REGISTER.getCommand();
+        }
         SectionView.informSectionRegistered();
         return SectionMenu.REGISTER.getCommand();
     }

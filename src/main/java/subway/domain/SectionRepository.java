@@ -5,6 +5,7 @@ import subway.enums.InitialSections;
 import subway.enums.InitialStations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,6 +94,27 @@ public class SectionRepository {
 
     public static boolean deleteSectionByNameOfLine(String nameOfLine) {
         return sections.removeIf(section -> section.getLine().getName().equals(nameOfLine));
+    }
+
+    public static boolean hasTotallySameOrderOfStations(Line line) {
+        Section targetSection = getSectionByLineName(line.getName());
+        List<Station> targetStations = targetSection.getStations();
+        return sections.stream()
+                .filter(section -> section != targetSection)
+                .map(Section::getStations)
+                .anyMatch(stations -> Arrays.equals(stations.toArray(), targetStations.toArray()));
+    }
+
+    public static boolean hasTotallyReverseOrderOfStations(Line line) {
+        Section targetSection = getSectionByLineName(line.getName());
+        List<Station> targetStations = targetSection.getStations();
+        Collections.reverse(targetStations);
+        boolean hasTotallyReverseOrderOfStations = sections.stream()
+                .filter(section -> section != targetSection)
+                .map(Section::getStations)
+                .anyMatch(stations -> Arrays.equals(stations.toArray(), targetStations.toArray()));
+        Collections.reverse(targetStations);
+        return hasTotallyReverseOrderOfStations;
     }
 
     public static void initializeSections() {

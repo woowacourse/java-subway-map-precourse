@@ -76,4 +76,8 @@ public class SectionView {
     public static void informNotNumberFormat() {
         System.err.println(ErrorMessage.POSITION_NOT_NUMBER_FORMAT.getMessage());
     }
+
+    public static void informSameOrReverseOrderOfStations() {
+        System.err.println(ErrorMessage.SAME_OR_REVERSE_ORDER_OF_STATIONS_EXISTS.getMessage());
+    }
 }
