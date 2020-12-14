@@ -4,7 +4,9 @@ import subway.domain.Line.Line;
 import subway.domain.Line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.menu.SectionMenu;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class SectionController implements SubwayController {
 
@@ -27,6 +29,8 @@ public class SectionController implements SubwayController {
         int order = inputOrder();
 
         line.addTo(order, station);
+
+        OutputView.printResultMessage(SectionMenu.REGISTER);
     }
 
     private int inputOrder() {
@@ -53,6 +57,8 @@ public class SectionController implements SubwayController {
 
         Station station = inputDeleteStation();
         line.removeStation(station);
+
+        OutputView.printResultMessage(SectionMenu.DELETE);
     }
 
     private Station inputDeleteStation() {
