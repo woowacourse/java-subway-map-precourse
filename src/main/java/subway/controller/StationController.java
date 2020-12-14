@@ -8,7 +8,7 @@ import subway.view.StationView;
 
 public class StationController {
 
-    public static void stationAdd() throws IllegalArgumentException {
+    public static void stationAdd() {
         try {
             StationView.printStationAddReqMsg();
             String StationName = stationNameInput();
@@ -28,9 +28,10 @@ public class StationController {
             throw new IllegalArgumentException("잘못된 이름 길이 입니다");
         }
 
-        if (!Validator.isNonDuplicateStationName(stationName)) {
+        if (Validator.isExistStationName(stationName)) {
             throw new IllegalArgumentException("이미 등록된 역 이름 입니다");
         }
         return stationName;
     }
+
 }
