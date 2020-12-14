@@ -76,14 +76,14 @@ public class LineService {
     }
 
     private static void validateBound(Map<Line, List<Station>> lines, Line findLine, int sequence) {
-        if (lines.get(findLine).size() < sequence || lines.get(findLine).size() - 1 > sequence) {
+        if (lines.get(findLine).size() + 1 < sequence) {
             throw new IllegalArgumentException(OUT_OF_BOUND_ERROR);
         }
     }
 
     private static void validateMakeJunction(Map<Line, List<Station>> lines, Line findLine,
         Station findStation) {
-        if(hasSameStationInLine(lines, findLine, findStation)){
+        if (hasSameStationInLine(lines, findLine, findStation)) {
             throw new IllegalArgumentException(JUNCTION_ERROR);
         }
     }
