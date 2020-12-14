@@ -193,6 +193,7 @@ public class UserInterfaceView {
             }
             printErrorMessage();
         }
+        lineToNextFunction(userInput);
     }
 
     private void printLineView() {
@@ -201,4 +202,20 @@ public class UserInterfaceView {
         }
         System.out.println();
     }
+
+    private void lineToNextFunction(String userInput) {
+        if (ONE_STRING.equals(userInput)) {
+            addLine();
+            return;
+        }
+        if (TWO_STRING.equals(userInput)) {
+
+            return;
+        }
+        if (THREE_STRING.equals(userInput)) {
+
+        }
+    }
+
+    
 }
