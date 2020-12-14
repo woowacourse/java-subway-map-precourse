@@ -38,7 +38,7 @@ public class StationController {
     }
 
     public static void showStations() { 
-        StationOutputView.printStations();
+        StationOutputView.printStationList();
         backToMainMenu();
     }
 

@@ -45,7 +45,7 @@ public class LineController {
     }
 
     public static void showLines() {
-        LineOutputView.printLines();
+        LineOutputView.printLineList();
         backToMainMenu();
     }
 

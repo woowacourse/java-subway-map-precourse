@@ -19,8 +19,6 @@ public class OutputView {
     private static final String REQUEST_SELECT_FUNCTION = "원하는 기능을 선택하세요.";
     private static final String REQUEST_INPUT_FORMAT = "%s입력하세요.";
 
-    protected static final String STATION_LIST = "역 목록";
-    protected static final String LINE_LIST = "노선 목록";
     private static final String SUBWAY_MAP = "지하철 노선도";
     private static final String SEPARATOR = "---";
 
@@ -38,6 +36,19 @@ public class OutputView {
 
     public static void requestSelectFunction() {
         printMessage(REQUEST_SELECT_FUNCTION);
+    }
+
+    protected static void printList(String title, List<String> listItems) {
+        printMessage(title);
+        for (String listItem : listItems) {
+            printListItem(listItem);
+        }
+
+        InputView.waitForEmptyInput();
+    }
+
+    private static void printListItem(String listItem) {
+        System.out.printf(INFORM_FORMAT, listItem);
     }
 
     public static void printSubwayMap() {
@@ -72,11 +83,7 @@ public class OutputView {
         System.out.printf(INFORM_FORMAT, informnation);
         InputView.waitForEmptyInput();
     }
-
-    protected static void printListItem(String listItem) {
-        System.out.printf(INFORM_FORMAT, listItem);
-    }
-
+    
     public static void printEmptyLine() {
         System.out.println();
     }

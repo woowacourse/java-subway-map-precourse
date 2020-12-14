@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import subway.utils.ValidationUtils;
 
 public class StationRepository {
@@ -38,5 +39,9 @@ public class StationRepository {
     
     public static boolean containsStation(String name) {
         return stations.stream().anyMatch(streamStation -> name.equals(streamStation.getName()));
+    }
+
+    public static List<String> getStationList() {
+        return stations.stream().map(Station::getName).collect(Collectors.toList());
     }
 }

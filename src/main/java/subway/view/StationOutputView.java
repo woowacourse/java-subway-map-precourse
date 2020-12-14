@@ -1,7 +1,5 @@
 package subway.view;
 
-import java.util.List;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.messageparts.RequestActionParts;
 import subway.view.messageparts.InformPredicateParts;
@@ -9,6 +7,8 @@ import subway.view.messageparts.InformSubjectParts;
 import subway.view.messageparts.RequestObjectParts;
 
 public class StationOutputView extends OutputView {
+    private static final String STATION_LIST = "역 목록";
+
     public static void requestStationNameToAdd() {
         String message = getRequestMessage(
             RequestActionParts.TO_ADD, 
@@ -37,13 +37,7 @@ public class StationOutputView extends OutputView {
         printInformMessage(message);
     }
 
-    public static void printStations() {
-        printMessage(STATION_LIST);
-        List<Station> stations = StationRepository.stations();
-        for (Station station : stations) {
-            printListItem(station.getName());
-        }
-
-        InputView.waitForEmptyInput();
+    public static void printStationList() {
+        printList(STATION_LIST, StationRepository.getStationList());
     }
 }

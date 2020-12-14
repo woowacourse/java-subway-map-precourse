@@ -1,7 +1,5 @@
 package subway.view;
 
-import java.util.List;
-import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.view.messageparts.RequestActionParts;
 import subway.view.messageparts.InformPredicateParts;
@@ -9,6 +7,8 @@ import subway.view.messageparts.InformSubjectParts;
 import subway.view.messageparts.RequestObjectParts;
 
 public class LineOutputView extends OutputView {
+    private static final String LINE_LIST = "노선 목록";
+
     public static void requestLineNameToAdd() {
         String message = getRequestMessage(
             RequestActionParts.TO_ADD, 
@@ -51,13 +51,7 @@ public class LineOutputView extends OutputView {
         printInformMessage(message);
     }
 
-    public static void printLines() {
-        printMessage(LINE_LIST);
-        List<Line> lines = LineRepository.lines();
-        for (Line line : lines) {
-            printListItem(line.getName());
-        }
-
-        InputView.waitForEmptyInput();
+    public static void printLineList() {
+        printList(LINE_LIST, LineRepository.getLineList());
     }
 }

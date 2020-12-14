@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import subway.utils.ValidationUtils;
 
 public class LineRepository {
@@ -55,5 +56,9 @@ public class LineRepository {
         }
 
         return false;
+    }
+
+    public static List<String> getLineList() {
+        return lines.stream().map(Line::getName).collect(Collectors.toList());
     }
 }
