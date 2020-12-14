@@ -34,8 +34,8 @@ public class SystemMessages {
         "B. 돌아가기"
     };
     public static final String ADD_LINE_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
-    public static final String ADD_UPLINE_STATION_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
-    public static final String ADD_DOWNLINE_STATION_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String ADD_UPWARD_STATION_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static final String ADD_DOWNWARD_STATION_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     public static final String ADD_LINE_COMPLETE_MESSAGE = "지하철 노선이 등록되었습니다.";
     public static final String DEL_LINE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
     public static final String DEL_LINE_COMPLETE_MESSAGE = "지하철 노선이 삭제되었습니다.";
