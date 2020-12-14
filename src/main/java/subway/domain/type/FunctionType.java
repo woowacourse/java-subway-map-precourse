@@ -1,5 +1,7 @@
 package subway.domain.type;
 
+import java.util.Objects;
+
 public enum FunctionType {
     REGISTER("1"),
     DELETE("2"),
@@ -13,6 +15,6 @@ public enum FunctionType {
     }
 
     public boolean matches(String functionNumber) {
-        return this.functionNumber.equals(functionNumber);
+        return Objects.equals(this.functionNumber, functionNumber);
     }
 }

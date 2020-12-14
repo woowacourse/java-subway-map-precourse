@@ -3,6 +3,7 @@ package subway.domain.type;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public enum ManagementType {
     STATION("1",
@@ -34,7 +35,7 @@ public enum ManagementType {
     }
 
     private boolean matches(String managementNumber) {
-        return this.managementNumber.equals(managementNumber);
+        return Objects.equals(this.managementNumber, managementNumber);
     }
 
     public FunctionType findFunctionType(String functionNumber) {
