@@ -69,6 +69,9 @@ public class StationController {
         if (!Validator.isExistStationName(stationName)) {
             throw new IllegalArgumentException("존재하지 않는 역 입니다.");
         }
+        if (Validator.isStationContainLine(stationName)) {
+            throw new IllegalArgumentException("노선에 포함되어 있는 역 입니다.");
+        }
         return stationName;
     }
 }

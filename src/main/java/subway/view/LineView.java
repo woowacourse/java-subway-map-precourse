@@ -1,6 +1,5 @@
 package subway.view;
 
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import subway.domain.Line;
 import subway.domain.repositories.LineRepository;
 

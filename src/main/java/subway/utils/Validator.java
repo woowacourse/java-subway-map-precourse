@@ -29,9 +29,9 @@ public class Validator {
 
     public static boolean isExistLineName(String name) {
         List<Line> lineList = LineRepository.lines();
-        for(Line line : lineList){
+        for (Line line : lineList) {
             String lineName = line.getName();
-            if(lineName.equals(name)){
+            if (lineName.equals(name)) {
                 return true;
             }
         }
@@ -46,5 +46,10 @@ public class Validator {
     public static boolean isValidStationManageMenuInput(String inputMsg) {
         List<String> validMsgList = new ArrayList<>(Arrays.asList("1", "2", "3", "B"));
         return validMsgList.contains(inputMsg);
+    }
+
+    public static boolean isStationContainLine(String stationName) {
+        List<String> usingStations = LineRepository.getUsingStations();
+        return usingStations.contains(stationName);
     }
 }

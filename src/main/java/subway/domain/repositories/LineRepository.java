@@ -6,7 +6,7 @@ import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
-    private static HashMap<String, List<String>> lineMap = new HashMap<>();
+    private static Map<String, List<String>> lineMap = new HashMap<>();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -28,5 +28,13 @@ public class LineRepository {
         List<String> list = new ArrayList<>(lineMap.get(lineName));
         list.add(location - 1, stationName);
         lineMap.put(lineName, list);
+    }
+
+    public static List<String> getUsingStations(){
+        List<String> usingStations = new ArrayList<>();
+        for(List<String> list :lineMap.values()){
+            usingStations.addAll(list);
+        }
+        return Collections.unmodifiableList(usingStations);
     }
 }
