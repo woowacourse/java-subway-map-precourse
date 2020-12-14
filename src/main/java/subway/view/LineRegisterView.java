@@ -16,19 +16,19 @@ public class LineRegisterView extends ManagerView {
 		registerLine(scanner);
 		new MainView(scanner);
 	}
-	
+
 	public void registerLine(Scanner scanner) {
 		String name = scanner.nextLine();
 		Line line = new Line(name);
-		
+
 		printTopMenu(INPUT_FIRST_STATION_NAME_MESSAGE);
 		String firstStationName = scanner.nextLine();
-		line.addStation(0, new Station(firstStationName));
-		
+		line.addFirstStation(new Station(firstStationName));
+
 		printTopMenu(INPUT_LAST_STATION_NAME_MESSAGE);
 		String lastStationName = scanner.nextLine();
-		line.addStation(1, new Station(lastStationName));
-		
+		line.addLastStation(new Station(lastStationName));
+
 		LineRepository.addLine(line);
 	}
 
