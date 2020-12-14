@@ -12,8 +12,13 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
-        lines.add(line);
+    public static void addLine(Line addLineName) {
+        for(Line line : lines) {
+            if(line.getName().equals(addLineName.getName())) {
+                throw new IllegalArgumentException("[ERROR] 이미 등록된 노선은 등록 불가능합니다.");
+            }
+        }
+        lines.add(addLineName);
     }
 
     public static boolean deleteLineByName(String name) {

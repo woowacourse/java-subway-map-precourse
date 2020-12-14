@@ -7,4 +7,7 @@ public class Constant {
     public static final String CONTENTS_NUMBER_FOURTH = "4";
     public static final String CONTENTS_NUMBER_QUIT = "Q";
     public static final String CONTENTS_NUMBER_BACK = "B";
+    public static final int MIN_STATION_AND_LINE_NAME_LENGTH = 2;
+    public static final int IS_NOT_REGISTERED_STATION_NUM = 0;
+    public static final int ONE_REGISTERED_STATION_NUM = 1;
 }
