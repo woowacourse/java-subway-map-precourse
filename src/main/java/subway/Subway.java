@@ -1,18 +1,14 @@
 package subway;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.Map.Entry;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.util.Input;
 import subway.util.Message;
 import subway.util.Output;
-import subway.util.View;
 
 public class Subway {	
 	private static boolean isUseableSection(String lineName, String stationName) {

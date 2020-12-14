@@ -1,8 +1,10 @@
-package subway.util;
+package subway;
 
 import java.util.Scanner;
 
-import subway.Subway;
+import subway.util.Input;
+import subway.util.Message;
+import subway.util.Output;
 
 public class View {
 	private final String FIRST = "1";
