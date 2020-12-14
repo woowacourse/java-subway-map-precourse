@@ -23,6 +23,7 @@ public class OutputView {
     private static final String EMPTY_STATION_GUIDE_MESSAGE = "지하철 역이 존재하지 않습니다.";
     private static final String EMPTY_LINE_GUIDE_MESSAGE = "지하철 노선이 존재하지 않습니다.";
     private static final String SECTION_REGISTRATION_SUCCESS_MESSAGE = "구간이 등록되었습니다.";
+    private static final String SECTION_DELETION_SUCCESS_MESSAGE = "구간이 삭제되었습니다.";
 
     public static void showMainScreen() {
         String message = MainScreen.getInstance().toString();
@@ -101,6 +102,11 @@ public class OutputView {
 
     public static void showSectionRegistrationSuccess() {
         printInfo(SECTION_REGISTRATION_SUCCESS_MESSAGE);
+        lineFeed();
+    }
+
+    public static void showSectionDeletionSuccess() {
+        printInfo(SECTION_DELETION_SUCCESS_MESSAGE);
         lineFeed();
     }
 
