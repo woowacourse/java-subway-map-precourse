@@ -28,6 +28,7 @@ public class Line {
         for (Station station : stations) {
             if (station.isEqualName(stationName)) {
                 stations.remove(station);
+                return;
             }
         }
     }

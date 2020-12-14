@@ -1,6 +1,8 @@
 package subway.controller;
 
+import subway.controller.exception.IllegalElementException;
 import subway.controller.exception.LineValidator;
+import subway.controller.exception.NotExistedElementException;
 import subway.controller.exception.SectionValidator;
 import subway.controller.exception.StationValidator;
 import subway.domain.LineRepository;
@@ -11,6 +13,8 @@ public class SectionMenu {
     private static final String LINE_INPUT_MESSAGE = "\n## 노선을 입력하세요.";
     private static final String STATION_INPUT_MESSAGE = "\n## 역이름을 입력하세요.";
     private static final String ORDER_INPUT_MESSAGE = "\n## 순서를 입력하세요.";
+    private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 구간의 노선을 입력하세요.";
+    private static final String STATION_DELETE_MESSAGE = "\n## 삭제할 구간의 역을 입력하세요.";
 
     public static void goToSectionMenu() {
         OutputView.printSectionMenu();
@@ -19,7 +23,7 @@ public class SectionMenu {
             registerNewSection();
         }
         if (selection.equals("2")) {
-            // 구간 삭제
+            deleteSection();
         }
     }
 
@@ -55,5 +59,20 @@ public class SectionMenu {
         String order = InputView.receiveName(ORDER_INPUT_MESSAGE);
         SectionValidator.validateOrder(lineName, order);
         return order;
+    }
+
+    private static void deleteSection() {
+        try {
+            String lineName = InputView.receiveName(LINE_DELETE_MESSAGE);
+            LineValidator.validateNotExistedLine(lineName);
+            SectionValidator.validateLineSizeIsSufficient(lineName);
+            String stationName = InputView.receiveName(STATION_DELETE_MESSAGE);
+            SectionValidator.validateStationIsExistedInTheLine(lineName, stationName);
+            LineRepository.deleteSectionFromLine(lineName, stationName);
+            OutputView.printSectionDeleteSuccess();
+        } catch (NotExistedElementException | IllegalElementException e) {
+            System.out.println(e.getMessage());
+            goToSectionMenu();
+        }
     }
 }
