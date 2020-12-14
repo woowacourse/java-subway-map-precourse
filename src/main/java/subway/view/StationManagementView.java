@@ -34,6 +34,7 @@ public class StationManagementView {
     }
 
     public static void showView() {
+        System.out.println();
         System.out.println("## 역 관리 화면");
         System.out.println("1. 역 등록");
         System.out.println("2. 역 삭제");

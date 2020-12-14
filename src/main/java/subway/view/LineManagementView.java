@@ -21,6 +21,7 @@ public class LineManagementView {
     }
 
     public static void showView() {
+        System.out.println();
         System.out.println("## 노선 관리 화면");
         System.out.println("1. 노선 등록");
         System.out.println("2. 노선 삭제");

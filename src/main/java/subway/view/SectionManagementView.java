@@ -19,6 +19,7 @@ public class SectionManagementView {
         }
     }
     public static void showView() {
+        System.out.println();
         System.out.println("## 구간 관리 화면");
         System.out.println("1. 구간 등록");
         System.out.println("2. 구간 삭제");

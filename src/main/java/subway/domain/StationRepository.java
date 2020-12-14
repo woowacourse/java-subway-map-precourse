@@ -19,6 +19,7 @@ public class StationRepository {
     }
 
     public static boolean isPossibleStation(String stationName) {
+        System.out.println();
         if (InputTool.isValidName(stationName) == false) {
             OutputView.printError("지하철 역 이름은 2글자 이상이어야 합니다.");
             return false;
@@ -47,6 +48,8 @@ public class StationRepository {
     }
 
     public static boolean lookUpStation() {
+        System.out.println();
+        System.out.println("## 역 목록");
         Iterator<Station> itr = stations.iterator();
         while (itr.hasNext()) {
             OutputView.printInfo(itr.next().getName());

@@ -18,6 +18,7 @@ public class MainView {
     }
 
     public static void showView() {
+        System.out.println();
         System.out.println("## 메인 화면");
         System.out.println("1. 역 관리");
         System.out.println("2. 노선 관리");

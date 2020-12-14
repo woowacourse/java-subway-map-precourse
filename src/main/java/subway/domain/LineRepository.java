@@ -41,7 +41,7 @@ public class LineRepository {
 
 
     public static boolean deleteLineByName(String name) {
-        OutputView.printInfo("노선이 삭제되었습니다.");
+        OutputView.printInfo("지하철 노선이 삭제되었습니다.");
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
