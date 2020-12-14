@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.domain.validator.LineValidator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +15,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        if (lines.contains(line)) {
-            throw new IllegalArgumentException("이미 존재하는 노선입니다.");
-        }
-
+        LineValidator.checkNotExistingLine(lines.contains(line));
         lines.add(line);
     }
 
