@@ -14,6 +14,7 @@ public class MainSelectManager {
             ValidateMainSelect.validateMainSelect(inputMainSelect);
 
             if (inputMainSelect.equals(CONTENTS_NUMBER_FIRST)) {
+                StationManager.stationChoice();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_SECOND)) {
             }
