@@ -19,6 +19,10 @@ public class Line {
         stations.add(stationOrder, station);
     }
 
+    public void deleteLineStation(Station station){
+        stations.removeIf(stations -> stations.equals(station));
+    }
+
     public List<Station> getStations() {
         return stations;
     }

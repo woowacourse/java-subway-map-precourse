@@ -1,9 +1,6 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.Station;
 import subway.menus.SectionMenu;
-import subway.repository.LineRepository;
 import subway.service.SectionService;
 import subway.views.sectionviews.SectionInputView;
 import subway.views.sectionviews.SectionOutputView;
@@ -36,7 +33,7 @@ public class SectionMenuController {
             sectionService.sectionAddService();
         }
         if (selectedOption.equals(SectionMenu.SECTION_DELETE)) {
-
+            sectionService.sectionDeleteService();
         }
     }
 }

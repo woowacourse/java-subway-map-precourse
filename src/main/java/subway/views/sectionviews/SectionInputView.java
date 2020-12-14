@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class SectionInputView implements InputView {
     private static final String INPUT_LINE_MESSAGE = "\n## 노선을 입력하세요.";
     private static final String INPUT_STATION_MESSAGE = "\n## 역이름을 입력하세요.";
+    private static final String INPUT_LINE_TO_DELETE_MESSAGE = "\n## 삭제할 구간의 노선을 입력하세요.";
+    private static final String INPUT_STATION_TO_DELETE_MESSAGE = "\n## 삭제할 구간의 역을 입력하세요.";
     private static final String INPUT_SECTION_ORDER_MESSAGE = "\n## 순서를 입력하세요.";
 
     private SectionInputView() {
@@ -24,8 +26,13 @@ public class SectionInputView implements InputView {
         }
     }
 
-    public static String inputLine(Scanner scanner) {
+    public static String inputLineToAdd(Scanner scanner) {
         System.out.println(INPUT_LINE_MESSAGE);
+        return scanner.nextLine();
+    }
+
+    public static String inputLineToDelete(Scanner scanner) {
+        System.out.println(INPUT_LINE_TO_DELETE_MESSAGE);
         return scanner.nextLine();
     }
 
