@@ -24,7 +24,7 @@ public class MainView extends ManagerView {
 		} else if (menuSelected.equals(THIRD_MENU)) {
 			new SectionManagerView(scanner);
 		} else if (menuSelected.equals(FOURTH_MENU)) {
-			new SubwayMapView();
+			new SubwayMapView(scanner);
 		} else if (menuSelected.equals(QUIT_MENU)) {
 			// Do nothing;
 		}
