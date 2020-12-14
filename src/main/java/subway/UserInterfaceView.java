@@ -75,7 +75,14 @@ public class UserInterfaceView {
     }
 
     public boolean mainStartAndReturnIsQuit() {
-
+        printMainView();
         return false;
+    }
+
+    private void printMainView() {
+        for (String str : MAIN_INTERFACE) {
+            System.out.println(str);
+        }
+        System.out.println();
     }
 }
