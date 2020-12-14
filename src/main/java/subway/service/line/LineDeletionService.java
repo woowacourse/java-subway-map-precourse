@@ -7,7 +7,7 @@ import subway.view.output.line.LineInformationView;
 
 import java.util.List;
 
-public class LineNameDeletionService {
+public class LineDeletionService {
     public static Line getLineForDeletion(String lineName) {
         Line lineForDeletion = new Line(lineName);
         List<Line> lines = LineRepository.lines();

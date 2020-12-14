@@ -8,7 +8,6 @@ import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.view.output.ScreenView;
-import subway.view.output.line.LineInformationView;
 import subway.view.output.line.LineTextView;
 
 import java.util.LinkedList;
@@ -51,35 +50,35 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
 
     @Override
     public boolean add(Scanner scanner) {
-        LineNameAddingValidation lineNameAddingValidation = new LineNameAddingValidation();
+        LineAddingValidation lineNameAddingValidation = new LineAddingValidation();
 
-        String lineName = LineNameAddingService.scanLineName(scanner);
+        String lineName = LineAddingService.scanLineName(scanner);
         if (!lineNameAddingValidation.checkAddingValidation(lineName)) {
             return false;
         }
-        String upStationName = LineNameAddingService.scanUpStationName(scanner);
-        String downStationName = LineNameAddingService.scanDownStationName(scanner);
+        String upStationName = LineAddingService.scanUpStationName(scanner);
+        String downStationName = LineAddingService.scanDownStationName(scanner);
         if (!lineNameAddingValidation.checkStationNamesAddingValidation(upStationName, downStationName)) {
             return false;
         }
 
-        LinkedList<Station> stationNames = LineNameAddingService.addStationNames(upStationName, downStationName);
-        LineNameAddingService.addNames(lineName, stationNames);
+        LinkedList<Station> stationNames = LineAddingService.addStationNames(upStationName, downStationName);
+        LineAddingService.addNames(lineName, stationNames);
         return true;
     }
 
     @Override
     public boolean delete(Scanner scanner) {
-        LineNameDeletionValidation lineNameDeletionValidation = new LineNameDeletionValidation();
+        LineDeletionValidation lineNameDeletionValidation = new LineDeletionValidation();
         List<Line> lines = LineRepository.lines();
 
         LineTextView.printLineDeletionText();
         String lineName = scanner.nextLine();
 
-        Line lineForDeletion = LineNameDeletionService.getLineForDeletion(lineName);
+        Line lineForDeletion = LineDeletionService.getLineForDeletion(lineName);
 
         if (lineNameDeletionValidation.checkDeletionValidation(lineName)) {
-            LineNameDeletionService.deleteName(lineForDeletion);
+            LineDeletionService.deleteName(lineForDeletion);
             return true;
         }
         return false;
@@ -87,10 +86,12 @@ public class LineService implements FeatureChoiceInterface, FeatureInterface {
 
     @Override
     public boolean show() {
+        LineNameService lineNameService = new LineNameService();
+
         StringBuilder stringBuilder = new StringBuilder();
         List<String> lineNames = LineRepository.lineNames();
 
-        LineNameService.readLineNames(stringBuilder, lineNames);
+        lineNameService.readNames(stringBuilder, lineNames);
         System.out.println(stringBuilder);
         return true;
     }

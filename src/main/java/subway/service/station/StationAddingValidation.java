@@ -8,7 +8,7 @@ import subway.view.output.station.StationExceptionView;
 
 import java.util.List;
 
-public class StationNameAddingValidation implements NameAddingValidationInterface {
+public class StationAddingValidation implements NameAddingValidationInterface {
     @Override
     public boolean checkNameDuplication(String stationName) {
         List<String> stationNames = StationRepository.stationNames();

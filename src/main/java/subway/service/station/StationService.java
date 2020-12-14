@@ -49,7 +49,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean add(Scanner scanner) {
-        StationNameAddingValidation nameAddingValidation = new StationNameAddingValidation();
+        StationAddingValidation nameAddingValidation = new StationAddingValidation();
 
         StationTextView.printStationAddingText();
         String stationName = scanner.nextLine();
@@ -65,7 +65,7 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean delete(Scanner scanner) {
-        StationNameDeletionValidation stationNameDeletionValidation = new StationNameDeletionValidation();
+        StationDeletionValidation stationNameDeletionValidation = new StationDeletionValidation();
 
         StationTextView.printStationDeletionText();
         String stationName = scanner.nextLine();
@@ -80,10 +80,12 @@ public class StationService implements FeatureChoiceInterface, FeatureInterface 
 
     @Override
     public boolean show() {
+        StationNameService stationNameService = new StationNameService();
+
         StringBuilder stringBuilder = new StringBuilder();
         List<String> stationNames = StationRepository.stationNames();
 
-        StationNameService.readStationName(stringBuilder, stationNames);
+        stationNameService.readNames(stringBuilder, stationNames);
         System.out.println(stringBuilder);
         return true;
     }

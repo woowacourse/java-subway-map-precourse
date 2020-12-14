@@ -11,7 +11,7 @@ import subway.view.output.line.LineTextView;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class LineNameAddingService {
+public class LineAddingService {
     public static String scanLineName(Scanner scanner) {
         LineTextView.printLineAddingText();
         return scanner.nextLine();

@@ -8,7 +8,7 @@ import subway.view.output.station.StationExceptionView;
 import java.util.LinkedList;
 import java.util.List;
 
-public class StationNameDeletionValidation implements NameDeletionValidationInterface {
+public class StationDeletionValidation implements NameDeletionValidationInterface {
     @Override
     public boolean checkNameInTransitMap(String stationName) {
         List<LinkedList<String>> transitMapsStationsNames

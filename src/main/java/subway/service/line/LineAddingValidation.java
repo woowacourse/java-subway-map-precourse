@@ -9,7 +9,7 @@ import subway.view.output.line.LineExceptionView;
 
 import java.util.List;
 
-public class LineNameAddingValidation implements NameAddingValidationInterface {
+public class LineAddingValidation implements NameAddingValidationInterface {
     @Override
     public boolean checkNameDuplication(String lineName) {
         List<String> lineNames = LineRepository.lineNames();
