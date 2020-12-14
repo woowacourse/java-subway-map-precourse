@@ -19,8 +19,8 @@ public class SectionService {
         validateExistentLine(lineName);
         validateExistentStation(stationName);
         SequenceValidator.validate(sequence);
-        validateIncludedStationInLine(lineName, stationName);
-        validateSectionCountExceed(lineName, sequence);
+        validateNotIncludedStationInLine(lineName, stationName);
+        validateSequenceNotExceed(lineName, sequence);
 
         Station station = StationRepository.selectStation(sectionRegistrationDto.getStationName());
         LineRepository.addSection(lineName, station, Integer.parseInt(sequence));
@@ -38,13 +38,13 @@ public class SectionService {
         }
     }
 
-    private void validateIncludedStationInLine(String lineName, String stationName) {
+    private void validateNotIncludedStationInLine(String lineName, String stationName) {
         if (LineRepository.isIncludedSectionInLine(lineName, stationName)) {
             throw new IllegalArgumentException(ALREADY_INCLUDED_STATION_ERROR_MESSAGE);
         }
     }
 
-    private void validateSectionCountExceed(String lineName, String sequence) {
+    private void validateSequenceNotExceed(String lineName, String sequence) {
         int stationCount = LineRepository.countNumberOfStationsInLine(lineName);
         int sequenceNumber = Integer.parseInt(sequence);
         if (stationCount + 1 < sequenceNumber) {
