@@ -17,6 +17,7 @@ public class Validator {
     private static String STATION_NAME_NOT_REGISTERED_MESSAGE = "등록되지 않은 역 이름입니다.";
     private static String LINE_NAME_DUPLICATED_MESSAGE = "이미 등록된 노선 이름입니다.";
     private static String END_STATION_NAMES_DUPLICATED_MESSAGE = "서로 다른 상·하행 종점역 이름을 입력해 주십시오.";
+    private static String LINE_NAME_NOT_REGISTERED_MESSAGE = "등록되지 않은 노선 이름입니다.";
 
     public static void checkValidUserCommand(String userCommand, Screen screen) {
         if (!screen.containsCommand(userCommand)) {
@@ -54,7 +55,7 @@ public class Validator {
             checkValidLineNameToRegister(lineName);
         }
         if (actionType == ActionType.DELETE) {
-            // TODO 구현 예정
+            checkValidLineNameToDelete(lineName);
         }
     }
     
@@ -71,6 +72,10 @@ public class Validator {
     private static void checkValidLineNameToRegister(String lineName) throws IllegalArgumentException {
         checkValidNameLength(lineName, Line.NAME_LENGTH_MIN);
         checkLineNameNotDuplicated(lineName);
+    }
+    
+    private static void checkValidLineNameToDelete(String lineName) throws IllegalArgumentException {
+        checkLineNameNotRegistered(lineName);
     }
     
     private static void checkValidNameLength(String name, int nameLengthMin) {
@@ -98,6 +103,12 @@ public class Validator {
     private static void checkLineNameNotDuplicated(String lineName) {
         if (LineRepository.containsName(lineName)) {
             throw new IllegalArgumentException(LINE_NAME_DUPLICATED_MESSAGE);
+        }
+    }
+    
+    private static void checkLineNameNotRegistered(String lineName) {
+        if (!LineRepository.containsName(lineName)) {
+            throw new IllegalArgumentException(LINE_NAME_NOT_REGISTERED_MESSAGE);
         }
     }
 }

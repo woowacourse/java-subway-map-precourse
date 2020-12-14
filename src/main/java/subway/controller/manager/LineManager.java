@@ -21,7 +21,7 @@ public class LineManager {
             registerLine();
         }
         if(actionType == ActionType.DELETE) {
-            // TODO 구현 예정
+            deleteLine();
         }
         if(actionType == ActionType.SHOW) {
             // TODO 구현 예정
@@ -35,6 +35,15 @@ public class LineManager {
             newLineName = controller.askName(EntityType.LINE, ActionType.REGISTER);
             LineRepository.addLine(new Line(newLineName), controller.askEndStationNames());
             view.printSuccessMessage(EntityType.LINE, ActionType.REGISTER);
+        } catch (Exception exception) {
+            view.printErrorMessage(exception);
+        }
+    }
+    
+    private void deleteLine() {
+        try {
+            LineRepository.deleteLineByName(controller.askName(EntityType.LINE, ActionType.DELETE));
+            view.printSuccessMessage(EntityType.LINE, ActionType.DELETE);
         } catch (Exception exception) {
             view.printErrorMessage(exception);
         }

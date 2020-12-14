@@ -32,6 +32,7 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
+        routes.remove(getLineByName(name));
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
     
