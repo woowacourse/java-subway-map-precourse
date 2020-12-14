@@ -23,6 +23,9 @@ public class SubwayProgram {
             String mainMenuNumber = mainMenu.run();
             selectMainMenu(mainMenuNumber);
 //            StationRepository.print();
+            for (Line line : LineRepository.lines()) {
+                System.out.println(line);
+            }
         } while (mainMenu.doNext());
     }
 
@@ -32,6 +35,9 @@ public class SubwayProgram {
             newStationManager.run();
         } else if (mainMenuNumber.equals("2")) {
             newLineManager.run();
+        } else if (mainMenuNumber.equals("3")) {
+            SectionManager newSectionManager = new SectionManager(scanner);
+            newSectionManager.run();
         }
     }
 

@@ -24,6 +24,7 @@ public class InputView {
         menuByScreen.put("main", "## 메인 화면\n1. 역 관리\n2. 노선 관리\n3. 구간 관리\n4. 지하철 노선도 출력\nQ. 출력");
         menuByScreen.put("stationManager", "\n## 역 관리 화면\n1. 역 등록\n2. 역 삭제\n3. 역 조회\nB. 돌아가기");
         menuByScreen.put("lineManager", "\n## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB 돌아가기");
+        menuByScreen.put("sectionManager", "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기");
     }
 
     public void makeRegex() {
@@ -31,6 +32,7 @@ public class InputView {
         validMenuRegex.put("main", "[1-4Qq]");
         validMenuRegex.put("stationManager", "[1-3Bb]");
         validMenuRegex.put("lineManager", "[1-3Bb]");
+        validMenuRegex.put("sectionManager", "[1-2Bb]");
     }
 
     public String nextMenu() {

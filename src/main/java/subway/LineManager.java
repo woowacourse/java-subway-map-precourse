@@ -37,7 +37,7 @@ public class LineManager {
     }
 
 
-    public void selectMenu(String menuNumber) {
+    private void selectMenu(String menuNumber) {
         if (menuNumber.equals("1")) {
             addLine();
         } else if (menuNumber.equals("2")) {
@@ -50,7 +50,7 @@ public class LineManager {
     private void addLine() {
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         String line = InputView.askName(scanner);
-        if (isDuplicate(line)){
+        if (LineRepository.hasLine(line)){
             System.out.println("\n[ERROR] 이미 등록된 노선입니다.");
             run();
         }
@@ -85,12 +85,6 @@ public class LineManager {
     private void printLine() {
         LineRepository.printLineList();
     }
-
-    public boolean isDuplicate(String line) {
-        return LineRepository.hasLine(line);
-    }
-
-
 
 
 }

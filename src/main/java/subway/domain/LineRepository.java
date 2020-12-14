@@ -21,12 +21,21 @@ public class LineRepository {
     }
 
     public static boolean hasLine(String newLine) {
-        for (Line line: lines) {
+        for (Line line : lines) {
             if (line.getName().equals(newLine)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static Line searchStationByName(String name) {
+        return  lines.stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
+                });
     }
 
     public static void printLineList() {
@@ -39,7 +48,5 @@ public class LineRepository {
         }
         System.out.println(sb);
     }
-
-
 
 }
