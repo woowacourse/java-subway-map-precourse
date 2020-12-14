@@ -73,6 +73,7 @@ public class UserConsole {
         String name = scanner.nextLine();
         System.out.println();
         if (!Validator.isAppropriateLength(name)) {
+            System.out.println("[ERROR] 이름은 2글자 이상이여야 한다.\n");
             throw new IllegalArgumentException();
         }
         return name;
