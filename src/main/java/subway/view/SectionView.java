@@ -45,6 +45,7 @@ public class SectionView {
 
     private boolean isEndSectionPage(final String button) {
         return !isCreate(button)
+                && !isDelete(button)
                 && !isBack(button);
     }
 
@@ -72,9 +73,23 @@ public class SectionView {
     }
 
 
-    private void deleteSection(String button) {
+    private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
+            print(Message.INPUT_DELETE_SECTION);
+            if (deleteSection(input.nextLine())) {
+                print(Message.INFO_DELETE_SECTION);
+                return true;
+            }
         }
+        return false;
+    }
+
+    private boolean deleteSection(String name) {
+        print(Message.INPUT_DELETE_ORDER_SECTION);
+        String station = input.nextLine();
+
+        sectionController.deleteSection(name, station);
+        return true;
     }
 
     private boolean isBack(String button) {

@@ -32,4 +32,9 @@ public class SectionRepository {
         List<Station> stations = sections.get(line);
         stations.add(order, station);
     }
+
+    public static void deleteSection(Line line, Station station) {
+        List<Station> stations = sections.get(line);
+        stations.remove(station);
+    }
 }

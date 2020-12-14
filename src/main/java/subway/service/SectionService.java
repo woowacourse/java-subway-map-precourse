@@ -17,4 +17,10 @@ public class SectionService {
         Station station = StationRepository.findOne(stationName);
         SectionRepository.addSection(line, station, Integer.parseInt(order));
     }
+
+    public void deleteSection(String lineName, String stationName) {
+        Line line = LineRepository.findOne(lineName);
+        Station station = StationRepository.findOne(stationName);
+        SectionRepository.deleteSection(line, station);
+    }
 }

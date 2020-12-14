@@ -16,4 +16,8 @@ public class SectionController {
     public void createSection(String name, String line, String order) {
         this.sectionService.addSection(name, line, order);
     }
+
+    public void deleteSection(String name, String station) {
+        this.sectionService.deleteSection(name, station);
+    }
 }
