@@ -29,4 +29,21 @@ public class SectionService {
         return false;
     }
 
+    public static boolean addSection(String lineName, String stationName, int stationIndex,
+        boolean isPrint) {
+        if (isNotExistLineAndStation(lineName, stationName)) {
+            return false;
+        }
+        Line line = LineRepository.getLine(lineName);
+        if (isExistStation(line, stationName)) {
+            return false;
+        }
+        Station station = StationRepository.getStation(stationName);
+        line.insertLineInStation(station, stationIndex);
+        if (isPrint) {
+            OutPut.printSectionAddMessage();
+        }
+        return true;
+    }
+
 }
