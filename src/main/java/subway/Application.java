@@ -28,17 +28,17 @@ public class Application {
         LineRepository.addLine(new Line("2호선", "교대역", "역삼역"));
         Line line = LineRepository.getLineByName("2호선");
         Sections sections = line.getSections();
-        sections.addSection("강남역", 1);
+        sections.addSection("강남역", 2);
 
         LineRepository.addLine(new Line("3호선", "교대역", "매봉역"));
         line = LineRepository.getLineByName("3호선");
         sections = line.getSections();
-        sections.addSection("남부터미널역", 1);
-        sections.addSection("양재역", 2);
+        sections.addSection("남부터미널역", 2);
+        sections.addSection("양재역", 3);
 
         LineRepository.addLine(new Line("신분당선", "강남역", "양재시민의숲역"));
         line = LineRepository.getLineByName("신분당선");
         sections = line.getSections();
-        sections.addSection("양재역", 1);
+        sections.addSection("양재역", 2);
     }
 }
