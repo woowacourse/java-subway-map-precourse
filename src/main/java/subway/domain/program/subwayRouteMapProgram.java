@@ -11,7 +11,7 @@ public class subwayRouteMapProgram {
     static final String DIVISION_LINE = "---";
 
     private void printStations(Line line) {
-        System.out.println("\n" + INFO + line.getName());
+        System.out.println(INFO + line.getName());
         System.out.println(INFO + DIVISION_LINE);
         for (Station station : line.getStation()) {
             System.out.println(INFO + station.getName());
@@ -19,6 +19,7 @@ public class subwayRouteMapProgram {
     }
 
     public void printLineAndStation() {
+        System.out.println();
         System.out.println(SUBWAY_ROUTE_MAP);
         for (Line line : LineRepository.lines()) {
             printStations(line);
