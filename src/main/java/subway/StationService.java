@@ -36,4 +36,10 @@ public class StationService {
         OutPut.printStationDeleteMessage();
         return true;
     }
+
+    public static void print() {
+        for (Station station : StationRepository.stations()) {
+            OutPut.printName(station.getName());
+        }
+    }
 }
