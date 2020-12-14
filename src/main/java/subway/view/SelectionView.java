@@ -67,7 +67,7 @@ public abstract class SelectionView extends AbstractView {
         int numOfMenu = this.visitableViews.size();
         return (int) ErrorUtils.repeatInputUntilNoException(() -> {
             println(INPUT_MESSAGE);
-            String input = scanner.nextLine();
+            String input = inputString();
             if (isGoBack(input)) {
                 return GO_BACK_CODE;
             }

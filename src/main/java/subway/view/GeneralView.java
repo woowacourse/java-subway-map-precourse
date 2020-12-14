@@ -19,7 +19,7 @@ public abstract class GeneralView extends AbstractView{
     protected String inputMoreThanTwoWords(String guideMessage) {
         return (String) ErrorUtils.repeatInputUntilNoException(() -> {
             println(guideMessage);
-            String input = scanner.nextLine();
+            String input = inputString();
             InputValidator.validateMoreThanTwoWords(input);
             return input;
         });
@@ -28,7 +28,7 @@ public abstract class GeneralView extends AbstractView{
     protected int inputNumber(String guideMessage) {
         return (int) ErrorUtils.repeatInputUntilNoException(() -> {
             println(guideMessage);
-            String input = scanner.nextLine();
+            String input = inputString();
             int result = Integer.parseInt(input);
             InputValidator.validatePositiveNumber(result);
             return result;
@@ -37,6 +37,7 @@ public abstract class GeneralView extends AbstractView{
 
     protected void processRequestResult(ResultDto result) {
         println(result.getMessage());
+        println();
         isBadResult(result);
     }
 

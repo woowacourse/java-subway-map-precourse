@@ -20,7 +20,7 @@ public class ErrorUtils {
             try {
                 return supplier.get();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage() + "\n");
             }
         }
     }

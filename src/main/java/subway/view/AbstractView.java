@@ -20,6 +20,12 @@ public abstract class AbstractView implements View{
         return this.name;
     }
 
+    protected String inputString() {
+        String input = scanner.nextLine();
+        println();
+        return input;
+    }
+
     protected void printExceptionMessage(Exception e) {
         System.out.println(e.getMessage());
     }
