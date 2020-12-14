@@ -37,15 +37,15 @@ public class StationService extends BaseService {
         OutputView.printStationList(StationRepository.stations());
     }
 
+    private static void checkStationLinePassing(Station station) {
+        if (station.isLinePassed()) {
+            throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
+        }
+    }
+
     private static void registerStation(String stationName) {
         StationRepository.addStation(new Station(stationName));
         OutputView.printInfo(REGISTER_STATION_SUCCESS);
-    }
-
-    private static void checkStationLinePassing(Station station) {
-        if (station.isLinePassed()){
-            throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
-        }
     }
 
     private static void deleteStation(Station station) {

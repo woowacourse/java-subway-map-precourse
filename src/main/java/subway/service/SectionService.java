@@ -1,9 +1,7 @@
 package subway.service;
 
 import subway.domain.Line;
-import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.option.SectionOption;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -41,7 +39,7 @@ public class SectionService extends BaseService {
         Line line = getLineByQuestion(DELETE_SECTION_LINE_NAME_QUESTION);
         checkLineLengthPossibleToDelete(line);
         Station station = getStationByQuestion(DELETE_SECTION_STATION_NAME_QUESTION);
-        removeSection(line, station);
+        deleteSection(line, station);
     }
 
     private static int getStationIndexToAdd() {
@@ -66,7 +64,7 @@ public class SectionService extends BaseService {
         OutputView.printInfo(REGISTER_SECTION_SUCCESS);
     }
 
-    private static void removeSection(Line line, Station station) {
+    private static void deleteSection(Line line, Station station) {
         if (!line.remove(station)) {
             throw new IllegalArgumentException(ERR_NO_STATION_ON_LINE);
         }

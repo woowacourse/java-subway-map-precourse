@@ -3,9 +3,7 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.option.LineOption;
-import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Arrays;
@@ -29,7 +27,7 @@ public class LineService extends BaseService {
         String lineName = getLineNameByQuestion(REGISTER_LINE_QUESTION);
         Station startStation = getStationByQuestion(START_STATION_QUESTION);
         Station endStation = getStationByQuestion(END_STATION_QUESTION);
-        addLine(lineName, startStation, endStation);
+        registerLine(lineName, startStation, endStation);
     }
 
     public static void delete() {
@@ -41,7 +39,7 @@ public class LineService extends BaseService {
         OutputView.printSubwayLineList(LineRepository.lines());
     }
 
-    private static void addLine(String lineName, Station startStation, Station endStation) {
+    private static void registerLine(String lineName, Station startStation, Station endStation) {
         LineRepository.addLine(new Line(lineName, startStation, endStation));
         OutputView.printInfo(REGISTER_LINE_SUCCESS);
     }

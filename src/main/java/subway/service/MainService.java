@@ -12,6 +12,7 @@ public class MainService extends BaseService {
     public static void view() {
         getUserChoiceWithinOptionList(Arrays.asList(MainOption.values()), HEADER);
     }
+
     public static void printEntireSubwayLine() {
         OutputView.printEntireSubwayLine(LineRepository.lines());
     }
