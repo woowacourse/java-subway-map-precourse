@@ -31,7 +31,7 @@ public class Line {
         stations.add(station);
     }
 
-    private void addStationByName(String stationName) {
+    public void addStationByName(String stationName) {
         for (int i = 0; i < StationRepository.stations().size(); i++) {
             Station station = StationRepository.stations().get(i);
             if (station.getName().equals(stationName)) {

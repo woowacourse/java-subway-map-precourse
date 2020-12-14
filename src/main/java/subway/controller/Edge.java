@@ -13,22 +13,41 @@ import subway.domain.exception.OrderTypeException;
 public class Edge {
     private static final String STATION_MESSAGE = "역";
     private static final String LINE_MESSAGE = "노선";
-    private static final String NAME_MESSAGE = "이름";
     private Edge() {
     }
 
     public static void add(InputView inputView) {
+        String lineName = scanLineName(inputView);
+        String stationName = scanStationName(inputView, lineName);
+        int order = scanOrder(inputView, lineName);
+        for (int i = 0; i < LineRepository.lines().size(); i++) {
+            Line line = LineRepository.lines().get(i);
+            if (line.getName().equals(lineName)) {
+                line.addStationByName(stationName);
+            }
+        }
+        OutputView.printAddActionFinishMessage(LINE_MESSAGE);
+    }
+
+    private static String scanLineName(InputView inputView) {
         OutputView.printInputMessage(LINE_MESSAGE);
         String lineName = inputView.getInput();
         Line.validateExistentLineName(lineName, LINE_MESSAGE);
+        return lineName;
+    }
 
+    private static String scanStationName(InputView inputView, String lineName) {
         OutputView.printInputMessage(STATION_MESSAGE);
         String stationName = inputView.getInput();
         validateStationName(lineName, stationName);
+        return stationName;
+    }
 
+    private static int scanOrder(InputView inputView, String lineName) {
         OutputView.printOrderInputMessage();
         String order = inputView.getInput();
         validateOrder(order, lineName);
+        return Integer.parseInt(order);
     }
 
     private static void validateStationName(String lineName, String stationName) {
