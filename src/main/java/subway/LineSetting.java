@@ -22,7 +22,7 @@ public class LineSetting {
         Print.hashMessage(Constant.ENTER_LINE_TO_DELETE);
         String input = scanner.next();
         System.out.println();
-        input = Exceptions.isInStationList(input);
+        input = Exceptions.isInLineList(input);
         LineRepository.deleteLineByName(input);
         Print.infoMessage(Constant.DELETE_LINE_DONE);
     }
