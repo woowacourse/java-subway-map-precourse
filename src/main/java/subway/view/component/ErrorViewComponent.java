@@ -33,7 +33,7 @@ public class ErrorViewComponent {
     }
 
     public static String getStationNameLengthComponent(){
-        return errorPrefixComponent + duplicatedLineNameComponent;
+        return errorPrefixComponent + stationNameLengthComponent;
     }
 
     public static String getLineNotExistComponent(){
