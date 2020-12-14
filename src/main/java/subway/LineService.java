@@ -48,4 +48,12 @@ public class LineService {
         }
         return true;
     }
+
+    public static void deleteLine(String lineName) {
+        if (!LineRepository.deleteLineByName(lineName)) {
+            OutPut.printNonExistLineError();
+            return;
+        }
+        OutPut.printLineDeleteMessage();
+    }
 }
