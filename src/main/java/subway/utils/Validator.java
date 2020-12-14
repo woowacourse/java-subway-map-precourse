@@ -24,7 +24,12 @@ public class Validator {
     }
 
     public static boolean isValidMainMenuInput(String inputMsg) {
-        List<String> validMainMsgList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "Q"));
-        return validMainMsgList.contains(inputMsg);
+        List<String> validMsgList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "Q"));
+        return validMsgList.contains(inputMsg);
+    }
+
+    public static boolean isValidStationManageMenuInput(String inputMsg) {
+        List<String> validMsgList = new ArrayList<>(Arrays.asList("1", "2", "3", "B"));
+        return validMsgList.contains(inputMsg);
     }
 }
