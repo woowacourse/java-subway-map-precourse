@@ -57,4 +57,13 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printSectionContents() {
+        System.out.println("구간 관리 화면");
+        System.out.println("1. 구간 등록");
+        System.out.println("2. 구간 삭제");
+        System.out.println("B. 돌아가기");
+
+        System.out.println("원하는 기능을 선택하세요.");
+    }
 }

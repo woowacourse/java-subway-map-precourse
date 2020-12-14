@@ -20,6 +20,7 @@ public class MainSelectManager {
                 LineManager.lineChoice();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_THIRD)) {
+                SectionManager.sectionChoice();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_FOURTH)) {
             }
