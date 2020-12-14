@@ -21,7 +21,7 @@ public class LineManagerView extends ManagerView {
 		} else if (menuSelected.equals(SECOND_MENU)) {
 			new LineRemovalView(scanner);
 		} else if (menuSelected.equals(THIRD_MENU)) {
-			new LineListView();
+			new LineListView(scanner);
 		} else if (menuSelected.equals(BACK_MENU)) {
 			new MainView(scanner);
 		}
