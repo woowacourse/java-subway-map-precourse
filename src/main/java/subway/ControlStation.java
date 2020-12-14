@@ -6,17 +6,28 @@ import subway.domain.Station;
 
 public class ControlStation {
 
-    public static void addStation(){
-
-        StationRepository.addStation(new Station(OutputMessage.registerStationName()));
+    public static boolean addStation(){
+        Boolean checkingInput=true;
+        String tmpSaveStationName=OutputMessage.registerStationName();
+        if(!StationRepository.lengthStationName(tmpSaveStationName)||!StationRepository.duplicateStationName(tmpSaveStationName)){
+            System.out.println();
+            return true;
+        }
+        StationRepository.addStation(new Station(tmpSaveStationName));
         System.out.println();
+        return false;
     }
-    public static void deleteStationNotLine(){
-        StationRepository.deleteStation(OutputMessage.choiceOutputMessage());
+    public static boolean deleteStationNotLine(){
+        if(StationRepository.deleteStation(OutputMessage.choiceOutputMessage())){
+            System.out.println();
+        }
+        return true;
     }
-    public static void lookStationNotLine(){
+    public static boolean lookStationNotLine(){
         StationRepository.print();
+        return true;
     }
-    public static void back(){
+    public static boolean back(){
+        return true;
     }
 }
