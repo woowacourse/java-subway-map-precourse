@@ -50,14 +50,16 @@ public class LineService {
         }
     }
 
-    public static void remove(Line removedLine) {
-        LineRepository.deleteLineByName(removedLine.getName());
+    public static void remove(String removedLineName) {
+        LineRepository.deleteLineByName(removedLineName);
     }
 
-    public static void addStation(String lineName, Station newStation, int newStationLocation) {
+    public static void addStation(String lineName, String stationName, int newStationLocation) {
         Line line = LineRepository.findLineByName(lineName)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_Line_MESSAGE));
-        validateStation(newStation);
-        line.addStation(newStationLocation, newStation);
+
+        Station station = new Station(stationName);
+        validateStation(station);
+        line.addStation(newStationLocation, station);
     }
 }

@@ -135,10 +135,9 @@ class LineServiceTest {
         Arrays.stream(lineNames)
                 .map(name -> new Line(name, stations))
                 .forEach(LineRepository::addLine);
-        Line removedLine = new Line(removedLineName, stations);
 
         //when
-        LineService.remove(removedLine);
+        LineService.remove(removedLineName);
 
         //then
         List<Line> lines = LineRepository.lines();
@@ -178,12 +177,13 @@ class LineServiceTest {
         Line line = new Line(lineName, stations);
         LineService.save(line);
 
-        Station newStation = new Station("사당역");
+        String newStationName = "사당역";
+        Station newStation = new Station(newStationName);
         StationRepository.addStation(newStation);
         int newStationLocation = 1;
 
         //when
-        LineService.addStation(lineName, newStation, newStationLocation);
+        LineService.addStation(lineName, newStationName, newStationLocation);
 
         //then
         List<Line> lines = LineRepository.lines();
