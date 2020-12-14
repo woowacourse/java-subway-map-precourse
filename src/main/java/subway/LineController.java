@@ -70,8 +70,9 @@ public class LineController {
         newLine = new Line(lineName);
         newLine.addStation(StationRepository.getStationFromName(upTerminus));
         newLine.addStation(StationRepository.getStationFromName(downTerminus));
-
+        LineRepository.addLine(newLine);
         OutputView.lineAddSuccessPrint();
+
         return true;
     }
 
@@ -88,6 +89,7 @@ public class LineController {
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
+
 
         OutputView.stationDeleteSuccessPrint();
         return true;
