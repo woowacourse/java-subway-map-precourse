@@ -1,6 +1,9 @@
 package subway.userinterface.mainmenu;
 
+import subway.service.MainService;
 import subway.userinterface.Menu;
+import subway.userinterface.intervalmenu.IntervalMenuView;
+import subway.userinterface.linemenu.LineMenuView;
 
 import java.util.Scanner;
 
@@ -25,6 +28,8 @@ public class IntervalController implements Menu {
 
     @Override
     public void run(Scanner scanner) {
+
+        IntervalMenuView.getInstance().printMenu();
 
     }
 
