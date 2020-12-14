@@ -68,13 +68,9 @@ public class LineManagementView extends View {
     }
 
     private void addLine() {
-        String lineName = getLineName();
-        Station firstStation = getFirstStation();
-        Station lastStation = getLastStation();
-
-        Line line = new Line(lineName);
-        line.addStation(firstStation);
-        line.addStation(lastStation);
+        Line line = new Line(getLineName());
+        line.addStation(getFirstStation());
+        line.addStation(getLastStation());
 
         LineRepository.addLine(line);
     }
