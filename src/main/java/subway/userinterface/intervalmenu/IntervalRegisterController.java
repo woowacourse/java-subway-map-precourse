@@ -16,10 +16,10 @@ public class IntervalRegisterController implements Menu {
     private static final String MENU_NAME = "1. 구간 등록";
     private static final String MENU_KEY = "1";
     private static final IntervalService intervalService = new IntervalService();
-    private static final IntervalRegisterLineInputController lineInput =
-            new IntervalRegisterLineInputController();
-    private static final IntervalRegisterStationInputController stationInput =
-            new IntervalRegisterStationInputController();
+    private static final IntervalLineInputController lineInput =
+            new IntervalLineInputController();
+    private static final IntervalStationInputController stationInput =
+            new IntervalStationInputController();
     private static final IntervalRegisterPosInputController positionInput =
             new IntervalRegisterPosInputController();
     private static IntervalRegisterController intervalRegisterController;
@@ -49,7 +49,7 @@ public class IntervalRegisterController implements Menu {
     }
 
     @Override
-    public void run(Scanner scanner) {
+    public void run(Scanner scanner) throws IllegalArgumentException {
         currentLine = LineRepository.findLineByName(lineInput.getUserInput(scanner));
         Station addStation =
                 StationRepository.findStationByName(stationInput.getUserInput(scanner));

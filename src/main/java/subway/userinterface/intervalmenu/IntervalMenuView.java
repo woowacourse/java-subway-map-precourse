@@ -29,7 +29,8 @@ public class IntervalMenuView implements MenuView {
                 IntervalRegisterController.getInstance());
         intervalMenu.put(IntervalDeleteController.getInstance().getMenuKey(),
                 IntervalDeleteController.getInstance());
-        intervalMenu.put(ReturnController.getInstance().getMenuKey(), ReturnController.getInstance());
+        intervalMenu.put(ReturnController.getInstance().getMenuKey(),
+                ReturnController.getInstance());
     }
 
     @Override
