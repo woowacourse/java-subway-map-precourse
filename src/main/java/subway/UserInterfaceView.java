@@ -240,6 +240,14 @@ public class UserInterfaceView {
 
     private void sectionStart() {
         printSectionView();
+        String userInput;
+        while (true) {
+            userInput = getUserInput(CHOICE_FUNCTION);
+            if (Arrays.asList(SECTION_LIST).contains(userInput)) {
+                break;
+            }
+            printErrorMessage();
+        }
     }
 
     private void printSectionView() {
