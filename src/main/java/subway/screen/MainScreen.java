@@ -7,20 +7,15 @@ import subway.domain.LineRepository;
 import subway.screenMessage.MainScreenMessage;
 
 public class MainScreen implements SubwayScreen, MainScreenMessage {
-    private static final String[] MAIN_MENU_CHOICES = {"1", "2", "3", "4", "Q"};
-    private static final String MAIN_SCREEN_SELECT_STATION_MANAGEMENT = MAIN_MENU_CHOICES[0];
-    private static final String MAIN_SCREEN_SELECT_LINE_MANAGEMENT = MAIN_MENU_CHOICES[1];
-    private static final String MAIN_SCREEN_SELECT_SECTION_MANAGEMENT = MAIN_MENU_CHOICES[2];
-    private static final String MAIN_SCREEN_SELECT_PRINT_SUBWAY_MAP = MAIN_MENU_CHOICES[3];
-    private static final String MAIN_SCREEN_SELECT_QUIT = MAIN_MENU_CHOICES[4];
-
-    private static String mainScreenInput;
+    private String mainScreenInput;
 
     @Override
     public void startProcess(Scanner scanner) {
-        printScreen();
-        mainScreenInput = getInput(scanner);
-        transfer(scanner);
+        do {
+            printScreen();
+            mainScreenInput = getInput(scanner);
+            transfer(scanner);
+        } while (!mainScreenInput.equals(QUIT));
     }
 
     @Override
@@ -32,37 +27,32 @@ public class MainScreen implements SubwayScreen, MainScreenMessage {
     }
 
     private void inputStationManagement(Scanner scanner) {
-        if(mainScreenInput.equals(MAIN_SCREEN_SELECT_STATION_MANAGEMENT)) {
+        if(mainScreenInput.equals(STATION_MANAGEMENT)) {
             StationScreen stationScreen = new StationScreen();
             stationScreen.startProcess(scanner);
         }
     }
 
     private void inputLineManagement(Scanner scanner) {
-        if(mainScreenInput.equals(MAIN_SCREEN_SELECT_LINE_MANAGEMENT)) {
+        if(mainScreenInput.equals(LINE_MANAGEMENT)) {
             LineScreen lineScreen = new LineScreen();
             lineScreen.startProcess(scanner);
         }
     }
 
     private void inputSectionManagement(Scanner scanner) {
-        if(mainScreenInput.equals(MAIN_SCREEN_SELECT_SECTION_MANAGEMENT)) {
+        if(mainScreenInput.equals(SECTION_MANAGEMENT)) {
             SectionScreen sectionScreen = new SectionScreen();
             sectionScreen.startProcess(scanner);
         }
     }
 
     private void inputPrintSubwayMap() {
-        if(mainScreenInput.equals(MAIN_SCREEN_SELECT_PRINT_SUBWAY_MAP)) {
+        if(mainScreenInput.equals(PRINT_SUBWAY_MAP)) {
             System.out.println(MAIN_SCREEN_PRINT_SUBWAY_MAP);
             LineRepository.printSubwayMap();
         }
     }
-
-    public static boolean requestQuitMainScreen() {
-        return mainScreenInput.equals(MAIN_SCREEN_SELECT_QUIT);
-    }
-
 
     @Override
     public void printScreen() {
@@ -80,7 +70,7 @@ public class MainScreen implements SubwayScreen, MainScreenMessage {
 
     @Override
     public void validateInput(String input) {
-        List<String> choices = Arrays.asList(MAIN_MENU_CHOICES);
+        List<String> choices = Arrays.asList(MENU_CHOICES);
         if(!choices.contains(input)) {
             throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
