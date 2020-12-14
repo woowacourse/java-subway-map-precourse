@@ -1,15 +1,19 @@
 package subway.controller;
 
 import subway.menus.StationMenu;
-import subway.views.InputView;
-import subway.views.OutputView;
+import subway.service.StationService;
+import subway.views.stationviews.StationInputView;
+import subway.views.stationviews.StationOutputView;
 
 import java.util.Scanner;
 
 public class StationMenuController {
+    StationService stationService;
+
     public void mappingStationMenu(Scanner scanner) {
-        OutputView.printStationManagePage();
-        branchBySelectedOption(InputView.selectStationMenu(scanner));
+        StationOutputView.printStationManagePage();
+        stationService = new StationService(scanner);
+        branchBySelectedOption(StationInputView.selectStationMenu(scanner));
     }
 
     private void branchBySelectedOption(StationMenu selectedOption) {
@@ -18,7 +22,7 @@ public class StationMenuController {
             return;
         }
         if (selectedOption.equals(StationMenu.STATION_INSERT)) {
-
+            stationService.addStationService();
         }
         if (selectedOption.equals(StationMenu.STATION_DELETE)) {
 
