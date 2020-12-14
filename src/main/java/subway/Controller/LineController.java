@@ -1,6 +1,7 @@
 package subway.Controller;
 
 import subway.Exception.ExceptionHandler;
+import subway.Exception.LineExceptionHandler;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -58,14 +59,14 @@ public class LineController {
 
     private static void add() {
         String line = InputView.getAddLine();
-        ExceptionHandler.lineNameShorterThanTwo(line);
-        ExceptionHandler.lineContained(line);
-        String upwardStation = InputView.getAddLineUpwardStation();
-        String downwardStation = InputView.getAddLineDownwardStation();
-        ExceptionHandler.stationSame(upwardStation, downwardStation);
+        LineExceptionHandler.lineNameShortThanMin(line);
+        LineExceptionHandler.lineDuplicated(line);
+        String from = InputView.getAddLineUpwardStation();
+        String to = InputView.getAddLineDownwardStation();
+        LineExceptionHandler.fromAndToStationDuplicated(from, to);
         Line newLine = new Line(line);
-        newLine.addStationByOrder(new Station(upwardStation), 0);
-        newLine.addStationByOrder(new Station(downwardStation), 1);
+        newLine.addStationByOrder(new Station(from), 0);
+        newLine.addStationByOrder(new Station(to), 1);
         LineRepository.addLine(newLine);
         OutputView.printAddLineSuccess();
     }

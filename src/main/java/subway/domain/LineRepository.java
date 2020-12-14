@@ -26,7 +26,21 @@ public class LineRepository {
             .anyMatch(station -> station.getName().equals(name)));
     }
 
-    public static boolean containsLine(String name) {
+    public static boolean contains(String name) {
         return lines.stream().anyMatch(line -> line.getName().equals(name));
+    }
+
+    public static boolean lineContainsStation(String lineName, String stationName) {
+        return findByLineName(lineName).getStations().stream()
+            .anyMatch(station -> station.getName().equals(stationName));
+    }
+
+    public static Line findByLineName(String lineName) {
+        return lines.stream().filter(line -> line.getName().equals(lineName)).findFirst().get();
+    }
+
+    public static int getSectionLength(String lineName) {
+        return lines.stream().filter(line -> line.getName().equals(lineName)).findFirst().get()
+            .getStations().size();
     }
 }

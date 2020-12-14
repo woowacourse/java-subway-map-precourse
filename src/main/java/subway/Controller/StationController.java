@@ -16,6 +16,7 @@ public class StationController {
 
     public static void run() {
         OutputView.printStationView();
+        select();
     }
 
     public static void select() {

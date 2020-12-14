@@ -34,7 +34,7 @@ public class MainController {
             LineController.run();
         }
         if (selection.equals(SECTION)) {
-
+            SectionController.run();
         }
         if (selection.equals(MAP)) {
 
