@@ -37,7 +37,7 @@ public class Line {
         if (!checkLineStation(station.getName())) {
             throw new AlreadyExistStationNameException();
         }
-        station.setLines(this.name);
+        station.involvedLine(this.name);
         lineStations.add(station);
     }
 
@@ -53,7 +53,7 @@ public class Line {
         if (index > lineStations.size())
             throw new OverRangeException();
 
-        station.setLines(this.name);
+        station.involvedLine(this.name);
         lineStations.add(index, station);
     }
 

@@ -18,7 +18,7 @@ public class Station {
 
     // 추가 기능 구현
 
-    public void setLines(String name) {
+    public void involvedLine(String name) {
         lines.add(name);
     }
 

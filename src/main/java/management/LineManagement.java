@@ -51,7 +51,7 @@ public class LineManagement {
     }
 
     private static boolean checkFunctionButton(String answer) {
-        if(answer.equals(BUTTON[0]) || answer.equals(BUTTON[1]) || answer.equals(BUTTON[2]) || answer.equals(BUTTON[3]))
+        if (answer.equals(BUTTON[0]) || answer.equals(BUTTON[1]) || answer.equals(BUTTON[2]) || answer.equals(BUTTON[3]))
             return true;
         throw new NoneFunctionException();
     }

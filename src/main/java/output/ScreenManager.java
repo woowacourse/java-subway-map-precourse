@@ -34,11 +34,7 @@ public class ScreenManager {
         if (selectedMenu == Menu.QUIT)
             mainRetry = false;
         if (selectedMenu != Menu.SUBWAY_MAP && selectedMenu != Menu.QUIT)
-            startManagementScreen(new ManagementScreen(selectedMenu));
-    }
-
-    private void startManagementScreen(ManagementScreen managementScreen) {
-        handleManagementException(managementScreen);
+            handleManagementException(new ManagementScreen(selectedMenu));
     }
 
     private void handleManagementException(ManagementScreen managementScreen) {
