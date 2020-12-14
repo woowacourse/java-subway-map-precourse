@@ -28,9 +28,20 @@ public class Subway {
 		}
 		return true;
 	}
+	
+	private static boolean isDuplicateStationInLine(Line line, String stationName) {
+		if (!line.getStations().contains(stationName)) {
+			return false;
+		}
+		return true;
+	}
 	 
 	private static void addSectionByLine(Line line, String lineName, String stationName, int seq) {
 		if (Objects.equals(line.getName(), lineName)) {
+			if (isDuplicateStationInLine(line, stationName)) {
+				Output.error(Message.DUPLICATED_STATION_IN_LINE);
+				return;
+			}
 			if (isUseableSequence(line, seq)) {
 				line.addStation(seq - 1, stationName);
 				Output.info(Message.SECTION_CREATE_SUCCESS);

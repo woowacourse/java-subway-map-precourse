@@ -82,6 +82,7 @@ public class Message {
 	public static final String NOT_USEABLE_STATION_NAME_LENGTH = "역 이름은 2자 이상으로 구성되어야 합니다.";
 	public static final String NOT_USEABLE_LINE_NAME_LENGTH = "노선 이름은 2자 이상으로 구성되어야 합니다.";
 	public static final String NOT_USEABLE_SEQUENCE = "해당 위치에 구간을 추가할 수 없습니다. 노선의 지하철 수를 확인해주십시오.";
+	public static final String DUPLICATED_STATION_IN_LINE = "해당 노선에는 이미 존재하는 역입니다.";
 	
 	/*
 	 * ending
