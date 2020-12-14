@@ -1,19 +1,21 @@
 package subway.repository;
 
 import subway.domain.Station;
-import subway.view.OutputView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static subway.repository.LineRepository.isStationExistInLine;
 import static subway.view.OutputView.*;
 
 public class StationRepository {
     private static final String STATION_DUPLICATE_WARN = "역 이름은 중복이 되어서는 안됩니다.";
-    private static final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 이름입니다.";
+    private static final String STATION_NOT_EXIST_WARN = "존재하지 않는 역입니다.";
     private static final String STATION_EXIST_IN_LINE_WARN = "노선에 등록된 역은 삭제할 수 없습니다.";
     private static final String STATION_ADD_SUCCESS = "지하철 역이 등록되었습니다.";
     private static final String STATION_DELETE_SUCCESS = "지하철 역이 삭제되었습니다.";
+    private static final String STATION_SIZE_ZERO = "등록된 역이 없습니다.";
 
     private static final List<Station> stations = new ArrayList<>();
 
@@ -21,32 +23,41 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static boolean addStation(Station station) {
+    public static void addStation(Station station) {
         if (stations.contains(station)) {
             warnMessage(STATION_DUPLICATE_WARN);
-            return false;
+            return;
         }
         stations.add(station);
         infoMessage(STATION_ADD_SUCCESS);
-        return true;
     }
 
-    public static boolean deleteStation(String name) {
+    public static void deleteStation(String name) {
         Station findStation = findStationByName(name);
         if (findStation == null) {
             warnMessage(STATION_NOT_EXIST_WARN);
+            return;
         }
         if (isStationExistInLine(findStation)) {
             warnMessage(STATION_EXIST_IN_LINE_WARN);
+            return;
         }
         infoMessage(STATION_DELETE_SUCCESS);
-        return stations.remove(findStation);
+        stations.remove(findStation);
     }
 
     public static Station findStationByName(String stationName) {
-        Optional<Station> findStation = stations.stream()
+        return stations.stream()
                 .filter(station -> station.getName().equals(stationName))
-                .findAny();
-        return findStation.orElse(null);
+                .findAny().orElse(null);
+    }
+
+    public static void printStationList() {
+        if (stations.size() == 0) {
+            infoMessage(STATION_SIZE_ZERO);
+            return;
+        }
+        stations.forEach(station -> infoMessageNotBr(station.getName()));
+        System.out.println();
     }
 }
