@@ -2,6 +2,7 @@ package subway.repository.line;
 
 import subway.domain.line.Line;
 import subway.domain.line.LineName;
+import subway.exception.line.LineNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,5 +25,13 @@ public class LineRepositoryImpl implements LineRepository {
     @Override
     public boolean deleteLineByName(LineName name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    @Override
+    public Line findLineByName(LineName name) {
+        return lines.stream()
+                .filter(line -> Objects.equals(line.getName(), name))
+                .findAny()
+                .orElseThrow(() -> new LineNotFoundException());
     }
 }

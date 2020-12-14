@@ -1,7 +1,10 @@
 package subway.domain.line;
 
+import subway.domain.station.StationName;
 import subway.exception.line.LineNameFormatException;
 import subway.exception.line.LineNameLengthException;
+
+import java.util.Objects;
 
 public class LineName {
     private static final int MINIMUM_LINE_NAME_SIZE = 2;
@@ -33,6 +36,15 @@ public class LineName {
         if (!(name.length() - LINE_IN_KOREAN.length() >= MINIMUM_LINE_NAME_SIZE)) {
             throw new LineNameLengthException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LineName) {
+            return Objects.equals(name, ((LineName) o).name);
+        }
+
+        return false;
     }
 
     @Override

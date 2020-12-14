@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final int MINIMUM_POSITION_RANGE = 1;
+
     private LineName name;
     private List<Station> sections;
 
@@ -27,6 +29,14 @@ public class Line {
         sections.add(downLine);
 
         return sections;
+    }
+
+    public boolean isRightPosition(int position) {
+        return MINIMUM_POSITION_RANGE <= position && position < sections.size();
+    }
+
+    public void add(int position, Station station) {
+        sections.add(position, station);
     }
 
     public LineName getName() {

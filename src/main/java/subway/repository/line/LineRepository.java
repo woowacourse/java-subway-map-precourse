@@ -9,4 +9,5 @@ public interface LineRepository {
     List<Line> lines();
     void addLine(Line line);
     boolean deleteLineByName(LineName name);
+    Line findLineByName(LineName name);
 }
