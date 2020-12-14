@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.List;
+
 public class Line {
     private String name;
     private Path pathInfo;

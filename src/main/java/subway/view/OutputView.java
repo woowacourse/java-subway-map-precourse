@@ -6,8 +6,9 @@ public class OutputView {
     public static final String SEPARATER = "---";
     public static final String DOUBLE_SHARP = "## ";
     public static final String SELECT_FUNCTION = "원하는 기능을 선택하세요.";
-    public static final String INPUT_STATION_WITH_ACTION = "%s할 역 이름을 입력하세요.";
-    public static final String MANAGE_STATION = "지하철 역이 %s되었습니다.";
+    public static final String INPUT_WITH_ACTION = "%s할 %s 이름을 입력하세요.";
+    public static final String ALERT_MESSAGE = "지하철 %s이 %s되었습니다.";
+    public static final String ADD_UP_AND_DOWN_LINE = "등록할 노선의 %s행 종점역 이름을 입력하세요.";
     public static final String LIST = " 목록";
 
     public static final void printMenus(String menu) {
@@ -24,14 +25,19 @@ public class OutputView {
         printWithDoubleSharp(SELECT_FUNCTION);
     }
 
-    public static final void printWithAction(String string){
+    public static final void printWithAction(String string, String type){
         printNewLine();
-        printWithDoubleSharp(String.format(INPUT_STATION_WITH_ACTION, string));
+        printWithDoubleSharp(String.format(INPUT_WITH_ACTION, string, type));
     }
 
-    public static final void printAlert(String function){
+    public static final void printUpAndDownLineMessage(String string){
         printNewLine();
-        printWithInformationMark(String.format(MANAGE_STATION, function));
+        printWithDoubleSharp(String.format(ADD_UP_AND_DOWN_LINE, string));
+    }
+
+    public static final void printAlert(String function, String type){
+        printNewLine();
+        printWithInformationMark(String.format(ALERT_MESSAGE, type, function));
     }
     public static final void printNewLine(){
         System.out.println();

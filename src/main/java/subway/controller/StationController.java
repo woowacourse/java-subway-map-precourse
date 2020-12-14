@@ -9,7 +9,7 @@ import subway.view.screen.Action;
 import java.util.Scanner;
 
 public class StationController implements Controller {
-    private static final String name = "역";
+    private static final String NAME = "역";
     Scanner scanner;
 
     @Override
@@ -30,27 +30,27 @@ public class StationController implements Controller {
     }
 
     private void addStation(String action) {
-        OutputView.printWithAction(action);
+        OutputView.printWithAction(action, NAME);
         String station = InputView.getCommand(scanner);
         if (StationRepository.addStation(new Station(station))) {
-            OutputView.printAlert(action);
+            OutputView.printAlert(action, NAME);
             return;
         }
         OutputView.printDuplicatedErrorMessage(station.toString());
     }
 
     private void deleteStation(String action) {
-        OutputView.printWithAction(action);
+        OutputView.printWithAction(action, NAME);
         String station = InputView.getCommand(scanner);
         if (StationRepository.deleteStation(station)) {
-            OutputView.printAlert(action);
+            OutputView.printAlert(action, NAME);
             return;
         }
         OutputView.printStationDeleteErrorMessage();
     }
 
     private void selectStation(String action) {
-        OutputView.printList(name);
+        OutputView.printList(NAME);
         StationRepository.printStations();
     }
 }
