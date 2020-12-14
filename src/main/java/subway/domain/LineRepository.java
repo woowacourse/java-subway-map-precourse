@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -13,6 +14,11 @@ public class LineRepository {
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public static List<String> lineNames() {
+        return Collections.unmodifiableList(
+                lines.stream().map(line -> line.getName()).collect(Collectors.toList()));
     }
 
     public static void addLine(Line line, List<String> endStationNames) {

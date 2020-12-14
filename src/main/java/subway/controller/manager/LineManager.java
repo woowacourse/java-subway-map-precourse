@@ -24,7 +24,7 @@ public class LineManager {
             deleteLine();
         }
         if(actionType == ActionType.SHOW) {
-            // TODO 구현 예정
+            showLines();
         }
     }
     
@@ -47,5 +47,9 @@ public class LineManager {
         } catch (Exception exception) {
             view.printErrorMessage(exception);
         }
+    }
+    
+    private void showLines() {
+        view.printNames(EntityType.LINE, LineRepository.lineNames());
     }
 }
