@@ -15,7 +15,7 @@ public class InputView {
     public static final String CHOOSE_STATION_NAME = "## 역이름을 입력하세요.";
     public static final String CHOOSE_ORDER = "## 순서를 입력하세요.";
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;
@@ -36,6 +36,6 @@ public class InputView {
     private String userStringInput(String specificInfo) {
         System.out.println();
         System.out.println(specificInfo);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 }
