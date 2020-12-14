@@ -29,4 +29,13 @@ public class LineRepository {
         return false;
     }
 
+    public static Line getLine(String name) {
+        for (Line line : lines) {
+            if (line.isEqualName(name)) {
+                return line;
+            }
+        }
+        return null;
+    }
+
 }
