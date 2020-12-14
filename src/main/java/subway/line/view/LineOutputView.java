@@ -38,9 +38,7 @@ public class LineOutputView {
         System.out.println();
     }
 
-    public static void printAllLine() {
-        List<Line> lines = LineRepository.lines();
-
+    public static void printAllLine(List<Line> lines) {
         System.out.println(LINE_LIST_TITLE);
         for (Line line : lines) {
             System.out.println(RESULT_PREFIX + line.getName());

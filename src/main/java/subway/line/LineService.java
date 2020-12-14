@@ -15,7 +15,7 @@ public class LineService {
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 노선입니다.";
     private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
 
-    public static void addLine(String lineName, LineInputView lineInputView) {
+    public static boolean addLine(String lineName, LineInputView lineInputView) {
         try {
             Line line = new Line(lineName);
             Station startStation = getStartStation(lineInputView);
@@ -24,9 +24,11 @@ public class LineService {
             line.addStation(endStation);
             LineRepository.addLine(line);
             LineOutputView.addLineComplete();
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return false;
     }
 
     private static Station getStartStation(LineInputView lineInputView) {
@@ -41,14 +43,16 @@ public class LineService {
         return StationService.findStation(endStationName);
     }
 
-    public static void deleteLine(String lineName) {
+    public static boolean deleteLine(String lineName) {
+        boolean isDelete = false;
         try {
             CheckRegisteredLine.validation(lineName);
-            LineRepository.deleteLineByName(lineName);
+            isDelete = LineRepository.deleteLineByName(lineName);
             LineOutputView.deleteStationComplete();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return isDelete;
     }
 
     public static void addSection(String lineName, LineInputView lineInputView, StationInputView stationInputView) {
@@ -110,5 +114,11 @@ public class LineService {
             EachLineStations stations = line.getStations();
             LineOutputView.printLineInformation(lineName, stations);
         }
+    }
+
+    public static boolean printAllLine() {
+        List<Line> lines = LineRepository.lines();
+        LineOutputView.printAllLine(lines);
+        return true;
     }
 }

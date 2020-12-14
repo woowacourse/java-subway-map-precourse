@@ -20,8 +20,18 @@ public class LineController {
     public static void lineManagement(MainInputView mainInputView) {
         List<Character> optionList = Arrays.asList(ADD_LINE, DELETE_LINE, PRINT_LINE, GO_BACK);
 
-        LineOutputView.printLineManagement();
-        selectLineManagementOption(mainInputView.selectOption(optionList), mainInputView.getScanner());
+        while (true) {
+            LineOutputView.printLineManagement();
+            char option = mainInputView.selectOption(optionList);
+
+            if (option == GO_BACK) {
+                break;
+            }
+
+            if (selectLineManagementOption(option, mainInputView.getScanner())) {
+                break;
+            }
+        }
     }
 
     public static void sectionManagement(MainInputView mainInputView) {
@@ -53,32 +63,33 @@ public class LineController {
         LineService.addSection(lineName, lineInputView, stationInputView);
     }
 
-    private static void selectLineManagementOption(char option, Scanner scanner) {
+    private static boolean selectLineManagementOption(char option, Scanner scanner) {
         LineInputView lineInputView = new LineInputView(scanner);
 
         if (option == ADD_LINE) {
-            addNewLine(lineInputView);
+            return addNewLine(lineInputView);
         }
         if (option == DELETE_LINE) {
-            deleteLine(lineInputView);
+            return deleteLine(lineInputView);
         }
         if (option == PRINT_LINE) {
-            printRegisteredLine();
+            return printRegisteredLine();
         }
+        return false;
     }
 
-    private static void addNewLine(LineInputView lineInputView) {
+    private static boolean addNewLine(LineInputView lineInputView) {
         String lineName = lineInputView.newLineName();
-        LineService.addLine(lineName, lineInputView);
+        return LineService.addLine(lineName, lineInputView);
     }
 
-    private static void deleteLine(LineInputView lineInputView) {
+    private static boolean deleteLine(LineInputView lineInputView) {
         String lineName = lineInputView.deleteLineName();
-        LineService.deleteLine(lineName);
+        return LineService.deleteLine(lineName);
     }
 
-    private static void printRegisteredLine() {
-        LineOutputView.printAllLine();
+    private static boolean printRegisteredLine() {
+        return LineService.printAllLine();
     }
 
     public static void printSubwayMap() {
