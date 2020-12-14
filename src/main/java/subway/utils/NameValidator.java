@@ -51,7 +51,7 @@ public class NameValidator {
     }
 
     private static void endingErrorThrowDependingOn(String ending) {
-        if(ending.equals(Line.ENDING)) {
+        if (ending.equals(Line.ENDING)) {
             throw new IllegalArgumentException(ErrorMessage.LINE_ENDING);
         }
         throw new IllegalArgumentException(ErrorMessage.STATION_ENDING);

@@ -21,13 +21,13 @@ public class StationRepositoryValidator {
     }
 
     private static void validateNoDuplicate(Station station) {
-        if(isDuplicate(station)) {
+        if (isDuplicate(station)) {
             throw new IllegalArgumentException(ErrorMessage.NAME_DUPLICATE);
         }
     }
 
     private static void validateNoLineConnection(String name) {
-        if(LineRepository.hasLineWithStation(name)) {
+        if (LineRepository.hasLineWithStation(name)) {
             throw new IllegalArgumentException(ErrorMessage.STATION_DELETE_FAIL);
         }
     }
