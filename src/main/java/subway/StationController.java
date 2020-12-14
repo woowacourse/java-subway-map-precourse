@@ -1,8 +1,10 @@
 package subway;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import subway.constant.BoundaryCheckDigit;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -65,7 +67,14 @@ public class StationController {
 
     private static boolean stationCheck() {
         String[] stationList;
-        stationList = StationRepository.stations().stream().map(Station::getName).toArray(String[]::new);
+        stationList = StationRepository.stations().stream().map(Station::getName)
+            .toArray(String[]::new);
+
+        if (stationList.length < BoundaryCheckDigit.STATION_LIST_LIMIT_MINIMUM
+            .getBoundaryCheckDigit()) {
+            OutputView.zeroStationListErrorPrint();
+            return false;
+        }
         OutputView.stationListPrint(stationList);
         return true;
     }

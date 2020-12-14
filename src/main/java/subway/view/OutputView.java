@@ -50,4 +50,8 @@ public class OutputView {
             System.out.println(GuideMessage.INFO.getGuideMessage() + station);
         }
     }
+
+    public static void zeroStationListErrorPrint() {
+        System.out.println(StationMessage.STATION_LIST_FIND_FAIL.getStationMessage());
+    }
 }
