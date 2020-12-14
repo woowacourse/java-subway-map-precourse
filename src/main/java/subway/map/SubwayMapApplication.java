@@ -26,7 +26,7 @@ public class SubwayMapApplication {
     }
 
     private void executeExceptionHandler(ManagementType managementType) {
-        if (!isDetailManagementDisplayRequired(managementType)) {
+        if (managementType == ManagementType.EXIT) {
             return;
         }
         try {
@@ -37,24 +37,20 @@ public class SubwayMapApplication {
         }
     }
 
-    private boolean isDetailManagementDisplayRequired(ManagementType managementType) {
-        if (managementType == ManagementType.EXIT) {
-            return false;
-        }
+    private void activateDetailManagementDisplay(ManagementType managementType) {
         if (managementType == ManagementType.PRINT_SUBWAY_MAP) {
             controllerMapper.delegateRequestToController(managementType, FunctionType.READ);
-            return false;
-        }
-        return true;
-    }
-
-    private void activateDetailManagementDisplay(ManagementType managementType) {
-        OutputView.printManagementDisplay(managementType);
-        FunctionType functionType = inputView.inputFunctionType(managementType);
-        if (functionType == FunctionType.BACK) {
             return;
         }
+        OutputView.printManagementDisplay(managementType);
+        FunctionType functionType = inputView.inputFunctionType(managementType);
         controllerMapper.delegateRequestToController(managementType, functionType);
-        OutputView.printSuccessMessage(managementType, functionType);
+        if (isSuccessMessageRequired(functionType)) {
+            OutputView.printSuccessMessage(managementType, functionType);
+        }
+    }
+
+    private boolean isSuccessMessageRequired(FunctionType functionType) {
+        return functionType != FunctionType.BACK && functionType != FunctionType.READ;
     }
 }
