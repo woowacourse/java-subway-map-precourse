@@ -5,7 +5,7 @@
 
 ## 🚀 기능 요구사항
 
-### 초기 설정 
+### 초기 설정
 - 프로그램 시작 시 역, 노선 등 필요한 정보를 미리 셋팅할 수 있다.
 
 > 아래의 사전 등록 정보로 반드시 초기 설정을 하기
@@ -20,7 +20,7 @@
  ```
 
 <img src="image/domain.png" width="500">
-  
+
 ### 지하철 역 관련 기능
 - 지하철 역을 등록하고 삭제할 수 있다. (단, 노선에 등록된 역은 삭제할 수 없다)
 - 중복된 지하철 역 이름이 등록될 수 없다.
@@ -31,12 +31,12 @@
 - 지하철 노선을 등록하고 삭제할 수 있다.
 - 중복된 지하철 노선 이름이 등록될 수 없다.
 - 지하철 노선 이름은 2글자 이상이어야 한다.
-- 노선 등록 시 상행 종점역과 하행 종점역을 입력받는다. 
+- 노선 등록 시 상행 종점역과 하행 종점역을 입력받는다.
 - 지하철 노선의 목록을 조회할 수 있다.
 
 ### 지하철 구간 추가 기능
 - 지하철 노선에 구간을 추가하는 기능은 노선에 역을 추가하는 기능이라고도 할 수 있다.
-  - 역과 역사이를 구간이라 하고 이 구간들의 모음이 노선이다.  
+  - 역과 역사이를 구간이라 하고 이 구간들의 모음이 노선이다.
 - 하나의 역은 여러개의 노선에 추가될 수 있다.
 - 역과 역 사이에 새로운 역이 추가 될 수 있다.
 - 노선에서 갈래길은 생길 수 없다.
@@ -60,7 +60,7 @@
 - 기대하는 출력 결과는 `[INFO]`를 붙여서 출력한다. 출력값의 형식은 예시와 동일하게 한다.
 - 에러 발생 시 `[ERROR]`를 붙여서 출력한다. (에러의 문구는 자유롭게 작성한다.)
 
-### 💻 프로그래밍 실행 결과 
+### 💻 프로그래밍 실행 결과
 #### 역 관리
 ```
 ## 메인 화면
@@ -198,7 +198,7 @@ B. 돌아가기
 ## 원하는 기능을 선택하세요.
 3
 
-[INFO] 노선 목록
+## 노선 목록
 [INFO] 2호선
 [INFO] 3호선
 [INFO] 신분당선
@@ -233,6 +233,7 @@ B. 돌아가기
 ```
 
 ### 구간 관리
+- 순서는 1부터 시작한다.
 
 ```
 ...
@@ -342,7 +343,7 @@ Q. 종료
 Q. 종료
 
 ## 원하는 기능을 선택하세요.
-4
+5
 
 [ERROR] 선택할 수 없는 기능입니다.
 
@@ -396,7 +397,6 @@ B. 돌아가기
 ### 프로그래밍 요구사항 - Application
 - Application 클래스를 활용해 구현해야 한다.
 - Application의 패키지 구조는 변경하지 않는다.
-- 주석을 참고하여 구현할 수 있으며 주석대로 구현하지 않아도 되고 삭제해도 무관하다. 
 ```java
 public class Application {
     public static void main(String[] args) {
@@ -410,7 +410,7 @@ public class Application {
 - 제공하는 각 클래스의 기본 생성자를 추가할 수 없다.
 - 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
 - 가능하면 setter 메소드(ex. setXXX)를 추가하지 않고 구현한다.
- 
+
 ```java
 public class Station {
     private String name;
@@ -434,7 +434,7 @@ public class Station {
 - 추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가할 수 있다.
 - 객체들의 상태를 관리하기 위해서 XXXRepository 클래스를 활용해 저장 로직을 구현해야 한다.
 - 필요에 따라 자유롭게 수정이 가능하다.
- 
+
 ```java
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -462,7 +462,7 @@ public class StationRepository {
   - [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 참고해 commit log를 남긴다.
 - [프리코스 과제 제출 문서](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 절차를 따라 미션을 제출한다.
   - [프리코스 과제 FAQ](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse/faq) 문서를 참고하여 진행할 수 있다.
-<br>
+    <br>
 
 ## 📝 License
 
