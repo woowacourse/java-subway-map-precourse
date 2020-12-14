@@ -1,21 +1,11 @@
 package subway;
 
 import subway.domain.line.LineService;
-import subway.domain.section.Section;
 import subway.domain.section.SectionService;
-import subway.domain.section.dto.SectionDeleteReqDto;
-import subway.domain.section.dto.SectionSaveReqDto;
-import subway.domain.section.dto.SectionStationAddReqDto;
-import subway.domain.section.dto.SectionStationDeleteReqDto;
-import subway.domain.station.Station;
 import subway.domain.station.StationService;
-import subway.domain.station.dto.StationDeleteReqDto;
-import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.service.output.OutputService;
 import subway.view.*;
-
-import java.util.List;
 
 public class StationManageApp {
     private final InputService inputService;
@@ -24,6 +14,8 @@ public class StationManageApp {
     private final LineService lineService;
     private final SectionService sectionService;
     private final StationManage stationManage;
+    private final LineManage lineManage;
+    private final SectionManage sectionManage;
 
 
     public StationManageApp(StationManageConfig stationManageConfig) {
@@ -33,6 +25,8 @@ public class StationManageApp {
         this.lineService = stationManageConfig.lineService();
         this.sectionService = stationManageConfig.sectionService();
         this.stationManage = new StationManage(inputService, outputService, stationService);
+        this.lineManage = new LineManage(inputService, outputService, sectionService, lineService, stationService);
+        this.sectionManage = new SectionManage(inputService, outputService, sectionService, stationService);
     }
 
     public static StationManageApp of(StationManageConfig stationManageConfig) {
@@ -74,143 +68,18 @@ public class StationManageApp {
             stationManage.startMange();
         }
         if (mainOption == InputService.MANAGE_LINE) {
-            manageLine();
+            lineManage.startManage();
         }
         if (mainOption == InputService.MANAGE_SECTION) {
-            mangeSection();
+            sectionManage.startManage();
         }
         if (mainOption == InputService.MANAGE_MAP) {
-            manageMap();
+            sectionManage.showMap();
         }
-    }
-
-    private void manageLine() {
-        LineView lineView = new LineView(outputService);
-        lineView.showOptions();
-        int manageLineOption = inputService.getManageLineOption();
-        chooseManageLineOption(manageLineOption, lineView);
-        if (isBack(manageLineOption)) {
-            return;
-        }
-    }
-
-    private void mangeSection() {
-        SectionView sectionView = new SectionView(outputService);
-        sectionView.showOptions();
-        int manageSectionOption = inputService.getManageSectionOption();
-        chooseManageSectionOption(manageSectionOption, sectionView);
-        if (isBack(manageSectionOption)) {
-            return;
-        }
-    }
-
-    private void manageMap() {
-        SectionView sectionView = new SectionView(outputService);
-        List<Section> sections = sectionService.findAll();
-        sectionView.printAllSection(sections);
-    }
-
-
-    private void chooseManageLineOption(int manageLineOption, LineView lineView) {
-        if (manageLineOption == InputService.ADD) {
-            addLine(lineView);
-        }
-        if (manageLineOption == InputService.DELETE) {
-            deleteLine(lineView);
-        }
-        if (manageLineOption == InputService.FIND) {
-            lineView.printAllLines(lineService.getLines());
-        }
-    }
-
-    private void addLine(LineView lineView) {
-        String lineName = getLineName(lineView);
-        String upwardName = getUpwardName(lineView);
-        String downWard = getDownwardName(lineView);
-
-        sectionService.saveSection(new SectionSaveReqDto(lineName, upwardName, downWard));
-        lineView.showAfterAdd();
-    }
-
-    private void deleteLine(LineView lineView) {
-        lineView.showDelete();
-        String lineName = getName();
-        sectionService.deleteSection(new SectionDeleteReqDto(lineName));
-        lineView.showAfterDelete();
-    }
-
-    private void chooseManageSectionOption(int manageSectionOption, SectionView sectionView) {
-        if (manageSectionOption == InputService.ADD) {
-            addSection(sectionView);
-        }
-        if (manageSectionOption == InputService.DELETE) {
-            deleteSection(sectionView);
-        }
-    }
-
-    private void addSection(SectionView sectionView) {
-        sectionView.showAdd();
-        Section section = sectionService.findByName(getName());
-        int stationsLength = section.getStationsLength();
-
-        sectionView.showAddStation();
-        Station station = stationService.findByName(getName());
-        sectionService.checkContainStation(section, station);
-
-        sectionView.showAddSequence();
-        sectionView.showAvailableSequence(stationsLength);
-        int sequence = inputService.getSequence();
-        sectionService.addStation(new SectionStationAddReqDto(section.getLineName(), station.getName(), sequence));
-        sectionView.showAfterAdd();
-    }
-
-    private void deleteSection(SectionView sectionView) {
-        sectionView.showDelete();
-        String lineName = getName();
-        Section section = sectionService.findByName(lineName);
-
-        sectionView.showDeleteStation();
-        String stationName = getName();
-        Station station = stationService.findByName(stationName);
-        sectionService.deleteStation(new SectionStationDeleteReqDto(section.getLineName(), station.getName()));
-        sectionView.showAfterDelete();
-    }
-
-    private String getDownwardName(LineView lineView) {
-        lineView.showAddDownward();
-        String downwardName = inputService.getName();
-        stationService.checkNotFound(downwardName);
-        return downwardName;
-    }
-
-    private String getUpwardName(LineView lineView) {
-        lineView.showAddUpward();
-        String upwardName = inputService.getName();
-        stationService.checkNotFound(upwardName);
-        return upwardName;
-    }
-
-    private String getLineName(LineView lineView) {
-        lineView.showAdd();
-        String lineName = inputService.getName();
-        lineService.checkExist(lineName);
-        return lineName;
-    }
-
-    private String getName() {
-        String name = inputService.getName();
-        return name;
     }
 
     private boolean isQuit(int option) {
         if (option == InputService.OPTION_QUIT) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isBack(int manageStationOption) {
-        if (manageStationOption == InputService.OPTION_BACK) {
             return true;
         }
         return false;

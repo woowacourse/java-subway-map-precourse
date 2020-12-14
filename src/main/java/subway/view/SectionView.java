@@ -10,7 +10,7 @@ import java.util.List;
 public class SectionView extends Screen {
     private static final String SECTION_MAIN = Prefix.SHARP.getPrefix() + "구간 관리 화면";
     private static final String SECTION_ONE = Prefix.ONE.getPrefix() + "구간 등록";
-    private static final String SECTION_TWO = Prefix.THREE.getPrefix() + "구간 삭제";
+    private static final String SECTION_TWO = Prefix.TWO.getPrefix() + "구간 삭제";
     private static final String SECTION_BACK = Prefix.BACK.getPrefix() + "돌아가기";
     private static final String PRINT_ADD = "노선을 입력하세요.";
     private static final String PRINT_DELETE = "삭제할 구간의 노선을 입력하세요.";
