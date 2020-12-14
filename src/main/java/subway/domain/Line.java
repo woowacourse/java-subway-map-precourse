@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import subway.domain.subRepository.PassingRouteRepository;
 
-public class Line implements Node{
+public class Line{
 
     private static final String CONTOUR = "---";
     private String name;
-    private PassingRouteRepository passingRoutes = null;
+    public PassingRouteRepository passingRoutes = null;
 
     public Line(String name, PassingRouteRepository passingRoutes) {
         this.name = name;
@@ -17,6 +17,10 @@ public class Line implements Node{
 
     public String getName() {
         return name;
+    }
+
+    public PassingRouteRepository getPassingRoutes() {
+        return this.passingRoutes;
     }
 
     public boolean equalWith(String newName) {

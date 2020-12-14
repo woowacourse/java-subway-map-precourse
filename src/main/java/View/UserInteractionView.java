@@ -1,5 +1,5 @@
 package View;
 
-public class UserInteactionView {
+public class UserInteractionView {
 
 }

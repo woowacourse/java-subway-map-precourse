@@ -1,12 +1,13 @@
 package subway.domain.subRepository;
 
+import View.InputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import subway.domain.Repository;
+
 import subway.domain.Station;
 
-public class PassingRouteRepository implements Repository {
+public class PassingRouteRepository{
 
     private static final int LEAST_STATION_NUM= 3;
     private static final int STATION_NOT_EXIST = -1;
@@ -36,21 +37,18 @@ public class PassingRouteRepository implements Repository {
         return routes.indexOf(station);
     }
 
-    public boolean removePossible() {
-        return routes.size() >= LEAST_STATION_NUM;
-    }
-
-    public void delete(String stationName) {
-        if (removePossible()) {
-            routes.removeIf(station -> Objects.equals(station.getName(), stationName));
-        }
+    public void delete(Station station) {
+        routes.remove(station);
     }
 
     public List<String> addStationNames(List<String> stationNames) {
-
         for(Station station: routes) {
             stationNames.add(station.getName());
         }
         return stationNames;
+    }
+
+    public int size() {
+        return this.routes.size();
     }
 }
