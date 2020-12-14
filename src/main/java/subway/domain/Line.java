@@ -47,10 +47,14 @@ public class Line {
 
     @Override
     public String toString() {
-        StringJoiner joiner = new StringJoiner(" - ");
+        String topString = "[INFO] " + name + "\n";
+        String horizontalLine = "[INFO] " + "---" + "\n";
+        StringBuilder sb = new StringBuilder();
         for (Station station : section) {
-            joiner.add(station.getName());
+            sb.append("[INFO] ");
+            sb.append(station.getName());
+            sb.append("\n");
         }
-        return name + "\n" + joiner + "\n";
+        return topString + horizontalLine + sb;
     }
 }
