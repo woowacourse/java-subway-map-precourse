@@ -5,13 +5,8 @@ import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.exceptions.DuplicatedStartAndEndStationNameException;
-import subway.exceptions.LineNotExistException;
-import subway.exceptions.MinimumLineLengthException;
-import subway.exceptions.StationNotExistException;
-import subway.view.component.CommonViewComponent;
-import subway.view.component.SectionManagementViewComponent;
-import subway.view.logger.ViewLogger;
+import subway.view.input.SectionManagementInputView;
+import subway.view.output.SectionManagementOutputView;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -39,13 +34,8 @@ public class SectionManagementViewState extends ViewState{
     }
 
     @Override
-    protected void printMenuWithInputRequirementMsg(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(SectionManagementViewComponent.getMenuComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        viewStringBuilder.append(CommonViewComponent.getSelectFeatureViewComponent());
-        System.out.println(viewStringBuilder.toString());
+    protected void printMenu(){
+        SectionManagementOutputView.printMenuLog();
     }
 
     @Override
@@ -57,75 +47,49 @@ public class SectionManagementViewState extends ViewState{
 
     private void checkAndAddSection(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_ADD_SECTION)){
-            Line line = printRegisterInputLogAndGetInputLineName(scanner);
-            Station station = printRegisterLogAndGetInputStationNameAtLine(scanner, line);
-            printLogAndGetInputStationPositionAtLine(scanner, station, line);
-            ViewLogger.printLogWithWhiteSpace(SectionManagementViewComponent.getSectionRegisterFinishComponent());
+            Line line = getLineToAdd();
+            Station station = getStationToAdd();
+            int position = SectionManagementInputView.getStationPosition();
+            lineController.addStationInLine(station, line, position);
+            SectionManagementOutputView.printSectionRegisterFinishLog();
             switchViewToStationManagement(application);
         }
     }
 
     private void checkAndRemoveSection(String feature, SubwayLineMap application, Scanner scanner){
         if(feature.equals(BTN_DELETE_SECTION)){
-            Line line = printRemoveInputLogAndGetInputLineName(scanner);
-            printRemoveInputLogAndGetInputStationNameAtLine(scanner, line);
-            ViewLogger.printLogWithWhiteSpace(SectionManagementViewComponent.getSectionRemoveFinishComponent());
+            Line line = getLineToRemove();
+            Station station = getStationToRemove();
+            lineController.removeStationInLine(station, line);
+            SectionManagementOutputView.printSectionRemoveFinishLog();
             switchViewToStationManagement(application);
         }
-    }
-
-    private Line printRegisterInputLogAndGetInputLineName(Scanner scanner){
-        ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
-        String lineName = getStationOrLineName(scanner);
-        ViewLogger.printWhiteSpace();
-        return lineController.getLine(lineName);
-    }
-
-    private Station printRegisterLogAndGetInputStationNameAtLine(Scanner scanner, Line line){
-        ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
-        String stationName = getStationOrLineName(scanner);
-        Station station = stationController.getStation(stationName);
-        ViewLogger.printWhiteSpace();
-        if(line.getStations().contains(station)){
-            throw new DuplicatedStartAndEndStationNameException();
-        }
-        return station;
-    }
-
-    private void printLogAndGetInputStationPositionAtLine(Scanner scanner, Station station, Line line){
-        ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterStationOrderComponent());
-        int position = getPosition(scanner);
-        ViewLogger.printWhiteSpace();
-        lineController.addStationInLine(station, line, position);
-    }
-
-    private Line printRemoveInputLogAndGetInputLineName(Scanner scanner){
-        ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveLineNameInputComponent());
-        String lineName = getStationOrLineName(scanner);
-        ViewLogger.printWhiteSpace();
-        return lineController.getLine(lineName);
-    }
-
-    private void printRemoveInputLogAndGetInputStationNameAtLine(Scanner scanner, Line line){
-        ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveStationNameInputComponent());
-        String stationName = getStationOrLineName(scanner);
-        Station station = stationController.getStation(stationName);
-        ViewLogger.printWhiteSpace();
-        lineController.removeStationInLine(station, line);
-    }
-
-    private int getPosition(Scanner scanner){
-        return Integer.parseInt(scanner.nextLine());
-    }
-
-    private String getStationOrLineName(Scanner scanner){
-        return scanner.nextLine();
     }
 
     private void checkAndSwitchViewToMain(String feature, SubwayLineMap application){
         if(feature.equals(BTN_BACK)){
             switchViewToStationManagement(application);
         }
+    }
+
+    private Line getLineToAdd(){
+        String lineName = SectionManagementInputView.getLineNameAddInput();
+        return lineController.getLine(lineName);
+    }
+
+    private Station getStationToAdd(){
+        String stationName = SectionManagementInputView.getStationNameAddInput();
+        return stationController.getStation(stationName);
+    }
+
+    private Line getLineToRemove(){
+        String lineName = SectionManagementInputView.getLineNameRemoveInput();
+        return lineController.getLine(lineName);
+    }
+
+    private Station getStationToRemove(){
+        String stationName = SectionManagementInputView.getStationNameRemoveInput();
+        return stationController.getStation(stationName);
     }
 
     private void switchViewToStationManagement(SubwayLineMap application){
