@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class StationService {
     private static final String DUPLICATED_STATION_NAME_MESSAGE = "\n[ERROR] 해당 역은 이미 등록되었습니다.";
     private static final String NOT_EXIST_TO_DELETE_MESSAGE = "\n[ERROR] 삭제할 역이 존재하지 않습니다.";
+
     final Scanner scanner;
 
     public StationService(Scanner scanner) {

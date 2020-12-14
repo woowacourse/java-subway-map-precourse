@@ -2,9 +2,9 @@ package subway.domain;
 
 public class Name {
     private static final int MINIMUM_LENGTH = 2;
-    private static final String LENGTH_UNAVAILABLE = "[ERROR] 이름의 길이는 2자 이상이어야 합니다.";
+    private static final String LENGTH_UNAVAILABLE = "\n[ERROR] 이름의 길이는 2자 이상이어야 합니다.";
     private static final String NAME_REGEX = "^[가-힣|0-9]*$";
-    private static final String NOT_KOREAN_AND_NUMBER_NAME = "[ERROR] 이름은 올바른 한글과 숫자만 가능합니다.";
+    private static final String NOT_KOREAN_AND_NUMBER_NAME = "\n[ERROR] 이름은 올바른 한글과 숫자만 가능합니다.";
 
     private String name;
 
