@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public enum StationMenu {
     ADD("1", "1. 역 등록", StationController::save),
     REMOVE("2", "2. 역 삭제", StationController::remove),
-    MANAGEMENT("3", "3. 역 관리", StationController::getList),
+    MANAGEMENT("3", "3. 역 조회", StationController::getList),
     BACK("B", "B. 돌아가기", (StationController) -> goBack());
 
     private String number;
