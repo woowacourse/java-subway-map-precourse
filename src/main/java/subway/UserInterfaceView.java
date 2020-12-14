@@ -84,6 +84,9 @@ public class UserInterfaceView {
             }
             printErrorMessage();
         }
+        if (isQuit(userInput)) {
+            return true;
+        }
         return false;
     }
 
@@ -103,5 +106,9 @@ public class UserInterfaceView {
 
     private void printErrorMessage() {
         System.out.println(FUNCTION_ERROR_MESSAGE);
+    }
+
+    private boolean isQuit(String userInput) {
+        return Q.equals(userInput);
     }
 }
