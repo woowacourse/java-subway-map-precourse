@@ -45,6 +45,7 @@ public class SectionManageProgram {
             Line line = input.inputLine(scanner);
             System.out.println("\n" + INPUT_STATION_NAME);
             Station station = input.inputStation(scanner);
+            controller.checkStationInLine(line, station);
             System.out.println("\n" + INPUT_ORDER);
             int order = input.inputStationOrder(scanner);
             controller.processEnrollSection(line, station, order);
