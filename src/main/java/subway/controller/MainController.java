@@ -27,9 +27,8 @@ public class MainController {
 	}
 
 	public static void run(Scanner scanner) {
-		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(Options.getOptionList(options), option); // check if option is available
+			String option = Options.createOption(scanner, options);;
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

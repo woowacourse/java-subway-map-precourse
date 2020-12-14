@@ -14,40 +14,43 @@ public class StationController {
 		options.put(Options.OPTION_1.getOption(), StationController::registerStation);
 		options.put(Options.OPTION_2.getOption(), StationController::deregisterStation);
 		options.put(Options.OPTION_3.getOption(), (scanner) -> View.showStations());
-		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
+		options.put(Options.BACK.getOption(), null);
 	}
 
 	private static void registerStation(Scanner scanner) {
 		try {
 			String name = View.getStationNameToRegister(scanner);
+			System.out.println();
 			StationRepository.addStation(new Station(name));
 			View.printStationRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.out.println();
-			run(scanner);
 		}
 	}
 
 	private static void deregisterStation(Scanner scanner) {
 		String name = View.getStationNameToDelete(scanner);
+		System.out.println();
 		if (StationRepository.deleteStation(name)) {
 			View.printStationDeleteCompletion();
 			return;
 		}
 		View.printStationDeleteError();
-		run(scanner);
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		options.get(option).accept(scanner);
+		if (option.equals(Options.BACK.getOption())) {
+			return;
+		}
+		run(scanner);
 	}
 
 	public static void run(Scanner scanner) {
-		View.printStationScreen();
-		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(Options.getOptionList(options), option);
+			View.printStationScreen();
+			String option = Options.createOption(scanner, options);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

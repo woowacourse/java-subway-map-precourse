@@ -48,12 +48,12 @@ public class SectionController {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.out.println();
-			run(scanner);
 		}
 	}
 
 	private static String createLineNameToDelete(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameToDeleteSection(scanner);
+		System.out.println();
 		LineRepository.validateRegistration(lineName);
 		Sections.validateSectionLength(lineName);
 		return lineName;
@@ -61,6 +61,7 @@ public class SectionController {
 
 	private static String createStationNameToDelete(String lineName, Scanner scanner) throws IllegalArgumentException {
 		String stationName = View.getStationNameToDeleteSection(scanner);
+		System.out.println();
 		Sections.validateRegistration(lineName, stationName);
 		return stationName;
 	}
@@ -74,19 +75,21 @@ public class SectionController {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.out.println();
-			run(scanner);
 		}
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		options.get(option).accept(scanner);
+		if (option.equals(Options.BACK.getOption())) {
+			return;
+		}
+		run(scanner);
 	}
 
 	public static void run(Scanner scanner) {
-		View.printSectionScreen();
-		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(Options.getOptionList(options), option);
+			View.printSectionScreen();
+			String option = Options.createOption(scanner, options);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.domain.StationRepository;
+import subway.view.LineMessages;
 import subway.view.View;
 
 import java.util.*;
@@ -21,6 +22,7 @@ public class LineController {
 
 	private static String createLineName(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameToRegister(scanner);
+		System.out.println();
 		LineRepository.validateDuplicateName(lineName);
 		Line.validateNameLength(lineName);
 		return lineName;
@@ -28,12 +30,14 @@ public class LineController {
 
 	private static String createUpwardDestination(Scanner scanner) throws IllegalArgumentException {
 		String destination = View.getUpwardDestination(scanner);
+		System.out.println();
 		StationRepository.validateRegistration(destination);
 		return destination;
 	}
 
 	private static String createDownwardDestination(Scanner scanner) throws IllegalArgumentException {
 		String destination = View.getDownwardDestination(scanner);
+		System.out.println();
 		StationRepository.validateRegistration(destination);
 		return destination;
 	}
@@ -41,9 +45,8 @@ public class LineController {
 	private static void createInitialLine(String lineName, String upwardDestination, String downwardDestination) throws IllegalArgumentException {
 		Sections.validateDuplicateDestination(upwardDestination, downwardDestination);
 		LineRepository.addLine(new Line(lineName));
-		for (String destination : new String[] {downwardDestination, upwardDestination}) {
-			Sections.addSection(lineName, destination, Sections.FIRST_SECTION_LOCATION);
-		}
+		Sections.addSection(lineName, downwardDestination, Sections.FIRST_SECTION_LOCATION);
+		Sections.addSection(lineName, upwardDestination, Sections.FIRST_SECTION_LOCATION);
 	}
 
 	private static void registerLine(Scanner scanner) {
@@ -52,33 +55,35 @@ public class LineController {
 			String upwardDestination = createUpwardDestination(scanner);
 			String downwardDestination = createDownwardDestination(scanner);
 			createInitialLine(lineName, upwardDestination, downwardDestination);
-			View.printStationRegisterCompletion();
+			View.printLineRegisterCompletion();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.out.println();
-			run(scanner);
 		}
 	}
 
 	private static void deregisterLine(Scanner scanner) {
 		String name = View.getLineNameToDelete(scanner);
+		System.out.println();
 		if (LineRepository.deleteLine(name)) {
 			View.printLineDeleteCompletion();
 			return;
 		}
 		View.printLineDeleteError();
-		run(scanner);
 	}
 
 	private static void controlByOption(String option, Scanner scanner) {
 		options.get(option).accept(scanner);
+		if (option.equals(Options.BACK.getOption())) {
+			return;
+		}
+		run(scanner);
 	}
 
 	public static void run(Scanner scanner) {
-		View.printLineScreen();
-		String option = View.getScreenOption(scanner);
 		try {
-			Options.validateOption(Options.getOptionList(options), option);
+			View.printLineScreen();
+			String option = Options.createOption(scanner, options);
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

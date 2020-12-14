@@ -59,7 +59,6 @@ public class View {
 	}
 
 	public static void showStations() {
-		System.out.println();
 		System.out.println(StationMessages.REFERENCE.getMessage());
 		StationRepository
 				.stations()
@@ -94,6 +93,11 @@ public class View {
 				.replaceAll("\\s+", "");
 	}
 
+	public static void printLineRegisterCompletion() {
+		System.out.println(LineMessages.REGISTER_COMPLETE.getMessage());
+		System.out.println();
+	}
+
 	public static String getLineNameToDelete(Scanner scanner) {
 		System.out.println(LineMessages.DELETE_NAME.getMessage());
 		return scanner.nextLine()
@@ -111,7 +115,6 @@ public class View {
 	}
 
 	public static void showLines() {
-		System.out.println();
 		System.out.println(LineMessages.REFERENCE.getMessage());
 		LineRepository.lines()
 				.stream()
@@ -176,10 +179,8 @@ public class View {
 	}
 
 	public static void showWholeMap() {
-		List<Line> lines = LineRepository.lines();
-		System.out.println();
 		System.out.println(General.MAP.getMessage());
-		for (Line line : lines) {
+		for (Line line : LineRepository.lines()) {
 			System.out.println(General.INFO.getMessage() + line.getName());
 			System.out.println(General.DIVISION_LINE.getMessage());
 			showSections(line);
