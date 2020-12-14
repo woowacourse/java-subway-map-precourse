@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 public class SectionRepository {
 
     public static final int MINIMUM_STATIONS_IN_LINE = 2;
@@ -24,20 +26,20 @@ public class SectionRepository {
 
     private static void validateMinimumSectionLength(Line line) {
         if (line.lineLength() >= MINIMUM_STATIONS_IN_LINE) {
-            throw new IllegalArgumentException("[ERROR] 더 이상 해당 노선의 구간을 삭제할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorView.UNABLE_TO_DELETE_ANYMORE);
         }
     }
 
     private static void validateSequence(Line line, int sequence) {
         if (sequence > line.lineLength() - 1) {
-            throw new IllegalArgumentException("[ERROR] 입력 가능한 순서값은 " + line.lineLength() + " 미만입니다.");
+            throw new IllegalArgumentException(ErrorView.printExceedSequenceLimit(line.lineLength()));
         }
     }
 
     private static void validateSectionDuplication(String lineName, String stationName) {
         boolean sectionExist = LineRepository.findLine(lineName).sectionExist(stationName);
         if (sectionExist) {
-            throw new IllegalArgumentException("[ERROR] 갈래길을 만듦으로 해당 구간을 생성할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorView.UNABLE_TO_REGISTER_SECTION_BY_DIVERGENT_PATH);
         }
     }
 

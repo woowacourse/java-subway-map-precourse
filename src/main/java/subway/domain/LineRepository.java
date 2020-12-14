@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +25,7 @@ public class LineRepository {
     public static Line findLine(String name) {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException(("[ERROR] 존재하지 않는 노선입니다.")));
+                .findFirst().orElseThrow(() -> new IllegalArgumentException((ErrorView.NO_EXIST_LINE)));
     }
 
     public static boolean exists(String name) {

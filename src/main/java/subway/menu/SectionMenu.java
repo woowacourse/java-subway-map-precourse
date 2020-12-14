@@ -2,6 +2,7 @@ package subway.menu;
 
 import subway.feature.SectionFeature;
 import subway.feature.StationFeature;
+import subway.view.OutputView;
 import subway.view.SectionInputView;
 import java.util.Scanner;
 
@@ -31,10 +32,7 @@ public enum SectionMenu implements MenuModel {
     }
 
     public static void openScreen(Scanner scanner) {
-        // output print로 묶기
-        System.out.println("## 노선 관리 화면");
-        System.out.println(SectionMenu.getMenu());
-        //
+        OutputView.printSectionMenu();
         String sectionMenuInput = SectionInputView.menu(scanner);
         select(sectionMenuInput).moveView(scanner);
     }

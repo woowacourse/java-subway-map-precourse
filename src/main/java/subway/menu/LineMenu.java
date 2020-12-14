@@ -1,8 +1,8 @@
 package subway.menu;
 
-import subway.domain.LineRepository;
 import subway.feature.LineFeature;
 import subway.view.LineInputView;
+import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -32,10 +32,7 @@ public enum LineMenu implements MenuModel {
     final private String feature;
 
     public static void openScreen(Scanner scanner) {
-        // output print로 묶기
-        System.out.println("## 노선 관리 화면");
-        System.out.println(LineMenu.getMenu());
-        //
+        OutputView.printLineMenu();
         String lineMenuInput = LineInputView.menu(scanner);
         select(lineMenuInput).moveView(scanner);
     }

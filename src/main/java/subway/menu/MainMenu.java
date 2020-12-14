@@ -2,7 +2,7 @@ package subway.menu;
 
 import subway.feature.SectionFeature;
 import subway.view.MainInputView;
-import subway.view.SectionInputView;
+import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -25,7 +25,7 @@ public enum MainMenu implements MenuModel {
     },
     SHOW_MAP("4", "지하철 노선 출력") {
         public void moveView(Scanner scanner) {
-            SectionFeature.showMap();
+            SectionFeature.showSubwayMap();
         }
     },
     QUIT("Q", "종료") {
@@ -59,10 +59,7 @@ public enum MainMenu implements MenuModel {
     public static void openScreen(Scanner scanner) {
         String mainMenuInput = "";
         do {
-            // output print로 묶기
-            System.out.println("## 메인 화면");
-            System.out.println(MainMenu.getMenu());
-            //
+            OutputView.printMainMenu();
             mainMenuInput = MainInputView.mainMenu(scanner);
             select(mainMenuInput).moveView(scanner);
         } while (canContinue(mainMenuInput));

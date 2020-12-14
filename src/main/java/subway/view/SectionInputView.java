@@ -5,13 +5,17 @@ import subway.menu.SectionMenu;
 
 import java.util.Scanner;
 
-public class SectionInputView {
+public class SectionInputView extends View {
+
+    private static final String INPUT_LINE_NAME = "노선을 입력하세요.";
+    private static final String INPUT_STATION_NAME = "역을 입력하세요.";
+    private static final String INPUT_SEQUENCE = "순서를 입력하세요.";
 
     public static String menu(Scanner scanner) {
-        System.out.println("## 원하는 기능을 선택하세요.");
+        System.out.println(POUND_KEY + SELECT_FEATURE);
         try {
             String selection = scanner.nextLine();
-            MenuFeature.validate(SectionMenu.class, selection);
+            MenuFeature.findOne(SectionMenu.class, selection);
             return selection;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -20,17 +24,20 @@ public class SectionInputView {
     }
 
     public static String line(Scanner scanner) {
-        System.out.println("## 노선을 입력하세요.");
+        newLine();
+        System.out.println(POUND_KEY + INPUT_LINE_NAME);
         return scanner.nextLine();
     }
 
     public static String station(Scanner scanner) {
-        System.out.println("## 역을 입력하세요.");
+        newLine();
+        System.out.println(POUND_KEY + INPUT_STATION_NAME);
         return scanner.nextLine();
     }
 
     public static int sequence(Scanner scanner) {
-        System.out.println("## 순서를 입력하세요.");
+        newLine();
+        System.out.println(POUND_KEY + INPUT_SEQUENCE);
         return Integer.parseInt(scanner.nextLine());
     }
 }

@@ -2,8 +2,8 @@ package subway.feature;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.menu.MainMenu;
 import subway.menu.StationMenu;
+import subway.view.ErrorView;
 import subway.view.OutputView;
 import subway.view.StationInputView;
 
@@ -14,9 +14,10 @@ public class StationFeature {
         try {
             String station = StationInputView.register(scanner).trim();
             StationRepository.addStation(new Station(station));
-            System.out.println("[INFO] 지하철 역이 추가되었습니다.");
+
+            OutputView.printSuccessRegisterStation();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            ErrorView.printError(e.getMessage());
             StationMenu.openScreen(scanner);
         }
     }
@@ -25,21 +26,21 @@ public class StationFeature {
         try {
             String station = StationInputView.remove(scanner);
             removeStation(StationRepository.deleteStation(station));
-            System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+
+            OutputView.printSuccessRemoveStation();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            ErrorView.printError(e.getMessage());
             StationMenu.openScreen(scanner);
         }
     }
 
     private static void removeStation(boolean success) {
         if (!success) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+            throw new IllegalArgumentException(ErrorView.NO_EXIST_STATION);
         }
     }
 
     public static void inquiryStation() {
-        System.out.println("[INFO] 역 목록");
         OutputView.printStations();
     }
 }

@@ -47,10 +47,7 @@ public enum StationMenu implements MenuModel {
     }
 
     public static void openScreen(Scanner scanner) {
-        // output print로 묶기
-        System.out.println("## 역 관리 화면");
-        System.out.println(StationMenu.getMenu());
-        //
+        OutputView.printStationMenu();
         String stationMenuInput = StationInputView.menu(scanner);
         select(stationMenuInput).moveView(scanner);
     }

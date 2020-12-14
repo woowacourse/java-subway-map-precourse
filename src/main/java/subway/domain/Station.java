@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 import java.util.regex.Pattern;
 
 public class Station {
@@ -21,13 +23,13 @@ public class Station {
         String regExp = "^[a-zA-Z가-힣0-9]*[역|station|Station|STATION]$";
 
         if (StationRepository.exists(name)) {
-            throw new IllegalArgumentException("[ERROR] 이미 존재하는 역입니다.");
+            throw new IllegalArgumentException(ErrorView.ALREADY_EXIST_STATION);
         }
         if (name.length() < STATION_NAME_LENGTH_MINIMUM) {
-            throw new IllegalArgumentException("[ERROR] 역 이름은 두글자 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorView.AT_LEAST_TWO_LETTERS_STATION);
         }
         if (!Pattern.matches(regExp, name)) {
-            throw new IllegalArgumentException("[ERROR] 역 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '역' 이나 'station' 으로 끝나야 합니다.");
+            throw new IllegalArgumentException(ErrorView.NAME_FORM_STATION);
         }
     }
 }

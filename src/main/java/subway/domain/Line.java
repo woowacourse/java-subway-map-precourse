@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -55,13 +57,13 @@ public class Line {
         String regExp = "^[a-zA-Z가-힣0-9]*[선|line|Line|LINE]$";
 
         if (LineRepository.exists(name)) {
-            throw new IllegalArgumentException("[ERROR] 이미 존재하는 노선입니다.");
+            throw new IllegalArgumentException(ErrorView.ALREADY_EXIST_LINE);
         }
         if (name.length() < LINE_NAME_LENGTH_MINIMUM) {
-            throw new IllegalArgumentException("[ERROR] 노선 이름은 두글자 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorView.AT_LEAST_TWO_LETTERS_LINE);
         }
         if (!Pattern.matches(regExp, name)) {
-            throw new IllegalArgumentException("[ERROR] 노선 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '선' 이나 'line' 으로 끝나야 합니다.");
+            throw new IllegalArgumentException(ErrorView.NAME_FORM_LINE);
         }
     }
 
@@ -69,13 +71,13 @@ public class Line {
         String regExp = "^[a-zA-Z가-힣0-9]*[역|station|Station|STATION]$";
 
         if (!StationRepository.exists(name)) {
-            throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+            throw new IllegalArgumentException(ErrorView.NO_EXIST_STATION);
         }
         if (name.length() < LINE_NAME_LENGTH_MINIMUM) {
-            throw new IllegalArgumentException("[ERROR] 역 이름은 두글자 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorView.AT_LEAST_TWO_LETTERS_STATION);
         }
         if (!Pattern.matches(regExp, name)) {
-            throw new IllegalArgumentException("[ERROR] 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '역' 이나 'station' 으로 끝나야 합니다.");
+            throw new IllegalArgumentException(ErrorView.NAME_FORM_STATION);
         }
     }
 }

@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +25,7 @@ public class StationRepository {
     public static Station findStation(String name) {
         return stations.stream()
                 .filter(station -> station.getName().equals(name))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException(("[ERROR] 존재하지 않는 역입니다.")));
+                .findFirst().orElseThrow(() -> new IllegalArgumentException((ErrorView.NO_EXIST_STATION)));
     }
 
     public static boolean exists(String name) {
