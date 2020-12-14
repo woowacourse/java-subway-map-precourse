@@ -27,7 +27,6 @@ public class OutputController {
 
         StationRepository.stations().forEach(station ->
                 System.out.println(INFO+station.getName()));
-
     }
 
     public static void printLineInfo() {
@@ -35,7 +34,5 @@ public class OutputController {
 
         LineRepository.lines().forEach(line ->
                 System.out.println(INFO+line.getName()));
-
     }
-
 }

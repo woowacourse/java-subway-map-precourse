@@ -11,15 +11,12 @@ public class StationDeleteController implements Menu {
     private final static String MENU_NAME = "2. 역 삭제";
     private final static String MENU_KEY = "2";
     private final static String STATION_DELETED = "\n[INFO] 지하철 역이 삭제되었습니다.";
-
     private final static StationService stationService = new StationService();
     private final static StationDeleteInputController stationDeleteInputController
             = new StationDeleteInputController();
-
     private static StationDeleteController stationDeleteController;
 
-    private StationDeleteController() {
-    }
+    private StationDeleteController() {}
 
     @Override
     public String getMenuName() {
@@ -39,7 +36,6 @@ public class StationDeleteController implements Menu {
         stationService.deleteStation(deleteStation);
 
         OutputController.printInfo(STATION_DELETED);
-
     }
 
     public static Menu getInstance() {

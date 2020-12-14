@@ -8,9 +8,8 @@ import java.util.Scanner;
 
 public class StationController implements Menu {
 
-    private final static String MENU_NAME = "1. 역 관리";
-    private final static String MENU_KEY = "1";
-
+    private static final String MENU_NAME = "1. 역 관리";
+    private static final String MENU_KEY = "1";
     private static StationController stationController;
 
     private StationController() {}
@@ -46,6 +45,5 @@ public class StationController implements Menu {
             System.out.println(e.getMessage());
             this.run(scanner);
         }
-
     }
 }

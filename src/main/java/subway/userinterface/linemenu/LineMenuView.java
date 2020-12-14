@@ -8,11 +8,8 @@ import java.util.Scanner;
 public class LineMenuView implements MenuView {
 
     private final static String MENU_INTRO = "\n## 노선 관리 화면";
-
     private static LineMenuView lineMenuView;
     private static ViewInputController viewInputController = new ViewInputController();
-
-
     public static LinkedHashMap<String, Menu> lineMenu = new LinkedHashMap<>();
 
     private LineMenuView() {

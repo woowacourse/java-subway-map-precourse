@@ -6,10 +6,8 @@ import java.util.Scanner;
 
 public class SubwayInfoController implements Menu {
 
-    private final static String MENU_NAME = "4. 지하철 노선도 출력";
-    private final static String MENU_KEY = "4";
-
-
+    private static final String MENU_NAME = "4. 지하철 노선도 출력";
+    private static final String MENU_KEY = "4";
     private static SubwayInfoController subwayInfoController;
 
     private SubwayInfoController() {}
@@ -25,9 +23,7 @@ public class SubwayInfoController implements Menu {
     }
 
     @Override
-    public void run(Scanner scanner) {
-
-    }
+    public void run(Scanner scanner) {}
 
     public static Menu getInstance() {
         if (subwayInfoController == null) {
