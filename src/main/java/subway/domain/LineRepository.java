@@ -38,4 +38,12 @@ public class LineRepository {
         return null;
     }
 
+    public static boolean isExistStation(String name) {
+        for (Line line : lines) {
+            if (line.isExistStation(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
