@@ -29,11 +29,8 @@ public class StationManager {
     }
     
     private void registerStation() {
-        Station newStation;
-
         try {
-            newStation = controller.askNewStation(ActionType.REGISTER);
-            StationRepository.addStation(newStation);
+            StationRepository.addStation(new Station(controller.askName(EntityType.STATION, ActionType.REGISTER)));
             view.printSuccessMessage(EntityType.STATION, ActionType.REGISTER);
         } catch (Exception exception) {
             view.printErrorMessage(exception);
@@ -41,11 +38,8 @@ public class StationManager {
     }
     
     private void deleteStation() {
-        String stationNameToDelete;
-        
         try {
-            stationNameToDelete = controller.askName(EntityType.STATION, ActionType.DELETE);
-            StationRepository.deleteStation(stationNameToDelete);
+            StationRepository.deleteStationByName(controller.askName(EntityType.STATION, ActionType.DELETE));
             view.printSuccessMessage(EntityType.STATION, ActionType.DELETE);
         } catch (Exception exception) {
             view.printErrorMessage(exception);
