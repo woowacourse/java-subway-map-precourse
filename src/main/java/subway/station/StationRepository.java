@@ -1,13 +1,13 @@
 package subway.station;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StationRepository {
 
-    private final List<Station> stations = new ArrayList<>();
+    private static final String[] DEFAULT_STATION_NAMES = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역", "잠실역"};
+
+    private final List<Station> stations = Arrays.stream(DEFAULT_STATION_NAMES).map(Station::new).collect(Collectors.toList());
 
     public List<Station> findAll() {
         return Collections.unmodifiableList(stations);
