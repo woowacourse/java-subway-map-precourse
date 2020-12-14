@@ -2,8 +2,6 @@ package subway;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
 
 public class Line_management {
 	public static void add_line(String name, String UP, String DOWN) {

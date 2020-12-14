@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import subway.Station_management;
-
 public class LineRepository {
 	static List<String> line2_stations = new ArrayList<String>(Arrays.asList("교대역","강남역","역삼역"));
 	static List<String> line3_stations = new ArrayList<String>(Arrays.asList("교대역","남부터미널역","양재역","매봉역"));

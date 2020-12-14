@@ -212,7 +212,7 @@ public class Application {
 		}
 	}
 
-	private boolean check_name_length(String name) {
+	private static boolean check_name_length(String name) {
 		if (name.length() > 2) {
 			return true;
 		}
