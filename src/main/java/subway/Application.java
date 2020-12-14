@@ -39,7 +39,7 @@ public class Application {
 			return false;
 		}
 		if (select.equals("2")) {
-			select_line_function();
+			line_function();
 			return false;
 		}
 		if (select.equals("3")) {
@@ -47,7 +47,7 @@ public class Application {
 			return false;
 		}
 		if (select.equals("4")) {
-			print_all_stations_of_lines();
+			Line_management.print_stations_of_each_lines();
 			return false;
 		}
 		return false;
@@ -66,14 +66,6 @@ public class Application {
 			if (select_station_function()) {
 				break;
 			}
-		}
-	}
-	
-	private static void print_all_stations_of_lines() {
-		System.out.println("## 지하철 노선도");
-		for (Line line : LineRepository.lines()) {
-			line.print_stationOfLine();
-			System.out.println();
 		}
 	}
 
@@ -169,6 +161,12 @@ public class Application {
 		System.out.println("B. 돌아가기");
 		System.out.println("\n## 원하는 기능을 선택하세요.");
 		select = scanner.next();
+	}
+	
+	private static boolean select_section_function() {
+		print_section_management_menu();
+		
+		return false;
 	}
 
 }
