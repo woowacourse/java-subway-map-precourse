@@ -14,5 +14,4 @@ public class Line {
     public String toString() {
         return name;
     }
-    // 추가 기능 구현
 }

@@ -36,7 +36,7 @@ public class Error {
     }
 
     public static boolean printAlreadyExistStationError(String stationNameInput) {
-        if (StationRepository.isStationExists(stationNameInput)) {
+        if (StationRepository.isStationPresent(stationNameInput)) {
             System.out.println(ERROR + "이미 존재하는 역 이름입니다.");
             return true;
         }
@@ -44,7 +44,7 @@ public class Error {
     }
 
     public static boolean printAlreadyExistLineError(String lineNameInput) {
-        if (LineRepository.isLineExists(lineNameInput)) {
+        if (LineRepository.isLinePresent(lineNameInput)) {
             System.out.println(ERROR + "이미 존재하는 노선 이름입니다.");
             return true;
         }
@@ -69,7 +69,7 @@ public class Error {
     }
 
     public static boolean printNotExistStationError(String stationNameInput) {
-        if (!StationRepository.isStationExists(stationNameInput)) {
+        if (!StationRepository.isStationPresent(stationNameInput)) {
             System.out.println(ERROR + "존재하지 않는 역 이름입니다.");
             return true;
         }
@@ -77,7 +77,7 @@ public class Error {
     }
 
     public static boolean printNotExistLineError(String lineNameInput) {
-        if (!LineRepository.isLineExists(lineNameInput)) {
+        if (!LineRepository.isLinePresent(lineNameInput)) {
             System.out.println(ERROR + "존재하지 않는 노선 이름입니다.");
             return true;
         }

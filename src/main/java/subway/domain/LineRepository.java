@@ -31,13 +31,13 @@ public class LineRepository {
         lines.put(line, new ArrayList<>(Arrays.asList(startStation, endStation)));
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.keySet().removeIf(line -> Objects.equals(line.getName(), name));
-    }
-
     public static void addStationInLineByName(String line, String station, int seq) {
         lines.get(findLineByName(line)).add(seq - 1,
                 StationRepository.findStationByName(station));
+    }
+
+    public static void deleteLineByName(String name) {
+        lines.keySet().removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static void deleteStationInLineByName(String line, String station) {
@@ -62,7 +62,7 @@ public class LineRepository {
         return lines.get(line).stream().anyMatch(station -> station.getName().equals(stationName));
     }
 
-    public static boolean isLineExists(String name) {
+    public static boolean isLinePresent(String name) {
         return lines.keySet().stream().anyMatch(line -> line.getName().equals(name));
     }
 }
