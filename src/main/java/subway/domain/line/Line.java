@@ -4,6 +4,7 @@ import subway.domain.section.SectionStations;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.NameLengthException;
+import subway.exception.NotContainStationException;
 import subway.exception.SectionSizeException;
 
 public class Line {
@@ -41,6 +42,10 @@ public class Line {
     public boolean deleteStation(String name) {
         if (!isSectionSizeOverMin()) {
             throw new SectionSizeException();
+        }
+
+        if (!isContainStation(StationRepository.findStationByName(name))) {
+            throw new NotContainStationException();
         }
 
         return sectionStations.remove(StationRepository.findStationByName(name));
