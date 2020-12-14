@@ -15,10 +15,10 @@ public enum  ExceptionType {
     INVALID_LINE_SAME_STATION_NAMES(ERROR.getException() + "상행 종점역과 하행 종점역은 서로 달라야 합니다.\n"),
     INVALID_LINE_NAME_EXISTENCE(ERROR.getException() + "해당 노선이 존재하지 않습니다.\n"),
     INVALID_SECTION_EXISTING_STATION_NAME_IN_LINE(ERROR.getException() + "해당 역은 이미 노선에 존재합니다.\n"),
-    INVALID_SECTION_ORDER_REPLACEMENT_LENGTH(ERROR.getException() + "삽입 순서는 숫자로 입력해주세요.\n"),
-    INVALID_SECTION_ORDER_NUMBER(ERROR.getException() + "삽입 순서는 양의 정수로 입력해주세요.\n"),
+    INVALID_SECTION_ORDER_REPLACEMENT_LENGTH(ERROR.getException() + "순서는 숫자로 입력해주세요.\n"),
+    INVALID_SECTION_ORDER_NUMBER(ERROR.getException() + "순서는 양의 정수로 입력해주세요.\n"),
     INVALID_SECTION_ORDER_NUMBER_BY_STATIONS(
-            ERROR.getException() + "삽입 순서는 노선에 있는 역 개수보다 작거나 같은 수로 입력해주세요.\n");
+            ERROR.getException() + "순서는 노선에 있는 역 개수보다 하나 큰 수까지만 입력해주세요.\n");
 
     private final String exception;
 

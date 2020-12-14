@@ -5,6 +5,7 @@ import subway.service.station.StationService;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
 import subway.view.output.ScreenView;
+import subway.view.output.section.SectionInformationView;
 import subway.view.output.section.SectionTextView;
 
 import java.util.Scanner;
@@ -49,9 +50,12 @@ public class SectionService extends StationService {
         String lineName = SectionScannerService.scanLineName(scanner);
         String stationName = SectionScannerService.scanStationName(scanner);
         String order = SectionScannerService.scanOrder(scanner);
+        Section section = new Section(lineName, stationName, order);
 
-        if (sectionAddingValidation
-                .checkSectionAddingValidation(new Section(lineName, stationName, order))) {
+        if (sectionAddingValidation.checkSectionAddingValidation(section)) {
+            SectionAddingService.addSection(section);
+            SectionInformationView.printSectionAddingInformation();
+            System.out.println();
             return true;
         }
         return false;

@@ -1,6 +1,7 @@
 package subway.service.section;
 
 import subway.domain.Line;
+import subway.domain.Section;
 import subway.domain.Station;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
@@ -53,6 +54,21 @@ public class SectionAddingService {
 
     public static boolean checkOrderNumberByStations(String lineName, int orderNumber) {
         LinkedList<Station> stationValues = getStationValuesInLine(lineName);
-        return stationValues.size() < orderNumber;
+        return stationValues.size() + 1 < orderNumber;
+    }
+
+    public static void addSection(Section section) {
+        Map<Line, LinkedList<Station>> transitMaps = TransitMapRepository.transitMaps();
+        int orderNumber = Integer.parseInt(section.getOrder()) - 1;
+
+        for (Map.Entry<Line, LinkedList<Station>> entry : transitMaps.entrySet()) {
+            Line key = entry.getKey();
+            String keyName = key.getName();
+            LinkedList<Station> values = entry.getValue();
+
+            if (keyName.equals(section.getLineName())) {
+                values.add(orderNumber, new Station(section.getStationName()));
+            }
+        }
     }
 }
