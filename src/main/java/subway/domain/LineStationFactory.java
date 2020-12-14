@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static subway.domain.StationRepository.findStation;
+
 public class LineStationFactory {
     private static final Map<Line, List<Station>> lineStation = new LinkedHashMap<>();
 
@@ -40,7 +42,7 @@ public class LineStationFactory {
 
     private static void initLineStation(Line line, String[] stationName) {
         for (String name : stationName) {
-            addLineStation(line, StationRepository.findStation(name));
+            addLineStation(line, findStation(name));
         }
     }
 
