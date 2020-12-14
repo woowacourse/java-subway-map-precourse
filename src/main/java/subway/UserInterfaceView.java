@@ -123,6 +123,7 @@ public class UserInterfaceView {
             return;
         }
         if (THREE_STRING.equals(userInput)) {
+            sectionStart();
             return;
         }
         if (FOUR_STRING.equals(userInput)) {
@@ -237,5 +238,14 @@ public class UserInterfaceView {
         System.out.println();
     }
 
+    private void sectionStart() {
+        printSectionView();
+    }
 
+    private void printSectionView() {
+        for (String str : SECTION_INTERFACE) {
+            System.out.println(str);
+        }
+        System.out.println();
+    }
 }
