@@ -74,7 +74,7 @@ public class SectionView extends AbstractView {
     }
 
     private void checkValidationLengthOrThrow(Line line, int index) {
-        if (index > subway.getSectionRepository().getSize(line)) {
+        if (index > subway.getSectionRepository().getSize(line) + Constants.INDEX_ARRANGE_INT) {
             throw new RuntimeException(Constants.INVALID_LENGTH_ERROR_COMMENT);
         }
     }
@@ -122,5 +122,4 @@ public class SectionView extends AbstractView {
         }
         return false;
     }
-
 }

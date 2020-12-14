@@ -9,6 +9,5 @@ public class DialogUtils {
         String response = scanner.next();
         MessageUtils.printBlankLine();
         return response;
-
     }
 }

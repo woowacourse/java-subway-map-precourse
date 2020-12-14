@@ -29,5 +29,4 @@ public class LineRepository {
     public boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
-
 }

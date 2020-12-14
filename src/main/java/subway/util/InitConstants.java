@@ -16,5 +16,4 @@ public class InitConstants {
         "3호선", new ArrayList<>(Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역")),
         "신분당선", new ArrayList<>(Arrays.asList("강남역", "양재역", "양재시민의숲역"))
     );
-
 }

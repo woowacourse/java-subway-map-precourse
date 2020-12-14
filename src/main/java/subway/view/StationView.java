@@ -95,5 +95,4 @@ public class StationView extends AbstractView {
             .forEach(station -> MessageUtils.printInfoEntry(station.getName()));
         MessageUtils.printBlankLine();
     }
-
 }

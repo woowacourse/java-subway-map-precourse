@@ -50,6 +50,4 @@ public abstract class AbstractView {
     public void goBackward() {
         isRunning = false;
     }
-
-    
 }

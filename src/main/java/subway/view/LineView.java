@@ -105,5 +105,4 @@ public class LineView extends AbstractView {
             .forEach(line -> MessageUtils.printInfoEntry(line.getName()));
         MessageUtils.printBlankLine();
     }
-
 }
