@@ -146,4 +146,11 @@ public class Line {
         }
         return true;
     }
+
+    public static boolean validateRange(int order) {
+        if (order > stations.size()) {
+            return false;
+        }
+        return true;
+    }
 }

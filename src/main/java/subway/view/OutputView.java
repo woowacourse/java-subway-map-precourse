@@ -26,6 +26,7 @@ public class OutputView {
     private static final String ADD_LINE_BOUND_START_MESSAGE = "등록할 노선의 ";
     private static final String UPBOUND = "상행 종점역 ";
     private static final String DOWNBOUND = "하행 종점역 ";
+    private static final String ORDER_INPUT_MESSAGE = "순서를 입력하세요.";
 
     private OutputView() {
     }
@@ -113,5 +114,9 @@ public class OutputView {
 
     public static void printInputMessage(String title) {
         System.out.println(HASH + title + INPUT_MESSAGE);
+    }
+
+    public static void printOrderInputMessage() {
+        System.out.println(HASH + ORDER_INPUT_MESSAGE);
     }
 }
