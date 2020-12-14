@@ -17,14 +17,14 @@ public class StretchDashboard {
 
     TreeMap<String, String> options;
     InputView inputView;
-
+    boolean power;
     public StretchDashboard(InputView inputView) {
         this.inputView = inputView;
+        power = true;
         options = new TreeMap<>();
         options.put(OPTION_NUM_1, DASHBOARD_STRETCH_OPTION_1);
         options.put(OPTION_NUM_2, DASHBOARD_STRETCH_OPTION_2);
         options.put(OPTION_BACK, DASHBOARD_OPTION_B);
-        showStretchDashboardName();
         startStretchDashboard(inputView);
 
     }
@@ -34,46 +34,50 @@ public class StretchDashboard {
     }
 
     public void startStretchDashboard(InputView inputView) {
-        while (true) {
-            if (!startChosenOptionUntilFinished(makeUserChooseOption(inputView))) {
-                break;
-            }
+
+        while(power) {
+            showOptions();
+
+            String chosenOption = makeUserChooseOption(inputView);
+
+            startChosenOption(chosenOption);
+
         }
     }
 
     public String makeUserChooseOption(InputView inputView) {
-        showOptions();
-        String optionChosen;
-        while (true) {
-            optionChosen = chooseOption(inputView);
-            if (checkOptions(optionChosen)) {
-                return optionChosen;
-            }
+        String optionChosen = chooseOption(inputView);
+        try{
+            checkOptions(optionChosen);
+        } catch (Exception e) {
+            System.out.println(ERROR_OPTION_UNAVAILABLE);
+            makeUserChooseOption(inputView);
+        }
+
+        return optionChosen;
+    }
+
+    public void checkOptions(String input) throws Exception {
+        if (!options.containsKey(input)) {
+            throw new Exception();
         }
     }
 
-    public boolean checkOptions(String input) {
-        if (options.containsKey(input)) {
-            return true;
-        }
-        System.out.println(ERROR_OPTION_UNAVAILABLE);
-        return false;
-    }
-
-    public boolean startChosenOptionUntilFinished(String option) {
+    public void startChosenOption(String option) {
 
         if (option.equals(OPTION_NUM_1)) {
             insertStretch(inputView);
-            return false;
         }
         if (option.equals(OPTION_NUM_2)) {
             deleteStretch(inputView);
-            return false;
         }
-        return false;
+        if (option.equals(OPTION_BACK)) {
+            power = false;
+        }
     }
 
     public void showOptions() {
+        showStretchDashboardName();
         Set set = options.entrySet();
         Iterator iterator = set.iterator();
 

@@ -31,16 +31,13 @@ public class MainDashboard {
 
     public void startMainDashboard(InputView inputView) {
 
-        while(true) {
+        while(power) {
             showOptions();
 
             String chosenOption = makeUserChooseOption(inputView);
 
             startChosenOption(chosenOption);
 
-            if (power == false ){
-                break;
-            }
         }
     }
 
