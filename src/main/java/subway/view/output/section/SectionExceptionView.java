@@ -22,4 +22,9 @@ public class SectionExceptionView {
         System.out.println();
         System.out.println(ExceptionType.INVALID_SECTION_ORDER_NUMBER_BY_STATIONS.getException());
     }
+
+    public static void printInvalidSectionStationsInLineException() {
+        System.out.println();
+        System.out.println(ExceptionType.INVALID_SECTION_STATIONS_IN_LINE.getException());
+    }
 }

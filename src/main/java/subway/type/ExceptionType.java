@@ -18,7 +18,8 @@ public enum  ExceptionType {
     INVALID_SECTION_ORDER_REPLACEMENT_LENGTH(ERROR.getException() + "순서는 숫자로 입력해주세요.\n"),
     INVALID_SECTION_ORDER_NUMBER(ERROR.getException() + "순서는 양의 정수로 입력해주세요.\n"),
     INVALID_SECTION_ORDER_NUMBER_BY_STATIONS(
-            ERROR.getException() + "순서는 노선에 있는 역 개수보다 하나 큰 수까지만 입력해주세요.\n");
+            ERROR.getException() + "순서는 노선에 있는 역 개수보다 하나 큰 수까지만 입력해주세요.\n"),
+    INVALID_SECTION_STATIONS_IN_LINE(ERROR.getException() + "해당 노선에 포함된 역이 2개 이하이기 때문에 삭제할 수 없습니다.\n");
 
     private final String exception;
 

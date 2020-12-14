@@ -21,11 +21,6 @@ public class TransitMapRepository {
         transitMaps.remove(line);
     }
 
-    public static void deleteTransitMapStation(String lineName, String stationName) {
-        List<String> transitMapStations = transitMapStationsByLine(lineName);
-        transitMapStations.remove(stationName);
-    }
-
     public static List<String> transitMapsLineNames() {
         List<String> transitMapsLineNames = new ArrayList<>();
 
