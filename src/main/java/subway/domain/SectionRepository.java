@@ -23,7 +23,7 @@ public class SectionRepository {
     }
 
     private static void validateMinimumSectionLength(Line line) {
-        if (line.lineLength() >= MINIMUM_STATIONS_IN_LINE) {
+        if (line.lineLength() <= MINIMUM_STATIONS_IN_LINE) {
             throw new IllegalArgumentException(ErrorView.UNABLE_TO_DELETE_ANYMORE);
         }
     }
