@@ -60,4 +60,8 @@ public class OutPut {
     public static void printStationDeleteError() {
         System.out.println(ERROR + STATION_DELETE_ERROR);
     }
+
+    public static void printStationDeleteMessage() {
+        System.out.println(INFO + STATION_DELETE_MESSAGE);
+    }
 }
