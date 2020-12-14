@@ -66,4 +66,18 @@ public class OutputView {
 
         System.out.println("원하는 기능을 선택하세요.");
     }
+
+    public static void printSubways() {
+        System.out.println("지하철 노선도");
+        List<Line> lines = LineRepository.getLines();
+        for (Line line : lines) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INFO] ---");
+            List<Station> stationList = line.getStations();
+            for (Station station : stationList) {
+                System.out.println("[INFO] " + station.getName());
+            }
+            System.out.println();
+        }
+    }
 }

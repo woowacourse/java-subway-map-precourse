@@ -23,6 +23,7 @@ public class MainSelectManager {
                 SectionManager.sectionChoice();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_FOURTH)) {
+                OutputView.printSubways();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_QUIT)) {
                 System.out.println("종료합니다.");
