@@ -1,12 +1,13 @@
 package subway.domain;
 
+import subway.domain.validator.NameValidator;
+
 public class Name {
+    private static final int MINIMUM_NAME_LENGTH = 2;
     private String name;
 
     public Name(String name) {
-        if (name.length() < 2) {
-            throw new IllegalArgumentException("이름은 2글자 이상이어야 합니다.");
-        }
+        NameValidator.checkIsValidLength(name, MINIMUM_NAME_LENGTH);
         this.name = name.trim();
     }
 
