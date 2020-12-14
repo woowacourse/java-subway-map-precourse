@@ -13,18 +13,12 @@ public class StationRegisterService {
         this.stationRepository = stationRepository;
     }
 
-    public void register(String name) {
+    public void register(Station station) {
         try {
-            StationName stationName = StationName.of(name);
-            Station station = Station.of(stationName);
-            validateAlreadyExist(stationName);
+            validateAlreadyExist(station.getName());
             stationRepository.addStation(station);
-        } catch (StationNotFoundException e) {
-            throw new StationApplicationException(e);
-        } catch (StationNameFormatException e) {
-            throw new StationApplicationException(e);
-        } catch (StationNameLengthException e) {
-            throw new StationApplicationException(e);
+        } catch (StationAlreadyExistException e) {
+            throw new SubwayApplicationException(e);
         }
     }
 
