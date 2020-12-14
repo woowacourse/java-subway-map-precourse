@@ -11,6 +11,6 @@ public class StationDeleteInputController extends InputController {
 
     @Override
     protected void validateInput() throws IllegalArgumentException {
-        InputValidator.validateExistence(userInput);
+        InputValidator.validateStationExistence(userInput);
     }
 }

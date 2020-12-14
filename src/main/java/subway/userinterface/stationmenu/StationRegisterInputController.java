@@ -12,6 +12,6 @@ public class StationRegisterInputController extends InputController {
     @Override
     protected void validateInput() throws IllegalArgumentException {
         InputValidator.validateInputLength(userInput);
-        InputValidator.validateInputDuplication(userInput);
+        InputValidator.validateStationDuplication(userInput);
     }
 }
