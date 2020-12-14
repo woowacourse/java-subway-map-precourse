@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class StationFeature {
     public static void registerStation(Scanner scanner) {
         try {
-            String station = StationInputView.register(scanner).trim();
-            StationRepository.addStation(new Station(station));
+            String stationName = StationInputView.register(scanner);
 
+            StationRepository.addStation(new Station(stationName));
             OutputView.printSuccessRegisterStation();
         } catch (IllegalArgumentException e) {
             ErrorView.printError(e.getMessage());
@@ -24,9 +24,9 @@ public class StationFeature {
 
     public static void removeStation(Scanner scanner) {
         try {
-            String station = StationInputView.remove(scanner);
-            removeStation(StationRepository.deleteStation(station));
+            String stationName = StationInputView.remove(scanner);
 
+            removeStation(StationRepository.deleteStation(stationName));
             OutputView.printSuccessRemoveStation();
         } catch (IllegalArgumentException e) {
             ErrorView.printError(e.getMessage());

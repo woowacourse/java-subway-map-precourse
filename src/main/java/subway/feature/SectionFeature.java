@@ -11,15 +11,15 @@ import java.util.Scanner;
 public class SectionFeature {
     public static void registerSection(Scanner scanner) {
         try {
-            String line = SectionInputView.line(scanner);
-            String station = SectionInputView.station(scanner);
+            String lineName = SectionInputView.line(scanner);
+            String stationName = SectionInputView.station(scanner);
             int sequence = SectionInputView.sequence(scanner);
 
-            SectionRepository.addSection(line, station, sequence);
-
+            SectionRepository.addSection(lineName, stationName, sequence);
             OutputView.printSuccessRegisterSection();
         } catch (NumberFormatException e) {
             ErrorView.printMustBeNumber();
+            SectionMenu.openScreen(scanner);
         } catch (IllegalArgumentException e) {
             ErrorView.printError(e.getMessage());
             SectionMenu.openScreen(scanner);
@@ -28,10 +28,10 @@ public class SectionFeature {
 
     public static void removeSection(Scanner scanner) {
         try {
-            String line = SectionInputView.line(scanner);
-            String station = SectionInputView.station(scanner);
+            String lineName = SectionInputView.line(scanner);
+            String stationName = SectionInputView.station(scanner);
 
-            removeSection(SectionRepository.deleteSection(line, station));
+            removeSection(SectionRepository.deleteSection(lineName, stationName));
             OutputView.printSuccessRemoveSection();
         } catch (IllegalArgumentException e) {
             ErrorView.printError(e.getMessage());

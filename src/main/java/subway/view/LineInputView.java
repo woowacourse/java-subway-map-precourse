@@ -15,8 +15,8 @@ public class LineInputView extends View {
     public static String menu(Scanner scanner) {
         System.out.println(POUND_KEY + SELECT_FEATURE);
         try {
-            String selection = scanner.nextLine();
-            MenuFeature.findOne(SectionMenu.class, selection);
+            String selection = scanner.nextLine().trim();
+            MenuFeature.mapInputToSelection(SectionMenu.class, selection);
             return selection;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -27,25 +27,25 @@ public class LineInputView extends View {
     public static String register(Scanner scanner) {
         newLine();
         System.out.println(POUND_KEY + LINE_NAME_TO_REGISTER);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public static String remove(Scanner scanner) {
         newLine();
         System.out.println(POUND_KEY + LINE_NAME_TO_REMOVE);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public static String upBoundTerminus(Scanner scanner) {
         newLine();
         System.out.println(POUND_KEY + UP_BOUND_TERMINUS);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public static String downBoundTerminus(Scanner scanner) {
         newLine();
         System.out.println(POUND_KEY + DOWN_BOUND_TERMINUS);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
 }

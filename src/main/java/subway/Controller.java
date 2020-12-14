@@ -23,8 +23,8 @@ public class Controller {
     // 사전 등록 정보로 초기 설정
     private void initialize() {
         List<Station> stations = Arrays.asList(new Station("교대역"), new Station("강남역")
-                    , new Station("역삼역"), new Station("남부터미널역"), new Station("양재역")
-                    , new Station("양재시민의숲역"), new Station("매봉역"));
+                , new Station("역삼역"), new Station("남부터미널역"), new Station("양재역")
+                , new Station("양재시민의숲역"), new Station("매봉역"));
         stations.stream().forEach(station -> StationRepository.addStation(station));
 
         List<Line> lines = Arrays.asList(new Line("2호선").addTerminus("교대역", "역삼역")

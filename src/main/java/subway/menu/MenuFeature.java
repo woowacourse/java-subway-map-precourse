@@ -5,11 +5,11 @@ import subway.view.ErrorView;
 import java.util.Arrays;
 
 public class MenuFeature {
-    public static MenuModel findOne(Class<? extends MenuModel> menuType, String menuInput) {
+    public static MenuModel mapInputToSelection(Class<? extends MenuModel> menuType, String menuInput) {
         return Arrays.stream(menuType.getEnumConstants())
                 .filter(menu -> menu.getSelection().equals(menuInput))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorView.UNSELECTABLE));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorView.NOT_SELECTABLE_FEATURE));
     }
 
     protected static String getMenu(Class<? extends MenuModel> menuType) {

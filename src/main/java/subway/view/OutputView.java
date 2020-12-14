@@ -8,7 +8,7 @@ import subway.menu.MainMenu;
 import subway.menu.SectionMenu;
 import subway.menu.StationMenu;
 
-public class OutputView extends View{
+public class OutputView extends View {
 
     private static final String LINE_LIST = "노선 목록";
     private static final String STATION_LIST = "역 목록";

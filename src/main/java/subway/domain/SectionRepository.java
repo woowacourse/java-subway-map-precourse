@@ -9,7 +9,6 @@ public class SectionRepository {
     public static void addSection(String lineName, String stationName, int sequence) {
         validateSectionDuplication(lineName, stationName);
         Line line = LineRepository.findLine(lineName);
-
         validateSequence(line, sequence);
         Station station = StationRepository.findStation(stationName);
 
@@ -18,7 +17,6 @@ public class SectionRepository {
 
     public static boolean deleteSection(String lineName, String stationName) {
         Line line = LineRepository.findLine(lineName);
-
         validateMinimumSectionLength(line);
 
         return line.removeSection(stationName);
@@ -37,9 +35,9 @@ public class SectionRepository {
     }
 
     private static void validateSectionDuplication(String lineName, String stationName) {
-        boolean sectionExist = LineRepository.findLine(lineName).sectionExist(stationName);
+        boolean sectionExist = LineRepository.findLine(lineName).sectionExists(stationName);
         if (sectionExist) {
-            throw new IllegalArgumentException(ErrorView.UNABLE_TO_REGISTER_SECTION_BY_DIVERGENT_PATH);
+            throw new IllegalArgumentException(ErrorView.ALREADY_EXIST_SECTION);
         }
     }
 

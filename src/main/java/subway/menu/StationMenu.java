@@ -38,18 +38,20 @@ public enum StationMenu implements MenuModel {
 
     abstract public void moveView(Scanner scanner);
 
-    public static MenuModel select(String stationMenuInput) {
-        return MenuFeature.findOne(StationMenu.class, stationMenuInput);
+    public static void openScreen(Scanner scanner) {
+        OutputView.printStationMenu();
+        String stationMenuInput = StationInputView.menu(scanner);
+
+        select(stationMenuInput, scanner);
+    }
+
+    private static void select(String stationMenuInput, Scanner scanner) {
+        MenuFeature.mapInputToSelection(StationMenu.class, stationMenuInput)
+                .moveView(scanner);
     }
 
     public static String getMenu() {
         return MenuFeature.getMenu(StationMenu.class);
-    }
-
-    public static void openScreen(Scanner scanner) {
-        OutputView.printStationMenu();
-        String stationMenuInput = StationInputView.menu(scanner);
-        select(stationMenuInput).moveView(scanner);
     }
 
     @Override

@@ -1,9 +1,9 @@
 package subway.menu;
 
 import subway.feature.SectionFeature;
-import subway.feature.StationFeature;
 import subway.view.OutputView;
 import subway.view.SectionInputView;
+
 import java.util.Scanner;
 
 public enum SectionMenu implements MenuModel {
@@ -34,13 +34,15 @@ public enum SectionMenu implements MenuModel {
     public static void openScreen(Scanner scanner) {
         OutputView.printSectionMenu();
         String sectionMenuInput = SectionInputView.menu(scanner);
-        select(sectionMenuInput).moveView(scanner);
+
+        select(sectionMenuInput, scanner);
     }
 
     abstract public void moveView(Scanner scanner);
 
-    public static MenuModel select(String sectionMenuInput) {
-        return MenuFeature.findOne(SectionMenu.class, sectionMenuInput);
+    private static void select(String sectionMenuInput, Scanner scanner) {
+        MenuFeature.mapInputToSelection(SectionMenu.class, sectionMenuInput)
+                .moveView(scanner);
     }
 
     public static String getMenu() {

@@ -18,7 +18,6 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
     public void validate(String name) {
         String regExp = "^[a-zA-Z가-힣0-9]*[역|station|Station|STATION]$";
 

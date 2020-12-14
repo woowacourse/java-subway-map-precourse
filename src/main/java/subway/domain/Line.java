@@ -21,7 +21,6 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
     public Line addTerminus(String upBoundTerminus, String downBoundTerminus) {
         validateTerminus(upBoundTerminus);
         validateTerminus(downBoundTerminus);
@@ -38,7 +37,7 @@ public class Line {
         return line.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
-    public boolean sectionExist(String name) {
+    public boolean sectionExists(String name) {
         return stations().stream()
                 .filter(station -> station.getName().equals(name))
                 .findFirst()

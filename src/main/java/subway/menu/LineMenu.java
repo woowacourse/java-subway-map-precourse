@@ -31,21 +31,23 @@ public enum LineMenu implements MenuModel {
     final private String selection;
     final private String feature;
 
-    public static void openScreen(Scanner scanner) {
-        OutputView.printLineMenu();
-        String lineMenuInput = LineInputView.menu(scanner);
-        select(lineMenuInput).moveView(scanner);
-    }
-
-    abstract public void moveView(Scanner scanner);
-
     private LineMenu(String selection, String feature) {
         this.selection = selection;
         this.feature = feature;
     }
 
-    public static MenuModel select(String lineMenuInput) {
-        return MenuFeature.findOne(LineMenu.class, lineMenuInput);
+    abstract public void moveView(Scanner scanner);
+
+    public static void openScreen(Scanner scanner) {
+        OutputView.printLineMenu();
+        String lineMenuInput = LineInputView.menu(scanner);
+
+        select(lineMenuInput, scanner);
+    }
+
+    private static void select(String lineMenuInput, Scanner scanner) {
+        MenuFeature.mapInputToSelection(LineMenu.class, lineMenuInput)
+                .moveView(scanner);
     }
 
     public static String getMenu() {

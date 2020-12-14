@@ -44,25 +44,27 @@ public enum MainMenu implements MenuModel {
 
     abstract public void moveView(Scanner scanner);
 
-    public static boolean canContinue(String mainMenuInput) {
-        return !MainMenu.QUIT.selection.equals(mainMenuInput);
-    }
-
-    public static MenuModel select(String mainMenuInput) {
-        return MenuFeature.findOne(MainMenu.class, mainMenuInput);
-    }
-
-    public static String getMenu() {
-        return MenuFeature.getMenu(MainMenu.class);
-    }
-
     public static void openScreen(Scanner scanner) {
         String mainMenuInput = "";
         do {
             OutputView.printMainMenu();
             mainMenuInput = MainInputView.mainMenu(scanner);
-            select(mainMenuInput).moveView(scanner);
+
+            select(mainMenuInput, scanner);
         } while (canContinue(mainMenuInput));
+    }
+
+    private static void select(String mainMenuInput, Scanner scanner) {
+        MenuFeature.mapInputToSelection(MainMenu.class, mainMenuInput)
+                .moveView(scanner);
+    }
+
+    private static boolean canContinue(String mainMenuInput) {
+        return !MainMenu.QUIT.selection.equals(mainMenuInput);
+    }
+
+    public static String getMenu() {
+        return MenuFeature.getMenu(MainMenu.class);
     }
 
     @Override
