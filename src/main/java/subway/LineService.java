@@ -19,7 +19,11 @@ public class LineService {
             OutPut.printLineDuplicateError();
             return true;
         }
-        // TODO - LINE 생성로직 추가하기
+        Station firstStation = StationRepository.getStation(firstStationName);
+        Station lastStation = StationRepository.getStation(lastStationName);
+        Line line = new Line(lineName);
+        line.initLineInStation(firstStation, lastStation);
+        LineRepository.addLine(line);
         if (isPrint) {
             OutPut.printLineCreateMessage();
         }
