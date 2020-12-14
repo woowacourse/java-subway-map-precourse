@@ -19,7 +19,7 @@ public class StationService {
             StationRepository.addStation(new Station(stationName));
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            StationManager.execute(STATION_INSERT);
+            StationManager.execute();
         }
     }
 
@@ -33,7 +33,7 @@ public class StationService {
             }
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            StationManager.execute(STATION_DELETE);
+            StationManager.execute();
         }
     }
 

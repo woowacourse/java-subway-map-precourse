@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LineService {
-    private static final String LINE_INSERT = "1";
-    private static final String LINE_DELETE = "2";
     private static final int MIN_LINE_NAME_LENGTH = 2;
     private static final int LINE_NAME = 0;
     private static final int UP_TERMINAL_STATION = 1;
@@ -27,7 +25,7 @@ public class LineService {
             addLineAndStation(lineName, upTerminal, downTerminal);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            LineManager.execute(LINE_INSERT);
+            LineManager.execute();
         }
     }
 
@@ -47,7 +45,7 @@ public class LineService {
             LineStationRepository.deleteLineOnSubway(lineName);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            LineManager.execute(LINE_DELETE);
+            LineManager.execute();
         }
     }
 

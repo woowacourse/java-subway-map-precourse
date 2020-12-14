@@ -12,8 +12,6 @@ import java.util.List;
 public class SectionService {
 
     private static final int MIN_SECTION_SIZE = 2;
-    private static final String SECTION_INSERT = "1";
-    private static final String SECTION_DELETE = "2";
     private static final int LINE_NAME = 0;
     private static final int SECTION_NAME = 1;
     private static final int SECTION_ORDER = 2;
@@ -29,7 +27,7 @@ public class SectionService {
             updateSection.add(Integer.parseInt(order), StationRepository.findByName(stationName));
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            SectionManager.execute(SECTION_INSERT);
+            SectionManager.execute();
         }
     }
 
@@ -41,7 +39,7 @@ public class SectionService {
             selections.remove(deleteStation);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            SectionManager.execute(SECTION_DELETE);
+            SectionManager.execute();
         }
     }
 
