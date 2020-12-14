@@ -42,6 +42,7 @@ public class LineRepository {
         for(int i=0;i<lines.size();i++){
             System.out.println("[INFO] "+lines.get(i).getName());
         }
+        System.out.println();
     }
     public static boolean back(){
         return false;

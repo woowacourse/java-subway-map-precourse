@@ -14,9 +14,16 @@ public class ControlLine {
         return true;
     }
     public static boolean deleteLine(){
+        String tmpSaveLineName=OutputMessage.deleteLineName();
+        if(!LineRepository.duplicateLineName(new Line(tmpSaveLineName))){
+            OutputMessage.setErrorMessageDeleteLine();
+
+            return false;
+        }
         return true;
     }
     public static boolean lookLine(){
+        LineRepository.printLine();
         return true;
     }
     public static boolean back(){

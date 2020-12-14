@@ -57,7 +57,12 @@ public class OutputMessage {
 
     private static final String ERROR_MESSAGE_DELETE_STATION="[ERROR] 역을 삭제할 수 없습니다.";
     private static final String ERROR_MESSAGE_REGISTER_LINE="[ERROR] 지하철 노선을 등록할 수 없습니다.";
+    private static final String ERROR_MESSAGE_DELETE_LINE="[ERROR] 지하철 노선을 지울 수 없습니다.";
 
+    public static void setErrorMessageDeleteLine(){
+        System.out.println(ERROR_MESSAGE_DELETE_LINE);
+        System.out.println();
+    }
     public static void setErrorMessageRegisterLine(){
         System.out.println(ERROR_MESSAGE_REGISTER_LINE);
         System.out.println();
