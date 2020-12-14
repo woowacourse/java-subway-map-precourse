@@ -45,4 +45,8 @@ public class Line {
     public boolean contains(Station station) {
         return stationList.contains(station);
     }
+
+    public void insertSection(int index, Station station) {
+        stationList.add(index, station);
+    }
 }

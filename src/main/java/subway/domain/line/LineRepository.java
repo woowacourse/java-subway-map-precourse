@@ -41,4 +41,10 @@ public class LineRepository {
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    // 구간에 station추가
+    public static void insertSection(String lineName, int index, Station station) {
+        Line line = findLineName(lineName);
+        line.insertSection(index, station);
+    }
 }
