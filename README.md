@@ -41,6 +41,7 @@
     7. 존재하지 않는 기능에 대한 예외 클래스(NoneFunctionException.java)
     8. 저장소에 데이터가 없을 때 처리하는 예외 클래스(NullRepositoryException.java)
     9. 이미 존재하는 역에 대한 예외 클래스 (UsedStationException.java)
+    10. 구간 입력이 잘못 되었을 때에 대한 예외 클래스(OverRangeException.java)
     
 
 ## 작동 순서도
