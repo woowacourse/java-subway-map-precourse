@@ -1,5 +1,6 @@
-package subway.menu;
+package subway.feature;
 
+import subway.menu.MenuModel;
 import subway.view.ErrorView;
 
 import java.util.Arrays;
@@ -12,7 +13,7 @@ public class MenuFeature {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorView.NOT_SELECTABLE_FEATURE));
     }
 
-    protected static String getMenu(Class<? extends MenuModel> menuType) {
+    public static String getMenu(Class<? extends MenuModel> menuType) {
         String menuText = "";
         for (MenuModel mainMenu : menuType.getEnumConstants()) {
             menuText += mainMenu.getSelection() + ". " + mainMenu.getFeature() + "\n";

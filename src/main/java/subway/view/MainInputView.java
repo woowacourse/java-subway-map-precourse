@@ -1,7 +1,7 @@
 package subway.view;
 
 import subway.menu.MainMenu;
-import subway.menu.MenuFeature;
+import subway.feature.MenuFeature;
 
 import java.util.Scanner;
 

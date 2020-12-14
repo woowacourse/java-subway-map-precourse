@@ -1,6 +1,7 @@
 package subway.menu;
 
 import subway.feature.LineFeature;
+import subway.feature.MenuFeature;
 import subway.view.LineInputView;
 import subway.view.OutputView;
 

@@ -1,5 +1,6 @@
 package subway.menu;
 
+import subway.feature.MenuFeature;
 import subway.feature.SectionFeature;
 import subway.view.OutputView;
 import subway.view.SectionInputView;
