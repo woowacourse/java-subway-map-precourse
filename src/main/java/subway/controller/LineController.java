@@ -63,8 +63,7 @@ public class LineController {
 
 	private static void deregisterLine(Scanner scanner) {
 		String name = View.getLineNameToDelete(scanner);
-		boolean isSuccessful = LineRepository.deleteLine(name);
-		if (isSuccessful) {
+		if (LineRepository.deleteLine(name)) {
 			View.printLineDeleteCompletion();
 			return;
 		}

@@ -32,8 +32,7 @@ public class StationController {
 
 	private static void deregisterStation(Scanner scanner) {
 		String name = View.getStationNameToDelete(scanner);
-		boolean isSuccessful = StationRepository.deleteStation(name);
-		if (isSuccessful) {
+		if (StationRepository.deleteStation(name)) {
 			View.printStationDeleteCompletion();
 			return;
 		}
