@@ -21,7 +21,7 @@ public enum StationMenu {
         this.expression = expression;
     }
 
-    public boolean request(){
+    public boolean request() {
         return expression.get();
     }
 
