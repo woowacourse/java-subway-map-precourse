@@ -1,4 +1,4 @@
-package subway.view;
+package subway.view.screen;
 
 public enum Action {
     INSERT("등록"),
