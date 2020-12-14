@@ -6,6 +6,7 @@ import subway.domain.Station;
 import subway.exceptions.DuplicatedLineNameException;
 import subway.exceptions.InvalidPositionException;
 import subway.exceptions.LineNotExistException;
+import subway.exceptions.MinimumLineLengthException;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +55,13 @@ public class LineService {
             throw new InvalidPositionException();
         }
         line.addStation(position, station);
+    }
+
+    public static void removeStationInLine(Station station, Line line){
+        if(line.getStations().size() <= 2){
+            throw new MinimumLineLengthException();
+        }
+        line.removeStation(station);
     }
 
     private static boolean checkIfLineExist(String name){
