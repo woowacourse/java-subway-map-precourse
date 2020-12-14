@@ -24,6 +24,10 @@ public class Line {
         return new Line(name, sections);
     }
 
+    public void addSection(Station station, int sequence) {
+        sections.add(sequence, station);
+    }
+
     public String getName() {
         return name;
     }

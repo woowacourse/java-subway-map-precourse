@@ -1,13 +1,30 @@
 package subway.service;
 
 import subway.domain.line.LineRepository;
+import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.dto.SectionDto;
 
 public class SectionService {
     private static final String NON_EXISTENT_LINE_ERROR_MESSAGE = "존재하지 않는 노선이 입력되었습니다.";
     private static final String NON_EXISTENT_STATION_ERROR_MESSAGE = "존재하지 않는 역이 입력되었습니다.";
     private static final String ALREADY_INCLUDED_STATION_ERROR_MESSAGE = "추가하려는 역이 해당 노선에 존재합니다.";
     private static final String SEQUENCE_EXCEED_STATIONS_ERROR_MESSAGE = "가능한 순서값보다 큰 값이 입력되었습니다.";
+
+    public void addSection(SectionDto sectionDto) {
+        String lineName = sectionDto.getLineName();
+        String stationName = sectionDto.getStationName();
+        String sequence = sectionDto.getSequence();
+
+        validateExistentLine(lineName);
+        validateExistentStation(stationName);
+        SequenceValidator.validate(sequence);
+        validateIncludedStationInLine(lineName, stationName);
+        validateSectionCountExceed(lineName, sequence);
+
+        Station station = StationRepository.selectStation(sectionDto.getStationName());
+        LineRepository.addSection(lineName, station, Integer.parseInt(sequence));
+    }
 
     private void validateExistentLine(String lineName) {
         if (!LineRepository.isExistentName(lineName)) {
