@@ -19,7 +19,6 @@ public class SectionService extends BaseService {
     private static final String DELETE_SECTION_STATION_NAME_QUESTION = "삭제할 구간의 역을 입력하세요.";
     private static final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.";
 
-    private static final String ERR_DUPLICATE_STATION_IN_LINE = "동일 노선에 동일한 이름의 역이 이미 있습니다.";
     private static final String ERR_MIN_LINE_LENGTH = "노선의 길이가 짧습니다.";
     private static final String ERR_NO_STATION_ON_LINE = "노선에 입력한 역이 없습니다.";
 
@@ -30,7 +29,6 @@ public class SectionService extends BaseService {
     public static void register() {
         Line line = getLineByQuestion(REGISTER_SECTION_LINE_NAME_QUESTION);
         Station station = getStationByQuestion(REGISTER_SECTION_STATION_NAME_QUESTION);
-        checkDuplicateStationInLine(line, station);
         int index = getStationIndexToAdd();
         registerSection(line, station, index);
     }
@@ -45,12 +43,6 @@ public class SectionService extends BaseService {
     private static int getStationIndexToAdd() {
         OutputView.printQuestion(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
         return InputView.getOrder() - 1;
-    }
-
-    private static void checkDuplicateStationInLine(Line line, Station station) {
-        if (line.hasStation(station)) {
-            throw new IllegalArgumentException(ERR_DUPLICATE_STATION_IN_LINE);
-        }
     }
 
     private static void checkLineLengthPossibleToDelete(Line line) {
