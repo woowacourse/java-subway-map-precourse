@@ -5,7 +5,7 @@ import subway.domain.command.MainCommand;
 import subway.domain.command.SectionCommand;
 import subway.domain.command.StationCommand;
 import subway.dto.LineDto;
-import subway.dto.SectionDto;
+import subway.dto.SectionRegistrationDto;
 import subway.dto.StationDto;
 
 import java.util.Scanner;
@@ -105,11 +105,11 @@ public class InputView {
         return SectionCommand.getCommand(userMessage);
     }
 
-    public SectionDto inputRegistrationSection() {
+    public SectionRegistrationDto inputRegistrationSection() {
         String lineName = inputLineName();
         String stationName = inputStationName();
         String sequence = inputSequence();
-        return new SectionDto(lineName, stationName, sequence);
+        return new SectionRegistrationDto(lineName, stationName, sequence);
     }
 
     private String inputLineName() {
