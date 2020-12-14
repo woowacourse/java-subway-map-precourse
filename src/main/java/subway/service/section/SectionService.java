@@ -3,6 +3,7 @@ package subway.service.section;
 import subway.domain.Section;
 import subway.service.station.StationService;
 import subway.type.InputType;
+import subway.view.input.section.SectionInputView;
 import subway.view.output.ExceptionView;
 import subway.view.output.ScreenView;
 import subway.view.output.section.SectionInformationView;
@@ -47,9 +48,9 @@ public class SectionService extends StationService {
     public boolean add(Scanner scanner) {
         SectionAddingValidation sectionAddingValidation = new SectionAddingValidation();
 
-        String lineName = SectionScannerService.scanLineName(scanner);
-        String stationName = SectionScannerService.scanStationName(scanner);
-        String order = SectionScannerService.scanOrder(scanner);
+        String lineName = SectionInputView.scanLineName(scanner);
+        String stationName = SectionInputView.scanStationName(scanner);
+        String order = SectionInputView.scanOrder(scanner);
         Section section = new Section(lineName, stationName, order);
 
         if (sectionAddingValidation.checkSectionAddingValidation(section)) {

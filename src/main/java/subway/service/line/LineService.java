@@ -6,6 +6,7 @@ import subway.repository.LineRepository;
 import subway.service.InputService;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
+import subway.view.input.line.LineInputView;
 import subway.view.output.ScreenView;
 import subway.view.output.line.LineTextView;
 
@@ -51,12 +52,12 @@ public class LineService implements FeatureInterface {
     public boolean add(Scanner scanner) {
         LineAddingValidation lineNameAddingValidation = new LineAddingValidation();
 
-        String lineName = LineScannerService.scanLineName(scanner);
+        String lineName = LineInputView.scanLineName(scanner);
         if (!lineNameAddingValidation.checkAddingValidation(lineName)) {
             return false;
         }
-        String upStationName = LineScannerService.scanUpStationName(scanner);
-        String downStationName = LineScannerService.scanDownStationName(scanner);
+        String upStationName = LineInputView.scanUpStationName(scanner);
+        String downStationName = LineInputView.scanDownStationName(scanner);
         if (!lineNameAddingValidation.checkStationNamesAddingValidation(upStationName, downStationName)) {
             return false;
         }

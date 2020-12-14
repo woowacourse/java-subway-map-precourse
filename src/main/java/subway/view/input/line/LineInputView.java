@@ -1,10 +1,10 @@
-package subway.service.line;
+package subway.view.input.line;
 
 import subway.view.output.line.LineTextView;
 
 import java.util.Scanner;
 
-public class LineScannerService {
+public class LineInputView {
     public static String scanLineName(Scanner scanner) {
         LineTextView.printLineAddingText();
         return scanner.nextLine();

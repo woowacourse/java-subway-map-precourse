@@ -1,10 +1,10 @@
-package subway.service.section;
+package subway.view.input.section;
 
 import subway.view.output.section.SectionTextView;
 
 import java.util.Scanner;
 
-public class SectionScannerService {
+public class SectionInputView {
     public static String scanLineName(Scanner scanner) {
         SectionTextView.printSectionAddingLineText();
         return scanner.nextLine();
