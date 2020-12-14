@@ -64,13 +64,13 @@ public class InputView {
     }
 
     public LineDto inputRegistrationLine() {
-        String lineName = inputLineName();
+        String lineName = inputRegistrationLineName();
         String upwardEndStationName = inputUpwardEndStationName();
         String downwardEndStationName = inputDownwardEndStationName();
         return new LineDto(lineName, upwardEndStationName, downwardEndStationName);
     }
 
-    private String inputLineName() {
+    private String inputRegistrationLineName() {
         println(REGISTRATION_LINE_GUIDE_MESSAGE);
         String lineName = inputWithTrimming();
         lineFeed();
