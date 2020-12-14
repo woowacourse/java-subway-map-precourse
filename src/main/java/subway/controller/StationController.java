@@ -1,11 +1,15 @@
 package subway.controller;
 
-import subway.Constants;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.StationScreen;
 
 public class StationController implements Controller {
+    private static final String USER_ANSWER_REGISTER = "1";
+    private static final String USER_ANSWER_DELETE = "2";
+    private static final String USER_ANSWER_SHOW = "3";
+    private static final String BACK = "B";
+
     static StationController instance;
     StationScreen screen;
 
@@ -23,16 +27,16 @@ public class StationController implements Controller {
     @Override
     public void action() {
         String userInput = screen.show();
-        if (userInput.equals(Constants.USER_ANSWER_REGISTER)) {
+        if (userInput.equals(USER_ANSWER_REGISTER)) {
             registerStation();
         }
-        if (userInput.equals(Constants.USER_ANSWER_DELETE)) {
+        if (userInput.equals(USER_ANSWER_DELETE)) {
             deleteStation();
         }
-        if (userInput.equals(Constants.USER_ANSWER_SHOW)) {
+        if (userInput.equals(USER_ANSWER_SHOW)) {
             screen.printStationsList();
         }
-        if (userInput.equals(Constants.BACK)) {
+        if (userInput.equals(BACK)) {
             MainController.getInstance().action();
         }
         action();

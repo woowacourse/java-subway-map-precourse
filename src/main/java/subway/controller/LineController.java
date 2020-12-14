@@ -1,6 +1,5 @@
 package subway.controller;
 
-import subway.Constants;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -8,6 +7,11 @@ import subway.domain.StationRepository;
 import subway.view.LineScreen;
 
 public class LineController implements Controller {
+    private static final String USER_ANSWER_REGISTER = "1";
+    private static final String USER_ANSWER_DELETE = "2";
+    private static final String USER_ANSWER_SHOW = "3";
+    private static final String BACK = "B";
+
     static LineController instance;
     LineScreen screen;
 
@@ -25,16 +29,16 @@ public class LineController implements Controller {
     @Override
     public void action() {
         String userInput = screen.show();
-        if (userInput.equals(Constants.USER_ANSWER_REGISTER)) {
+        if (userInput.equals(USER_ANSWER_REGISTER)) {
             registerLine();
         }
-        if (userInput.equals(Constants.USER_ANSWER_DELETE)) {
+        if (userInput.equals(USER_ANSWER_DELETE)) {
             deleteLine();
         }
-        if (userInput.equals(Constants.USER_ANSWER_SHOW)) {
+        if (userInput.equals(USER_ANSWER_SHOW)) {
             screen.printLines();
         }
-        if (userInput.equals(Constants.BACK)) {
+        if (userInput.equals(BACK)) {
             MainController.getInstance().action();
         }
         action();

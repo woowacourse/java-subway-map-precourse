@@ -3,6 +3,8 @@ package subway.domain;
 import java.util.ArrayList;
 
 public class Line {
+    private static final int VALID_LENGTH = 2;
+
     private String name;
     private ArrayList<Station> lineStations;
 
@@ -19,7 +21,7 @@ public class Line {
     }
 
     private void validateLength(String userInput) {
-        if (!(userInput.length() >= 2)) {
+        if (!(userInput.length() >= VALID_LENGTH)) {
             throw new IllegalArgumentException();
         }
     }
