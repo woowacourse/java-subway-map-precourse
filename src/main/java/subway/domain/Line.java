@@ -22,6 +22,10 @@ public class Line {
         stationList.add(new Station(stationName));
     }
 
+    public void addStation(String stationName, int index) {
+        stationList.add(index-1, new Station(stationName));
+    }
+
     /*public boolean equal(String lineName) {
         return name.equals(lineName);
     }*/
