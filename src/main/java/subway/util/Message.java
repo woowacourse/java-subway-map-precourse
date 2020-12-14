@@ -52,6 +52,7 @@ public class Message {
 	
 	public static final String BACK = "B. 돌아가기";
 	
+	public static final String BACK_TO_MAIN = "이전으로 돌아갑니다.";
 	public static final String EXIT = "프로그램을 종료합니다.";
 	
 	// info
