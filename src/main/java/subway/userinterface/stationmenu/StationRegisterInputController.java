@@ -3,8 +3,6 @@ package subway.userinterface.stationmenu;
 import subway.userinterface.InputController;
 import subway.util.InputValidator;
 
-import java.util.Scanner;
-
 public class StationRegisterInputController extends InputController {
 
     public StationRegisterInputController() {
@@ -12,7 +10,7 @@ public class StationRegisterInputController extends InputController {
     }
 
     @Override
-    protected void validateInput(Scanner scanner) throws IllegalArgumentException {
+    protected void validateInput() throws IllegalArgumentException {
         InputValidator.validateInputLength(userInput);
         InputValidator.validateInputDuplication(userInput);
     }

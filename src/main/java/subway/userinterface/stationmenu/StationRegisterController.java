@@ -20,6 +20,14 @@ public class StationRegisterController implements Menu {
 
     private StationRegisterController() {}
 
+    public static Menu getInstance() {
+        if (stationRegisterController == null) {
+            stationRegisterController = new StationRegisterController();
+        }
+
+        return stationRegisterController;
+    }
+
     @Override
     public String getMenuName() {
         return MENU_NAME;
@@ -38,13 +46,5 @@ public class StationRegisterController implements Menu {
         stationService.registerStation(newStation);
 
         OutputController.printInfo(STATION_REGISTERED);
-    }
-
-    public static Menu getInstance() {
-        if (stationRegisterController == null) {
-            stationRegisterController = new StationRegisterController();
-        }
-
-        return stationRegisterController;
     }
 }

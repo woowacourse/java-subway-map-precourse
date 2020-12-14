@@ -11,11 +11,11 @@ public abstract class InputController {
 
         System.out.println(INPUT_INTRO);
         userInput = scanner.nextLine().replace(" ", "");
-        validateInput(scanner);
+        validateInput();
 
         return userInput;
     }
 
-    protected abstract void validateInput(Scanner scanner);
+    protected abstract void validateInput();
 
 }

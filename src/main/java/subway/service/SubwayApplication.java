@@ -14,9 +14,13 @@ public class SubwayApplication {
 
     public static void run(Scanner scanner) {
         while (!userSelectMenu.equals("Q")) {
-            MainMenuView.getInstance().printMenu();
-            userSelectMenu = MainMenuView.getInstance().getUserInput(scanner);
-            MainService.getInstance().selectMenu(MainMenuView.mainMenu, userSelectMenu, scanner);
+            try {
+                MainMenuView.getInstance().printMenu();
+                userSelectMenu = MainMenuView.getInstance().getUserInput(scanner);
+                MainService.getInstance().selectMenu(MainMenuView.mainMenu, userSelectMenu, scanner);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ public class MainMenuView implements MenuView {
     }
 
     @Override
-    public String getUserInput(Scanner scanner) {
+    public String getUserInput(Scanner scanner) throws IllegalArgumentException {
         return mainViewInputController.getUserInput(scanner);
     }
 
