@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.model.ResultDto;
 import subway.station.Station;
 
 import java.util.ArrayList;
@@ -51,5 +52,17 @@ public class Line {
             }
         }
         throw new IllegalArgumentException("해당 노선에 존재하지 않는 역입니다.");
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result
+            .append(ResultDto.RESULT_OK_PREFIX + this.name + "\n")
+            .append(ResultDto.RESULT_OK_PREFIX + "---" + "\n");
+        for (Station station : stations) {
+            result.append(ResultDto.RESULT_OK_PREFIX + station.getName() + "\n");
+        }
+        return result.toString();
     }
 }

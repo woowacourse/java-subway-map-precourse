@@ -83,4 +83,8 @@ public class LineService {
     public static Line findByName(String lineName) {
         return repository.findByName(lineName);
     }
+
+    public static List<Line> findAll() {
+        return repository.findAll();
+    }
 }
