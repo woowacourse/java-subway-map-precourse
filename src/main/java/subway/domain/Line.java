@@ -75,7 +75,6 @@ public class Line {
             return false;
         }
         stations.add(orderNumber, new Station(name));
-        OutputView.completeRegisterSection();
         return true;
     }
 
