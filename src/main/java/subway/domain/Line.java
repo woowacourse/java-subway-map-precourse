@@ -23,6 +23,14 @@ public class Line {
 	public void addStation(int index, Station station) {
 		stations.add(index, station);
 	}
+	
+	public void addFirstStation(Station station) {
+		stations.addFirst(station);
+	}
+	
+	public void addLastStation(Station station) {
+		stations.addLast(station);
+	}
 
 	public void removeStationByName(String name) {
 		stations.removeIf(station -> Objects.equals(station.getName(), name));
