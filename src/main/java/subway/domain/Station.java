@@ -13,7 +13,7 @@ public class Station {
     }
 
     public boolean isStationHasLine() {
-        return line == null;
+        return line != null;
     }
 
     public boolean isNameMoreThan2Letters() {
