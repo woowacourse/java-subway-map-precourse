@@ -43,16 +43,16 @@ public enum MainMenu {
         gameExit = false;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
     public void execute(Scanner scanner) {
         nextAction.accept(scanner);
     }
 
     public boolean isExit() {
         return gameExit;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
