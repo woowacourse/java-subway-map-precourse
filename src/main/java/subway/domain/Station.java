@@ -11,5 +11,7 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean isEqualName(String name) {
+        return name.equals(this.name);
+    }
 }
