@@ -2,7 +2,6 @@ package subway.util;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 
 import java.util.Scanner;
@@ -18,11 +17,10 @@ public class LineManager {
                     return;
                 } else if(inputString.equals("1")) {
                     addLine(scanner);
-                    break;
                 } else if(inputString.equals("2")) {
-
+                    removeLine(scanner);
                 } else if(inputString.equals("3")) {
-
+                    visitLine();
                 }
                 break;
             } catch (IllegalArgumentException exception) {
@@ -44,6 +42,36 @@ public class LineManager {
         LineRepository.addLine(line);
     }
 
+    public void addStations(Scanner scanner) throws IllegalArgumentException {
+        String [] inputStations = new String[2];
+        String inputLine;
+        StationManager stationManager = new StationManager();
+        System.out.println(Constants.ASK_LINE_ADD);
+        inputLine = scanner.nextLine().trim();
+        while(true) {
+            try {
+                System.out.println(Constants.ASK_UPPER_END);
+                inputStations[0] = scanner.nextLine().trim();
+                stationManager.addStation(inputStations[0]);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(Constants.NAME_LENGTH_FAIL);
+            }
+        }
+        while(true) {
+            try {
+                System.out.println(Constants.ASK_LOWER_END);
+                inputStations[1] = scanner.nextLine().trim();
+                stationManager.addStation(scanner);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(Constants.NAME_LENGTH_FAIL);
+            }
+        }
+
+
+    }
+
     public void removeLine(Scanner scanner) throws IllegalArgumentException {
         String input;
         System.out.println(Constants.ASK_LINE_REMOVE);
@@ -59,11 +87,10 @@ public class LineManager {
         }
     }
 
-    public void visitLine(Scanner scanner) {
+    public void visitLine() {
         System.out.println(Constants.LINE_LIST);
         for(Line line : LineRepository.lines()) {
             System.out.println(line.getName());
         }
-
     }
 }
