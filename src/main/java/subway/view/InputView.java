@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String INPUT_MANAGEMENT_FUNCTION_NUMBER_NOTICE = "\n## 원하는 기능을 선택하세요.";
+    private static final String INPUT_STATION_NAME_REGISTRATION_NOTICE = "\n## 등록할 역 이름을 입력하세요.";
+    private static final String INPUT_STATION_NAME_DELETION_NOTICE = "\n## 삭제할 역 이름을 입력하세요.";
 
     private final Scanner scanner;
 
@@ -15,7 +17,7 @@ public class InputView {
     }
 
     public ManagementType inputManagementType() {
-        String managementNumber = inputManagementFunctionNumber();
+        String managementNumber = scanInputLineWithNotice(INPUT_MANAGEMENT_FUNCTION_NUMBER_NOTICE);
         try {
             return ManagementType.findManagementType(managementNumber);
         } catch (RuntimeException runtimeException) {
@@ -24,8 +26,13 @@ public class InputView {
         }
     }
 
+    private String scanInputLineWithNotice(String message) {
+        System.out.println(message);
+        return scanner.nextLine();
+    }
+
     public FunctionType inputFunctionType(ManagementType managementType) {
-        String functionNumber = inputManagementFunctionNumber();
+        String functionNumber = scanInputLineWithNotice(INPUT_MANAGEMENT_FUNCTION_NUMBER_NOTICE);
         try {
             return managementType.findFunctionType(functionNumber);
         } catch (RuntimeException runtimeException) {
@@ -34,18 +41,10 @@ public class InputView {
         }
     }
 
-    public String inputManagementFunctionNumber() {
-        System.out.println(INPUT_MANAGEMENT_FUNCTION_NUMBER_NOTICE);
-        return scanner.nextLine();
-    }
-
     public String inputStationName(FunctionType functionType) {
         if (functionType == FunctionType.REGISTER) {
-            System.out.println("\n## 등록할 역 이름을 입력하세요.");
+            return scanInputLineWithNotice(INPUT_STATION_NAME_REGISTRATION_NOTICE);
         }
-        if (functionType == FunctionType.DELETE) {
-            System.out.println("\n## 삭제할 역 이름을 입력하세요.");
-        }
-        return scanner.nextLine();
+        return scanInputLineWithNotice(INPUT_STATION_NAME_DELETION_NOTICE);
     }
 }
