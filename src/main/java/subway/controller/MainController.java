@@ -2,11 +2,10 @@ package subway.controller;
 
 import subway.Constants;
 import subway.view.MainScreen;
-import subway.view.Screen;
 
 public class MainController implements Controller {
     static MainController instance;
-    private Screen screen;
+    private MainScreen screen;
 
     public MainController() {
         screen = MainScreen.getInstance();
@@ -32,7 +31,7 @@ public class MainController implements Controller {
             SectionController.getInstance().action();
         }
         if (userInput.equals(Constants.USER_ANSWER_PRINT_TRANSIT_MAP)) {
-            ((MainScreen) screen).printTransitMap();
+            screen.printTransitMap();
             action();
         }
         if (userInput.equals(Constants.QUIT)) {

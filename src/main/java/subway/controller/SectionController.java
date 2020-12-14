@@ -6,8 +6,8 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.Screen;
-import subway.view.SectionManagementScreen;
-import subway.view.UserInputNumberSelection;
+import subway.view.SectionScreen;
+import subway.view.CategorySelection;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class SectionController implements Controller {
     Screen screen;
 
     public SectionController() {
-        screen = SectionManagementScreen.getInstance();
+        screen = SectionScreen.getInstance();
     }
 
     public static SectionController getInstance() {
@@ -30,7 +30,7 @@ public class SectionController implements Controller {
     public void action() {
         String userInput = screen.show();
         if (userInput.equals(Constants.USER_ANSWER_REGISTER)) {
-            registerNewSection();
+            registerSection();
         }
         if (userInput.equals(Constants.USER_ANSWER_DELETE)) {
             deleteSection();
@@ -38,7 +38,7 @@ public class SectionController implements Controller {
         MainController.getInstance().action();
     }
 
-    private void registerNewSection() {
+    private void registerSection() {
         System.out.println("\n## 노선을 입력하세요.");
         try {
             registerNewSectionHelper();
@@ -50,23 +50,23 @@ public class SectionController implements Controller {
     }
 
     private void registerNewSectionHelper() {
-        Line line = LineRepository.findLine(UserInputNumberSelection.getUserInput());
+        Line line = LineRepository.findLine(CategorySelection.getUserInput());
         Station station = getStationToAdd();
         if (line.contains(station)) {
             throw new IllegalArgumentException();
         }
-        int section = getSectionToAdd(line.getLineStations());
+        int section = getSectionToAdd(line.getLineStations()) - 1;
         line.getLineStations().add(section, station);
     }
 
     private Station getStationToAdd() {
         System.out.println("\n## 역이름을 입력하세요.");
-        return StationRepository.findStation(UserInputNumberSelection.getUserInput());
+        return StationRepository.findStation(CategorySelection.getUserInput());
     }
 
     private int getSectionToAdd(ArrayList<Station> lineStations) {
         System.out.println("\n## 순서를 입력하세요.");
-        int section = Integer.parseInt(UserInputNumberSelection.getUserInput());
+        int section = Integer.parseInt(CategorySelection.getUserInput());
         if (section > lineStations.size() - 1 || section <= 0) {
             throw new IllegalArgumentException();
         }
@@ -85,7 +85,7 @@ public class SectionController implements Controller {
     }
 
     private void deleteSectionHelper() {
-        Line line = LineRepository.findLine(UserInputNumberSelection.getUserInput());
+        Line line = LineRepository.findLine(CategorySelection.getUserInput());
         if (line.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -98,6 +98,6 @@ public class SectionController implements Controller {
 
     private Station getStationToDelete() {
         System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-        return StationRepository.findStation(UserInputNumberSelection.getUserInput());
+        return StationRepository.findStation(CategorySelection.getUserInput());
     }
 }

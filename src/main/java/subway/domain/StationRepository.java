@@ -18,15 +18,6 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean contains(Station checkStation) {
-        for (Station station : stations) {
-            if (station.equals(checkStation)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static Station findStation(String name) {
         for (Station station : stations) {
             if (station.getName().equals(name)) {

@@ -5,16 +5,16 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.LineManagementScreen;
+import subway.view.LineScreen;
 import subway.view.Screen;
-import subway.view.UserInputNumberSelection;
+import subway.view.CategorySelection;
 
 public class LineController implements Controller {
     static LineController instance;
     Screen screen;
 
     public LineController() {
-        screen = LineManagementScreen.getInstance();
+        screen = LineScreen.getInstance();
     }
 
     public static LineController getInstance() {
@@ -28,7 +28,7 @@ public class LineController implements Controller {
     public void action() {
         String userInput = screen.show();
         if (userInput.equals(Constants.USER_ANSWER_REGISTER)) {
-            registerNewLine();
+            registerLine();
         }
         if (userInput.equals(Constants.USER_ANSWER_DELETE)) {
             deleteLine();
@@ -42,7 +42,7 @@ public class LineController implements Controller {
     private void deleteLine() {
         System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
         try {
-            LineRepository.deleteLineByName(UserInputNumberSelection.getUserInput());
+            LineRepository.deleteLineByName(CategorySelection.getUserInput());
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 잘못된 입력입니다.");
             return;
@@ -50,15 +50,15 @@ public class LineController implements Controller {
         System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
-    private void registerNewLine() {
+    private void registerLine() {
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         try {
-            Line line = new Line(UserInputNumberSelection.getUserInput());
+            Line line = new Line(CategorySelection.getUserInput());
             initiateLinetations(line);
             LineRepository.addLine(line);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 잘못된 입력입니다.");
-            registerNewLine();
+            registerLine();
             return;
         }
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
@@ -66,10 +66,10 @@ public class LineController implements Controller {
 
     private void initiateLinetations(Line line) {
         System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-        Station firstStation = StationRepository.findStation(UserInputNumberSelection.getUserInput());
+        Station firstStation = StationRepository.findStation(CategorySelection.getUserInput());
 
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
-        Station secondStation = StationRepository.findStation(UserInputNumberSelection.getUserInput());
+        Station secondStation = StationRepository.findStation(CategorySelection.getUserInput());
 
         line.initiateLineStations(firstStation, secondStation);
     }

@@ -21,7 +21,7 @@ public class MainScreen implements Screen {
     @Override
     public String show() {
         System.out.println(Constants.MAIN_SCREEN_USER_PROMPT);
-        String userInput = UserInputNumberSelection.createUserSelectionInput(
+        String userInput = CategorySelection.createUserInput(
                 Constants.COUNT_MAIN_USER_PROMPT);
         return userInput;
     }

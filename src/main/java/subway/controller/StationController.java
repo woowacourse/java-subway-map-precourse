@@ -3,16 +3,14 @@ package subway.controller;
 import subway.Constants;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.view.Screen;
-import subway.view.StationManagementScreen;
-import subway.view.UserInputNumberSelection;
+import subway.view.StationScreen;
 
 public class StationController implements Controller {
     static StationController instance;
-    Screen screen;
+    StationScreen screen;
 
     public StationController() {
-        screen = StationManagementScreen.getInstance();
+        screen = StationScreen.getInstance();
     }
 
     public static StationController getInstance() {
@@ -26,44 +24,37 @@ public class StationController implements Controller {
     public void action() {
         String userInput = screen.show();
         if (userInput.equals(Constants.USER_ANSWER_REGISTER)) {
-            registerNewStation();
+            registerStation();
         }
         if (userInput.equals(Constants.USER_ANSWER_DELETE)) {
             deleteStation();
         }
         if (userInput.equals(Constants.USER_ANSWER_SHOW)) {
-            printStations();
+            screen.printStationsList();
         }
         MainController.getInstance().action();
     }
 
-    private void registerNewStation() {
-        System.out.println("\n## 등록할 역 이름을 입력하세요.");
+    private void registerStation() {
+        String userInput = screen.showPromptRegisterStation();
         try {
-            StationRepository.addStation(new Station(UserInputNumberSelection.getUserInput()));
+            StationRepository.addStation(new Station(userInput));
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 입력입니다.");
-            registerNewStation();
-            return;
+            screen.printError(e);
+            registerStation();
         }
+        screen.printRegistrationCompleted();
     }
 
     private void deleteStation() {
-        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
+        String userInput = screen.showPromptDeleteStation();
         try {
-            StationRepository.deleteStation(UserInputNumberSelection.getUserInput());
+            StationRepository.deleteStation(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("\n[ERROR] 잘못된 입력입니다.");
+            screen.printError(e);
             return;
         }
-        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
-    }
-
-    private void printStations() {
-        System.out.println("\n## 역 목록");
-        for (Station station : StationRepository.stations()) {
-            System.out.println("[INFO] " + station.getName());
-        }
+        screen.printDeletionCompleted();
     }
 }
 
