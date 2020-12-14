@@ -16,9 +16,13 @@ public class Line {
 
     // 추가 기능 구현
 
-/*    private List<Station> stationList = new LinkedList<>();
+    private List<Station> stationList = new LinkedList<>();
 
-    public boolean equal(String lineName) {
+    public void addStation(String stationName) {
+        stationList.add(new Station(stationName));
+    }
+
+    /*public boolean equal(String lineName) {
         return name.equals(lineName);
     }*/
 
