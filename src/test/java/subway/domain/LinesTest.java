@@ -13,8 +13,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LinesTest {
     static final String SECOND_LINE_NAME = "2호선";
-    public static final String THIRD_LINE_NAME = "3호선";
-    public static final String FORTH_LINE_NAME = "4호선";
+    static final String THIRD_LINE_NAME = "3호선";
+    static final String FORTH_LINE_NAME = "4호선";
+    static final String SADANG_STATION = "사당역";
     Lines lines;
     Line secondLine;
     Station startStation;
@@ -23,7 +24,7 @@ class LinesTest {
     @BeforeEach
     void setUpEach() {
         lines = new Lines();
-        startStation = StationFactory.makeStation("사당역");
+        startStation = StationFactory.makeStation(SADANG_STATION);
         endStation = StationFactory.makeStation("신대방역");
         secondLine = LineFactory.makeLine(SECOND_LINE_NAME, startStation, endStation);
         lines.addLine(secondLine);
@@ -64,15 +65,6 @@ class LinesTest {
         assertThat(lines.size()).isEqualTo(beforeSize - 1);
     }
 
-    @DisplayName("노선에 역을 추가한다")
-    @Test
-    void addStationAtLineTest(){
-        Line line = lines.findLine(SECOND_LINE_NAME);
-        String testName = "산본역";
-        line.addStation(1, StationFactory.makeStation(testName));
-
-        assertThat(line.stationsNames()).contains(testName);
-    }
 
     @DisplayName("노선을 찾는다")
     @Test
