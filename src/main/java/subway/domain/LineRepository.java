@@ -22,14 +22,14 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
-        Line getLine = getLine(name);
+        Line getLine = getEqualsLine(name);
         if (getLine == null) {
             throw new IllegalArgumentException("[ERROR] 등록 되어 있지 않은 노선입니다.");
         }
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Line getLine(String lineName) {
+    public static Line getEqualsLine(String lineName) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
                 return line;
