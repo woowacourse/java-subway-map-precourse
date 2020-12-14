@@ -25,7 +25,7 @@ public class LineInputViewer {
         System.out.println(ASK_DEPARTURE_STATION);
     }
 
-    public static void setAskTerminalStation() {
+    public static void askTerminalStation() {
         System.out.println(ASK_TERMINAL_STATION);
     }
 }

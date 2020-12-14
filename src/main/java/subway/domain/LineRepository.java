@@ -15,7 +15,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        checkOverlappedLine(line);
+        checkOverlappedLine(line.getName());
         lines.add(line);
         Collections.sort(lines);
     }
@@ -24,9 +24,9 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    private static void checkOverlappedLine(Line target) {
+    public static void checkOverlappedLine(String target) {
         long isOverlap = lines.stream()
-                .filter(line -> line.compareName(target.getName()))
+                .filter(line -> line.compareName(target))
                 .count();
         if (isOverlap != ZERO_NUMBER) {
             throw new IllegalArgumentException(OVERLAP_ERROR);
