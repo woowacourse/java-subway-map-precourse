@@ -89,7 +89,7 @@ public class OutputMessage {
         System.out.println(WRITE_DELETE_LINE_NAME);
         return scanner.nextLine();
     }
-    public String registerLineUpStation(){
+    public static String registerLineUpStation(){
         System.out.println(WRITE_UP_STATION_NAME);
         return scanner.nextLine();
     }

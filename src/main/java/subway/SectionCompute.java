@@ -8,4 +8,5 @@ public class SectionCompute {
         SectionFunctionChoice choice=SectionFunctionChoice.sectionFunctionInput();
         choice.doingFunction(choice.getChoiceKey());
     }
+
 }

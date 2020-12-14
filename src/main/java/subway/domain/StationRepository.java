@@ -17,6 +17,11 @@ public class StationRepository {
             stations.add(station);
         }
     }
+    public void initializeAddStation(String[] station){
+        for(int i=0;i<station.length;i++){
+            stations.add(new Station(station[i]));
+        }
+    }
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));

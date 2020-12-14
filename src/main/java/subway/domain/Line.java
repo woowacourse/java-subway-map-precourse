@@ -11,22 +11,27 @@ public class Line {
     OutputMessage outputMessage=new OutputMessage();
     private StationRepository stationRepository= new StationRepository();
     private List<Station> stationInLine=new ArrayList<>();
-    private String tmpSaveUpStation;
+
     private String tmpSaveDownStation;
-    public Line(String name) {
+    public Line(String name){
+        this.name=name;
+    }
+    public Line(String name,String upStation) {
         System.out.println("line생성");
-        if(registerLineJongJum()){
-            stationInLine.add(new Station(tmpSaveUpStation));
+        if(registerLineJongJum(upStation)){
+            stationInLine.add(new Station(upStation));
             stationInLine.add(new Station(tmpSaveDownStation));
             this.name = name;
         }
         System.out.println("라인생성끝");
     }
-    public boolean registerLineJongJum(){
+    public void initializeLine(String[] station){
+        for(String tmpStation:station)
+        stationInLine.add(new Station(tmpStation));
+    }
+    public boolean registerLineJongJum(String upStation){
 
-        tmpSaveUpStation=outputMessage.registerLineUpStation();
-        System.out.println("2323");
-        if(stationRepository.containStationName(tmpSaveUpStation)){
+        if(stationRepository.containStationName(upStation)){
             tmpSaveDownStation=outputMessage.registerLineDownStation();
             if(stationRepository.containStationName(tmpSaveDownStation)){
                 return true;
