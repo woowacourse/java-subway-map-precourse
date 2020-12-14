@@ -17,19 +17,7 @@ public class Line {
 
     // 추가 기능 구현
 
-    private List<Station> stationList = new LinkedList<>();
-
-    public void addStation(String stationName) {
-        stationList.add(new Station(stationName));
-    }
-
-    public void addStation(String stationName, int index) {
-        stationList.add(index-1, new Station(stationName));
-    }
-
-    public boolean deleteStation(String stationName) {
-        return stationList.removeIf(station -> Objects.equals(station.getName(), stationName));
-    }
+    private StationRepository stationRepository = new StationRepository();
 
     /*public boolean equal(String lineName) {
         return name.equals(lineName);

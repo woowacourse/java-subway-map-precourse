@@ -1,12 +1,9 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class StationRepository {
-    private static final List<Station> stations = new ArrayList<>();
+    private static final List<Station> stations = new LinkedList<>();
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -14,6 +11,10 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         stations.add(station);
+    }
+
+    public static void addStation(Station station, int index) {
+        stations.add(index-1, station);
     }
 
     public static boolean deleteStation(String name) {
