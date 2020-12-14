@@ -13,13 +13,13 @@ public class PrintMapScreen implements Screen {
     @Override
     public void show() {
         OutputView.printNewLine();
-        OutputView.printTitle(DOUBLE_SHARP + TITLE);
+        OutputView.printWithDoubleSharp(TITLE);
     }
 
     @Override
     public void run(Scanner scanner) {
         LineRepository.printLineInfo();
-        OutputView.print(ENTER);
+        OutputView.printNewLine();
         ScreenStack.returnToFirstScreen();
     }
 }

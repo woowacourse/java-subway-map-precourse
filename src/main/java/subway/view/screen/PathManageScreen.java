@@ -19,7 +19,7 @@ public class PathManageScreen implements Screen {
     @Override
     public void show() {
         OutputView.printNewLine();
-        OutputView.printTitle(DOUBLE_SHARP + NAME + SPACE + TITLE);
+        OutputView.printWithDoubleSharp(NAME + SPACE + TITLE);
         int i;
         for (i = 0; i < MANAGE_MENU_ACTION.size() - 1; i++) {
             OutputView.printMenus(Integer.toString(i + 1) + DOT + NAME + SPACE + MANAGE_MENU_ACTION.get(i).toString());
@@ -30,7 +30,7 @@ public class PathManageScreen implements Screen {
     @Override
     public void run(Scanner scanner) {
         OutputView.printNewLine();
-        OutputView.print(DOUBLE_SHARP + SELECT_FUNCTION);
+        OutputView.printWithDoubleSharp(SELECT_FUNCTION);
         String command = InputView.getCommand(scanner);
         if (command.equals(BACK_COMMAND)) {
             ScreenStack.back();

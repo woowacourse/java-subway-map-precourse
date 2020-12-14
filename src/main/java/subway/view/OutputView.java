@@ -4,17 +4,14 @@ public class OutputView {
     public static final String INFORMATION_MARK = "[INFO] ";
     public static final String ERROR_MARK = "[ERROR] ";
     public static final String SEPARATER = "---";
-
-    public static final void printTitle(String title) {
-        System.out.println(title);
-    }
+    public static final String DOUBLE_SHARP = "## ";
 
     public static final void printMenus(String menu) {
         System.out.println(menu);
     }
 
-    public static final void print(String string) {
-        System.out.println(string);
+    public static final void printWithDoubleSharp(String string){
+        System.out.println(DOUBLE_SHARP + string);
     }
 
     public static final void printNewLine(){
