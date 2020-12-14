@@ -26,8 +26,7 @@ public class IndexValidatorTest {
 
         //then
         assertThatThrownBy(callable).isExactlyInstanceOf(NotNumberException.class)
-                .hasMessage(SubwayRuntimeException.ERROR +
-                        NotNumberException.NOT_NUMBER_ERROR);
+                .hasMessage(SubwayRuntimeException.ERROR + NotNumberException.NOT_NUMBER_ERROR);
     }
 
     @Test

@@ -8,18 +8,6 @@ import subway.domain.function.Functionable;
 
 public final class OutputView {
 
-    private static final String FUNCTION_FORMAT = "%s. %s\n";
-
-    private static final String MESSAGE_FORMAT = "%s %s\n";
-
-    private static final String LIST_FORMAT = "%s 목록";
-
-    private static final String VIEW_FORMAT = "%s 화면";
-
-    private static final String SAVED_FORMAT = "지하철 %s이 등록되었습니다.\n";
-
-    private static final String REMOVED_FORMAT = "지하철 %s이 삭제되었습니다.\n";
-
     private static final String TITLE_PREFIX = "##";
 
     private static final String SUCCESS_PREFIX = "[INFO]";
@@ -31,20 +19,20 @@ public final class OutputView {
     private OutputView() {}
 
     public static void printSaved(final String type) {
-        printMessage(String.format(SAVED_FORMAT, type));
+        printMessage(String.format(ViewFormat.SAVED_FORMAT, type));
     }
 
     public static void printRemoved(final String type) {
-        printMessage(String.format(REMOVED_FORMAT, type));
+        printMessage(String.format(ViewFormat.REMOVED_FORMAT, type));
     }
 
     public static void printTitleAndStations(final StationRepository stationRepository) {
-        printTitle(String.format(LIST_FORMAT, ManagementController.STATION));
+        printTitle(String.format(ViewFormat.LIST_FORMAT, ManagementController.STATION));
         printStations(stationRepository);
     }
 
     public static void printLines(final LineRepository lineRepository) {
-        printTitle(String.format(LIST_FORMAT, ManagementController.LINE));
+        printTitle(String.format(ViewFormat.LIST_FORMAT, ManagementController.LINE));
 
         for (String lineName : lineRepository.lineNames()) {
             printMessage(lineName);
@@ -64,10 +52,10 @@ public final class OutputView {
     }
 
     public static void printFunctions(final String viewTitle, final Functionable[] functionables) {
-        printTitle(String.format(VIEW_FORMAT, viewTitle));
+        printTitle(String.format(ViewFormat.VIEW_FORMAT, viewTitle));
 
         for (Functionable functionable : functionables) {
-            System.out.printf(FUNCTION_FORMAT, functionable.getIdentifier(),
+            System.out.printf(ViewFormat.FUNCTION_FORMAT, functionable.getIdentifier(),
                     functionable.getDescription());
         }
 
@@ -83,10 +71,10 @@ public final class OutputView {
     }
 
     private static void printMessage(final String message) {
-        System.out.printf(MESSAGE_FORMAT, SUCCESS_PREFIX, message);
+        System.out.printf(ViewFormat.MESSAGE_FORMAT, SUCCESS_PREFIX, message);
     }
 
     private static void printTitle(final String message) {
-        System.out.printf(MESSAGE_FORMAT, TITLE_PREFIX, message);
+        System.out.printf(ViewFormat.MESSAGE_FORMAT, TITLE_PREFIX, message);
     }
 }

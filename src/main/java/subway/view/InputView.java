@@ -10,9 +10,7 @@ import subway.validator.ValidatorPool;
 
 public final class InputView {
 
-    private static final String MESSAGE_FORMAT = "%s %s\n";
-
-    private static final String VIEW_PREFIX = "##";
+    public static final String VIEW_PREFIX = "##";
 
     private static final String FUNCTION_IDENTIFIER_QUESTION = "원하는 기능을 선택하세요.";
 
@@ -116,6 +114,6 @@ public final class InputView {
     }
 
     private static void printQuestionAddedPrefix(final String message) {
-        System.out.printf(MESSAGE_FORMAT, VIEW_PREFIX, message);
+        System.out.printf(ViewFormat.MESSAGE_FORMAT, VIEW_PREFIX, message);
     }
 }

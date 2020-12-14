@@ -51,7 +51,7 @@ public final class ManagementController {
     }
 
     public ManagementController removeStation() {
-        final String stationName = InputView.inputStation();
+        final String stationName = InputView.inputRemoveStation();
 
         return removeStation(stationName);
     }
@@ -90,7 +90,7 @@ public final class ManagementController {
     }
 
     public ManagementController removeLine() {
-        final String lineName = InputView.inputLineName();
+        final String lineName = InputView.inputRemoveLineName();
 
         return removeLine(lineName);
     }
