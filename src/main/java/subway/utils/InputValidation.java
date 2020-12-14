@@ -5,6 +5,8 @@ import subway.domain.*;
 import java.util.List;
 import java.util.Objects;
 
+import static subway.domain.LineRepository.findLine;
+import static subway.domain.StationRepository.findStation;
 import static subway.utils.ParseUtils.parseStringToInt;
 
 public class InputValidation {
@@ -31,7 +33,7 @@ public class InputValidation {
     }
 
     public boolean validateStationNameIsDuplicate(String name) {
-        Station findStation = StationRepository.findStation(name);
+        Station findStation = findStation(name);
         if (!Objects.equals(findStation, null)) {
             System.out.println("\n[ERROR] 이미 등록된 역 이름입니다.");
             return false;
@@ -40,7 +42,7 @@ public class InputValidation {
     }
 
     public boolean validateStationNameIsContains(String name) {
-        Station findStation = StationRepository.findStation(name);
+        Station findStation = findStation(name);
         if (Objects.equals(findStation, null)) {
             System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
             return false;
@@ -49,7 +51,7 @@ public class InputValidation {
     }
 
     public boolean validateLineNameIsDuplicate(String name) {
-        Line findLine = LineRepository.findLine(name);
+        Line findLine = findLine(name);
         if (!Objects.equals(findLine, null)) {
             System.out.println("\n[ERROR] 이미 등록된 노선 이름입니다.");
             return false;
@@ -58,7 +60,7 @@ public class InputValidation {
     }
 
     public boolean validateLineNameIsContains(String name) {
-        Line findLine = LineRepository.findLine(name);
+        Line findLine = findLine(name);
         if (Objects.equals(findLine, null)) {
             System.out.println("\n[ERROR] 존재하지 않는 노선입니다.");
             return false;
@@ -77,7 +79,7 @@ public class InputValidation {
 
     public int validatePositionIsOutOfRange(String lineName, String position, LineStationRepository lineStation) {
         int pos = parseStringToInt(position) - SECTION_POINT_ONE;
-        int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName));
+        int stationSizeOfLine = lineStation.getStationSizeOfLine(findLine(lineName));
         if (pos > stationSizeOfLine) {
             return stationSizeOfLine;
         }
@@ -88,7 +90,7 @@ public class InputValidation {
     }
 
     public boolean validateStationSizeOfLineIsMoreThan2(String lineName, LineStationRepository lineStation) {
-        int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName));
+        int stationSizeOfLine = lineStation.getStationSizeOfLine(findLine(lineName));
         if (stationSizeOfLine <= MIN_COUNT_OF_DELETE_SECTION) {
             System.out.println("\n[ERROR] 노선에 포함된 역이 두개 이하입니다.");
             return false;
@@ -96,8 +98,16 @@ public class InputValidation {
         return true;
     }
 
+    public boolean validateStationIsContainsInLineStation(String lineName, String stationName, LineStationRepository lineStation) {
+        if (!lineStation.findStationInLine(findLine(lineName), findStation(stationName))) {
+            System.out.println("\n[ERROR] 노선에 해당 역이 존재하지 않습니다.");
+            return false;
+        }
+        return true;
+    }
+
     public boolean validateStationIsContainsLineStation(String stationName, LineStationRepository lineStation) {
-        Station findStation = StationRepository.findStation(stationName);
+        Station findStation = findStation(stationName);
         if (lineStation.findStationInLine(findStation)) {
             System.out.println("\n[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
             return false;

@@ -110,10 +110,10 @@ public class InputService extends InputValidation {
         return lineName;
     }
 
-    public String inputStationNameToDeleteSection(Scanner scanner) {
+    public String inputStationNameToDeleteSection(Scanner scanner, String lineName, LineStationRepository lineStation) {
         inputStationNameToDeleteSectionRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateStationNameIsContains(stationName)) {
+        if (!validateStationNameIsContains(stationName) || !validateStationIsContainsInLineStation(lineName, stationName, lineStation)) {
             return isFail();
         }
         return stationName;

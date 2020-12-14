@@ -25,6 +25,10 @@ public class LineStationRepository {
         lineStation.remove(line);
     }
 
+    public boolean findStationInLine(Line line, Station station) {
+        return lineStation.get(line).contains(station);
+    }
+
     public void deleteStationInLineByName(Line line, String name) {
         lineStation.get(line).removeIf(station -> Objects.equals(station.getName(), name));
     }
