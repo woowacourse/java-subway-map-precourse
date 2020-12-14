@@ -15,4 +15,7 @@ public class Line {
         return name;
     }
 
+    public List<Station> getStations() {
+        return stations;
+    }
 }

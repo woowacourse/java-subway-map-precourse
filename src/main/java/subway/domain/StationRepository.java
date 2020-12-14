@@ -18,6 +18,7 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        LineRepository.validateLineInStationCheck(name);
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
