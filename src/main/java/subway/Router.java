@@ -8,6 +8,7 @@ import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.util.MainScreen;
+import subway.util.StationManagementScreen;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -67,23 +68,7 @@ public class Router {
     }
 
     public static boolean routeStationManagementScreen(String command) {
-        if (command.equals(BACK)) {
-            return false;
-        }
-        if (command.equals(ONE)) {
-            String stationName = inputView.getName(OutputView.ORDER_TO_REGISTER_STATION);
-            return StationController.registerStation(stationName);
-        }
-        if (command.equals(TWO)) {
-            String stationName = inputView.getName(OutputView.ORDER_TO_DELETE_STATION);
-            return StationController.deleteStation(stationName);
-        }
-        if (command.equals(THREE)) {
-            List<Station> stations = StationController.searchStation();
-            OutputView.print(OutputView.STATION_LIST);
-            OutputView.printList(stations);
-        }
-        return false;
+        return StationManagementScreen.run(inputView, command);
     }
 
     public static boolean routeLineManagementScreen(String command) {

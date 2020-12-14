@@ -10,31 +10,33 @@ public enum MainScreen {
     STATION_MANAGEMENT("1", Router::enterStationManagementScreen),
     LINE_MANAGEMENT("2", Router::enterLineManagementScreen),
     SECTION_MANAGEMENT("3", Router::enterSectionManagementScreen),
-    ROUTE_MAP_PRINT("4", () -> OutputView.printMap(LineController.searchLine())),
+    ROUTE_MAP_PRINT("4", () -> {
+        OutputView.printMap(LineController.searchLine());
+        return true;
+    }),
     QUIT("Q", () -> false);
 
-    private String number;
+    private String feature;
     private Supplier<Boolean> function;
 
-
-    MainScreen(String number, Supplier<Boolean> function) {
-        this.number = number;
+    MainScreen(String feature, Supplier<Boolean> function) {
+        this.feature = feature;
         this.function = function;
     }
 
     public static boolean run(String command) {
-        if(hasNumber(command)){
+        if (hasFeature(command)) {
             return Arrays.stream(values())
-                .filter(mainScreen -> mainScreen.number.equals(command))
+                .filter(mainScreen -> mainScreen.feature.equals(command))
                 .findAny()
-                .get()
+                .orElse(MainScreen.QUIT)
                 .function.get();
         }
         return true;
     }
 
-    public static boolean hasNumber(String command) {
+    public static boolean hasFeature(String command) {
         return Arrays.stream(values())
-            .anyMatch(mainScreen -> mainScreen.number.equals(command));
+            .anyMatch(mainScreen -> mainScreen.feature.equals(command));
     }
 }
