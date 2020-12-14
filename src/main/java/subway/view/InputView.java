@@ -12,7 +12,7 @@ public class InputView {
     private static final String STATION = "역";
     private static final String LINE = "노선";
     private static final String NAME = "이름";
-    private static final String MAIN_MENU_MESSAGE = "\n## 메인 화면\n1. 역 관리\n2. 노선 관리\n3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
+    private static final String MAIN_MENU_MESSAGE = "## 메인 화면\n1. 역 관리\n2. 노선 관리\n3. 구간 관리\n4. 지하철 노선도 출력\nQ. 종료";
     private static final String SUB_MENU_MESSAGE_TOP = "\n## %s 관리 화면\n";
     private static final String SUB_MENU_MESSAGE_ONE = "1. %s 등록\n";
     private static final String SUB_MENU_MESSAGE_TWO = "2. %s 삭제\n";

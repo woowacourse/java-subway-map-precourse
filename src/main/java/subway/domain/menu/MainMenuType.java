@@ -1,5 +1,7 @@
 package subway.domain.menu;
 
+import subway.exception.SubwayProgramException;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +13,7 @@ public enum MainMenuType {
     PRINT_MAP("4", Collections.EMPTY_LIST),
     END_PROGRAM("Q", Collections.EMPTY_LIST);
 
-    private static final String MAIN_MENU_ERROR = "\n[ERROR] 선택할 수 없는 기능입니다.";
+    private static final String MENU_ERROR = "선택할 수 없는 기능입니다.";
     private String text;
     private List<SubMenuType> subMenuTypeList;
 
@@ -25,13 +27,13 @@ public enum MainMenuType {
         return Arrays.stream(MainMenuType.values())
                 .filter(menu -> menu.text.equals(menuInput.toUpperCase()))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
+                .orElseThrow(() -> new SubwayProgramException(MENU_ERROR));
     }
 
     public SubMenuType validateSubMenuOfMainMenu(String menuInput) {
         return subMenuTypeList.stream()
                 .filter(subMenu -> subMenu == SubMenuType.of(menuInput))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
+                .orElseThrow(() -> new SubwayProgramException(MENU_ERROR));
     }
 }

@@ -6,15 +6,16 @@ import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationName;
 import subway.domain.station.StationRepository;
+import subway.exception.SubwayProgramException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Scanner;
 
 public class LineService {
-    private static final String STATION_NOT_EXIST_ERROR = "\n[ERROR] 역 목록에 등록되어 있는 역이 아닙니다.";
-    private static final String LINE_EXIST_ERROR = "\n[ERROR] 노선 목록에 이미 등록되어 있는 노선입니다.";
-    private static final String LINE_NOT_EXIST_ERROR = "\n[ERROR] 노선 목록에 등록되어 있는 노선이 아닙니다.";
+    private static final String STATION_NOT_EXIST_ERROR = "역 목록에 등록되어 있는 역이 아닙니다.";
+    private static final String LINE_EXIST_ERROR = "노선 목록에 이미 등록되어 있는 노선입니다.";
+    private static final String LINE_NOT_EXIST_ERROR = "노선 목록에 등록되어 있는 노선이 아닙니다.";
     private static final String UP = "상";
     private static final String DOWN = "하";
 
@@ -28,7 +29,7 @@ public class LineService {
         try {
             LineName lineName = InputView.inputLineNameToAdd(scanner, category);
             if (LineRepository.hasLine(lineName)) {
-                throw new IllegalArgumentException(LINE_EXIST_ERROR);
+                throw new SubwayProgramException(LINE_EXIST_ERROR);
             }
             addLine(lineName);
             OutputView.printAddMessage(category);
@@ -49,7 +50,7 @@ public class LineService {
 
     private void validateExistStation(StationName stationName) {
         if (!StationRepository.hasStation(Station.of(stationName))) {
-            throw new IllegalArgumentException(STATION_NOT_EXIST_ERROR);
+            throw new SubwayProgramException(STATION_NOT_EXIST_ERROR);
         }
     }
 
@@ -57,7 +58,7 @@ public class LineService {
         try {
             LineName lineName = InputView.inputLineNameToDelete(scanner, category);
             if (!LineRepository.hasLine(lineName)) {
-                throw new IllegalArgumentException(LINE_NOT_EXIST_ERROR);
+                throw new SubwayProgramException(LINE_NOT_EXIST_ERROR);
             }
             LineRepository.deleteLineByName(lineName);
             OutputView.printDeleteMessage(category);

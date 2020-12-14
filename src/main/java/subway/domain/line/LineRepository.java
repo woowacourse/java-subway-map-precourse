@@ -1,9 +1,11 @@
 package subway.domain.line;
 
+import subway.exception.SubwayProgramException;
+
 import java.util.*;
 
 public class LineRepository {
-    private static final String LINE_NOT_EXIST_ERROR = "\n[ERROR] 노선 목록에 등록되어 있는 노선이 아닙니다.";
+    private static final String LINE_NOT_EXIST_ERROR = "노선 목록에 등록되어 있는 노선이 아닙니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -28,6 +30,6 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(lineName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(LINE_NOT_EXIST_ERROR));
+                .orElseThrow(() -> new SubwayProgramException(LINE_NOT_EXIST_ERROR));
     }
 }

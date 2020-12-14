@@ -1,12 +1,14 @@
 package subway.domain.station;
 
+import subway.exception.SubwayProgramException;
+
 import java.util.Objects;
 
 public class StationName {
-    private static final String NAME_LENGTH_ERROR = "\n[ERROR] 역 이름은 2자 이상으로 입력해주세요.";
-    private static final String NAME_KOREAN_NUMBER_ERROR = "\n[ERROR] 역 이름은 한글과 숫자만 입력 가능합니다.";
-    private static final String NAME_FORM_ERROR = "\n[ERROR] 역 이름은 OO역 형태로 입력해주세요.";
-    private static final String NAME_DUPLICATE_ERROR = "\n[ERROR] 같은 역은 올 수 없습니다.";
+    private static final String NAME_LENGTH_ERROR = "역 이름은 2자 이상으로 입력해주세요.";
+    private static final String NAME_KOREAN_NUMBER_ERROR = "역 이름은 한글과 숫자만 입력 가능합니다.";
+    private static final String NAME_FORM_ERROR = "역 이름은 OO역 형태로 입력해주세요.";
+    private static final String NAME_DUPLICATE_ERROR = "같은 역은 올 수 없습니다.";
     private static final String KOREAN_REGEXP = "^[0-9가-힣]*$";
     private static final int MIN_NAME_LENGTH = 2;
     private static final char NAME_END = '역';
@@ -26,25 +28,25 @@ public class StationName {
 
     private void validateNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException(NAME_LENGTH_ERROR);
+            throw new SubwayProgramException(NAME_LENGTH_ERROR);
         }
     }
 
     private void validateKoreanAndNumber(String name) {
         if (!name.matches(KOREAN_REGEXP)) {
-            throw new IllegalArgumentException(NAME_KOREAN_NUMBER_ERROR);
+            throw new SubwayProgramException(NAME_KOREAN_NUMBER_ERROR);
         }
     }
 
     private void validateStationNameForm(String name) {
         if (name.charAt(name.length() - 1) != NAME_END) {
-            throw new IllegalArgumentException(NAME_FORM_ERROR);
+            throw new SubwayProgramException(NAME_FORM_ERROR);
         }
     }
 
     public void isSame(StationName stationName) {
         if (this.equals(stationName)) {
-            throw new IllegalArgumentException(NAME_DUPLICATE_ERROR);
+            throw new SubwayProgramException(NAME_DUPLICATE_ERROR);
         }
     }
 
