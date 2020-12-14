@@ -14,5 +14,22 @@ class StationRepositoryTest {
         assertThat("교대역").isEqualTo(StationRepository.stations().get(0).getName());
     }
 
+    @Test
+    public void 역_등록_성공(){
+        String station = "강남역";
+
+        assertThat(true).isEqualTo(StationRepository.addStation(new Station(station)));
+    }
+
+    @Test
+    public void 역_등록_실패(){
+        String lengthFail = "a";
+        String duplicateName = "강남역";
+        StationRepository.addStation(new Station(duplicateName));
+
+        assertThat(false).isEqualTo(StationRepository.addStation(new Station(lengthFail)));
+        assertThat(false).isEqualTo(StationRepository.addStation(new Station(duplicateName)));
+
+    }
 
 }

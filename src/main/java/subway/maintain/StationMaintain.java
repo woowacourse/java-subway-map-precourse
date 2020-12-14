@@ -1,5 +1,8 @@
 package subway.maintain;
 
+import subway.controller.Controller;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.utils.Util;
 import subway.view.OutputView;
 
@@ -49,6 +52,12 @@ public class StationMaintain {
     }
 
     private void registerStation() {
-        
+        OutputView.writeStationName();
+        if(StationRepository.addStation(new Station(scanner.next()))){
+            OutputView.completeRegisterStation();
+            new Controller(scanner);
+            return;
+        }
+        maintainPage();
     }
 }

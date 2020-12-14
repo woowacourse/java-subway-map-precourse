@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,12 +16,29 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
+    public static boolean addStation(Station station) {
+        if(station.getName() == null){
+            return false;
+        }
+        if(duplicateStation(station.getName())){
+            ErrorView.duplicateName();
+            return false;
+        }
         stations.add(station);
+        return true;
     }
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    private static boolean duplicateStation(String stationName) {
+        for(Station station : stations){
+            if(station.getName().equals(stationName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void init() {
