@@ -45,9 +45,11 @@ class SectionScreen implements SubwayScreen, SectionScreenMessage {
             System.out.println(MESSAGE_DELETE_SECTION_INPUT_LINE_NAME);
             String lineName = scanner.nextLine();
             Line line = LineRepository.getLine(lineName); // 노선 얻기
+
             System.out.println(MESSAGE_DELETE_SECTION_INPUT_STATION_NAME);
             String stationName = scanner.nextLine();
             line.deleteStation(stationName); // 노선에서 구간 삭제
+
             System.out.println(MESSAGE_SECTION_DELETED);
         }
     }
@@ -57,11 +59,13 @@ class SectionScreen implements SubwayScreen, SectionScreenMessage {
             System.out.println(MESSAGE_ADD_SECTION_INPUT_LINE_NAME);
             String lineName = scanner.nextLine();
             Line line = LineRepository.getLine(lineName); // 노선 얻기
+
             System.out.println(MESSAGE_ADD_SECTION_INPUT_STATION_NAME);
             String stationName = scanner.nextLine();
             System.out.println(MESSAGE_ADD_SECTION_INPUT_STATION_INDEX);
             String stationIndex = scanner.nextLine();
             line.addStation(stationName, stationIndex); // 구간 추가
+
             System.out.println(MESSAGE_SECTION_ADDED);
         }
     }

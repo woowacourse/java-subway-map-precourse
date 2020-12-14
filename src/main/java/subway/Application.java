@@ -8,7 +8,6 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         DataInitialization.initialize();
-        MainScreen mainScreen = new MainScreen();
-        mainScreen.startProcess(scanner);
+        MainScreen.display(new MainScreen(), scanner);
     }
 }

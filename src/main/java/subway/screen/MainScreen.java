@@ -42,30 +42,31 @@ public class MainScreen implements SubwayScreen, MainScreenMessage {
     }
 
     private void inputStationManagement(Scanner scanner) {
-        if(mainScreenInput.equals(STATION_MANAGEMENT)) {
-            StationScreen stationScreen = new StationScreen();
-            stationScreen.startProcess(scanner);
+        if (mainScreenInput.equals(STATION_MANAGEMENT)) {
+            display(new StationScreen(), scanner);
         }
     }
 
     private void inputLineManagement(Scanner scanner) {
-        if(mainScreenInput.equals(LINE_MANAGEMENT)) {
-            LineScreen lineScreen = new LineScreen();
-            lineScreen.startProcess(scanner);
+        if (mainScreenInput.equals(LINE_MANAGEMENT)) {
+            display(new LineScreen(), scanner);
         }
     }
 
     private void inputSectionManagement(Scanner scanner) {
-        if(mainScreenInput.equals(SECTION_MANAGEMENT)) {
-            SectionScreen sectionScreen = new SectionScreen();
-            sectionScreen.startProcess(scanner);
+        if (mainScreenInput.equals(SECTION_MANAGEMENT)) {
+            display(new SectionScreen(), scanner);
         }
     }
 
     private void inputPrintSubwayMap() {
-        if(mainScreenInput.equals(PRINT_SUBWAY_MAP)) {
+        if (mainScreenInput.equals(PRINT_SUBWAY_MAP)) {
             System.out.println(MAIN_SCREEN_PRINT_SUBWAY_MAP);
             LineRepository.printSubwayMap();
         }
+    }
+
+    public static void display(SubwayScreen subwayScreen, Scanner scanner) {
+        subwayScreen.startProcess(scanner);
     }
 }
