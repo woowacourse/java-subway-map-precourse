@@ -25,14 +25,14 @@ public class SubwayRepository {
 
     public static void addSectionOnTheLine(String lineName, String stationName, String order) {
         isPossibleSection(lineName, stationName, order);
-        List<Station> updateSection = subway.get(LineRepository.getLine(lineName));
+        List<Station> updateSection = subway.get(LineRepository.findByName(lineName));
 
-        updateSection.add(Integer.parseInt(order), StationRepository.getStation(stationName));
+        updateSection.add(Integer.parseInt(order), StationRepository.findByName(stationName));
     }
 
     private static void isPossibleSection(String lineName, String stationName, String order) {
-        List<Station> updateSection = subway.get(LineRepository.getLine(lineName));
-        Station station = StationRepository.getStation(stationName);
+        List<Station> updateSection = subway.get(LineRepository.findByName(lineName));
+        Station station = StationRepository.findByName(stationName);
 
         if (!LineRepository.isLineExist(lineName)){
             throw new IllegalArgumentException("[ERROR] 등록되지 않은 노선입니다");
@@ -50,8 +50,8 @@ public class SubwayRepository {
 
     public static void deleteSectionOnTheLine(String lineName, String stationName) {
         isPossibleDeleteSection(lineName, stationName);
-        Line line = LineRepository.getLine(lineName);
-        Station deleteStation = StationRepository.getStation(stationName);
+        Line line = LineRepository.findByName(lineName);
+        Station deleteStation = StationRepository.findByName(stationName);
         List<Station> selections = subway.get(line);
         selections.remove(deleteStation);
     }
@@ -63,8 +63,8 @@ public class SubwayRepository {
         if (!StationRepository.isStationExist(stationName)){
             throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 입니다");
         }
-        List<Station> sections = subway.get(LineRepository.getLine(lineName));
-        Station station = StationRepository.getStation(stationName);
+        List<Station> sections = subway.get(LineRepository.findByName(lineName));
+        Station station = StationRepository.findByName(stationName);
         if (!sections.contains(station)) {
             throw new IllegalArgumentException("[ERROR] 노선에 존재하지 않는 역입니다");
         }

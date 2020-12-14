@@ -20,9 +20,9 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Line getLine(String lineName) {
+    public static Line findByName(String name) {
          for (Line line : lines()) {
-             if (Objects.equals(line.getName(), lineName)) {
+             if (line.getName().equals(name)) {
                  return line;
              }
          }
@@ -50,8 +50,8 @@ public class LineRepository {
     }
 
     public static void createLineAndStation(String lineName, String upTerminal, String downTerminal) { // 노선이름, 상행, 하행 종점 등록
-        Station upTerminalStation = StationRepository.getStation(upTerminal);
-        Station downTerminalStation = StationRepository.getStation(downTerminal);
+        Station upTerminalStation = StationRepository.findByName(upTerminal);
+        Station downTerminalStation = StationRepository.findByName(downTerminal);
         Line newLine = new Line(lineName);
         List<Station> sections = Arrays.asList(upTerminalStation, downTerminalStation);
         SubwayRepository.addStationOnTheLine(newLine, sections);

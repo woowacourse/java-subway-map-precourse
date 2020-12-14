@@ -19,9 +19,9 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static Station getStation(String stationName) {
+    public static Station findByName(String name) {
         for (Station station : stations()) {
-            if (Objects.equals(station.getName(), stationName)) {
+            if (station.getName().equals(name)) {
                 return station;
             }
         }
