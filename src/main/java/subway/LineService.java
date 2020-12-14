@@ -35,7 +35,7 @@ public class LineService {
 
     public static boolean addLine(String lineName, String firstStationName, String lastStationName,
         boolean isPrint) {
-        if (isNotLineNameState(lineName)) {
+        if (isNotLineNameState(lineName) || isNotExistStation(firstStationName, lastStationName)) {
             return false;
         }
         Station firstStation = StationRepository.getStation(firstStationName);
