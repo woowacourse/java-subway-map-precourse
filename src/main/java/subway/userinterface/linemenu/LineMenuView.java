@@ -1,10 +1,6 @@
 package subway.userinterface.linemenu;
 
 import subway.userinterface.*;
-import subway.userinterface.stationmenu.StationDeleteController;
-import subway.userinterface.stationmenu.StationLookupController;
-import subway.userinterface.stationmenu.StationMenuView;
-import subway.userinterface.stationmenu.StationRegisterController;
 
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -33,11 +29,11 @@ public class LineMenuView implements MenuView {
 
     private void setMenu() {
         lineMenu.put(LineRegisterController.getInstance().getMenuKey(),
-                StationRegisterController.getInstance());
+                LineRegisterController.getInstance());
         lineMenu.put(LineDeleteController.getInstance().getMenuKey(),
-                StationDeleteController.getInstance());
+                LineDeleteController.getInstance());
         lineMenu.put(LineLookupController.getInstance().getMenuKey(),
-                StationLookupController.getInstance());
+                LineLookupController.getInstance());
         lineMenu.put(ReturnController.getInstance().getMenuKey(),
                 ReturnController.getInstance());
     }

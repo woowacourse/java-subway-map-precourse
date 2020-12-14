@@ -46,13 +46,13 @@ public class LineRegisterController implements Menu {
 
     @Override
     public void run(Scanner scanner) throws IllegalArgumentException {
+        String lineName = lineRegisterInputController.getUserInput(scanner);
         Station topStation =
                 StationRepository.findStationByName(topStationInput.getUserInput(scanner));
         Station bottomStation =
                 StationRepository.findStationByName(bottomStationInput.getUserInput(scanner));
 
-        lineService.registerLine(
-                lineRegisterInputController.getUserInput(scanner), topStation, bottomStation);
+        lineService.registerLine(lineName, topStation, bottomStation);
 
         OutputController.printInfo(LINE_REGISTERED);
     }
