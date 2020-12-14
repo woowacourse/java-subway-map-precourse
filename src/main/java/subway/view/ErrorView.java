@@ -1,0 +1,19 @@
+package subway.view;
+
+public class ErrorView {
+
+    private static final String NAME_LENGTH_ERROR = "[ERROR] 2글자 이상을 입력해주세요.\n";
+    private static final String WRITE_APPROPRIATE_NUMBER = "[ERROR] 적절한 숫자를 입력하세요.\n";
+
+    public static void print(String string){
+        System.out.println(string);
+    }
+
+    public static void nameLengthError() {
+        print(NAME_LENGTH_ERROR);
+    }
+
+    public static void writeAppropriateNumber() {
+        print(WRITE_APPROPRIATE_NUMBER);
+    }
+}
