@@ -8,19 +8,19 @@ import java.util.Scanner;
 
 public class StationManager {
 
-    public static void run(Scanner scanner) {
+    public static void run() {
         Output.printNewLine();
-        StationMenu.printMenu(scanner);
-        StationMenu stationMenu = chooseMenu(scanner);
+        StationMenu.printMenu();
+        StationMenu stationMenu = chooseMenu();
         stationMenu.execute(StationController.getInstance());
     }
 
-    private static StationMenu chooseMenu(Scanner scanner) {
+    private static StationMenu chooseMenu() {
         try {
-            return StationMenu.getStationMenuType(Input.input(scanner,Input.CHOOSE_FUNCTION_MESSAGE));
+            return StationMenu.getStationMenuType(Input.input(Input.CHOOSE_FUNCTION_MESSAGE));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
-            return chooseMenu(scanner);
+            return chooseMenu();
         }
     }
 }

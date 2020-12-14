@@ -13,14 +13,14 @@ public enum MainMenu {
     LINE_MENU("2", "2. 노선 관리", LineManager::run),
     SECTION_MENU("3", "3. 구간 관리", StationManager::run),
     ROUTE_MAP_MENU("4", "4. 지하철 노선도 출력", RouteMapManager::run),
-    EXIT("Q", "Q. 종료", (scanner) -> exitGame());
+    EXIT("Q", "Q. 종료", MainMenu::exitGame);
 
     private String number;
     private String name;
-    private Consumer<Scanner> nextAction;
+    private Runnable nextAction;
     private static boolean gameExit = true;
 
-    MainMenu(String number, String name, Consumer<Scanner> nextAction) {
+    MainMenu(String number, String name, Runnable nextAction) {
         this.number = number;
         this.name = name;
         this.nextAction = nextAction;
@@ -44,8 +44,8 @@ public enum MainMenu {
         gameExit = false;
     }
 
-    public void execute(Scanner scanner) {
-        nextAction.accept(scanner);
+    public void execute() {
+        nextAction.run();
     }
 
     public boolean isExit() {
