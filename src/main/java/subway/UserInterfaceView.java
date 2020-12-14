@@ -154,7 +154,7 @@ public class UserInterfaceView {
             return;
         }
         if (TWO_STRING.equals(userInput)) {
-
+            deleteStation();
             return;
         }
         if (THREE_STRING.equals(userInput)) {
@@ -165,6 +165,13 @@ public class UserInterfaceView {
     private void addStation() {
         String stationName = getUserInput(INPUT_ADD_STATION_NAME);
         if (!StationService.addStation(stationName, true)) {
+            stationStart();
+        }
+    }
+
+    private void deleteStation() {
+        String stationName = getUserInput(INPUT_DELETE_STATION_NAME);
+        if (!StationService.deleteStation(stationName)) {
             stationStart();
         }
     }
