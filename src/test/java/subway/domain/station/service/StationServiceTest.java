@@ -23,6 +23,7 @@ class StationServiceTest {
     @AfterEach
     void tearDown() {
         StationRepository.deleteAll();
+        LineRepository.deleteAll();
     }
 
     @DisplayName("station을 추가하는 기능을 테스트한다")
