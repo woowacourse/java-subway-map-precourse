@@ -29,7 +29,7 @@ public class SectionManagementView extends View {
 
     private static void registerSection(Scene scene, Request request, Response response) {
         List<String> inputs = new ArrayList<>();
-        if (!registerLineOfSection(request, response, inputs)) {
+        if (!registerLineOfSectionName(request, response, inputs)) {
             return;
         }
         SectionRepository.addSection(inputs.get(0), inputs.get(1), inputs.get(2));
@@ -37,7 +37,7 @@ public class SectionManagementView extends View {
         scene.back();
     }
 
-    private static boolean registerLineOfSection(Request request, Response response,
+    private static boolean registerLineOfSectionName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_OF_SECTION_REGISTER_MESSAGE);
         String lineName = request.requestInput(ExceptionManager::checkValidLineOfSectionRegister);
@@ -45,10 +45,10 @@ public class SectionManagementView extends View {
             return false;
         }
         inputs.add(lineName);
-        return registerStationOfSection(request, response, inputs);
+        return registerStationOfSectionName(request, response, inputs);
     }
 
-    private static boolean registerStationOfSection(Request request, Response response,
+    private static boolean registerStationOfSectionName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REGISETER_MESSAGE);
         String stationName = request.requestInputInLine(
@@ -74,7 +74,7 @@ public class SectionManagementView extends View {
 
     private static void removeSection(Scene scene, Request request, Response response) {
         List<String> inputs = new ArrayList<>();
-        if (!removeLineOfSection(request, response, inputs)) {
+        if (!removeLineOfSectionName(request, response, inputs)) {
             return;
         }
         SectionRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
@@ -82,7 +82,7 @@ public class SectionManagementView extends View {
         scene.back();
     }
 
-    private static boolean removeLineOfSection(Request request, Response response,
+    private static boolean removeLineOfSectionName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(LINE_OF_SECTION_REMOVAL_MESSAGE);
         String lineName = request.requestInput(ExceptionManager::checkValidLineOfSectionRemoval);
@@ -90,10 +90,10 @@ public class SectionManagementView extends View {
             return false;
         }
         inputs.add(lineName);
-        return removeStationOfSection(request, response, inputs);
+        return removeStationOfSectionName(request, response, inputs);
     }
 
-    private static boolean removeStationOfSection(Request request, Response response,
+    private static boolean removeStationOfSectionName(Request request, Response response,
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REMOVAL_MESSAGE);
         String stationName = request.requestInputInLine(

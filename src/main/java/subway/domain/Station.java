@@ -2,11 +2,10 @@ package subway.domain;
 
 public class Station {
     private String name;
-    private int numberOfLines; // 등록된 노선의 개수
+    private int numberOfLines = 0; // 등록된 노선의 개수
 
     public Station(String name) {
         this.name = name;
-        this.numberOfLines = 0;
     }
 
     public String getName() {

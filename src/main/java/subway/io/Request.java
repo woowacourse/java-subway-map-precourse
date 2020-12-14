@@ -27,9 +27,10 @@ public class Request {
         return input;
     }
 
-    public boolean applyInput(Function<String, Error> checkValidation, Consumer<String> objective) {
+    // validation으로 받은 함수를 통해 예외사항을 확인하고 objective 함수를 입력받은 값으로 적용시킨다.
+    public boolean applyInput(Function<String, Error> validation, Consumer<String> objective) {
         String input = getInput();
-        Error error = checkValidation.apply(input);
+        Error error = validation.apply(input);
         if (error != Error.OK) {
             printError(error);
             return false;
@@ -38,9 +39,10 @@ public class Request {
         return true;
     }
 
-    public String requestInput(Function<String, Error> checkValidation) {
+    // validation으로 받은 함수를 통해 예외사항을 확인하고 문제가 없을 때만 그 입력값을 반환한다.
+    public String requestInput(Function<String, Error> validation) {
         String input = getInput();
-        Error error = checkValidation.apply(input);
+        Error error = validation.apply(input);
         if (error != Error.OK) {
             printError(error);
             return null;
@@ -48,10 +50,11 @@ public class Request {
         return input;
     }
 
-    public String requestInputInLine(BiFunction<String, String, Error> checkValidation,
+    // validation으로 받은 함수를 통해 현재 노선에서의 예외사항을 확인하고 문제가 없을 때만 그 입력값을 반환한다.
+    public String requestInputInLine(BiFunction<String, String, Error> validation,
             String lineName) {
         String input = getInput();
-        Error error = checkValidation.apply(input, lineName);
+        Error error = validation.apply(input, lineName);
         if (error != Error.OK) {
             printError(error);
             return null;
