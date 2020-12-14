@@ -8,10 +8,10 @@ import subway.domain.station.model.StationRepository;
 import java.util.List;
 
 public class LineService {
-    private static final String ALREADY_CONTAIN_STATION_MESSAGE = "[ERROR] 이미 노선에 포함되어 역입니다.";
-    private static final String NOT_DUPLICATION_LINE_NAME_MESSAGE = "[ERROR] 중복된 노선 이름은 등록할 수 없습니다.";
-    private static final String NOT_FOUND_STATION_MESSAGE = "[ERROR] 존재하지 않는 역입니다.";
-    private static final String NOT_FOUND_Line_MESSAGE = "[ERROR] 존재하지 않는 노선입니다.";
+    private static final String ALREADY_CONTAIN_STATION_MESSAGE = "[ERROR] 이미 노선에 포함되어 역입니다.\n";
+    private static final String NOT_DUPLICATION_LINE_NAME_MESSAGE = "[ERROR] 중복된 노선 이름은 등록할 수 없습니다.\n";
+    private static final String NOT_FOUND_STATION_MESSAGE = "[ERROR] 존재하지 않는 역입니다.\n";
+    private static final String NOT_FOUND_LINE_MESSAGE = "[ERROR] 존재하지 않는 노선입니다.\n";
 
     public static List<Line> findAll() {
         return LineRepository.lines();
@@ -52,12 +52,21 @@ public class LineService {
     }
 
     public static void remove(String removedLineName) {
+        validateLineExist(removedLineName);
         LineRepository.deleteLineByName(removedLineName);
+    }
+
+    private static void validateLineExist(String removedLineName) {
+        List<Line> lines = LineRepository.lines();
+        lines.stream()
+                .filter(line -> line.isEqualTo(removedLineName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LINE_MESSAGE));
     }
 
     public static void addStation(String lineName, String stationName, int location) {
         Line line = LineRepository.findLineByName(lineName)
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_Line_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LINE_MESSAGE));
 
         validateSectionDuplicated(stationName, line);
         Station station = new Station(stationName);
@@ -76,6 +85,6 @@ public class LineService {
 
     public static Line findLineByName(String lineName) {
         return LineRepository.findLineByName(lineName)
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_Line_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LINE_MESSAGE));
     }
 }
