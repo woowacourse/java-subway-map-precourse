@@ -2,7 +2,7 @@ package subway;
 
 import java.util.Scanner;
 import controller.StationManageController;
-import utils.ValidatorUtils;
+import utils.ValidateUtils;
 import view.MainView;
 import view.StationManageView;
 
@@ -31,7 +31,7 @@ public class SubwayManager {
         while (true) {
             mainView.run();
             String input = mainView.input();
-            while (!ValidatorUtils.validateMainInput(input)) {
+            while (!ValidateUtils.validateMainInput(input)) {
                 mainView.printMessage(ERROR_INVALID_INPUT);
                 mainView.printInputMessage();
                 input = mainView.input();

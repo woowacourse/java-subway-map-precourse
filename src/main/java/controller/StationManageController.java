@@ -2,7 +2,7 @@ package controller;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import utils.ValidatorUtils;
+import utils.ValidateUtils;
 import view.StationManageView;
 
 public class StationManageController {
@@ -13,8 +13,11 @@ public class StationManageController {
     public static final String ERROR_PREFIX = "\n[ERROR] ";
     public static final String INFO_PREFIX = "[INFO] ";
     public static final String ERROR_INVALID_INPUT = "유효하지 않은 입력입니다. \n";
+    public static final String ERROR_DUPLICATE_STATION_NAME = "이미 등록된 역이 존재합니다. \n";
+    public static final String ERROR_STATION_NAME_LESS_THAN_TWO = "역이름은 2글자 이상이여야 합니다. \n";
     public static final String MESSAGE_ADD_COMPLETE = "지하철 역이 등록되었습니다.";
     public static final String INPUT_MESSAGE_FOR_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
+    public static final String INPUT_MESSAGE_FOR_STATION_NAME_TO_DELETE = "## 삭제할 역 이름을 입력하세요.";
 
     private StationManageView view;
 
@@ -23,7 +26,7 @@ public class StationManageController {
     }
 
     public void processInput(String input) {
-        if (!ValidatorUtils.validateInput(input)) {
+        if (!ValidateUtils.validateInput(input)) {
             view.printMessage(ERROR_PREFIX + ERROR_INVALID_INPUT);
             view.run();
         }
@@ -41,11 +44,14 @@ public class StationManageController {
     private void addStation() {
         view.printMessage(INPUT_MESSAGE_FOR_STATION_NAME);
         String input = view.input();
-
-        if (StationRepository.isExistStation(input)) {
+        if (!ValidateUtils.validateStationName(input)) {
+            view.printMessage(ERROR_STATION_NAME_LESS_THAN_TWO);
             return;
         }
-
+        if (StationRepository.isExistStation(input)) {
+            view.printMessage(ERROR_DUPLICATE_STATION_NAME);
+            return;
+        }
         StationRepository.addStation(new Station(input));
         view.printMessage("\n" + INFO_PREFIX + MESSAGE_ADD_COMPLETE + "\n");
     }
@@ -59,7 +65,7 @@ public class StationManageController {
     }
 
     public boolean validateInput(String input) {
-        return ValidatorUtils.validateInput(input);
+        return ValidateUtils.validateInput(input);
     }
 
 }
