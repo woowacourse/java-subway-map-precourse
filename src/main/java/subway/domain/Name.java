@@ -7,7 +7,7 @@ public class Name {
         if (name.length() < 2) {
             throw new IllegalArgumentException("이름은 2글자 이상이어야 합니다.");
         }
-        this.name = name;
+        this.name = name.trim();
     }
 
     @Override
