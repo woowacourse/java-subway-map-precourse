@@ -11,15 +11,16 @@ public class StationService {
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 역입니다.";
 
     public static boolean addStation(String stationName) {
+        boolean isAdd = false;
         try {
             Station station = new Station(stationName);
             StationRepository.addStation(station);
+            isAdd = true;
             StationOutputView.addStationComplete();
-            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return isAdd;
     }
 
     public static boolean deleteStation(String stationName) {

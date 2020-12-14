@@ -16,6 +16,7 @@ public class LineService {
     private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
 
     public static boolean addLine(String lineName, LineInputView lineInputView) {
+        boolean isAdd = false;
         try {
             Line line = new Line(lineName);
             Station startStation = getStartStation(lineInputView);
@@ -23,12 +24,12 @@ public class LineService {
             line.addStation(startStation);
             line.addStation(endStation);
             LineRepository.addLine(line);
+            isAdd = true;
             LineOutputView.addLineComplete();
-            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return isAdd;
     }
 
     private static Station getStartStation(LineInputView lineInputView) {
