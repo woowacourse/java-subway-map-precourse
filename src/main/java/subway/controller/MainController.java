@@ -6,6 +6,8 @@ import subway.exception.SubwayRuntimeException;
 
 public final class MainController {
 
+    public static final String LINE_FEED = "\n";
+
     public void run() {
         ManagementController managementController = ManagementController.initialize();
 
@@ -14,7 +16,7 @@ public final class MainController {
                 managementController = Functionable
                         .function(managementController, MainFunction.TITLE, MainFunction.values());
             } catch (SubwayRuntimeException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage() + LINE_FEED);
             }
         }
     }

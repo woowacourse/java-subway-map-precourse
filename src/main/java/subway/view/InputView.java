@@ -18,11 +18,15 @@ public final class InputView {
 
     private static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
 
+    private static final String REMOVE_STATION_NAME_QUESTION = "삭제할 역 이름을 입력하세요.";
+
     private static final String START_STATION_NAME_QUESTION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
 
     private static final String FINAL_STATION_NAME_QUESTION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
 
     private static final String LINE_NAME_QUESTION = "등록할 노선 이름을 입력하세요.";
+
+    private static final String REMOVE_LINE_NAME_QUESTION = "삭제할 노선 이름을 입력하세요.";
 
     private static final String STATION_QUESTION = "순서를 입력하세요.";
 
@@ -46,6 +50,10 @@ public final class InputView {
         return inputStationName(FINAL_STATION_NAME_QUESTION);
     }
 
+    public static String inputRemoveStation() {
+        return inputStationName(REMOVE_STATION_NAME_QUESTION);
+    }
+
     private static String inputStationName(final String message) {
         String stationName = input(message, StationNameValidator.class);
 
@@ -57,13 +65,21 @@ public final class InputView {
     }
 
     public static String inputLineName() {
-        String lineName = input(LINE_NAME_QUESTION, LineNameValidator.class);
+        return inputLineName(LINE_NAME_QUESTION);
+    }
+
+    public static String inputLineName(String message) {
+        String lineName = input(message, LineNameValidator.class);
 
         if (!lineName.endsWith(LineNameValidator.LINE_SUFFIX)) {
             lineName += LineNameValidator.LINE_SUFFIX;
         }
 
         return lineName;
+    }
+
+    public static String inputRemoveLineName() {
+        return inputLineName(REMOVE_LINE_NAME_QUESTION);
     }
 
     public static int inputIndex() {
