@@ -16,6 +16,23 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static boolean isIncludedSectionInLine(String lineName, String stationName) {
+        Line line = selectLine(lineName);
+        return line.isIncluded(stationName);
+    }
+
+    public static int countNumberOfStationsInLine(String lineName) {
+        Line line = selectLine(lineName);
+        return line.countSections();
+    }
+
+    private static Line selectLine(String name) {
+        return lines.stream()
+                .filter(line -> line.isMatchedName(name))
+                .findAny()
+                .get();
+    }
+
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }

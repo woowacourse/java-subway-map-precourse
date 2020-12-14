@@ -36,6 +36,10 @@ public class Line {
         return this.name.equals(name);
     }
 
+    public int countSections() {
+        return sections.size();
+    }
+
     public boolean isIncluded(String stationName) {
         return sections.stream()
                 .anyMatch(station -> station.isMatchedName(stationName));

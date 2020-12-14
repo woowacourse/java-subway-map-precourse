@@ -10,4 +10,16 @@ public class SectionDto {
         this.stationName = stationName;
         this.sequence = sequence;
     }
+
+    public String getLineName() {
+        return lineName;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public String getSequence() {
+        return sequence;
+    }
 }
