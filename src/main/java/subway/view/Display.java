@@ -17,4 +17,8 @@ public class Display {
     public static void printError(String error) {
         System.out.println(ERROR_PREFIX + error);
     }
+
+    public static void printEnterLine() {
+        System.out.println();
+    }
 }

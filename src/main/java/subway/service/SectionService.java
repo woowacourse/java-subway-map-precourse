@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.Section;
 import subway.domain.SectionRepository;
 import subway.domain.Station;
+import subway.view.MainDisplay;
 import subway.view.SectionDisplay;
 import subway.view.UserInput;
 
@@ -27,6 +28,7 @@ public class SectionService {
 
 
     public static void printSections() {
+        MainDisplay.printAllSections(SectionRepository.sections());
     }
 
     public static void saveSection(Line newLine) {
