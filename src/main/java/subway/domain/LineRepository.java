@@ -22,7 +22,7 @@ public class LineRepository {
     }
 
     public static void addSection(Line line, Station station, int sequence) {
-        lines.get(line).add(sequence, station);
+        lines.get(line).add(sequence-1, station);
     }
 
     public static boolean deleteLineByName(String name) {

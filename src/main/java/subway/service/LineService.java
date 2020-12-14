@@ -52,13 +52,6 @@ public class LineService {
         LineRepository.addSection(findLine, findStation, sequence);
     }
 
-    private static void validateMakeJunction(Map<Line, List<Station>> lines, Line findLine,
-        Station findStation) {
-        if(lines.get(findLine).stream().anyMatch(station -> station.equals(findStation))){
-            throw new IllegalArgumentException(JUNCTION_ERROR);
-        }
-    }
-
     public static void deleteStationInLine(String lineName, String stationName) {
         Map<Line, List<Station>> lines = LineRepository.lines();
         Line findLine = LineService.searchOneByName(lineName);
@@ -86,5 +79,17 @@ public class LineService {
         if (lines.get(findLine).size() < sequence || lines.get(findLine).size() - 1 > sequence) {
             throw new IllegalArgumentException(OUT_OF_BOUND_ERROR);
         }
+    }
+
+    private static void validateMakeJunction(Map<Line, List<Station>> lines, Line findLine,
+        Station findStation) {
+        if(hasSameStationInLine(lines, findLine, findStation)){
+            throw new IllegalArgumentException(JUNCTION_ERROR);
+        }
+    }
+
+    private static boolean hasSameStationInLine(Map<Line, List<Station>> lines, Line findLine,
+        Station findStation) {
+        return lines.get(findLine).stream().anyMatch(station -> station.equals(findStation));
     }
 }
