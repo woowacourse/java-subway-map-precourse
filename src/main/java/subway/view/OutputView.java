@@ -15,14 +15,8 @@ public class OutputView {
             "\n## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB. 돌아가기";
     private static final String SECTION_MANAGEMENT_DISPLAY =
             "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기";
-    private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 등록되었습니다.";
-    private static final String STATION_DELETION_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 삭제되었습니다.";
-    private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 지하철 노선이 등록되었습니다.";
-    private static final String LINE_DELETION_SUCCESS_MESSAGE = "\n[INFO] 지하철 노선이 삭제되었습니다.";
-    private static final String SECTION_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 구간이 등록되었습니다.";
-    private static final String SECTION_DELETION_SUCCESS_MESSAGE = "\n[INFO] 구간이 삭제되었습니다.";
-    private static final String STATION_NAMES_PRINT_HEADER = "\n## 역 목록";
-    private static final String LINE_NAMES_PRINT_HEADER = "\n## 노선 목록";
+    private static final String SUCCESS_MESSAGE_FORMAT = "\n[INFO] 지하철 %s이 %s되었습니다.";
+    private static final String NAMES_PRINT_HEADER_FORMAT = "\n## %s 목록";
     private static final String SUBWAY_MAP_PRINT_HEADER = "\n## 지하철 노선도";
     private static final String SUBWAY_MAP_DELIMITER = "\n[INFO] ---";
     private static final String INFORMATION_MESSAGE_FORMAT = "\n[INFO] %s";
@@ -55,37 +49,17 @@ public class OutputView {
         System.out.printf(ERROR_MESSAGE_FORMAT, errorMessage);
     }
 
-    public static void printStationManagementSuccessMessage(FunctionType functionType) {
-        if (functionType == FunctionType.REGISTER) {
-            System.out.println(STATION_REGISTRATION_SUCCESS_MESSAGE);
+    public static void printSuccessMessage(ManagementType managementType, FunctionType functionType) {
+        if (functionType == FunctionType.READ) {
             return;
         }
-        System.out.println(STATION_DELETION_SUCCESS_MESSAGE);
-    }
-
-    public static void printLineManagementSuccessMessage(FunctionType functionType) {
-        if (functionType == FunctionType.REGISTER) {
-            System.out.println(LINE_REGISTRATION_SUCCESS_MESSAGE);
-            return;
-        }
-        System.out.println(LINE_DELETION_SUCCESS_MESSAGE);
-    }
-
-    public static void printSectionManagementSuccessMessage(FunctionType functionType) {
-        if (functionType == FunctionType.REGISTER) {
-            System.out.println(SECTION_REGISTRATION_SUCCESS_MESSAGE);
-            return;
-        }
-        System.out.println(SECTION_DELETION_SUCCESS_MESSAGE);
+        String message = String.format(SUCCESS_MESSAGE_FORMAT, managementType.toString(), functionType.toString());
+        System.out.println(message);
     }
 
     public static void printNames(ManagementType managementType, List<String> names) {
-        if (managementType == ManagementType.STATION) {
-            System.out.print(STATION_NAMES_PRINT_HEADER);
-        }
-        if (managementType == ManagementType.LINE) {
-            System.out.print(LINE_NAMES_PRINT_HEADER);
-        }
+        String headerMessage = String.format(NAMES_PRINT_HEADER_FORMAT, managementType.toString());
+        System.out.println(headerMessage);
         names.forEach(name -> System.out.printf(INFORMATION_MESSAGE_FORMAT, name));
         System.out.println();
     }
