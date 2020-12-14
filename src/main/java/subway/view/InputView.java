@@ -9,11 +9,14 @@ import java.util.Scanner;
 public class InputView {
     private static final String INPUT_WANTED_FUNCTION_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String INPUT_WANTED_STATION_NAME_MESSAGE = "## 등록할 역 이름을 입력하세요.";
-    private static final String INPUT_WANTED_DELETE_STATION_NAME_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
+    private static final String INPUT_WANTED_DELETE_STATION_NAME_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
     private static final String INPUT_WANTED_LINE_NAME_MESSAGE = "## 등록할 노선 이름을 입력하세요";
     private static final String INPUT_WANTED_UP_BOUND_STATION_NAME_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String INPUT_WANTED_DOWN_BOUND_STATION_NAME_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
-    private static final String INPUT_WANTED_DELETE_LINE_NAME_MESSAGE = "삭제할 노선 이름을 입력하세요.";
+    private static final String INPUT_WANTED_DELETE_LINE_NAME_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
+    private static final String INPUT_STATION_NAME_MESSAGE = "## 역이름을 입력하세요.";
+    private static final String INPUT_SEQUENCE_MESSAGE = "## 순서를 입력하세요.";
+    private static final String INPUT_LINE_NAME_FOR_REMOVING_SECTION_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
 
     public static String inputValue(Scanner scanner) {
         System.out.println(INPUT_WANTED_FUNCTION_MESSAGE);
@@ -73,10 +76,17 @@ public class InputView {
     }
 
     public static String inputStationName(Scanner scanner) {
+        System.out.println(INPUT_STATION_NAME_MESSAGE);
         return scanner.nextLine();
     }
 
     public static int inputStationLocation(Scanner scanner) {
+        System.out.println(INPUT_SEQUENCE_MESSAGE);
         return scanner.nextInt();
+    }
+
+    public static String inputLineNameForRemovingSection(Scanner scanner) {
+        System.out.println(INPUT_LINE_NAME_FOR_REMOVING_SECTION_MESSAGE);
+        return scanner.nextLine();
     }
 }
