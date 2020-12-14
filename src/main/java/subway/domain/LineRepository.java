@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class LineRepository {
     public static int ROUTE_START = 1;
+    public static int ROUTE_LENGTH_MIN = 2;
     
     private static final List<Line> lines = new ArrayList<>();
     private static final Map<Line, List<Station>> routes = new HashMap<>();
@@ -45,6 +46,10 @@ public class LineRepository {
     
     public static void addStationToRouteByName(String lineName, String stationName, int index) {
         routes.get(getLineByName(lineName)).add(index, StationRepository.getStationByName(stationName));
+    }
+
+    public static void deleteStationFromRouteByName(String lineName, String stationName) {
+        routes.get(getLineByName(lineName)).removeIf(station -> station.nameEquals(stationName));
     }
 
     public static boolean deleteLineByName(String name) {

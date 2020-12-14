@@ -64,6 +64,12 @@ public class Controller {
         Validator.checkStationOrderInRoute(stationOrderInRoute, lineName);
         return stationOrderInRoute;
     }
+
+    public String askStationNameToDeleteFromRoute(String lineName) {
+        String stationNameToDeleteFromRoute = view.askStationNameToDeleteFromRoute();
+        Validator.checkValidStationNameToDeleteFromRoute(stationNameToDeleteFromRoute, lineName);
+        return stationNameToDeleteFromRoute;
+    }
     
     private void operateUserCommand(String userCommand, Screen currentScreen) {
         Choice userChoice;

@@ -77,6 +77,16 @@ public class View {
         
         return userInputOrder;
     }
+
+    public String askStationNameToDeleteFromRoute() {
+        String userInputName;
+        
+        outputView.printAskStationNameToDeleteFromRouteMessage();
+        userInputName = inputView.userInput();
+        outputView.printEmptyLine();
+        
+        return userInputName;
+    }
     
     public void printMessage(String message) {
         outputView.printMessage(message);

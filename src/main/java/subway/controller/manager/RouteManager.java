@@ -20,7 +20,7 @@ public class RouteManager {
             registerStationToRoute();
         }
         if(actionType == ActionType.DELETE) {
-            // TODO 구현 예
+            deleteStationFromRoute();
         }
     }
     
@@ -34,6 +34,21 @@ public class RouteManager {
             stationName = controller.askStationNameToRegisterToRoute(lineName);
             stationOrderInRoute = Integer.parseInt(controller.askStationOrderInRoute(lineName));
             LineRepository.addStationToRouteByName(lineName, stationName, stationOrderInRoute - LineRepository.ROUTE_START);
+            view.printSuccessMessage(EntityType.ROUTE, ActionType.REGISTER);
+        } catch (Exception exception) {
+            view.printErrorMessage(exception);
+        }
+    }
+    
+    private void deleteStationFromRoute() {
+        String lineName;
+        String stationName;
+        
+        try {
+            lineName = controller.askName(EntityType.ROUTE, ActionType.DELETE);
+            stationName = controller.askStationNameToDeleteFromRoute(lineName);
+            LineRepository.deleteStationFromRouteByName(lineName, stationName);
+            view.printSuccessMessage(EntityType.ROUTE, ActionType.DELETE);
         } catch (Exception exception) {
             view.printErrorMessage(exception);
         }

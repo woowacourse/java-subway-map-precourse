@@ -28,6 +28,9 @@ public class OutputView {
     private static String ROUTE_REGISTER_SUCCESS_MESSAGE = "구간이 등록되었습니다.";
     private static String ASK_STATION_NAME_TO_REGISTER_TO_ROUTE_MESSAGE = "역이름을 입력하세요.";
     private static String ASK_STATION_ORDER_IN_ROUTE_MESSAGE = "순서를 입력하세요.";
+    private static String ROUTE_DELETE_ASK_MESSAGE = "삭제할 구간의 노선을 입력하세요.";
+    private static String ROUTE_DELETE_SUCCESS_MESSAGE = "구간이 삭제되었습니다.";
+    private static String ASK_STATION_NAME_TO_DELETE_FROM_ROUTE_MESSAGE = "삭제할 구간의 역을 입력하세요.";
     
     OutputView() {
     }
@@ -98,6 +101,10 @@ public class OutputView {
     void printAskStationOrderInRouteMessage() {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_ORDER_IN_ROUTE_MESSAGE);
     }
+
+    public void printAskStationNameToDeleteFromRouteMessage() {
+        System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_NAME_TO_DELETE_FROM_ROUTE_MESSAGE);
+    }
     
     void printEmptyLine() {
         System.out.println(CommonConstants.EMPTY);
@@ -126,7 +133,7 @@ public class OutputView {
             System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ROUTE_REGISTER_ASK_MESSAGE);
         }
         if (actionType == ActionType.DELETE) {
-            // TODO 구현 예정
+            System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ROUTE_DELETE_ASK_MESSAGE);
         }
     }
     
@@ -153,7 +160,7 @@ public class OutputView {
             System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + ROUTE_REGISTER_SUCCESS_MESSAGE);
         }
         if (actionType == ActionType.DELETE) {
-            // TODO 구현 예정
+            System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + ROUTE_DELETE_SUCCESS_MESSAGE);
         }
     }
 }
