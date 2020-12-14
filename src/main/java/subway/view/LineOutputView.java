@@ -57,5 +57,7 @@ public class LineOutputView extends OutputView {
         for (Line line : lines) {
             printListItem(line.getName());
         }
+
+        InputView.waitForEmptyInput();
     }
 }

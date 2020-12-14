@@ -43,5 +43,7 @@ public class StationOutputView extends OutputView {
         for (Station station : stations) {
             printListItem(station.getName());
         }
+
+        InputView.waitForEmptyInput();
     }
 }

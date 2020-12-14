@@ -10,6 +10,12 @@ public class InputView {
     }
 
     public static String getInput() {
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        OutputView.printEmptyLine();
+        return input;
+    }
+
+    public static void waitForEmptyInput() {
+        scanner.nextLine();
     }
 }

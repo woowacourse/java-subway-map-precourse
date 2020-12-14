@@ -29,6 +29,7 @@ public class OutputView {
         for (MenuItem menuItem : menu) {
             printMenuItem(menuItem);
         }
+        printEmptyLine();
     }
 
     private static void printMenuItem(MenuItem menuItem) {
@@ -46,6 +47,8 @@ public class OutputView {
             printSubwayLine(line);
             printEmptyLine();
         }
+
+        InputView.waitForEmptyInput();
     }
 
     private static void printSubwayLine(Line line) {
@@ -57,25 +60,24 @@ public class OutputView {
     }
 
     public static void printError(Exception exception) {
-        printEmptyLine();
         System.out.printf(ERROR_FORMAT, exception.getMessage());
+        printEmptyLine();
     }
 
     protected static void printMessage(String message) {
-        printEmptyLine();
         System.out.printf(MESSAGE_FORMAT, message);
     }
 
     protected static void printInformMessage(String informnation) {
-        printEmptyLine();
         System.out.printf(INFORM_FORMAT, informnation);
+        InputView.waitForEmptyInput();
     }
 
     protected static void printListItem(String listItem) {
         System.out.printf(INFORM_FORMAT, listItem);
     }
 
-    private static void printEmptyLine() {
+    public static void printEmptyLine() {
         System.out.println();
     }
 
