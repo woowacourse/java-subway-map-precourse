@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Map;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -9,7 +10,7 @@ import view.StationManageView;
 public class StationManageController {
     public static final String INPUT_ADD_STATION = "1";
     public static final String INPUT_REMOVE_STATION = "2";
-    public static final String INPUT_SEARCH_STATION = "3";
+    public static final String INPUT_SHOW_STATIONS = "3";
 
     public static final String ERROR_PREFIX = "\n[ERROR] ";
     public static final String INFO_PREFIX = "[INFO] ";
@@ -40,8 +41,8 @@ public class StationManageController {
         if (input.equals(INPUT_REMOVE_STATION)) {
             removeStation();
         }
-        if (input.equals(INPUT_SEARCH_STATION)) {
-            searchStation();
+        if (input.equals(INPUT_SHOW_STATIONS)) {
+            showStations();
         }
     }
 
@@ -78,8 +79,11 @@ public class StationManageController {
         StationRepository.deleteStation(input);
     }
 
-    private void searchStation() {
-
+    private void showStations() {
+        Map<String, Station> map = StationRepository.stations();
+        for (Station station : map.values()) {
+            view.printMessage(INFO_PREFIX + station.getName());
+        }
     }
 
     public boolean validateInput(String input) {
