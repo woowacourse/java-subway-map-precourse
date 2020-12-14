@@ -1,5 +1,6 @@
 package subway.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import subway.screen.ActionType;
@@ -49,6 +50,11 @@ public class View {
     
     public void printSuccessMessage(EntityType entityType, ActionType actionType) {
         outputView.printSuccessMessage(entityType, actionType);
+        outputView.printEmptyLine();
+    }
+    
+    public void printNames(EntityType entityType, List<String> names) {
+        outputView.printNames(entityType, names);
         outputView.printEmptyLine();
     }
 }

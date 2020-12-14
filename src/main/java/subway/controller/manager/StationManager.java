@@ -24,7 +24,7 @@ public class StationManager {
             deleteStation();
         }
         if(actionType == ActionType.SHOW) {
-            // TODO 구현 예정
+            showStations();
         }
     }
     
@@ -50,5 +50,9 @@ public class StationManager {
         } catch (Exception exception) {
             view.printErrorMessage(exception);
         }
+    }
+    
+    private void showStations() {
+        view.printNames(EntityType.STATION, StationRepository.stationNames());
     }
 }
