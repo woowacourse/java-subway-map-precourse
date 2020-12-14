@@ -20,7 +20,7 @@ public class SectionController implements Controller {
     public void runMenu(MainMenuType mainMenuType, String category) {
         SubMenuType subMenuType;
         do {
-            subMenuType = InputView.inputSectionMenu(scanner, category, mainMenuType);
+            subMenuType = InputView.inputSectionMenuType(scanner, category, mainMenuType);
             selectMenu(subMenuType, category);
         } while (!subMenuType.equals(SubMenuType.BACK));
     }

@@ -30,7 +30,7 @@ public class SubwayProgram {
     public void run() {
         MainMenuType mainMenuType;
         do {
-            mainMenuType = InputView.inputMainMenu(scanner);
+            mainMenuType = InputView.inputMainMenuType(scanner);
             selectManageMenu(mainMenuType);
             if (MainMenuType.PRINT_MAP.equals(mainMenuType)) {
                 OutputView.printSubwayMap();

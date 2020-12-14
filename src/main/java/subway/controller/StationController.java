@@ -21,7 +21,7 @@ public class StationController implements Controller {
     public void runMenu(MainMenuType mainMenuType, String category) {
         SubMenuType subMenuType;
         do {
-            subMenuType = InputView.inputStationOrLineMenu(scanner, category, mainMenuType);
+            subMenuType = InputView.inputStationOrLineMenuType(scanner, category, mainMenuType);
             selectMenu(subMenuType, category);
         } while (!subMenuType.equals(SubMenuType.BACK));
     }

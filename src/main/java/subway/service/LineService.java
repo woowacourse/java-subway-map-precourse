@@ -3,9 +3,7 @@ package subway.service;
 import subway.domain.line.Line;
 import subway.domain.line.LineName;
 import subway.domain.line.LineRepository;
-import subway.domain.station.Station;
 import subway.domain.station.StationName;
-import subway.domain.station.StationRepository;
 import subway.exception.SubwayProgramException;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -13,8 +11,7 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class LineService {
-    private static final String STATION_NOT_EXIST_ERROR = "역 목록에 등록되어 있는 역이 아닙니다.";
-    private static final String LINE_EXIST_ERROR = "노선 목록에 이미 등록되어 있는 노선입니다.";
+    private static final String LINE_DUPLICATE_ERROR = "노선 목록에 이미 등록되어 있는 노선입니다.";
     private static final String LINE_NOT_EXIST_ERROR = "노선 목록에 등록되어 있는 노선이 아닙니다.";
     private static final String UP = "상";
     private static final String DOWN = "하";
@@ -28,9 +25,7 @@ public class LineService {
     public void addLineInLineRepository(String category) {
         try {
             LineName lineName = InputView.inputLineNameToAdd(scanner, category);
-            if (LineRepository.hasLine(lineName)) {
-                throw new SubwayProgramException(LINE_EXIST_ERROR);
-            }
+            validateLineDuplicate(lineName);
             addLine(lineName);
             OutputView.printAddMessage(category);
         } catch (IllegalArgumentException e) {
@@ -38,32 +33,36 @@ public class LineService {
         }
     }
 
+    private void validateLineDuplicate(LineName lineName) {
+        if (LineRepository.hasLine(lineName)) {
+            throw new SubwayProgramException(LINE_DUPLICATE_ERROR);
+        }
+    }
+
     private void addLine(LineName lineName) {
         StationName upLastStationName = InputView.inputUpOrDownLastStationName(scanner, UP);
-        validateExistStation(upLastStationName);
+        StationService.validateStationExist(upLastStationName);
         StationName downLastStationName = InputView.inputUpOrDownLastStationName(scanner, DOWN);
-        validateExistStation(downLastStationName);
+        StationService.validateStationExist(downLastStationName);
         upLastStationName.isSame(downLastStationName);
         Line newLine = Line.of(lineName, upLastStationName, downLastStationName);
         LineRepository.addLine(newLine);
     }
 
-    private void validateExistStation(StationName stationName) {
-        if (!StationRepository.hasStation(Station.of(stationName))) {
-            throw new SubwayProgramException(STATION_NOT_EXIST_ERROR);
-        }
-    }
-
     public void deleteLineInLineRepository(String category) {
         try {
             LineName lineName = InputView.inputLineNameToDelete(scanner, category);
-            if (!LineRepository.hasLine(lineName)) {
-                throw new SubwayProgramException(LINE_NOT_EXIST_ERROR);
-            }
+            validateLineExist(lineName);
             LineRepository.deleteLineByName(lineName);
             OutputView.printDeleteMessage(category);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void validateLineExist(LineName lineName) {
+        if (!LineRepository.hasLine(lineName)) {
+            throw new SubwayProgramException(LINE_NOT_EXIST_ERROR);
         }
     }
 }

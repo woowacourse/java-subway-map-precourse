@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StationService {
-    private static final String STATION_EXIST_ERROR = "역 목록에 이미 등록되어 있는 역입니다.";
+    private static final String STATION_DUPLICATE_ERROR = "역 목록에 이미 등록되어 있는 역입니다.";
     private static final String STATION_NOT_EXIST_ERROR = "역 목록에 등록되어 있는 역이 아닙니다.";
     private static final String STATION_LINE_REGISTER_ERROR = "노선에 등록되어 있는 역은 삭제할 수 없습니다.";
 
@@ -26,10 +26,8 @@ public class StationService {
     public void addStationInStationRepository(String category) {
         try {
             StationName stationName = InputView.inputStationNameToAdd(scanner, category);
+            validateStationDuplicate(stationName);
             Station station = Station.of(stationName);
-            if (StationRepository.hasStation(station)) {
-                throw new SubwayProgramException(STATION_EXIST_ERROR);
-            }
             StationRepository.addStation(station);
             OutputView.printAddMessage(category);
         } catch (IllegalArgumentException e) {
@@ -37,17 +35,27 @@ public class StationService {
         }
     }
 
+    public static void validateStationDuplicate(StationName stationName) {
+        if (StationRepository.hasStation(Station.of(stationName))) {
+            throw new SubwayProgramException(STATION_DUPLICATE_ERROR);
+        }
+    }
+
     public void deleteStationInStationRepository(String category) {
         try {
             StationName stationName = InputView.inputStationNameToDelete(scanner, category);
-            if (!StationRepository.hasStation(Station.of(stationName))) {
-                throw new SubwayProgramException(STATION_NOT_EXIST_ERROR);
-            }
+            validateStationExist(stationName);
             validateStationRegisterInLine(stationName);
             StationRepository.deleteStation(stationName);
             OutputView.printDeleteMessage(category);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void validateStationExist(StationName stationName) {
+        if (!StationRepository.hasStation(Station.of(stationName))) {
+            throw new SubwayProgramException(STATION_NOT_EXIST_ERROR);
         }
     }
 

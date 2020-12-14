@@ -29,18 +29,18 @@ public class InputView {
     private InputView() {
     }
 
-    public static MainMenuType inputMainMenu(Scanner scanner) {
+    public static MainMenuType inputMainMenuType(Scanner scanner) {
         try {
             System.out.println(MAIN_MENU_MESSAGE);
             System.out.println(CHOOSE_MENU_MESSAGE);
             return MainMenuType.of(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputMainMenu(scanner);
+            return inputMainMenuType(scanner);
         }
     }
 
-    public static SubMenuType inputStationOrLineMenu(Scanner scanner, String subMenuName, MainMenuType mainMenuType) {
+    public static SubMenuType inputStationOrLineMenuType(Scanner scanner, String subMenuName, MainMenuType mainMenuType) {
         try {
             System.out.printf(SUB_MENU_MESSAGE_TOP + SUB_MENU_MESSAGE_ONE + SUB_MENU_MESSAGE_TWO
             + SUB_MENU_MESSAGE_THREE + SUB_MENU_MESSAGE_BOTTOM, subMenuName, subMenuName, subMenuName, subMenuName);
@@ -48,11 +48,11 @@ public class InputView {
             return mainMenuType.validateSubMenuOfMainMenu(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputStationOrLineMenu(scanner,subMenuName, mainMenuType);
+            return inputStationOrLineMenuType(scanner,subMenuName, mainMenuType);
         }
     }
 
-    public static SubMenuType inputSectionMenu(Scanner scanner, String subMenuName, MainMenuType mainMenuType) {
+    public static SubMenuType inputSectionMenuType(Scanner scanner, String subMenuName, MainMenuType mainMenuType) {
         try {
             System.out.printf(SUB_MENU_MESSAGE_TOP + SUB_MENU_MESSAGE_ONE + SUB_MENU_MESSAGE_TWO
                     + SUB_MENU_MESSAGE_BOTTOM, subMenuName, subMenuName, subMenuName);
@@ -60,7 +60,7 @@ public class InputView {
             return mainMenuType.validateSubMenuOfMainMenu(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputSectionMenu(scanner,subMenuName, mainMenuType);
+            return inputSectionMenuType(scanner,subMenuName, mainMenuType);
         }
     }
 

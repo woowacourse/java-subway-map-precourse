@@ -27,7 +27,7 @@ public class Line {
 
     // 추가 기능 구현
     public List<Station> getStations() {
-        return stations;
+        return Collections.unmodifiableList(stations);
     }
 
     public static Line of(LineName lineName, StationName upLastStationName, StationName downLastStationName) {
@@ -44,7 +44,7 @@ public class Line {
         return new Line(lineName, stations);
     }
 
-    public void addStationToLine(Station newStation, int index) {
+    public void addStationInLine(Station newStation, int index) {
         if (!isIndexInRange(index)) {
             throw new SubwayProgramException(String.format(INDEX_RANGE_ERROR, stations.size() + 1));
         }
