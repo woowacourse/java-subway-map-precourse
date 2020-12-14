@@ -3,10 +3,7 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.exceptions.DuplicatedLineNameException;
-import subway.exceptions.InvalidPositionException;
-import subway.exceptions.LineNotExistException;
-import subway.exceptions.MinimumLineLengthException;
+import subway.exceptions.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +19,11 @@ public class LineService {
     }
 
     public static void addLine(String name, Station startStation, Station endStation){
-        if(checkIfLineExist(name)) {
+        if(checkIfLineExist(name)){
             throw new DuplicatedLineNameException();
+        }
+        if(startStation.equals(endStation)){
+            throw new DuplicatedStartAndEndStationNameException();
         }
         Line line = new Line(name);
         line.addStation(0, startStation);
