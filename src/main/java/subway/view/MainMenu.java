@@ -1,25 +1,28 @@
 package subway.view;
 
+import subway.manager.LineManager;
+import subway.manager.RouteMapManager;
+import subway.manager.StationManager;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
 public enum MainMenu {
-    STATION_MENU("1", "1. 역 관리", StationMenu::printMenu),
-    LINE_MENU("2", "2. 노선 관리", LineMenu::printMenu),
-    SECTION_MENU("3", "3. 구간 관리", SectionMenu::printMenu),
-    ROUTE_MAP_MENU("4", "4. 지하철 노선도 출력", RouteMapMenu::printMenu),
-    EXIT("Q", "Q. 종료", MainMenu::exitGame);
+    STATION_MENU("1", "1. 역 관리", StationManager::run),
+    LINE_MENU("2", "2. 노선 관리", LineManager::run),
+    SECTION_MENU("3", "3. 구간 관리", StationManager::run),
+    ROUTE_MAP_MENU("4", "4. 지하철 노선도 출력", RouteMapManager::run),
+    EXIT("Q", "Q. 종료", (scanner) -> exitGame());
 
     private String number;
     private String name;
-    private Consumer<Scanner> selectMenu;
+    private Consumer<Scanner> nextAction;
     private static boolean gameExit = true;
 
-    MainMenu(String number, String name, Consumer<Scanner> selectMenu) {
+    MainMenu(String number, String name, Consumer<Scanner> nextAction) {
         this.number = number;
         this.name = name;
-        this.selectMenu = selectMenu;
+        this.nextAction = nextAction;
     }
 
     public static void printMenu() {
@@ -36,7 +39,7 @@ public enum MainMenu {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
     }
 
-    private static void exitGame(Scanner scanner) {
+    private static void exitGame() {
         gameExit = false;
     }
 
@@ -46,7 +49,7 @@ public enum MainMenu {
     }
 
     public void execute(Scanner scanner) {
-        selectMenu.accept(scanner);
+        nextAction.accept(scanner);
     }
 
     public boolean isExit() {
