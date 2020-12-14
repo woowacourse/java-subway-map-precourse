@@ -104,7 +104,7 @@ public class OutputView {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_ORDER_IN_ROUTE_MESSAGE);
     }
 
-    public void printAskStationNameToDeleteFromRouteMessage() {
+    void printAskStationNameToDeleteFromRouteMessage() {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_NAME_TO_DELETE_FROM_ROUTE_MESSAGE);
     }
 
@@ -112,7 +112,7 @@ public class OutputView {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + SUBWAY_MAP);
     }
 
-    public void printRoute(String lineName, List<String> stationNames) {
+    void printRoute(String lineName, List<String> stationNames) {
         System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + lineName);
         System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + SEPARATOR_BETWEEN_LINE_NAME_AND_STATION_NAMES);
         for (String stationName : stationNames) {
