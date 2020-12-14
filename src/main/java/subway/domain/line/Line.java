@@ -4,6 +4,7 @@ import subway.domain.station.Station;
 import subway.domain.station.StationName;
 import subway.exception.line.SectionSizeLowException;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +32,10 @@ public class Line {
         sections.add(downLine);
 
         return sections;
+    }
+
+    public List<Station> sections() {
+        return Collections.unmodifiableList(sections);
     }
 
     public boolean isRightPosition(int position) {
