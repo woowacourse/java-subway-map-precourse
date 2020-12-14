@@ -1,5 +1,9 @@
 package subway.service;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.option.BaseOption;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -34,5 +38,25 @@ public class BaseService {
                 .filter(option -> option.hasCode(inputCode))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_INVALID_CHOICE));
+    }
+
+    protected static String getStationNameByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return InputView.getStationName();
+    }
+
+    protected static String getLineNameByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return InputView.getLineName();
+    }
+
+    protected static Station getStationByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return StationRepository.getStation(InputView.getStationName());
+    }
+
+    protected static Line getLineByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return LineRepository.getLine(InputView.getLineName());
     }
 }

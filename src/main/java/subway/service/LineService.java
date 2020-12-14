@@ -41,15 +41,6 @@ public class LineService extends BaseService {
         OutputView.printSubwayLineList(LineRepository.lines());
     }
 
-    private static String getLineNameByQuestion(String question) {
-        OutputView.printQuestion(question);
-        return InputView.getLineName();
-    }
-
-    private static Station getStationByQuestion(String question) {
-       return StationRepository.getStation(InputView.getStationName());
-    }
-
     private static void addLine(String lineName, Station startStation, Station endStation) {
         LineRepository.addLine(new Line(lineName, startStation, endStation));
         OutputView.printInfo(REGISTER_LINE_SUCCESS);

@@ -44,16 +44,6 @@ public class SectionService extends BaseService {
         removeSection(line, station);
     }
 
-    private static Line getLineByQuestion(String question) {
-        OutputView.printQuestion(question);
-        return LineRepository.getLine(InputView.getLineName());
-    }
-
-    private static Station getStationByQuestion(String question) {
-        OutputView.printQuestion(question);
-        return StationRepository.getStation(InputView.getStationName());
-    }
-
     private static int getStationIndexToAdd() {
         OutputView.printQuestion(REGISTER_SECTION_ORDER_NUMBER_QUESTION);
         return InputView.getOrder() - 1;

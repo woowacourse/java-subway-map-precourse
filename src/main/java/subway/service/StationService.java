@@ -37,17 +37,6 @@ public class StationService extends BaseService {
         OutputView.printStationList(StationRepository.stations());
     }
 
-    private static String getStationNameByQuestion(String question) {
-        OutputView.printQuestion(question);
-        return InputView.getStationName();
-    }
-
-    public static Station getStationByQuestion(String question) {
-        OutputView.printQuestion(question);
-        return StationRepository.getStation(InputView.getStationName());
-    }
-
-
     private static void registerStation(String stationName) {
         StationRepository.addStation(new Station(stationName));
         OutputView.printInfo(REGISTER_STATION_SUCCESS);
