@@ -3,6 +3,7 @@ package subway.map;
 import subway.controller.SubwayMapController;
 import subway.domain.type.FunctionType;
 import subway.domain.type.ManagementType;
+import subway.dto.LineDto;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -52,17 +53,32 @@ public class SubwayMapApplication {
         if (functionType == FunctionType.BACK) {
             return;
         }
+        if (functionType == FunctionType.READ) {
+            executeReadFunction(managementType);
+            return;
+        }
         if (managementType == ManagementType.STATION) {
             executeStationManagement(functionType);
+            return;
+        }
+        if (managementType == ManagementType.LINE) {
+            executeLineManagement(functionType);
+            return;
+        }
+    }
+
+    private void executeReadFunction(ManagementType managementType) {
+        if (managementType == ManagementType.STATION) {
+            List<String> stationNames = subwayMapController.getStationNames();
+            OutputView.printStationNames(stationNames);
+        }
+        if (managementType == ManagementType.LINE) {
+            List<String> lineNames = subwayMapController.getLineNames();
+            OutputView.printLineNames(lineNames);
         }
     }
 
     private void executeStationManagement(FunctionType functionType) {
-        if (functionType == FunctionType.READ) {
-            List<String> stationNames = subwayMapController.getStationNames();
-            OutputView.printStationNames(stationNames);
-            return;
-        }
         String stationName = inputView.inputStationName(functionType);
         if (functionType == FunctionType.REGISTER) {
             subwayMapController.addStationByName(stationName);
@@ -71,5 +87,16 @@ public class SubwayMapApplication {
             subwayMapController.deleteStationByName(stationName);
         }
         OutputView.printStationManagementSuccessMessage(functionType);
+    }
+
+    private void executeLineManagement(FunctionType functionType) {
+        LineDto lineDto = inputView.inputLineRequest(functionType);
+        if (functionType == FunctionType.REGISTER) {
+            subwayMapController.addLine(lineDto);
+        }
+        if (functionType == FunctionType.DELETE) {
+            subwayMapController.deleteLine(lineDto);
+        }
+        OutputView.printLineManagementSuccessMessage(functionType);
     }
 }

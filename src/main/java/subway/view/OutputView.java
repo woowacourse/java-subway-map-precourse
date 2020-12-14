@@ -18,7 +18,10 @@ public class OutputView {
     private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 역이 등록되었습니다.";
     private static final String STATION_DELETION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 역이 삭제되었습니다.";
     private static final String STATION_NAMES_HEADER = "\n## 역 목록";
+    private static final String LINE_NAMES_HEADER = "\n## 노선 목록";
     private static final String INFORMATION_HEADER = "[INFO] %s\n";
+    private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 노선이 등록되었습니다.";
+    private static final String LINE_DELETION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 노선이 삭제되었습니다.";
 
     private OutputView() {
     }
@@ -57,5 +60,18 @@ public class OutputView {
     public static void printStationNames(List<String> stationNames) {
         System.out.println(STATION_NAMES_HEADER);
         stationNames.forEach(stationName -> System.out.printf(INFORMATION_HEADER, stationName));
+    }
+
+    public static void printLineNames(List<String> lineNames) {
+        System.out.println(LINE_NAMES_HEADER);
+        lineNames.forEach(lineName -> System.out.printf(INFORMATION_HEADER, lineName));
+    }
+
+    public static void printLineManagementSuccessMessage(FunctionType functionType) {
+        if (functionType == FunctionType.REGISTER) {
+            System.out.println(LINE_REGISTRATION_SUCCESS_MESSAGE);
+            return;
+        }
+        System.out.println(LINE_DELETION_SUCCESS_MESSAGE);
     }
 }
