@@ -130,6 +130,15 @@ public class UserInterfaceView {
 
     private void stationStart() {
         printStationView();
+        String userInput;
+        while (true) {
+            userInput = getUserInput(CHOICE_FUNCTION);
+            if (Arrays.asList(STATION_AND_LINE_CHOICE_LIST).contains(userInput)) {
+                break;
+            }
+            printErrorMessage();
+        }
+        
     }
 
     private void printStationView() {
