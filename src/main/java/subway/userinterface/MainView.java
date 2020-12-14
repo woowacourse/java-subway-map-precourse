@@ -24,7 +24,7 @@ public class MainView extends View {
     @Override
     public void printGuidance() {
         System.out.println(
-                        "## 메인 화면\n" +
+                "## 메인 화면\n" +
                         "1. 역 관리\n" +
                         "2. 노선 관리\n" +
                         "3. 구간 관리\n" +
@@ -70,7 +70,8 @@ public class MainView extends View {
         LineRepository.lines().forEach(line -> outputBuilder
                 .append(line)
                 .append("[INFO] ---\n")
-                .append(getStringAllStation(line)));
+                .append(getStringAllStation(line))
+                .append("\n"));
 
         System.out.print(outputBuilder.toString());
     }
