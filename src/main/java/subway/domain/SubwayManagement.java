@@ -113,7 +113,7 @@ public class SubwayManagement {
     private void addStation() {
         printScreen.printAddStation();
         try {
-            StationRepository.addStation(new Station(user.getInput()));
+            StationRepository.addStation(user.getInput());
             printScreen.printAlarmAddStation();
         } catch (IllegalArgumentException e) {
             printScreen.printErrorAddStation();
@@ -160,14 +160,23 @@ public class SubwayManagement {
         String firstStation = user.getInput();
         printScreen.printLastAddLine();
         String lastStation = user.getInput();
-        LineRepository.addLine(lineName, firstStation, lastStation);
-        printScreen.printAlarmAddLine();
+        try {
+            LineRepository.addLine(lineName, firstStation, lastStation);
+            printScreen.printAlarmAddLine();
+        } catch (IllegalArgumentException e) {
+            printScreen.printErrorAddLine();
+        }
     }
 
     private void deleteLine() {
         printScreen.printDeleteLine();
-        LineRepository.deleteLineByName(user.getInput());
-        printScreen.printAlarmDeleteLine();
+        String lineName = user.getInput();
+        try {
+            LineRepository.deleteLineByName(lineName);
+            printScreen.printAlarmDeleteLine();
+        } catch (IllegalArgumentException e) {
+            printScreen.printErrorDeleteLine();
+        }
     }
 
     private void getLineList() {

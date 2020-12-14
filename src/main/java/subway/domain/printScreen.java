@@ -154,4 +154,12 @@ public class printScreen {
     public static void printErrorDeleteStation() {
         System.out.println("\n[ERROR] 삭제할 수 없는 역 이름입니다.\n");
     }
+
+    public static void printErrorAddLine() {
+        System.out.println("\n[ERROR] 등록할 수 없는 노선입니다.");
+    }
+
+    public static void printErrorDeleteLine() {
+        System.out.println("\n[ERROR] 삭제할 수 없는 노선입니다.");
+    }
 }

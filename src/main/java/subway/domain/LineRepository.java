@@ -13,11 +13,23 @@ public class LineRepository {
     }
 
     public static void addLine(String lineName, String firstStation, String lastStation) {
-        lines.add(new Line(lineName, firstStation, lastStation));
+
+        if(checkNameLength(lineName) && !checkNameInLines(lineName)
+                && StationRepository.checkNameInStations(firstStation) && StationRepository.checkNameInStations(lastStation)){
+            lines.add(new Line(lineName, firstStation, lastStation));
+            return;
+        }
+
+        throw new IllegalArgumentException();
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLineByName(String name) {
+        if(checkNameInLines(name)){
+            lines.removeIf(line -> Objects.equals(line.getName(), name));
+            return;
+        }
+
+        throw new IllegalArgumentException();
     }
 
     public static void addSection(int idx, String line, String name) {
@@ -35,5 +47,19 @@ public class LineRepository {
                 lines.get(i).deleteStationInSection(name);
             }
         }
+    }
+
+    public static boolean checkNameInLines(String name) {
+        for(Line line : lines){
+            if(line.getName().equals(name)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean checkNameLength(String name) {
+        return name.length() >= Constants.MIN_NAME_LENGTH;
     }
 }
