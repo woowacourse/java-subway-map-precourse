@@ -35,9 +35,7 @@ public class StationOutputView {
         System.out.println();
     }
 
-    public static void printAllStation() {
-        List<Station> stations = StationRepository.stations();
-
+    public static void printAllStation(List<Station> stations) {
         System.out.println(STATION_LIST_TITLE);
         for (Station station : stations) {
             System.out.println(RESULT_PREFIX + station.getName());

@@ -57,7 +57,6 @@ public class StationController {
     }
 
     private static boolean printRegisteredStation() {
-        StationOutputView.printAllStation();
-        return true;
+        return StationService.printAllStation();
     }
 }
