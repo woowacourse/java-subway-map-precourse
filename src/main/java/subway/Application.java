@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
-        OutputView.mainMenuPrint();
-        InputView.scanData(scanner);
+        SubwayController subway = new SubwayController(scanner);
+        subway.mainMenu();
     }
 }

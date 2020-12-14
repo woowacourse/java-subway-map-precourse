@@ -3,15 +3,26 @@ package subway.view;
 import java.util.Scanner;
 
 public class InputView {
-    private InputView(){
+
+    private InputView() {
 
     }
 
     /**
      * 데이터 입력 기본 포맷
      */
-    public static String scanData(Scanner scanner){
+    public static String scanData(Scanner scanner) {
 
         return scanner.nextLine();
+    }
+
+    public static String scanMainMenu(Scanner scanner) {
+        OutputView.mainMenuPrint();
+        String choiceMainMenuOption;
+
+        OutputView.OptionChoicePrint();
+        choiceMainMenuOption = scanner.nextLine();
+
+        return choiceMainMenuOption;
     }
 }

@@ -12,4 +12,8 @@ public class OutputView {
         System.out.println(GuideMessage.MAIN_FUNCTION_LIST.getGuideMessage());
         spacePrint();
     }
+
+    public static void OptionChoicePrint() {
+        System.out.println(GuideMessage.CHOICE_OPTION_LIST.getGuideMessage());
+    }
 }

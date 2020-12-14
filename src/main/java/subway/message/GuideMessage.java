@@ -7,7 +7,7 @@ public enum GuideMessage {
         + "3. 구간 관리\n"
         + "4. 지하철 노선도 출력\n"
         + "Q. 종료"),
-    CHOICE_FUNCTION_LIST("## 원하는 기능을 선택하세요."),
+    CHOICE_OPTION_LIST("## 원하는 기능을 선택하세요."),
     ;
 
     private final String text;
