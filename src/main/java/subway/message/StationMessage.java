@@ -7,8 +7,12 @@ public enum StationMessage {
         + "3. 역 조회\n"
         + "B. 돌아가기"),
     STATION_ADD_GUIDE("## 등록할 역 이름을 입력하세요"),
+
     STATION_ADD_SUCCESS("[INFO] 지하철 역이 등록되었습니다."),
+
+    STATION_ADD_NAME_LIMIT_FAIL("[ERROR] 역 이름이 너무 짧습니다."),
     ;
+
 
     private final String text;
 

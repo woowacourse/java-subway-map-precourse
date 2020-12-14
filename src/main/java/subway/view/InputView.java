@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import subway.constant.BoundaryCheckDigit;
 import subway.constant.BoundaryCheckPattern;
 
 public class InputView {
@@ -67,8 +68,22 @@ public class InputView {
 
         OutputView.stationAddGuidePrint();
         stationName = scanner.nextLine();
+        if (stationAddValidCheck(stationName)){
+            OutputView.stationAddSuccessPrint();
+            return stationName;
+        }
 
-        OutputView.stationAddSuccessPrint();
-        return stationName;
+
+        OutputView.stationAddFailPrint();
+        throw new IllegalArgumentException();
+    }
+
+    private static boolean stationAddValidCheck(String stationName) {
+        if (stationName.length() < BoundaryCheckDigit.STATION_ADD_LIMIT_MINIMUM
+            .getBoundaryCheckDigit()){
+            return false;
+        }
+
+        return true;
     }
 }

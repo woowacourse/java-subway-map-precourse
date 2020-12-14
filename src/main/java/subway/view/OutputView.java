@@ -35,4 +35,8 @@ public class OutputView {
     public static void stationAddSuccessPrint() {
         System.out.println(StationMessage.STATION_ADD_SUCCESS.getStationMessage());
     }
+
+    public static void stationAddFailPrint() {
+        System.out.println(StationMessage.STATION_ADD_NAME_LIMIT_FAIL.getStationMessage());
+    }
 }

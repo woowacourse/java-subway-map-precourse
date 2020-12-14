@@ -12,42 +12,51 @@ public class StationController {
     }
 
     public static void stationControlMenu(Scanner scanner) {
-        OutputView.stationMenuPrint();
-        String choiceMenu = InputView.scanStationMenu(scanner);
+        String choiceMenu;
         boolean workStatus = false;
-        while (choiceMenuIsNotBack(choiceMenu)) {
+
+        while (isWorkSuccess(workStatus)) {
+            OutputView.stationMenuPrint();
+            choiceMenu = InputView.scanStationMenu(scanner);
+
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_ADD.getUserChoiceOptionToName())) {
-                stationAdd(scanner);
+                workStatus = stationAdd(scanner);
             }
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_DELETE.getUserChoiceOptionToName())) {
-                stationDelete(scanner);
+                workStatus = stationDelete(scanner);
             }
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_CHECK.getUserChoiceOptionToName())) {
-                stationCheck();
+                workStatus = stationCheck();
+            }
+            if (choiceMenu.equals(UserChoiceOptionToName.BACK.getUserChoiceOptionToName())) {
+                break;
             }
         }
     }
 
-    private static boolean choiceMenuIsNotBack(String choiceMenu) {
-        return !choiceMenu.equals(UserChoiceOptionToName.BACK.getUserChoiceOptionToName());
+    private static boolean isWorkSuccess(boolean workStatus) {
+        return !workStatus;
     }
 
-    private static void stationAdd(Scanner scanner) {
+    private static boolean stationAdd(Scanner scanner) {
         String stationName;
-
-        stationName = InputView.scanStationName(scanner);
-        System.out.println("임시 출력 문구 : 당신이 선택한 역 이름은 : " + stationName);
-
-
+        try {
+            stationName = InputView.scanStationName(scanner);
+        } catch (IllegalArgumentException error) {
+            return false;
+        }
+        return true;
     }
 
-    private static void stationDelete(Scanner scanner) {
+    private static boolean stationDelete(Scanner scanner) {
+        return true;
     }
 
-    private static void stationCheck() {
+    private static boolean stationCheck() {
+        return true;
     }
 
 
