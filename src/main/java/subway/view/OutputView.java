@@ -45,7 +45,6 @@ public class OutputView {
     public static void printLines(List<Line> lines) {
         System.out.println();
         System.out.println(LINE_VIEW_LABEL);
-        System.out.println(InfoMessage.LABEL + DIVIDER);
         lines.stream()
                 .map(Line::getName)
                 .map(line -> InfoMessage.LABEL + line)
