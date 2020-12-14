@@ -36,7 +36,7 @@ public class SubwayManager {
     public State setStationState(State state, Scanner scanner) {
         state = StationManager.addStation(state, scanner);
         state = StationManager.removeStation(state, scanner);
-        state = StationManager.inquiryStation(state);
+        state = StationManager.showStation(state);
 
         return state;
     }
@@ -44,7 +44,7 @@ public class SubwayManager {
     public State setLineState(State state, Scanner scanner) {
         state = LineManager.addLine(state, scanner);
         state = LineManager.removeLine(state, scanner);
-        state = LineManager.inquiryLine(state);
+        state = LineManager.showLine(state);
 
         return state;
     }
@@ -57,7 +57,7 @@ public class SubwayManager {
     }
 
     public State setMapState(State state) {
-        state = inquirySubwayMap(state);
+        state = showSubwayMap(state);
 
         return state;
     }
@@ -106,7 +106,7 @@ public class SubwayManager {
         return state;
     }
 
-    public State inquirySubwayMap(State state) {
+    public State showSubwayMap(State state) {
         if (state.equals(State.MAP_SCENE)) {
             OutputView.printSubwayMapMessage();
             List<Line> lines = LineRepository.lines();

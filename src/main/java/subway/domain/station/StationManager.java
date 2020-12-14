@@ -49,7 +49,7 @@ public class StationManager {
         OutputView.printRemovedStationMessage();
     }
 
-    public static State inquiryStation(State state) {
+    public static State showStation(State state) {
         if (state.equals(State.STATION_INQUIRY)) {
             OutputView.printStationList(StationRepository.stations());
 

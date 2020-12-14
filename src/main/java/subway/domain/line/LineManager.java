@@ -67,7 +67,7 @@ public class LineManager {
         OutputView.printRemovedLineMessage();
     }
 
-    public static State inquiryLine(State state) {
+    public static State showLine(State state) {
         if (state.equals(State.LINE_INQUIRY)) {
             OutputView.printLineList(LineRepository.lines());
 
