@@ -1,0 +1,48 @@
+package subway.view;
+
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
+import subway.tool.InputTool;
+
+public class LineManagementView {
+    final static String ERROR_MESSAGE = "선택할 수 없는 기능입니다.";
+
+    public static void LineManagementMenu() {
+        while (true) {
+            showView();
+            String user_input = InputView.mainInput();
+            if (InputTool.isStationAndLineInputVaild(user_input) == false) {
+                OutputView.printError(ERROR_MESSAGE);
+                continue;
+            }
+            if (user_input.compareTo("B") == 0) break;
+            if (nextMenu(Integer.parseInt(user_input))) break;
+        }
+    }
+
+    public static void showView() {
+        System.out.println();
+        System.out.println("## 노선 관리 화면");
+        System.out.println("1. 노선 등록");
+        System.out.println("2. 노선 삭제");
+        System.out.println("3. 노선 조회");
+        System.out.println("B. 돌아가기");
+    }
+
+    protected static boolean nextMenu(int menu) {
+        if (menu == 1) {
+            String lineName =InputView.LineNameInsertInput();
+            String startName =InputView.LineStartInput();
+            String endName =InputView.LineEndInput();
+            return LineRepository.isPossibleLine(lineName, startName, endName);
+        }
+        if (menu == 2) {
+            String lineName =InputView.LineDeleteInput();
+            return LineRepository.deleteLineByName(lineName);
+        }
+        if (menu == 3) {
+            return LineRepository.lookUpLine();
+        }
+        return false;
+    }
+}
