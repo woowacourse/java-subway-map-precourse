@@ -55,7 +55,6 @@ public class Line {
         stationInLine.add((index),new Station(tmpSaveStation));
     }
     public boolean deleteSectionLine(String tmpSaveStation){
-        StationRepository.deleteStation(tmpSaveStation);
         stationInLine.remove(findStation(tmpSaveStation));
         return true;
     }

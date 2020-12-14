@@ -42,7 +42,9 @@ public class Section {
         sectionLine.deleteSectionLine(tmpSaveSectionStationName);
         return true;
     }
-
+    public static boolean back(){
+        return true;
+    }
     public static boolean getRightIndex(String tmpSaveSectionIndex,Line tmpSectionLine){
         try{
             int saveSectionIndexInt=Integer.parseInt(tmpSaveSectionIndex);

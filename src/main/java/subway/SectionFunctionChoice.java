@@ -9,8 +9,8 @@ import java.util.function.Supplier;
 
 public enum SectionFunctionChoice {
     ADD_SECTION("1",()->Section.registerSection()),
-    DELETE_SECTION("2",()->Section.deleteSection());
-    //BACK("B",);
+    DELETE_SECTION("2",()->Section.deleteSection()),
+    BACK("B",()->Section.back());
     String choiceKey;
     Supplier<Boolean> handlerFunction;
 
