@@ -8,7 +8,7 @@ public class Station {
     private String name;
 
     public Station(String name) {
-        if(name.length() < MINIMUM_LENGTH){
+        if (name.length() < MINIMUM_LENGTH) {
             ErrorView.nameLengthError();
             return;
         }

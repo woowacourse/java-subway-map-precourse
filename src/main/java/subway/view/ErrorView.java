@@ -8,7 +8,7 @@ public class ErrorView {
     private static final String NOT_EXIST_NAME = "[ERROR] 존재하지 않는 이름입니다.\n";
     private static final String LINE_REGISTER_STATION = "[ERROR] 노선에 등록된 역입니다.\n";
 
-    public static void print(String string){
+    public static void print(String string) {
         System.out.println(string);
     }
 

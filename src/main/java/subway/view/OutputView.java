@@ -45,15 +45,15 @@ public class OutputView {
     private static final String COMPLETE_DELETE_SECTION = "[INFO] 구간이 삭제되었습니다.\n";
     private static final String WRITE_DELETE_LINE_NAME = "## 삭제할 구간의 노선을 입력하세요.";
 
-    public static void print(String string){
+    public static void print(String string) {
         System.out.println(string);
     }
 
-    public static void mainPage(){
+    public static void mainPage() {
         print(MAIN_PAGE);
     }
 
-    public static void writeOperation(){
+    public static void writeOperation() {
         print(WRITE_OPERATION);
     }
 
@@ -110,7 +110,7 @@ public class OutputView {
     }
 
     public static void deleteLineName() {
-        print(DELETE_LINE_NAME); 
+        print(DELETE_LINE_NAME);
     }
 
     public static void completeDeleteLine() {

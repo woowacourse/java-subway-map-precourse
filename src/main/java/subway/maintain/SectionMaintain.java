@@ -19,7 +19,7 @@ public class SectionMaintain {
 
     private final Scanner scanner;
 
-    public SectionMaintain(Scanner scanner){
+    public SectionMaintain(Scanner scanner) {
         this.scanner = scanner;
         maintainPage();
     }
@@ -31,21 +31,21 @@ public class SectionMaintain {
 
     private void control() {
         OutputView.writeOperation();
-        int operationNumber = Util.operationNumber(scanner.next(),START,END);
-        movePage(operationNumber,scanner);
+        int operationNumber = Util.operationNumber(scanner.next(), START, END);
+        movePage(operationNumber, scanner);
     }
 
     private void movePage(int operationNumber, Scanner scanner) {
-        if(operationNumber == ERROR){
+        if (operationNumber == ERROR) {
             new Controller(scanner);
         }
-        if(operationNumber == BACK_PAGE){
+        if (operationNumber == BACK_PAGE) {
             maintainPage();
         }
-        if(operationNumber == REGISTER_SECTION){
+        if (operationNumber == REGISTER_SECTION) {
             registerSection();
         }
-        if(operationNumber == DELETE_SECTION){
+        if (operationNumber == DELETE_SECTION) {
             deleteSection();
         }
 
@@ -53,7 +53,7 @@ public class SectionMaintain {
 
     private void deleteSection() {
         OutputView.DeleteLineName();
-        if(LineRepository.deleteSection(scanner.next(), scanner)){
+        if (LineRepository.deleteSection(scanner.next(), scanner)) {
             OutputView.completeDeleteSection();
             new Controller(scanner);
             return;
@@ -65,19 +65,18 @@ public class SectionMaintain {
     private void registerSection() {
         OutputView.writeLineName();
         Line line = LineRepository.getLineByName(scanner.next());
-        if(line == null){
+        if (line == null) {
             ErrorView.notExistName();
             maintainPage();
             return;
         }
         OutputView.writeStationName();
-        if(line.addStationByIndex(scanner.next(), scanner)){
+        if (line.addStationByIndex(scanner.next(), scanner)) {
             OutputView.completeRegisterSection();
             new Controller(scanner);
         }
         maintainPage();
     }
-
 
 
 }

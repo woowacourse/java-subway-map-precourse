@@ -18,10 +18,10 @@ public class StationRepository {
     }
 
     public static boolean addStation(Station station) {
-        if(station.getName() == null){
+        if (station.getName() == null) {
             return false;
         }
-        if(duplicateStation(station.getName())){
+        if (duplicateStation(station.getName())) {
             ErrorView.duplicateName();
             return false;
         }
@@ -34,8 +34,8 @@ public class StationRepository {
     }
 
     private static boolean duplicateStation(String stationName) {
-        for(Station station : stations){
-            if(station.getName().equals(stationName)){
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
                 return true;
             }
         }
@@ -43,21 +43,21 @@ public class StationRepository {
     }
 
     public static void init() {
-        for(String stationName : STATIONS){
+        for (String stationName : STATIONS) {
             addStation(new Station(stationName));
         }
     }
 
     public static void status() {
-        for(Station station : stations){
+        for (Station station : stations) {
             OutputView.status(station.getName());
         }
         OutputView.space();
     }
 
     public static Station ifNotExistRegister(String stationName) {
-        for(Station station : stations){
-            if(station.getName().equals(stationName)){
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
                 return station;
             }
         }

@@ -3,8 +3,6 @@ package subway.maintain;
 import subway.controller.Controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.utils.Util;
 import subway.view.ErrorView;
 import subway.view.OutputView;
@@ -23,7 +21,7 @@ public class LineMaintain {
 
     private final Scanner scanner;
 
-    public LineMaintain(Scanner scanner){
+    public LineMaintain(Scanner scanner) {
         this.scanner = scanner;
         maintainPage();
     }
@@ -35,24 +33,24 @@ public class LineMaintain {
 
     private void control() {
         OutputView.writeOperation();
-        int operationNumber = Util.operationNumber(scanner.next(),START,END);
-        movePage(operationNumber,scanner);
+        int operationNumber = Util.operationNumber(scanner.next(), START, END);
+        movePage(operationNumber, scanner);
     }
 
     private void movePage(int operationNumber, Scanner scanner) {
-        if(operationNumber == BACK_PAGE){
+        if (operationNumber == BACK_PAGE) {
             new Controller(scanner);
         }
-        if(operationNumber == ERROR){
+        if (operationNumber == ERROR) {
             maintainPage();
         }
-        if(operationNumber == REGISTER_LINE){
+        if (operationNumber == REGISTER_LINE) {
             registerLine();
         }
-        if(operationNumber == DELETE_LINE){
+        if (operationNumber == DELETE_LINE) {
             deleteLine();
         }
-        if(operationNumber == LINE_STATUS){
+        if (operationNumber == LINE_STATUS) {
             lineStatus();
         }
     }
@@ -65,7 +63,7 @@ public class LineMaintain {
 
     private void deleteLine() {
         OutputView.deleteLineName();
-        if(!LineRepository.deleteLineByName(scanner.next())){
+        if (!LineRepository.deleteLineByName(scanner.next())) {
             ErrorView.notExistName();
             maintainPage();
         }
@@ -76,7 +74,7 @@ public class LineMaintain {
     private void registerLine() {
         OutputView.writeLineName();
         Line line = new Line(scanner.next());
-        if(line.getName() == null){
+        if (line.getName() == null) {
             ErrorView.nameLengthError();
             maintainPage();
             return;
@@ -86,12 +84,12 @@ public class LineMaintain {
 
     private void registerStation(Line line) {
         OutputView.writeStartStation();
-        if(!line.addStation(scanner.next())){
+        if (!line.addStation(scanner.next())) {
             maintainPage();
             return;
         }
         OutputView.writeEndStation();
-        if(!line.addStation(scanner.next())){
+        if (!line.addStation(scanner.next())) {
             maintainPage();
             return;
         }

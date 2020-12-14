@@ -21,7 +21,7 @@ public class StationMaintain {
 
     private final Scanner scanner;
 
-    public StationMaintain(Scanner scanner){
+    public StationMaintain(Scanner scanner) {
         this.scanner = scanner;
         maintainPage();
     }
@@ -33,24 +33,24 @@ public class StationMaintain {
 
     private void control() {
         OutputView.writeOperation();
-        int operationNumber = Util.operationNumber(scanner.next(),START,END);
-        movePage(operationNumber,scanner);
+        int operationNumber = Util.operationNumber(scanner.next(), START, END);
+        movePage(operationNumber, scanner);
     }
 
     private void movePage(int operationNumber, Scanner scanner) {
-        if(operationNumber == ERROR){
+        if (operationNumber == ERROR) {
             maintainPage();
         }
-        if(operationNumber == BACK_PAGE){
+        if (operationNumber == BACK_PAGE) {
             new Controller(scanner);
         }
-        if(operationNumber == REGISTER_STATION){
+        if (operationNumber == REGISTER_STATION) {
             registerStation();
         }
-        if(operationNumber == DELETE_STATION){
+        if (operationNumber == DELETE_STATION) {
             deleteStation();
         }
-        if(operationNumber == STATION_STATUS){
+        if (operationNumber == STATION_STATUS) {
             stationStatus();
         }
     }
@@ -64,12 +64,12 @@ public class StationMaintain {
     private void deleteStation() {
         OutputView.deleteStationName();
         String name = scanner.next();
-        if(LineRepository.lineRegisterStation(name)){
+        if (LineRepository.lineRegisterStation(name)) {
             ErrorView.lineRegisterStation();
             maintainPage();
             return;
         }
-        if(!StationRepository.deleteStation(scanner.next())){
+        if (!StationRepository.deleteStation(scanner.next())) {
             ErrorView.notExistName();
             maintainPage();
             return;
@@ -81,7 +81,7 @@ public class StationMaintain {
 
     private void registerStation() {
         OutputView.writeStationName();
-        if(StationRepository.addStation(new Station(scanner.next()))){
+        if (StationRepository.addStation(new Station(scanner.next()))) {
             OutputView.completeRegisterStation();
             new Controller(scanner);
             return;

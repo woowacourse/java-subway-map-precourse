@@ -7,7 +7,6 @@ import subway.maintain.StationMaintain;
 import subway.utils.Util;
 import subway.view.OutputView;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Controller {
@@ -27,31 +26,31 @@ public class Controller {
     }
 
 
-    public void mainPage(){
+    public void mainPage() {
         OutputView.mainPage();
         control();
     }
 
     private void control() {
         OutputView.writeOperation();
-        int operationNumber = Util.operationNumber(scanner.next(),START,END);
-        movePage(operationNumber,scanner);
+        int operationNumber = Util.operationNumber(scanner.next(), START, END);
+        movePage(operationNumber, scanner);
     }
 
-    private void movePage(int operationNumber,Scanner scanner) {
-        if(operationNumber == ERROR){
+    private void movePage(int operationNumber, Scanner scanner) {
+        if (operationNumber == ERROR) {
             control();
         }
-        if(operationNumber == STATION_MAINTAIN){
+        if (operationNumber == STATION_MAINTAIN) {
             new StationMaintain(scanner);
         }
-        if(operationNumber == LINE_MAINTAIN){
+        if (operationNumber == LINE_MAINTAIN) {
             new LineMaintain(scanner);
         }
-        if(operationNumber == SECTION_MAINTAIN){
+        if (operationNumber == SECTION_MAINTAIN) {
             new SectionMaintain(scanner);
         }
-        if(operationNumber == SUBWAY_MAP){
+        if (operationNumber == SUBWAY_MAP) {
             new MapMaintain(scanner);
         }
     }

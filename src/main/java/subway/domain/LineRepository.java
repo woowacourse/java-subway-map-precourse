@@ -6,8 +6,8 @@ import subway.view.OutputView;
 import java.util.*;
 
 public class LineRepository {
-    private static final String[] LINES = {"2호선","3호선","신분당선"};
-    private static final String[][] STATIONS = {{"교대역","강남역","역삼역"},{"교대역","남부터미널역","양재역" ,"매봉역"},{"강남역","양재역","양재시민의숲역"}};
+    private static final String[] LINES = {"2호선", "3호선", "신분당선"};
+    private static final String[][] STATIONS = {{"교대역", "강남역", "역삼역"}, {"교대역", "남부터미널역", "양재역", "매봉역"}, {"강남역", "양재역", "양재시민의숲역"}};
 
     private static final List<Line> lines = new ArrayList<>();
 
@@ -16,7 +16,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        if(existLine(line.getName())){
+        if (existLine(line.getName())) {
             ErrorView.duplicateName();
             return;
         }
@@ -29,7 +29,7 @@ public class LineRepository {
 
     public static void init() {
         int index = 0;
-        for(String lineName : LINES){
+        for (String lineName : LINES) {
             Line line = new Line(lineName);
             line.addStations(STATIONS[index++]);
             addLine(line);
@@ -37,8 +37,8 @@ public class LineRepository {
     }
 
     public static boolean lineRegisterStation(String name) {
-        for(Line line : lines){
-            if(line.existStation(name)){
+        for (Line line : lines) {
+            if (line.isExistStation(name)) {
                 return true;
             }
         }
@@ -46,8 +46,8 @@ public class LineRepository {
     }
 
     private static boolean existLine(String name) {
-        for(Line line : lines){
-            if(line.getName().equals(name)){
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
                 return true;
             }
         }
@@ -55,15 +55,15 @@ public class LineRepository {
     }
 
     public static void status() {
-        for(Line line : lines){
+        for (Line line : lines) {
             OutputView.status(line.getName());
             line.status();
         }
     }
 
     public static Line getLineByName(String name) {
-        for(Line line : lines){
-            if(line.getName().equals(name)){
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
                 return line;
             }
         }
@@ -71,8 +71,8 @@ public class LineRepository {
     }
 
     public static boolean deleteSection(String lineName, Scanner scanner) {
-        for(Line line : lines){
-            if(line.getName().equals(lineName)){
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
                 OutputView.writeDeleteStation();
                 return line.deleteStation(scanner.next());
             }
