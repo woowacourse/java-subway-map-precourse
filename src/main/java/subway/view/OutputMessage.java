@@ -58,7 +58,11 @@ public class OutputMessage {
     private static final String ERROR_MESSAGE_DELETE_STATION="[ERROR] 역을 삭제할 수 없습니다.";
     private static final String ERROR_MESSAGE_REGISTER_LINE="[ERROR] 지하철 노선을 등록할 수 없습니다.";
     private static final String ERROR_MESSAGE_DELETE_LINE="[ERROR] 지하철 노선을 지울 수 없습니다.";
-
+    private static final String ERROR_MESSAGE_SECTION_ADD_LINE="[ERROR] 구간을 등록할 수 없습니다.";
+    public static void setErrorMessageSectionAddLine(){
+        System.out.println(ERROR_MESSAGE_SECTION_ADD_LINE);
+        System.out.println();
+    }
     public static void setErrorMessageDeleteLine(){
         System.out.println(ERROR_MESSAGE_DELETE_LINE);
         System.out.println();
@@ -82,6 +86,7 @@ public class OutputMessage {
         System.out.println(IN_LINE_MANAGE_REGISTRATION);
         System.out.println(IN_LINE_MANAGE_DELETE);
         System.out.println(MENU_BACK);
+        System.out.println();
     }
 
     public static void manageLineMessage(){
@@ -111,9 +116,9 @@ public class OutputMessage {
         System.out.println(WRITE_SECTION_STATION_NAME);
         return scanner.nextLine();
     }
-    public static int sectionInputOrder(){
+    public static String sectionInputOrder(){
         System.out.println(WRITE_SECTION_ORDER);
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
 

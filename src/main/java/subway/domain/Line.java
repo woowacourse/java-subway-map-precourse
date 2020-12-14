@@ -77,4 +77,7 @@ public class Line {
         }
         return false;
     }
+    public int getLineInStationNumber(){
+        return stationInLine.size();
+    }
 }

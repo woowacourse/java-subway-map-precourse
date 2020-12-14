@@ -67,7 +67,7 @@ public class LineRepository {
     }
     public static boolean checkingAllLine(String tmpSaveStationName){
         for(Line line:lines){
-            if(line.checkingAStationInLine(tmpSaveStationName)){
+            if(line.getName().equals(tmpSaveStationName)){
                 return true;
             }
         }

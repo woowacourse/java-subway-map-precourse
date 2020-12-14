@@ -14,7 +14,7 @@ public class SubwayMapMain {
     StationRepository stationRepository =new StationRepository();
     String[] station={"교대역","강남역","역삼역","남부터미널역","양재역","양재시민의숲역","매봉역"};
     public SubwayMapMain(Scanner scanner){
-        System.out.println("Ds");
+
         startSubwayMap();
     }
     public void startSubwayMap(){
@@ -34,7 +34,7 @@ public class SubwayMapMain {
     public void initialize(){
         stationRepository.initializeAddStation(station);
         String[] line2={"교대역","강남역","역삼역"};
-        String[] line3={"교대역","강남역","남부터미널역","양재역","매봉역"};
+        String[] line3={"교대역","남부터미널역","양재역","매봉역"};
         String[] lineShin={"교대역","양재역","양재시민의숲역"};
         Line line = new Line("2호선");
         line.initializeLine(line2);

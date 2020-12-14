@@ -60,4 +60,12 @@ public class StationRepository {
             System.out.println(stations.get(i).getName());
         }
     }
+    public static boolean checkingStationName(String tmpSaveName){
+        for(Station station:stations){
+            if(station.getName().equals(tmpSaveName)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

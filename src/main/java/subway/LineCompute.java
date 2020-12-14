@@ -15,7 +15,10 @@ public class LineCompute {
         }
         LineFunctionChoice choice=LineFunctionChoice.lineFunctionInput(tmpSaveFunctionNumber);
         if(!choice.doingFunction()){
+
             manageLine();
+
         }
+        System.out.println();
     }
 }

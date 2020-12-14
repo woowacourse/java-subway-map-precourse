@@ -14,7 +14,6 @@ public class StationCompute {
             System.out.println();
             manageStation();
         }
-
         StationFunctionChoice choice = StationFunctionChoice.stationFunctionDecide(tmpSaveFunctionNumber);
         if(choice.doingFunction()){
             manageStation();

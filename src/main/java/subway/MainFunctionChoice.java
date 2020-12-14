@@ -32,12 +32,12 @@ public enum MainFunctionChoice {
     }
     public static MainFunctionChoice mainFunctionInput(){
         String tmpSaveChoiceNumber=OutputMessage.choiceOutputMessage();
-
+        System.out.println();
         if(checkInput(tmpSaveChoiceNumber)){
             return choiceSubwayFunction(tmpSaveChoiceNumber);
         }
         OutputMessage.setErrorMessageFunctionChoice();
-        System.out.println();
+
         return mainFunctionInput();
     }
 }
