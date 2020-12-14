@@ -9,11 +9,13 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class SectionValidatorTest {
+    private Line line;
+    
     @Before
     public void setUp() {
         StationRepository.addStation(new Station("산성역"));
         StationRepository.addStation(new Station("암사역"));
-        Line line = new Line("8호선");
+        line = new Line("8호선");
         line.addStation("산성역");
         line.addStation("암사역");
         LineRepository.addLine(line);
@@ -34,5 +36,15 @@ public class SectionValidatorTest {
     @Test(expected = IllegalElementException.class)
     public void testOrderIsLowerThanLineSize() {
         SectionValidator.validateOrder("8호선", "5");
+    }
+    
+    @Test(expected = NotExistedElementException.class)
+    public void testStationIsExistedInTheLine() {
+        SectionValidator.validateStationIsExistedInTheLine("8호선", "교대역");
+    }
+    
+    @Test(expected = IllegalElementException.class)
+    public void testLineSizeIsSufficient() {
+        SectionValidator.validateLineSizeIsSufficient("8호선");
     }
 }
