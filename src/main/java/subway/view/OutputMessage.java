@@ -60,6 +60,11 @@ public class OutputMessage {
     private static final String ERROR_MESSAGE_DELETE_LINE="[ERROR] 지하철 노선을 지울 수 없습니다.";
     private static final String ERROR_MESSAGE_SECTION_ADD_LINE="[ERROR] 구간을 등록할 수 없습니다.";
     private static final String ERROR_MESSAGE_SECTION_DELETE_LINE="[ERROR] 구간을 삭제할 수 없습니다.";
+    private static final String ERROR_MESSAGE_ADD_STATION="[ERROR] 역을 등록할 수 없습니다.";
+    public static void setErrorMessageAddStation(){
+        System.out.println(ERROR_MESSAGE_ADD_STATION);
+        System.out.println();
+    }
     public static void setErrorMessageSectionDeleteLine(){
         System.out.println(ERROR_MESSAGE_SECTION_DELETE_LINE);
         System.out.println();

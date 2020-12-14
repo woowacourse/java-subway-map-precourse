@@ -9,16 +9,15 @@ import java.util.Objects;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+    private static final String INFO_MESSAGE="[INFO] ";
+    private static final String DIVIDE_INFO_MESSAGE="[INFO] ---";
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
     public static boolean addLine(Line line) {
-        System.out.println("addline 실행");
-
         lines.add(line);
-        System.out.println(line.getName());
         return false;
     }
     public static boolean duplicateLineName(Line line){
@@ -40,7 +39,7 @@ public class LineRepository {
     }
     public static void printLine(){
         for(int i=0;i<lines.size();i++){
-            System.out.println("[INFO] "+lines.get(i).getName());
+            System.out.println(INFO_MESSAGE+lines.get(i).getName());
         }
         System.out.println();
     }
@@ -59,8 +58,8 @@ public class LineRepository {
         OutputMessage.stationInLineMessage();
 
         for (Line tmpLine : lines) {
-            System.out.println("[INFO] "+tmpLine.getName());
-            System.out.println("[INFO] ---");
+            System.out.println(INFO_MESSAGE+tmpLine.getName());
+            System.out.println(DIVIDE_INFO_MESSAGE);
             tmpLine.printAllStationInLine();
 
         }

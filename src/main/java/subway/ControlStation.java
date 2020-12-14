@@ -11,6 +11,7 @@ public class ControlStation {
         Boolean checkingInput=true;
         String tmpSaveStationName=OutputMessage.registerStationName();
         if(!StationRepository.lengthStationName(tmpSaveStationName)||!StationRepository.duplicateStationName(tmpSaveStationName)){
+            OutputMessage.setErrorMessageAddStation();
             System.out.println();
             return true;
         }

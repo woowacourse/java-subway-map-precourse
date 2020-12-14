@@ -8,6 +8,7 @@ import java.util.List;
 import subway.domain.StationRepository;
 public class Line {
     private String name;
+    private static final String INFO_MESSAGE="[INFO] ";
     OutputMessage outputMessage=new OutputMessage();
     private StationRepository stationRepository= new StationRepository();
     private List<Station> stationInLine=new ArrayList<>();
@@ -18,13 +19,13 @@ public class Line {
     }
     // 추가 기능 구현
     public Line(String name,String upStation) {
-        System.out.println("line 생성");
+
         if(registerLineJongJum(upStation)){
             stationInLine.add(new Station(upStation));
             stationInLine.add(new Station(tmpSaveDownStation));
             this.name = name;
         }
-        System.out.println("라인생성끝");
+
     }
     public void initializeLine(String[] station){
         for(String tmpStation:station) {
@@ -44,7 +45,7 @@ public class Line {
             }
 
         }
-        System.out.println("작동안되지");
+
         return false;
     }
     public String getName() {
@@ -69,7 +70,7 @@ public class Line {
     public void printAllStationInLine(){
 
         for(int i=0;i<stationInLine.size();i++){
-            System.out.println("[INFO] "+stationInLine.get(i).getName());
+            System.out.println(INFO_MESSAGE+stationInLine.get(i).getName());
         }
         System.out.println();
     }
