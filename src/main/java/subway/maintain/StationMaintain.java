@@ -47,6 +47,8 @@ public class StationMaintain {
     }
 
     private void stationStatus() {
+        StationRepository.status();
+        new Controller(scanner);
     }
 
     private void deleteStation() {

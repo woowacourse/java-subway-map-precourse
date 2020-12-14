@@ -1,6 +1,7 @@
 package subway.domain;
 
 import subway.view.ErrorView;
+import subway.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,5 +46,12 @@ public class StationRepository {
         for(String stationName : STATIONS){
             addStation(new Station(stationName));
         }
+    }
+
+    public static void status() {
+        for(Station station : stations){
+            OutputView.status(station.getName());
+        }
+        OutputView.space();
     }
 }
