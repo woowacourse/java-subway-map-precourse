@@ -45,7 +45,7 @@ public class InputView {
             System.out.printf(SUB_MENU_MESSAGE_TOP + SUB_MENU_MESSAGE_ONE + SUB_MENU_MESSAGE_TWO
             + SUB_MENU_MESSAGE_THREE + SUB_MENU_MESSAGE_BOTTOM, subMenuName, subMenuName, subMenuName, subMenuName);
             System.out.println(CHOOSE_MENU_MESSAGE);
-            return mainMenuType.validateSubMenu(scanner.nextLine());
+            return mainMenuType.validateSubMenuOfMainMenu(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputStationOrLineMenu(scanner,subMenuName, mainMenuType);
@@ -57,7 +57,7 @@ public class InputView {
             System.out.printf(SUB_MENU_MESSAGE_TOP + SUB_MENU_MESSAGE_ONE + SUB_MENU_MESSAGE_TWO
                     + SUB_MENU_MESSAGE_BOTTOM, subMenuName, subMenuName, subMenuName);
             System.out.println(CHOOSE_MENU_MESSAGE);
-            return mainMenuType.validateSubMenu(scanner.nextLine());
+            return mainMenuType.validateSubMenuOfMainMenu(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputSectionMenu(scanner,subMenuName, mainMenuType);
@@ -113,5 +113,4 @@ public class InputView {
         System.out.printf(INPUT_SECTION_DELETE_MESSAGE, STATION);
         return new StationName(scanner.nextLine());
     }
-
 }

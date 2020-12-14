@@ -28,7 +28,7 @@ public enum MainMenuType {
                 .orElseThrow(() -> new IllegalArgumentException(MAIN_MENU_ERROR));
     }
 
-    public SubMenuType validateSubMenu(String menuInput) {
+    public SubMenuType validateSubMenuOfMainMenu(String menuInput) {
         return subMenuTypeList.stream()
                 .filter(subMenu -> subMenu == SubMenuType.of(menuInput))
                 .findFirst()

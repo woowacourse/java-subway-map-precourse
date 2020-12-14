@@ -15,6 +15,7 @@ public class StationService {
     private static final String STATION_EXIST_ERROR = "\n[ERROR] 역 목록에 이미 등록되어 있는 역입니다.";
     private static final String STATION_NOT_EXIST_ERROR = "\n[ERROR] 역 목록에 등록되어 있는 역이 아닙니다.";
     private static final String STATION_LINE_REGISTER_ERROR = "\n[ERROR] 노선에 등록되어 있는 역은 삭제할 수 없습니다.";
+
     private final Scanner scanner;
 
     public StationService(Scanner scanner) {

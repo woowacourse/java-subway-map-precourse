@@ -8,7 +8,6 @@ import subway.domain.station.StationRepository;
 import java.util.List;
 
 public class OutputView {
-
     private static final String SUBWAY = "지하철 ";
     private static final String SECTION = "구간";
     private static final String DASH = "---";
