@@ -4,10 +4,11 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.domain.StationRepository;
-import subway.view.LineMessages;
 import subway.view.View;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class LineController {
@@ -17,7 +18,8 @@ public class LineController {
 		options.put(Options.OPTION_1.getOption(), LineController::registerLine);
 		options.put(Options.OPTION_2.getOption(), LineController::deregisterLine);
 		options.put(Options.OPTION_3.getOption(), (scanner) -> View.showLines());
-		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
+		options.put(Options.BACK.getOption(), (scanner) -> {
+		});
 	}
 
 	public static int getOptionLength() {

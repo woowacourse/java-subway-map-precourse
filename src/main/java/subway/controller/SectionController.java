@@ -13,7 +13,7 @@ public class SectionController {
 	static {
 		options.put(Options.OPTION_1.getOption(), SectionController::registerSection);
 		options.put(Options.OPTION_2.getOption(), SectionController::deregisterSection);
-		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
+		options.put(Options.BACK.getOption(), (scanner) -> {});
 	}
 
 	public static int getOptionLength() {
