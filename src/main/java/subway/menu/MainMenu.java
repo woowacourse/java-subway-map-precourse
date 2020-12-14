@@ -11,6 +11,8 @@ public enum MainMenu {
     SHOW_SUBWAY_MAP("4", MainMenuHandler::showSubwayMap),
     QUIT("Q", MainMenuHandler::end);
 
+    public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
+
     MainMenu(String command, Runnable action) {
         this.command = command;
         this.action = action;
@@ -24,7 +26,7 @@ public enum MainMenu {
                 .filter(mainMenu -> mainMenu.command.equals(command))
                 .findAny()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("asd");
+                    throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);
                 });
     }
 
