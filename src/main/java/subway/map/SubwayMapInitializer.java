@@ -9,6 +9,7 @@ import subway.dto.LineDto;
 import subway.dto.SectionDto;
 import subway.service.LineService;
 import subway.service.StationService;
+import subway.view.InputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,15 +35,15 @@ public class SubwayMapInitializer {
     private SubwayMapInitializer() {
     }
 
-    public static ControllerMapper injectDependencies() {
+    public static SubwayMapApplication injectDependencies() {
         StationRepository stationRepository = new StationRepository(new ArrayList<>());
         LineRepository lineRepository = new LineRepository(new ArrayList<>());
         StationService stationService = new StationService(stationRepository);
         LineService lineService = new LineService(lineRepository);
         saveDefaultData(stationService, lineService);
-        List<SubwayMapController> subwayMapControllers =
-                generateSubwayMapControllers(stationService, lineService);
-        return new ControllerMapper(subwayMapControllers);
+        List<SubwayMapController> subwayMapControllers = generateSubwayMapControllers(stationService, lineService);
+        ControllerMapper controllerMapper = new ControllerMapper(subwayMapControllers);
+        return new SubwayMapApplication(InputView.getInstance(), controllerMapper);
     }
 
     private static void saveDefaultData(StationService stationService, LineService lineService) {

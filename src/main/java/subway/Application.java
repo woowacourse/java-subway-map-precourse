@@ -1,6 +1,5 @@
 package subway;
 
-import subway.controller.ControllerMapper;
 import subway.map.SubwayMapApplication;
 import subway.map.SubwayMapInitializer;
 import subway.view.InputView;
@@ -12,9 +11,7 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
         InputView.initiate(scanner);
-        InputView inputView = InputView.getInstance();
-        ControllerMapper controllerMapper = SubwayMapInitializer.injectDependencies();
-        SubwayMapApplication subwayMapApplication = new SubwayMapApplication(inputView, controllerMapper);
+        SubwayMapApplication subwayMapApplication = SubwayMapInitializer.injectDependencies();
         subwayMapApplication.run();
         scanner.close();
     }
