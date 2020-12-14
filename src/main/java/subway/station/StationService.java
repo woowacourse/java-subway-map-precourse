@@ -40,8 +40,8 @@ public class StationService {
     }
 
     private static void checkDeleteException(String stationName) {
-        LineService.checkStationOnAnySubwayLine(stationName);
         checkExistStation(stationName);
+        LineService.checkStationOnAnySubwayLine(stationName);
     }
 
     public static void checkExistStation(String stationName) {

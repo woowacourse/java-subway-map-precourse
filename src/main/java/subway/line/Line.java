@@ -7,11 +7,13 @@ import java.util.List;
 
 public class Line {
     private String name;
-    private List<Station> lines;
+    private List<Station> stations;
 
-    public Line(String name) {
+    public Line(String name, Station upEndStation, Station downEndStation) {
         this.name = name;
-        this.lines = new ArrayList<>();
+        this.stations = new ArrayList<>();
+        this.stations.add(upEndStation);
+        this.stations.add(downEndStation);
     }
 
     public String getName() {
@@ -19,11 +21,11 @@ public class Line {
     }
 
     public void addStation(Station station) {
-        lines.add(station);
+        stations.add(station);
     }
 
     public boolean isStationInLine(String stationName) {
-        for (Station station : lines) {
+        for (Station station : stations) {
             if (station.getName().equals(stationName)) {
                 return true;
             }

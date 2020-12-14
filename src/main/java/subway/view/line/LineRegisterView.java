@@ -1,5 +1,7 @@
 package subway.view.line;
 
+import subway.line.LineService;
+import subway.model.ResultDto;
 import subway.view.GeneralView;
 
 public class LineRegisterView extends GeneralView {
@@ -19,6 +21,7 @@ public class LineRegisterView extends GeneralView {
         String lineName = inputMoreThanTwoWords(INPUT_LINE_NAME_GUIDE_TEXT);
         String upEndStation = inputMoreThanTwoWords(INPUT_UP_STATION_GUIDE_TEXT);
         String downEndStation = inputMoreThanTwoWords(INPUT_DOWN_STATION_GUIDE_TEXT);
-        /** TODO: LineService에게 노선 등록 요청 */
+        ResultDto result = LineService.registerLine(lineName, upEndStation, downEndStation);
+        processRequestResult(result);
     }
 }
