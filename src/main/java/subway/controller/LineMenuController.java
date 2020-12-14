@@ -33,7 +33,7 @@ public class LineMenuController {
             lineService.lineAddService();
         }
         if (selectedOption.equals(LineMenu.LINE_DELETE)) {
-
+            lineService.lineDeleteService();
         }
         if (selectedOption.equals(LineMenu.LINE_SELECT)) {
 

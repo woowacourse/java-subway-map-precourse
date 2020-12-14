@@ -15,6 +15,7 @@ public class LineService {
     private static final String UPWARD_AND_DOWNWARD_IS_SAME_MESSAGE = "\n[ERROR] 상행 종점역과 " +
         "하행 종점역은 같게 입력할 수 없습니다.";
     private static final String NOT_EXIST_STATION_MESSAGE = "\n[ERROR] 존재하지 않는 역입니다.";
+    private static final String NOT_EXIST_LINE_MESSAGE = "\n[ERROR] 존재하지 않는 노선입니다.";
 
     final Scanner scanner;
 
@@ -58,6 +59,25 @@ public class LineService {
     private void isDuplicatedLine(Line line) {
         if (LineRepository.lines().contains(line)) {
             throw new IllegalArgumentException(DUPLICATED_LINE_NAME_MESSAGE);
+        }
+    }
+
+    public void lineDeleteService() {
+        try {
+            String lineNameToDelete = LineInputView.inputLineName(scanner);
+            isNotExistLine(lineNameToDelete);
+            LineRepository.deleteLineByName(lineNameToDelete);
+            LineOutputView.printDeleteSuccess();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            LineMenuController lineMenuController = LineMenuController.getInstance();
+            lineMenuController.mappingLineMenu(scanner);
+        }
+    }
+
+    private void isNotExistLine(String lineNameToDelete) {
+        if (!LineRepository.lines().contains(new Line(lineNameToDelete))) {
+            throw new IllegalArgumentException(NOT_EXIST_LINE_MESSAGE);
         }
     }
 }

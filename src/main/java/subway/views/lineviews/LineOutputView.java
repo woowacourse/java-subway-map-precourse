@@ -28,4 +28,8 @@ public class LineOutputView implements OutputView {
     public static void printAddSuccess() {
         System.out.println(LINE_WRAP + INFO_PREFIX + LINE_ADD_SUCCESS_MESSAGE);
     }
+
+    public static void printDeleteSuccess() {
+        System.out.println(LINE_WRAP + INFO_PREFIX + LINE_DELETE_SUCCESS_MESSAGE);
+    }
 }
