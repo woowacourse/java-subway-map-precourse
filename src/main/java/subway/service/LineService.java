@@ -41,4 +41,18 @@ public class LineService {
         Station downwardEndStation = sections.get(INITIAL_DOWNWARD_END_STATION_INDEX);
         return !stationService.isExistent(upwardEndStation) || !stationService.isExistent(downwardEndStation);
     }
+
+    public boolean deleteLine(String lineName) {
+        if (!LineRepository.deleteLineByName(lineName)) {
+            throw new IllegalArgumentException(NON_EXISTENT_LINE_ERROR_MESSAGE);
+        }
+        return true;
+    }
+
+    public List<String> getLineNames() {
+        return LineRepository.lines()
+                .stream()
+                .map(Line::getName)
+                .collect(Collectors.toList());
+    }
 }
