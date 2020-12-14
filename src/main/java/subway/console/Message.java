@@ -24,6 +24,7 @@ public class Message {
     public static final String INPUT_DELETE_ORDER_SECTION = "\n## 삭제할 구간의 역을 입력하세요.";
 
     public static final String INFO = "[INFO] ";
+    public static final String SUBWAY_INFO = "[INFO] ---";
     public static final String INFO_CREATE_STATION = "\n[INFO] 지하철 역이 등록되었습니다.";
     public static final String INFO_DELETE_STATION = "\n[INFO] 지하철 역이 삭제되었습니다.";
     public static final String INFO_CREATE_LINE = "\n[INFO] 지하철 노선이 등록되었습니다.";

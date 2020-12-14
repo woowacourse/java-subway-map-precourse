@@ -43,17 +43,25 @@ public class Output {
     }
 
     public static void printSubwayLine(Map<Line, List<Station>> sections) {
-        if (sections.isEmpty()) {
+        if (isEmpty(sections)) {
             print(Message.ERROR_EMPTY_LINE);
             return;
         }
+
         print(Message.SUBWAY_LINE);
+        printSubwayInformation(sections);
+    }
+
+    private static boolean isEmpty(Map<Line, List<Station>> sections) {
+        return sections.isEmpty();
+    }
+
+    private static void printSubwayInformation(Map<Line, List<Station>> sections) {
         for (Line line : sections.keySet()) {
             print(combine(line.getName()));
-            print("[INFO] ---");
-            for (Station station : sections.get(line)) {
-                print(combine(station.getName()));
-            }
+            print(Message.SUBWAY_INFO);
+
+            sections.get(line).forEach(station -> print(combine(station.getName())));
             printBlankLine();
         }
     }
