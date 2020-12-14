@@ -1,6 +1,5 @@
 package subway.domain.screen;
 
-import subway.domain.command.Command;
 import subway.domain.command.StationCommand;
 
 import java.util.Arrays;
