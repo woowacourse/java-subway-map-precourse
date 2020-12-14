@@ -28,14 +28,14 @@ public class View {
         return userCommand;
     }
     
-    public String askStationName(ActionType actionType) {
-        String userStationName;
+    public String askName(EntityType entityType, ActionType actionType) {
+        String userInputName;
         
-        outputView.printAskMessage(EntityType.STATION, actionType);
-        userStationName = inputView.userInput();
+        outputView.printAskMessage(entityType, actionType);
+        userInputName = inputView.userInput();
         outputView.printEmptyLine();
         
-        return userStationName;
+        return userInputName;
     }
     
     public void printMessage(String message) {

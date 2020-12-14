@@ -44,7 +44,7 @@ public class StationManager {
         String stationNameToDelete;
         
         try {
-            stationNameToDelete = controller.askStationName(ActionType.DELETE);
+            stationNameToDelete = controller.askName(EntityType.STATION, ActionType.DELETE);
             StationRepository.deleteStation(stationNameToDelete);
             view.printSuccessMessage(EntityType.STATION, ActionType.DELETE);
         } catch (Exception exception) {

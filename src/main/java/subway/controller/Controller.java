@@ -37,14 +37,14 @@ public class Controller {
         }
     }
     
-    public String askStationName(ActionType actionType) throws IllegalArgumentException {
-        String StationName = view.askStationName(actionType);
-        Validator.checkValidStationName(StationName, actionType);
-        return StationName;
+    public String askName(EntityType entityType, ActionType actionType) throws IllegalArgumentException {
+        String userInputName = view.askName(entityType, actionType);
+        Validator.checkValidName(userInputName, entityType, actionType);
+        return userInputName;
     }
     
     public Station askNewStation(ActionType actionType) throws IllegalArgumentException {
-        return new Station(askStationName(actionType));
+        return new Station(askName(EntityType.STATION, actionType));
     }
     
     private void operateUserCommand(String userCommand, Screen currentScreen) {

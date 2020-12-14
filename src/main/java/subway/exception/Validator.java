@@ -3,6 +3,7 @@ package subway.exception;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.screen.ActionType;
+import subway.screen.EntityType;
 import subway.screen.Screen;
 
 public class Validator {
@@ -17,7 +18,16 @@ public class Validator {
         }
     }
     
-    public static void checkValidStationName(String stationName, ActionType actionType) throws IllegalArgumentException {
+    public static void checkValidName(String name, EntityType entityType, ActionType actionType) throws IllegalArgumentException {
+        if (entityType == EntityType.STATION) {
+            checkValidStationName(name, actionType);
+        }
+        if (entityType == EntityType.LINE) {
+            // TODO 구현 예정
+        }
+    }
+    
+    private static void checkValidStationName(String stationName, ActionType actionType) throws IllegalArgumentException {
         if (actionType == ActionType.REGISTER) {
             checkValidStationNameToRegister(stationName);
         }
