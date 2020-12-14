@@ -7,21 +7,21 @@ import java.util.Objects;
 
 public class StationRepository {
 
-    private static final List<Station> stations = new ArrayList<>();
+    private final List<Station> stations = new ArrayList<>();
 
-    public static List<Station> findAll() {
+    public List<Station> findAll() {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
+    public void addStation(Station station) {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static void checkDuplicateStation(String stationName) {
+    public void checkDuplicateStation(String stationName) {
         for (Station station : stations) {
             if (station.getName().equals(stationName)) {
                 throw new IllegalArgumentException("이미 등록된 역 이름입니다.");
@@ -29,7 +29,7 @@ public class StationRepository {
         }
     }
 
-    public static void checkStationExist(String stationName) {
+    public void checkStationExist(String stationName) {
         for (Station station : stations) {
             if (station.getName().equals(stationName)) {
                 return;

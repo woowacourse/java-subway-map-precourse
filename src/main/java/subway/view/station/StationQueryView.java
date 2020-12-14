@@ -9,8 +9,6 @@ public class StationQueryView extends GeneralView {
     private static final String VIEW_NAME = "역 조회";
     private static final String QUERY_GUIDE_TEXT = VIEW_TEXT_PREFIX + "역 목록";
 
-    private final StationService stationService = StationService.getInstance();
-
     @Override
     protected void initViewName() {
         this.name = VIEW_NAME;
@@ -19,7 +17,7 @@ public class StationQueryView extends GeneralView {
     @Override
     public void setVisible() {
         println(QUERY_GUIDE_TEXT);
-        ResultDto result = stationService.findAllStationNames();
+        ResultDto result = StationService.findAllStationNames();
         println(result.getContent());
     }
 }
