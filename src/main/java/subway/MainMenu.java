@@ -11,13 +11,6 @@ public class MainMenu {
         this.scanner = scanner;
     }
 
-    public static String menuInputNumber(String userInput, String regex) {
-        if (!userInput.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] 올바른 입력을 해주세요(1~4, Q)");
-        }
-        return userInput;
-    }
-
     public String run() {
         InputView inputView = new InputView(scanner, "main");
         String menuNumber = inputView.nextMenu();

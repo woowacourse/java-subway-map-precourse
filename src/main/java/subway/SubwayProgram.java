@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class SubwayProgram {
     private final Scanner scanner;
 //    private StationRepository newStationRepository;
-    private LineRepository newLineRepository;
+//    private LineRepository newLineRepository;
 
     public SubwayProgram(Scanner scanner) {
         this.scanner = scanner;
@@ -18,14 +18,18 @@ public class SubwayProgram {
         do {
             String mainMenuNumber = mainMenu.run();
             selectMainMenu(mainMenuNumber);
-            StationRepository.print();
+//            StationRepository.print();
+            LineRepository.printLine();
         } while (mainMenu.doNext());
     }
 
     public void selectMainMenu(String mainMenuNumber) {
         if (mainMenuNumber.equals("1")) {
-            StationManager newStationManage = new StationManager(scanner);
-            newStationManage.run();
+            StationManager newStationManager = new StationManager(scanner);
+            newStationManager.run();
+        } else if (mainMenuNumber.equals("2")) {
+            LineManager newLineManager = new LineManager(scanner);
+            newLineManager.run();
         }
     }
 

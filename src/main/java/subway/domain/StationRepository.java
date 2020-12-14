@@ -31,7 +31,7 @@ public class StationRepository {
     }
 
     public static boolean hasStation(String newStation) {
-        for (Station station: stations) {
+        for (Station station : stations) {
             if (station.getName().equals(newStation)) {
                 return true;
             }
@@ -39,13 +39,23 @@ public class StationRepository {
         return false;
     }
 
+    public static Station searchStation(String name) {
+        return stations.stream()
+                .filter((station) -> station.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException("[ERROR] 조건에 맞는 역이 없습니다.");
+                });
+    }
+
     public static void print() {
         StringBuilder sb = new StringBuilder();
-        for (Station station: stations) {
+        for (Station station : stations) {
             sb.append("[INFO] ");
             sb.append(station.getName());
             sb.append("\n");
         }
         System.out.println(sb.toString());
     }
+
 }
