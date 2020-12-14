@@ -17,13 +17,11 @@ public class StationRepository {
         return Collections.unmodifiableSet(stations);
     }
 
-    public Station findByName(String station) {
-        for (Station stationElement : stations) {
-            if (stationElement.getName().equals(station)) {
-                return stationElement;
-            }
-        }
-        return null;
+    public Station findByName(String name) {
+        return stations.stream()
+            .filter(station -> station.getName().equals(name))
+            .findFirst()
+            .orElse(null);
     }
 
     public boolean isExistByName(String name) {

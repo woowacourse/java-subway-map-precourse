@@ -42,11 +42,12 @@ public class MainView extends AbstractView {
 
     public void showWholeSubway() {
         MessageUtils.printAnnouncement(Constants.TITLE_SUBWAY_MAP);
-        subway.getSectionRepository().findAll().forEach((line, stations) -> {
-            MessageUtils.printInfoEntry(line.getName());
-            MessageUtils.printInfoEntry(Constants.SEPARATE_STRING_SUBWAY_MAP);
-            stations.forEach(station -> MessageUtils.printInfoEntry(station.getName()));
-            MessageUtils.printBlankLine();
-        });
+        subway.getSectionRepository().findAll()
+            .forEach((line, stations) -> {
+                MessageUtils.printInfoEntry(line.getName());
+                MessageUtils.printInfoEntry(Constants.SEPARATE_STRING_SUBWAY_MAP);
+                stations.forEach(station -> MessageUtils.printInfoEntry(station.getName()));
+                MessageUtils.printBlankLine();
+            });
     }
 }

@@ -23,7 +23,6 @@ public class SectionRepository {
 
     public void addNewLine(Line line, Station startStation, Station endStation) {
         addStationList(line, List.of(startStation, endStation)); // immutable
-
     }
 
     public void addSection(Line line, Station station, int index) {

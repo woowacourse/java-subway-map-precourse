@@ -43,9 +43,9 @@ public class Subway {
 
     private void loadInitSectionData() {
         for (Entry<String, List<String>> sectionsEntry : InitConstants.SECTION_LIST.entrySet()) {
-            List<Station> stations = sectionsEntry.getValue().stream()
-                .map(stationRepository::findByName)
-                .collect(Collectors.toList());
+            List<Station> stations = sectionsEntry.getValue().stream() // stationName
+                .map(stationRepository::findByName) //Station
+                .collect(Collectors.toList()); //List<Station>
             Line line = lineRepository.findByName(sectionsEntry.getKey());
             sectionRepository.addStationList(line, stations);
         }
