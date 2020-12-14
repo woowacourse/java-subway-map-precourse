@@ -41,5 +41,6 @@ public class Settings {
         line.add(stationNames.stream()
                 .map(StationRepository::getStation)
                 .toArray(Station[]::new));
+        LineRepository.addLine(line);
     }
 }
