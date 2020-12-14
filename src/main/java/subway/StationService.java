@@ -14,7 +14,7 @@ public class StationService {
             return false;
         }
         StationRepository.addStation(new Station(name));
-        // TODO - 완료출력함수 호출하기
+        OutPut.printStationCreateMessage();
         return true;
     }
 }
