@@ -16,7 +16,7 @@ public class StationScreen implements Screen {
     private static final String COMPLETE_MESSAGE_DELETION = "지하철 역이 삭제되었습니다.";
     private static final String STATION_LIST = "\n## 역 목록";
     private static final String INFO = "[INFO] ";
-    private static final String NEW_LINE = "[INFO] ";
+    private static final String NEW_LINE = "\n";
 
     static StationScreen instance;
 
