@@ -25,24 +25,39 @@ public class LineService extends BaseService {
     }
 
     public static void register() {
-        OutputView.printQuestion(REGISTER_LINE_QUESTION);
-        String lineName = InputView.getLineName();
-        OutputView.printQuestion(START_STATION_QUESTION);
-        Station startStation = StationRepository.getStation(InputView.getStationName());
-        OutputView.printQuestion(END_STATION_QUESTION);
-        Station endStation = StationRepository.getStation(InputView.getStationName());
+        String lineName = getLineNameByQuestion(REGISTER_LINE_QUESTION);
+        Station startStation = getStationByQuestion(START_STATION_QUESTION);
+        Station endStation = getStationByQuestion(END_STATION_QUESTION);
+        addLine(lineName, startStation, endStation);
+    }
+
+    public static void delete() {
+        String lineName = getLineNameByQuestion(DELETE_LINE_QUESTION);
+        deleteLine(lineName);
+    }
+
+    public static void printSubwayLineList() {
+        OutputView.printSubwayLineList(LineRepository.lines());
+    }
+
+    private static String getLineNameByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return InputView.getLineName();
+    }
+
+    private static Station getStationByQuestion(String question) {
+       return StationRepository.getStation(InputView.getStationName());
+    }
+
+    private static void addLine(String lineName, Station startStation, Station endStation) {
         LineRepository.addLine(new Line(lineName, startStation, endStation));
         OutputView.printInfo(REGISTER_LINE_SUCCESS);
     }
 
-    public static void delete() {
-        OutputView.printQuestion(DELETE_LINE_QUESTION);
-        if (!LineRepository.deleteLineByName(InputView.getLineName())) {
+    private static void deleteLine(String lineName) {
+        if (!LineRepository.deleteLineByName(lineName)) {
             throw new IllegalArgumentException(ERR_UNREGISTERED_LINE);
         }
         OutputView.printInfo(DELETE_LINE_SUCCESS);
-    }
-    public static void printSubwayLineList() {
-        OutputView.printSubwayLineList(LineRepository.lines());
     }
 }
