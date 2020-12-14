@@ -1,9 +1,6 @@
 package subway.userinterface.intervalmenu;
 
-import subway.userinterface.Menu;
-import subway.userinterface.MenuView;
-import subway.userinterface.OutputController;
-import subway.userinterface.ReturnController;
+import subway.userinterface.*;
 
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -13,6 +10,7 @@ public class IntervalMenuView implements MenuView {
     private final static String MENU_INTRO = "\n## 구간 관리 화면";
     private static IntervalMenuView intervalMenuView;
     public static LinkedHashMap<String, Menu> intervalMenu = new LinkedHashMap<>();
+    private static ViewInputController viewInputController = new ViewInputController();
 
     private IntervalMenuView() {
         setMenu();
@@ -41,6 +39,6 @@ public class IntervalMenuView implements MenuView {
 
     @Override
     public String getUserInput(Scanner scanner) {
-        return null;
+        return viewInputController.getUserInput(scanner);
     }
 }
