@@ -20,7 +20,7 @@ public class SectionRepository {
         this.sectionMap.put(sectionTitle, stations);
     }
 
-    public void addLine(Line sectionTitle, Station startStationInLine,
+    public void addNewLine(Line sectionTitle, Station startStationInLine,
         Station endStationInLine) {
         List<Station> startToEndStation = new ArrayList<>();
         startToEndStation.add(startStationInLine);
@@ -55,7 +55,7 @@ public class SectionRepository {
         this.sectionMap.put(sectionTitle, stations);
     }
 
-    public Set<String> findIncludedStationSet() {
+    public Set<String> getSetStations() {
         Set<String> foundSet = new HashSet<>();
         for (Line sectionTitle : this.sectionMap.keySet()) {
             for (Station station : this.sectionMap.get(sectionTitle)) {
@@ -65,8 +65,8 @@ public class SectionRepository {
         return foundSet;
     }
 
-    public Map<String, List> findAll() {
-        Map<String, List> wholeSubwayMap = new HashMap<>();
+    public Map<String, List<String>> findAll() {
+        Map<String, List<String>> wholeSubwayMap = new HashMap<>();
         Iterator<Line> sectionTitles = sectionMap.keySet().iterator();
         while (sectionTitles.hasNext()) {
             Line sectionTitle = sectionTitles.next();

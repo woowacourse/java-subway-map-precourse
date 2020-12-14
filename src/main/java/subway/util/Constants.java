@@ -81,10 +81,10 @@ public class Constants {
 
 
     public final static String ADD_LINE_NAME_INPUT_COMMENT = "## 등록할 노선 이름을 입력하세요.";
-    public final static String ADD_LINE_START_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
-    public final static String ADD_LINE_END_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public final static String ADD_START_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public final static String ADD_END_STATION_NAME_INPUT_COMMENT = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     public final static String ADD_LINE_OUTPUT_COMMENT = "지하철 노선이 등록되었습니다.";
-    public final static String DELETE_LINE_END_STATION_NAME_INPUT_COMMENT = "## 삭제할 노선 이름을 입력하세요.";
+    public final static String DELETE_LINE_NAME_INPUT_COMMENT = "## 삭제할 노선 이름을 입력하세요.";
     public final static String DELETE_LINE_OUTPUT_COMMENT = "지하철 노선이 삭제되었습니다.";
     public final static String TITLE_WHOLE_LINE_TEXT = "## 노선 목록";
     public final static String EXIST_LINE_OUTPUT_COMMENT = "이미 등록된 노선 이름입니다.";

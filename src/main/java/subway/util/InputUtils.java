@@ -15,7 +15,9 @@ public class InputUtils {
         return refinedInt;
     }
 
-    public static boolean isMinLengthString(String inputString) {
-        return inputString.length() >= Constants.MIN_NAME_STRING_LENGTH;
+    public static void isMinLengthString(String inputString) {
+        if (inputString.length() < Constants.MIN_NAME_STRING_LENGTH) {
+            throw new RuntimeException(Constants.INVALID_MIN_LENGTH_ERROR_COMMENT);
+        }
     }
 }

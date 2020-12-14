@@ -24,7 +24,7 @@ public class MessageUtils {
         MessageUtils.printBlankLine();
     }
 
-    public static void printInfoSection(String info) {
+    public static void printInfoEntry(String info) {
         System.out.println(Constants.PREFIX_INFO + info);
     }
 
