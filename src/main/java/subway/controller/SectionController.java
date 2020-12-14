@@ -10,7 +10,7 @@ import static subway.view.OutputView.warnMessage;
 public class SectionController extends BaseController{
 
     @Override
-    public void service(InputView inputView) {
+    public void run(InputView inputView) {
         String command;
         while(true) {
             printSectionControllerMenu();

@@ -1,6 +1,5 @@
 package subway;
 
-import subway.common.TestCase;
 import subway.controller.MainController;
 import subway.view.InputView;
 
@@ -14,6 +13,6 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView(scanner);
         testCaseCreate(inputView);
-        new MainController().service(inputView);
+        new MainController().run(inputView);
     }
 }

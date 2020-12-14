@@ -10,7 +10,7 @@ import static subway.view.OutputView.warnMessage;
 public class MainController extends BaseController{
 
     @Override
-    public void service(InputView inputView) {
+    public void run(InputView inputView) {
         String command;
         while(true) {
             printMainControllerMenu();
@@ -29,13 +29,13 @@ public class MainController extends BaseController{
     @Override
     public void menuSelector(String command, InputView inputView) {
         if (isStationControllerCommand(command)) {
-            new StationController().service(inputView);
+            new StationController().run(inputView);
         }
         if (isLineControllerCommand(command)) {
-            new LineController().service(inputView);
+            new LineController().run(inputView);
         }
         if (isSectionControllerCommand(command)) {
-            new SectionController().service(inputView);
+            new SectionController().run(inputView);
         }
         if (isPrintSubwayCommand(command)) {
             printLineAndStation();
