@@ -10,6 +10,7 @@ import subway.domain.exception.IncludeInLineException;
 import subway.domain.exception.OrderRangeException;
 import subway.domain.exception.OrderTypeException;
 import subway.domain.exception.MinimumStationNumberException;
+import subway.domain.exception.NotIncludeInLineException;
 
 public class Edge {
     private static final String STATION_MESSAGE = "역";
@@ -35,12 +36,24 @@ public class Edge {
         OutputView.printDeleteEdgeOptionMessage(LINE_MESSAGE);
         String lineName = inputView.getInput();
         validateLineState(lineName);
+        OutputView.printDeleteEdgeOptionMessage(STATION_MESSAGE);
+        String stationName = inputView.getInput();
+        validateStationState(stationName, lineName);
     }
 
     private static void validateLineState(String lineName) {
         Line.validateExistentLineName(lineName, LINE_MESSAGE);
         if (Line.validateRange(MINIMUM_DELETE_CONDITION_STAION_NUMBER)) {
             throw new MinimumStationNumberException();
+        }
+    }
+
+    private static void validateStationState(String stationName, String lineName) {
+        if (StationRepository.validateNewName(stationName)) {
+            throw new NonExistentNameException(STATION_MESSAGE);
+        }
+        if (!validateLineIncludeStation(lineName, stationName)) {
+            throw new NotIncludeInLineException();
         }
     }
 
