@@ -13,7 +13,6 @@ public class LineManager {
     }
 
     public void run() {
-        initializeLine();
         InputView inputView = new InputView(scanner, "lineManager");
         String menuNumber = inputView.nextMenu();
         selectMenu(menuNumber);
@@ -21,7 +20,20 @@ public class LineManager {
 
     public void initializeLine() {
         Line line2 = new Line("2호선");
-//        line2
+        line2.initializeSection("교대역", "역삼역");
+        line2.addStationToSection(1, "강남역");
+        LineRepository.addLine(line2);
+
+        Line line3 = new Line("3호선");
+        line3.initializeSection("교대역", "매봉역");
+        line3.addStationToSection(1, "남부터미널역");
+        line3.addStationToSection(2, "양재역");
+        LineRepository.addLine(line3);
+
+        Line lineSinbundang = new Line("신분당선");
+        lineSinbundang.initializeSection("강남역", "양재시민의숲역");
+        lineSinbundang.addStationToSection(1, "양재역");
+        LineRepository.addLine(lineSinbundang);
     }
 
 
@@ -51,11 +63,21 @@ public class LineManager {
             System.out.println("[INFO] 노선이 등록되었습니다.");
         } catch (IllegalArgumentException e) {
             System.out.println(e);
+            run();
         }
     }
 
     private void deleteLine() {
-        System.out.println("\n## ")
+        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
+        String station = InputView.askName(scanner);
+        try {
+            if (!LineRepository.deleteLineByName(station)) {
+                throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
+            }
+        } catch (IllegalArgumentException e)  {
+            System.out.println(e);
+            run();
+        }
     }
 
     public boolean isDuplicate(String line) {

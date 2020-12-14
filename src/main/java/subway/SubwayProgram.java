@@ -8,9 +8,13 @@ public class SubwayProgram {
     private final Scanner scanner;
 //    private StationRepository newStationRepository;
 //    private LineRepository newLineRepository;
+    private LineManager newLineManager;
 
     public SubwayProgram(Scanner scanner) {
         this.scanner = scanner;
+        newLineManager = new LineManager(scanner);
+        newLineManager.initializeLine();
+
     }
 
     public void run() {
@@ -28,7 +32,6 @@ public class SubwayProgram {
             StationManager newStationManager = new StationManager(scanner);
             newStationManager.run();
         } else if (mainMenuNumber.equals("2")) {
-            LineManager newLineManager = new LineManager(scanner);
             newLineManager.run();
         }
     }

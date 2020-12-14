@@ -25,7 +25,7 @@ public class Line {
         addStationToSection(1, end);
     }
 
-    private void addStationToSection(int index, String name) throws IllegalArgumentException {
+    public void addStationToSection(int index, String name) throws IllegalArgumentException {
         validateIndex(index);
         validateDuplicate(name);
         section.add(index, searchStation(name));
