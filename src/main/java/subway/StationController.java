@@ -1,5 +1,6 @@
 package subway;
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import subway.domain.LineRepository;
@@ -63,6 +64,9 @@ public class StationController {
     }
 
     private static boolean stationCheck() {
+        String[] stationList;
+        stationList = StationRepository.stations().stream().map(Station::getName).toArray(String[]::new);
+        OutputView.stationListPrint(stationList);
         return true;
     }
 

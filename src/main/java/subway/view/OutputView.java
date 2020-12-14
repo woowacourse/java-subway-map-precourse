@@ -43,4 +43,11 @@ public class OutputView {
     public static void stationDuplcationFailPrint() {
         System.out.println(StationMessage.STATION_ADD_NAME_DUPLICATION_FAIL.getStationMessage());
     }
+
+    public static void stationListPrint(String[] stationList) {
+        System.out.println(StationMessage.STATION_LIST.getStationMessage());
+        for (String station : stationList) {
+            System.out.println(GuideMessage.INFO.getGuideMessage() + station);
+        }
+    }
 }
