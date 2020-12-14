@@ -6,12 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
-import subway.exception.AlreadyExistsException;
 import subway.exception.NotFoundElementException;
 import subway.exception.SubwayRuntimeException;
 import subway.exception.TooLessStationException;

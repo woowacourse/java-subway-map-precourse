@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import subway.controller.ManagementController;
 import subway.exception.AlreadyExistsException;
 import subway.exception.NotFoundElementException;
+import subway.exception.RangeIndexOutOfBoundsException;
 import subway.exception.TooLessStationException;
 
 public final class StationRepository {
@@ -18,8 +19,6 @@ public final class StationRepository {
     public static final int MINIMUM_STATION_SIZE = 2;
 
     public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
-
-    public static final String OUT_OF_BOUNDS_ERROR = "노선의 범위를 벗어난 구간입니다. %d 초과 %d 미만의 값을 입력해주세요.";
 
     private final List<Station> stations;
 
@@ -55,8 +54,7 @@ public final class StationRepository {
         boolean canInsert = (index > MINIMUM_INDEX) && (index < size);
 
         if (!canInsert) {
-            throw new IllegalArgumentException(
-                    String.format(OUT_OF_BOUNDS_ERROR, MINIMUM_INDEX, size));
+            throw new RangeIndexOutOfBoundsException(size);
         }
 
         return add(index, stationName);

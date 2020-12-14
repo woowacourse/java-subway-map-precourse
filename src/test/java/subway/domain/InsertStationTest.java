@@ -6,13 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
 import subway.exception.AlreadyExistsException;
 import subway.exception.NotFoundElementException;
+import subway.exception.RangeIndexOutOfBoundsException;
 import subway.exception.SubwayRuntimeException;
 
 public class InsertStationTest {
@@ -97,8 +97,9 @@ public class InsertStationTest {
                 () -> lineRepository.addRange(line.getName(), index, stationName);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR,
+        assertThatThrownBy(callable).isExactlyInstanceOf(RangeIndexOutOfBoundsException.class)
+                .hasMessage(SubwayRuntimeException.ERROR +
+                                RangeIndexOutOfBoundsException.OUT_OF_BOUNDS_ERROR,
                         StationRepository.MINIMUM_INDEX, 3);
     }
 
@@ -115,8 +116,9 @@ public class InsertStationTest {
                 () -> lineRepository.addRange(line.getName(), index, stationName);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.OUT_OF_BOUNDS_ERROR,
+        assertThatThrownBy(callable).isExactlyInstanceOf(RangeIndexOutOfBoundsException.class)
+                .hasMessage(SubwayRuntimeException.ERROR +
+                                RangeIndexOutOfBoundsException.OUT_OF_BOUNDS_ERROR,
                         StationRepository.MINIMUM_INDEX, 3);
     }
 }
