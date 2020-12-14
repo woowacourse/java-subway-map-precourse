@@ -213,7 +213,7 @@ public class UserInterfaceView {
             return;
         }
         if (THREE_STRING.equals(userInput)) {
-
+            printLine();
         }
     }
 
@@ -230,4 +230,12 @@ public class UserInterfaceView {
         String lineName = getUserInput(INPUT_DELETE_LINE_NAME);
         LineService.deleteLine(lineName);
     }
+
+    private void printLine() {
+        System.out.println(LINE_LIST);
+        LineService.print();
+        System.out.println();
+    }
+
+
 }
