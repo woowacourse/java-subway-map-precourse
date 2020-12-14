@@ -80,4 +80,8 @@ public class LineService {
             throw new IllegalArgumentException(NOT_EXIST_LINE_MESSAGE);
         }
     }
+
+    public void showAllLines() {
+        LineOutputView.printLines(LineRepository.lines());
+    }
 }

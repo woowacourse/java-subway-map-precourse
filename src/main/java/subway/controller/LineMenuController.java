@@ -36,7 +36,7 @@ public class LineMenuController {
             lineService.lineDeleteService();
         }
         if (selectedOption.equals(LineMenu.LINE_SELECT)) {
-
+            lineService.showAllLines();
         }
     }
 }
