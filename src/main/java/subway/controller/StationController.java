@@ -8,7 +8,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class StationController {
+public class StationController implements Controller {
     private final Scanner scanner;
     private final StationService stationService;
 
@@ -17,24 +17,26 @@ public class StationController {
         stationService = new StationService(scanner);
     }
 
-    public void runStationMenu(MainMenuType mainMenuType, String category) {
+    @Override
+    public void runMenu(MainMenuType mainMenuType, String category) {
         SubMenuType subMenuType;
         do {
             subMenuType = InputView.inputStationOrLineMenu(scanner, category, mainMenuType);
-            selectStationMenu(subMenuType, category);
+            selectMenu(subMenuType, category);
         } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
-    private void selectStationMenu(SubMenuType stationMenuType, String category) {
-        if (SubMenuType.ADD.equals(stationMenuType)) {
+    @Override
+    public void selectMenu(SubMenuType subMenuType, String category) {
+        if (SubMenuType.ADD.equals(subMenuType)) {
             stationService.addStationInStationRepository(category);
             return;
         }
-        if (SubMenuType.DELETE.equals(stationMenuType)) {
+        if (SubMenuType.DELETE.equals(subMenuType)) {
             stationService.deleteStationInStationRepository(category);
             return;
         }
-        if (SubMenuType.LIST_PRINT.equals(stationMenuType)) {
+        if (SubMenuType.LIST_PRINT.equals(subMenuType)) {
             OutputView.printStationList(category);
         }
     }

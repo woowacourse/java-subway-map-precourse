@@ -8,7 +8,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class LineController {
+public class LineController implements Controller{
     private final Scanner scanner;
     private final LineService lineService;
 
@@ -17,15 +17,17 @@ public class LineController {
         lineService = new LineService(scanner);
     }
 
-    public void runLineMenu(MainMenuType mainMenuType, String category) {
+    @Override
+    public void runMenu(MainMenuType mainMenuType, String category) {
         SubMenuType subMenuType;
         do {
             subMenuType = InputView.inputStationOrLineMenu(scanner, category, mainMenuType);
-            selectLineMenu(subMenuType, category);
+            selectMenu(subMenuType, category);
         } while (!subMenuType.equals(SubMenuType.BACK));
     }
 
-    private void selectLineMenu(SubMenuType lineMenuType, String category) {
+    @Override
+    public void selectMenu(SubMenuType lineMenuType, String category) {
         if (SubMenuType.ADD.equals(lineMenuType)) {
             lineService.addLineInLineRepository(category);
             return;

@@ -1,5 +1,6 @@
 package subway;
 
+import subway.controller.Controller;
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
@@ -15,9 +16,9 @@ public class SubwayProgram {
     private static final String SECTION = "구간";
 
     private final Scanner scanner;
-    private final StationController stationController;
-    private final LineController lineController;
-    private final SectionController sectionController;
+    private final Controller stationController;
+    private final Controller lineController;
+    private final Controller sectionController;
 
     public SubwayProgram(Scanner scanner) {
         this.scanner = scanner;
@@ -26,7 +27,7 @@ public class SubwayProgram {
         sectionController = new SectionController(scanner);
     }
 
-    public void runMainMenu() {
+    public void run() {
         MainMenuType mainMenuType;
         do {
             mainMenuType = InputView.inputMainMenu(scanner);
@@ -39,15 +40,15 @@ public class SubwayProgram {
 
     private void selectManageMenu(MainMenuType mainMenuType) {
         if (MainMenuType.STATION_MANAGE.equals(mainMenuType)) {
-            stationController.runStationMenu(mainMenuType, STATION);
+            stationController.runMenu(mainMenuType, STATION);
             return;
         }
         if (MainMenuType.LINE_MANAGE.equals(mainMenuType)) {
-            lineController.runLineMenu(mainMenuType, LINE);
+            lineController.runMenu(mainMenuType, LINE);
             return;
         }
         if (MainMenuType.SECTION_MANAGE.equals(mainMenuType)) {
-            sectionController.runSectionMenu(mainMenuType, SECTION);
+            sectionController.runMenu(mainMenuType, SECTION);
         }
     }
 }
