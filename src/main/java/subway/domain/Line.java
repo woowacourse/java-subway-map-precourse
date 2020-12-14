@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static subway.view.OutputView.*;
 import static subway.view.OutputView.warnMessage;
 
 public class Line {
@@ -39,7 +40,7 @@ public class Line {
     }
 
     public void printLineDetail() {
-        OutputView.lineDetailPrint(name, stations());
+        lineDetailPrint(name, stations());
     }
 
     public void addSection(int index, Station station) {

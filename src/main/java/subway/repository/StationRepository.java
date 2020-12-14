@@ -5,6 +5,7 @@ import subway.domain.Station;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static subway.repository.LineRepository.isStationExistInLine;
 import static subway.repository.LineRepository.lines;
@@ -36,7 +37,6 @@ public class StationRepository {
     public static void deleteStationByName(String name) {
         Station findStation = findStationByName(name);
         if (findStation == null) {
-            warnMessage(STATION_NOT_EXIST_WARN);
             return;
         }
         if (isStationExistInLine(findStation)) {
@@ -48,9 +48,16 @@ public class StationRepository {
     }
 
     public static Station findStationByName(String stationName) {
-        return stations.stream()
+        Optional<Station> findStation = stations.stream()
                 .filter(station -> station.getName().equals(stationName))
-                .findAny().orElse(null);
+                .findAny();
+
+        if (findStation.isEmpty()) {
+            warnMessage(STATION_NOT_EXIST_WARN);
+            return null;
+        }
+
+        return findStation.get();
     }
 
     public static void printStationList() {

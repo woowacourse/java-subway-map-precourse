@@ -37,7 +37,6 @@ public class LineRepository {
     public static void deleteLineByName(String lineName) {
         Line findLine = findLineByName(lineName);
         if (findLine == null) {
-            warnMessage(LINE_NOT_EXIST_WARN);
             return;
         }
         lines.remove(findLine);
@@ -53,8 +52,15 @@ public class LineRepository {
     }
 
     public static Line findLineByName(String lineName) {
-        return lines.stream()
-                .filter(line -> line.getName().equals(lineName)).findAny().orElse(null);
+        Optional<Line> findLine = lines.stream()
+                .filter(line -> line.getName().equals(lineName)).findAny();
+
+        if (findLine.isEmpty()) {
+            warnMessage(LINE_NOT_EXIST_WARN);
+            return null;
+        }
+
+        return findLine.get();
     }
 
     public static boolean isStationExistInLine(Station station) {
@@ -62,20 +68,18 @@ public class LineRepository {
                 .anyMatch(line -> line.stations().contains(station));
     }
 
-    public static boolean addSection(Line findLine, Station findStation, int orderNum) {
+    public static void addSection(Line findLine, Station findStation, int orderNum) {
         findLine.addSection(orderNum, findStation);
         infoMessage(SECTION_ADD_SUCCESS);
-        return true;
     }
 
-    public static boolean deleteSection(Line findLine, Station findStation) {
+    public static void deleteSection(Line findLine, Station findStation) {
         if (findLine.stations().size() <= 2) {
             warnMessage(SECTION_DELETE_WARN);
-            return false;
+            return;
         }
         findLine.deleteSection(findStation);
         infoMessage(SECTION_DELETE_SUCCESS);
-        return true;
     }
 
     public static void printLineAndStation() {

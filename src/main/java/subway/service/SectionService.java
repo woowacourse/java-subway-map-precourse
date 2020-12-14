@@ -18,40 +18,39 @@ public class SectionService {
     private final String ASK_STATION_NAME = "역 이름을 입력하세요.";
     private final String ASK_DELETE_STATION_NAME = "삭제할 역 이름을 입력하세요.";
     private final String ASK_ORDER_NAME = "순서를 입력하세요.";
-    private final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.";
-    private final String STATION_NOT_EXIST_WARN = "존재하지 않는 역 입니다.";
 
-    public boolean addSection(InputView inputView) {
+    public void addSection(InputView inputView) {
         askMessage(ASK_LINE_NAME);
         Line findLine = findLineByName(inputView.inputName());
         if (findLine == null) {
-            warnMessage(LINE_NOT_EXIST_WARN);
-            return false;
+            return;
         }
+
         askMessage(ASK_STATION_NAME);
         Station findStation = findStationByName(inputView.inputName());
         if (findStation == null) {
-            warnMessage(STATION_NOT_EXIST_WARN);
-            return false;
+            return;
         }
+
         askMessage(ASK_ORDER_NAME);
         int orderNum = inputView.inputNumber();
-        return LineRepository.addSection(findLine, findStation, orderNum);
+
+        LineRepository.addSection(findLine, findStation, orderNum);
     }
 
-    public boolean deleteSection(InputView inputView) {
+    public void deleteSection(InputView inputView) {
         askMessage(ASK_DELETE_LINE_NAME);
         Line findLine = findLineByName(inputView.inputName());
         if (findLine == null) {
-            warnMessage(LINE_NOT_EXIST_WARN);
-            return false;
+            return;
         }
+
         askMessage(ASK_DELETE_STATION_NAME);
         Station findStation = findStationByName(inputView.inputName());
         if (findStation == null) {
-            warnMessage(STATION_NOT_EXIST_WARN);
-            return false;
+            return;
         }
-        return LineRepository.deleteSection(findLine, findStation);
+
+        LineRepository.deleteSection(findLine, findStation);
     }
 }
