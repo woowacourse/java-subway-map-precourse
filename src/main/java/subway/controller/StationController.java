@@ -32,7 +32,7 @@ public class StationController implements Controller {
         if (userInput.equals(Constants.USER_ANSWER_SHOW)) {
             screen.printStationsList();
         }
-        if (userInput.equals(Constants.BACK)){
+        if (userInput.equals(Constants.BACK)) {
             MainController.getInstance().action();
         }
         action();

@@ -28,7 +28,7 @@ public class InputView {
     public static String validateCategorySelection(String userInput, int endInclusive) {
         userInput = userInput.toUpperCase();
 
-        if (!(userInput.matches( Constants.USER_INPUT_REGEX_START +
+        if (!(userInput.matches(Constants.USER_INPUT_REGEX_START +
                 endInclusive + Constants.USER_INPUT_REGEX_END)
                 || userInput.equals(Constants.BACK) || userInput.equals(Constants.QUIT))) {
             throw new IllegalArgumentException();

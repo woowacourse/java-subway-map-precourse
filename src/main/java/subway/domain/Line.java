@@ -35,14 +35,14 @@ public class Line {
         return false;
     }
 
-    public boolean isEmpty(){
-        if(getLineStations().isEmpty()){
+    public boolean isEmpty() {
+        if (getLineStations().isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public void removeLineStation(Station station){
+    public void removeLineStation(Station station) {
         this.getLineStations().remove(station);
     }
 

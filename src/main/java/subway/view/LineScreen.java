@@ -24,35 +24,36 @@ public class LineScreen implements Screen {
                 Constants.COUNT_LINE_MANAGEMENT_USER_PROMPT);
         return userInput;
     }
-    public String showPromptRegisterLine(){
+
+    public String showPromptRegisterLine() {
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         return InputView.getUserInput();
     }
 
-    public String showPromptUpstreamStation(){
+    public String showPromptUpstreamStation() {
         System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         return InputView.getUserInput();
     }
 
-    public String showPromptDownstreamStation(){
+    public String showPromptDownstreamStation() {
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         return InputView.getUserInput();
     }
 
-    public String showPromptDeleteLine(){
+    public String showPromptDeleteLine() {
         System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
         return InputView.getUserInput();
     }
 
-    public void printRegistrationCompleted(){
+    public void printRegistrationCompleted() {
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
     }
 
-    public void printDeletionCompleted(){
+    public void printDeletionCompleted() {
         System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
-    public void printError(Exception e){
+    public void printError(Exception e) {
         System.out.println(e);
     }
 

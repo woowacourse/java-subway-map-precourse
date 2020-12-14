@@ -25,25 +25,25 @@ public class StationScreen implements Screen {
         return userInput;
     }
 
-    public String showPromptRegisterStation(){
+    public String showPromptRegisterStation() {
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
         return InputView.getUserInput();
     }
 
-    public String showPromptDeleteStation(){
+    public String showPromptDeleteStation() {
         System.out.println("\n## 삭제할 역 이름을 입력하세요.");
         return InputView.getUserInput();
     }
 
-    public void printRegistrationCompleted(){
+    public void printRegistrationCompleted() {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
 
-    public void printDeletionCompleted(){
+    public void printDeletionCompleted() {
         System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
     }
 
-    public void printError(Exception e){
+    public void printError(Exception e) {
         System.out.println(e);
     }
 

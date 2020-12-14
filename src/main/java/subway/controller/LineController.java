@@ -34,7 +34,7 @@ public class LineController implements Controller {
         if (userInput.equals(Constants.USER_ANSWER_SHOW)) {
             screen.printLines();
         }
-        if (userInput.equals(Constants.BACK)){
+        if (userInput.equals(Constants.BACK)) {
             MainController.getInstance().action();
         }
         action();
@@ -57,13 +57,13 @@ public class LineController implements Controller {
     private void initiateLineStations(Line line) {
         Station upstreamStation = null;
         Station downstreamStation = null;
-        try{
+        try {
             String userInputUpstreamStation = screen.showPromptUpstreamStation();
             upstreamStation = StationRepository.findStation(userInputUpstreamStation);
 
             String userInputDownstreamStation = screen.showPromptDownstreamStation();
             downstreamStation = StationRepository.findStation(userInputDownstreamStation);
-        }catch (Exception e){
+        } catch (Exception e) {
             screen.printError(e);
             initiateLineStations(line);
         }
