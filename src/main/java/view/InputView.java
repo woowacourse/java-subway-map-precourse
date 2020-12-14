@@ -90,54 +90,23 @@ public class InputView {
     }
 
     public static String inputLineName(Scanner scanner) {
-        try {
             System.out.println(INPUT_lINE_NAME);
-            String input = scanner.next();
-            LineRepository.isValidLineName(input);
-            return input;
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            return inputLineName(scanner);
-        }
+            return scanner.next();
     }
 
     public static String inputUpTerminalStation(Scanner scanner) {
-        try {
             System.out.println(UP_TERMINAL_STATION);
-            String upTerminal = scanner.next();
-            LineRepository.isPossibleTerminalStation(upTerminal);
-            return upTerminal;
-        } catch (IllegalArgumentException ie){
-            System.out.println(ie.getMessage());
-            return inputUpTerminalStation(scanner);
-        }
+            return scanner.next();
     }
 
     public static String inputDownTerminalStation(Scanner scanner) {
-        try {
             System.out.println(DOWN_TERMINAL_STATION);
-            String downTerminal = scanner.next();
-            LineRepository.isPossibleTerminalStation(downTerminal);
-            return downTerminal;
-        } catch (IllegalArgumentException ie){
-            System.out.println(ie.getMessage());
-            return inputDownTerminalStation(scanner);
-        }
+            return scanner.next();
     }
 
-    public static void inputDeleteLine(Scanner scanner) {
-        try {
+    public static String inputDeleteLineName(Scanner scanner) {
             System.out.println(DELETE_lINE_NAME);
-            String lineName = scanner.next();
-
-            if(!LineRepository.deleteLineByName(lineName)) {
-                throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_LINE);
-            }
-            LineStationRepository.deleteLineOnSubway(lineName);
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            inputDeleteLine(scanner);
-        }
+            return scanner.next();
     }
 
     public static String inputSectionFunction(Scanner scanner) {
