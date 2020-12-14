@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.Station;
 import subway.message.ErrorMessage;
 import subway.message.GuideMessage;
 import subway.message.StationMessage;
@@ -40,7 +41,7 @@ public class OutputView {
         System.out.println(StationMessage.STATION_ADD_NAME_LIMIT_FAIL.getStationMessage());
     }
 
-    public static void stationDuplcationFailPrint() {
+    public static void stationDuplicationFailPrint() {
         System.out.println(StationMessage.STATION_ADD_NAME_DUPLICATION_FAIL.getStationMessage());
     }
 
@@ -65,5 +66,9 @@ public class OutputView {
 
     public static void stationNameDeleteErrorPrint() {
         System.out.println(StationMessage.STATION_NAME_DELETE_ERROR.getStationMessage());
+    }
+
+    public static void lineRegisteredStationErrorPrint() {
+        System.out.println(StationMessage.NOTION_REGISTERED_STATION_ERROR.getStationMessage());
     }
 }

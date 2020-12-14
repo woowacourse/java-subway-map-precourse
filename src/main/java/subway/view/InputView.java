@@ -76,7 +76,7 @@ public class InputView {
             throw new IllegalArgumentException();
         }
         if (!stationDuplicationNameValidCheck(stationName)) {
-            OutputView.stationDuplcationFailPrint();
+            OutputView.stationDuplicationFailPrint();
             throw new IllegalArgumentException();
         }
 

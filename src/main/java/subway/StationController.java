@@ -66,6 +66,10 @@ public class StationController {
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
+        if (StationRepository.registeredStationsInLine().contains(stationName)){
+            OutputView.lineRegisteredStationErrorPrint();
+            return false;
+        }
 
         OutputView.stationDeleteSuccessPrint();
         return true;
