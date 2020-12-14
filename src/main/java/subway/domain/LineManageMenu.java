@@ -66,7 +66,7 @@ public class LineManageMenu {
 
     private static void lineManageMenuInput() throws IllegalArgumentException {
         String inputMsg = InputView.getInput();
-        if (!Validator.isValidStationManageMenuInput(inputMsg)) {
+        if (!Validator.isValidStationAndLineManageMenuInput(inputMsg)) {
             throw new IllegalArgumentException("선택할 수 없는 기능입니다.");
         }
         lineManageMenuController(inputMsg);
