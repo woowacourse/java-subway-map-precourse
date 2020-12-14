@@ -55,6 +55,17 @@ public class OutputMessage {
     private static final String WRITE_SECTION_LINE_NAME="## 노선을 입력하세요";
     private static final String WRITE_SECTION_STATION_NAME="## 역이름을 입력하세요";
     private static final String WRITE_SECTION_ORDER="## 순서를 입력하세요.";
+    private static final String DELETE_SECTION_LINE_NAME="## 삭제할 구간의 노선을 입력하세요.";
+    private static final String DELETE_SECTION_STATION_NAME="## 삭제할 구간의 노선을 입력하세요.";
+
+    public static String deleteSectionLineName(){
+        System.out.println(DELETE_SECTION_LINE_NAME);
+        return scanner.nextLine();
+    }
+    public static String deleteSectionStationName(){
+        System.out.println(DELETE_SECTION_STATION_NAME);
+        return scanner.nextLine();
+    }
 
     public static String sectionInputLine(){
         System.out.println(WRITE_SECTION_LINE_NAME);

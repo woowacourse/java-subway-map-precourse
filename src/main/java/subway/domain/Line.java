@@ -43,6 +43,13 @@ public class Line {
         StationRepository.addStation(new Station(tmpSaveStation));
         stationInLine.add((index),new Station(tmpSaveStation));
     }
-
+    public boolean deleteSectionLine(String tmpSaveStation){
+        if(stationInLine.size()<=2){
+            return true;
+        }
+        StationRepository.deleteStation(tmpSaveStation);
+        stationInLine.remove(tmpSaveStation);
+        return true;
+    }
     // 추가 기능 구현
 }

@@ -6,8 +6,9 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 
 public enum SectionFunctionChoice {
-    ADD_SECTION("1",(choiceKey)->Section.registerSection());
-
+    ADD_SECTION("1",(choiceKey)->Section.registerSection()),
+    DELETE_SECTION("2",(choiceKey)->Section.deleteSection());
+    //BACK("B",);
     String choiceKey;
     Consumer<String> handlerFunction;
 

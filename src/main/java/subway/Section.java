@@ -8,4 +8,9 @@ public class Section {
         Line sectionLine= LineRepository.getLine(OutputMessage.sectionInputLine());
         sectionLine.addSectionLine(OutputMessage.sectionInputStation(),OutputMessage.sectionInputOrder());
     }
+    public static void deleteSection(){
+        Line sectionLine=LineRepository.getLine(OutputMessage.deleteLineName());
+        sectionLine.deleteSectionLine(OutputMessage.deleteSectionStationName());
+
+    }
 }
