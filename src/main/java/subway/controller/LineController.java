@@ -36,7 +36,10 @@ public class LineController implements Controller {
         if (userInput.equals(Constants.USER_ANSWER_SHOW)) {
             printLines();
         }
-        MainController.getInstance().action();
+        if (userInput.equals(Constants.BACK)){
+            MainController.getInstance().action();
+        }
+        action();
     }
 
     private void deleteLine() {

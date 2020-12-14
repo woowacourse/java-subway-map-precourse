@@ -35,7 +35,10 @@ public class SectionController implements Controller {
         if (userInput.equals(Constants.USER_ANSWER_DELETE)) {
             deleteSection();
         }
-        MainController.getInstance().action();
+        if (userInput.equals(Constants.BACK)){
+            MainController.getInstance().action();
+        }
+        action();
     }
 
     private void registerSection() {
