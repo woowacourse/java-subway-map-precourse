@@ -24,4 +24,14 @@ public class ErrorUtils {
             }
         }
     }
+
+    public static void repeatInputUntilGoback(final Supplier<Object> supplier) {
+        while (true) {
+            try {
+                supplier.get();
+            } catch (Exception e) {
+                return;
+            }
+        }
+    }
 }

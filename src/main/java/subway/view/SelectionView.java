@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.errors.StopRepeatException;
 import subway.utils.ErrorUtils;
 import subway.utils.InputValidator;
 
@@ -35,18 +36,15 @@ public abstract class SelectionView extends AbstractView {
 
     @Override
     public void setVisible() {
-        while (true) {
-            try {
-                printMenu();
-                int input = inputMenuOption();
-                if (input == GO_BACK_CODE) {
-                    return;
-                }
-                visitView(input);
-                return;
-            } catch (Exception e) {
+        ErrorUtils.repeatInputUntilGoback(() -> {
+            printMenu();
+            int input = inputMenuOption();
+            if (input == GO_BACK_CODE) {
+                throw new StopRepeatException();
             }
-        }
+            visitView(input);
+            throw new StopRepeatException();
+        });
     }
 
     protected void printMenu() {
