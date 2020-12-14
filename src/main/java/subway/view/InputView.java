@@ -10,11 +10,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class InputView {
+
     private static final String MANAGEMENT_FUNCTION_NUMBER_NOTICE = "\n## 원하는 기능을 선택하세요.";
-    private static final String STATION_NAME_REGISTRATION_NOTICE = "\n## 등록할 역 이름을 입력하세요.";
-    private static final String STATION_NAME_DELETION_NOTICE = "\n## 삭제할 역 이름을 입력하세요.";
-    private static final String LINE_NAME_REGISTRATION_NOTICE = "\n## 등록할 노선 이름을 입력하세요.";
-    private static final String LINE_NAME_DELETION_NOTICE = "\n## 삭제할 노선 이름을 입력하세요.";
+    private static final String INPUT_NAME_MESSAGE_FORMAT = "\n## %s할 %s 이름을 입력하세요.";
     private static final String UPWARD_LAST_STATION_NAME_NOTICE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String DOWNWARD_LAST_STATION_NAME_NOTICE = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String SECTION_REGISTRATION_LINE_NAME_NOTICE = "\n## 노선을 입력하세요.";
@@ -22,8 +20,8 @@ public class InputView {
     private static final String SECTION_REGISTRATION_ORDER_NUMBER_NOTICE = "\n## 순서를 입력하세요.";
     private static final String SECTION_DELETION_LINE_NAME_NOTICE = "\n## 삭제할 구간의 노선을 입력하세요.";
     private static final String SECTION_DELETION_STATION_NAME_NOTICE = "\n## 삭제할 구간의 역을 입력하세요.";
-
     private static InputView inputView;
+
     private Scanner scanner;
 
     private InputView(Scanner scanner) {
@@ -66,19 +64,13 @@ public class InputView {
         }
     }
 
-    public String inputStationName(FunctionType functionType) {
-        if (functionType == FunctionType.DELETE) {
-            return scanInputLineWithNotice(STATION_NAME_DELETION_NOTICE);
-        }
-        return scanInputLineWithNotice(STATION_NAME_REGISTRATION_NOTICE);
+    public String inputName(ManagementType managementType, FunctionType functionType) {
+        String message = String.format(INPUT_NAME_MESSAGE_FORMAT, functionType.toString(), managementType.toString());
+        return scanInputLineWithNotice(message);
     }
 
-    public LineDto inputLineRequest(FunctionType functionType) {
-        if (functionType == FunctionType.DELETE) {
-            String lineName = scanInputLineWithNotice(LINE_NAME_DELETION_NOTICE);
-            return new LineDto(lineName);
-        }
-        String lineName = scanInputLineWithNotice(LINE_NAME_REGISTRATION_NOTICE);
+    public LineDto inputLineRequest(ManagementType managementType, FunctionType functionType) {
+        String lineName = inputName(managementType, functionType);
         String upwardLastStationName = scanInputLineWithNotice(UPWARD_LAST_STATION_NAME_NOTICE);
         String downwardLastStationName = scanInputLineWithNotice(DOWNWARD_LAST_STATION_NAME_NOTICE);
         return new LineDto(lineName, upwardLastStationName, downwardLastStationName);
