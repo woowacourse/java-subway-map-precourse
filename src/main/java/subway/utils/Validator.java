@@ -57,4 +57,9 @@ public class Validator {
         List<String> usingStations = LineRepository.getUsingStations();
         return usingStations.contains(stationName);
     }
+
+    public static boolean isStationAlreadyInLine(String stationName, String lineName) {
+        List<String> stations = LineRepository.getLineContainStations(lineName);
+        return stations.contains(stationName);
+    }
 }

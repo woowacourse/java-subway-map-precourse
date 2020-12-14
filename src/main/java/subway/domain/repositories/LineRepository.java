@@ -46,4 +46,9 @@ public class LineRepository {
         List<String> lineContainStations = new ArrayList<>(lineMap.get(lineName));
         return Collections.unmodifiableList(lineContainStations);
     }
+
+    public static int getLineSize(String lineName){
+        List<String> lineContainStations = new ArrayList<>(lineMap.get(lineName));
+        return lineContainStations.size();
+    }
 }
