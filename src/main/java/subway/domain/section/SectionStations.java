@@ -2,6 +2,7 @@ package subway.domain.section;
 
 import subway.domain.station.Station;
 import subway.exception.AlreadyRegisteredSectionException;
+import subway.exception.InvalidIndexException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -31,7 +32,12 @@ public class SectionStations {
             return;
         }
 
-        addIndex(sectionStation, index);
+        try {
+            addIndex(sectionStation, index);
+        }
+        catch (Exception e) {
+            throw new InvalidIndexException();
+        }
     }
 
     private boolean addIfLastIndex(SectionStation sectionStation, int index) {

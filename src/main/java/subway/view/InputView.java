@@ -1,7 +1,9 @@
 package subway.view;
 
 import subway.domain.State;
+import subway.exception.InvalidIndexException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,7 +18,6 @@ public class InputView {
     private static final String SCENE_BACK_UPPER = "B";
     private static final String INVALID_CHOICE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
     private static final String INVALID_LENGTH_MESSAGE = "[ERROR] 이름은 두 글자 이상 이어야 합니다.";
-    private static final String INVALID_INDEX_MESSAGE = "[ERROR] 노선 범위 내의 숫자를 입력해야 합니다.";
 
     public static State inputMainSceneChoice(Scanner scanner) {
         return getMainSceneChoice(scanner.next());
@@ -51,10 +52,8 @@ public class InputView {
     public static int inputStationIndex(Scanner scanner) {
         try {
             return scanner.nextInt();
-        } catch (NumberFormatException e) {
-            System.out.println(INVALID_INDEX_MESSAGE);
-
-            return inputStationIndex(scanner);
+        } catch (InputMismatchException e) {
+            throw new InvalidIndexException();
         }
     }
 
