@@ -13,28 +13,20 @@ public class PassingRouteRepository{
     private static final int STATION_NOT_EXIST = -1;
     private List<Station> routes = new ArrayList<>();
 
-    public PassingRouteRepository(List<Station> routes) {
-        this.routes = routes;
+    public PassingRouteRepository(String[] stationNames) {
+        configureRoutes(stationNames);
     }
 
-    private boolean addPossible(int whereToInsert, Station station) {
-        if(isContaining(station)) {
-            return false;
+    private void configureRoutes(String[] stationNames) {
+        Station station;
+        for(String stationName: stationNames) {
+            station = StationRepository.searchStation(stationName);
+            routes.add(station);
         }
-        return true;
     }
-
     public void add(int position, Station station) {
 
         routes.add(position - 1, station);
-    }
-
-    public boolean isContaining(Station station) {
-        return indexOf(station) != this.STATION_NOT_EXIST;
-    }
-
-    public int indexOf(Station station) {
-        return routes.indexOf(station);
     }
 
     public void delete(Station station) {
@@ -51,4 +43,5 @@ public class PassingRouteRepository{
     public int size() {
         return this.routes.size();
     }
+
 }

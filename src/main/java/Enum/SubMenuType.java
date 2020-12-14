@@ -22,4 +22,5 @@ public enum SubMenuType {
     public boolean isExit() {
         return this == SubMenuType.EXIT;
     }
+
 }

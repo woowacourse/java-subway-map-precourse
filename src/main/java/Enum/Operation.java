@@ -2,7 +2,7 @@ package Enum;
 
 public enum Operation {
 
-    INSERT('1'), DELETE('2'), TRAVERSAL('3'),  GO_BACK('B');
+    INSERT('1'), DELETE('2'), TRAVERSAL('3'),  GO_TO_MAIN('B');
 
     Operation(final char choice) {
         this.choice = choice;
@@ -20,7 +20,7 @@ public enum Operation {
     }
 
     public boolean isGoBack() {
-        return this == Operation.GO_BACK;
+        return this == Operation.GO_TO_MAIN;
     }
 
 }

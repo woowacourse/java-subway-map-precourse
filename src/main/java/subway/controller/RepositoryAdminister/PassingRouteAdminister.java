@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.controller.RepositoryAdminister;
 
 import View.InputView;
 import View.OutputView;
@@ -48,6 +48,5 @@ public class PassingRouteAdminister {
             deleteInterval();
         }
     }
-
 
 }

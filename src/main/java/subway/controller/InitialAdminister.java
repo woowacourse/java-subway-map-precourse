@@ -21,9 +21,6 @@ public class InitialAdminister {
             "3호선", new String[]{"교대역", "남부터미널", "양재역", "매봉역"},
             "신분당선", new String[]{"강남역", "양재역", "양재시민의숲역"}
         );
-
-
-        }
     }
 
     private void configureStations() {
@@ -42,4 +39,5 @@ public class InitialAdminister {
         configureStations();
         configureLines();
     }
+
 }

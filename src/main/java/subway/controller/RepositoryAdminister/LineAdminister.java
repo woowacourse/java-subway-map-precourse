@@ -1,9 +1,12 @@
-package subway.controller;
+package subway.controller.RepositoryAdminister;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 import Validation.SubwayValidation;
 import View.InputView;
 import View.OutputView;
-import java.util.ArrayList;
+
 import subway.Exception.SubwayRelatedException;
 import subway.domain.Line;
 import subway.domain.Station;
@@ -23,8 +26,10 @@ public class LineAdminister {
 
     public static void addLine() {
         try {
-            String name = InputView.inputNewLineName();
-            Line line = new Line(name, new PassingRouteRepository(new ArrayList<Station>()));
+            Map<String, String> info = InputView.inputNewLineInfo();
+            String name = info.get("lineName");
+            Line line = new Line(name,
+                        new PassingRouteRepository(new String[]{info.get("startTerminalName"), info.get("endTerminalName")}));
             LineRepository.addBack(line);
             SubwayValidation.repeatedLineCheck(line);
             SubwayValidation.lineLengthCheck(line);

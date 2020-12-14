@@ -1,6 +1,8 @@
 package View;
 
+import java.util.Map;
 import java.util.Scanner;
+
 import subway.Exception.SubwayRelatedException;
 
 public class InputView {
@@ -8,13 +10,15 @@ public class InputView {
     private static final String CHOOSE_FEATURE = "## 원하는 기능을 선택하세요.";
     private static final String NEW_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
     private static final String DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
-    private static final String INPUT_LINE_NAME = "## 노선 이름을 입력하세요.";
-    private static final String INPUT_STATION_NAME = "## 역 이름을 입력하세요.";
     private static final String INPUT_NEW_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_NAME = "## 삭제할 역 이름을 입력하세요.";
     private static final String INPUT_ORDER = "## 순서를 입력하세요.";
+    private static final String INPUT_LINE_NAME = "## 노선 이름을 입력하세요.";
+    private static final String INPUT_STATION_NAME = "## 역 이름을 입력하세요.";
     private static final String DELETE_LINE_OF_INTERVAL = "## 삭제할 구간의 노선을 입력하세요.";
     private static final String DELETE_STATION_OF_INTERVAL = "## 삭제할 구간의 역을 입력하세요.";
+    private static final String START_TERMINAL_NAME = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String END_TERMINAL_NAME = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final int START = 0;
     private static Scanner scanner = null;
 
@@ -28,10 +32,19 @@ public class InputView {
         return choice;
     }
 
-    public static String inputNewLineName() {
+    public static Map<String, String> inputNewLineInfo() {
+        Map<String, String> info = Map.of();
+
         System.out.println(NEW_LINE_NAME);
-        String lineName = scanner.nextLine();
-        return lineName;
+        info.put("lineName", scanner.nextLine());
+
+        System.out.println(START_TERMINAL_NAME);
+        info.put("startTerminalName", scanner.nextLine());
+
+        System.out.println(END_TERMINAL_NAME);
+        info.put("endTerminalName", scanner.nextLine());
+
+        return info;
     }
 
     public static String inputDeleteLineName() {
