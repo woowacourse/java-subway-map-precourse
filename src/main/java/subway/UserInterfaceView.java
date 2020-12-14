@@ -87,7 +87,7 @@ public class UserInterfaceView {
         if (isQuit(userInput)) {
             return true;
         }
-
+        mainToNextFunction(userInput);
         return false;
     }
 
