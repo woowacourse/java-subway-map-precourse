@@ -112,6 +112,10 @@ public class Line {
 
     public boolean deleteStation(String stationName) {
         int length = stations.size();
+        if(length <= MINIMUM_LENGTH){
+            ErrorView.lineSizeError();
+            return false;
+        }
         for (int i = 0; i < length; i++) {
             if (stations.get(i).getName().equals(stationName)) {
                 stations.remove(i);
