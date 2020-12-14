@@ -38,6 +38,11 @@ public class Lines {
                 .orElseThrow(() -> new NoSuchElementException(ERR_NO_SUCH_NAME_LINE_MSG));
     }
 
+    public boolean containsStation(Station station){
+        return lines.stream()
+                .anyMatch(line -> line.containsStation(station));
+    }
+
     public List<String> lineNames() {
         return lines.stream()
                 .map(Line::getName)

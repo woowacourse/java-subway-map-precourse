@@ -49,8 +49,8 @@ public class Stations {
                 .collect(Collectors.toList());
     }
 
-    public boolean contains(Station staion) {
-        return stations.contains(staion);
+    public boolean contains(Station station) {
+        return stations.contains(station);
     }
 
     public Station firstStation(){

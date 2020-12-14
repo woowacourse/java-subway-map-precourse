@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.util.ValidateUtil;
+
 public class StationRepository {
     private static final Stations stations = new Stations();
 
@@ -12,6 +14,7 @@ public class StationRepository {
     }
 
     public static void deleteStation(String name) {
+        ValidateUtil.canDeleteStation(stations.findStation(name));
         stations.deleteStation(name);
     }
 }
