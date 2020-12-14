@@ -10,4 +10,5 @@ public class Constant {
     public static final int MIN_STATION_AND_LINE_NAME_LENGTH = 2;
     public static final int IS_NOT_REGISTERED_STATION_NUM = 0;
     public static final int ONE_REGISTERED_STATION_NUM = 1;
+    public static final int MIN_SECTION_DELETE_STATION_COUNT = 2;
 }
