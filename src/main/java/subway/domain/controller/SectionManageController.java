@@ -26,6 +26,7 @@ public class SectionManageController {
             line.removeOrderedStation(station);
             station.removeOrderedLine(line);
         }
+        ErrorMessage.isLessThanTwoStation();
         throw new IllegalArgumentException();
     }
 

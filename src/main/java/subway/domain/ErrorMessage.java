@@ -17,6 +17,7 @@ public class ErrorMessage {
     static final String NOT_INPUT_NUMBER_ERROR = "자연수를 입력하세요";
     static final String ALREADY_EXIST_STATION_IN_LINE_ERROR = "해당 역이 노선 안에 이미 존재합니다";
     static final String CANNOT_INPUT_INDEX_ERROR = "해당 번째로 구간 삽입 불가능합니다";
+    static final String LESS_THAN_TWO_STATION_ERROR = "해당 노선의 역이 2개 이하일 때 삭제 불가능합니다";
 
     public static void isInvalidFunction() {
         System.out.println(PREFIX + INVALID_FUNCTION_ERROR);
@@ -74,6 +75,9 @@ public class ErrorMessage {
         System.out.println(PREFIX + CANNOT_INPUT_INDEX_ERROR);
     }
 
+    public static void isLessThanTwoStation() {
+        System.out.println(PREFIX + LESS_THAN_TWO_STATION_ERROR);
+    }
 
 }
 
