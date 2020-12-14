@@ -2,7 +2,7 @@ package subway.view;
 
 import subway.validator.StationNameValidator;
 
-public class InputStationView {
+public final class InputStationView {
 
     private static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
 
@@ -13,6 +13,8 @@ public class InputStationView {
     private static final String FINAL_STATION_NAME_QUESTION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
 
     private static final String REMOVE_SECTION_NAME_QUESTION = "삭제할 구간의 역을 입력하세요.";
+
+    private InputStationView() {}
 
     public static String inputStation() {
         return inputStationName(STATION_NAME_QUESTION);
@@ -31,7 +33,7 @@ public class InputStationView {
     }
 
     public static String inputStationOfSectionToRemove() {
-        return inputStationName(REMOVE_STATION_NAME_QUESTION);
+        return inputStationName(REMOVE_SECTION_NAME_QUESTION);
     }
 
     private static String inputStationName(final String message) {
