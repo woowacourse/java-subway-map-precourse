@@ -106,6 +106,16 @@ public class OutputView {
         System.out.println(INFO_TAG + SUBWAY_MESSAGE + title.trim() + DELETE_FINISH_MESSAGE);
     }
 
+    public static void printEdgeAddActionFinishMessage(String title) {
+        System.out.println();
+        System.out.println(INFO_TAG + title + ADD_FINISH_MESSAGE);
+    }
+
+    public static void printEdgeDeleteActionFinishMessage(String title) {
+        System.out.println();
+        System.out.println(INFO_TAG + title + DELETE_FINISH_MESSAGE);
+    }
+
     public static void printUpBoundStationMessage() {
         System.out.println(HASH + ADD_LINE_BOUND_START_MESSAGE + UPBOUND + NAME_MESSAGE +INPUT_MESSAGE);
     }

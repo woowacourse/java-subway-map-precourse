@@ -16,6 +16,7 @@ public class Edge {
     private static final String STATION_MESSAGE = "역";
     private static final String LINE_MESSAGE = "노선";
     private static final String EDGE_MESSAGE = "구간";
+    private static final String NAME_MESSAGE = "이름";
     private static final int MINIMUM_DELETE_CONDITION_STAION_NUMBER = 3;
 
     private Edge() {
@@ -31,7 +32,7 @@ public class Edge {
                 line.addStationByName(stationName, order);
             }
         }
-        OutputView.printAddActionFinishMessage(LINE_MESSAGE);
+        OutputView.printEdgeAddActionFinishMessage(LINE_MESSAGE);
     }
 
     public static void delete(InputView inputView) {
@@ -47,7 +48,7 @@ public class Edge {
                 line.deleteStationByName(stationName);
             }
         }
-        OutputView.printDeleteActionFinishMessage(EDGE_MESSAGE);
+        OutputView.printEdgeDeleteActionFinishMessage(EDGE_MESSAGE);
     }
 
     private static void validateLineState(String lineName) {
@@ -81,7 +82,8 @@ public class Edge {
     }
 
     private static String scanStationName(InputView inputView, String lineName) {
-        OutputView.printInputMessage(STATION_MESSAGE);
+        String stationNameMessage = STATION_MESSAGE + NAME_MESSAGE;
+        OutputView.printInputMessage(stationNameMessage);
         String stationName = inputView.getInput();
         validateStationName(lineName, stationName);
         return stationName;
