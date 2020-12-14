@@ -5,7 +5,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import view.OutputView;
+import view.SubwayManagerOutputView;
 
 public class SubwayManager {
 
@@ -22,7 +22,7 @@ public class SubwayManager {
 
     public void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
-            OutputView.printSubwayManagerMainScreen();
+            SubwayManagerOutputView.printSubwayManagerMainScreen();
             userOption = getUserOption(scanner);
             callOptionMenu(userOption, scanner);
         }
