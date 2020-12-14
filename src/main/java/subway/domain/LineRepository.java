@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,5 +40,16 @@ public class LineRepository {
             }
         }
         return null;
+    }
+    public static void printAllLineInStation() {
+        OutputMessage.stationInLineMessage();
+
+        for (Line tmpLine : lines) {
+
+            System.out.println("[INFO] "+tmpLine.getName());
+            System.out.println("[INFO] ---");
+            tmpLine.printAllStationInLine();
+
+        }
     }
 }

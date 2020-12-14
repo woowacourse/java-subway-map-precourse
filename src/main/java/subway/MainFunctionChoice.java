@@ -1,5 +1,6 @@
 package subway;
 
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.view.OutputMessage;
 
@@ -11,8 +12,8 @@ import java.util.logging.Handler;
 public enum MainFunctionChoice {
     MANAGE_STATION("1",(choiceNumber)->StationCompute.manageStation()),
     MANAGE_LINE("2",(choiceNumber)->LineCompute.manageLine()),
-    MANAGE_SECTION("3",(choiceNumber)->SectionCompute.manageSection());
-    ///LINE_LOOK("4",);
+    MANAGE_SECTION("3",(choiceNumber)->SectionCompute.manageSection()),
+    LINE_LOOK("4",(choiceNumber)-> LineRepository.printAllLineInStation());
     private String choiceNumber;
     private Consumer<String> handleFunction;
     MainFunctionChoice(String choiceNumber,Consumer<String> handleFunction){

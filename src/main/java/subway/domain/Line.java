@@ -16,6 +16,7 @@ public class Line {
     public Line(String name){
         this.name=name;
     }
+    // 추가 기능 구현
     public Line(String name,String upStation) {
         System.out.println("line생성");
         if(registerLineJongJum(upStation)){
@@ -26,8 +27,13 @@ public class Line {
         System.out.println("라인생성끝");
     }
     public void initializeLine(String[] station){
-        for(String tmpStation:station)
-        stationInLine.add(new Station(tmpStation));
+        for(String tmpStation:station) {
+            System.out.println(tmpStation);
+            stationInLine.add(new Station(tmpStation));
+        }
+        for(int i=0;i<stationInLine.size();i++){
+            System.out.println(stationInLine.get(i).getName());
+        }
     }
     public boolean registerLineJongJum(String upStation){
 
@@ -56,5 +62,11 @@ public class Line {
         stationInLine.remove(tmpSaveStation);
         return true;
     }
-    // 추가 기능 구현
+    public void printAllStationInLine(){
+
+        for(int i=0;i<stationInLine.size();i++){
+            System.out.println("[INFO] "+stationInLine.get(i).getName());
+        }
+        System.out.println();
+    }
 }

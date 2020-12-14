@@ -14,6 +14,7 @@ public class OutputMessage {
     private final String MAIN_MANAGE_STATION="1. 역 관리";
     private final String MAIN_MANAGE_LINE="2. 노선 관리";
     private final String MAIN_MANAGE_IN_LINE="3. 구간 관리";
+    private final String MAIN_MANAGE_LOOK_ALL_LINE="4. 지하철 노선도 출력";
     private final String MAIN_QUIT="Q. 종료";
 
 
@@ -58,6 +59,7 @@ public class OutputMessage {
     private static final String DELETE_SECTION_LINE_NAME="## 삭제할 구간의 노선을 입력하세요.";
     private static final String DELETE_SECTION_STATION_NAME="## 삭제할 구간의 노선을 입력하세요.";
 
+    private static final String PRINT_STATION_IN_LINE="## 지하철 노선도";
     public static String deleteSectionLineName(){
         System.out.println(DELETE_SECTION_LINE_NAME);
         return scanner.nextLine();
@@ -66,7 +68,9 @@ public class OutputMessage {
         System.out.println(DELETE_SECTION_STATION_NAME);
         return scanner.nextLine();
     }
-
+    public static void stationInLineMessage(){
+        System.out.println(PRINT_STATION_IN_LINE);
+    }
     public static String sectionInputLine(){
         System.out.println(WRITE_SECTION_LINE_NAME);
         return scanner.nextLine();
@@ -106,6 +110,7 @@ public class OutputMessage {
         System.out.println(MAIN_MANAGE_STATION);
         System.out.println(MAIN_MANAGE_LINE);
         System.out.println(MAIN_MANAGE_IN_LINE);
+        System.out.println(MAIN_MANAGE_LOOK_ALL_LINE);
         System.out.println(MAIN_QUIT);
         System.out.println();
     }
