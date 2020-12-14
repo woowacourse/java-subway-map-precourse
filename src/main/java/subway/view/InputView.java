@@ -8,9 +8,11 @@ public class InputView {
     private static final String INVALID_LENGTH = "[ERROR] 이름은 2글자 이상이어야 합니다.\n";
     private static final String NEGATIVE_NUMBER_ERROR = "[ERROR] 순서는 음수가 될 수 없습니다.\n";
     private static final String NEW_LINE = "";
+    private static final String BLANK_ERROR = "[ERROR] 빈 칸을 포함하면 안됩니다.\n";
+    private static final String BLANK = " ";
     private static final int LENGTH = 2;
     private static final int ZERO = 0;
-
+    
     private Scanner scanner;
 
     public InputView(Scanner scanner) {
@@ -36,10 +38,17 @@ public class InputView {
             String name = scanner.nextLine();
             OutputView.print(NEW_LINE);
             validateLength(name);
+            validateBlank(name);
             return name;
         } catch (Exception e) {
             OutputView.print(e.getMessage());
             return getName(message);
+        }
+    }
+
+    private void validateBlank(String name) {
+        if (name.contains(BLANK)) {
+            throw new IllegalArgumentException(BLANK_ERROR);
         }
     }
 
