@@ -52,6 +52,18 @@ public class Controller {
         
         return endStationNames;
     }
+
+    public String askStationNameToRegisterToRoute(String lineName) throws IllegalArgumentException {
+        String stationNameToRegisterToRoute = view.askStationNameToRegisterToRoute();
+        Validator.checkValidStationNameToRegisterToRoute(stationNameToRegisterToRoute, lineName);
+        return stationNameToRegisterToRoute;
+    }
+    
+    public String askStationOrderInRoute(String lineName) {
+        String stationOrderInRoute = view.askStationOrderInRoute();
+        Validator.checkStationOrderInRoute(stationOrderInRoute, lineName);
+        return stationOrderInRoute;
+    }
     
     private void operateUserCommand(String userCommand, Screen currentScreen) {
         Choice userChoice;

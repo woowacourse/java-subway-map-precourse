@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LineRepository {
+    public static int ROUTE_START = 1;
+    
     private static final List<Line> lines = new ArrayList<>();
     private static final Map<Line, List<Station>> routes = new HashMap<>();
 
@@ -33,8 +35,16 @@ public class LineRepository {
         return lines.stream().filter(line -> line.nameEquals(lineName)).findAny().get();
     }
     
-    public static void addStationToRoutByName(String lineName, String stationName) {
+    public static int getRouteLengthByName(String lineName) {
+        return routes.get(getLineByName(lineName)).size();
+    }
+    
+    public static void addStationToRouteByName(String lineName, String stationName) {
         routes.get(getLineByName(lineName)).add(StationRepository.getStationByName(stationName));
+    }
+    
+    public static void addStationToRouteByName(String lineName, String stationName, int index) {
+        routes.get(getLineByName(lineName)).add(index, StationRepository.getStationByName(stationName));
     }
 
     public static boolean deleteLineByName(String name) {
@@ -44,5 +54,9 @@ public class LineRepository {
     
     public static boolean containsName(String name) {
         return lines.stream().anyMatch(line -> line.nameEquals(name));
+    }
+
+    public static boolean routeContainsByName(String lineName, String stationName) {
+        return routes.get(getLineByName(lineName)).contains(StationRepository.getStationByName(stationName));
     }
 }

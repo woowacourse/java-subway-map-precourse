@@ -24,6 +24,10 @@ public class OutputView {
     private static String LINE_DELETE_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
     private static String UPWARD_END_STATION_ASK_MESSAGE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static String DOWNWARD_END_STATION_ASK_MESSAGE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static String ROUTE_REGISTER_ASK_MESSAGE = "노선을 입력하세요.";
+    private static String ROUTE_REGISTER_SUCCESS_MESSAGE = "구간이 등록되었습니다.";
+    private static String ASK_STATION_NAME_TO_REGISTER_TO_ROUTE_MESSAGE = "역이름을 입력하세요.";
+    private static String ASK_STATION_ORDER_IN_ROUTE_MESSAGE = "순서를 입력하세요.";
     
     OutputView() {
     }
@@ -86,6 +90,14 @@ public class OutputView {
     void printAskDownwardEndRouteMessage() {
         System.out.println(NEW_MESSAGE_PREFIX + DOWNWARD_END_STATION_ASK_MESSAGE);
     }
+
+    void printAskStationNameToRegisterToRouteMessage() {
+        System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_NAME_TO_REGISTER_TO_ROUTE_MESSAGE);
+    }
+
+    void printAskStationOrderInRouteMessage() {
+        System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_ORDER_IN_ROUTE_MESSAGE);
+    }
     
     void printEmptyLine() {
         System.out.println(CommonConstants.EMPTY);
@@ -110,7 +122,12 @@ public class OutputView {
     }
     
     private void printRouteAskMessage(ActionType actionType) {
-        // TODO 구현 예정
+        if (actionType == ActionType.REGISTER) {
+            System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ROUTE_REGISTER_ASK_MESSAGE);
+        }
+        if (actionType == ActionType.DELETE) {
+            // TODO 구현 예정
+        }
     }
     
     private void printStationSuccessMessage(ActionType actionType) {
@@ -132,6 +149,11 @@ public class OutputView {
     }
     
     private void printRouteSuccessMessage(ActionType actionType) {
-        // TODO 구현 예정
+        if (actionType == ActionType.REGISTER) {
+            System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + ROUTE_REGISTER_SUCCESS_MESSAGE);
+        }
+        if (actionType == ActionType.DELETE) {
+            // TODO 구현 예정
+        }
     }
 }

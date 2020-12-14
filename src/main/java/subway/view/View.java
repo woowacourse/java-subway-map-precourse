@@ -57,6 +57,26 @@ public class View {
         
         return userInputName;
     }
+
+    public String askStationNameToRegisterToRoute() {
+        String userInputName;
+        
+        outputView.printAskStationNameToRegisterToRouteMessage();
+        userInputName = inputView.userInput();
+        outputView.printEmptyLine();
+        
+        return userInputName;
+    }
+
+    public String askStationOrderInRoute() {
+        String userInputOrder;
+        
+        outputView.printAskStationOrderInRouteMessage();
+        userInputOrder = inputView.userInput();
+        outputView.printEmptyLine();
+        
+        return userInputOrder;
+    }
     
     public void printMessage(String message) {
         outputView.printMessage(message);
