@@ -15,14 +15,11 @@ public class LineValidator {
             = "노선의 이름은 한글, 영어, 숫자, 공백만을 포함해야 합니다.";
     private static final String NAME_SPACE_ERROR_MESSAGE
             = "노선의 이름에는 공백이 2자 연속으로 올 수 없습니다.";
-    private static final String SAME_END_STATION_ERROR_MESSAGE
-            = "상행 종점역과 하행 종점역은 같을 수 없습니다.";
 
-    static void validate(String name, String upwardEndStationName, String downwardEndStationName) {
+    static void validate(String name) {
         validateNameLength(name);
         validateNameLetterType(name);
         validateNameContainsTwoOrMoreSpace(name);
-        validateEndStationDifference(upwardEndStationName, downwardEndStationName);
     }
 
     private static void validateNameLength(String name) {
@@ -42,12 +39,6 @@ public class LineValidator {
     private static void validateNameContainsTwoOrMoreSpace(String name) {
         if (name.contains(SPACE + SPACE)) {
             throw new IllegalArgumentException(NAME_SPACE_ERROR_MESSAGE + getNameWithBrackets(name));
-        }
-    }
-
-    private static void validateEndStationDifference(String upwardEndStationName, String downwardEndStationName) {
-        if (upwardEndStationName.equals(downwardEndStationName)) {
-            throw new IllegalArgumentException(SAME_END_STATION_ERROR_MESSAGE + getNameWithBrackets(upwardEndStationName));
         }
     }
 
