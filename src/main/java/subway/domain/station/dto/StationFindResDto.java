@@ -1,15 +1,13 @@
-package subway.domain;
+package subway.domain.station.dto;
 
-public class Line {
+public class StationFindResDto {
     private String name;
 
-    public Line(String name) {
+    public StationFindResDto(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
     }
-
-    // 추가 기능 구현
 }
