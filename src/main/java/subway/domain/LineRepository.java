@@ -28,7 +28,7 @@ public class LineRepository {
                 .orElseThrow(() -> new IllegalArgumentException(ERR_LINE_NOT_IN_REPO));
     }
 
-    public static boolean isInLineRepository(String name) {
+    public static boolean hasLineNamed(String name) {
         return lines.stream()
                 .anyMatch(line -> line.getName().equals(name));
     }

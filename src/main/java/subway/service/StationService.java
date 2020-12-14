@@ -3,7 +3,6 @@ package subway.service;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.option.StationOption;
-import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.Arrays;
@@ -39,7 +38,7 @@ public class StationService extends BaseService {
         OutputView.printStationList(StationRepository.stations());
     }
     private static void checkDuplicateStationName(String stationName) {
-        if (StationRepository.isInStationRepository(stationName)) {
+        if (StationRepository.hasStationNamed(stationName)) {
             throw new IllegalArgumentException(ERR_DUPLICATE_STATION_NAME);
         }
     }

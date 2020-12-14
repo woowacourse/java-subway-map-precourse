@@ -42,7 +42,7 @@ public class LineService extends BaseService {
     }
 
     private static void checkDuplicateLineName(String lineName) {
-        if (LineRepository.isInLineRepository(lineName)) {
+        if (LineRepository.hasLineNamed(lineName)) {
             throw new IllegalArgumentException(ERR_DUPLICATE_LINE_NAME);
         }
     }

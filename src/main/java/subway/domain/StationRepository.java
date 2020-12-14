@@ -27,7 +27,7 @@ public class StationRepository {
                 .orElseThrow(() -> new IllegalArgumentException(ERR_STATION_NOT_IN_REPO));
     }
 
-    public static boolean isInStationRepository(String name) {
+    public static boolean hasStationNamed(String name) {
         return stations().stream()
                 .anyMatch(station -> station.getName().equals(name));
     }
