@@ -55,4 +55,8 @@ public class StationService {
             throw new IllegalArgumentException(NOT_EXIST_TO_DELETE_MESSAGE);
         }
     }
+
+    public void showAllStations() {
+        StationOutputView.printStations(StationRepository.stations());
+    }
 }

@@ -36,7 +36,7 @@ public class StationMenuController {
             stationService.stationDeleteService();
         }
         if (selectedOption.equals(StationMenu.STATION_SELECT)) {
-
+            stationService.showAllStations();
         }
     }
 }
