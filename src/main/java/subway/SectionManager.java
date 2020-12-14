@@ -22,6 +22,8 @@ public class SectionManager {
     private void selectMenu(String menuNumber) {
         if (menuNumber.equals("1")) {
             addStationToLine();
+        } else if (menuNumber.equals("2")) {
+            deleteLine();
         }
     }
 
@@ -54,5 +56,16 @@ public class SectionManager {
         }
     }
 
+    private void deleteLine() {
+        System.out.println("\n## 노선을 입력하세요.");
+        String line = InputView.askName(scanner);
+        try {
+            validateLine(line);
+            LineRepository.deleteLineByName(line);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+            run();
+        }
+    }
 
 }
