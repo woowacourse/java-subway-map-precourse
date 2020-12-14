@@ -5,7 +5,6 @@ import subway.view.OutputView;
 import subway.view.StationView;
 
 import java.util.Scanner;
-import java.util.List;
 
 public class StationController {
     private static StationController stationController = null;
