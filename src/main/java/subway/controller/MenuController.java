@@ -4,6 +4,7 @@ import subway.domain.menu.Menu;
 import subway.domain.menu.MenuRepository;
 import subway.domain.menu.MenuType;
 import subway.view.InputView;
+import subway.view.MenuOutputView;
 import subway.view.OutputView;
 
 public class MenuController {
@@ -24,13 +25,13 @@ public class MenuController {
     }
 
     private static void showMenu(Menu menu) {
-        OutputView.printMenu(menu);
+        MenuOutputView.printMenu(menu);
         selectFunction(menu);
     }
 
     private static void selectFunction(Menu menu) {
         try {
-            OutputView.requestSelectFunction();
+            MenuOutputView.requestSelectFunction();
             menu.executeMenuItem(InputView.getInput());
         } catch (Exception exception) {
             OutputView.printError(exception);

@@ -2,7 +2,7 @@ package subway.controller;
 
 import java.util.Scanner;
 import subway.view.InputView;
-import subway.view.OutputView;
+import subway.view.SubwayMapOutputView;
 
 public class SubwayMapApplicationController {
     public static void run(Scanner scanner) {
@@ -11,7 +11,7 @@ public class SubwayMapApplicationController {
     }
     
     public static void showSubwayMap() {
-        OutputView.printSubwayMap();
+        SubwayMapOutputView.printSubwayMap();
         MenuController.callMainMenu();
     }
 
