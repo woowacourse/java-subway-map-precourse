@@ -14,18 +14,6 @@ public class Line {
         this.lineStations = new ArrayList<>();
     }
 
-    private void validateIfDuplicate(Station firstStation, Station lastStation) {
-        if (firstStation.equals(lastStation)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateLength(String userInput) {
-        if (!(userInput.length() >= VALID_LENGTH)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public String getName() {
         return name;
     }
@@ -56,5 +44,17 @@ public class Line {
         validateIfDuplicate(upstreamStation, downstreamStation);
         this.lineStations.add(upstreamStation);
         this.lineStations.add(downstreamStation);
+    }
+
+    private void validateIfDuplicate(Station firstStation, Station lastStation) {
+        if (firstStation.equals(lastStation)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateLength(String userInput) {
+        if (!(userInput.length() >= VALID_LENGTH)) {
+            throw new IllegalArgumentException();
+        }
     }
 }
