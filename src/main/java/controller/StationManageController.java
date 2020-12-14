@@ -31,10 +31,6 @@ public class StationManageController {
     }
 
     public void processInput(String input) {
-        if (!ValidateUtils.validateInput(input)) {
-            view.printMessage(ERROR_PREFIX + ERROR_INVALID_INPUT);
-            view.run();
-        }
         if (input.equals(INPUT_ADD_STATION)) {
             addStation();
         }
