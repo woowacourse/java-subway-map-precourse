@@ -46,8 +46,8 @@ public class LineController {
         String lineName;
         String upTerminus;
         String downTerminus;
-        System.out.println("임시 출력 문구 : 노선 이름");
-        lineName = scanner.nextLine();
+
+        lineName = InputView.scanLineAddName(scanner);
         System.out.println("임시 출력 문구 : 상행 종착역");
         upTerminus = scanner.nextLine();
         System.out.println("임시 출력 문구 : 하행 종착영");

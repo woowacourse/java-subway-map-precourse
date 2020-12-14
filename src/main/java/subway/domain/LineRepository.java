@@ -22,4 +22,12 @@ public class LineRepository {
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    public static List<String> getAllLineNames(){
+        return LineRepository
+            .lines()
+            .stream()
+            .map(Line::getName)
+            .collect(Collectors.toList());
+    }
 }

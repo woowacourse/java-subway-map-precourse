@@ -78,4 +78,12 @@ public class OutputView {
     public static void lineAddSuccessPrint() {
         System.out.println(LineMessage.LINE_ADD_SUCCESS.getLineMessage());
     }
+
+    public static void LineAddGuidePrint() {
+        System.out.println(LineMessage.LINE_NAME_DUPLICATION_ERROR.getLineMessage());
+    }
+
+    public static void LineAddSuccessPrint() {
+        System.out.println(LineMessage.LINE_ADD_SUCCESS.getLineMessage());
+    }
 }

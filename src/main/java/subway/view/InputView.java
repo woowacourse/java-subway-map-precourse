@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import subway.constant.BoundaryCheckDigit;
 import subway.constant.BoundaryCheckPattern;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -126,5 +127,22 @@ public class InputView {
 
         OutputView.NotSelectableError();
         return false;
+    }
+
+    public static String scanLineAddName(Scanner scanner) {
+
+        OutputView.LineAddGuidePrint();
+        String lineName = scanner.nextLine();
+
+        if (LineNameDuplicationCheck(lineName)) {
+            OutputView.stationAddFailPrint();
+            throw new IllegalArgumentException();
+        }
+
+        return lineName;
+    }
+
+    private static boolean LineNameDuplicationCheck(String lineName) {
+        return LineRepository.getAllLineNames().contains(lineName);
     }
 }
