@@ -6,27 +6,10 @@ import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.repository.TransitMapRepository;
 import subway.type.BoundaryType;
-import subway.view.output.line.LineExceptionView;
-import subway.view.output.section.SectionTextView;
 
 import java.util.*;
 
 public class SectionAddingService {
-    public static String scanLineName(Scanner scanner) {
-        SectionTextView.printSectionAddingLineText();
-        return scanner.nextLine();
-    }
-
-    public static String scanStationName(Scanner scanner) {
-        SectionTextView.printSectionAddingStationText();
-        return scanner.nextLine();
-    }
-
-    public static String scanOrder(Scanner scanner) {
-        SectionTextView.printSectionAddingOrderText();
-        return scanner.nextLine();
-    }
-
     public static boolean checkExistingLineName(String lineName) {
         List<String> lineNames = LineRepository.lineNames();
         return lineNames.contains(lineName);

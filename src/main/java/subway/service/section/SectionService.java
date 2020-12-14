@@ -46,9 +46,9 @@ public class SectionService extends StationService {
     public boolean add(Scanner scanner) {
         SectionAddingValidation sectionAddingValidation = new SectionAddingValidation();
 
-        String lineName = SectionAddingService.scanLineName(scanner);
-        String stationName = SectionAddingService.scanStationName(scanner);
-        String order = SectionAddingService.scanOrder(scanner);
+        String lineName = SectionScannerService.scanLineName(scanner);
+        String stationName = SectionScannerService.scanStationName(scanner);
+        String order = SectionScannerService.scanOrder(scanner);
 
         if (sectionAddingValidation
                 .checkSectionAddingValidation(new Section(lineName, stationName, order))) {
