@@ -56,4 +56,10 @@ public class LineService {
         }
         OutPut.printLineDeleteMessage();
     }
+
+    public static void print() {
+        for (Line line : LineRepository.lines()) {
+            OutPut.printName(line.getName());
+        }
+    }
 }
