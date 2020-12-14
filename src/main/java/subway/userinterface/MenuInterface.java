@@ -1,6 +1,6 @@
 package subway.userinterface;
 
-public class ApplicationMenu {
+public class MenuInterface {
     public static void printMainMenu() {
         System.out.println("\n## 메인 화면");
         System.out.println("1. 역 관리");

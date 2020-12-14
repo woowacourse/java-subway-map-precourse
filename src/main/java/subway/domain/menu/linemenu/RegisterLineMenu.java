@@ -3,7 +3,7 @@ package subway.domain.menu.linemenu;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
-import subway.userinterface.ApplicationMenu;
+import subway.userinterface.MenuInterface;
 import subway.userinterface.Error;
 import subway.userinterface.Info;
 
@@ -18,7 +18,7 @@ public class RegisterLineMenu implements LineManageMenu {
     }
 
     private void checkLineName(Scanner scanner) {
-        ApplicationMenu.printAddLine();
+        MenuInterface.printAddLine();
         String lineNameInput = scanner.next();
         if (Error.printAlreadyExistLineError(lineNameInput)) {
             return;
@@ -28,13 +28,13 @@ public class RegisterLineMenu implements LineManageMenu {
     }
 
     private void checkDefaultStation(Scanner scanner, String lineNameInput) {
-        ApplicationMenu.printAddLine_StartStation();
+        MenuInterface.printAddLine_StartStation();
         String startStationNameInput = scanner.next();
         if (Error.printNotExistStationError(startStationNameInput)) {
             return;
         }
 
-        ApplicationMenu.printAddLine_EndStation();
+        MenuInterface.printAddLine_EndStation();
         String endStationNameInput = scanner.next();
         if (Error.printNotExistStationError(endStationNameInput)) {
             return;

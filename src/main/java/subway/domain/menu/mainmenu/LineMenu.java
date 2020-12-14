@@ -1,7 +1,7 @@
 package subway.domain.menu.mainmenu;
 
 import subway.domain.MenuRepository;
-import subway.userinterface.ApplicationMenu;
+import subway.userinterface.MenuInterface;
 import subway.userinterface.Error;
 
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class LineMenu implements Menu {
         boolean runStatus = true;
 
         while (runStatus) {
-            ApplicationMenu.printLineMenu();
+            MenuInterface.printLineMenu();
             String lineInput = scanner.next();
             runStatus = runLineMenu(scanner, lineInput.toUpperCase());
         }

@@ -1,7 +1,7 @@
 package subway.domain.menu.intervalmenu;
 
 import subway.domain.LineRepository;
-import subway.userinterface.ApplicationMenu;
+import subway.userinterface.MenuInterface;
 import subway.userinterface.Error;
 import subway.userinterface.Info;
 
@@ -16,7 +16,7 @@ public class RegisterIntervalMenu implements IntervalManageMenu {
     }
 
     private void checkLineName(Scanner scanner) {
-        ApplicationMenu.printAddInterval_Line();
+        MenuInterface.printAddInterval_Line();
         String lineNameInput = scanner.next();
         if (Error.printNotExistLineError(lineNameInput)) {
             return;
@@ -26,7 +26,7 @@ public class RegisterIntervalMenu implements IntervalManageMenu {
     }
 
     private void checkStationName(Scanner scanner, String lineNameInput) {
-        ApplicationMenu.printAddInterval_Station();
+        MenuInterface.printAddInterval_Station();
         String stationNameInput = scanner.next();
         if (Error.printNotExistStationError(stationNameInput) ||
                 Error.printStationAlreadyExistInCertainLineError(lineNameInput, stationNameInput)) {
@@ -37,7 +37,7 @@ public class RegisterIntervalMenu implements IntervalManageMenu {
     }
 
     private void checkSequence(Scanner scanner, String lineNameInput, String stationNameInput) {
-        ApplicationMenu.printAddInterval_Sequence();
+        MenuInterface.printAddInterval_Sequence();
         int sequenceInput;
         try {
             sequenceInput = scanner.nextInt();

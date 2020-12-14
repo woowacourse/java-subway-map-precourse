@@ -2,7 +2,7 @@ package subway.domain.menu.stationmenu;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.userinterface.ApplicationMenu;
+import subway.userinterface.MenuInterface;
 import subway.userinterface.Error;
 import subway.userinterface.Info;
 
@@ -13,7 +13,7 @@ public class RegisterStationMenu implements StationManageMenu {
 
     @Override
     public void run(Scanner scanner) {
-        ApplicationMenu.printAddStation();
+        MenuInterface.printAddStation();
 
         String stationNameInput = scanner.next();
         if (Error.printAlreadyExistStationError(stationNameInput)) {

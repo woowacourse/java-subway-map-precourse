@@ -1,7 +1,7 @@
 package subway.domain.menu.linemenu;
 
 import subway.domain.LineRepository;
-import subway.userinterface.ApplicationMenu;
+import subway.userinterface.MenuInterface;
 import subway.userinterface.Error;
 import subway.userinterface.Info;
 
@@ -12,7 +12,7 @@ public class DeleteLineMenu implements LineManageMenu {
 
     @Override
     public void run(Scanner scanner) {
-        ApplicationMenu.printDeleteLine();
+        MenuInterface.printDeleteLine();
 
         String lineNameInput = scanner.next();
         if (Error.printNotExistLineError(lineNameInput)) {

@@ -9,7 +9,7 @@ public class UserController {
         boolean runStatus = true;
 
         while (runStatus) {
-            ApplicationMenu.printMainMenu();
+            MenuInterface.printMainMenu();
             String mainInput = scanner.next();
             runStatus = runMainMenu(scanner, mainInput.toUpperCase());
         }
