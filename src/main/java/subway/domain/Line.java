@@ -1,5 +1,8 @@
 package subway.domain;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Line {
     private String name;
 
@@ -12,4 +15,11 @@ public class Line {
     }
 
     // 추가 기능 구현
+
+/*    private List<Station> stationList = new LinkedList<>();
+
+    public boolean equal(String lineName) {
+        return name.equals(lineName);
+    }*/
+
 }
