@@ -18,8 +18,8 @@ public enum MainMenu {
         this.action = action;
     }
 
-    private String command;
-    private Runnable action;
+    private final String command;
+    private final Runnable action;
 
     public static MainMenu findByCommand(String command) {
         return Arrays.stream(MainMenu.values())
@@ -32,5 +32,5 @@ public enum MainMenu {
 
     public void run(){
         this.action.run();
-    };
+    }
 }
