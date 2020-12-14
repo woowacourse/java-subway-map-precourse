@@ -1,9 +1,9 @@
 package subway;
 
-import subway.controller.SubwayMapApplicationController;
+import subway.controller.ApplicationController;
 
 public class Application {
     public static void main(String[] args) {
-        SubwayMapApplicationController.run();
+        ApplicationController.run();
     }
 }
