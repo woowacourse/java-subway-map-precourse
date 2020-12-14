@@ -14,13 +14,13 @@ public class OutputView {
         System.out.println(TextCollection.INFO_TAG + information);
     }
 
-    public static void printStation(String station) {
-        System.out.println(TextCollection.INFO_TAG + station);
+    public static void printStationOrLine(String name) {
+        System.out.println(TextCollection.INFO_TAG + name);
     }
 
     public static void printErrorMessage(SubwayException exception) {
-        System.out.println(exception.getMessage());
         System.out.println();
+        System.out.println(exception.getMessage());
     }
 
 }
