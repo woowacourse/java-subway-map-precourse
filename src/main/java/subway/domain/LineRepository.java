@@ -13,8 +13,8 @@ public class LineRepository {
     }
 
     public static void addLine(Line addLineName) {
-        for(Line line : lines) {
-            if(line.getName().equals(addLineName.getName())) {
+        for (Line line : lines) {
+            if (line.getName().equals(addLineName.getName())) {
                 throw new IllegalArgumentException("[ERROR] 이미 등록된 노선은 등록 불가능합니다.");
             }
         }
@@ -22,7 +22,20 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
+        Line getLine = getLine(name);
+        if (getLine == null) {
+            throw new IllegalArgumentException("[ERROR] 등록 되어 있지 않은 노선입니다.");
+        }
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static Line getLine(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                return line;
+            }
+        }
+        return null;
     }
 
     public static void validateLineInStationCheck(String stationName) {
