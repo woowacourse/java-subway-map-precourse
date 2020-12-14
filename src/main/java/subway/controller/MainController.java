@@ -1,9 +1,5 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.view.General;
 import subway.view.MainMessages;
 import subway.view.View;
 
@@ -22,26 +18,6 @@ public class MainController {
 		options.add(Options.QUIT.getOption());
 	}
 
-	private static void showSections(Line line) {
-		line.getSections()
-				.sections()
-				.stream()
-				.map(Station::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
-	}
-
-	public static void showWholeMap() {
-		List<Line> lines = LineRepository.lines();
-		System.out.println();
-		System.out.println(General.MAP.getMessage());
-		for (Line line : lines) {
-			System.out.println(General.INFO.getMessage() + line.getName());
-			System.out.println(General.DIVISION_LINE.getMessage());
-			showSections(line);
-			System.out.println();
-		}
-	}
-
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			StationController.run(scanner);
@@ -56,7 +32,7 @@ public class MainController {
 			View.printMainScreen();
 			run(scanner);
 		} else if (option.equals(Options.OPTION_4.getOption())) {
-			showWholeMap();
+			View.showWholeMap();
 			View.printMainScreen();
 			run(scanner);
 		} else if (option.equalsIgnoreCase(Options.QUIT.getOption())) {

@@ -1,6 +1,12 @@
 package subway.view;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -48,6 +54,17 @@ public class View {
 		System.out.println();
 	}
 
+	public static void showStations() {
+		System.out.println();
+		System.out.println(StationMessages.REFERENCE.getMessage());
+		StationRepository
+				.stations()
+				.stream()
+				.map(Station::getName)
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+		System.out.println();
+	}
+
 	public static void printLineScreen() {
 		Arrays.stream(LineMessages.values())
 				.limit(5)
@@ -82,6 +99,16 @@ public class View {
 
 	public static void printLineDeleteError() {
 		System.out.println(LineMessages.UNREGISTERED_NAME_ERROR.getMessage());
+		System.out.println();
+	}
+
+	public static void showLines() {
+		System.out.println();
+		System.out.println(LineMessages.REFERENCE.getMessage());
+		LineRepository.lines()
+				.stream()
+				.map(Line::getName)
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
 		System.out.println();
 	}
 
@@ -125,5 +152,25 @@ public class View {
 	public static void printSectionDeleteCompletion() {
 		System.out.println(SectionMessages.DELETE_COMPLETE.getMessage());
 		System.out.println();
+	}
+
+	private static void showSections(Line line) {
+		line.getSections()
+				.sections()
+				.stream()
+				.map(Station::getName)
+				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
+	}
+
+	public static void showWholeMap() {
+		List<Line> lines = LineRepository.lines();
+		System.out.println();
+		System.out.println(General.MAP.getMessage());
+		for (Line line : lines) {
+			System.out.println(General.INFO.getMessage() + line.getName());
+			System.out.println(General.DIVISION_LINE.getMessage());
+			showSections(line);
+			System.out.println();
+		}
 	}
 }

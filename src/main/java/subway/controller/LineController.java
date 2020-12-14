@@ -74,23 +74,13 @@ public class LineController {
 		run(scanner);
 	}
 
-	private static void showLines() {
-		System.out.println();
-		System.out.println(LineMessages.REFERENCE.getMessage());
-		LineRepository.lines()
-				.stream()
-				.map(Line::getName)
-				.forEach(name -> System.out.println(General.INFO.getMessage() + name));
-		System.out.println();
-	}
-
 	private static void controlByOption(String option, Scanner scanner) {
 		if (option.equals(Options.OPTION_1.getOption())) {
 			registerLine(scanner);
 		} else if (option.equals(Options.OPTION_2.getOption())) {
 			deregisterLine(scanner);
 		} else if (option.equals(Options.OPTION_3.getOption())) {
-			showLines();
+			View.showLines();
 		} else if (option.equalsIgnoreCase(Options.BACK.getOption())) {
 			System.out.println();
 		}

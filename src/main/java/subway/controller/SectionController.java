@@ -2,7 +2,6 @@ package subway.controller;
 
 import subway.domain.LineRepository;
 import subway.domain.Sections;
-import subway.domain.StationRepository;
 import subway.view.View;
 
 import java.util.ArrayList;
