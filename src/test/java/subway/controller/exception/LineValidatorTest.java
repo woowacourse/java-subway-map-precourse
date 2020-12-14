@@ -2,6 +2,7 @@ package subway.controller.exception;
 
 import org.junit.Test;
 
+import subway.controller.validator.LineValidator;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 

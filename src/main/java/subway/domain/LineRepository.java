@@ -5,9 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import subway.controller.LineMenu;
-import subway.controller.exception.LineValidator;
-
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 

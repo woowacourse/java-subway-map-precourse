@@ -3,6 +3,7 @@ package subway.controller.exception;
 import org.junit.Before;
 import org.junit.Test;
 
+import subway.controller.validator.SectionValidator;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;

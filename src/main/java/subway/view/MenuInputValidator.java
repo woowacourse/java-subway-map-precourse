@@ -1,9 +1,9 @@
-package subway.view.exception;
+package subway.view;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MenuValidator {
+public class MenuInputValidator {
     private static Map<String, String> MenuRegex;
 
     static {
@@ -17,7 +17,7 @@ public class MenuValidator {
     public static void validateMenuSelection(String menuType, String menu) {
         String regex = MenuRegex.get(menuType);
         if (!menu.matches(regex)) {
-            throw new MenuSelectionException("\n[ERROR] 선택할 수 없는 기능입니다.\n");
+            throw new MenuInputException("\n[ERROR] 선택할 수 없는 기능입니다.\n");
         }
     }
 }

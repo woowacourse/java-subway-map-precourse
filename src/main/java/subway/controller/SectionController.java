@@ -1,15 +1,15 @@
 package subway.controller;
 
 import subway.controller.exception.IllegalElementException;
-import subway.controller.exception.LineValidator;
 import subway.controller.exception.NotExistedElementException;
-import subway.controller.exception.SectionValidator;
-import subway.controller.exception.StationValidator;
+import subway.controller.validator.LineValidator;
+import subway.controller.validator.SectionValidator;
+import subway.controller.validator.StationValidator;
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionMenu {
+public class SectionController {
     private static final String LINE_INPUT_MESSAGE = "\n## 노선을 입력하세요.";
     private static final String STATION_INPUT_MESSAGE = "\n## 역이름을 입력하세요.";
     private static final String ORDER_INPUT_MESSAGE = "\n## 순서를 입력하세요.";

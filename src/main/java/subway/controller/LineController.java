@@ -2,15 +2,15 @@ package subway.controller;
 
 import java.util.List;
 
-import subway.controller.exception.LineValidator;
 import subway.controller.exception.NotExistedElementException;
-import subway.controller.exception.StationValidator;
+import subway.controller.validator.LineValidator;
+import subway.controller.validator.StationValidator;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineMenu {
+public class LineController {
     private static final String LINE_REGISTER_MESSAGE = "\n## 등록할 노선 이름을 입력하세요.";
     private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 노선 이름을 입력하세요.";
     private static final String UP_STATION_MESSAGE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";

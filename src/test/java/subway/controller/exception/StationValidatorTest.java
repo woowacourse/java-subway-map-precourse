@@ -2,7 +2,8 @@ package subway.controller.exception;
 
 import org.junit.Test;
 
-import subway.controller.LineMenu;
+import subway.controller.LineController;
+import subway.controller.validator.StationValidator;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -32,7 +33,7 @@ public class StationValidatorTest {
     public void testStationHasBeenRegisteredWhenDelete() {
         StationRepository.addStation(new Station("양재역"));
         StationRepository.addStation(new Station("판교역"));
-        LineMenu.makeNewLine("신분당선", "양재역", "판교역");
+        LineController.makeNewLine("신분당선", "양재역", "판교역");
         StationValidator.validateStationRegisterInLine("양재역");
     }
 }

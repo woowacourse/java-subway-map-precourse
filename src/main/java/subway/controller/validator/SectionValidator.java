@@ -1,5 +1,7 @@
-package subway.controller.exception;
+package subway.controller.validator;
 
+import subway.controller.exception.IllegalElementException;
+import subway.controller.exception.NotExistedElementException;
 import subway.domain.LineRepository;
 
 public class SectionValidator {

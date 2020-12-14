@@ -6,13 +6,13 @@ import subway.controller.exception.DuplicationException;
 import subway.controller.exception.IllegalElementException;
 import subway.controller.exception.NameFormatException;
 import subway.controller.exception.NotExistedElementException;
-import subway.controller.exception.StationValidator;
+import subway.controller.validator.StationValidator;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationMenu {
+public class StationController {
     private static final String STATION_REGISTER_MESSAGE = "\n## 등록할 역 이름을 입력하세요.";
     private static final String STATION_DELETE_MESSAGE = "\n## 삭제할 역 이름을 입력하세요.";
     
