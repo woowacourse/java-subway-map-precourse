@@ -3,7 +3,6 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.LineStationRepository;
-import subway.domain.MenuType;
 
 import java.util.Scanner;
 

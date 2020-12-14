@@ -4,7 +4,6 @@ import subway.domain.LineStationRepository;
 import subway.domain.MenuType;
 import subway.utils.InputValidation;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static subway.utils.ParseUtils.parseStringToTrimString;

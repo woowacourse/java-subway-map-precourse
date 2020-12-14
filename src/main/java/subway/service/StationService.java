@@ -1,7 +1,6 @@
 package subway.service;
 
 import subway.domain.LineStationRepository;
-import subway.domain.MenuType;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
