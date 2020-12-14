@@ -54,6 +54,7 @@ public class InputView {
     public LineCommand inputLineCommand() {
         printSectionGuideMessage();
         String userMessage = inputWithTrimming();
+        lineFeed();
         return LineCommand.getCommand(userMessage);
     }
 
@@ -66,8 +67,9 @@ public class InputView {
 
     private String inputLineName() {
         println(REGISTRATION_LINE_GUIDE_MESSAGE);
+        String lineName = inputWithTrimming();
         lineFeed();
-        return inputWithTrimming();
+        return lineName;
     }
 
     private String inputUpwardEndStationName() {
