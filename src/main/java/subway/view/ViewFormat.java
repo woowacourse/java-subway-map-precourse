@@ -1,6 +1,8 @@
 package subway.view;
 
-public class ViewFormat {
+public final class ViewFormat {
+
+    private ViewFormat() {}
 
     static final String MESSAGE_FORMAT = "%s %s\n";
 

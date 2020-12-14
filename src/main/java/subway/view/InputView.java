@@ -2,9 +2,6 @@ package subway.view;
 
 import java.util.Scanner;
 
-import subway.validator.IndexValidator;
-import subway.validator.LineNameValidator;
-import subway.validator.StationNameValidator;
 import subway.validator.Validator;
 import subway.validator.ValidatorPool;
 
@@ -13,20 +10,6 @@ public final class InputView {
     public static final String VIEW_PREFIX = "##";
 
     private static final String FUNCTION_IDENTIFIER_QUESTION = "원하는 기능을 선택하세요.";
-
-    private static final String STATION_NAME_QUESTION = "등록할 역 이름을 입력하세요.";
-
-    private static final String REMOVE_STATION_NAME_QUESTION = "삭제할 역 이름을 입력하세요.";
-
-    private static final String START_STATION_NAME_QUESTION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
-
-    private static final String FINAL_STATION_NAME_QUESTION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
-
-    private static final String LINE_NAME_QUESTION = "등록할 노선 이름을 입력하세요.";
-
-    private static final String REMOVE_LINE_NAME_QUESTION = "삭제할 노선 이름을 입력하세요.";
-
-    private static final String STATION_QUESTION = "순서를 입력하세요.";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -37,55 +20,35 @@ public final class InputView {
     }
 
     public static String inputStation() {
-        return inputStationName(STATION_NAME_QUESTION);
+        return InputStationView.inputStation();
     }
 
     public static String inputStartStation() {
-        return inputStationName(START_STATION_NAME_QUESTION);
+        return InputStationView.inputStartStation();
     }
 
     public static String inputFinalStation() {
-        return inputStationName(FINAL_STATION_NAME_QUESTION);
+        return InputStationView.inputFinalStation();
     }
 
     public static String inputRemoveStation() {
-        return inputStationName(REMOVE_STATION_NAME_QUESTION);
-    }
-
-    private static String inputStationName(final String message) {
-        String stationName = input(message, StationNameValidator.class);
-
-        if (!stationName.endsWith(StationNameValidator.STATION_SUFFIX)) {
-            stationName += StationNameValidator.STATION_SUFFIX;
-        }
-
-        return stationName;
+        return InputStationView.inputRemoveStation();
     }
 
     public static String inputLineName() {
-        return inputLineName(LINE_NAME_QUESTION);
-    }
-
-    public static String inputLineName(String message) {
-        String lineName = input(message, LineNameValidator.class);
-
-        if (!lineName.endsWith(LineNameValidator.LINE_SUFFIX)) {
-            lineName += LineNameValidator.LINE_SUFFIX;
-        }
-
-        return lineName;
+        return InputLineView.inputLineName();
     }
 
     public static String inputRemoveLineName() {
-        return inputLineName(REMOVE_LINE_NAME_QUESTION);
+        return InputLineView.inputRemoveLineName();
     }
 
     public static int inputIndex() {
-        return Integer.parseInt(input(STATION_QUESTION, IndexValidator.class));
+        return InputIndexView.inputIndex();
     }
 
-    private static String input(final String message,
-                                final Class<? extends Validator> validatorClass) {
+    public static String input(final String message,
+                               final Class<? extends Validator> validatorClass) {
         printQuestionAddedPrefix(message);
 
         String input = scanner.nextLine();
@@ -99,8 +62,8 @@ public final class InputView {
         return input;
     }
 
-    private static boolean isValid(final String input,
-                                   final Class<? extends Validator> validatorClass) {
+    public static boolean isValid(final String input,
+                                  final Class<? extends Validator> validatorClass) {
         final Validator validator = ValidatorPool.getValidator(validatorClass);
 
         try {
