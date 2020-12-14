@@ -3,8 +3,6 @@ package subway.view;
 import java.util.Map;
 import java.util.Scanner;
 import subway.Subway;
-import subway.domain.Line;
-import subway.domain.Station;
 import subway.model.MenuGroup.Menu;
 import subway.util.Constants;
 import subway.util.MessageUtils;
@@ -53,33 +51,5 @@ public abstract class AbstractView {
         isRunning = false;
     }
 
-
-    protected Line getLineOrThrow(String lineName) {
-        if (!isExistLine(lineName)) {
-            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
-        }
-        return subway.getLineRepository().findByName(lineName);
-    }
-
-    protected Station getStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
-            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-        }
-        return subway.getStationRepository().findByName(stationName);
-    }
-
-    protected boolean isExistLine(String lineName) {
-        if (subway.getLineRepository().findByName(lineName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    protected boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
-    }
-
+    
 }

@@ -77,11 +77,32 @@ public class LineView extends AbstractView {
         }
     }
 
+    private Line getLineOrThrow(String lineName) {
+        if (!isExistLine(lineName)) {
+            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
+        }
+        return subway.getLineRepository().findByName(lineName);
+    }
+
+    private Station getStationOrThrow(String stationName) {
+        if (!isExistStation(stationName)) {
+            return subway.getStationRepository().findByName(stationName);
+        }
+        throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
+    }
+
+    private boolean isExistLine(String lineName) {
+        return subway.getLineRepository().findByName(lineName) != null;
+    }
+
+    private boolean isExistStation(String stationName) {
+        return subway.getStationRepository().findByName(stationName) != null;
+    }
+
     private void showLines() {
         MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_LINE_TEXT);
-        for (Object line : subway.getLineRepository().findAll()) {
-            MessageUtils.printInfoEntry((String) line);
-        }
+        subway.getLineRepository().findAll()
+            .forEach(line -> MessageUtils.printInfoEntry(line.getName()));
         MessageUtils.printBlankLine();
     }
 

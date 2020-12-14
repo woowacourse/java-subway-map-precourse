@@ -85,11 +85,14 @@ public class StationView extends AbstractView {
         }
     }
 
+    private boolean isExistStation(String stationName) {
+        return subway.getStationRepository().findByName(stationName) != null;
+    }
+
     private void showStations() {
         MessageUtils.printAnnouncement(Constants.TITLE_WHOLE_STATION_TEXT);
-        for (Object station : subway.getStationRepository().findAll()) {
-            MessageUtils.printInfoEntry((String) station);
-        }
+        subway.getStationRepository().findAll()
+            .forEach(station -> MessageUtils.printInfoEntry(station.getName()));
         MessageUtils.printBlankLine();
     }
 
