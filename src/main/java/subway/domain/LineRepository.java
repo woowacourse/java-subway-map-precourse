@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+    
+    public static List<Line> getLines() {
+    	return lines;
+    }
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -18,5 +22,14 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+    
+    public static boolean contains(String name) {
+    	for (Line line: lines) {
+    		if (Objects.equals(line.getName(), name)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 }
