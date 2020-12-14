@@ -11,6 +11,7 @@ public class StationController {
     }
 
     public static void stationControlMenu(Scanner scanner){
-
+        String choiceMenu = InputView.scanStationMenu(scanner);
+        System.out.println("당신의 선택은 " + choiceMenu);
     }
 }

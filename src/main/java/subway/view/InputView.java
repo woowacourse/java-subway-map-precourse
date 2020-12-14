@@ -42,7 +42,9 @@ public class InputView {
 
     public static String scanStationMenu(Scanner scanner) {
         String choiceStationMenuOption;
+        OutputView.stationMenuPrint();
 
+        OutputView.OptionChoicePrint();
         choiceStationMenuOption = scanner.nextLine();
         return choiceStationMenuOption;
     }

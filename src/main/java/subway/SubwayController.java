@@ -16,11 +16,13 @@ public class SubwayController {
     public void mainMenu() {
         String mainMenuOptionChoice = new String();
 
-        OutputView.mainMenuPrint();
 
         while (!mainMenuOptionChoice.
             equals(UserChoiceOptionToName.EXIT.getUserChoiceOptionToName())) {
+
+            OutputView.mainMenuPrint();
             mainMenuOptionChoice = InputView.scanMainMenu(scanner);
+
             if (mainMenuOptionChoice
                 .equals(UserChoiceOptionToName.STATION_MANAGEMENT.getUserChoiceOptionToName())) {
                 StationController.stationControlMenu(scanner);

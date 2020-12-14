@@ -1,7 +1,11 @@
 package subway.message;
 
 public enum StationMessage {
-    CHOICE_STATION_OPTION_LIST("## 원하는 기능을 선택하세요."),
+    STATION_FUNCTION_LIST("## 역 관리 화면\n"
+        + "1. 역 등록\n"
+        + "2. 역 삭제\n"
+        + "3. 역 조회\n"
+        + "B. 돌아가기"),
     ;
 
     private final String text;

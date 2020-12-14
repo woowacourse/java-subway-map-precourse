@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.message.ErrorMessage;
 import subway.message.GuideMessage;
+import subway.message.StationMessage;
 
 public class OutputView {
 
@@ -24,6 +25,6 @@ public class OutputView {
     }
 
     public static void stationMenuPrint() {
-        System.out.println();
+        System.out.println(StationMessage.STATION_FUNCTION_LIST.getStationMessage());
     }
 }
