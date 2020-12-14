@@ -138,7 +138,7 @@ public class Exceptions {
     }
 
     static int isValidRange(int input, int stationsSize) {
-        if (input <= stationsSize) {
+        if (input <= stationsSize + 1) {
             return input;
         }
         throw new IllegalArgumentException(Constant.HEAD_ERROR + Constant.IS_VALID_RANGE);
