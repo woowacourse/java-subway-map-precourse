@@ -5,7 +5,6 @@ import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.AlreadyExistLineException;
 import subway.exception.NoSuchLineException;
-import subway.exception.StationContainException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -36,18 +35,6 @@ public class LineManager {
         OutputView.printRegisteredLineMessage();
     }
 
-    private Station setLineUpStation(Scanner scanner) {
-        OutputView.printInputRegisterLineUpStation();
-
-        return StationRepository.findStationByName(scanner.next());
-    }
-
-    private Station setLineDownStation(Scanner scanner) {
-        OutputView.printInputRegisterLineDownStation();
-
-        return StationRepository.findStationByName(scanner.next());
-    }
-
     public State removeLine(State state, Scanner scanner) {
         if (state == State.LINE_REMOVE) {
             OutputView.printInputRemoveLine();
@@ -76,5 +63,17 @@ public class LineManager {
         }
 
         return state;
+    }
+
+    private Station setLineUpStation(Scanner scanner) {
+        OutputView.printInputRegisterLineUpStation();
+
+        return StationRepository.findStationByName(scanner.next());
+    }
+
+    private Station setLineDownStation(Scanner scanner) {
+        OutputView.printInputRegisterLineDownStation();
+
+        return StationRepository.findStationByName(scanner.next());
     }
 }

@@ -82,6 +82,19 @@ public class SectionStations {
         }
     }
 
+    private boolean isExistStation(Station station) {
+        return sectionStations.stream().anyMatch(sectionStation -> sectionStation.isEqualStation(station));
+    }
+
+    public boolean isContainStation(Station station) {
+        return sectionStations.stream()
+                .anyMatch(sectionStation -> sectionStation.isEqualStation(station));
+    }
+
+    public boolean isSectionSizeOverMin() {
+        return sectionStations.size() > STATION_MIN_COUNT;
+    }
+
     public List<Station> getStations() {
         SectionStation targetSectionStation = sectionStations.get(sectionStations.size() - LAST_STATION_INDEX);
 
@@ -103,18 +116,5 @@ public class SectionStations {
         Collections.reverse(sectionStations);
 
         return sectionStations;
-    }
-
-    private boolean isExistStation(Station station) {
-        return sectionStations.stream().anyMatch(sectionStation -> sectionStation.isEqualStation(station));
-    }
-
-    public boolean isContainStation(Station station) {
-        return sectionStations.stream()
-                .anyMatch(sectionStation -> sectionStation.isEqualStation(station));
-    }
-
-    public boolean isSectionSizeOverMin() {
-        return sectionStations.size() > STATION_MIN_COUNT;
     }
 }

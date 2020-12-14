@@ -31,14 +31,6 @@ public class Line {
         sectionStations = new SectionStations(upStation, downStation);
     }
 
-    public SectionStations getSectionStations() {
-        return sectionStations;
-    }
-
-    public void addStation(Station station, int index) {
-        sectionStations.add(station, index);
-    }
-
     public boolean deleteStation(String name) {
         if (!isSectionSizeOverMin()) {
             throw new SectionSizeException();
@@ -61,5 +53,13 @@ public class Line {
 
     private boolean isSectionSizeOverMin() {
         return sectionStations.isSectionSizeOverMin();
+    }
+
+    public void addStation(Station station, int index) {
+        sectionStations.add(station, index);
+    }
+
+    public SectionStations getSectionStations() {
+        return sectionStations;
     }
 }

@@ -10,14 +10,6 @@ public class SectionStation {
         this.station = station;
     }
 
-    public Station getStation() {
-        return station;
-    }
-
-    public SectionStation getPrevStation() {
-        return prevStation;
-    }
-
     public void setPrevSectionStation(SectionStation sectionStation) {
         prevStation = sectionStation;
     }
@@ -28,5 +20,13 @@ public class SectionStation {
 
     public boolean isEqualPrevStation(Station station) {
         return this.prevStation.isEqualStation(station);
+    }
+
+    public Station getStation() {
+        return station;
+    }
+
+    public SectionStation getPrevStation() {
+        return prevStation;
     }
 }

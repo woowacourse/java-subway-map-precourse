@@ -2,7 +2,6 @@ package subway.domain.line;
 
 import subway.domain.station.StationRepository;
 import subway.exception.NoSuchLineException;
-import subway.exception.SectionSizeException;
 
 import java.util.ArrayList;
 import java.util.Collections;
