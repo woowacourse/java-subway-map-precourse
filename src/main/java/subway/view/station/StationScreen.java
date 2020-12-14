@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class StationScreen {
 
-    public static Boolean selectMenu() {
+    public static boolean selectMenu() {
         showMenu();
         String input = InputView.inputFunction();
         if (!StationMenu.isValidInput(input)) {
