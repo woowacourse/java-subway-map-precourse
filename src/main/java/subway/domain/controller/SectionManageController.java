@@ -10,8 +10,6 @@ public class SectionManageController {
     static final int MIN_STATIONS = 2;
     static final int ORDER_SUBTRACT_INDEX = 1;
 
-    SectionManageInput input = new SectionManageInput();
-
     public void processEnrollSection(Line line, Station station, int order) throws IllegalArgumentException{
         if (line.getStation().contains(station)) {
             ErrorMessage.isAlreadyExistStationInLine();
