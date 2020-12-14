@@ -26,6 +26,7 @@ public class Init {
     private static final String SINBUNDANG_LINE = "신분당선";
     private static final List<String> SINBUNDANG_LINE_LIST = Arrays.asList(GANGNAM, YANGJAE, YANGJAE_FOREST);
 
+    @SuppressWarnings("serial")
     public static final Map<String, List<String>> LINE_MAP = new HashMap<>() {
         {
             put(TWO_LINE, TWO_LINE_LIST);
