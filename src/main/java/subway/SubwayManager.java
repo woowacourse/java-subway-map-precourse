@@ -89,10 +89,6 @@ public class SubwayManager {
         }
     }
 
-    public static void printMap() {
-
-    }
-
     public static void addStation(String stationName) {
         stationRepository.addStation(new Station(stationName));
     }
@@ -155,5 +151,9 @@ public class SubwayManager {
 
     public static boolean deleteSection(String lineName, String stationName) {
         return lineRepository.deleteSection(lineName, stationName);
+    }
+
+    public static void printMap() {
+        lineRepository.printAll();
     }
 }

@@ -28,14 +28,17 @@ public class LineRepository {
     }
 
     public static void initDefaultLines() {
-        Line lineTwo = new Line(LINE_TWO).addStation(new Station(GANGNAM_STAION))
+        Line lineTwo = new Line(LINE_TWO).addStation(new Station(GYODAE_STAION))
             .addStation(new Station(GANGNAM_STAION)).addStation(new Station(YEOKSAM_STAION));
+
         Line lineThree = new Line(LINE_THREE).addStation(new Station(GYODAE_STAION))
             .addStation(new Station(NAMBUBUS_STAION)).addStation(new Station(YANGJAE_STAION))
             .addStation(new Station(MAEBONG_STAION));
+
         Line lineSinbundang = new Line(LINE_SINBUNDANG).addStation(new Station(GANGNAM_STAION))
             .addStation(new Station(YANGJAE_STAION))
             .addStation(new Station(YANGJAE_CITIZENS_FOREST_STAION));
+
         defaultLines.add(lineTwo);
         defaultLines.add(lineThree);
         defaultLines.add(lineSinbundang);
@@ -83,5 +86,11 @@ public class LineRepository {
             }
         }
         return false;
+    }
+
+    public static void printAll() {
+        for (Line line : lines) {
+            System.out.println(line);
+        }
     }
 }

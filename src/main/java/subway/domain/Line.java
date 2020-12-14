@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
+    private static final String EMPTY_INFO_MESSAGE = "---";
+    private static final String INFO_PREFIX = "[INFO] ";
+    private static final String NEWLINE_CHARACTER = "\n";
+
+    private List<Station> stationLine = new ArrayList<>();
     private String name;
-    private static final List<Station> stationLine = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -37,5 +42,16 @@ public class Line {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString(){
+        String result = "";
+        result += INFO_PREFIX + this.getName() + NEWLINE_CHARACTER;
+        result += INFO_PREFIX + EMPTY_INFO_MESSAGE + NEWLINE_CHARACTER;
+        for (Station station : stationLine) {
+            result += INFO_PREFIX + station.getName() + NEWLINE_CHARACTER;
+        }
+        return result;
     }
 }
