@@ -8,12 +8,9 @@ import java.util.Scanner;
 
 public class StationController {
     private static StationController stationController = null;
-
-    private final Scanner scanner;
     private final StationView stationView;
 
     private StationController(Scanner scanner) {
-        this.scanner = scanner;
         stationView = StationView.getInstance(scanner);
     }
 
