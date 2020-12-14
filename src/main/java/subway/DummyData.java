@@ -9,8 +9,10 @@ import subway.station.StationRepositoryJava;
 import java.util.*;
 
 public class DummyData {
-    private static final StationController STATION_CONTROLLER = StationController.get(StationRepositoryJava.get());
-    private static final LineController LINE_CONTROLLER = LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
+    private static final StationController STATION_CONTROLLER =
+            StationController.get(StationRepositoryJava.get());
+    private static final LineController LINE_CONTROLLER =
+            LineController.get(LineRepositoryJava.get(), StationRepositoryJava.get());
     private static final int MIN_STATION_SIZE = 2;
 
     public static void insert() {

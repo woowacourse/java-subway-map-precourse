@@ -1,10 +1,5 @@
 package subway.view.navigationViews;
 
-import subway.line.LineController;
-import subway.line.LineRepositoryJava;
-import subway.station.StationController;
-import subway.station.StationRepositoryJava;
-import subway.view.OutputView;
 import subway.view.ViewsContainer;
 import subway.view.executeViews.exit.ExitView;
 import subway.view.executeViews.lineMap.LineMapView;
@@ -20,9 +15,9 @@ public class MainView extends NavigationViewTemplate {
 
     @Override
     public void show() {
-        super.show();
-        if(!(viewStrategy instanceof ExitView)) {
-            show();
+        //종료를 선택하지 않는다면 다시 메인화면을 띄워줄 수 있게 한다.
+        while (!isExit()){
+            super.show();
         }
     }
 
@@ -41,5 +36,4 @@ public class MainView extends NavigationViewTemplate {
     protected String navViewName() {
         return NAV_VIEW_NAME;
     }
-
 }
