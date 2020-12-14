@@ -40,6 +40,19 @@ public class Line {
         }
     }
 
+    private void deleteStation(Station station) {
+        stations.remove(station);
+    }
+
+    public void deleteStationByName(String stationName) {
+        for (int i = 0; i < StationRepository.stations().size(); i++) {
+            Station station = StationRepository.stations().get(i);
+            if (station.getName().equals(stationName)) {
+                deleteStation(station);
+            }
+        }
+    }
+
     public boolean validateNewName(String stationName) {
         for (int i = 0; i < stations.size(); i++) {
             if (stations.get(i).getName().equals(stationName)) {

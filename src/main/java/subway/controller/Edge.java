@@ -15,6 +15,7 @@ import subway.domain.exception.NotIncludeInLineException;
 public class Edge {
     private static final String STATION_MESSAGE = "역";
     private static final String LINE_MESSAGE = "노선";
+    private static final String EDGE_MESSAGE = "구간";
     private static final int MINIMUM_DELETE_CONDITION_STAION_NUMBER = 3;
     private Edge() {
     }
@@ -39,6 +40,13 @@ public class Edge {
         OutputView.printDeleteEdgeOptionMessage(STATION_MESSAGE);
         String stationName = inputView.getInput();
         validateStationState(stationName, lineName);
+        for (int i = 0; i < LineRepository.lines().size(); i++) {
+            Line line = LineRepository.lines().get(i);
+            if (line.getName().equals(lineName)) {
+                line.deleteStationByName(stationName);
+            }
+        }
+        OutputView.printDeleteActionFinishMessage(EDGE_MESSAGE);
     }
 
     private static void validateLineState(String lineName) {
