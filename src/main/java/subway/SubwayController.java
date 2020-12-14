@@ -3,6 +3,7 @@ package subway;
 import java.util.Scanner;
 import subway.constant.UserChoiceOptionToName;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class SubwayController {
 
@@ -14,9 +15,16 @@ public class SubwayController {
 
     public void mainMenu() {
         String mainMenuOptionChoice = new String();
-        while (!mainMenuOptionChoice.equals(
-            UserChoiceOptionToName.EXIT.getUserChoiceOptionToName())) {
+
+        OutputView.mainMenuPrint();
+
+        while (!mainMenuOptionChoice.
+            equals(UserChoiceOptionToName.EXIT.getUserChoiceOptionToName())) {
             mainMenuOptionChoice = InputView.scanMainMenu(scanner);
+            if (mainMenuOptionChoice
+                .equals(UserChoiceOptionToName.STATION_MANAGEMENT.getUserChoiceOptionToName())) {
+                StationController.stationControlMenu(scanner);
+            }
         }
     }
 }

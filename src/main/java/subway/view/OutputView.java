@@ -22,4 +22,8 @@ public class OutputView {
         System.out.println(ErrorMessage.NOT_SELECTABLE_ERROR.getErrorMessage());
         spacePrint();
     }
+
+    public static void stationMenuPrint() {
+        System.out.println();
+    }
 }

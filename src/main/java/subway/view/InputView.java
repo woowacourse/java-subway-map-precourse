@@ -19,7 +19,6 @@ public class InputView {
     }
 
     public static String scanMainMenu(Scanner scanner) {
-        OutputView.mainMenuPrint();
         String choiceMainMenuOption;
 
         do { // 유효한 값이 올 때 까지 값을 입력받는다.
@@ -39,5 +38,12 @@ public class InputView {
 
         OutputView.NotSelectableError();
         return false;
+    }
+
+    public static String scanStationMenu(Scanner scanner) {
+        String choiceStationMenuOption;
+
+        choiceStationMenuOption = scanner.nextLine();
+        return choiceStationMenuOption;
     }
 }
