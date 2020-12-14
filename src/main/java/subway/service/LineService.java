@@ -61,6 +61,9 @@ public class LineService {
         if(line.getStations().size() <= 2){
             throw new MinimumLineLengthException();
         }
+        if(!line.getStations().contains(station)){
+           throw new StationNotExistInLineException();
+        }
         line.removeStation(station);
     }
 

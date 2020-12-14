@@ -12,7 +12,7 @@ public class ErrorViewComponent {
     private static final String invalidPositionComponent = "노선에서 선택할 수 없는 위치입니다.";
     private static final String minimumLineLengthComponent = "노선의 길이가 2보다 작아지게 됩니다.";
     private static final String alreadyAddedInLineComponent = "노선에 이미 등록된 역은 삭제가 불가능합니다.";
-    private static final String stationNotExistInLineComponent = "존재하지 않는 역 이름입니다.";
+    private static final String stationNotExistInLineComponent = "해당 노선에 존재하지 않는 역 이름입니다.";
 
     public static String getUnselectableFeatureComponent(){
         return errorPrefixComponent + unselectableFeatureComponent;
