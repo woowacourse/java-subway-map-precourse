@@ -1,23 +1,39 @@
 package subway.controller;
 
 import subway.domain.Line;
-import subway.domain.LineRepository;
+import subway.domain.repositories.LineRepository;
 import subway.utils.Validator;
 import subway.view.InputView;
 import subway.view.LineView;
 
 public class LineController {
+
+    public static void lineInit() {
+        LineRepository.addLine(new Line("2호선"));
+        LineRepository.addStationToLine("2호선", "교대역", "역삼역");
+        LineRepository.addStationToLine("2호선", "강남역", 2);
+
+        LineRepository.addLine(new Line("3호선"));
+        LineRepository.addStationToLine("3호선", "교대역", "매봉역");
+        LineRepository.addStationToLine("3호선", "남부터미널역 ", 2);
+        LineRepository.addStationToLine("3호선", "양재역  ", 3);
+
+        LineRepository.addLine(new Line("신분당선"));
+        LineRepository.addStationToLine("신분당선", "강남역", "양재시민의숲역");
+        LineRepository.addStationToLine("신분당선", "양재역", 2);
+    }
+
     public static void lineAdd() {
         try {
             LineView.printLineAddReqMsg();
             String lineName = lineNameInput();
             String frontStationName = frontLineStationInput();
             String backStationName = backLineStationInput();
-            if(frontStationName.equals(backStationName)){
+            if (frontStationName.equals(backStationName)) {
                 throw new IllegalArgumentException("상행, 하행 노선 이름이 같습니다");
             }
             LineRepository.addLine(new Line(lineName));
-            LineRepository.addStationToLine(new Line(lineName), frontStationName, backStationName);
+            LineRepository.addStationToLine(lineName, frontStationName, backStationName);
             LineView.printLineAddSuccessMsg();
         } catch (IllegalArgumentException e) {
             System.out.println();
@@ -25,6 +41,7 @@ public class LineController {
             System.out.println();
         }
     }
+
     private static String lineNameInput() throws IllegalArgumentException {
         String lineName = InputView.getInput();
         lineName = lineName.replace(" ", "");
@@ -61,5 +78,9 @@ public class LineController {
             throw new IllegalArgumentException("DB에 존재 하지 않는 역 입니다");
         }
         return stationName;
+    }
+
+    public static void lineCheck() {
+        
     }
 }
