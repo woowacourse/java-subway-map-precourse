@@ -7,9 +7,17 @@ import subway.views.mainviews.MainOutputView;
 import java.util.Scanner;
 
 public class MainMenuController {
-    private final StationMenuController stationMenuController = new StationMenuController();
-    private final LineMenuController lineMenuController = new LineMenuController();
-    private final SectionMenuController sectionMenuController = new SectionMenuController();
+    private static MainMenuController instance = new MainMenuController();
+    private final StationMenuController stationMenuController = StationMenuController.getInstance();
+    private final LineMenuController lineMenuController = LineMenuController.getInstance();
+    private final SectionMenuController sectionMenuController = SectionMenuController.getInstance();
+
+    private MainMenuController() {
+    }
+
+    public static MainMenuController getInstance() {
+        return instance;
+    }
 
     public void mappingMainMenu(Scanner scanner) {
         MainMenu selectedOption;

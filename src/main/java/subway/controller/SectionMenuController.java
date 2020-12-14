@@ -7,6 +7,15 @@ import subway.views.OutputView;
 import java.util.Scanner;
 
 public class SectionMenuController {
+    private static SectionMenuController sectionMenuController = new SectionMenuController();
+
+    private SectionMenuController() {
+    }
+
+    public static SectionMenuController getInstance() {
+        return sectionMenuController;
+    }
+
     public void mappingSectionMenu(Scanner scanner) {
         OutputView.printSectionManagePage();
         branchBySelectedOption(InputView.selectSectionMenu(scanner));
