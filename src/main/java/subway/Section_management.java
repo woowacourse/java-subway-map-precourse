@@ -23,10 +23,10 @@ public class Section_management {
 		return true;
 	}
 	public static void delete_section(String line_name, String Station_name) {
-		Line line = Line_management.get_line_by_name(Station_name);
+		Line line = Line_management.get_line_by_name(line_name);
 		Station station = Station_management.get_station_by_name(Station_name);
 		if (station != null) {			
-			line.getStations().remove(Station_management.get_station_by_name(Station_name));
+			line.getStations().remove(station);
 			System.out.println("[INFO] 구간이 삭제되었습니다.");
 			return;
 		}
