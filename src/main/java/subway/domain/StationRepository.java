@@ -12,10 +12,10 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
+    public static void addStation(String name) {
         //길이 2이상, 중복 체크
-        if (checkNameLength(station) && !checkNameInStations(station.getName())) {
-            stations.add(station);
+        if (checkNameLength(name) && !checkNameInStations(name)) {
+            stations.add(new Station(name));
             return;
         }
 
@@ -44,8 +44,8 @@ public class StationRepository {
         return false;
     }
 
-    public static boolean checkNameLength(Station station) {
-        return station.getName().length() >= Constants.MIN_NAME_LENGTH;
+    public static boolean checkNameLength(String name) {
+        return name.length() >= Constants.MIN_NAME_LENGTH;
     }
 
     public static boolean checkNameInStations(String name) {
