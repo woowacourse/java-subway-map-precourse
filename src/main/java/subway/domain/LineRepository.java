@@ -1,8 +1,6 @@
 package subway.domain;
 
-import subway.domain.exception.DuplicateLineNameException;
-import subway.domain.exception.DuplicateStationOfLineException;
-import subway.domain.exception.NotExistLineException;
+import subway.domain.exception.*;
 
 import java.util.*;
 
@@ -19,7 +17,7 @@ public class LineRepository {
         lines.add(lineTwo);
 
         Line lineThree = new Line("3호선", Arrays.asList("교대역", "매봉역"));
-        lineThree.addSection("남부터미널", 2);
+        lineThree.addSection("남부터미널역", 2);
         lineThree.addSection("양재역", 3);
         lines.add(lineThree);
 
@@ -34,6 +32,14 @@ public class LineRepository {
 
     public static void addLine(Line line) {
         lines.add(line);
+    }
+
+    public static void addSection(String lineName, String station, String order) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .findFirst()
+                .get()
+                .addSection(station, Integer.valueOf(order));
     }
 
     public static boolean deleteLineByName(String name) {
@@ -76,5 +82,24 @@ public class LineRepository {
                 .filter(line -> Objects.equals(line.getName(), lineName))
                 .findAny()
                 .orElseThrow(() -> new NotExistLineException());
+    }
+
+    public static void validOrderLength(String lineName, String order) {
+        int orderInt = Integer.valueOf(order);
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .filter(line -> line.getStations().size()+1 >= orderInt && orderInt >= 1)
+                .findAny()
+                .orElseThrow(() -> new InvalidOrderLengthException());
+    }
+
+    public static void twoMoreLines(String lineName) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .filter(line -> line.getStations().size() <= 2)
+                .findFirst()
+                .ifPresent(s -> {
+                    throw new InvalidLineLengthException();
+                });
     }
 }

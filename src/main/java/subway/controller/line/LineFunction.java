@@ -7,7 +7,6 @@ import subway.domain.exception.*;
 import subway.utils.InputValidator;
 import subway.view.InputView;
 import subway.view.outputview.LineOutputView;
-import subway.view.outputview.OutputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +39,6 @@ public class LineFunction {
         try {
             String firstStation = inputFirstStation(line, lineRepository);
             String lastStation = inputLastStation(line, lineRepository);
-
 
             isDuplicateStations(firstStation, lastStation);
             return new Line(line, new ArrayList<>(Arrays.asList(firstStation, lastStation)));

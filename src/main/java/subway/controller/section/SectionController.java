@@ -1,9 +1,11 @@
 package subway.controller.section;
 
 import subway.controller.Controller;
+import subway.domain.exception.NoSuchMenuException;
 import subway.domain.menu.SectionMenu;
 import subway.view.InputView;
 import subway.view.outputview.SectionOutputView;
+
 
 public class SectionController implements Controller {
     @Override
@@ -17,6 +19,18 @@ public class SectionController implements Controller {
     }
 
     private SectionMenu selectMenu(String inputMenu) {
-        return null;
+        try {
+            SectionMenu sectionMenu = SectionMenu.findMenu(inputMenu);
+            execute(sectionMenu);
+            return sectionMenu;
+        } catch (NoSuchMenuException e) {
+            return null;
+        }
+    }
+
+    private void execute(SectionMenu sectionMenu) {
+        if (SectionMenu.isRunning(sectionMenu)) {
+            sectionMenu.runFunction(new Object());
+        }
     }
 }

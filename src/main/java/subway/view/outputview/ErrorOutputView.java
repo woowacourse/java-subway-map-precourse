@@ -13,7 +13,7 @@ public class ErrorOutputView {
     private static String NOT_EXIST_LINE = "해당 노선이 존재하지 않습니다.\n";
     private static String STATION_IN_LINE = "해당 역이 노선에 존재합니다.\n";
     private static String EQUAL_FIRST_LAST_STATION = "상행/하행 종점역 이름이 같습니다.\n";
-    private static String INVALID_ORDER_NUMBER = "순서는 숫자가 입력될 수 없습니다.\n";
+    private static String INVALID_ORDER_NUMBER = "순서는 숫자만 입력될 수 있습니다.\n";
     private static String INVALID_ORDER_RANGE = "구간의 범위를 초과하였습니다.\n";
     private static String INVALID_LINE_SIZE = "노선의 역이 2개 이하로, 역을 제거할 수 없습니다.\n";
 
@@ -67,5 +67,23 @@ public class ErrorOutputView {
     public static void equalFirstAndLastStation() {
         stringBuilder.append(ERROR_SYMBOL);
         stringBuilder.append(EQUAL_FIRST_LAST_STATION);
+    }
+
+    public static void invalidOrderNumber() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(INVALID_ORDER_NUMBER);
+        print();
+    }
+
+    public static void invalidOrderRange() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(INVALID_ORDER_RANGE);
+        print();
+    }
+
+    public static void invalidLineLength() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(INVALID_LINE_SIZE);
+        print();
     }
 }

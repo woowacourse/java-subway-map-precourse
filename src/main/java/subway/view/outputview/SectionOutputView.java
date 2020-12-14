@@ -12,10 +12,35 @@ public class SectionOutputView {
     private static String SECTION_ORDER = "순서를 입력하세요.\n";
     private static String SUCCESS_ADD_SECTION = "구간이 등록되었습니다.\n";
     private static String SUCCESS_DELETE_SECTION = "구간이 삭제되었습니다.\n";
+
     public static void showMenu() {
         stringBuilder.append(MENU_SYMBOL);
         stringBuilder.append(SECTION_VIEW);
         stringBuilder.append(SECTION_MENU);
+        selectMenu();
+    }
+
+    public static void registerSectionLineName() {
+        stringBuilder.append(MENU_SYMBOL);
+        stringBuilder.append(SECTION_LINE);
+        print();
+    }
+
+    public static void registerSectionStationName() {
+        stringBuilder.append(MENU_SYMBOL);
+        stringBuilder.append(SECTION_STATION);
+        print();
+    }
+
+    public static void registerSectionOrder() {
+        stringBuilder.append(MENU_SYMBOL);
+        stringBuilder.append(SECTION_ORDER);
+        print();
+    }
+
+    public static void successAdd() {
+        stringBuilder.append(INFO_SYMBOL);
+        stringBuilder.append(SUCCESS_ADD_SECTION);
         print();
     }
 }
