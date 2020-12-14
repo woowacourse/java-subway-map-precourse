@@ -37,10 +37,10 @@ public class SectionMaintain {
 
     private void movePage(int operationNumber, Scanner scanner) {
         if (operationNumber == ERROR) {
-            new Controller(scanner);
+            maintainPage();
         }
         if (operationNumber == BACK_PAGE) {
-            maintainPage();
+            new Controller(scanner);
         }
         if (operationNumber == REGISTER_SECTION) {
             registerSection();
