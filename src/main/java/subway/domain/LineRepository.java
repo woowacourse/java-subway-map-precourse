@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
+    private static final String LINE_NAME_LENGTH_ERROR = "이름이 2글자 미만입니다.";
+    private static final String LINE_NAME_DUPLICATE_ERROR = "기존의 역과 중복됩니다.";
+    
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -13,6 +16,12 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        if(!line.isValidName()) {
+            throw new IllegalArgumentException(LINE_NAME_LENGTH_ERROR);
+        }
+        if (lines.contains(line)) {
+            throw new IllegalArgumentException(LINE_NAME_DUPLICATE_ERROR);
+        }
         lines.add(line);
     }
 
