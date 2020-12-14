@@ -9,8 +9,7 @@ public class LineService {
 
     public static final int MIN_LINE_NAME_LENGTH = 2;
 
-    public static boolean addLine(String lineName, String firstStationName, String lastStationName,
-        boolean isPrint) {
+    private static boolean isNotLineNameState(String lineName) {
         if (lineName.length() < MIN_LINE_NAME_LENGTH) {
             OutPut.printLineLengthError();
             return true;
@@ -18,6 +17,14 @@ public class LineService {
         if (LineRepository.isEqualLineName(lineName)) {
             OutPut.printLineDuplicateError();
             return true;
+        }
+        return false;
+    }
+
+    public static boolean addLine(String lineName, String firstStationName, String lastStationName,
+        boolean isPrint) {
+        if (isNotLineNameState(lineName)) {
+            return false;
         }
         Station firstStation = StationRepository.getStation(firstStationName);
         Station lastStation = StationRepository.getStation(lastStationName);
