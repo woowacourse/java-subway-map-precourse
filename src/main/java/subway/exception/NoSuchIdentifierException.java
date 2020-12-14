@@ -6,5 +6,6 @@ public class NoSuchIdentifierException extends FunctionException {
 
     public NoSuchIdentifierException() {
         super(NOT_SELECTABLE_ERROR);
+
     }
 }

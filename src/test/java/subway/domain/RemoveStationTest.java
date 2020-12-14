@@ -17,7 +17,8 @@ public class RemoveStationTest {
 
     @BeforeEach
     public void initLineRepository() {
-        ManagementController managementController = ManagementControllerTest.initializeWithEmptyStations();
+        ManagementController managementController =
+                ManagementControllerTest.initializeWithEmptyStations();
 
         lineRepository = managementController.lines();
     }

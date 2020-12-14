@@ -7,9 +7,10 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public final class LineRepository {
+import subway.controller.ManagementController;
+import subway.exception.AlreadyExistsException;
 
-    public static final String DUPLICATE_NAME_ERROR = "%s은 이미 존재하는 노선 이름입니다!";
+public final class LineRepository {
 
     public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
 
@@ -33,7 +34,7 @@ public final class LineRepository {
 
     public LineRepository addLine(final Line line) {
         if (lines.contains(line)) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, line.getName()));
+            throw new AlreadyExistsException(line.getName(), ManagementController.LINE);
         }
 
         lines.add(line);
