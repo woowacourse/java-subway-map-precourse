@@ -3,8 +3,9 @@ package subway.domain;
 import java.util.*;
 
 public class LineRepository {
-    private static final String NEW_LINE = "\n";
     private static final List<Line> lines = new ArrayList<>();
+    private static final String NEW_LINE = "\n";
+    private static final String PRINT_INFO = "[INFO] ";
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -35,7 +36,7 @@ public class LineRepository {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Line line : lines()) {
-            sb.append("[INFO] " + line + NEW_LINE);
+            sb.append(PRINT_INFO + line + NEW_LINE);
         }
         return sb.toString();
     }

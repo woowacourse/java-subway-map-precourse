@@ -1,6 +1,5 @@
 package subway.domain;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +7,7 @@ import java.util.Objects;
 public class LineStationRepository {
     private static final String NEW_LINE = "\n";
     private static final String PRINT_INFO = "[INFO] ";
-
+    private static final String SEPARATOR = "[INFO] --- \n";
     private static final List<LineStation> subwayLine = new ArrayList<>();
 
     public static void addLineStation(LineStation lineStation) {
@@ -47,7 +46,7 @@ public class LineStationRepository {
         StringBuilder sb = new StringBuilder();
         for (LineStation lineStation : subwayLine) {
             sb.append(PRINT_INFO + lineStation.getLine().getName() + NEW_LINE);
-            sb.append(PRINT_INFO + "---" + NEW_LINE);
+            sb.append(SEPARATOR);
             for (Station station : lineStation.getStations()) {
                 sb.append(PRINT_INFO + station.getName() + NEW_LINE);
             }
