@@ -1,5 +1,7 @@
 package subway.validator;
 
+import subway.domain.Line;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.UserInputException;
 import subway.view.stationoutput.StationErrorView;
@@ -49,6 +51,16 @@ public class StationValidation extends Validation {
         return true;
     }
 
+    public static boolean checkStationLineInput(String userInputLine) {
+        if(!checkIsInStationRepository(userInputLine)) {
+            return false;
+        }
+        if(!checkStationBelongLineCanDeleteStation(userInputLine)) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean checkIsInStationRepository(String userInputStation) {
         try {
             if (!StationRepository.haveStation(userInputStation)) {
@@ -60,4 +72,15 @@ public class StationValidation extends Validation {
         }
         return true;
     }
+
+    private static boolean checkStationBelongLineCanDeleteStation(String userInputLine) {
+        Station station = StationRepository.getStationByName(userInputLine);
+        for (Line line : station.getBelongToWhichLine()) {
+            if(!LineSectionValidation.checkNumberOfStationsInLine(line.getName())){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

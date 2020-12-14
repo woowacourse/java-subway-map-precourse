@@ -1,9 +1,12 @@
 package subway.validator;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.UserInputException;
 import subway.view.lineoutput.LineErrorView;
+import subway.view.linesectionoutput.LineSectionErrorView;
 
 public class LineValidation extends Validation {
     private static final char WORD_LINE = '선';
@@ -57,7 +60,7 @@ public class LineValidation extends Validation {
         return true;
     }
 
-    private static boolean checkIsInLineRepository(String userInputLine) {
+    public static boolean checkIsInLineRepository(String userInputLine) {
         try {
             if (!LineRepository.haveLine(userInputLine)) {
                 throw new UserInputException();

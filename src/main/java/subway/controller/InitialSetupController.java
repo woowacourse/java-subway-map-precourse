@@ -33,7 +33,9 @@ public class InitialSetupController {
     private static void initialSetupSecondLine() {
         Line secondLine = new Line(SECOND_LINE);
         for (String stationName : secondLineStations) {
-            secondLine.addStationsInLine(StationRepository.getStationByName(stationName));
+            Station station = StationRepository.getStationByName(stationName);
+            station.addBelongToWhichLine(secondLine);
+            secondLine.addStationsInLine(station);
         }
         LineRepository.addLine(secondLine);
     }
@@ -41,16 +43,20 @@ public class InitialSetupController {
     private static void initialSetupThirdLine() {
         Line thirdLine = new Line(THIRD_LINE);
         for (String stationName : thirdLineStations) {
-            thirdLine.addStationsInLine(StationRepository.getStationByName(stationName));
+            Station station = StationRepository.getStationByName(stationName);
+            station.addBelongToWhichLine(thirdLine);
+            thirdLine.addStationsInLine(station);
         }
         LineRepository.addLine(thirdLine);
     }
 
     private static void initialSetupNewBoondangLine() {
-        Line newBoondang = new Line(NEW_BOONDANG_LINE);
+        Line newBoondangLine = new Line(NEW_BOONDANG_LINE);
         for (String stationName : newBoondangLineStations) {
-            newBoondang.addStationsInLine(StationRepository.getStationByName(stationName));
+            Station station = StationRepository.getStationByName(stationName);
+            station.addBelongToWhichLine(newBoondangLine);
+            newBoondangLine.addStationsInLine(station);
         }
-        LineRepository.addLine(newBoondang);
+        LineRepository.addLine(newBoondangLine);
     }
 }

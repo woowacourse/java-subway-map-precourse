@@ -2,6 +2,7 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.validator.LineValidation;
 import subway.validator.StationValidation;
@@ -67,27 +68,31 @@ public class LineController {
         }
 
         LineOutputView.printUpTerminusInstruction();
-        String upTerminus = InputView.getInput(scanner);
-        validInput = StationValidation.checkIsInStationRepository(upTerminus);
+        String upTerminusInput = InputView.getInput(scanner);
+        validInput = StationValidation.checkIsInStationRepository(upTerminusInput);
         if (!validInput) {
             return false;
         }
 
         LineOutputView.printDownTerminusInstruction();
-        String downTerminus = InputView.getInput(scanner);
-        validInput = StationValidation.checkIsInStationRepository(downTerminus);
+        String downTerminusInput = InputView.getInput(scanner);
+        validInput = StationValidation.checkIsInStationRepository(downTerminusInput);
         if (!validInput) {
             return false;
         }
 
-        validInput = LineValidation.checkSameTerminus(upTerminus, downTerminus);
+        validInput = LineValidation.checkSameTerminus(upTerminusInput, downTerminusInput);
         if (!validInput) {
             return false;
         }
 
         Line newLine = new Line(userInputLine);
-        newLine.addStationsInLine(StationRepository.getStationByName(upTerminus));
-        newLine.addStationsInLine(StationRepository.getStationByName(downTerminus));
+        Station upTerminus = StationRepository.getStationByName(upTerminusInput);
+        Station downTerminus = StationRepository.getStationByName(downTerminusInput);
+        upTerminus.addBelongToWhichLine(newLine);
+        downTerminus.addBelongToWhichLine(newLine);
+        newLine.addStationsInLine(upTerminus);
+        newLine.addStationsInLine(downTerminus);
         LineRepository.addLine(newLine);
         LineInfoView.printRegisterInfo();
         return true;

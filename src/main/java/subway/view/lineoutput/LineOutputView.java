@@ -15,6 +15,7 @@ public class LineOutputView extends OutputView {
         printOutput(LINE_CONTROLLER_OPTION);
         printNewLine();
     }
+
     public static void printLineRegisterInstruction() {
         printOutput(ENTER_LINE_NAME_TO_REGISTER);
     }

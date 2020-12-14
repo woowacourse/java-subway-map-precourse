@@ -28,4 +28,13 @@ public class LineRepository {
         }
         return false;
     }
+
+    public static Line getLineByName(String name) {
+        for (Line line : lines) {
+            if(line.checkSameName(name)) {
+                return line;
+            }
+        }
+        return null;
+    }
 }
