@@ -17,7 +17,7 @@ public class MainInput {
 
     List<String> functionList = new ArrayList<>();
 
-    public List<String> functionList() {
+    private List<String> functionList() {
         functionList.add(FUNCTION_ONE);
         functionList.add(FUNCTION_TWO);
         functionList.add(FUNCTION_THREE);

@@ -54,14 +54,13 @@ public class LineRepository {
     }
 
     public static boolean isFixedStationOnLine(Station station, Line line) {
-        if (!fixedLines().contains(line)) {
-            return true;
-        }
         if (line.equals(LINE_NUMBER_2) && fixedStationInLineTwo().contains(station)) {
             return true;
-        } else if (line.equals(LINE_NUMBER_3) && fixedStationInLineThree().contains(station)) {
+        }
+        if (line.equals(LINE_NUMBER_3) && fixedStationInLineThree().contains(station)) {
             return true;
-        } else if (line.equals(LINE_NUMBER_SHINBUNDANG) && fixedStationInLineShinBunDang().contains(station)) {
+        }
+        if (line.equals(LINE_NUMBER_SHINBUNDANG) && fixedStationInLineShinBunDang().contains(station)) {
             return true;
         }
         return false;

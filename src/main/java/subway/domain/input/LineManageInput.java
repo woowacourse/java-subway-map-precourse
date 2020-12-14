@@ -15,7 +15,7 @@ public class LineManageInput {
 
     List<String> functionList = new ArrayList<>();
 
-    public List<String> functionList() {
+    private List<String> functionList() {
         functionList.add(FUNCTION_ONE);
         functionList.add(FUNCTION_TWO);
         functionList.add(FUNCTION_THREE);
@@ -32,7 +32,7 @@ public class LineManageInput {
         throw new IllegalArgumentException();
     }
 
-    public String validateLineName(String lineName) throws IllegalArgumentException{
+    private String validateLineName(String lineName) throws IllegalArgumentException{
         if (lineName.length() < MIN_LINE_NAME_LENGTH) {
             ErrorMessage.isLessThanTwoWordLine();
             throw new IllegalArgumentException();
@@ -67,7 +67,7 @@ public class LineManageInput {
         throw new IllegalArgumentException();
     }
 
-    public boolean isFixedLine(String lineName) {
+    private boolean isFixedLine(String lineName) {
         Optional<Line> fixedLine = LineRepository.fixedLines()
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();
         return fixedLine.isPresent();

@@ -33,7 +33,7 @@ public class LineManageProgram {
     LineManageInput input = new LineManageInput();
     LineManageController controller = new LineManageController();
 
-    public String getSelectFunction(Scanner scanner) {
+    private String getSelectFunction(Scanner scanner) {
         System.out.println("\n" + LINE_MANAGE_SCREEN);
         System.out.println(LINE_ENROLL);
         System.out.println(LINE_DELETE);
@@ -43,7 +43,7 @@ public class LineManageProgram {
         return input.inputLineManageScreen(scanner);
     }
 
-    public void printEnrollLine(Scanner scanner, String function) {
+    private void printEnrollLine(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
             System.out.println("\n" + INPUT_ENROLL_LINE_NAME);
             Line line = new Line(input.inputEnrollLine(scanner));
@@ -59,7 +59,7 @@ public class LineManageProgram {
         }
     }
 
-    public void printDeleteLine(Scanner scanner, String function) {
+    private void printDeleteLine(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
             System.out.println("\n" + INPUT_DELETE_LINE_NAME);
             controller.processDeleteLine(scanner);
@@ -67,14 +67,14 @@ public class LineManageProgram {
         }
     }
 
-    public void printAllLine(String function) {
+    private void printAllLine(String function) {
         if (function.equals(FUNCTION_THREE)) {
             System.out.println("\n" + LINE_CATEGORY);
             controller.printAllLines();
         }
     }
 
-    public void checkGoBack(String function) {
+    private void checkGoBack(String function) {
         if (function.equals(FUNCTION_BACK)) {
             this.goBack = true;
         }

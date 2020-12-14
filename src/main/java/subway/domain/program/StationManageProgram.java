@@ -29,7 +29,7 @@ public class StationManageProgram {
     StationManageController controller = new StationManageController();
     StationManageInput input = new StationManageInput();
 
-    public String getSelectFunction(Scanner scanner) {
+    private String getSelectFunction(Scanner scanner) {
         System.out.println("\n" + STATION_MANAGE_SCREEN);
         System.out.println(STATION_ENROLL);
         System.out.println(STATION_DELETE);
@@ -39,7 +39,7 @@ public class StationManageProgram {
         return input.inputStationManageScreen(scanner);
     }
 
-    public void printEnrollStation(Scanner scanner, String function) {
+    private void printEnrollStation(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
             System.out.println("\n" + INPUT_ENROLL_STATION_NAME);
             controller.processEnrollStation(scanner);
@@ -47,7 +47,7 @@ public class StationManageProgram {
         }
     }
 
-    public void printDeleteStation(Scanner scanner, String function) {
+    private void printDeleteStation(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
             System.out.println("\n" + INPUT_DELETE_STATION_NAME);
             controller.processDeleteStation(scanner);
@@ -55,14 +55,14 @@ public class StationManageProgram {
         }
     }
 
-    public void printAllStation(String function) {
+    private void printAllStation(String function) {
         if (function.equals(FUNCTION_THREE)) {
             System.out.println("\n" + STATION_CATEGORY);
             controller.printAllStations();
         }
     }
 
-    public void checkGoBack(String function) {
+    private void checkGoBack(String function) {
         if (function.equals(FUNCTION_BACK)) {
             this.goBack = true;
         }

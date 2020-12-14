@@ -30,7 +30,7 @@ public class SectionManageProgram {
     SectionManageInput input = new SectionManageInput();
     SectionManageController controller = new SectionManageController();
 
-    public String getSelectFunction(Scanner scanner) {
+    private String getSelectFunction(Scanner scanner) {
         System.out.println("\n" + SECTION_MANAGE_SCREEN);
         System.out.println(SECTION_ENROLL);
         System.out.println(SECTION_DELETE);
@@ -39,7 +39,7 @@ public class SectionManageProgram {
         return input.inputSectionManageScreen(scanner);
     }
 
-    public void printEnrollSection(Scanner scanner, String function) {
+    private void printEnrollSection(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
             System.out.println("\n" + INPUT_LINE_NAME);
             Line line = input.inputLine(scanner);
@@ -53,7 +53,7 @@ public class SectionManageProgram {
         }
     }
 
-    public void printDeleteSection(Scanner scanner, String function) {
+    private void printDeleteSection(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
             System.out.println("\n" + INPUT_DELETE_LINE_NAME);
             Line line = input.inputLine(scanner);
@@ -64,7 +64,7 @@ public class SectionManageProgram {
         }
     }
 
-    public void checkGoBack(String function) {
+    private void checkGoBack(String function) {
         if (function.equals(FUNCTION_BACK)) {
             this.goBack = true;
         }

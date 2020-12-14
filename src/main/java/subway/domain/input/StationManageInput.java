@@ -17,7 +17,7 @@ public class StationManageInput {
 
     List<String> functionList = new ArrayList<>();
 
-    public List<String> functionList() {
+    private List<String> functionList() {
         functionList.add(FUNCTION_ONE);
         functionList.add(FUNCTION_TWO);
         functionList.add(FUNCTION_THREE);
@@ -34,7 +34,7 @@ public class StationManageInput {
         throw new IllegalArgumentException();
     }
 
-    public String validateStationName(String stationName) throws IllegalArgumentException{
+    private void validateStationName(String stationName) throws IllegalArgumentException{
         if (stationName.length() < MIN_STATION_NAME_LENGTH) {
             ErrorMessage.isLessThanTwoWordStation();
             throw new IllegalArgumentException();
@@ -43,7 +43,6 @@ public class StationManageInput {
             ErrorMessage.isNotCorrectStationName();
             throw new IllegalArgumentException();
         }
-        return stationName;
     }
 
     public String inputEnrollStation(Scanner scanner) throws IllegalArgumentException{
@@ -58,7 +57,7 @@ public class StationManageInput {
         return stationName;
     }
 
-    public boolean isFixedStation(String stationName) {
+    private boolean isFixedStation(String stationName) {
         Optional<Station> fixedStation = StationRepository.fixedStations()
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();
         return fixedStation.isPresent();

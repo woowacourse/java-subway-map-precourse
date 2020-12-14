@@ -27,7 +27,7 @@ public class Program {
     SectionManageProgram sectionManageProgram = new SectionManageProgram();
     subwayRouteMapProgram subwayRouteMapProgram = new subwayRouteMapProgram();
 
-    public String getSelectFunction(Scanner scanner) {
+    private String getSelectFunction(Scanner scanner) {
         System.out.println("\n" + MAIN_SCREEN);
         System.out.println(STATION_MANAGE);
         System.out.println(LINE_MANAGE);
@@ -38,31 +38,31 @@ public class Program {
         return input.inputMainScreen(scanner);
     }
 
-    public void printStationManage(Scanner scanner, String function) {
+    private void printStationManage(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
             stationManageProgram.printStationManageProgram(scanner);
         }
     }
 
-    public void printLineManage(Scanner scanner, String function) {
+    private void printLineManage(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
             lineManageProgram.printLineManageProgram(scanner);
         }
     }
 
-    public void printSectionManage(Scanner scanner, String function) {
+    private void printSectionManage(Scanner scanner, String function) {
         if (function.equals(FUNCTION_THREE)) {
             sectionManageProgram.printSectionManageProgram(scanner);
         }
     }
 
-    public void printSubway(String function) {
+    private void printSubway(String function) {
         if (function.equals(FUNCTION_FOUR)) {
             subwayRouteMapProgram.printLineAndStation();
         }
     }
 
-    public void quitProgram(String function) {
+    private void quitProgram(String function) {
         if (function.equals(FUNCTION_QUIT)) {
             this.quit = true;
         }

@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    static final int ORDER_SUBTRACT_INDEX = 1;
     private final String name;
     private final List<Station> stations = new ArrayList<>();
-    static final int ORDER_SUBTRACT_INDEX = 1;
 
     public Line(String name) {
         this.name = name;
