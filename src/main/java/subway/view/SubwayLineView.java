@@ -1,8 +1,7 @@
 package subway.view;
 
-import static subway.console.Output.print;
-
-import subway.console.Message;
+import subway.console.Output;
+import subway.repository.SectionRepository;
 
 /**
  * @author yhh1056
@@ -11,6 +10,6 @@ import subway.console.Message;
 public class SubwayLineView {
 
     public void showSubwayLine() {
-        print(Message.SUBWAY_LINE);
+        Output.printSubwayLine(SectionRepository.sections());
     }
 }

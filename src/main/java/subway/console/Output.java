@@ -1,6 +1,7 @@
 package subway.console;
 
 import java.util.List;
+import java.util.Map;
 import subway.domain.Line;
 import subway.domain.Station;
 
@@ -39,5 +40,17 @@ public class Output {
 
     public static void printBlankLine() {
         System.out.println();
+    }
+
+    public static void printSubwayLine(Map<Line, List<Station>> sections) {
+        System.out.println(Message.SUBWAY_LINE);
+        for (Line line : sections.keySet()) {
+            print(combine(line.getName()));
+            print("[INFO] ---");
+            for (Station station : sections.get(line)) {
+                print(combine(station.getName()));
+            }
+            printBlankLine();
+        }
     }
 }

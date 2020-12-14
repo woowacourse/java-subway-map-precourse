@@ -1,6 +1,7 @@
 package subway.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,10 @@ import subway.domain.Station;
 public class SectionRepository {
     private static final Map<Line, List<Station>> sections = new LinkedHashMap<>();
     private static final int VALID_STATION_SIZE = 2;
+
+    public static Map<Line, List<Station>> sections() {
+        return Collections.unmodifiableMap(sections);
+    }
 
     public static void addSection(Line line, Station station) {
         findDuplicateStation(line, station);
