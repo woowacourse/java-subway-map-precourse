@@ -7,16 +7,16 @@ import static subway.common.MenuPrinter.printStationControllerMenu;
 import static subway.common.ServiceMenu.*;
 import static subway.view.OutputView.warnMessage;
 
-public class StationController {
-    private final String OPTION_SELECT_WARN = "선택지 안의 기능을 선택해주세요.";
+public class StationController extends BaseController{
 
+    @Override
     public void service(InputView inputView) {
         String command;
         while(true) {
             printStationControllerMenu();
             command = inputView.inputName();
             if (isValidCommand(command)) {
-                warnMessage(OPTION_SELECT_WARN);
+                warnMessage(COMMAND_SELECT_WARN);
                 continue;
             }
             if (isBackCommand(command)) {
@@ -26,6 +26,7 @@ public class StationController {
         }
     }
 
+    @Override
     public void menuSelector(String command, InputView inputView) {
         if (isAddCommand(command)) {
             addStation(inputView);

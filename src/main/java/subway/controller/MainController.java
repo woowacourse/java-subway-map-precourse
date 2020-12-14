@@ -7,9 +7,9 @@ import static subway.common.MenuPrinter.printMainControllerMenu;
 import static subway.repository.LineRepository.printLineAndStation;
 import static subway.view.OutputView.warnMessage;
 
-public class MainController {
-    private final String COMMAND_SELECT_WARN = "선택지 안의 기능을 선택해주세요.";
+public class MainController extends BaseController{
 
+    @Override
     public void service(InputView inputView) {
         String command;
         while(true) {
@@ -26,6 +26,7 @@ public class MainController {
         }
     }
 
+    @Override
     public void menuSelector(String command, InputView inputView) {
         if (isStationControllerCommand(command)) {
             new StationController().service(inputView);
