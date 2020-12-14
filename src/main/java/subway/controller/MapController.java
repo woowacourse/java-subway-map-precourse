@@ -5,17 +5,21 @@ import subway.view.OutputView;
 import subway.view.resource.Screen;
 
 public class MapController {
-    public void run() {
+    private MapController() {
+
+    }
+
+    public static void run() {
         printSubwayMap();
         goBackToMain();
     }
 
-    private void printSubwayMap() {
+    private static void printSubwayMap() {
         OutputView.printTitle(Screen.MAP.getName());
         OutputView.printSubwayMap(SectionRepository.sections());
     }
 
-    private void goBackToMain() {
+    private static void goBackToMain() {
         MainController.run();
     }
 }
