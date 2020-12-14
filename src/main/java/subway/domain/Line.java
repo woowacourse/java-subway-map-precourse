@@ -45,6 +45,10 @@ public class Line {
         }
     }
 
+    public boolean deleteStationFromSection(String name) {
+        return section.removeIf(station -> station.getName().equals(name));
+    }
+
     public boolean hasStation(String name) {
         for (Station station : section) {
             if (station.getName().equals(name)) {
@@ -52,6 +56,10 @@ public class Line {
             }
         }
         return false;
+    }
+
+    public Integer sectionLength() {
+        return section.size();
     }
 
     @Override
