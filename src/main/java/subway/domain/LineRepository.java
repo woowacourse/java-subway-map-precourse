@@ -57,4 +57,8 @@ public class LineRepository {
         }
     }
 
+    public static void addSectionLineOfStation(String line, String station, int indexNum) {
+        Station stationName = StationRepository.getEqualsStation(station);
+        getEqualsLine(line).getStations().add(indexNum, stationName);
+    }
 }

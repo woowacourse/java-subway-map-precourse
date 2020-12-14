@@ -16,6 +16,15 @@ public class StationRepository {
         stations.add(station);
     }
 
+    public static Station getEqualsStation(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return station;
+            }
+        }
+        return new Station(stationName);
+    }
+
     public static boolean deleteStation(String name) {
         LineRepository.validateLineInStationCheck(name);
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
