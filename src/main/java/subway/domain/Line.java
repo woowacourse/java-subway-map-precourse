@@ -49,10 +49,6 @@ public class Line {
         stationList.remove(station);
     }
 
-    public void enrollStation(Station station){
-        stationList.add(station);
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(name);
