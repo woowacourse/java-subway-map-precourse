@@ -1,8 +1,9 @@
-package subway.view;
+package subway.manager.menu;
 
 import subway.manager.LineManager;
 import subway.manager.RouteMapManager;
 import subway.manager.StationManager;
+import subway.view.Output;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Consumer;

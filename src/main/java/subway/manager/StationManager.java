@@ -3,7 +3,7 @@ package subway.manager;
 import subway.controller.StationController;
 import subway.view.Input;
 import subway.view.Output;
-import subway.view.StationMenu;
+import subway.manager.menu.StationMenu;
 import java.util.Scanner;
 
 public class StationManager {

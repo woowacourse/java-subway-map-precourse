@@ -1,14 +1,14 @@
 package subway.manager;
 
 import subway.view.Input;
-import subway.view.MainMenu;
+import subway.manager.menu.MainMenu;
 import subway.view.Output;
-
 import java.util.Scanner;
 
 public class MainManager {
 
-    private MainManager() {}
+    private MainManager() {
+    }
 
     public static void run(Scanner scanner) {
         MainMenu mainMenu;
