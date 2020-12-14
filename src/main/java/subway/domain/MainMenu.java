@@ -20,14 +20,15 @@ public class MainMenu {
         LINE_MANAGE() {
             @Override
             public void mainMenuSelect() {
-                LineManageMenu.lineManageMenuRun();
                 // 라인 관리 호출
+                LineManageMenu.lineManageMenuRun();
             }
         },
         SECTION_MANAGE() {
             @Override
             public void mainMenuSelect() {
-                // 구역 관리 호출
+                // 구간 관리 호출
+                SectionManageMenu.sectionManageMenuRun();
             }
         },
         PRINT_SUBWAY_LINE() {
