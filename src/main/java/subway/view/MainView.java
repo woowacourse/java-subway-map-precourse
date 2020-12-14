@@ -37,6 +37,7 @@ public class MainView extends View {
     }
 
     private void doFunction(String selection) {
+        checkKey(selection);
         if (KEY_QUIT.equals(selection)) {
             System.exit(0);
         }

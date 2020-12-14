@@ -45,6 +45,7 @@ public class SectionManagementView extends View {
     }
 
     private void doFunction(String selection) {
+        checkKey(selection);
         if (KEY_BACK.equals(selection)) {
             onBackListener.onBack();
             return;
