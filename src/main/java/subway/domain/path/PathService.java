@@ -3,6 +3,7 @@ package subway.domain.path;
 import java.util.Arrays;
 import java.util.Scanner;
 import subway.common.ErrorMessage;
+import subway.common.ErrorMessageException;
 import subway.domain.SubwayRepository;
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
@@ -40,21 +41,23 @@ public class PathService {
     }
 
     private void addPath() {
-        String[] pathInfo = pathInputManager.getPathInfoToAdd();
-        if (Arrays.asList(pathInfo).contains(ErrorMessage.OUT)) {
-            return;
+        try {
+            String[] pathInfo = pathInputManager.getPathInfoToAdd();
+            SubwayRepository.addPathByLineNameAndIndex(pathInfo);
+            PathOutputManager.printAddedInfo();
+        } catch (ErrorMessageException errorMessageException) {
+            ErrorMessage.print(errorMessageException);
         }
-        SubwayRepository.addPathByLineNameAndIndex(pathInfo);
-        PathOutputManager.printAddedInfo();
     }
 
     private void deletePath() {
-        String[] pathInfo = pathInputManager.getPathInfoToDelete();
-        if (Arrays.asList(pathInfo).contains(ErrorMessage.OUT)) {
-            return;
+        try {
+            String[] pathInfo = pathInputManager.getPathInfoToDelete();
+            SubwayRepository.deleteStationOnPathByLineName(pathInfo);
+            PathOutputManager.printDeletedInfo();
+        } catch (ErrorMessageException errorMessageException) {
+            ErrorMessage.print(errorMessageException);
         }
-        SubwayRepository.deleteStationOnPathByLineName(pathInfo);
-        PathOutputManager.printDeletedInfo();
     }
 
 }

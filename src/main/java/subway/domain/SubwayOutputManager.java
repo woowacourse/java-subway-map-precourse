@@ -18,7 +18,7 @@ public class SubwayOutputManager {
         for (Line line : LineRepository.lines()) {
             InfoMessage.print(line.getName());
             InfoMessage.print(DIVIDER);
-            for (Station station : SubwayRepository.getPathByLine(line).getPath()) {
+            for (Station station : SubwayRepository.getPathByLine(line)) {
                 InfoMessage.print(station.getName());
             }
             System.out.println();

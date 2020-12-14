@@ -74,7 +74,7 @@ public class LineInputManager {
     }
     //등록되어 있는 역인지 확인
     private void checkEnrolledStation(String name) {
-        if (!StationRepository.containsName(name)) {
+        if (!StationRepository.containsStationByName(name)) {
             throw new ErrorMessageException(NOT_EXIST_STATION);
         }
     }

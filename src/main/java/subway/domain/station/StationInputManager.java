@@ -53,7 +53,7 @@ public class StationInputManager {
     }
 
     private void checkEnrolledStation(String stationName) {
-        if (StationRepository.containsName(stationName)) {
+        if (StationRepository.containsStationByName(stationName)) {
             throw new ErrorMessageException(VALUE_EXIST);
         }
     }
@@ -64,13 +64,13 @@ public class StationInputManager {
     }
 
     private void checkAlreadyExist(String stationName) {
-        if (!StationRepository.containsName(stationName)) {
+        if (!StationRepository.containsStationByName(stationName)) {
             throw new ErrorMessageException(NOT_EXIST_STATION);
         }
     }
 
     private void checkNotOnPath(String stationName) {
-        if (SubwayRepository.checkStationOnPath(stationName)) {
+        if (SubwayRepository.containsStationOnPath(stationName)) {
             throw new ErrorMessageException(ON_PATH_STATION);
         }
     }

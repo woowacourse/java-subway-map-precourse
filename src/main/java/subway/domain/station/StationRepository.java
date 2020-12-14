@@ -31,9 +31,7 @@ public class StationRepository {
             .orElseThrow(() -> new ErrorMessageException(NOT_VALID_STATION));
     }
 
-
-
-    public static boolean containsName(String name) {
+    public static boolean containsStationByName(String name) {
         return stations.stream().anyMatch(item -> Objects.equals(item.getName(), name));
     }
 }
