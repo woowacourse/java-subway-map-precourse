@@ -23,7 +23,7 @@ public class LineDisplay extends Display {
 
     public static void printAllLines(List<Line> lines) {
         printNotice(PRINT_ALL_LINES);
-        lines.stream().forEach(line -> printInformation(line.getName()));
+        lines.stream().forEach(line -> printInformationList(line.getName()));
     }
 
     public static void loadLineMenu() {

@@ -17,7 +17,7 @@ public class MainDisplay extends Display {
         while (selectedMenu != MainMenu.QUIT_PROGRAM) {
             printMenu();
             selectedMenu = selectMenuByInput();
-            try{
+            try {
                 selectedMenu.executeMenu(selectedMenu.getMenuKey());
             } catch (IllegalArgumentException e) {
                 printError(e.getMessage());
@@ -31,9 +31,10 @@ public class MainDisplay extends Display {
     }
 
     private static void printSection(Section section) {
-        printInformation(section.getLine().getName());
-        printInformation(DASH_LINE);
-        section.getStations().stream().forEach(station -> printInformation(station.getName()));
+        printInformationList(section.getLine().getName());
+        printInformationList(DASH_LINE);
+        section.getStations().stream()
+            .forEach(station -> printInformationList(station.getName()));
         printEnterLine();
     }
 

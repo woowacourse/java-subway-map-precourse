@@ -23,7 +23,7 @@ public class StationDisplay extends Display {
 
     public static void printAllStations(List<Station> stations) {
         printNotice(PRINT_ALL_STATIONS);
-        stations.stream().forEach(station -> printInformation(station.getName()));
+        stations.stream().forEach(station -> printInformationList(station.getName()));
     }
 
     public static void loadStationMenu() {
