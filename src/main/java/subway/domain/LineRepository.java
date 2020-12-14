@@ -3,7 +3,8 @@ package subway.domain;
 import java.util.*;
 
 public class LineRepository {
-    private static final Map<Line, List<Station>> lines = new HashMap<>();
+    private static final Comparator<Line> comparator = Comparator.comparing(Line::getName);
+    private static final Map<Line, List<Station>> lines = new TreeMap<>(comparator);
     private static final String[] defaultLines = {"2호선", "3호선", "신분당선"};
     private static final String[][] defaultStations = {
             {"교대역", "강남역", "역삼역"},
@@ -35,7 +36,7 @@ public class LineRepository {
     }
 
     public static void addStationInLineByName(String line, String station, int seq) {
-        lines.get(findLineByName(line)).add(seq-1,
+        lines.get(findLineByName(line)).add(seq - 1,
                 StationRepository.findStationByName(station));
     }
 
