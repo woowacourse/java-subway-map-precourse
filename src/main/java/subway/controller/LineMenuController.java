@@ -1,13 +1,15 @@
 package subway.controller;
 
 import subway.menus.LineMenu;
-import subway.views.InputView;
-import subway.views.OutputView;
+import subway.service.LineService;
+import subway.views.lineviews.LineInputView;
+import subway.views.lineviews.LineOutputView;
 
 import java.util.Scanner;
 
 public class LineMenuController {
     private static LineMenuController lineMenuController = new LineMenuController();
+    private LineService lineService;
 
     private LineMenuController() {
     }
@@ -17,8 +19,9 @@ public class LineMenuController {
     }
 
     public void mappingLineMenu(Scanner scanner) {
-        OutputView.printLineManagePage();
-        branchBySelectedOption(InputView.selectLineMenu(scanner));
+          LineOutputView.printLineManagePage();
+          lineService = new LineService(scanner);
+          branchBySelectedOption(LineInputView.selectLineMenu(scanner));
     }
 
     private void branchBySelectedOption(LineMenu selectedOption) {
@@ -27,7 +30,7 @@ public class LineMenuController {
             return;
         }
         if (selectedOption.equals(LineMenu.LINE_INSERT)) {
-
+            lineService.lineAddService();
         }
         if (selectedOption.equals(LineMenu.LINE_DELETE)) {
 
