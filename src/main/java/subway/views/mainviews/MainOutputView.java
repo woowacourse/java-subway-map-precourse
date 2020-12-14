@@ -1,10 +1,11 @@
 package subway.views.mainviews;
 
 import subway.menus.MainMenu;
+import subway.views.OutputView;
 
 import java.util.Arrays;
 
-public class MainOutputView {
+public class MainOutputView implements OutputView {
     private static final String MAIN_PAGE = "## 메인 화면";
 
     private MainOutputView() {
