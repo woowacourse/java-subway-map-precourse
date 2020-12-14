@@ -1,12 +1,10 @@
 package subway.controller;
 
 import org.junit.jupiter.api.Test;
-import subway.SubwayManagementApp;
 import subway.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,6 +75,26 @@ class LineControllerTest {
             Station start = StationRepository.getByName(new Name("죽전역"));
             Station end = StationRepository.getByName(new Name("역삼역"));
             LineRepository.addLine(Line.create(new Name("1호선"), start, end));
+        });
+    }
+
+    @Test
+    void deleteLine() {
+        initialize();
+
+        int beforeSize = LineRepository.lines().size();
+        LineRepository.remove(LineRepository.getByName(new Name("3호선")));
+        int afterSize = LineRepository.lines().size();
+        assertEquals(beforeSize - 1, afterSize);
+    }
+
+    @Test
+    void deleteLine_Expect_Exception() {
+        initialize();
+
+        // 존재하지 않는 노선 제거 불가능
+        assertThrows(Exception.class, () -> {
+            LineRepository.remove(LineRepository.getByName(new Name("1호선")));
         });
     }
 }
