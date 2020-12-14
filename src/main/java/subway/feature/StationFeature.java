@@ -4,6 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.menu.MainMenu;
 import subway.menu.StationMenu;
+import subway.view.OutputView;
 import subway.view.StationInputView;
 
 import java.util.Scanner;
@@ -31,5 +32,10 @@ public class StationFeature {
             System.out.println(e.getMessage());
             StationMenu.openScreen(scanner);
         }
+    }
+
+    public static void inquiryStation() {
+        System.out.println("[INFO] 역 목록");
+        OutputView.printStations();
     }
 }

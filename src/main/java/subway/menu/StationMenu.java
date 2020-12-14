@@ -19,8 +19,7 @@ public enum StationMenu implements MenuModel {
     },
     INQUIRY("3", "역 조회") {
         public void moveView(Scanner scanner) {
-            // 모든 역 출력
-            OutputView.inquiryStation();
+            StationFeature.inquiryStation();
         }
     },
     BACK("B", "돌아가기") {

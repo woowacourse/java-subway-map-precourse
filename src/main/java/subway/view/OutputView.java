@@ -5,10 +5,10 @@ import subway.domain.StationRepository;
 
 public class OutputView {
 
-    public static void inquiryStation() {
-        System.out.println("[INFO] 역 목록");
+    public static void printStations() {
         StationRepository.stations().stream()
                 .forEach(station -> System.out.println(station.getName()));
         System.out.println();
     }
+    
 }
