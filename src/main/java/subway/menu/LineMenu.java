@@ -19,9 +19,7 @@ public enum LineMenu implements MenuModel {
     },
     INQUIRY("3", "노선 조회") {
         public void moveView(Scanner scanner) {
-            // 모든 역 출력
-            // LineRepository..
-            LineRepository.lines().stream().forEach(x -> System.out.println(x.getName() + " " + x.line.getFirst() + " " + x.line.getLast()));
+            LineFeature.inquiryLine();
         }
     },
     BACK("B", "돌아가기") {

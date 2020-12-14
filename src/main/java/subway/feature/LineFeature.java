@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.menu.StationMenu;
 import subway.view.LineInputView;
+import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -36,5 +37,10 @@ public class LineFeature {
             System.out.println(e.getMessage());
             StationMenu.openScreen(scanner);
         }
+    }
+
+    public static void inquiryLine() {
+        System.out.println("[INFO] 노선 목록");
+        OutputView.printLines();
     }
 }
