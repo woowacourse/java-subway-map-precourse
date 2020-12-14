@@ -9,8 +9,8 @@ import java.util.function.Consumer;
 import java.util.logging.Handler;
 
 public enum MainFunctionChoice {
-    MANAGE_STATION("1",(choiceNumber)->StationCompute.manageStation());
-    ///MANAGE_LINE("2",),
+    MANAGE_STATION("1",(choiceNumber)->StationCompute.manageStation()),
+    MANAGE_LINE("2",(choiceNumber)->LineCompute.manageLine());
     ///MANAGE_SECTION("3",),
     ///LINE_LOOK("4",);
     private String choiceNumber;

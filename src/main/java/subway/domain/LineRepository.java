@@ -13,7 +13,11 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        lines.add(line);
+        System.out.println("addline 실행");
+        if(!(line.getName()==null)){
+            lines.add(line);
+        }
+        System.out.println(line.getName());
     }
 
     public static boolean deleteLineByName(String name) {

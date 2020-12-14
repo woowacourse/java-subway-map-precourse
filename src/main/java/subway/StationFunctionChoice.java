@@ -29,4 +29,14 @@ public enum StationFunctionChoice {
        return Arrays.stream(values()).filter(value -> value.choiceKey.equals(choiceKey)).findFirst().get();
 
     }
+    public static boolean checkInput(String choiceKey){
+        return Arrays.stream(values()).anyMatch(value->value.choiceKey.equals(choiceKey));
+    }
+    public static StationFunctionChoice stationFunctionInput(){
+        String tmpSaveChoiceNumber= OutputMessage.choiceOutputMessage();
+        if(checkInput(tmpSaveChoiceNumber)){
+            return stationFunctionDecide(tmpSaveChoiceNumber);
+        }
+        return stationFunctionInput();
+    }
 }

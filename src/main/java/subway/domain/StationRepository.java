@@ -13,7 +13,7 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if(lengthStationName(station.getName())&&duplicateStationNumber(stations,station.getName())) {
+        if(lengthStationName(station.getName())&&duplicateStationName(stations,station.getName())) {
             stations.add(station);
         }
     }
@@ -29,7 +29,7 @@ public class StationRepository {
 
         return true;
     }
-    public static boolean duplicateStationNumber(List<Station> stations,String tmpSaveName){
+    public static boolean duplicateStationName(List<Station> stations,String tmpSaveName){
         for(int i=0;i<stations.size();i++){
             if(stations.get(i).getName().equals(tmpSaveName)){
                 System.out.println("[ERROR] 역 이름이 중복됩니다.");
@@ -37,6 +37,20 @@ public class StationRepository {
             }
         }
         return true;
+    }
+    public boolean containStationName(String tmpSaveName){
+        System.out.println(tmpSaveName);
+
+        /*for(int i=0;i<stations.size();i++){
+
+           if(stations.get(i).getName().equals(tmpSaveName)){
+               System.out.println(tmpSaveName);
+               return true;
+           }
+        }*/
+
+        System.out.println("[ERROR] 등록할 역이 존재하지 않습니다.");
+        return false;
     }
     public static void print(){
         for(int i=0;i<stations.size();i++){
