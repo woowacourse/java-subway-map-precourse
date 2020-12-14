@@ -1,14 +1,13 @@
 package subway.controller;
 
 import subway.domain.SectionRepository;
-import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.resource.Screen;
 
 public class MapController {
-    public void run(InputView inputView) {
+    public void run() {
         printSubwayMap();
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
     private void printSubwayMap() {
@@ -16,7 +15,7 @@ public class MapController {
         OutputView.printSubwayMap(SectionRepository.sections());
     }
 
-    private void goBackToMain(InputView inputView) {
-        MainController.run(inputView);
+    private void goBackToMain() {
+        MainController.run();
     }
 }

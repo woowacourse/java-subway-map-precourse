@@ -13,26 +13,25 @@ public class MainController {
     private MainController() {
     }
 
-    public static void run(InputView inputView) {
+    public static void run() {
         OutputView.printTitle(Screen.MAIN.getTitle());
         OutputView.printFunctionList(Screen.MAIN.getFunctionList());
         OutputView.printInputFunctionIndex();
-        shiftFunctionScreen(inputView,
-                inputView.getInputFunctionIndex(Screen.MAIN.getIndexList()));
+        shiftFunctionScreen(InputView.getInputFunctionIndex(Screen.MAIN.getIndexList()));
     }
 
-    private static void shiftFunctionScreen(InputView inputView, String functionIndex) {
-        if (functionIndex.equals(Screen.STATION.getIndex())){
-            stationController.run(inputView);
+    private static void shiftFunctionScreen(String functionIndex) {
+        if (functionIndex.equals(Screen.STATION.getIndex())) {
+            stationController.run();
         }
         if (functionIndex.equals(Screen.LINE.getIndex())) {
-            lineController.run(inputView);
+            lineController.run();
         }
         if (functionIndex.equals(Screen.SECTION.getIndex())) {
-            sectionController.run(inputView);
+            sectionController.run();
         }
         if (functionIndex.equals(Screen.MAP.getIndex())) {
-            mapController.run(inputView);
+            mapController.run();
         }
         if (functionIndex.equals(Screen.QUIT.getIndex())) {
         }

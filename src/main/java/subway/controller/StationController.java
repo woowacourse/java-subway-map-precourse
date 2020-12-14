@@ -8,53 +8,53 @@ import subway.view.resource.Function;
 import subway.view.resource.Screen;
 
 public class StationController {
-    public void run(InputView inputView) {
+    public void run() {
         OutputView.printTitle(Screen.STATION.getTitle());
         OutputView.printFunctionList(Screen.STATION.getFunctionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView, inputView.getInputFunctionIndex(Screen.STATION.getIndexList()));
+        callFunction(InputView.getInputFunctionIndex(Screen.STATION.getIndexList()));
     }
 
-    private void callFunction(InputView inputView, String functionIndex) {
+    private void callFunction(String functionIndex) {
         if (functionIndex.equals(Function.REGISTER.getIndex())) {
-            registerStation(inputView);
+            registerStation();
         }
         if (functionIndex.equals(Function.DELETE.getIndex())) {
-            deleteStation(inputView);
+            deleteStation();
         }
         if (functionIndex.equals(Function.LOOKUP.getIndex())) {
-            lookUpStation(inputView);
+            lookUpStation();
         }
         if (functionIndex.equals(Function.BACK.getIndex())) {
-            goBackToMain(inputView);
+            goBackToMain();
         }
     }
 
-    private void registerStation(InputView inputView) {
+    private void registerStation() {
         OutputView.printInputRegisterValue(Screen.STATION.getName());
-        Station station = new Station(inputView.getInputRegisterStation());
+        Station station = new Station(InputView.getInputRegisterStation());
         StationRepository.addStation(station);
         OutputView.printRegisterSuccess(Screen.STATION.getName());
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
-    private void deleteStation(InputView inputView) {
+    private void deleteStation() {
         OutputView.printInputDeleteValue(Screen.STATION.getName());
-        if (StationRepository.deleteStation(inputView.getInputDeleteStation())) {
+        if (StationRepository.deleteStation(InputView.getInputDeleteStation())) {
             OutputView.printDeleteSuccess(Screen.STATION.getName());
         }
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
-    private void lookUpStation(InputView inputView) {
+    private void lookUpStation() {
         OutputView.printListTitle(Screen.STATION.getName());
         for (Station station : StationRepository.stations()) {
             System.out.println(station);
         }
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
-    private void goBackToMain(InputView inputView) {
-        MainController.run(inputView);
+    private void goBackToMain() {
+        MainController.run();
     }
 }

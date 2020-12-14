@@ -8,7 +8,7 @@ public enum Function {
 
     private String index;
 
-    Function(String index){
+    Function(String index) {
         this.index = index;
     }
 

@@ -9,62 +9,62 @@ import subway.view.resource.Function;
 import subway.view.resource.Screen;
 
 public class LineController {
-    public void run(InputView inputView) {
+    public void run() {
         OutputView.printTitle(Screen.LINE.getTitle());
         OutputView.printFunctionList(Screen.LINE.getFunctionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView, inputView.getInputFunctionIndex(Screen.LINE.getIndexList()));
+        callFunction(InputView.getInputFunctionIndex(Screen.LINE.getIndexList()));
     }
 
-    private void callFunction(InputView inputView, String functionIndex) {
+    private void callFunction(String functionIndex) {
         if (functionIndex.equals(Function.REGISTER.getIndex())) {
-            registerLine(inputView);
+            registerLine();
         }
         if (functionIndex.equals(Function.DELETE.getIndex())) {
-            deleteLine(inputView);
+            deleteLine();
         }
         if (functionIndex.equals(Function.LOOKUP.getIndex())) {
-            lookUpLine(inputView);
+            lookUpLine();
         }
         if (functionIndex.equals(Function.BACK.getIndex())) {
-            goBackToMain(inputView);
+            goBackToMain();
         }
     }
 
-    private void registerLine(InputView inputView) {
+    private void registerLine() {
         OutputView.printInputRegisterValue(Screen.LINE.getName());
-        Line line = new Line(inputView.getInputRegisterLine());
+        Line line = new Line(InputView.getInputRegisterLine());
         LineRepository.addLine(line);
-        registerSection(inputView, line);
+        registerSection(line);
         OutputView.printRegisterSuccess(Screen.LINE.getName());
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
-    private void deleteLine(InputView inputView) {
+    private void deleteLine() {
         OutputView.printInputDeleteValue(Screen.LINE.getName());
-        if (LineRepository.deleteLineByName(inputView.getInputDeleteLine())) {
+        if (LineRepository.deleteLineByName(InputView.getInputDeleteLine())) {
             OutputView.printDeleteSuccess(Screen.LINE.getName());
         }
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
-    private void lookUpLine(InputView inputView) {
+    private void lookUpLine() {
         OutputView.printListTitle(Screen.LINE.getName());
         for (Line line : LineRepository.lines()) {
             System.out.println(line);
         }
-        goBackToMain(inputView);
+        goBackToMain();
     }
 
-    private void goBackToMain(InputView inputView) {
-        MainController.run(inputView);
+    private void goBackToMain() {
+        MainController.run();
     }
 
-    private void registerSection(InputView inputView, Line line) {
+    private void registerSection(Line line) {
         OutputView.printRegisterFirstStation();
-        String firstStation = inputView.getInputRegisterFirstStation(line.getName());
+        String firstStation = InputView.getInputRegisterFirstStation(line.getName());
         OutputView.printRegisterLastStation();
-        String lastStation = inputView.getInputRegisterLastStation(firstStation, line.getName());
+        String lastStation = InputView.getInputRegisterLastStation(firstStation, line.getName());
         SectionRepository.addSection(line.getName(), firstStation, lastStation);
     }
 }

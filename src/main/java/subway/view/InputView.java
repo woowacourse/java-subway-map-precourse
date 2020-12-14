@@ -32,61 +32,64 @@ public class InputView {
     private static final int START_INDEX = 1;
     private static final int MIN_STATION_OF_SECTION = 2;
 
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
+    private InputView() {
     }
 
-    public String getInputFunctionIndex(List<String> functionIndexList) {
-        return validateInputFunctionIndex(functionIndexList, scanner.nextLine());
+    public static void closeScanner() {
+        scanner.close();
     }
 
-    public String getInputRegisterStation() {
-        return validateInputRegisterStation(scanner.nextLine());
+    public static String getInputFunctionIndex(List<String> functionIndexList) {
+        return validateFunctionIndex(functionIndexList, scanner.nextLine());
     }
 
-    public String getInputRegisterFirstStation(String line) {
-        return validateInputRegisterFirstStation(line, scanner.nextLine());
+    public static String getInputRegisterStation() {
+        return validateRegisterStation(scanner.nextLine());
     }
 
-    public String getInputRegisterLastStation(String line, String firstStation) {
-        return validateInputRegisterLastStation(line, firstStation, scanner.nextLine());
+    public static String getInputRegisterFirstStation(String line) {
+        return validateRegisterFirstStation(line, scanner.nextLine());
     }
 
-    public String getInputDeleteStation() {
-        return validateInputDeleteStation(scanner.nextLine());
+    public static String getInputRegisterLastStation(String line, String firstStation) {
+        return validateRegisterLastStation(line, firstStation, scanner.nextLine());
     }
 
-    public String getInputRegisterLine() {
-        return validateInputRegisterLine(scanner.nextLine());
+    public static String getInputDeleteStation() {
+        return validateDeleteStation(scanner.nextLine());
     }
 
-    public String getInputDeleteLine() {
-        return validateInputDeleteLine(scanner.nextLine());
+    public static String getInputRegisterLine() {
+        return validateRegisterLine(scanner.nextLine());
     }
 
-    public int getInputIndex(int length) {
-        return validateInputIndex(length, converseStringToInt(scanner.nextLine()));
+    public static String getInputDeleteLine() {
+        return validateDeleteLine(scanner.nextLine());
     }
 
-    public String getInputLineOfDeleteSection() {
-        return validateInputLineOfDeleteSection(scanner.nextLine());
+    public static int getInputIndex(int length) {
+        return validateIndex(length, converseStringToInt(scanner.nextLine()));
     }
 
-    public String getInputStationOfDeleteSection() {
-        return validateInputStationOfDeleteSection(scanner.nextLine());
+    public static String getInputLineOfDeleteSection() {
+        return validateLineOfDeleteSection(scanner.nextLine());
     }
 
-    public String validateInputFunctionIndex(List<String> functionIndexList, String functionIndex) {
-        if (!functionIndexList.contains(functionIndex)) {
+    public static String getInputStationOfDeleteSection() {
+        return validateStationOfDeleteSection(scanner.nextLine());
+    }
+
+    private static String validateFunctionIndex(List<String> indexList, String functionIndex) {
+        if (!indexList.contains(functionIndex)) {
             throw new IllegalArgumentException(ERROR_HEADER + INVALID_FUNCTION_ERROR_MESSAGE);
         }
         return functionIndex;
     }
 
-    public String validateInputRegisterStation(String station) {
-        validateInputStationLine(station);
+    private static String validateRegisterStation(String station) {
+        validateStationLine(station);
         if (isInvalidLastChar(Screen.STATION.getName(), station)) {
             throw new IllegalArgumentException(ERROR_HEADER +
                     String.format(INVALID_STATION_LAST_CHAR, STATION_LAST_CHAR));
@@ -97,7 +100,7 @@ public class InputView {
         return station;
     }
 
-    public String validateInputRegisterFirstStation(String line, String station) {
+    private static String validateRegisterFirstStation(String line, String station) {
         if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
         }
@@ -107,7 +110,7 @@ public class InputView {
         return station;
     }
 
-    public String validateInputRegisterLastStation(String line, String firstStation, String station) {
+    private static String validateRegisterLastStation(String line, String firstStation, String station) {
         if (firstStation.equals(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + EQUAL_STATION_ERROR_MESSAGE);
         }
@@ -120,7 +123,7 @@ public class InputView {
         return station;
     }
 
-    public String validateInputDeleteStation(String station) {
+    private static String validateDeleteStation(String station) {
         if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
         }
@@ -130,8 +133,8 @@ public class InputView {
         return station;
     }
 
-    public String validateInputRegisterLine(String line) {
-        validateInputStationLine(line);
+    private static String validateRegisterLine(String line) {
+        validateStationLine(line);
         if (isInvalidLastChar(Screen.LINE.getName(), line)) {
             throw new IllegalArgumentException(ERROR_HEADER +
                     String.format(INVALID_STATION_LAST_CHAR, LINE_LAST_CHAR));
@@ -142,14 +145,14 @@ public class InputView {
         return line;
     }
 
-    public String validateInputDeleteLine(String line) {
+    private static String validateDeleteLine(String line) {
         if (!isExistingLine(line)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
         }
         return line;
     }
 
-    private void validateInputStationLine(String value) {
+    private static void validateStationLine(String value) {
         if (isNotLetter(value)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_LETTER_ERROR_MESSAGE);
         }
@@ -158,14 +161,14 @@ public class InputView {
         }
     }
 
-    private int validateInputIndex(int length, int index) {
+    private static int validateIndex(int length, int index) {
         if ((index < START_INDEX) || (index > length + 1)) {
             throw new IllegalArgumentException(ERROR_HEADER + INVALID_RANGE_ERROR_MESSAGE);
         }
         return index;
     }
 
-    private String validateInputLineOfDeleteSection(String line) {
+    private static String validateLineOfDeleteSection(String line) {
         if (!isExistingLine(line)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
         }
@@ -175,7 +178,7 @@ public class InputView {
         return line;
     }
 
-    private String validateInputStationOfDeleteSection(String station) {
+    private static String validateStationOfDeleteSection(String station) {
         if (!isExistingStation(station)) {
             throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
         }
