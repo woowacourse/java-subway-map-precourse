@@ -35,15 +35,21 @@ public class StationManager {
         System.out.println(Constants.ASK_STATION_ADD);
         input = scanner.nextLine().trim();
         ErrorManager.checkNameLength(input);
+        if(ErrorManager.isStationExist(input)) {
+            throw new IllegalArgumentException(Constants.STATION_EXIST);
+        }
         Station station = new Station(input);
         StationRepository.addStation(station);
+        System.out.println(Constants.SECTION_ADD_COMPLETE);
     }
 
     public void removeStation(Scanner scanner) throws IllegalArgumentException {
         String input;
         System.out.println(Constants.ASK_STATION_REMOVE);
-        input = scanner.nextLine().trim(); // 에러 처리
-        ErrorManager.isStationExist(input);
+        input = scanner.nextLine().trim();
+        if(!ErrorManager.isStationExist(input)) {
+            throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
+        }
         boolean check = StationRepository.deleteStation(input);
         if(check) {
             System.out.println(Constants.STATION_REMOVE_COMPLETE);
@@ -53,6 +59,7 @@ public class StationManager {
     }
 
     public void visitStation() {
+        System.out.println(Constants.STATION_LIST);
         for(Station station : StationRepository.stations()) {
             System.out.println(station.getName());
         }

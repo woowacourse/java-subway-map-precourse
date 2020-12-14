@@ -4,34 +4,38 @@ import java.awt.desktop.SystemSleepEvent;
 import java.util.Scanner;
 
 public class MainManager {
+    StationManager stationManager = new StationManager();
+    LineManager lineManager = new LineManager();
+    SectionManager sectionManager = new SectionManager();
+
     public void appMain(Scanner scanner) {
         String inputString;
-        Constants.printMain();
         while(true) {
-            try{
-                inputString = scanner.nextLine().trim();
-                ErrorManager.checkInput(inputString);
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            while(true) {
+                try{
+                    Constants.printMain();
+                    inputString = scanner.nextLine().trim();
+                    ErrorManager.checkInput(inputString);
+                    break;
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
+            main(inputString, scanner);
         }
-        main(inputString, scanner);
     }
 
     public void main(String input, Scanner scanner) {
-        while(true) {
             if (input.equals("Q")) {
                 System.exit(0);
             } else if (input.equals("1")) {
-                StationManager.stationMain(scanner);
+                stationManager.stationMain(scanner);
             } else if (input.equals("2")) {
-                LineManager.lineMain(scanner);
+                lineManager.lineMain(scanner);
             } else if (input.equals("3")) {
-                SectionManager.SectionMain(scanner);
+                sectionManager.SectionMain(scanner);
             } else if (input.equals("4")) {
 
             }
-        }
     }
 }
