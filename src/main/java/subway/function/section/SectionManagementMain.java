@@ -10,25 +10,24 @@ import subway.function.section.type.SectionManagementTypeResolver;
 public class SectionManagementMain {
     public static void start(Scanner scanner) {
         while (true) {
-            SectionManagementType type = printAndGetUserSelectionInput(scanner);
-            if (type == SectionManagementType.GO_BACK) {
-                return;
+            try {
+                SectionManagementType type = printAndGetUserSelectionInput(scanner);
+                SectionManagementTypeResolver.resolveSectionManagement(type, scanner);
+            } catch (IllegalArgumentException e) {
+                continue;
             }
-            SectionManagementTypeResolver.resolveSectionManagement(type, scanner);
+            return;
         }
     }
 
-    private static SectionManagementType printAndGetUserSelectionInput(Scanner scanner) {
+    private static SectionManagementType printAndGetUserSelectionInput(Scanner scanner)
+        throws IllegalArgumentException {
         PrintSectionManagementScreen.printSectionManagementScreen();
         CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
-        try {
-            CommonValidator
-                .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_12B,
-                    userInput);
-        } catch (IllegalArgumentException e) {
-            return SectionManagementType.ERROR;
-        }
+        CommonValidator
+            .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_12B,
+                userInput);
         return SectionManagementTypeResolver.getSectionManagementType(userInput);
     }
 }

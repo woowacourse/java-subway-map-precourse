@@ -11,11 +11,13 @@ public class StationManagementMain {
     public static void start(Scanner scanner) {
         while (true) {
             StationManagementSelectionType type = null;
-            type = printAndGetUserSelectionInput(scanner);
-            if (type == StationManagementSelectionType.GO_BACK) {
-                return;
+            try {
+                type = printAndGetUserSelectionInput(scanner);
+                StationManagementTypeResolver.resolveStationManagement(type, scanner);
+            } catch (IllegalArgumentException e) {
+                continue;
             }
-            StationManagementTypeResolver.resolveStationManagement(type, scanner);
+            return;
         }
     }
 
@@ -23,17 +25,14 @@ public class StationManagementMain {
         PrintStationManagementScreen.printStationManagementScreen();
     }
 
-    private static StationManagementSelectionType printAndGetUserSelectionInput(Scanner scanner) {
+    private static StationManagementSelectionType printAndGetUserSelectionInput(Scanner scanner)
+        throws IllegalArgumentException {
         printScreen();
         CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
-        try {
-            CommonValidator
-                .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B,
-                    userInput);
-        } catch (IllegalArgumentException e) {
-            return StationManagementSelectionType.ERROR;
-        }
+        CommonValidator
+            .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B,
+                userInput);
         return StationManagementTypeResolver.getStationManagementSelectionType(userInput);
     }
 }

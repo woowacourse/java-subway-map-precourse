@@ -11,25 +11,24 @@ public class LineManagementMain {
     public static void start(Scanner scanner) {
         while (true) {
             LineManagementSelectionType type = null;
-            type = printAndGetUserSelection(scanner);
-            if (type == LineManagementSelectionType.GO_BACK) {
-                return;
+            try {
+                type = printAndGetUserSelection(scanner);
+                LineManagementTypeResolver.resolveUserSelection(type, scanner);
+            } catch (IllegalArgumentException e) {
+                continue;
             }
-            LineManagementTypeResolver.resolveUserSelection(type, scanner);
+            return;
         }
     }
 
-    private static LineManagementSelectionType printAndGetUserSelection(Scanner scanner) {
+    private static LineManagementSelectionType printAndGetUserSelection(Scanner scanner)
+        throws IllegalArgumentException {
         PrintLineManagementScreen.printLineManagementScreen();
         CommonInfoPrinter.printUserFunctionSelectionMessage();
         String userInput = scanner.nextLine();
-        try {
-            CommonValidator
-                .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B,
-                    userInput);
-        } catch (IllegalArgumentException e) {
-            return LineManagementSelectionType.ERROR;
-        }
+        CommonValidator
+            .validateIsCorrectSelectionInput(CommonValidator.SELECTION_INPUT_PATTERN_123B,
+                userInput);
         return LineManagementTypeResolver.getLineManagementSelectionType(userInput);
     }
 }

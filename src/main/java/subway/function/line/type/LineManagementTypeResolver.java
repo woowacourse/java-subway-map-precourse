@@ -21,17 +21,14 @@ public class LineManagementTypeResolver {
     }
 
     public static void resolveUserSelection(LineManagementSelectionType type, Scanner scanner) {
-        try {
-            if (type == LineManagementSelectionType.LINE_REGISTRATION) {
-                RegisterNewLine.registerNewLine(scanner);
-            }
-            if (type == LineManagementSelectionType.LINE_DELETE) {
-                DeleteLine.deleteLine(scanner);
-            }
-            if (type == LineManagementSelectionType.PRINT_ALL_LINES) {
-                PrintAllLinesList.printAllLinesList();
-            }
-        } catch (IllegalArgumentException ignored) {
+        if (type == LineManagementSelectionType.LINE_REGISTRATION) {
+            RegisterNewLine.registerNewLine(scanner);
+        }
+        if (type == LineManagementSelectionType.LINE_DELETE) {
+            DeleteLine.deleteLine(scanner);
+        }
+        if (type == LineManagementSelectionType.PRINT_ALL_LINES) {
+            PrintAllLinesList.printAllLinesList();
         }
     }
 }

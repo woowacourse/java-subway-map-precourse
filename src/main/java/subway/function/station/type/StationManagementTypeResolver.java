@@ -22,18 +22,15 @@ public class StationManagementTypeResolver {
     }
 
     public static void resolveStationManagement(StationManagementSelectionType type,
-        Scanner scanner) {
-        try {
-            if (type == StationManagementSelectionType.STATION_REGISTRATION) {
-                RegisterNewStation.registerNewStation(scanner);
-            }
-            if (type == StationManagementSelectionType.STATION_DELETE) {
-                DeleteStation.deleteStation(scanner);
-            }
-            if (type == StationManagementSelectionType.STATION_PRINT_ALL) {
-                PrintAllStationsList.printAllStationsList();
-            }
-        } catch (IllegalArgumentException ignored) {
+        Scanner scanner) throws IllegalArgumentException {
+        if (type == StationManagementSelectionType.STATION_REGISTRATION) {
+            RegisterNewStation.registerNewStation(scanner);
+        }
+        if (type == StationManagementSelectionType.STATION_DELETE) {
+            DeleteStation.deleteStation(scanner);
+        }
+        if (type == StationManagementSelectionType.STATION_PRINT_ALL) {
+            PrintAllStationsList.printAllStationsList();
         }
     }
 }

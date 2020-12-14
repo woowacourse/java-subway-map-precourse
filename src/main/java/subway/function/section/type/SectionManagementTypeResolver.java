@@ -16,15 +16,13 @@ public class SectionManagementTypeResolver {
         return SectionManagementType.GO_BACK;
     }
 
-    public static void resolveSectionManagement(SectionManagementType type, Scanner scanner) {
-        try {
-            if (type == SectionManagementType.SECTION_REGISTRATION) {
-                RegisterNewSection.registerNewSection(scanner);
-            }
-            if (type == SectionManagementType.DELETE_SECTION) {
-                DeleteSection.deleteSection(scanner);
-            }
-        } catch (IllegalArgumentException ignored) {
+    public static void resolveSectionManagement(SectionManagementType type, Scanner scanner)
+        throws IllegalArgumentException {
+        if (type == SectionManagementType.SECTION_REGISTRATION) {
+            RegisterNewSection.registerNewSection(scanner);
+        }
+        if (type == SectionManagementType.DELETE_SECTION) {
+            DeleteSection.deleteSection(scanner);
         }
     }
 }
