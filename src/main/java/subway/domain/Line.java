@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Line {
@@ -27,6 +28,25 @@ public class Line {
         return this;
     }
 
+    public void addSection(int sequence, Station station) {
+        stations().add(sequence, station);
+    }
+
+    public boolean removeSection(String stationName) {
+        return line.removeIf(station -> Objects.equals(station.getName(), stationName));
+    }
+
+    public boolean sectionExist(String name) {
+        return stations().stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst()
+                .isPresent();
+    }
+
+    public int lineLength() {
+        return line.size();
+    }
+
     public LinkedList<Station> stations() {
         return line;
     }
@@ -41,7 +61,7 @@ public class Line {
             throw new IllegalArgumentException("[ERROR] 노선 이름은 두글자 이상이어야 합니다.");
         }
         if (!Pattern.matches(regExp, name)) {
-            throw new IllegalArgumentException("[ERROR] 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '선' 이나 'line' 으로 끝나야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 노선 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '선' 이나 'line' 으로 끝나야 합니다.");
         }
     }
 

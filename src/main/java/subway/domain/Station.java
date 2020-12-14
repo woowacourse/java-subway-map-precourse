@@ -27,7 +27,7 @@ public class Station {
             throw new IllegalArgumentException("[ERROR] 역 이름은 두글자 이상이어야 합니다.");
         }
         if (!Pattern.matches(regExp, name)) {
-            throw new IllegalArgumentException("[ERROR] 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '역' 이나 'station' 으로 끝나야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 역 이름은 자음 모음이 결합된 한글, 숫자, 영어로 이루어져 있고 '역' 이나 'station' 으로 끝나야 합니다.");
         }
     }
 }
