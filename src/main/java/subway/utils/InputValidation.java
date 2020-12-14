@@ -10,6 +10,8 @@ import static subway.utils.ParseUtils.parseStringToInt;
 public class InputValidation {
     private static final int NAME_MIN_LENGTH = 2;
     private static final int MIN_COUNT_OF_DELETE_SECTION = 2;
+    private static final int SECTION_POINT_ONE = 1;
+    private static final int SECTION_POINT_ZERO = 0;
 
     public void validateMenuRange(List<String> menuRange, String menu) {
         boolean isContains = menuRange.contains(menu);
@@ -60,10 +62,13 @@ public class InputValidation {
     }
 
     public int validatePositionIsOver(String lineName, String position, LineStationRepository lineStation) {
-        int pos = parseStringToInt(position);
+        int pos = parseStringToInt(position) - SECTION_POINT_ONE;
         int stationSizeOfLine = lineStation.getStationSizeOfLine(LineRepository.findLine(lineName));
         if (pos > stationSizeOfLine) {
             return stationSizeOfLine;
+        }
+        if (pos < SECTION_POINT_ZERO) {
+            return SECTION_POINT_ZERO;
         }
         return pos;
     }
