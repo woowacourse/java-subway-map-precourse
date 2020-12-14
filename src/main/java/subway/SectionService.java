@@ -21,4 +21,12 @@ public class SectionService {
         return false;
     }
 
+    private static boolean isExistStation(Line line, String stationName) {
+        if (line.isExistStation(stationName)) {
+            OutPut.printExistStationError();
+            return true;
+        }
+        return false;
+    }
+
 }
