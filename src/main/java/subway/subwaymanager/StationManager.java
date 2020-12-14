@@ -4,7 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.InputView;
 import subway.utils.OutputView;
-import subway.validators.ValidateStationSelect;
+import subway.validators.ValidateStationOrLineSelect;
 
 import static subway.utils.Constant.*;
 
@@ -15,7 +15,7 @@ public class StationManager {
             OutputView.printStationContents();
 
             String inputStationSelect = InputView.inputSelect();
-            ValidateStationSelect.validateStationSelect(inputStationSelect);
+            ValidateStationOrLineSelect.validateStationOrLineSelect(inputStationSelect);
             if (inputStationSelect.equals(CONTENTS_NUMBER_FIRST)) {
                 registerStation();
             }

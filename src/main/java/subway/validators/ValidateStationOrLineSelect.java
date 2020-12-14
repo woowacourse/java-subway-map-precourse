@@ -6,8 +6,8 @@ import java.util.List;
 
 import static subway.utils.Constant.*;
 
-public class ValidateStationSelect {
-    public static void validateStationSelect(String inputStationOrLineSelect) {
+public class ValidateStationOrLineSelect {
+    public static void validateStationOrLineSelect(String inputStationOrLineSelect) {
         List<String> mainSelects = new ArrayList<>(Arrays.asList(CONTENTS_NUMBER_FIRST,
                 CONTENTS_NUMBER_SECOND, CONTENTS_NUMBER_THIRD, CONTENTS_NUMBER_BACK));
         if (!mainSelects.contains(inputStationOrLineSelect)) {

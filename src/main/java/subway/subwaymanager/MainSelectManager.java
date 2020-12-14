@@ -17,6 +17,7 @@ public class MainSelectManager {
                 StationManager.stationChoice();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_SECOND)) {
+                LineManager.lineChoice();
             }
             if (inputMainSelect.equals(CONTENTS_NUMBER_THIRD)) {
             }
