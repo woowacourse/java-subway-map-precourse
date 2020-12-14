@@ -1,4 +1,4 @@
-package subway.function.section;
+package subway.function.section.type;
 
 public enum SectionManagementType {
     SECTION_REGISTRATION,

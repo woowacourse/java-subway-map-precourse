@@ -1,4 +1,4 @@
-package subway.function.line;
+package subway.function.line.type;
 
 public enum LineManagementSelectionType {
     LINE_REGISTRATION,

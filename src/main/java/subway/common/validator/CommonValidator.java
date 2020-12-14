@@ -22,14 +22,16 @@ public class CommonValidator {
         }
     }
 
-    public static void validateIsNotStationNameExists(String stationName) throws IllegalArgumentException {
+    public static void validateIsNotStationNameExists(String stationName)
+        throws IllegalArgumentException {
         if (StationRepository.findByName(stationName) != null) {
             StationManagementErrorPrinter.printAlreadyExistsStationNameErrorMessage();
             throw new IllegalArgumentException();
         }
     }
 
-    public static Station validateIsStationNameExists(String stationName) throws IllegalArgumentException {
+    public static Station validateIsStationNameExists(String stationName)
+        throws IllegalArgumentException {
         Station foundStation = StationRepository.findByName(stationName);
         if (foundStation == null) {
             CommonErrorPrinter.printNotExistsStationNameErrorMessage();

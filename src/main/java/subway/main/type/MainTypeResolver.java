@@ -1,10 +1,10 @@
-package subway.main;
+package subway.main.type;
 
 import java.util.Scanner;
-import subway.function.line.LineManagement;
+import subway.function.line.LineManagementMain;
 import subway.function.printsubwaymap.PrintSubwayMap;
-import subway.function.section.SectionManagement;
-import subway.function.station.StationManagement;
+import subway.function.section.SectionManagementMain;
+import subway.function.station.StationManagementMain;
 
 public class MainTypeResolver {
 
@@ -26,13 +26,13 @@ public class MainTypeResolver {
 
     public static void resolveUserSelection(MainSelectionType type, Scanner scanner) {
         if (type == MainSelectionType.STATION_MANAGEMENT) {
-            StationManagement.start(scanner);
+            StationManagementMain.start(scanner);
         }
         if (type == MainSelectionType.LINE_MANAGEMENT) {
-            LineManagement.start(scanner);
+            LineManagementMain.start(scanner);
         }
         if (type == MainSelectionType.SECTION_MANAGEMENT) {
-            SectionManagement.start(scanner);
+            SectionManagementMain.start(scanner);
         }
         if (type == MainSelectionType.PRINT_SUBWAY_MAP) {
             PrintSubwayMap.start();

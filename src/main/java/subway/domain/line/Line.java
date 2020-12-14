@@ -2,7 +2,7 @@ package subway.domain.line;
 
 public class Line {
     // 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
-    private String name;
+    private final String name;
 
     // 기본 생성자를 추가할 수 없다.
     public Line(String name) {

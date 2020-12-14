@@ -1,4 +1,4 @@
-package subway.main;
+package subway.main.type;
 
 public enum MainSelectionType {
     STATION_MANAGEMENT,

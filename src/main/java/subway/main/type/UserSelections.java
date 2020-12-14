@@ -1,4 +1,4 @@
-package subway.main;
+package subway.main.type;
 
 public class UserSelections {
     public static String FIRST = "1";

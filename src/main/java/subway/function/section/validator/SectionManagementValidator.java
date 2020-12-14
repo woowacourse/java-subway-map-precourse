@@ -1,4 +1,4 @@
-package subway.function.section;
+package subway.function.section.validator;
 
 import java.util.regex.Pattern;
 import subway.domain.LineStationMappingRepository;

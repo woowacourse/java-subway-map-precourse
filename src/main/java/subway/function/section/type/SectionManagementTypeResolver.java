@@ -1,10 +1,11 @@
-package subway.function.section;
+package subway.function.section.type;
 
 import java.util.Scanner;
-import subway.main.UserSelections;
+import subway.function.section.management.DeleteSection;
+import subway.function.section.management.RegisterNewSection;
+import subway.main.type.UserSelections;
 
 public class SectionManagementTypeResolver {
-
     public static SectionManagementType getSectionManagementType(String userInput) {
         if (userInput.equals(UserSelections.FIRST)) {
             return SectionManagementType.SECTION_REGISTRATION;
@@ -18,10 +19,10 @@ public class SectionManagementTypeResolver {
     public static void resolveSectionManagement(SectionManagementType type, Scanner scanner) {
         try {
             if (type == SectionManagementType.SECTION_REGISTRATION) {
-                SectionManagement.registerNewSection(scanner);
+                RegisterNewSection.registerNewSection(scanner);
             }
             if (type == SectionManagementType.DELETE_SECTION) {
-                SectionManagement.deleteSection(scanner);
+                DeleteSection.deleteSection(scanner);
             }
         } catch (IllegalArgumentException ignored) {
         }

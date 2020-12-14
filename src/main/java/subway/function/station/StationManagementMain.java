@@ -4,12 +4,10 @@ import java.util.Scanner;
 import subway.common.print.info.CommonInfoPrinter;
 import subway.common.validator.CommonValidator;
 import subway.function.station.printer.PrintStationManagementScreen;
-import subway.function.station.printer.StationManagementPrinter;
-import subway.domain.station.Station;
-import subway.domain.station.StationRepository;
+import subway.function.station.type.StationManagementSelectionType;
+import subway.function.station.type.StationManagementTypeResolver;
 
-public class StationManagement {
-
+public class StationManagementMain {
     public static void start(Scanner scanner) {
         while (true) {
             StationManagementSelectionType type = null;
@@ -37,25 +35,5 @@ public class StationManagement {
             return StationManagementSelectionType.ERROR;
         }
         return StationManagementTypeResolver.getStationManagementSelectionType(userInput);
-    }
-
-    public static void registerNewStation(Scanner scanner) throws IllegalArgumentException {
-        StationManagementPrinter.printUserInputStationRegistrationMessage();
-        String newStationName = scanner.nextLine();
-        StationManagementValidator.validateStationNameToRegister(newStationName);
-        StationRepository.addStation(new Station(newStationName));
-        StationManagementPrinter.printRegisterNewStationSuccessMessage();
-    }
-
-    public static void deleteStation(Scanner scanner) throws IllegalArgumentException {
-        StationManagementPrinter.printUserInputStationToDeleteMessage();
-        String stationName = scanner.nextLine();
-        StationManagementValidator.validateStationNameToDelete(stationName);
-        StationRepository.deleteStation(stationName);
-        StationManagementPrinter.printDeleteStationSuccessMessage();
-    }
-
-    public static void printAllStations() {
-        StationRepository.printAll();
     }
 }

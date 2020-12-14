@@ -9,7 +9,7 @@ import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
-import subway.function.printsubwaymap.PrintSubwayMapPrinter;
+import subway.function.printsubwaymap.printer.PrintSubwayMapPrinter;
 
 public class LineStationMappingRepository {
     private static final Map<Line, List<Station>> lineStationMapping = new LinkedHashMap<>();

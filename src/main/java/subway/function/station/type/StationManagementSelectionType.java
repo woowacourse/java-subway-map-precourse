@@ -1,4 +1,4 @@
-package subway.function.station;
+package subway.function.station.type;
 
 public enum StationManagementSelectionType {
     STATION_REGISTRATION,

@@ -1,4 +1,4 @@
-package subway.function.line;
+package subway.function.line.validator;
 
 import subway.common.validator.CommonValidator;
 import subway.domain.line.LineRepository;
@@ -6,7 +6,6 @@ import subway.domain.station.Station;
 import subway.function.line.printer.error.LineManagementErrorPrinter;
 
 public class LineManagementValidator {
-
     public static void validateIsLineNameNotExists(String lineName)
         throws IllegalArgumentException {
         if (LineRepository.findByName(lineName) != null) {
@@ -14,7 +13,6 @@ public class LineManagementValidator {
             throw new IllegalArgumentException();
         }
     }
-
 
     public static void validateIsNotEqual(Station upEndStation, Station downEndStation)
         throws IllegalArgumentException {

@@ -1,4 +1,4 @@
-package subway.function.printsubwaymap;
+package subway.function.printsubwaymap.printer;
 
 public class PrintSubwayMapPrinter {
     private static final String SUBWAY_MAP_TITLE

@@ -1,20 +1,22 @@
-package subway.function.line;
+package subway.function.line.type;
 
 import java.util.Scanner;
-import subway.main.UserSelections;
+import subway.function.line.management.DeleteLine;
+import subway.function.line.management.PrintAllLinesList;
+import subway.function.line.management.RegisterNewLine;
+import subway.main.type.UserSelections;
 
 public class LineManagementTypeResolver {
-
     public static void resolveUserSelection(LineManagementSelectionType type, Scanner scanner) {
         try {
             if (type == LineManagementSelectionType.LINE_REGISTRATION) {
-                LineManagement.registerNewLine(scanner);
+                RegisterNewLine.registerNewLine(scanner);
             }
             if (type == LineManagementSelectionType.LINE_DELETE) {
-                LineManagement.deleteLine(scanner);
+                DeleteLine.deleteLine(scanner);
             }
             if (type == LineManagementSelectionType.PRINT_ALL_LINES) {
-                LineManagement.printLineList();
+                PrintAllLinesList.printAllLinesList();
             }
         } catch (IllegalArgumentException ignored) {
         }
