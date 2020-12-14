@@ -8,9 +8,14 @@ public class SubwayManagement {
         createUserInstance();
         InitSetting.initSetting();
 
+        executeMain();
+    }
+
+
+    private void executeMain() {
         while (true) {
             printScreen.printMainScreen();
-            mainFunction(user.getInput());
+            selectMainFunction(user.getInput());
         }
     }
 
@@ -18,20 +23,20 @@ public class SubwayManagement {
         user = new User();
     }
 
-    private void mainFunction(String select) {
+    private void selectMainFunction(String select) {
         if (select.equals(Constants.FUNCTION_1)) {
             printScreen.printStationManagementScreen();
-            stationManagementFunction(user.getInput());
+            selectStationManagementFunction(user.getInput());
             return;
         }
         if (select.equals(Constants.FUNCTION_2)) {
             printScreen.printLineManagementScreen();
-            lineManagementFunction(user.getInput());
+            selectLineManagementFunction(user.getInput());
             return;
         }
         if (select.equals(Constants.FUNCTION_3)) {
             printScreen.printSectionManagementScreen();
-            sectionManagementFunction(user.getInput());
+            selectSectionManagementFunction(user.getInput());
             return;
         }
         if (select.equals(Constants.FUNCTION_4)) {
@@ -44,7 +49,7 @@ public class SubwayManagement {
         throw new IllegalArgumentException();
     }
 
-    private void stationManagementFunction(String select) {
+    private void selectStationManagementFunction(String select) {
         if (select.equals(Constants.FUNCTION_1)) {
             addStation();
             return;
@@ -79,7 +84,7 @@ public class SubwayManagement {
         printScreen.printStationList(StationRepository.retrieveStation());
     }
 
-    private void lineManagementFunction(String select) {
+    private void selectLineManagementFunction(String select) {
         if (select.equals(Constants.FUNCTION_1)) {
             addLine();
             return;
@@ -119,7 +124,7 @@ public class SubwayManagement {
         printScreen.printLineList(LineRepository.retrieveLine());
     }
 
-    private void sectionManagementFunction(String select) {
+    private void selectSectionManagementFunction(String select) {
         if (select.equals(Constants.FUNCTION_1)) {
             addSection();
             return;
@@ -156,6 +161,4 @@ public class SubwayManagement {
     private void printSubwayLine() {
         printScreen.printAllSubwayLine();
     }
-
-
 }

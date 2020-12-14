@@ -26,7 +26,7 @@ public class InitSetting {
             LineRepository.addLine(line, firstStation, lastStation);
             int idx = Constants.START_ORDER;
             for (String section : sections) {
-                LineRepository.addSection(idx++, initLine[i][0], section);
+                LineRepository.addSection(idx++, line, section);
             }
         }
     }
