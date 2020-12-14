@@ -51,10 +51,10 @@ public class LineService {
     }
 
     public static void addStationInLine(Station station, Line line, int position){
-        if(position > line.getStations().size() || position < 0){
+        if(position > line.getStations().size() + 1 || position <= 0){
             throw new InvalidPositionException();
         }
-        line.addStation(position, station);
+        line.addStation(position - 1, station);
     }
 
     public static void removeStationInLine(Station station, Line line){
