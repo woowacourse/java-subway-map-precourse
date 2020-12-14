@@ -36,4 +36,8 @@ public class LineRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NO_LINE));
     }
+
+    public static boolean hasLine(Line line) {
+        return lines().contains(line);
+    }
 }

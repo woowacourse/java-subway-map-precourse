@@ -6,12 +6,7 @@ import subway.view.OutputView;
 
 public class LineValidator {
 
-    public static void validateName(String name) {
-        validateLength(name);
-        validateEnding(name);
-    }
-
-    public static void validateRemove(Line line, Station station) {
+    public static void validateStationRemove(Line line, Station station) {
         validateMinimumAmount(line);
         validateExisting(line, station);
     }
@@ -32,26 +27,6 @@ public class LineValidator {
         if (lowerThanMinimumIndex(index) || higherThanMaximumIndex(line, index)) {
             throw new IllegalArgumentException(OutputView.ERROR_INDEX);
         }
-    }
-
-    private static void validateLength(String name) {
-        if (shorterThanMinimalLength(name)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NAME_SHORT);
-        }
-    }
-
-    private static boolean shorterThanMinimalLength(String name) {
-        return name.length() < Line.MINIMUM_NAME_LENGTH;
-    }
-
-    private static void validateEnding(String name) {
-        if (notMatchingEnding(name)) {
-            throw new IllegalArgumentException(OutputView.ERROR_LINE_ENDING);
-        }
-    }
-
-    private static boolean notMatchingEnding(String name) {
-        return !name.endsWith(Line.ENDING);
     }
 
     private static boolean isDuplicate(Line line, Station station) {

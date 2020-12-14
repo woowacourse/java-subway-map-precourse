@@ -1,6 +1,6 @@
 package subway.domain.station;
 
-import subway.utils.StationValidator;
+import subway.utils.NameValidator;
 
 public class Station {
 
@@ -10,7 +10,7 @@ public class Station {
     private final String name;
 
     public Station(String name) {
-        StationValidator.validateName(name);
+        NameValidator.validateStation(name);
         this.name = name;
     }
 

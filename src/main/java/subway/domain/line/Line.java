@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import subway.domain.station.Station;
 import subway.utils.LineValidator;
+import subway.utils.NameValidator;
 import subway.view.OutputView;
 
 public class Line {
@@ -17,6 +18,7 @@ public class Line {
     private final List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
+        NameValidator.validateLine(name);
         this.name = name;
     }
 
@@ -41,7 +43,7 @@ public class Line {
     }
 
     public void remove(Station station) {
-        LineValidator.validateRemove(this, station);
+        LineValidator.validateStationRemove(this, station);
         stations.remove(station);
     }
 

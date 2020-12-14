@@ -21,7 +21,7 @@ public class LineRepositoryValidator {
     }
 
     private static boolean isDuplicate(Line line) {
-        return LineRepository.lines().contains(line);
+        return LineRepository.hasLine(line);
     }
 
     private static void validateExisting(String name) {

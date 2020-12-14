@@ -4,7 +4,6 @@ import subway.controller.Controller;
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
-import subway.utils.LineValidator;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -30,7 +29,6 @@ public class LineAddController implements Controller {
 
     private Line createLine() {
         String lineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
-        LineValidator.validateName(lineName);
         return new Line(lineName);
     }
 

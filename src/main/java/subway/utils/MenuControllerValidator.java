@@ -28,5 +28,4 @@ public class MenuControllerValidator {
     private static boolean outOfRange(int decision, int maxDecisionValue) {
         return (decision > maxDecisionValue || decision < MINIMUM_DECISION_VALUE);
     }
-
 }
