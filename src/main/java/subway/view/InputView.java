@@ -32,11 +32,10 @@ public class InputView {
         return sel;
     }
 
-    public String inputRegister(String message) {
+    public String inputRegister() {
         String name = CommonMessage.ERROR;
         while (true) {
             try {
-                System.out.println(message);
                 name = validate.isAccptedRegisterInput(scanner.nextLine());
                 System.out.println();
             } catch(NotAccptedInputLengthException e) {

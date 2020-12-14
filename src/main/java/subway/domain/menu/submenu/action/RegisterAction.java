@@ -23,7 +23,8 @@ public class RegisterAction extends Action {
             registerSection();
         }
 
-        name = requestInputRegister(getRegisterMessage());
+        printRegisterMessage();
+        name = requestInputRegister();
         if (name.equals(CommonMessage.ERROR)) {
             return;
         }
@@ -46,7 +47,7 @@ public class RegisterAction extends Action {
         printSuccessMessage();
     }
 
-    private String getRegisterMessage() {
+    private String printRegisterMessage() {
         String message = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
                         + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME;
         return message;
@@ -81,8 +82,8 @@ public class RegisterAction extends Action {
         System.out.println(ActionMessage.INPUT_SECTION_MESSAGE);
     }
 
-    private String requestInputRegister(String message) {
-        return inputView.inputRegister(message);
+    private String requestInputRegister() {
+        return inputView.inputRegister();
     }
 
     private void registerStation(String name) {
