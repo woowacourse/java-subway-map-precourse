@@ -11,7 +11,7 @@ public enum StationFunctionChoice {
 
     ADD_STATION("1", choiceKey->ControlStation.addStation()),
     DELETE_STATION("2",choiceKey-> ControlStation.deleteStationNotLine()),
-    LOOK_STATION("3",choiceKey->ControlStation.lookStation()),
+    LOOK_STATION("3",choiceKey->ControlStation.lookStationNotLine()),
     BACK("B",chocieKey->ControlStation.back());
     private String choiceKey;
     private Consumer<String> handlerFunction;

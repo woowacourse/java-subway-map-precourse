@@ -15,7 +15,7 @@ public class ControlStation {
     public static void deleteStationNotLine(){
         StationRepository.deleteStation(OutputMessage.choiceOutputMessage());
     }
-    public static void lookStation(){
+    public static void lookStationNotLine(){
         StationRepository.print();
     }
     public static void back(){
