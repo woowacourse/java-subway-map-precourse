@@ -30,8 +30,16 @@ public class LineStationRepository {
         return subwayLine.get(findIndex);
     }
 
-    public static List<Station> findLineOnSections(String lineName) {
+    public static List<Station> findByLineGetSections(String lineName) {
         return getLineStation(lineName).getStations();
+    }
+
+    public static boolean isStationContainSubwayLine(Station station) {
+        for (LineStation lineStation : subwayLine) {
+            if (lineStation.contains(station))
+                return true;
+        }
+        return false;
     }
 
     @Override

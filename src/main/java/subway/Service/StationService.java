@@ -1,6 +1,7 @@
 package subway.Service;
 
 import subway.Manager.StationManager;
+import subway.domain.LineStationRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import validator.ExceptionMessage;
@@ -24,8 +25,9 @@ public class StationService {
 
     public void deleteStation(String deleteStationName) {
         try {
-            // 노선에 등록된 역인지 판별하는 코드 작성해야됨
-
+            if (LineStationRepository.isStationContainSubwayLine(StationRepository.findByName(deleteStationName))) {
+                throw new IllegalArgumentException(ExceptionMessage.STATION_IS_IN_LINE);
+            }
             if (!StationRepository.deleteStation(deleteStationName)) {
                 throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_DELETE_STATION);
             }
