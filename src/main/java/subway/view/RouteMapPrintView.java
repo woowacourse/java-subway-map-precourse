@@ -35,6 +35,7 @@ public class RouteMapPrintView extends View {
             for (String station : sections.getSections()) {
                 System.out.println(PREFIX_INFO + " " + station);
             }
+            System.out.println();
         }
     }
 }
