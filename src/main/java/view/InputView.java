@@ -1,9 +1,8 @@
 package view;
 
-import subway.Manager.SectionManger;
 import subway.domain.LineRepository;
+import subway.domain.LineStationRepository;
 import subway.domain.StationRepository;
-import subway.domain.SubwayRepository;
 import validator.ExceptionMessage;
 import validator.Validator;
 
@@ -124,12 +123,12 @@ public class InputView {
     public static void inputDeleteLine(Scanner scanner) {
         try {
             System.out.println(DELETE_lINE_NAME);
-            String input = scanner.next();
+            String lineName = scanner.next();
 
-            if(!LineRepository.deleteLineByName(input)) {
+            if(!LineRepository.deleteLineByName(lineName)) {
                 throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_LINE);
             }
-            SubwayRepository.deleteLineOnSubway(input);
+            LineStationRepository.deleteLineOnSubway(lineName);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             inputDeleteLine(scanner);
@@ -157,7 +156,7 @@ public class InputView {
             String station = scanner.next();
             System.out.println("\n## 순서를 입력하세요");
             String order = scanner.next();
-            SubwayRepository.addSectionOnTheLine(line, station, order);
+            LineStationRepository.addSectionOnTheLine(line, station, order);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             inputSection(scanner);
@@ -170,7 +169,7 @@ public class InputView {
             String line = scanner.next();
             System.out.println("\n## 삭제할 구간의 역을 입력하세요");
             String deleteStation = scanner.next();
-            SubwayRepository.deleteSectionOnTheLine(line, deleteStation);
+            LineStationRepository.deleteSectionOnTheLine(line, deleteStation);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             inputDeleteSection(scanner);

@@ -1,45 +1,53 @@
 package subway.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class SubwayRepository {
-
+public class LineStationRepository {
     private static final String NEW_LINE = "\n";
     private static final String PRINT_INFO = "[INFO] ";
-    private static final Map<Line, List<Station>> subway = new HashMap<>();
 
-    public static Map<Line, List<Station>> getSubway() {
-        return subway;
+    private static final List<LineStation> subwayLine = new ArrayList<>();
+
+    public static LineStation findLineStation(String lineName) {
+        int findIndex = -1;
+        for (LineStation lineStation : subwayLine) {
+            Line line = lineStation.getLine();
+            if (Objects.equals(line.getName(), lineName)) {
+                findIndex = subwayLine.indexOf(lineStation);
+            }
+        }
+        return subwayLine.get(findIndex);
     }
 
-    public static void addStationOnTheLine(Line line, List<Station> stations) {
-        subway.put(line, stations);
+    public static List<Station> findLineOnStations(String lineName) {
+        return findLineStation(lineName).getStations();
+    }
+
+    public static void addLineStation(LineStation lineStation) {
+        subwayLine.add(lineStation);
     }
 
     public static void deleteLineOnSubway(String lineName) {
-        for (Line line : subway.keySet()) {
-            if (Objects.equals(line.getName(), lineName))
-                subway.remove(line);
-        }
+        subwayLine.remove(findLineStation(lineName));
     }
 
     public static void addSectionOnTheLine(String lineName, String stationName, String order) {
         isPossibleSection(lineName, stationName, order);
-        List<Station> updateSection = subway.get(LineRepository.findByName(lineName));
-
+        List<Station> updateSection = findLineOnStations(lineName);
         updateSection.add(Integer.parseInt(order), StationRepository.findByName(stationName));
     }
 
     private static void isPossibleSection(String lineName, String stationName, String order) {
-        List<Station> updateSection = subway.get(LineRepository.findByName(lineName));
-        Station station = StationRepository.findByName(stationName);
-
         if (!LineRepository.isLineExist(lineName)){
             throw new IllegalArgumentException("[ERROR] 등록되지 않은 노선입니다");
         }
         if (!StationRepository.isStationExist(stationName)){
             throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 입니다");
         }
+        List<Station> updateSection = findLineOnStations(lineName);
+        Station station = StationRepository.findByName(stationName);
         if (updateSection.contains(station)) {
             throw new IllegalArgumentException("[ERROR] 노선에 같은 역이 존재합니다");
         }
@@ -50,9 +58,8 @@ public class SubwayRepository {
 
     public static void deleteSectionOnTheLine(String lineName, String stationName) {
         isPossibleDeleteSection(lineName, stationName);
-        Line line = LineRepository.findByName(lineName);
         Station deleteStation = StationRepository.findByName(stationName);
-        List<Station> selections = subway.get(line);
+        List<Station> selections = findLineOnStations(lineName);
         selections.remove(deleteStation);
     }
 
@@ -63,7 +70,7 @@ public class SubwayRepository {
         if (!StationRepository.isStationExist(stationName)){
             throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 입니다");
         }
-        List<Station> sections = subway.get(LineRepository.findByName(lineName));
+        List<Station> sections = findLineOnStations(lineName);
         Station station = StationRepository.findByName(stationName);
         if (!sections.contains(station)) {
             throw new IllegalArgumentException("[ERROR] 노선에 존재하지 않는 역입니다");
@@ -76,14 +83,15 @@ public class SubwayRepository {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Line line : subway.keySet()) {
-            sb.append(PRINT_INFO + line.getName() + NEW_LINE);
+        for (LineStation lineStation : subwayLine) {
+            sb.append(PRINT_INFO + lineStation.getLine().getName() + NEW_LINE);
             sb.append(PRINT_INFO + "---" + NEW_LINE);
-            for (Station station : subway.get(line)) {
+            for (Station station : lineStation.getStations()) {
                 sb.append(PRINT_INFO + station.getName() + NEW_LINE);
             }
             sb.append("\n");
         }
         return sb.toString();
     }
+
 }

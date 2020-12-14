@@ -54,7 +54,7 @@ public class LineRepository {
         Station downTerminalStation = StationRepository.findByName(downTerminal);
         Line newLine = new Line(lineName);
         List<Station> sections = Arrays.asList(upTerminalStation, downTerminalStation);
-        SubwayRepository.addStationOnTheLine(newLine, sections);
+        LineStationRepository.addLineStation(new LineStation(newLine, sections));
     }
 
     @Override

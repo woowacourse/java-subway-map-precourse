@@ -30,23 +30,23 @@ public class SubwayConfig {
     }
 
     private static void subwayInit() {
-        SubwayRepository.addStationOnTheLine(LineRepository.getLine("2호선"),
+        LineStationRepository.addLineStation(new LineStation(LineRepository.findByName("2호선"),
                 new ArrayList<>(Arrays.asList(
-                        StationRepository.getStation("교대역"),
-                        StationRepository.getStation("강남역"),
-                        StationRepository.getStation("역삼역"))));
+                        StationRepository.findByName("교대역"),
+                        StationRepository.findByName("강남역"),
+                        StationRepository.findByName("역삼역")))));
 
-        SubwayRepository.addStationOnTheLine(LineRepository.getLine("3호선"),
+        LineStationRepository.addLineStation(new LineStation(LineRepository.findByName("3호선"),
                 new ArrayList<>(Arrays.asList(
-                        StationRepository.getStation("교대역"),
-                        StationRepository.getStation("남부터미널역"),
-                        StationRepository.getStation("양재역"),
-                        StationRepository.getStation("매봉역"))));
+                        StationRepository.findByName("교대역"),
+                        StationRepository.findByName("남부터미널역"),
+                        StationRepository.findByName("양재역"),
+                        StationRepository.findByName("매봉역")))));
 
-        SubwayRepository.addStationOnTheLine(LineRepository.getLine("신분당선"),
+        LineStationRepository.addLineStation(new LineStation(LineRepository.findByName("신분당선"),
                 new ArrayList<>(Arrays.asList(
-                        StationRepository.getStation("강남역"),
-                        StationRepository.getStation("양재역"),
-                        StationRepository.getStation("양재시민의숲역"))));
+                        StationRepository.findByName("강남역"),
+                        StationRepository.findByName("양재역"),
+                        StationRepository.findByName("양재시민의숲역")))));
     }
 }
