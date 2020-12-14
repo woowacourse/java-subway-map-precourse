@@ -1,6 +1,7 @@
 package subway.console;
 
 import static subway.console.Output.print;
+import static subway.console.Output.printPage;
 
 import java.util.List;
 import java.util.Scanner;
@@ -35,5 +36,23 @@ public class Input {
 
     public String nextLine() {
         return scanner.nextLine().replaceAll(REGEX, REPLACEMENT);
+    }
+
+    public boolean isNumeric(String number) {
+        try {
+            toInt(number);
+            return true;
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return false;
+        }
+    }
+
+    private void toInt(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException error) {
+            throw new IllegalArgumentException(Message.ERROR_NUMERIC);
+        }
     }
 }

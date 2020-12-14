@@ -74,6 +74,9 @@ public class SectionView {
 
         print(Message.INPUT_ORDER_SECTION);
         String order = input.nextLine();
+        if (!input.isNumeric(order)) {
+            return false;
+        }
 
         return sectionController.createSection(line, station, order);
     }
