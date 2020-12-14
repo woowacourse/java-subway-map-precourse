@@ -150,7 +150,7 @@ public class UserInterfaceView {
 
     private void stationToNextFunction(String userInput) {
         if (ONE_STRING.equals(userInput)) {
-
+            addStation();
             return;
         }
         if (TWO_STRING.equals(userInput)) {
@@ -159,6 +159,13 @@ public class UserInterfaceView {
         }
         if (THREE_STRING.equals(userInput)) {
 
+        }
+    }
+
+    private void addStation() {
+        String stationName = getUserInput(INPUT_ADD_STATION_NAME);
+        if (!StationService.addStation(stationName, true)) {
+            stationStart();
         }
     }
 }
