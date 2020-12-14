@@ -27,7 +27,7 @@ public class SectionAddController implements Controller {
             Station addingStation = StationRepository.get(targetStation);
 
             modifyingLine.addStationAtSection(index, addingStation);
-            OutputView.printInfo(OutputView.INFO_SECTION_ADD);
+            OutputView.printInfo(OutputView.INFO_SECTION_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

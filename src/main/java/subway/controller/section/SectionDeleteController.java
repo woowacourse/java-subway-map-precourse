@@ -21,11 +21,12 @@ public class SectionDeleteController implements Controller {
         try {
             String targetLine = inputView.inputName(InputView.CHOOSE_LINE);
             String targetStation = inputView.inputName(InputView.CHOOSE_STATION_NAME);
+
             Line modifyingLine = LineRepository.get(targetLine);
             Station deletingStation = StationRepository.get(targetStation);
-            modifyingLine.remove(deletingStation);
 
-            OutputView.printInfo(OutputView.INFO_SECTION_DELETE);
+            modifyingLine.remove(deletingStation);
+            OutputView.printInfo(OutputView.INFO_SECTION_DELETED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

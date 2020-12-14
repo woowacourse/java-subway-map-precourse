@@ -21,7 +21,7 @@ public class StationDeleteController implements Controller {
                 throw new IllegalArgumentException(OutputView.ERROR_NO_NAME);
             }
             StationRepository.deleteStation(deletingStationName);
-            OutputView.printInfo(OutputView.INFO_STATION_DELETE);
+            OutputView.printInfo(OutputView.INFO_STATION_DELETED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

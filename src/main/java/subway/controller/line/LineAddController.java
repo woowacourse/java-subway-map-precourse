@@ -22,7 +22,7 @@ public class LineAddController implements Controller {
             Line newLine = createLine();
             addStationsToLine(newLine);
             LineRepository.addLine(newLine);
-            OutputView.printInfo(OutputView.INFO_LINE_ADD);
+            OutputView.printInfo(OutputView.INFO_LINE_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
@@ -36,8 +36,9 @@ public class LineAddController implements Controller {
 
     private void addStationsToLine(Line newLine) {
         String beginningStationName = inputView.inputName(InputView.CHOOSE_LINE_BEGINNING);
-        String endingStationName = inputView.inputName(InputView.CHOOSE_LINE_ENDING);
         newLine.addStation(StationRepository.get(beginningStationName));
+
+        String endingStationName = inputView.inputName(InputView.CHOOSE_LINE_ENDING);
         newLine.addStation(StationRepository.get(endingStationName));
     }
 }

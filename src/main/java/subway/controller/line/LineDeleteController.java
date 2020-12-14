@@ -20,7 +20,7 @@ public class LineDeleteController implements Controller {
             if(!LineRepository.deleteLineByName(lineName)) {
                 throw new IllegalArgumentException(OutputView.ERROR_NO_NAME);
             }
-            OutputView.printInfo(OutputView.INFO_LINE_DELETE);
+            OutputView.printInfo(OutputView.INFO_LINE_DELETED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

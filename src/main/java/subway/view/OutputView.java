@@ -39,12 +39,12 @@ public class OutputView {
     public static final String ERROR_LABEL = "[ERROR] ";
     public static final String DIVIDER = "---";
 
-    public static final String INFO_STATION_ADD = INFO_LABEL + "지하철 역이 등록되었습니다.";
-    public static final String INFO_STATION_DELETE = INFO_LABEL + "지하철 역이 삭제되었습니다.";
-    public static final String INFO_LINE_ADD = INFO_LABEL + "지하철 노선이 등록되었습니다.";
-    public static final String INFO_LINE_DELETE = INFO_LABEL + "지하철 노선이 삭제되었습니다.";
-    public static final String INFO_SECTION_ADD = INFO_LABEL + "구간이 등록되었습니다.";
-    public static final String INFO_SECTION_DELETE = INFO_LABEL + "구간이 삭제되었습니다.";
+    public static final String INFO_STATION_ADDED = INFO_LABEL + "지하철 역이 등록되었습니다.";
+    public static final String INFO_STATION_DELETED = INFO_LABEL + "지하철 역이 삭제되었습니다.";
+    public static final String INFO_LINE_ADDED = INFO_LABEL + "지하철 노선이 등록되었습니다.";
+    public static final String INFO_LINE_DELETED = INFO_LABEL + "지하철 노선이 삭제되었습니다.";
+    public static final String INFO_SECTION_ADDED = INFO_LABEL + "구간이 등록되었습니다.";
+    public static final String INFO_SECTION_DELETED = INFO_LABEL + "구간이 삭제되었습니다.";
 
     public static final String ERROR_NOT_NUMERIC = ERROR_LABEL + "선택할 수 없는 기능입니다.";
     public static final String ERROR_OUT_OF_RANGE = ERROR_LABEL + "선택할 수 없는 기능입니다.";
@@ -134,10 +134,10 @@ public class OutputView {
         System.out.println();
         System.out.println(SHOW_MAP_LABEL);
         LineRepository.lines().forEach(line -> {
+            System.out.println();
             System.out.println(INFO_LABEL + line.getName());
             System.out.println(INFO_LABEL + DIVIDER);
             printStationsOfLine(line);
-            System.out.println();
         });
     }
 
