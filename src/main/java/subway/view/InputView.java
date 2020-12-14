@@ -170,4 +170,26 @@ public class InputView {
 
         return lineName;
     }
+
+    public static String scanSectionMenu(Scanner scanner) {
+        String choiceMenu;
+
+        do { // 유효한 값이 올 때 까지 값을 입력받는다.
+            OutputView.OptionChoicePrint();
+            choiceMenu = scanner.nextLine();
+        } while (!sectionMenuValidCheck(choiceMenu));
+
+        return choiceMenu;
+    }
+
+    private static boolean sectionMenuValidCheck(String choiceMenu) {
+        if (Pattern.matches(
+            BoundaryCheckPattern.SECTION_MENU_OPTION_LIMIT.getRegexBoundaryCheckPattern(),
+            choiceMenu)) {
+            return true;
+        }
+
+        OutputView.NotSelectableError();
+        return false;
+    }
 }

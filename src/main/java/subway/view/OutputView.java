@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.message.CommonMessage;
 import subway.message.LineMessage;
+import subway.message.SectionMessage;
 import subway.message.StationMessage;
 
 public class OutputView {
@@ -124,5 +125,9 @@ public class OutputView {
 
     public static void lineDeleteGuidePrint() {
         System.out.println(LineMessage.LINE_DELETE_GUIDE.getLineMessage());
+    }
+
+    public static void sectionMenuPrint() {
+        System.out.println(SectionMessage.SECTION_FUNCTION_LIST.getSectionMessage());
     }
 }

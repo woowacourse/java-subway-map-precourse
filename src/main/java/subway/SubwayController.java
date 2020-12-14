@@ -2,8 +2,6 @@ package subway;
 
 import java.util.Scanner;
 import subway.constant.UserChoiceOptionToName;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -32,6 +30,10 @@ public class SubwayController {
             if (mainMenuOptionChoice
                 .equals(UserChoiceOptionToName.LINE_MANAGEMENT.getUserChoiceOptionToName())){
                 LineController.lineControlMenu(scanner);
+            }
+            if (mainMenuOptionChoice
+                .equals(UserChoiceOptionToName.SECTION_MANAGEMENT.getUserChoiceOptionToName())){
+                SectionController.sectionControlMenu(scanner);
             }
         }
     }
