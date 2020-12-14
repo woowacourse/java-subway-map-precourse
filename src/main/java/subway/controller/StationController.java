@@ -1,6 +1,5 @@
 package subway.controller;
 
-import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.validator.StationValidation;
@@ -58,7 +57,7 @@ public class StationController {
     }
 
     private static boolean registerStation(Scanner scanner) {
-        StationOutputView.printStationRegisterInstruction();
+        StationOutputView.printRegisterStationInstruction();
         String userInputStation = InputView.getInput(scanner);
         boolean validInput = StationValidation.checkRegisterStationInput(userInputStation);
         if (!validInput) {
@@ -71,16 +70,11 @@ public class StationController {
     }
 
     private static boolean deleteStation(Scanner scanner) {
-        StationOutputView.printStationDeleteInstruction();
+        StationOutputView.printDeleteStationInstruction();
         String userInputStation = InputView.getInput(scanner);
-        boolean validInput = StationValidation.checkStationLineInput(userInputStation);
+        boolean validInput = StationValidation.checkDeleteStationInput(userInputStation);
         if (!validInput) {
             return false;
-        }
-        //해당 station 이 들어있는 Line에서 해당 station 삭제
-        Station stationToDelete = StationRepository.getStationByName(userInputStation);
-        for (Line line : stationToDelete.getBelongToWhichLine()) {
-            line.deleteStationsInLine(stationToDelete);
         }
         StationRepository.deleteStation(userInputStation);
         StationInfoView.printDeleteInfo();

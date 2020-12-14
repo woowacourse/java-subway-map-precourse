@@ -14,11 +14,11 @@ public class StationOutputView extends OutputView {
         printNewLine();
     }
 
-    public static void printStationRegisterInstruction() {
+    public static void printRegisterStationInstruction() {
         printOutput(ENTER_STATION_NAME_TO_REGISTER);
     }
 
-    public static void printStationDeleteInstruction() {
+    public static void printDeleteStationInstruction() {
         printOutput(ENTER_STATION_NAME_TO_DELETE);
     }
 

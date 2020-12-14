@@ -8,6 +8,7 @@ import subway.view.stationoutput.StationErrorView;
 
 public class StationValidation extends Validation {
     private static final char WORD_STATION = '역';
+    private static final int STATION_IS_NOT_IN_ANY_LINE = 0;
 
     /* 해당 조건 중 만족하지 않는 것이 있다면 재입력 받도록 한다 */
     public static boolean checkRegisterStationInput(String userInputStation) {
@@ -51,11 +52,11 @@ public class StationValidation extends Validation {
         return true;
     }
 
-    public static boolean checkStationLineInput(String userInputLine) {
-        if(!checkIsInStationRepository(userInputLine)) {
+    public static boolean checkDeleteStationInput(String userInputLine) {
+        if (!checkIsInStationRepository(userInputLine)) {
             return false;
         }
-        if(!checkStationBelongLineCanDeleteStation(userInputLine)) {
+        if (!checkStationBelongLineCanDeleteStation(userInputLine)) {
             return false;
         }
         return true;
@@ -75,10 +76,13 @@ public class StationValidation extends Validation {
 
     private static boolean checkStationBelongLineCanDeleteStation(String userInputLine) {
         Station station = StationRepository.getStationByName(userInputLine);
-        for (Line line : station.getBelongToWhichLine()) {
-            if(!LineSectionValidation.checkNumberOfStationsInLine(line.getName())){
-                return false;
+        try {
+            if (station.getBelongToWhichLine().size() != STATION_IS_NOT_IN_ANY_LINE) {
+                throw new UserInputException();
             }
+        } catch (UserInputException e) {
+            StationErrorView.printStationIsInLineError();
+            return false;
         }
         return true;
     }
