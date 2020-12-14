@@ -30,7 +30,13 @@ public class StationRepository {
         stations.forEach(StationRepository::addStation);
     }
 
-    public static boolean hasDuplicatedStation(Station station){
+    public static boolean hasDuplicatedStation(Station station) {
         return stations.contains(station);
+    }
+
+    public static void printStations() {
+        for (Station station : stations) {
+            OutputView.printStation(station.getName());
+        }
     }
 }
