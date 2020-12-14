@@ -1,6 +1,10 @@
 package subway.view;
 
+import java.util.List;
+
 public class Output {
+
+    private static final String INFO_MESSAGE = "[INFO] %s\n";
 
     private Output() {
     }
@@ -9,6 +13,10 @@ public class Output {
         printNewLine();
         System.out.println(message);
         printNewLine();
+    }
+
+    public static void printByList(List<?> list) {
+        list.forEach(obj -> System.out.printf(INFO_MESSAGE, obj));
     }
 
     public static void printNewLine() {

@@ -33,8 +33,9 @@ public class StationController implements IController{
     }
 
     @Override
-    public List<Station> getList() {
-        return null;
+    public void getList() {
+        Output.printNewLine();
+        Output.printByList(StationService.getAllStations());
     }
 
     public static StationController getInstance() {

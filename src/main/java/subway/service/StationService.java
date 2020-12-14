@@ -5,6 +5,7 @@ import subway.domain.StationRepository;
 import subway.exception.NameLengthException;
 import subway.exception.StationNameDuplicateException;
 import subway.exception.StationNameNotFoundException;
+import java.util.List;
 
 public class StationService {
     private static final int MIN_NAME_LENGTH = 2;
@@ -32,5 +33,9 @@ public class StationService {
         if(StationRepository.findByName(name).isPresent()) {
             throw new StationNameDuplicateException();
         }
+    }
+
+    public static List<Station> getAllStations() {
+        return StationRepository.stations();
     }
 }

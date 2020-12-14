@@ -8,5 +8,5 @@ public interface IController {
 
     void remove();
 
-    List<?> getList();
+    void getList();
 }
