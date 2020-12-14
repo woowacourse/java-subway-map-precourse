@@ -37,6 +37,9 @@ public class Settings {
     }
 
     private static void initLine(String lineName, List<String> stationNames) {
-        LineRepository.addLine(new Line(lineName, stationNames.stream().map(StationRepository::getStation).toArray(Station[]::new)));
+        Line line = new Line(lineName);
+        line.add(stationNames.stream()
+                .map(StationRepository::getStation)
+                .toArray(Station[]::new));
     }
 }

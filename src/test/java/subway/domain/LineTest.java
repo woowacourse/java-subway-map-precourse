@@ -16,7 +16,8 @@ class LineTest {
 
     @BeforeEach
     void setup() {
-        line = new Line("test", s1, s2);
+        line = new Line("test");
+        line.add(s1,s2);
     }
 
     @Test
