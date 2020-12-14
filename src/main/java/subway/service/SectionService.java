@@ -11,7 +11,8 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class SectionService implements ServiceConstant {
+public class SectionService {
+    private static final String STATION_NOT_EXIST_ERROR = "\n[ERROR] 역 목록에 등록되어 있는 역이 아닙니다.";
     private static final String STATION_EXIST_IN_LINE_ERROR = "\n[ERROR] 이미 노선에 해당 역이 등록되어 있습니다.";
     private static final String STATION_NOT_EXIST_IN_LINE_ERROR = "\n[ERROR] 노선에 해당 역이 등록되어 있지 않습니다.";
 

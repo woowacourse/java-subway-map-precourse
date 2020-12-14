@@ -7,7 +7,16 @@ import subway.domain.station.StationRepository;
 
 import java.util.List;
 
-public class OutputView implements ViewConstant {
+public class OutputView {
+
+    private static final String SUBWAY = "지하철 ";
+    private static final String SECTION = "구간";
+    private static final String DASH = "---";
+    private static final String PRINT_LIST_MESSAGE = "\n## %s 목록\n";
+    private static final String PRINT_SUBWAY_MAP_MESSAGE = "\n## 지하철 노선도";
+    private static final String PRINT_LIST = "[INFO] %s\n";
+    private static final String ADD_MESSAGE = "\n[INFO] %s이 등록되었습니다.\n";
+    private static final String DELETE_MESSAGE = "\n[INFO] %s이 삭제되었습니다.\n";
 
 
     private OutputView() {
