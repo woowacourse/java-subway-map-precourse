@@ -14,6 +14,7 @@ public class Application {
     }
 
     public static void run(InputView inputView) {
+        Initializer.set();
         boolean runStatus;
         do {
             MenuController.scanMenu(inputView);
