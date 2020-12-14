@@ -36,7 +36,7 @@ public class OutputView {
         System.out.println(STATION_DELETE_SUCCESS);
     }
 
-    public static void stationLookup(String stations) {
+    public static void stationsPrint(String stations) {
         System.out.println(stations);
     }
 
@@ -53,7 +53,7 @@ public class OutputView {
         System.out.println(LINE_DELETE_SUCCESS);
     }
 
-    public static void lineLookup(String lines) {
+    public static void linesPrint(String lines) {
         System.out.println(lines);
     }
 

@@ -6,6 +6,8 @@ import subway.domain.StationRepository;
 import validator.ExceptionMessage;
 import validator.Validator;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -50,30 +52,13 @@ public class InputView {
     }
 
     public static String inputStation(Scanner scanner) {
-        try {
-            System.out.println(INPUT_STATION_NAME);
-            String input = scanner.next();
-
-            StationRepository.isValidStationName(input);
-            return input;
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            return inputStation(scanner);
-        }
+        System.out.println(INPUT_STATION_NAME);
+        return scanner.next();
     }
 
-    public static void inputDeleteStation(Scanner scanner) {
-        try {
-            System.out.println(DELETE_STATION_NAME);
-            String input = scanner.next();
-
-            if (!StationRepository.deleteStation(input)) {
-                throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_DELETE_STATION);
-            }
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            inputDeleteStation(scanner);
-        }
+    public static String inputDeleteStationName(Scanner scanner) {
+        System.out.println(DELETE_STATION_NAME);
+        return scanner.next();
     }
 
     public static String inputLineFunction(Scanner scanner) {
@@ -89,24 +74,19 @@ public class InputView {
         }
     }
 
-    public static String inputLineName(Scanner scanner) {
-            System.out.println(INPUT_lINE_NAME);
-            return scanner.next();
-    }
-
-    public static String inputUpTerminalStation(Scanner scanner) {
-            System.out.println(UP_TERMINAL_STATION);
-            return scanner.next();
-    }
-
-    public static String inputDownTerminalStation(Scanner scanner) {
-            System.out.println(DOWN_TERMINAL_STATION);
-            return scanner.next();
+    public static List<String> inputLineInfo(Scanner scanner) {
+        System.out.println(INPUT_lINE_NAME);
+        String lineName =  scanner.next();
+        System.out.println(UP_TERMINAL_STATION);
+        String upTerminalStation =  scanner.next();
+        System.out.println(DOWN_TERMINAL_STATION);
+        String downTerminalStation =  scanner.next();
+        return Arrays.asList(lineName, upTerminalStation, downTerminalStation);
     }
 
     public static String inputDeleteLineName(Scanner scanner) {
-            System.out.println(DELETE_lINE_NAME);
-            return scanner.next();
+        System.out.println(DELETE_lINE_NAME);
+        return scanner.next();
     }
 
     public static String inputSectionFunction(Scanner scanner) {
@@ -122,31 +102,21 @@ public class InputView {
         }
     }
 
-    public static void inputSection(Scanner scanner) {
-        try {
-            System.out.println(INPUT_LINE);
-            String line = scanner.next();
-            System.out.println(INPUT_SECTION);
-            String station = scanner.next();
-            System.out.println(INPUT_SECTION_ORDER);
-            String order = scanner.next();
-            LineStationRepository.addSectionOnTheLine(line, station, order);
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            inputSection(scanner);
-        }
+    public static List<String> inputSection(Scanner scanner) {
+        System.out.println(INPUT_LINE);
+        String line = scanner.next();
+        System.out.println(INPUT_SECTION);
+        String station = scanner.next();
+        System.out.println(INPUT_SECTION_ORDER);
+        String order = scanner.next();
+        return Arrays.asList(line, station, order);
     }
 
-    public static void inputDeleteSection(Scanner scanner) {
-        try {
-            System.out.println(INPUT_DELETE_SECTION_FOR_LINE);
-            String line = scanner.next();
-            System.out.println(INPUT_DELETE_SECTION);
-            String deleteStation = scanner.next();
-            LineStationRepository.deleteSectionOnTheLine(line, deleteStation);
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            inputDeleteSection(scanner);
-        }
+    public static List<String> inputDeleteSection(Scanner scanner) {
+        System.out.println(INPUT_DELETE_SECTION_FOR_LINE);
+        String line = scanner.next();
+        System.out.println(INPUT_DELETE_SECTION);
+        String deleteStation = scanner.next();
+        return Arrays.asList(line, deleteStation);
     }
 }
