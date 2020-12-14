@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
+    public static final int NAME_MIN_LENGTH = 2;
+
     private final List<Station> stations = new LinkedList<>();
     private String name;
 
