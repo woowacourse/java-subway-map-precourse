@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class SubwayMapMain {
     OutputMessage outputMessage=new OutputMessage();
     String END_KEY="Q";
+    StationRepository stationRepository =new StationRepository();
+    String[] station={"교대역","강남역","역삼역","남부터미널역","양재역","양재시민의숲역","매봉역"};
     public SubwayMapMain(Scanner scanner){
         System.out.println("Ds");
         startSubwayMap();
@@ -30,8 +32,6 @@ public class SubwayMapMain {
     }
 
     public void initialize(){
-        StationRepository stationRepository =new StationRepository();
-        String[] station={"교대역","강남역","역삼역","남부터미널역","양재역","양재시민의숲역","매봉역"};
         stationRepository.initializeAddStation(station);
         String[] line2={"교대역","강남역","역삼역"};
         String[] line3={"교대역","강남역","남부터미널역","양재역","매봉역"};
@@ -45,8 +45,6 @@ public class SubwayMapMain {
         line = new Line("신분당선");
         line.initializeLine(lineShin);
         LineRepository.addLine(line);
-
-
     }
 
 

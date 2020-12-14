@@ -1,6 +1,7 @@
 package subway;
 
 
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.view.OutputMessage;
 import subway.domain.Station;
@@ -18,7 +19,8 @@ public class ControlStation {
         return false;
     }
     public static boolean deleteStationNotLine(){
-        if(!StationRepository.deleteStation(OutputMessage.choiceOutputMessage())){
+        String tmpSaveStationName=OutputMessage.registerDeleteStation();
+        if(LineRepository.checkingAllLine(tmpSaveStationName)||!StationRepository.deleteStation(tmpSaveStationName)){
             OutputMessage.setErrorMessageDeleteStation();
             System.out.println();
             return true;

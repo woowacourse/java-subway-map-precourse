@@ -8,7 +8,14 @@ public class StationCompute {
 
     public static void manageStation(){
         OutputMessage.choiceStationOutputMessage();
-        StationFunctionChoice choice = StationFunctionChoice.stationFunctionDecide(OutputMessage.choiceOutputMessage());
+        String tmpSaveFunctionNumber=OutputMessage.choiceOutputMessage();
+        if(!StationFunctionChoice.checkInput(tmpSaveFunctionNumber)){
+            OutputMessage.setErrorMessageFunctionChoice();
+            System.out.println();
+            manageStation();
+        }
+
+        StationFunctionChoice choice = StationFunctionChoice.stationFunctionDecide(tmpSaveFunctionNumber);
         if(choice.doingFunction()){
             manageStation();
         }

@@ -69,4 +69,12 @@ public class Line {
         }
         System.out.println();
     }
+    public boolean checkingAStationInLine(String tmpSaveStationName){
+        for(Station station:stationInLine){
+            if(station.getName().equals(tmpSaveStationName)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

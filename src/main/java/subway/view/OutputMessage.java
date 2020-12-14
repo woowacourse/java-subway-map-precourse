@@ -39,6 +39,8 @@ public class OutputMessage {
     private static final String WRITE_STATION_NAME="## 등록할 역 이름을 입력하세요";
     private static final String WRITE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
     private static final String WRITE_DELETE_LINE_NAME="## 삭제할 노선의 이름을 입력하세요";
+    private static final String WRITE_DELETE_STATION_NAME="## 삭제할 역 이름을 입력하세요";
+
 
     private static final String WRITE_SECTION_LINE_NAME="## 노선을 입력하세요";
     private static final String WRITE_SECTION_STATION_NAME="## 역이름을 입력하세요";
@@ -53,8 +55,12 @@ public class OutputMessage {
 
     private static final String ERROR_MESSAGE_FUNCTION_CHOICE="[ERROR] 선택할 수 없는 기능입니다.";
 
-    private static final String ERROR_MESSAGE_DELETE_STATION="[ERROR] 역이 존재하지 않습니다.";
+    private static final String ERROR_MESSAGE_DELETE_STATION="[ERROR] 역을 삭제할 수 없습니다.";
 
+    public static String registerDeleteStation(){
+        System.out.println(WRITE_DELETE_STATION_NAME);
+        return scanner.nextLine();
+    }
     public static void setErrorMessageDeleteStation(){
         System.out.println(ERROR_MESSAGE_DELETE_STATION);
     }

@@ -5,23 +5,25 @@ import subway.view.OutputMessage;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import subway.domain.Line;
 
 import javax.xml.bind.SchemaOutputResolver;
 
 public enum LineFunctionChoice {
-    ADD_LINE("1", (choiceKey)->LineRepository.addLine(new Line(OutputMessage.registerLineName(),OutputMessage.registerLineUpStation()))),
-    DELETE_LINE("2", (choiceKey)->LineRepository.deleteLineByName(OutputMessage.deleteLineName())),
-    LOOK_LINE("3",(choiceKey)->LineRepository.printLine()),
-    BACK("B",(choiceKey)->LineRepository.back());
+    ADD_LINE("1", ()->LineRepository.addLine(new Line(OutputMessage.registerLineName(),OutputMessage.registerLineUpStation()))),
+    DELETE_LINE("2", ()->LineRepository.deleteLineByName(OutputMessage.deleteLineName())),
+    LOOK_LINE("3",()->LineRepository.back()),
+    BACK("B",()->LineRepository.back());
     private String choiceKey;
-    private Consumer<String> handlerFunction;
-    LineFunctionChoice(String choiceKey,Consumer<String> handlerFunction){
+    private Supplier<Boolean> handlerFunction;
+    LineFunctionChoice(String choiceKey,Supplier<Boolean> handlerFunction){
         this.choiceKey=choiceKey;
         this.handlerFunction=handlerFunction;
     }
-    public void doingFunction(String name){
-        handlerFunction.accept(name);
+    public void doingFunction(){
+        handlerFunction.get();
     }
     public String getChoiceKey(){
         return choiceKey;
