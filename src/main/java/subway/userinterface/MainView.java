@@ -4,14 +4,11 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.exception.IllegalCommandException;
 
-public class MainView implements View {
-    private static final MainView instance;
+import java.util.Arrays;
+import java.util.Objects;
 
-    private static final String GO_STATION_MANAGEMENT = "1";
-    private static final String GO_LINE_MANAGEMENT = "2";
-    private static final String GO_SECTION_MANAGEMENT = "3";
-    private static final String PRINT_ALL_LINE = "4";
-    private static final String APPLICATION_SHUT_DOWN = "Q";
+public class MainView extends View {
+    private static final MainView instance;
 
     static MainView getInstance() {
         return instance;
@@ -36,33 +33,35 @@ public class MainView implements View {
     }
 
     @Override
-    public void processCommand(String command) {
-        if (command.equals(GO_STATION_MANAGEMENT)) {
+    void validateCommand(String command) {
+        Arrays.stream(Command.values())
+                .filter(mainViewCommand -> Objects.equals(mainViewCommand.value, command))
+                .findAny()
+                .orElseThrow(IllegalCommandException::new);
+    }
+
+    @Override
+    void executeCommand(String command) {
+        if (Command.GO_STATION_MANAGEMENT.value.equals(command)) {
             UserInterface.setView(StationManagementView.getInstance());
-            return;
         }
-
-        if (command.equals(GO_LINE_MANAGEMENT)) {
+        if (Command.GO_LINE_MANAGEMENT.value.equals(command)) {
             UserInterface.setView(LineManagementView.getInstance());
-            return;
         }
-
-        if (command.equals(GO_SECTION_MANAGEMENT)) {
+        if (Command.GO_SECTION_MANAGEMENT.value.equals(command)) {
             UserInterface.setView(SectionManagementView.getInstance());
-            return;
         }
-
-        if (command.equals(PRINT_ALL_LINE)) {
+        if (Command.PRINT_ALL_LINE.value.equals(command)) {
             printAllLine();
-            return;
         }
-
-        if (command.equals(APPLICATION_SHUT_DOWN)) {
+        if (Command.APPLICATION_SHUT_DOWN.value.equals(command)) {
             UserInterface.applicationShutDown();
-            return;
         }
+    }
 
-        throw new IllegalCommandException();
+    @Override
+    void finish() {
+
     }
 
     private void printAllLine() {
@@ -83,5 +82,19 @@ public class MainView implements View {
         line.getStations().forEach(stringBuilder::append);
 
         return stringBuilder.toString();
+    }
+
+    private enum Command {
+        GO_STATION_MANAGEMENT("1"),
+        GO_LINE_MANAGEMENT("2"),
+        GO_SECTION_MANAGEMENT("3"),
+        PRINT_ALL_LINE("4"),
+        APPLICATION_SHUT_DOWN("Q");
+
+        private final String value;
+
+        Command(String value) {
+            this.value = value;
+        }
     }
 }
