@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.function.Function;
 
 import subway.controller.ManagementController;
+import subway.exception.NoSuchIdentifierException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -27,7 +28,7 @@ public interface Functionable {
         return Arrays.stream(functionables)
                 .filter(functionable -> functionable.equalsIdentifier(identifier))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 기능입니다."))
+                .orElseThrow(NoSuchIdentifierException::new)
                 .getFunction()
                 .apply(managementController);
     }

@@ -75,12 +75,12 @@ public final class InputView {
         printQuestionAddedPrefix(message);
 
         String input = scanner.nextLine();
+        System.out.println();
 
         while (!isValid(input, validatorClass)) {
             input = scanner.nextLine();
+            System.out.println();
         }
-
-        System.out.println();
 
         return input;
     }

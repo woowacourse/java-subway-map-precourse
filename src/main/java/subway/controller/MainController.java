@@ -2,6 +2,7 @@ package subway.controller;
 
 import subway.domain.function.Functionable;
 import subway.domain.function.MainFunction;
+import subway.exception.SubwayRuntimeException;
 
 public final class MainController {
 
@@ -9,8 +10,12 @@ public final class MainController {
         ManagementController managementController = ManagementController.initialize();
 
         while (isProgressing(managementController)) {
-            managementController = Functionable
-                    .function(managementController, MainFunction.TITLE, MainFunction.values());
+            try {
+                managementController = Functionable
+                        .function(managementController, MainFunction.TITLE, MainFunction.values());
+            } catch (SubwayRuntimeException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
