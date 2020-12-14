@@ -62,4 +62,9 @@ public class LineService {
         validateStation(station);
         line.addStation(newStationLocation, station);
     }
+
+    public static Line findLineByName(String lineName) {
+        return LineRepository.findLineByName(lineName)
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_Line_MESSAGE));
+    }
 }

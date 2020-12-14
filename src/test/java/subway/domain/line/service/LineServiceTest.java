@@ -195,4 +195,57 @@ class LineServiceTest {
                         .contains(newStation, Index.atIndex(newStationLocation))
         );
     }
+
+    @DisplayName("노선 이름으로 노선을 조회하는 기능을 테스트한다")
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "1호선,2호선,3호선:1호선", "신분당선,분당선,경의선,공항철도:공항철도"
+            }, delimiter = ':'
+    )
+    void testLineFindByName(String input, String findLineName) {
+        //given
+        String[] lineNames = input.split(",");
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+
+        Arrays.stream(lineNames)
+                .map(name -> new Line(name, stations))
+                .forEach(LineRepository::addLine);
+
+        //when
+        Line line = LineService.findLineByName(findLineName);
+
+        //then
+        assertAll(
+                () -> assertThat(line).extracting("name").isEqualTo(findLineName),
+                () -> assertThat(line.getStations()).hasSize(2)
+        );
+    }
+
+    @DisplayName("존재하지 않는 노선 이름으로 노선을 조회하면 예외를 던지는 기능을 테스트한다")
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "1호선,2호선,3호선:4호선", "신분당선,분당선,경의선,공항철도:중앙선"
+            }, delimiter = ':'
+    )
+    void testLineFIndByNameIfNotExistLineName(String input, String findLineName) {
+        //given
+        String[] lineNames = input.split(",");
+        String stationNames = "강남역,잠실역";
+        List<Station> stations = Arrays.stream(stationNames.split(","))
+                .map(Station::new)
+                .collect(Collectors.toList());
+
+        Arrays.stream(lineNames)
+                .map(name -> new Line(name, stations))
+                .forEach(LineRepository::addLine);
+
+        //when //then
+        assertThatThrownBy(() -> LineService.findLineByName(findLineName))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
 }
