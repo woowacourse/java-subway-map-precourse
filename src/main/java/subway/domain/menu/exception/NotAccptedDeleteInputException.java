@@ -4,9 +4,9 @@ import subway.domain.menu.constant.CommonMessage;
 import subway.domain.menu.constant.ExceptionMessage;
 
 @SuppressWarnings("serial")
-public class NotAccptedInputLengthException extends RuntimeException {
-    public NotAccptedInputLengthException() {
+public class NotAccptedDeleteInputException extends RuntimeException {
+    public NotAccptedDeleteInputException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.NOT_ACCPTED_INPUT_LENGTH_MESSAGE + CommonMessage.NEW_LINE);
+        + ExceptionMessage.NOT_ACCPTED_DELETE_INPUT_MESSAGE + CommonMessage.NEW_LINE);
     }
 }

@@ -14,19 +14,33 @@ public class DeleteAction extends Action {
 
     @Override
     public void runAction() {
+        String name;
+
+        // 미구현 - 구간 추가할 때 고칠 예정.
         if (category.equals(CategoryType.SECTION)) {
             deleteSection();
-            return;
         }
 
         printDeleteMessage();
-        String name = inputDelete();
+        name = requestInputDelete();
+        if (name.equals(CommonMessage.ERROR)) {
+            return;
+        }
+
+        runDetailAction(name);
+    }
+
+    private void runDetailAction(String name) {
         if (category.equals(CategoryType.STATION)) {
             deleteStation(name);
         }
 
         if (category.equals(CategoryType.LINE)) {
             deleteLine(name);
+        }
+
+        if (category.equals(CategoryType.SECTION)) {
+            deleteSection();
         }
         printSuccessMessage();
     }
@@ -51,6 +65,11 @@ public class DeleteAction extends Action {
         System.out.println(ActionMessage.INPUT_SECTION_MESSAGE);
     }
 
+    private String requestInputDelete() {
+        return inputView.inputDelete();
+    }
+
+    // 임시 - 컴파일 에러 방지.
     private String inputDelete() {
         String name = inputView.getScanner().nextLine();
         System.out.println();

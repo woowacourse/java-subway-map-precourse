@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import subway.domain.menu.constant.CommonMessage;
 import subway.domain.menu.exception.DuplicatedInputException;
+import subway.domain.menu.exception.DuplicatedStationInLineException;
+import subway.domain.menu.exception.NotAccptedDeleteInputException;
 import subway.domain.menu.exception.NotAccptedInputException;
 import subway.domain.menu.exception.NotAccptedInputLengthException;
 
@@ -41,6 +43,24 @@ public class InputView {
             } catch(NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
             } catch(DuplicatedInputException e) {
+                System.out.println(e.getMessage());
+            }
+            break;
+        }
+        return name;
+    }
+
+    public String inputDelete() {
+        String name = CommonMessage.ERROR;
+        while (true) {
+            try {
+                name = validate.isAccptedDeleteInput(scanner.nextLine());
+                System.out.println();
+            } catch(NotAccptedInputLengthException e) {
+                System.out.println(e.getMessage());
+            } catch(DuplicatedStationInLineException e) {
+                System.out.println(e.getMessage());
+            } catch(NotAccptedDeleteInputException e) {
                 System.out.println(e.getMessage());
             }
             break;

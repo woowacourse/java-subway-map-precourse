@@ -47,10 +47,9 @@ public class RegisterAction extends Action {
         printSuccessMessage();
     }
 
-    private String printRegisterMessage() {
-        String message = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
-                        + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME;
-        return message;
+    private void printRegisterMessage() {
+        System.out.println(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
+                        + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME);
     }
 
     private void printRegisterMessage(String pos) {
