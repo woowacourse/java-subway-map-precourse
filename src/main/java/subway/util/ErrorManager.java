@@ -1,11 +1,23 @@
 package subway.util;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class ErrorManager {
     public static void checkInput(String input) {
-        if(input != "Q" || input != "1" || input != "2" || input != "3" || input != "4") {
+        if(input.equals("Q")) {
+
+        } else if(input.equals("1")) {
+
+        } else if(input.equals("2")) {
+
+        } else if(input.equals("3")) {
+
+        } else if(input.equals("4")) {
+
+        } else {
             throw new IllegalArgumentException(Constants.COMMAND_FAIL);
         }
     }
@@ -16,16 +28,26 @@ public class ErrorManager {
         }
     }
 
-    public static void isStationExist(String input) {
-        int check = 0;
+    public static boolean isStationExist(String input) {
+        boolean check = false;
         for(Station station : StationRepository.stations()) {
             if(station.getName() == input) {
-                check = 1;
+                check = true;
+                break;
             }
         }
-        if(check == 0) {
-            throw new IllegalArgumentException();
+        return check;
+    }
+
+    public static boolean isLineExist(String input) {
+        boolean check = false;
+        for(Line line : LineRepository.lines()) {
+            if(line.getName() == input) {
+                check = true;
+                break;
+            }
         }
+        return check;
     }
 
 }
