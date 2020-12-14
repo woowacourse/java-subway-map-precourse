@@ -14,8 +14,10 @@ public enum LineMessage {
 
     LINE_NAME_DUPLICATION_ERROR("[ERROR] 노선 이름은 중복될 수 없습니다."),
     LINE_ADD_STATION_NAME_FAIL("[ERROR] 역 이름을 올바르게 입력해 주세요."),
-    LINE_ADD_LIMIT_FAIL("[ERROR] 노선 이름은 2글자 이상이여야 합니다.")
+    LINE_ADD_LIMIT_FAIL("[ERROR] 노선 이름은 2글자 이상이여야 합니다."),
+    LINE_TWO_NAME_SAME_ERROR("[ERROR] 상행 종착역과 하행 종착역의 이름은 달라야 합니다.")
     ;
+
 
     private final String text;
 

@@ -55,9 +55,17 @@ public class LineController {
 
             OutputView.downTerminusAddGuidePrint();
             downTerminus = InputView.scanStationName(scanner);
+
+
         } catch (IllegalArgumentException error) {
             return false;
         }
+
+        if (isTwoNameSame(upTerminus, downTerminus)) {
+            OutputView.twoNameSameErrorPrint();
+            return false;
+        }
+
 
         newLine = new Line(lineName);
         newLine.addStation(StationRepository.getStationFromName(upTerminus));
@@ -65,6 +73,10 @@ public class LineController {
 
         OutputView.lineAddSuccessPrint();
         return true;
+    }
+
+    private static boolean isTwoNameSame(String upTerminus, String downTerminus) {
+        return upTerminus.equals(downTerminus);
     }
 
     private static boolean lineDelete(Scanner scanner) {

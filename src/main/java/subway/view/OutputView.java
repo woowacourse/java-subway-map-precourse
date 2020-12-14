@@ -106,4 +106,8 @@ public class OutputView {
     public static void LineNameCountLimitFailPrint() {
         System.out.println(LineMessage.LINE_ADD_LIMIT_FAIL.getLineMessage());
     }
+
+    public static void twoNameSameErrorPrint() {
+        System.out.println(LineMessage.LINE_TWO_NAME_SAME_ERROR.getLineMessage());
+    }
 }
