@@ -86,6 +86,23 @@ class StationsTest {
                 .hasMessage("[ERROR] 해당 역이 없습니다.");
     }
 
+    @DisplayName("예외 : 삭제하려는 역이 노선에 등록되어 있으면 에러를 발생시킨다")
+    @Test
+    void 노선에_등록된_역() {
+        Station station1 = StationFactory.makeStation("상도역");
+        Station station2 = StationFactory.makeStation("장승역");
+        Station station3 = StationFactory.makeStation("잠실새내역");
+
+        StationRepository.addStation(station1);
+        StationRepository.addStation(station2);
+        StationRepository.addStation(station3);
+        LineRepository.addLine(LineFactory.makeLine("2호선", station1, station2));
+
+        assertThatThrownBy(() -> StationRepository.deleteStation(station1.getName()))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
+    }
+
     @DisplayName("지하철역 목록을 조회한다")
     @Test
     void 역_목록을_조회한다() {
@@ -98,7 +115,7 @@ class StationsTest {
         stations.addStation(StationFactory.makeStation(testName3));
 
         // 9와4/3역, 신도림역, 울릉도역 순서
-        List<String> expectedNames = Arrays.asList(testName2,testName1,testName3);
+        List<String> expectedNames = Arrays.asList(testName2, testName1, testName3);
 
         assertThat(stations.stationNames()).isEqualTo(expectedNames);
     }
