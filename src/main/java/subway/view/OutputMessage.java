@@ -43,10 +43,14 @@ public class OutputMessage {
     private static final String CHOICE_FUNCTION_MESSAGE="## 원하는 기능을 선택하세요";
     private static final String WRITE_STATION_NAME="## 등록할 역 이름을 입력하세요";
     private static final String WRITE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
+    private static final String WRITE_DELETE_LINE_NAME="## 등록할 노선의 이름을 입력하세요";
 
     private static final String WRITE_UP_STATION_NAME="## 등록할 노선의 상행 종점역 이름을 입력하세요";
     private static final String WRITE_DOWN_STATION_NAME="## 등록할 노선의 하행 종점역 이름을 입력하세요";
-
+    public static String deleteLineName(){
+        System.out.println(WRITE_DELETE_LINE_NAME);
+        return scanner.nextLine();
+    }
     public String registerLineUpStation(){
         System.out.println(WRITE_UP_STATION_NAME);
         return scanner.nextLine();

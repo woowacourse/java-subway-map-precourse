@@ -40,14 +40,12 @@ public class StationRepository {
     }
     public boolean containStationName(String tmpSaveName){
         System.out.println(tmpSaveName);
-
-        /*for(int i=0;i<stations.size();i++){
-
+        for(int i=0;i<stations.size();i++){
            if(stations.get(i).getName().equals(tmpSaveName)){
                System.out.println(tmpSaveName);
                return true;
            }
-        }*/
+        }
 
         System.out.println("[ERROR] 등록할 역이 존재하지 않습니다.");
         return false;
