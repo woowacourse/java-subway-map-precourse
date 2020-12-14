@@ -5,20 +5,20 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
-import subway.exception.LineErrorMessage;
+import subway.exception.LineException;
 
-public class Line implements LineErrorMessage {
+public class Line extends LineException {
     private static final int MINIMUM_STATIONS_WHEN_SECTION_TO_BE_DELETED = 3;
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final String HORIZONTAL_DELIMITER = SYMBOL_INFO + "---";
     private String name;
     private LinkedList<Station> stationsOnLine = new LinkedList<>(); // 해당 노선에 소속된 역(들)
 
-    public Line(String name) { // 변경 불가능
+    public Line(String name) {
         this.name = name;
     }
 
-    public String getName() { // 변경 불가능
+    public String getName() {
         return name;
     }
 
@@ -37,10 +37,10 @@ public class Line implements LineErrorMessage {
         int index = validateIndex(stationIndex);
         Station station = getStation(stationName);
         if (isStationInLine(station)) {
-            throw new IllegalArgumentException(ERROR_STATION_ALREADY_ON_LINE);
+            throw new DuplicatedStationsOnLineException(station, this);
         }
         if (!isIndexInRange(index - 1)) { // 순서는 1부터 입력 가능하므로
-            throw new IllegalArgumentException(ERROR_INDEX_NOT_IN_RANGE);
+            throw new InvalidStationIndexException(this, index);
         }
         station.enroll(this);
         stationsOnLine.add(index - 1, station);
@@ -49,8 +49,8 @@ public class Line implements LineErrorMessage {
     private int validateIndex(String stationIndex) {
         try {
             return Integer.parseInt(stationIndex);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ERROR_INVALID_INPUT_INDEX);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_INVALID_INPUT_INDEX);
         }
     }
 
@@ -59,17 +59,17 @@ public class Line implements LineErrorMessage {
         try {
             return stationStream.filter(station -> station.getName().equals(stationName)).findFirst().get();
         } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR_STATION_NOT_ON_STATION_REPOSITORY);
+            throw new StationNotOnRepository(stationName);
         }
     }
 
     public void deleteStation(String stationName) {
         if(!isSectionAbleToBeDeleted()) {
-            throw new IllegalArgumentException(ERROR_NOT_BE_ABLE_TO_DELETE_SECTION);
+            throw new TooShortLineToDeleteSectionException();
         }
         Station station = getStation(stationName);
         if(!isStationInLine(station)) {
-            throw new IllegalArgumentException(ERROR_STATION_NOT_ON_LINE);
+            throw new StationNotOnLineException(station);
         }
         station.disEnroll(this);
         stationsOnLine.remove(station);
@@ -91,7 +91,7 @@ public class Line implements LineErrorMessage {
         System.out.println(HORIZONTAL_DELIMITER);
         Iterator iterator = stationsOnLine.iterator();
         while (iterator.hasNext()) {
-            Station station = (Station)iterator.next();
+            Station station = (Station) iterator.next();
             System.out.println(SYMBOL_INFO + station.getName());
         }
     }

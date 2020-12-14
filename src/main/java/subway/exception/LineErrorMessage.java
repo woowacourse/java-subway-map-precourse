@@ -2,12 +2,7 @@ package subway.exception;
 
 public interface LineErrorMessage {
     /* Line */
-    String ERROR_INDEX_NOT_IN_RANGE = "[ERROR] 잘못된 순서입니다.";
-    String ERROR_STATION_ALREADY_ON_LINE = "[ERROR] 이미 존재하는 역입니다.";
-    String ERROR_STATION_NOT_ON_LINE = "[ERROR] 노선에 해당 역이 없습니다.";
-    String ERROR_STATION_NOT_ON_STATION_REPOSITORY = "[ERROR] 데이터베이스에 등록되지 않은 역입니다.";
-    String ERROR_NOT_BE_ABLE_TO_DELETE_SECTION = "[ERROR] 역이 너무 적어 구간을 삭제할 수 없습니다.";
-    String ERROR_INVALID_INPUT_INDEX = "\n[ERROR] 순서는 숫자를 입력해주세요!";
+
 
     /* LineRepository */
     String ERROR_INVALID_LINE_NAME_LENGTH = "[ERROR] 노선 이름이 너무 짧습니다.";
