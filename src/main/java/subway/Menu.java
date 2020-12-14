@@ -139,6 +139,9 @@ public class Menu {
         if (subMenuAction.equals(DELETE_SIGN)) {
             Edge.delete(inputView);
         }
+        if (subMenuAction.equals(BACK_SIGN)) {
+            MenuController.selectedMenus.clear();
+        }
         return true;
     }
 
