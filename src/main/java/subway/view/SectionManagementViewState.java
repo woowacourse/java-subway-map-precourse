@@ -78,11 +78,7 @@ public class SectionManagementViewState extends ViewState{
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterLineNameInputComponent());
         String lineName = getStationOrLineName(scanner);
         ViewLogger.printWhiteSpace();
-        Optional<Line> lineOptional = lineController.getLine(lineName);
-        if(!lineOptional.isPresent()){
-            throw new LineNotExistException();
-        }
-        return lineOptional.get();
+        return lineController.getLine(lineName);
     }
 
     private Station printRegisterLogAndGetInputStationNameAtLine(Scanner scanner, Line line){
@@ -100,18 +96,14 @@ public class SectionManagementViewState extends ViewState{
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRegisterStationOrderComponent());
         int position = getPosition(scanner);
         ViewLogger.printWhiteSpace();
-        lineController.addStationInLineAtCertainPosition(station, line, position);
+        lineController.addStationInLine(station, line, position);
     }
 
     private Line printRemoveInputLogAndGetInputLineName(Scanner scanner){
         ViewLogger.printLog(SectionManagementViewComponent.getSectionRemoveLineNameInputComponent());
         String lineName = getStationOrLineName(scanner);
         ViewLogger.printWhiteSpace();
-        Optional<Line> lineOptional = lineController.getLine(lineName);
-        if(!lineOptional.isPresent()){
-            throw new LineNotExistException();
-        }
-        return lineOptional.get();
+        return lineController.getLine(lineName);
     }
 
     private void printRemoveInputLogAndGetInputStationNameAtLine(Scanner scanner, Line line){
@@ -119,13 +111,7 @@ public class SectionManagementViewState extends ViewState{
         String stationName = getStationOrLineName(scanner);
         Station station = stationController.getStation(stationName);
         ViewLogger.printWhiteSpace();
-        if(!line.getStations().contains(station)){
-            throw new StationNotExistException();
-        }
-        if(line.getStations().size() <= 2){
-            throw new MinimumLineLengthException();
-        }
-        line.removeStation(station);
+        lineController.removeStationInLine(station, line);
     }
 
     private int getPosition(Scanner scanner){

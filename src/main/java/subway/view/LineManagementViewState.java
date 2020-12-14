@@ -111,7 +111,7 @@ public class LineManagementViewState extends ViewState {
         ViewLogger.printLog(LineManagementViewComponent.getLineRegisterComponent());
         String lineName = getLineOrStationName(scanner);
         ViewLogger.printWhiteSpace();
-        if(lineController.checkIfLineExist(lineName)){
+        if(lineController.isExistingLineName(lineName)){
             throw new DuplicatedLineNameException();
         }
         return lineName;
