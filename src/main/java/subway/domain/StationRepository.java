@@ -54,4 +54,15 @@ public class StationRepository {
         }
         OutputView.space();
     }
+
+    public static Station ifNotExistRegister(String stationName) {
+        for(Station station : stations){
+            if(station.getName().equals(stationName)){
+                return station;
+            }
+        }
+        Station newStation = new Station(stationName);
+        stations.add(newStation);
+        return newStation;
+    }
 }

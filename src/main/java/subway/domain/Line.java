@@ -50,7 +50,7 @@ public class Line {
             ErrorView.nameLengthError();
             return false;
         }
-        stations.add(new Station(stationName));
+        stations.add(StationRepository.ifNotExistRegister(stationName));
         return true;
     }
 
@@ -61,12 +61,12 @@ public class Line {
         OutputView.space();
     }
 
-    public boolean addStationByIndex(String name, Scanner scanner) {
-        if(name.length() < MINIMUM_LENGTH){
+    public boolean addStationByIndex(String stationName, Scanner scanner) {
+        if(stationName.length() < MINIMUM_LENGTH){
             ErrorView.nameLengthError();
             return false;
         }
-        if(duplicateName(name)){
+        if(duplicateName(stationName)){
             return false;
         }
         OutputView.writeOrderNumber();
@@ -74,7 +74,7 @@ public class Line {
         if(orderNumber == ERROR){
             return false;
         }
-        stations.add(orderNumber, new Station(name));
+        stations.add(orderNumber,StationRepository.ifNotExistRegister(stationName));
         return true;
     }
 
