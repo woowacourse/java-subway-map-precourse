@@ -21,13 +21,25 @@ public class SectionStations {
     public void add(Station station, int index) {
         SectionStation sectionStation = new SectionStation(station);
 
+        if (addIfLastIndex(sectionStation, index)) {
+            return;
+        }
+
+        addIndex(sectionStation, index);
+    }
+
+    private boolean addIfLastIndex(SectionStation sectionStation, int index) {
         if (index > sectionStations.size()) {
             sectionStation.setPrevSectionStation(sectionStations.get(sectionStations.size() - LAST_STATION_INDEX));
             sectionStations.add(sectionStation);
 
-            return;
+            return true;
         }
 
+        return false;
+    }
+
+    private void addIndex(SectionStation sectionStation, int index) {
         SectionStation targetSectionStation = sectionStations.get(sectionStations.size() - LAST_STATION_INDEX);
 
         for (int i = 0; i < sectionStations.size() - index; i++) {
@@ -48,23 +60,31 @@ public class SectionStations {
         }
 
         for (int i = 0; i < sectionStations.size() - USER_INTERFACE_INDEX; i++) {
-            if (targetSectionStation.getPrevStation().getStation().equals(station)) {
-                SectionStation prevStation = targetSectionStation.getPrevStation();
-                targetSectionStation.setPrevSectionStation(prevStation.getPrevStation());
-
-                sectionStations.remove(prevStation);
-
-                break;
-            }
-
+            changePrevStation(targetSectionStation, station);
             targetSectionStation = targetSectionStation.getPrevStation();
         }
 
         return true;
     }
 
+    private void changePrevStation(SectionStation targetSectionStation, Station station) {
+        if (targetSectionStation.getPrevStation().getStation().equals(station)) {
+            SectionStation prevStation = targetSectionStation.getPrevStation();
+            targetSectionStation.setPrevSectionStation(prevStation.getPrevStation());
+
+            sectionStations.remove(prevStation);
+        }
+    }
+
     public List<Station> getStations() {
         SectionStation targetSectionStation = sectionStations.get(sectionStations.size() - LAST_STATION_INDEX);
+
+        return getStations(targetSectionStation).stream()
+                .map(SectionStation::getStation)
+                .collect(Collectors.toList());
+    }
+
+    private List<SectionStation> getStations(SectionStation targetSectionStation) {
         List<SectionStation> sectionStations = new ArrayList<>();
 
         sectionStations.add(targetSectionStation);
@@ -76,8 +96,6 @@ public class SectionStations {
 
         Collections.reverse(sectionStations);
 
-        return sectionStations.stream()
-                .map(SectionStation::getStation)
-                .collect(Collectors.toList());
+        return sectionStations;
     }
 }
