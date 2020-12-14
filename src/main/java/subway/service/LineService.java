@@ -43,6 +43,13 @@ public class LineService {
             .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_ERROR));
     }
 
+    public static boolean hasStationInLines(Station station) {
+        return LineRepository.lines()
+            .entrySet()
+            .stream()
+            .anyMatch(line -> line.getValue().contains(station));
+    }
+
     public static void join(String lineName, String stationName, int sequence) {
         Map<Line, List<Station>> lines = LineRepository.lines();
         Line findLine = LineService.searchOneByName(lineName);
@@ -92,4 +99,5 @@ public class LineService {
         Station findStation) {
         return lines.get(findLine).stream().anyMatch(station -> station.equals(findStation));
     }
+
 }

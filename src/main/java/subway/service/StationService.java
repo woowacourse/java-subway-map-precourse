@@ -9,6 +9,7 @@ public class StationService {
     private static final String DUPLICATE_ERROR = "[ERROR] 이미 등록된 역 이름입니다.\n";
     private static final String NOT_DELETE_ERROR = "[ERROR] 삭제할 수 없습니다.\n";
     private static final String NOT_EXIST_ERROR = "[ERROR] 등록할 수 없습니다.\n";
+    private static final String STATION_IN_LINES_ERROR = "[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.\n";
 
     public static void register(String stationName) {
         validateDuplicate(stationName);
@@ -25,8 +26,15 @@ public class StationService {
     }
 
     public static void delete(String stationName) {
+        validateStationInLines(stationName);
         if (!StationRepository.deleteStationByName(stationName)) {
             throw new IllegalArgumentException(NOT_DELETE_ERROR);
+        }
+    }
+
+    private static void validateStationInLines(String stationName) {
+        if(LineService.hasStationInLines(searchOneByName(stationName))){
+            throw new IllegalArgumentException(STATION_IN_LINES_ERROR);
         }
     }
 
