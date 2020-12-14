@@ -2,6 +2,7 @@ package subway.domain.controller;
 
 import subway.domain.ErrorMessage;
 import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 
 public class SectionManageController {
@@ -22,12 +23,16 @@ public class SectionManageController {
     }
 
     public void processDeleteSection(Line line, Station station) throws IllegalArgumentException{
-        if (line.getStation().size() > MIN_STATIONS) {
-            line.removeOrderedStation(station);
-            station.removeOrderedLine(line);
+        if (line.getStation().size() <= MIN_STATIONS) {
+            ErrorMessage.isLessThanTwoStation();
+            throw new IllegalArgumentException();
         }
-        ErrorMessage.isLessThanTwoStation();
-        throw new IllegalArgumentException();
+        if (LineRepository.isFixedStationOnLine(station, line)) {
+            ErrorMessage.isNotAbleToDeleteStation();
+            throw new IllegalArgumentException();
+        }
+        line.removeOrderedStation(station);
+        station.removeOrderedLine(line);
     }
 
 }

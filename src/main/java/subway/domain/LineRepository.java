@@ -28,6 +28,45 @@ public class LineRepository {
         return Collections.unmodifiableList(fixedLines);
     }
 
+    public static List<Station> fixedStationInLineTwo() {
+        List<Station> lineTwoStations = new ArrayList<>();
+        lineTwoStations.add(StationRepository.STATION_KYODAE);
+        lineTwoStations.add(StationRepository.STATION_GANGNAM);
+        lineTwoStations.add(StationRepository.STATION_YEOKSAM);
+        return lineTwoStations;
+    }
+
+    public static List<Station> fixedStationInLineThree() {
+        List<Station> lineThreeStations = new ArrayList<>();
+        lineThreeStations.add(StationRepository.STATION_KYODAE);
+        lineThreeStations.add(StationRepository.STATION_NAMBU_TERMINAL);
+        lineThreeStations.add(StationRepository.STATION_YANGJAE);
+        lineThreeStations.add(StationRepository.STATION_MAEBONG);
+        return lineThreeStations;
+    }
+
+    public static List<Station> fixedStationInLineShinBunDang() {
+        List<Station> lineShinBunDangStations = new ArrayList<>();
+        lineShinBunDangStations.add(StationRepository.STATION_GANGNAM);
+        lineShinBunDangStations.add(StationRepository.STATION_YANGJAE);
+        lineShinBunDangStations.add(StationRepository.STATION_YANGJAE_FOREST);
+        return lineShinBunDangStations;
+    }
+
+    public static boolean isFixedStationOnLine(Station station, Line line) {
+        if (!fixedLines().contains(line)) {
+            return true;
+        }
+        if (line.equals(LINE_NUMBER_2) && fixedStationInLineTwo().contains(station)) {
+            return true;
+        } else if (line.equals(LINE_NUMBER_3) && fixedStationInLineThree().contains(station)) {
+            return true;
+        } else if (line.equals(LINE_NUMBER_SHINBUNDANG) && fixedStationInLineShinBunDang().contains(station)) {
+            return true;
+        }
+        return false;
+    }
+
     private static void addStationsOnLine() {
         LINE_NUMBER_2.addStation(StationRepository.STATION_KYODAE);
         LINE_NUMBER_2.addStation(StationRepository.STATION_GANGNAM);

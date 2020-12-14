@@ -40,14 +40,6 @@ public class Line {
     }
 
     public void removeOrderedStation(Station station) {
-        for (Line line : LineRepository.fixedLines()) {
-            if (line.getName().equals(getName()) && line.getStation().contains(station)) {
-                ErrorMessage.isNotAbleToDeleteStation();
-                return;
-            }
-        }
-        Optional<Station> searchedLine = getStation().stream()
-                .filter(station1 -> station1.equals(station)).findAny();
         if (StationRepository.stations().contains(station)) {
             stations.removeIf(station1 -> Objects.equals(station1.getName(), station.getName()));
         }
