@@ -3,12 +3,19 @@ package subway.domain.line;
 import subway.domain.section.SectionStations;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.exception.NameLengthException;
 
 public class Line {
+    private static final int NAME_LENGTH_MIN = 2;
+
     private String name;
     private SectionStations sectionStations;
 
     public Line(String name) {
+        if (name.length() < NAME_LENGTH_MIN) {
+            throw new NameLengthException();
+        }
+
         this.name = name;
     }
 

@@ -2,7 +2,6 @@ package subway.domain.station;
 
 import subway.domain.State;
 import subway.exception.AlreadyExistStationException;
-import subway.exception.NameLengthException;
 import subway.exception.NoSuchStationException;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -10,8 +9,6 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class StationManager {
-    private static final int NAME_LENGTH_MIN = 2;
-
     public static State addStation(State state, Scanner scanner) {
         if (state.equals(State.STATION_ADD)) {
             OutputView.printInputRegisterStation();
@@ -26,10 +23,6 @@ public class StationManager {
     public static void addStation(String name) {
         if (StationRepository.isExistStation(name)) {
             throw new AlreadyExistStationException();
-        }
-        
-        if (name.length() < NAME_LENGTH_MIN) {
-            throw new NameLengthException();
         }
 
         StationRepository.addStation(new Station(name));

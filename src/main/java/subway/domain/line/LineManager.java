@@ -4,7 +4,6 @@ import subway.domain.State;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.AlreadyExistLineException;
-import subway.exception.NameLengthException;
 import subway.exception.NoSuchLineException;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -12,8 +11,6 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class LineManager {
-    private static final int NAME_LENGTH_MIN = 2;
-
     public static State addLine(State state, Scanner scanner) {
         if (state.equals(State.LINE_ADD)) {
             OutputView.printInputRegisterLine();
@@ -28,10 +25,6 @@ public class LineManager {
     public static void addLine(String name, Scanner scanner) {
         if (LineRepository.isExistLine(name)) {
             throw new AlreadyExistLineException();
-        }
-
-        if (name.length() < NAME_LENGTH_MIN) {
-            throw new NameLengthException();
         }
 
         Line line = new Line(name);
