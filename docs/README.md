@@ -108,5 +108,5 @@
       - [ERROR] 등록되지 않은 역 이름입니다.
 ```
 
-### 🖥 실행  
-* 예외 처리  
+### 🖥 실행 영상 (아래 사진 클릭)
+[![Watch the video](https://user-images.githubusercontent.com/56839474/102128230-ec8fec80-3e90-11eb-98e6-c0929782b303.png)](https://youtu.be/2ZZIj5I03mY)
