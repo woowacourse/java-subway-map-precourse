@@ -1,15 +1,12 @@
 package subway;
 
 import java.util.Scanner;
+import view.OutputView;
 
 public class SectionManager {
 
     public static final String WANT_QUIT_CODE = "B";
     public static String userOption = "";
-    public static final String MAIN_TITLE = "## 구간 관리 화면";
-    public static final String SECTION_ENROLLMENT = "1. 구간 등록";
-    public static final String SECTION_DELETION = "2. 구간 삭제";
-    public static final String QUIT_OPTION = "B. 돌아가기";
     public static final String ASK_OPTION_MESSAGE = "## 원하는 기능을 선택하세요.";
     public static final String ERROR_PREFIX = "[ERROR] ";
     private static final int OPTION_MIN = 1;
@@ -30,17 +27,9 @@ public class SectionManager {
     public static final String DELETION_FAIL_INFO_MESSAGE = "존재하지 않거나 삭제할 수 없습니다";
 
     public static void manage(Scanner scanner) {
-        printSectionManagementScreen();
+        OutputView.printSectionManagerMainScreen();
         userOption = getUserOption(scanner);
         callOptionMenu(userOption, scanner);
-    }
-
-    public static void printSectionManagementScreen() {
-        System.out.println(MAIN_TITLE);
-        System.out.println(SECTION_ENROLLMENT);
-        System.out.println(SECTION_DELETION);
-        System.out.println(QUIT_OPTION);
-        System.out.println();
     }
 
     public static String getUserOption(Scanner scanner) {

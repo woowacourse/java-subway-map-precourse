@@ -2,14 +2,11 @@ package subway;
 
 import java.util.Scanner;
 import subway.domain.Station;
+import view.OutputView;
 
 public class StationManager {
 
     public static final String WANT_QUIT_CODE = "B";
-    public static final String MAIN_TITLE = "## 역 관리 화면";
-    public static final String STATION_ENROLLMENT = "1. 역 등록";
-    public static final String STATION_DELETION = "2. 역 삭제";
-    public static final String STATION_SEARCH = "3. 역 조회";
     public static final String QUIT_OPTION = "B. 돌아가기";
     public static final String ASK_OPTION_MESSAGE = "## 원하는 기능을 선택하세요.";
     public static final String ERROR_PREFIX = "[ERROR] ";
@@ -29,18 +26,9 @@ public class StationManager {
     public static String userOption = "";
 
     public static void manage(Scanner scanner) {
-        printStationManagementScreen();
+        OutputView.printStationManagerMainScreen();
         userOption = getUserOption(scanner);
         callOptionMenu(userOption, scanner);
-    }
-
-    public static void printStationManagementScreen() {
-        System.out.println(MAIN_TITLE);
-        System.out.println(STATION_ENROLLMENT);
-        System.out.println(STATION_DELETION);
-        System.out.println(STATION_SEARCH);
-        System.out.println(QUIT_OPTION);
-        System.out.println();
     }
 
     public static String getUserOption(Scanner scanner) {
