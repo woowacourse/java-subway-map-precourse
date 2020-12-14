@@ -27,7 +27,8 @@ public class SectionValidator {
     }
 
     private static void validateOrderIsLowerThanLineSize(String lineName, int order) {
-        if (!LineRepository.isBiggerLineSizeThan(lineName, order)) {
+        int actualOrderInLine = order - 1; // List의 index는 실제 순서보다 -1
+        if (!LineRepository.isBiggerLineSizeThan(lineName, actualOrderInLine)) {
             throw new IllegalElementException("\n[ERROR] 순서는 노선의 범위를 넘지 않아야 합니다.");
         }
     }
