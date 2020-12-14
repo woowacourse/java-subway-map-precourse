@@ -44,12 +44,12 @@ public class RouteManagement {
 
     private static void inputLine(Input input) {
         Station station;
-        int order;
+        int index;
         System.out.println(INPUT_STATION_NAME);
         station = StationRepository.getStation(input.inputStationName());
         System.out.println(INPUT_ORDER);
-        order = Integer.parseInt(input.inputOrder());
-        targetLine.addLineStation(order, station);//station 있어야 넣는거니까 오류 발생 가능
+        index = Integer.parseInt(input.inputOrder());
+        targetLine.addLineStation(index, station);//station 있어야 넣는거니까 오류 발생 가능
     }
 
     private static boolean checkFunctionButton(String answer) {

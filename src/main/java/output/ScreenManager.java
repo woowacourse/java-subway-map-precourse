@@ -37,7 +37,7 @@ public class ScreenManager {
             startManagementScreen(new ManagementScreen(selectedMenu));
     }
 
-    private void startManagementScreen(ManagementScreen managementScreen) { //여기서 오류 처리 하면 예외 복구가 가능할 거 같음
+    private void startManagementScreen(ManagementScreen managementScreen) {
         handleManagementException(managementScreen);
     }
 

@@ -1,9 +1,6 @@
 package subway.domain;
 
-import exception.AlreadyExistLineNameException;
-import exception.DownLineStationException;
-import exception.NoExistStationNameException;
-import exception.UpLineStationException;
+import exception.*;
 import input.Input;
 
 import java.util.ArrayList;
@@ -45,18 +42,17 @@ public class Line {
     }
 
     public void addLineStation(int index, Station station) {
-        if (StationRepository.isStation(station.getName())) {
+        if (StationRepository.isStation(station.getName()))
             throw new NoExistStationNameException();
-        }
-        if (!checkLineStation(station.getName())) {
+        if (!checkLineStation(station.getName()))
             throw new AlreadyExistLineNameException();
-        }
-        if (index == lineStations.size()) {
+        if (index == lineStations.size())
             throw new DownLineStationException();
-        }
-        if (index == 0) {
+        if (index == 0)
             throw new UpLineStationException();
-        }
+        if (index > lineStations.size())
+            throw new OverRangeException();
+
         station.setLines(this.name);
         lineStations.add(index, station);
     }

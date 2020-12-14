@@ -21,7 +21,7 @@ public class MainScreen implements Screen{
     @Override
     public void logic(Input input) {
         System.out.println(HEAD + SELECT_FUNCTION);
-        String answer = input.inputFunction(); //입력.
+        String answer = input.inputFunction();
         System.out.println();
         setSelectedScreen(answer);
     }
