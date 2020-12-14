@@ -21,7 +21,7 @@ public class Validator {
     private static String STATION_NAME_REGISTERED_IN_ROUTE_MESSAGE = "이미 구간에 등록된 역 이름입니다.";
     private static String STATION_NAME_NOT_REGISTERED_IN_ROUTE_MESSAGE = "구간에 등록되지 않은 역 이름입니다.";
     private static String UNDER_MINIMUN_ROUTE_LENGTH_MESSAGE = "하나의 노선은 최소 "
-            + LineRepository.ROUTE_LENGTH_MIN + "개 이상의 역을 포함해야 합니다.";
+            + Line.ROUTE_LENGTH_MIN + "개 이상의 역을 포함해야 합니다.";
     private static String NOT_DIGIT_MESSAGE = "숫자만 입력해 주십시오.";
     private static String INTEGER_OVERFLOW_MESSAGE = Integer.MAX_VALUE + " 이하의 수를 입력해 주십시오.";
     private static String OUT_OF_BOUND_MESSAGE = "%d 이상 %d 이하의 수를 입력해 주십시오.";
@@ -61,7 +61,7 @@ public class Validator {
         checkAllDigits(stationOrderInRoute);
         checkIntegerNotOverflow(stationOrderInRoute);
         checkInValidRange(Integer.parseInt(stationOrderInRoute),
-                LineRepository.ROUTE_START, LineRepository.getRouteLengthByName(lineName) + LineRepository.ROUTE_START);
+                Line.ROUTE_START, LineRepository.getRouteLengthByName(lineName) + Line.ROUTE_START);
     }
 
     public static void checkValidStationNameToDeleteFromRoute(String stationNameToDeleteFromRoute, String lineName)
@@ -157,7 +157,7 @@ public class Validator {
     }
     
     private static void checkMinimumRouteLength(String lineName) {
-        if (LineRepository.getRouteLengthByName(lineName) <= LineRepository.ROUTE_LENGTH_MIN) {
+        if (LineRepository.getRouteLengthByName(lineName) <= Line.ROUTE_LENGTH_MIN) {
             throw new IllegalArgumentException(UNDER_MINIMUN_ROUTE_LENGTH_MESSAGE);
         }
     }

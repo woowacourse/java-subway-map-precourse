@@ -1,6 +1,7 @@
 package subway.controller.manager;
 
 import subway.controller.Controller;
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.screen.ActionType;
 import subway.screen.EntityType;
@@ -33,7 +34,7 @@ public class RouteManager {
             lineName = controller.askName(EntityType.ROUTE, ActionType.REGISTER);
             stationName = controller.askStationNameToRegisterToRoute(lineName);
             stationOrderInRoute = Integer.parseInt(controller.askStationOrderInRoute(lineName));
-            LineRepository.addStationToRouteByName(lineName, stationName, stationOrderInRoute - LineRepository.ROUTE_START);
+            LineRepository.addStationToRouteByName(lineName, stationName, stationOrderInRoute - Line.ROUTE_START);
             view.printSuccessMessage(EntityType.ROUTE, ActionType.REGISTER);
         } catch (Exception exception) {
             view.printErrorMessage(exception);
