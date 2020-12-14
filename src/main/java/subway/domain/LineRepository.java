@@ -33,4 +33,12 @@ public class LineRepository {
     public static boolean hasDuplicatedLine(Line line) {
         return lines.contains(line);
     }
+
+    public static void printLineInfo(){
+        lines.forEach(line -> {
+            OutputView.printLineTitle(line.getName());
+            line.getPath().printAllPath();
+            OutputView.printNewLine();
+        });
+    }
 }

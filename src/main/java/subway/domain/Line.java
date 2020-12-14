@@ -20,4 +20,8 @@ public class Line {
     public Station getDownLine() {
         return pathInfo.getDownLine();
     }
+
+    public Path getPath() {
+        return pathInfo;
+    }
 }

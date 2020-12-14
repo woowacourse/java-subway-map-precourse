@@ -1,5 +1,6 @@
 package subway.view.screen;
 
+import subway.domain.LineRepository;
 import subway.view.OutputView;
 
 import java.util.Scanner;
@@ -11,13 +12,13 @@ public class PrintMapScreen implements Screen {
 
     @Override
     public void show() {
-        OutputView.printTitle(CHANGE_LINE + DOUBLE_SHARP + TITLE);
+        OutputView.printNewLine();
+        OutputView.printTitle(DOUBLE_SHARP + TITLE);
     }
 
     @Override
     public void run(Scanner scanner) {
-        OutputView.printMapTitle("2호선");
-        OutputView.printMapStation("교대역");
+        LineRepository.printLineInfo();
         OutputView.print(ENTER);
         ScreenStack.returnToFirstScreen();
     }

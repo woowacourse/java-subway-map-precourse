@@ -23,7 +23,7 @@ public class MainScreen implements Screen {
 
     @Override
     public void show() {
-        OutputView.printTitle(CHANGE_LINE + DOUBLE_SHARP + TITLE);
+        OutputView.printTitle(DOUBLE_SHARP + TITLE);
         int i;
         for (i = 0; i < MAIN_MENU_ELEMENT.size(); i++) {
             OutputView.printMenus(Integer.toString(i + 1) + DOT + MAIN_MENU_ELEMENT.get(i).toString() + SPACE + MAIN_MENU_ACTION.get(i).toString());
@@ -33,7 +33,8 @@ public class MainScreen implements Screen {
 
     @Override
     public void run(Scanner scanner) {
-        OutputView.print(CHANGE_LINE + DOUBLE_SHARP + SELECT_FUNCTION);
+        OutputView.printNewLine();
+        OutputView.print(DOUBLE_SHARP + SELECT_FUNCTION);
         String command = InputView.getCommand(scanner);
         if (command.equals(EXIT_COMMAND)) {
             ScreenStack.exit();

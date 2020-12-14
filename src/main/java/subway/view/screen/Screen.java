@@ -9,7 +9,6 @@ public interface Screen {
     public static final String EXIT_MARK = "Q. ";
     public static final String BACK_MARK = "B. ";
     public static final String DOT = ". ";
-    public static final String CHANGE_LINE = "\n";
     public static final int MIN_MENU_NUMBER = 1;
 
 

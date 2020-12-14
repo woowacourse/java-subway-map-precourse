@@ -17,12 +17,16 @@ public class OutputView {
         System.out.println(string);
     }
 
-    public static final void printMapTitle(String line) {
+    public static final void printNewLine(){
+        System.out.println();
+    }
+
+    public static final void printLineTitle(String line) {
         System.out.println(INFORMATION_MARK + line);
         System.out.println(INFORMATION_MARK + SEPARATER);
     }
 
-    public static final void printMapStation(String station) {
+    public static final void printStation(String station) {
         System.out.println(INFORMATION_MARK + station);
     }
 

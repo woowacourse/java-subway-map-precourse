@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -33,6 +35,12 @@ public class Path {
 
     public Station getDownLine() {
         return paths.getLast();
+    }
+
+    public void printAllPath(){
+        for(Station station: paths){
+            OutputView.printStation(station.getName());
+        }
     }
 }
 
