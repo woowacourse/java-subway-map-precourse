@@ -11,6 +11,7 @@ public class UserInterface {
 
     public UserInterface(Scanner scanner) {
         this.scanner = scanner;
+        StationManagementView.getInstance().setScanner(scanner);
     }
 
     static void setView(View view) {
@@ -31,8 +32,6 @@ public class UserInterface {
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
-
-            printEmptyLine();
         }
 
         printApplicationShowDown();
@@ -40,10 +39,6 @@ public class UserInterface {
 
     private void printInputGuidance() {
         System.out.println("## 원하는 기능을 선택하세요.");
-    }
-
-    private void printEmptyLine() {
-        System.out.println();
     }
 
     private void printApplicationShowDown() {
