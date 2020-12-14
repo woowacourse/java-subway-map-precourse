@@ -20,19 +20,23 @@ public class SectionRegisterView extends ManagerView {
 	}
 
 	public void registerSection(Scanner scanner) {
-		String lineName = scanner.nextLine();
-		Line line = LineRepository.getLineByName(lineName);
-		
-		printTopMenu(STATION_NAME_INPUT_MESSAGE);
-		String stationName = scanner.nextLine();
-		Station station = StationRepository.getStationByName(stationName);
-		
-		printTopMenu(INDEX_INPUT_MESSAGE);
-		int index = Integer.parseInt(scanner.nextLine());
-		
-		line.addStation(index, station);
+		try {
+			String lineName = scanner.nextLine();
+			Line line = LineRepository.getLineByName(lineName);
+
+			printTopMenu(STATION_NAME_INPUT_MESSAGE);
+			String stationName = scanner.nextLine();
+			Station station = StationRepository.getStationByName(stationName);
+
+			printTopMenu(INDEX_INPUT_MESSAGE);
+			int index = Integer.parseInt(scanner.nextLine());
+
+			line.addStation(index, station);
+		} catch (Exception e) {
+			printInfo(e.getMessage());
+		}
 	}
-	
+
 	@Override
 	public void print() {
 		printTopMenu(LINE_INPUT_MESSAGE);

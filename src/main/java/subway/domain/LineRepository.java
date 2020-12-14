@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
+	private static final String NOT_FOUND_LINE_MESSAGE = "입력한 노선을 찾을 수 없습니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -18,7 +19,7 @@ public class LineRepository {
     			return line;
     		}
     	}
-		return null;
+		throw new IllegalArgumentException(NOT_FOUND_LINE_MESSAGE);
     }
 
     public static void addLine(Line line) {
