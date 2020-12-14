@@ -1,12 +1,12 @@
 package subway.controller;
 
 import subway.service.SectionService;
-import subway.service.StationService;
 import subway.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static subway.common.ServiceMenu.*;
 import static subway.view.OutputView.printMenuMessage;
 import static subway.view.OutputView.warnMessage;
 
@@ -18,29 +18,28 @@ public class SectionController {
     private final String OPTION_SELECT_WARN = "선택지 안의 기능을 선택해주세요.";
     private final List<String> MENU_MESSAGES =
             Arrays.asList(SECTION_MENU, ADD_SECTION, DELETE_SECTION, BACK);
-    private final List<String> MENU_OPTIONS = Arrays.asList("1", "2", "B");
 
     public void service(InputView inputView) {
-        String option;
+        String command;
         while(true) {
             printMenuMessage(MENU_MESSAGES);
-            option = inputView.inputName();
-            if (!MENU_OPTIONS.contains(option)) {
+            command = inputView.inputName();
+            if (isValidCommand(command)) {
                 warnMessage(OPTION_SELECT_WARN);
                 continue;
             }
-            if (option.equals(String.valueOf(BACK.charAt(0)))) {
+            if (isBackCommand(command)) {
                 break;
             }
-            menuSelector(option, inputView);
+            menuSelector(command, inputView);
         }
     }
 
-    public void menuSelector(String option, InputView inputView) {
-        if (option.equals(String.valueOf(ADD_SECTION.charAt(0)))) {
+    public void menuSelector(String command, InputView inputView) {
+        if (isAddCommand(command)) {
             addSection(inputView);
         }
-        if (option.equals(String.valueOf(DELETE_SECTION.charAt(0)))) {
+        if (isDeleteCommand(command)) {
             deleteSection(inputView);
         }
     }
