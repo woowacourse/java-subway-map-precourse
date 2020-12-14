@@ -5,6 +5,7 @@ import subway.domain.Station;
 import java.util.List;
 
 public class IntervalError {
+    private static final int SIZE = 2;
 
     public static boolean checkValidStation(String name, List<Station> stationList) {
         for (Station station : stationList) {
@@ -14,4 +15,5 @@ public class IntervalError {
         }
         return true;
     }
+
 }

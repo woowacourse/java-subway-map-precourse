@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private String name;
@@ -24,6 +25,10 @@ public class Line {
 
     public void addStation(String stationName, int index) {
         stationList.add(index-1, new Station(stationName));
+    }
+
+    public boolean deleteStation(String stationName) {
+        return stationList.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
     /*public boolean equal(String lineName) {
