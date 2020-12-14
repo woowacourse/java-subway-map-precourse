@@ -1,6 +1,6 @@
 package subway.domain;
 
-import subway.exception.StationAlreadyExistsException;
+import subway.exception.AlreadyRegisteredStationNameException;
 import subway.exception.StationNameLengthException;
 
 public class Station {
@@ -33,7 +33,7 @@ public class Station {
 
     private static void validateExists(String name) {
         if (StationRepository.exists(name)) {
-            throw new StationAlreadyExistsException(name);
+            throw new AlreadyRegisteredStationNameException(name);
         }
     }
 }
