@@ -14,7 +14,7 @@ public class StationController {
 		options.put(Options.OPTION_1.getOption(), StationController::registerStation);
 		options.put(Options.OPTION_2.getOption(), StationController::deregisterStation);
 		options.put(Options.OPTION_3.getOption(), (scanner) -> View.showStations());
-		options.put(Options.BACK.getOption(), null);
+		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
 	private static void registerStation(Scanner scanner) {
