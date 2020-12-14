@@ -1,5 +1,6 @@
 package subway;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInterfaceView {
@@ -65,5 +66,16 @@ public class UserInterfaceView {
         this.scanner = scanner;
     }
 
+    public void start() {
+        while (true) {
+            if (mainStartAndReturnIsQuit()) {
+                break;
+            }
+        }
+    }
 
+    public boolean mainStartAndReturnIsQuit() {
+
+        return false;
+    }
 }
