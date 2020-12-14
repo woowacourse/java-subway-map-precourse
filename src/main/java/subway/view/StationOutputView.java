@@ -11,15 +11,15 @@ public class StationOutputView extends OutputView {
 
     public static void requestStationNameToAdd() {
         String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
-            RequestObjectParts.STATION_NAME);
+            RequestObjectParts.STATION_NAME,
+            RequestActionParts.TO_ADD);
         printMessage(message);
     }
 
     public static void requestStationNameToDelete() {
         String message = getRequestMessage(
-            RequestActionParts.TO_DELETE, 
-            RequestObjectParts.STATION_NAME);
+            RequestObjectParts.STATION_NAME,
+            RequestActionParts.TO_DELETE);
         printMessage(message);
     }
 

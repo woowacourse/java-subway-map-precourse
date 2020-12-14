@@ -8,36 +8,36 @@ import subway.view.messageparts.RequestObjectParts;
 public class SectionOutputView extends OutputView {
     public static void requestLineForAddSection() {
         String message = getRequestMessage(
-            RequestActionParts.EMPTY, 
-            RequestObjectParts.LINE_FOR_ADD_SECTION);
+            RequestObjectParts.LINE_FOR_ADD_SECTION,
+            RequestActionParts.EMPTY);
         printMessage(message);
     }
 
     public static void requestStationForAddSection() {
         String message = getRequestMessage(
-            RequestActionParts.EMPTY, 
-            RequestObjectParts.STATION_FOR_ADD_SECTION);
+            RequestObjectParts.STATION_FOR_ADD_SECTION,
+            RequestActionParts.EMPTY);
         printMessage(message);
     }
 
     public static void requestSectionOrder() {
-        String message = getRequestMessage(
-            RequestActionParts.EMPTY, 
-            RequestObjectParts.SECTION_ORDER);
+        String message = getRequestMessage( 
+            RequestObjectParts.SECTION_ORDER,
+            RequestActionParts.EMPTY);
         printMessage(message);
     }
 
     public static void requestLineForDeleteSection() {
         String message = getRequestMessage(
-            RequestActionParts.TO_DELETE, 
-            RequestObjectParts.LINE_FOR_DELETE_SECTION);
+            RequestObjectParts.LINE_FOR_DELETE_SECTION,
+            RequestActionParts.TO_DELETE);
         printMessage(message);
     }
 
     public static void requestStationForDeleteSection() {
         String message = getRequestMessage(
-            RequestActionParts.TO_DELETE, 
-            RequestObjectParts.STATION_FOR_DELETE_SECTION);
+            RequestObjectParts.STATION_FOR_DELETE_SECTION,
+            RequestActionParts.TO_DELETE);
         printMessage(message);
     }
 

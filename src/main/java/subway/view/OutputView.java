@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println();
     }
 
-    protected static String getRequestMessage(RequestActionParts action, RequestObjectParts object) {
+    protected static String getRequestMessage(RequestObjectParts object, RequestActionParts action) {
         return String.format(REQUEST_INPUT_FORMAT, action.toString() + object.toString());
     }
 

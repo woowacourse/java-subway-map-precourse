@@ -10,30 +10,30 @@ public class LineOutputView extends OutputView {
     private static final String LINE_LIST = "노선 목록";
 
     public static void requestLineNameToAdd() {
-        String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
-            RequestObjectParts.LINE_NAME);
+        String message = getRequestMessage( 
+            RequestObjectParts.LINE_NAME,
+            RequestActionParts.TO_ADD);
         printMessage(message);
     }
 
     public static void requestUpstreamTerminus() {
         String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
-            RequestObjectParts.UPSTREAM_TERMINUS);
+            RequestObjectParts.UPSTREAM_TERMINUS,
+            RequestActionParts.TO_ADD);
         printMessage(message);
     }
 
     public static void requestDownstreamTerminus() {
-        String message = getRequestMessage(
-            RequestActionParts.TO_ADD, 
-            RequestObjectParts.DOWNSTREAM_TERMINUS);
+        String message = getRequestMessage( 
+            RequestObjectParts.DOWNSTREAM_TERMINUS,
+            RequestActionParts.TO_ADD);
         printMessage(message);
     }
 
     public static void requestLineNameToDelete() {
         String message = getRequestMessage(
-            RequestActionParts.TO_DELETE, 
-            RequestObjectParts.LINE_NAME);
+            RequestObjectParts.LINE_NAME,
+            RequestActionParts.TO_DELETE);
         printMessage(message);
     }
 
