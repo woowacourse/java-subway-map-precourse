@@ -2,7 +2,7 @@ package subway.domain.line;
 
 import java.util.regex.Pattern;
 
-public class LineValidator {
+public class LineNameValidator {
     private static final int MIN_NAME_LENGTH = 2;
     private static final int MAX_NAME_LENGTH = 100;
     private static final String TILDE = "~";
