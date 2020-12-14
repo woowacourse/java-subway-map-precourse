@@ -5,8 +5,9 @@ import static subway.view.OutputView.NEWLINE;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import subway.domain.LineRepository;
 import subway.exception.ExitSystemException;
-import subway.exception.InvalidChoiceInputException;
+import subway.exception.InvalidChoiceException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -23,7 +24,7 @@ public class MainMenuController {
             try {
                 route(InputView.getInput());
             } catch (ExitSystemException e) {
-                OutputView.print(e.getMessage());
+                OutputView.println(e.getMessage());
                 return;
             }
         }
@@ -37,12 +38,14 @@ public class MainMenuController {
         Arrays.stream(Menu.values())
                 .filter(menu -> menu.button.equals(input))
                 .findAny()
-                .orElseThrow(InvalidChoiceInputException::new)
+                .orElseThrow(() -> {
+                    throw new InvalidChoiceException(input);
+                })
                 .goToMenu();
     }
 
     private static void printSubwayMap() {
-        // todo 서비스로 이동
+        OutputView.printSubwayMap(LineRepository.lines());
     }
 
     private static void exitSystem() {
@@ -60,7 +63,6 @@ public class MainMenuController {
         private final String detail;
         private final Runnable runnable;
 
-        //1. 역 등록
         Menu(String button, String detail, Runnable runnable) {
             this.button = button;
             this.detail = detail;

@@ -6,7 +6,7 @@ import static subway.view.OutputView.NEWLINE;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import subway.exception.GoBackToPrevControllerException;
-import subway.exception.InvalidChoiceInputException;
+import subway.exception.InvalidChoiceException;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -41,7 +41,7 @@ public class StationMenuController {
         Arrays.stream(Menu.values())
                 .filter(menu -> menu.button.equals(input))
                 .findAny()
-                .orElseThrow(() -> {throw new InvalidChoiceInputException(input);})
+                .orElseThrow(() -> {throw new InvalidChoiceException(input);})
                 .goToMenu();
     }
 
@@ -61,6 +61,7 @@ public class StationMenuController {
         OutputView.printNotice("삭제할 역 이름을 입력하세요.");
         while (true) {
             try {
+                // todo 구간에 등록된 역은 삭제불가
                 StationService.removeStationByName(InputView.getInput());
                 return;
             } catch (Exception e) {
@@ -70,7 +71,7 @@ public class StationMenuController {
     }
 
     private static void listStations() {
-        OutputView.print(NEWLINE);
+        OutputView.println(NEWLINE);
         OutputView.printNotice("역 목록");
         StationService.listAllStations();
     }
