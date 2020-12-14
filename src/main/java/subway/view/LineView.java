@@ -5,23 +5,22 @@ import java.util.Scanner;
 import subway.Subway;
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.model.MenuGroup.Menu;
 import subway.util.Constants;
 import subway.util.DialogUtils;
 import subway.util.InputUtils;
 import subway.util.MessageUtils;
 
-public class LineView {
+public class LineView extends AbstractView {
 
-    private boolean isRunning = true;
-
-    private Subway subway;
-    private Scanner scanner;
     private Map<String, Runnable> menuActionMap;
 
     public LineView(Subway subway, Scanner scanner) {
-        this.subway = subway;
-        this.scanner = scanner;
+        super(subway, scanner);
+    }
 
+    @Override
+    public void initView() {
         menuActionMap = Map.of(
             "1", this::insertLine,
             "2", this::deleteLine,
@@ -30,25 +29,14 @@ public class LineView {
         );
     }
 
-    public void start() {
-        isRunning = true;
-        while (isRunning) {
-            menuSelector();
-        }
+    @Override
+    public Menu getMenu() {
+        return Constants.MENU_GROUPS.get(Constants.LINE_MENU_STATE);
     }
 
-    private void menuSelector() {
-        MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.LINE_MENU_STATE));
-        String input = scanner.next().toUpperCase();
-        MessageUtils.printBlankLine();
-
-        Runnable action = menuActionMap.get(input);
-
-        if (action == null) {
-            MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
-            return;
-        }
-        action.run();
+    @Override
+    public Map<String, Runnable> getMenuActionMap() {
+        return menuActionMap;
     }
 
     private void insertLine() {
@@ -82,43 +70,11 @@ public class LineView {
         }
     }
 
-    public void goBackward() {
-        isRunning = false;
-    }
-
     private void checkValidationLineNameOrThrow(String lineName) {
         InputUtils.isMinLengthString(lineName);
         if (isExistLine(lineName)) {
             throw new RuntimeException(Constants.EXIST_LINE_OUTPUT_COMMENT);
         }
-    }
-
-    private Line getLineOrThrow(String lineName) {
-        if (!isExistLine(lineName)) {
-            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
-        }
-        return subway.getLineRepository().findByName(lineName);
-    }
-
-    private Station getStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
-            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-        }
-        return subway.getStationRepository().findByName(stationName);
-    }
-
-    private boolean isExistLine(String lineName) {
-        if (subway.getLineRepository().findByName(lineName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
     }
 
     private void showLines() {

@@ -5,23 +5,22 @@ import java.util.Scanner;
 import java.util.Set;
 import subway.Subway;
 import subway.domain.Station;
+import subway.model.MenuGroup.Menu;
 import subway.util.Constants;
 import subway.util.DialogUtils;
 import subway.util.InputUtils;
 import subway.util.MessageUtils;
 
-public class StationView {
+public class StationView extends AbstractView {
 
-    private boolean isRunning = true;
-
-    private Subway subway;
-    private Scanner scanner;
     private Map<String, Runnable> menuActionMap;
 
     public StationView(Subway subway, Scanner scanner) {
-        this.subway = subway;
-        this.scanner = scanner;
+        super(subway, scanner);
+    }
 
+    @Override
+    public void initView() {
         menuActionMap = Map.of(
             "1", this::insertStation,
             "2", this::deleteStation,
@@ -30,25 +29,14 @@ public class StationView {
         );
     }
 
-    public void start() {
-        isRunning = true;
-        while (isRunning) {
-            menuSelector();
-        }
+    @Override
+    public Menu getMenu() {
+        return Constants.MENU_GROUPS.get(Constants.STATION_MENU_STATE);
     }
 
-    private void menuSelector() {
-        MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.STATION_MENU_STATE));
-        String input = scanner.next().toUpperCase();
-        MessageUtils.printBlankLine();
-
-        Runnable action = menuActionMap.get(input);
-
-        if (action == null) {
-            MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
-            return;
-        }
-        action.run();
+    @Override
+    public Map<String, Runnable> getMenuActionMap() {
+        return menuActionMap;
     }
 
     private void insertStation() {
@@ -77,10 +65,6 @@ public class StationView {
         }
     }
 
-    public void goBackward() {
-        isRunning = false;
-    }
-
     private void checkValidationStationNameOrThrow(String stationName) {
         InputUtils.isMinLengthString(stationName);
         if (isExistStation(stationName)) {
@@ -99,13 +83,6 @@ public class StationView {
         if (stationsInSection.contains(stationName)) {
             throw new RuntimeException(Constants.EXIST_STATION_IN_SECTION_OUTPUT_COMMENT);
         }
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
     }
 
     private void showStations() {

@@ -4,26 +4,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import subway.Subway;
+import subway.model.MenuGroup.Menu;
 import subway.util.Constants;
 import subway.util.MessageUtils;
 
-public class MainView {
+public class MainView extends AbstractView {
 
-    private boolean isRunning = true;
-    private Scanner scanner;
-    private Subway subway;
     private LineView lineView;
     private StationView stationView;
     private SectionView sectionView;
 
-    private String menuState = Constants.MAIN_MENU_STATE;
-
     private Map<String, Runnable> menuActionMap;
 
+    public MainView(Subway subway, Scanner scanner) {
+        super(subway, scanner);
+    }
 
-    public MainView(Scanner scanner, Subway subway) {
-        this.subway = subway;
-        this.scanner = scanner;
+    @Override
+    public void initView() {
         this.lineView = new LineView(subway, this.scanner);
         this.stationView = new StationView(subway, this.scanner);
         this.sectionView = new SectionView(subway, this.scanner);
@@ -37,25 +35,14 @@ public class MainView {
         );
     }
 
-    public void start() {
-        isRunning = true;
-        while (isRunning) {
-            menuSelector();
-        }
+    @Override
+    public Menu getMenu() {
+        return Constants.MENU_GROUPS.get(Constants.MAIN_MENU_STATE);
     }
 
-    private void menuSelector() {
-        MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.MAIN_MENU_STATE));
-        String input = scanner.next().toUpperCase();
-        MessageUtils.printBlankLine();
-
-        Runnable action = menuActionMap.get(input);
-
-        if (action == null) {
-            MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
-            return;
-        }
-        action.run();
+    @Override
+    public Map<String, Runnable> getMenuActionMap() {
+        return menuActionMap;
     }
 
     public void showWholeSubway() {
@@ -69,9 +56,5 @@ public class MainView {
             }
             MessageUtils.printBlankLine();
         }
-    }
-
-    public void goBackward() {
-        isRunning = false;
     }
 }

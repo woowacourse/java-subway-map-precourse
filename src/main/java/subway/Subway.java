@@ -22,7 +22,7 @@ public class Subway {
     }
 
     public void launch(Scanner scanner) {
-        MainView mainView = new MainView(scanner, this);
+        MainView mainView = new MainView(this, scanner);
         mainView.start();
     }
 

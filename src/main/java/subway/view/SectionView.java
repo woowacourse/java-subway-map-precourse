@@ -6,23 +6,22 @@ import java.util.Scanner;
 import subway.Subway;
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.model.MenuGroup.Menu;
 import subway.util.Constants;
 import subway.util.DialogUtils;
 import subway.util.InputUtils;
 import subway.util.MessageUtils;
 
-public class SectionView {
+public class SectionView extends AbstractView {
 
-    private boolean isRunning = true;
-
-    private Subway subway;
-    private Scanner scanner;
     private Map<String, Runnable> menuActionMap;
 
     public SectionView(Subway subway, Scanner scanner) {
-        this.subway = subway;
-        this.scanner = scanner;
+        super(subway, scanner);
+    }
 
+    @Override
+    public void initView() {
         menuActionMap = Map.of(
             "1", this::insertSection,
             "2", this::deleteSection,
@@ -30,25 +29,14 @@ public class SectionView {
         );
     }
 
-    public void start() {
-        isRunning = true;
-        while (isRunning) {
-            menuSelector();
-        }
+    @Override
+    public Menu getMenu() {
+        return Constants.MENU_GROUPS.get(Constants.SECTION_MENU_STATE);
     }
 
-    private void menuSelector() {
-        MessageUtils.printMenu(Constants.MENU_GROUPS.get(Constants.SECTION_MENU_STATE));
-        String input = scanner.next().toUpperCase();
-        MessageUtils.printBlankLine();
-
-        Runnable action = menuActionMap.get(input);
-
-        if (action == null) {
-            MessageUtils.printError(Constants.INVALID_STRING_OUTPUT_COMMENT);
-            return;
-        }
-        action.run();
+    @Override
+    public Map<String, Runnable> getMenuActionMap() {
+        return menuActionMap;
     }
 
     private void insertSection() {
@@ -60,7 +48,7 @@ public class SectionView {
             checkEmptySectionOrThrow(line, station);
             int refinedIndex = InputUtils.getPositiveIntOrThrow(
                 DialogUtils.ask(scanner, Constants.ADD_SECTION_INDEX_INPUT_COMMENT));
-            checkValidationLengthOrThrow(line, refinedIndex);
+            checkValidationIndexLengthOrThrow(line, refinedIndex);
 
             subway.getSectionRepository().addSection(line, station, refinedIndex);
             MessageUtils.printInfo(Constants.ADD_SECTION_OUTPUT_COMMENT);
@@ -85,11 +73,7 @@ public class SectionView {
         }
     }
 
-    public void goBackward() {
-        isRunning = false;
-    }
-
-    private void checkValidationLengthOrThrow(Line line, int index) {
+    private void checkValidationIndexLengthOrThrow(Line line, int index) {
         if (index > subway.getSectionRepository().getSize(line)) {
             throw new RuntimeException(Constants.INVALID_LENGTH_ERROR_COMMENT);
         }
@@ -107,33 +91,6 @@ public class SectionView {
         }
     }
 
-    private Line getLineOrThrow(String lineName) {
-        if (!isExistLine(lineName)) {
-            throw new RuntimeException(Constants.NO_EXIST_LINE_OUTPUT_COMMENT);
-        }
-        return subway.getLineRepository().findByName(lineName);
-    }
-
-    private Station getStationOrThrow(String stationName) {
-        if (!isExistStation(stationName)) {
-            throw new RuntimeException(Constants.NO_EXIST_STATION_OUTPUT_COMMENT);
-        }
-        return subway.getStationRepository().findByName(stationName);
-    }
-
-    private boolean isExistLine(String lineName) {
-        if (subway.getLineRepository().findByName(lineName) == null) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isExistStation(String stationName) {
-        if (subway.getStationRepository().findByName(stationName) == null) {
-            return false;
-        }
-        return true;
-    }
 
     private boolean isExistCheckStationInLine(Line line, Station station) {
         List<Station> stations = subway.getSectionRepository().getStationListInLine(line);
