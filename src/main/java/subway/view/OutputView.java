@@ -1,6 +1,8 @@
 package subway.view;
 
+import subway.domain.Line;
 import subway.exception.SubwayException;
+import subway.repository.LineRepository;
 
 public class OutputView {
 
@@ -23,4 +25,15 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
+    public static void printSection(Line line) {
+        printStationOrLine(line.getName());
+        printStationOrLine(TextCollection.SEPARATOR);
+        line.getSections().forEach(section -> printStationOrLine(section.getName()));
+        System.out.println();
+    }
+
+    public static void printSubwayLineMap() {
+        OutputView.printQuestion(TextCollection.SUBWAY_LINE_MAP_MESSAGE);
+        LineRepository.lines().forEach(OutputView::printSection);
+    }
 }
