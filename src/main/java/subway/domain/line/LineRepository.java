@@ -24,4 +24,9 @@ public class LineRepository {
         return lines.stream()
                 .anyMatch(line -> line.isMatchedName(lineName));
     }
+
+    public static boolean isIncludedAnyLines(String stationName) {
+        return lines().stream()
+                .anyMatch(line -> line.isIncluded(stationName));
+    }
 }

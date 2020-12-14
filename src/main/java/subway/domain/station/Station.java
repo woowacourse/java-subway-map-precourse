@@ -14,6 +14,10 @@ public class Station {
         return name;
     }
 
+    public boolean isMatchedName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

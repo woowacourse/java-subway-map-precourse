@@ -35,6 +35,11 @@ public class Line {
         return this.name.equals(name);
     }
 
+    public boolean isIncluded(String stationName) {
+        return sections.stream()
+                .anyMatch(station -> station.isMatchedName(stationName));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
