@@ -7,9 +7,11 @@ import subway.view.View;
 
 public class Manager {
     private StationManager stationManager;
+    private LineManager lineManager;
     
     public Manager(Controller controller, View view) {
         stationManager = new StationManager(controller, view);
+        lineManager =new LineManager(controller, view);
     }
     
     public void manageEntity(Choice choice) {
@@ -17,7 +19,7 @@ public class Manager {
             stationManager.manageStation(choice.getActionType());
         }
         if(choice.entityTypeEquals(EntityType.LINE)) {
-            // TODO 구현 예정
+            lineManager.manageLine(choice.getActionType());
         }
         if(choice.entityTypeEquals(EntityType.ROUTE)) {
             // TODO 구현 예정

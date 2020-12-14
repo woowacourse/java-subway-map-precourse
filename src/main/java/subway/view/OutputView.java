@@ -18,6 +18,10 @@ public class OutputView {
     private static String STATION_DELETE_ASK_MESSAGE = "삭제할 역 이름을 입력하세요.";
     private static String STATION_REGISTER_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.";
     private static String STATION_DELETE_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
+    private static String LINE_REGISTER_ASK_MESSAGE = "등록할 노선 이름을 입력하세요.";
+    private static String LINE_REGISTER_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
+    private static String UPWARD_END_STATION_ASK_MESSAGE = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static String DOWNWARD_END_STATION_ASK_MESSAGE = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     
     OutputView() {
     }
@@ -73,6 +77,14 @@ public class OutputView {
                 .forEachOrdered(System.out::println);
     }
     
+    void printAskUpwardEndRouteMessage() {
+        System.out.println(NEW_MESSAGE_PREFIX + UPWARD_END_STATION_ASK_MESSAGE);
+    }
+    
+    void printAskDownwardEndRouteMessage() {
+        System.out.println(NEW_MESSAGE_PREFIX + DOWNWARD_END_STATION_ASK_MESSAGE);
+    }
+    
     void printEmptyLine() {
         System.out.println(CommonConstants.EMPTY);
     }
@@ -87,7 +99,12 @@ public class OutputView {
     }
     
     private void printLineAskMessage(ActionType actionType) {
-        // TODO 구현 예정
+        if (actionType == ActionType.REGISTER) {
+            System.out.println(LINE_REGISTER_ASK_MESSAGE);
+        }
+        if (actionType == ActionType.DELETE) {
+            // TODO 구현 예정
+        }
     }
     
     private void printRouteAskMessage(ActionType actionType) {
@@ -104,7 +121,12 @@ public class OutputView {
     }
     
     private void printLineSuccessMessage(ActionType actionType) {
-        // TODO 구현 예정
+        if (actionType == ActionType.REGISTER) {
+            System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + LINE_REGISTER_SUCCESS_MESSAGE);
+        }
+        if (actionType == ActionType.DELETE) {
+         // TODO 구현 예정
+        }
     }
     
     private void printRouteSuccessMessage(ActionType actionType) {

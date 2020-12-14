@@ -1,8 +1,11 @@
 package subway.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 import subway.controller.manager.Manager;
+import subway.domain.Line;
 import subway.domain.Station;
 import subway.exception.Validator;
 import subway.screen.ActionType;
@@ -47,6 +50,19 @@ public class Controller {
         return new Station(askName(EntityType.STATION, actionType));
     }
     
+    public Line askNewLine(ActionType actionType) throws IllegalArgumentException {
+        return new Line(askName(EntityType.LINE, actionType));
+    }
+    
+    public List<String> askEndStationNames() throws IllegalArgumentException {
+        List<String> endStationNames = new ArrayList<>();
+        
+        askUpwardEndStationNames(endStationNames);
+        askDownwardEndStationNames(endStationNames);
+        
+        return endStationNames;
+    }
+    
     private void operateUserCommand(String userCommand, Screen currentScreen) {
         Choice userChoice;
         
@@ -85,5 +101,17 @@ public class Controller {
     
     private void popScreen() {
         screenStack.pop();
+    }
+    
+    private void askUpwardEndStationNames(List<String> endStationNames) {
+        String upwardEndStationName = view.askUpwardEndStationName();
+        Validator.checkValidEndStationName(upwardEndStationName, endStationNames);
+        endStationNames.add(upwardEndStationName);
+    }
+    
+    private void askDownwardEndStationNames(List<String> endStationNames) {
+        String downwardEndStationName = view.askDownwardEndStationName();
+        Validator.checkValidEndStationName(downwardEndStationName, endStationNames);
+        endStationNames.add(downwardEndStationName);
     }
 }

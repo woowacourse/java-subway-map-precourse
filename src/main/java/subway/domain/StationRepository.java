@@ -17,6 +17,10 @@ public class StationRepository {
         return Collections.unmodifiableList(
                 stations.stream().map(station -> station.getName()).collect(Collectors.toList()));
     }
+    
+    public static Station getStationByName(String stationName) {
+        return stations.stream().filter(station -> station.nameEquals(stationName)).findAny().get();
+    }
 
     public static void addStation(Station station) {
         stations.add(station);

@@ -38,6 +38,26 @@ public class View {
         return userInputName;
     }
     
+    public String askUpwardEndStationName() {
+        String userInputName;
+        
+        outputView.printAskUpwardEndRouteMessage();
+        userInputName = inputView.userInput();
+        outputView.printEmptyLine();
+        
+        return userInputName;
+    }
+    
+    public String askDownwardEndStationName() {
+        String userInputName;
+        
+        outputView.printAskDownwardEndRouteMessage();
+        userInputName = inputView.userInput();
+        outputView.printEmptyLine();
+        
+        return userInputName;
+    }
+    
     public void printMessage(String message) {
         outputView.printMessage(message);
         outputView.printEmptyLine();
