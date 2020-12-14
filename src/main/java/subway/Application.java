@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.exception.DomainIsNotExistedException;
+import subway.userinterface.UserInterface;
 
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Application {
             initializeThirdLine();
             initializeNewboondangLine();
         } catch (DomainIsNotExistedException domainIsNotExistedException) {
-            throw new RuntimeException("애플리케이션 구동에 실패하였습니다");
+            throw new RuntimeException("[ERROR] 애플리케이션 구동에 실패하였습니다");
         }
     }
 
@@ -46,6 +47,8 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
-        System.out.println(LineRepository.lines());
+        UserInterface userInterface = new UserInterface(scanner);
+
+        userInterface.startApplication();
     }
 }
