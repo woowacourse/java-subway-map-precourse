@@ -72,7 +72,9 @@ public class SectionService extends StationService {
         String stationName = scanner.nextLine();
 
         if (sectionDeletionValidation.checkSectionDeletionValidation(lineName, stationName)) {
-            SectionDeletionService.deleteSection();
+            SectionDeletionService.deleteSection(lineName, stationName);
+            SectionInformationView.printSectionDeletionInformation();
+            System.out.println();
             return true;
         }
         return false;
