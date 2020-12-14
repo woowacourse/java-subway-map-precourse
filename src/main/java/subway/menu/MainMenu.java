@@ -14,14 +14,18 @@ public class MainMenu {
 
     private Scanner scanner;
 
-    public void start(Scanner scanner) {
+    public MainMenu(Scanner scanner) {
         this.scanner = scanner;
+    }
+
+    public void start() {
         String input = "";
         while (!input.equals("Q")) {
             printMainMenu();
             input = scanner.nextLine();
             switch (input) {
                 case "1" :
+                    new StationMenu(scanner).startStationMenu();
                     break;
                 case "2" :
                     break;
@@ -43,7 +47,7 @@ public class MainMenu {
                 .append(MENU3).append("\n")
                 .append(MENU4).append("\n")
                 .append(QUIT).append("\n\n")
-                .append(CHOICE_MESSAGE).append("\n");
+                .append(CHOICE_MESSAGE);
         System.out.println(sb);
     }
 }
