@@ -6,7 +6,7 @@ public enum StationCommand implements Command {
     STATION_REGISTRATION("1", "역 등록"),
     STATION_DELETION("2", "역 삭제"),
     PRINT_STATIONS("3", "역 조회"),
-    PREVIOUS_SCREEN("B", "이전");
+    PREVIOUS_SCREEN("B", "돌아가기");
 
     private final String selector;
     private final String detail;

@@ -6,7 +6,7 @@ public enum LineCommand implements Command {
     LINE_REGISTRATION("1", "노선 등록"),
     LINE_DELETION("2", "노선 삭제"),
     PRINT_LINES("3", "노선 조회"),
-    PREVIOUS_SCREEN("B", "이전");
+    PREVIOUS_SCREEN("B", "돌아가기");
 
     private final String selector;
     private final String detail;
