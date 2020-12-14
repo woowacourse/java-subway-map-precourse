@@ -1,8 +1,7 @@
 package subway;
 
+import subway.controller.EntireSystem;
 import subway.controller.Initiator;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 
 import java.util.Scanner;
 
@@ -15,6 +14,7 @@ public class SubwaySystem {
     }
 
     public void process() {
-
+        EntireSystem entireSystem = new EntireSystem(scanner);
+        entireSystem.runProgram();
     }
 }
