@@ -8,6 +8,7 @@ public class LineValidator {
 
     public static void validateName(String name) {
         validateLength(name);
+        validateEnding(name);
     }
 
     public static void validateRemove(Line line, Station station) {
@@ -41,6 +42,16 @@ public class LineValidator {
 
     private static boolean shorterThanMinimalLength(String name) {
         return name.length() < Line.MINIMUM_NAME_LENGTH;
+    }
+
+    private static void validateEnding(String name) {
+        if (notMatchingEnding(name)) {
+            throw new IllegalArgumentException(OutputView.ERROR_LINE_ENDING);
+        }
+    }
+
+    private static boolean notMatchingEnding(String name) {
+        return !name.endsWith(Line.ENDING);
     }
 
     private static boolean isDuplicate(Line line, Station station) {

@@ -11,6 +11,7 @@ public class Line {
     public static final int MINIMUM_NAME_LENGTH = 2;
     public static final int MINIMUM_STATION_AMOUNT = 2;
     public static final int MINIMUM_INDEX = 0;
+    public static final String ENDING = "선";
 
     private final String name;
     private final List<Station> stations = new ArrayList<>();
