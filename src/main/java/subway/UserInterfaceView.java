@@ -87,6 +87,7 @@ public class UserInterfaceView {
         if (isQuit(userInput)) {
             return true;
         }
+
         return false;
     }
 
@@ -110,5 +111,19 @@ public class UserInterfaceView {
 
     private boolean isQuit(String userInput) {
         return Q.equals(userInput);
+    }
+
+    private void mainToNextFunction(String userInput) {
+        if (ONE_STRING.equals(userInput)) {
+            return;
+        }
+        if (TWO_STRING.equals(userInput)) {
+            return;
+        }
+        if (THREE_STRING.equals(userInput)) {
+            return;
+        }
+        if (FOUR_STRING.equals(userInput)) {
+        }
     }
 }
