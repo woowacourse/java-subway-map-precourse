@@ -31,4 +31,8 @@ public class OutputView {
     public static void stationAddGuidePrint() {
         System.out.println(StationMessage.STATION_ADD_GUIDE.getStationMessage());
     }
+
+    public static void stationAddSuccessPrint() {
+        System.out.println(StationMessage.STATION_ADD_SUCCESS.getStationMessage());
+    }
 }

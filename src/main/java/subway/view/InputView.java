@@ -68,6 +68,7 @@ public class InputView {
         OutputView.stationAddGuidePrint();
         stationName = scanner.nextLine();
 
+        OutputView.stationAddSuccessPrint();
         return stationName;
     }
 }

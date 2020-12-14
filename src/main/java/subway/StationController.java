@@ -22,9 +22,11 @@ public class StationController {
             }
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_DELETE.getUserChoiceOptionToName())) {
+                stationDelete(scanner);
             }
             if (choiceMenu.
                 equals(UserChoiceOptionToName.STATION_CHECK.getUserChoiceOptionToName())) {
+                stationCheck();
             }
         }
     }
@@ -38,12 +40,14 @@ public class StationController {
 
         stationName = InputView.scanStationName(scanner);
         System.out.println("임시 출력 문구 : 당신이 선택한 역 이름은 : " + stationName);
+
+
+    }
+
+    private static void stationDelete(Scanner scanner) {
     }
 
     private static void stationCheck() {
-    }
-
-    private static void stationDelete() {
     }
 
 
