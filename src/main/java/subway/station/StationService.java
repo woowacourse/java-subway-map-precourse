@@ -2,6 +2,7 @@ package subway.station;
 
 import subway.line.LineService;
 import subway.model.ResultDto;
+import subway.utils.ErrorUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +16,11 @@ public class StationService {
     private StationService() {}
 
     public static ResultDto registerStation(String stationName) {
-        try {
+        return ErrorUtils.produceResponse(() -> {
             checkDuplicateStation(stationName);
             repository.addStation(new Station(stationName));
             return ResultDto.ok(REGISTER_RESULT_OK_MESSAGE);
-        } catch (Exception e) {
-            return ResultDto.bad(e);
-        }
+        });
     }
 
     private static void checkDuplicateStation(String stationName) {
@@ -29,14 +28,11 @@ public class StationService {
     }
 
     public static ResultDto deleteStation(String stationName) {
-        try {
+        return ErrorUtils.produceResponse(() -> {
             checkDeleteException(stationName);
             repository.deleteStation(stationName);
             return ResultDto.ok(DELETE_RESULT_OK_MESSAGE);
-        } catch (Exception e) {
-            return ResultDto.bad(e);
-        }
-
+        });
     }
 
     private static void checkDeleteException(String stationName) {

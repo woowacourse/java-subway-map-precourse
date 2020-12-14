@@ -3,6 +3,7 @@ package subway.line;
 import subway.model.ResultDto;
 import subway.station.Station;
 import subway.station.StationService;
+import subway.utils.ErrorUtils;
 
 import java.util.List;
 
@@ -15,14 +16,12 @@ public class LineService {
     private LineService() {}
 
     public static ResultDto registerLine(String lineName, String upEndStation, String downEndStation) {
-        try {
+        return ErrorUtils.produceResponse(() -> {
             checkDulicateLine(lineName);
             checkEndStations(upEndStation, downEndStation);
             repository.addLine(new Line(lineName, new Station(upEndStation), new Station(downEndStation)));
             return ResultDto.ok(REGISTER_RESULT_OK_MESSAGE);
-        } catch (Exception e) {
-            return ResultDto.bad(e);
-        }
+        });
     }
 
     private static void checkDulicateLine(String lineName) {
@@ -42,13 +41,11 @@ public class LineService {
     }
 
     public static ResultDto deleteLine(String lineName) {
-        try {
+        return ErrorUtils.produceResponse(() -> {
             checkExistLine(lineName);
             repository.deleteLineByName(lineName);
             return ResultDto.ok(DELETE_RESULT_OK_MESSAGE);
-        } catch (Exception e) {
-            return ResultDto.bad(e);
-        }
+        });
     }
 
     private static void checkExistLine(String lineName) {

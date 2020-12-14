@@ -37,5 +37,4 @@ public class ResultDto {
     public static ResultDto bad(Exception e) {
         return new ResultDto(Status.BAD, RESULT_BAD_PREFIX + e.getMessage());
     }
-
 }

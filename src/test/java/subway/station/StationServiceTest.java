@@ -22,7 +22,7 @@ class StationServiceTest {
     @Test
     void 지하철역_삭제_존재하지_않는_역삭제_예외처리() {
         // given
-        String stationName1 = "옥수역";
+        String stationName1 = "금호역";
         String notRegistedStationName = "가나다라역";
 
         // when
@@ -35,13 +35,19 @@ class StationServiceTest {
     @Test
     void 지하철역_삭제_노선에_등록된_역삭제_예외처리() {
         // given
-        String stationName1 = "옥수역";
+        String stationName1 = "서울대입구역";
+        String stationName2 = "강남역";
+        StationService.registerStation(stationName1);
+        StationService.registerStation(stationName2);
+        LineService.registerLine("2호선", stationName1, stationName2);
 
         // when
-        SectionService.registerSection("2호선", stationName1, 2);
+        String testStationName = "방배역";
+        StationService.registerStation(testStationName);
+        SectionService.registerSection("2호선", testStationName, 2);
 
         // then
-        assertEquals(Status.BAD, StationService.deleteStation(stationName1).getStatus());
+        assertEquals(Status.BAD, StationService.deleteStation(testStationName).getStatus());
     }
 
 }
