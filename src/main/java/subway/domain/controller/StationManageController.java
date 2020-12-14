@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 public class StationManageController {
 
+    static final String INFO = "[INFO] ";
 
     StationManageInput input = new StationManageInput();
 
@@ -23,7 +24,7 @@ public class StationManageController {
 
     public void printAllStations() {
         Stream<Station> stationStream = StationRepository.stations().stream();
-        stationStream.forEach(station -> System.out.println(station.getName()));
+        stationStream.forEach(station -> System.out.println(INFO + station.getName()));
     }
 
 }

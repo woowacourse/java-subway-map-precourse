@@ -22,7 +22,7 @@ public class LineManageProgram {
     static final String LINE_ENROLLED = "지하철 노선이 등록되었습니다";
     static final String INPUT_DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
     static final String LINE_DELETED = "지하철 노선이 삭제되었습니다.";
-    static final String LINE_CATEGORY = "노선 목록";
+    static final String LINE_CATEGORY = "## 노선 목록";
     static final String FUNCTION_ONE = "1";
     static final String FUNCTION_TWO = "2";
     static final String FUNCTION_THREE = "3";
@@ -34,41 +34,41 @@ public class LineManageProgram {
     LineManageController controller = new LineManageController();
 
     public String getSelectFunction(Scanner scanner) {
-        System.out.println(LINE_MANAGE_SCREEN);
+        System.out.println("\n" + LINE_MANAGE_SCREEN);
         System.out.println(LINE_ENROLL);
         System.out.println(LINE_DELETE);
         System.out.println(LINE_INQUIRY);
-        System.out.println(GO_BACK);
+        System.out.println(GO_BACK + "\n");
         System.out.println(SELECT_FUNCTION);
         return input.inputLineManageScreen(scanner);
     }
 
     public void printEnrollLine(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
-            System.out.println(INPUT_ENROLL_LINE_NAME);
+            System.out.println("\n" + INPUT_ENROLL_LINE_NAME);
             Line line = new Line(input.inputEnrollLine(scanner));
-            System.out.println(INPUT_UP_TRAIN_TERMINAL);
+            System.out.println("\n" + INPUT_UP_TRAIN_TERMINAL);
             Station upTrain = input.inputUpDownTrainLine(scanner);
-            System.out.println(INPUT_DOWN_TRAIN_TERMINAL);
+            System.out.println("\n" + INPUT_DOWN_TRAIN_TERMINAL);
             Station downTrain = input.inputUpDownTrainLine(scanner);
             controller.processEnrollLine(line);
             controller.processUpDownTrain(upTrain, line);
             controller.processUpDownTrain(downTrain, line);
-            System.out.println(INFO + LINE_ENROLLED);
+            System.out.println("\n" + INFO + LINE_ENROLLED);
         }
     }
 
     public void printDeleteLine(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
-            System.out.println(INPUT_DELETE_LINE_NAME);
+            System.out.println("\n" + INPUT_DELETE_LINE_NAME);
             controller.processDeleteLine(scanner);
-            System.out.println(INFO + LINE_DELETED);
+            System.out.println("\n" + INFO + LINE_DELETED);
         }
     }
 
     public void printAllLine(String function) {
         if (function.equals(FUNCTION_THREE)) {
-            System.out.println(LINE_CATEGORY);
+            System.out.println("\n" + LINE_CATEGORY);
             controller.printAllLines();
         }
     }

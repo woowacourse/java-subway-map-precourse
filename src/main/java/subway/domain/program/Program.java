@@ -28,12 +28,12 @@ public class Program {
     subwayRouteMapProgram subwayRouteMapProgram = new subwayRouteMapProgram();
 
     public String getSelectFunction(Scanner scanner) {
-        System.out.println(MAIN_SCREEN);
+        System.out.println("\n" + MAIN_SCREEN);
         System.out.println(STATION_MANAGE);
         System.out.println(LINE_MANAGE);
         System.out.println(SECTION_MANAGE);
         System.out.println(PRINT_SUBWAY);
-        System.out.println(QUIT);
+        System.out.println(QUIT + "\n");
         System.out.println(SELECT_FUNCTION);
         return input.inputMainScreen(scanner);
     }

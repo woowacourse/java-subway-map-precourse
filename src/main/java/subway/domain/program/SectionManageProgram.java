@@ -31,35 +31,35 @@ public class SectionManageProgram {
     SectionManageController controller = new SectionManageController();
 
     public String getSelectFunction(Scanner scanner) {
-        System.out.println(SECTION_MANAGE_SCREEN);
+        System.out.println("\n" + SECTION_MANAGE_SCREEN);
         System.out.println(SECTION_ENROLL);
         System.out.println(SECTION_DELETE);
-        System.out.println(GO_BACK);
+        System.out.println(GO_BACK + "\n");
         System.out.println(SELECT_FUNCTION);
         return input.inputSectionManageScreen(scanner);
     }
 
     public void printEnrollSection(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
-            System.out.println(INPUT_LINE_NAME);
+            System.out.println("\n" + INPUT_LINE_NAME);
             Line line = input.inputLine(scanner);
-            System.out.println(INPUT_STATION_NAME);
+            System.out.println("\n" + INPUT_STATION_NAME);
             Station station = input.inputStation(scanner);
-            System.out.println(INPUT_ORDER);
+            System.out.println("\n" + INPUT_ORDER);
             int order = input.inputStationOrder(scanner);
             controller.processEnrollSection(line, station, order);
-            System.out.println(INFO + SECTION_ENROLLED);
+            System.out.println("\n" + INFO + SECTION_ENROLLED);
         }
     }
 
     public void printDeleteSection(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
-            System.out.println(INPUT_DELETE_LINE_NAME);
+            System.out.println("\n" + INPUT_DELETE_LINE_NAME);
             Line line = input.inputLine(scanner);
-            System.out.println(INPUT_DELETE_STATION_NAME);
+            System.out.println("\n" + INPUT_DELETE_STATION_NAME);
             Station station = input.inputStation(scanner);
             controller.processDeleteSection(line, station);
-            System.out.println(INFO + SECTION_DELETED);
+            System.out.println("\n" + INFO + SECTION_DELETED);
         }
     }
 

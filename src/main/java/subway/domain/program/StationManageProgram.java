@@ -30,34 +30,34 @@ public class StationManageProgram {
     StationManageInput input = new StationManageInput();
 
     public String getSelectFunction(Scanner scanner) {
-        System.out.println(STATION_MANAGE_SCREEN);
+        System.out.println("\n" + STATION_MANAGE_SCREEN);
         System.out.println(STATION_ENROLL);
         System.out.println(STATION_DELETE);
         System.out.println(STATION_INQUIRY);
-        System.out.println(GO_BACK);
+        System.out.println(GO_BACK + "\n");
         System.out.println(SELECT_FUNCTION);
         return input.inputStationManageScreen(scanner);
     }
 
     public void printEnrollStation(Scanner scanner, String function) {
         if (function.equals(FUNCTION_ONE)) {
-            System.out.println(INPUT_ENROLL_STATION_NAME);
+            System.out.println("\n" + INPUT_ENROLL_STATION_NAME);
             controller.processEnrollStation(scanner);
-            System.out.println(INFO + STATION_ENROLLED);
+            System.out.println("\n"+ INFO + STATION_ENROLLED);
         }
     }
 
     public void printDeleteStation(Scanner scanner, String function) {
         if (function.equals(FUNCTION_TWO)) {
-            System.out.println(INPUT_DELETE_STATION_NAME);
+            System.out.println("\n" + INPUT_DELETE_STATION_NAME);
             controller.processDeleteStation(scanner);
-            System.out.println(INFO + STATION_DELETED);
+            System.out.println("\n" + INFO + STATION_DELETED);
         }
     }
 
     public void printAllStation(String function) {
         if (function.equals(FUNCTION_THREE)) {
-            System.out.println(STATION_CATEGORY);
+            System.out.println("\n" + STATION_CATEGORY);
             controller.printAllStations();
         }
     }

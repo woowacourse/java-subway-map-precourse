@@ -2,7 +2,7 @@ package subway.domain;
 
 public class ErrorMessage {
 
-    static final String PREFIX = "[ERROR] ";
+    static final String PREFIX = "\n[ERROR] ";
     static final String INVALID_FUNCTION_ERROR = "선택할 수 없는 기능입니다";
     static final String LESS_THAN_TWO_WORD_STATION_ERROR = "역 이름은 2자 이상으로 입력하세요";
     static final String NOT_CORRECT_STATION_NAME_ERROR = "마지막 글자는 '역' 으로 입력하세요";

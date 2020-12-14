@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 
 public class LineManageController {
 
+    static final String INFO = "[INFO] ";
+
     LineManageInput input = new LineManageInput();
 
     public Line processEnrollLine(Line line) {
@@ -29,7 +31,7 @@ public class LineManageController {
 
     public void printAllLines() {
         Stream<Line> lineStream = LineRepository.lines().stream();
-        lineStream.forEach(line -> System.out.println(line.getName()));
+        lineStream.forEach(line -> System.out.println(INFO + line.getName()));
     }
 
 }

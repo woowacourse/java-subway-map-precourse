@@ -3,7 +3,6 @@ package subway.domain.controller;
 import subway.domain.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.domain.input.SectionManageInput;
 
 public class SectionManageController {
 
