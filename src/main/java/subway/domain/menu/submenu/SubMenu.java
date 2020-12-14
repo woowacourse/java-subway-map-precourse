@@ -74,14 +74,16 @@ public class SubMenu {
     }
 
     public void runSubMenu() {
-        printSubMenu();
-        char sel = requestInputSubMenu(selMenu);
+        while (true) {
+            printSubMenu();
+            char sel = requestInputSubMenu(selMenu);
 
-        if (sel == BACK_SEL) {
-            return;
+            if (sel == BACK_SEL) {
+                return;
+            }
+
+            actionList.stream().filter(menu -> menu.getOrder() == sel).findFirst().get().runAction();
         }
-
-        actionList.stream().filter(menu -> menu.getOrder() == sel).findFirst().get().runAction();
     }
 
     public void printSubMenu() {

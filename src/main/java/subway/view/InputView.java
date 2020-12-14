@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import subway.domain.menu.constant.CommonMessage;
+import subway.domain.menu.exception.DuplicatedInputException;
 import subway.domain.menu.exception.NotAccptedInputException;
+import subway.domain.menu.exception.NotAccptedInputLengthException;
 
 public class InputView {
     private Scanner scanner;
@@ -28,6 +30,23 @@ public class InputView {
             }
         }
         return sel;
+    }
+
+    public String inputRegisterOrDelete(String message) {
+        String name = CommonMessage.ERROR;
+        while (true) {
+            try {
+                System.out.println(message);
+                name = validate.isAccptedRegisterInput(scanner.nextLine());
+                System.out.println();
+            } catch(NotAccptedInputLengthException e) {
+                System.out.println(e.getMessage());
+            } catch(DuplicatedInputException e) {
+                System.out.println(e.getMessage());
+            }
+            break;
+        }
+        return name;
     }
 
     // 임시 - 잠시 컴파일 에러 방지하기 위함.

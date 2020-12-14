@@ -16,13 +16,22 @@ public class RegisterAction extends Action {
 
     @Override
     public void runAction() {
+        String name;
+
+        // 미구현 - 구간 추가할 때 고칠 예정.
         if (category.equals(CategoryType.SECTION)) {
             registerSection();
+        }
+
+        name = requestInputRegister(getRegisterMessage());
+        if (name.equals(CommonMessage.ERROR)) {
             return;
         }
 
-        printRegisterMessage();
-        String name = inputRegister();
+        runDetailAction(name);
+    }
+
+    private void runDetailAction(String name) {
         if (category.equals(CategoryType.STATION)) {
             registerStation(name);
         }
@@ -30,13 +39,17 @@ public class RegisterAction extends Action {
         if (category.equals(CategoryType.LINE)) {
             registerLine(name);
         }
+
+        if (category.equals(CategoryType.SECTION)) {
+            registerSection();
+        }
         printSuccessMessage();
     }
 
-    private void printRegisterMessage() {
-        System.out
-                .println(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
-                        + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME);
+    private String getRegisterMessage() {
+        String message = CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
+                        + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME;
+        return message;
     }
 
     private void printRegisterMessage(String pos) {
@@ -68,14 +81,19 @@ public class RegisterAction extends Action {
         System.out.println(ActionMessage.INPUT_SECTION_MESSAGE);
     }
 
-    private String inputRegister() {
-        String name = inputView.getScanner().nextLine();
-        System.out.println();
-        return name;
+    private String requestInputRegister(String message) {
+        return inputView.inputRegisterOrDelete(message);
     }
 
     private void registerStation(String name) {
         StationRepository.addStation(new Station(name));
+    }
+
+    // 임시 - 컴파일 에러 방지.
+    private String inputRegister() {
+        String name = inputView.getScanner().nextLine();
+        System.out.println();
+        return name;
     }
 
     private void registerLine(String name) {
