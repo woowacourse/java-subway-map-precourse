@@ -33,4 +33,8 @@ public class OutputView {
     public static final void printExitMessage(){
         System.out.println("프로그램을 종료합니다.");
     }
+
+    public static final void printDuplicatedLineErrorMessage(String command){
+        System.out.println(String.format(ERROR_MARK + "%s 역은 이미 존재합니다."));
+    }
 }

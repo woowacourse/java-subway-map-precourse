@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +15,11 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        lines.add(line);
+        if (!hasDuplicatedLine(line)) {
+            lines.add(line);
+            return;
+        }
+        OutputView.printDuplicatedLineErrorMessage(line.toString());
     }
 
     public static void addLines(List<Line> lines) {
@@ -22,5 +28,9 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static boolean hasDuplicatedLine(Line line) {
+        return lines.contains(line);
     }
 }
