@@ -18,7 +18,7 @@ public class MainView extends MenuView<MainMenuType> {
     private static final String MENU_SECTION_MANAGEMENT = "구간 관리";
     private static final String MENU_SUBWAY_MAP = "지하철 노선도 출력";
     private static final String MENU_ESCAPE = "종료";
-    private static final String MENU_ESCAPE_VALUE = "Q";
+    private static final String MENU_ESCAPE_KEY = "Q";
 
     private static MainView instance;
 
@@ -34,13 +34,13 @@ public class MainView extends MenuView<MainMenuType> {
                 MENU_STATION_MANAGEMENT, MENU_LINE_MANAGEMENT, MENU_SECTION_MANAGEMENT, MENU_SUBWAY_MAP, MENU_ESCAPE
         ));
 
-        List<String> menuIndexs = new ArrayList<>();
+        List<String> menuKeys = new ArrayList<>();
         for (int i = MENU_START_INDEX; i < descriptions.size(); i++) {
-            menuIndexs.add(Integer.toString(i));
+            menuKeys.add(Integer.toString(i));
         }
-        menuIndexs.add(MENU_ESCAPE_VALUE);
+        menuKeys.add(MENU_ESCAPE_KEY);
 
-        initializeSelections(menuIndexs, descriptions);
+        initializeSelections(menuKeys, descriptions);
     }
 
     public static MainView getInstance() {

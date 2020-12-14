@@ -20,12 +20,12 @@ public abstract class MenuView<T> {
     protected Selections selections;
 
     protected void initializeSelections(List<String> menuIndexs, List<String> descriptions) {
-        Iterator<String> menuIndex = menuIndexs.iterator();
+        Iterator<String> menuKeys = menuIndexs.iterator();
         Iterator<String> description = descriptions.iterator();
 
         List<Selection> selections = new ArrayList<>();
-        while(menuIndex.hasNext() && description.hasNext()) {
-            selections.add(new Selection(menuIndex.next(), description.next()));
+        while(menuKeys.hasNext() && description.hasNext()) {
+            selections.add(new Selection(menuKeys.next(), description.next()));
         }
 
         this.selections = new Selections(selections);
@@ -55,7 +55,7 @@ public abstract class MenuView<T> {
     public T getMenuSelection() {
         try{
             String input = InputView.getStringWithMessage(MENU_SELECTION);
-            Selection selection = selections.searchByValue(input.toUpperCase());
+            Selection selection = selections.searchByKeys(input.toUpperCase());
             return  convertToMenuType(selection);
         } catch (RuntimeException e) {
             OutputView.printErrorMessage(e);

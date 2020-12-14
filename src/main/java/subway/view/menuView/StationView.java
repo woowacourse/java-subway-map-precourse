@@ -31,13 +31,13 @@ public class StationView extends ManagementView {
                 MENU_CREATE, MENU_DELETE, MENU_READ, MENU_ESCAPE
         ));
 
-        List<String> menuIndexs = new ArrayList<>();
+        List<String> menuKeys = new ArrayList<>();
         for (int i = MENU_START_INDEX; i < descriptions.size(); i++) {
-            menuIndexs.add(Integer.toString(i));
+            menuKeys.add(Integer.toString(i));
         }
-        menuIndexs.add(MENU_ESCAPE_VALUE);
+        menuKeys.add(MENU_ESCAPE_KEY);
 
-        initializeSelections(menuIndexs, descriptions);
+        initializeSelections(menuKeys, descriptions);
     }
 
     public static StationView getInstance() {

@@ -13,7 +13,7 @@ public abstract class ManagementView extends MenuView<ManagementMenuType> {
     protected static final String REQUEST_MESSAGE = "이름을 입력하세요.";
     protected static final String LIST = "목록";
     protected static final String MENU_ESCAPE = "돌아가기";
-    protected static final String MENU_ESCAPE_VALUE = "B";
+    protected static final String MENU_ESCAPE_KEY = "B";
 
     protected String itemPrefix;
     protected String createMessage;
