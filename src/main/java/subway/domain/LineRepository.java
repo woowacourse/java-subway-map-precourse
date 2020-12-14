@@ -22,6 +22,15 @@ public class LineRepository {
         return null;
     }
 
+    public static boolean isStationInLines(Station station) {
+        for (Line line : lines.values()) {
+            if (line.sections().contains(station)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isExistLine(String name) {
         return lines.containsKey(name);
     }
