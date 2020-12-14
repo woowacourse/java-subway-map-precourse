@@ -35,15 +35,7 @@ public class OutputView {
 
     private static final String NON_MAIN_MENU_QUIT = "B. 돌아가기";
 
-    public static final String INFO_LABEL = "[INFO] ";
     public static final String DIVIDER = "---";
-
-    public static final String INFO_STATION_ADDED = INFO_LABEL + "지하철 역이 등록되었습니다.";
-    public static final String INFO_STATION_DELETED = INFO_LABEL + "지하철 역이 삭제되었습니다.";
-    public static final String INFO_LINE_ADDED = INFO_LABEL + "지하철 노선이 등록되었습니다.";
-    public static final String INFO_LINE_DELETED = INFO_LABEL + "지하철 노선이 삭제되었습니다.";
-    public static final String INFO_SECTION_ADDED = INFO_LABEL + "구간이 등록되었습니다.";
-    public static final String INFO_SECTION_DELETED = INFO_LABEL + "구간이 삭제되었습니다.";
 
     private static final List<String> mainMenuOptions = Arrays.asList(
             MAIN_MENU_LABEL,
@@ -103,17 +95,17 @@ public class OutputView {
         System.out.println(STATION_VIEW_LABEL);
         stations.stream()
                 .map(Station::getName)
-                .map(x -> INFO_LABEL + x)
+                .map(x -> InfoMessage.LABEL + x)
                 .forEach(System.out::println);
     }
 
     public static void printLines(List<Line> lines) {
         System.out.println();
         System.out.println(LINE_VIEW_LABEL);
-        System.out.println(INFO_LABEL + DIVIDER);
+        System.out.println(InfoMessage.LABEL + DIVIDER);
         lines.stream()
                 .map(Line::getName)
-                .map(line -> INFO_LABEL + line)
+                .map(line -> InfoMessage.LABEL + line)
                 .forEach(System.out::println);
     }
 
@@ -121,15 +113,16 @@ public class OutputView {
         System.out.println();
         System.out.println(SHOW_MAP_LABEL);
         LineRepository.lines().forEach(line -> {
-            System.out.println(INFO_LABEL + line.getName());
-            System.out.println(INFO_LABEL + DIVIDER);
+            System.out.println(InfoMessage.LABEL + line.getName());
+            System.out.println(InfoMessage.LABEL + DIVIDER);
             printStationsOfLine(line);
             System.out.println();
         });
     }
 
     private static void printStationsOfLine(Line line) {
-        line.getStations().forEach(station -> System.out.println(INFO_LABEL + station.getName()));
+        line.getStations()
+                .forEach(station -> System.out.println(InfoMessage.LABEL + station.getName()));
     }
 
     public static void printError(Exception e) {

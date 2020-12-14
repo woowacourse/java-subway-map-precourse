@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import subway.utils.LineRepositoryValidator;
-import subway.view.ErrorView;
+import subway.view.ErrorMessage;
 
 public class LineRepository {
 
@@ -34,7 +34,7 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorView.LINE_NOTHING));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.LINE_NOTHING));
     }
 
     public static boolean hasLine(Line line) {

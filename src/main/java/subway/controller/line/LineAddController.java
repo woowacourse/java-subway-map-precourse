@@ -4,6 +4,7 @@ import subway.controller.Controller;
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
+import subway.view.InfoMessage;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -21,7 +22,7 @@ public class LineAddController implements Controller {
             Line newLine = createLine();
             addStationsToLine(newLine);
             LineRepository.addLine(newLine);
-            OutputView.printInfo(OutputView.INFO_LINE_ADDED);
+            OutputView.printInfo(InfoMessage.LINE_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

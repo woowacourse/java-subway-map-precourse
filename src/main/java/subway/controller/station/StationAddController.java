@@ -3,6 +3,7 @@ package subway.controller.station;
 import subway.controller.Controller;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.view.InfoMessage;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -19,7 +20,7 @@ public class StationAddController implements Controller {
         try {
             String addingStationName = inputView.inputName(InputView.CHOOSE_ADD_STATION);
             StationRepository.addStation(new Station(addingStationName));
-            OutputView.printInfo(OutputView.INFO_STATION_ADDED);
+            OutputView.printInfo(InfoMessage.STATION_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }

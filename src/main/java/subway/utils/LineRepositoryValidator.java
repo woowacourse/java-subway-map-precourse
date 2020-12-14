@@ -2,7 +2,7 @@ package subway.utils;
 
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
-import subway.view.ErrorView;
+import subway.view.ErrorMessage;
 
 public class LineRepositoryValidator {
 
@@ -16,7 +16,7 @@ public class LineRepositoryValidator {
 
     private static void validateNoDuplicate(Line line) {
         if (isDuplicate(line)) {
-            throw new IllegalArgumentException(ErrorView.NAME_DUPLICATE);
+            throw new IllegalArgumentException(ErrorMessage.NAME_DUPLICATE);
         }
     }
 
@@ -26,7 +26,7 @@ public class LineRepositoryValidator {
 
     private static void validateExisting(String name) {
         if (!isDuplicate(name)) {
-            throw new IllegalArgumentException(ErrorView.LINE_NOTHING);
+            throw new IllegalArgumentException(ErrorMessage.LINE_NOTHING);
         }
     }
 

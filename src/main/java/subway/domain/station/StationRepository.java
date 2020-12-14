@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import subway.utils.StationRepositoryValidator;
-import subway.view.ErrorView;
+import subway.view.ErrorMessage;
 
 public class StationRepository {
 
@@ -19,7 +19,7 @@ public class StationRepository {
         return stations.stream()
                 .filter(x -> x.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorView.STATION_NOTHING));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.STATION_NOTHING));
     }
 
     public static void addStation(Station station) {

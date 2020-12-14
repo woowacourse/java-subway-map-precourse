@@ -3,7 +3,7 @@ package subway.utils;
 import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
-import subway.view.ErrorView;
+import subway.view.ErrorMessage;
 
 public class StationRepositoryValidator {
 
@@ -22,13 +22,13 @@ public class StationRepositoryValidator {
 
     private static void validateNoDuplicate(Station station) {
         if(isDuplicate(station)) {
-            throw new IllegalArgumentException(ErrorView.NAME_DUPLICATE);
+            throw new IllegalArgumentException(ErrorMessage.NAME_DUPLICATE);
         }
     }
 
     private static void validateNoLineConnection(String name) {
         if(LineRepository.hasLineWithStation(name)) {
-            throw new IllegalArgumentException(ErrorView.STATION_DELETE_FAIL);
+            throw new IllegalArgumentException(ErrorMessage.STATION_DELETE_FAIL);
         }
     }
 }

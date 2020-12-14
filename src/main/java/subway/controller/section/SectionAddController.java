@@ -5,6 +5,7 @@ import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
+import subway.view.InfoMessage;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -27,7 +28,7 @@ public class SectionAddController implements Controller {
 
             String index = inputView.inputIndex(InputView.CHOOSE_ORDER);
             modifyingLine.addStationAtSection(index, addingStation);
-            OutputView.printInfo(OutputView.INFO_SECTION_ADDED);
+            OutputView.printInfo(InfoMessage.SECTION_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
