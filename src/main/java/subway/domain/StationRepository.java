@@ -14,12 +14,13 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
+    public static boolean addStation(Station station) {
         if (!hasDuplicatedStation(station) && station.isNameMoreThan2Letters()) {
             stations.add(station);
-            return;
+            return true;
         }
         OutputView.printDuplicatedErrorMessage(station.toString());
+        return false;
     }
 
     public static boolean deleteStation(String name) {
@@ -36,7 +37,7 @@ public class StationRepository {
 
     public static void printStations() {
         for (Station station : stations) {
-            OutputView.printStation(station.getName());
+            OutputView.printWithInformationMark(station.getName());
         }
     }
 }
