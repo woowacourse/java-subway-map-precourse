@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 import subway.controller.manager.Manager;
+import subway.domain.SubwayIntializer;
 import subway.exception.Validator;
 import subway.screen.ActionType;
 import subway.screen.Choice;
@@ -21,6 +22,7 @@ public class Controller {
     private final Manager manager;
     
     public Controller(Scanner scanner) {
+        SubwayIntializer.initialize();
         ScreenRepositoryInitializer.initialize();
         screenStack.add(ScreenRepository.getScreenByType(ScreenType.MAIN));
         view = new View(scanner);

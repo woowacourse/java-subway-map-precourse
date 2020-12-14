@@ -65,4 +65,12 @@ public class LineRepository {
         }
         return false;
     }
+    
+    static void addLine(Line line) {
+        lines.add(line);
+    }
+    
+    static void clear() {
+        lines.clear();
+    }
 }
