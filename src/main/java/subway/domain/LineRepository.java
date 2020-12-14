@@ -14,8 +14,8 @@ public class LineRepository {
 
     public static void addLine(String lineName, String firstStation, String lastStation) {
 
-        if(checkNameLength(lineName) && !checkNameInLines(lineName)
-                && StationRepository.checkNameInStations(firstStation) && StationRepository.checkNameInStations(lastStation)){
+        if (!isEqualFirstStationAndLastStation(firstStation, lastStation) && checkNameLength(lineName) && !checkNameInLines(lineName)
+                && StationRepository.checkNameInStations(firstStation) && StationRepository.checkNameInStations(lastStation)) {
             lines.add(new Line(lineName, firstStation, lastStation));
             return;
         }
@@ -24,7 +24,7 @@ public class LineRepository {
     }
 
     public static void deleteLineByName(String name) {
-        if(checkNameInLines(name)){
+        if (checkNameInLines(name)) {
             lines.removeIf(line -> Objects.equals(line.getName(), name));
             return;
         }
@@ -50,8 +50,8 @@ public class LineRepository {
     }
 
     public static boolean checkNameInLines(String name) {
-        for(Line line : lines){
-            if(line.getName().equals(name)){
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
                 return true;
             }
         }
@@ -61,5 +61,9 @@ public class LineRepository {
 
     public static boolean checkNameLength(String name) {
         return name.length() >= Constants.MIN_NAME_LENGTH;
+    }
+
+    public static boolean isEqualFirstStationAndLastStation(String firstStation, String lastStation) {
+        return firstStation.equals(lastStation);
     }
 }

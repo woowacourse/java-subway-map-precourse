@@ -13,7 +13,7 @@ public class InitSetting {
 
     private static void initStation() {
         for (String name : initStation) {
-            StationRepository.addStation(new Station(name));
+            StationRepository.addStation(name);
         }
     }
 
