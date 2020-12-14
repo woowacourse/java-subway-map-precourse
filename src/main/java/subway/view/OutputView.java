@@ -16,6 +16,8 @@ public class OutputView {
     private static final String STATION_DELETION_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
     private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
     private static final String LINE_DELETION_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
+    private static final String EMPTY_STATION_GUIDE_MESSAGE = "지하철 역이 존재하지 않습니다.";
+    private static final String EMPTY_LINE_GUIDE_MESSAGE = "지하철 노선이 존재하지 않습니다.";
 
     public static void showMainScreen() {
         String message = MainScreen.getInstance().toString();
@@ -39,6 +41,9 @@ public class OutputView {
 
     public static void showStationList(List<String> stationNames) {
         printGuide(STATION_LIST_TITLE);
+        if (stationNames.isEmpty()) {
+            printGuide(EMPTY_STATION_GUIDE_MESSAGE);
+        }
         stationNames.stream()
                 .forEach(OutputView::printInfo);
         lineFeed();
@@ -61,6 +66,9 @@ public class OutputView {
 
     public static void showLineList(List<String> lineNames) {
         printGuide(LINE_LIST_TITLE);
+        if (lineNames.isEmpty()) {
+            printGuide(EMPTY_LINE_GUIDE_MESSAGE);
+        }
         lineNames.stream()
                 .forEach(OutputView::printInfo);
         lineFeed();
