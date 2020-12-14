@@ -31,7 +31,7 @@ public class printScreen {
     }
 
     public static void printAlarmAddStation() {
-        System.out.println("[INFO] 지하철 역이 등록되었습니다.");
+        System.out.println("[INFO] 지하철 역이 등록되었습니다.\n");
     }
 
     public static void printDeleteStation() {
@@ -39,7 +39,7 @@ public class printScreen {
     }
 
     public static void printAlarmDeleteStation() {
-        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.\n");
     }
 
     public static void printStationList(List<Station> stations) {
@@ -73,11 +73,15 @@ public class printScreen {
     }
 
     public static void printAlarmAddLine() {
-        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.\n");
     }
 
     public static void printDeleteLine() {
         System.out.println("## 삭제할 노선 이름을 입력하세요.");
+    }
+
+    public static void printAlarmDeleteLine() {
+        System.out.println("[INFO] 구간이 삭제되었습니다.\n");
     }
 
     public static void printLineList(List<Line> lines) {
@@ -110,7 +114,7 @@ public class printScreen {
     }
 
     public static void printAlarmAddSection() {
-        System.out.println("[INFO] 구간이 등록되었습니다.");
+        System.out.println("[INFO] 구간이 등록되었습니다.\n");
     }
 
     public static void printInputDeleteLine() {
@@ -122,7 +126,7 @@ public class printScreen {
     }
 
     public static void printAlarmDeleteSection() {
-        System.out.println("[INFO] 구간이 삭제되었습니다.");
+        System.out.println("[INFO] 구간이 삭제되었습니다.\n");
     }
 
     public static void printAllSubwayLine() {

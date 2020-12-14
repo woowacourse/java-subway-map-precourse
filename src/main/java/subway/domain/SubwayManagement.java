@@ -69,11 +69,13 @@ public class SubwayManagement {
     private void addStation() {
         printScreen.printAddStation();
         StationRepository.addStation(new Station(user.getInput()));
+        printScreen.printAlarmAddStation();
     }
 
     private void deleteStation() {
         printScreen.printDeleteStation();
         StationRepository.deleteStation(user.getInput());
+        printScreen.printAlarmDeleteStation();
     }
 
     private void getStationList() {
@@ -107,11 +109,13 @@ public class SubwayManagement {
         printScreen.printLastAddLine();
         String lastStation = user.getInput();
         LineRepository.addLine(lineName, firstStation, lastStation);
+        printScreen.printAlarmAddLine();
     }
 
     private void deleteLine() {
         printScreen.printDeleteLine();
         LineRepository.deleteLineByName(user.getInput());
+        printScreen.printAlarmDeleteLine();
     }
 
     private void getLineList() {
@@ -161,12 +165,12 @@ public class SubwayManagement {
             StationRepository.addStation(new Station(name));
         }
 
-        for(int i=0;i<initLine.length;i++){
+        for (int i = 0; i < initLine.length; i++) {
             LineRepository.addLine(initLine[i][0], initLine[i][1], initLine[i][2]);
             String[] sections = initSection[i];
-            for(String section : sections){
+            for (String section : sections) {
                 int idx = 2;
-                LineRepository.addSection(idx,initLine[i][0], section);
+                LineRepository.addSection(idx, initLine[i][0], section);
             }
         }
     }
