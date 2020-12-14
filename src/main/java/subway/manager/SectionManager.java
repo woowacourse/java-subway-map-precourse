@@ -9,9 +9,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SectionManager implements Manager {
-    private static final String NOT_VALID_INPUT_VALUE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
-    private static final String SUCCESS_SECTION_REGISTRATION_MESSAGE = "[INFO] 구간이 등록되었습니다.";
-    private static final String SUCCESS_SECTION_DELETION_MESSAGE = "[INFO] 구간이 삭제되었습니다.";
+    private static final String NOT_VALID_INPUT_VALUE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.\n";
+    private static final String SUCCESS_SECTION_REGISTRATION_MESSAGE = "[INFO] 구간이 등록되었습니다.\n";
+    private static final String SUCCESS_SECTION_DELETION_MESSAGE = "[INFO] 구간이 삭제되었습니다.\n";
+    private static final String NOT_FOUND_SECTION_MESSAGE = "[ERROR] 해당 노선에 존재하지 않는 역입니다.\n";
 
     @Override
     public void execute(Scanner scanner) {
@@ -43,7 +44,12 @@ public class SectionManager implements Manager {
         String lineName = InputView.inputLineNameForRemovingSection(scanner);
         Line line = LineService.findLineByName(lineName);
 
-        line.removeStation(InputView.inputRemovingStationName(scanner));
+        String removedStation = InputView.inputRemovingStationName(scanner);
+        line.getStations().stream()
+                .filter(station -> station.isEqualTo(removedStation))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_SECTION_MESSAGE));
+        line.removeStation(removedStation);
     }
 
     private void registerSection(Scanner scanner) {
