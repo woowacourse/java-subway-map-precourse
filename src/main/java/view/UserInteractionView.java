@@ -1,7 +1,7 @@
-package View;
+package view;
 
-import Enum.Operation;
-import Enum.SubMenuType;
+import subwaymapenum.Operation;
+import subwaymapenum.SubMenuType;
 import java.util.HashMap;
 import java.util.Map;
 

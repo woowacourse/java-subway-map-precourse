@@ -1,11 +1,11 @@
 package subway.controller.RepositoryAdminister;
 
-import View.IoView.InputView;
-import View.IoView.OutputView;
+import view.io.InputView;
+import view.io.OutputView;
 import subway.Exception.SubwayRelatedException;
 import subway.domain.Station;
 import subway.domain.subRepository.StationRepository;
-import Validation.ValidationCheck;
+import validation.ValidationCheck;
 
 public class StationAdminister {
 

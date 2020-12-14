@@ -1,4 +1,4 @@
-package Enum;
+package subwaymapenum;
 
 public enum Operation {
 

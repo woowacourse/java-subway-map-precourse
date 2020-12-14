@@ -1,9 +1,7 @@
-package View;
+package view;
 
-import Enum.Operation;
-import Enum.SubMenuType;
+import subwaymapenum.Operation;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import subway.controller.RepositoryAdminister.PassingRouteAdminister;

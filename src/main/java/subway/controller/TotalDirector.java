@@ -1,17 +1,17 @@
 package subway.controller;
 
-import View.IoView.InputView;
-import View.IoView.OutputView;
-import View.MainView;
-import View.UserInteractionView;
-import View.SubMenuView.LineView;
-import View.SubMenuView.StationView;
-import View.SubMenuView.PassingRouteView;
+import view.io.InputView;
+import view.io.OutputView;
+import view.MainView;
+import view.UserInteractionView;
+import view.submenu.LineView;
+import view.submenu.StationView;
+import view.submenu.PassingRouteView;
 import java.util.HashMap;
 import java.util.Map;
 
-import Enum.SubMenuType;
-import Enum.Operation;
+import subwaymapenum.SubMenuType;
+import subwaymapenum.Operation;
 
 public class TotalDirector {
 

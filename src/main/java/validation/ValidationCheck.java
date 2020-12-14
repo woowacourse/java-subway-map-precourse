@@ -1,6 +1,5 @@
-package Validation;
+package validation;
 
-import javax.print.attribute.standard.MediaSize.NA;
 import subway.Exception.SubwayRelatedException;
 import subway.domain.Line;
 import subway.domain.Station;

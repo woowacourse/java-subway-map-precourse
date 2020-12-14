@@ -1,9 +1,7 @@
-package View.IoView;
+package view.io;
 
 import java.util.Map;
 import java.util.Scanner;
-
-import subway.Exception.SubwayRelatedException;
 
 public class InputView {
 
