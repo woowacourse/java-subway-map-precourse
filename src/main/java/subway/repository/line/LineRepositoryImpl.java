@@ -1,13 +1,12 @@
 package subway.repository.line;
 
-import subway.domain.Line.Line;
-
+import subway.domain.line.Line;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class LineRepositoryImpl implements subway.domain.repository.line.LineRepository {
+public class LineRepositoryImpl implements LineRepository {
     private final List<Line> lines = new ArrayList<>();
 
     @Override
