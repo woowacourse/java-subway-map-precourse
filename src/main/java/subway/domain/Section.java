@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Section {
 
     private static final int MINIMUM_RANGE = 0;
+    private static final int ENOUGH_STATIONS = 3;
     private static final int COVER_INDEX = 1;
 
     private final Line line;
@@ -30,7 +31,6 @@ public class Section {
     }
 
     public void addStationWithPosition(Station station, String position) {
-        validateStationDuplicate(station);
         int integerPosition = validatePositionInteger(position)-COVER_INDEX;
         validatePositionRange(integerPosition);
         stations.add(integerPosition, station);
@@ -42,9 +42,15 @@ public class Section {
         }
     }
 
-    private void validateStationDuplicate(Station station) {
+    public void validateStationDuplicate(Station station) {
         if (stations.contains(station)) {
             throw new IllegalArgumentException("이미 노선에 등록되어 있거나, 등록 진행 중인 지하철 역 입니다.");
+        }
+    }
+
+    public void validateNotEnoughStations() {
+        if (stations.size() < ENOUGH_STATIONS) {
+            throw new IllegalArgumentException("노선에 포함된 지하철 역이 3개 이상일 때부터 삭제 할 수 있습니다.");
         }
     }
 

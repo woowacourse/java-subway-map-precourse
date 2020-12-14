@@ -14,20 +14,25 @@ public class SectionService {
     private static final String END_POSITION = "2";
 
     public static void insertStation() {
+        SectionRepository.validateSectionsEmpty();
         Section section = SectionRepository.getSectionByLineName(UserInput.getLineNameForInsert());
         Station station = StationService.getStationByName(UserInput.getStationNameForInsert());
+        section.validateStationDuplicate(station);
         registerSection(section, station, UserInput.getStationPosition());
         SectionDisplay.printInsertSuccess();
     }
 
     public static void deleteStation() {
+        SectionRepository.validateSectionsEmpty();
         Section section = SectionRepository.getSectionByLineName(UserInput.getLineNameForDelete());
+        section.validateNotEnoughStations();
         section.deleteStationByName(UserInput.getStationNameForDelete());
         SectionDisplay.printDeleteSuccess();
     }
 
 
     public static void printSections() {
+        SectionRepository.validateSectionsEmpty();
         MainDisplay.printAllSections(SectionRepository.sections());
     }
 

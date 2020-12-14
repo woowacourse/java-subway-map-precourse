@@ -13,13 +13,15 @@ public class MainDisplay extends Display {
     private static final String DASH_LINE = "---";
 
     public static void loadMainMenu() {
-        while (true) {
+        MainMenu selectedMenu = null;
+        while (selectedMenu != MainMenu.QUIT_PROGRAM) {
             printMenu();
-            MainMenu selectedMenu = selectMenuByInput();
-            if (selectedMenu == MainMenu.QUIT_PROGRAM) {
-                break;
+            selectedMenu = selectMenuByInput();
+            try{
+                selectedMenu.executeMenu(selectedMenu.getMenuKey());
+            } catch (IllegalArgumentException e) {
+                printError(e.getMessage());
             }
-            selectedMenu.executeMenu(selectedMenu.getMenuKey());
         }
     }
 
