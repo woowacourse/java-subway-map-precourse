@@ -11,7 +11,7 @@ public class Line implements LineErrorMessage {
     private static final int MINIMUM_STATIONS_WHEN_SECTION_TO_BE_DELETED = 3;
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final String HORIZONTAL_DELIMITER = SYMBOL_INFO + "---";
-    private String name; // 변경 불가능
+    private String name;
     private LinkedList<Station> stationsOnLine = new LinkedList<>(); // 해당 노선에 소속된 역(들)
 
     public Line(String name) { // 변경 불가능

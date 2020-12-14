@@ -14,8 +14,7 @@ class SectionScreen implements SubwayScreen, SectionScreenMessage {
     public void startProcess(Scanner scanner) {
         do {
             printScreen();
-            sectionScreenInput = getInput(scanner);
-            validateInput(sectionScreenInput);
+            sectionScreenInput = validateInput(scanner.nextLine());
             transfer(scanner);
         } while (!sectionScreenInput.equals(BACK));
     }
@@ -27,18 +26,12 @@ class SectionScreen implements SubwayScreen, SectionScreenMessage {
     }
 
     @Override
-    public String getInput(Scanner scanner) {
-        sectionScreenInput = scanner.nextLine();
-        validateInput(sectionScreenInput);
-        return sectionScreenInput;
-    }
-
-    @Override
-    public void validateInput(String input) {
+    public String validateInput(String input) {
         List<String> choices = Arrays.asList(MENU_CHOICES);
-        if(!choices.contains(input)) {
+        if (!choices.contains(input)) {
             throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
+        return input;
     }
 
     @Override

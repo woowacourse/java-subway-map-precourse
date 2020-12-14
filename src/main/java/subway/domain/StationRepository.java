@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 import subway.exception.StationErrorMessage;
 
 public class StationRepository implements StationErrorMessage {
@@ -38,7 +37,7 @@ public class StationRepository implements StationErrorMessage {
 
     public static void deleteStation(String stationName) {
         validateStationNameDeleted(stationName);
-        stations.removeIf(station -> Objects.equals(station.getName(), stationName));
+        stations().removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
     private static void validateStationNameDeleted(String stationName) {
@@ -51,16 +50,13 @@ public class StationRepository implements StationErrorMessage {
     }
 
     private static boolean hasLine(String stationName) {
-        Stream<Station> stationStream = stations().stream();
-        Station stationSelected = stationStream.
-            filter(station -> station.getName().equals(stationName)).
-            findFirst().get();
+        Station stationSelected = stations().stream().
+            filter(station -> station.getName().equals(stationName)).findFirst().get();
         return stationSelected.isEnrolled();
     }
 
     private static boolean isStationInRepository(String stationName) {
-        Stream<Station> stationStream = stations.stream();
-        return stationStream.anyMatch(station -> station.getName().equals(stationName));
+        return stations().stream().anyMatch(station -> station.getName().equals(stationName));
     }
 
     public static void displayAllStations() {

@@ -3,7 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 
 public class Station {
-    private String name; // 변경 불가능
+    private String name;
     private boolean enrolled = false; // 노선에 등록되어 있는 상태
     private ArrayList<Line> linesEnrolled = new ArrayList<>();
 

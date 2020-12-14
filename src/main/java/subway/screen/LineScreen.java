@@ -11,8 +11,7 @@ class LineScreen implements SubwayScreen, LineScreenMessage {
     public void startProcess(Scanner scanner) {
         do {
             printScreen();
-            lineScreenInput = getInput(scanner);
-            validateInput(lineScreenInput);
+            lineScreenInput = validateInput(scanner.nextLine());
             transfer(scanner);
         } while (!lineScreenInput.equals(BACK));
     }
@@ -24,17 +23,11 @@ class LineScreen implements SubwayScreen, LineScreenMessage {
     }
 
     @Override
-    public String getInput(Scanner scanner) {
-        lineScreenInput = scanner.nextLine();
-        validateInput(lineScreenInput);
-        return lineScreenInput;
-    }
-
-    @Override
-    public void validateInput(String input) {
+    public String validateInput(String input) {
         if (!Arrays.asList(MENU_CHOICES).contains(input)) {
             throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
+        return input;
     }
 
     @Override

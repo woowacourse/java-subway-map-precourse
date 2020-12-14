@@ -13,10 +13,24 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
     public void startProcess(Scanner scanner) {
         do {
             printScreen();
-            stationScreenInput = getInput(scanner);
-            validateInput(stationScreenInput);
+            stationScreenInput = validateInput(scanner.nextLine());
             transfer(scanner);
         } while (!stationScreenInput.equals(BACK));
+    }
+
+    @Override
+    public void printScreen() {
+        System.out.println(MENU);
+        System.out.println(MESSAGE_MENU_SELECT);
+    }
+
+    @Override
+    public String validateInput(String input) {
+        List<String> choices = Arrays.asList(MENU_CHOICES);
+        if (!choices.contains(input)) {
+            throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
+        }
+        return input;
     }
 
     @Override
@@ -48,27 +62,6 @@ class StationScreen implements SubwayScreen, StationScreenMessage {
             String stationName = scanner.nextLine();
             StationRepository.addStation(stationName);
             System.out.println(MESSAGE_STATION_ADDED);
-        }
-    }
-
-    @Override
-    public void printScreen() {
-        System.out.println(MENU);
-        System.out.println(MESSAGE_MENU_SELECT);
-    }
-
-    @Override
-    public String getInput(Scanner scanner) {
-        stationScreenInput = scanner.nextLine();
-        validateInput(stationScreenInput);
-        return stationScreenInput;
-    }
-
-    @Override
-    public void validateInput(String input) {
-        List<String> choices = Arrays.asList(MENU_CHOICES);
-        if(!choices.contains(input)) {
-            throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
     }
 }
