@@ -3,6 +3,7 @@ package subway.screen;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import subway.menu.SectionMenu;
@@ -32,7 +33,7 @@ public class SectionScreen implements SubwayScreen, SectionMessage {
             .map(SectionMenu::getSymbol)
             .collect(Collectors.toCollection(ArrayList::new));
         if (!choices.contains(input)) {
-            throw new IllegalArgumentException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
+            throw new NoSuchElementException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
         }
         return input;
     }

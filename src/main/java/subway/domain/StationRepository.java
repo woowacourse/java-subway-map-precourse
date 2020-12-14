@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import subway.exception.StationErrorMessage;
+import subway.exception.StationException;
 
-public class StationRepository implements StationErrorMessage {
+public class StationRepository extends StationException {
     private static final List<Station> stations = new ArrayList<>();
     private static final int STATION_NAME_LENGTH_LIMIT = 2;
     private static final String SYMBOL_INFO = "[INFO] ";
@@ -22,36 +22,39 @@ public class StationRepository implements StationErrorMessage {
     }
 
     private static Station getAddStationName(String stationName) {
-        validateStationNameAdded(stationName);
+        validateStationNameToAdd(stationName);
         return new Station(stationName);
     }
 
-    private static void validateStationNameAdded(String stationName) {
+    private static void validateStationNameToAdd(String stationName) {
         if (stationName.length() < STATION_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException(ERROR_INVALID_STATION_NAME_LENGTH);
         }
         if (isStationInRepository(stationName)) {
-            throw new IllegalArgumentException(ERROR_DUPLICATED_STATION_NAME_IN_REPOSITORY);
+            throw new DuplicatedStationNameException(stationName);
         }
     }
 
     public static void deleteStation(String stationName) {
-        validateStationNameDeleted(stationName);
+        validateStationNameToDelete(stationName);
         stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
-    private static void validateStationNameDeleted(String stationName) {
+    private static void validateStationNameToDelete(String stationName) {
         if (!isStationInRepository(stationName)) {
-            throw new IllegalArgumentException(ERROR_NO_STATION_IN_REPOSITORY);
+            throw new NoSuchStationOnRepositoryException(stationName);
         }
         if (hasLine(stationName)) {
-            throw new IllegalArgumentException(ERROR_HAS_LINE);
+            throw new AlreadyEnrolledException();
         }
     }
 
     private static boolean hasLine(String stationName) {
-        Station stationSelected = stations().stream().
-            filter(station -> station.getName().equals(stationName)).findFirst().get();
+        Station stationSelected = stations()
+            .stream()
+            .filter(station -> station.getName().equals(stationName))
+            .findFirst()
+            .get();
         return stationSelected.isEnrolled();
     }
 
@@ -62,7 +65,7 @@ public class StationRepository implements StationErrorMessage {
     public static void displayAllStations() {
         Iterator iterator = stations().iterator();
         while (iterator.hasNext()) {
-            Station station = (Station)iterator.next();
+            Station station = (Station) iterator.next();
             System.out.println(SYMBOL_INFO + station.getName());
         }
         if (stations().size() == 0) {
