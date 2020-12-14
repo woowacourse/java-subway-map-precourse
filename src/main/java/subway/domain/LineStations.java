@@ -26,12 +26,11 @@ public class LineStations {
             throw new IllegalArgumentException("이미 노선에 포함된 역입니다.");
         }
 
-        if (order.isBiggerThan(stations.size() + Order.getStartingNumber())) {
+        if (order.getIndex() > stations.size()) {
             throw new IllegalArgumentException("유효하지 않은 순서 입력입니다.");
         }
 
-        int index = order.getValue() - Order.getStartingNumber();
-        stations.add(index, station);
+        stations.add(order.getIndex(), station);
 
         station.onLine();
     }

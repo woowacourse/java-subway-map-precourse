@@ -6,22 +6,14 @@ public class Order {
     private final int order;
 
     public Order(int order) {
-        if (order < 1) {
+        if (order < STARTING_ORDER) {
             throw new IllegalArgumentException("순서는 1이상의 숫자여야 합니다.");
         }
 
         this.order = order;
     }
 
-    public int getValue() {
-        return order;
-    }
-
-    public static int getStartingNumber() {
-        return STARTING_ORDER;
-    }
-
-    public boolean isBiggerThan(int integer) {
-        return order > integer;
+    public int getIndex() {
+        return order - STARTING_ORDER;
     }
 }
