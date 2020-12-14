@@ -18,8 +18,8 @@ public enum MainMenu implements MenuModel {
     },
     MANAGE_SECTION("3", "구간 관리") {
         public void moveView(Scanner scanner) {
-            String sectionViewInput = SectionInputView.menu(scanner);
-            SectionMenu.select(sectionViewInput).moveView(scanner);
+            SectionMenu.openScreen(scanner);
+
         }
     },
     SHOW_MAP("4", "지하철 노선 출력") {

@@ -23,7 +23,7 @@ public class StationRepository {
     public static Station findStation(String terminus) {
         return stations.stream()
                 .filter(station -> station.getName().equals(terminus))
-                .findFirst().orElseThrow(() -> new IllegalArgumentException(("존재하지 않는 역입니다용")));
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(("[ERROR] 존재하지 않는 역입니다.")));
     }
 
     public static boolean exists(String name) {

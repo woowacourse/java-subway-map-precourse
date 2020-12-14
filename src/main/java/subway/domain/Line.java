@@ -19,4 +19,8 @@ public class Line {
         line.addFirst(StationRepository.findStation(upBoundTerminus));
         line.addLast(StationRepository.findStation(downBoundTerminus));
     }
+
+    public LinkedList<Station> getLine() {
+        return line;
+    }
 }

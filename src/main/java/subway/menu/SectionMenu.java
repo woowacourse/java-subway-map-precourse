@@ -1,21 +1,19 @@
 package subway.menu;
 
+import subway.feature.SectionFeature;
+import subway.feature.StationFeature;
 import subway.view.SectionInputView;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public enum SectionMenu implements MenuModel {
     REGISTER("1", "구간 등록") {
         public void moveView(Scanner scanner) {
-            SectionInputView sectionInputView = new SectionInputView();
-            sectionInputView.register(scanner);
+            SectionFeature.registerSection(scanner);
         }
     },
     REMOVE("2", "구간 삭제") {
         public void moveView(Scanner scanner) {
-            SectionInputView sectionInputView = new SectionInputView();
-            sectionInputView.remove(scanner);
+            SectionFeature.removeSection(scanner);
         }
     },
     BACK("B", "돌아가기") {
@@ -30,6 +28,15 @@ public enum SectionMenu implements MenuModel {
     private SectionMenu(String selection, String feature) {
         this.selection = selection;
         this.feature = feature;
+    }
+
+    public static void openScreen(Scanner scanner) {
+        // output print로 묶기
+        System.out.println("## 노선 관리 화면");
+        System.out.println(SectionMenu.getMenu());
+        //
+        String sectionMenuInput = SectionInputView.menu(scanner);
+        select(sectionMenuInput).moveView(scanner);
     }
 
     abstract public void moveView(Scanner scanner);

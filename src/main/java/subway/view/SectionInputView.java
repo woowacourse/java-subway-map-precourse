@@ -1,32 +1,36 @@
 package subway.view;
 
 import subway.menu.SectionMenu;
+import subway.menu.StationMenu;
+import subway.utils.Validator;
 
 import java.util.Scanner;
 
 public class SectionInputView {
 
     public static String menu(Scanner scanner) {
-        System.out.println("## 구간 관리 화면");
-        System.out.println(SectionMenu.getMenu());
         System.out.println("## 원하는 기능을 선택하세요.");
-
         try {
-            return scanner.nextLine();
+            String selection = scanner.nextLine();
+            return selection;
         } catch (IllegalArgumentException e) {
-            System.out.println("\n[ERROR] 입력이 잘못되었습니다.\n");
+            System.out.println(e.getMessage());
             return menu(scanner);
         }
     }
 
-    public static String register (Scanner scanner) {
-        System.out.println("## 등록할 구간 이름을 입력하세요.");
+    public static String lineForRegister(Scanner scanner) {
+        System.out.println("## 노선을 입력하세요.");
         return scanner.nextLine();
     }
 
-    public static String remove (Scanner scanner) {
-        System.out.println("## 삭제할 구간 이름을 입력하세요.");
+    public static String stationForRegister(Scanner scanner) {
+        System.out.println("## 역을 입력하세요.");
         return scanner.nextLine();
     }
 
+    public static int sequenceForRegister(Scanner scanner) {
+        System.out.println("## 순서를 입력하세요.");
+        return Integer.parseInt(scanner.nextLine());
+    }
 }

@@ -2,7 +2,7 @@ package subway.feature;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.menu.StationMenu;
+import subway.menu.LineMenu;
 import subway.view.LineInputView;
 import subway.view.OutputView;
 
@@ -23,7 +23,7 @@ public class LineFeature {
             System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            StationMenu.openScreen(scanner);
+            LineMenu.openScreen(scanner);
         }
     }
 
@@ -35,7 +35,7 @@ public class LineFeature {
             System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            StationMenu.openScreen(scanner);
+            LineMenu.openScreen(scanner);
         }
     }
 
