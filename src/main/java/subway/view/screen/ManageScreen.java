@@ -1,5 +1,7 @@
 package subway.view.screen;
 
+import subway.controller.Controller;
+import subway.controller.ControllerMapper;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -12,6 +14,7 @@ public class ManageScreen implements Screen {
     private static final String TITLE = "관리 화면";
     public static final int MAX_MENU_NUMBER = 3;
     public static final String BACK_COMMAND = "B";
+    private static Screen screen;
     private static final List<Action> MANAGE_MENU_ACTION = Arrays.asList(
             Action.INSERT, Action.DELETE, Action.SELECT, Action.BACK
     );
@@ -39,6 +42,15 @@ public class ManageScreen implements Screen {
         if (command.equals(BACK_COMMAND)) {
             ScreenStack.back();
             return;
+        }
+        checkCommandValidateAndMappingAppropriateScreen(command);
+    }
+
+    // 입력 값 확인
+    private static final void checkCommandValidateAndMappingAppropriateScreen(String command) {
+        int parseCommandToInt = screen.isCommandValidate(command);
+        if (parseCommandToInt != ERROR) {
+            ControllerMapper.mapping(name).mappingCommandToValidFunction(parseCommandToInt);
         }
     }
 }
