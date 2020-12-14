@@ -142,4 +142,8 @@ public class printScreen {
             System.out.println();
         }
     }
+
+    public static void printMainSelectError() {
+        System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.\n");
+    }
 }

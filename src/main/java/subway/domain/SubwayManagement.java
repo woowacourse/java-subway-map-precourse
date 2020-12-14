@@ -14,9 +14,41 @@ public class SubwayManagement {
 
     private void executeMain() {
         while (true) {
-            printScreen.printMainScreen();
-            selectMainFunction(user.getInput());
+            try {
+                printScreen.printMainScreen();
+                String input = user.getInput();
+                checkMainSelect(input);
+                if (input.equals(Constants.FUNCTION_Q)) {
+                    break;
+                }
+                selectMainFunction(input);
+            } catch (IllegalArgumentException e) {
+                printScreen.printMainSelectError();
+            }
         }
+    }
+
+    private void checkMainSelect(String select) {
+        if (select.equals(Constants.FUNCTION_Q) ||
+                select.equals(Constants.FUNCTION_1) ||
+                select.equals(Constants.FUNCTION_2) ||
+                select.equals(Constants.FUNCTION_3) ||
+                select.equals(Constants.FUNCTION_4)) {
+            return;
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    private void checkManagementSelect(String select) {
+        if (select.equals(Constants.FUNCTION_B) ||
+                select.equals(Constants.FUNCTION_1) ||
+                select.equals(Constants.FUNCTION_2) ||
+                select.equals(Constants.FUNCTION_3)) {
+            return;
+        }
+
+        throw new IllegalArgumentException();
     }
 
     private void createUserInstance() {
@@ -24,27 +56,37 @@ public class SubwayManagement {
     }
 
     private void selectMainFunction(String select) {
-        if (select.equals(Constants.FUNCTION_1)) {
-            printScreen.printStationManagementScreen();
-            selectStationManagementFunction(user.getInput());
-            return;
-        }
-        if (select.equals(Constants.FUNCTION_2)) {
-            printScreen.printLineManagementScreen();
-            selectLineManagementFunction(user.getInput());
-            return;
-        }
-        if (select.equals(Constants.FUNCTION_3)) {
-            printScreen.printSectionManagementScreen();
-            selectSectionManagementFunction(user.getInput());
-            return;
-        }
-        if (select.equals(Constants.FUNCTION_4)) {
-            printSubwayLine();
-            return;
-        }
-        if (select.equals(Constants.FUNCTION_Q)) {
-            return;
+        try {
+            if (select.equals(Constants.FUNCTION_1)) {
+                printScreen.printStationManagementScreen();
+                String input = user.getInput();
+                checkManagementSelect(input);
+                selectStationManagementFunction(input);
+                return;
+            }
+            if (select.equals(Constants.FUNCTION_2)) {
+                printScreen.printLineManagementScreen();
+                String input = user.getInput();
+                checkManagementSelect(input);
+                selectLineManagementFunction(input);
+                return;
+            }
+            if (select.equals(Constants.FUNCTION_3)) {
+                printScreen.printSectionManagementScreen();
+                String input = user.getInput();
+                checkManagementSelect(input);
+                selectSectionManagementFunction(input);
+                return;
+            }
+            if (select.equals(Constants.FUNCTION_4)) {
+                printSubwayLine();
+                return;
+            }
+            if (select.equals(Constants.FUNCTION_Q)) {
+                return;
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
         }
         throw new IllegalArgumentException();
     }
