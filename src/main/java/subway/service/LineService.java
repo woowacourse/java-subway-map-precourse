@@ -70,7 +70,13 @@ public class LineService {
     }
 
     public boolean deleteLine(String name) {
-        return LineRepository.deleteLineByName(name);
+        try {
+            LineRepository.deleteLineByName(name);
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return false;
+        }
+        return true;
     }
 
     public List<Line> findAll() {

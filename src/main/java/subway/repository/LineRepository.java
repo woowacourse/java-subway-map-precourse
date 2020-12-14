@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.console.Message;
 import subway.domain.Line;
 
 public class LineRepository {
@@ -18,7 +19,21 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
+        validateEmptyLines();
+        validateExistLines(name);
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    private static void validateEmptyLines() {
+        if (lines.isEmpty()) {
+            throw new IllegalArgumentException(Message.ERROR_SIZE);
+        }
+    }
+
+    private static void validateExistLines(String name) {
+        if (!isExist(name)) {
+            throw new IllegalArgumentException(Message.ERROR_NOT_EXIST_LINE);
+        }
     }
 
     public static Line findOne(String name) {

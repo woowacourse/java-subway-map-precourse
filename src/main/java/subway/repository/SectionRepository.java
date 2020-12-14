@@ -37,7 +37,7 @@ public class SectionRepository {
     public static void deleteSection(Line line, Station station) {
         List<Station> stations = sections.get(line);
         if (stations.size() <= VALID_STATION_SIZE) {
-            throw new IllegalArgumentException(Message.ERROR_STATION_SIZE);
+            throw new IllegalArgumentException(Message.ERROR_SIZE);
         }
         stations.remove(station);
     }
