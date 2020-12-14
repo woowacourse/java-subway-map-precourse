@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SectionControllerTest {
 
     @Test
-    void addSection() {
+    void addAndDeleteSection() {
         DummyData.initialize();
 
         Line line1 = LineRepository.getByName(new Name("2호선"));
@@ -27,6 +27,25 @@ class SectionControllerTest {
         Line line4 = LineRepository.getByName(new Name("2호선"));
         line4.addStation(new Order(4), StationRepository.getByName(new Name("양재역")));
         line1.deleteStation(StationRepository.getByName(new Name("양재역")));
+
+        // isOnLine 확인
+        StationRepository.addStation(Station.create(new Name("신창역")));
+        StationRepository.addStation(Station.create(new Name("청량리역")));
+
+        Station start = StationRepository.getByName(new Name("신창역"));
+        Station end = StationRepository.getByName(new Name("청량리역"));
+
+        LineRepository.addLine(Line.create(new Name("1호선"), start, end));
+        assertEquals(true, start.isOnLine());
+
+        LineRepository.addLine(Line.create(new Name("4호선"), start, end));
+        assertEquals(true, start.isOnLine());
+
+        LineRepository.getByName(new Name("1호선")).deleteStation(start);
+        assertEquals(true, start.isOnLine());
+
+        LineRepository.remove(LineRepository.getByName(new Name("4호선")));
+        assertEquals(false, start.isOnLine());
     }
 
     @Test
@@ -49,6 +68,31 @@ class SectionControllerTest {
         assertThrows(Exception.class, () -> {
             Line line1 = LineRepository.getByName(new Name("2호선"));
             line1.addStation(new Order(5), StationRepository.getByName(new Name("교대역")));
+        });
+    }
+
+    @Test
+    void deleteSection_Expect_Exception() {
+        DummyData.initialize();
+
+        // 구간에 없는 역 삭제 불가능
+        assertThrows(Exception.class, () -> {
+            Line line = LineRepository.getByName(new Name("2호선"));
+            line.deleteStation(StationRepository.getByName(new Name("양재역")));
+        });
+
+        // 구간에 없는 역 삭제 불가능
+        assertThrows(Exception.class, () -> {
+            Line line = LineRepository.getByName(new Name("2호선"));
+            line.deleteStation(StationRepository.getByName(new Name("교대역")));
+            line.deleteStation(StationRepository.getByName(new Name("교대역")));
+        });
+
+        // 노선에 역이 2개 이하인 경우 삭제 불가능
+        assertThrows(Exception.class, () -> {
+            Line line = LineRepository.getByName(new Name("2호선"));
+            line.deleteStation(StationRepository.getByName(new Name("교대역")));
+            line.deleteStation(StationRepository.getByName(new Name("강남역")));
         });
     }
 }
