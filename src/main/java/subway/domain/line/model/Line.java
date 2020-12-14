@@ -42,18 +42,6 @@ public class Line {
         }
     }
 
-    public boolean isEqualTo(String lineName) {
-        return Objects.equals(name, lineName);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Station> getStations() {
-        return Collections.unmodifiableList(stations);
-    }
-
     public void addStation(int newStationLocation, Station newStation) {
         if (newStationLocation < MIN_SECTION_NUMBER_LIMIT || newStationLocation >= stations.size()) {
             throw new IllegalArgumentException(NOT_REGISTER_SECTION_ERROR_MESSAGE);
@@ -71,5 +59,17 @@ public class Line {
         if (stations.size() <= INITIAL_STATIONS_SIZE_NUMBER) {
             throw new IllegalArgumentException(STATIONS_SIZE_LESS_THAN_INITIAL_LENGTH_NOT_REMOVE_STATION_MESSAGE);
         }
+    }
+
+    public boolean isEqualTo(String lineName) {
+        return Objects.equals(name, lineName);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Station> getStations() {
+        return Collections.unmodifiableList(stations);
     }
 }
