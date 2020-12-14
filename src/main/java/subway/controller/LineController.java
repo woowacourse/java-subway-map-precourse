@@ -62,9 +62,9 @@ public class LineController {
 
     private void registerSection(InputView inputView, Line line) {
         OutputView.printRegisterFirstStation();
-        String firstStation = inputView.getInputRegisterStationForSection(line.getName());
+        String firstStation = inputView.getInputRegisterFirstStation(line.getName());
         OutputView.printRegisterLastStation();
-        String lastStation = inputView.getInputRegisterStationForSection(firstStation, line.getName());
+        String lastStation = inputView.getInputRegisterLastStation(firstStation, line.getName());
         SectionRepository.addSection(line.getName(), firstStation, lastStation);
     }
 }
