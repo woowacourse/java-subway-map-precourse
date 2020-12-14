@@ -41,11 +41,6 @@ public class StationView {
         }
     }
 
-    private String inputButton() {
-        printPage(STATION_PAGE);
-        return input.nextButton(STATION_BUTTONS);
-    }
-
     private boolean isEndStationPage(String button) {
         return !isCreate(button)
                 && !isDelete(button)
@@ -53,35 +48,34 @@ public class StationView {
                 && !isBack(button);
     }
 
+    private String inputButton() {
+        printPage(STATION_PAGE);
+        return input.nextButton(STATION_BUTTONS);
+    }
+
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
             print(InputMessage.CREATE_STATION);
-
-            if (isCreateStation()) {
-                print(InfoMessage.CREATE_STATION);
-                return true;
-            }
+            return isCreateStation();
         }
         return false;
     }
 
     private boolean isCreateStation() {
+        print(InfoMessage.CREATE_STATION);
         return stationController.createStation(input.nextLine());
     }
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
             print(InputMessage.DELETE_STATION);
-
-            if (isDeleteStation()) {
-                print(InfoMessage.DELETE_STATION);
-                return true;
-            }
+            return isDeleteStation();
         }
         return false;
     }
 
     private boolean isDeleteStation() {
+        print(InfoMessage.DELETE_STATION);
         return stationController.deleteStation(input.nextLine());
     }
 

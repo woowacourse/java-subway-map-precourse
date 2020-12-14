@@ -22,7 +22,12 @@ public class Input {
     }
 
     public String nextButton(List<String> buttons) {
+        return loopValidInputButton(buttons);
+    }
+
+    private String loopValidInputButton(List<String> buttons) {
         String button = toUpper(nextLine());
+
         while (!buttons.contains(button)) {
             print(ErrorMessage.NOT_BUTTON);
             print(InputMessage.SELECT_BUTTON);
@@ -39,7 +44,13 @@ public class Input {
         return scanner.nextLine().replaceAll(REGEX, REPLACEMENT);
     }
 
-    public boolean isNumeric(String number) {
+    public String nextInt() {
+        String number = nextLine();
+        isNumeric(number);
+        return number;
+    }
+
+    private boolean isNumeric(String number) {
         try {
             toInt(number);
             return true;

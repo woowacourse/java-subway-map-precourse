@@ -1,5 +1,7 @@
 package subway.console;
 
+import static java.lang.System.out;
+
 import java.util.List;
 import java.util.Map;
 import subway.console.message.ErrorMessage;
@@ -17,7 +19,7 @@ public class Output {
     }
 
     public static void printPage(final List<String> page) {
-        page.forEach(System.out::println);
+        page.forEach(out::println);
     }
 
     public static void printStations(List<Station> stations) {
@@ -32,18 +34,6 @@ public class Output {
         lines.forEach(line -> print(combine(line.getName())));
     }
 
-    private static String combine(String name) {
-        return InfoMessage.INFO + name;
-    }
-
-    public static void print(String message) {
-        System.out.println(message);
-    }
-
-    public static void printBlankLine() {
-        System.out.println();
-    }
-
     public static void printSubwayLine(Map<Line, List<Station>> sections) {
         if (isEmpty(sections)) {
             print(ErrorMessage.EMPTY_LINE);
@@ -54,10 +44,6 @@ public class Output {
         printSubwayInformation(sections);
     }
 
-    private static boolean isEmpty(Map<Line, List<Station>> sections) {
-        return sections.isEmpty();
-    }
-
     private static void printSubwayInformation(Map<Line, List<Station>> sections) {
         for (Line line : sections.keySet()) {
             print(combine(line.getName()));
@@ -66,5 +52,21 @@ public class Output {
             sections.get(line).forEach(station -> print(combine(station.getName())));
             printBlankLine();
         }
+    }
+
+    private static String combine(String name) {
+        return InfoMessage.INFO + name;
+    }
+
+    private static boolean isEmpty(Map<Line, List<Station>> sections) {
+        return sections.isEmpty();
+    }
+
+    public static void print(String message) {
+        out.println(message);
+    }
+
+    public static void printBlankLine() {
+        out.println();
     }
 }

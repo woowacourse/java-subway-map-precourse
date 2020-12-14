@@ -41,11 +41,6 @@ public class LineView {
         }
     }
 
-    private String inputButton() {
-        printPage(LINE_PAGE);
-        return input.nextButton(LINE_BUTTONS);
-    }
-
     private boolean isEndLinePage(String button) {
         return !isCreate(button)
                 && !isDelete(button)
@@ -53,22 +48,29 @@ public class LineView {
                 && !isBack(button);
     }
 
+    private String inputButton() {
+        printPage(LINE_PAGE);
+        return input.nextButton(LINE_BUTTONS);
+    }
+
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
             print(InputMessage.CREATE_LINE);
-
-            if (createLine(input.nextLine())) {
+            if (isCreateLine(input.nextLine())) {
                 print(InfoMessage.CREATE_LINE);
-                return true;
             }
         }
         return false;
     }
 
-    private boolean createLine(String name) {
-        return lineController.createLine(name)
+    private boolean isCreateLine(String name) {
+        return createLine(name)
                 && createFirstStation(name)
                 && createLastStation(name);
+    }
+
+    private boolean createLine(String name) {
+        return lineController.createLine(name);
     }
 
     private boolean createFirstStation(String name) {
@@ -84,16 +86,13 @@ public class LineView {
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
             print(InputMessage.DELETE_LINE);
-
-            if (isDeleteLine()) {
-                print(InfoMessage.DELETE_LINE);
-                return true;
-            }
+            return isDeleteLine();
         }
         return false;
     }
 
     private boolean isDeleteLine() {
+        print(InfoMessage.DELETE_LINE);
         return lineController.deleteLine(input.nextLine());
     }
 

@@ -39,73 +39,87 @@ public class SectionView {
         }
     }
 
+    private boolean isEndSectionPage(final String button) {
+        return !isCreate(button)
+            && !isDelete(button)
+            && !isBack(button);
+    }
+
     private String inputButton() {
         printPage(SECTION_PAGE);
         return input.nextButton(SECTION_BUTTONS);
     }
 
-    private boolean isEndSectionPage(final String button) {
-        return !isCreate(button)
-                && !isDelete(button)
-                && !isBack(button);
-    }
-
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
 
-            print(InputMessage.CREATE_SECTION);
-            if (createSection(input.nextLine())) {
+            if (createSection()) {
                 print(InfoMessage.CREATE_SECTION);
-                return true;
             }
         }
         return false;
     }
 
-    private boolean createSection(String line) {
-        if (!sectionController.existLine(line)) {
+    private boolean createSection() {
+        String line = inputLine();
+        if (sectionController.isNotExistLine(line)) {
             return false;
         }
-
-        print(InputMessage.STATION_SECTION);
-        String station = input.nextLine();
-        if (!sectionController.existStation(station)) {
+        String station = inputStation();
+        if (sectionController.isNotExistStation(station)) {
             return false;
         }
-
-        print(InputMessage.ORDER_SECTION);
-        String order = input.nextLine();
-        if (!input.isNumeric(order)) {
-            return false;
-        }
+        String order = inputOrder();
 
         return sectionController.createSection(line, station, order);
     }
 
+    private String inputLine() {
+        print(InputMessage.LINE_SECTION);
+        return input.nextLine();
+    }
+
+    private String inputStation() {
+        print(InputMessage.STATION_SECTION);
+        return input.nextLine();
+    }
+
+    private String inputOrder() {
+        print(InputMessage.ORDER_SECTION);
+        return input.nextInt();
+    }
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
-            print(InputMessage.DELETE_SECTION);
-            if (deleteSection(input.nextLine())) {
+            if (deleteSection()) {
                 print(InfoMessage.DELETE_SECTION);
-                return true;
             }
         }
         return false;
     }
 
-    private boolean deleteSection(String line) {
-        if (!sectionController.existLine(line)) {
+    private boolean deleteSection() {
+        String line = inputDeleteSection();
+        if (sectionController.isNotExistLine(line)) {
             return false;
         }
 
-        print(InputMessage.DELETE_ORDER_SECTION);
-        String station = input.nextLine();
-        if (!sectionController.existStation(station)) {
+        String station = inputDeleteStation();
+        if (sectionController.isNotExistStation(station)) {
             return false;
         }
 
         return sectionController.deleteSection(line, station);
+    }
+
+    private String inputDeleteSection() {
+        print(InputMessage.DELETE_SECTION);
+        return input.nextLine();
+    }
+
+    private String inputDeleteStation() {
+        print(InputMessage.DELETE_ORDER_SECTION);
+        return input.nextLine();
     }
 
     private boolean isBack(String button) {
