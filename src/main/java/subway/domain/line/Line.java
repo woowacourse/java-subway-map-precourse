@@ -10,7 +10,6 @@ public class Line {
     private String name;
     private List<Station> sections;
 
-    public Line(String name) {
     private Line(String name, List<Station> sections) {
         this.name = name;
         this.sections = sections;
@@ -28,5 +27,25 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public List<Station> getSections() {
+        return sections;
+    }
+
+    public boolean isMatchedName(String name) {
+        return this.name.equals(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(getName(), line.getName()) &&
+                Objects.equals(getSections(), line.getSections());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getSections());
+    }
 }
