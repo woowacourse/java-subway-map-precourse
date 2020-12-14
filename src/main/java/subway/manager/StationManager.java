@@ -4,15 +4,17 @@ import subway.controller.StationController;
 import subway.view.Input;
 import subway.view.Output;
 import subway.manager.menu.StationMenu;
-import java.util.Scanner;
 
 public class StationManager {
 
     public static void run() {
-        Output.printNewLine();
-        StationMenu.printMenu();
-        StationMenu stationMenu = chooseMenu();
-        stationMenu.execute(StationController.getInstance());
+        StationMenu stationMenu;
+        do {
+            Output.printNewLine();
+            StationMenu.printMenu();
+            stationMenu = chooseMenu();
+            stationMenu.execute(StationController.getInstance());
+        } while (stationMenu.isBack());
     }
 
     private static StationMenu chooseMenu() {
