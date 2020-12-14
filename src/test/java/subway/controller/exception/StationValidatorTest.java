@@ -8,6 +8,8 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class StationValidatorTest {
+    private LineController lineController;
+
     @Test(expected = NameFormatException.class)
     public void testWrongFormatStationName() {
         StationValidator.validateStationName("HankukUniversity");
@@ -31,9 +33,10 @@ public class StationValidatorTest {
 
     @Test(expected = IllegalElementException.class)
     public void testStationHasBeenRegisteredWhenDelete() {
+        lineController = new LineController();
         StationRepository.addStation(new Station("양재역"));
         StationRepository.addStation(new Station("판교역"));
-        LineController.makeNewLine("신분당선", "양재역", "판교역");
+        lineController.makeNewLine("신분당선", "양재역", "판교역");
         StationValidator.validateStationRegisterInLine("양재역");
     }
 }

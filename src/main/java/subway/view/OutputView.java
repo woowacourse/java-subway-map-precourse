@@ -37,17 +37,17 @@ public class OutputView {
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기\n");
     }
-    
+
     public static void printQuit() {
         System.out.println("\n프로그램을 종료합니다. 감사합니다.");
     }
 
     public static void printStationRegisterSuccess() {
-        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.\n");
+        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
 
     public static void printStationDeleteSuccess() {
-        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.\n");
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
     }
 
     public static void printStationList(List<Station> stations) {
@@ -55,15 +55,14 @@ public class OutputView {
         for (Station station : stations) {
             System.out.println("[INFO] " + station.getName());
         }
-        System.out.println();
     }
 
     public static void printLineRegisterSuccess() {
-        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.\n");
+        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
     }
 
     public static void printLineDeleteSuccess() {
-        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.\n");
+        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
     public static void printLineList(List<Line> lines) {
@@ -71,14 +70,17 @@ public class OutputView {
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
         }
-        System.out.println();
     }
-    
+
     public static void printSectionRegisterSuccess() {
-        System.out.println("\n[INFO] 구간이 등록되었습니다.\n");
+        System.out.println("\n[INFO] 구간이 등록되었습니다.");
     }
-    
+
     public static void printSectionDeleteSuccess() {
-        System.out.println("\n[INFO] 구간이 삭제되었습니다.\n");
+        System.out.println("\n[INFO] 구간이 삭제되었습니다.");
+    }
+
+    public static void printLineBreak() {
+        System.out.println();
     }
 }

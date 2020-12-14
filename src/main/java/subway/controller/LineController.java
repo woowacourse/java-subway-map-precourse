@@ -1,7 +1,8 @@
 package subway.controller;
 
-import java.util.List;
-
+import subway.controller.exception.DuplicationException;
+import subway.controller.exception.IllegalElementException;
+import subway.controller.exception.NameFormatException;
 import subway.controller.exception.NotExistedElementException;
 import subway.controller.validator.LineValidator;
 import subway.controller.validator.StationValidator;
@@ -10,68 +11,73 @@ import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineController {
+public class LineController extends SubController {
     private static final String LINE_REGISTER_MESSAGE = "\n## 등록할 노선 이름을 입력하세요.";
     private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 노선 이름을 입력하세요.";
     private static final String UP_STATION_MESSAGE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String DOWN_STATION_MESSAGE = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 
-    public static void goToLineMenu() {
+    @Override
+    public void goToMenu() {
         OutputView.printLineMenu();
-        String selection = InputView.receiveMenu("Line");
-        if (selection.equals("1")) {
-            registerNewLine();
-        }
-        if (selection.equals("2")) {
-            deleteLine();
-        }
-        if (selection.equals("3")) {
-            inquireLineList();
-        }
+        selection = InputView.receiveMenu("Line");
+        goToRegisterMenuIfUserSelect();
+        goToDeleteMenuIfUserSelect();
+        goToInquireMenuIfUserSelect();
+        OutputView.printLineBreak();
     }
 
-    private static void registerNewLine() {
+    @Override
+    protected void register() {
         try {
             String lineName = InputView.receiveName(LINE_REGISTER_MESSAGE);
-            LineValidator.validateLineName(lineName);
-            LineValidator.validateDuplication(lineName);
+            validateLine(lineName);
             addLineToRepository(lineName);
             OutputView.printLineRegisterSuccess();
-        } catch (Exception e) {
+        } catch (NameFormatException | DuplicationException | IllegalElementException e) {
             System.out.println(e.getMessage());
-            goToLineMenu();
+            goToMenu();
         }
     }
 
-    private static void addLineToRepository(String lineName) {
-        String upStation = receiveUpStationAndValidate();
-        String downStation = receiveDownStationAndValidate();
+    private void validateLine(String lineName) {
+        LineValidator.validateLineName(lineName);
+        LineValidator.validateDuplication(lineName);
+    }
+
+    private void addLineToRepository(String lineName) {
+        String upStation = receiveAndValidateUpStation();
+        String downStation = receiveAndValidateDownStation();
         LineValidator.validateUpAndDownIsEqual(upStation, downStation);
         makeNewLine(lineName, upStation, downStation);
     }
 
-    private static String receiveUpStationAndValidate() {
+    private String receiveAndValidateUpStation() {
         String upStation = InputView.receiveName(UP_STATION_MESSAGE);
-        StationValidator.validateStationName(upStation);
-        StationValidator.validateNotExistedStation(upStation);
+        validateStation(upStation);
         return upStation;
     }
 
-    private static String receiveDownStationAndValidate() {
+    private String receiveAndValidateDownStation() {
         String downStation = InputView.receiveName(DOWN_STATION_MESSAGE);
-        StationValidator.validateStationName(downStation);
-        StationValidator.validateNotExistedStation(downStation);
+        validateStation(downStation);
         return downStation;
     }
 
-    public static void makeNewLine(String lineName, String upStation, String downStation) {
+    private void validateStation(String stationName) {
+        StationValidator.validateStationName(stationName);
+        StationValidator.validateNotExistedStation(stationName);
+    }
+
+    public void makeNewLine(String lineName, String upStation, String downStation) {
         Line line = new Line(lineName);
         line.addStation(upStation);
         line.addStation(downStation);
         LineRepository.addLine(line);
     }
 
-    private static void deleteLine() {
+    @Override
+    protected void delete() {
         try {
             String lineName = InputView.receiveName(LINE_DELETE_MESSAGE);
             LineValidator.validateNotExistedLine(lineName);
@@ -79,12 +85,12 @@ public class LineController {
             OutputView.printLineDeleteSuccess();
         } catch (NotExistedElementException e) {
             System.out.println(e.getMessage());
-            goToLineMenu();
+            goToMenu();
         }
     }
 
-    private static void inquireLineList() {
-        List<Line> lines = LineRepository.lines();
-        OutputView.printLineList(lines);
+    @Override
+    protected void inquire() {
+        OutputView.printLineList(LineRepository.lines());
     }
 }

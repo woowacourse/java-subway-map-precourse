@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.controller.exception.IllegalElementException;
+import subway.controller.exception.NameFormatException;
 import subway.controller.exception.NotExistedElementException;
 import subway.controller.validator.LineValidator;
 import subway.controller.validator.SectionValidator;
@@ -9,70 +10,107 @@ import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionController {
+public class SectionController extends SubController {
     private static final String LINE_INPUT_MESSAGE = "\n## 노선을 입력하세요.";
     private static final String STATION_INPUT_MESSAGE = "\n## 역이름을 입력하세요.";
     private static final String ORDER_INPUT_MESSAGE = "\n## 순서를 입력하세요.";
     private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 구간의 노선을 입력하세요.";
     private static final String STATION_DELETE_MESSAGE = "\n## 삭제할 구간의 역을 입력하세요.";
 
-    public static void goToSectionMenu() {
+    @Override
+    public void goToMenu() {
         OutputView.printSectionMenu();
-        String selection = InputView.receiveMenu("Section");
-        if (selection.equals("1")) {
-            registerNewSection();
-        }
-        if (selection.equals("2")) {
-            deleteSection();
-        }
+        selection = InputView.receiveMenu("Section");
+        goToRegisterMenuIfUserSelect();
+        goToDeleteMenuIfUserSelect();
+        OutputView.printLineBreak();
     }
 
-    private static void registerNewSection() {
+    @Override
+    protected void register() {
         try {
-            String lineName = receiveLineNameAndValidate();
-            String stationName = receiveStationNameAndValidate();
+            String lineName = receiveAndValidateLineNameWhenRegister();
+            String stationName = receiveAndValidateStationNameWhenRegister();
             SectionValidator.validateSectionDuplication(lineName, stationName);
-            String order = receiveOrderAndValidate(lineName);
+            String order = receiveAndValidateOrder(lineName);
             LineRepository.addSectionToLine(lineName, stationName, order);
             OutputView.printSectionRegisterSuccess();
-        } catch (Exception e) {
+        } catch (NameFormatException | NotExistedElementException | IllegalElementException e) {
             System.out.println(e.getMessage());
-            goToSectionMenu();
+            goToMenu();
         }
     }
 
-    private static String receiveLineNameAndValidate() {
+    private String receiveAndValidateLineNameWhenRegister() {
         String lineName = InputView.receiveName(LINE_INPUT_MESSAGE);
-        LineValidator.validateLineName(lineName);
-        LineValidator.validateNotExistedLine(lineName);
+        validateLineWhenRegister(lineName);
         return lineName;
     }
 
-    private static String receiveStationNameAndValidate() {
+    private void validateLineWhenRegister(String lineName) {
+        LineValidator.validateLineName(lineName);
+        LineValidator.validateNotExistedLine(lineName);
+    }
+
+    private String receiveAndValidateStationNameWhenRegister() {
         String stationName = InputView.receiveName(STATION_INPUT_MESSAGE);
-        StationValidator.validateStationName(stationName);
-        StationValidator.validateNotExistedStation(stationName);
+        validateStationWhenRegister(stationName);
         return stationName;
     }
 
-    private static String receiveOrderAndValidate(String lineName) {
+    private void validateStationWhenRegister(String stationName) {
+        StationValidator.validateStationName(stationName);
+        StationValidator.validateNotExistedStation(stationName);
+    }
+
+    private String receiveAndValidateOrder(String lineName) {
         String order = InputView.receiveName(ORDER_INPUT_MESSAGE);
-        SectionValidator.validateOrder(lineName, order);
+        validateOrder(lineName, order);
         return order;
     }
 
-    private static void deleteSection() {
+    private void validateOrder(String lineName, String order) {
+        SectionValidator.validateOrder(lineName, order);
+    }
+
+    @Override
+    protected void delete() {
         try {
-            String lineName = InputView.receiveName(LINE_DELETE_MESSAGE);
-            LineValidator.validateNotExistedLine(lineName);
-            SectionValidator.validateLineSizeIsSufficient(lineName);
-            String stationName = InputView.receiveName(STATION_DELETE_MESSAGE);
-            SectionValidator.validateStationIsExistedInTheLine(lineName, stationName);
-            LineRepository.deleteSectionFromLine(lineName, stationName);
+            String lineName = receiveAndValidateLineNameWhenDelete();
+            String stationName = receiveStationNameWhenDelete();
+            validateAndDeleteSection(lineName, stationName);
             OutputView.printSectionDeleteSuccess();
         } catch (NotExistedElementException | IllegalElementException e) {
             System.out.println(e.getMessage());
-            goToSectionMenu();
+            goToMenu();
         }
+    }
+
+    private String receiveAndValidateLineNameWhenDelete() {
+        String lineName = InputView.receiveName(LINE_DELETE_MESSAGE);
+        validateLineWhenDelete(lineName);
+        return lineName;
+    }
+
+    private void validateLineWhenDelete(String lineName) {
+        LineValidator.validateNotExistedLine(lineName);
+        SectionValidator.validateLineSizeIsSufficient(lineName);
+    }
+
+    private String receiveStationNameWhenDelete() {
+        return InputView.receiveName(STATION_DELETE_MESSAGE);
+    }
+
+    private void validateAndDeleteSection(String lineName, String stationName) {
+        validateSectionWhenDelete(lineName, stationName);
+        deleteSection(lineName, stationName);
+    }
+
+    private void validateSectionWhenDelete(String lineName, String stationName) {
+        SectionValidator.validateStationIsExistedInTheLine(lineName, stationName);
+    }
+
+    private void deleteSection(String lineName, String stationName) {
+        LineRepository.deleteSectionFromLine(lineName, stationName);
     }
 }
