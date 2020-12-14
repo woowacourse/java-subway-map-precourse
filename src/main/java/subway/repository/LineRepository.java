@@ -45,10 +45,10 @@ public class LineRepository {
 
     public static void printLineList() {
         if (lines.size() == 0) {
-            warnMessage(LINE_SIZE_ZERO);
+            infoMessage(LINE_SIZE_ZERO);
             return;
         }
-        lines.forEach(line -> infoMessage(line.getName()));
+        lines.forEach(line -> infoMessageNotBr(line.getName()));
     }
 
     public static Line findLineByName(String lineName) {
@@ -83,6 +83,9 @@ public class LineRepository {
     }
 
     public static void printLineAndStation() {
+        if (lines.size() == 0) {
+            infoMessage(LINE_SIZE_ZERO);
+        }
         lines.forEach(Line::printLineDetail);
     }
 }

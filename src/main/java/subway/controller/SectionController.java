@@ -15,7 +15,7 @@ public class SectionController extends BaseController{
         while(true) {
             printSectionControllerMenu();
             command = inputView.inputName();
-            if (isValidCommand(command)) {
+            if (!isValidCommand(command)) {
                 warnMessage(COMMAND_SELECT_WARN);
                 continue;
             }

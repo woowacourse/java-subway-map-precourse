@@ -15,7 +15,7 @@ public class MainController extends BaseController{
         while(true) {
             printMainControllerMenu();
             command = inputView.inputName();
-            if (isValidCommand(command)) {
+            if (!isValidCommand(command)) {
                 warnMessage(COMMAND_SELECT_WARN);
                 continue;
             }

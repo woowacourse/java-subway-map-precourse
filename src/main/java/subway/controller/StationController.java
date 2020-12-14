@@ -15,7 +15,7 @@ public class StationController extends BaseController{
         while(true) {
             printStationControllerMenu();
             command = inputView.inputName();
-            if (isValidCommand(command)) {
+            if (!isValidCommand(command)) {
                 warnMessage(COMMAND_SELECT_WARN);
                 continue;
             }
