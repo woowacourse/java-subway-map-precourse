@@ -16,6 +16,7 @@ import subway.view.OutputView;
 
 public class Line {
     private static final int MINIMUM_LENGTH = 2;
+    private static final int ORDER_CONSTANT = 1;
 
     private String name;
     private List<Station> stations = new ArrayList<>();
@@ -28,15 +29,16 @@ public class Line {
         return name;
     }
 
-    private void addStation(Station station) {
-        stations.add(station);
+    private void addStation(Station station, int order) {
+        int indexOrder = order - ORDER_CONSTANT;
+        stations.add(indexOrder,station);
     }
 
-    public void addStationByName(String stationName) {
+    public void addStationByName(String stationName, int order) {
         for (int i = 0; i < StationRepository.stations().size(); i++) {
             Station station = StationRepository.stations().get(i);
             if (station.getName().equals(stationName)) {
-                addStation(station);
+                addStation(station, order);
             }
         }
     }
@@ -116,7 +118,8 @@ public class Line {
 
     public void setBoundStations(List<String> boundStations) {
         for (int i = 0; i < boundStations.size(); i++) {
-            addStationByName(boundStations.get(i));
+            int order = stations.size() + ORDER_CONSTANT;
+            addStationByName(boundStations.get(i), order);
         }
     }
 
@@ -128,7 +131,7 @@ public class Line {
     }
 
     public boolean validateRange(int order) {
-        if (order > this.stations.size()) {
+        if (order > this.stations.size()+1) {
             return false;
         }
         return true;

@@ -28,7 +28,7 @@ public class Edge {
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
             if (line.getName().equals(lineName)) {
-                line.addStationByName(stationName);
+                line.addStationByName(stationName, order);
             }
         }
         OutputView.printAddActionFinishMessage(LINE_MESSAGE);
