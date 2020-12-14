@@ -93,7 +93,8 @@ public class Line {
             return ERROR;
         }
         int orderNumber = Integer.parseInt(stringNumber);
-        if (orderNumber == 0 || orderNumber > stations.size()) {
+        if (orderNumber == 0 || orderNumber > stations.size()+1) {
+            ErrorView.writeAppropriateNumber();
             return ERROR;
         }
         return orderNumber - 1;
