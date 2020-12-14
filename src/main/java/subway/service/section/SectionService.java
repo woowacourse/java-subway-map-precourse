@@ -43,12 +43,17 @@ public class SectionService extends StationService {
 
     @Override
     public boolean add(Scanner scanner) {
-        SectionTextView.printSectionAddingLineText();
-        String lineName = scanner.nextLine();
-        SectionTextView.printSectionAddingStationText();
-        String stationName = scanner.nextLine();
-        SectionTextView.printSectionAddingOrderText();
-        String order = scanner.nextLine();
+        SectionAddingValidation sectionAddingValidation = new SectionAddingValidation();
+
+        String lineName = SectionAddingService.scanLineName(scanner);
+        if (!sectionAddingValidation.checkLineNameValidation(lineName)) {
+            return false;
+        }
+        String stationName = SectionAddingService.scanStationName(scanner);
+        if (!sectionAddingValidation.checkStationNameValidation(stationName)) {
+            return false;
+        }
+        String order = SectionAddingService.scanOrder(scanner);
 
         return true;
     }
