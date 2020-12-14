@@ -3,6 +3,7 @@ package subway.view;
 import subway.domain.line.Line;
 import subway.domain.screen.LineManagementScreen;
 import subway.domain.screen.MainScreen;
+import subway.domain.screen.SectionManagementScreen;
 import subway.domain.screen.StationManagementScreen;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class OutputView {
     private static final String LINE_DELETION_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
     private static final String EMPTY_STATION_GUIDE_MESSAGE = "지하철 역이 존재하지 않습니다.";
     private static final String EMPTY_LINE_GUIDE_MESSAGE = "지하철 노선이 존재하지 않습니다.";
-
+    private static final String SECTION_REGISTRATION_SUCCESS_MESSAGE = "구간이 등록되었습니다.";
 
     public static void showMainScreen() {
         String message = MainScreen.getInstance().toString();
@@ -78,6 +79,11 @@ public class OutputView {
         lineFeed();
     }
 
+    public static void showSectionManagementScreen() {
+        String message = SectionManagementScreen.getInstance().toString();
+        printGuide(message);
+    }
+
     public static void showSubwayMap(List<Line> lines) {
         printGuide(SUBWAY_MAP_TITLE);
         lines.stream()
@@ -90,6 +96,11 @@ public class OutputView {
         line.getSections()
                 .stream()
                 .forEach(station -> printInfo(station.getName()));
+        lineFeed();
+    }
+
+    public static void showSectionRegistrationSuccess() {
+        printInfo(SECTION_REGISTRATION_SUCCESS_MESSAGE);
         lineFeed();
     }
 
