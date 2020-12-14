@@ -3,6 +3,8 @@ package subway.view;
 import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
+import subway.view.resource.ErrorCode;
+import subway.view.resource.Message;
 import subway.view.resource.Screen;
 
 import java.util.List;
@@ -10,19 +12,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputView {
-    private static final String ERROR_HEADER = "[ERROR] ";
-    private static final String INVALID_FUNCTION_ERROR_MESSAGE = "선택할 수 없는 기능입니다.";
-    private static final String NOT_LETTER_ERROR_MESSAGE = " 올바른 이름이 아닙니다.";
-    private static final String INVALID_LENGTH_ERROR_MESSAGE = " 이름은 2자 이상이어야 합니다.";
-    private static final String INVALID_STATION_LAST_CHAR = "이름의 마지막 글자는 '%c'으로 끝나야 합니다.";
-    private static final String EXISTING_STATION_ERROR_MESSAGE = "이미 등록된 역 이름입니다.";
-    private static final String NOT_EXISTING_STATION_ERROR_MESSAGE = "등록되지 않은 역 이름입니다.";
-    private static final String NOT_EXISTING_LINE_ERROR_MESSAGE = "등록되지 않은 노선 이름입니다.";
-    private static final String EXISTING_IN_SECTION_ERROR_MESSAGE = "노선에 등록된 역입니다.";
-    private static final String EQUAL_STATION_ERROR_MESSAGE = "상행 종점역과 하행 종점역이 같습니다.";
-    private static final String NOT_DIGIT_ERROR_MESSAGE = "순서는 숫자여야 합니다.";
-    private static final String INVALID_RANGE_ERROR_MESSAGE = "순서는 1에서 구간의 길이 -1까지여야 합니다.";
-    private static final String LESS_THAN_MIN_STATION_ERROR_MESSAGE = "선택한 노선의 역 개수가 2개 이하입니다.";
     private static final String REGEX_LETTER = "^[0-9가-힣]*$";
     private static final String STATION = "역";
     private static final String LINE = "노선";
@@ -42,147 +31,192 @@ public class InputView {
     }
 
     public static String getInputFunctionIndex(List<String> functionIndexList) {
+        OutputView.printMessage(Message.INPUT_FUNCTION_INDEX);
         return validateFunctionIndex(functionIndexList, scanner.nextLine());
     }
 
     public static String getInputRegisterStation() {
+        OutputView.printMessage(Message.INPUT_REGISTER_STATION_NAME);
         return validateRegisterStation(scanner.nextLine());
     }
 
     public static String getInputRegisterFirstStation(String line) {
+        OutputView.printMessage(Message.INPUT_REGISTER_FIRST_STATION);
         return validateRegisterFirstStation(line, scanner.nextLine());
     }
 
     public static String getInputRegisterLastStation(String line, String firstStation) {
+        OutputView.printMessage(Message.INPUT_REGISTER_LAST_STATION);
         return validateRegisterLastStation(line, firstStation, scanner.nextLine());
     }
 
     public static String getInputDeleteStation() {
+        OutputView.printMessage(Message.INPUT_DELETE_STATION_NAME);
         return validateDeleteStation(scanner.nextLine());
     }
 
     public static String getInputRegisterLine() {
+        OutputView.printMessage(Message.INPUT_REGISTER_LINE_NAME);
         return validateRegisterLine(scanner.nextLine());
     }
 
     public static String getInputDeleteLine() {
+        OutputView.printMessage(Message.INPUT_DELETE_LINE_NAME);
         return validateDeleteLine(scanner.nextLine());
     }
 
+    public static String getInputRegisterLineInSection() {
+        OutputView.printMessage(Message.INPUT_LINE);
+        return validateRegisterLineInSection(scanner.nextLine());
+    }
+
     public static int getInputIndex(int length) {
-        return validateIndex(length, converseStringToInt(scanner.nextLine()));
+        OutputView.printMessage(Message.INPUT_INDEX);
+        return validateIndex(length, converseStringToInt(scanner.nextLine(), length));
     }
 
     public static String getInputLineOfDeleteSection() {
+        OutputView.printMessage(Message.INPUT_LINE_OF_DELETE_SECTION);
         return validateLineOfDeleteSection(scanner.nextLine());
     }
 
     public static String getInputStationOfDeleteSection() {
+        OutputView.printMessage(Message.INPUT_STATION_OF_DELETE_SECTION);
         return validateStationOfDeleteSection(scanner.nextLine());
     }
 
     private static String validateFunctionIndex(List<String> indexList, String functionIndex) {
         if (!indexList.contains(functionIndex)) {
-            throw new IllegalArgumentException(ERROR_HEADER + INVALID_FUNCTION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.INVALID_FUNCTION);
+            return getInputFunctionIndex(indexList);
         }
         return functionIndex;
     }
 
     private static String validateRegisterStation(String station) {
-        validateStationLine(station);
+        if (!isValidString(station)) {
+            return getInputRegisterStation();
+        }
         if (isInvalidLastChar(Screen.STATION.getName(), station)) {
-            throw new IllegalArgumentException(ERROR_HEADER +
-                    String.format(INVALID_STATION_LAST_CHAR, STATION_LAST_CHAR));
+            OutputView.printErrorMessage(ErrorCode.INVALID_STATION_LAST_CHAR);
+            return getInputRegisterStation();
         }
         if (isExistingStation(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.EXISTING_STATION);
+            return getInputRegisterStation();
         }
         return station;
     }
 
     private static String validateRegisterFirstStation(String line, String station) {
         if (!isExistingStation(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_STATION);
+            return getInputRegisterFirstStation(line);
         }
         if (SectionRepository.searchStationInLine(line, station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_IN_SECTION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.EXISTING_STATION_IN_SECTION);
+            return getInputRegisterFirstStation(line);
         }
         return station;
     }
 
     private static String validateRegisterLastStation(String line, String firstStation, String station) {
         if (firstStation.equals(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + EQUAL_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.EQUAL_STATION_FIRST_AND_LAST);
+            return getInputRegisterLastStation(line, firstStation);
         }
         if (!isExistingStation(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_STATION);
+            return getInputRegisterLastStation(line, firstStation);
         }
         if (SectionRepository.searchStationInLine(line, station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_IN_SECTION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.EXISTING_STATION_IN_SECTION);
+            return getInputRegisterLastStation(line, firstStation);
         }
         return station;
     }
 
     private static String validateDeleteStation(String station) {
         if (!isExistingStation(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_STATION);
+            return getInputDeleteStation();
         }
         if (isExistInSection(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + EXISTING_IN_SECTION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.REGISTERED_ON_LINE);
+            return getInputDeleteStation();
         }
         return station;
     }
 
     private static String validateRegisterLine(String line) {
-        validateStationLine(line);
+        if (!isValidString(line)) {
+            return getInputRegisterLine();
+        }
         if (isInvalidLastChar(Screen.LINE.getName(), line)) {
-            throw new IllegalArgumentException(ERROR_HEADER +
-                    String.format(INVALID_STATION_LAST_CHAR, LINE_LAST_CHAR));
+            OutputView.printErrorMessage(ErrorCode.INVALID_LINE_LAST_CHAR);
+            return getInputRegisterLine();
         }
         if (isExistingLine(line)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_LINE);
+            return getInputRegisterLine();
         }
         return line;
     }
 
     private static String validateDeleteLine(String line) {
         if (!isExistingLine(line)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_LINE);
+            return getInputDeleteLine();
         }
         return line;
     }
 
-    private static void validateStationLine(String value) {
-        if (isNotLetter(value)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_LETTER_ERROR_MESSAGE);
+    private static String validateRegisterLineInSection(String line) {
+        if (!isExistingLine(line)) {
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_LINE);
+            return getInputRegisterLineInSection();
         }
-        if (isInvalidLength(value)) {
-            throw new IllegalArgumentException(ERROR_HEADER + INVALID_LENGTH_ERROR_MESSAGE);
-        }
+        return line;
     }
 
     private static int validateIndex(int length, int index) {
         if ((index < START_INDEX) || (index > length + 1)) {
-            throw new IllegalArgumentException(ERROR_HEADER + INVALID_RANGE_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.INVALID_INDEX_RANGE);
+            return getInputIndex(length);
         }
         return index;
     }
 
     private static String validateLineOfDeleteSection(String line) {
         if (!isExistingLine(line)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_LINE_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_LINE);
+            return getInputLineOfDeleteSection();
         }
         if (SectionRepository.getLengthByLineName(line) <= MIN_STATION_OF_SECTION) {
-            throw new IllegalArgumentException(ERROR_HEADER + LESS_THAN_MIN_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.LESS_THAN_MIN_STATION);
+            return getInputLineOfDeleteSection();
         }
         return line;
     }
 
     private static String validateStationOfDeleteSection(String station) {
         if (!isExistingStation(station)) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_EXISTING_STATION_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_EXISTING_STATION);
+            return getInputStationOfDeleteSection();
         }
         return station;
+    }
+
+    private static boolean isValidString(String value) {
+        if (isNotLetter(value)) {
+            OutputView.printErrorMessage(ErrorCode.NOT_LETTER);
+            return false;
+        }
+        if (isInvalidLength(value)) {
+            OutputView.printErrorMessage(ErrorCode.INVALID_NAME_LENGTH);
+            return false;
+        }
+        return true;
     }
 
     private static boolean isNotLetter(String value) {
@@ -230,12 +264,14 @@ public class InputView {
         return false;
     }
 
-    private static int converseStringToInt(String value) {
+    private static int converseStringToInt(String value, int length) {
         try {
             return Integer.parseInt(value);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR_HEADER + NOT_DIGIT_ERROR_MESSAGE);
+            OutputView.printErrorMessage(ErrorCode.NOT_DIGIT);
+            getInputIndex(length);
         }
+        return Integer.parseInt(value);
     }
 
 }
