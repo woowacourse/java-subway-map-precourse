@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.domain.type.FunctionType;
 import subway.domain.type.ManagementType;
+import subway.dto.SubwayMapDto;
 
 import java.util.List;
 
@@ -86,5 +87,23 @@ public class OutputView {
             return;
         }
         System.out.println(SECTION_DELETION_SUCCESS_MESSAGE);
+    }
+
+
+    public static void printSubwayMap(List<SubwayMapDto> subwayMapDtos) {
+        System.out.print(SUBWAY_MAP_PRINT_HEADER);
+        subwayMapDtos.forEach(OutputView::printEachSubwayMap);
+    }
+
+    public static void printEachSubwayMap(SubwayMapDto subwayMapDto) {
+        System.out.printf(INFORMATION_HEADER_PRINT, subwayMapDto.getLineName());
+        System.out.print(DELIMITER);
+        subwayMapDto.getStationNames()
+                .forEach(OutputView::printEachStationName);
+        System.out.println();
+    }
+
+    private static void printEachStationName(String stationName) {
+        System.out.printf(INFORMATION_HEADER_PRINT, stationName);
     }
 }
