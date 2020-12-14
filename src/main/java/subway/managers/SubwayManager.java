@@ -27,9 +27,11 @@ public class SubwayManager {
         }
         if (input.equals("2")) {
             LineManager.runLineManager(scanner, userInput);
+            runManager(scanner);
         }
         if (input.equals("3")) {
-            sectionManager();
+            SectionManager.runSectionManager(scanner, userInput);
+            runManager(scanner);
         }
         if (input.equals("4")) {
             subwayMapManager();
@@ -48,7 +50,7 @@ public class SubwayManager {
     }
 
     private static void sectionManager() {
-        SystemOutput.printSectionMessage();
+//        SystemOutput.printSectionMessage();
     }
 
     private static void subwayMapManager() {

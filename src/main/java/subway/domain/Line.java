@@ -20,7 +20,15 @@ public class Line {
         section.add(station);
     }
 
+    public void addSection(int index, Station station) {
+        section.add(index, station);
+    }
+
     public List<Station> getSection() {
         return section;
+    }
+
+    public void deleteSection(int index) {
+        section.remove(index);
     }
 }
