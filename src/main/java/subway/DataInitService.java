@@ -26,7 +26,7 @@ public class DataInitService {
             SOUTH_TERMIANL_STATION, YANGJAE_STATION, YANGJAE_CITIZEN_FOREST_STATION,
             MAEBONG_STATION};
         for (String stationName : StationNames) {
-            StationService.addStation(stationName);
+            StationService.addStation(stationName, false);
         }
     }
 
