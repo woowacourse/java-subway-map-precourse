@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.utils.PrintUtils;
 
 public class RouteRepository {
 
@@ -33,11 +34,16 @@ public class RouteRepository {
         }
     }
 
-    public static void deleteRoute(String lineName, String stationName) {
+    public static boolean deleteRoute(String lineName, String stationName) {
         Route route = getRouteMatchingName(lineName);
-        if (route != null) {
-            getRouteMatchingName(lineName).deleteStation(stationName);
+        if (route == null) {
+            return false;
         }
+        if (route.getNumberOfStations() <= 2) {
+            return false;
+        }
+        getRouteMatchingName(lineName).deleteStation(stationName);
+        return true;
     }
 
     public static boolean isLineIncluded(String lineName) {

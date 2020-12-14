@@ -157,4 +157,6 @@ public class PrintUtils {
     public void stationOrderError(int stationNumber){
         System.out.println("\n[ERROR] 순서는 "+stationNumber+"이하의 양의 정수를 입력해주세요.");
     }
+
+    public void impossibleRouteDeletion(){ System.out.println("\n[ERROR] 노선에 포함된 역이 두개 이하일 때는 제거할 수 없습니다.\n"); }
 }

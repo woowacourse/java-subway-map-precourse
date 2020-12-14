@@ -389,7 +389,11 @@ public class Application {
     private static void deleteRoute() {
         String deleteLine = whichLineOfRouteDeleted();
         String deleteStation = whichStationOfRouteDeleted(deleteLine);
-        routeRepository.deleteRoute(deleteLine,deleteStation);
+        boolean isPossibleDelete = routeRepository.deleteRoute(deleteLine,deleteStation);
+        if(!isPossibleDelete){
+            printUtils.impossibleRouteDeletion();
+            return;
+        }
         printUtils.printCompleteRouteDeletion();
     }
 
