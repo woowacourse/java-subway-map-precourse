@@ -2,7 +2,6 @@ package subway.domain.path;
 
 import java.util.Scanner;
 import subway.domain.SubwayRepository;
-import subway.domain.line.LineOutputManager;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
 import subway.common.ErrorMessageException;
@@ -109,13 +108,13 @@ public class PathInputManager {
     private String getLineNameToDelete() {
         PathOutputManager.printLineToDeleteGuide();
         String lineName = scanner.nextLine().trim();
-        checkLineSizeOverTwo(lineName);
+        checkPathOfLineSizeOverTwo(lineName);
         checkEnrolledLineName(lineName);
         return lineName;
     }
 
     //종점만 남은건 아닌지 체크.
-    private void checkLineSizeOverTwo(String lineName) {
+    private void checkPathOfLineSizeOverTwo(String lineName) {
         if (SubwayRepository.isOnlyEndsRemained(lineName)) {
             throw new ErrorMessageException(NOT_DELETE_ENDS_ONLY_EXIST);
         }
@@ -127,7 +126,6 @@ public class PathInputManager {
         checkEnrolledStationOnPathToDelete(stationName, lineName);
         return stationName;
     }
-
 
     //노선에 등록되어 있는 역인지 확인
     private void checkEnrolledStationOnPathToDelete(String stationName, String lineName) {
