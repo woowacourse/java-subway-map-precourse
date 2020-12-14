@@ -16,7 +16,7 @@ public class StationMenu implements Menu {
         while (runStatus) {
             ApplicationMenu.printStationMenu();
             String stationInput = scanner.next();
-            runStatus = runStationMenu(scanner, stationInput);
+            runStatus = runStationMenu(scanner, stationInput.toUpperCase());
         }
     }
 

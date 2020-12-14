@@ -11,7 +11,7 @@ public class UserController {
         while (runStatus) {
             ApplicationMenu.printMainMenu();
             String mainInput = scanner.next();
-            runStatus = runMainMenu(scanner, mainInput);
+            runStatus = runMainMenu(scanner, mainInput.toUpperCase());
         }
     }
 

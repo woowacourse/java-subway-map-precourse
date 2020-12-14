@@ -16,7 +16,7 @@ public class IntervalMenu implements Menu {
         while (runStatus) {
             ApplicationMenu.printIntervalMenu();
             String intervalInput = scanner.next();
-            runStatus = runIntervalMenu(scanner, intervalInput);
+            runStatus = runIntervalMenu(scanner, intervalInput.toUpperCase());
         }
     }
 

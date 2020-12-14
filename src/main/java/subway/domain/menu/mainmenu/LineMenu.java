@@ -16,7 +16,7 @@ public class LineMenu implements Menu {
         while (runStatus) {
             ApplicationMenu.printLineMenu();
             String lineInput = scanner.next();
-            runStatus = runLineMenu(scanner, lineInput);
+            runStatus = runLineMenu(scanner, lineInput.toUpperCase());
         }
     }
 
