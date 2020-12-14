@@ -1,5 +1,9 @@
 package subway.view;
 
+import subway.controller.LineController;
+import subway.controller.MainController;
+import subway.controller.SectionController;
+import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -9,11 +13,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class View {
-//	private static final int MAIN_SCREEN_OPTION_LENGTH =
+	private static final int MAIN_SCREEN_OPTION_LENGTH = MainController.getOptionLength() + 1; // +1 for head message
+	private static final int STATION_SCREEN_OPTION_LENGTH = StationController.getOptionLength() + 1;
+	private static final int LINE_SCREEN_OPTION_LENGTH = LineController.getOptionLength() + 1;
+	private static final int SECTION_SCREEN_OPTION_LENGTH = SectionController.getOptionLength() + 1;
 
 	public static void printMainScreen() {
 		Arrays.stream(MainMessages.values())
-				.limit(6)
+				.limit(MAIN_SCREEN_OPTION_LENGTH)
 				.forEach(value -> System.out.println(value.getMessage()));
 		System.out.println();
 	}
@@ -27,7 +34,7 @@ public class View {
 
 	public static void printStationScreen() {
 		Arrays.stream(StationMessages.values())
-				.limit(5)
+				.limit(STATION_SCREEN_OPTION_LENGTH)
 				.forEach(value -> System.out.println(value.getMessage()));
 		System.out.println();
 	}
@@ -71,7 +78,7 @@ public class View {
 
 	public static void printLineScreen() {
 		Arrays.stream(LineMessages.values())
-				.limit(5)
+				.limit(LINE_SCREEN_OPTION_LENGTH)
 				.forEach(value -> System.out.println(value.getMessage()));
 		System.out.println();
 	}
@@ -126,7 +133,7 @@ public class View {
 
 	public static void printSectionScreen() {
 		Arrays.stream(SectionMessages.values())
-				.limit(4)
+				.limit(SECTION_SCREEN_OPTION_LENGTH)
 				.forEach(value -> System.out.println(value.getMessage()));
 		System.out.println();
 	}

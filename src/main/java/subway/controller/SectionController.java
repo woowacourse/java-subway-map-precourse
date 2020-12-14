@@ -16,6 +16,10 @@ public class SectionController {
 		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
+	public static int getOptionLength() {
+		return options.size();
+	}
+
 	private static String createLineNameToRegister(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameToRegisterSection(scanner);
 		System.out.println();

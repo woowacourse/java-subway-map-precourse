@@ -20,6 +20,10 @@ public class LineController {
 		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
+	public static int getOptionLength() {
+		return options.size();
+	}
+
 	private static String createLineName(Scanner scanner) throws IllegalArgumentException {
 		String lineName = View.getLineNameToRegister(scanner);
 		System.out.println();

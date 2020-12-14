@@ -17,6 +17,10 @@ public class StationController {
 		options.put(Options.BACK.getOption(), (scanner) -> System.out.println());
 	}
 
+	public static int getOptionLength() {
+		return options.size();
+	}
+
 	private static void registerStation(Scanner scanner) {
 		try {
 			String name = View.getStationNameToRegister(scanner);

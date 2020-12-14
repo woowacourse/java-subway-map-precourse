@@ -33,16 +33,16 @@ public enum Options {
 		}
 	}
 
+	private static boolean hasOption(List<String> options, String input) {
+		return options.stream()
+				.anyMatch(option -> option.equals(input));
+	}
+
 	public static String createOption(Scanner scanner, Map<String, Consumer<Scanner>> options) throws IllegalArgumentException {
 		String option = View.getScreenOption(scanner);
 		System.out.println();
 		Options.validateOption(Options.getOptionList(options), option);
 		return option;
-	}
-
-	private static boolean hasOption(List<String> options, String input) {
-		return options.stream()
-				.anyMatch(option -> option.equals(input));
 	}
 
 	public String getOption() {

@@ -17,6 +17,10 @@ public class MainController {
 		options.put(Options.QUIT.getOption(), (scanner) -> System.out.println(MainMessages.QUIT.getMessage()));
 	}
 
+	public static int getOptionLength() {
+		return options.size();
+	}
+
 	private static void controlByOption(String option, Scanner scanner) {
 		options.get(option).accept(scanner);
 		if (option.equals(Options.QUIT.getOption())) {
