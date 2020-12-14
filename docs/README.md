@@ -3,7 +3,7 @@
 pkeugine 브랜치 구현물은 다음과 같은 특징을 갖고 있습니다:
 
 1. 사용자 입력 앞뒤에 있는 공백을 무시합니다.
-2. 구간 추가에서 **순서 1**은 상행 종점역입니다. 이유는 [이 답변](https://github.com/woowacourse/java-subway-map-precourse/discussions/8#discussioncomment-203901)을 참조해주세요.
+2. 구간 추가에서 **순서 1**은 상행 종점역입니다. 이유는 [이 답변](https://github.com/woowacourse/java-subway-map-precourse/discussions/8#discussioncomment-203708)을 참조해주세요.
     * 따라서 구간 추가 기능으로 새로운 종점역을 지정할 수 있습니다.
 3. 역과 노선의 이름은 (한글+숫자)역, (한글+숫자)선 형태만 가능합니다. (ex: 가산디지털단지역, 종로3가역, 3호선, 신분당선)
 4. 노선에 같은 역을 중복해서 넣을 수 없습니다. 즉, 다음과 같은 상황을 만들 수 없습니다:
