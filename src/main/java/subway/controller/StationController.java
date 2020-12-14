@@ -1,8 +1,8 @@
 package subway.controller;
 
-import subway.domain.type.FunctionType;
-import subway.domain.type.ManagementType;
 import subway.service.StationService;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
 import subway.view.InputView;
 import subway.view.OutputView;
 

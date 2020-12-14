@@ -1,12 +1,12 @@
 package subway.controller;
 
 import subway.domain.entity.Sections;
-import subway.domain.type.FunctionType;
-import subway.domain.type.ManagementType;
 import subway.dto.LineDto;
 import subway.dto.SubwayMapDto;
 import subway.service.LineService;
 import subway.service.StationService;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
 import subway.view.InputView;
 import subway.view.OutputView;
 

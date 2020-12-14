@@ -1,4 +1,4 @@
-package subway.domain.type;
+package subway.type;
 
 import java.util.Objects;
 

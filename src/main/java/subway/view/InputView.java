@@ -1,10 +1,10 @@
 package subway.view;
 
 import subway.domain.entity.InvalidSectionOrderException;
-import subway.domain.type.FunctionType;
-import subway.domain.type.ManagementType;
 import subway.dto.LineDto;
 import subway.dto.SectionDto;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
 
 import java.util.Objects;
 import java.util.Scanner;

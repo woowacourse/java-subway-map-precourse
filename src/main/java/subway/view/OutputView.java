@@ -1,8 +1,8 @@
 package subway.view;
 
-import subway.domain.type.FunctionType;
-import subway.domain.type.ManagementType;
 import subway.dto.SubwayMapDto;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
 
 import java.util.List;
 

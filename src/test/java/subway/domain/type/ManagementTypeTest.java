@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
+import subway.type.UnsupportedFunctionException;
 
 import java.util.stream.Stream;
 
@@ -17,7 +20,7 @@ class ManagementTypeTest {
         return Stream.of(Arguments.of("1", ManagementType.STATION),
                 Arguments.of("2", ManagementType.LINE),
                 Arguments.of("3", ManagementType.SECTION),
-                Arguments.of("4", ManagementType.SUBWAY_MAP_PRINT),
+                Arguments.of("4", ManagementType.PRINT_SUBWAY_MAP),
                 Arguments.of("Q", ManagementType.EXIT));
     }
 

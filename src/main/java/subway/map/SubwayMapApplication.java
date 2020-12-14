@@ -1,8 +1,8 @@
 package subway.map;
 
 import subway.controller.ControllerMapper;
-import subway.domain.type.FunctionType;
-import subway.domain.type.ManagementType;
+import subway.type.FunctionType;
+import subway.type.ManagementType;
 import subway.view.InputView;
 import subway.view.OutputView;
 

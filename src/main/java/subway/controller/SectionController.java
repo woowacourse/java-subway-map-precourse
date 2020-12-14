@@ -1,10 +1,10 @@
 package subway.controller;
 
 import subway.domain.entity.Station;
-import subway.domain.type.FunctionType;
 import subway.dto.SectionDto;
 import subway.service.LineService;
 import subway.service.StationService;
+import subway.type.FunctionType;
 import subway.view.InputView;
 
 public class SectionController implements SubwayMapController {

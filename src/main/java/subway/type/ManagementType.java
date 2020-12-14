@@ -1,4 +1,4 @@
-package subway.domain.type;
+package subway.type;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,7 +12,7 @@ public enum ManagementType {
             Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.READ, FunctionType.BACK)),
     SECTION("3", "구간",
             Arrays.asList(FunctionType.REGISTER, FunctionType.DELETE, FunctionType.BACK)),
-    SUBWAY_MAP_PRINT("4", "", Collections.emptyList()),
+    PRINT_SUBWAY_MAP("4", "", Collections.emptyList()),
     EXIT("Q", "", Collections.emptyList());
 
     private final String managementNumber;
