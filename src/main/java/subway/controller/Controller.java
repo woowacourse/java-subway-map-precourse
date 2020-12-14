@@ -1,11 +1,13 @@
 package subway.controller;
 
 import subway.maintain.LineMaintain;
+import subway.maintain.MapMaintain;
 import subway.maintain.SectionMaintain;
 import subway.maintain.StationMaintain;
 import subway.utils.Util;
 import subway.view.OutputView;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class Controller {
@@ -50,7 +52,7 @@ public class Controller {
             new SectionMaintain(scanner);
         }
         if(operationNumber == SUBWAY_MAP){
-
+            new MapMaintain(scanner);
         }
     }
 }
