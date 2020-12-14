@@ -156,4 +156,8 @@ public class SubwayManager {
     public static void printMap() {
         lineRepository.printAll();
     }
+
+    public static boolean isStationInLine(String name) {
+        return lineRepository.isStationInLine(name);
+    }
 }

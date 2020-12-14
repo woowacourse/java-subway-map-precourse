@@ -16,6 +16,7 @@ public class StationManager {
     public static final String OPTION_ERROR_MESSAGE = "1~3 또는 B 옵션 중 하나를 입력하세요";
     public static final String STATION_NAME_ERROR_MESSAGE = "존재하지 않는 2자 이상의 역 이름을 입력하세요";
     public static final String STATION_EXIST_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
+    public static final String STATION_IN_LINE_ERROR_MESSAGE = "노선에 존재하는 역은 삭제할 수 없습니다";
     public static final String INFO_PREFIX = "[INFO] ";
     public static final String INPUT_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
     public static final String ENROLLMENT_STATION_INFO_MESSAGE = "지하철 역이 등록되었습니다";
@@ -107,6 +108,9 @@ public class StationManager {
         }
         if (!SubwayManager.isExistStation(stationName)) {
             throw new IllegalArgumentException(STATION_EXIST_ERROR_MESSAGE);
+        }
+        if (SubwayManager.isStationInLine(stationName)) {
+            throw new IllegalArgumentException(STATION_IN_LINE_ERROR_MESSAGE);
         }
     }
 

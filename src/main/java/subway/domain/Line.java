@@ -54,4 +54,13 @@ public class Line {
         }
         return result;
     }
+
+    public boolean containStation(String stationName) {
+        for (Station station : stationLine) {
+            if (station.isSameName(stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -93,4 +93,13 @@ public class LineRepository {
             System.out.println(line);
         }
     }
+
+    public static boolean isStationInLine(String name) {
+        for (Line line : lines) {
+            if (line.containStation(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
