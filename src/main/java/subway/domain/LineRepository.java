@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.view.InputView;
 import subway.view.OutputView;
 
 import java.util.ArrayList;
@@ -50,5 +51,38 @@ public class LineRepository {
             line.runLineMap();
             OutputView.printEmptyLine();
         }
+    }
+
+    public static void add(InputView inputView, String lineMessage, String stationMessage) {
+        OutputView.printAddActionMessage(lineMessage);
+        String newLineName = inputView.getInput();
+        if (Line.validateAddLineName(newLineName, lineMessage)) {
+            List<String> boundStations = Line.getBoundsStation(inputView, stationMessage);
+            Line newLine = new Line(newLineName);
+            newLine.setBoundStations(boundStations);
+            LineRepository.addLine(newLine);
+        }
+        OutputView.printAddActionFinishMessage(lineMessage);
+    }
+
+    public static void delete(InputView inputView, String lineMessage) {
+        OutputView.printDeleteActionMessage(lineMessage);
+        String deleteLineName = inputView.getInput();
+        if (Line.validateExistentLineName(deleteLineName, lineMessage)) {
+            LineRepository.deleteLineByName(deleteLineName);
+            OutputView.printDeleteActionFinishMessage(lineMessage);
+        }
+    }
+
+    public static void printList(String lineMessage) {
+        OutputView.printList(lineMessage, getLineNameList());
+    }
+
+    private static List<String> getLineNameList() {
+        List<String> lineNames = new ArrayList<String>();
+        for (int i = 0; i < lines.size(); i++) {
+            lineNames.add(lines.get(i).getName());
+        }
+        return lineNames;
     }
 }

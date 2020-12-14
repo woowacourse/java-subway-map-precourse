@@ -62,41 +62,7 @@ public class Line {
         return true;
     }
 
-    public static void add(InputView inputView, String lineMessage, String stationMessage) {
-        OutputView.printAddActionMessage(lineMessage);
-        String newLineName = inputView.getInput();
-        if (validateAddLineName(newLineName, lineMessage)) {
-            List<String> boundStations = getBoundsStation(inputView, stationMessage);
-            Line newLine = new Line(newLineName);
-            newLine.setBoundStations(boundStations);
-            LineRepository.addLine(newLine);
-        }
-        OutputView.printAddActionFinishMessage(lineMessage);
-    }
-
-    public static void delete(InputView inputView, String lineMessage) {
-        OutputView.printDeleteActionMessage(lineMessage);
-        String deleteLineName = inputView.getInput();
-        if (validateExistentLineName(deleteLineName, lineMessage)) {
-            LineRepository.deleteLineByName(deleteLineName);
-            OutputView.printDeleteActionFinishMessage(lineMessage);
-        }
-    }
-
-    public static void printList(String lineMessage) {
-        OutputView.printList(lineMessage, getLineNameList());
-    }
-
-    private static List<String> getLineNameList() {
-        List<String> lineNames = new ArrayList<String>();
-        List<Line> lines = LineRepository.lines();
-        for (int i = 0; i < lines.size(); i++) {
-            lineNames.add(lines.get(i).getName());
-        }
-        return lineNames;
-    }
-
-    private static boolean validateAddLineName(String stationName, String lineMessage) {
+    public static boolean validateAddLineName(String stationName, String lineMessage) {
         if (!LineRepository.validateNewLineName(stationName)) {
             throw new ExistentNameException(lineMessage);
         }
@@ -120,7 +86,7 @@ public class Line {
         return false;
     }
 
-    private static List<String> getBoundsStation(InputView inputView, String stationMessage) {
+    public static List<String> getBoundsStation(InputView inputView, String stationMessage) {
         OutputView.printUpBoundStationMessage();
         String upBoundStationName = inputView.getInput();
         validateBoundStation(upBoundStationName, stationMessage);
@@ -147,7 +113,7 @@ public class Line {
         return true;
     }
 
-    private void setBoundStations(List<String> boundStations) {
+    public void setBoundStations(List<String> boundStations) {
         for (int i = 0; i < boundStations.size(); i++) {
             addStationByName(boundStations.get(i));
         }

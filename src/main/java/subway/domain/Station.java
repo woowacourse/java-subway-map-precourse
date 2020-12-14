@@ -22,26 +22,7 @@ public class Station {
         return name;
     }
 
-    public static void add(InputView inputView, String stationMessage) {
-        OutputView.printAddActionMessage(stationMessage);
-        String newStationName = inputView.getInput();
-        if (validateAddStationName(newStationName, stationMessage)) {
-            Station newStation = new Station(newStationName);
-            StationRepository.addStation(newStation);
-        }
-        OutputView.printAddActionFinishMessage(stationMessage);
-    }
-
-    public static void delete(InputView inputView, String stationMessage) {
-        OutputView.printDeleteActionMessage(stationMessage);
-        String deleteStationName = inputView.getInput();
-        if (validateDeleteStationName(deleteStationName, stationMessage)) {
-            StationRepository.deleteStation(deleteStationName);
-            OutputView.printDeleteActionFinishMessage(stationMessage);
-        }
-    }
-
-    private static boolean validateAddStationName(String stationName, String stationMessage) {
+    public static boolean validateAddStationName(String stationName, String stationMessage) {
         if (!StationRepository.validateNewName(stationName)) {
             throw new ExistentNameException(stationMessage);
         }
@@ -51,7 +32,7 @@ public class Station {
         return true;
     }
 
-    private static boolean validateDeleteStationName(String stationName, String stationMessage) {
+    public static boolean validateDeleteStationName(String stationName, String stationMessage) {
         if (StationRepository.validateNewName(stationName)) {
             throw new NonExistentNameException(stationMessage);
         }
@@ -66,18 +47,5 @@ public class Station {
             return true;
         }
         return false;
-    }
-
-    public static void printList(String stationMessage) {
-        OutputView.printList(stationMessage, getStationNameList());
-    }
-
-    private static List<String> getStationNameList() {
-        List<String> stationNames = new ArrayList<String>();
-        List<Station> stations = StationRepository.stations();
-        for (int i = 0; i < stations.size(); i++) {
-            stationNames.add(stations.get(i).getName());
-        }
-        return stationNames;
     }
 }

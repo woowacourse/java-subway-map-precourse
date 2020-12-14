@@ -3,8 +3,7 @@ package subway;
 import subway.controller.Edge;
 import subway.controller.MenuController;
 import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.Line;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 
 import java.util.ArrayList;
@@ -103,13 +102,13 @@ public class Menu {
 
     private static boolean runStationMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
-            Station.add(inputView, STATION_MENU_TITLE);
+            StationRepository.add(inputView, STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(DELETE_SIGN)) {
-            Station.delete(inputView, STATION_MENU_TITLE);
+            StationRepository.delete(inputView, STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(LIST_SIGN)) {
-            Station.printList(STATION_MENU_TITLE);
+            StationRepository.printList(STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
             MenuController.selectedMenus.clear();
@@ -119,13 +118,13 @@ public class Menu {
 
     private static boolean runLineMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
-            Line.add(inputView, LINE_MENU_TITLE, STATION_MENU_TITLE);
+            LineRepository.add(inputView, LINE_MENU_TITLE, STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(DELETE_SIGN)) {
-            Line.delete(inputView, LINE_MENU_TITLE);
+            LineRepository.delete(inputView, LINE_MENU_TITLE);
         }
         if (subMenuAction.equals(LIST_SIGN)) {
-            Line.printList(LINE_MENU_TITLE);
+            LineRepository.printList(LINE_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
             MenuController.selectedMenus.clear();
