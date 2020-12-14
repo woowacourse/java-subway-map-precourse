@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class StationService {
-    public static List<Station> getStations(){
+    public static List<Station> getStations() {
         return StationRepository.getStations();
     }
 
-    public static Optional<Station> getStation(String name){
+    public static Optional<Station> getStation(String name) {
         return StationRepository.getStation(name);
     }
 
-    public static void addStation(String name){
+    public static void addStation(String name) {
         if(checkIfStationExist(name)) {
             throw new DuplicatedStationNameException();
         }
@@ -26,8 +26,8 @@ public class StationService {
         StationRepository.addStation(newStation);
     }
 
-    public static void removeStation(String name){
-        if(!checkIfStationExist(name)){
+    public static void removeStation(String name) {
+        if (!checkIfStationExist(name)) {
             throw new StationNotExistException();
         }
         Station station = StationRepository.getStation(name).get();
@@ -35,8 +35,8 @@ public class StationService {
         StationRepository.deleteStation(name);
     }
 
-    private static boolean checkIfStationExist(String name){
-        if(StationRepository.getStation(name).isPresent()){
+    private static boolean checkIfStationExist(String name) {
+        if (StationRepository.getStation(name).isPresent()) {
             return true;
         }
         return false;

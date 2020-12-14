@@ -7,9 +7,8 @@ import subway.view.output.MainOutputView;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
-public class MainViewState extends ViewState{
+public class MainViewState extends ViewState {
     private static final String BTN_STATION_MANAGEMENT = "1";
     private static final String BTN_LINE_MANAGEMENT = "2";
     private static final String BTN_SECTION_MANAGEMENT = "3";
@@ -19,7 +18,7 @@ public class MainViewState extends ViewState{
     private static MainViewState mainViewState;
     private LineController lineController = LineController.getLineController();
 
-    private MainViewState(){
+    private MainViewState() {
         featureSet.add(BTN_STATION_MANAGEMENT);
         featureSet.add(BTN_LINE_MANAGEMENT);
         featureSet.add(BTN_SECTION_MANAGEMENT);
@@ -27,20 +26,20 @@ public class MainViewState extends ViewState{
         featureSet.add(BTN_QUIT);
     }
 
-    public static synchronized MainViewState getMainView(){
-        if(!Optional.ofNullable(mainViewState).isPresent()){
+    public static synchronized MainViewState getMainView() {
+        if (!Optional.ofNullable(mainViewState).isPresent()) {
             mainViewState = new MainViewState();
         }
         return mainViewState;
     }
 
     @Override
-    protected void printMenu(){
+    protected void printMenu() {
         MainOutputView.printMenuLog();
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application) {
         checkAndSwitchViewToStationManagement(feature, application);
         checkAndSwitchViewToLineManagement(feature, application);
         checkAndSwitchViewToSectionManagement(feature, application);
@@ -48,49 +47,49 @@ public class MainViewState extends ViewState{
         checkAndQuit(feature);
     }
 
-    private void checkAndSwitchViewToStationManagement(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_STATION_MANAGEMENT)){
+    private void checkAndSwitchViewToStationManagement(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_STATION_MANAGEMENT)) {
             switchViewToStationManagement(application);
         }
     }
 
-    private void checkAndSwitchViewToLineManagement(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_LINE_MANAGEMENT)){
+    private void checkAndSwitchViewToLineManagement(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_LINE_MANAGEMENT)) {
             switchViewToLineManagement(application);
         }
     }
 
-    private void checkAndSwitchViewToSectionManagement(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_SECTION_MANAGEMENT)){
+    private void checkAndSwitchViewToSectionManagement(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_SECTION_MANAGEMENT)) {
             switchViewToSectionManagement(application);
         }
     }
 
-    private void checkAndPrintSubwayLineMap(String feature){
-        if(feature.equals(BTN_PRINT_SUBWAY_LINEMAP)){
+    private void checkAndPrintSubwayLineMap(String feature) {
+        if (feature.equals(BTN_PRINT_SUBWAY_LINEMAP)) {
             printSubwayLineList();
         }
     }
 
-    private void checkAndQuit(String feature){
-        if(feature.equals(BTN_QUIT)){
+    private void checkAndQuit(String feature) {
+        if (feature.equals(BTN_QUIT)) {
             continuable = false;
         }
     }
 
-    private void switchViewToStationManagement(SubwayLineMap application){
+    private void switchViewToStationManagement(SubwayLineMap application) {
         application.setViewState(StationManagementViewState.getStationManagementViewState());
     }
 
-    private void switchViewToLineManagement(SubwayLineMap application){
+    private void switchViewToLineManagement(SubwayLineMap application) {
         application.setViewState(LineManagementViewState.getLineManagementViewState());
     }
 
-    private void switchViewToSectionManagement(SubwayLineMap application){
+    private void switchViewToSectionManagement(SubwayLineMap application) {
         application.setViewState(SectionManagementViewState.getSectionManagementViewState());
     }
 
-    private void printSubwayLineList(){
+    private void printSubwayLineList() {
         List<Line> lineList = lineController.getLines();
         MainOutputView.printSubwayLineList(lineList);
     }

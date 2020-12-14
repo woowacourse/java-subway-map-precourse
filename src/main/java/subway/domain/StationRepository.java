@@ -1,6 +1,10 @@
 package subway.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StationRepository {
@@ -14,7 +18,7 @@ public class StationRepository {
         List<Station> stationResult = stations.stream()
                 .filter(station -> station.getName().equals(stationName))
                 .collect(Collectors.toList());
-        if(stationResult.size() == 0){
+        if (stationResult.size() == 0) {
             return Optional.empty();
         }
         return Optional.of(stationResult.get(0));

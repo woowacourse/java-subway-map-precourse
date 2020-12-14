@@ -5,7 +5,7 @@ import subway.view.component.ErrorViewComponent;
 
 public class StationNotExistInLineException extends IllegalArgumentException {
     public StationNotExistInLineException() {
-        super(ErrorViewComponent.getStationNotExistInLineComponent() +
-                CommonViewComponent.getWhiteLineComponent());
+        super(ErrorViewComponent.getStationNotExistInLine() +
+                CommonViewComponent.getWhiteLine());
     }
 }

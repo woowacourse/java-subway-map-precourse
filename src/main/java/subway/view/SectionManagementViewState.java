@@ -9,9 +9,8 @@ import subway.view.input.SectionManagementInputView;
 import subway.view.output.SectionManagementOutputView;
 
 import java.util.Optional;
-import java.util.Scanner;
 
-public class SectionManagementViewState extends ViewState{
+public class SectionManagementViewState extends ViewState {
     private static final String BTN_ADD_SECTION = "1";
     private static final String BTN_DELETE_SECTION = "2";
     private static final String BTN_BACK = "B";
@@ -27,26 +26,26 @@ public class SectionManagementViewState extends ViewState{
     }
 
     public static synchronized SectionManagementViewState getSectionManagementViewState(){
-        if(!Optional.ofNullable(sectionManagementViewState).isPresent()){
+        if (!Optional.ofNullable(sectionManagementViewState).isPresent()) {
             sectionManagementViewState = new SectionManagementViewState();
         }
         return sectionManagementViewState;
     }
 
     @Override
-    protected void printMenu(){
+    protected void printMenu() {
         SectionManagementOutputView.printMenuLog();
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
-        checkAndAddSection(feature, application, scanner);
-        checkAndRemoveSection(feature, application, scanner);
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application) {
+        checkAndAddSection(feature, application);
+        checkAndRemoveSection(feature, application);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddSection(String feature, SubwayLineMap application, Scanner scanner){
-        if(feature.equals(BTN_ADD_SECTION)){
+    private void checkAndAddSection(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_ADD_SECTION)) {
             Line line = getLineToAdd();
             Station station = getStationToAdd();
             int position = SectionManagementInputView.getStationPosition();
@@ -56,8 +55,8 @@ public class SectionManagementViewState extends ViewState{
         }
     }
 
-    private void checkAndRemoveSection(String feature, SubwayLineMap application, Scanner scanner){
-        if(feature.equals(BTN_DELETE_SECTION)){
+    private void checkAndRemoveSection(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_DELETE_SECTION)) {
             Line line = getLineToRemove();
             Station station = getStationToRemove();
             lineController.removeStationInLine(station, line);
@@ -66,33 +65,33 @@ public class SectionManagementViewState extends ViewState{
         }
     }
 
-    private void checkAndSwitchViewToMain(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_BACK)){
+    private void checkAndSwitchViewToMain(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_BACK)) {
             switchViewToStationManagement(application);
         }
     }
 
-    private Line getLineToAdd(){
+    private Line getLineToAdd() {
         String lineName = SectionManagementInputView.getLineNameAddInput();
         return lineController.getLine(lineName);
     }
 
-    private Station getStationToAdd(){
+    private Station getStationToAdd() {
         String stationName = SectionManagementInputView.getStationNameAddInput();
         return stationController.getStation(stationName);
     }
 
-    private Line getLineToRemove(){
+    private Line getLineToRemove() {
         String lineName = SectionManagementInputView.getLineNameRemoveInput();
         return lineController.getLine(lineName);
     }
 
-    private Station getStationToRemove(){
+    private Station getStationToRemove() {
         String stationName = SectionManagementInputView.getStationNameRemoveInput();
         return stationController.getStation(stationName);
     }
 
-    private void switchViewToStationManagement(SubwayLineMap application){
+    private void switchViewToStationManagement(SubwayLineMap application) {
         application.setViewState(MainViewState.getMainView());
     }
 }

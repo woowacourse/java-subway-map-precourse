@@ -3,16 +3,13 @@ package subway.view;
 import subway.SubwayLineMap;
 import subway.controller.StationController;
 import subway.domain.Station;
-import subway.view.component.StationManagementViewComponent;
-import subway.view.component.common.OutputViewComponent;
 import subway.view.input.StationManagementInputView;
 import subway.view.output.StationManagementOutputView;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
-public class StationManagementViewState extends ViewState{
+public class StationManagementViewState extends ViewState {
     private static final String BTN_ADD_STATION = "1";
     private static final String BTN_DELETE_STATION = "2";
     private static final String BTN_READ_STATION = "3";
@@ -21,7 +18,7 @@ public class StationManagementViewState extends ViewState{
     public static StationManagementViewState stationManagementViewState;
     public StationController stationController;
 
-    private StationManagementViewState(){
+    private StationManagementViewState() {
         stationController = StationController.getStationController();
         featureSet.add(BTN_ADD_STATION);
         featureSet.add(BTN_DELETE_STATION);
@@ -29,8 +26,8 @@ public class StationManagementViewState extends ViewState{
         featureSet.add(BTN_BACK);
     }
 
-    public static synchronized StationManagementViewState getStationManagementViewState(){
-        if(!Optional.ofNullable(stationManagementViewState).isPresent()){
+    public static synchronized StationManagementViewState getStationManagementViewState() {
+        if (!Optional.ofNullable(stationManagementViewState).isPresent()) {
             stationManagementViewState = new StationManagementViewState();
         }
         return stationManagementViewState;
@@ -42,7 +39,7 @@ public class StationManagementViewState extends ViewState{
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application){
         checkAndAddStation(feature, application);
         checkAndRemoveStation(feature, application);
         checkAndPrintStations(feature, application);

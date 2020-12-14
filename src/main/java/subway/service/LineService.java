@@ -10,19 +10,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LineService {
-    public static List<Line> getLines(){
+    public static List<Line> getLines() {
         return LineRepository.getLines();
     }
 
-    public static Optional<Line> getLine(String lineName){
+    public static Optional<Line> getLine(String lineName) {
         return LineRepository.getLine(lineName);
     }
 
-    public static void addLine(String name, Station startStation, Station endStation){
-        if(checkIfLineExist(name)){
+    public static void addLine(String name, Station startStation, Station endStation) {
+        if (checkIfLineExist(name)) {
             throw new DuplicatedLineNameException();
         }
-        if(startStation.equals(endStation)){
+        if (startStation.equals(endStation)) {
             throw new DuplicatedStartAndEndStationNameException();
         }
         Line line = new Line(name);
@@ -31,8 +31,8 @@ public class LineService {
         LineRepository.addLine(line);
     }
 
-    public static void removeLine(String name){
-        if(!checkIfLineExist(name)) {
+    public static void removeLine(String name) {
+        if (!checkIfLineExist(name)) {
             throw new LineNotExistException();
         }
         LineRepository.deleteLineByName(name);
@@ -44,31 +44,31 @@ public class LineService {
                 .flatMap(line -> line.getStations().stream())
                 .filter(stationInLines -> stationInLines.getName().equals(stationName))
                 .collect(Collectors.toList());
-        if(stationList.isEmpty()){
+        if (stationList.isEmpty()) {
             return Optional.empty();
         }
         return Optional.of(stationList.get(0));
     }
 
-    public static void addStationInLine(Station station, Line line, int position){
-        if(position > line.getStations().size() + 1 || position <= 0){
+    public static void addStationInLine(Station station, Line line, int position) {
+        if (position > line.getStations().size() + 1 || position <= 0) {
             throw new InvalidPositionException();
         }
         line.addStation(position - 1, station);
     }
 
-    public static void removeStationInLine(Station station, Line line){
-        if(line.getStations().size() <= 2){
+    public static void removeStationInLine(Station station, Line line) {
+        if (line.getStations().size() <= 2) {
             throw new MinimumLineLengthException();
         }
-        if(!line.getStations().contains(station)){
+        if (!line.getStations().contains(station)) {
            throw new StationNotExistInLineException();
         }
         line.removeStation(station);
     }
 
-    private static boolean checkIfLineExist(String name){
-        if(LineRepository.getLine(name).isPresent()){
+    private static boolean checkIfLineExist(String name) {
+        if (LineRepository.getLine(name).isPresent()) {
             return true;
         }
         return false;

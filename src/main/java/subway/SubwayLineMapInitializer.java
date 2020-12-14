@@ -8,7 +8,7 @@ import subway.domain.Station;
 import java.util.Arrays;
 import java.util.List;
 
-public class SubwayLineMapInitializer{
+public class SubwayLineMapInitializer {
     private final List<String> stationsToAdd = Arrays
             .asList("교대역", "강남역", "역삼역", "남부터미녈역", "양재역", "매봉역", "양재시민의숲역");
     private final List<String> linesToAdd = Arrays.asList("2호선", "3호선", "신분당선");
@@ -16,22 +16,22 @@ public class SubwayLineMapInitializer{
     private StationController stationController = StationController.getStationController();
     private LineController lineController = LineController.getLineController();
 
-    public void initialize(){
-        try{
+    public void initialize() {
+        try {
             addStations();
             addLines();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("초기화 오류");
         }
     }
 
-    private void addStations(){
-        for(String stationName : stationsToAdd){
+    private void addStations() {
+        for (String stationName : stationsToAdd) {
             stationController.addStation(stationName);
         }
     }
 
-    private void addLines(){
+    private void addLines() {
         Station stationGyoDe = stationController.getStation(stationsToAdd.get(0));
         Station stationGangNam = stationController.getStation(stationsToAdd.get(1));
         Station stationYeokSam = stationController.getStation(stationsToAdd.get(2));

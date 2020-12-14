@@ -1,6 +1,5 @@
 package subway.domain;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,20 +15,20 @@ public class Line {
         return name;
     }
 
-    public List<Station> getStations(){
+    public List<Station> getStations() {
         return stations;
     }
 
     // 추가 기능 구현
-    public void addStation(int position, Station station){
+    public void addStation(int position, Station station) {
         stations.add(position, station);
     }
 
-    public void removeStation(Station station){
+    public void removeStation(Station station) {
         stations.remove(station);
     }
 
-    public boolean containsStation(Station station){
+    public boolean containsStation(Station station) {
         return stations.contains(station);
     }
 }

@@ -5,7 +5,7 @@ import subway.view.component.ErrorViewComponent;
 
 public class InvalidPositionException extends IllegalArgumentException {
     public InvalidPositionException() {
-        super(ErrorViewComponent.getInvalidPositionComponent() +
-                CommonViewComponent.getWhiteLineComponent());
+        super(ErrorViewComponent.getInvalidPosition() +
+                CommonViewComponent.getWhiteLine());
     }
 }

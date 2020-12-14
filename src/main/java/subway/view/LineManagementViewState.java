@@ -11,7 +11,6 @@ import subway.view.output.LineManagementOutputView;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class LineManagementViewState extends ViewState {
     private static final String BTN_ADD_LINE = "1";
@@ -43,15 +42,15 @@ public class LineManagementViewState extends ViewState {
     }
 
     @Override
-    protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
+    protected void runFeatureAtApplication(String feature, SubwayLineMap application) {
         checkAndAddLine(feature, application);
         checkAndRemoveLine(feature, application);
         checkAndPrintSubwayLineMap(feature);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddLine(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_ADD_LINE)){
+    private void checkAndAddLine(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_ADD_LINE)) {
             String lineName = getLineName();
             Station startStation = getStartStation();
             Station endStation = getEndStation();
@@ -61,8 +60,8 @@ public class LineManagementViewState extends ViewState {
         }
     }
 
-    private void checkAndRemoveLine(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_DELETE_LINE)){
+    private void checkAndRemoveLine(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_DELETE_LINE)) {
             String lineName = LineManagementInputView.getLineNameInputRemove();
             lineController.removeLine(lineName);
             LineManagementOutputView.printLineRemoveFinishLog();
@@ -70,42 +69,42 @@ public class LineManagementViewState extends ViewState {
         }
     }
 
-    private void checkAndPrintSubwayLineMap(String feature){
-        if(feature.equals(BTN_READ_LINE)){
+    private void checkAndPrintSubwayLineMap(String feature) {
+        if (feature.equals(BTN_READ_LINE)) {
             printLineList();
         }
     }
 
-    private void checkAndSwitchViewToMain(String feature, SubwayLineMap application){
-        if(feature.equals(BTN_BACK)){
+    private void checkAndSwitchViewToMain(String feature, SubwayLineMap application) {
+        if (feature.equals(BTN_BACK)) {
             switchViewToStationManagement(application);
         }
     }
 
-    public void printLineList(){
+    public void printLineList() {
         List<Line> lineList = lineController.getLines();
         LineManagementOutputView.printLineListLog(lineList);
     }
 
-    private String getLineName(){
+    private String getLineName() {
         String lineName = LineManagementInputView.getLineNameInput();
-        if(lineController.isExistingLineName(lineName)){
+        if (lineController.isExistingLineName(lineName)) {
             throw new DuplicatedLineNameException();
         }
         return lineName;
     }
 
-    private Station getStartStation(){
+    private Station getStartStation() {
         String startStationName = LineManagementInputView.getStartStationNameInput();
         return stationController.getStation(startStationName);
     }
 
-    private Station getEndStation(){
+    private Station getEndStation() {
         String endStationName = LineManagementInputView.getEndStationNameInput();
         return stationController.getStation(endStationName);
     }
 
-    private void switchViewToStationManagement(SubwayLineMap application){
+    private void switchViewToStationManagement(SubwayLineMap application) {
         application.setViewState(MainViewState.getMainView());
     }
 }
