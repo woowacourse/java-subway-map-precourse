@@ -34,6 +34,9 @@ public class SectionService {
 
         askMessage(ASK_ORDER_NAME);
         int orderNum = inputView.inputNumber();
+        if (orderNum == -1) {
+            return;
+        }
 
         LineRepository.addSection(findLine, findStation, orderNum);
     }
