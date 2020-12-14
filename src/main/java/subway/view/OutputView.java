@@ -62,4 +62,8 @@ public class OutputView {
     public static void stationDeleteGuidePrint() {
         System.out.println(StationMessage.STATION_DELETE_GUIDE.getStationMessage());
     }
+
+    public static void stationNameDeleteErrorPrint() {
+        System.out.println(StationMessage.STATION_NAME_DELETE_ERROR.getStationMessage());
+    }
 }

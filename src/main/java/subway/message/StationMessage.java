@@ -16,7 +16,9 @@ public enum StationMessage {
     STATION_ADD_NAME_LIMIT_FAIL("[ERROR] 역 이름이 너무 짧습니다."),
     STATION_ADD_NAME_DUPLICATION_FAIL("[ERROR] 중복된 역 이름은 불가능합니다."),
     STATION_LIST_FIND_FAIL("[ERROR] 하나 이상의 역이 존재해야 합니다."),
+    STATION_NAME_DELETE_ERROR("[ERROR] 역 이름이 존재해야 합니다."),
     ;
+
 
     private final String text;
 
