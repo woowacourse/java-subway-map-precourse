@@ -69,4 +69,6 @@ public class Message {
 	public static final String NOT_CREATED_LINE_NAME = "등록되지 않은 노선 이름입니다.";
 	public static final String NOT_CREATED_STATION_NAME = "등록되지 않은 역 이름입니다.";
 	public static final String HAVE_NOT_STATION = "내에 일치하는 지하철 역 이름이 없습니다.";
+	public static final String NOT_USEABLE_STATION_NAME_LENGTH = "역 이름은 2자 이상으로 구성되어야 합니다.";
+	public static final String NOT_USEABLE_LINE_NAME_LENGTH = "노선 이름은 2자 이상으로 구성되어야 합니다.";
 }

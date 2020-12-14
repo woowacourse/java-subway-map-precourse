@@ -1,12 +1,21 @@
-package subway.util;
+package subway;
 
 import java.util.Scanner;
 
-import subway.Subway;
 import subway.domain.LineRepository;
+import subway.util.Input;
+import subway.util.Message;
+import subway.util.Output;
 
 public class ViewManager {
 	private static Scanner scanner = new Scanner(System.in);
+	
+	private static boolean isUseableName(String name) {
+		if (name.length() >= 2) {
+			return true;
+		}
+		return false;
+	}
 	
 	private static String getUpBoundTerminus() {
 		Output.title(Message.LINE_UP_BOUND_TERMINUS);
@@ -20,7 +29,12 @@ public class ViewManager {
 	
 	public static void createStation() {
 		Output.title(Message.STATION_CREATE_NAME_INPUT);
-		Subway.addStation(Input.nextLine(scanner));
+		String stationName = Input.nextLine(scanner);
+		if (!isUseableName(stationName)) {
+			Output.error(Message.NOT_USEABLE_STATION_NAME_LENGTH);
+			return;
+		}
+		Subway.addStation(stationName);
 	}
 	
 	public static void removeStation() {
@@ -31,6 +45,11 @@ public class ViewManager {
 	public static void createLine() {		
 		Output.title(Message.LINE_CREATE_NAME_INPUT);
 		String lineName = Input.nextLine(scanner);
+		
+		if (!isUseableName(lineName)) {
+			Output.error(Message.NOT_USEABLE_LINE_NAME_LENGTH);
+			return;
+		}
 		
 		if (!LineRepository.contains(lineName)) {
 			Subway.addLine(lineName, getUpBoundTerminus(), getDownstreamTerminus());
