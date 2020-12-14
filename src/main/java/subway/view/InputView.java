@@ -138,7 +138,15 @@ public class InputView {
             throw new IllegalArgumentException();
         }
 
+        if (lineNameLessThanLimit(lineName.length())) {
+            OutputView.LineNameCountLimitFailPrint();
+            throw new IllegalArgumentException();
+        }
         return lineName;
+    }
+
+    private static boolean lineNameLessThanLimit(int length) {
+        return length < BoundaryCheckDigit.LINE_ADD_LIMIT.getBoundaryCheckDigit();
     }
 
     private static boolean LineNameDuplicationCheck(String lineName) {
@@ -147,7 +155,7 @@ public class InputView {
 
     public static String scanStationName(Scanner scanner) {
         String TerminusName = scanner.nextLine();
-        if (StationRepository.findStationFromName(TerminusName)){
+        if (StationRepository.findStationFromName(TerminusName)) {
             return TerminusName;
         }
         OutputView.LineAddFailPrint();

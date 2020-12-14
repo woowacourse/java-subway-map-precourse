@@ -92,7 +92,7 @@ public class OutputView {
     }
 
     public static void LineNameDuplicationFailPrint() {
-        System.out.println(LineMessage.LINE_NAME_DUPLICATION_ERROR);
+        System.out.println(LineMessage.LINE_NAME_DUPLICATION_ERROR.getLineMessage());
     }
 
     public static void downTerminusAddGuidePrint() {
@@ -100,6 +100,10 @@ public class OutputView {
     }
 
     public static void LineAddFailPrint() {
-        System.out.println(LineMessage.LINE_ADD_FAIL);
+        System.out.println(LineMessage.LINE_ADD_STATION_NAME_FAIL.getLineMessage());
+    }
+
+    public static void LineNameCountLimitFailPrint() {
+        System.out.println(LineMessage.LINE_ADD_LIMIT_FAIL.getLineMessage());
     }
 }
