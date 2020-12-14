@@ -11,22 +11,22 @@ import subway.view.StationManagementScreen;
 
 public class Load {
     public static void loadMainScreen(){
-        MainScreen mainScreen = new MainScreen();
+        MainScreen mainScreen = MainScreen.getInstance();
         mainScreen.start();
     }
 
     public static void loadStationManagementScreen(){
-        StationManagementScreen stationManagementScreen = new StationManagementScreen();
+        StationManagementScreen stationManagementScreen = StationManagementScreen.getInstance();
         stationManagementScreen.start();
     }
 
     public static void loadLineManagementScreen(){
-        LineManagementScreen lineManagementScreen = new LineManagementScreen();
+        LineManagementScreen lineManagementScreen = LineManagementScreen.getInstance();
         lineManagementScreen.start();
     }
 
     public static void loadSectionManagementScreen(){
-        SectionManagementScreen sectionManagementScreen = new SectionManagementScreen();
+        SectionManagementScreen sectionManagementScreen = SectionManagementScreen.getInstance();
         sectionManagementScreen.start();
     }
 

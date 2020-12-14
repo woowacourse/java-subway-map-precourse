@@ -8,6 +8,17 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class LineManagementScreen implements Screen {
+    static LineManagementScreen instance;
+
+    private LineManagementScreen() {
+    }
+
+    public static LineManagementScreen getInstance() {
+        if (instance == null) {
+            instance = new LineManagementScreen();
+        }
+        return instance;
+    }
 
     private void deleteLine() {
         System.out.println("\n## 삭제할 노선 이름을 입력하세요.");

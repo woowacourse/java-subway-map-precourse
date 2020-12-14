@@ -6,6 +6,17 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class StationManagementScreen implements Screen {
+    static StationManagementScreen instance;
+
+    private StationManagementScreen() {
+    }
+
+    public static StationManagementScreen getInstance() {
+        if (instance == null) {
+            instance = new StationManagementScreen();
+        }
+        return instance;
+    }
 
     private void registerNewStation() {
         System.out.println("\n## 등록할 역 이름을 입력하세요.");

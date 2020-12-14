@@ -7,6 +7,17 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 
 public class MainScreen implements Screen {
+    static MainScreen instance;
+
+    private MainScreen() {
+    }
+
+    public static MainScreen getInstance() {
+        if (instance == null) {
+            instance = new MainScreen();
+        }
+        return instance;
+    }
 
     private void printTransitMap() {
         System.out.println("\n## 지하철 노선도");

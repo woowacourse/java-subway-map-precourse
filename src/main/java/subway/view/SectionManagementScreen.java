@@ -10,6 +10,17 @@ import subway.domain.StationRepository;
 import java.util.ArrayList;
 
 public class SectionManagementScreen implements Screen {
+    static SectionManagementScreen instance;
+
+    private SectionManagementScreen() {
+    }
+
+    public static SectionManagementScreen getInstance() {
+        if (instance == null) {
+            instance = new SectionManagementScreen();
+        }
+        return instance;
+    }
 
     private void registerNewSection() {
         System.out.println("\n## 노선을 입력하세요.");
