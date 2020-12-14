@@ -1,46 +1,55 @@
 package subway.util;
 
-import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class StationManager {
     public void stationMain(Scanner scanner) {
-        Constants.printStation();
-        String inputString = scanner.nextLine().trim();
-        if(inputString.equals("B")) {
-            return;
-        } else if(inputString.equals("1")) {
-            addStation(scanner);
-        } else if(inputString.equals("2")) {
-            removeStation(scanner);
-        } else if(inputString.equals("3")) {
-            visitStation();
+        while(true) {
+            try {
+                Constants.printStation();
+                String inputString = scanner.nextLine().trim();
+                if(inputString.equals("B")) {
+                    return;
+                } else if(inputString.equals("1")) {
+                    addStation(scanner);
+                } else if(inputString.equals("2")) {
+                    removeStation(scanner);
+                } else if(inputString.equals("3")) {
+                    visitStation();
+                }
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
+
         return;
     }
 
-    public void addStation(Scanner scanner) {
+    public void addStation(Scanner scanner) throws IllegalArgumentException {
         String input;
         System.out.println(Constants.ASK_STATION_ADD);
-        input = scanner.nextLine().trim(); // 에러 처리
+        input = scanner.nextLine().trim();
+        ErrorManager.checkNameLength(input);
         Station station = new Station(input);
         StationRepository.addStation(station);
     }
 
-    public void removeStation(Scanner scanner) {
+    public IllegalArgumentException removeStation(Scanner scanner) throws IllegalArgumentException {
         String input;
         System.out.println(Constants.ASK_STATION_REMOVE);
         input = scanner.nextLine().trim(); // 에러 처리
+        ErrorManager.isStationExist(input);
         boolean check = StationRepository.deleteStation(input);
         if(check) {
             System.out.println(Constants.STATION_REMOVE_COMPLETE);
         } else {
-            System.out.println(Constants.STATION_REMOVE_FAIL);
+            return new IllegalArgumentException(Constants.STATION_REMOVE_FAIL);
         }
+        return null;
     }
 
     public void visitStation() {
