@@ -21,5 +21,4 @@ public class LineErrorView extends ErrorView {
     }
 
     public static void printSameTerminusInputError() { printError(ERROR_SAME_TERMINUS_INPUT); }
-
 }

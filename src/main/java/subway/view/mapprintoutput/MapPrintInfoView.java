@@ -3,7 +3,6 @@ package subway.view.mapprintoutput;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.view.InfoView;
 import subway.view.OutputView;
 
