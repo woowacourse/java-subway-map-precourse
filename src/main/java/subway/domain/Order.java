@@ -1,15 +1,14 @@
 package subway.domain;
 
+import subway.domain.validator.OrderValidator;
+
 public class Order {
     private static final int STARTING_ORDER = 1;
 
     private final int order;
 
     public Order(int order) {
-        if (order < STARTING_ORDER) {
-            throw new IllegalArgumentException("순서는 1이상의 숫자여야 합니다.");
-        }
-
+        OrderValidator.checkIsValidOrder(order, STARTING_ORDER);
         this.order = order;
     }
 
