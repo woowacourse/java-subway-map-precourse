@@ -22,6 +22,10 @@ public class Line {
     public boolean nameEquals(String name) {
         return this.name.equals(name);
     }
+    
+    public List<Station> getRoute() {
+        return route;
+    }
 
     void addStationToRoute(Station station) {
         route.add(station);

@@ -107,4 +107,9 @@ public class View {
         outputView.printNames(entityType, names);
         outputView.printEmptyLine();
     }
+
+    public void printRoute(String lineName, List<String> stationNames) {
+        outputView.printRoute(lineName, stationNames);
+        outputView.printEmptyLine();
+    }
 }

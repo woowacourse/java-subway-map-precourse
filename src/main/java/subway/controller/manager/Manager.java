@@ -9,11 +9,13 @@ public class Manager {
     private StationManager stationManager;
     private LineManager lineManager;
     private RouteManager routeManager;
+    private MapManager mapManager;
     
     public Manager(Controller controller, View view) {
         stationManager = new StationManager(controller, view);
         lineManager = new LineManager(controller, view);
         routeManager = new RouteManager(controller, view);
+        mapManager = new MapManager(view);
     }
     
     public void manageEntity(Choice choice) {
@@ -27,7 +29,7 @@ public class Manager {
             routeManager.manageRoute(choice.getActionType());
         }
         if(choice.entityTypeEquals(EntityType.MAP)) {
-            // TODO 구현 예정
+            mapManager.manageMap(choice.getActionType());
         }
     }
 }

@@ -13,6 +13,7 @@ public class OutputView {
     private static String ERROR_MESSAGE_PREFIX = "[ERROR]";
     private static String INFO_MESSAGE_PREFIX = "[INFO]";
     private static String LIST_SUFFIX = "목록";
+    private static String SEPARATOR_BETWEEN_LINE_NAME_AND_STATION_NAMES = "---";
     private static String SELECT_FEATURE_MESSAGE = "원하는 기능을 선택하세요.";
     private static String STATION_REGISTER_ASK_MESSAGE = "등록할 역 이름을 입력하세요.";
     private static String STATION_DELETE_ASK_MESSAGE = "삭제할 역 이름을 입력하세요.";
@@ -104,6 +105,14 @@ public class OutputView {
 
     public void printAskStationNameToDeleteFromRouteMessage() {
         System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + ASK_STATION_NAME_TO_DELETE_FROM_ROUTE_MESSAGE);
+    }
+
+    public void printRoute(String lineName, List<String> stationNames) {
+        System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + lineName);
+        System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + SEPARATOR_BETWEEN_LINE_NAME_AND_STATION_NAMES);
+        for (String stationName : stationNames) {
+            System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + stationName);
+        }
     }
     
     void printEmptyLine() {
