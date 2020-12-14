@@ -20,16 +20,20 @@ public class SectionDeleteController implements Controller {
     @Override
     public void run() {
         try {
-            String targetLine = inputView.inputName(InputView.CHOOSE_SECTION_DELETE_LINE);
-            Line modifyingLine = LineRepository.get(targetLine);
-
-            String targetStation = inputView.inputName(InputView.CHOOSE_SECTION_DELETE_STATION);
-            Station deletingStation = StationRepository.get(targetStation);
-
-            modifyingLine.remove(deletingStation);
+            getModifyingLine().remove(getDeletingStation());
             OutputView.printInfo(InfoMessage.SECTION_DELETED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
+    }
+
+    private Line getModifyingLine() {
+        String modifyingLineName = inputView.inputName(InputView.CHOOSE_SECTION_DELETE_LINE);
+        return LineRepository.get(modifyingLineName);
+    }
+
+    private Station getDeletingStation() {
+        String deletingStationName = inputView.inputName(InputView.CHOOSE_SECTION_DELETE_STATION);
+        return StationRepository.get(deletingStationName);
     }
 }

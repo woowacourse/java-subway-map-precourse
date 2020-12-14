@@ -7,7 +7,6 @@ import subway.view.ErrorMessage;
 
 public class StationRepositoryValidator {
 
-
     public static void validateAddition(Station station) {
         validateNoDuplicate(station);
     }

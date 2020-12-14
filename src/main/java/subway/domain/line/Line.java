@@ -31,15 +31,20 @@ public class Line {
         stations.add(station);
     }
 
-    public void addStationAtSection(String stringIndex, Station station) {
+    public void addStationAtSection(Station station, String stringIndex) {
         try {
-            int translatedIndex = Integer.parseInt(stringIndex) - 1;
-            LineValidator.validateIndex(this, translatedIndex);
+            int index = getTranslatedIndex(stringIndex);
             LineValidator.validateNoDuplicate(this, station);
-            stations.add(translatedIndex, station);
+            stations.add(index, station);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INDEX_INVALID);
         }
+    }
+
+    private int getTranslatedIndex(String stringIndex) {
+        int translatedIndex = Integer.parseInt(stringIndex) - 1;
+        LineValidator.validateIndex(this, translatedIndex);
+        return translatedIndex;
     }
 
     public void remove(Station station) {

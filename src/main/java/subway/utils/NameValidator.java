@@ -42,7 +42,7 @@ public class NameValidator {
 
     private static void validateEnding(String name, String ending) {
         if (notMatchingEnding(name, ending)) {
-            endingErrorThrowDependingOn(ending);
+            throwEndingErrorOf(ending);
         }
     }
 
@@ -50,7 +50,7 @@ public class NameValidator {
         return !name.endsWith(ending);
     }
 
-    private static void endingErrorThrowDependingOn(String ending) {
+    private static void throwEndingErrorOf(String ending) {
         if (ending.equals(Line.ENDING)) {
             throw new IllegalArgumentException(ErrorMessage.LINE_ENDING);
         }

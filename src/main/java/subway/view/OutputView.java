@@ -4,6 +4,7 @@ import java.util.List;
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class OutputView {
 
@@ -33,19 +34,19 @@ public class OutputView {
         menuOptions.forEach(System.out::println);
     }
 
-    public static void printStations(List<Station> stations) {
+    public static void printStations() {
         System.out.println();
         System.out.println(STATION_VIEW_LABEL);
-        stations.stream()
+        StationRepository.stations().stream()
                 .map(Station::getName)
-                .map(x -> InfoMessage.LABEL + x)
+                .map(stationName -> InfoMessage.LABEL + stationName)
                 .forEach(System.out::println);
     }
 
-    public static void printLines(List<Line> lines) {
+    public static void printLines() {
         System.out.println();
         System.out.println(LINE_VIEW_LABEL);
-        lines.stream()
+        LineRepository.lines().stream()
                 .map(Line::getName)
                 .map(line -> InfoMessage.LABEL + line)
                 .forEach(System.out::println);

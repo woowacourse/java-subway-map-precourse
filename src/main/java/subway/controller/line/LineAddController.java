@@ -34,10 +34,17 @@ public class LineAddController implements Controller {
     }
 
     private void addStationsToLine(Line newLine) {
-        String beginningStationName = inputView.inputName(InputView.CHOOSE_LINE_STARTING);
-        newLine.addStation(StationRepository.get(beginningStationName));
+        addStartingStation(newLine);
+        addFinishingStation(newLine);
+    }
 
-        String endingStationName = inputView.inputName(InputView.CHOOSE_LINE_FINISHING);
-        newLine.addStation(StationRepository.get(endingStationName));
+    private void addStartingStation(Line newLine) {
+        String startingStationName = inputView.inputName(InputView.CHOOSE_LINE_STARTING);
+        newLine.addStation(StationRepository.get(startingStationName));
+    }
+
+    private void addFinishingStation(Line newLine) {
+        String finishingStationName = inputView.inputName(InputView.CHOOSE_LINE_FINISHING);
+        newLine.addStation(StationRepository.get(finishingStationName));
     }
 }

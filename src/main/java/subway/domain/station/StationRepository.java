@@ -17,7 +17,7 @@ public class StationRepository {
 
     public static Station get(String name) {
         return stations.stream()
-                .filter(x -> x.getName().equals(name))
+                .filter(station -> station.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.STATION_NOTHING));
     }
