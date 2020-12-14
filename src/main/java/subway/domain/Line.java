@@ -21,10 +21,27 @@ public class Line {
     // 추가 기능 구현
     public void initializeSection(String start, String end) throws IllegalArgumentException {
         section = new ArrayList<>();
-        section.add(0, searchStation(start));
-        section.add(1, searchStation(end));
-        if (section.get(0).getName().equals(section.get(1).getName())) {
-            throw new IllegalArgumentException("[ERROR] 시작역과 종점역의 이름이 같습니다.");
+        addStationToSection(0, start);
+        addStationToSection(1, end);
+    }
+
+    private void addStationToSection(int index, String name) throws IllegalArgumentException {
+        validateIndex(index);
+        validateDuplicate(name);
+        section.add(index, searchStation(name));
+    }
+
+    private void validateIndex(int index) {
+        if (index > section.size() || index < 0) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 순서입니다.");
+        }
+    }
+
+    private void validateDuplicate(String name) {
+        for (Station station : section) {
+            if (station.getName().equals(name)) {
+                throw new IllegalArgumentException("[ERROR] 노선에 중복된 역이 존재합니다.");
+            }
         }
     }
 
