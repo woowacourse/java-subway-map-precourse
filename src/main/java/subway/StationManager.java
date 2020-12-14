@@ -111,7 +111,7 @@ public class StationManager {
     }
 
     public static void callOptionMenu(String userOption, Scanner scanner) {
-        if (!Character.isDefined(userOption.charAt(0))) {
+        if (!Character.isDigit(userOption.charAt(0))) {
             return;
         }
         int optionNumber = Integer.parseInt(userOption);
