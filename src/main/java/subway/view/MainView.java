@@ -40,25 +40,25 @@ public class MainView {
         selectPage(input.nextButton(MAIN_BUTTONS));
     }
 
-    private void selectPage(final String button) {
-        if (isEnd(button)) {
-            return;
-        }
-        selectStationPage(button);
-        selectLinePage(button);
-        selectSectionPage(button);
-        selectSubwayLinePage(button);
+    private void selectPage(String button) {
+        while (!isEnd(button)) {
+            selectStationPage(button);
+            selectLinePage(button);
+            selectSectionPage(button);
+            selectSubwayLinePage(button);
 
-        loopMainPage();
+            button = inputButton();
+        }
+    }
+
+    private String inputButton() {
+        Output.printBlankLine();
+        Output.printPage(MAIN_PAGE);
+        return input.nextButton(MAIN_BUTTONS);
     }
 
     private boolean isEnd(String button) {
         return button.equals(Button.END);
-    }
-
-    private void loopMainPage() {
-        Output.printBlankLine();
-        selectMainPage();
     }
 
     private void selectStationPage(final String button) {
