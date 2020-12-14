@@ -7,7 +7,7 @@ import subway.service.LineService;
 import subway.service.StationService;
 import subway.view.InputView;
 
-public class SectionController implements SubwayMapController2 {
+public class SectionController implements SubwayMapController {
 
     private final StationService stationService;
     private final LineService lineService;
@@ -19,8 +19,8 @@ public class SectionController implements SubwayMapController2 {
     }
 
     @Override
-    public void add() {
-        SectionDto sectionDto = inputView.inputSectionRequest(FunctionType.DELETE);
+    public void register() {
+        SectionDto sectionDto = inputView.inputSectionRequest(FunctionType.REGISTER);
         String stationName = sectionDto.getStationName();
         Station station = stationService.findStationByName(stationName);
         lineService.addSection(sectionDto, station);
@@ -34,6 +34,10 @@ public class SectionController implements SubwayMapController2 {
     }
 
     @Override
-    public void read() {
+    public void readNames() {
+    }
+
+    @Override
+    public void readSubwayMap() {
     }
 }

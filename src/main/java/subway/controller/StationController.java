@@ -8,7 +8,7 @@ import subway.view.OutputView;
 
 import java.util.List;
 
-public class StationController implements SubwayMapController2 {
+public class StationController implements SubwayMapController {
 
     private final StationService stationService;
     private final InputView inputView = InputView.getInstance();
@@ -18,20 +18,24 @@ public class StationController implements SubwayMapController2 {
     }
 
     @Override
-    public void add() {
-        String stationName = inputView.inputStationName(FunctionType.REGISTER);
+    public void register() {
+        String stationName = inputView.inputName(ManagementType.STATION, FunctionType.REGISTER);
         stationService.addStationByName(stationName);
     }
 
     @Override
     public void delete() {
-        String stationName = inputView.inputStationName(FunctionType.REGISTER);
+        String stationName = inputView.inputName(ManagementType.STATION, FunctionType.DELETE);
         stationService.deleteStationByName(stationName);
     }
 
     @Override
-    public void read() {
+    public void readNames() {
         List<String> stationNames = stationService.getStationNames();
         OutputView.printNames(ManagementType.STATION, stationNames);
+    }
+
+    @Override
+    public void readSubwayMap() {
     }
 }
