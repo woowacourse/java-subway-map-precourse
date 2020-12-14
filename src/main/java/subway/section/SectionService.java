@@ -5,11 +5,8 @@ import subway.line.LineService;
 import subway.line.validation.CheckAlreadyRegisteredStation;
 import subway.line.validation.CheckNotExistStation;
 import subway.line.validation.CheckRightSectionNumber;
-import subway.line.view.LineInputView;
-import subway.line.view.LineOutputView;
 import subway.station.Station;
 import subway.station.StationService;
-import subway.station.view.StationInputView;
 import subway.view.InputView;
 import subway.view.section.SectionManagementView;
 

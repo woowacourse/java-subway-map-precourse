@@ -1,16 +1,11 @@
 package subway.section;
 
 import subway.common.CommonService;
-import subway.line.LineService;
-import subway.line.view.LineInputView;
-import subway.line.view.LineOutputView;
-import subway.station.view.StationInputView;
 import subway.view.InputView;
 import subway.view.section.SectionManagementView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class SectionController {
     private static final char ADD_SECTION = '1';

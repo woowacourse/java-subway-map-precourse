@@ -2,8 +2,6 @@ package subway.main;
 
 import subway.common.CommonService;
 import subway.line.LineController;
-import subway.main.validation.CheckValidOption;
-import subway.main.view.MainInputView;
 import subway.section.SectionController;
 import subway.station.StationController;
 import subway.view.InputView;

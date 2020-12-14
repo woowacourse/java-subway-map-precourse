@@ -1,12 +1,8 @@
 package subway.line;
 
 import subway.line.validation.*;
-import subway.line.view.LineInputView;
-import subway.line.view.LineOutputView;
 import subway.station.Station;
 import subway.station.StationService;
-import subway.station.validation.CheckLastLetter;
-import subway.station.view.StationInputView;
 import subway.view.InputView;
 import subway.view.line.LineManagementView;
 import subway.view.subwaymap.SubwayMapView;
@@ -16,7 +12,6 @@ import java.util.List;
 public class LineService {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 노선입니다.";
-    private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
 
     public static boolean addLine(String lineName, InputView inputView) {
         boolean isAdd = false;
