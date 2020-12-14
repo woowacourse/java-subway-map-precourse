@@ -88,8 +88,7 @@ public class SectionView {
         print(Message.INPUT_DELETE_ORDER_SECTION);
         String station = input.nextLine();
 
-        sectionController.deleteSection(name, station);
-        return true;
+        return sectionController.deleteSection(name, station);
     }
 
     private boolean isBack(String button) {

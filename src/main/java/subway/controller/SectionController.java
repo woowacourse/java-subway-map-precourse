@@ -17,7 +17,7 @@ public class SectionController {
         this.sectionService.addSection(name, line, order);
     }
 
-    public void deleteSection(String name, String station) {
-        this.sectionService.deleteSection(name, station);
+    public boolean deleteSection(String name, String station) {
+        return sectionService.deleteSection(name, station);
     }
 }
