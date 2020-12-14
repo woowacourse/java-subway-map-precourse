@@ -33,7 +33,7 @@ public class StationManager {
         System.out.println("\n## 등록할 역 이름을 입력하세요");
         String station = InputView.askName(scanner);
         try {
-            validateOverTwoWords(station);
+            validateOverTwoCharacters(station);
             validateNotExisting(station);
             StationRepository.addStation(new Station(station));
             System.out.println("[INFO] 지하철 역이 등록되었습니다.");
@@ -48,9 +48,9 @@ public class StationManager {
         }
     }
 
-    private void validateOverTwoWords(String station) {
+    private void validateOverTwoCharacters(String station) {
         if (station.length() < 2) {
-            throw new IllegalArgumentException("[ERROR] 역 이름을 2글자 이상이어야합니다.");
+            throw new IllegalArgumentException("\n[ERROR] 역 이름을 2글자 이상이어야 합니다.");
         }
     }
 

@@ -50,8 +50,11 @@ public class LineManager {
     private void addLine() {
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         String line = InputView.askName(scanner);
-        if (LineRepository.hasLine(line)){
-            System.out.println("\n[ERROR] 이미 등록된 노선입니다.");
+        try {
+            validateOverTwoChracters(line);
+            validateNotExistingLine(line);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
             run();
         }
         Line newLine = new Line(line);
@@ -66,6 +69,18 @@ public class LineManager {
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();
+        }
+    }
+
+    private void validateNotExistingLine(String line) {
+        if (LineRepository.hasLine(line)){
+            throw new IllegalArgumentException("\n[ERROR] 이미 등록된 노선입니다.");
+        }
+    }
+
+    private void validateOverTwoChracters(String line) {
+        if (line.length() < 2) {
+            throw new IllegalArgumentException("\n[ERROR] 노선 이름은 2글자 이상이어야 합니다.");
         }
     }
 
