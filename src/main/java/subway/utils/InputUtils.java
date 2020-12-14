@@ -55,15 +55,15 @@ public class InputUtils {
         }
     }
 
-    public int inputStationOrder(int stationNumber){
+    public int inputStationOrder(int stationSize){
         try{
             int stationOrder=Integer.parseInt(scanner.nextLine());
-            if(!validateUtils.isValidOrder(stationNumber,stationOrder))
+            if(!validateUtils.isValidOrder(stationSize,stationOrder-1))
                 throw new IllegalArgumentException();
-            return stationOrder;
+            return stationOrder-1;
         }catch (IllegalArgumentException e){
-            printUtils.stationOrderError(stationNumber);
-            return inputStationOrder(stationNumber);
+            printUtils.stationOrderError(stationSize);
+            return inputStationOrder(stationSize);
         }
     }
 }

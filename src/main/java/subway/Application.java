@@ -348,7 +348,7 @@ public class Application {
         int inputOrder = whichOrderAdd(routeRepository.numberOfStationsLineHave(lineName));
 
         routeRepository.addStationToLine(lineName,new Station(stationName),inputOrder);
-        System.out.println();
+        printUtils.printCompleteRouteRegistration();
     }
 
     private static String whichLineAdded(){

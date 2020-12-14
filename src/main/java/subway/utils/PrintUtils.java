@@ -108,6 +108,8 @@ public class PrintUtils {
         System.out.println("\n## 순서를 입력하세요.");
     }
 
+    public void printCompleteRouteRegistration(){ System.out.println("\n[INFO] 구간이 등록되었습니다.\n"); }
+
     public void printLineName(String lineName){ System.out.println("[INFO] "+lineName); }
 
     public void printHyphenLine(){System.out.println("[INFO] ---");}
