@@ -1,6 +1,5 @@
 package subway;
 
-import subway.domain.line.LineService;
 import subway.domain.section.Section;
 import subway.domain.section.SectionService;
 import subway.domain.section.dto.SectionStationAddReqDto;
@@ -8,41 +7,40 @@ import subway.domain.section.dto.SectionStationDeleteReqDto;
 import subway.domain.station.Station;
 import subway.domain.station.StationService;
 import subway.service.input.InputService;
-import subway.service.output.OutputService;
 import subway.view.SectionView;
 
 import java.util.List;
 
-public class SectionManage {
+public class SectionManage implements Manage {
     private final InputService inputService;
-    private final OutputService outputService;
     private final SectionService sectionService;
     private final StationService stationService;
+    private final SectionView sectionView;
 
-    public SectionManage(InputService inputService, OutputService outputService, SectionService sectionService, StationService stationService) {
+    public SectionManage(InputService inputService, SectionService sectionService, StationService stationService, SectionView sectionView) {
         this.inputService = inputService;
-        this.outputService = outputService;
         this.sectionService = sectionService;
         this.stationService = stationService;
+        this.sectionView = sectionView;
     }
 
+    @Override
     public void startManage() {
-        SectionView sectionView = new SectionView(outputService);
         sectionView.showOptions();
         int manageSectionOption = inputService.getManageSectionOption();
-        chooseManageSectionOption(manageSectionOption, sectionView);
+        chooseManageSectionOption(manageSectionOption);
         if (isBack(manageSectionOption)) {
             return;
         }
     }
 
-    public void showMap() {
-        SectionView sectionView = new SectionView(outputService);
+    @Override
+    public void showStatus() {
         List<Section> sections = sectionService.findAll();
         sectionView.printAllSection(sections);
     }
 
-    private void chooseManageSectionOption(int manageSectionOption, SectionView sectionView) {
+    private void chooseManageSectionOption(int manageSectionOption) {
         if (manageSectionOption == InputService.ADD) {
             addSection(sectionView);
         }

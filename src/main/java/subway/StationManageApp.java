@@ -1,32 +1,23 @@
 package subway;
 
-import subway.domain.line.LineService;
-import subway.domain.section.SectionService;
-import subway.domain.station.StationService;
 import subway.service.input.InputService;
 import subway.service.output.OutputService;
-import subway.view.*;
+import subway.view.MainView;
+import subway.view.Prefix;
 
 public class StationManageApp {
     private final InputService inputService;
     private final OutputService outputService;
-    private final StationService stationService;
-    private final LineService lineService;
-    private final SectionService sectionService;
-    private final StationManage stationManage;
-    private final LineManage lineManage;
-    private final SectionManage sectionManage;
+    private static Manage stationManage;
+    private static Manage lineManage;
+    private static Manage sectionManage;
 
-
-    public StationManageApp(StationManageConfig stationManageConfig) {
+    private StationManageApp(StationManageConfig stationManageConfig) {
         this.inputService = stationManageConfig.inputService();
         this.outputService = stationManageConfig.outputService();
-        this.stationService = stationManageConfig.stationService();
-        this.lineService = stationManageConfig.lineService();
-        this.sectionService = stationManageConfig.sectionService();
-        this.stationManage = new StationManage(inputService, outputService, stationService);
-        this.lineManage = new LineManage(inputService, outputService, sectionService, lineService, stationService);
-        this.sectionManage = new SectionManage(inputService, outputService, sectionService, stationService);
+        this.stationManage = stationManageConfig.stationManage();
+        this.lineManage = stationManageConfig.lineManage();
+        this.sectionManage = stationManageConfig.sectionManage();
     }
 
     public static StationManageApp of(StationManageConfig stationManageConfig) {
@@ -65,7 +56,7 @@ public class StationManageApp {
 
     private void chooseOptions(int mainOption) {
         if (mainOption == InputService.MANAGE_STATION) {
-            stationManage.startMange();
+            stationManage.startManage();
         }
         if (mainOption == InputService.MANAGE_LINE) {
             lineManage.startManage();
@@ -74,7 +65,7 @@ public class StationManageApp {
             sectionManage.startManage();
         }
         if (mainOption == InputService.MANAGE_MAP) {
-            sectionManage.showMap();
+            sectionManage.showStatus();
         }
     }
 

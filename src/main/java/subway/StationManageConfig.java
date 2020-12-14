@@ -14,6 +14,9 @@ import subway.service.input.InputService;
 import subway.service.input.ScannerInputService;
 import subway.service.output.OutputService;
 import subway.service.output.StringBuilderOutputService;
+import subway.view.LineView;
+import subway.view.SectionView;
+import subway.view.StationView;
 
 import java.util.Scanner;
 
@@ -51,5 +54,17 @@ public class StationManageConfig {
 
     public OutputService outputService() {
         return StringBuilderOutputService.of(new StringBuilder());
+    }
+
+    public Manage stationManage() {
+        return new StationManage(inputService(), stationService(), new StationView(outputService()));
+    }
+
+    public Manage lineManage() {
+        return new LineManage(inputService(), sectionService(), lineService(), stationService(), new LineView(outputService()));
+    }
+
+    public Manage sectionManage() {
+        return new SectionManage(inputService(), sectionService(), stationService(), new SectionView(outputService()));
     }
 }

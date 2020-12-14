@@ -4,31 +4,35 @@ import subway.domain.station.StationService;
 import subway.domain.station.dto.StationDeleteReqDto;
 import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
-import subway.service.output.OutputService;
 import subway.view.StationView;
 
-public class StationManage {
+public class StationManage implements Manage{
     private final InputService inputService;
-    private final OutputService outputService;
     private final StationService stationService;
+    private final StationView stationView;
 
-    public StationManage(InputService inputService, OutputService outputService, StationService stationService) {
+    public StationManage(InputService inputService, StationService stationService, StationView stationView) {
         this.inputService = inputService;
-        this.outputService = outputService;
         this.stationService = stationService;
+        this.stationView = stationView;
     }
 
-    public void startMange() {
-        StationView stationView = new StationView(outputService);
+    @Override
+    public void startManage() {
         stationView.showOptions();
         int manageStationOption = inputService.getManageStationOption();
-        chooseManageStationOption(manageStationOption, stationView);
+        chooseManageStationOption(manageStationOption);
         if (isBack(manageStationOption)) {
             return;
         }
     }
 
-    private void chooseManageStationOption(int manageStationOption, StationView stationView) {
+    @Override
+    public void showStatus() {
+        stationView.printAllStations(stationService.getStations());
+    }
+
+    private void chooseManageStationOption(int manageStationOption) {
         if (manageStationOption == InputService.ADD) {
             addStation(stationView);
         }
@@ -36,7 +40,7 @@ public class StationManage {
             deleteStation(stationView);
         }
         if (manageStationOption == InputService.FIND) {
-            stationView.printAllStations(stationService.getStations());
+            showStatus();
         }
     }
 
@@ -54,15 +58,15 @@ public class StationManage {
         stationView.showAfterDelete();
     }
 
+    private String getName() {
+        String name = inputService.getName();
+        return name;
+    }
+
     private boolean isBack(int manageStationOption) {
         if (manageStationOption == InputService.OPTION_BACK) {
             return true;
         }
         return false;
-    }
-
-    private String getName() {
-        String name = inputService.getName();
-        return name;
     }
 }

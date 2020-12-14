@@ -6,35 +6,39 @@ import subway.domain.section.dto.SectionDeleteReqDto;
 import subway.domain.section.dto.SectionSaveReqDto;
 import subway.domain.station.StationService;
 import subway.service.input.InputService;
-import subway.service.output.OutputService;
 import subway.view.LineView;
 
-public class LineManage {
+public class LineManage implements Manage {
     private final InputService inputService;
-    private final OutputService outputService;
     private final SectionService sectionService;
     private final LineService lineService;
     private final StationService stationService;
+    private final LineView lineView;
 
-    public LineManage(InputService inputService, OutputService outputService, SectionService sectionService, LineService lineService, StationService stationService) {
+    public LineManage(InputService inputService, SectionService sectionService, LineService lineService, StationService stationService, LineView lineView) {
+        this.lineView = lineView;
         this.inputService = inputService;
-        this.outputService = outputService;
         this.sectionService = sectionService;
         this.lineService = lineService;
         this.stationService = stationService;
     }
 
+    @Override
     public void startManage() {
-        LineView lineView = new LineView(outputService);
         lineView.showOptions();
         int manageLineOption = inputService.getManageLineOption();
-        chooseManageLineOption(manageLineOption, lineView);
+        chooseManageLineOption(manageLineOption);
         if (isBack(manageLineOption)) {
             return;
         }
     }
 
-    private void chooseManageLineOption(int manageLineOption, LineView lineView) {
+    @Override
+    public void showStatus() {
+        lineView.printAllLines(lineService.getLines());
+    }
+
+    private void chooseManageLineOption(int manageLineOption) {
         if (manageLineOption == InputService.ADD) {
             addLine(lineView);
         }
@@ -42,7 +46,7 @@ public class LineManage {
             deleteLine(lineView);
         }
         if (manageLineOption == InputService.FIND) {
-            lineView.printAllLines(lineService.getLines());
+            showStatus();
         }
     }
 
