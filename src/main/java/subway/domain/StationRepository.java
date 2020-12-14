@@ -29,4 +29,13 @@ public class StationRepository {
         }
         return false;
     }
+
+    public static Station getStation(String name) {
+        for (Station station : stations) {
+            if (station.isEqualName(name)) {
+                return station;
+            }
+        }
+        return null;
+    }
 }
