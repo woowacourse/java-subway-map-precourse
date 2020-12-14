@@ -7,6 +7,7 @@ import subway.controller.LineController;
 import subway.controller.StationController;
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.util.MainScreen;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -18,7 +19,7 @@ public class Router {
     private static final String BACK = "B";
     private static final String QUIT = "Q";
 
-    private InputView inputView;
+    private static InputView inputView;
 
     public Router(Scanner scanner) {
         this.inputView = new InputView(scanner);
@@ -32,25 +33,10 @@ public class Router {
     }
 
     private boolean routeMainScreen(String command) {
-        if (command.equals(QUIT)) {
-            return false;
-        }
-        if (command.equals(ONE)) {
-            return enterStationManagementScreen();
-        }
-        if (command.equals(TWO)) {
-            return enterLineManagementScreen();
-        }
-        if (command.equals(THREE)) {
-            return enterSectionManagementScreen();
-        }
-        if (command.equals(FOUR)) {
-            OutputView.printMap(LineController.searchLine());
-        }
-        return true;
+        return MainScreen.run(command);
     }
 
-    public boolean enterStationManagementScreen() {
+    public static boolean enterStationManagementScreen() {
         String command = inputView.getScreenCommand("STATION_MANAGEMENT_SCREEN"
             , OutputView.STATION_MANAGEMENT_SCREEN);
 
@@ -60,7 +46,7 @@ public class Router {
         return true;
     }
 
-    public boolean enterLineManagementScreen() {
+    public static boolean enterLineManagementScreen() {
         String command = inputView.getScreenCommand("LINE_MANAGEMENT_SCREEN"
             , OutputView.LINE_MANAGEMENT_SCREEN);
 
@@ -70,7 +56,7 @@ public class Router {
         return true;
     }
 
-    public boolean enterSectionManagementScreen() {
+    public static boolean enterSectionManagementScreen() {
         String command = inputView.getScreenCommand("SECTION_MANAGEMENT_SCREEN"
             , OutputView.SECTION_MANAGEMENT_SCREEN);
 
@@ -80,7 +66,7 @@ public class Router {
         return true;
     }
 
-    public boolean routeStationManagementScreen(String command) {
+    public static boolean routeStationManagementScreen(String command) {
         if (command.equals(BACK)) {
             return false;
         }
@@ -100,7 +86,7 @@ public class Router {
         return false;
     }
 
-    public boolean routeLineManagementScreen(String command) {
+    public static boolean routeLineManagementScreen(String command) {
         if (command.equals(BACK)) {
             return false;
         }
@@ -125,7 +111,7 @@ public class Router {
         return false;
     }
 
-    public boolean routeSectionManagementScreen(String command) {
+    public static boolean routeSectionManagementScreen(String command) {
         if (command.equals(BACK)) {
             return false;
         }

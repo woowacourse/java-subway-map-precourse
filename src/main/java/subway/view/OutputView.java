@@ -51,7 +51,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printMap(Map<Line, List<Station>> lines) {
+    public static boolean printMap(Map<Line, List<Station>> lines) {
         System.out.println(ROUTE_MAP);
         for (Line line : lines.keySet()) {
             System.out.println(PREFIX_INFO + line);
@@ -61,5 +61,6 @@ public class OutputView {
                 .forEach(station -> System.out.println(PREFIX_INFO + station));
             System.out.println();
         }
+        return true;
     }
 }
