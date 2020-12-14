@@ -24,9 +24,20 @@ public enum LineMenu {
 
     public static void printMenu() {
         System.out.println("## 노선 관리 화면");
-        Arrays.stream(StationMenu.values())
+        Arrays.stream(LineMenu.values())
                 .forEach(System.out::println);
         Output.printNewLine();
+    }
+
+    public static LineMenu getLineMenuType(String selectMenu) {
+        return Arrays.stream(LineMenu.values())
+                .filter(lineMenu -> lineMenu.number.equals(selectMenu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
+    }
+
+    public void execute(LineController lineController) {
+        nextAction.accept(lineController);
     }
 
     private static void goBack() {
