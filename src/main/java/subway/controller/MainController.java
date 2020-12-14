@@ -1,4 +1,8 @@
 package subway.controller;
 
-public class MainController {
+public class MainController implements Controller {
+    @Override
+    public void start() {
+
+    }
 }

@@ -1,13 +1,16 @@
 package subway.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Line {
     private String name;
     private List<String> stations = new ArrayList<>();
 
-    public Line(String name, String firstStation, String lastStation) {
+    public Line(String name, List<String> station) {
         this.name = name;
-        stations.add(firstStation);
-        stations.add(lastStation);
+        stations.addAll(station);
     }
 
     public String getName() {
@@ -18,8 +21,8 @@ public class Line {
         return Collections.unmodifiableList(stations);
     }
 
-    public void add(int index, String sectionStations) {
-        stations.add(index, sectionStations);
+    public void addSection(String station, int order) {
+        stations.add(order-1, station);
     }
     // 추가 기능 구현
 }

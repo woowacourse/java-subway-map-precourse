@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -13,18 +10,18 @@ public class LineRepository {
     }
 
     private void init() {
-        Line line2 = new Line("2호선", "교대역", "역삼역");
-        line2.add(1, "강남역");
-        lines.add(line2);
+        Line lineTwo = new Line("2호선", Arrays.asList("교대역", "역삼역"));
+        lineTwo.addSection("강남역", 2);
+        lines.add(lineTwo);
 
-        Line line3 = new Line("3호선", "교대역", "매봉역");
-        line3.add(1, "양재역");
-        line3.add(1, "남부터미널역");
-        lines.add(line3);
+        Line lineThree = new Line("3호선", Arrays.asList("교대역", "매봉역"));
+        lineThree.addSection("남부터미널", 2);
+        lineThree.addSection("양재역", 3);
+        lines.add(lineThree);
 
-        Line bundangLine = new Line("신분당선", "강남역", "양재시민의숲역");
-        bundangLine.add(1, "양재역");
-        lines.add(bundangLine);
+        Line bundang = new Line("신분당선", Arrays.asList("강남역", "양재시민의숲역"));
+        bundang.addSection("양재역", 2);
+        lines.add(bundang);
     }
 
     public static List<Line> lines() {
