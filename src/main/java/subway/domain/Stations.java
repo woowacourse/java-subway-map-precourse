@@ -53,6 +53,14 @@ public class Stations {
         return stations.contains(staion);
     }
 
+    public Station firstStation(){
+        return stations.get(0);
+    }
+
+    public Station lastStation(){
+        return stations.get(stations.size() - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

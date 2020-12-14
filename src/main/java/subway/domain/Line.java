@@ -6,14 +6,10 @@ import java.util.Objects;
 public class Line {
     public static final String ERR_ALREADY_ADD_STATION_MSG = "[ERROR] 이미 등록된 역입니다.";
     private String name;
-    private Station uplineTerminalStation;
-    private Station downlineTerminalStation;
     private Stations stations = new Stations();
 
     public Line(String name, Station uplineTerminalStation, Station downlineTerminalStation) {
         this.name = name;
-        this.uplineTerminalStation = uplineTerminalStation;
-        this.downlineTerminalStation = downlineTerminalStation;
         this.stations.addStation(uplineTerminalStation);
         this.stations.addStation(downlineTerminalStation);
     }
@@ -29,6 +25,14 @@ public class Line {
         }
 
         throw new IllegalStateException(ERR_ALREADY_ADD_STATION_MSG);
+    }
+
+    public Station getUplineTerminalStation(){
+        return stations.firstStation();
+    }
+
+    public Station getDownlineTerminalStation(){
+        return stations.lastStation();
     }
 
     public List<String> stationsNames(){
