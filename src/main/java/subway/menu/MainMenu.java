@@ -1,5 +1,6 @@
 package subway.menu;
 
+import subway.feature.SectionFeature;
 import subway.view.MainInputView;
 import subway.view.SectionInputView;
 
@@ -24,7 +25,7 @@ public enum MainMenu implements MenuModel {
     },
     SHOW_MAP("4", "지하철 노선 출력") {
         public void moveView(Scanner scanner) {
-            System.out.println("지하철 노선 출력");
+            SectionFeature.showMap();
         }
     },
     QUIT("Q", "종료") {

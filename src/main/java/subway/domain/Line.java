@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Line {
     private String name;
-    public LinkedList<Station> line = new LinkedList<>();
+    private LinkedList<Station> line = new LinkedList<>();
 
     public Line(String name) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Line {
         line.addLast(StationRepository.findStation(downBoundTerminus));
     }
 
-    public LinkedList<Station> getLine() {
+    public LinkedList<Station> stations() {
         return line;
     }
 }
