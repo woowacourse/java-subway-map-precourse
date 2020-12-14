@@ -6,11 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementControllerTest;
 import subway.exception.AlreadyExistsException;
+import subway.exception.AlreadySavedAtLineException;
 import subway.exception.NotFoundElementException;
 import subway.exception.SubwayRuntimeException;
 
@@ -111,7 +111,8 @@ class StationRepositoryTest {
                 () -> stationRepository.removeStation("강남역", lineRepository);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.SAVED_AT_LINE_ERROR, "강남역");
+        assertThatThrownBy(callable).isExactlyInstanceOf(AlreadySavedAtLineException.class)
+                .hasMessage(SubwayRuntimeException.ERROR +
+                        AlreadySavedAtLineException.SAVED_AT_LINE_ERROR);
     }
 }

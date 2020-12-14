@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import subway.controller.ManagementController;
 import subway.exception.AlreadyExistsException;
+import subway.exception.AlreadySavedAtLineException;
 import subway.exception.NotFoundElementException;
 import subway.exception.RangeIndexOutOfBoundsException;
 import subway.exception.TooLessStationException;
@@ -17,8 +18,6 @@ public final class StationRepository {
     public static final int MINIMUM_INDEX = 0;
 
     public static final int MINIMUM_STATION_SIZE = 2;
-
-    public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
 
     private final List<Station> stations;
 
@@ -63,7 +62,7 @@ public final class StationRepository {
     public StationRepository removeStation(final String stationName,
                                            final LineRepository lineRepository) {
         if (lineRepository.contains(stationName)) {
-            throw new IllegalArgumentException(SAVED_AT_LINE_ERROR);
+            throw new AlreadySavedAtLineException();
         }
 
         return remove(stationName);
