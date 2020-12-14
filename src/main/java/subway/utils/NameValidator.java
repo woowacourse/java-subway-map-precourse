@@ -3,7 +3,7 @@ package subway.utils;
 import java.util.regex.Pattern;
 import subway.domain.line.Line;
 import subway.domain.station.Station;
-import subway.view.OutputView;
+import subway.view.ErrorView;
 
 public class NameValidator {
 
@@ -21,7 +21,7 @@ public class NameValidator {
 
     private static void validateMinimumLength(String name, int minimumLength) {
         if (shorterThanMinimalLength(name, minimumLength)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NAME_SHORT);
+            throw new IllegalArgumentException(ErrorView.NAME_SHORT);
         }
     }
 
@@ -32,7 +32,7 @@ public class NameValidator {
     private static void validateKoreanNumeric(String name) {
         String koreanPattern = "[가-힣0-9]*$";
         if (patternNotMatch(name, koreanPattern)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NAME_ELEMENT);
+            throw new IllegalArgumentException(ErrorView.NAME_ELEMENT);
         }
     }
 
@@ -52,8 +52,8 @@ public class NameValidator {
 
     private static void endingErrorThrowDependingOn(String ending) {
         if(ending.equals(Line.ENDING)) {
-            throw new IllegalArgumentException(OutputView.ERROR_LINE_ENDING);
+            throw new IllegalArgumentException(ErrorView.LINE_ENDING);
         }
-        throw new IllegalArgumentException(OutputView.ERROR_STATION_ENDING);
+        throw new IllegalArgumentException(ErrorView.STATION_ENDING);
     }
 }

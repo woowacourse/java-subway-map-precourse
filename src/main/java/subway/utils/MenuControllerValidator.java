@@ -1,6 +1,6 @@
 package subway.utils;
 
-import subway.view.OutputView;
+import subway.view.ErrorView;
 
 public class MenuControllerValidator {
 
@@ -15,13 +15,13 @@ public class MenuControllerValidator {
         try {
             Integer.parseInt(decision);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(OutputView.ERROR_NOT_NUMERIC);
+            throw new IllegalArgumentException(ErrorView.DECISION_NOT_NUMERIC);
         }
     }
 
     private static void validateRange(String decision, int maxDecisionValue) {
         if (outOfRange(Integer.parseInt(decision), maxDecisionValue)) {
-            throw new IllegalArgumentException(OutputView.ERROR_OUT_OF_RANGE);
+            throw new IllegalArgumentException(ErrorView.DECISION_OUT_OF_RANGE);
         }
     }
 

@@ -2,7 +2,7 @@ package subway.utils;
 
 import subway.domain.line.Line;
 import subway.domain.station.Station;
-import subway.view.OutputView;
+import subway.view.ErrorView;
 
 public class LineValidator {
 
@@ -13,19 +13,19 @@ public class LineValidator {
 
     public static void validateExisting(Line line, Station station) {
         if (!isDuplicate(line, station)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NO_CONNECTION);
+            throw new IllegalArgumentException(ErrorView.STATION_NO_CONNECTION);
         }
     }
 
     public static void validateNoDuplicate(Line line, Station station) {
         if (isDuplicate(line, station)) {
-            throw new IllegalArgumentException(OutputView.ERROR_DUPLICATE_STATION);
+            throw new IllegalArgumentException(ErrorView.LINE_STATION_DUPLICATE);
         }
     }
 
     public static void validateIndex(Line line, int index) {
         if (lowerThanMinimumIndex(index) || higherThanMaximumIndex(line, index)) {
-            throw new IllegalArgumentException(OutputView.ERROR_INDEX);
+            throw new IllegalArgumentException(ErrorView.INDEX_INVALID);
         }
     }
 
@@ -35,7 +35,7 @@ public class LineValidator {
 
     private static void validateMinimumAmount(Line line) {
         if (isLessThanEqualToMinimumAmount(line.getStations().size())) {
-            throw new IllegalArgumentException(OutputView.ERROR_SIZE_SMALL);
+            throw new IllegalArgumentException(ErrorView.LINE_MINIMAL_STATIONS);
         }
     }
 

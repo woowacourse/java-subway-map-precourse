@@ -5,7 +5,7 @@ import java.util.List;
 import subway.domain.station.Station;
 import subway.utils.LineValidator;
 import subway.utils.NameValidator;
-import subway.view.OutputView;
+import subway.view.ErrorView;
 
 public class Line {
 
@@ -38,7 +38,7 @@ public class Line {
             LineValidator.validateNoDuplicate(this, station);
             stations.add(translatedIndex, station);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(OutputView.ERROR_INDEX);
+            throw new IllegalArgumentException(ErrorView.INDEX_INVALID);
         }
     }
 
