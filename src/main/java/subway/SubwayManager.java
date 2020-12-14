@@ -13,7 +13,7 @@ public class SubwayManager {
     public static final int INPUT_PRINT_LINES = 4;
     public static final String INPUT_QUIT = "Q";
 
-    public static final String ERROR_INVALID_INPUT = "[ERROR] 유효하지 않은 입력입니다.";
+    public static final String ERROR_INVALID_INPUT = "\n[ERROR] 유효하지 않은 입력입니다.\n";
 
     private MainView mainView;
     private StationManageView stationManageView;

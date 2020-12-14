@@ -1,32 +1,39 @@
 package controller;
 
-import base.BaseController;
-import base.BaseView;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import utils.ValidatorUtils;
+import view.StationManageView;
 
-public class StationManageController extends BaseController {
-    public static final int INPUT_ADD_STATION = 1;
-    public static final int INPUT_REMOVE_STATION = 2;
-    public static final int INPUT_SEARCH_STATION = 3;
+public class StationManageController {
+    public static final String INPUT_ADD_STATION = "1";
+    public static final String INPUT_REMOVE_STATION = "2";
+    public static final String INPUT_SEARCH_STATION = "3";
 
+    public static final String ERROR_PREFIX = "\n[ERROR] ";
     public static final String INFO_PREFIX = "[INFO] ";
+    public static final String ERROR_INVALID_INPUT = "유효하지 않은 입력입니다. \n";
     public static final String MESSAGE_ADD_COMPLETE = "지하철 역이 등록되었습니다.";
     public static final String INPUT_MESSAGE_FOR_STATION_NAME = "## 등록할 역 이름을 입력하세요.";
 
-    public StationManageController(BaseView view) {
-        super(view);
+    private StationManageView view;
+
+    public StationManageController(StationManageView view) {
+        this.view = view;
     }
 
-
-    public void processInput(int input) {
-        if (input == INPUT_ADD_STATION) {
+    public void processInput(String input) {
+        if (!ValidatorUtils.validateInput(input)) {
+            view.printMessage(ERROR_PREFIX + ERROR_INVALID_INPUT);
+            view.run();
+        }
+        if (input.equals(INPUT_ADD_STATION)) {
             addStation();
         }
-        if (input == INPUT_REMOVE_STATION) {
+        if (input.equals(INPUT_REMOVE_STATION)) {
             removeStation();
         }
-        if (input == INPUT_SEARCH_STATION) {
+        if (input.equals(INPUT_SEARCH_STATION)) {
             searchStation();
         }
     }
@@ -48,6 +55,10 @@ public class StationManageController extends BaseController {
 
     private void searchStation() {
 
+    }
+
+    public boolean validateInput(String input) {
+        return ValidatorUtils.validateInput(input);
     }
 
 }
