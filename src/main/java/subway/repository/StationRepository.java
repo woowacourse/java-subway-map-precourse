@@ -5,6 +5,8 @@ import subway.exception.SubwayException;
 import subway.utils.ValidateUtils;
 import subway.view.OutputView;
 import subway.view.TextCollection;
+import subway.view.station.StationMenu;
+import subway.view.station.StationScreen;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +33,7 @@ public class StationRepository {
     }
 
     public static void printAllStation() {
-        stations.forEach(station -> OutputView.printStation(station.getName()));
+        stations.forEach(station -> OutputView.printStationOrLine(station.getName()));
     }
 
     public static Station searchStation(String name) {
