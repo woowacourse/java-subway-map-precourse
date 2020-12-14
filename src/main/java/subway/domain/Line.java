@@ -11,5 +11,7 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public String toString() {
+        return name;
+    }
 }
