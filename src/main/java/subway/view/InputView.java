@@ -13,6 +13,7 @@ public class InputView {
     private static final String INPUT_WANTED_LINE_NAME_MESSAGE = "## 등록할 노선 이름을 입력하세요";
     private static final String INPUT_WANTED_UP_BOUND_STATION_NAME_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String INPUT_WANTED_DOWN_BOUND_STATION_NAME_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String INPUT_WANTED_DELETE_LINE_NAME_MESSAGE = "삭제할 노선 이름을 입력하세요.";
 
     public static String inputValue(Scanner scanner) {
         System.out.println(INPUT_WANTED_FUNCTION_MESSAGE);
@@ -51,7 +52,7 @@ public class InputView {
         }
     }
 
-    private static String inputLineName(Scanner scanner) {
+    public static String inputLineName(Scanner scanner) {
         System.out.println(INPUT_WANTED_LINE_NAME_MESSAGE);
         return scanner.nextLine();
     }
@@ -63,7 +64,19 @@ public class InputView {
 
     private static String inputDownBoundStationName(Scanner scanner) {
         System.out.println(INPUT_WANTED_DOWN_BOUND_STATION_NAME_MESSAGE);
-        String downBoundStationName = scanner.nextLine();
-        return downBoundStationName;
+        return scanner.nextLine();
+    }
+
+    public static String inputRemovingLineName(Scanner scanner) {
+        System.out.println(INPUT_WANTED_DELETE_LINE_NAME_MESSAGE);
+        return scanner.nextLine();
+    }
+
+    public static String inputStationName(Scanner scanner) {
+        return scanner.nextLine();
+    }
+
+    public static int inputStationLocation(Scanner scanner) {
+        return scanner.nextInt();
     }
 }
