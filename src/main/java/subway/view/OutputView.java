@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.LineRepository;
+
 public class OutputView {
 
     private static final String MAIN_PAGE = "## 메인화면\n" +
@@ -68,5 +70,9 @@ public class OutputView {
 
     public static void space() {
         print(SPACE);
+    }
+
+    public static void lineMaintain() {
+        print(LINE_MAINTAIN);
     }
 }

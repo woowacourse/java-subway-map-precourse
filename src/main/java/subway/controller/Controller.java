@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.maintain.LineMaintain;
 import subway.maintain.StationMaintain;
 import subway.utils.Util;
 import subway.view.OutputView;
@@ -42,7 +43,7 @@ public class Controller {
             new StationMaintain(scanner);
         }
         if(operationNumber == LINE_MAINTAIN){
-
+            new LineMaintain(scanner);
         }
         if(operationNumber == SECTION_MAINTAIN){
 
