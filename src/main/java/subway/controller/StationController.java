@@ -3,8 +3,11 @@ package subway.controller;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.exceptions.DuplicatedStationNameException;
+import subway.exceptions.AlreadyAddedInLineException;
 import subway.exceptions.StationNotExistException;
+import subway.exceptions.StationNotExistInLineException;
+import subway.service.LineService;
+import subway.service.StationService;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +26,11 @@ public class StationController {
     }
 
     public List<Station> getStations(){
-        return StationRepository.getStations();
+        return StationService.getStations();
     }
 
     public Station getStation(String name){
-        Optional<Station> stationOptional = StationRepository.getStation(name);
+        Optional<Station> stationOptional = StationService.getStation(name);
         if(!stationOptional.isPresent()){
             throw new StationNotExistException();
         }
@@ -35,26 +38,14 @@ public class StationController {
     }
 
     public void addStation(String name){
-        if(checkIfStationExist(name)) {
-            throw new DuplicatedStationNameException();
-        }
-        Station newStation = new Station(name);
-        StationRepository.addStation(newStation);
+        StationService.addStation(name);
     }
 
     public void removeStation(String name){
-        if(!checkIfStationExist(name)){
-            throw new StationNotExistException();
+        Optional<Station> stationOptional = LineService.getStationInLine(name);
+        if(!stationOptional.isPresent()){
+            throw new AlreadyAddedInLineException();
         }
-        Station station = StationRepository.getStation(name).get();
-        LineRepository.deleteStationInLines(station);
-        StationRepository.deleteStation(name);
-    }
-
-    private boolean checkIfStationExist(String name){
-        if(StationRepository.getStation(name).isPresent()){
-            return true;
-        }
-        return false;
+        StationService.removeStation(name);
     }
 }

@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.exceptions.*;
+import subway.service.LineService;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,41 +23,26 @@ public class LineController {
     }
 
     public List<Line> getLines(){
-        return LineRepository.getLines();
+        return LineService.getLines();
     }
 
-    public Optional<Line> getLine(String lineName){
-        return LineRepository.getLine(lineName);
+    public Line getLine(String lineName){
+        Optional<Line> lineOptional = LineService.getLine(lineName);
+        if(!lineOptional.isPresent()){
+            throw new LineNotExistException();
+        }
+        return lineOptional.get();
     }
 
     public void addLine(String name, Station startStation, Station endStation){
-        if(checkIfLineExist(name)) {
-            throw new DuplicatedLineNameException();
-        }
-        Line line = new Line(name);
-        line.addStation(0, startStation);
-        line.addStation(1, endStation);
-        LineRepository.addLine(line);
+        LineService.addLine(name, startStation, endStation);
     }
 
     public void removeLine(String name){
-        if(!checkIfLineExist(name)) {
-            throw new LineNotExistException();
-        }
-        LineRepository.deleteLineByName(name);
+        LineService.removeLine(name);
     }
 
-    public void addStationInLineAtCertainPosition(Station station, Line line, int position){
-        if(position > line.getStations().size() || position < 0){
-            throw new InvalidPositionException();
-        }
-        line.addStation(position, station);
-    }
-
-    public boolean checkIfLineExist(String name){
-        if(LineRepository.getLine(name).isPresent()){
-            return true;
-        }
-        return false;
+    public void addStationInLine(Station station, Line line, int position){
+        LineService.addStationInLine(station, line, position);
     }
 }
