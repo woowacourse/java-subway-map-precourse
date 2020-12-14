@@ -1,5 +1,7 @@
 package subway;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -13,6 +15,24 @@ public class Station_management {
 		}
 		Station new_station = new Station(name);
 		StationRepository.addStation(new_station);
+	}
+	
+	private boolean check_station_in_line(Line line, String station_name) {
+		for (Station station : line.getStations()) {
+			if (station_name.equals(station.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean check_station_in_section(String station_name) {
+		for (Line line : LineRepository.lines()) {
+			if (check_station_in_line(line, station_name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static void delete_station(String name) {
