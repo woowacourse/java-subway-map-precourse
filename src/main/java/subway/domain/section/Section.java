@@ -37,6 +37,7 @@ public class Section implements Comparable<Section> {
                 .map(Station::getName)
                 .collect(Collectors.toList());
     }
+
     public boolean deleteStationByStation(Station station) {
         return stations.deleteStation(station);
     }

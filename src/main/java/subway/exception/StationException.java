@@ -1,6 +1,6 @@
 package subway.exception;
 
-public class StationException extends IllegalArgumentException{
+public class StationException extends IllegalArgumentException {
     private final ErrorCode errorCode;
 
     public StationException(ErrorCode errorCode) {

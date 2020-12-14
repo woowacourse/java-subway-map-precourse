@@ -58,7 +58,7 @@ public class SectionView extends Screen {
     }
 
     public void showAvailableSequence(int stationsLength) {
-        outputService.printSharp(String.format(PRINT_AVAILABLE_SEQUENCE, stationsLength + CONVERT_SEQUENCE, stationsLength, CONVERT_SEQUENCE));
+        outputService.printSharp(String.format(PRINT_AVAILABLE_SEQUENCE, stationsLength + CONVERT_SEQUENCE, stationsLength + CONVERT_SEQUENCE));
     }
 
     public void showAddSequence() {

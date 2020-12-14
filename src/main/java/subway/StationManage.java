@@ -6,7 +6,7 @@ import subway.domain.station.dto.StationSaveReqDto;
 import subway.service.input.InputService;
 import subway.view.StationView;
 
-public class StationManage implements Manage{
+public class StationManage implements Manage {
     private final InputService inputService;
     private final StationService stationService;
     private final StationView stationView;
