@@ -3,6 +3,7 @@ package subway.domain.line;
 import subway.domain.station.Station;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class Line {
     }
 
     public List<Station> getSections() {
-        return sections;
+        return Collections.unmodifiableList(sections);
     }
 
     public boolean isMatchedName(String name) {

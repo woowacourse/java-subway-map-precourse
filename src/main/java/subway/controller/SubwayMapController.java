@@ -45,6 +45,7 @@ public class SubwayMapController {
         runMainScreenIfAble(currentScreenType);
         runStationManagementScreenIfAble(currentScreenType);
         runLineManagementScreenIfAble(currentScreenType);
+        runSubwayMapPrintScreenIfAble(currentScreenType);
     }
 
     private void runMainScreenIfAble(ScreenType currentScreenType) {
@@ -159,5 +160,14 @@ public class SubwayMapController {
         }
         List<String> lineNames = lineService.getLineNames();
         OutputView.showLineList(lineNames);
+    }
+
+    private void runSubwayMapPrintScreenIfAble(ScreenType currentScreenType) {
+        if (!currentScreenType.isSubwayMapPrintScreen()) {
+            return;
+        }
+        List<Line> lines = lineService.getLines();
+        OutputView.showSubwayMap(lines);
+        currentScreen = ScreenType.MAIN;
     }
 }

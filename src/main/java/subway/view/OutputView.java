@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.line.Line;
 import subway.domain.screen.LineManagementScreen;
 import subway.domain.screen.MainScreen;
 import subway.domain.screen.StationManagementScreen;
@@ -10,14 +11,17 @@ public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR]";
     private static final String INFO_PREFIX = "[INFO]";
     private static final String SPACE = " ";
+    private static final String DIVIDER = "---";
     private static final String STATION_LIST_TITLE = "## 역 목록";
     private static final String LINE_LIST_TITLE = "## 노선 목록";
+    private static final String SUBWAY_MAP_TITLE = "## 지하철 노선도";
     private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.";
     private static final String STATION_DELETION_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
     private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
     private static final String LINE_DELETION_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
     private static final String EMPTY_STATION_GUIDE_MESSAGE = "지하철 역이 존재하지 않습니다.";
     private static final String EMPTY_LINE_GUIDE_MESSAGE = "지하철 노선이 존재하지 않습니다.";
+
 
     public static void showMainScreen() {
         String message = MainScreen.getInstance().toString();
@@ -71,6 +75,21 @@ public class OutputView {
         }
         lineNames.stream()
                 .forEach(OutputView::printInfo);
+        lineFeed();
+    }
+
+    public static void showSubwayMap(List<Line> lines) {
+        printGuide(SUBWAY_MAP_TITLE);
+        lines.stream()
+                .forEach(OutputView::printLineInSubwayMap);
+    }
+
+    public static void printLineInSubwayMap(Line line) {
+        printInfo(line.getName());
+        printInfo(DIVIDER);
+        line.getSections()
+                .stream()
+                .forEach(station -> printInfo(station.getName()));
         lineFeed();
     }
 

@@ -64,4 +64,8 @@ public class LineService {
                 .map(Line::getName)
                 .collect(Collectors.toList());
     }
+
+    public List<Line> getLines() {
+        return LineRepository.lines();
+    }
 }
