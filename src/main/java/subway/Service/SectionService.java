@@ -25,7 +25,7 @@ public class SectionService {
             String stationName = insetSectionInfo.get(SECTION_NAME);
             String order = insetSectionInfo.get(SECTION_ORDER);
             isPossibleSection(lineName, stationName, order);
-            List<Station> updateSection = LineStationRepository.findLineOnSections(lineName);
+            List<Station> updateSection = LineStationRepository.findByLineGetSections(lineName);
             updateSection.add(Integer.parseInt(order), StationRepository.findByName(stationName));
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -37,7 +37,7 @@ public class SectionService {
         try {
             isPossibleDeleteSection(deleteSectionInfo.get(LINE_NAME), deleteSectionInfo.get(SECTION_NAME));
             Station deleteStation = StationRepository.findByName(deleteSectionInfo.get(SECTION_NAME));
-            List<Station> selections = LineStationRepository.findLineOnSections(deleteSectionInfo.get(LINE_NAME));
+            List<Station> selections = LineStationRepository.findByLineGetSections(deleteSectionInfo.get(LINE_NAME));
             selections.remove(deleteStation);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -52,7 +52,7 @@ public class SectionService {
         if (!StationRepository.contains(stationName)){
             throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
         }
-        List<Station> updateSection = LineStationRepository.findLineOnSections(lineName);
+        List<Station> updateSection = LineStationRepository.findByLineGetSections(lineName);
         Station station = StationRepository.findByName(stationName);
         if (updateSection.contains(station)) {
             throw new IllegalArgumentException(ExceptionMessage.SAME_STATION_IN_LINE);
@@ -70,7 +70,7 @@ public class SectionService {
         if (!StationRepository.contains(stationName)){
             throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
         }
-        List<Station> sections = LineStationRepository.findLineOnSections(lineName);
+        List<Station> sections = LineStationRepository.findByLineGetSections(lineName);
         Station station = StationRepository.findByName(stationName);
         if (!sections.contains(station)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_DELETE_STATION);
