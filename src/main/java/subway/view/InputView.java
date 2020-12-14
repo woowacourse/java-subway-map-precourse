@@ -3,7 +3,6 @@ package subway.view;
 import subway.domain.command.LineCommand;
 import subway.domain.command.MainCommand;
 import subway.domain.command.StationCommand;
-import subway.domain.line.Line;
 import subway.dto.LineDto;
 import subway.dto.StationDto;
 
@@ -25,14 +24,14 @@ public class InputView {
     }
 
     public MainCommand inputMainCommand() {
-        printSectionGuideMessage();
+        printSelectionGuideMessage();
         String userMessage = inputWithTrimming();
         lineFeed();
         return MainCommand.getCommand(userMessage);
     }
 
     public StationCommand inputStationCommand() {
-        printSectionGuideMessage();
+        printSelectionGuideMessage();
         String userMessage = inputWithTrimming();
         lineFeed();
         return StationCommand.getCommand(userMessage);
@@ -53,7 +52,7 @@ public class InputView {
     }
 
     public LineCommand inputLineCommand() {
-        printSectionGuideMessage();
+        printSelectionGuideMessage();
         String userMessage = inputWithTrimming();
         lineFeed();
         return LineCommand.getCommand(userMessage);
@@ -93,8 +92,8 @@ public class InputView {
         lineFeed();
         return lineName;
     }
-
-    private void printSectionGuideMessage() {
+    
+    private void printSelectionGuideMessage() {
         println(SELECTION_GUIDE_MESSAGE);
     }
 
