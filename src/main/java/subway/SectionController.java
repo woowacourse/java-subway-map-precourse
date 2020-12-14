@@ -43,14 +43,15 @@ public class SectionController {
     private static boolean sectionAdd(Scanner scanner) {
         String lineName;
         String stationName;
+        Station insertStation;
         int stationNumber;
 
         try {
             OutputView.sectionAddLineNamePrint();
-            lineName = InputView.scanLineName(scanner);
+            lineName = InputView.scanSectionLineName(scanner);
 
             OutputView.sectionAddStationNamePrint();
-            stationName = scanner.nextLine();
+            stationName = InputView.scansectionStationName(scanner);
 
             OutputView.sectionAddIndexPrint();
             stationNumber = Integer.parseInt(scanner.nextLine());
@@ -58,7 +59,7 @@ public class SectionController {
             return false;
         }
 
-        Station insertStation = StationRepository.getStationByName(stationName);
+        insertStation = StationRepository.getStationByName(stationName);
         LineRepository.getLineByName(lineName).addStation(insertStation, stationNumber);
 
         System.out.println("임시 문구 : 구간 등록 성공");

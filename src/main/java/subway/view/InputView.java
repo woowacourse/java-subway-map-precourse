@@ -155,7 +155,7 @@ public class InputView {
 
     public static String scanStationName(Scanner scanner) {
         String TerminusName = scanner.nextLine();
-        if (StationRepository.findStationFromName(TerminusName)) {
+        if (StationRepository.contains(TerminusName)) {
             return TerminusName;
         }
         OutputView.LineAddFailPrint();
@@ -193,12 +193,27 @@ public class InputView {
         return false;
     }
 
-    public static String scanLineName(Scanner scanner) {
+    public static String scanSectionLineName(Scanner scanner) {
         String lineName = scanner.nextLine();
-        if (!LineRepository.contains(lineName)){
+        if (!LineRepository.contains(lineName)) {
             OutputView.sectionNotFoundLineError();
             throw new IllegalArgumentException();
         }
         return lineName;
     }
+
+    public static String scansectionStationName(Scanner scanner) {
+        String stationName = scanner.nextLine();
+        if (!StationRepository.contains(stationName)){
+            OutputView.sectionNotFoundStationError();
+            throw new IllegalArgumentException();
+        }
+        return stationName;
+    }
+
+    public static int scanLineIndex() {
+        return 0;
+    }
+
+
 }

@@ -11,10 +11,9 @@ public enum SectionMessage {
     SECTION_GUIDE_TO_STATION("## 역이름을 입력하세요."),
     SECTION_GUIDE_TO_INDEX("## 순서를 입력하세요."),
 
-    SECTION_NOT_FOUND_LINE_NAME_ERROR("[ERROR] 등록된 노선을 찾을 수 없습니다.")
+    SECTION_NOT_FOUND_LINE_NAME_ERROR("[ERROR] 노선을 찾을 수 없습니다."),
+    SECTION_NOT_FOUND_STATION_NAME_ERROR("[ERROR] 역 이름을 찾을 수 없습니다."),
     ;
-
-
 
     private final String text;
 

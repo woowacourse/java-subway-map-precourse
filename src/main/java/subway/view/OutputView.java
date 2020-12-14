@@ -146,4 +146,8 @@ public class OutputView {
     public static void sectionNotFoundLineError() {
         System.out.println(SectionMessage.SECTION_NOT_FOUND_LINE_NAME_ERROR.getSectionMessage());
     }
+
+    public static void sectionNotFoundStationError() {
+        System.out.println(SectionMessage.SECTION_NOT_FOUND_STATION_NAME_ERROR.getSectionMessage());
+    }
 }
