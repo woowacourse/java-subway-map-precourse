@@ -18,7 +18,7 @@ public class Line {
     }
     // 추가 기능 구현
     public Line(String name,String upStation) {
-        System.out.println("line생성");
+        System.out.println("line 생성");
         if(registerLineJongJum(upStation)){
             stationInLine.add(new Station(upStation));
             stationInLine.add(new Station(tmpSaveDownStation));

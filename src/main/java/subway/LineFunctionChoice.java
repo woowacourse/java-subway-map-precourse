@@ -12,18 +12,18 @@ import subway.domain.Line;
 import javax.xml.bind.SchemaOutputResolver;
 
 public enum LineFunctionChoice {
-    ADD_LINE("1", ()->LineRepository.addLine(new Line(OutputMessage.registerLineName(),OutputMessage.registerLineUpStation()))),
-    DELETE_LINE("2", ()->LineRepository.deleteLineByName(OutputMessage.deleteLineName())),
-    LOOK_LINE("3",()->LineRepository.back()),
-    BACK("B",()->LineRepository.back());
+    ADD_LINE("1", ()->ControlLine.addLine()),
+    DELETE_LINE("2", ()->ControlLine.deleteLine()),
+    LOOK_LINE("3",()->ControlLine.lookLine()),
+    BACK("B",()->ControlLine.back());
     private String choiceKey;
     private Supplier<Boolean> handlerFunction;
     LineFunctionChoice(String choiceKey,Supplier<Boolean> handlerFunction){
         this.choiceKey=choiceKey;
         this.handlerFunction=handlerFunction;
     }
-    public void doingFunction(){
-        handlerFunction.get();
+    public boolean doingFunction(){
+        return handlerFunction.get();
     }
     public String getChoiceKey(){
         return choiceKey;
@@ -34,11 +34,7 @@ public enum LineFunctionChoice {
     public static boolean checkInput(String choiceKey){
         return Arrays.stream(values()).anyMatch(value->value.choiceKey.equals(choiceKey));
     }
-    public static LineFunctionChoice lineFunctionInput(){
-        String tmpSaveChoiceNumber= OutputMessage.choiceOutputMessage();
-        if(checkInput(tmpSaveChoiceNumber)){
-            return lineFunctionDecide(tmpSaveChoiceNumber);
-        }
-        return lineFunctionInput();
+    public static LineFunctionChoice lineFunctionInput(String inputNumber){
+        return lineFunctionDecide(inputNumber);
     }
 }

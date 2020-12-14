@@ -1,17 +1,14 @@
 package subway;
 
 import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 import subway.view.OutputMessage;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Consumer;
-import java.util.logging.Handler;
 
 public enum MainFunctionChoice {
     MANAGE_STATION("1",(choiceNumber)->StationCompute.manageStation()),
-    MANAGE_LINE("2",(choiceNumber)->ControlLine.manageLine()),
+    MANAGE_LINE("2",(choiceNumber)-> LineCompute.manageLine()),
     MANAGE_SECTION("3",(choiceNumber)->SectionCompute.manageSection()),
     LINE_LOOK("4",(choiceNumber)-> LineRepository.printAllLineInStation()),
     QUIT("Q",(choiceNumber)->ControlStation.back());

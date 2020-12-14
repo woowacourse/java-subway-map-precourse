@@ -56,7 +56,12 @@ public class OutputMessage {
     private static final String ERROR_MESSAGE_FUNCTION_CHOICE="[ERROR] 선택할 수 없는 기능입니다.";
 
     private static final String ERROR_MESSAGE_DELETE_STATION="[ERROR] 역을 삭제할 수 없습니다.";
+    private static final String ERROR_MESSAGE_REGISTER_LINE="[ERROR] 지하철 노선을 등록할 수 없습니다.";
 
+    public static void setErrorMessageRegisterLine(){
+        System.out.println(ERROR_MESSAGE_REGISTER_LINE);
+        System.out.println();
+    }
     public static String registerDeleteStation(){
         System.out.println(WRITE_DELETE_STATION_NAME);
         return scanner.nextLine();
@@ -80,7 +85,7 @@ public class OutputMessage {
         System.out.println(LINE_MANAGE_DELETE);
         System.out.println(LINE_MANAGE_SEARCH);
         System.out.println(MENU_BACK);
-
+        System.out.println();
     }
     public static String deleteSectionLineName(){
         System.out.println(DELETE_SECTION_LINE_NAME);

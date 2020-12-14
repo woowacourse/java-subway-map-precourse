@@ -14,15 +14,27 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static Boolean addLine(Line line) {
+    public static boolean addLine(Line line) {
         System.out.println("addline 실행");
-        if(!(line.getName()==null)){
-            lines.add(line);
-        }
+
+        lines.add(line);
         System.out.println(line.getName());
         return false;
     }
-
+    public static boolean duplicateLineName(Line line){
+        for(int i=0;i<lines.size();i++){
+            if(lines.get(i).getName().equals(line.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean lengthLineName(Line line){
+        if(line.getName().length()<2){
+            return true;
+        }
+        return false;
+    }
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
@@ -46,7 +58,6 @@ public class LineRepository {
         OutputMessage.stationInLineMessage();
 
         for (Line tmpLine : lines) {
-
             System.out.println("[INFO] "+tmpLine.getName());
             System.out.println("[INFO] ---");
             tmpLine.printAllStationInLine();
