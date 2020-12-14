@@ -25,21 +25,21 @@
     
 - Line 관리
     1. LineRepository에 새로운 Line 객체 저장
-        - [ ] StationRepository에 등록되어 있는 Station이 2개 미만
+        - [x] StationRepository에 등록되어 있는 Station이 2개 미만
         - [x] 이름 마지막 '선' 포함 여부
         - [x] 이름 내 띄어쓰기(공백 포함 여부)
         - [x] 2 글자 미만 ('선' 포함 3글자 미만)
         - [x] 중복된 이름
-        - [ ] Station이 존재하지 않는 경우
-        - [ ] 상행/하행으로 같은 Station을 입력한 경우
+        - [x] Station이 존재하지 않는 경우
+        - [x] 상행/하행으로 같은 Station을 입력한 경우
         - [x] ~~상행, 하행 종점이 같은 노선~~  
             실제 서울교통공사 분류 기준 문의결과  
             **상/하행 종점이 같은 노선 존재 가능**
     2. LineRepository에서 Line 객체 삭제
-        - [ ] 등록된 Line이 없는 경우
-        - [ ] 존재하지 않는 이름
+        - [x] 등록된 Line이 없는 경우
+        - [x] 존재하지 않는 이름
     3. LineRepository에 저장된 Line 이름 출력
-        - [ ] 등록된 Line이 없는 경우
+        - [x] 등록된 Line이 없는 경우
     
 - Section 관리
     1. Section 객체의 필드에 Line, Stations 등록

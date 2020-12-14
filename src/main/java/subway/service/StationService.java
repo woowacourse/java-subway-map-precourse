@@ -6,6 +6,7 @@ import subway.view.StationDisplay;
 import subway.view.UserInput;
 
 public class StationService {
+    private static final int ENOUGH_STATIONS = 2;
 
     public static void saveStation() {
         Station newStation = Station.newStationWithName(UserInput.getSaveStationName());
@@ -28,5 +29,11 @@ public class StationService {
 
     public static Station getStationByName(String stationName) {
         return StationRepository.getStationByName(stationName);
+    }
+
+    public static void validateEnoughStations() {
+        if (StationRepository.stations().size() < ENOUGH_STATIONS ) {
+            throw new IllegalArgumentException("지하철 역의 수가 충분하지 않아 노선 등록을 진행 할 수 없습니다.");
+        }
     }
 }

@@ -21,7 +21,6 @@ public class LineRepository {
     }
 
     public static void deleteLine(String name) {
-        validateLinesEmpty();
         if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
             throw new IllegalArgumentException("일치하는 지하철 노선이 없습니다.");
         }
@@ -34,7 +33,7 @@ public class LineRepository {
         }
     }
 
-    private static void validateLinesEmpty() {
+    public static void validateLinesEmpty() {
         if (lines.size() == EMPTY_LINES) {
             throw new IllegalArgumentException("등록 되어 있는 지하철 노선이 없습니다.");
         }

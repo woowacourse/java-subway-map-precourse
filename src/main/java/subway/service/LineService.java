@@ -8,6 +8,7 @@ import subway.view.UserInput;
 public class LineService {
 
     public static void saveLine() {
+        StationService.validateEnoughStations();
         Line newLine = Line.newLineWithName(UserInput.getSaveLineName());
         LineRepository.validateNameDuplicate(newLine);
         SectionService.saveSection(newLine);
@@ -16,6 +17,7 @@ public class LineService {
     }
 
     public static void deleteLine() {
+        LineRepository.validateLinesEmpty();
         String lineName = UserInput.getDeleteLineName();
         SectionService.deleteSection(lineName);
         LineRepository.deleteLine(lineName);
@@ -23,6 +25,7 @@ public class LineService {
     }
 
     public static void printLines() {
+        LineRepository.validateLinesEmpty();
         LineDisplay.printAllLines(LineRepository.lines());
     }
 }
