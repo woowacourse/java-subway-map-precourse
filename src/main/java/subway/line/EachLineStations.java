@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EachLineStations {
+    private static final int MIN_ORDER_NUMBER = 1;
+    private static final int MIN_STATION_NUMBER = 2;
+    private static final int SET_POSITION_INDEX = 1;
+
     private List<Station> stations;
 
     public EachLineStations() {
@@ -34,18 +38,15 @@ public class EachLineStations {
     }
 
     public void addSection(Station station, int sectionNumber) {
-        stations.add(sectionNumber, station);
+        stations.add(sectionNumber - SET_POSITION_INDEX, station);
     }
 
     public boolean isNotExistSection(int number) {
-        int minimumNumber = 1;
-        int maximumNumber = stations.size() - 1;
-        return number < minimumNumber || number > maximumNumber;
+        return number < MIN_ORDER_NUMBER || number > stations.size() + SET_POSITION_INDEX;
     }
 
     public boolean deleteStation(Station station) {
-        int minimumStationNumber = 2;
-        if (stations.size() > minimumStationNumber) {
+        if (stations.size() > MIN_STATION_NUMBER) {
             stations.remove(station);
             return true;
         }
