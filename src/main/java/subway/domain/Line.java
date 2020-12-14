@@ -18,12 +18,6 @@ public class Line {
         }
     }
 
-    private void validateIfStationsAtLeastTwo() {
-        if (StationRepository.stations().size() < 2) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     private void validateLength(String userInput) {
         if (!(userInput.length() >= 2)) {
             throw new IllegalArgumentException();
@@ -56,10 +50,9 @@ public class Line {
         return lineStations;
     }
 
-    public void initiateLineStations(Station firstStation, Station lastStation) {
-        validateIfDuplicate(firstStation, lastStation);
-        validateIfStationsAtLeastTwo();
-        this.lineStations.add(firstStation);
-        this.lineStations.add(lastStation);
+    public void initiateLineStations(Station upstreamStation, Station downstreamStation) {
+        validateIfDuplicate(upstreamStation, downstreamStation);
+        this.lineStations.add(upstreamStation);
+        this.lineStations.add(downstreamStation);
     }
 }
