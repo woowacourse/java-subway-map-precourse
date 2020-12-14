@@ -22,7 +22,7 @@ public class MainManager {
 
     private static MainMenu chooseMenu(Scanner scanner) {
         try {
-            return MainMenu.getMainMenuType(Input.choose(scanner));
+            return MainMenu.getMainMenuType(Input.input(scanner, Input.CHOOSE_FUNCTION_MESSAGE));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return chooseMenu(scanner);

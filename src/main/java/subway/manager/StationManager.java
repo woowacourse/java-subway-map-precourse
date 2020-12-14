@@ -17,7 +17,7 @@ public class StationManager {
 
     private static StationMenu chooseMenu(Scanner scanner) {
         try {
-            return StationMenu.getStationMenuType(Input.choose(scanner));
+            return StationMenu.getStationMenuType(Input.input(scanner,Input.CHOOSE_FUNCTION_MESSAGE));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return chooseMenu(scanner);
