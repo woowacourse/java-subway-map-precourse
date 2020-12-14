@@ -4,6 +4,8 @@ import subway.controller.SubwayMapController;
 import subway.domain.type.FunctionType;
 import subway.domain.type.ManagementType;
 import subway.dto.LineDto;
+import subway.dto.SectionDto;
+import subway.dto.SubwayMapDto;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -42,6 +44,7 @@ public class SubwayMapApplication {
             return;
         }
         if (managementType == ManagementType.SUBWAY_MAP_PRINT) {
+            executeReadFunction(managementType);
             return;
         }
         OutputView.printManagementDisplay(managementType);
@@ -65,9 +68,16 @@ public class SubwayMapApplication {
             executeLineManagement(functionType);
             return;
         }
+        if (managementType == ManagementType.SECTION) {
+            executeSectionManagement(functionType);
+        }
     }
 
     private void executeReadFunction(ManagementType managementType) {
+        if (managementType == ManagementType.SUBWAY_MAP_PRINT) {
+            List<SubwayMapDto> subwayMapDtos = subwayMapController.getSubwayMapDtos();
+            OutputView.printSubwayMap(subwayMapDtos);
+        }
         if (managementType == ManagementType.STATION) {
             List<String> stationNames = subwayMapController.getStationNames();
             OutputView.printNames(managementType, stationNames);
@@ -98,5 +108,16 @@ public class SubwayMapApplication {
             subwayMapController.deleteLine(lineDto);
         }
         OutputView.printLineManagementSuccessMessage(functionType);
+    }
+
+    private void executeSectionManagement(FunctionType functionType) {
+        SectionDto sectionDto = inputView.inputSectionRequest(functionType);
+        if (functionType == FunctionType.REGISTER) {
+            subwayMapController.addSection(sectionDto);
+        }
+        if (functionType == FunctionType.DELETE) {
+            subwayMapController.deleteSection(sectionDto);
+        }
+        OutputView.printSectionManagementSuccessMessage(functionType);
     }
 }

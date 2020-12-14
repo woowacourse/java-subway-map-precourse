@@ -15,13 +15,18 @@ public class OutputView {
     private static final String SECTION_MANAGEMENT_DISPLAY =
             "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기";
     private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] %s\n";
-    private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 역이 등록되었습니다.";
-    private static final String STATION_DELETION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 역이 삭제되었습니다.";
+    private static final String STATION_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 등록되었습니다.";
+    private static final String STATION_DELETION_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 삭제되었습니다.";
     private static final String STATION_NAMES_HEADER = "\n## 역 목록";
     private static final String LINE_NAMES_HEADER = "\n## 노선 목록";
+    private static final String SUBWAY_MAP_PRINT_HEADER = "\n## 지하철 노선도";
     private static final String INFORMATION_HEADER = "[INFO] %s\n";
-    private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 노선이 등록되었습니다.";
-    private static final String LINE_DELETION_SUCCESS_MESSAGE = "\n[ERROR] 지하철 노선이 삭제되었습니다.";
+    private static final String INFORMATION_HEADER_PRINT = "\n[INFO] %s";
+    private static final String DELIMITER = "\n[INFO] ---";
+    private static final String LINE_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 지하철 노선이 등록되었습니다.";
+    private static final String LINE_DELETION_SUCCESS_MESSAGE = "\n[INFO] 지하철 노선이 삭제되었습니다.";
+    private static final String SECTION_REGISTRATION_SUCCESS_MESSAGE = "\n[INFO] 구간이 등록되었습니다.";
+    private static final String SECTION_DELETION_SUCCESS_MESSAGE = "\n[INFO] 구간이 삭제되었습니다.";
 
     private OutputView() {
     }
@@ -73,5 +78,13 @@ public class OutputView {
             return;
         }
         System.out.println(LINE_DELETION_SUCCESS_MESSAGE);
+    }
+
+    public static void printSectionManagementSuccessMessage(FunctionType functionType) {
+        if (functionType == FunctionType.REGISTER) {
+            System.out.println(SECTION_REGISTRATION_SUCCESS_MESSAGE);
+            return;
+        }
+        System.out.println(SECTION_DELETION_SUCCESS_MESSAGE);
     }
 }
