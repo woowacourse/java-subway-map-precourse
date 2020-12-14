@@ -8,8 +8,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import subway.controller.ManagementController;
-import subway.exception.AlreadyExistsException;
-import subway.exception.NotFoundElementException;
+import subway.exception.function.AlreadyExistsException;
+import subway.exception.function.NotFoundElementException;
 
 public final class LineRepository {
 

@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
-import subway.exception.AlreadyExistsException;
 import subway.exception.SubwayRuntimeException;
+import subway.exception.function.AlreadyExistsException;
 
 class LineRepositoryTest {
 

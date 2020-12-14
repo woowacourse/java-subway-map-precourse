@@ -1,4 +1,4 @@
-package subway.exception;
+package subway.exception.function;
 
 public class AlreadyExistsException extends FunctionException {
 

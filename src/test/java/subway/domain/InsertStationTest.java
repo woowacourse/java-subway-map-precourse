@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
-import subway.exception.AlreadyExistsException;
-import subway.exception.NotFoundElementException;
-import subway.exception.RangeIndexOutOfBoundsException;
 import subway.exception.SubwayRuntimeException;
+import subway.exception.function.AlreadyExistsException;
+import subway.exception.function.NotFoundElementException;
+import subway.exception.function.RangeIndexOutOfBoundsException;
 
 public class InsertStationTest {
 

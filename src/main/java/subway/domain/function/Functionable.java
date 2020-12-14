@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.function.Function;
 
 import subway.controller.ManagementController;
-import subway.exception.NoSuchIdentifierException;
+import subway.exception.function.NoSuchIdentifierException;
 import subway.view.InputView;
 import subway.view.OutputView;
 

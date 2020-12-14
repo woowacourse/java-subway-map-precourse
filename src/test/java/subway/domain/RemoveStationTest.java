@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
-import subway.exception.NotFoundElementException;
 import subway.exception.SubwayRuntimeException;
-import subway.exception.TooLessStationException;
+import subway.exception.function.NotFoundElementException;
+import subway.exception.function.TooLessStationException;
 
 public class RemoveStationTest {
 

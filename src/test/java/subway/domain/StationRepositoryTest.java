@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementControllerTest;
-import subway.exception.AlreadyExistsException;
-import subway.exception.AlreadySavedAtLineException;
-import subway.exception.NotFoundElementException;
 import subway.exception.SubwayRuntimeException;
+import subway.exception.function.AlreadyExistsException;
+import subway.exception.function.AlreadySavedAtLineException;
+import subway.exception.function.NotFoundElementException;
 
 class StationRepositoryTest {
 
