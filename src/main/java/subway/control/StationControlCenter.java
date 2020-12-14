@@ -15,10 +15,6 @@ import java.util.Scanner;
 
 public class StationControlCenter {
 
-    public StationControlCenter() {
-
-    }
-
     public String startStationControl(Scanner scanner) {
         StationView.printStationMenu();
         MainView.askInputMenu();

@@ -7,7 +7,6 @@ import subway.enums.InitialStations;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class SectionRepository {
@@ -17,8 +16,8 @@ public class SectionRepository {
         return Collections.unmodifiableList(sections);
     }
 
-    public static void addLineToSection(Line line, List<Station> upDownLastStation) {
-        sections.add(new Section(line, upDownLastStation));
+    public static void addLineToSection(Line line, List<Station> stations) {
+        sections.add(new Section(line, stations));
     }
 
     public static void addStationOnLine(Line line, Station station, int position) {

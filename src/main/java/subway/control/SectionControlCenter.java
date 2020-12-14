@@ -13,10 +13,6 @@ import java.util.Scanner;
 
 public class SectionControlCenter {
 
-    public SectionControlCenter() {
-
-    }
-
     public String startSectionControl(Scanner scanner) {
         SectionView.printSectionMenu();
         MainView.askInputMenu();

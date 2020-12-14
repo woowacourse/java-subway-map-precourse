@@ -14,10 +14,6 @@ import java.util.Scanner;
 
 public class LineControlCenter {
 
-    public LineControlCenter() {
-
-    }
-
     public String startLineControl(Scanner scanner) {
         LineView.printLineMenu();
         MainView.askInputMenu();
