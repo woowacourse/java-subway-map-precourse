@@ -27,7 +27,7 @@ public class LineRepository {
         SubwayRepository.deleteSubwayLineByName(name);
     }
 
-    public static Line findLine(String name) {
+    public static Line findLineByName(String name) {
         return lines.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst()
             .orElseThrow(() -> new ErrorMessageException(NOT_FOUND_LINE));
     }

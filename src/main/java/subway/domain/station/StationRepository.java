@@ -31,9 +31,7 @@ public class StationRepository {
             .orElseThrow(() -> new ErrorMessageException(NOT_VALID_STATION));
     }
 
-    public static boolean isAvailableToDelete(String name) {
-        return findStation(name).isAvailableToDelete();
-    }
+
 
     public static boolean containsName(String name) {
         return stations.stream().anyMatch(item -> Objects.equals(item.getName(), name));

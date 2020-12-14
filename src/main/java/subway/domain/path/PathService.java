@@ -6,7 +6,6 @@ import subway.common.ErrorMessage;
 import subway.domain.SubwayRepository;
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
-import subway.common.ErrorMessageException;
 import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 
@@ -45,7 +44,7 @@ public class PathService {
         if (Arrays.asList(pathInfo).contains(ErrorMessage.OUT)) {
             return;
         }
-        SubwayRepository.addPathByLineName(pathInfo);
+        SubwayRepository.addPathByLineNameAndIndex(pathInfo);
         PathOutputManager.printAddedInfo();
     }
 

@@ -2,6 +2,7 @@ package subway.domain.station;
 
 import java.util.Scanner;
 import subway.common.ErrorMessageException;
+import subway.domain.SubwayRepository;
 
 public class StationInputManager {
     private static final int MIN_TWO_LETTERS = 2;
@@ -69,7 +70,7 @@ public class StationInputManager {
     }
 
     private void checkNotOnPath(String stationName) {
-        if (!StationRepository.isAvailableToDelete(stationName)) {
+        if (SubwayRepository.checkStationOnPath(stationName)) {
             throw new ErrorMessageException(ON_PATH_STATION);
         }
     }

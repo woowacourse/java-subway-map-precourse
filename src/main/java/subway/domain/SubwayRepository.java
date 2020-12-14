@@ -1,6 +1,5 @@
 package subway.domain;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import subway.domain.line.Line;
@@ -9,10 +8,6 @@ import subway.domain.path.PathRepository;
 
 public class SubwayRepository {
     private static final Map<Line, PathRepository> subwayRealLines = new HashMap<>();
-
-    public static Map<Line, PathRepository> getSubwayRealLines() {
-        return Collections.unmodifiableMap(subwayRealLines);
-    }
 
     public static void createSubwayRealLine(String[] lineInfo) {
         Line newline = new Line(lineInfo[0]);
@@ -26,22 +21,21 @@ public class SubwayRepository {
     }
 
     public static PathRepository getPathByLineName(String lineName) {
-        Line line = LineRepository.findLine(lineName);
+        Line line = LineRepository.findLineByName(lineName);
         return subwayRealLines.get(line);
     }
 
-    public static void addPathByLineName(String[] pathInfo) {
+    public static void addPathByLineNameAndIndex(String[] pathInfo) {
         String lineName = pathInfo[0];
-        int index = Integer.parseInt(pathInfo[1]);
-        String station = pathInfo[2];
-        Line line = LineRepository.findLine(lineName);
+        String station = pathInfo[1];
+        int index = Integer.parseInt(pathInfo[2])-1;
+        Line line = LineRepository.findLineByName(lineName);
         PathRepository pathRepository = subwayRealLines.get(line);
         pathRepository.addPath(index, station);
     }
 
     public static void deleteSubwayLineByName(String lineName) {
-        Line line = LineRepository.findLine(lineName);
-        // PATH 등록된 역정보도 삭제해야함.
+        Line line = LineRepository.findLineByName(lineName);
         subwayRealLines.remove(line);
     }
 
@@ -50,8 +44,17 @@ public class SubwayRepository {
     }
 
     public static boolean containsStationOnLine(String station, String lineName) {
-        return getPathByLineName(lineName).containsStationName(station);
+        return getPathByLineName(lineName).containsStationByName(station);
 
+    }
+
+    public static boolean checkStationOnPath(String stationName){
+        for(PathRepository path: subwayRealLines.values()){
+            if(path.checkStationOnPathByName(stationName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void deleteStationOnPathByLineName(String[] pathInfo) {

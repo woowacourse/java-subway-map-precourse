@@ -12,10 +12,10 @@ public class InitialInfo {
     private final String[] line3 = {"3호선", "교대역", "매봉역"};
     private final String[] lineShin = {"신분당선", "강남역", "양재시민의숲역"};
     private final List<String[]> initLines = Arrays.asList(line2, line3, lineShin);
-    private final String[] pathInfoLineTwoPathOne = {"2호선", "1", "강남역"};
-    private final String[] pathInfoLineThreePathOne = {"3호선", "1", "남부터미널역"};
-    private final String[] pathInfoLineThreePathTwo = {"3호선", "2", "양재역"};
-    private final String[] pathInfoLineShinPathOne = {"신분당선", "1", "양재역"};
+    private final String[] pathInfoLineTwoPathOne = {"2호선", "강남역", "2"};
+    private final String[] pathInfoLineThreePathOne = {"3호선", "남부터미널역", "2"};
+    private final String[] pathInfoLineThreePathTwo = {"3호선", "양재역", "3"};
+    private final String[] pathInfoLineShinPathOne = {"신분당선", "양재역", "2"};
     private final List<String[]> initPaths = Arrays
         .asList(pathInfoLineTwoPathOne, pathInfoLineThreePathOne, pathInfoLineThreePathTwo,
             pathInfoLineShinPathOne);
@@ -44,7 +44,7 @@ public class InitialInfo {
 
     private void setPaths() {
         for (String[] pathInfo : initPaths) {
-            SubwayRepository.addPathByLineName(pathInfo);
+            SubwayRepository.addPathByLineNameAndIndex(pathInfo);
         }
     }
 

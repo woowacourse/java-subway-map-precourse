@@ -14,7 +14,7 @@ public class PathInputManager {
     private static final String STATION_ALREADY_ON_PATH = "입력하신 역은 구간에 이미 등록되어 있습니다.";
     private static final String NOT_NUMBER = "정수가 아닙니다. 순서는 1이상의 정수를 입력해 주세요.";
     private static final String NOT_OVER_ONE = "순서는 1이상의 정수로 가능합니다.";
-    private static final String OVER_SIZE_PATH = "구간의 크기가 기존 사이즈를 넘어갑니다.";
+    private static final String OVER_SIZE_PATH = "순서가 가능한 순서의 크기를 넘어갑니다.";
     private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
 
     private final Scanner scanner;
@@ -93,7 +93,7 @@ public class PathInputManager {
     }
 
     private void checkNotOverSize(int indexNumber, String lineName) {
-        if (indexNumber > SubwayRepository.getSizeOfPathByLineName(lineName) - 1) {
+        if (indexNumber > SubwayRepository.getSizeOfPathByLineName(lineName) + 1) {
             throw new ErrorMessageException(OVER_SIZE_PATH);
         }
     }
