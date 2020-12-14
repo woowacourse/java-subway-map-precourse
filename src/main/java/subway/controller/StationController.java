@@ -45,4 +45,7 @@ public class StationController {
         return stationName;
     }
 
+    public static void stationCheck(){
+        StationView.printStationCheck();
+    }
 }

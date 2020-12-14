@@ -4,7 +4,6 @@ import subway.controller.StationController;
 import subway.utils.Validator;
 import subway.view.InputView;
 import subway.view.OutputView;
-import sun.util.resources.th.CalendarData_th;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,8 +15,9 @@ public class StationManageMenu {
         STATION_ADD() {
             @Override
             public void stationManageMenuSelect() {
-                StationController.stationAdd();
                 // 역 등록 호출
+                StationController.stationAdd();
+                stationManageMenuStop();
             }
         },
         STATION_DELETE() {
@@ -30,6 +30,8 @@ public class StationManageMenu {
             @Override
             public void stationManageMenuSelect() {
                 // 역 조회 호출
+                StationController.stationCheck();
+                stationManageMenuStop();
             }
         };
 
