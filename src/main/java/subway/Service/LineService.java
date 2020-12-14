@@ -1,59 +1,42 @@
 package subway.Service;
 
+import subway.Manager.LineManager;
 import subway.domain.*;
 import validator.ExceptionMessage;
-import view.InputView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class LineService {
+    private static final String LINE_INSERT = "1";
+    private static final String LINE_DELETE = "2";
+    private static final int MIN_LINE_NAME_LENGTH = 2;
+    private static final int LINE_NAME = 0;
+    private static final int UP_TERMINAL_STATION = 1;
+    private static final int DOWN_TERMINAL_STATION = 2;
 
-    private final Scanner scanner;
     private LineRepository lineRepository = new LineRepository();
 
-    public LineService(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public void createLine() { // 노선 만들기위한 정보 가져오기
+    public void createLine(List<String> insertLineInfo) {
         try {
-            String lineName = InputView.inputLineName(scanner);
-            isValidLineName(lineName);
-            String upTerminal = InputView.inputUpTerminalStation(scanner);
-            isPossibleTerminalStation(upTerminal);
-            String downTerminal = InputView.inputDownTerminalStation(scanner);
-            isPossibleTerminalStation(downTerminal);
-
-            createLineAndStation(lineName, upTerminal, downTerminal);
+            String lineName = insertLineInfo.get(LINE_NAME);
+            String upTerminal = insertLineInfo.get(UP_TERMINAL_STATION);
+            String downTerminal = insertLineInfo.get(DOWN_TERMINAL_STATION);
+            checkBeforeCreateLine(lineName, upTerminal, downTerminal);
+            addLineAndStation(lineName, upTerminal, downTerminal);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            createLine();
+            LineManager.execute(LINE_INSERT);
         }
     }
 
-    public void createLineAndStation(String lineName, String upTerminal, String downTerminal) { // 노선이름, 상행, 하행 종점 등록
+    public void addLineAndStation(String lineName, String upTerminal, String downTerminal) { // 노선이름, 상행, 하행 종점 등록
         Station upTerminalStation = StationRepository.findByName(upTerminal);
         Station downTerminalStation = StationRepository.findByName(downTerminal);
         Line newLine = new Line(lineName);
-        List<Station> sections = Arrays.asList(upTerminalStation, downTerminalStation);
+        List<Station> sections = new ArrayList<>(Arrays.asList(upTerminalStation, downTerminalStation));
         LineStationRepository.addLineStation(new LineStation(newLine, sections));
-    }
-
-    public void isValidLineName(String name) { // 유효한 노선 이름인지, 유효성 검사
-        if (name.length() < 2) {
-            throw new IllegalArgumentException(ExceptionMessage.LINE_NAME_OVER_TWO);
-        }
-        if (LineRepository.contains(name)) {
-            throw new IllegalArgumentException(ExceptionMessage.LINE_NAME_EXISTS);
-        }
-    }
-
-    public void isPossibleTerminalStation(String name) { // 상행 하행역 등록을 위해, 존재하는 역인지 확인
-        if (!StationRepository.contains(name)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
-        }
     }
 
     public void deleteLine(String lineName) {
@@ -64,7 +47,22 @@ public class LineService {
             LineStationRepository.deleteLineOnSubway(lineName);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            deleteLine(InputView.inputDeleteLineName(scanner));
+            LineManager.execute(LINE_DELETE);
+        }
+    }
+
+    public void checkBeforeCreateLine(String lineName, String upTerminal, String downTerminal) {
+        if (lineName.length() < MIN_LINE_NAME_LENGTH) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_NAME_OVER_TWO);
+        }
+        if (LineRepository.contains(lineName)) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_NAME_EXISTS);
+        }
+        if (!StationRepository.contains(upTerminal)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+        }
+        if (!StationRepository.contains(downTerminal)) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
         }
     }
 

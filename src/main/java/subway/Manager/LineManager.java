@@ -11,17 +11,16 @@ public class LineManager {
     private static final String LINE_DELETE = "2";
     private static final String LINE_LOOKUP = "3";
 
-    private LineService lineService;
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
+    private static LineService lineService;
 
-    public LineManager(Scanner scanner) {
-        lineService = new LineService(scanner);
-        this.scanner = scanner;
+    static {
+        lineService = new LineService();
     }
 
-    public void execute(String input) { // 노선 관리 실행
+    public static void execute(String input) { // 노선 관리 실행
         if (input.equals(LINE_INSERT)) {
-            lineService.createLine();
+            lineService.createLine(InputView.inputLineInfo(scanner));
             OutputView.lineInsertSuccess();
         }
         if (input.equals(LINE_DELETE)) {
