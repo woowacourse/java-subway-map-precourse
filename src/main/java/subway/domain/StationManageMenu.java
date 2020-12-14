@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.controller.StationController;
 import subway.utils.Validator;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -15,7 +16,7 @@ public class StationManageMenu {
         STATION_ADD() {
             @Override
             public void stationManageMenuSelect() {
-                System.out.println("역 등록 호출 기능 구현 예정");
+                StationController.stationAdd();
                 // 역 등록 호출
             }
         },
