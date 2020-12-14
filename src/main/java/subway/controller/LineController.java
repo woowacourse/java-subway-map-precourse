@@ -35,7 +35,7 @@ public class LineController {
     }
 
     public static Map<Line, List<Station>> searchLine() {
-        return LineService.search();
+        return LineService.searchAll();
     }
 
     public static boolean registerSection(String lineName, String stationName, int sequence) {

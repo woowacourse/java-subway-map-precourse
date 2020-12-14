@@ -21,7 +21,7 @@ public class StationController {
     }
 
     public static List<Station> searchStation() {
-        return StationService.search();
+        return StationService.searchAll();
     }
 
     public static boolean deleteStation(String stationName) {
