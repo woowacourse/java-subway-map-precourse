@@ -7,9 +7,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
+import subway.exception.NotFoundElementException;
+import subway.exception.SubwayRuntimeException;
 
 public class InsertStationTest {
 
@@ -40,8 +43,9 @@ public class InsertStationTest {
                 () -> lineRepository.addRange("1호선", index, stationName);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(LineRepository.DOES_NOT_EXIST_ERROR, "1호선");
+        assertThatThrownBy(callable).isExactlyInstanceOf(NotFoundElementException.class)
+                .hasMessage(SubwayRuntimeException.ERROR + NotFoundElementException.NOT_FOUND_ERROR,
+                        "1호선");
     }
 
     @Test

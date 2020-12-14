@@ -9,10 +9,9 @@ import java.util.stream.Collectors;
 
 import subway.controller.ManagementController;
 import subway.exception.AlreadyExistsException;
+import subway.exception.NotFoundElementException;
 
 public final class LineRepository {
-
-    public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
 
     private final List<Line> lines;
 
@@ -46,7 +45,7 @@ public final class LineRepository {
         boolean removed = lines.removeIf(line -> Objects.equals(line.getName(), lineName));
 
         if (!removed) {
-            throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, lineName));
+            throw new NotFoundElementException(lineName);
         }
 
         return new LineRepository(lines);
@@ -91,7 +90,6 @@ public final class LineRepository {
         return lines.stream()
                 .filter(line -> line.equalsName(lineName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(
-                        String.format(DOES_NOT_EXIST_ERROR, lineName)));
+                .orElseThrow(() -> new NotFoundElementException(lineName));
     }
 }
