@@ -25,4 +25,8 @@ public class Line {
     public void addStationByOrder(Station station, int order) {
         this.stations.add(order, station);
     }
+
+    public void deleteStation(String name) {
+        this.stations.removeIf(station -> station.getName().equals(name));
+    }
 }

@@ -43,4 +43,13 @@ public class LineRepository {
         return lines.stream().filter(line -> line.getName().equals(lineName)).findFirst().get()
             .getStations().size();
     }
+
+    public static void deleteStationFromLineByName(String lineName, String stationName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                line.deleteStation(stationName);
+                return;
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package subway.Controller;
 
 import subway.Exception.ExceptionHandler;
+import subway.Exception.SectionExceptionHandler;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -32,7 +33,11 @@ public class SectionController {
         if (selection.equals(ADD)) {
             add();
         }
+        if (selection.equals(DELETE)) {
+            delete();
+        }
         MainController.run();
+
     }
 
     private static void add() {
@@ -46,5 +51,15 @@ public class SectionController {
         Line targetLine = LineRepository.findByLineName(line);
         targetLine.addStationByOrder(new Station(station), Integer.parseInt(order));
         OutputView.printAddStationToLineSuccess();
+    }
+
+    private static void delete() {
+        String line = InputView.getDeleteStationFromLine();
+        SectionExceptionHandler.noLine(line);
+        SectionExceptionHandler.stationInLineLessThanMinLength(line);
+        String station = InputView.getDeleteStation();
+        SectionExceptionHandler.noStationInLine(line, station);
+        LineRepository.deleteStationFromLineByName(line, station);
+        OutputView.printDeleteStationFromLineSuccess();
     }
 }
