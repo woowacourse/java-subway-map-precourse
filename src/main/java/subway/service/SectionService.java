@@ -44,11 +44,11 @@ public class SectionService {
         SectionRepository.deleteSection(lineName);
     }
 
-    public static boolean contain(String name) {
-//        return SectionRepository.sections().stream()
-//            .anyMatch(line -> line.getStations().stream()
-//                .anyMatch(station -> station.getName().equals(name)));
-        return false;
+    public static void validateContainStation(Station station) {
+        if(SectionRepository.sections().stream().anyMatch(
+            line -> line.getStations().stream().anyMatch(thisStation -> thisStation.equals(station)))){
+            throw new IllegalArgumentException("지하철 노선에 등록되어 있는 역은 삭제 할 수 없습니다.");
+        }
     }
 
     private static void registerSection(Section section, Station station, String position) {

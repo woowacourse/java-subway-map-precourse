@@ -19,7 +19,7 @@
     2. StationRepository에서 Station 객체 삭제
         - [x] 등록된 Station이 없을 경우
         - [x] 존재하지 않는 이름
-        - [ ] 노선 등록 여부에 의한 삭제불가
+        - [x] 노선 등록 여부에 의한 삭제불가
     3. StationRepository에 저장된 Station 이름 출력
         - [x] 등록된 Station이 없을 경우
     
