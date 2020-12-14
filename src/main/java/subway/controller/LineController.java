@@ -53,15 +53,19 @@ public class LineController implements SubwayController {
     @Override
     public void delete() {
         OutputView.printInputMessage(LineMenu.DELETE);
+
         String name = inputView.input();
         lineRepository.deleteLineByName(name);
+
         OutputView.printResultMessage(LineMenu.DELETE);
     }
 
     @Override
     public void findAll() {
         OutputView.printListTitle(LineMenu.SEARCH);
+
         List<Line> lines = lineRepository.lines();
+
         OutputView.printLines(lines);
     }
 

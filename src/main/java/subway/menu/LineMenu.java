@@ -7,9 +7,9 @@ public enum LineMenu implements Menu {
     SEARCH("3", "노선 조회", Action.SEARCH),
     BACK("B", "돌아가기", Action.BACK);
 
-    final String order;
-    final String menu;
-    final Action action;
+    private final String order;
+    private final String menu;
+    private final Action action;
 
     private static final String MENU_TITLE = "노선 관리 ";
     private static final String MENU_TYPE = "노선";

@@ -51,7 +51,8 @@ public class SubwayMap {
     private Menu searchMenuList(String input) {
         return Arrays.stream(state.getValues())
                 .filter(menu -> menu.getOrder().equals(input))
-                .findFirst().orElseThrow(() -> new MenuNotFountException(input)
+                .findFirst()
+                .orElseThrow(() -> new MenuNotFountException(input)
                 );
     }
 

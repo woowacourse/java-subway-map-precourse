@@ -53,8 +53,8 @@ public class Line implements Comparable<Line> {
         if (isContains(station)) {
             throw new AlreadyAddStationException(station);
         }
-        stations.add(station);
         station.addLine(this);
+        stations.add(station);
     }
 
 

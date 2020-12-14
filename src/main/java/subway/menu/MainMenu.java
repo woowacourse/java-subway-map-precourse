@@ -39,9 +39,9 @@ public enum MainMenu implements Menu {
     },
     QUIT("Q", "종료", Action.BACK);
 
-    final String order;
-    final String menu;
-    final Action action;
+    private final String order;
+    private final String menu;
+    private final Action action;
 
     private static final String MENU_TITLE = "메인 ";
     private static final String MENU_TYPE = "메인";

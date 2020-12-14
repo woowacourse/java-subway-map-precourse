@@ -51,13 +51,13 @@ public enum Action {
         }
     };
 
-    final String action;
+    private final String action;
 
     Action(String action) {
         this.action = action;
     }
 
-    abstract public Menu action(Menu menu);
+    abstract Menu action(Menu menu);
 
     @Override
     public String toString() {

@@ -8,7 +8,6 @@ public class ControllerFactory {
     private static final SubwayController lineController = new LineController();
     private static final SubwayController sectionController = new SectionController();
     private static final SubwayController mainController = new MainController();
-
     private ControllerFactory() {
     }
 

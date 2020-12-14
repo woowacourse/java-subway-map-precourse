@@ -6,9 +6,9 @@ public enum SectionMenu implements Menu {
     DELETE("2", "구간 삭제", Action.DELETE),
     BACK("B", "돌아가기", Action.BACK);
 
-    final String order;
-    final String menu;
-    final Action action;
+    private final String order;
+    private final String menu;
+    private final Action action;
 
     private static final String MENU_TITLE = "구간 관리 ";
     private static final String MENU_TYPE = "구간";
