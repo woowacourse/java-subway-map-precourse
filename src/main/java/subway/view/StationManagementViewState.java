@@ -3,10 +3,10 @@ package subway.view;
 import subway.SubwayLineMap;
 import subway.controller.StationController;
 import subway.domain.Station;
-import subway.exceptions.StationNameLengthException;
-import subway.view.component.CommonViewComponent;
 import subway.view.component.StationManagementViewComponent;
-import subway.view.logger.ViewLogger;
+import subway.view.component.common.OutputViewComponent;
+import subway.view.input.StationManagementInputView;
+import subway.view.output.StationManagementOutputView;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,49 +37,40 @@ public class StationManagementViewState extends ViewState{
     }
 
     @Override
-    protected void printMenuWithInputRequirementMsg(){
-        StringBuilder viewStringBuilder = new StringBuilder();
-        viewStringBuilder.append(StationManagementViewComponent.getMenuComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        viewStringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        viewStringBuilder.append(CommonViewComponent.getSelectFeatureViewComponent());
-        System.out.println(viewStringBuilder.toString());
+    protected void printMenu(){
+        StationManagementOutputView.printMenuLog();
     }
 
     @Override
     protected void runFeatureAtApplication(String feature, SubwayLineMap application, Scanner scanner){
-        checkAndAddStation(feature, application, scanner);
-        checkAndRemoveStation(feature, application, scanner);
+        checkAndAddStation(feature, application);
+        checkAndRemoveStation(feature, application);
         checkAndPrintStations(feature, application);
         checkAndSwitchViewToMain(feature, application);
     }
 
-    private void checkAndAddStation(String feature, SubwayLineMap application, Scanner scanner){
+    private void checkAndAddStation(String feature, SubwayLineMap application){
         if(feature.equals(BTN_ADD_STATION)){
-            ViewLogger.printLog(StationManagementViewComponent.getRegisterStationComponent());
-            String stationName = getStationName(scanner);
-            ViewLogger.printWhiteSpace();
-            addStation(stationName);
-            ViewLogger.printLogWithWhiteSpace(StationManagementViewComponent.getRegisterStationFinishComponent());
+            String stationName = StationManagementInputView.getStationNameRegisterInput();
+            stationController.addStation(stationName);
+            StationManagementOutputView.printStationRegisterFinishLog();
             switchViewToStationManagement(application);
         }
     }
 
-    private void checkAndRemoveStation(String feature, SubwayLineMap application, Scanner scanner){
+    private void checkAndRemoveStation(String feature, SubwayLineMap application){
         if(feature.equals(BTN_DELETE_STATION)){
-            ViewLogger.printLog(StationManagementViewComponent.getRemoveStationComponent());
-            String stationName = checkAndGetStationName(scanner);
-            ViewLogger.printWhiteSpace();
-            removeStation(stationName);
-            ViewLogger.printLogWithWhiteSpace(StationManagementViewComponent.getRemoveStationFinishComponent());
+            String stationName = StationManagementInputView.getStationNameRemoveInput();
+            stationController.removeStation(stationName);
+            StationManagementOutputView.printStationRemoveFinishLog();
             switchViewToStationManagement(application);
         }
     }
 
     private void checkAndPrintStations(String feature, SubwayLineMap application){
         if(feature.equals(BTN_READ_STATION)){
-            List<Station> stationList = readStations();
-            printStationList(stationList);
+            List<Station> stationList = stationController.getStations();
+            StationManagementOutputView.printStationList(stationList);
             switchViewToStationManagement(application);
         }
     }
@@ -88,40 +79,6 @@ public class StationManagementViewState extends ViewState{
         if(feature.equals(BTN_BACK)){
             switchViewToStationManagement(application);
         }
-    }
-
-    private String checkAndGetStationName(Scanner scanner){
-        String stationName = getStationName(scanner);
-        if(stationName.length() < 2){
-            throw new StationNameLengthException();
-        }
-        return stationName;
-    }
-
-    private String getStationName(Scanner scanner){
-        return scanner.nextLine();
-    }
-
-    private void addStation(String name){
-        stationController.addStation(name);
-    }
-
-    private void removeStation(String name){
-        stationController.removeStation(name);
-    }
-
-    private List<Station> readStations() {
-        return stationController.getStations();
-    }
-
-    private void printStationList(List<Station> stationList) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(Station station : stationList){
-            stringBuilder.append(StationManagementViewComponent.getFinishPrefixComponent());
-            stringBuilder.append(station.getName());
-            stringBuilder.append(CommonViewComponent.getWhiteLineComponent());
-        }
-        System.out.println(stringBuilder.toString());
     }
 
     private void switchViewToStationManagement(SubwayLineMap application){
