@@ -22,6 +22,9 @@ public class StationRepository {
         if (SectionRepository.isExistStation(name)) {
             throw new IllegalArgumentException(Message.ERROR_EXIST_STATION_LINE);
         }
+        if (!isExist(name)) {
+            throw new IllegalArgumentException(Message.ERROR_NOT_EXIST_STATION);
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

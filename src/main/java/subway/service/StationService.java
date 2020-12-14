@@ -60,9 +60,8 @@ public class StationService {
             return true;
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
+            return false;
         }
-        print(Message.ERROR_NOT_EXIST_STATION);
-        return false;
     }
 
     public List<Station> findAll() {
