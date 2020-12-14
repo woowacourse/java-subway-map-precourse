@@ -13,50 +13,50 @@ public class MenuInputManager {
 
     public String getMainInput() {
         MenuOutputManager.printWhichMenuGuide();
-        String input = scanner.nextLine().toUpperCase().trim();
+        String inputKey = scanner.nextLine().toUpperCase().trim();
         try {
-            checkMainSelection(input);
+            checkMainSelection(inputKey);
         } catch (ErrorMessage error) {
             System.out.println(error.getMessage());
             return ErrorMessage.OUT;
         }
-        return input;
+        return inputKey;
     }
 
     public String getStationInput() {
         MenuOutputManager.printWhichMenuGuide();
-        String input = scanner.nextLine().toUpperCase().trim();
+        String inputKey = scanner.nextLine().toUpperCase().trim();
         try {
-            checkStationSelection(input);
+            checkStationSelection(inputKey);
         } catch (ErrorMessage error) {
             System.out.println(error.getMessage());
             return ErrorMessage.OUT;
         }
-        return input;
+        return inputKey;
     }
 
     public String getLineInput() {
         MenuOutputManager.printWhichMenuGuide();
-        String input = scanner.nextLine().toUpperCase().trim();
+        String inputKey = scanner.nextLine().toUpperCase().trim();
         try {
-            checkLineSelection(input);
+            checkLineSelection(inputKey);
         } catch (ErrorMessage error) {
             System.out.println(error.getMessage());
             return ErrorMessage.OUT;
         }
-        return input;
+        return inputKey;
     }
 
     public String getPathInput() {
         MenuOutputManager.printWhichMenuGuide();
-        String input = scanner.nextLine().toUpperCase().trim();
+        String inputKey = scanner.nextLine().toUpperCase().trim();
         try {
-            checkPathSelection(input);
+            checkPathSelection(inputKey);
         } catch (ErrorMessage error) {
             System.out.println(error.getMessage());
             return ErrorMessage.OUT;
         }
-        return input;
+        return inputKey;
     }
 
     private void checkMainSelection(String input) {

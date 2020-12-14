@@ -22,19 +22,19 @@ public class PathService {
     public void run() {
         while (true) {
             MenuOutputManager.printMenu(Menu.PATH);
-            String input = menuInputManager.getPathInput();
-            if (input.equals(MenuKeys.BACK.getKey())) {
+            String inputKey = menuInputManager.getPathInput();
+            if (inputKey.equals(MenuKeys.BACK.getKey())) {
                 return;
             }
-            runSystemByInput(input);
+            runSystemByInput(inputKey);
         }
     }
 
-    private void runSystemByInput(String input) {
-        if (input.equals(MenuKeys.ONE.getKey())) {
+    private void runSystemByInput(String inputKey) {
+        if (inputKey.equals(MenuKeys.ONE.getKey())) {
             addPath();
         }
-        if (input.equals(MenuKeys.TWO.getKey())) {
+        if (inputKey.equals(MenuKeys.TWO.getKey())) {
             deletePath();
         }
     }

@@ -20,22 +20,22 @@ public class StationService {
     public void run() {
         while (true) {
             MenuOutputManager.printMenu(Menu.STATION);
-            String input = menuInputManager.getStationInput();
-            if (input.equals(MenuKeys.BACK.getKey())) {
+            String inputKey = menuInputManager.getStationInput();
+            if (inputKey.equals(MenuKeys.BACK.getKey())) {
                 return;
             }
-            runSystemByInput(input);
+            runSystemByInput(inputKey);
         }
     }
 
-    private void runSystemByInput(String input) {
-        if (input.equals(MenuKeys.ONE.getKey())) {
+    private void runSystemByInput(String inputKey) {
+        if (inputKey.equals(MenuKeys.ONE.getKey())) {
             addStation();
         }
-        if (input.equals(MenuKeys.TWO.getKey())) {
+        if (inputKey.equals(MenuKeys.TWO.getKey())) {
             deleteStation();
         }
-        if (input.equals(MenuKeys.THREE.getKey())) {
+        if (inputKey.equals(MenuKeys.THREE.getKey())) {
             lookStations();
         }
     }

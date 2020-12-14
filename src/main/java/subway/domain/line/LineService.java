@@ -22,22 +22,22 @@ public class LineService {
     public void run() {
         while (true) {
             MenuOutputManager.printMenu(Menu.LINE);
-            String input = menuInputManager.getLineInput();
-            if (input.equals(MenuKeys.BACK.getKey())) {
+            String inputKey = menuInputManager.getLineInput();
+            if (inputKey.equals(MenuKeys.BACK.getKey())) {
                 return;
             }
-            runSystemByInput(input);
+            runSystemByInput(inputKey);
         }
     }
 
-    private void runSystemByInput(String input) {
-        if (input.equals(MenuKeys.ONE.getKey())) {
+    private void runSystemByInput(String inputKey) {
+        if (inputKey.equals(MenuKeys.ONE.getKey())) {
             addLine();
         }
-        if (input.equals(MenuKeys.TWO.getKey())) {
+        if (inputKey.equals(MenuKeys.TWO.getKey())) {
             deleteLine();
         }
-        if (input.equals(MenuKeys.THREE.getKey())) {
+        if (inputKey.equals(MenuKeys.THREE.getKey())) {
             lookupLines();
         }
     }

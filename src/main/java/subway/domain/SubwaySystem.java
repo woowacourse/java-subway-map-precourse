@@ -30,25 +30,25 @@ public class SubwaySystem {
     public void run() {
         while (true) {
             MenuOutputManager.printMenu(Menu.MAIN);
-            String input = menuInputManager.getMainInput();
-            if (input.equals(MenuKeys.EXIT.getKey())) {
+            String inputKey = menuInputManager.getMainInput();
+            if (inputKey.equals(MenuKeys.EXIT.getKey())) {
                 return;
             }
-            runSystemByInput(input);
+            runSystemByInput(inputKey);
         }
     }
 
-    private void runSystemByInput(String input) {
-        if (input.equals(MenuKeys.ONE.getKey())) {
+    private void runSystemByInput(String inputKey) {
+        if (inputKey.equals(MenuKeys.ONE.getKey())) {
             stationService.run();
         }
-        if (input.equals(MenuKeys.TWO.getKey())) {
+        if (inputKey.equals(MenuKeys.TWO.getKey())) {
             lineService.run();
         }
-        if (input.equals(MenuKeys.THREE.getKey())) {
+        if (inputKey.equals(MenuKeys.THREE.getKey())) {
             pathService.run();
         }
-        if (input.equals(MenuKeys.FOUR.getKey())) {
+        if (inputKey.equals(MenuKeys.FOUR.getKey())) {
             SubwayOutputManager.printSubwayMap();
         }
     }
