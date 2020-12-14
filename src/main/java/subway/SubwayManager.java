@@ -1,19 +1,43 @@
 package subway;
 
 import java.util.Scanner;
+import controller.StationManageController;
+import view.MainView;
+import view.StationManageView;
 
 public class SubwayManager {
+    public static final int INPUT_MANAGE_STATION = 1;
+    public static final int INPUT_MANAGE_LINE = 2;
+    public static final int INPUT_MANAGE_SECTION = 3;
+    public static final int INPUT_PRINT_LINES = 4;
+    public static final String INPUT_QUIT = "Q";
 
-    private BaseView nowView;
     private MainView mainView;
+    private StationManageView stationManageView;
 
     public SubwayManager(Scanner scanner) {
         mainView = new MainView(scanner);
-        nowView = mainView;
+
+        stationManageView = new StationManageView(scanner);
+        StationManageController stationManagerController =
+                new StationManageController(stationManageView);
+        stationManageView.setController(stationManagerController);
     }
 
     public void run() {
-        nowView.printGuideMessage();
-        String input = nowView.input();
+        while (true) {
+            mainView.run();
+            String input = mainView.input();
+            if (input.equals(INPUT_QUIT)) {
+                break;
+            }
+            processInput(Integer.valueOf(input));
+        }
+    }
+
+    private void processInput(int input) {
+        if (input == INPUT_MANAGE_STATION) {
+            stationManageView.run();
+        }
     }
 }
