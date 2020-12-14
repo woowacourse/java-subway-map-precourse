@@ -18,8 +18,7 @@ public class LineDeleteController implements Controller {
     @Override
     public void run() {
         try {
-            String deletingLineName = inputView.inputName(InputView.CHOOSE_LINE_DELETE);
-            deleteLine(deletingLineName);
+            deleteLine(getDeletingLineName());
             OutputView.printInfo(InfoMessage.LINE_DELETED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
@@ -30,5 +29,9 @@ public class LineDeleteController implements Controller {
         if (!LineRepository.deleteLineByName(deletingLineName)) {
             throw new IllegalArgumentException(ErrorMessage.LINE_NOTHING);
         }
+    }
+
+    private String getDeletingLineName() {
+        return inputView.inputName(InputView.CHOOSE_LINE_DELETE);
     }
 }

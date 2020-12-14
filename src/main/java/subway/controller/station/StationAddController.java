@@ -18,11 +18,14 @@ public class StationAddController implements Controller {
     @Override
     public void run() {
         try {
-            String addingStationName = inputView.inputName(InputView.CHOOSE_STATION_ADD);
-            StationRepository.addStation(new Station(addingStationName));
+            StationRepository.addStation(new Station(getAddingStationName()));
             OutputView.printInfo(InfoMessage.STATION_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
+    }
+
+    private String getAddingStationName() {
+        return inputView.inputName(InputView.CHOOSE_STATION_ADD);
     }
 }

@@ -19,13 +19,17 @@ public class LineAddController implements Controller {
     @Override
     public void run() {
         try {
-            Line newLine = createLine();
-            addStationsToLine(newLine);
-            LineRepository.addLine(newLine);
+            addNewLine();
             OutputView.printInfo(InfoMessage.LINE_ADDED);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
         }
+    }
+
+    private void addNewLine() {
+        Line newLine = createLine();
+        addStationsToLine(newLine);
+        LineRepository.addLine(newLine);
     }
 
     private Line createLine() {
