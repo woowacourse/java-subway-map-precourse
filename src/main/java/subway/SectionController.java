@@ -9,9 +9,11 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class SectionController {
-    private SectionController(){
+
+    private SectionController() {
 
     }
+
     public static void sectionControlMenu(Scanner scanner) {
         String choiceMenu;
         boolean workStatus = false;
@@ -42,16 +44,22 @@ public class SectionController {
         String lineName;
         String stationName;
         int stationNumber;
-        System.out.println("임시 문구 : 노선 입력");
-        lineName = scanner.nextLine();
-        System.out.println("임시 문구 : 역이름 입력");
-        stationName = scanner.nextLine();
-        System.out.println("임시 문구 : 순서 입력");
-        stationNumber = Integer.parseInt(scanner.nextLine());
+
+        try {
+            OutputView.sectionAddLineNamePrint();
+            lineName = InputView.scanLineName(scanner);
+
+            OutputView.sectionAddStationNamePrint();
+            stationName = scanner.nextLine();
+
+            OutputView.sectionAddIndexPrint();
+            stationNumber = Integer.parseInt(scanner.nextLine());
+        } catch (IllegalArgumentException error) {
+            return false;
+        }
 
         Station insertStation = StationRepository.getStationByName(stationName);
         LineRepository.getLineByName(lineName).addStation(insertStation, stationNumber);
-
 
         System.out.println("임시 문구 : 구간 등록 성공");
         return true;

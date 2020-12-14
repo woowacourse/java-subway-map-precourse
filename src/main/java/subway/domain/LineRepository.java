@@ -24,6 +24,14 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static boolean contains(String name) {
+        return lines.stream()
+            .filter(line -> line.getName().equals(name))
+            .collect(Collectors.toList())
+            .toArray()
+            .length > BoundaryCheckDigit.NOT_EMPTY.getBoundaryCheckDigit();
+    }
+
     public static Line getLineByName(String name) {
         return lines.stream()
             .filter(line -> line.getName().equals(name))

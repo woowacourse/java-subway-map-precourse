@@ -192,4 +192,13 @@ public class InputView {
         OutputView.NotSelectableError();
         return false;
     }
+
+    public static String scanLineName(Scanner scanner) {
+        String lineName = scanner.nextLine();
+        if (!LineRepository.contains(lineName)){
+            OutputView.sectionNotFoundLineError();
+            throw new IllegalArgumentException();
+        }
+        return lineName;
+    }
 }

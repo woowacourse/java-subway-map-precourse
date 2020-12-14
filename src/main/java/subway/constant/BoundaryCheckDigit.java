@@ -6,8 +6,8 @@ public enum BoundaryCheckDigit {
     LINE_LIST_LIMIT_MINIMUM(1),
     LIST_GET_FIRST(0),
     LINE_ADD_LIMIT(2),
+    NOT_EMPTY(0),
     ;
-
 
 
     private final int digit;

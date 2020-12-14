@@ -130,4 +130,20 @@ public class OutputView {
     public static void sectionMenuPrint() {
         System.out.println(SectionMessage.SECTION_FUNCTION_LIST.getSectionMessage());
     }
+
+    public static void sectionAddLineNamePrint() {
+        System.out.println(SectionMessage.SECTION_GUIDE_TO_LINE.getSectionMessage());
+    }
+
+    public static void sectionAddStationNamePrint() {
+        System.out.println(SectionMessage.SECTION_GUIDE_TO_STATION.getSectionMessage());
+    }
+
+    public static void sectionAddIndexPrint() {
+        System.out.println(SectionMessage.SECTION_GUIDE_TO_INDEX.getSectionMessage());
+    }
+
+    public static void sectionNotFoundLineError() {
+        System.out.println(SectionMessage.SECTION_NOT_FOUND_LINE_NAME_ERROR.getSectionMessage());
+    }
 }
