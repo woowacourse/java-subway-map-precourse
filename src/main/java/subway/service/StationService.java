@@ -22,24 +22,46 @@ public class StationService extends BaseService {
     }
 
     public static void register() {
-        OutputView.printQuestion(REGISTER_STATION_QUESTION);
-        StationRepository.addStation(new Station(InputView.getStationName()));
-        OutputView.printInfo(REGISTER_STATION_SUCCESS);
+        String stationName = getStationNameByQuestion(REGISTER_STATION_QUESTION);
+        registerStation(stationName);
     }
 
     public static void delete() {
-        OutputView.printQuestion(DELETE_STATION_QUESTION);
-        Station station = StationRepository.getStation(InputView.getStationName());
-        if (station.isLinePassed()){
-            throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
-        }
-        if (!StationRepository.deleteStation(station)) {
-            throw new IllegalArgumentException(ERR_UNREGISTERED_STATION);
-        }
-        OutputView.printInfo(DELETE_STATION_SUCCESS);
+        Station station = getStationByQuestion(DELETE_STATION_QUESTION);
+        checkStationLinePassing(station);
+        deleteStation(station);
     }
 
     public static void printStationList() {
         OutputView.printStationList(StationRepository.stations());
+    }
+
+    private static String getStationNameByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return InputView.getStationName();
+    }
+
+    public static Station getStationByQuestion(String question) {
+        OutputView.printQuestion(question);
+        return StationRepository.getStation(InputView.getStationName());
+    }
+
+
+    private static void registerStation(String stationName) {
+        StationRepository.addStation(new Station(stationName));
+        OutputView.printInfo(REGISTER_STATION_SUCCESS);
+    }
+
+    private static void checkStationLinePassing(Station station) {
+        if (station.isLinePassed()){
+            throw new IllegalArgumentException(ERR_LINE_PASSED_STATION);
+        }
+    }
+
+    private static void deleteStation(Station station) {
+        if (!StationRepository.deleteStation(station)) {
+            throw new IllegalArgumentException(ERR_UNREGISTERED_STATION);
+        }
+        OutputView.printInfo(DELETE_STATION_SUCCESS);
     }
 }
