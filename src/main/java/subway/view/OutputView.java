@@ -53,6 +53,7 @@ public class OutputView {
     public static void printSuccessMessage(ManagementType managementType, FunctionType functionType) {
         if (managementType == ManagementType.SECTION) {
             System.out.printf(INFORMATION_SECTION_SUCCESS_MESSAGE_FORMAT, functionType.toString());
+            return;
         }
         System.out.printf(INFORMATION_SUCCESS_MESSAGE_FORMAT, managementType.toString(), functionType.toString());
     }

@@ -105,4 +105,17 @@ class LineServiceTest {
         }).isInstanceOf(CannotFindLineException.class)
                 .hasMessage("등록되지 않은 지하철 노선 이름을 입력하셨습니다.");
     }
+
+    @DisplayName("Line이 삭제되면 내부 Station의 상태가 변경")
+    @Test
+    void deleteLine_Station의_상태가_변경된다() {
+        Station station = new Station("테스트");
+        Sections sections = Sections.of(station, new Station("더미"));
+        lineService.addLine("30호선", sections);
+
+        lineService.deleteLineByName("30호선");
+        boolean isRegisteredAsLineSection = station.isRegisteredAsLineSection();
+
+        assertThat(isRegisteredAsLineSection).isFalse();
+    }
 }
