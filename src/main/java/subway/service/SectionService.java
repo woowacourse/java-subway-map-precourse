@@ -49,4 +49,14 @@ public class SectionService {
             return false;
         }
     }
+
+    public boolean findStation(String name) {
+        try {
+            StationRepository.findOne(name);
+            return true;
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
+            return false;
+        }
+    }
 }

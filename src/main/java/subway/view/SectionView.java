@@ -68,6 +68,9 @@ public class SectionView {
 
         print(Message.INPUT_STATION_SECTION);
         String station = input.nextLine();
+        if (!sectionController.existStation(station)) {
+            return false;
+        }
 
         print(Message.INPUT_ORDER_SECTION);
         String order = input.nextLine();
@@ -94,6 +97,9 @@ public class SectionView {
 
         print(Message.INPUT_DELETE_ORDER_SECTION);
         String station = input.nextLine();
+        if (!sectionController.existStation(station)) {
+            return false;
+        }
 
         return sectionController.deleteSection(line, station);
     }

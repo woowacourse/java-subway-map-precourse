@@ -24,4 +24,8 @@ public class SectionController {
     public boolean existLine(String name) {
         return sectionService.findLine(name);
     }
+
+    public boolean existStation(String name) {
+        return sectionService.findStation(name);
+    }
 }
