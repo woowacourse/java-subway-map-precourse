@@ -15,12 +15,16 @@ public class StationRepository {
     }
 
     public static boolean addStation(Station station) {
-        if (!hasDuplicatedStation(station) && station.isNameMoreThan2Letters()) {
-            stations.add(station);
-            return true;
+        if (!station.isNameMoreThan2Letters()) {
+            OutputView.printNameLengthErrorMessage(station.getName());
+            return false;
         }
-        OutputView.printDuplicatedErrorMessage(station.toString());
-        return false;
+        if (hasDuplicatedStation(station)) {
+            OutputView.printDuplicatedErrorMessage(station.getName());
+            return false;
+        }
+        stations.add(station);
+        return true;
     }
 
     public static boolean deleteStation(String name) {

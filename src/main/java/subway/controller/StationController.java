@@ -19,11 +19,11 @@ public class StationController implements Controller {
             return;
         }
         if (command == Action.DELETE.getActionNumber()) {
-            deleteStation();
+            deleteStation(Action.DELETE.getAction());
             return;
         }
         if (command == Action.SELECT.getActionNumber()) {
-            selectStation();
+            selectStation(Action.SELECT.getAction());
             return;
         }
     }
@@ -33,14 +33,22 @@ public class StationController implements Controller {
         String station = InputView.getCommand(scanner);
         if (StationRepository.addStation(new Station(station))) {
             OutputView.printWithInformationMark(action);
+            return;
         }
+        OutputView.printDuplicatedErrorMessage(station.toString());
     }
 
-    private void deleteStation() {
-        // 역 삭제 기능 구현
+    private void deleteStation(String action) {
+        OutputView.printWithAction(action);
+        String station = InputView.getCommand(scanner);
+        if (StationRepository.deleteStation(station)) {
+            OutputView.printWithInformationMark(action);
+            return;
+        }
+        OutputView.printStationDeleteErrorMessage();
     }
 
-    private void selectStation() {
+    private void selectStation(String action) {
         // 역 조회 기능 구현
     }
 }
