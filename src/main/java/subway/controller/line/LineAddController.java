@@ -29,15 +29,15 @@ public class LineAddController implements Controller {
     }
 
     private Line createLine() {
-        String lineName = inputView.inputName(InputView.CHOOSE_ADD_LINE);
+        String lineName = inputView.inputName(InputView.CHOOSE_LINE_ADD);
         return new Line(lineName);
     }
 
     private void addStationsToLine(Line newLine) {
-        String beginningStationName = inputView.inputName(InputView.CHOOSE_LINE_BEGINNING);
+        String beginningStationName = inputView.inputName(InputView.CHOOSE_LINE_STARTING);
         newLine.addStation(StationRepository.get(beginningStationName));
 
-        String endingStationName = inputView.inputName(InputView.CHOOSE_LINE_ENDING);
+        String endingStationName = inputView.inputName(InputView.CHOOSE_LINE_FINISHING);
         newLine.addStation(StationRepository.get(endingStationName));
     }
 }

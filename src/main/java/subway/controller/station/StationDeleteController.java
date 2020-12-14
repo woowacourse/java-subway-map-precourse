@@ -18,7 +18,7 @@ public class StationDeleteController implements Controller {
     @Override
     public void run() {
         try {
-            String deletingStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
+            String deletingStationName = inputView.inputName(InputView.CHOOSE_STATION_DELETE);
             if (!StationRepository.deleteStation(deletingStationName)) {
                 throw new IllegalArgumentException(ErrorMessage.STATION_NOTHING);
             }

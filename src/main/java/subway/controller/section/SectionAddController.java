@@ -20,13 +20,13 @@ public class SectionAddController implements Controller {
     @Override
     public void run() {
         try {
-            String targetLine = inputView.inputName(InputView.CHOOSE_LINE);
+            String targetLine = inputView.inputName(InputView.CHOOSE_SECTION_ADD_LINE);
             Line modifyingLine = LineRepository.get(targetLine);
 
-            String targetStation = inputView.inputName(InputView.CHOOSE_STATION_NAME);
+            String targetStation = inputView.inputName(InputView.CHOOSE_SECTION_ADD_STATION);
             Station addingStation = StationRepository.get(targetStation);
 
-            String index = inputView.inputIndex(InputView.CHOOSE_ORDER);
+            String index = inputView.inputIndex(InputView.CHOOSE_SECTION_ADD_ORDER);
             modifyingLine.addStationAtSection(index, addingStation);
             OutputView.printInfo(InfoMessage.SECTION_ADDED);
         } catch (IllegalArgumentException e) {

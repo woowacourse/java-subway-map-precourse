@@ -20,10 +20,10 @@ public class SectionDeleteController implements Controller {
     @Override
     public void run() {
         try {
-            String targetLine = inputView.inputName(InputView.CHOOSE_LINE);
+            String targetLine = inputView.inputName(InputView.CHOOSE_SECTION_DELETE_LINE);
             Line modifyingLine = LineRepository.get(targetLine);
 
-            String targetStation = inputView.inputName(InputView.CHOOSE_STATION_NAME);
+            String targetStation = inputView.inputName(InputView.CHOOSE_SECTION_DELETE_STATION);
             Station deletingStation = StationRepository.get(targetStation);
 
             modifyingLine.remove(deletingStation);
