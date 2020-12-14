@@ -18,35 +18,16 @@ public class Line {
         this.name=name;
     }
     // 추가 기능 구현
-    public Line(String name,String upStation) {
-
-        if(registerLineJongJum(upStation)){
+    public Line(String name,String upStation,String downStation) {
             stationInLine.add(new Station(upStation));
-            stationInLine.add(new Station(tmpSaveDownStation));
+            stationInLine.add(new Station(downStation));
             this.name = name;
-        }
-
     }
     public void initializeLine(String[] station){
         for(String tmpStation:station) {
-            System.out.println(tmpStation);
             stationInLine.add(new Station(tmpStation));
         }
-        for(int i=0;i<stationInLine.size();i++){
-            System.out.println(stationInLine.get(i).getName());
-        }
-    }
-    public boolean registerLineJongJum(String upStation){
 
-        if(stationRepository.containStationName(upStation)){
-            tmpSaveDownStation=outputMessage.registerLineDownStation();
-            if(stationRepository.containStationName(tmpSaveDownStation)){
-                return true;
-            }
-
-        }
-
-        return false;
     }
     public String getName() {
         return name;

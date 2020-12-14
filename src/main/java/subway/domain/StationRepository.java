@@ -44,18 +44,6 @@ public class StationRepository {
         }
         return true;
     }
-    public boolean containStationName(String tmpSaveName){
-        System.out.println(tmpSaveName);
-        for(int i=0;i<stations.size();i++){
-           if(stations.get(i).getName().equals(tmpSaveName)){
-
-               return true;
-           }
-        }
-        System.out.println();
-        System.out.println("[ERROR] 등록할 역이 존재하지 않습니다.");
-        return false;
-    }
     public static void print(){
         for(int i=0;i<stations.size();i++){
             System.out.println(stations.get(i).getName());
