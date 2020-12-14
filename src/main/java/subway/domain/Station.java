@@ -30,7 +30,7 @@ public class Station {
     public void removeOrderedLine(Line line) {
         for (Station station : StationRepository.fixedStations()) {
             if (station.getName().equals(getName()) && station.getLines().contains(line)) {
-                //삭제할 수 없는 노선입니다
+                ErrorMessage.isNotAbleToDeleteLine();
                 return;
             }
         }

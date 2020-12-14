@@ -19,7 +19,6 @@ public class Program {
     static final String QUIT = "Q. 종료";
     static final String SELECT_FUNCTION = "## 원하는 기능을 선택하세요.";
 
-
     private boolean quit = false;
 
     MainInput input = new MainInput();

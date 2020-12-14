@@ -14,13 +14,11 @@ public class StationManageController {
     public void processEnrollStation(Scanner scanner) {
         Station station = new Station(input.inputEnrollStation(scanner));
         StationRepository.addStation(station);
-
     }
 
     public void processDeleteStation(Scanner scanner) {
         String station = input.inputDeleteStation(scanner);
         StationRepository.deleteStation(station);
-
     }
 
     public void printAllStations() {

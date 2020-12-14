@@ -1,5 +1,6 @@
 package subway.domain.input;
 
+import subway.domain.ErrorMessage;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -29,17 +30,17 @@ public class StationManageInput {
         if (functionList().contains(stationManageChoice)) {
             return stationManageChoice;
         }
-        // 정해진 것만 입력하라는 메시지
+        ErrorMessage.isInvalidFunction();
         throw new IllegalArgumentException();
     }
 
-    public String validateStationName(String stationName) {
+    public String validateStationName(String stationName) throws IllegalArgumentException{
         if (stationName.length() < MIN_STATION_NAME_LENGTH) {
-            //2자 이상 입력하라는 메시지
+            ErrorMessage.isLessThanTwoWordStation();
             throw new IllegalArgumentException();
         }
         if (!stationName.endsWith(STATION_NAME_SUFFIX)) {
-            //마지막 글자는 "역" 으로 입력하라는 메시지
+            ErrorMessage.isNotCorrectStationName();
             throw new IllegalArgumentException();
         }
         return stationName;
@@ -50,7 +51,7 @@ public class StationManageInput {
         Optional<Station> newStation = StationRepository.stations()
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();
         if (newStation.isPresent()) {
-            //해당 역 이름이 존재한다는 메시지
+            ErrorMessage.isAlreadyExistStation();
             throw new IllegalArgumentException();
         }
         validateStationName(stationName);
@@ -69,12 +70,12 @@ public class StationManageInput {
                 .stream().filter(station -> station.getName().equals(stationName)).findAny();
         if (searchedStation.isPresent()) {
             if (isFixedStation(stationName)) {
-                //삭제할 수 없는 역이라는 메시지
+                ErrorMessage.isNotAbleToDeleteStation();
                 throw new IllegalArgumentException();
             }
             return stationName;
         }
-        //해당 역은 존재하지 않는다는 메시지
+        ErrorMessage.isNotExistStation();
         throw new IllegalArgumentException();
     }
 

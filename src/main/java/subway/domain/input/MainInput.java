@@ -1,5 +1,7 @@
 package subway.domain.input;
 
+import subway.domain.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +31,7 @@ public class MainInput {
         if (functionList().contains(mainChoice)) {
             return mainChoice;
         }
-        // 정해진 것만 입력하라는 메시지
+        ErrorMessage.isInvalidFunction();
         throw new IllegalArgumentException();
     }
 

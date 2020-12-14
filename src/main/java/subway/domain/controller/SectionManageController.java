@@ -1,5 +1,6 @@
 package subway.domain.controller;
 
+import subway.domain.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.input.SectionManageInput;
@@ -13,11 +14,11 @@ public class SectionManageController {
 
     public void processEnrollSection(Line line, Station station, int order) throws IllegalArgumentException{
         if (line.getStation().contains(station)) {
-            //해당 역이 노선 안에 존재한다는 메시지
+            ErrorMessage.isAlreadyExistStationInLine();
             throw new IllegalArgumentException();
         }
         if (order - ORDER_SUBTRACT_INDEX > line.getStation().size()) {
-            //해당 번째로 구간 삽입 불가능 메시지
+            ErrorMessage.isNotAbleToInsert();
             throw new IllegalArgumentException();
         }
         line.addOrderedStation(station, order);

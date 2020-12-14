@@ -50,7 +50,7 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         if (fixedLines.removeIf(line -> Objects.equals(line.getName(), name))) {
-            // 삭제할 수 없는 노선입니다. 메시지 출력
+            ErrorMessage.isNotAbleToDeleteLine();
             return false;
         }
         return lines.removeIf(line -> Objects.equals(line.getName(), name));

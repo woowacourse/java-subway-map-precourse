@@ -1,9 +1,6 @@
 package subway.domain.input;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 
 import java.util.*;
 
@@ -31,17 +28,17 @@ public class LineManageInput {
         if (functionList().contains(lineManageChoice)) {
             return lineManageChoice;
         }
-        // 정해진 것만 입력하라는 메시지
+        ErrorMessage.isInvalidFunction();
         throw new IllegalArgumentException();
     }
 
-    public String validateLineName(String lineName) {
+    public String validateLineName(String lineName) throws IllegalArgumentException{
         if (lineName.length() < MIN_LINE_NAME_LENGTH) {
-            //2자 이상 입력하라는 메시지
+            ErrorMessage.isLessThanTwoWordLine();
             throw new IllegalArgumentException();
         }
         if (!lineName.endsWith(LINE_NAME_SUFFIX)) {
-            //마지막 글자는 "선" 으로 입력하라는 메시지
+            ErrorMessage.isNotCorrectLineName();
             throw new IllegalArgumentException();
         }
         return lineName;
@@ -52,7 +49,7 @@ public class LineManageInput {
         Optional<Line> newLine = LineRepository.lines()
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();
         if (newLine.isPresent()) {
-            //해당 노선 이름이 존재한다는 메시지
+            ErrorMessage.isAlreadyExistLine();
             throw new IllegalArgumentException();
         }
         validateLineName(lineName);
@@ -66,7 +63,7 @@ public class LineManageInput {
         if (searchedStation.isPresent()) {
             return searchedStation.get();
         }
-        //해당 역은 없다는 메시지 출력
+        ErrorMessage.isNotExistStation();
         throw new IllegalArgumentException();
     }
 
@@ -82,15 +79,13 @@ public class LineManageInput {
                 .stream().filter(line -> line.getName().equals(lineName)).findAny();
         if (searchedLine.isPresent()) {
             if (isFixedLine(lineName)) {
-                //삭제할 수 없는 노선이라는 메시지
+                ErrorMessage.isNotAbleToDeleteLine();
                 throw new IllegalArgumentException();
             }
             return lineName;
         }
-        //해당 노선은 존재하지 않는다는 메시지
+        ErrorMessage.isNotExistLine();
         throw new IllegalArgumentException();
     }
-
-
 
 }

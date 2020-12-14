@@ -41,7 +41,7 @@ public class Line {
     public void removeOrderedStation(Station station) {
         for (Line line : LineRepository.fixedLines()) {
             if (line.getName().equals(getName()) && line.getStation().contains(station)) {
-                // 삭제할 수 없는 역입니다.
+                ErrorMessage.isNotAbleToDeleteStation();
                 return;
             }
         }

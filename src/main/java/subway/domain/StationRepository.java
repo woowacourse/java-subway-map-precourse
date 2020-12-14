@@ -47,7 +47,7 @@ public class StationRepository {
 
     public static boolean deleteStation(String name) {
         if (fixedStations.removeIf(station -> Objects.equals(station.getName(), name))) {
-            // 삭제할 수 없는 역입니다. 메시지 출력
+            ErrorMessage.isNotAbleToDeleteStation();
             return false;
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
