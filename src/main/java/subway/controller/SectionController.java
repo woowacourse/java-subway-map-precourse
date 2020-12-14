@@ -3,63 +3,54 @@ package subway.controller;
 import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.text.LineText;
+import subway.view.text.Function;
 import subway.view.text.Screen;
-import subway.view.text.SectionText;
-import subway.view.text.StationText;
+
 
 public class SectionController {
-    private static String CONTROLLER_INDEX = "3";
-    private static String RESISTER_INDEX = "1";
-    private static String DELETE_INDEX = "2";
-
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(Screen.SECTION.getTitle());
-        OutputView.printFunctionList(SectionText.functionList());
+        OutputView.printTitle(Screen.SECTION.getTitle());
+        OutputView.printFunctionList(Screen.SECTION.getFunctionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView, inputView.getInputFunctionIndex(SectionText.functionIndexList()));
+        callFunction(inputView, inputView.getInputFunctionIndex(Screen.SECTION.getIndexList()));
     }
 
     private void callFunction(InputView inputView, String functionIndex) {
-        if (functionIndex.equals(RESISTER_INDEX)) {
+        if (functionIndex.equals(Function.REGISTER.getIndex())) {
             registerSection(inputView);
         }
-        if (functionIndex.equals(DELETE_INDEX)) {
+        if (functionIndex.equals(Function.REGISTER.getIndex())) {
             deleteSection(inputView);
         }
-        if (functionIndex.equals(MainController.getControllerIndex())) {
+        if (functionIndex.equals(Function.BACK.getIndex())) {
             goBackToMain(inputView);
         }
     }
 
     private void registerSection(InputView inputView) {
-        OutputView.printInputValue(LineText.screenName());
+        OutputView.printInputValue(Screen.LINE.getName());
         String line = inputView.getInputDeleteLine();
-        OutputView.printInputValue(StationText.screenName());
+        OutputView.printInputValue(Screen.STATION.getName());
         String station = inputView.getInputRegisterStationForSection(line);
         OutputView.printInputIndex();
         int index = inputView.getInputIndex(SectionRepository.getLengthByLineName(line));
         SectionRepository.insertSection(line, station, index);
-        OutputView.printRegisterSuccess(SectionText.screenName());
+        OutputView.printRegisterSuccess(Screen.SECTION.getName());
         goBackToMain(inputView);
     }
 
     private void deleteSection(InputView inputView) {
-        OutputView.printInputValueOfDeleteSection(LineText.screenName());
+        OutputView.printInputValueOfDeleteSection(Screen.LINE.getName());
         String line = inputView.getInputLineOfDeleteSection();
-        OutputView.printInputValueOfDeleteSection(StationText.screenName());
+        OutputView.printInputValueOfDeleteSection(Screen.STATION.getName());
         String station = inputView.getInputStationOfDeleteSection();
         if (SectionRepository.deleteSection(line, station)) {
-            OutputView.printDeleteSuccess(SectionText.screenName());
+            OutputView.printDeleteSuccess(Screen.SECTION.getName());
         }
         goBackToMain(inputView);
     }
 
     private void goBackToMain(InputView inputView) {
         MainController.run(inputView);
-    }
-
-    public static String getControllerIndex() {
-        return CONTROLLER_INDEX;
     }
 }

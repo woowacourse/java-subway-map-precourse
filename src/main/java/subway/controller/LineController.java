@@ -5,56 +5,51 @@ import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.text.LineText;
+import subway.view.text.Function;
 import subway.view.text.Screen;
 
 public class LineController {
-    private static String CONTROLLER_INDEX = "2";
-    private static String RESISTER_INDEX = "1";
-    private static String DELETE_INDEX = "2";
-    private static String LOOK_UP_INDEX = "3";
-
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(Screen.LINE.getTitle());
-        OutputView.printFunctionList(LineText.functionList());
+        OutputView.printTitle(Screen.LINE.getTitle());
+        OutputView.printFunctionList(Screen.LINE.getFunctionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView, inputView.getInputFunctionIndex(LineText.functionIndexList()));
+        callFunction(inputView, inputView.getInputFunctionIndex(Screen.LINE.getIndexList()));
     }
 
     private void callFunction(InputView inputView, String functionIndex) {
-        if (functionIndex.equals(RESISTER_INDEX)) {
+        if (functionIndex.equals(Function.REGISTER.getIndex())) {
             registerLine(inputView);
         }
-        if (functionIndex.equals(DELETE_INDEX)) {
+        if (functionIndex.equals(Function.DELETE.getIndex())) {
             deleteLine(inputView);
         }
-        if (functionIndex.equals(LOOK_UP_INDEX)) {
+        if (functionIndex.equals(Function.LOOKUP.getIndex())) {
             lookUpLine(inputView);
         }
-        if (functionIndex.equals(MainController.getControllerIndex())) {
+        if (functionIndex.equals(Function.BACK.getIndex())) {
             goBackToMain(inputView);
         }
     }
 
     private void registerLine(InputView inputView) {
-        OutputView.printInputRegisterValue(LineText.screenName());
+        OutputView.printInputRegisterValue(Screen.LINE.getName());
         Line line = new Line(inputView.getInputRegisterLine());
         LineRepository.addLine(line);
         registerSection(inputView, line);
-        OutputView.printRegisterSuccess(LineText.screenName());
+        OutputView.printRegisterSuccess(Screen.LINE.getName());
         goBackToMain(inputView);
     }
 
     private void deleteLine(InputView inputView) {
-        OutputView.printInputDeleteValue(LineText.screenName());
+        OutputView.printInputDeleteValue(Screen.LINE.getName());
         if (LineRepository.deleteLineByName(inputView.getInputDeleteLine())) {
-            OutputView.printDeleteSuccess(LineText.screenName());
+            OutputView.printDeleteSuccess(Screen.LINE.getName());
         }
         goBackToMain(inputView);
     }
 
     private void lookUpLine(InputView inputView) {
-        OutputView.printFunctionTitle(LineText.listTitle());
+        OutputView.printListTitle(Screen.LINE.getName());
         for (Line line : LineRepository.lines()) {
             System.out.println(line);
         }
@@ -71,10 +66,6 @@ public class LineController {
         OutputView.printRegisterLastStation();
         String lastStation = inputView.getInputRegisterStationForSection(firstStation, line.getName());
         SectionRepository.addSection(line.getName(), firstStation, lastStation);
-    }
-
-    public String getControllerIndex() {
-        return CONTROLLER_INDEX;
     }
 }
 

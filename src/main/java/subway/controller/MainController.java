@@ -2,12 +2,9 @@ package subway.controller;
 
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.text.MainText;
 import subway.view.text.Screen;
 
 public class MainController {
-    private static String CONTROLLER_INDEX = "B";
-    private static String FINISH_INDEX = "Q";
     private static StationController stationController = new StationController();
     private static LineController lineController = new LineController();
     private static SectionController sectionController = new SectionController();
@@ -17,31 +14,27 @@ public class MainController {
     }
 
     public static void run(InputView inputView) {
-        OutputView.printFunctionTitle(Screen.MAIN.getTitle());
-        OutputView.printFunctionList(MainText.functionList());
+        OutputView.printTitle(Screen.MAIN.getTitle());
+        OutputView.printFunctionList(Screen.MAIN.getFunctionList());
         OutputView.printInputFunctionIndex();
         shiftFunctionScreen(inputView,
-                inputView.getInputFunctionIndex(MainText.functionIndexList()));
+                inputView.getInputFunctionIndex(Screen.MAIN.getIndexList()));
     }
 
     private static void shiftFunctionScreen(InputView inputView, String functionIndex) {
-        if (functionIndex.equals(stationController.getControllerIndex())) {
+        if (functionIndex.equals(Screen.STATION.getIndex())){
             stationController.run(inputView);
         }
-        if (functionIndex.equals(lineController.getControllerIndex())) {
+        if (functionIndex.equals(Screen.LINE.getIndex())) {
             lineController.run(inputView);
         }
-        if (functionIndex.equals(sectionController.getControllerIndex())) {
+        if (functionIndex.equals(Screen.SECTION.getIndex())) {
             sectionController.run(inputView);
         }
-        if (functionIndex.equals(mapController.getControllerIndex())) {
+        if (functionIndex.equals(Screen.MAP.getIndex())) {
             mapController.run(inputView);
         }
-        if (functionIndex.equals(FINISH_INDEX)) {
+        if (functionIndex.equals(Screen.QUIT.getIndex())) {
         }
-    }
-
-    public static String getControllerIndex() {
-        return CONTROLLER_INDEX;
     }
 }

@@ -3,8 +3,7 @@ package subway.view;
 import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
-import subway.view.text.LineText;
-import subway.view.text.StationText;
+import subway.view.text.Screen;
 
 import java.util.List;
 import java.util.Scanner;
@@ -88,7 +87,7 @@ public class InputView {
 
     public String validateInputRegisterStation(String station) {
         validateInputStationLine(station);
-        if (isInvalidLastChar(StationText.screenName(), station)) {
+        if (isInvalidLastChar(Screen.STATION.getName(), station)) {
             throw new IllegalArgumentException(ERROR_HEADER +
                     String.format(INVALID_STATION_LAST_CHAR, STATION_LAST_CHAR));
         }
@@ -133,7 +132,7 @@ public class InputView {
 
     public String validateInputRegisterLine(String line) {
         validateInputStationLine(line);
-        if (isInvalidLastChar(LineText.screenName(), line)) {
+        if (isInvalidLastChar(Screen.LINE.getName(), line)) {
             throw new IllegalArgumentException(ERROR_HEADER +
                     String.format(INVALID_STATION_LAST_CHAR, LINE_LAST_CHAR));
         }

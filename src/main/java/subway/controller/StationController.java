@@ -4,55 +4,50 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.text.Function;
 import subway.view.text.Screen;
-import subway.view.text.StationText;
 
 public class StationController {
-    private static String CONTROLLER_INDEX = "1";
-    private static String RESISTER_INDEX = "1";
-    private static String DELETE_INDEX = "2";
-    private static String LOOK_UP_INDEX = "3";
-
     public void run(InputView inputView) {
-        OutputView.printFunctionTitle(StationText.functionTitle());
-        OutputView.printFunctionList(StationText.functionList());
+        OutputView.printTitle(Screen.STATION.getTitle());
+        OutputView.printFunctionList(Screen.STATION.getFunctionList());
         OutputView.printInputFunctionIndex();
-        callFunction(inputView, inputView.getInputFunctionIndex(StationText.functionIndexList()));
+        callFunction(inputView, inputView.getInputFunctionIndex(Screen.STATION.getIndexList()));
     }
 
     private void callFunction(InputView inputView, String functionIndex) {
-        if (functionIndex.equals(RESISTER_INDEX)) {
+        if (functionIndex.equals(Function.REGISTER.getIndex())) {
             registerStation(inputView);
         }
-        if (functionIndex.equals(DELETE_INDEX)) {
+        if (functionIndex.equals(Function.DELETE.getIndex())) {
             deleteStation(inputView);
         }
-        if (functionIndex.equals(LOOK_UP_INDEX)) {
+        if (functionIndex.equals(Function.LOOKUP.getIndex())) {
             lookUpStation(inputView);
         }
-        if (functionIndex.equals(MainController.getControllerIndex())) {
+        if (functionIndex.equals(Function.BACK.getIndex())) {
             goBackToMain(inputView);
         }
     }
 
     private void registerStation(InputView inputView) {
-        OutputView.printInputRegisterValue(StationText.screenName());
+        OutputView.printInputRegisterValue(Screen.STATION.getName());
         Station station = new Station(inputView.getInputRegisterStation());
         StationRepository.addStation(station);
-        OutputView.printRegisterSuccess(StationText.screenName());
+        OutputView.printRegisterSuccess(Screen.STATION.getName());
         goBackToMain(inputView);
     }
 
     private void deleteStation(InputView inputView) {
-        OutputView.printInputDeleteValue(Screen.STATION.getTitle());
+        OutputView.printInputDeleteValue(Screen.STATION.getName());
         if (StationRepository.deleteStation(inputView.getInputDeleteStation())) {
-            OutputView.printDeleteSuccess(StationText.screenName());
+            OutputView.printDeleteSuccess(Screen.STATION.getName());
         }
         goBackToMain(inputView);
     }
 
     private void lookUpStation(InputView inputView) {
-        OutputView.printFunctionTitle(StationText.listTitle());
+        OutputView.printListTitle(Screen.STATION.getName());
         for (Station station : StationRepository.stations()) {
             System.out.println(station);
         }
@@ -61,9 +56,5 @@ public class StationController {
 
     private void goBackToMain(InputView inputView) {
         MainController.run(inputView);
-    }
-
-    public String getControllerIndex() {
-        return CONTROLLER_INDEX;
     }
 }
