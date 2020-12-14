@@ -2,7 +2,6 @@ package subway.domain.menu;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
@@ -27,12 +26,12 @@ public class MainMenu {
     private List<Character> selMenu;
     private List<SubMenu> subMenuList;
 
-    public MainMenu(Scanner scanner, InputView inputView) {
+    public MainMenu(InputView inputView) {
         selMenu = Arrays.asList(STATION_SEL, LINE_SEL, SECTION_SEL, PRINT_STATION_LINE_SEL, QUIT_SEL);
-        subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION, scanner),
-                new LineMenu(LINE_SEL, CategoryType.LINE, scanner),
-                new SectionMenu(SECTION_SEL, CategoryType.SECTION, scanner),
-                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE, scanner));
+        subMenuList = Arrays.asList(new StationMenu(STATION_SEL, CategoryType.STATION, inputView),
+                new LineMenu(LINE_SEL, CategoryType.LINE, inputView),
+                new SectionMenu(SECTION_SEL, CategoryType.SECTION, inputView),
+                new StationLineMenu(PRINT_STATION_LINE_SEL, CategoryType.STATION_LINE, inputView));
         this.inputView = inputView;
     }
 
@@ -56,6 +55,6 @@ public class MainMenu {
     }
 
     private char requestInputMainMenu() {
-        return inputView.inputMainMenu(selMenu);
+        return inputView.inputMenu(selMenu);
     }
 }

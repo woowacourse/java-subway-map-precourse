@@ -1,9 +1,9 @@
 package subway.domain.menu.submenu;
 
-import java.util.Scanner;
+import subway.view.InputView;
 
 public class StationMenu extends SubMenu {
-    public StationMenu(char order, String category, Scanner scanner) {
-        super(order, category, scanner);
+    public StationMenu(char order, String category, InputView inputView) {
+        super(order, category, inputView);
     }
 }

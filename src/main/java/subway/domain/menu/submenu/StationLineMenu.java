@@ -1,16 +1,15 @@
 package subway.domain.menu.submenu;
 
-import java.util.Scanner;
-
 import subway.domain.LineRepository;
 import subway.domain.menu.constant.ActionType;
 import subway.domain.menu.constant.CommonMessage;
+import subway.view.InputView;
 
 public class StationLineMenu extends SubMenu {
     private static final String SEPARATOR = "---";
 
-    public StationLineMenu(char order, String category, Scanner scanner) {
-        super(order, category, scanner);
+    public StationLineMenu(char order, String category, InputView inputView) {
+        super(order, category, inputView);
     }
 
     @Override

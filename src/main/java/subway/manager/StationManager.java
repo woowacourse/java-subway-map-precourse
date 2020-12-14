@@ -13,7 +13,7 @@ public class StationManager {
     MainMenu mainMenu;
 
     public StationManager(Scanner scanner) {
-        mainMenu = new MainMenu(scanner, new InputView(scanner));
+        mainMenu = new MainMenu(new InputView(scanner));
     }
 
     private void init() {

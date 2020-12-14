@@ -1,7 +1,5 @@
 package subway.domain.menu.submenu.action;
 
-import java.util.Scanner;
-
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -9,10 +7,11 @@ import subway.domain.StationRepository;
 import subway.domain.menu.constant.CategoryType;
 import subway.domain.menu.constant.CommonMessage;
 import subway.domain.menu.submenu.action.constant.ActionMessage;
+import subway.view.InputView;
 
 public class RegisterAction extends Action {
-    public RegisterAction(char order, String category, String actionType, Scanner scanner) {
-        super(order, category, actionType, scanner);
+    public RegisterAction(char order, String category, String actionType, InputView inputView) {
+        super(order, category, actionType, inputView);
     }
 
     @Override
@@ -70,7 +69,7 @@ public class RegisterAction extends Action {
     }
 
     private String inputRegister() {
-        String name = scanner.nextLine();
+        String name = inputView.getScanner().nextLine();
         System.out.println();
         return name;
     }

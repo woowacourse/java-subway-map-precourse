@@ -1,20 +1,19 @@
 package subway.domain.menu.submenu.action;
 
-import java.util.Scanner;
-
 import subway.domain.menu.constant.CommonMessage;
+import subway.view.InputView;
 
 public class Action {
     protected char order;
     protected String category;
     protected String actionType;
-    protected Scanner scanner;
+    protected InputView inputView;
 
-    public Action(char order, String category, String actionType, Scanner scanner) {
+    public Action(char order, String category, String actionType, InputView inputView) {
         this.order = order;
         this.category = category;
         this.actionType = actionType;
-        this.scanner = scanner;
+        this.inputView = inputView;
     }
 
     public char getOrder() {

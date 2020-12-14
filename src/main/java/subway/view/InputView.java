@@ -15,7 +15,7 @@ public class InputView {
         validate = new Validate();
     }
 
-    public char inputMainMenu(List<Character> selMenu) {
+    public char inputMenu(List<Character> selMenu) {
         char sel;
         while (true) {
             try {
@@ -28,5 +28,10 @@ public class InputView {
             }
         }
         return sel;
+    }
+
+    // 임시 - 잠시 컴파일 에러 방지하기 위함.
+    public Scanner getScanner() {
+        return scanner;
     }
 }
