@@ -11,10 +11,7 @@ public class SectionAddingValidation {
         if (!checkNamesValidation(section.getLineName(), section.getStationName())) {
             return false;
         }
-        if (!checkOrderValidation(section.getLineName(), section.getOrder())) {
-            return false;
-        }
-        return true;
+        return checkOrderValidation(section.getLineName(), section.getOrder());
     }
 
     public boolean checkNamesValidation(String lineName, String stationName) {

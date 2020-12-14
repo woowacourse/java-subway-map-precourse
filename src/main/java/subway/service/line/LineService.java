@@ -3,8 +3,9 @@ package subway.service.line;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
-import subway.service.InputService;
-import subway.service.abstraction.feature.FeatureInterface;
+import subway.service.SubwayService;
+import subway.service.abstraction.FeatureInterface;
+import subway.service.station.StationService;
 import subway.type.InputType;
 import subway.view.input.line.LineInputView;
 import subway.view.output.ScreenView;
@@ -14,24 +15,26 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class LineService implements FeatureInterface {
-    public static void manageLine(Scanner scanner){
-        InputService inputService = new InputService();
+public class LineService extends SubwayService implements FeatureInterface {
+    @Override
+    public void manage(Scanner scanner){
+        StationService stationService = new StationService();
         LineService lineService = new LineService();
 
         System.out.println();
         while (true) {
             ScreenView.printLineManagementScreen();
             String lineInput = scanner.nextLine();
-            if (inputService.isInput(lineInput)
-                    && lineService.chooseFeature(lineInput, scanner)) {
+
+            if ((stationService.check(lineInput))
+                    && (lineService.choose(lineInput, scanner))) {
                 break;
             }
         }
     }
 
     @Override
-    public boolean chooseFeature(String input, Scanner scanner) {
+    public boolean choose(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             return add(scanner);
         }
@@ -70,7 +73,6 @@ public class LineService implements FeatureInterface {
     @Override
     public boolean delete(Scanner scanner) {
         LineDeletionValidation lineNameDeletionValidation = new LineDeletionValidation();
-        List<Line> lines = LineRepository.lines();
 
         LineTextView.printLineDeletionText();
         String lineName = scanner.nextLine();

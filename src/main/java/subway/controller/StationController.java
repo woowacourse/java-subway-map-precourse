@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class StationController {
     public static void startStation(Scanner scanner) {
-        StationService.manageStation(scanner);
+        StationService stationService = new StationService();
+        stationService.manage(scanner);
     }
 }

@@ -31,7 +31,7 @@ public class TransitMapService {
             appendHorizontalLines(stringBuilder);
             appendValues(stringBuilder, values);
 
-            if (!isLastKey(key)) {
+            if (!checkLastKey(key)) {
                 stringBuilder.append(TextType.NEW_LINE.getText());
             }
         }
@@ -63,7 +63,7 @@ public class TransitMapService {
         }
     }
 
-    public static boolean isLastKey(Line key) {
+    public static boolean checkLastKey(Line key) {
         Map<Line, LinkedList<Station>> transitMaps = TransitMapRepository.transitMaps();
         Line lastKey = getLastKey(transitMaps);
         return lastKey.equals(key);

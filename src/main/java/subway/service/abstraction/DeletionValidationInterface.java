@@ -1,6 +1,6 @@
-package subway.service.abstraction.validation;
+package subway.service.abstraction;
 
-public interface NameDeletionValidationInterface {
+public interface DeletionValidationInterface {
     boolean checkNameInTransitMap(String name);
     boolean checkDeletionValidation(String name);
 }

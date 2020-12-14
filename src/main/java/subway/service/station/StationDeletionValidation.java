@@ -2,13 +2,13 @@ package subway.service.station;
 
 import subway.repository.StationRepository;
 import subway.repository.TransitMapRepository;
-import subway.service.abstraction.validation.NameDeletionValidationInterface;
+import subway.service.abstraction.DeletionValidationInterface;
 import subway.view.output.station.StationExceptionView;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class StationDeletionValidation implements NameDeletionValidationInterface {
+public class StationDeletionValidation implements DeletionValidationInterface {
     @Override
     public boolean checkNameInTransitMap(String stationName) {
         List<LinkedList<String>> transitMapsStationsNames

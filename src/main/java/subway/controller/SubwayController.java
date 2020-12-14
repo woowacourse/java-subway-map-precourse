@@ -20,6 +20,7 @@ public class SubwayController {
     }
 
     public static void startSubway(Scanner scanner) {
-        SubwayService.manageSubway(scanner);
+        SubwayService subwayService = new SubwayService();
+        subwayService.manage(scanner);
     }
 }

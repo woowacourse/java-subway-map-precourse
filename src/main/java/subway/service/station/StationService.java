@@ -2,9 +2,10 @@ package subway.service.station;
 
 import subway.domain.Station;
 import subway.repository.StationRepository;
-import subway.service.InputService;
-import subway.service.abstraction.feature.FeatureInterface;
+import subway.service.SubwayService;
+import subway.service.abstraction.FeatureInterface;
 import subway.type.InputType;
+import subway.view.output.ExceptionView;
 import subway.view.output.station.StationInformationView;
 import subway.view.output.ScreenView;
 import subway.view.output.station.StationTextView;
@@ -12,24 +13,43 @@ import subway.view.output.station.StationTextView;
 import java.util.List;
 import java.util.Scanner;
 
-public class StationService implements FeatureInterface {
-    public static void manageStation(Scanner scanner) {
-        InputService inputService = new InputService();
+public class StationService extends SubwayService implements FeatureInterface {
+    @Override
+    public void manage(Scanner scanner) {
         StationService stationService = new StationService();
 
         System.out.println();
         while (true) {
             ScreenView.printStationManagementScreen();
             String stationInput = scanner.nextLine();
-            if ((inputService.isInput(stationInput))
-                    && (stationService.chooseFeature(stationInput, scanner))) {
+
+            if ((stationService.check(stationInput))
+                    && (stationService.choose(stationInput, scanner))) {
                 break;
             }
         }
     }
 
     @Override
-    public boolean chooseFeature(String input, Scanner scanner) {
+    public boolean check(String input) {
+        if (input.equals(InputType.INPUT_ONE.getInput())) {
+            return true;
+        }
+        if (input.equals(InputType.INPUT_TWO.getInput())) {
+            return true;
+        }
+        if (input.equals(InputType.INPUT_THREE.getInput())) {
+            return true;
+        }
+        if (input.equals(InputType.INPUT_BACK.getInput())) {
+            return true;
+        }
+        ExceptionView.printInvalidFeatureChoiceException();
+        return false;
+    }
+
+    @Override
+    public boolean choose(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             return add(scanner);
         }

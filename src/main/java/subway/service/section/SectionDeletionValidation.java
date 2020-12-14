@@ -16,10 +16,7 @@ public class SectionDeletionValidation {
         if (!checkStationNameValidation(lineName, stationName)) {
             return false;
         }
-        if (!checkStationsInLineValidation(lineName)) {
-            return false;
-        }
-        return true;
+        return checkStationsInLineValidation(lineName);
     }
 
     public boolean checkLineNameValidation(String lineName) {
@@ -30,12 +27,22 @@ public class SectionDeletionValidation {
         return true;
     }
 
+    public static boolean checkExistingLineNameInTransitMap(String lineName) {
+        List<String> transitMapsLineNames = TransitMapRepository.transitMapsLineNames();
+        return transitMapsLineNames.contains(lineName);
+    }
+
     public boolean checkStationNameValidation(String lineName, String stationName) {
         if (!checkExistingStationNameInTransitMap(lineName, stationName)) {
             StationExceptionView.printInvalidStationNameExistenceException();
             return false;
         }
         return true;
+    }
+
+    public static boolean checkExistingStationNameInTransitMap(String lienName, String stationName) {
+        List<String> transitMapStations = TransitMapRepository.transitMapStations(lienName);
+        return transitMapStations.contains(stationName);
     }
 
     private boolean checkStationsInLineValidation(String lineName) {
@@ -46,18 +53,8 @@ public class SectionDeletionValidation {
         return true;
     }
 
-    public static boolean checkExistingLineNameInTransitMap(String lineName) {
-        List<String> transitMapsLineNames = TransitMapRepository.transitMapsLineNames();
-        return transitMapsLineNames.contains(lineName);
-    }
-
-    public static boolean checkExistingStationNameInTransitMap(String lienName, String stationName) {
-        List<String> transitMapStations = TransitMapRepository.transitMapStationsByLine(lienName);
-        return transitMapStations.contains(stationName);
-    }
-
     public static boolean checkExistingStationsInLine(String lineName) {
-        List<String> transitMapStations = TransitMapRepository.transitMapStationsByLine(lineName);
+        List<String> transitMapStations = TransitMapRepository.transitMapStations(lineName);
         return transitMapStations.size() <= BoundaryType.STATIONS_IN_LINE_BOUNDARY.getBoundary();
     }
 }

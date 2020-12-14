@@ -4,37 +4,39 @@ import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
 import subway.controller.TransitMapController;
-import subway.service.abstraction.input.InputInterface;
+import subway.service.abstraction.SubwayInterface;
 import subway.type.InputType;
 import subway.view.output.ExceptionView;
 import subway.view.output.ScreenView;
 
 import java.util.Scanner;
 
-public class SubwayService implements InputInterface {
-    public static void manageSubway(Scanner scanner) {
+public class SubwayService implements SubwayInterface {
+    @Override
+    public void manage(Scanner scanner) {
         SubwayService subwayService = new SubwayService();
 
         while (true) {
             ScreenView.printMainScreen();
             String mainInput = scanner.nextLine();
-            if (quitSubway(mainInput)) {
+
+            if (quit(mainInput)) {
                 break;
             }
-            if (subwayService.isInput(mainInput)) {
-                chooseSubwayFeature(mainInput, scanner);
+            if (subwayService.check(mainInput)) {
+                subwayService.choose(mainInput, scanner);
                 continue;
             }
             ExceptionView.printInvalidFeatureChoiceException();
         }
     }
 
-    public static boolean quitSubway(String mainInput) {
+    public static boolean quit(String mainInput) {
         return mainInput.equals(InputType.INPUT_QUITTING.getInput());
     }
 
     @Override
-    public boolean isInput(String input) {
+    public boolean check(String input) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             return true;
         }
@@ -47,7 +49,8 @@ public class SubwayService implements InputInterface {
         return input.equals(InputType.INPUT_FOUR.getInput());
     }
 
-    public static void chooseSubwayFeature(String input, Scanner scanner) {
+    @Override
+    public boolean choose(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             StationController.startStation(scanner);
         }
@@ -60,5 +63,6 @@ public class SubwayService implements InputInterface {
         if (input.equals(InputType.INPUT_FOUR.getInput())) {
             TransitMapController.startTransitMap();
         }
+        return true;
     }
 }

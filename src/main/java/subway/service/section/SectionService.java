@@ -12,17 +12,17 @@ import subway.view.output.section.SectionTextView;
 import java.util.Scanner;
 
 public class SectionService extends StationService {
-    public static void manageSection(Scanner scanner) {
+    @Override
+    public void manage(Scanner scanner) {
         SectionService sectionService = new SectionService();
-        SectionInputService sectionInputService = new SectionInputService();
 
         System.out.println();
         while (true) {
             ScreenView.printSectionManagementScreen();
             String sectionInput = scanner.nextLine();
 
-            if (sectionInputService.isInput(sectionInput)) {
-                sectionService.chooseFeature(sectionInput, scanner);
+            if (sectionService.check(sectionInput)) {
+                sectionService.choose(sectionInput, scanner);
                 break;
             }
             ExceptionView.printInvalidFeatureChoiceException();
@@ -30,7 +30,18 @@ public class SectionService extends StationService {
     }
 
     @Override
-    public boolean chooseFeature(String input, Scanner scanner) {
+    public boolean check(String input) {
+        if (input.equals(InputType.INPUT_ONE.getInput())) {
+            return true;
+        }
+        if (input.equals(InputType.INPUT_TWO.getInput())) {
+            return true;
+        }
+        return input.equals(InputType.INPUT_BACK.getInput());
+    }
+
+    @Override
+    public boolean choose(String input, Scanner scanner) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             return add(scanner);
         }

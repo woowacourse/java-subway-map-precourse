@@ -46,7 +46,7 @@ public class TransitMapRepository {
         return transitMapsStationNames;
     }
 
-    public static List<String> transitMapStationsByLine(String lineName) {
+    public static List<String> transitMapStations(String lineName) {
         List<String> transitMapStations = new ArrayList<>();
 
         for (Map.Entry<Line, LinkedList<Station>> entry : transitMaps.entrySet()) {
@@ -55,13 +55,13 @@ public class TransitMapRepository {
             LinkedList<Station> values = entry.getValue();
 
             if (keyName.equals(lineName)) {
-                transitMapStations = transitMapStations(values);
+                transitMapStations = getTransitMapStations(values);
             }
         }
         return transitMapStations;
     }
 
-    public static List<String> transitMapStations(LinkedList<Station> values) {
+    public static List<String> getTransitMapStations(LinkedList<Station> values) {
         List<String> transitMapStations = new ArrayList<>();
 
         for (Station value : values) {
