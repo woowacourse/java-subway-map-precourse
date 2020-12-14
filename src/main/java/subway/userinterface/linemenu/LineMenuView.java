@@ -1,9 +1,6 @@
 package subway.userinterface.linemenu;
 
-import subway.userinterface.Menu;
-import subway.userinterface.MenuView;
-import subway.userinterface.OutputController;
-import subway.userinterface.ReturnController;
+import subway.userinterface.*;
 import subway.userinterface.stationmenu.StationDeleteController;
 import subway.userinterface.stationmenu.StationLookupController;
 import subway.userinterface.stationmenu.StationMenuView;
@@ -17,6 +14,8 @@ public class LineMenuView implements MenuView {
     private final static String MENU_INTRO = "\n## 노선 관리 화면";
 
     private static LineMenuView lineMenuView;
+    private static ViewInputController viewInputController = new ViewInputController();
+
 
     public static LinkedHashMap<String, Menu> lineMenu = new LinkedHashMap<>();
 
@@ -50,6 +49,6 @@ public class LineMenuView implements MenuView {
 
     @Override
     public String getUserInput(Scanner scanner) {
-        return null;
+        return viewInputController.getUserInput(scanner);
     }
 }
