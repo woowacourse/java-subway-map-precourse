@@ -110,4 +110,15 @@ public class OutputView {
     public static void twoNameSameErrorPrint() {
         System.out.println(LineMessage.LINE_TWO_NAME_SAME_ERROR.getLineMessage());
     }
+
+    public static void zeroLineListErrorPrint() {
+        System.out.println(LineMessage.LINE_LIST_FIND_FAIL.getLineMessage());
+    }
+
+    public static void LineListPrint(String[] lineList) {
+        System.out.println(LineMessage.LINE_LIST.getLineMessage());
+        for (String line : lineList) {
+            System.out.println(CommonMessage.INFO.getCommonMessage() + line);
+        }
+    }
 }

@@ -3,6 +3,7 @@ package subway;
 import java.util.Scanner;
 import subway.constant.BoundaryCheckDigit;
 import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -66,7 +67,6 @@ public class LineController {
             return false;
         }
 
-
         newLine = new Line(lineName);
         newLine.addStation(StationRepository.getStationFromName(upTerminus));
         newLine.addStation(StationRepository.getStationFromName(downTerminus));
@@ -84,6 +84,15 @@ public class LineController {
     }
 
     private static boolean lineCheck() {
+        String[] lineList;
+        lineList = (String[]) LineRepository.getAllLineNames().toArray();
+
+        if (lineList.length < BoundaryCheckDigit.LINE_LIST_LIMIT_MINIMUM
+            .getBoundaryCheckDigit()) {
+            OutputView.zeroLineListErrorPrint();
+            return false;
+        }
+        OutputView.LineListPrint(lineList);
         return true;
     }
 
