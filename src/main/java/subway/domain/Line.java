@@ -15,9 +15,10 @@ import java.util.HashSet;
 import subway.view.OutputView;
 
 public class Line {
-    private String name;
     private static final int MINIMUM_LENGTH = 2;
-    private static final List<Station> stations = new ArrayList<>();
+
+    private String name;
+    private List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -126,16 +127,16 @@ public class Line {
         return true;
     }
 
-    public static boolean validateRange(int order) {
-        if (order > stations.size()) {
+    public boolean validateRange(int order) {
+        if (order > this.stations.size()) {
             return false;
         }
         return true;
     }
 
-    public static void runLineMap() {
-        for (int i = 0; i < stations.size(); i++) {
-            Station station = stations.get(i);
+    public void runLineMap() {
+        for (int i = 0; i < this.stations.size(); i++) {
+            Station station = this.stations.get(i);
             OutputView.printLineMapElement(station.getName());
         }
     }
