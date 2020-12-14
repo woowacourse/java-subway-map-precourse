@@ -5,14 +5,16 @@ import subway.domain.station.StationRepository;
 import subway.common.ErrorMessageException;
 
 public class LineInputManager {
-    private static final String LINE = "호선";
-    private static final int MIN_TWO_LETTERS = 2;
-    private static final String LAST_LETTER_LINE = "노선이름 끝에는 호선이라고 붙여주세요.";
+    private static final char LINE = '선';
+    private static final int MIN_TWO_LETTERS_EXCEPT_LAST_WORD = 3;
+    private static final String LAST_LETTER_LINE = "노선이름 끝에는 선이라고 붙여주세요.";
     private static final String ALREADY_ENROLLED_NAME = "이미 존재하는 이름입니다.";
     private static final String SAME_UP_DOWN_STATION = "상행과 하행은 같은 역을 등록할 수 없습니다.";
     private static final String NOT_EXIST_LINE = "등록되어 있지 않은 노선입니다.";
     private static final String NOT_EXIST_STATION = "등록되어 있지 않은 역입니다.";
-    private static final String OVER_TWO = "노선이름은 2글자 이상이어야 한다.";
+    private static final String NAME_OVER_TWO = "마지막 글자 선을 제외한 노선이름은 2글자 이상이어야 합니다.";
+    private static final String EMPTY = " ";
+    private static final String EMPTY_SPACE_UNACCEPTABLE = "이름에 공백은 허용하지 않습니다.";
 
     private final Scanner scanner;
 
@@ -46,16 +48,17 @@ public class LineInputManager {
         checkLength(name);
         checkLastLetter(name);
         checkEnrolledLine(name);
+        checkEmptyIncluded(name);
     }
     // 이름 2이상
     private void checkLength(String name) {
-        if (name.length() < MIN_TWO_LETTERS) {
-            throw new ErrorMessageException(OVER_TWO);
+        if (name.length() < MIN_TWO_LETTERS_EXCEPT_LAST_WORD) {
+            throw new ErrorMessageException(NAME_OVER_TWO);
         }
     }
-    // 끝에은 노선이라고 붙여줘야 함
+    // 끝에은 선이라고 붙여줘야 함
     private void checkLastLetter(String name) {
-        if (name.substring(name.length() - 3).equals(LINE)) {
+        if (name.charAt(name.length() - 1) != LINE) {
             throw new ErrorMessageException(LAST_LETTER_LINE);
         }
     }
@@ -63,6 +66,12 @@ public class LineInputManager {
     private void checkEnrolledLine(String name) {
         if (LineRepository.containsName(name)) {
             throw new ErrorMessageException(ALREADY_ENROLLED_NAME);
+        }
+    }
+
+    private void checkEmptyIncluded(String stationName) {
+        if(stationName.contains(EMPTY)){
+            throw new ErrorMessageException(EMPTY_SPACE_UNACCEPTABLE);
         }
     }
 

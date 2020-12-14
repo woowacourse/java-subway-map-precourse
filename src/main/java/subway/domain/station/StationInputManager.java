@@ -5,9 +5,11 @@ import subway.common.ErrorMessageException;
 import subway.domain.SubwayRepository;
 
 public class StationInputManager {
-    private static final int MIN_TWO_LETTERS = 2;
-    private static final String OVER_TWO = "2글자 이상이어야 한다.";
+    private static final int MIN_TWO_LETTERS_EXCEPT_LAST_WORD = 3;
+    private static final String NAME_OVER_TWO = "마지막 글자 역을 제외한 역이름은 2글자 이상이어야 합니다.";
     private static final char STATION = '역';
+    private static final String EMPTY = " ";
+    private static final String EMPTY_SPACE_UNACCEPTABLE = "이름에 공백은 허용하지 않습니다.";
     private static final String LAST_LETTER_STATION = "역이름 끝에는 역이라고 붙여주세요.";
     private static final String VALUE_EXIST = "이미 존재하는 이름입니다.";
     private static final String NOT_EXIST_STATION = "등록되어 있지 않은 역입니다.";
@@ -37,11 +39,18 @@ public class StationInputManager {
         checkLength(stationName);
         checkLastLetter(stationName);
         checkEnrolledStation(stationName);
+        checkEmptyIncluded(stationName);
+    }
+
+    private void checkEmptyIncluded(String stationName) {
+        if(stationName.contains(EMPTY)){
+            throw new ErrorMessageException(EMPTY_SPACE_UNACCEPTABLE);
+        }
     }
 
     private void checkLength(String stationName) {
-        if (stationName.length() < MIN_TWO_LETTERS) {
-            throw new ErrorMessageException(OVER_TWO);
+        if (stationName.length() < MIN_TWO_LETTERS_EXCEPT_LAST_WORD) {
+            throw new ErrorMessageException(NAME_OVER_TWO);
 
         }
     }
