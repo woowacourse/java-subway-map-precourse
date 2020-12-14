@@ -1,5 +1,7 @@
 package subway.utils;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -14,13 +16,26 @@ public class Validator {
         return name.length() >= NAME_MINIMUM_LENGTH;
     }
 
-    public static boolean isNonDuplicateStationName(String name) {
+    public static boolean isExistStationName(String name) {
         List<Station> stationList = StationRepository.stations();
         for (Station station : stationList) {
             String stationName = station.getName();
-            if (stationName.equals(name)) return false;
+            if (stationName.equals(name)) {
+                return true;
+            }
         }
-        return true;
+        return false;
+    }
+
+    public static boolean isExistLineName(String name) {
+        List<Line> lineList = LineRepository.lines();
+        for(Line line : lineList){
+            String lineName = line.getName();
+            if(lineName.equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isValidMainMenuInput(String inputMsg) {
