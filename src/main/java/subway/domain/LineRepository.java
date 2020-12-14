@@ -23,4 +23,9 @@ public class LineRepository {
     public static boolean findByName(String name) {
         return lines().stream().anyMatch(line -> line.getName().equals(name));
     }
+
+    public static Line findLineByName(String name) {
+        return lines.stream().filter(line ->
+                line.getName().equals(name)).findAny().orElse(null);
+    }
 }

@@ -8,8 +8,8 @@ public class LineService {
 
     public void registerLine(String lineName, Station topStation, Station bottomStation) {
         Line newLine = new Line(lineName);
-        newLine.addIntervals(topStation);
-        newLine.addIntervals(bottomStation);
+        newLine.addIntervals(topStation, 1);
+        newLine.addIntervals(bottomStation, 2);
         topStation.addRegisteredLine(newLine);
         bottomStation.addRegisteredLine(newLine);
         LineRepository.addLine(newLine);
