@@ -8,9 +8,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class LineManager implements Manager {
-    private static final String NOT_VALID_INPUT_VALUE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
-    private static final String SUCCESS_LINE_REGISTRATION_MESSAGE = "[INFO] 지하철 노선이 등록되었습니다.";
-    private static final String SUCCESS_LINE_DELETION_MESSAGE = "[INFO] 지하철 노선이 삭제되었습니다.";
+    private static final String NOT_VALID_INPUT_VALUE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.\n";
+    private static final String SUCCESS_LINE_REGISTRATION_MESSAGE = "[INFO] 지하철 노선이 등록되었습니다.\n";
+    private static final String SUCCESS_LINE_DELETION_MESSAGE = "[INFO] 지하철 노선이 삭제되었습니다.\n";
 
     @Override
     public void execute(Scanner scanner) {

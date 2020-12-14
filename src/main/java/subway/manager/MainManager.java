@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainManager implements Manager {
-    private static final String NOT_VALID_INPUT_VALUE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
+    private static final String NOT_VALID_INPUT_VALUE_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.\n";
 
     @Override
     public void execute(Scanner scanner) {
