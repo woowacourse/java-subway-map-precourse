@@ -40,4 +40,8 @@ public class Line {
         }
         return false;
     }
+    
+    public void addStation(Station station, int order) {
+        stations.add(order, station);
+    }
 }

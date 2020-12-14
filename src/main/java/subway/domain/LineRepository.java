@@ -24,6 +24,10 @@ public class LineRepository {
         }
         lines.add(line);
     }
+    
+    public static void addSection(Line line, Station station, int order) {
+        line.addStation(station, order);
+    }
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
