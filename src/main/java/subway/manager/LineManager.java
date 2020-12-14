@@ -18,22 +18,25 @@ public class LineManager {
 
     public static void initializeLineManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_LINE, DELETE_LINE, VIEW_LINES, BACK));
-        startLineManager(authorizedCommands);
+        while (true) {
+            String result = startLineManager(authorizedCommands);
+            if (!result.equals(LINE_MANAGER)) {
+                break;
+            }
+        }
     }
 
-    private static void startLineManager(List<String> authorizedCommands) {
-        while (true) {
-            try {
-                String command = UserConsole.getCommand(LINE_MANAGER, authorizedCommands);
-                if (command.equals(BACK)) {
-                    break;
-                }
-                execute(command);
-            } catch (Exception exception) {
-                continue;
-            }
-            break;
+    private static String startLineManager(List<String> authorizedCommands) {
+        String command = UserConsole.getCommand(LINE_MANAGER, authorizedCommands);
+        if (command.equals(BACK)) {
+            return command;
         }
+        try {
+            execute(command);
+        } catch (Exception exception) {
+            command = LINE_MANAGER;
+        }
+        return command;
     }
 
     private static void execute(String command) throws IllegalArgumentException {

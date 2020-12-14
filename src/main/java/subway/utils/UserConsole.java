@@ -10,9 +10,9 @@ public class UserConsole {
     private static final String LINE_MANAGER = "LINE MANAGER";
     private static final String INTERVAL_MANAGER = "INTERVAL MANAGER";
 
-    public static String getCommand(String placeOfCommand, List<String> authorizedCommands) throws IllegalArgumentException {
+    public static String getCommand(String placeOfCommand, List<String> authorizedCommands) {
         showOptions(placeOfCommand);
-        String userInput;
+        String userInput = null;
         while (true) {
             System.out.println("## 원하는 기능을 선택하세요.");
             userInput = scanner.nextLine();

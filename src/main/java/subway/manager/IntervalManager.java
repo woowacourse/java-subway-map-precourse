@@ -16,22 +16,25 @@ public class IntervalManager {
 
     public static void initializeIntervalManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_INTERVAL, DELETE_INTERVAL, BACK));
-        startIntervalManager(authorizedCommands);
+        while (true) {
+            String result = startIntervalManager(authorizedCommands);
+            if (!result.equals(INTERVAL_MANAGER)) {
+                break;
+            }
+        }
     }
 
-    private static void startIntervalManager(List<String> authorizedCommands) {
-        while (true) {
-            try {
-                String command = UserConsole.getCommand(INTERVAL_MANAGER, authorizedCommands);
-                if (command.equals(BACK)) {
-                    break;
-                }
-                execute(command);
-            } catch (Exception exception) {
-                continue;
-            }
-            break;
+    private static String startIntervalManager(List<String> authorizedCommands) {
+        String command = UserConsole.getCommand(INTERVAL_MANAGER, authorizedCommands);
+        if (command.equals(BACK)) {
+            return command;
         }
+        try {
+            execute(command);
+        } catch (Exception exception) {
+            command = INTERVAL_MANAGER;
+        }
+        return command;
     }
 
     private static void execute(String command) throws IllegalArgumentException {

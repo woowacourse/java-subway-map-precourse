@@ -18,22 +18,25 @@ public class StationManager {
 
     public static void initializeStationManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(ADD_STATION, DELETE_STATION, VIEW_STATIONS, BACK));
-        startStationManager(authorizedCommands);
+        while (true) {
+            String result = startStationManager(authorizedCommands);
+            if (!result.equals(STATION_MANAGER)) {
+                break;
+            }
+        }
     }
 
-    private static void startStationManager(List<String> authorizedCommands) {
-        while (true) {
-            try {
-                String command = UserConsole.getCommand(STATION_MANAGER, authorizedCommands);
-                if (command.equals(BACK)) {
-                    break;
-                }
-                execute(command);
-            } catch (Exception exception) {
-                continue;
-            }
-            break;
+    private static String startStationManager(List<String> authorizedCommands) {
+        String command = UserConsole.getCommand(STATION_MANAGER, authorizedCommands);
+        if (command.equals(BACK)) {
+            return command;
         }
+        try {
+            execute(command);
+        } catch (Exception exception) {
+            command = STATION_MANAGER;
+        }
+        return command;
     }
 
     private static void execute(String command) throws IllegalArgumentException {

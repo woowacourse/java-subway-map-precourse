@@ -19,21 +19,24 @@ public class MainManager {
 
     public static void initializeMainManager() {
         List<String> authorizedCommands = new ArrayList<>(Arrays.asList(MAGNAGE_STATION, MAGNAGE_LINE, MAGNAGE_INTERVAL, PRINT_SUBWAY_MAP, EXIT));
-        startMainManager(authorizedCommands);
-    }
-
-    private static void startMainManager(List<String> authorizedCommands) {
         while (true) {
-            try {
-                String command = UserConsole.getCommand(MAIN, authorizedCommands);
-                if (command.equals(EXIT)) {
-                    break;
-                }
-                execute(command);
-            } catch (Exception exception) {
-                continue;
+            String result = startMainManager(authorizedCommands);
+            if (result.equals(EXIT)) {
+                break;
             }
         }
+    }
+
+    private static String startMainManager(List<String> authorizedCommands) {
+        String command = UserConsole.getCommand(MAIN, authorizedCommands);
+        if (command.equals(EXIT)) {
+            return command;
+        }
+        try {
+            execute(command);
+        } catch (Exception exception) {
+        }
+        return command;
     }
 
     private static void execute(String command) throws IllegalArgumentException {
