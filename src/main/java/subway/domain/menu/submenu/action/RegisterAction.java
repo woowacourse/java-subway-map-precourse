@@ -82,7 +82,7 @@ public class RegisterAction extends Action {
     }
 
     private String requestInputRegister(String message) {
-        return inputView.inputRegisterOrDelete(message);
+        return inputView.inputRegister(message);
     }
 
     private void registerStation(String name) {

@@ -32,7 +32,7 @@ public class InputView {
         return sel;
     }
 
-    public String inputRegisterOrDelete(String message) {
+    public String inputRegister(String message) {
         String name = CommonMessage.ERROR;
         while (true) {
             try {
