@@ -44,6 +44,7 @@ public class Message {
     public static final String ERROR_SIZE = "\n[ERROR] 더 이상 삭제할 수 없습니다.";
     public static final String ERROR_NOT_EXIST_LINE = "\n[ERROR] 존재하지 않는 노선입니다.";
     public static final String ERROR_NUMERIC = "\n[ERROR] 숫자가 아닙니다.";
+    public static final String ERROR_INVALID_RANGE = "\n[ERROR] 추가할 수 없는 구간입니다.";
 
     private Message() {
     }

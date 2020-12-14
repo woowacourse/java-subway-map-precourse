@@ -37,8 +37,16 @@ public class SectionRepository {
     }
 
     public static void addSection(Line line, Station station, int order) {
+        validateOrder(line, order);
         List<Station> stations = sections.get(line);
         stations.add(order, station);
+    }
+
+    private static void validateOrder(Line line, int order) {
+        List<Station> stations = sections.get(line);
+        if (order < 1 || order >= stations.size()) {
+            throw new IllegalArgumentException(Message.ERROR_INVALID_RANGE);
+        }
     }
 
     public static void deleteSection(Line line, Station station) {
