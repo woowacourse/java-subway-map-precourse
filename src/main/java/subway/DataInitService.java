@@ -38,7 +38,10 @@ public class DataInitService {
     }
 
     private static void addSections() {
-
+        SectionService.addSection(LINE_TOW, GANGNAM_STATION, ONE, false);
+        SectionService.addSection(LINE_THREE, SOUTH_TERMIANL_STATION, ONE, false);
+        SectionService.addSection(LINE_THREE, YANGJAE_STATION, TWO, false);
+        SectionService.addSection(LINE_SINBUNDANG, YANGJAE_STATION, ONE, false);
     }
 
 }
