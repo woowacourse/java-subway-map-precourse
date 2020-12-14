@@ -2,8 +2,10 @@ package subway.view;
 
 import subway.domain.command.LineCommand;
 import subway.domain.command.MainCommand;
+import subway.domain.command.SectionCommand;
 import subway.domain.command.StationCommand;
 import subway.dto.LineDto;
+import subway.dto.SectionDto;
 import subway.dto.StationDto;
 
 import java.util.Scanner;
@@ -16,6 +18,9 @@ public class InputView {
     private static final String UPWARD_END_STATION_GUIDE_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String DOWNWARD_END_STATION_GUIDE_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String DELETION_LINE_GUIDE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
+    private static final String LINE_INPUT_GUIDE_MESSAGE = "## 노선을 입력하세요.";
+    private static final String STATION_INPUT_GUIDE_MESSAGE = "## 역이름을 입력하세요.";
+    private static final String SEQUENCE_INPUT_GUIDE_MESSAGE = "## 순서를 입력하세요.";
 
     private final Scanner scanner;
 
@@ -92,7 +97,42 @@ public class InputView {
         lineFeed();
         return lineName;
     }
-    
+
+    public SectionCommand inputSectionCommand() {
+        printSelectionGuideMessage();
+        String userMessage = inputWithTrimming();
+        lineFeed();
+        return SectionCommand.getCommand(userMessage);
+    }
+
+    public SectionDto inputRegistrationSection() {
+        String lineName = inputLineName();
+        String stationName = inputStationName();
+        String sequence = inputSequence();
+        return new SectionDto(lineName, stationName, sequence);
+    }
+
+    private String inputLineName() {
+        println(LINE_INPUT_GUIDE_MESSAGE);
+        String lineName = inputWithTrimming();
+        lineFeed();
+        return lineName;
+    }
+
+    private String inputStationName() {
+        println(STATION_INPUT_GUIDE_MESSAGE);
+        String stationName = inputWithTrimming();
+        lineFeed();
+        return stationName;
+    }
+
+    private String inputSequence() {
+        println(SEQUENCE_INPUT_GUIDE_MESSAGE);
+        String sequence = inputWithTrimming();
+        lineFeed();
+        return sequence;
+    }
+
     private void printSelectionGuideMessage() {
         println(SELECTION_GUIDE_MESSAGE);
     }
