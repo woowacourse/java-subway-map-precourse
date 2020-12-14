@@ -4,7 +4,8 @@ import subway.utils.StationValidator;
 
 public class Station {
 
-    public static final int MIN_NAME_LENGTH = 2;
+    public static final int MINIMUM_NAME_LENGTH = 2;
+    public static final String ENDING = "역";
 
     private final String name;
 

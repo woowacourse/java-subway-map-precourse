@@ -7,6 +7,7 @@ public class StationValidator {
 
     public static void validateName(String name) {
         validateLength(name);
+        validateEnding(name);
     }
 
     private static void validateLength(String name) {
@@ -25,4 +26,7 @@ public class StationValidator {
         }
     }
 
+    private static boolean notMatchingEnding(String name) {
+        return !name.endsWith(Station.ENDING);
+    }
 }
