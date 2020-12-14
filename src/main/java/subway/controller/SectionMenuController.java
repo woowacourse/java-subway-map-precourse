@@ -1,13 +1,18 @@
 package subway.controller;
 
+import subway.domain.Line;
+import subway.domain.Station;
 import subway.menus.SectionMenu;
-import subway.views.InputView;
-import subway.views.OutputView;
+import subway.repository.LineRepository;
+import subway.service.SectionService;
+import subway.views.sectionviews.SectionInputView;
+import subway.views.sectionviews.SectionOutputView;
 
 import java.util.Scanner;
 
 public class SectionMenuController {
     private static SectionMenuController sectionMenuController = new SectionMenuController();
+    private SectionService sectionService;
 
     private SectionMenuController() {
     }
@@ -17,8 +22,9 @@ public class SectionMenuController {
     }
 
     public void mappingSectionMenu(Scanner scanner) {
-        OutputView.printSectionManagePage();
-        branchBySelectedOption(InputView.selectSectionMenu(scanner));
+        SectionOutputView.printSectionManagePage();
+        sectionService = new SectionService(scanner);
+        branchBySelectedOption(SectionInputView.selectSectionMenu(scanner));
     }
 
     private void branchBySelectedOption(SectionMenu selectedOption) {
@@ -27,7 +33,7 @@ public class SectionMenuController {
             return;
         }
         if (selectedOption.equals(SectionMenu.SECTION_INSERT)) {
-
+            sectionService.sectionAddService();
         }
         if (selectedOption.equals(SectionMenu.SECTION_DELETE)) {
 

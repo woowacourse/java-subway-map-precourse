@@ -15,7 +15,7 @@ public class Line {
         return name.getName();
     }
 
-    public void addList(int stationOrder, Station station) {
+    public void addLineStation(int stationOrder, Station station) {
         stations.add(stationOrder, station);
     }
 
