@@ -8,6 +8,7 @@ import subway.domain.station.model.StationRepository;
 import java.util.List;
 
 public class LineService {
+    private static final String ALREADY_CONTAIN_STATION_MESSAGE = "[ERROR] 이미 노선에 포함되어 역입니다.";
     private static final String NOT_DUPLICATION_LINE_NAME_MESSAGE = "[ERROR] 중복된 노선 이름은 등록할 수 없습니다.";
     private static final String NOT_FOUND_STATION_MESSAGE = "[ERROR] 존재하지 않는 역입니다.";
     private static final String NOT_FOUND_Line_MESSAGE = "[ERROR] 존재하지 않는 노선입니다.";
@@ -54,13 +55,23 @@ public class LineService {
         LineRepository.deleteLineByName(removedLineName);
     }
 
-    public static void addStation(String lineName, String stationName, int newStationLocation) {
+    public static void addStation(String lineName, String stationName, int location) {
         Line line = LineRepository.findLineByName(lineName)
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_Line_MESSAGE));
 
+        validateSectionDuplicated(stationName, line);
         Station station = new Station(stationName);
         validateStation(station);
-        line.addStation(newStationLocation, station);
+        line.addStation(location, station);
+    }
+
+    private static void validateSectionDuplicated(String stationName, Line line) {
+        boolean contains = line.getStations().stream()
+                .anyMatch(station -> station.isEqualTo(stationName));
+
+        if (contains) {
+            throw new IllegalArgumentException(ALREADY_CONTAIN_STATION_MESSAGE);
+        }
     }
 
     public static Line findLineByName(String lineName) {

@@ -49,9 +49,9 @@ public class SectionManager implements Manager {
     private void registerSection(Scanner scanner) {
         String lineName = InputView.inputLineName(scanner);
         String stationName = InputView.inputStationName(scanner);
-        int newStationLocation = InputView.inputStationLocation(scanner);
+        int stationLocation = InputView.inputStationLocation(scanner);
 
-        LineService.addStation(lineName, stationName, newStationLocation);
+        LineService.addStation(lineName, stationName, stationLocation);
         System.out.println(SUCCESS_SECTION_REGISTRATION_MESSAGE);
     }
 
