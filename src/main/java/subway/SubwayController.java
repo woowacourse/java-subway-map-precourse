@@ -17,7 +17,7 @@ public class SubwayController {
 
 
     public void mainMenu() {
-        String mainMenuOptionChoice = new String();
+        String mainMenuOptionChoice = "";
 
         while (!mainMenuOptionChoice.
             equals(UserChoiceOptionToName.EXIT.getUserChoiceOptionToName())) {
@@ -28,6 +28,10 @@ public class SubwayController {
             if (mainMenuOptionChoice
                 .equals(UserChoiceOptionToName.STATION_MANAGEMENT.getUserChoiceOptionToName())) {
                 StationController.stationControlMenu(scanner);
+            }
+            if (mainMenuOptionChoice
+                .equals(UserChoiceOptionToName.LINE_MANAGEMENT.getUserChoiceOptionToName())){
+                LineController.lineControlMenu(scanner);
             }
         }
     }

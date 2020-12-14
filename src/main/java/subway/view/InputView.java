@@ -118,6 +118,13 @@ public class InputView {
     }
 
     private static boolean lineMenuValidCheck(String choiceLineMenu) {
-        return true;
+        if (Pattern.matches(
+            BoundaryCheckPattern.LINE_MENU_OPTION_LIMIT.getRegexBoundaryCheckPattern(),
+            choiceLineMenu)) {
+            return true;
+        }
+
+        OutputView.NotSelectableError();
+        return false;
     }
 }

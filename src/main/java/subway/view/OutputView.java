@@ -3,6 +3,7 @@ package subway.view;
 import subway.domain.Station;
 import subway.message.ErrorMessage;
 import subway.message.GuideMessage;
+import subway.message.LineMessage;
 import subway.message.StationMessage;
 
 public class OutputView {
@@ -70,5 +71,9 @@ public class OutputView {
 
     public static void lineRegisteredStationErrorPrint() {
         System.out.println(StationMessage.NOTION_REGISTERED_STATION_ERROR.getStationMessage());
+    }
+
+    public static void lineMenuPrint() {
+        System.out.println(LineMessage.LINE_FUNCTION_LIST.getLineMessage());
     }
 }
