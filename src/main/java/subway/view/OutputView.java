@@ -80,10 +80,26 @@ public class OutputView {
     }
 
     public static void LineAddGuidePrint() {
-        System.out.println(LineMessage.LINE_NAME_DUPLICATION_ERROR.getLineMessage());
+        System.out.println(LineMessage.LINE_ADD_GUIDE.getLineMessage());
     }
 
     public static void LineAddSuccessPrint() {
         System.out.println(LineMessage.LINE_ADD_SUCCESS.getLineMessage());
+    }
+
+    public static void upTerminusAddGuidePrint() {
+        System.out.println(LineMessage.LINE_UPTERMINUS_ADD_GUIDE.getLineMessage());
+    }
+
+    public static void LineNameDuplicationFailPrint() {
+        System.out.println(LineMessage.LINE_NAME_DUPLICATION_ERROR);
+    }
+
+    public static void downTerminusAddGuidePrint() {
+        System.out.println(LineMessage.LINE_DOWNTERMINUS_ADD_GUIDE.getLineMessage());
+    }
+
+    public static void LineAddFailPrint() {
+        System.out.println(LineMessage.LINE_ADD_FAIL);
     }
 }

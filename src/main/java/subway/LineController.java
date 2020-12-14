@@ -46,12 +46,19 @@ public class LineController {
         String lineName;
         String upTerminus;
         String downTerminus;
+        try {
+            OutputView.LineAddGuidePrint();
+            lineName = InputView.scanLineAddName(scanner);
 
-        lineName = InputView.scanLineAddName(scanner);
-        System.out.println("임시 출력 문구 : 상행 종착역");
-        upTerminus = scanner.nextLine();
-        System.out.println("임시 출력 문구 : 하행 종착영");
-        downTerminus = scanner.nextLine();
+            OutputView.upTerminusAddGuidePrint();
+            upTerminus = InputView.scanStationName(scanner);
+
+            OutputView.downTerminusAddGuidePrint();
+            downTerminus = InputView.scanStationName(scanner);
+        } catch (IllegalArgumentException error) {
+            return false;
+        }
+
         newLine = new Line(lineName);
         newLine.addStation(StationRepository.getStationFromName(upTerminus));
         newLine.addStation(StationRepository.getStationFromName(downTerminus));

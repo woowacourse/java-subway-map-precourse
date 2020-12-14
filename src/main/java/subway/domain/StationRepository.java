@@ -23,6 +23,14 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
+    public static List<String> getAllStationNames() {
+        return StationRepository
+            .stations()
+            .stream()
+            .map(Station::getName)
+            .collect(Collectors.toList());
+    }
+
     public static boolean findStationFromName(String stationName) {
         return StationRepository
             .stations()

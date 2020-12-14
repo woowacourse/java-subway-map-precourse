@@ -131,11 +131,10 @@ public class InputView {
 
     public static String scanLineAddName(Scanner scanner) {
 
-        OutputView.LineAddGuidePrint();
         String lineName = scanner.nextLine();
 
         if (LineNameDuplicationCheck(lineName)) {
-            OutputView.stationAddFailPrint();
+            OutputView.LineNameDuplicationFailPrint();
             throw new IllegalArgumentException();
         }
 
@@ -144,5 +143,14 @@ public class InputView {
 
     private static boolean LineNameDuplicationCheck(String lineName) {
         return LineRepository.getAllLineNames().contains(lineName);
+    }
+
+    public static String scanStationName(Scanner scanner) {
+        String TerminusName = scanner.nextLine();
+        if (StationRepository.findStationFromName(TerminusName)){
+            return TerminusName;
+        }
+        OutputView.LineAddFailPrint();
+        throw new IllegalArgumentException();
     }
 }
