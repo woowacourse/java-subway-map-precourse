@@ -38,4 +38,8 @@ public class StationRepository {
         }
         return null;
     }
+
+    public static boolean isExistByLineInStation(String name) {
+        return LineRepository.isExistStation(name);
+    }
 }
