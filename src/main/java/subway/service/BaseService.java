@@ -20,7 +20,7 @@ public class BaseService {
     }
 
     private static void showSelectionOptionsScreen(String header, List<BaseOption> optionList) {
-        OutputView.printHeader(header);
+        OutputView.printOptionHeader(header);
         OutputView.printQuestionOptions(optionList.stream().map(BaseOption::getOption));
         OutputView.printChooseOptionMessage();
     }
