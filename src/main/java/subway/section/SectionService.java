@@ -9,6 +9,7 @@ import subway.station.StationService;
 public class SectionService {
 
     private static final String REGISTER_RESULT_OK_MESSAGE = "구간이 등록되었습니다.";
+    private static final String DELETE_RESULT_OK_MESSAGE = "구간이 삭제되었습니다.";
 
     public static ResultDto registerSection(String lineName, String stationName, int order) {
         try {
@@ -24,6 +25,16 @@ public class SectionService {
 
     private static void checkStationAlreadyOnLine(String lineName, String stationName) {
         LineService.checkStationOnSubwayLine(stationName, lineName);
+    }
+
+    public static ResultDto deleteSection(String lineName, String stationName) {
+        try {
+            Line line = LineService.findByName(lineName);
+            line.removeStationByName(stationName);
+            return ResultDto.ok(DELETE_RESULT_OK_MESSAGE);
+        } catch (Exception e) {
+            return ResultDto.bad(e);
+        }
     }
 
 

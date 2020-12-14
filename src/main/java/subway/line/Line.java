@@ -38,4 +38,18 @@ public class Line {
         }
         return false;
     }
+
+    public void removeStationByName(String stationName) {
+        if (stations.size() <= 2) {
+            throw new IllegalArgumentException("노선에 포함된 역이 두개 이하이므로 삭제할 수 없습니다.");
+        }
+
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                stations.remove();
+                return;
+            }
+        }
+        throw new IllegalArgumentException("해당 노선에 존재하지 않는 역입니다.");
+    }
 }

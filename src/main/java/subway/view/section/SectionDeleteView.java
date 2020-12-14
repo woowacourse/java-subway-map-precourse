@@ -1,5 +1,7 @@
 package subway.view.section;
 
+import subway.model.ResultDto;
+import subway.section.SectionService;
 import subway.view.GeneralView;
 
 public class SectionDeleteView extends GeneralView {
@@ -17,6 +19,7 @@ public class SectionDeleteView extends GeneralView {
     public void setVisible() {
         String lineName = inputMoreThanTwoWords(INPUT_DELETE_LINE_GUIDE_TEXT);
         String stationName = inputMoreThanTwoWords(INPUT_DELETE_STATION_GUIDE_TEXT);
-        /** TODO: SectionService에게 구간 삭제 요청 */
+        ResultDto result = SectionService.deleteSection(lineName, stationName);
+        processRequestResult(result);
     }
 }
