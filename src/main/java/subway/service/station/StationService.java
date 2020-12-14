@@ -15,11 +15,11 @@ public class StationService {
         return true;
     }
 
-    public static boolean delete(String stationName) {
-        Station station = StationRepository.findStationName(stationName);
-        if (LineList.contains(stationName)) {  // 노선에 역이 포함되어있다면
-            throw new IllegalArgumentException(STATION_DELETE_CONDITION_ERROR_MESSAGE);
-        }
-        StationRepository.deleteStation(station);
-    }
+//    public static boolean delete(String stationName) {
+//        Station station = StationRepository.findStationName(stationName);
+//        if (LineList.contains(stationName)) {  // 노선에 역이 포함되어있다면
+//            throw new IllegalArgumentException(STATION_DELETE_CONDITION_ERROR_MESSAGE);
+//        }
+//        StationRepository.deleteStation(station);
+//    }
 }

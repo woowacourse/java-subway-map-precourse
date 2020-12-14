@@ -3,23 +3,27 @@ package subway.domain.list;
 import subway.domain.station.Station;
 import subway.domain.station.StationCheck;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private String name;
+    private final String name;
+    private final List<Station> stationList;
 
-    public Line(String name) {
+    public Line(String name, List<Station> stationList) {
         this.name = name;
+        this.stationList = stationList;
     }
 
     public String getName() {
         return name;
     }
 
-    public static Line getLine(String lineName) {
+    public static Line getLine(String lineName, Station startStation, Station endStation) {
         if (LineCheck.checkLineNameLength(lineName) && LineCheck.checkLineNameEndPoint(lineName)) {
         }
-        return new Line(lineName);
+        return new Line(lineName, Arrays.asList(startStation, endStation));
     }
 
     @Override
