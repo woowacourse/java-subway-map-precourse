@@ -42,8 +42,11 @@ class StationRepositoryTest {
 
     @Test
     public void 역_삭제_실패(){
-        String station = "강남역";
+        Application.init();
+        String registerStation = "강남역";
+        String station = "신림역";
 
+        assertThat(false).isEqualTo(StationRepository.deleteStation(registerStation));
         assertThat(false).isEqualTo(StationRepository.deleteStation(station));
     }
 

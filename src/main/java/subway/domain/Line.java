@@ -25,4 +25,13 @@ public class Line {
     public List<Station> getStations() {
         return stations;
     }
+
+    public boolean existStation(String name) {
+        for(Station station : stations){
+            if(station.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

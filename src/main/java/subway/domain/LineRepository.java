@@ -31,4 +31,13 @@ public class LineRepository {
             addLine(line);
         }
     }
+
+    public static boolean lineRegisterStation(String name) {
+        for(Line line : lines){
+            if(line.existStation(name)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
