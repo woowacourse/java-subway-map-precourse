@@ -27,7 +27,8 @@ class LineRepositoryTest {
         String lineName = "2호선";
 
         // when
-        Line line = new Line(lineName, new Station(onLineStation1), new Station(onLineStation2));
+//        Line line = new Line(lineName, new Station(onLineStation1), new Station(onLineStation2));
+        Line line = Line.of(lineName, onLineStation1, onLineStation2);
         repository.addLine(line);
 
         // then
@@ -55,7 +56,8 @@ class LineRepositoryTest {
 
         // when
 
-        Line line = new Line(lineName, new Station(stationName1), new Station(stationName2));
+//        Line line = new Line(lineName, new Station(stationName1), new Station(stationName2));
+        Line line = Line.of(lineName, stationName1, stationName2);
         repository.addLine(line);
 
         // then

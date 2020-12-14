@@ -22,7 +22,7 @@ public class LineService {
         return ErrorUtils.produceResponse(() -> {
             checkDulicateLine(lineName);
             checkEndStations(upEndStation, downEndStation);
-            repository.addLine(new Line(lineName, new Station(upEndStation), new Station(downEndStation)));
+            repository.addLine(Line.of(lineName, upEndStation, downEndStation));
             return ResultDto.ok(REGISTER_RESULT_OK_MESSAGE);
         });
     }

@@ -14,15 +14,20 @@ public class Line {
     private String name;
     private LinkedList<Station> stations;
 
-    public Line(String name, Station upEndStation, Station downEndStation) {
+    public Line(String name) {
         this.name = name;
         this.stations = new LinkedList<>();
-        this.stations.add(upEndStation);
-        this.stations.add(downEndStation);
     }
 
     public String getName() {
         return name;
+    }
+
+    public static Line of(String lineName, String upEndStation, String downEndStation) {
+        Line line = new Line(lineName);
+        line.addStation(new Station(upEndStation),1);
+        line.addStation(new Station(downEndStation), 2);
+        return line;
     }
 
     public void addStation(Station station, int order) {
