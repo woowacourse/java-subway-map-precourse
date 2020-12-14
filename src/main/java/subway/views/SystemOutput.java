@@ -54,4 +54,12 @@ public class SystemOutput {
             System.out.println(INFO + station);
         }
     }
+
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    public static void printInfo(String message) {
+        System.out.println(INFO + message);
+    }
 }
