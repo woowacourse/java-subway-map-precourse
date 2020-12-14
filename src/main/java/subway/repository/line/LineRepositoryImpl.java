@@ -1,6 +1,8 @@
 package subway.repository.line;
 
 import subway.domain.line.Line;
+import subway.domain.line.LineName;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +22,7 @@ public class LineRepositoryImpl implements LineRepository {
     }
 
     @Override
-    public boolean deleteLineByName(String name) {
+    public boolean deleteLineByName(LineName name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 }
