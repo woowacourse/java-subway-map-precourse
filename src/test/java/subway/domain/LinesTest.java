@@ -64,6 +64,16 @@ class LinesTest {
         assertThat(lines.size()).isEqualTo(beforeSize - 1);
     }
 
+    @DisplayName("노선에 역을 추가한다")
+    @Test
+    void addStationAtLineTest(){
+        Line line = lines.findLine(SECOND_LINE_NAME);
+        String testName = "산본역";
+        line.addStation(1, StationFactory.makeStation(testName));
+
+        assertThat(line.stationsNames()).contains(testName);
+    }
+
     @DisplayName("노선을 찾는다")
     @Test
     void findLineTest() {
