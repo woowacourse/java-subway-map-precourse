@@ -109,9 +109,9 @@ public class SectionStations {
         return sectionStations.stream().anyMatch(sectionStation -> sectionStation.isEqualStation(station));
     }
 
-    public boolean isContainStation(Station staiton) {
+    public boolean isContainStation(Station station) {
         return sectionStations.stream()
-                .anyMatch(sectionStation -> sectionStation.isEqualStation(staiton));
+                .anyMatch(sectionStation -> sectionStation.isEqualStation(station));
     }
 
     public boolean isSectionSizeOverMin() {
