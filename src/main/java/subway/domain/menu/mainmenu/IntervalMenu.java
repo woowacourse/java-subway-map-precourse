@@ -1,6 +1,8 @@
 package subway.domain.menu.mainmenu;
 
+import subway.domain.MenuRepository;
 import subway.userinterface.ApplicationMenu;
+import subway.userinterface.Error;
 
 import java.util.Scanner;
 
@@ -9,7 +11,26 @@ public class IntervalMenu implements Menu {
 
     @Override
     public void run(Scanner scanner) {
-        ApplicationMenu.printIntervalMenu();
-        String intervalInput = scanner.next();
+        boolean runStatus = true;
+
+        while (runStatus) {
+            ApplicationMenu.printIntervalMenu();
+            String intervalInput = scanner.next();
+            runStatus = runIntervalMenu(scanner, intervalInput);
+        }
+    }
+
+    private boolean runIntervalMenu(Scanner scanner, String intervalInput) {
+        if (Error.isWrongIntervalMenuInput(intervalInput)) {
+            return true;
+        }
+
+        for (String key : MenuRepository.intervalMenu.keySet()) {
+            if (intervalInput.equals(key)) {
+                MenuRepository.intervalMenu.get(key).run(scanner);
+                return true;
+            }
+        }
+        return false;
     }
 }

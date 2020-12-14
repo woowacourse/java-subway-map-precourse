@@ -15,7 +15,7 @@ public class DeleteStationMenu implements StationManageMenu {
         ApplicationMenu.printDeleteStation();
 
         String stationNameInput = scanner.next();
-        if (Error.printNotExistStationError(stationNameInput) || Error.printStationExistInLineError(stationNameInput)) {
+        if (Error.printNotExistStationError(stationNameInput) || Error.printStationAlreadyExistInLineError(stationNameInput)) {
             return;
         }
         StationRepository.deleteStationByName(stationNameInput);

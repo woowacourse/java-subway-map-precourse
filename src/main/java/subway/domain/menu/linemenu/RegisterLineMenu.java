@@ -14,15 +14,16 @@ public class RegisterLineMenu implements LineManageMenu {
 
     @Override
     public void run(Scanner scanner) {
-        ApplicationMenu.printAddLine();
         checkLineName(scanner);
     }
 
     private void checkLineName(Scanner scanner) {
+        ApplicationMenu.printAddLine();
         String lineNameInput = scanner.next();
         if (Error.printAlreadyExistLineError(lineNameInput)) {
             return;
         }
+
         checkDefaultStation(scanner, lineNameInput);
     }
 
@@ -39,11 +40,12 @@ public class RegisterLineMenu implements LineManageMenu {
             return;
         }
 
-        runRegisterLine(scanner, lineNameInput, startStationNameInput, endStationNameInput);
+        runRegisterLine(lineNameInput, startStationNameInput, endStationNameInput);
     }
 
-    private void runRegisterLine(Scanner scanner, String lineNameInput, String startStationNameInput, String endStationNameInput) {
-        LineRepository.addLine(new Line(lineNameInput), StationRepository.findStationByName(startStationNameInput), StationRepository.findStationByName(endStationNameInput));
+    private void runRegisterLine(String lineNameInput, String startStationNameInput, String endStationNameInput) {
+        LineRepository.addLine(new Line(lineNameInput), StationRepository.findStationByName(startStationNameInput),
+                StationRepository.findStationByName(endStationNameInput));
         Info.printLineRegistered(lineNameInput);
     }
 }

@@ -44,11 +44,19 @@ public class Info {
         System.out.println(INFO + lineName + "이 등록되었습니다.");
     }
 
+    public static void printIntervalRegistered(String lineName, String stationName) {
+        System.out.println(INFO + lineName + "에 " + stationName + "이 등록되었습니다.");
+    }
+
     public static void printStationDeleted(String stationName) {
         System.out.println(INFO + stationName + "이 삭제되었습니다.");
     }
 
     public static void printLineDeleted(String lineName) {
         System.out.println(INFO + lineName + "이 삭제되었습니다.");
+    }
+
+    public static void printIntervalDeleted(String lineName, String stationName) {
+        System.out.println(INFO + lineName + "에서 " + stationName + "이 삭제되었습니다.");
     }
 }

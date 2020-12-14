@@ -35,7 +35,7 @@ public class LineRepository {
     }
 
     public static void addStationInLineByName(String line, String station, int seq) {
-        lines.get(findLineByName(line)).add(seq,
+        lines.get(findLineByName(line)).add(seq-1,
                 StationRepository.findStationByName(station));
     }
 

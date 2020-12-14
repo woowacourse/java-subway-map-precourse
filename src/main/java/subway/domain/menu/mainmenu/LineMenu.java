@@ -20,8 +20,8 @@ public class LineMenu implements Menu {
         }
     }
 
-    public boolean runLineMenu(Scanner scanner, String lineInput) {
-        if (Error.isWrongStationMenuInput(lineInput)) {
+    private boolean runLineMenu(Scanner scanner, String lineInput) {
+        if (Error.isWrongLineMenuInput(lineInput)) {
             return true;
         }
 
