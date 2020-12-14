@@ -2,6 +2,7 @@ package subway.subwaymanager;
 
 import subway.utils.InputView;
 import subway.utils.OutputView;
+import subway.validators.ValidateStationSelect;
 
 import static subway.utils.Constant.*;
 
@@ -12,6 +13,7 @@ public class StationManager {
             OutputView.printStationContents();
 
             String inputStationSelect = InputView.inputSelect();
+            ValidateStationSelect.validateStationSelect(inputStationSelect);
             if (inputStationSelect.equals(CONTENTS_NUMBER_FIRST)) {
             }
             if (inputStationSelect.equals(CONTENTS_NUMBER_SECOND)) {
