@@ -29,6 +29,7 @@ public class LineService {
 
     public void deleteLineByName(String name) {
         Line line = findLineByName(name);
+        line.deleteAllSections();
         lineRepository.delete(line);
     }
 

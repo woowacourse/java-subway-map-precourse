@@ -108,4 +108,15 @@ class SectionsTest {
 
         assertThat(stationNames).doesNotContain("개화역");
     }
+
+    @DisplayName("Sections 전체 삭제 성공")
+    @Test
+    void deleteAllSections_성공한다() {
+        Sections sections = Sections.of(new Station("더미1"), new Station("더미2"));
+        sections.deleteAllSections();
+
+        int sectionCounts = sections.getStationNames().size();
+
+        assertThat(sectionCounts).isZero();
+    }
 }

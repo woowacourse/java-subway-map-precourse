@@ -33,6 +33,10 @@ public class Line {
         sections.deleteSectionByName(stationName);
     }
 
+    public void deleteAllSections() {
+        sections.deleteAllSections();
+    }
+
     public boolean matchesName(String name) {
         return Objects.equals(this.name, name);
     }

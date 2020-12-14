@@ -60,6 +60,11 @@ public class Sections {
                 .orElseThrow(CannotFindStationException::new);
     }
 
+    public void deleteAllSections() {
+        stations.forEach(Station::unregisterFromLineSection);
+        stations.clear();
+    }
+
     public List<String> getStationNames() {
         return stations.stream()
                 .map(Station::getName)
