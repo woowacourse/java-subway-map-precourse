@@ -53,8 +53,7 @@ public class FlowChart {
 
     public static void map(Scanner scanner, String mainInput) {
         if (mainInput.equals(Constant.FOUR)) {
-            System.out.println("map");
-            System.out.println();
+            Map.lookUp();
             main(scanner);
         }
     }
