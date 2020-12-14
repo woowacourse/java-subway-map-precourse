@@ -60,7 +60,7 @@ public class SectionStations {
     public boolean remove(Station station) {
         SectionStation targetSectionStation = sectionStations.get(sectionStations.size() - LAST_STATION_INDEX);
 
-        if (targetSectionStation.getStation().equals(station)) {
+        if (targetSectionStation.isEqualStation(station)) {
             sectionStations.remove(targetSectionStation);
         }
 
@@ -73,7 +73,7 @@ public class SectionStations {
     }
 
     private void changePrevStation(SectionStation targetSectionStation, Station station) {
-        if (targetSectionStation.getPrevStation().getStation().equals(station)) {
+        if (targetSectionStation.isEqualPrevStation(station)) {
             SectionStation prevStation = targetSectionStation.getPrevStation();
             targetSectionStation.setPrevSectionStation(prevStation.getPrevStation());
 
@@ -105,6 +105,6 @@ public class SectionStations {
     }
 
     private boolean isExistStation(Station station) {
-        return sectionStations.stream().anyMatch(sectionStation -> sectionStation.getStation().equals(station));
+        return sectionStations.stream().anyMatch(sectionStation -> sectionStation.isEqualStation(station));
     }
 }

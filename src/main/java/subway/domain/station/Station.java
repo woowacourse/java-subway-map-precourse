@@ -4,7 +4,7 @@ import subway.exception.NameLengthException;
 
 public class Station {
     private static final int NAME_LENGTH_MIN = 2;
-    
+
     private String name;
 
     public Station(String name) {
@@ -20,4 +20,8 @@ public class Station {
     }
 
     // 추가 기능 구현
+
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
 }

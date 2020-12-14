@@ -21,4 +21,12 @@ public class SectionStation {
     public void setPrevSectionStation(SectionStation sectionStation) {
         prevStation = sectionStation;
     }
+
+    public boolean isEqualStation(Station station) {
+        return this.station.equals(station);
+    }
+
+    public boolean isEqualPrevStation(Station station) {
+        return this.prevStation.isEqualStation(station);
+    }
 }

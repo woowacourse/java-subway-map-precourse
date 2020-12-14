@@ -44,12 +44,12 @@ public class LineRepository {
 
     public static Line findLineByName(String name) {
         return lines.stream()
-                .filter(line -> line.getName().equals(name))
+                .filter(line -> line.isEqualName(name))
                 .findFirst()
                 .orElseThrow(NoSuchLineException::new);
     }
 
     public static boolean isExistLine(String name) {
-        return lines.stream().anyMatch(line -> line.getName().equals(name));
+        return lines.stream().anyMatch(line -> line.isEqualName(name));
     }
 }

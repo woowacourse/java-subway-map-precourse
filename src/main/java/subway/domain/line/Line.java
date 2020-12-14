@@ -40,4 +40,8 @@ public class Line {
     public boolean deleteStation(String name) {
         return sectionStations.remove(StationRepository.findStationByName(name));
     }
+
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
 }

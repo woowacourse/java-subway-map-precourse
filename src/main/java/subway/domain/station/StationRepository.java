@@ -34,12 +34,12 @@ public class StationRepository {
 
     public static Station findStationByName(String name) {
         return stations.stream()
-                .filter(station -> station.getName().equals(name))
+                .filter(station -> station.isEqualName(name))
                 .findFirst()
                 .orElseThrow(NoSuchStationException::new);
     }
 
     public static boolean isExistStation(String name) {
-        return stations.stream().anyMatch(station -> station.getName().equals(name));
+        return stations.stream().anyMatch(station -> station.isEqualName(name));
     }
 }
