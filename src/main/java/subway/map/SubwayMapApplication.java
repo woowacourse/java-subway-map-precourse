@@ -26,54 +26,27 @@ public class SubwayMapApplication {
         while (managementType.isRunning()) {
             OutputView.printMainDisplay();
             managementType = inputView.inputManagementType();
-            executeExceptionHandler(managementType);
+            moveToMatchingManagementDisplay(managementType);
         }
     }
 
-    private void executeExceptionHandler(ManagementType managementType) {
-        try {
-            executeManagementFunction(managementType);
-        } catch (RuntimeException runtimeException) {
-            OutputView.printErrorMessage(runtimeException);
-            executeExceptionHandler(managementType);
-        }
-    }
-
-    private void executeManagementFunction(ManagementType managementType) {
+    private void moveToMatchingManagementDisplay(ManagementType managementType) {
         if (managementType == ManagementType.EXIT) {
             return;
         }
         if (managementType == ManagementType.SUBWAY_MAP_PRINT) {
-            executeReadFunction(managementType);
+            printSubwayMapInformation(managementType);
             return;
         }
-        OutputView.printManagementDisplay(managementType);
-        FunctionType functionType = inputView.inputFunctionType(managementType);
-        selectManagementFunction(managementType, functionType);
-    }
-
-    private void selectManagementFunction(ManagementType managementType, FunctionType functionType) {
-        if (functionType == FunctionType.BACK) {
-            return;
-        }
-        if (functionType == FunctionType.READ) {
-            executeReadFunction(managementType);
-            return;
-        }
-        if (managementType == ManagementType.STATION) {
-            executeStationManagement(functionType);
-            return;
-        }
-        if (managementType == ManagementType.LINE) {
-            executeLineManagement(functionType);
-            return;
-        }
-        if (managementType == ManagementType.SECTION) {
-            executeSectionManagement(functionType);
+        try {
+            showManagementDisplay(managementType);
+        } catch (RuntimeException runtimeException) {
+            OutputView.printErrorMessage(runtimeException);
+            moveToMatchingManagementDisplay(managementType);
         }
     }
 
-    private void executeReadFunction(ManagementType managementType) {
+    private void printSubwayMapInformation(ManagementType managementType) {
         if (managementType == ManagementType.SUBWAY_MAP_PRINT) {
             List<SubwayMapDto> subwayMapDtos = subwayMapController.getSubwayMapDtos();
             OutputView.printSubwayMap(subwayMapDtos);
@@ -85,6 +58,31 @@ public class SubwayMapApplication {
         if (managementType == ManagementType.LINE) {
             List<String> lineNames = subwayMapController.getLineNames();
             OutputView.printNames(managementType, lineNames);
+        }
+    }
+
+    private void showManagementDisplay(ManagementType managementType) {
+        OutputView.printManagementDisplay(managementType);
+        FunctionType functionType = inputView.inputFunctionType(managementType);
+        if (functionType == FunctionType.BACK) {
+            return;
+        }
+        if (functionType == FunctionType.READ) {
+            printSubwayMapInformation(managementType);
+            return;
+        }
+        executeMatchingManagement(managementType, functionType);
+    }
+
+    private void executeMatchingManagement(ManagementType managementType, FunctionType functionType) {
+        if (managementType == ManagementType.STATION) {
+            executeStationManagement(functionType);
+        }
+        if (managementType == ManagementType.LINE) {
+            executeLineManagement(functionType);
+        }
+        if (managementType == ManagementType.SECTION) {
+            executeSectionManagement(functionType);
         }
     }
 
