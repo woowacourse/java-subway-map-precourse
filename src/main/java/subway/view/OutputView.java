@@ -12,7 +12,9 @@ public class OutputView {
     private static String INFO_MESSAGE_PREFIX = "[INFO]";
     private static String SELECT_FEATURE_MESSAGE = "원하는 기능을 선택하세요.";
     private static String STATION_REGISTER_ASK_MESSAGE = "등록할 역 이름을 입력하세요.";
+    private static String STATION_DELETE_ASK_MESSAGE = "삭제할 역 이름을 입력하세요.";
     private static String STATION_REGISTER_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.";
+    private static String STATION_DELETE_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
     
     OutputView() {
     }
@@ -69,7 +71,7 @@ public class OutputView {
             System.out.println(STATION_REGISTER_ASK_MESSAGE);
         }
         if (actionType == ActionType.DELETE) {
-         // TODO 구현 예정
+            System.out.println(STATION_DELETE_ASK_MESSAGE);
         }
     }
     
@@ -86,7 +88,7 @@ public class OutputView {
             System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + STATION_REGISTER_SUCCESS_MESSAGE);
         }
         if (actionType == ActionType.DELETE) {
-            // TODO 구현 예정
+            System.out.println(INFO_MESSAGE_PREFIX + CommonConstants.SPACE + STATION_DELETE_SUCCESS_MESSAGE);
         }
     }
     

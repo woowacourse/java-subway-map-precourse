@@ -18,10 +18,10 @@ public class StationManager {
     
     void manageStation(ActionType actionType) {
         if(actionType == ActionType.REGISTER) {
-             registerStation();
+            registerStation();
         }
         if(actionType == ActionType.DELETE) {
-            // TODO 구현 예정
+            deleteStation();
         }
         if(actionType == ActionType.SHOW) {
             // TODO 구현 예정
@@ -32,9 +32,21 @@ public class StationManager {
         Station newStation;
 
         try {
-            newStation = controller.askStation(ActionType.REGISTER);
+            newStation = controller.askNewStation(ActionType.REGISTER);
             StationRepository.addStation(newStation);
             view.printSuccessMessage(EntityType.STATION, ActionType.REGISTER);
+        } catch (Exception exception) {
+            view.printErrorMessage(exception);
+        }
+    }
+    
+    private void deleteStation() {
+        String stationNameToDelete;
+        
+        try {
+            stationNameToDelete = controller.askStationName(ActionType.DELETE);
+            StationRepository.deleteStation(stationNameToDelete);
+            view.printSuccessMessage(EntityType.STATION, ActionType.DELETE);
         } catch (Exception exception) {
             view.printErrorMessage(exception);
         }

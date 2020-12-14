@@ -37,10 +37,14 @@ public class Controller {
         }
     }
     
-    public Station askStation(ActionType actionType) throws IllegalArgumentException {
+    public String askStationName(ActionType actionType) throws IllegalArgumentException {
         String StationName = view.askStationName(actionType);
-        Validator.checkValidStationName(StationName);
-        return new Station(StationName);
+        Validator.checkValidStationName(StationName, actionType);
+        return StationName;
+    }
+    
+    public Station askNewStation(ActionType actionType) throws IllegalArgumentException {
+        return new Station(askStationName(actionType));
     }
     
     private void operateUserCommand(String userCommand, Screen currentScreen) {
