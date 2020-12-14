@@ -11,7 +11,7 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class SectionManager {
-    public static State registerSection(State state, Scanner scanner) {
+    public State registerSection(State state, Scanner scanner) {
         if (state.equals(State.SECTION_ADD)) {
             registerSection(scanner);
 
@@ -21,7 +21,7 @@ public class SectionManager {
         return state;
     }
 
-    public static void registerSection(Scanner scanner) {
+    public void registerSection(Scanner scanner) {
         OutputView.printInputLine();
         Line line = findLineToRegister(InputView.inputLineName(scanner));
 
@@ -36,7 +36,7 @@ public class SectionManager {
         OutputView.printRegisteredSectionMessage();
     }
 
-    public static State removeSection(State state, Scanner scanner) {
+    public State removeSection(State state, Scanner scanner) {
         if (state.equals(State.SECTION_REMOVE)) {
             removeSection(scanner);
 
@@ -46,26 +46,26 @@ public class SectionManager {
         return state;
     }
 
-    public static void removeSection(Scanner scanner) {
+    public void removeSection(Scanner scanner) {
         findLineToRemove(scanner).deleteStation(findStationToRemove(scanner).getName());
         OutputView.printRemovedSectionMessage();
     }
 
-    private static Line findLineToRegister(String name) {
+    private Line findLineToRegister(String name) {
         return LineRepository.findLineByName(name);
     }
 
-    private static Station findStationToRegister(String name) {
+    private Station findStationToRegister(String name) {
         return StationRepository.findStationByName(name);
     }
 
-    private static Line findLineToRemove(Scanner scanner) {
+    private Line findLineToRemove(Scanner scanner) {
         OutputView.printInputRemoveSectionLine();
 
         return LineRepository.findLineByName(InputView.inputLineName(scanner));
     }
 
-    private static Station findStationToRemove(Scanner scanner) {
+    private Station findStationToRemove(Scanner scanner) {
         OutputView.printInputRemoveSectionStation();
 
         return StationRepository.findStationByName(InputView.inputStationName(scanner));

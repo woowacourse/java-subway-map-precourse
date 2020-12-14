@@ -34,24 +34,30 @@ public class SubwayManager {
     }
 
     public State setStationState(State state, Scanner scanner) {
-        state = StationManager.addStation(state, scanner);
-        state = StationManager.removeStation(state, scanner);
-        state = StationManager.showStation(state);
+        StationManager stationManager = new StationManager();
+
+        state = stationManager.addStation(state, scanner);
+        state = stationManager.removeStation(state, scanner);
+        state = stationManager.showStation(state);
 
         return state;
     }
 
     public State setLineState(State state, Scanner scanner) {
-        state = LineManager.addLine(state, scanner);
-        state = LineManager.removeLine(state, scanner);
-        state = LineManager.showLine(state);
+        LineManager lineManager = new LineManager();
+
+        state = lineManager.addLine(state, scanner);
+        state = lineManager.removeLine(state, scanner);
+        state = lineManager.showLine(state);
 
         return state;
     }
 
     public State setSectionState(State state, Scanner scanner) {
-        state = SectionManager.registerSection(state, scanner);
-        state = SectionManager.removeSection(state, scanner);
+        SectionManager sectionManager = new SectionManager();
+
+        state = sectionManager.registerSection(state, scanner);
+        state = sectionManager.removeSection(state, scanner);
 
         return state;
     }

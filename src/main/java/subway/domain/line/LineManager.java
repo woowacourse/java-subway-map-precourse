@@ -11,7 +11,7 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public class LineManager {
-    public static State addLine(State state, Scanner scanner) {
+    public State addLine(State state, Scanner scanner) {
         if (state.equals(State.LINE_ADD)) {
             OutputView.printInputRegisterLine();
             addLine(InputView.inputLineName(scanner), scanner);
@@ -22,7 +22,7 @@ public class LineManager {
         return state;
     }
 
-    public static void addLine(String name, Scanner scanner) {
+    public void addLine(String name, Scanner scanner) {
         if (LineRepository.isExistLine(name)) {
             throw new AlreadyExistLineException();
         }
@@ -35,19 +35,19 @@ public class LineManager {
         OutputView.printRegisteredLineMessage();
     }
 
-    private static Station setLineUpStation(Scanner scanner) {
+    private Station setLineUpStation(Scanner scanner) {
         OutputView.printInputRegisterLineUpStation();
 
         return StationRepository.findStationByName(scanner.next());
     }
 
-    private static Station setLineDownStation(Scanner scanner) {
+    private Station setLineDownStation(Scanner scanner) {
         OutputView.printInputRegisterLineDownStation();
 
         return StationRepository.findStationByName(scanner.next());
     }
 
-    public static State removeLine(State state, Scanner scanner) {
+    public State removeLine(State state, Scanner scanner) {
         if (state.equals(State.LINE_REMOVE)) {
             OutputView.printInputRemoveLine();
             removeLine(InputView.inputLineName(scanner));
@@ -58,7 +58,7 @@ public class LineManager {
         return state;
     }
 
-    public static void removeLine(String name) {
+    public void removeLine(String name) {
         if (!LineRepository.isExistLine(name)) {
             throw new NoSuchLineException();
         }
@@ -67,7 +67,7 @@ public class LineManager {
         OutputView.printRemovedLineMessage();
     }
 
-    public static State showLine(State state) {
+    public State showLine(State state) {
         if (state.equals(State.LINE_INQUIRY)) {
             OutputView.printLineList(LineRepository.lines());
 
