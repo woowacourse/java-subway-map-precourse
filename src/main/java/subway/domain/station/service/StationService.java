@@ -11,6 +11,7 @@ public class StationService {
     private static final String ERROR = "[ERROR] ";
     private static final String NOT_DUPLICATION_STATION_NAME_MESSAGE = "중복된 지하철 역 이름은 등록할 수 없습니다.";
     private static final String IS_CONTAIN_LINE_SECTION_MESSAGE = "이 노선에 포함되어있습니다.";
+    private static final String IS_NOT_FOUND_STATION_MESSAGE = "은 존재하지 않는 역입니다.";
 
     public static void save(Station station) {
         validateDuplicationStation(station);
@@ -32,8 +33,17 @@ public class StationService {
     }
 
     public static void remove(String stationName) {
+        validateStation(stationName);
         validateRemovingStation(stationName);
         StationRepository.deleteStation(stationName);
+    }
+
+    private static void validateStation(String stationName) {
+        List<Station> stations = StationRepository.stations();
+        stations.stream()
+                .filter(station -> station.isEqualTo(stationName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ERROR + stationName + IS_NOT_FOUND_STATION_MESSAGE));
     }
 
     private static void validateRemovingStation(String stationName) {
