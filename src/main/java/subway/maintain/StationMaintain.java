@@ -69,7 +69,7 @@ public class StationMaintain {
             maintainPage();
             return;
         }
-        if (!StationRepository.deleteStation(scanner.next())) {
+        if (!StationRepository.deleteStation(name)) {
             ErrorView.notExistName();
             maintainPage();
             return;
