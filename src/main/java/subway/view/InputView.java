@@ -45,13 +45,7 @@ public class InputView {
     }
 
     public static String inputLineName(Scanner scanner) {
-        String value = scanner.next();
-
-        if (value.length() < NAME_LENGTH_MIN) {
-            throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
-        }
-
-        return value;
+        return scanner.next();
     }
 
     public static int inputStationIndex(Scanner scanner) {
