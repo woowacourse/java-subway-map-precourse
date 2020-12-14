@@ -13,9 +13,6 @@ import java.util.List;
 public class LineController implements Controller {
     private static LineRepository lineRepository = new LineRepository();
 
-    public LineController() {
-    }
-
     @Override
     public void start() {
         LineMenu lineMenu;

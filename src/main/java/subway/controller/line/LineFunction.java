@@ -7,6 +7,7 @@ import subway.domain.exception.*;
 import subway.utils.InputValidator;
 import subway.view.InputView;
 import subway.view.outputview.LineOutputView;
+import subway.view.outputview.OutputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import java.util.Objects;
 public class LineFunction {
     public static LineRepository add(LineRepository lineRepository) {
         try {
-            String line = inputLine(lineRepository);
+            String line = inputAddLine(lineRepository);
             lineRepository.addLine(inputStations(line, lineRepository));
         } catch (NullPointerException e) {
             return null;
@@ -23,7 +24,7 @@ public class LineFunction {
         return lineRepository;
     }
 
-    private static String inputLine(LineRepository lineRepository) {
+    private static String inputAddLine(LineRepository lineRepository) {
         try {
             LineOutputView.registerLineName();
             String line = InputView.input();
@@ -83,6 +84,15 @@ public class LineFunction {
     }
 
     public static LineRepository delete(LineRepository lineRepository) {
+        try {
+            LineOutputView.deleteLineName();
+            String line = InputView.input();
+            InputValidator.validLineName(line);
+            lineRepository.deleteLineByName(line);
+            LineOutputView.successDelete();
+        } catch (InvalidLineNameException | NotExistLineException e ){
+
+        }
         return null;
     }
 

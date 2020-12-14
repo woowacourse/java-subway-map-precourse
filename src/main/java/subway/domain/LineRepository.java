@@ -2,6 +2,7 @@ package subway.domain;
 
 import subway.domain.exception.DuplicateLineNameException;
 import subway.domain.exception.DuplicateStationOfLineException;
+import subway.domain.exception.NotExistLineException;
 
 import java.util.*;
 
@@ -35,7 +36,8 @@ public class LineRepository {
         lines.add(line);
     }
 
-    static boolean deleteLineByName(String name) {
+    public static boolean deleteLineByName(String name) {
+        notExistLineName(name);
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
@@ -67,5 +69,12 @@ public class LineRepository {
                 .ifPresent(s -> {
                     throw new DuplicateLineNameException();
                 });
+    }
+
+    public static void notExistLineName(String lineName) {
+        lines.stream()
+                .filter(line -> Objects.equals(line.getName(), lineName))
+                .findAny()
+                .orElseThrow(() -> new NotExistLineException());
     }
 }

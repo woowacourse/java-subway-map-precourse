@@ -58,6 +58,12 @@ public class ErrorOutputView {
         stringBuilder.append(EXIST_LINE_NAME);
     }
 
+    public static void notExistLine() {
+        stringBuilder.append(ERROR_SYMBOL);
+        stringBuilder.append(NOT_EXIST_LINE);
+        print();
+    }
+
     public static void equalFirstAndLastStation() {
         stringBuilder.append(ERROR_SYMBOL);
         stringBuilder.append(EQUAL_FIRST_LAST_STATION);

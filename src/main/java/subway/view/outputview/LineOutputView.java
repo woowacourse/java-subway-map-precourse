@@ -50,4 +50,16 @@ public class LineOutputView {
         stringBuilder.append(LAST_STATION_NAME);
         print();
     }
+
+    public static void deleteLineName() {
+        stringBuilder.append(MENU_SYMBOL);
+        stringBuilder.append(DELETE_LINE);
+        print();
+    }
+
+    public static void successDelete() {
+        stringBuilder.append(INFO_SYMBOL);
+        stringBuilder.append(SUCCESS_DELETE_LINE);
+        print();
+    }
 }
