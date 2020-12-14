@@ -1,8 +1,8 @@
 package subway.controller;
 
 import subway.menus.MainMenu;
-import subway.views.InputView;
-import subway.views.OutputView;
+import subway.views.mainviews.MainInputView;
+import subway.views.mainviews.MainOutputView;
 
 import java.util.Scanner;
 
@@ -14,8 +14,8 @@ public class MainMenuController {
     public void mappingMainMenu(Scanner scanner) {
         MainMenu selectedOption;
         do {
-            OutputView.printMainPage();
-            selectedOption = InputView.selectMainMenu(scanner);
+            MainOutputView.printMainPage();
+            selectedOption = MainInputView.selectMainMenu(scanner);
             branchBySelectedOption(selectedOption, scanner);
         } while (selectedOption != MainMenu.EXIT_PROGRAM);
     }
