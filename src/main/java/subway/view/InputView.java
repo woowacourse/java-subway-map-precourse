@@ -34,13 +34,13 @@ public class InputView {
 
     public static InputView getInstance() {
         if (Objects.isNull(inputView)) {
-            throw new NegativeArraySizeException(); //여기수정
+            throw new CannotReturnInputViewException();
         }
         return inputView;
     }
 
     public ManagementType inputManagementType() {
-        String managementNumber = scanInputLineWithNotice(MANAGEMENT_FUNCTION_NUMBER_NOTICE);
+        String managementNumber = scanInputWithNoticeMessage(MANAGEMENT_FUNCTION_NUMBER_NOTICE);
         try {
             return ManagementType.findManagementType(managementNumber);
         } catch (RuntimeException runtimeException) {
@@ -49,13 +49,13 @@ public class InputView {
         }
     }
 
-    private String scanInputLineWithNotice(String message) {
+    private String scanInputWithNoticeMessage(String message) {
         System.out.println(message);
         return scanner.nextLine();
     }
 
     public FunctionType inputFunctionType(ManagementType managementType) {
-        String functionNumber = scanInputLineWithNotice(MANAGEMENT_FUNCTION_NUMBER_NOTICE);
+        String functionNumber = scanInputWithNoticeMessage(MANAGEMENT_FUNCTION_NUMBER_NOTICE);
         try {
             return managementType.findFunctionType(functionNumber);
         } catch (RuntimeException runtimeException) {
@@ -66,30 +66,30 @@ public class InputView {
 
     public String inputName(ManagementType managementType, FunctionType functionType) {
         String message = String.format(INPUT_NAME_MESSAGE_FORMAT, functionType.toString(), managementType.toString());
-        return scanInputLineWithNotice(message);
+        return scanInputWithNoticeMessage(message);
     }
 
     public LineDto inputLineRequest(ManagementType managementType, FunctionType functionType) {
         String lineName = inputName(managementType, functionType);
-        String upwardLastStationName = scanInputLineWithNotice(UPWARD_LAST_STATION_NAME_NOTICE);
-        String downwardLastStationName = scanInputLineWithNotice(DOWNWARD_LAST_STATION_NAME_NOTICE);
+        String upwardLastStationName = scanInputWithNoticeMessage(UPWARD_LAST_STATION_NAME_NOTICE);
+        String downwardLastStationName = scanInputWithNoticeMessage(DOWNWARD_LAST_STATION_NAME_NOTICE);
         return new LineDto(lineName, upwardLastStationName, downwardLastStationName);
     }
 
     public SectionDto inputSectionRequest(FunctionType functionType) {
         if (functionType == FunctionType.DELETE) {
-            String lineName = scanInputLineWithNotice(SECTION_DELETION_LINE_NAME_NOTICE);
-            String stationName = scanInputLineWithNotice(SECTION_DELETION_STATION_NAME_NOTICE);
+            String lineName = scanInputWithNoticeMessage(SECTION_DELETION_LINE_NAME_NOTICE);
+            String stationName = scanInputWithNoticeMessage(SECTION_DELETION_STATION_NAME_NOTICE);
             return new SectionDto(lineName, stationName);
         }
-        String lineName = scanInputLineWithNotice(SECTION_REGISTRATION_LINE_NAME_NOTICE);
-        String stationName = scanInputLineWithNotice(SECTION_REGISTRATION_STATION_NAME_NOTICE);
-        int sectionOrderNumber = scanSectionOrderNumber();
+        String lineName = scanInputWithNoticeMessage(SECTION_REGISTRATION_LINE_NAME_NOTICE);
+        String stationName = scanInputWithNoticeMessage(SECTION_REGISTRATION_STATION_NAME_NOTICE);
+        int sectionOrderNumber = inputSectionOrderNumber();
         return new SectionDto(lineName, stationName, sectionOrderNumber);
     }
 
-    private int scanSectionOrderNumber() {
-        String sectionOrderNumber = scanInputLineWithNotice(SECTION_REGISTRATION_ORDER_NUMBER_NOTICE);
+    private int inputSectionOrderNumber() {
+        String sectionOrderNumber = scanInputWithNoticeMessage(SECTION_REGISTRATION_ORDER_NUMBER_NOTICE);
         validateNumberFormat(sectionOrderNumber);
         return Integer.parseInt(sectionOrderNumber);
     }
