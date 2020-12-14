@@ -24,14 +24,14 @@ public class ErrorManager {
 
     public static void checkNameLength(String input) {
         if(input.length() < 2) {
-            throw new IllegalArgumentException("[Error] 이름은 2글자 이상이어야 합니다.");
+            throw new IllegalArgumentException(Constants.NAME_LENGTH_FAIL);
         }
     }
 
     public static boolean isStationExist(String input) {
         boolean check = false;
         for(Station station : StationRepository.stations()) {
-            if(station.getName() == input) {
+            if(station.getName().equals(input)) {
                 check = true;
                 break;
             }
