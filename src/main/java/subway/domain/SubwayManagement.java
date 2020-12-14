@@ -23,7 +23,7 @@ public class SubwayManagement {
                 }
                 selectMainFunction(input);
             } catch (IllegalArgumentException e) {
-                printScreen.printMainSelectError();
+                printScreen.printErrorMainSelect();
             }
         }
     }
@@ -112,14 +112,22 @@ public class SubwayManagement {
 
     private void addStation() {
         printScreen.printAddStation();
-        StationRepository.addStation(new Station(user.getInput()));
-        printScreen.printAlarmAddStation();
+        try {
+            StationRepository.addStation(new Station(user.getInput()));
+            printScreen.printAlarmAddStation();
+        } catch (IllegalArgumentException e) {
+            printScreen.printErrorAddStation();
+        }
     }
 
     private void deleteStation() {
         printScreen.printDeleteStation();
-        StationRepository.deleteStation(user.getInput());
-        printScreen.printAlarmDeleteStation();
+        try {
+            StationRepository.deleteStation(user.getInput());
+            printScreen.printAlarmDeleteStation();
+        } catch (IllegalArgumentException e) {
+            printScreen.printErrorDeleteStation();
+        }
     }
 
     private void getStationList() {

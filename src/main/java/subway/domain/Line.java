@@ -9,14 +9,14 @@ public class Line {
     private String name;
     private String firstStation;
     private String lastStation;
-    private List<Station> section = new ArrayList<>();
+    private List<Station> sections = new ArrayList<>();
 
     public Line(String name, String firstStation, String lastStation) {
         this.name = name;
         this.firstStation = firstStation;
         this.lastStation = lastStation;
-        this.section.add(new Station(firstStation));
-        this.section.add(new Station(lastStation));
+        this.sections.add(new Station(firstStation));
+        this.sections.add(new Station(lastStation));
     }
 
     public String getName() {
@@ -26,16 +26,22 @@ public class Line {
     // 추가 기능 구현
 
     public boolean isContain(String name) {
-        return section.contains(new Station(name));
+        for (Station section : sections) {
+            if (section.getName().equals(name)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean isMinLength() {
-        return section.size() >= Constants.MIN_LINE_LENGTH;
+        return sections.size() >= Constants.MIN_LINE_LENGTH;
     }
 
     public void addStationInSection(int idx, String name) {
-        section.add(idx - 1, new Station(name));
-        if (idx == section.size()) {
+        sections.add(idx - 1, new Station(name));
+        if (idx == sections.size()) {
             lastStation = name;
         }
         if (idx == 1) {
@@ -44,10 +50,10 @@ public class Line {
     }
 
     public void deleteStationInSection(String name) {
-        section.removeIf(station -> Objects.equals(station.getName(), name));
+        sections.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
     public List<Station> getSection() {
-        return Collections.unmodifiableList(section);
+        return Collections.unmodifiableList(sections);
     }
 }
