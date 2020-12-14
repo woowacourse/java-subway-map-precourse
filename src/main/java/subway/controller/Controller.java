@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.maintain.StationMaintain;
 import subway.utils.Util;
 import subway.view.OutputView;
 
@@ -8,7 +9,13 @@ import java.util.Scanner;
 public class Controller {
     private static final int START = 1;
     private static final int END = 4;
-    private static Scanner scanner;
+    private static final int ERROR = -1;
+    private static final int STATION_MAINTAIN = 1;
+    private static final int LINE_MAINTAIN = 2;
+    private static final int SECTION_MAINTAIN = 3;
+    private static final int SUBWAY_MAP = 4;
+
+    private final Scanner scanner;
 
     public Controller(Scanner scanner) {
         this.scanner = scanner;
@@ -28,19 +35,19 @@ public class Controller {
     }
 
     private void movePage(int operationNumber,Scanner scanner) {
-        if(operationNumber == -1){
+        if(operationNumber == ERROR){
             control();
         }
-        if(operationNumber == 1){
+        if(operationNumber == STATION_MAINTAIN){
+            new StationMaintain(scanner);
+        }
+        if(operationNumber == LINE_MAINTAIN){
 
         }
-        if(operationNumber == 2){
+        if(operationNumber == SECTION_MAINTAIN){
 
         }
-        if(operationNumber == 3){
-
-        }
-        if(operationNumber == 4){
+        if(operationNumber == SUBWAY_MAP){
 
         }
     }

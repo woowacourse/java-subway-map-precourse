@@ -36,4 +36,7 @@ public class OutputView {
         print(WRITE_OPERATION);
     }
 
+    public static void stationMaintain() {
+        print(STATION_MAINTAIN);
+    }
 }
