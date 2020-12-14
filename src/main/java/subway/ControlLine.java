@@ -26,9 +26,9 @@ public class ControlLine {
         String tmpSaveLineName=OutputMessage.deleteLineName();
         if(!LineRepository.duplicateLineName(new Line(tmpSaveLineName))){
             OutputMessage.setErrorMessageDeleteLine();
-
             return false;
         }
+        LineRepository.deleteLineByName(tmpSaveLineName);
         return true;
     }
     public static boolean lookLine(){
