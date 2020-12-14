@@ -4,7 +4,7 @@ import subway.domain.input.MainInput;
 
 import java.util.Scanner;
 
-public class Program {
+public class SubwayProgram {
 
     static final String FUNCTION_ONE = "1";
     static final String FUNCTION_TWO = "2";
