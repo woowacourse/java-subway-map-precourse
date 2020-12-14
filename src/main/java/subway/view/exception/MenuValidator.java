@@ -8,7 +8,7 @@ public class MenuValidator {
 
     static {
         MenuRegex = new HashMap<>();
-        MenuRegex.put("Main", "1|2|3|Q");
+        MenuRegex.put("Main", "1|2|3|4|Q");
         MenuRegex.put("Station", "1|2|3|B");
         MenuRegex.put("Line", "1|2|3|B");
         MenuRegex.put("Section", "1|2|B");

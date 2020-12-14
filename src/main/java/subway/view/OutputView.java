@@ -7,7 +7,7 @@ import subway.domain.Station;
 
 public class OutputView {
     public static void printMainMenu() {
-        System.out.println("\n## 메인 화면");
+        System.out.println("## 메인 화면");
         System.out.println("1. 역 관리");
         System.out.println("2. 노선 관리");
         System.out.println("3. 구간 관리");
@@ -39,15 +39,15 @@ public class OutputView {
     }
     
     public static void printQuit() {
-        System.out.println("프로그램을 종료합니다. 감사합니다.");
+        System.out.println("\n프로그램을 종료합니다. 감사합니다.");
     }
 
     public static void printStationRegisterSuccess() {
-        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
+        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.\n");
     }
 
     public static void printStationDeleteSuccess() {
-        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.\n");
     }
 
     public static void printStationList(List<Station> stations) {
@@ -55,14 +55,15 @@ public class OutputView {
         for (Station station : stations) {
             System.out.println("[INFO] " + station.getName());
         }
+        System.out.println();
     }
 
     public static void printLineRegisterSuccess() {
-        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
+        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.\n");
     }
 
     public static void printLineDeleteSuccess() {
-        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
+        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
 
     public static void printLineList(List<Line> lines) {
@@ -70,13 +71,14 @@ public class OutputView {
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
         }
+        System.out.println();
     }
     
     public static void printSectionRegisterSuccess() {
-        System.out.println("\n[INFO] 구간이 등록되었습니다.");
+        System.out.println("\n[INFO] 구간이 등록되었습니다.\n");
     }
     
     public static void printSectionDeleteSuccess() {
-        System.out.println("\n[INFO] 구간이 삭제되었습니다.");
+        System.out.println("\n[INFO] 구간이 삭제되었습니다.\n");
     }
 }

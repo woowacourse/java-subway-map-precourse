@@ -1,8 +1,9 @@
 package subway.controller;
 
+import subway.domain.SubwayMap;
 import subway.view.InputView;
-import subway.view.MapScreen;
 import subway.view.OutputView;
+import subway.view.SubwayMapView;
 
 public class MainMenu {
     public static void goToMain() {
@@ -18,7 +19,8 @@ public class MainMenu {
             SectionMenu.goToSectionMenu();
         }
         if (selection.equals("4")) {
-            MapScreen.print();
+            SubwayMap subwayMap = new SubwayMap();
+            SubwayMapView.printMap(subwayMap.makeSubwayMap());
         }
         if (selection.equals("Q")) {
             OutputView.printQuit();
