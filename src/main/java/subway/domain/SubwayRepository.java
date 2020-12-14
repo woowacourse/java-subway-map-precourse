@@ -41,6 +41,7 @@ public class SubwayRepository {
 
     public static void deleteSubwayLineByName(String lineName) {
         Line line = LineRepository.findLine(lineName);
+        // PATH 등록된 역정보도 삭제해야함.
         subwayRealLines.remove(line);
     }
 

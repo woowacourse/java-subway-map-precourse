@@ -2,10 +2,11 @@ package subway.domain.line;
 
 import java.util.Scanner;
 import subway.domain.station.StationRepository;
-import subway.common.ErrorMessage;
+import subway.common.ErrorMessageException;
 
 public class LineInputManager {
     private static final String LINE = "호선";
+    private static final int MIN_TWO_LETTERS = 2;
     private static final String LAST_LETTER_LINE = "노선이름 끝에는 호선이라고 붙여주세요.";
     private static final String ALREADY_ENROLLED_NAME = "이미 존재하는 이름입니다.";
     private static final String SAME_UP_DOWN_STATION = "상행과 하행은 같은 역을 등록할 수 없습니다.";
@@ -21,27 +22,16 @@ public class LineInputManager {
 
     public String[] getLineInfoToAdd() {
         String[] lineInfo = new String[3];
-        try {
-            lineInfo[0] = getLineName();
-            lineInfo[1] = getUpStationName();
-            lineInfo[2] = getDownStationName(lineInfo[1]);
-            return lineInfo;
-        } catch (ErrorMessage error) {
-            System.out.println(error.getMessage());
-            lineInfo[0] = ErrorMessage.OUT;
-            return lineInfo;
-        }
+        lineInfo[0] = getLineName();
+        lineInfo[1] = getUpStationName();
+        lineInfo[2] = getDownStationName(lineInfo[1]);
+        return lineInfo;
     }
 
     public String getLineNameToDelete() {
         LineOutputManager.printDeleteGuide();
         String name = scanner.nextLine().trim();
-        try {
-            checkNameToDelete(name);
-        } catch (ErrorMessage error) {
-            System.out.println(error.getMessage());
-            return ErrorMessage.OUT;
-        }
+        checkNameToDelete(name);
         return name;
     }
 
@@ -57,22 +47,22 @@ public class LineInputManager {
         checkLastLetter(name);
         checkEnrolledLine(name);
     }
-
+    // 이름 2이상
     private void checkLength(String name) {
-        if (name.length() < 2) {
-            throw new ErrorMessage(OVER_TWO);
+        if (name.length() < MIN_TWO_LETTERS) {
+            throw new ErrorMessageException(OVER_TWO);
         }
     }
-
+    // 끝에은 노선이라고 붙여줘야 함
     private void checkLastLetter(String name) {
         if (name.substring(name.length() - 3).equals(LINE)) {
-            throw new ErrorMessage(LAST_LETTER_LINE);
+            throw new ErrorMessageException(LAST_LETTER_LINE);
         }
     }
-
+    //노선 중복 불가
     private void checkEnrolledLine(String name) {
-        if (LineRepository.lineNames().contains(name)) {
-            throw new ErrorMessage(ALREADY_ENROLLED_NAME);
+        if (LineRepository.containsName(name)) {
+            throw new ErrorMessageException(ALREADY_ENROLLED_NAME);
         }
     }
 
@@ -82,10 +72,10 @@ public class LineInputManager {
         checkEnrolledStation(name);
         return name;
     }
-
+    //등록되어 있는 역인지 확인
     private void checkEnrolledStation(String name) {
         if (!StationRepository.containsName(name)) {
-            throw new ErrorMessage(NOT_EXIST_STATION);
+            throw new ErrorMessageException(NOT_EXIST_STATION);
         }
     }
 
@@ -95,25 +85,25 @@ public class LineInputManager {
         checkDownStationName(upStation, name);
         return name;
     }
-
+    // 이미 등록되어 있는 역인지 확인
     private void checkDownStationName(String upStation, String name) {
         isEqualToUpStation(upStation, name);
         checkEnrolledStation(name);
     }
-
+    //상행역이랑 같은지 확인
     private void isEqualToUpStation(String upStation, String name) {
         if (name.equals(upStation)) {
-            throw new ErrorMessage(SAME_UP_DOWN_STATION);
+            throw new ErrorMessageException(SAME_UP_DOWN_STATION);
         }
     }
 
     private void checkNameToDelete(String name) {
         checkAlreadyExist(name);
     }
-
+    //이미 등록되어 있는 노선만 삭제 가능
     private void checkAlreadyExist(String name) {
-        if (!LineRepository.lineNames().contains(name)) {
-            throw new ErrorMessage(NOT_EXIST_LINE);
+        if (!LineRepository.containsName(name)) {
+            throw new ErrorMessageException(NOT_EXIST_LINE);
         }
     }
 

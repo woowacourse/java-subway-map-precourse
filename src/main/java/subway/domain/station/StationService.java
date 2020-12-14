@@ -1,9 +1,10 @@
 package subway.domain.station;
 
 import java.util.Scanner;
+import subway.common.ErrorMessage;
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
-import subway.common.ErrorMessage;
+import subway.common.ErrorMessageException;
 import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 
@@ -45,8 +46,8 @@ public class StationService {
             String name = stationInputManager.getStationNameToAdd();
             StationRepository.addStation(new Station(name));
             StationOutputManager.printAddedInfo();
-        } catch (ErrorMessage errorMessage) {
-            StationOutputManager.printErrorMessage(errorMessage);
+        } catch (ErrorMessageException errorMessageException) {
+            ErrorMessage.print(errorMessageException);
         }
     }
 
@@ -55,8 +56,8 @@ public class StationService {
             String name = stationInputManager.getStationNameToDelete();
             StationRepository.deleteStation(name);
             StationOutputManager.printDeletedInfo();
-        } catch (ErrorMessage errorMessage) {
-            StationOutputManager.printErrorMessage(errorMessage);
+        } catch (ErrorMessageException errorMessageException) {
+            ErrorMessage.print(errorMessageException);
         }
     }
 

@@ -1,11 +1,12 @@
 package subway.domain.path;
 
 import java.util.Scanner;
+import subway.common.ErrorMessage;
 import subway.domain.SubwayRepository;
 import subway.domain.line.LineOutputManager;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
-import subway.common.ErrorMessage;
+import subway.common.ErrorMessageException;
 
 public class PathInputManager {
     private static final String NOT_EXIST_LINE = "존재하지 않는 노선입니다.";
@@ -28,7 +29,7 @@ public class PathInputManager {
             pathInfo[0] = getLineName();
             pathInfo[1] = getStationNameToAdd(pathInfo[0]);
             pathInfo[2] = getIndexToAdd(pathInfo[0]);
-        } catch (ErrorMessage error) {
+        } catch (ErrorMessageException error) {
             System.out.println(error.getMessage());
             pathInfo[0] = ErrorMessage.OUT;
         }
@@ -44,7 +45,7 @@ public class PathInputManager {
 
     private void checkEnrolledLineName(String lineName) {
         if (!LineRepository.containsName(lineName)) {
-            throw new ErrorMessage(NOT_EXIST_LINE);
+            throw new ErrorMessageException(NOT_EXIST_LINE);
         }
     }
 
@@ -58,13 +59,13 @@ public class PathInputManager {
 
     private void checkEnrolledStationNameOnPath(String stationName, String lineName) {
         if (SubwayRepository.containsStationOnLine(stationName, lineName)) {
-            throw new ErrorMessage(STATION_ALREADY_ON_PATH);
+            throw new ErrorMessageException(STATION_ALREADY_ON_PATH);
         }
     }
 
     private void checkEnrolledStation(String stationName) {
         if (!StationRepository.containsName(stationName)) {
-            throw new ErrorMessage(NOT_ENROLLED_STATION);
+            throw new ErrorMessageException(NOT_ENROLLED_STATION);
         }
     }
 
@@ -81,19 +82,19 @@ public class PathInputManager {
             checkOverOne(indexNumber);
             checkNotOverSize(indexNumber, lineName);
         } catch (NumberFormatException n) {
-            throw new ErrorMessage(NOT_NUMBER);
+            throw new ErrorMessageException(NOT_NUMBER);
         }
     }
 
     private void checkOverOne(int indexNumber) {
         if (indexNumber < 1) {
-            throw new ErrorMessage(NOT_OVER_ONE);
+            throw new ErrorMessageException(NOT_OVER_ONE);
         }
     }
 
     private void checkNotOverSize(int indexNumber, String lineName) {
         if (indexNumber > SubwayRepository.getSizeOfPathByLineName(lineName) - 1) {
-            throw new ErrorMessage(OVER_SIZE_PATH);
+            throw new ErrorMessageException(OVER_SIZE_PATH);
         }
     }
 
@@ -102,7 +103,7 @@ public class PathInputManager {
         try {
             pathInfo[0] = getLineName(); //삭제할으로 문구 변경
             pathInfo[1] = getStationNameToDelete(pathInfo[0]);
-        } catch (ErrorMessage error) {
+        } catch (ErrorMessageException error) {
             System.out.println(error.getMessage());
             pathInfo[0] = ErrorMessage.OUT;
         }
@@ -118,7 +119,7 @@ public class PathInputManager {
 
     private void checkEnrolledStationOnPathToDelete(String stationName, String lineName) {
         if (!SubwayRepository.containsStationOnLine(stationName, lineName)) {
-            throw new ErrorMessage(NOT_EXIST_STATION_ON_PATH);
+            throw new ErrorMessageException(NOT_EXIST_STATION_ON_PATH);
         }
     }
 }

@@ -1,11 +1,11 @@
 package subway.common;
 
-public class ErrorMessage extends IllegalArgumentException {
+public class ErrorMessage {
     public static final String OUT = "OUT";
-    private static final String ERROR_PREFIX = "\n[ERROR] ";
 
-    public ErrorMessage(String message) {
-        super(ERROR_PREFIX + message);
+    private ErrorMessage() {
     }
-
+    public static void print(ErrorMessageException errorMessageException) {
+        System.out.println(errorMessageException.getMessage());
+    }
 }

@@ -2,16 +2,15 @@ package subway.domain.line;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import subway.common.ErrorMessageException;
 import subway.domain.SubwayRepository;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
-
-    private static final Set<String> lineNames = new HashSet<>();
+    private static final String FAIL_TO_DELETE = "노선을 삭제하지 못했습니다.";
+    private static final String NOT_FOUND_LINE = "존재하지 않는 노선입니다.";
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -19,25 +18,21 @@ public class LineRepository {
 
     public static void addLine(Line line) {
         lines.add(line);
-        lineNames.add(line.getName());
     }
 
-    public static boolean deleteLineByName(String name) {
-        lineNames.remove(name);
+    public static void deleteLineByName(String name) {
+        if(!lines.removeIf(line -> Objects.equals(line.getName(), name))){
+            throw new ErrorMessageException(FAIL_TO_DELETE);
+        }
         SubwayRepository.deleteSubwayLineByName(name);
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
-    }
-
-    public static Set<String> lineNames() {
-        return Collections.unmodifiableSet(lineNames);
     }
 
     public static Line findLine(String name) {
         return lines.stream().filter(item -> Objects.equals(item.getName(), name)).findFirst()
-            .get();
+            .orElseThrow(() -> new ErrorMessageException(NOT_FOUND_LINE));
     }
 
     public static boolean containsName(String lineName) {
-        return lineNames.contains(lineName);
+        return lines.stream().anyMatch(item -> Objects.equals(item.getName(), lineName));
     }
 }

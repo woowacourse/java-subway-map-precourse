@@ -2,10 +2,11 @@ package subway.domain.path;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import subway.common.ErrorMessage;
 import subway.domain.SubwayRepository;
 import subway.domain.menu.Menu;
 import subway.domain.menu.MenuInputManager;
-import subway.common.ErrorMessage;
+import subway.common.ErrorMessageException;
 import subway.domain.menu.MenuKeys;
 import subway.domain.menu.MenuOutputManager;
 

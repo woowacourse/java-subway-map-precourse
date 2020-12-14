@@ -1,7 +1,7 @@
 package subway.domain.station;
 
 import java.util.Scanner;
-import subway.common.ErrorMessage;
+import subway.common.ErrorMessageException;
 
 public class StationInputManager {
     private static final int MIN_TWO_LETTERS = 2;
@@ -40,20 +40,20 @@ public class StationInputManager {
 
     private void checkLength(String stationName) {
         if (stationName.length() < MIN_TWO_LETTERS) {
-            throw new ErrorMessage(OVER_TWO);
+            throw new ErrorMessageException(OVER_TWO);
 
         }
     }
 
     private void checkLastLetter(String stationName) {
         if (stationName.charAt(stationName.length() - 1) != STATION) {
-            throw new ErrorMessage(LAST_LETTER_STATION);
+            throw new ErrorMessageException(LAST_LETTER_STATION);
         }
     }
 
     private void checkEnrolledStation(String stationName) {
         if (StationRepository.containsName(stationName)) {
-            throw new ErrorMessage(VALUE_EXIST);
+            throw new ErrorMessageException(VALUE_EXIST);
         }
     }
 
@@ -64,13 +64,13 @@ public class StationInputManager {
 
     private void checkAlreadyExist(String stationName) {
         if (!StationRepository.containsName(stationName)) {
-            throw new ErrorMessage(NOT_EXIST_STATION);
+            throw new ErrorMessageException(NOT_EXIST_STATION);
         }
     }
 
     private void checkNotOnPath(String stationName) {
         if (!StationRepository.isAvailableToDelete(stationName)) {
-            throw new ErrorMessage(ON_PATH_STATION);
+            throw new ErrorMessageException(ON_PATH_STATION);
         }
     }
 
