@@ -3,6 +3,7 @@ package subway.domain.station;
 import subway.domain.State;
 import subway.exception.AlreadyExistStationException;
 import subway.exception.NoSuchStationException;
+import subway.exception.StationContainException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -43,6 +44,10 @@ public class StationManager {
     public void removeStation(String name) {
         if (!StationRepository.isExistStation(name)) {
             throw new NoSuchStationException();
+        }
+
+        if (StationRepository.isContainStationInLine(name)) {
+            throw new StationContainException();
         }
 
         StationRepository.deleteStation(name);

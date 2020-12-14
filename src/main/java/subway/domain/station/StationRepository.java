@@ -1,5 +1,6 @@
 package subway.domain.station;
 
+import subway.domain.line.LineRepository;
 import subway.exception.NoSuchStationException;
 
 import java.util.ArrayList;
@@ -41,5 +42,9 @@ public class StationRepository {
 
     public static boolean isExistStation(String name) {
         return stations.stream().anyMatch(station -> station.isEqualName(name));
+    }
+    
+    public static boolean isContainStationInLine(String name) {
+        return LineRepository.lines().stream().anyMatch(line -> line.isContainStation(findStationByName(name)));
     }
 }

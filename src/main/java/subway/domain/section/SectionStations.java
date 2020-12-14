@@ -107,4 +107,9 @@ public class SectionStations {
     private boolean isExistStation(Station station) {
         return sectionStations.stream().anyMatch(sectionStation -> sectionStation.isEqualStation(station));
     }
+
+    public boolean isContainStation(Station staiton) {
+        return sectionStations.stream()
+                .anyMatch(sectionStation -> sectionStation.isEqualStation(staiton));
+    }
 }

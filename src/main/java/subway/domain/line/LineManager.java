@@ -5,6 +5,7 @@ import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.exception.AlreadyExistLineException;
 import subway.exception.NoSuchLineException;
+import subway.exception.StationContainException;
 import subway.view.InputView;
 import subway.view.OutputView;
 

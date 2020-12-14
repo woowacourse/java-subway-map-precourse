@@ -44,4 +44,8 @@ public class Line {
     public boolean isEqualName(String name) {
         return this.name.equals(name);
     }
+
+    public boolean isContainStation(Station station) {
+        return sectionStations.isContainStation(station);
+    }
 }
