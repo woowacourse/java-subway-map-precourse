@@ -22,15 +22,31 @@ public enum MainMenu {
         this.selectMenu = selectMenu;
     }
 
-    private static void exitGame(Scanner scanner) {
-        gameExit = false;
-    }
-
     public static void printMenu() {
         System.out.println("## 메인 화면");
         Arrays.stream(MainMenu.values())
                 .forEach(System.out::println);
-        System.out.println();
+        Output.printNewLine();
+    }
+
+    public static MainMenu getMainMenuType(String selectMenu) {
+        return Arrays.stream(MainMenu.values())
+                .filter(mainMenu -> mainMenu.number.equals(selectMenu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
+    }
+
+    private static void exitGame(Scanner scanner) {
+        gameExit = false;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public void execute(Scanner scanner) {
+        selectMenu.accept(scanner);
     }
 
     public boolean isExit() {
