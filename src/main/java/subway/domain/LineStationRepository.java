@@ -33,10 +33,6 @@ public class LineStationRepository {
         return lineStation;
     }
 
-    public List<Station> getStationsOfLine(Line line) {
-        return lineStation.get(line);
-    }
-
     public int getLineStationSize() {
         return lineStation.size();
     }

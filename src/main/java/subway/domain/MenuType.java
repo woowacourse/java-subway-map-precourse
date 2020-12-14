@@ -23,8 +23,7 @@ public enum MenuType {
 
     SECTION_MENU_RANGE(Arrays.asList("1", "2", "B")),
     SECTION_ADD("1"),
-    SECTION_DELETE("2"),
-    BACK("B");
+    SECTION_DELETE("2");
 
     private String key;
     private List<String> keys;
