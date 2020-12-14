@@ -29,7 +29,7 @@ public class StationValidation extends Validation {
 
     private static boolean checkNotDuplicateStation(String userInputStation) {
         try {
-            if (StationRepository.haveStation(userInputStation)) {
+            if (StationRepository.getStationByName(userInputStation) != null) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
@@ -64,7 +64,7 @@ public class StationValidation extends Validation {
 
     public static boolean checkIsInStationRepository(String userInputStation) {
         try {
-            if (!StationRepository.haveStation(userInputStation)) {
+            if (StationRepository.getStationByName(userInputStation) == null) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {

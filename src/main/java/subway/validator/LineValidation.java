@@ -30,7 +30,7 @@ public class LineValidation extends Validation {
 
     private static boolean checkNotDuplicateLine(String userInputLine) {
         try {
-            if (LineRepository.haveLine(userInputLine)) {
+            if (LineRepository.getLineByName(userInputLine) != null) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {
@@ -62,7 +62,7 @@ public class LineValidation extends Validation {
 
     public static boolean checkIsInLineRepository(String userInputLine) {
         try {
-            if (!LineRepository.haveLine(userInputLine)) {
+            if (LineRepository.getLineByName(userInputLine) == null) {
                 throw new UserInputException();
             }
         } catch (UserInputException e) {

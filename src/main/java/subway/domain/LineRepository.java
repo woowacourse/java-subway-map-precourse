@@ -20,18 +20,9 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static boolean haveLine(String name) {
-        for (Line line : lines) {
-            if(line.checkSameName(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static Line getLineByName(String name) {
         for (Line line : lines) {
-            if(line.checkSameName(name)) {
+            if (line.checkSameLineName(name)) {
                 return line;
             }
         }

@@ -20,18 +20,9 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean haveStation(String name) {
-        for (Station station : stations) {
-            if(station.checkSameName(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static Station getStationByName(String name) {
         for (Station station : stations) {
-            if(station.checkSameName(name)) {
+            if (station.checkSameStationName(name)) {
                 return station;
             }
         }

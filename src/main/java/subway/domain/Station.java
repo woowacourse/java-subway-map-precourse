@@ -16,6 +16,10 @@ public class Station {
     // 추가 기능 구현
     private ArrayList<Line> belongToWhichLine = new ArrayList<Line>();
 
+    public ArrayList<Line> getBelongToWhichLine() {
+        return belongToWhichLine;
+    }
+
     public void addBelongToWhichLine(Line line) {
         belongToWhichLine.add(line);
     }
@@ -24,11 +28,7 @@ public class Station {
         belongToWhichLine.remove(line);
     }
 
-    public ArrayList<Line> getBelongToWhichLine() {
-        return belongToWhichLine;
-    }
-
-    public boolean checkSameName(String name) {
+    public boolean checkSameStationName(String name) {
         return (this.name.equals(name));
     }
 }

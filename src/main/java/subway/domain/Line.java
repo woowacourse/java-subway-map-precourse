@@ -28,12 +28,11 @@ public class Line {
         stationsInLine.remove(station);
     }
 
-    public boolean checkSameName(String name) {
+    public boolean checkSameLineName(String name) {
         return (this.name.equals(name));
     }
 
     public boolean checkStationInLine(Station station) {
         return stationsInLine.contains(station);
     }
-
 }
