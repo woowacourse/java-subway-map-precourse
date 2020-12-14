@@ -37,7 +37,7 @@ public class MainController {
             SectionController.run();
         }
         if (selection.equals(MAP)) {
-
+            MapController.run();
         }
     }
 

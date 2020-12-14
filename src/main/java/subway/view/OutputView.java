@@ -44,6 +44,14 @@ public class OutputView {
 
     private static final String DELETE_STATION_FROM_LINE_SUCCESS = "구간이 삭제되었습니다.\n";
 
+    private static final String TRAVERSE_MAP = "## 지하철 노선도\n";
+
+    private static final String DIVIDER = "--";
+
+    public static void printMap() {
+        print(TRAVERSE_MAP);
+    }
+
     public static void printMainView() {
         print(MAIN_VIEW);
     }
@@ -104,5 +112,8 @@ public class OutputView {
         System.out.println(INFO + message);
     }
 
+    public static void println() {
+        System.out.println();
+    }
 }
 
