@@ -42,6 +42,8 @@ public class LineManager {
             addLine();
         } else if (menuNumber.equals("2")) {
             deleteLine();
+        } else if (menuNumber.equals("3")) {
+            printLine();
         }
     }
 
@@ -78,6 +80,10 @@ public class LineManager {
             System.out.println(e);
             run();
         }
+    }
+
+    private void printLine() {
+        LineRepository.printLineList();
     }
 
     public boolean isDuplicate(String line) {

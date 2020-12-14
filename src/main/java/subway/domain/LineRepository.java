@@ -8,16 +8,6 @@ import java.util.Objects;
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
-//    static {
-//        Line line2 = new Line("2호선");
-//        line2.initializeSection("교대역", "역삼역");
-//        lines.add(line2);
-//        Line line3 = new Line("3호선");
-//        lines.add(line3);
-//        Line lineSinbundang = new Line("신분당선");
-//        lines.add(lineSinbundang);
-//    }
-
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
@@ -39,7 +29,7 @@ public class LineRepository {
         return false;
     }
 
-    public static void printLine() {
+    public static void printLineList() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n[INFO] 노선 목록\n");
         for (Line line : lines) {
@@ -47,7 +37,7 @@ public class LineRepository {
             sb.append(line.getName());
             sb.append("\n");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
 

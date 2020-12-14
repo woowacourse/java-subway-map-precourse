@@ -23,7 +23,6 @@ public class SubwayProgram {
             String mainMenuNumber = mainMenu.run();
             selectMainMenu(mainMenuNumber);
 //            StationRepository.print();
-            LineRepository.printLine();
         } while (mainMenu.doNext());
     }
 
