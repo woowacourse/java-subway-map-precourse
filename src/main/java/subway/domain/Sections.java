@@ -25,11 +25,11 @@ public class Sections {
             throw new IllegalArgumentException(ERROR_STATION_DUPLICATED_IN_SECTION);
         }
 
-        if (position < 0 || position > sections.size()) {
+        if (position < 1 || position > sections.size() + 1) {
             throw new IllegalArgumentException(ERROR_SECTIONS_POSITION_NOT_VALID);
         }
 
-        sections.add(position, name);
+        sections.add(position - 1, name);
     }
 
     public boolean hasStationInSection(String name) {

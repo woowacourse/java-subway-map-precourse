@@ -45,7 +45,7 @@ public class SectionsTest {
 
     }
 
-    @DisplayName("입력된 순서는 0(상행 종점) 이상 등록된 구간의 사이즈 (하행 종점) 이하 여야 한다.")
+    @DisplayName("입력된 순서는 1(상행 종점) 이상 등록된 구간의 사이즈 + 1 (하행 종점 뒤에 등록하기 위해) 이하 여야 한다.")
     @Test
     public void checkPositionInSection() {
         StationRepository.addStation(new Station("강남역"));
@@ -60,6 +60,7 @@ public class SectionsTest {
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ERROR_SECTIONS_POSITION_NOT_VALID);
     }
+
 
     @DisplayName("구간 삭제 시 입력한 역이 노선에 존재해야 한다.")
     @Test
