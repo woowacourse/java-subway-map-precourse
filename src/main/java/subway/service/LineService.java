@@ -17,8 +17,9 @@ public class LineService extends BaseService {
     private static final String END_STATION_QUESTION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String REGISTER_LINE_SUCCESS = "지하철 노선이 등록되었습니다.";
     private static final String DELETE_LINE_QUESTION = "삭제할 노선 이름을 입력하세요.";
-    private static final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
     private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.";
+
+    private static final String ERR_UNREGISTERED_LINE = "등록되지 않은 노선입니다.";
 
     public static void view() {
         getUserChoiceWithinOptionList(Arrays.asList(LineOption.values()), HEADER);
