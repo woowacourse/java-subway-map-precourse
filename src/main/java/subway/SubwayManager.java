@@ -2,6 +2,7 @@ package subway;
 
 import java.util.Scanner;
 import controller.StationManageController;
+import utils.ValidatorUtils;
 import view.MainView;
 import view.StationManageView;
 
@@ -11,6 +12,8 @@ public class SubwayManager {
     public static final int INPUT_MANAGE_SECTION = 3;
     public static final int INPUT_PRINT_LINES = 4;
     public static final String INPUT_QUIT = "Q";
+
+    public static final String ERROR_INVALID_INPUT = "[ERROR] 유효하지 않은 입력입니다.";
 
     private MainView mainView;
     private StationManageView stationManageView;
@@ -28,6 +31,11 @@ public class SubwayManager {
         while (true) {
             mainView.run();
             String input = mainView.input();
+            while (!ValidatorUtils.validateMainInput(input)) {
+                mainView.printMessage(ERROR_INVALID_INPUT);
+                mainView.printInputMessage();
+                input = mainView.input();
+            }
             if (input.equals(INPUT_QUIT)) {
                 break;
             }
