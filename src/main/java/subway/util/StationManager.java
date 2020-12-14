@@ -12,11 +12,13 @@ public class StationManager {
                 Constants.printStation();
                 String inputString = scanner.nextLine().trim();
                 if(inputString.equals("B")) {
-                    return;
+                    break;
                 } else if(inputString.equals("1")) {
                     addStation(scanner);
+                    break;
                 } else if(inputString.equals("2")) {
                     removeStation(scanner);
+                    break;
                 } else if(inputString.equals("3")) {
                     visitStation();
                 }
@@ -25,7 +27,6 @@ public class StationManager {
                 System.out.println(exception.getMessage());
             }
         }
-
         return;
     }
 
@@ -38,7 +39,7 @@ public class StationManager {
         StationRepository.addStation(station);
     }
 
-    public IllegalArgumentException removeStation(Scanner scanner) throws IllegalArgumentException {
+    public void removeStation(Scanner scanner) throws IllegalArgumentException {
         String input;
         System.out.println(Constants.ASK_STATION_REMOVE);
         input = scanner.nextLine().trim(); // 에러 처리
@@ -47,9 +48,8 @@ public class StationManager {
         if(check) {
             System.out.println(Constants.STATION_REMOVE_COMPLETE);
         } else {
-            return new IllegalArgumentException(Constants.STATION_REMOVE_FAIL);
+            throw new IllegalArgumentException(Constants.STATION_REMOVE_FAIL);
         }
-        return null;
     }
 
     public void visitStation() {
