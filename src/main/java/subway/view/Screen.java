@@ -15,4 +15,6 @@ public interface Screen {
     void show(); //화면을 출력하는 함수
     void getCommand(); //사용자의 커맨드를 받는 함수
     int getMaxMenuNumber();
+    String getSpecialCommand();
+    int parseSpecialCommandtoInt();
 }
