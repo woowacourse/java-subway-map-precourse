@@ -51,7 +51,7 @@ public class OutputView {
     public static final String ERROR_NAME_SHORT = ERROR_LABEL + "이름의 길이가 너무 짧습니다";
     public static final String ERROR_DUPLICATE_NAME = ERROR_LABEL + "중복되는 이름이 있습니다.";
     public static final String ERROR_DELETE_FAIL = ERROR_LABEL + "해당 역은 노선에 연결되어 지울 수 없습니다.";
-    public static final String ERROR_SIZE_SMALL = ERROR_LABEL + "해당 노선은 종착역들로만 이루어져 있습니다.";
+    public static final String ERROR_SIZE_SMALL = ERROR_LABEL + "해당 노선은 종착역으로만 이루어져 있습니다.";
     public static final String ERROR_DUPLICATE_STATION = ERROR_LABEL + "역이 이미 노선에 등록되어 있습니다.";
     public static final String ERROR_NO_LINE = ERROR_LABEL + "해당 노선은 존재하지 않습니다.";
     public static final String ERROR_NO_STATION = ERROR_LABEL + "해당 역은 존재하지 않습니다.";
