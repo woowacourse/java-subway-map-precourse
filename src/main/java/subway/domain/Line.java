@@ -20,7 +20,16 @@ public class Line {
         return Collections.unmodifiableList(lineIntervals);
     }
 
-    public void addIntervals (Station intervalStation, int pos) {
+    public void addIntervals(Station intervalStation, int pos) {
         lineIntervals.add(pos-1, intervalStation);
+    }
+
+    public void deleteIntervals(Station deleteStation) {
+        lineIntervals.remove(deleteStation);
+    }
+
+    public Station findStationByName(String name) {
+        return lineIntervals.stream().filter(station ->
+                station.getName().equals(name)).findAny().orElse(null);
     }
 }
