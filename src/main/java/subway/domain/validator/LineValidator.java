@@ -32,8 +32,8 @@ public class LineValidator {
         }
     }
 
-    public static void checkIsValidOrder(Order order, int maximum) {
-        if (order.getIndex() > maximum) {
+    public static void checkIsValidOrder(int index, int maximum) {
+        if (index > maximum) {
             throw new InvalidOrderException();
         }
     }

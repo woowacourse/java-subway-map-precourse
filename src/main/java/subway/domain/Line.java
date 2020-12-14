@@ -20,7 +20,7 @@ public class Line {
     }
 
     public void addStation(Order order, Station station) {
-        stations.addStation(order, station);
+        stations.addStation(order.getIndex(), station);
     }
 
     public void deleteSection(Station station) {

@@ -13,19 +13,19 @@ public class LineStations {
         LineValidator.checkEndStationsAreDifferent(start, end);
 
         stations = new LinkedList<>();
-        stations.add(0, start);
-        stations.add(stations.size(), end);
+        addStation(0, start);
+        addStation(stations.size(), end);
     }
 
     public static LineStations create(Station start, Station end) {
         return new LineStations(start, end);
     }
 
-    public void addStation(Order order, Station station) {
+    public void addStation(int index, Station station) {
         LineValidator.checkIsNotOnLine(stations.contains(station));
-        LineValidator.checkIsValidOrder(order, stations.size());
+        LineValidator.checkIsValidOrder(index, stations.size());
 
-        stations.add(order.getIndex(), station);
+        stations.add(index, station);
         station.onLine();
     }
 
