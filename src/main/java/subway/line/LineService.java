@@ -76,22 +76,11 @@ public class LineService {
     }
 
     public static Line findLine(String lineName) {
-        List<Line> lines = LineRepository.lines();
-        Line findLine = null;
-
-        for (Line line : lines) {
-            String name = line.getName();
-            if (name.equals(lineName)) {
-                findLine = line;
-                break;
-            }
-        }
-
-        if (findLine == null) {
+        Line line = LineRepository.findByName(lineName);
+        if (line == null) {
             throw new IllegalArgumentException(NOT_EXIST);
         }
-
-        return findLine;
+        return line;
     }
 
     public static void deleteSection(String lineName, StationInputView stationInputView) {
