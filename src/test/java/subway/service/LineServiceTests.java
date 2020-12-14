@@ -17,7 +17,7 @@ class LineServiceTests {
     @BeforeEach
     public void 초기화() {
         stationService = new StationService();
-        lineService = new LineService(stationService);
+        lineService = new LineService();
     }
 
     @Test

@@ -26,7 +26,7 @@ public class SubwayMapController {
     public SubwayMapController(Scanner scanner) {
         inputView = new InputView(scanner);
         stationService = new StationService();
-        lineService = new LineService(stationService);
+        lineService = new LineService();
     }
 
     public void run() {
