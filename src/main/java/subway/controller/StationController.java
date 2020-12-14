@@ -36,6 +36,6 @@ public class StationController implements SubwayMapController {
     }
 
     @Override
-    public void readSubwayMap() {
+    public void readEntireSubwayMap() {
     }
 }

@@ -16,7 +16,7 @@ public class ControllerMapper {
     public void delegateRequestToController(ManagementType managementType, FunctionType functionType) {
         SubwayMapController subwayMapController = findSubwayMapController(managementType);
         if (managementType == ManagementType.PRINT_SUBWAY_MAP) {
-            subwayMapController.readSubwayMap();
+            subwayMapController.readEntireSubwayMap();
             return;
         }
         executeRequestFunction(subwayMapController, functionType);

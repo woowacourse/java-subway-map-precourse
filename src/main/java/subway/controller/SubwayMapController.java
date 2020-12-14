@@ -8,5 +8,5 @@ public interface SubwayMapController {
 
     public void readNames();
 
-    public void readSubwayMap();
+    public void readEntireSubwayMap();
 }

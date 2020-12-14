@@ -44,7 +44,7 @@ public class LineController implements SubwayMapController {
     }
 
     @Override
-    public void readSubwayMap() {
+    public void readEntireSubwayMap() {
         List<SubwayMapDto> subwayMapDtos = lineService.getSubwayMapDtos();
         OutputView.printSubwayMap(subwayMapDtos);
     }

@@ -38,6 +38,6 @@ public class SectionController implements SubwayMapController {
     }
 
     @Override
-    public void readSubwayMap() {
+    public void readEntireSubwayMap() {
     }
 }
