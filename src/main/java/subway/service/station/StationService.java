@@ -3,7 +3,6 @@ package subway.service.station;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.service.InputService;
-import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.view.output.station.StationInformationView;
@@ -13,7 +12,7 @@ import subway.view.output.station.StationTextView;
 import java.util.List;
 import java.util.Scanner;
 
-public class StationService implements FeatureChoiceInterface, FeatureInterface {
+public class StationService implements FeatureInterface {
     public static void manageStation(Scanner scanner) {
         InputService inputService = new InputService();
         StationService stationService = new StationService();

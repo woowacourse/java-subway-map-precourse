@@ -4,7 +4,6 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
 import subway.service.InputService;
-import subway.service.abstraction.feature.FeatureChoiceInterface;
 import subway.service.abstraction.feature.FeatureInterface;
 import subway.type.InputType;
 import subway.view.output.ScreenView;
@@ -14,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class LineService implements FeatureChoiceInterface, FeatureInterface {
+public class LineService implements FeatureInterface {
     public static void manageLine(Scanner scanner){
         InputService inputService = new InputService();
         LineService lineService = new LineService();
