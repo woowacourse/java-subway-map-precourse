@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Line {
     private final String name;
@@ -45,6 +46,8 @@ public class Line {
                 return;
             }
         }
+        Optional<Station> searchedLine = getStation().stream()
+                .filter(station1 -> station1.equals(station)).findAny();
         if (StationRepository.stations().contains(station)) {
             stations.removeIf(station1 -> Objects.equals(station1.getName(), station.getName()));
         }

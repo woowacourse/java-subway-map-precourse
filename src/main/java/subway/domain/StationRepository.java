@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -45,11 +42,27 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public static void isIncludedFixedStation(String name) throws IllegalArgumentException{
         if (fixedStations.removeIf(station -> Objects.equals(station.getName(), name))) {
             ErrorMessage.isNotAbleToDeleteStation();
-            return false;
+            throw new IllegalArgumentException();
         }
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static void isIncludedLine(String name) throws IllegalArgumentException{
+        for (Line line : LineRepository.lines()) {
+            Optional<Station> searchedStation = line.getStation()
+                    .stream().filter(station -> station.getName().equals(name)).findAny();
+            if (searchedStation.isPresent()) {
+                ErrorMessage.isIncludedInLineError();
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public static void deleteStation(String name) {
+        isIncludedFixedStation(name);
+        isIncludedLine(name);
+        stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
