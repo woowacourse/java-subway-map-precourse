@@ -22,7 +22,12 @@ public class Line {
         this.name = name;
         this.upBoundTerminus = upBoundTerminus;
         this.downstreamTerminus = downstreamTerminus;
-        this.stations = Arrays.asList(upBoundTerminus, downstreamTerminus);
+        this.stations = new ArrayList<>() {
+        	{
+        		add(upBoundTerminus);
+        		add(downstreamTerminus);
+        	}
+        };
     }
 
     public String getName() {

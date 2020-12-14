@@ -68,6 +68,7 @@ public class Message {
 	public static final String LINE_WAS_CREATE = "지하철 노선이 등록되었습니다.";
 	public static final String LINE_WAS_REMOVE = "지하철 노선이 삭제되었습니다.";
 	public static final String SECTION_WAS_REMOVE = "구간이 삭제되었습니다.";
+	public static final String SECTION_CREATE_SUCCESS = "구간 등록이 완료되었습니다.";
 	
 	/*
 	 * error
@@ -80,6 +81,7 @@ public class Message {
 	public static final String HAVE_NOT_STATION = "내에 일치하는 지하철 역 이름이 없습니다.";
 	public static final String NOT_USEABLE_STATION_NAME_LENGTH = "역 이름은 2자 이상으로 구성되어야 합니다.";
 	public static final String NOT_USEABLE_LINE_NAME_LENGTH = "노선 이름은 2자 이상으로 구성되어야 합니다.";
+	public static final String NOT_USEABLE_SEQUENCE = "해당 위치에 구간을 추가할 수 없습니다. 노선의 지하철 수를 확인해주십시오.";
 	
 	/*
 	 * ending

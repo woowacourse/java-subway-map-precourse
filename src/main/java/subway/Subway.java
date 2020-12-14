@@ -21,10 +21,22 @@ public class Subway {
 		}
 		return true;
 	}
+	
+	private static boolean isUseableSequence(Line line, int seq) {
+		if (seq < 1 || seq > line.getStations().size() + 1) {
+			return false;
+		}
+		return true;
+	}
 	 
-	private static void addSectionByLine(Line line, String lineName, String stationName, String seq) {
+	private static void addSectionByLine(Line line, String lineName, String stationName, int seq) {
 		if (Objects.equals(line.getName(), lineName)) {
-			line.addStation(Integer.parseInt(seq) - 1, stationName);
+			if (isUseableSequence(line, seq)) {
+				line.addStation(seq - 1, stationName);
+				Output.info(Message.SECTION_CREATE_SUCCESS);
+				return;
+			}
+			Output.error(Message.NOT_USEABLE_SEQUENCE);			
 		}
 	}
 	
@@ -105,7 +117,7 @@ public class Subway {
 	public static void addSection(String lineName, String stationName, String seq) {
 		if (isUseableSection(lineName, stationName)) {
 			for (Line line: LineRepository.getLines()) {
-				addSectionByLine(line, lineName, stationName, seq);
+				addSectionByLine(line, lineName, stationName, Integer.parseInt(seq));
 			}
 		}
 	}
