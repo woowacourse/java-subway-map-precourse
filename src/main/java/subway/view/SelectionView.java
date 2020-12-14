@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.utils.ErrorUtils;
 import subway.utils.InputValidator;
 
 import java.util.ArrayList;
@@ -64,19 +65,15 @@ public abstract class SelectionView extends AbstractView {
 
     protected int inputMenuOption() {
         int numOfMenu = this.visitableViews.size();
-        while (true) {
-            try {
-                println(INPUT_MESSAGE);
-                String input = scanner.nextLine();
-                if (isGoBack(input)) {
-                    return GO_BACK_CODE;
-                }
-                InputValidator.validateMenuInput(input, numOfMenu);
-                return Integer.parseInt(input);
-            } catch (Exception e) {
-                printExceptionMessage(e);
+        return (int) ErrorUtils.repeatInputUntilNoException(() -> {
+            println(INPUT_MESSAGE);
+            String input = scanner.nextLine();
+            if (isGoBack(input)) {
+                return GO_BACK_CODE;
             }
-        }
+            InputValidator.validateMenuInput(input, numOfMenu);
+            return Integer.parseInt(input);
+        });
     }
 
     private boolean isGoBack(String input) {

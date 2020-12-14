@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.model.ResultDto;
 import subway.model.Status;
+import subway.utils.ErrorUtils;
 import subway.utils.InputValidator;
 
 /**
@@ -16,30 +17,22 @@ public abstract class GeneralView extends AbstractView{
     }
 
     protected String inputMoreThanTwoWords(String guideMessage) {
-        while (true) {
-            try {
-                println(guideMessage);
-                String input = scanner.nextLine();
-                InputValidator.validateMoreThanTwoWords(input);
-                return input;
-            } catch (Exception e) {
-                printExceptionMessage(e);
-            }
-        }
+        return (String) ErrorUtils.repeatInputUntilNoException(() -> {
+            println(guideMessage);
+            String input = scanner.nextLine();
+            InputValidator.validateMoreThanTwoWords(input);
+            return input;
+        });
     }
 
     protected int inputNumber(String guideMessage) {
-        while (true) {
-            try {
-                println(guideMessage);
-                String input = scanner.nextLine();
-                int result = Integer.parseInt(input);
-                InputValidator.validatePositiveNumber(result);
-                return result;
-            } catch (Exception e) {
-                printExceptionMessage(e);
-            }
-        }
+        return (int) ErrorUtils.repeatInputUntilNoException(() -> {
+            println(guideMessage);
+            String input = scanner.nextLine();
+            int result = Integer.parseInt(input);
+            InputValidator.validatePositiveNumber(result);
+            return result;
+        });
     }
 
     protected void processRequestResult(ResultDto result) {
