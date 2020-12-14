@@ -1,7 +1,6 @@
 package subway.view;
 
 import subway.controller.StationController;
-
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -28,6 +27,17 @@ public enum StationMenu {
         Arrays.stream(StationMenu.values())
                 .forEach(System.out::println);
         Output.printNewLine();
+    }
+
+    public static StationMenu getStationMenuType(String selectMenu) {
+        return Arrays.stream(StationMenu.values())
+                .filter(stationMenu -> stationMenu.number.equals(selectMenu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
+    }
+
+    public void execute(StationController stationController) {
+        nextAction.accept(stationController);
     }
 
     @Override
