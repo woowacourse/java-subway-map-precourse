@@ -11,7 +11,7 @@ public enum InitialStations {
 
     private final String stationName;
 
-    private InitialStations(String stationName) {
+    InitialStations(String stationName) {
         this.stationName = stationName;
     }
 

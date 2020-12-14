@@ -1,4 +1,4 @@
-package subway.viewer;
+package subway.viewer.constants;
 
 public enum IntervalInputInitiator {
     MAIN_INTERVAL_MANAGE("## 구간 관리 화면"),

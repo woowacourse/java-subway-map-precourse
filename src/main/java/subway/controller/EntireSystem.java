@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.controller.constants.QuestionNumber;
+import subway.viewer.SystemInputViewer;
 
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class EntireSystem {
     public void runProgram() {
         String option;
         do {
+            SystemInputViewer.askMainScreen();
             option = scanner.next();
             EntireOptions selectedOption = translateOption(option);
             checkValidatedOption(selectedOption);

@@ -1,4 +1,4 @@
-package subway.viewer;
+package subway.viewer.constants;
 
 public enum SystemInputInitiator {
     MAIN_SCREEN("## 메인화면"),

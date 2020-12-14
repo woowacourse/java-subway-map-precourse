@@ -1,13 +1,14 @@
 package subway.domain;
 
+import subway.domain.constants.DomainConstant;
+import subway.domain.constants.DomainErrorMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
-    private static final int ZERO_NUMBER = 0;
-    private static final String OVERLAP_ERROR = "[ERROR] 노선의 이름이 중복이 되었습니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
@@ -28,8 +29,8 @@ public class LineRepository {
         long isOverlap = lines.stream()
                 .filter(line -> line.compareName(target))
                 .count();
-        if (isOverlap != ZERO_NUMBER) {
-            throw new IllegalArgumentException(OVERLAP_ERROR);
+        if (isOverlap != DomainConstant.ZERO_LONG_NUMBER) {
+            throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_LINE_ERROR);
         }
     }
 

@@ -1,7 +1,6 @@
 package subway.controller;
 
 import subway.viewer.IntervalInputViewer;
-import subway.viewer.LineInputViewer;
 
 import java.util.Scanner;
 

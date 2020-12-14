@@ -1,5 +1,7 @@
 package subway.viewer;
 
+import subway.viewer.constants.LineInputInitiator;
+
 public class LineInputViewer {
     private static final String ASK_ENROLL_LINE = "## 등록할 노선 이름을 입력하세요.";
     private static final String ASK_DEPARTURE_STATION = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";

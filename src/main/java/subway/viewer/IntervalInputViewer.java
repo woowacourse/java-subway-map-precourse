@@ -1,5 +1,7 @@
 package subway.viewer;
 
+import subway.viewer.constants.IntervalInputInitiator;
+
 public class IntervalInputViewer {
     private static final String ASK_ENROLL_LINE = "## 노선을 입력하세요.";
     private static final String ASK_ENROLL_STATION = "## 역이름을 입력하세요.";

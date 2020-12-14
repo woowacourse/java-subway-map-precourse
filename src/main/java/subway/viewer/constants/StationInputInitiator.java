@@ -1,4 +1,4 @@
-package subway.viewer;
+package subway.viewer.constants;
 
 public enum StationInputInitiator {
     MAIN_STATION_MANAGE("## 역 관리 화면"),

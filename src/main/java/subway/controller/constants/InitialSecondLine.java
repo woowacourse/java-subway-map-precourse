@@ -1,14 +1,14 @@
 package subway.controller.constants;
 
 public enum InitialSecondLine {
-    ONE(0, "교대역"),
-    TWO(1, "강남역"),
-    THREE(2, "역삼역");
+    ONE(1, "교대역"),
+    TWO(2, "강남역"),
+    THREE(3, "역삼역");
 
     private final int order;
     private final String stationName;
 
-    private InitialSecondLine(int order, String stationName) {
+    InitialSecondLine(int order, String stationName) {
         this.order = order;
         this.stationName = stationName;
     }
