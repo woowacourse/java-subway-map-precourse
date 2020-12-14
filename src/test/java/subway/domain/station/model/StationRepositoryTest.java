@@ -30,7 +30,7 @@ class StationRepositoryTest {
         //when
         StationRepository.addStation(station);
 
-        //thent
+        //then
         List<Station> stations = StationRepository.stations();
         assertThat(stations)
                 .extracting("name", String.class)
