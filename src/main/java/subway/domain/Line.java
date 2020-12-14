@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Line {
     private static final int MINIMUM_LENGTH = 2;
+    private static final int DELETE_SECTION_MINIMUM_SIZE = 2;
+    
+    private static final String DELETE_SECTION_MINIMUM_SIZE_ERROR = "노선에 포함된 역이 2개 이하입니다.";
     
     private String name;
     private List<Station> stations = new ArrayList<>();
@@ -43,5 +46,12 @@ public class Line {
     
     public void addStation(Station station, int order) {
         stations.add(order, station);
+    }
+    
+    public boolean deleteStation(Station station) {
+        if (stations.size() <= DELETE_SECTION_MINIMUM_SIZE) {
+            throw new IllegalArgumentException(DELETE_SECTION_MINIMUM_SIZE_ERROR);
+        }
+        return stations.remove(station);
     }
 }

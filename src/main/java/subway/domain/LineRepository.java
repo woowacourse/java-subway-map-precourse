@@ -33,6 +33,10 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
     
+    public static boolean deleteSection(Line line, Station station) {
+        return line.deleteStation(station);
+    }
+    
     public static boolean isStationExistOnLines(String name) {
         for (Line line : lines) {
             if (line.hasStation(name)) {
