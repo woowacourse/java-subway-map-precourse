@@ -18,6 +18,10 @@ public class LineController {
     private static final String LINE_PRINT = "3";
     private static final String BACK = "B";
 
+    private static final String INVALID_INPUT = "";
+    private static final boolean UP_TERMINUS = true;
+    private static final boolean DOWN_TERMINUS = false;
+
     public static void start(Scanner scanner) {
         runLineController(scanner);
     }
@@ -60,32 +64,47 @@ public class LineController {
     }
 
     private static boolean registerLine(Scanner scanner) {
+        String userInputLine = getRegisterLineUserInputLine(scanner);
+        if (userInputLine.equals(INVALID_INPUT)) {
+            return false;
+        }
+        String upTerminusInput = getRegisterUserInputTerminus(scanner, UP_TERMINUS);
+        if (upTerminusInput.equals(INVALID_INPUT)) {
+            return false;
+        }
+        String downTerminusInput = getRegisterUserInputTerminus(scanner, DOWN_TERMINUS);
+        if (downTerminusInput.equals(INVALID_INPUT) ||
+                !LineValidation.checkSameTerminus(upTerminusInput, downTerminusInput)) {
+            return false;
+        }
+        registerLineToDataBase(userInputLine, upTerminusInput, downTerminusInput);
+        return true;
+    }
+
+    private static String getRegisterLineUserInputLine(Scanner scanner) {
         LineOutputView.printLineRegisterInstruction();
         String userInputLine = InputView.getInput(scanner);
-        boolean validInput = LineValidation.checkRegisterLineInput(userInputLine);
-        if (!validInput) {
-            return false;
+        if (!LineValidation.checkRegisterLineInput(userInputLine)) {
+            return INVALID_INPUT;
         }
+        return userInputLine;
+    }
 
-        LineOutputView.printUpTerminusInstruction();
-        String upTerminusInput = InputView.getInput(scanner);
-        validInput = StationValidation.checkIsInStationRepository(upTerminusInput);
-        if (!validInput) {
-            return false;
+    private static String getRegisterUserInputTerminus(Scanner scanner, boolean terminus) {
+        if (terminus == UP_TERMINUS) {
+            LineOutputView.printUpTerminusInstruction();
         }
-
-        LineOutputView.printDownTerminusInstruction();
-        String downTerminusInput = InputView.getInput(scanner);
-        validInput = StationValidation.checkIsInStationRepository(downTerminusInput);
-        if (!validInput) {
-            return false;
+        if (terminus == DOWN_TERMINUS) {
+            LineOutputView.printDownTerminusInstruction();
         }
-
-        validInput = LineValidation.checkSameTerminus(upTerminusInput, downTerminusInput);
-        if (!validInput) {
-            return false;
+        String TerminusInput = InputView.getInput(scanner);
+        if (!StationValidation.checkIsInStationRepository(TerminusInput)) {
+            return INVALID_INPUT;
         }
+        return TerminusInput;
+    }
 
+    private static void registerLineToDataBase(String userInputLine, String upTerminusInput, String downTerminusInput) {
         Line newLine = new Line(userInputLine);
         Station upTerminus = StationRepository.getStationByName(upTerminusInput);
         Station downTerminus = StationRepository.getStationByName(downTerminusInput);
@@ -95,19 +114,29 @@ public class LineController {
         newLine.addStationsInLine(downTerminus);
         LineRepository.addLine(newLine);
         LineInfoView.printRegisterInfo();
-        return true;
     }
 
     private static boolean deleteLine(Scanner scanner) {
-        LineOutputView.printLineDeleteInstruction();
-        String userInputLine = InputView.getInput(scanner);
-        boolean validInput = LineValidation.checkDeleteLineInput(userInputLine);
-        if (!validInput) {
+        String userInputLine = getDeleteLineUserInput(scanner);
+        if (userInputLine.equals(INVALID_INPUT)) {
             return false;
         }
+        deleteLineFromDataBase(userInputLine);
+        return true;
+    }
+
+    private static String getDeleteLineUserInput(Scanner scanner) {
+        LineOutputView.printLineDeleteInstruction();
+        String userInputLine = InputView.getInput(scanner);
+        if (!LineValidation.checkDeleteLineInput(userInputLine)) {
+            return INVALID_INPUT;
+        }
+        return userInputLine;
+    }
+
+    private static void deleteLineFromDataBase(String userInputLine) {
         LineRepository.deleteLineByName(userInputLine);
         LineInfoView.printDeleteInfo();
-        return true;
     }
 
     private static boolean printLine(Scanner scanner) {

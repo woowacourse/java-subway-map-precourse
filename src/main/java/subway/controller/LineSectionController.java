@@ -6,10 +6,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.validator.LineSectionValidation;
 import subway.validator.LineValidation;
-import subway.validator.StationValidation;
 import subway.view.InputView;
-import subway.view.lineoutput.LineInfoView;
-import subway.view.lineoutput.LineOutputView;
 import subway.view.linesectionoutput.LineSectionInfoView;
 import subway.view.linesectionoutput.LineSectionOutputView;
 
@@ -19,6 +16,9 @@ public class LineSectionController {
     private static final String LINE_SECTION_REGISTER = "1";
     private static final String LINE_SECTION_DELETE = "2";
     private static final String BACK = "B";
+
+    private static final String INVALID_INPUT = "";
+    private static final int ADJUST_SECTION = 1;
 
     public static void start(Scanner scanner) {
         runLineSectionController(scanner);
@@ -59,56 +59,94 @@ public class LineSectionController {
     }
 
     private static boolean registerLineSection(Scanner scanner) {
-        LineSectionOutputView.printLineSectionRegisterLineNameInstruction();
-        String userInputLine = InputView.getInput(scanner);
-        boolean validInput = LineValidation.checkIsInLineRepository(userInputLine);
-        if (!validInput) {
+        String userInputLine = getRegisterLineSectionUserInputLine(scanner);
+        if (userInputLine.equals(INVALID_INPUT)) {
             return false;
         }
-
-        LineSectionOutputView.printLineSectionRegisterStationNameInstruction();
-        String userInputStation = InputView.getInput(scanner);
-        validInput = LineSectionValidation.checkAvailableStation(userInputLine, userInputStation);
-        if (!validInput) {
+        String userInputStation = getRegisterLineSectionUserInputStation(scanner, userInputLine);
+        if (userInputStation.equals(INVALID_INPUT)) {
             return false;
         }
-
-        LineSectionOutputView.printLineSectionRegisterOrderInstruction();
-        String userInputOrder = InputView.getInput(scanner);
-        validInput = LineSectionValidation.checkAvailableOrder(userInputLine, userInputOrder);
-        if (!validInput) {
+        String userInputOrder = getRegisterLineSectionUserInputOrder(scanner, userInputLine);
+        if (userInputOrder.equals(INVALID_INPUT)) {
             return false;
         }
-
-        Line registerLine = LineRepository.getLineByName(userInputLine);
-        Station sectionStation =  StationRepository.getStationByName(userInputStation);
-        int order = Integer.parseInt(userInputOrder);
-        sectionStation.addBelongToWhichLine(registerLine);
-        registerLine.getStationsInLine().add(order-1, sectionStation);
-        LineSectionInfoView.printRegisterInfo();
+        registerLineSectionToDataBase(userInputLine, userInputStation, userInputOrder);
         return true;
     }
 
+    private static String getRegisterLineSectionUserInputLine(Scanner scanner) {
+        LineSectionOutputView.printLineSectionRegisterLineNameInstruction();
+        String userInputLine = InputView.getInput(scanner);
+        if (!LineValidation.checkIsInLineRepository(userInputLine)) {
+            return INVALID_INPUT;
+        }
+        return userInputLine;
+    }
+
+    private static String getRegisterLineSectionUserInputStation(Scanner scanner, String userInputLine) {
+        LineSectionOutputView.printLineSectionRegisterStationNameInstruction();
+        String userInputStation = InputView.getInput(scanner);
+        if (!LineSectionValidation.checkAvailableStation(userInputLine, userInputStation)) {
+            return INVALID_INPUT;
+        }
+        return userInputStation;
+    }
+
+    private static String getRegisterLineSectionUserInputOrder(Scanner scanner, String userInputLine) {
+        LineSectionOutputView.printLineSectionRegisterOrderInstruction();
+        String userInputOrder = InputView.getInput(scanner);
+        if (!LineSectionValidation.checkAvailableOrder(userInputLine, userInputOrder)) {
+            return INVALID_INPUT;
+        }
+        return userInputOrder;
+    }
+
+    private static void registerLineSectionToDataBase(String userInputLine, String userInputStation, String userInputOrder) {
+        Line registerLine = LineRepository.getLineByName(userInputLine);
+        Station sectionStation = StationRepository.getStationByName(userInputStation);
+        int order = Integer.parseInt(userInputOrder);
+        sectionStation.addBelongToWhichLine(registerLine);
+        registerLine.getStationsInLine().add(order - ADJUST_SECTION, sectionStation);
+        LineSectionInfoView.printRegisterInfo();
+    }
+
     private static boolean deleteLineSection(Scanner scanner) {
+        String userInputLine = getDeleteLineSectionUserInputLine(scanner);
+        if(userInputLine.equals(INVALID_INPUT)) {
+            return false;
+        }
+        String userInputStation = getDeleteLineSectionUserInputStation(scanner, userInputLine);
+        if(userInputStation.equals(INVALID_INPUT)) {
+            return false;
+        }
+        deleteLineSectionFromDataBase(userInputLine, userInputStation);
+        return true;
+    }
+
+    private static String getDeleteLineSectionUserInputLine(Scanner scanner) {
         LineSectionOutputView.printLineSectionDeletionLineNameInstruction();
         String userInputLine = InputView.getInput(scanner);
-        boolean validInput = LineSectionValidation.checkAvailableLineForDeletion(userInputLine);
-        if (!validInput) {
-            return false;
+        if(!LineSectionValidation.checkAvailableLineForDeletion(userInputLine)){
+            return INVALID_INPUT;
         }
+        return userInputLine;
+    }
 
+    private static String getDeleteLineSectionUserInputStation(Scanner scanner, String userInputLine) {
         LineSectionOutputView.printLineSectionDeletionStationNameInstruction();
         String userInputStation = InputView.getInput(scanner);
-        validInput = LineSectionValidation.checkAvailableStationForDeletion(userInputLine, userInputStation);
-        if (!validInput) {
-            return false;
+        if(!LineSectionValidation.checkAvailableStationForDeletion(userInputLine, userInputStation)){
+            return INVALID_INPUT;
         }
+        return userInputStation;
+    }
 
+    private static void deleteLineSectionFromDataBase(String userInputLine, String userInputStation) {
         Line registerLine = LineRepository.getLineByName(userInputLine);
-        Station sectionStation =  StationRepository.getStationByName(userInputStation);
+        Station sectionStation = StationRepository.getStationByName(userInputStation);
         registerLine.deleteStationsInLine(sectionStation);
         sectionStation.deleteBelongToWhichLine(registerLine);
         LineSectionInfoView.printDeleteInfo();
-        return true;
     }
 }
