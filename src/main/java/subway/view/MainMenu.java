@@ -9,7 +9,7 @@ public enum MainMenu {
     LINE_MENU("2", "2. 노선 관리", LineMenu::printMenu),
     SECTION_MENU("3", "3. 구간 관리", SectionMenu::printMenu),
     ROUTE_MAP_MENU("4", "4. 지하철 노선도 출력", RouteMapMenu::printMenu),
-    EXIT("5", "5. 종료", MainMenu::exitGame);
+    EXIT("Q", "Q. 종료", MainMenu::exitGame);
 
     private String number;
     private String name;
