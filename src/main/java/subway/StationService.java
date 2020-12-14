@@ -7,8 +7,7 @@ public class StationService {
 
     public static final int MIN_STATION_NAME_LENGTH = 2;
 
-    public static boolean addStation(String name) {
-
+    public static boolean addStation(String name, boolean isPrint) {
         if (name.length() < MIN_STATION_NAME_LENGTH) {
             OutPut.printStationNameLengthError();
             return false;
@@ -18,7 +17,9 @@ public class StationService {
             return false;
         }
         StationRepository.addStation(new Station(name));
-        OutPut.printStationCreateMessage();
+        if (isPrint) {
+            OutPut.printStationCreateMessage();
+        }
         return true;
     }
 }
