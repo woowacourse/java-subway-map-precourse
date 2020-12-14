@@ -32,7 +32,7 @@ public class ControlStation {
         StationRepository.print();
         return false;
     }
-    public static boolean back(){
+    public static boolean stationBack(){
         return false;
     }
 }

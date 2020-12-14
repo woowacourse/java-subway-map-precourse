@@ -53,7 +53,7 @@ public class Section {
         }
         return true;
     }
-    public static boolean back(){
+    public static boolean sectionBack(){
         return true;
     }
     public static boolean getRightIndex(String tmpSaveSectionIndex,Line tmpSectionLine){

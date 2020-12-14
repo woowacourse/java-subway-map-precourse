@@ -13,7 +13,7 @@ public enum StationFunctionChoice {
     ADD_STATION("1", ()->ControlStation.addStation()),
     DELETE_STATION("2",()-> ControlStation.deleteStationNotLine()),
     LOOK_STATION("3",()->ControlStation.lookStationNotLine()),
-    BACK("B",()->ControlStation.back());
+    BACK("B",()->ControlStation.stationBack());
     private String choiceKey;
     private Supplier<Boolean> handlerFunction;
     StationFunctionChoice(String choiceKey,Supplier<Boolean> handlerFunction){

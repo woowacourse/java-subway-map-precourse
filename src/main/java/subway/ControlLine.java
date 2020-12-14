@@ -35,7 +35,7 @@ public class ControlLine {
         LineRepository.printLine();
         return true;
     }
-    public static boolean back(){
+    public static boolean lineBack(){
         return true;
     }
     public static boolean lineRightChecking(String tmpSaveLineName){

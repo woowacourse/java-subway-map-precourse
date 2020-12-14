@@ -3,9 +3,10 @@ package subway;
 import subway.view.OutputMessage;
 
 public class SectionCompute {
+    static String tmpSaveFunctionKey;
     public static void manageSection(){
         OutputMessage.sectionOutputMessage();
-        String tmpSaveFunctionKey=OutputMessage.choiceOutputMessage();
+        tmpSaveFunctionKey=OutputMessage.choiceOutputMessage();
         if(!SectionFunctionChoice.checkInput(tmpSaveFunctionKey)){
             System.out.println();
             manageSection();

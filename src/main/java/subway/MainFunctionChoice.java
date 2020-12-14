@@ -11,7 +11,7 @@ public enum MainFunctionChoice {
     MANAGE_LINE("2",(choiceNumber)-> LineCompute.manageLine()),
     MANAGE_SECTION("3",(choiceNumber)->SectionCompute.manageSection()),
     LINE_LOOK("4",(choiceNumber)-> LineRepository.printAllLineInStation()),
-    QUIT("Q",(choiceNumber)->ControlStation.back());
+    QUIT("Q",(choiceNumber)->ControlStation.stationBack());
     private String choiceNumber;
     private Consumer<String> handleFunction;
     MainFunctionChoice(String choiceNumber,Consumer<String> handleFunction){

@@ -158,7 +158,8 @@ public class OutputMessage {
     }
     public static String choiceOutputMessage(){
         System.out.println(CHOICE_FUNCTION_MESSAGE);
-        return scanner.nextLine();
+        String tmp=scanner.nextLine();
+        return tmp;
     }
     public static void choiceStationOutputMessage(){
         System.out.println(STATION_MANAGE_MESSAGE);

@@ -15,7 +15,7 @@ public enum LineFunctionChoice {
     ADD_LINE("1", ()->ControlLine.addLine()),
     DELETE_LINE("2", ()->ControlLine.deleteLine()),
     LOOK_LINE("3",()->ControlLine.lookLine()),
-    BACK("B",()->ControlLine.back());
+    BACK("B",()->ControlLine.lineBack());
     private String choiceKey;
     private Supplier<Boolean> handlerFunction;
     LineFunctionChoice(String choiceKey,Supplier<Boolean> handlerFunction){
