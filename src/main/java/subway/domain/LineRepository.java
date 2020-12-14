@@ -23,4 +23,10 @@ public class LineRepository {
     public static List<Line> getLines() {
         return lines;
     }
+
+    public static Line searchLineByName(String name) {
+        return lines().stream()
+                .filter(line -> line.getName().equals(name))
+                .findFirst().orElseThrow();
+    }
 }
