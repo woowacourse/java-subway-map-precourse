@@ -13,7 +13,8 @@ public enum  ExceptionType {
     INVALID_LINE_NAME_LAST_CHARACTER(ERROR.getException() + "'선'으로 끝나는 노선 이름을 입력해주세요.\n"),
     INVALID_LINE_EXISTING_STATION_NAMES(ERROR.getException() + "상행 종점역과 하행 종점역은 지하철 역 목록에 존재해야 합니다.\n"),
     INVALID_LINE_SAME_STATION_NAMES(ERROR.getException() + "상행 종점역과 하행 종점역은 서로 달라야 합니다.\n"),
-    INVALID_LINE_NAME_EXISTENCE(ERROR.getException() + "해당 노선이 존재하지 않습니다.\n");
+    INVALID_LINE_NAME_EXISTENCE(ERROR.getException() + "해당 노선이 존재하지 않습니다.\n"),
+    INVALID_SECTION_EXISTING_STATION_NAME_IN_LINE(ERROR.getException() + "해당 역은 이미 노선에 존재합니다.\n");
 
     private final String exception;
 

@@ -50,7 +50,7 @@ public class SectionService extends StationService {
             return false;
         }
         String stationName = SectionAddingService.scanStationName(scanner);
-        if (!sectionAddingValidation.checkStationNameValidation(stationName)) {
+        if (!sectionAddingValidation.checkStationNameValidation(lineName, stationName)) {
             return false;
         }
         String order = SectionAddingService.scanOrder(scanner);
