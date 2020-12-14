@@ -10,7 +10,7 @@ public class StationService {
     public static boolean addStation(String name) {
 
         if (name.length() < MIN_STATION_NAME_LENGTH) {
-            // TODO - 길이에러 출력함수 호출하기
+            OutPut.printStationNameLengthError();
             return false;
         }
         StationRepository.addStation(new Station(name));
