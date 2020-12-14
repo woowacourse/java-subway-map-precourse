@@ -53,6 +53,11 @@ public class OutputMessage {
 
     private static final String ERROR_MESSAGE_FUNCTION_CHOICE="[ERROR] 선택할 수 없는 기능입니다.";
 
+    private static final String ERROR_MESSAGE_DELETE_STATION="[ERROR] 역이 존재하지 않습니다.";
+
+    public static void setErrorMessageDeleteStation(){
+        System.out.println(ERROR_MESSAGE_DELETE_STATION);
+    }
     public static void setErrorMessageFunctionChoice(){
         System.out.println(ERROR_MESSAGE_FUNCTION_CHOICE);
     }

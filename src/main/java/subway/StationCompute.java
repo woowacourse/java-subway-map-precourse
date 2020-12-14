@@ -12,7 +12,7 @@ public class StationCompute {
         if(choice.doingFunction()){
             manageStation();
         }
-        System.out.println("역 관리 끝");
+        System.out.println();
     }
 
 }

@@ -1,11 +1,11 @@
 package subway;
 
+
 import subway.domain.StationRepository;
 import subway.view.OutputMessage;
 import subway.domain.Station;
 
 public class ControlStation {
-
     public static boolean addStation(){
         Boolean checkingInput=true;
         String tmpSaveStationName=OutputMessage.registerStationName();
@@ -18,16 +18,18 @@ public class ControlStation {
         return false;
     }
     public static boolean deleteStationNotLine(){
-        if(StationRepository.deleteStation(OutputMessage.choiceOutputMessage())){
+        if(!StationRepository.deleteStation(OutputMessage.choiceOutputMessage())){
+            OutputMessage.setErrorMessageDeleteStation();
             System.out.println();
+            return true;
         }
-        return true;
+        return false;
     }
     public static boolean lookStationNotLine(){
         StationRepository.print();
-        return true;
+        return false;
     }
     public static boolean back(){
-        return true;
+        return false;
     }
 }
