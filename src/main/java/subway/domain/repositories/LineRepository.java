@@ -30,15 +30,20 @@ public class LineRepository {
         lineMap.put(lineName, list);
     }
 
-    public static List<String> getUsingStations(){
+    public static List<String> getUsingStations() {
         List<String> usingStations = new ArrayList<>();
-        for(List<String> list :lineMap.values()){
+        for (List<String> list : lineMap.values()) {
             usingStations.addAll(list);
         }
         return Collections.unmodifiableList(usingStations);
     }
 
-    public static void deleteLineMapByName(String name){
+    public static void deleteLineMapByName(String name) {
         lineMap.remove(name);
+    }
+
+    public static List<String> getLineContainStations(String lineName) {
+        List<String> lineContainStations = new ArrayList<>(lineMap.get(lineName));
+        return Collections.unmodifiableList(lineContainStations);
     }
 }
