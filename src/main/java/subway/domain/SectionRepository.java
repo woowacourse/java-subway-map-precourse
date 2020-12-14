@@ -3,7 +3,6 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,9 +43,7 @@ public class SectionRepository {
     }
 
     public void deleteLine(Line sectionTitle) {
-        if (this.sectionMap.containsKey(sectionTitle)) {
-            this.sectionMap.remove(sectionTitle);
-        }
+        this.sectionMap.remove(sectionTitle);
     }
 
     public void deleteSection(Line sectionTitle, Station station) {
@@ -67,9 +64,7 @@ public class SectionRepository {
 
     public Map<String, List<String>> findAll() {
         Map<String, List<String>> wholeSubwayMap = new HashMap<>();
-        Iterator<Line> sectionTitles = sectionMap.keySet().iterator();
-        while (sectionTitles.hasNext()) {
-            Line sectionTitle = sectionTitles.next();
+        for (Line sectionTitle : sectionMap.keySet()) {
             List<String> stations = new ArrayList<>();
             for (Station station : sectionMap.get(sectionTitle)) {
                 stations.add(station.getName());

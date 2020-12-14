@@ -6,8 +6,8 @@ public class MenuGroup {
 
     public static class Menu {
 
-        private String title;
-        private List<MenuItem> items;
+        private final String title;
+        private final List<MenuItem> items;
 
         public Menu(String title, List<MenuItem> items) {
             this.title = title;
@@ -25,8 +25,8 @@ public class MenuGroup {
 
     public static class MenuItem {
 
-        private String code;
-        private String title;
+        private final String code;
+        private final String title;
 
         public MenuItem(String code, String title) {
             this.code = code;
