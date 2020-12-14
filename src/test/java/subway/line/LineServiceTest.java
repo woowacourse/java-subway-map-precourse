@@ -60,4 +60,20 @@ class LineServiceTest {
         ResultDto result = LineService.deleteLine(lineName);
         assertEquals(Status.BAD, result.getStatus());
     }
+
+    @Test
+    void 이미_노선에_존재하는_역_예외처리_테스트() {
+        // given
+        String lineName = "2호선";
+        String upEndStation = "강남역";
+        String downEndStation = "교대역";
+
+        // when
+        LineService.registerLine(lineName, upEndStation, downEndStation);
+
+        // then
+        assertThrows(Exception.class, () -> {
+            LineService.checkStationOnSubwayLine(upEndStation, lineName);
+        });
+    }
 }

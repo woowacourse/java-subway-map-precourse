@@ -14,12 +14,6 @@ public class LineService {
 
     private LineService() {}
 
-    public static void checkStationOnAnySubwayLine(String stationName) {
-        if (repository.isStationOnLine(stationName)) {
-            throw new IllegalArgumentException("노선에 등록된 역입니다.");
-        }
-    }
-
     public static ResultDto registerLine(String lineName, String upEndStation, String downEndStation) {
         try {
             checkDulicateLine(lineName);
@@ -71,5 +65,22 @@ public class LineService {
         ResultDto result = ResultDto.ok("");
         result.setContent(lineNames.toString());
         return result;
+    }
+
+    public static void checkStationOnAnySubwayLine(String stationName) {
+        if (repository.isStationOnLine(stationName)) {
+            throw new IllegalArgumentException("노선에 등록된 역입니다.");
+        }
+    }
+
+    public static void checkStationOnSubwayLine(String stationName, String lineName) {
+        Line line = repository.findByName(lineName);
+        if (line.isStationInLine(stationName)) {
+            throw new IllegalArgumentException("해당 노선에 이미 존재하는 역이 있습니다.");
+        }
+    }
+
+    public static Line findByName(String lineName) {
+        return repository.findByName(lineName);
     }
 }

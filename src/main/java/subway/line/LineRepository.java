@@ -10,10 +10,6 @@ import java.util.Objects;
 public class LineRepository {
     private final List<Line> lines = new ArrayList<>();
 
-    public List<Line> findAll() {
-        return Collections.unmodifiableList(lines);
-    }
-
     public void addLine(Line line) {
         lines.add(line);
     }
@@ -46,5 +42,18 @@ public class LineRepository {
             }
         }
         throw new IllegalArgumentException("존재 하지 않는 노선입니다.");
+    }
+
+    public List<Line> findAll() {
+        return Collections.unmodifiableList(lines);
+    }
+
+    public Line findByName(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                return line;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 노선입니다.");
     }
 }

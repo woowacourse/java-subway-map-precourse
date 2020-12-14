@@ -59,4 +59,8 @@ public class StationService {
         result.setContent(stationNames.toString());
         return result;
     }
+
+    public static Station findByName(String stationName) {
+        return repository.findByName(stationName);
+    }
 }

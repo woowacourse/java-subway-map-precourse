@@ -1,5 +1,7 @@
 package subway.view.section;
 
+import subway.model.ResultDto;
+import subway.section.SectionService;
 import subway.view.GeneralView;
 
 public class SectionRegisterView extends GeneralView {
@@ -19,6 +21,7 @@ public class SectionRegisterView extends GeneralView {
         String lineName = inputMoreThanTwoWords(INPUT_REGISTER_LINE_GUIDE_TEXT);
         String stationName = inputMoreThanTwoWords(INPUT_REGISTER_STATION_GUIDE_TEXT);
         int order = inputNumber(INPUT_REGISTER_ORDER_GUIDE_TEXT);
-        /** SectionService에게 구간 등록 요청 */
+        ResultDto result = SectionService.registerSection(lineName, stationName, order);
+        processRequestResult(result);
     }
 }

@@ -46,4 +46,20 @@ class LineRepositoryTest {
         });
     }
 
+    @Test
+    void findByName_테스트() {
+        // given
+        String lineName = "2호선";
+        String stationName1 = "강남역";
+        String stationName2 = "방배역";
+
+        // when
+
+        Line line = new Line(lineName, new Station(stationName1), new Station(stationName2));
+        repository.addLine(line);
+
+        // then
+        assertEquals(lineName, repository.findByName(lineName).getName());
+    }
+
 }

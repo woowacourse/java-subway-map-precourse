@@ -37,4 +37,13 @@ public class StationRepository {
         }
         throw new IllegalArgumentException("존재하지 않는 역입니다.");
     }
+
+    public Station findByName(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return station;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 역입니다.");
+    }
 }
