@@ -20,14 +20,15 @@ public class RegisterNewSection {
         SectionManagementPrinter.printSectionRegistrationSuccessMessage();
     }
 
-    private static Line getLineToRegisterNewSection(Scanner scanner) {
+    private static Line getLineToRegisterNewSection(Scanner scanner)
+        throws IllegalArgumentException {
         SectionManagementPrinter.printLineNameToRegisterSectionInputMessage();
         String lineNameToRegisterSection = scanner.nextLine();
         return CommonValidator.validateIsLineNameExists(lineNameToRegisterSection);
     }
 
     private static Station getStationToRegisterNewSection(Scanner scanner,
-        Line lineToRegisterSection) {
+        Line lineToRegisterSection) throws IllegalArgumentException {
         SectionManagementPrinter.printStationNameToRegisterSectionInputMessage();
         String stationNameToRegisterSection = scanner.nextLine();
         Station stationToRegisterSection = CommonValidator
@@ -37,7 +38,7 @@ public class RegisterNewSection {
     }
 
     private static int getOrderToRegisterNewSection(Scanner scanner,
-        Line lineToRegisterSection) {
+        Line lineToRegisterSection) throws IllegalArgumentException {
         SectionManagementPrinter.printOrderToRegisterInputMessage();
         String orderStrToRegisterSection = scanner.nextLine();
         return SectionManagementValidator

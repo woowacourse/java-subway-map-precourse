@@ -17,7 +17,7 @@ public class DeleteSection {
         SectionManagementPrinter.printSectionDeleteSuccessMessage();
     }
 
-    private static Line getLineToDeleteSection(Scanner scanner) {
+    private static Line getLineToDeleteSection(Scanner scanner) throws IllegalArgumentException {
         SectionManagementPrinter.printLineNameToDeleteSectionInputMessage();
         String lineNameToDeleteSection = scanner.nextLine();
         Line lineToDeleteSection = CommonValidator
@@ -27,7 +27,7 @@ public class DeleteSection {
     }
 
     private static Station getStationToDeleteSection(Scanner scanner,
-        Line lineToRegisterSection) {
+        Line lineToRegisterSection) throws IllegalArgumentException {
         SectionManagementPrinter.printStationNameToDeleteSectionInputMessage();
         String stationNameToDeleteSection = scanner.nextLine();
         Station stationToDeleteSection = CommonValidator
