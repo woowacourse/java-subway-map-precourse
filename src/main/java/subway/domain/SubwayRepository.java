@@ -14,9 +14,12 @@ public class SubwayRepository {
     private static final int END_POINT_ONLY_EXIST = 2;
 
     public static void createSubwayRealLine(String[] lineInfo) {
-        Line newline = new Line(lineInfo[0]);
+        String line = lineInfo[0];
+        String upStation = lineInfo[1];
+        String downStation = lineInfo[2];
+        Line newline = new Line(line);
         LineRepository.addLine(newline);
-        PathRepository path = new PathRepository(lineInfo[1], lineInfo[2]);
+        PathRepository path = new PathRepository(upStation, downStation);
         subwayRealLines.put(newline, path);
     }
 
