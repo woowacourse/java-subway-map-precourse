@@ -1,7 +1,6 @@
 package subway.Manager;
 
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.Service.StationService;
 import view.InputView;
 import view.OutputView;
 
@@ -12,26 +11,24 @@ public class StationManager {
     private static final String STATION_DELETE = "2";
     private static final String STATION_LOOKUP = "3";
 
-    private final Scanner scanner;
-    private StationRepository stationRepository;
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final StationService stationService;
 
-    public StationManager(Scanner scanner) {
-        stationRepository = new StationRepository();
-        this.scanner = scanner;
+    static {
+        stationService = new StationService();
     }
 
-    public void execute(String input) { // 역 관리 실행
+    public static void execute(String input) { // 역 관리 실행
         if (input.equals(STATION_INSERT)) {
-            String stationName = InputView.inputStation(scanner);
-            StationRepository.addStation(new Station(stationName));
+            stationService.addStation(InputView.inputStation(scanner));
             OutputView.stationInsertSuccess();
         }
         if (input.equals(STATION_DELETE)) {
-            InputView.inputDeleteStation(scanner);
+            stationService.deleteStation(InputView.inputDeleteStationName(scanner));
             OutputView.stationDeleteSuccess();
         }
         if (input.equals(STATION_LOOKUP)) {
-            OutputView.stationLookup(stationRepository.toString());
+            OutputView.stationsPrint(stationService.stationLookup());
         }
     }
 }

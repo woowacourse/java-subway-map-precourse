@@ -1,7 +1,5 @@
 package subway.domain;
 
-import validator.ExceptionMessage;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,15 +33,6 @@ public class StationRepository {
     public static boolean contains(String findStation) {
         return stations.stream()
                 .anyMatch(station -> station.getName().equals(findStation));
-    }
-
-    public static void isValidStationName(String name) {
-        if (name.length() < 2) {
-            throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_OVER_TWO);
-        }
-        if (contains(name)) {
-            throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_EXISTS);
-        }
     }
 
     @Override
