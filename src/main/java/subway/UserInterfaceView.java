@@ -76,6 +76,13 @@ public class UserInterfaceView {
 
     public boolean mainStartAndReturnIsQuit() {
         printMainView();
+        String userInput;
+        while (true) {
+            userInput = getUserInput(CHOICE_FUNCTION);
+            if (Arrays.asList(MAIN_CHOICE_LIST).contains(userInput)) {
+                break;
+            }
+        }
         return false;
     }
 
@@ -84,5 +91,12 @@ public class UserInterfaceView {
             System.out.println(str);
         }
         System.out.println();
+    }
+
+    private String getUserInput(String str) {
+        System.out.println(str);
+        String userInput = scanner.next();
+        System.out.println();
+        return userInput;
     }
 }
