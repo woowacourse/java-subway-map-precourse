@@ -33,7 +33,8 @@ public class LineMenu {
     private static void registerNewLine() {
         try {
             String lineName = InputView.receiveName(LINE_REGISTER_MESSAGE);
-            LineValidator.validateLine(lineName);
+            LineValidator.validateLineName(lineName);
+            LineValidator.validateDuplication(lineName);
             addLineToRepository(lineName);
             OutputView.printLineRegisterSuccess();
         } catch (Exception e) {
@@ -51,13 +52,15 @@ public class LineMenu {
 
     private static String receiveUpStationAndValidate() {
         String upStation = InputView.receiveName(UP_STATION_MESSAGE);
-        StationValidator.validateAddStationToLine(upStation);
+        StationValidator.validateStationName(upStation);
+        StationValidator.validateNotExistedStation(upStation);
         return upStation;
     }
 
     private static String receiveDownStationAndValidate() {
         String downStation = InputView.receiveName(DOWN_STATION_MESSAGE);
-        StationValidator.validateAddStationToLine(downStation);
+        StationValidator.validateStationName(downStation);
+        StationValidator.validateNotExistedStation(downStation);
         return downStation;
     }
 

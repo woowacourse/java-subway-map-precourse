@@ -4,16 +4,9 @@ import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class StationValidator {
-    public static void validateRegisterStation(String stationName) {
+    public static void validateStationName(String stationName) {
         validateFormat(stationName);
         validateLength(stationName);
-        validateDuplication(stationName);
-    }
-
-    public static void validateAddStationToLine(String stationName) {
-        validateFormat(stationName);
-        validateLength(stationName);
-        validateNotExistedStation(stationName);
     }
     
     public static void validateDeleteStation(String stationName) {

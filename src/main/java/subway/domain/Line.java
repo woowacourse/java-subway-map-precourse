@@ -18,10 +18,18 @@ public class Line {
     public void addStation(String stationName) {
         stations.add(new Station(stationName));
     }
-    
+
     public void addSection(String stationName, String order) {
-        int index = Integer.parseInt(order) - 1;
+        int index = Integer.parseInt(order) - 1; // 역이 삽입되는 index = 순서 - 1
         stations.add(index, new Station(stationName));
+    }
+
+    public void deleteSection(String stationName) {
+        for (Station station : stations) {
+            if (station.isEqualName(stationName)) {
+                stations.remove(station);
+            }
+        }
     }
 
     public boolean isStation(String stationName) {
@@ -38,6 +46,6 @@ public class Line {
     }
 
     public boolean isBiggerThan(int number) {
-        return stations.size() > number;
+        return stations.size() >= number;
     }
 }

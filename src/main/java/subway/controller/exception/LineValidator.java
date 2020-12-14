@@ -3,20 +3,19 @@ package subway.controller.exception;
 import subway.domain.LineRepository;
 
 public class LineValidator {
-    public static void validateLine(String lineName) {
+    public static void validateLineName(String lineName) {
         validateFormat(lineName);
         validateLength(lineName);
-        validateDuplication(lineName);
     }
 
-    public static void validateFormat(String lineName) {
+    private static void validateFormat(String lineName) {
         // "의정부경전철"과 같은 노선이름도 있기 때문에, "OO선" 형식을 적용하지 않음
         if (!lineName.matches("[0-9가-힣]+")) {
             throw new NameFormatException("\n[ERROR] 잘못된 노선 이름입니다.");
         }
     }
 
-    public static void validateLength(String lineName) {
+    private static void validateLength(String lineName) {
         if (lineName.length() < 2) {
             throw new NameFormatException("\n[ERROR] 두 글자 이상 입력하세요.");
         }

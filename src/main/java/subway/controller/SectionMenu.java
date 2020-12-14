@@ -1,6 +1,8 @@
 package subway.controller;
 
+import subway.controller.exception.LineValidator;
 import subway.controller.exception.SectionValidator;
+import subway.controller.exception.StationValidator;
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -24,7 +26,8 @@ public class SectionMenu {
     private static void registerNewSection() {
         try {
             String lineName = receiveLineNameAndValidate();
-            String stationName = receiveStationNameAndValidate(lineName);
+            String stationName = receiveStationNameAndValidate();
+            SectionValidator.validateSectionDuplication(lineName, stationName);
             String order = receiveOrderAndValidate(lineName);
             LineRepository.addSectionToLine(lineName, stationName, order);
             OutputView.printSectionRegisterSuccess();
@@ -36,13 +39,15 @@ public class SectionMenu {
 
     private static String receiveLineNameAndValidate() {
         String lineName = InputView.receiveName(LINE_INPUT_MESSAGE);
-        SectionValidator.validateLineCanAddSection(lineName);
+        LineValidator.validateLineName(lineName);
+        LineValidator.validateNotExistedLine(lineName);
         return lineName;
     }
 
-    private static String receiveStationNameAndValidate(String lineName) {
+    private static String receiveStationNameAndValidate() {
         String stationName = InputView.receiveName(STATION_INPUT_MESSAGE);
-        SectionValidator.validateStationCanMakeSection(lineName, stationName);
+        StationValidator.validateStationName(stationName);
+        StationValidator.validateNotExistedStation(stationName);
         return stationName;
     }
 

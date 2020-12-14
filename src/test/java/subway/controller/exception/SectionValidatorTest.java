@@ -21,7 +21,7 @@ public class SectionValidatorTest {
     
     @Test(expected = IllegalElementException.class)
     public void testSectionDuplication() {
-        SectionValidator.validateStationCanMakeSection("8호선", "산성역");
+        SectionValidator.validateSectionDuplication("8호선", "산성역");
     }
     
     @Test(expected = IllegalElementException.class)

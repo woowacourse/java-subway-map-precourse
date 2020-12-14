@@ -8,9 +8,9 @@ import subway.domain.LineRepository;
 public class LineValidatorTest {
     @Test(expected = NameFormatException.class)
     public void testWrongFormatLineName() {
-        LineValidator.validateLine("HankukUniversity");
-        LineValidator.validateLine("    ");
-        LineValidator.validateLine("선");
+        LineValidator.validateLineName("HankukUniversity");
+        LineValidator.validateLineName("    ");
+        LineValidator.validateLineName("선");
     }
 
     @Test(expected = DuplicationException.class)

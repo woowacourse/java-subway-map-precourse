@@ -3,18 +3,7 @@ package subway.controller.exception;
 import subway.domain.LineRepository;
 
 public class SectionValidator {
-    public static void validateLineCanAddSection(String lineName) {
-        LineValidator.validateFormat(lineName);
-        LineValidator.validateLength(lineName);
-        LineValidator.validateNotExistedLine(lineName);
-    }
-
-    public static void validateStationCanMakeSection(String lineName, String stationName) {
-        StationValidator.validateAddStationToLine(stationName);
-        validateSectionDuplication(lineName, stationName);
-    }
-
-    private static void validateSectionDuplication(String lineName, String stationName) {
+    public static void validateSectionDuplication(String lineName, String stationName) {
         if (LineRepository.hasSection(lineName, stationName)) {
             throw new IllegalElementException("\n[ERROR] 해당 노선에 이미 역이 존재합니다.");
         }
@@ -33,7 +22,7 @@ public class SectionValidator {
 
     private static void validateOrderIsLowerThanLineSize(String lineName, int order) {
         if (!LineRepository.isBiggerLineSizeThan(lineName, order)) {
-            throw new IllegalElementException("\n[ERROR] 순서는 노선의 범위보다 작아야 합니다.");
+            throw new IllegalElementException("\n[ERROR] 순서는 노선의 범위를 넘지 않아야 합니다.");
         }
     }
 }

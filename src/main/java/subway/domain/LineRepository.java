@@ -77,4 +77,12 @@ public class LineRepository {
             }
         }
     }
+
+    public static void deleteSectionFromLine(String lineName, String stationName) {
+        for (Line line : lines) {
+            if (isEqual(line, lineName)) {
+                line.deleteSection(stationName);
+            }
+        }
+    }
 }

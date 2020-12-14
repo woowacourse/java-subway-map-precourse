@@ -33,7 +33,8 @@ public class StationMenu {
     private static void registerNewStation() {
         try {
             String stationName = InputView.receiveName(STATION_REGISTER_MESSAGE);
-            StationValidator.validateRegisterStation(stationName);
+            StationValidator.validateStationName(stationName);
+            StationValidator.validateDuplication(stationName);
             StationRepository.addStation(new Station(stationName));
             OutputView.printStationRegisterSuccess();
         } catch (NameFormatException | DuplicationException e) {
