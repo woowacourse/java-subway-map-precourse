@@ -63,7 +63,7 @@ public class MainManager {
 
     private static void printLineWithStations(Line line) {
         System.out.println("[INFO] " + line.getName());
-        System.out.println("[INRO] ---");
+        System.out.println("[INFO] ---");
         List<String> stationNames = line.getStationNames();
         stationNames.forEach(stationName -> System.out.println("[INFO] " + stationName));
     }

@@ -30,6 +30,7 @@ public class IntervalManager {
             } catch (Exception exception) {
                 continue;
             }
+            break;
         }
     }
 

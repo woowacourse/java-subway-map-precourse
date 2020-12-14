@@ -32,6 +32,7 @@ public class StationManager {
             } catch (Exception exception) {
                 continue;
             }
+            break;
         }
     }
 

@@ -32,6 +32,7 @@ public class LineManager {
             } catch (Exception exception) {
                 continue;
             }
+            break;
         }
     }
 

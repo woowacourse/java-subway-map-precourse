@@ -12,12 +12,15 @@ public class UserConsole {
 
     public static String getCommand(String placeOfCommand, List<String> authorizedCommands) throws IllegalArgumentException {
         showOptions(placeOfCommand);
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-        if (!authorizedCommands.contains(userInput)) {
-            System.out.println("[ERROR] 없는 기능입니다.\n");
-            throw new IllegalArgumentException();
+        String userInput;
+        while (true) {
+            System.out.println("## 원하는 기능을 선택하세요.");
+            userInput = scanner.nextLine();
+            System.out.println();
+            if (authorizedCommands.contains(userInput)) {
+                break;
+            }
+            System.out.println("[ERROR] 선택할 수 없는 기능입니다.\n");
         }
         return userInput;
     }
@@ -73,7 +76,7 @@ public class UserConsole {
         String name = scanner.nextLine();
         System.out.println();
         if (!Validator.isAppropriateLength(name)) {
-            System.out.println("[ERROR] 이름은 2글자 이상이여야 한다.\n");
+            System.out.println("[ERROR] 이름은 2글자 이상이여야 합니다.\n");
             throw new IllegalArgumentException();
         }
         return name;
@@ -83,7 +86,7 @@ public class UserConsole {
         String index = scanner.nextLine();
         System.out.println();
         if (!Validator.isNaturalNumber(index)) {
-            System.out.println("[ERROR] 순서는 1부터 시작해야 한다.\n");
+            System.out.println("[ERROR] 순서는 1부터 시작해야 합니다.\n");
             throw new IllegalArgumentException();
         }
         return Integer.parseInt(index);
