@@ -1,14 +1,9 @@
 package subway.domain;
 
-import static subway.utils.Constant.MIN_STATION_NAME_LENGTH;
-
 public class Station {
     private String name;
 
     public Station(String name) {
-        if(name.length() < MIN_STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 역 이름은 2글자 이상만 가능합니다.");
-        }
         this.name = name;
     }
 

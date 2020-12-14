@@ -1,14 +1,10 @@
 package subway.subwaymanager;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.InputView;
 import subway.utils.OutputView;
 import subway.validators.ValidateStationSelect;
-
-import java.util.List;
 
 import static subway.utils.Constant.*;
 
