@@ -1,7 +1,6 @@
 package subway.userinterface.intervalmenu;
 
 import subway.userinterface.InputController;
-import subway.userinterface.linemenu.LineRegisterController;
 import subway.util.InputValidator;
 
 public class IntervalRegisterPosInputController extends InputController {
@@ -12,6 +11,7 @@ public class IntervalRegisterPosInputController extends InputController {
 
     @Override
     protected void validateInput() throws IllegalArgumentException {
-        InputValidator.validateIntervalPosition(userInput, IntervalRegisterController.getCurrentLine());
+        InputValidator.validateIntervalPosition(userInput,
+                IntervalRegisterController.getCurrentLine());
     }
 }

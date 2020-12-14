@@ -3,9 +3,9 @@ package subway.userinterface.intervalmenu;
 import subway.userinterface.InputController;
 import subway.util.InputValidator;
 
-public class IntervalRegisterStationInputController extends InputController {
+public class IntervalStationInputController extends InputController {
 
-    public IntervalRegisterStationInputController() {
+    public IntervalStationInputController() {
         this.INPUT_INTRO = "\n## 역이름을 입력하세요.";
     }
 
