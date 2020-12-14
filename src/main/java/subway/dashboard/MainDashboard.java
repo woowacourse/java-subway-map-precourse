@@ -12,8 +12,10 @@ import subway.view.InputView;
 public class MainDashboard {
     TreeMap<String, String> options;
     InputView inputView;
+    boolean power;
     public MainDashboard(InputView inputView) {
         this.inputView = inputView;
+        power = true;
         options = new TreeMap<>();
         options.put(OPTION_NUM_1, DASHBOARD_MAIN_OPTION_1);
         options.put(OPTION_NUM_2, DASHBOARD_MAIN_OPTION_2);
@@ -21,7 +23,6 @@ public class MainDashboard {
         options.put(OPTION_NUM_4, DASHBOARD_MAIN_OPTION_4);
         options.put(OPTION_QUIT, DASHBOARD_OPTION_Q);
         startMainDashboard(inputView);
-
     }
 
     public void showDashboardName() {
@@ -29,59 +30,63 @@ public class MainDashboard {
     }
 
     public void startMainDashboard(InputView inputView) {
+
         while(true) {
-            if (!startChosenOptionUntilFinished(makeUserChooseOption(inputView))) {
+            showOptions();
+
+            String chosenOption = makeUserChooseOption(inputView);
+
+            startChosenOption(chosenOption);
+
+            if (power == false ){
                 break;
             }
         }
     }
 
     public String makeUserChooseOption(InputView inputView) {
-        showDashboardName();
-        showOptions();
-        String optionChosen;
-        while(true) {
-            optionChosen = chooseOption(inputView);
-            if (checkOptions(optionChosen)) {
-                return optionChosen;
-            }
+        String optionChosen = chooseOption(inputView);
+        try{
+            checkOptions(optionChosen);
+        } catch (Exception e) {
+            System.out.println(ERROR_OPTION_UNAVAILABLE);
+            makeUserChooseOption(inputView);
+        }
+
+        return optionChosen;
+    }
+
+    public void checkOptions(String input) throws Exception {
+        if (!options.containsKey(input)) {
+            throw new Exception();
         }
     }
 
-    public boolean checkOptions(String input) {
-        if (options.containsKey(input)) {
-            return true;
-        }
-        System.out.println(ERROR_OPTION_UNAVAILABLE);
-        return false;
-    }
-
-    public boolean startChosenOptionUntilFinished(String option) {
+    public void startChosenOption(String option) {
         if (option.equals(OPTION_NUM_1)) {
             StationDashboard stationDashboard = new StationDashboard(inputView);
-            return true;
         }
 
         if (option.equals(OPTION_NUM_2)) {
             LineDashboard lineDashboard = new LineDashboard(inputView);
-            return true;
         }
 
         if (option.equals(OPTION_NUM_3)) {
             StretchDashboard stretchDashboard = new StretchDashboard(inputView);
-            return true;
         }
 
         if (option.equals(OPTION_NUM_4)) {
             LineMapPrinterDashboard lineMapPrinterDashboard = new LineMapPrinterDashboard();
-            return true;
         }
 
-        System.out.println("[INFO] 노선도 서비스를 종료합니다");
-        return false;
+        if (option.equals(OPTION_QUIT)) {
+            power = false;
+            System.out.println("[INFO] 노선도 서비스를 종료합니다");
+        }
     }
 
     public void showOptions() {
+        showDashboardName();
         Set set = options.entrySet();
         Iterator iterator = set.iterator();
 
@@ -95,6 +100,6 @@ public class MainDashboard {
     public String chooseOption(InputView inputView) {
         return inputView.readOptionChoice();
     }
-    
+
 
 }
