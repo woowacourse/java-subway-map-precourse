@@ -209,7 +209,7 @@ public class UserInterfaceView {
             return;
         }
         if (TWO_STRING.equals(userInput)) {
-
+            deleteLine();
             return;
         }
         if (THREE_STRING.equals(userInput)) {
@@ -224,5 +224,10 @@ public class UserInterfaceView {
         if (!LineService.addLine(lineName, firstStationName, lastStationName, true)) {
             lineStart();
         }
+    }
+
+    private void deleteLine() {
+        String lineName = getUserInput(INPUT_DELETE_LINE_NAME);
+        LineService.deleteLine(lineName);
     }
 }
