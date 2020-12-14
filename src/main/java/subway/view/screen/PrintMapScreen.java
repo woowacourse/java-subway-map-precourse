@@ -12,7 +12,6 @@ public class PrintMapScreen implements Screen {
 
     @Override
     public void show() {
-        OutputView.printNewLine();
         OutputView.printWithDoubleSharp(TITLE);
     }
 

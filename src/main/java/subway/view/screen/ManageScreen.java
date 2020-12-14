@@ -26,7 +26,6 @@ public class ManageScreen implements Screen {
 
     @Override
     public void show() {
-        OutputView.printNewLine();
         OutputView.printWithDoubleSharp(name + SPACE + TITLE);
         int i;
         for (i = 0; i < MANAGE_MENU_ACTION.size() - 1; i++) {
@@ -37,7 +36,6 @@ public class ManageScreen implements Screen {
 
     @Override
     public void run(Scanner scanner) {
-        OutputView.printNewLine();
         OutputView.printSelectFunction();
         String command = InputView.getCommand(scanner);
         if (command.equals(BACK_COMMAND)) {
