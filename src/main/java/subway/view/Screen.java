@@ -2,5 +2,5 @@ package subway.view;
 
 public interface Screen {
 
-    public abstract void start();
+    public abstract String show();
 }

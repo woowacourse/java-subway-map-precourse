@@ -29,11 +29,11 @@ public class Constants {
     public static final int COUNT_SECTION_MANAGEMENT_USER_PROMPT = 2;
     public static final int COUNT_LINE_MANAGEMENT_USER_PROMPT = 3;
     public static final int COUNT_MAIN_USER_PROMPT = 4;
-    public static final int USER_ANSWER_REGISTER = 1;
-    public static final int USER_ANSWER_DELETE = 2;
-    public static final int USER_ANSWER_SHOW = 3;
-    public static final int USER_ANSWER_STATION_MANAGEMENT_SCREEN = 1;
-    public static final int USER_ANSWER_LINE_MANAGEMENT_SCREEN = 2;
-    public static final int USER_ANSWER_SECTION_MANAGEMENT_SCREEN = 3;
-    public static final int USER_ANSWER_PRINT_TRANSIT_MAP = 4;
+    public static final String USER_ANSWER_REGISTER = "1";
+    public static final String USER_ANSWER_DELETE = "2";
+    public static final String USER_ANSWER_SHOW = "3";
+    public static final String USER_ANSWER_STATION_MANAGEMENT_SCREEN = "1";
+    public static final String USER_ANSWER_LINE_MANAGEMENT_SCREEN = "2";
+    public static final String USER_ANSWER_SECTION_MANAGEMENT_SCREEN = "3";
+    public static final String USER_ANSWER_PRINT_TRANSIT_MAP = "4";
 }

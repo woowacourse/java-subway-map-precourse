@@ -1,4 +1,42 @@
 package subway.controller;
 
-public class MainController {
+import subway.Constants;
+import subway.view.MainScreen;
+import subway.view.Screen;
+
+public class MainController implements Controller {
+    static MainController instance;
+    private Screen screen;
+
+    public MainController() {
+        screen = MainScreen.getInstance();
+    }
+
+    public static MainController getInstance() {
+        if (instance == null) {
+            instance = new MainController();
+        }
+        return instance;
+    }
+
+    @Override
+    public void action() {
+        String userInput = screen.show();
+        if (userInput.equals(Constants.USER_ANSWER_STATION_MANAGEMENT_SCREEN)) {
+            StationController.getInstance().action();
+        }
+        if (userInput.equals(Constants.USER_ANSWER_LINE_MANAGEMENT_SCREEN)) {
+            LineController.getInstance().action();
+        }
+        if (userInput.equals(Constants.USER_ANSWER_SECTION_MANAGEMENT_SCREEN)) {
+            SectionController.getInstance().action();
+        }
+        if (userInput.equals(Constants.USER_ANSWER_PRINT_TRANSIT_MAP)) {
+            ((MainScreen) screen).printTransitMap();
+            action();
+        }
+        if (userInput.equals(Constants.QUIT)) {
+            System.exit(0);
+        }
+    }
 }
