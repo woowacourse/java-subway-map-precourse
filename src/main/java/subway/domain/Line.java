@@ -55,12 +55,17 @@ public class Line {
         stationInLine.add((index),new Station(tmpSaveStation));
     }
     public boolean deleteSectionLine(String tmpSaveStation){
-        if(stationInLine.size()<=2){
-            return true;
-        }
         StationRepository.deleteStation(tmpSaveStation);
-        stationInLine.remove(tmpSaveStation);
+        stationInLine.remove(findStation(tmpSaveStation));
         return true;
+    }
+    public Station findStation(String tmpSaveStation){
+        for(Station station: stationInLine){
+            if(station.getName().equals(tmpSaveStation)){
+                return station;
+            }
+        }
+        return null;
     }
     public void printAllStationInLine(){
 

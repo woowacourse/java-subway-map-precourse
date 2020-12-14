@@ -26,10 +26,23 @@ public class Section {
         return true;
     }
     public static boolean deleteSection(){
-        Line sectionLine=LineRepository.getLine(OutputMessage.deleteLineName());
-        sectionLine.deleteSectionLine(OutputMessage.deleteSectionStationName());
+        String tmpSaveSectionLineName=OutputMessage.sectionInputLine();
+        if(!LineRepository.checkingAllLine(tmpSaveSectionLineName)){
+            System.out.println();
+            OutputMessage.setErrorMessageSectionDeleteLine();
+            return false;
+        }
+        Line sectionLine=LineRepository.getLine(tmpSaveSectionLineName);
+        String tmpSaveSectionStationName=OutputMessage.deleteSectionStationName();
+        if(!StationRepository.checkingStationName(tmpSaveSectionStationName)||sectionLine.getLineInStationNumber()<3){
+            System.out.println();
+            OutputMessage.setErrorMessageSectionDeleteLine();
+            return false;
+        }
+        sectionLine.deleteSectionLine(tmpSaveSectionStationName);
         return true;
     }
+
     public static boolean getRightIndex(String tmpSaveSectionIndex,Line tmpSectionLine){
         try{
             int saveSectionIndexInt=Integer.parseInt(tmpSaveSectionIndex);
