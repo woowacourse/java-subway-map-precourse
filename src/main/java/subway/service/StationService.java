@@ -4,7 +4,7 @@ import subway.repository.StationRepository;
 import subway.view.InputView;
 
 import static subway.domain.Station.createStation;
-import static subway.repository.StationRepository.*;
+import static subway.repository.StationRepository.deleteStationByName;
 import static subway.view.OutputView.askMessage;
 
 public class StationService {

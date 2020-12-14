@@ -2,12 +2,11 @@ package subway.common;
 
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.repository.LineRepository;
 import subway.view.InputView;
 
-import static subway.repository.LineRepository.*;
+import static subway.repository.LineRepository.addLine;
+import static subway.repository.LineRepository.addSection;
 import static subway.repository.StationRepository.addStation;
-import static subway.repository.StationRepository.stations;
 
 
 public class TestCase {

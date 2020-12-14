@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static subway.repository.LineRepository.isStationExistInLine;
-import static subway.repository.LineRepository.lines;
 import static subway.view.OutputView.*;
 
 public class StationRepository {

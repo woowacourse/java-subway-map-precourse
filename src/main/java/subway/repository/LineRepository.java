@@ -2,10 +2,11 @@ package subway.repository;
 
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.view.OutputView;
 
-import java.util.*;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import static subway.view.OutputView.*;
 
@@ -19,6 +20,8 @@ public class LineRepository {
     private static final String LINE_SIZE_ZERO = "등록된 노선이 없습니다.";
     private static final String LINE_NOT_EXIST_WARN = "존재하지 않는 노선 입니다.";
     private static final String ORDER_OUT_OF_STATION_CNT = "노선에 등록된 역보다 높은 수의 순서입니다.";
+    private static final String INPUT_NUMBER_WARN = "0 이상의 숫자를 입력해주세요.";
+
 
     private static final List<Line> lines = new ArrayList<>();
 
@@ -72,6 +75,10 @@ public class LineRepository {
     public static void addSection(Line findLine, Station findStation, int orderNum) {
         if (orderNum > findLine.stations().size() + 1) {
             warnMessage(ORDER_OUT_OF_STATION_CNT);
+            return;
+        }
+        if (orderNum == -1) {
+            warnMessage(INPUT_NUMBER_WARN);
             return;
         }
         findLine.addSection(orderNum, findStation);

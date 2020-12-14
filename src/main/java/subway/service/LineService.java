@@ -6,9 +6,10 @@ import subway.repository.LineRepository;
 import subway.view.InputView;
 
 import static subway.domain.Line.validateLineName;
-import static subway.repository.LineRepository.*;
-import static subway.repository.StationRepository.*;
-import static subway.view.OutputView.*;
+import static subway.repository.LineRepository.deleteLineByName;
+import static subway.repository.StationRepository.findStationByName;
+import static subway.view.OutputView.askMessage;
+import static subway.view.OutputView.warnMessage;
 
 public class LineService {
     private final String ASK_ADD_LINE_NAME = "등록할 노선 이름을 입력하세요.";

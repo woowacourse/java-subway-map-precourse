@@ -1,13 +1,11 @@
 package subway.domain;
 
-import subway.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static subway.view.OutputView.*;
+import static subway.view.OutputView.lineDetailPrint;
 import static subway.view.OutputView.warnMessage;
 
 public class Line {
