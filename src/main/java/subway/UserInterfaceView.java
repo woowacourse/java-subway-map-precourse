@@ -158,7 +158,7 @@ public class UserInterfaceView {
             return;
         }
         if (THREE_STRING.equals(userInput)) {
-
+            printStation();
         }
     }
 
@@ -174,5 +174,11 @@ public class UserInterfaceView {
         if (!StationService.deleteStation(stationName)) {
             stationStart();
         }
+    }
+
+    private void printStation() {
+        System.out.println(STATION_LIST);
+        StationService.print();
+        System.out.println();
     }
 }
