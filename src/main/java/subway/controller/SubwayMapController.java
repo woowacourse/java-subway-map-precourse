@@ -9,6 +9,7 @@ import subway.domain.screen.MainScreen;
 import subway.domain.screen.ScreenType;
 import subway.domain.screen.StationManagementScreen;
 import subway.domain.station.Station;
+import subway.dto.StationDto;
 import subway.service.LineService;
 import subway.service.StationService;
 import subway.view.InputView;
@@ -82,7 +83,8 @@ public class SubwayMapController {
         if (!stationCommand.isStationRegistration()) {
             return;
         }
-        Station station = inputView.inputRegistrationStation();
+        StationDto stationDto = inputView.inputRegistrationStation();
+        Station station = stationDto.toStation();
         registerStation(station);
         OutputView.showStationRegistrationSuccess();
     }

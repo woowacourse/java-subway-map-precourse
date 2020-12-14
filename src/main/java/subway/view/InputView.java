@@ -5,6 +5,7 @@ import subway.domain.command.MainCommand;
 import subway.domain.command.StationCommand;
 import subway.domain.line.Line;
 import subway.domain.station.Station;
+import subway.dto.StationDto;
 
 import java.util.Scanner;
 
@@ -37,11 +38,11 @@ public class InputView {
         return StationCommand.getCommand(userMessage);
     }
 
-    public Station inputRegistrationStation() {
+    public StationDto inputRegistrationStation() {
         println(REGISTRATION_STATION_GUIDE_MESSAGE);
         String stationName = inputWithTrimming();
         lineFeed();
-        return new Station(stationName);
+        return new StationDto(stationName);
     }
 
     public String inputDeletionStation() {
