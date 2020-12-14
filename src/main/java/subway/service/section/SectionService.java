@@ -64,11 +64,17 @@ public class SectionService extends StationService {
 
     @Override
     public boolean delete(Scanner scanner) {
+        SectionDeletionValidation sectionDeletionValidation = new SectionDeletionValidation();
+
         SectionTextView.printSectionDeletionLineText();
         String lineName = scanner.nextLine();
         SectionTextView.printSectionDeletionStationText();
         String stationName = scanner.nextLine();
 
-        return true;
+        if (sectionDeletionValidation.checkSectionDeletionValidation(lineName, stationName)) {
+            SectionDeletionService.deleteSection();
+            return true;
+        }
+        return false;
     }
 }
