@@ -35,13 +35,11 @@ public class SectionController {
     }
 
     private Line getLineToAddSection() {
-        Name name = sectionView.getLineNameToAddSection();
-        return LineRepository.getByName(name);
+        return getLine(sectionView.getLineNameToAddSection());
     }
 
     private Station getStationToAddSection() {
-        Name name = sectionView.getStationNameOfSection();
-        return StationRepository.getByName(name);
+        return getStation(sectionView.getStationNameOfSection());
     }
 
     public void deleteSection() {
@@ -56,12 +54,18 @@ public class SectionController {
     }
 
     private Line getLineOfSectionToDelete() {
-        Name name = sectionView.getLineNameToDeleteSection();
-        return LineRepository.getByName(name);
+        return getLine(sectionView.getLineNameToDeleteSection());
     }
 
     private Station getStationOfSectionToDelete() {
-        Name name = sectionView.getStationNameOfSection();
+        return getStation(sectionView.getStationNameOfSection());
+    }
+
+    private Station getStation(Name name) {
         return StationRepository.getByName(name);
+    }
+
+    private Line getLine(Name name) {
+        return LineRepository.getByName(name);
     }
 }

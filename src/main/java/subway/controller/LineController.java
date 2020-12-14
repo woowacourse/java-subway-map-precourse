@@ -35,12 +35,14 @@ public class LineController {
     }
 
     private Station getStartStation() {
-        Name name = lineView.getStartStationName();
-        return StationRepository.getByName(name);
+        return getStation(lineView.getStartStationName());
     }
 
     private Station getEndStation() {
-        Name name = lineView.getEndStationName();
+        return getStation(lineView.getEndStationName());
+    }
+
+    private Station getStation(Name name) {
         return StationRepository.getByName(name);
     }
 
@@ -55,7 +57,10 @@ public class LineController {
     }
 
     private Line getLineToDelete() {
-        Name name = lineView.getLineNameToDelete();
+        return getLine(lineView.getLineNameToDelete());
+    }
+
+    private Line getLine(Name name) {
         return LineRepository.getByName(name);
     }
 

@@ -1,8 +1,6 @@
 package subway.controller;
 
-import subway.domain.Name;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 import subway.view.OutputView;
 import subway.view.StationView;
 
@@ -39,8 +37,7 @@ public class StationController {
     }
 
     private Station getStationToAdd() {
-        Name name = stationView.getStationNameToAdd();
-        return Station.create(name);
+        return Station.create(stationView.getStationNameToAdd());
     }
 
     public void deleteStation() {
@@ -54,12 +51,10 @@ public class StationController {
     }
 
     private Station getStationToDelete() {
-        Name name = stationView.getStationNameToDelete();
-        return StationRepository.getByName(name);
+        return StationRepository.getByName(stationView.getStationNameToDelete());
     }
 
     public void printStations() {
-        List<String> names = StationRepository.getStationNames();
-        stationView.printStationList(names);
+        stationView.printStationList(StationRepository.getStationNames());
     }
 }
