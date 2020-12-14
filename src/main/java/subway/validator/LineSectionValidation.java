@@ -116,13 +116,13 @@ public class LineSectionValidation extends Validation {
         if (!StationValidation.checkIsInStationRepository(userInputStation)) {
             return false;
         }
-        if (!checkAlreadyInLine(userInputLine, userInputStation)) {
+        if (!checkIsInLine(userInputLine, userInputStation)) {
             return false;
         }
         return true;
     }
 
-    private static boolean checkAlreadyInLine(String userInputLine, String userInputStation) {
+    private static boolean checkIsInLine(String userInputLine, String userInputStation) {
         Line registerLine = LineRepository.getLineByName(userInputLine);
         Station sectionStation =  StationRepository.getStationByName(userInputStation);
         try {
