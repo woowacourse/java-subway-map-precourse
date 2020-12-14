@@ -24,4 +24,8 @@ public class Line {
     public boolean isSameName(String name) {
         return this.getName().equals(name);
     }
+
+    public void insertStation(String stationName, int order) {
+        stationLine.add(order+1, new Station(stationName));
+    }
 }

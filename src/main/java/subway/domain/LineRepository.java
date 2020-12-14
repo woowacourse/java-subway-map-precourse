@@ -67,4 +67,12 @@ public class LineRepository {
         }
         return false;
     }
+
+    public static void addSection(String lineName, String stationName, int order) {
+        for (Line line : lines) {
+            if (line.isSameName(lineName)) {
+                line.insertStation(stationName, order);
+            }
+        }
+    }
 }

@@ -148,4 +148,8 @@ public class SubwayManager {
         }
         System.out.println();
     }
+
+    public static void addSection(String lineName, String stationName, int order) {
+        lineRepository.addSection(lineName, stationName, order);
+    }
 }
