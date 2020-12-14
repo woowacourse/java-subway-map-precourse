@@ -80,6 +80,16 @@ public class LineController {
     }
 
     private static boolean lineDelete(Scanner scanner) {
+        String lineName;
+
+        lineName = InputView.scanLineDeleteName(scanner);
+
+        if (!StationRepository.deleteStation(lineName)) { // 역 이름이 존재하지 않을 경우
+            OutputView.stationNameDeleteErrorPrint();
+            return false;
+        }
+
+        OutputView.stationDeleteSuccessPrint();
         return true;
     }
 

@@ -161,4 +161,13 @@ public class InputView {
         OutputView.LineAddFailPrint();
         throw new IllegalArgumentException();
     }
+
+    public static String scanLineDeleteName(Scanner scanner) {
+        String lineName;
+
+        OutputView.lineDeleteGuidePrint();
+        lineName = scanner.nextLine();
+
+        return lineName;
+    }
 }

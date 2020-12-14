@@ -66,7 +66,7 @@ public class StationController {
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
-        if (StationRepository.registeredStationsInLine().contains(stationName)) { // 중복 이름이 존재하는 경우
+        if (StationRepository.registeredStationsInLine().contains(stationName)) { // 노선에 등록된 역인 경우
             OutputView.lineRegisteredStationErrorPrint();
             return false;
         }

@@ -10,6 +10,7 @@ public enum LineMessage {
     LINE_UPTERMINUS_ADD_GUIDE("## 등록할 노선의 상행 종점역 이름을 입력하세요."),
     LINE_DOWNTERMINUS_ADD_GUIDE("## 등록할 노선의 하행 종점역 이름을 입력하세요."),
     LINE_LIST("## 노선 목록"),
+    LINE_DELETE_GUIDE("## 삭제할 노선 이름을 입력하세요"),
 
     LINE_ADD_SUCCESS("[INFO] 지하철 노선이 등록되었습니다."),
 
@@ -19,9 +20,9 @@ public enum LineMessage {
     LINE_TWO_NAME_SAME_ERROR("[ERROR] 상행 종착역과 하행 종착역의 이름은 달라야 합니다."),
     LINE_LIST_FIND_FAIL("[ERROR] 등록된 노선이 없습니다."),
     ;
+    
 
-
-
+    
     private final String text;
 
     LineMessage(String text) {

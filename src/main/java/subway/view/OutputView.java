@@ -121,4 +121,8 @@ public class OutputView {
             System.out.println(CommonMessage.INFO.getCommonMessage() + line);
         }
     }
+
+    public static void lineDeleteGuidePrint() {
+        System.out.println(LineMessage.LINE_DELETE_GUIDE.getLineMessage());
+    }
 }
