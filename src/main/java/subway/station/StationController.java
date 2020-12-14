@@ -1,7 +1,6 @@
 package subway.station;
 
 import subway.main.view.MainInputView;
-import subway.station.validation.CheckRegisteredStation;
 import subway.station.view.StationInputView;
 import subway.station.view.StationOutputView;
 
@@ -18,35 +17,47 @@ public class StationController {
     public static void stationManagement(MainInputView mainInputView) {
         List<Character> optionList = Arrays.asList(ADD_STATION, DELETE_STATION, PRINT_STATION, GO_BACK);
 
-        StationOutputView.printStationManagement();
-        selectOption(mainInputView.selectOption(optionList), mainInputView.getScanner());
+        while (true) {
+            StationOutputView.printStationManagement();
+            char option = mainInputView.selectOption(optionList);
+
+            if (option == GO_BACK) {
+                break;
+            }
+
+            if (selectOption(option, mainInputView.getScanner())) {
+                break;
+            }
+        }
     }
 
-    private static void selectOption(char option, Scanner scanner) {
+    private static boolean selectOption(char option, Scanner scanner) {
         StationInputView stationInputView = new StationInputView(scanner);
 
         if (option == ADD_STATION) {
-            addNewStation(stationInputView);
+            return addNewStation(stationInputView);
         }
         if (option == DELETE_STATION) {
-            deleteStation(stationInputView);
+            return deleteStation(stationInputView);
         }
         if (option == PRINT_STATION) {
-            printRegisteredStation();
+            return printRegisteredStation();
         }
+        return false;
     }
 
-    private static void addNewStation(StationInputView stationInputView) {
+    private static boolean addNewStation(StationInputView stationInputView) {
         String stationName = stationInputView.addStation();
-        StationService.addStation(stationName);
+        return StationService.addStation(stationName);
     }
 
-    private static void deleteStation(StationInputView stationInputView) {
+    private static boolean deleteStation(StationInputView stationInputView) {
         String stationName = stationInputView.deleteStation();
-        StationService.deleteStation(stationName);
+        return StationService.deleteStation(stationName);
     }
 
-    private static void printRegisteredStation() {
+    private static boolean printRegisteredStation() {
         StationOutputView.printAllStation();
+        return true;
     }
 }

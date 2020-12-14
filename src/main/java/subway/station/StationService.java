@@ -8,25 +8,29 @@ public class StationService {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 역입니다.";
 
-    public static void addStation(String stationName) {
+    public static boolean addStation(String stationName) {
         try {
             Station station = new Station(stationName);
             StationRepository.addStation(station);
             StationOutputView.addStationComplete();
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return false;
     }
 
-    public static void deleteStation(String stationName) {
+    public static boolean deleteStation(String stationName) {
         try {
             CheckRegisteredStation.validation(stationName);
             CheckStationRegisteredLine.validation(stationName);
             StationRepository.deleteStation(stationName);
             StationOutputView.deleteStationComplete();
+            return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return false;
     }
 
     public static Station findStation(String stationName) {
