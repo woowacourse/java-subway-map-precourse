@@ -115,6 +115,7 @@ public class UserInterfaceView {
 
     private void mainToNextFunction(String userInput) {
         if (ONE_STRING.equals(userInput)) {
+            stationStart();
             return;
         }
         if (TWO_STRING.equals(userInput)) {
@@ -125,5 +126,16 @@ public class UserInterfaceView {
         }
         if (FOUR_STRING.equals(userInput)) {
         }
+    }
+
+    private void stationStart() {
+        printStationView();
+    }
+
+    private void printStationView() {
+        for (String str : STATION_INTERFACE) {
+            System.out.println(str);
+        }
+        System.out.println();
     }
 }
