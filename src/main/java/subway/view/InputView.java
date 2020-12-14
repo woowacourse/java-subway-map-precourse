@@ -1,17 +1,15 @@
 package subway.view;
 
 import java.util.Scanner;
-import java.util.zip.ZipError;
 import subway.util.FeatureGroup;
 
 public class InputView {
     private static final String INVALID_INPUT = "[ERROR] 선택할 수 없는 기능입니다.\n";
-    private static final String INVALID_LENGTH = "[ERROR] 이름은 2글자 이상이어야 한다.\n";
+    private static final String INVALID_LENGTH = "[ERROR] 이름은 2글자 이상이어야 합니다.\n";
     private static final String NEGATIVE_NUMBER_ERROR = "[ERROR] 순서는 음수가 될 수 없습니다.\n";
     private static final String NEW_LINE = "";
     private static final int LENGTH = 2;
     private static final int ZERO = 0;
-
 
     private Scanner scanner;
 
