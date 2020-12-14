@@ -9,6 +9,7 @@ import subway.domain.screen.MainScreen;
 import subway.domain.screen.ScreenType;
 import subway.domain.screen.StationManagementScreen;
 import subway.domain.station.Station;
+import subway.dto.LineDto;
 import subway.dto.StationDto;
 import subway.service.LineService;
 import subway.service.StationService;
@@ -138,8 +139,8 @@ public class SubwayMapController {
         if (!lineCommand.isLineRegistration()) {
             return;
         }
-        Line line = inputView.inputRegistrationLine();
-        lineService.addLine(line);
+        LineDto lineDto = inputView.inputRegistrationLine();
+        lineService.addLine(lineDto);
         OutputView.showLineRegistrationSuccess();
     }
 

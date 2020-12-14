@@ -4,7 +4,7 @@ import subway.domain.command.LineCommand;
 import subway.domain.command.MainCommand;
 import subway.domain.command.StationCommand;
 import subway.domain.line.Line;
-import subway.domain.station.Station;
+import subway.dto.LineDto;
 import subway.dto.StationDto;
 
 import java.util.Scanner;
@@ -59,11 +59,11 @@ public class InputView {
         return LineCommand.getCommand(userMessage);
     }
 
-    public Line inputRegistrationLine() {
+    public LineDto inputRegistrationLine() {
         String lineName = inputLineName();
         String upwardEndStationName = inputUpwardEndStationName();
         String downwardEndStationName = inputDownwardEndStationName();
-        return Line.createLine(lineName, upwardEndStationName, downwardEndStationName);
+        return new LineDto(lineName, upwardEndStationName, downwardEndStationName);
     }
 
     private String inputLineName() {
