@@ -2,14 +2,22 @@ package subway.domain;
 
 public class Line {
     private String name;
+    private Path pathInfo;
 
-    public Line(String name) {
+    public Line(String name, Station... stations) {
         this.name = name;
+        pathInfo = new Path(stations);
     }
 
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
+    public Station getUpLine() {
+        return pathInfo.getUpLine();
+    }
+
+    public Station getDownLine() {
+        return pathInfo.getDownLine();
+    }
 }

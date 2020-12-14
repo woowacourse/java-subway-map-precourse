@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class SubwayMap {
     public static final void start(Scanner scanner) {
+        Initializer.load();
         ScreenStack.pushScreen(new MainScreen());
 
         while(!ScreenStack.isEmpty()) {
