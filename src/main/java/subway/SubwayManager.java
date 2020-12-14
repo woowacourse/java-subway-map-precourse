@@ -152,4 +152,8 @@ public class SubwayManager {
     public static void addSection(String lineName, String stationName, int order) {
         lineRepository.addSection(lineName, stationName, order);
     }
+
+    public static boolean deleteSection(String lineName, String stationName) {
+        return lineRepository.deleteSection(lineName, stationName);
+    }
 }

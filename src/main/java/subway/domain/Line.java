@@ -28,4 +28,14 @@ public class Line {
     public void insertStation(String stationName, int order) {
         stationLine.add(order+1, new Station(stationName));
     }
+
+    public boolean deleteStation(String stationName) {
+        for (Station station : stationLine) {
+            if (station.isSameName(stationName)) {
+                stationLine.remove(station);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -24,6 +24,10 @@ public class SectionManager {
     public static final String ORDER_ERROR_MESSAGE = "숫자로 순서를 입력하세요";
     public static final String INFO_PREFIX = "[INFO] ";
     public static final String ENROLLMENT_SECTION_INFO_MESSAGE = "구간이 등록되었습니다";
+    public static final String ASK_LINE_DELETION_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
+    public static final String ASK_STATION_DELETION_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
+    public static final String DELETION_SECTION_MESSAGE = "구간이 삭제되었습니다";
+    public static final String DELETION_FAIL_INFO_MESSAGE = "존재하지 않거나 삭제할 수 없습니다";
 
     public static void manage(Scanner scanner) {
         while (!userOption.equals(WANT_QUIT_CODE)) {
@@ -76,9 +80,9 @@ public class SectionManager {
         if (optionNumber == 1) {
             enrollSection(scanner);
         }
-//        if (optionNumber == 2) {
-//            deleteSection(scanner);
-//        }
+        if (optionNumber == 2) {
+            deleteSection(scanner);
+        }
     }
 
     public static void enrollSection(Scanner scanner) {
@@ -153,5 +157,19 @@ public class SectionManager {
         } catch (Exception e) {
             throw new IllegalArgumentException(ERROR_PREFIX + ORDER_ERROR_MESSAGE);
         }
+    }
+
+    public static void deleteSection(Scanner scanner) {
+        System.out.println(ASK_LINE_DELETION_MESSAGE);
+        String lineName = inputLineNameForSection(scanner);
+        System.out.println(ASK_STATION_DELETION_MESSAGE);
+        String stationName = inputStationNameForEnrollment(scanner);
+        if (SubwayManager.deleteSection(lineName, stationName)) {
+            System.out.println(INFO_PREFIX + DELETION_SECTION_MESSAGE);
+            System.out.println();
+            return;
+        }
+        System.out.println(INFO_PREFIX + DELETION_FAIL_INFO_MESSAGE);
+        System.out.println();
     }
 }

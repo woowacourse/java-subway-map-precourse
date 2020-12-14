@@ -75,4 +75,13 @@ public class LineRepository {
             }
         }
     }
+
+    public static boolean deleteSection(String lineName, String stationName) {
+        for (Line line : lines) {
+            if (line.isSameName(lineName)) {
+                return line.deleteStation(stationName);
+            }
+        }
+        return false;
+    }
 }
