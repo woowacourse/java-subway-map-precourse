@@ -34,7 +34,8 @@ public class SubwayMapController {
         lineService.addLine(lineName, sections);
     }
 
-    public void deleteLineByName(String lineName) {
+    public void deleteLine(LineDto lineDto) {
+        String lineName = lineDto.getLineName();
         lineService.deleteLineByName(lineName);
     }
 

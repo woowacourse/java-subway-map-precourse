@@ -74,9 +74,10 @@ class SubwayMapControllerTest {
     @DisplayName("Line 삭제 성공")
     @Test
     void deleteLineByName_성공한다() {
+        LineDto lineDto = new LineDto("1호선", "", "");
         int beforeLineCounts = lineRepository.findAll().size();
 
-        subwayMapController.deleteLineByName("1호선");
+        subwayMapController.deleteLine(lineDto);
         int afterLineCounts = lineRepository.findAll().size();
 
         assertThat(beforeLineCounts).isGreaterThan(afterLineCounts);
