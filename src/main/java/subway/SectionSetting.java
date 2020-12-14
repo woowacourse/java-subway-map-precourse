@@ -49,7 +49,7 @@ public class SectionSetting {
     }
 
     public static String stationToDelete(Scanner scanner, Line line) {
-        Print.hashMessage(Constant.ENTER_STATION_SECTION_TO_ADD);
+        Print.hashMessage(Constant.ENTER_STATION_SECTION_TO_DELETE);
         String input = scanner.next();
         System.out.println();
         return input;
@@ -59,7 +59,7 @@ public class SectionSetting {
         Print.hashMessage(Constant.ENTER_ORDER_SECTION_TO_ADD);
         String input = scanner.next();
         System.out.println();
-        return Exceptions.checkOrderInput(input, line.stations().size());
+        return Exceptions.checkOrderInput(input, line.stations().size()) - 1;
     }
 
     public static void addStationToLine(Line line, String stationName, int order) {
