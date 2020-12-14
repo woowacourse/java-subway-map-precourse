@@ -60,4 +60,24 @@ public class LineRepository {
             line.status();
         }
     }
+
+    public static Line getLineByName(String name) {
+        for(Line line : lines){
+            if(line.getName().equals(name)){
+                return line;
+            }
+        }
+        return null;
+    }
+
+    public static boolean deleteSection(String lineName, Scanner scanner) {
+        for(Line line : lines){
+            if(line.getName().equals(lineName)){
+                OutputView.writeDeleteStation();
+                return line.deleteStation(scanner.next());
+            }
+        }
+        ErrorView.notExistName();
+        return false;
+    }
 }

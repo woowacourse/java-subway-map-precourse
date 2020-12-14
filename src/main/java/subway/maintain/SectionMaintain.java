@@ -43,13 +43,41 @@ public class SectionMaintain {
             maintainPage();
         }
         if(operationNumber == REGISTER_SECTION){
-
+            registerSection();
         }
         if(operationNumber == DELETE_SECTION){
-
+            deleteSection();
         }
 
     }
+
+    private void deleteSection() {
+        OutputView.DeleteLineName();
+        if(LineRepository.deleteSection(scanner.next(), scanner)){
+            OutputView.completeDeleteSection();
+            new Controller(scanner);
+            return;
+        }
+        maintainPage();
+
+    }
+
+    private void registerSection() {
+        OutputView.writeLineName();
+        Line line = LineRepository.getLineByName(scanner.next());
+        if(line == null){
+            ErrorView.notExistName();
+            maintainPage();
+            return;
+        }
+        OutputView.writeStationName();
+        if(line.addStationByIndex(scanner.next(), scanner)){
+            OutputView.completeRegisterSection();
+            new Controller(scanner);
+        }
+        maintainPage();
+    }
+
 
 
 }

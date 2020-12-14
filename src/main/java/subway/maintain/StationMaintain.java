@@ -1,6 +1,7 @@
 package subway.maintain;
 
 import subway.controller.Controller;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.Util;
@@ -62,6 +63,12 @@ public class StationMaintain {
 
     private void deleteStation() {
         OutputView.deleteStationName();
+        String name = scanner.next();
+        if(LineRepository.lineRegisterStation(name)){
+            ErrorView.lineRegisterStation();
+            maintainPage();
+            return;
+        }
         if(!StationRepository.deleteStation(scanner.next())){
             ErrorView.notExistName();
             maintainPage();

@@ -39,6 +39,11 @@ public class OutputView {
     private static final String DELETE_LINE_NAME = "## 삭제할 노선 이름을 입력하세요.";
     private static final String COMPLETE_DELETE_LINE = "[INFO] 지하철 노선이 삭제되었습니다.\n";
     private static final String LINE_STATUS = "## 노선 목록";
+    private static final String WRITE_ORDER_NUMBER = "## 순서를 입력하세요.";
+    private static final String COMPLETE_REGISTER_SECTION = "[INFO] 구간이 등록되었습니다.\n";
+    private static final String WRITE_DELETE_STATION = "## 삭제할 구간의 역을 입력하세요.";
+    private static final String COMPLETE_DELETE_SECTION = "[INFO] 구간이 삭제되었습니다.\n";
+    private static final String WRITE_DELETE_LINE_NAME = "## 삭제할 구간의 노선을 입력하세요.";
 
     public static void print(String string){
         System.out.println(string);
@@ -118,5 +123,25 @@ public class OutputView {
 
     public static void sectionMaintain() {
         print(SECTION_MAINTAIN);
+    }
+
+    public static void writeOrderNumber() {
+        print(WRITE_ORDER_NUMBER);
+    }
+
+    public static void completeRegisterSection() {
+        print(COMPLETE_REGISTER_SECTION);
+    }
+
+    public static void writeDeleteStation() {
+        print(WRITE_DELETE_STATION);
+    }
+
+    public static void completeDeleteSection() {
+        print(COMPLETE_DELETE_SECTION);
+    }
+
+    public static void DeleteLineName() {
+        print(WRITE_DELETE_LINE_NAME);
     }
 }
