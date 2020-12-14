@@ -138,7 +138,7 @@ public class InputView {
 
     public SectionDeletionDto inputDeletionSection() {
         String lineName = inputDeletionSectionLine();
-        String stationName = inputDeletionSectionLine();
+        String stationName = inputDeletionSectionStation();
         return new SectionDeletionDto(lineName, stationName);
     }
 
