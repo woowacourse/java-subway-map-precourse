@@ -1,5 +1,6 @@
 package subway.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class SubwayRepository {
     }
 
     public static List<Station> getPathByLine(Line line) {
-        return subwayRealLines.get(line).getPath();
+        return Collections.unmodifiableList(subwayRealLines.get(line).getPath());
     }
 
     public static void addPathByLineNameAndIndex(String[] pathInfo) {
