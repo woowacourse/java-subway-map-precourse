@@ -1,10 +1,14 @@
 package subway.controller;
 
 import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.repositories.StationRepository;
 import subway.utils.Validator;
 import subway.view.InputView;
 import subway.view.StationView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StationController {
 
@@ -18,6 +22,13 @@ public class StationController {
             System.out.println();
             System.out.println("[ERROR] " + e.getMessage());
             System.out.println();
+        }
+    }
+
+    public static void stationInit(){
+        List<String> stationsNames = new ArrayList<>(Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", " 양재역", "양재시민의숲역", "매봉역"));
+        for(String stationName : stationsNames){
+            StationRepository.addStation(new Station(stationName));
         }
     }
 
