@@ -11,8 +11,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
+import subway.exception.AlreadyExistsException;
 import subway.exception.NotFoundElementException;
 import subway.exception.SubwayRuntimeException;
+import subway.exception.TooLessStationException;
 
 public class RemoveStationTest {
 
@@ -74,9 +76,9 @@ public class RemoveStationTest {
                 () -> lineRepository.removeRange("2호선", "교대역");
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.TOO_LESS_STATIONS_ERROR,
-                        StationRepository.MINIMUM_STATION_SIZE);
+        assertThatThrownBy(callable).isExactlyInstanceOf(TooLessStationException.class)
+                .hasMessage(SubwayRuntimeException.ERROR +
+                        TooLessStationException.TOO_LESS_STATIONS_ERROR);
     }
 
     @Test

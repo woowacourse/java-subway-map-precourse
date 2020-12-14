@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementController;
 import subway.controller.ManagementControllerTest;
+import subway.exception.AlreadyExistsException;
 import subway.exception.NotFoundElementException;
 import subway.exception.SubwayRuntimeException;
 
@@ -77,8 +78,10 @@ public class InsertStationTest {
                 () -> lineRepository.addRange(line.getName(), index, stationName);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.DUPLICATE_NAME_ERROR, stationName);
+        assertThatThrownBy(callable).isExactlyInstanceOf(AlreadyExistsException.class)
+                .hasMessage(
+                        SubwayRuntimeException.ERROR + AlreadyExistsException.ALREADY_EXISTS_ERROR,
+                        "교대역", "역");
     }
 
     @Test

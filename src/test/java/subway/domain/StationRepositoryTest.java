@@ -7,8 +7,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import subway.controller.ManagementControllerTest;
+import subway.exception.AlreadyExistsException;
+import subway.exception.NotFoundElementException;
+import subway.exception.SubwayRuntimeException;
 
 class StationRepositoryTest {
 
@@ -64,8 +68,10 @@ class StationRepositoryTest {
                 () -> stationRepository.addStation("강남역");
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.DUPLICATE_NAME_ERROR, "강남역");
+        assertThatThrownBy(callable).isExactlyInstanceOf(AlreadyExistsException.class)
+                .hasMessage(
+                        SubwayRuntimeException.ERROR + AlreadyExistsException.ALREADY_EXISTS_ERROR,
+                        "강남역", "역");
     }
 
     @Test
@@ -91,8 +97,9 @@ class StationRepositoryTest {
                 () -> stationRepository.removeStation("신림역", lineRepository);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(callable)
-                .withMessage(StationRepository.DOES_NOT_EXIST_ERROR, "신림역");
+        assertThatThrownBy(callable).isExactlyInstanceOf(NotFoundElementException.class)
+                .hasMessage(SubwayRuntimeException.ERROR + NotFoundElementException.NOT_FOUND_ERROR,
+                        "신림역");
     }
 
     @Test

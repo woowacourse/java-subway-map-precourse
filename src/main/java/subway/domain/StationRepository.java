@@ -6,21 +6,20 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import subway.controller.ManagementController;
+import subway.exception.AlreadyExistsException;
+import subway.exception.NotFoundElementException;
+import subway.exception.TooLessStationException;
+
 public final class StationRepository {
 
     public static final int MINIMUM_INDEX = 0;
 
     public static final int MINIMUM_STATION_SIZE = 2;
 
-    public static final String DUPLICATE_NAME_ERROR = "%s은 이미 존재하는 역 이름입니다!";
-
-    public static final String DOES_NOT_EXIST_ERROR = "%s은 존재하지 않습니다.";
-
     public static final String SAVED_AT_LINE_ERROR = "노선에 등록된 역은 삭제할 수 없습니다.";
 
     public static final String OUT_OF_BOUNDS_ERROR = "노선의 범위를 벗어난 구간입니다. %d 초과 %d 미만의 값을 입력해주세요.";
-
-    public static final String TOO_LESS_STATIONS_ERROR = "역이 %d개 이하인 노선의 역은 제거할 수 업습니다";
 
     private final List<Station> stations;
 
@@ -76,8 +75,7 @@ public final class StationRepository {
         boolean canRemove = stations.size() > MINIMUM_STATION_SIZE;
 
         if (!canRemove) {
-            throw new IllegalArgumentException(
-                    String.format(TOO_LESS_STATIONS_ERROR, MINIMUM_STATION_SIZE));
+            throw new TooLessStationException();
         }
 
         return remove(stationName);
@@ -93,7 +91,7 @@ public final class StationRepository {
 
     private StationRepository add(final int index, final String stationName) {
         if (contains(stationName)) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_NAME_ERROR, stationName));
+            throw new AlreadyExistsException(stationName, ManagementController.STATION);
         }
 
         stations.add(index, new Station(stationName));
@@ -106,7 +104,7 @@ public final class StationRepository {
                 stations.removeIf(station -> Objects.equals(station.getName(), stationName));
 
         if (!removed) {
-            throw new IllegalArgumentException(String.format(DOES_NOT_EXIST_ERROR, stationName));
+            throw new NotFoundElementException(stationName);
         }
 
         return new StationRepository(stations);
