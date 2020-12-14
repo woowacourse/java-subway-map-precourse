@@ -1,20 +1,38 @@
 package subway.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    public static final String ERR_ALREADY_ADD_STATION_MSG = "[ERROR] 이미 등록된 역입니다.";
     private String name;
     private Station uplineTerminalStation;
     private Station downlineTerminalStation;
+    private Stations stations = new Stations();
 
     public Line(String name, Station uplineTerminalStation, Station downlineTerminalStation) {
         this.name = name;
         this.uplineTerminalStation = uplineTerminalStation;
         this.downlineTerminalStation = downlineTerminalStation;
+        this.stations.addStation(uplineTerminalStation);
+        this.stations.addStation(downlineTerminalStation);
     }
 
     public String getName() {
         return name;
+    }
+
+    public void addStation(int index, Station station) {
+        if (!stations.contains(station)) {
+            stations.addStation(index, station);
+            return;
+        }
+
+        throw new IllegalStateException(ERR_ALREADY_ADD_STATION_MSG);
+    }
+
+    public List<String> stationsNames(){
+        return stations.stationNames();
     }
 
     @Override

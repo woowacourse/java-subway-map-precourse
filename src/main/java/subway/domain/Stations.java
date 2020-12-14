@@ -14,8 +14,12 @@ public class Stations {
     private final List<Station> stations = new ArrayList<>();
 
     public void addStation(Station station) {
+        addStation(stations.size(), station);
+    }
+
+    public void addStation(int index, Station station) {
         if (!stations.contains(station)) {
-            stations.add(station);
+            stations.add(index, station);
             return;
         }
         throw new IllegalStateException(ERR_ALREADY_ADD_STATION_NAME_MSG);
@@ -43,6 +47,10 @@ public class Stations {
                 .map(Station::getName)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
+    }
+
+    public boolean contains(Station staion) {
+        return stations.contains(staion);
     }
 
     @Override
