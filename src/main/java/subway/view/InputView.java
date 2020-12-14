@@ -105,4 +105,19 @@ public class InputView {
 
         return stationName;
     }
+
+    public static String scanLineMenu(Scanner scanner) {
+        String choiceLineMenu;
+
+        do { // 유효한 값이 올 때 까지 값을 입력받는다.
+            OutputView.OptionChoicePrint();
+            choiceLineMenu = scanner.nextLine();
+        } while (!lineMenuValidCheck(choiceLineMenu));
+
+        return choiceLineMenu;
+    }
+
+    private static boolean lineMenuValidCheck(String choiceLineMenu) {
+        return true;
+    }
 }
