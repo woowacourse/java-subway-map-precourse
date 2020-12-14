@@ -46,6 +46,7 @@ public class Application {
 			Line_management.print_stations_of_each_lines();
 			return false;
 		}
+		System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
 		return false;
 	}
 
