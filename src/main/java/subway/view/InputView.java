@@ -38,4 +38,14 @@ public class InputView {
         System.out.println(INPUT_MANAGEMENT_FUNCTION_NUMBER_NOTICE);
         return scanner.nextLine();
     }
+
+    public String inputStationName(FunctionType functionType) {
+        if (functionType == FunctionType.REGISTER) {
+            System.out.println("\n## 등록할 역 이름을 입력하세요.");
+        }
+        if (functionType == FunctionType.DELETE) {
+            System.out.println("\n## 삭제할 역 이름을 입력하세요.");
+        }
+        return scanner.nextLine();
+    }
 }
