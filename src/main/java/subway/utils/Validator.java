@@ -1,9 +1,9 @@
 package subway.utils;
 
 import subway.domain.Line;
-import subway.domain.LineRepository;
+import subway.domain.repositories.LineRepository;
 import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.repositories.StationRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;

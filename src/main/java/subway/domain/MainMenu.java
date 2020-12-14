@@ -15,12 +15,12 @@ public class MainMenu {
             public void mainMenuSelect() {
                 // 역 관리 호출
                 StationManageMenu.stationManageMenuRun();
-                System.out.println("역 관리 메뉴 호출");
             }
         },
         LINE_MANAGE() {
             @Override
             public void mainMenuSelect() {
+                LineManageMenu.lineManageMenuRun();
                 // 라인 관리 호출
             }
         },

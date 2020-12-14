@@ -39,7 +39,7 @@ public class LineView {
         System.out.println(LINE_CHECK_HEADER);
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
-            System.out.println("[INFO]" + line.getName());
+            System.out.println("[INFO] " + line.getName());
         }
     }
 }
