@@ -1,6 +1,7 @@
 package subway.line;
 
-import subway.station.Station;
+import subway.errors.DuplicateException;
+import subway.errors.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,9 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
-
-    private static final String ALREADY_EXISTS_LINE_NAME_ERROR_MESSAGE = "이미 등록된 노선 이름입니다.";
-    private static final String NOT_EXISTS_LINE_ERROR_MESSAGE = "존재하지 않는 노선입니다.";
 
     private final List<Line> lines = new ArrayList<>();
 
@@ -34,7 +32,7 @@ public class LineRepository {
     public void checkDuplicateLine(String lineName) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
-                throw new IllegalArgumentException(ALREADY_EXISTS_LINE_NAME_ERROR_MESSAGE);
+                throw new DuplicateException("노선");
             }
         }
     }
@@ -45,7 +43,7 @@ public class LineRepository {
                 return;
             }
         }
-        throw new IllegalArgumentException(NOT_EXISTS_LINE_ERROR_MESSAGE);
+        throw new NotFoundException();
     }
 
     public List<Line> findAll() {
@@ -58,6 +56,6 @@ public class LineRepository {
                 return line;
             }
         }
-        throw new IllegalArgumentException(NOT_EXISTS_LINE_ERROR_MESSAGE);
+        throw new NotFoundException();
     }
 }
