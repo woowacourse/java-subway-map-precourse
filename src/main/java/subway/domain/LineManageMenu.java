@@ -16,6 +16,7 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 등록 호출
                 LineController.lineAdd();
+                lineManageMenuStop();
             }
         },
         LINE_DELETE() {
@@ -28,6 +29,8 @@ public class LineManageMenu {
             @Override
             public void lineManageMenuSelect() {
                 // 라인 조회 호출
+                LineController.lineCheck();
+                lineManageMenuStop();
             }
         };
 

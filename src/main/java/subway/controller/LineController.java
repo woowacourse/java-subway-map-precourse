@@ -81,6 +81,6 @@ public class LineController {
     }
 
     public static void lineCheck() {
-        
+        LineView.printLineCheck();
     }
 }
