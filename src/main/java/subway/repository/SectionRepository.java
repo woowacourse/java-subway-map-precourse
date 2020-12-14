@@ -27,4 +27,9 @@ public class SectionRepository {
             }
         }
     }
+
+    public static void addSection(Line line, Station station, int order) {
+        List<Station> stations = sections.get(line);
+        stations.add(order, station);
+    }
 }

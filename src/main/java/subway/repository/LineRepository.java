@@ -25,7 +25,7 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
-                .orElse(new Line(name));
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public static boolean isExist(String name) {

@@ -1,10 +1,14 @@
 package subway.view;
 
+import static subway.console.Output.print;
+import static subway.console.Output.printPage;
+
 import java.util.Arrays;
 import java.util.List;
 import subway.console.Button;
 import subway.console.Input;
-import subway.console.Output;
+import subway.console.Message;
+import subway.controller.SectionController;
 
 /**
  * @author yhh1056
@@ -20,35 +24,60 @@ public class SectionView {
     private static final List<String> SECTION_BUTTONS = Arrays.asList("1", "2", "B");
 
     private final Input input;
+    private final SectionController sectionController;
 
     public SectionView(final Input input) {
         this.input = input;
+        this.sectionController = new SectionController();
     }
 
     public void selectSectionPage() {
-        Output.printPage(SECTION_PAGE);
-        selectPage(input.nextButton(SECTION_BUTTONS));
-    }
-
-    private void selectPage(final String button) {
-        if (isBack(button)) {
-            return;
+        String button = inputButton();
+        while (isEndSectionPage(button)) {
+            button = inputButton();
         }
-        registerSection(button);
-        deleteSection(button);
     }
 
-    private boolean isBack(String button) {
-        return button.equals(Button.BACK);
+    private String inputButton() {
+        printPage(SECTION_PAGE);
+        return input.nextButton(SECTION_BUTTONS);
     }
 
-    private void registerSection(String button) {
+    private boolean isEndSectionPage(final String button) {
+        return !isCreate(button)
+                && !isBack(button);
+    }
+
+    private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
+
+            print(Message.INPUT_CREATE_SECTION);
+            if (createSection(input.nextLine())) {
+                print(Message.INFO_CREATE_SECTION);
+                return true;
+            }
         }
+        return false;
     }
+
+    private boolean createSection(String name) {
+        print(Message.INPUT_STATION_SECTION);
+        String line = input.nextLine();
+
+        print(Message.INPUT_ORDER_SECTION);
+        String order = input.nextLine();
+
+        sectionController.createSection(name, line, order);
+        return true;
+    }
+
 
     private void deleteSection(String button) {
         if (button.equals(Button.TWO)) {
         }
+    }
+
+    private boolean isBack(String button) {
+        return button.equals(Button.BACK);
     }
 }
