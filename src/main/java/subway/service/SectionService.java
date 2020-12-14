@@ -40,8 +40,11 @@ public class SectionService extends InputService {
 
     private boolean deleteSection(Scanner scanner, LineStationRepository lineStation) {
         String lineName = inputLineNameToDeleteSection(scanner, lineStation);
+        if (isInputFail(lineName)) {
+            return false;
+        }
         String stationName = inputStationNameToDeleteSection(scanner, lineName, lineStation);
-        if (isInputFail(lineName) || isInputFail(stationName)) {
+        if (isInputFail(stationName)) {
             return false;
         }
         lineStation.deleteStationInLineByName(findLine(lineName), stationName);
