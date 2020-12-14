@@ -40,7 +40,7 @@ public class Line implements Comparable<Line> {
         stations.add(location - HUMAN_NUMBER_CALIBRATION, station);
     }
 
-    public static boolean deleteStation(String name) {
+    public boolean deleteStation(String name) {
         checkAbleDeleteStation();
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }

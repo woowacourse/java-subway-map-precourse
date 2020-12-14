@@ -32,4 +32,16 @@ public class LineRepository {
             throw new IllegalArgumentException(OVERLAP_ERROR);
         }
     }
+
+    public static void insertStationToLine(String lineTitle, String stationTitle, int order) {
+        lines.stream()
+                .filter(line -> line.compareName(lineTitle))
+                .forEach(line -> line.insertStation(order, new Station(stationTitle)));
+    }
+
+    public static void deleteStationToLine(String lineTitle, String stationTitle) {
+        lines.stream()
+                .filter(line -> line.compareName(lineTitle))
+                .forEach((line -> line.deleteStation(stationTitle)));
+    }
 }
