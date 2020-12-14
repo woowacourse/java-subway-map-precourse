@@ -34,16 +34,14 @@ public class SectionService extends BaseService {
         Station station = getStationByQuestion(REGISTER_SECTION_STATION_NAME_QUESTION);
         checkDuplicateStationInLine(line, station);
         int index = getStationIndexToAdd();
-        line.add(index, station);
-        OutputView.printInfo(REGISTER_SECTION_SUCCESS);
+        registerSection(line, station, index);
     }
 
     public static void delete() {
         Line line = getLineByQuestion(DELETE_SECTION_LINE_NAME_QUESTION);
-        Station station = getStationByQuestion(DELETE_SECTION_STATION_NAME_QUESTION);
         checkLineLengthPossibleToDelete(line);
-        removeStationInLine(line, station);
-        OutputView.printInfo(DELETE_SECTION_SUCCESS);
+        Station station = getStationByQuestion(DELETE_SECTION_STATION_NAME_QUESTION);
+        removeSection(line, station);
     }
 
     private static Line getLineByQuestion(String question) {
@@ -73,9 +71,15 @@ public class SectionService extends BaseService {
         }
     }
 
-    private static void removeStationInLine(Line line, Station station) {
+    private static void registerSection(Line line, Station station, int index) {
+        line.add(index, station);
+        OutputView.printInfo(REGISTER_SECTION_SUCCESS);
+    }
+
+    private static void removeSection(Line line, Station station) {
         if (!line.remove(station)) {
             throw new IllegalArgumentException(ERR_NO_STATION_ON_LINE);
         }
+        OutputView.printInfo(DELETE_SECTION_SUCCESS);
     }
 }
