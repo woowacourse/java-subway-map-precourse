@@ -84,11 +84,11 @@ public class OutputView {
     }
     
     void printAskUpwardEndRouteMessage() {
-        System.out.println(NEW_MESSAGE_PREFIX + UPWARD_END_STATION_ASK_MESSAGE);
+        System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + UPWARD_END_STATION_ASK_MESSAGE);
     }
     
     void printAskDownwardEndRouteMessage() {
-        System.out.println(NEW_MESSAGE_PREFIX + DOWNWARD_END_STATION_ASK_MESSAGE);
+        System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + DOWNWARD_END_STATION_ASK_MESSAGE);
     }
 
     void printAskStationNameToRegisterToRouteMessage() {
@@ -105,19 +105,19 @@ public class OutputView {
     
     private void printStationAskMessage(ActionType actionType) {
         if (actionType == ActionType.REGISTER) {
-            System.out.println(STATION_REGISTER_ASK_MESSAGE);
+            System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + STATION_REGISTER_ASK_MESSAGE);
         }
         if (actionType == ActionType.DELETE) {
-            System.out.println(STATION_DELETE_ASK_MESSAGE);
+            System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + STATION_DELETE_ASK_MESSAGE);
         }
     }
     
     private void printLineAskMessage(ActionType actionType) {
         if (actionType == ActionType.REGISTER) {
-            System.out.println(LINE_REGISTER_ASK_MESSAGE);
+            System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + LINE_REGISTER_ASK_MESSAGE);
         }
         if (actionType == ActionType.DELETE) {
-            System.out.println(LINE_DELETE_ASK_MESSAGE);
+            System.out.println(NEW_MESSAGE_PREFIX + CommonConstants.SPACE + LINE_DELETE_ASK_MESSAGE);
         }
     }
     
