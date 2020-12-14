@@ -20,4 +20,10 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static void printLineList() {
+        for (Line line : lines) {
+            System.out.println(line.getName());
+        }
+    }
+
 }
