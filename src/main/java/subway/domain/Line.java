@@ -33,4 +33,12 @@ public class Line {
         }
         return false;
     }
+
+    public void insertLineInStation(Station station, int index) {
+        if (index > lineInStationList.size()) {
+            lineInStationList.add(lineInStationList.size(), station);
+            return;
+        }
+        lineInStationList.add(index, station);
+    }
 }
