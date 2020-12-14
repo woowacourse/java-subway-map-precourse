@@ -16,7 +16,13 @@ public class StationValidator {
     }
 
     private static boolean shorterThanMinimalLength(String name) {
-        return name.length() < Station.MIN_NAME_LENGTH;
+        return name.length() < Station.MINIMUM_NAME_LENGTH;
+    }
+
+    private static void validateEnding(String name) {
+        if (notMatchingEnding(name)) {
+            throw new IllegalArgumentException(OutputView.ERROR_STATION_ENDING);
+        }
     }
 
 }

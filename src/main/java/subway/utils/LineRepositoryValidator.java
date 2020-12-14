@@ -26,7 +26,7 @@ public class LineRepositoryValidator {
 
     private static void validateExisting(String name) {
         if (!isDuplicate(name)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NOTHING);
+            throw new IllegalArgumentException(OutputView.ERROR_NO_LINE);
         }
     }
 

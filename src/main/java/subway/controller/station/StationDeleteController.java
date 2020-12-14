@@ -18,7 +18,7 @@ public class StationDeleteController implements Controller {
         try {
             String deletingStationName = inputView.inputName(InputView.CHOOSE_DELETE_STATION);
             if (!StationRepository.deleteStation(deletingStationName)) {
-                throw new IllegalArgumentException(OutputView.ERROR_NO_NAME);
+                throw new IllegalArgumentException(OutputView.ERROR_NO_STATION);
             }
             StationRepository.deleteStation(deletingStationName);
             OutputView.printInfo(OutputView.INFO_STATION_DELETED);

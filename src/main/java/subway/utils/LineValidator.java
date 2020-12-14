@@ -17,18 +17,18 @@ public class LineValidator {
 
     public static void validateExisting(Line line, Station station) {
         if (!isDuplicate(line, station)) {
-            throw new IllegalArgumentException(OutputView.ERROR_NO_STATION);
+            throw new IllegalArgumentException(OutputView.ERROR_NO_CONNECTION);
         }
     }
 
     public static void validateNoDuplicate(Line line, Station station) {
-        if(isDuplicate(line, station)) {
+        if (isDuplicate(line, station)) {
             throw new IllegalArgumentException(OutputView.ERROR_DUPLICATE_STATION);
         }
     }
 
     public static void validateIndex(Line line, int index) {
-        if(lowerThanMinimumIndex(index) || higherThanMaximumIndex(line, index)) {
+        if (lowerThanMinimumIndex(index) || higherThanMaximumIndex(line, index)) {
             throw new IllegalArgumentException(OutputView.ERROR_INDEX);
         }
     }

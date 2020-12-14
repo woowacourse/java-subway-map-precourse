@@ -19,7 +19,7 @@ public class StationRepository {
         return stations.stream()
                 .filter(x -> x.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NOTHING));
+                .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NO_STATION));
     }
 
     public static void addStation(Station station) {

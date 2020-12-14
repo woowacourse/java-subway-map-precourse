@@ -28,7 +28,7 @@ public class StationRepositoryValidator {
 
     private static void validateNoLineConnection(String name) {
         if(LineRepository.hasLineWithStation(name)) {
-            throw new IllegalArgumentException(OutputView.ERROR_CONNECTED);
+            throw new IllegalArgumentException(OutputView.ERROR_DELETE_FAIL);
         }
     }
 }

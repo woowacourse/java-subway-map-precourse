@@ -34,6 +34,6 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NO_NAME));
+                .orElseThrow(() -> new IllegalArgumentException(OutputView.ERROR_NO_LINE));
     }
 }

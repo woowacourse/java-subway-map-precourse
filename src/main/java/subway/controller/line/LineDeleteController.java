@@ -17,8 +17,8 @@ public class LineDeleteController implements Controller {
     public void run() {
         try {
             String lineName = inputView.inputName(InputView.CHOOSE_DELETE_LINE);
-            if(!LineRepository.deleteLineByName(lineName)) {
-                throw new IllegalArgumentException(OutputView.ERROR_NO_NAME);
+            if (!LineRepository.deleteLineByName(lineName)) {
+                throw new IllegalArgumentException(OutputView.ERROR_NO_LINE);
             }
             OutputView.printInfo(OutputView.INFO_LINE_DELETED);
         } catch (IllegalArgumentException e) {
