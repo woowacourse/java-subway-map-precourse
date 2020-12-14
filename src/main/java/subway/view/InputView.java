@@ -2,6 +2,8 @@ package subway.view;
 
 import java.util.Scanner;
 
+import static subway.view.OutputView.printQuestion;
+
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -14,9 +16,6 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static void printQuestion(String message) {
-        System.out.println();
-        System.out.printf("%s %s\n", TextCollection.PREFIX, message);
-    }
+
 
 }
