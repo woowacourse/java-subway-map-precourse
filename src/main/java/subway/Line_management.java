@@ -2,6 +2,8 @@ package subway;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 public class Line_management {
 	public static void add_line(String name, String UP, String DOWN) {
@@ -29,6 +31,15 @@ public class Line_management {
 			line.print_stationOfLine();
 			System.out.println();
 		}
+	}
+	
+	public static Line get_line_by_name(String name) {
+		for (Line line : LineRepository.lines()) {
+			if(name.equals(line.getName())) {
+				return line;
+			}
+		}
+		return null;
 	}
 	
 	public static void print_lines() {
