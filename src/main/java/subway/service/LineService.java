@@ -42,7 +42,7 @@ public class LineService {
         List<Line> lines = LineRepository.getLines();
         List<Station> stationList = lines.stream()
                 .flatMap(line -> line.getStations().stream())
-                .filter(stationInLines -> stationInLines.equals(stationName))
+                .filter(stationInLines -> stationInLines.getName().equals(stationName))
                 .collect(Collectors.toList());
         if(stationList.isEmpty()){
             return Optional.empty();

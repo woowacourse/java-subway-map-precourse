@@ -4,6 +4,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exceptions.AlreadyAddedInLineException;
+import subway.exceptions.StationNameLengthException;
 import subway.exceptions.StationNotExistException;
 import subway.exceptions.StationNotExistInLineException;
 import subway.service.LineService;
@@ -38,12 +39,15 @@ public class StationController {
     }
 
     public void addStation(String name){
+        if(name.length() < 2){
+            throw new StationNameLengthException();
+        }
         StationService.addStation(name);
     }
 
     public void removeStation(String name){
         Optional<Station> stationOptional = LineService.getStationInLine(name);
-        if(!stationOptional.isPresent()){
+        if(stationOptional.isPresent()){
             throw new AlreadyAddedInLineException();
         }
         StationService.removeStation(name);
