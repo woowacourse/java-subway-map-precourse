@@ -16,4 +16,11 @@ public class IntervalError {
         return true;
     }
 
+    public static boolean checkValidDelete(String name, List<Station> stationList) {
+        if (stationList.size() <= SIZE) {
+            return false;
+        }
+        return true;
+    }
+
 }
