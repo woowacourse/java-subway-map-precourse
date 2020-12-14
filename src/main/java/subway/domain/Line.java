@@ -31,26 +31,26 @@ public class Line {
         throw new IllegalStateException(ERR_ALREADY_ADD_STATION_MSG);
     }
 
-    public void deleteStation(String name){
-        if(stations.size() > STATION_MINIMUM_SIZE){
+    public void deleteStation(String name) {
+        if (stations.size() <= STATION_MINIMUM_SIZE) {
             throw new IllegalStateException(ERR_POOR_SIZE_OF_STATION_MSG);
         }
         stations.deleteStation(name);
     }
 
-    public Station getUplineTerminalStation(){
+    public Station getUplineTerminalStation() {
         return stations.firstStation();
     }
 
-    public Station getDownlineTerminalStation(){
+    public Station getDownlineTerminalStation() {
         return stations.lastStation();
     }
 
-    public int size(){
+    public int size() {
         return stations.size();
     }
 
-    public List<String> stationsNames(){
+    public List<String> stationsNames() {
         return stations.stationNames();
     }
 
