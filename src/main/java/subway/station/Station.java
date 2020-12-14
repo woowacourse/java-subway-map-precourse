@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.station;
+
+import subway.utils.InputValidator;
 
 public class Station {
     private String name;
@@ -10,6 +12,4 @@ public class Station {
     public String getName() {
         return name;
     }
-
-    // 추가 기능 구현
 }
