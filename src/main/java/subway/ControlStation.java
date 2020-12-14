@@ -12,7 +12,7 @@ public class ControlStation {
         System.out.println();
         System.out.println("등록끝");
     }
-    public static void deleteStation(){
+    public static void deleteStationNotLine(){
         StationRepository.deleteStation(OutputMessage.choiceOutputMessage());
     }
     public static void lookStation(){

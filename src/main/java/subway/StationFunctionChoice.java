@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 public enum StationFunctionChoice {
 
     ADD_STATION("1", choiceKey->ControlStation.addStation()),
-    DELETE_STATION("2",choiceKey-> ControlStation.deleteStation()),
+    DELETE_STATION("2",choiceKey-> ControlStation.deleteStationNotLine()),
     LOOK_STATION("3",choiceKey->ControlStation.lookStation()),
     BACK("B",chocieKey->ControlStation.back());
     private String choiceKey;
