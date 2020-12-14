@@ -21,18 +21,16 @@ public class LineService {
 
     public boolean insert() {
         OutputView.printQuestion(TextCollection.REGISTER_LINE_MESSAGE);
-        String lineName = InputView.inputValue();
-        Line line = new Line(lineName);
+        Line line = new Line(InputView.inputValue());
         ValidateUtils.isDuplicatedUpDownStation(addUpwardSection(line), addDownSection(line));
         LineRepository.addLine(line);
-        OutputView.printInformation(TextCollection.REGISTERED_STATION_MESSAGE);
+        OutputView.printInformation(TextCollection.REGISTERED_LINE_MESSAGE);
         return true;
     }
 
     public boolean delete() {
         OutputView.printQuestion(TextCollection.DELETE_LINE_MESSAGE);
-        String lineName = InputView.inputValue();
-        LineRepository.deleteLineByName(lineName);
+        LineRepository.deleteLineByName(InputView.inputValue());
         OutputView.printInformation(TextCollection.DELETED_LINE_MESSAGE);
         return true;
     }
