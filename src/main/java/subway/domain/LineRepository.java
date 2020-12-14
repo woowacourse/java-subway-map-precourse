@@ -38,6 +38,10 @@ public class LineRepository {
         return null;
     }
 
+    public static List<Line> getLines() {
+        return lines;
+    }
+
     public static void validateLineInStationCheck(String stationName) {
         for (Line line : lines) {
             List<Station> stations = line.getStations();

@@ -1,5 +1,7 @@
 package subway.utils;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
@@ -45,5 +47,14 @@ public class OutputView {
         System.out.println("B. 돌아가기");
 
         System.out.println("원하는 기능을 선택하세요.");
+    }
+
+    public static void printLines() {
+        System.out.println("노선 목록");
+        List<Line> lines = LineRepository.getLines();
+        for (Line line : lines) {
+            System.out.println("[INFO] " + line.getName());
+        }
+        System.out.println();
     }
 }

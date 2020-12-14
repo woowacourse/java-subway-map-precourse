@@ -27,6 +27,7 @@ public class LineManager {
                 deleteLine();
             }
             if (inputLineSelect.equals(CONTENTS_NUMBER_THIRD)) {
+                OutputView.printLines();
             }
             if (inputLineSelect.equals(CONTENTS_NUMBER_BACK)) {
                 break;
