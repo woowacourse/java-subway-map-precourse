@@ -1,10 +1,13 @@
 package subway;
 
-import java.util.Scanner;
+import subway.initialize.Initialization;
+import subway.manager.MainManager;
+import utils.Power;
 
 public class Application {
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        // TODO: 프로그램 구현
+        Power.on();
+        Initialization.set();
+        MainManager.execute();
     }
 }
