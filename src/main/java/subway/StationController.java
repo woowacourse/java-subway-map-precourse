@@ -77,8 +77,7 @@ public class StationController {
 
     private static boolean stationCheck() {
         String[] stationList;
-        stationList = StationRepository.stations().stream().map(Station::getName)
-            .toArray(String[]::new);
+        stationList = StationRepository.getAllStationNames().toArray(String[]::new);
 
         if (stationList.length < BoundaryCheckDigit.STATION_LIST_LIMIT_MINIMUM
             .getBoundaryCheckDigit()) {
