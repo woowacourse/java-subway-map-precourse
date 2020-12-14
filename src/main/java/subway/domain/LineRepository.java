@@ -11,6 +11,15 @@ public class LineRepository {
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
+    
+    public static Line getLineByName(String name) {
+    	for(Line line : lines) {
+    		if(line.getName().equals(name)) {
+    			return line;
+    		}
+    	}
+		return null;
+    }
 
     public static void addLine(Line line) {
         lines.add(line);

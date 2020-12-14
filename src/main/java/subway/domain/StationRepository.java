@@ -11,6 +11,15 @@ public class StationRepository {
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
+    
+    public static Station getStationByName(String name) {
+		for(Station station : stations) {
+			if(station.getName().equals(name)) {
+				return station;
+			}
+		}
+		return null;
+	}
 
     public static void addStation(Station station) {
         stations.add(station);
