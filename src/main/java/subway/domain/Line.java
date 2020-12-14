@@ -23,4 +23,9 @@ public class Line {
     public List<Station> getStations() {
         return Collections.unmodifiableList(stations);
     }
+
+    @Override
+    public String toString() {
+        return "[INFO] " + name + "\n";
+    }
 }
