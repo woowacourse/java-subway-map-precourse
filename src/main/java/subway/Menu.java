@@ -136,6 +136,9 @@ public class Menu {
         if (subMenuAction.equals(INSERT_SIGN)) {
             Edge.add(inputView);
         }
+        if (subMenuAction.equals(DELETE_SIGN)) {
+            Edge.delete(inputView);
+        }
         return true;
     }
 

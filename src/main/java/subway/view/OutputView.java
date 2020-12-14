@@ -27,6 +27,7 @@ public class OutputView {
     private static final String UPBOUND = "상행 종점역 ";
     private static final String DOWNBOUND = "하행 종점역 ";
     private static final String ORDER_INPUT_MESSAGE = "순서를 입력하세요.";
+    private static final String EDGE_MESSAGE = "구간의 ";
 
     private OutputView() {
     }
@@ -118,5 +119,9 @@ public class OutputView {
 
     public static void printOrderInputMessage() {
         System.out.println(HASH + ORDER_INPUT_MESSAGE);
+    }
+
+    public static void printDeleteEdgeOptionMessage(String target) {
+        System.out.println(HASH + DELETE_ORDER_START_MESSAGE + EDGE_MESSAGE + target + INPUT_MESSAGE);
     }
 }

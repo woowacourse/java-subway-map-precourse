@@ -9,10 +9,12 @@ import subway.domain.exception.NonExistentNameException;
 import subway.domain.exception.IncludeInLineException;
 import subway.domain.exception.OrderRangeException;
 import subway.domain.exception.OrderTypeException;
+import subway.domain.exception.MinimumStationNumberException;
 
 public class Edge {
     private static final String STATION_MESSAGE = "역";
     private static final String LINE_MESSAGE = "노선";
+    private static final int MINIMUM_DELETE_CONDITION_STAION_NUMBER = 3;
     private Edge() {
     }
 
@@ -27,6 +29,19 @@ public class Edge {
             }
         }
         OutputView.printAddActionFinishMessage(LINE_MESSAGE);
+    }
+
+    public static void delete(InputView inputView) {
+        OutputView.printDeleteEdgeOptionMessage(LINE_MESSAGE);
+        String lineName = inputView.getInput();
+        validateLineState(lineName);
+    }
+
+    private static void validateLineState(String lineName) {
+        Line.validateExistentLineName(lineName, LINE_MESSAGE);
+        if (Line.validateRange(MINIMUM_DELETE_CONDITION_STAION_NUMBER)) {
+            throw new MinimumStationNumberException();
+        }
     }
 
     private static String scanLineName(InputView inputView) {
