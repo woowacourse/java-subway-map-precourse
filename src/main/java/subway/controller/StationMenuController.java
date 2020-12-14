@@ -8,14 +8,14 @@ import subway.views.stationviews.StationOutputView;
 import java.util.Scanner;
 
 public class StationMenuController {
-    private static StationMenuController instance = new StationMenuController();
+    private static StationMenuController stationMenuController = new StationMenuController();
     StationService stationService;
 
     private StationMenuController() {
     }
 
     public static StationMenuController getInstance() {
-        return instance;
+        return stationMenuController;
     }
 
     public void mappingStationMenu(Scanner scanner) {
@@ -33,7 +33,7 @@ public class StationMenuController {
             stationService.stationAddService();
         }
         if (selectedOption.equals(StationMenu.STATION_DELETE)) {
-
+            stationService.stationDeleteService();
         }
         if (selectedOption.equals(StationMenu.STATION_SELECT)) {
 

@@ -6,7 +6,8 @@ import java.util.Arrays;
 
 public class StationOutputView {
     private static final String STATION_MANAGE_PAGE = "## 역 관리 화면";
-    private static final String STATION_INSERT_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 등록되었습니다.\n";
+    private static final String STATION_ADD_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 등록되었습니다.\n";
+    private static final String STATION_DELETE_SUCCESS_MESSAGE = "\n[INFO] 지하철 역이 삭제되었습니다.\n";
     private static final String LINE_WRAP = "\n";
 
     public static void printStationManagePage() {
@@ -21,7 +22,11 @@ public class StationOutputView {
             .forEach(System.out::println);
     }
 
-    public static void printInsertSuccess() {
-        System.out.println(STATION_INSERT_SUCCESS_MESSAGE);
+    public static void printAddSuccess() {
+        System.out.println(STATION_ADD_SUCCESS_MESSAGE);
+    }
+
+    public static void printDeleteSuccess() {
+        System.out.println(STATION_DELETE_SUCCESS_MESSAGE);
     }
 }
