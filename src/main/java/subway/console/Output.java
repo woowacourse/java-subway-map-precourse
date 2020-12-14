@@ -27,7 +27,7 @@ public class Output {
 
     public static void printLines(List<Line> lines) {
         print(Message.LINES);
-        lines.forEach(line -> print(combine(combine(line.getName()))));
+        lines.forEach(line -> print(combine(line.getName())));
     }
 
     private static String combine(String name) {
