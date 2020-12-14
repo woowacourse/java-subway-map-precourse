@@ -64,4 +64,13 @@ public class LineRepository {
     public static boolean routeContainsByName(String lineName, String stationName) {
         return routes.get(getLineByName(lineName)).contains(StationRepository.getStationByName(stationName));
     }
+
+    public static boolean anyRouteContainsByStationName(String stationName) {
+        for (Line line : routes.keySet()) {
+            if (routeContainsByName(line.getName(), stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
