@@ -41,5 +41,8 @@ public class MenuController {
             StationController.manageStation(scanner, selection);
         }
 
+        if (category == Category.LINE) {
+            LineController.manageLine(scanner, selection);
+        }
     }
 }

@@ -3,9 +3,13 @@ package utils;
 public enum Category {
     MAIN("메인"), STATION("역"), LINE("노선"), SECTION("구간");
 
-    Category(String name) {}
+    private String korean;
 
-    public String getName() {
-        return name();
+    Category(String name) {
+        this.korean = name;
+    }
+
+    public String getKorean() {
+        return korean;
     }
 }

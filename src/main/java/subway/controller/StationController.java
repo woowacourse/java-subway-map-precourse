@@ -10,8 +10,7 @@ public class StationController {
     public static final int DELETE = 2;
     public static final int GET_LIST = 3;
 
-    private static final Category category = Category.STATION;
-    public static DetailView stationView = new DetailView(category);
+    public static DetailView stationView = new DetailView(Category.STATION);
 
     private StationController() {}
 
@@ -20,15 +19,15 @@ public class StationController {
             StationService.readStationList();
             return;
         }
-        stationView.ask(selection);
-        String answer = stationView.inputName(scanner, selection);
-        if (answer == null) {
+
+        String name = stationView.ask(scanner, selection);
+        if (name == null) {
             return;
         }
         if (selection == ADD) {
-            StationService.createStation(answer);
+            StationService.createStation(name);
             return;
         }
-        StationService.deleteStation(answer);
+        StationService.deleteStation(name);
     }
 }

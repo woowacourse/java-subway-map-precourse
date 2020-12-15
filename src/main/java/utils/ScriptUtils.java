@@ -8,22 +8,34 @@ public class ScriptUtils {
         "\n## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n3. 노선 조회\nB. 돌아가기\n",
         "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기\n"
     };
-    public static final String ASK_SELECTION = "## 원하는 기능을 선택하세요.";
-    public static final String ERROR_OUT_OF_VALUE = "\n[ERROR] 선택할 수 없는 기능입니다.\n";
-    public static final String[][] ASK_ANSWER_FOR = {{},
-        {"\n## 등록할 역 이름을 입력하세요.", "\n## 삭제할 역 이름을 입력하세요."},};
     public static final String STATION_LIST = "## 역 목록";
+    public static final String LINE_LIST = "## 노선 목록";
     public static final String INFO = "[INFO] ";
+    public static final String ASK_SELECTION = "## 원하는 기능을 선택하세요.";
+
+    public static final String ASK_ANSWER_FOR(Category category, int selection) {
+        if (selection == 1) {
+            return "\n## 등록할 " + category.getKorean() + " 이름을 입력하세요.";
+        }
+        return "\n## 삭제할 " + category.getKorean()+ " 이름을 입력하세요.";
+    }
+
+    public static final String[] ASK_ADD_LINE = {
+        "## 등록할 노선의 상행 종점역 이름을 입력하세요.",
+        "## 등록할 노선의 하행 종점역 이름을 입력하세요."
+    };
+
+    public static final String ERROR_OUT_OF_VALUE = "\n[ERROR] 선택할 수 없는 기능입니다.\n";
 
     public static String ERROR_TOO_SHORT(Category category) {
-        return "\n[ERROR] " + category.getName() + " 이름은 2자 이상이어야 합니다.\n";
+        return "\n[ERROR] " + category.getKorean() + " 이름은 2자 이상이어야 합니다.\n";
     }
 
     public static String ERROR_DUPLICATE(Category category) {
-        return "\n[ERROR] 이미 등록된 " + category.getName() + " 이름입니다.\n";
+        return "\n[ERROR] 이미 등록된 " + category.getKorean() + " 이름입니다.\n";
     }
 
     public static String ERROR_NO(Category category) {
-        return "\n[ERROR] 존재하지 않는 " + category.getName() + " 이름입니다.\n";
+        return "\n[ERROR] 존재하지 않는 " + category.getKorean() + " 이름입니다.\n";
     }
 }
