@@ -17,6 +17,9 @@ public class LineManagementView extends View {
     private static final String LINE_REMOVAL_MESSAGE = "삭제할 노선 이름을 입력하세요.";
     private static final String LINE_REMOVAL_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.\n";
     private static final String VIEW_NAME = "노선 관리 화면";
+    private static final int LINE_INDEX = 0;
+    private static final int UPBOUND_STATION_INDEX = 1;
+    private static final int DOWNBOUND_STATION_INDEX = 2;
     private static final LinkedHashMap<String, Command> MENUS =
             new LinkedHashMap<String, Command>();
 
@@ -32,10 +35,12 @@ public class LineManagementView extends View {
         if (!registerLineName(request, response, inputs)) {
             return;
         }
-        if (!request.isValidTerminatingStationPair(inputs.get(1), inputs.get(2))) {
+        if (!request.isValidTerminatingStationPair(inputs.get(UPBOUND_STATION_INDEX),
+                inputs.get(DOWNBOUND_STATION_INDEX))) {
             return;
         }
-        LineRepository.addLine(inputs.get(0), inputs.get(1), inputs.get(2));
+        LineRepository.addLine(inputs.get(LINE_INDEX), inputs.get(UPBOUND_STATION_INDEX),
+                inputs.get(DOWNBOUND_STATION_INDEX));
         response.printInfoMessage(LINE_REGISTER_SUCCESS_MESSAGE);
         scene.back();
     }

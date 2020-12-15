@@ -18,6 +18,9 @@ public class SectionManagementView extends View {
     private static final String STATION_OF_SECTION_REMOVAL_MESSAGE = "삭제할 구간의 역을 입력하세요.";
     private static final String SECTION_REMOVAL_SUCCESS_MESSAGE = "구간이 삭제되었습니다.\n";
     private static final String VIEW_NAME = "구간 관리 화면";
+    private static final int LINE_OF_SECTION_INDEX = 0;
+    private static final int STATION_OF_SECTION_INDEX = 1;
+    private static final int INDEX_OF_SECTION_INDEX = 2;
     private static final LinkedHashMap<String, Command> MENUS =
             new LinkedHashMap<String, Command>();
 
@@ -32,7 +35,8 @@ public class SectionManagementView extends View {
         if (!registerLineOfSectionName(request, response, inputs)) {
             return;
         }
-        SectionRepository.addSection(inputs.get(0), inputs.get(1), inputs.get(2));
+        SectionRepository.addSection(inputs.get(LINE_OF_SECTION_INDEX),
+                inputs.get(STATION_OF_SECTION_INDEX), inputs.get(INDEX_OF_SECTION_INDEX));
         response.printInfoMessage(SECTION_REGISTER_SUCCESS_MESSAGE);
         scene.back();
     }
@@ -53,7 +57,8 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REGISETER_MESSAGE);
         String stationName = request.requestInputInLine(
-                SectionExceptionManager::checkValidStationOfSectionRegister, inputs.get(0));
+                SectionExceptionManager::checkValidStationOfSectionRegister,
+                inputs.get(LINE_OF_SECTION_INDEX));
         if (stationName == null) {
             return false;
         }
@@ -78,7 +83,8 @@ public class SectionManagementView extends View {
         if (!removeLineOfSectionName(request, response, inputs)) {
             return;
         }
-        SectionRepository.deleteStationInLine(inputs.get(1), inputs.get(0));
+        SectionRepository.deleteStationInLine(inputs.get(STATION_OF_SECTION_INDEX),
+                inputs.get(LINE_OF_SECTION_INDEX));
         response.printInfoMessage(SECTION_REMOVAL_SUCCESS_MESSAGE);
         scene.back();
     }
@@ -99,7 +105,8 @@ public class SectionManagementView extends View {
             List<String> inputs) {
         response.printHeadlineMessage(STATION_OF_SECTION_REMOVAL_MESSAGE);
         String stationName = request.requestInputInLine(
-                SectionExceptionManager::checkValidStationOfSectionRemoval, inputs.get(0));
+                SectionExceptionManager::checkValidStationOfSectionRemoval,
+                inputs.get(LINE_OF_SECTION_INDEX));
         if (stationName == null) {
             return false;
         }
