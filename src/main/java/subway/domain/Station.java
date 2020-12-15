@@ -11,5 +11,8 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    @Override
+    public String toString() {
+        return "[INFO] " + name;
+    }
 }
