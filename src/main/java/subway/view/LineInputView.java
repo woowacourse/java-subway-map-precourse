@@ -103,6 +103,7 @@ public class LineInputView {
             validateAreStationSame(upwardTerminalStation, downwardTerminalStation);
             LineRepository.addLine(newLine);
             System.out.println(REGISTER_COMPLETE_MESSAGE);
+            System.out.println();
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.getMessage());

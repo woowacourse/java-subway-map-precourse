@@ -27,4 +27,17 @@ public class Line {
         }
         System.out.println();
     }
+
+    public boolean isSameName(String lineName) {
+        return this.name.equals(lineName);
+    }
+
+    public boolean isStationRegistered(String stationName) {
+        for (Station station : stationsOnLine) {
+            if (station.getName().equals(stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

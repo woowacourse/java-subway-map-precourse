@@ -1,5 +1,6 @@
 package subway.type;
 
+import subway.domain.LineRepository;
 import subway.view.LineInputView;
 
 public enum LineScreenFunctionType {
@@ -18,7 +19,7 @@ public enum LineScreenFunctionType {
     PRINT_STATION(3) {
         @Override
         public void execute() {
-            System.out.println("3");
+            LineRepository.printLines();
         }
     };
 
