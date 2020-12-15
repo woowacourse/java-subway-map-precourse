@@ -36,7 +36,7 @@ public class SectionMenu {
                         System.out.println("\n## 순서를 입력하세요.");
                         String index = scanner.nextLine();
                         if (SectionValidator.checkValidIndex(index, lineName)) {
-                            Objects.requireNonNull(LineRepository.findLineByName(lineName)).add(index, stationName);
+                            Objects.requireNonNull(LineRepository.findLineByName(lineName)).addStation(index, stationName);
                             System.out.println("\n[ INFO ] 구간이 등록되었습니다.");
                         }
                     }

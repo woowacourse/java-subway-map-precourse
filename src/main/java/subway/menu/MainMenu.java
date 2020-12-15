@@ -1,7 +1,5 @@
 package subway.menu;
 
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 import subway.util.DefaultSetting;
 
 import java.util.Scanner;
