@@ -9,10 +9,10 @@ import subway.exception.line.SectionSizeLowException;
 import subway.exception.station.StationNotFoundException;
 import subway.repository.line.LineRepository;
 
-public class LineDeleteStationService {
+public class SectionDeleteService {
     private final LineRepository lineRepository;
 
-    public LineDeleteStationService(LineRepository lineRepository) {
+    public SectionDeleteService(LineRepository lineRepository) {
         this.lineRepository = lineRepository;
     }
 
