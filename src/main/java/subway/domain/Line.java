@@ -9,27 +9,12 @@ public class Line {
     private String name;
     private List<Station> stationsOnLine = new ArrayList<>();
 
-    public void registerStation(Station station) {
-        stationsOnLine.add(station);
-    }
-
     public Line(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void printStations() {
-        for (Station station : stationsOnLine) {
-            System.out.println(INFO + station.getName());
-        }
-        System.out.println();
-    }
-
-    public boolean isSameName(String lineName) {
-        return this.name.equals(lineName);
+    public void registerStation(Station station) {
+        stationsOnLine.add(station);
     }
 
     public boolean isStationRegistered(String stationName) {
@@ -40,4 +25,20 @@ public class Line {
         }
         return false;
     }
+
+    public void printStations() {
+        for (Station station : stationsOnLine) {
+            System.out.println(INFO + station.getName());
+        }
+        System.out.println();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isSameName(String lineName) {
+        return this.name.equals(lineName);
+    }
+
 }
