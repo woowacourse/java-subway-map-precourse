@@ -17,8 +17,11 @@ public class Application {
 
 	private static final String NEW_STATION_MESSAGE = "\n## 등록할 역 이름을 입력하세요.";
 	private static final String CREATE_STATION_MESSAGE = "[INFO] 지하철 역이 등록되었습니다.";
+	private static final String ERROR_CREATE_STATION_MESSAGE = "[ERROR] 중복된 지하철역 이름이 등록있습니다.";
+	private static final String ERROR_CREATE_STATION_LENGHT_MESSAGE = "[ERROR] 2글자 이상에 이름만 가능합니다.";
 	private static final String DELETE_STATION_INPUT = "\n## 삭제할 역 이름을 입력하세요.";
 	private static final String DELETE_STATION_MESSAGE = "[INFO] 지하철 역이 삭제되었습니다.";
+	private static final String ERROR_DELETE_STATION_MESSAGE = "[ERROR] 없는 지하철역 이름입니다.";
 	private static final String ERROR_INPUT_MESSAGE = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요";
 	
 	public static void main(String[] args) {
@@ -64,8 +67,14 @@ public class Application {
 	}
 
 	public static StationRepository createStation(StationRepository stationRepositiory, String name) {
+		if(name.length()<2)
+		{
+			System.out.println(ERROR_CREATE_STATION_LENGHT_MESSAGE);
+			return stationRepositiory;
+		}
 		Station station = new Station(name);
 		stationRepositiory.addStation(station);
+		System.out.println(CREATE_STATION_MESSAGE + "\n");
 		return stationRepositiory;
 	}
 
@@ -103,16 +112,25 @@ public class Application {
 			LineRepository lineRepositiory) {
 		System.out.println(NEW_STATION_MESSAGE);
 		String station = scanner.next();
-		createStation(stationRepositiory, station);
-		System.out.println(CREATE_STATION_MESSAGE + "\n");
+		if(stationRepositiory.findStation(station)==null)
+		{
+			createStation(stationRepositiory, station);
+			return;
+		}
+		System.out.println(ERROR_CREATE_STATION_MESSAGE+ "\n");
 	}
 
 	public static void deleteStation(Scanner scanner, StationRepository stationRepositiory,
 			LineRepository lineRepositiory) {
 		System.out.println(DELETE_STATION_INPUT);
 		String station = scanner.next();
-		stationRepositiory.deleteStation(station);
-		System.out.println(DELETE_STATION_MESSAGE + "\n");
+		if(stationRepositiory.findStation(station)!=null)
+		{
+			stationRepositiory.deleteStation(station);
+			System.out.println(DELETE_STATION_MESSAGE + "\n");
+			return;
+		}
+		System.out.println(ERROR_DELETE_STATION_MESSAGE);
 	}
 	public static void statusStation(StationRepository stationRepositiory) {
 		stationRepositiory.viewStations();

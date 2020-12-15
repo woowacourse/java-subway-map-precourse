@@ -31,7 +31,6 @@ public class StationRepository {
 				return station;
 			}
 		}
-		System.out.println(name + " ¸øÃ£À½");
 		return null;
 	}
 
