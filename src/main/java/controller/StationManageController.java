@@ -46,18 +46,18 @@ public class StationManageController {
     private void removeStation() {
         view.printMessage(ConstantsString.INPUT_MESSAGE_FOR_STATION_NAME_TO_DELETE);
         String input = view.input();
-
         if (!StationRepository.isExistStation(input)) {
             view.printMessage(ConstantsString.ERROR_STATION_NAME_NOT_EXIST);
             return;
         }
         if (LineRepository.isStationInLines(StationRepository.getStationByName(input))) {
             view.printMessage(ConstantsString.ERROR_STATION_IN_LINES);
+            return;
         }
         if (StationRepository.deleteStation(input)) {
             view.printMessage(ConstantsString.COMPLETE_REMOVE_STATION);
+            return;
         }
-
         StationRepository.deleteStation(input);
     }
 
