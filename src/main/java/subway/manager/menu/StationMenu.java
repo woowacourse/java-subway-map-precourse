@@ -9,10 +9,10 @@ public enum StationMenu {
     ADD("1", "1. 역 등록", StationController::save),
     REMOVE("2", "2. 역 삭제", StationController::remove),
     MANAGEMENT("3", "3. 역 조회", StationController::getList),
-    BACK("B", "B. 돌아가기", (StationController) -> goBack());
+    BACK("B", "B. 돌아가기", (StationController) -> goBackMenu());
 
     private static final String menu = "## 역 관리 화면";
-    private static boolean back = true;
+    private static boolean restart = true;
     private String number;
     private String name;
     private Consumer<StationController> nextAction;
@@ -40,12 +40,12 @@ public enum StationMenu {
         nextAction.accept(stationController);
     }
 
-    private static void goBack() {
-        back = false;
+    private static void goBackMenu() {
+        restart = false;
     }
 
-    public static boolean isBack() {
-        return back;
+    public static boolean isRestart() {
+        return restart;
     }
 
     @Override

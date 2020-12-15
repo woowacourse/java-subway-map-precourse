@@ -9,10 +9,10 @@ public enum LineMenu {
     ADD("1", "1. 노선 등록", LineController::save),
     REMOVE("2", "2. 노선 삭제", LineController::remove),
     MANAGEMENT("3", "3. 노선 조회", LineController::getList),
-    BACK("B", "B. 돌아가기", (LineController) -> LineMenu.goBack());
+    BACK("B", "B. 돌아가기", (LineController) -> LineMenu.goBackMenu());
 
     private static final String menu = "## 노선 관리 화면";
-    private static boolean back = true;
+    private static boolean restart = true;
     private String number;
     private String name;
     private Consumer<LineController> nextAction;
@@ -42,15 +42,15 @@ public enum LineMenu {
     }
 
     public static void initMenuStatus() {
-        back = true;
+        restart = true;
     }
 
-    private static void goBack() {
-        back = false;
+    private static void goBackMenu() {
+        restart = false;
     }
 
-    public static boolean isBack() {
-        return back;
+    public static boolean isRestart() {
+        return restart;
     }
 
     @Override

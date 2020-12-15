@@ -11,7 +11,7 @@ public class StationManager {
         do {
             StationMenu.printMenu();
             chooseMenu().execute(StationController.getInstance());
-        } while (StationMenu.isBack());
+        } while (StationMenu.isRestart());
     }
 
     private static StationMenu chooseMenu() {

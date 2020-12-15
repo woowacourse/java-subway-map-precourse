@@ -11,7 +11,7 @@ public class LineManager {
         do {
             LineMenu.printMenu();
             chooseMenu().execute(LineController.getInstance());
-        } while (LineMenu.isBack());
+        } while (LineMenu.isRestart());
     }
 
     private static LineMenu chooseMenu() {
