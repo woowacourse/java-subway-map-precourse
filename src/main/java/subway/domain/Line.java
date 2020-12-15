@@ -28,4 +28,8 @@ public class Line {
     public boolean hasStation(String name) {
         return stationNames.contains(name);
     }
+
+    public int getSize() {
+        return stationNames.size();
+    }
 }
