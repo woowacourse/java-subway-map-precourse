@@ -7,17 +7,8 @@ import subway.domain.StationRepository;
 
 public class ErrorManager {
     public static void checkInput(String input) {
-        if(input.equals("Q")) {
-
-        } else if(input.equals("1")) {
-
-        } else if(input.equals("2")) {
-
-        } else if(input.equals("3")) {
-
-        } else if(input.equals("4")) {
-
-        } else {
+        if(!(input.equals("Q") || input.equals("1") || input.equals("2")
+                || input.equals("3") || input.equals("4"))) {
             throw new IllegalArgumentException(Constants.COMMAND_FAIL);
         }
     }
@@ -49,5 +40,4 @@ public class ErrorManager {
         }
         return check;
     }
-
 }
