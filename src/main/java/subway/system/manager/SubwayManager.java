@@ -7,8 +7,6 @@ import subway.domain.Subway;
 public class SubwayManager {
 
     static final String INFO_PREFIX = "[INFO] ";
-    static final String ERROR_PREFIX = "[ERROR] ";
-
     private static Subway subway = new Subway();
 
     public static void addStation(String stationName) {

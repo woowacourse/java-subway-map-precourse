@@ -6,7 +6,6 @@ public class LineSystemInputValidator {
 
     static final String WANT_QUIT_CODE = "B";
     static final String OPTION_ERROR_MESSAGE = "1~3 또는 B 옵션 중 하나를 입력하세요";
-    static final String ERROR_PREFIX = "[ERROR] ";
     static final String STATION_NAME_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
     static final String LINE_NAME_INPUT_ERROR_MESSAGE = "존재하지 않는 2자 이상의 노선 이름을 입력하세요";
     static final String LINE_NAME_DELETION_ERROR_MESSAGE = "존재하는 2자 이상의 노선 이름을 입력하세요";

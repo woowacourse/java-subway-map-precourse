@@ -8,10 +8,9 @@ public class SectionSystemInputValidator {
     static final int OPTION_MAX = 2;
     static final String OPTION_ERROR_MESSAGE = "1~2 또는 B 옵션 중 하나를 입력하세요";
     static final String WANT_QUIT_CODE = "B";
-    static final String ERROR_PREFIX = "[ERROR] ";
     static final String LINE_NAME_DELETION_ERROR_MESSAGE = "존재하는 2자 이상의 노선 이름을 입력하세요";
     static final String STATION_NAME_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
-    static final String ORDER_ERROR_MESSAGE = "숫자로 순서를 입력하세요";
+    static final String ORDER_ERROR_MESSAGE = "1이상의 숫자로 순서를 입력하세요";
     static final int MIN_NAME_LENGTH = 2;
 
 
@@ -51,9 +50,12 @@ public class SectionSystemInputValidator {
 
     public static void validateOrderForEnrollment(String order) throws IllegalArgumentException {
         try {
-            Integer.parseInt(order);
+            int intOrder = Integer.parseInt(order);
+            if (intOrder < 1) {
+                throw new IllegalArgumentException(ORDER_ERROR_MESSAGE);
+            }
         } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR_PREFIX + ORDER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ORDER_ERROR_MESSAGE);
         }
     }
 
