@@ -84,6 +84,7 @@ public class LineController {
         LineView.printLineCheck();
         LineManageMenu.lineManageMenuStop();
     }
+
     public static void lineDelete() {
         try {
             LineView.printLineDeleteReqMsg();

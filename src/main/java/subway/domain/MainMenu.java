@@ -43,9 +43,11 @@ public class MainMenu {
     }
 
     private static boolean isMainMenuRun = true;
-    public static boolean getIsMainMenuRun(){
+
+    public static boolean getIsMainMenuRun() {
         return isMainMenuRun;
     }
+
     private static void mainStop() {
         isMainMenuRun = false;
     }

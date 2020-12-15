@@ -32,6 +32,7 @@ public class LineManageMenu {
                 LineController.lineCheck();
             }
         };
+
         public abstract void lineManageMenuSelect();
     }
 

@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.domain.Station;
 import subway.domain.repositories.StationRepository;
+
 import java.util.List;
 
 public class StationView {
@@ -11,17 +12,17 @@ public class StationView {
     private static final String DELETE_REQ_MSG = "## 삭제할 역 이름을 입력하세요.";
     private static final String STATION_CHECK_HEADER = "## 역 목록";
 
-    public static void printStationAddReqMsg(){
+    public static void printStationAddReqMsg() {
         System.out.println();
         System.out.println(ADD_REQ_MSG);
     }
 
-    public static void printStationAddSuccessMsg(){
+    public static void printStationAddSuccessMsg() {
         System.out.println();
         System.out.println(ADD_SUCCESS_MSG);
     }
 
-    public static void printStationCheck(){
+    public static void printStationCheck() {
         System.out.println();
         System.out.println(STATION_CHECK_HEADER);
         List<Station> stations = StationRepository.stations();
@@ -30,11 +31,12 @@ public class StationView {
         }
     }
 
-    public static void printStationDeleteReqMsg(){
+    public static void printStationDeleteReqMsg() {
         System.out.println();
         System.out.println(DELETE_REQ_MSG);
     }
-    public static void printStationDeleteSuccessMsg(){
+
+    public static void printStationDeleteSuccessMsg() {
         System.out.println();
         System.out.println(DELETE_SUCCESS_MSG);
     }

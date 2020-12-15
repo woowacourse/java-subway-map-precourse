@@ -18,7 +18,6 @@ public class LineView {
     private static final String DELETE_SUCCESS_MSG = "[INFO] 지하철 노선이 삭제되었습니다.";
 
 
-
     public static void printLineAddReqMsg() {
         System.out.println();
         System.out.println(ADD_REQ_MSG);

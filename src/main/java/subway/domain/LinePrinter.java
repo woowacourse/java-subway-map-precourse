@@ -21,7 +21,7 @@ public class LinePrinter {
 
     private static void printStationsByLineName(String lineName) {
         List<String> stations = LineRepository.getStationsByLineName(lineName);
-        for(String stationName : stations){
+        for (String stationName : stations) {
             System.out.println(INFO_HEADER + stationName);
         }
         System.out.println();
