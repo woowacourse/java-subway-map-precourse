@@ -15,19 +15,8 @@ public class Application {
 
     public static void startProgram(Scanner kbd) {
         View.showMainMenu();
-        String mainInput = inputFunction(kbd, Constants.MAIN_FUNCTIONS);
+        String mainInput = InputView.inputFunction(kbd, Constants.MAIN_FUNCTIONS);
         goSubMenu(mainInput, kbd);
-    }
-
-    public static String inputFunction(Scanner kbd, List<String> functions) {
-        String input = "0";
-        boolean check = false;
-        while(!check) {
-            System.out.println("\n## 원하는 기능을 선택하세요.");
-            input = kbd.nextLine();
-            check = Errors.checkInput(input, functions);
-        }
-        return input;
     }
 
     public static void goSubMenu(String input, Scanner kbd) {
@@ -46,7 +35,7 @@ public class Application {
 
     public static void manageStation(Scanner kbd) {
         View.showStationMenu();
-        String input = inputFunction(kbd, Constants.SUB_FUNCTIONS);
+        String input = InputView.inputFunction(kbd, Constants.SUB_FUNCTIONS);
         if (input.equals(Constants.ADD_MENU))
             addStation(kbd);
         if (input.equals(Constants.DELETE_MENU))
@@ -59,7 +48,7 @@ public class Application {
 
     public static void manageLine(Scanner kbd) {
         View.showLineMenu();
-        String input = inputFunction(kbd, Constants.SUB_FUNCTIONS);
+        String input = InputView.inputFunction(kbd, Constants.SUB_FUNCTIONS);
         if (input.equals(Constants.ADD_MENU))
             addLine(kbd);
         if (input.equals(Constants.DELETE_MENU))
@@ -72,7 +61,7 @@ public class Application {
 
     public static void manageSection(Scanner kbd) {
         View.showSectionMenu();
-        String input = inputFunction(kbd, Constants.SECTION_FUNCTIONS);
+        String input = InputView.inputFunction(kbd, Constants.SECTION_FUNCTIONS);
         if (input.equals(Constants.ADD_MENU))
             addSection(kbd);
         if (input.equals(Constants.DELETE_MENU))
