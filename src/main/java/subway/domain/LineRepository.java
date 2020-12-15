@@ -26,7 +26,7 @@ public class LineRepository {
     }
     
     public static void addSection(Line line, Station station, int order) {
-        line.addStation(station, order);
+        line.addStation(station, order-1);
     }
 
     public static boolean deleteLineByName(String name) {
