@@ -1,8 +1,6 @@
 package subway.view;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
+import subway.domain.*;
 
 public class MainScreen implements Screen {
     private static final int COUNT_MAIN_USER_PROMPT = 4;
@@ -40,9 +38,9 @@ public class MainScreen implements Screen {
     public void printTransitMap() {
         StringBuilder transitMap = new StringBuilder();
         transitMap.append(TRANSIT_MAP);
-        for (Line line : LineRepository.lines()) {
+        for (Line line : SectionRepository.sections().keySet()) {
             transitMap.append(INFO + line.getName() + INFO + DASH);
-            for (Station station : line.getLineStations()) {
+            for (Station station : SectionRepository.findSection(line).getSection()) {
                 transitMap.append(INFO + station.getName());
             }
             transitMap.append(NEW_LINE);

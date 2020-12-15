@@ -1,10 +1,7 @@
 package subway;
 
 import subway.controller.MainController;
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 
 public class Application {
 
@@ -25,20 +22,25 @@ public class Application {
             LineRepository.addLine(new Line(line));
         }
 
-        Line line2 = LineRepository.findLine("2호선");
-        line2.initiateLineStations(StationRepository.findStation("교대역"),
+        Line 호선2 = LineRepository.findLine("2호선");
+        Section 호선2구간 = new Section();
+        호선2구간.initiateSection(StationRepository.findStation("교대역"),
                 StationRepository.findStation("역삼역"));
-        line2.getLineStations().add(1, StationRepository.findStation("강남역"));
+        SectionRepository.addSection(호선2, 호선2구간);
 
-        Line line3 = LineRepository.findLine("3호선");
-        line3.initiateLineStations(StationRepository.findStation("교대역"),
+        Line 호선3 = LineRepository.findLine("3호선");
+        Section 호선3구간 = new Section();
+        호선3구간.initiateSection(StationRepository.findStation("교대역"),
                 StationRepository.findStation("매봉역"));
-        line3.getLineStations().add(1, StationRepository.findStation("양재역"));
-        line3.getLineStations().add(1, StationRepository.findStation("남부터미널역"));
+        SectionRepository.addSection(호선3, 호선3구간);
+        호선3구간.getSection().add(1,StationRepository.findStation("양재역"));
+        호선3구간.getSection().add(1,StationRepository.findStation("남부터미널역"));
 
-        Line newBunDang = LineRepository.findLine("신분당선");
-        newBunDang.initiateLineStations(StationRepository.findStation("강남역"),
+        Line 신분당 = LineRepository.findLine("신분당선");
+        Section 신분당구간 = new Section();
+        신분당구간.initiateSection(StationRepository.findStation("강남역"),
                 StationRepository.findStation("양재시민의숲역"));
-        newBunDang.getLineStations().add(1, StationRepository.findStation("양재역"));
+        SectionRepository.addSection(신분당, 신분당구간);
+        신분당구간.getSection().add(1,StationRepository.findStation("양재역"));
     }
 }

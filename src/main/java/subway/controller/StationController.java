@@ -11,7 +11,7 @@ public class StationController implements Controller {
     private static final String BACK = "B";
 
     static StationController instance;
-    StationScreen screen;
+    private final StationScreen screen;
 
     public StationController() {
         screen = StationScreen.getInstance();

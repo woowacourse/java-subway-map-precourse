@@ -1,13 +1,10 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 import subway.view.SectionScreen;
 import subway.view.InputView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SectionController implements Controller {
     private static final String USER_ANSWER_REGISTER = "1";
@@ -15,7 +12,7 @@ public class SectionController implements Controller {
     private static final String BACK = "B";
 
     static SectionController instance;
-    private SectionScreen screen;
+    private final SectionScreen screen;
 
     public SectionController() {
         screen = SectionScreen.getInstance();
@@ -56,12 +53,14 @@ public class SectionController implements Controller {
 
     private void registerSectionHelper(String userInput) {
         Line line = LineRepository.findLine(userInput);
+        Section section = SectionRepository.findSection(line);
         Station station = getStationToAdd();
-        if (line.contains(station)) {
+
+        if (section.contains(station)) {
             throw new IllegalArgumentException();
         }
-        int section = getSectionToAdd(line.getLineStations()) - 1;
-        line.getLineStations().add(section, station);
+        int indexToAdd = getIndexToAdd(section.getSection()) - 1;
+        section.getSection().add(indexToAdd, station);
     }
 
     private Station getStationToAdd() {
@@ -69,13 +68,13 @@ public class SectionController implements Controller {
         return StationRepository.findStation(InputView.getUserInput());
     }
 
-    private int getSectionToAdd(ArrayList<Station> lineStations) {
+    private int getIndexToAdd(List<Station> section) {
         screen.printSectionToAdd();
-        int section = Integer.parseInt(InputView.getUserInput());
-        if (section > lineStations.size() - 1 || section <= 0) {
-            throw new IllegalArgumentException();
+        int indexToAdd = Integer.parseInt(InputView.getUserInput());
+        if (indexToAdd > 0 || indexToAdd <= section.size()) {
+            return indexToAdd;
         }
-        return section;
+        throw new IllegalArgumentException();
     }
 
     private void deleteSection() {
@@ -91,13 +90,14 @@ public class SectionController implements Controller {
 
     private void deleteSectionHelper(String userInput) {
         Line line = LineRepository.findLine(userInput);
-        if (line.isEmpty()) {
+        Section section = SectionRepository.findSection(line);
+        if (section.isEmpty()) {
             throw new IllegalArgumentException();
         }
         Station station = screen.showPromptStationToDelete();
-        if (!line.contains(station)) {
+        if (!section.contains(station)) {
             throw new IllegalArgumentException();
         }
-        line.removeLineStation(station);
+        section.removeSection(station);
     }
 }

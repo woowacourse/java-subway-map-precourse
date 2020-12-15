@@ -10,7 +10,7 @@ public class MainController implements Controller {
     private static final String QUIT = "Q";
 
     static MainController instance;
-    private MainScreen screen;
+    private final MainScreen screen;
 
     public MainController() {
         screen = MainScreen.getInstance();

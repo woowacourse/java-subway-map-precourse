@@ -24,15 +24,13 @@ public class LineRepository {
         throw new IllegalArgumentException();
     }
 
-    public static boolean deleteLineByName(String name) {
+    public static void deleteLine(Line line) {
         if (lines.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        for (Line line : lines) {
-            if (line.getName().equals(name)) {
-                lines.remove(line);
-                return true;
-            }
+        if (lines.contains(line)) {
+            lines.remove(line);
+            return;
         }
         throw new IllegalArgumentException();
     }

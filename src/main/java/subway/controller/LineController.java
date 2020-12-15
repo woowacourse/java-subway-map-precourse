@@ -1,9 +1,6 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 import subway.view.LineScreen;
 
 public class LineController implements Controller {
@@ -13,7 +10,7 @@ public class LineController implements Controller {
     private static final String BACK = "B";
 
     static LineController instance;
-    LineScreen screen;
+    private final LineScreen screen;
 
     public LineController() {
         screen = LineScreen.getInstance();
@@ -48,8 +45,10 @@ public class LineController implements Controller {
         String userInput = screen.showPromptRegisterLine();
         try {
             Line line = new Line(userInput);
-            initiateLineStations(line);
+            Section section = new Section();
+            initiateSection(section);
             LineRepository.addLine(line);
+            SectionRepository.addSection(line, section);
         } catch (IllegalArgumentException e) {
             screen.printError(e);
             registerLine();
@@ -58,7 +57,7 @@ public class LineController implements Controller {
         screen.printRegistrationCompleted();
     }
 
-    private void initiateLineStations(Line line) {
+    private void initiateSection(Section section) {
         Station upstreamStation = null;
         Station downstreamStation = null;
         try {
@@ -69,15 +68,17 @@ public class LineController implements Controller {
             downstreamStation = StationRepository.findStation(userInputDownstreamStation);
         } catch (Exception e) {
             screen.printError(e);
-            initiateLineStations(line);
+            initiateSection(section);
         }
-        line.initiateLineStations(upstreamStation, downstreamStation);
+        section.initiateSection(upstreamStation, downstreamStation);
     }
 
     private void deleteLine() {
         String userInput = screen.showPromptDeleteLine();
         try {
-            LineRepository.deleteLineByName(userInput);
+            Line lineToDelete = LineRepository.findLine(userInput);
+            SectionRepository.deleteSection(lineToDelete);
+            LineRepository.deleteLine(lineToDelete);
         } catch (IllegalArgumentException e) {
             screen.printError(e);
             return;
