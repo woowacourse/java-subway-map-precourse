@@ -6,8 +6,9 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.SelectNotValidException;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Board implements Menu {
