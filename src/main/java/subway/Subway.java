@@ -44,7 +44,7 @@ public class Subway {
     private void initSubway() {
         menus.put(ONE, new InputStationManager(scanner));
         menus.put(TOW, new InputLineManager(scanner));
-        menus.put(THREE, "3");
+        menus.put(THREE, new InputSectionManager(scanner));
         menus.put(FOUR, "4");
         menus.put(APPLICATION_QUIT, "Q");
         SubwayManager.initSubwayManager(menus);
