@@ -54,6 +54,39 @@ public class PrintInfo {
         printList(list);
     }
 
+
+
+    public static void manageLine() {
+        System.out.println(
+                "## 노선 관리 화면\n" +
+                "1. 노선 등록\n" +
+                "2. 노선 삭제\n" +
+                "3. 노선 조회\n" +
+                "B. 돌아가기\n" +
+                "\n" +
+                "## 원하는 기능을 선택하세요.");
+    }
+
+    public static void inputAddLineName() {
+        System.out.println("\n" +
+                "## 등록할 노선 이름을 입력하세요.");
+    }
+
+    public static void inputAddLineStartStation() {
+        System.out.println("\n" +
+                "## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+    }
+
+    public static void inputAddLineEndStation() {
+        System.out.println("\n" +
+                "## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+    }
+
+    public static void addLineSuccess() {
+        System.out.println("\n" +
+                "[INFO] 지하철 노선이 등록되었습니다.\n");
+    }
+
     public static void printList(List<String> list) {
         list.forEach(item -> System.out.println("[INFO] " + item));
         System.out.println();
