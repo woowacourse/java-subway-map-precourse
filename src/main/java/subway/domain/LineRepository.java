@@ -80,8 +80,7 @@ public class LineRepository {
     public static boolean deleteSection(String lineName, Scanner scanner) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
-                OutputView.writeDeleteStation();
-                return line.deleteStation(scanner.next());
+                return line.deleteStation(scanner);
             }
         }
         ErrorView.notExistName();

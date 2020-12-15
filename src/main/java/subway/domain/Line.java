@@ -110,13 +110,14 @@ public class Line {
         return true;
     }
 
-    public boolean deleteStation(String stationName) {
-        int length = stations.size();
-        if(length <= MINIMUM_LENGTH){
+    public boolean deleteStation(Scanner scanner) {
+        if(stations.size() <= MINIMUM_LENGTH){
             ErrorView.lineSizeError();
             return false;
         }
-        for (int i = 0; i < length; i++) {
+        OutputView.writeDeleteStation();
+        String stationName = scanner.next();
+        for (int i = 0; i < stations.size(); i++) {
             if (stations.get(i).getName().equals(stationName)) {
                 stations.remove(i);
                 return true;
