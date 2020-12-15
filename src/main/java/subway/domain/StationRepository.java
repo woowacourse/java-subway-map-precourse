@@ -19,4 +19,13 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static boolean findByName(String name) {
+        return stations.stream().anyMatch(station -> station.getName().equals(name));
+    }
+
+    public static Station findStationByName(String name) {
+        return stations.stream().filter(station ->
+                station.getName().equals(name)).findAny().orElse(null);
+    }
 }
