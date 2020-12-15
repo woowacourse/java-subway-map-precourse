@@ -13,6 +13,10 @@ public class SectionController {
     private static final String GET_ORDER_NAME = "\n## 순서를 입력하세요.";
     private static final String GET_DELETE_LINE_NAME = "\n## 삭제할 구간의 노선을 입력하세요.";
     private static final String GET_DELETE_STATION_NAME = "\n## 삭제할 구간의 역을 입력하세요.";
+    private static final String NO_SECTION_INFO = "등록된 노선이 없습니다.";
+    private static final String ADD_SECTION_SUCCESS = "구간이 등록되었습니다.\n";
+    private static final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.\n";
+    private static final String NOT_POSSIBLE_SECTION = "추가할 수 없는 구간입니다.";
 
     public SectionController(Scanner scanner) {
         this.scanner = scanner;
@@ -39,11 +43,11 @@ public class SectionController {
         String order = scanner.next();
         try {
             sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_SECTION_SUCCESS));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_SECTION_SUCCESS));
         }catch(IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }catch(IndexOutOfBoundsException e){
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_POSSIBLE_SECTION));
         }
     }
 
@@ -55,7 +59,7 @@ public class SectionController {
         try {
             boolean deleteFlag = sectionRepository.deleteSection(lineName, stationName);
             if (deleteFlag) {
-                System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_SECTION_SUCCESS));
+                System.out.println(String.join(" ", Constant.INFO_PREFIX, DELETE_SECTION_SUCCESS));
                 return;
             }
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
@@ -66,6 +70,10 @@ public class SectionController {
     }
 
     public void readSections() {
-        sectionRepository.printMap();
+        try {
+            sectionRepository.printMap();
+        }catch (IllegalStateException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, NO_SECTION_INFO));
+        }
     }
 }

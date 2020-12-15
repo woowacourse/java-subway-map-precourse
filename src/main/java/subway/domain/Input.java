@@ -38,6 +38,8 @@ public class Input {
             return;
         } else if (flag.equals(Constant.QUIT_COMMAND)) {
             quit = true;
+            return;
         }
+        System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.INPUT_ERROR_ANNOUNCEMENT));
     }
 }

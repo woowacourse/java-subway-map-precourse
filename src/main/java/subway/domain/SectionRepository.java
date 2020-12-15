@@ -36,6 +36,9 @@ public class SectionRepository {
     }
 
     public static void printMap(){
+        if(lineRepository.lines.size()==0){
+            throw new IllegalStateException();
+        }
         for(int i=0; i<lineRepository.lines.size(); i++){
             System.out.print(String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
             for(int j=0; j<lineRepository.lines.get(i).stations.size(); j++){

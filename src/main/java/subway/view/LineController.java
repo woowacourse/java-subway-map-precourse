@@ -8,6 +8,9 @@ import subway.domain.Station;
 import java.util.Scanner;
 
 public class LineController {
+    private static final String DUPLICATE_LINE_NAME = "이미 등록된 노선 이름입니다.\n";
+    private static final String ADD_LINE_SUCCESS = "지하철 노선이 등록되었습니다.\n";
+    private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.\n";
     Scanner scanner;
     LineRepository lineRepository = new LineRepository();
 
@@ -38,7 +41,7 @@ public class LineController {
         String downwardName = scanner.next();
         try {
             lineRepository.addLine(lineName, upwardName, downwardName);
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_LINE_SUCCESS));
         }catch (IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }
@@ -49,7 +52,7 @@ public class LineController {
         String lineName = scanner.next();
         boolean deleteFlag = lineRepository.deleteLineByName(lineName);
         if (deleteFlag) {
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_LINE_SUCCESS));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, DELETE_LINE_SUCCESS));
         }
     }
 
