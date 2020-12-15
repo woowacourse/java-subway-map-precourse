@@ -16,6 +16,7 @@ public class LineOutputView {
     private static String DELETE_LINE = "삭제할 노선 이름을 입력하세요.\n";
     private static String SUCCESS_ADD_LINE = "지하철 노선이 등록되었습니다.\n";
     private static String SUCCESS_DELETE_LINE = "지하철 노선이 삭제되었습니다.\n";
+    private static String NEXT_LINE = "\n";
 
     public static void showMenu() {
         stringBuilder.append(MENU_SYMBOL);
@@ -29,7 +30,7 @@ public class LineOutputView {
         stringBuilder.append(LINE_LIST);
         lines.forEach(line ->
                 stringBuilder.append(INFO_SYMBOL+line.getName()));
-        stringBuilder.append("\n");
+        stringBuilder.append(NEXT_LINE);
         print();
     }
 
@@ -48,6 +49,12 @@ public class LineOutputView {
     public static void lastLineName() {
         stringBuilder.append(MENU_SYMBOL);
         stringBuilder.append(LAST_STATION_NAME);
+        print();
+    }
+
+    public static void successAdd() {
+        stringBuilder.append(INFO_SYMBOL);
+        stringBuilder.append(SUCCESS_ADD_LINE);
         print();
     }
 

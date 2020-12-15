@@ -17,6 +17,7 @@ public class LineFunction {
         try {
             String line = inputAddLine(lineRepository);
             lineRepository.addLine(inputStations(line, lineRepository));
+            LineOutputView.successAdd();
         } catch (NullPointerException e) {
             return null;
         }
@@ -39,10 +40,9 @@ public class LineFunction {
         try {
             String firstStation = inputFirstStation(line, lineRepository);
             String lastStation = inputLastStation(line, lineRepository);
-
             isDuplicateStations(firstStation, lastStation);
             return new Line(line, new ArrayList<>(Arrays.asList(firstStation, lastStation)));
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | DuplicateFirstLastStationException e) {
             throw new NullPointerException();
         }
     }
@@ -55,7 +55,7 @@ public class LineFunction {
             StationRepository.notExistStationName(firstStation);
             lineRepository.duplicateStationSelectLine(firstStation, line);
             return firstStation;
-        } catch (DuplicateFirstLastStationException | DuplicateStationOfLineException |
+        } catch (DuplicateStationOfLineException |
                 NotExistStationException | InvalidStationNameException e) {
             throw new NullPointerException();
         }
@@ -69,7 +69,7 @@ public class LineFunction {
             StationRepository.notExistStationName(lastStation);
             lineRepository.duplicateStationSelectLine(lastStation, line);
             return lastStation;
-        } catch (DuplicateFirstLastStationException | DuplicateStationOfLineException |
+        } catch (DuplicateStationOfLineException |
                 NotExistStationException | InvalidStationNameException e) {
             throw new NullPointerException();
         }

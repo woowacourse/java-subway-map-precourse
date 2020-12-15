@@ -29,5 +29,4 @@ public class Line {
     public void deleteLineByName(String name) {
         this.stations.removeIf(station -> Objects.equals(station, name));
     }
-    // 추가 기능 구현
 }

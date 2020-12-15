@@ -1,7 +1,6 @@
 package subway.controller.section;
 
 import subway.domain.LineRepository;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.exception.*;
 import subway.utils.InputValidator;

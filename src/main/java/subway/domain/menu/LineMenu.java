@@ -38,6 +38,6 @@ public enum LineMenu {
     }
 
     public void runFunction(LineRepository lineRepository) {
-        lineRepository = (LineRepository) function.apply(lineRepository);
+        function.apply(lineRepository);
     }
 }

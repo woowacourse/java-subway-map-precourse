@@ -38,6 +38,6 @@ public enum StationMenu {
     }
 
     public void runFunction(StationRepository stationRepository) {
-        stationRepository = (StationRepository) function.apply(stationRepository);
+        function.apply(stationRepository);
     }
 }

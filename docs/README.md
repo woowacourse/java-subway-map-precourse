@@ -1,4 +1,4 @@
-# 프로그램 기능
+# 🌈 프로그램 기능
 
 # 프로그래밍 기능 목록
 
@@ -156,7 +156,52 @@
 
 <br>
 
-# 프로그램 요구사항
+# 🚩 프로그램 구성
+
+- 📁 controller
+  - 📁 line
+    
+    - 📃 LineController
+    - 📃 LineFunction
+    
+  - 📁 station
+    
+    - 📃 SectionController
+    - 📃 SectionFunction
+
+  - 📁 section
+    
+    - 📃 StationController
+    - 📃 StationFunction
+    
+  - 📃 Controller
+  - 📃 MainController
+    
+- 📁 domain
+
+    - 📁 exception
+    
+        - 📃 AlreadyExistStationException : 지하철 노선이 이미 존재하는 경우의 예외 클래스
+        - 📃 DuplicateFirstLastStationException : 상행/하행 종점역이 중복될 경우의 예외 클래스
+        - 📃 DuplicateLineNameException : 노선 이름이 중복될 경우의 예외 클래스
+        - 📃 DuplicateStationOfLineException : 해당 노선에 역이 중복될 경우의 예외 클래스
+        - 📃 InvalidLineLengthException : 노선 길이가 잘못된(2 이하) 경우의 예외 클래스
+        - 📃 InvalidLineNameException : 노선 이름 입력이 잘못된 경우의 예외 클래스
+        - 📃 InvalidOrderException : 순서 입력이 잘못된 경우의 예외 클래스
+        - 📃 InvalidOrderLength : 순서 입력 가능 범위를 넘어선 경우의 예외 클래스
+        - 📃 InvalidStationNameException : 역 이름이 입력이 잘못된 경우의 예외 클래스
+        - 📃 NoSuchMenuException : 메뉴 입력이 잘못된 경우의 예외 클래스
+        - 📃 NotExistLineException : 입력된 노선이 존재하지 않는 경우의 예외 클래스
+        - 📃 NotExistStationException : 입력된 역이 존재하지 않는 경우의 예외 클래스
+        - 📃 NotStationInSelectLinException : 해당 노선에 역이 중복되지 않는 경우의 예외 클래스
+
+- 📁 view
+- 📁 utils
+- 📃 Application
+
+<br>
+
+# 📌 프로그램 요구사항
 
 ### 프로그래밍 요구사항 - Station, Line
 - [ ] Station, Line 클래스를 활용하여 지하철역과 노선을 구현해야 한다.
