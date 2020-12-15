@@ -25,12 +25,14 @@ public class LineRepository {
             lines.removeIf(line -> Objects.equals(line.getName(), name));
             return;
         }
+        System.out.println();
         System.out.println(DomainErrorMessage.NO_CONTAIN_LINE);
         throw new IllegalArgumentException(DomainErrorMessage.NO_CONTAIN_LINE);
     }
 
     public static void checkOverlappedLine(String target) {
         if (isExistedLine(target)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.OVERLAP_LINE);
             throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_LINE);
         }
@@ -48,6 +50,7 @@ public class LineRepository {
 
     public static void insertStationToLine(String lineTitle, String stationTitle, int order) {
         if (isContainedStationOnLine(lineTitle, stationTitle)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.EXISTED_ON_INTERVAL);
             throw new IllegalArgumentException(DomainErrorMessage.EXISTED_ON_INTERVAL);
         }
@@ -58,6 +61,7 @@ public class LineRepository {
 
     public static void deleteStationToLine(String lineTitle, String stationTitle) {
         if (!isContainedStationOnLine(lineTitle, stationTitle)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.NO_EXISTED_ON_INTERVAL);
             throw new IllegalArgumentException(DomainErrorMessage.NO_EXISTED_ON_INTERVAL);
         }
@@ -74,6 +78,7 @@ public class LineRepository {
                 .filter(line -> (line.getStationNumber() <= order))
                 .count();
         if (checkOrderCriteria != DomainConstant.ZERO_LONG_NUMBER) {
+            System.out.println();
             System.out.println(DomainErrorMessage.OUT_ORDER);
             throw new IllegalArgumentException(DomainErrorMessage.OUT_ORDER);
         }

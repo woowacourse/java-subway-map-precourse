@@ -33,6 +33,7 @@ public class LineManager {
 
     private void isValidUnit(String unit) {
         if (!SelectOptionConstants.LINE_OPTION.contains(unit)) {
+            System.out.println();
             System.out.println(SelectOptionConstants.OPTION_ERROR);
             throw new IllegalArgumentException(SelectOptionConstants.OPTION_ERROR);
         }

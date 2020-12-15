@@ -27,6 +27,7 @@ public class EntireSystem {
         try {
             isContainSectorList(sector);
         } catch (Exception error) {
+            System.out.println();
             System.out.println(SelectOptionConstants.OPTION_ERROR);
         }
     }

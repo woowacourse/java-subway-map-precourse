@@ -50,6 +50,7 @@ public enum IntervalSectors {
     private static String getLineTitle(Scanner scanner) {
         String lineTitle = scanner.nextLine();
         if (!LineRepository.isExistedLine(lineTitle)) {
+            System.out.println();
             System.out.println(ControllerErrorMessage.NO_EXIST_LINE);
             throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_LINE);
         }
@@ -59,6 +60,7 @@ public enum IntervalSectors {
     private static String getStationTitle(Scanner scanner) {
         String stationTitle = scanner.nextLine();
         if (!StationRepository.isExistedStation(stationTitle)) {
+            System.out.println();
             System.out.println(ControllerErrorMessage.NO_EXIST_STATION);
             throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_STATION);
         }
@@ -78,6 +80,7 @@ public enum IntervalSectors {
         try {
             Integer.parseInt(order);
         } catch (Exception error) {
+            System.out.println();
             System.out.println(ControllerErrorMessage.NO_INTEGER);
             throw new IllegalArgumentException(ControllerErrorMessage.NO_INTEGER);
         }

@@ -60,6 +60,7 @@ public class Line implements Comparable<Line> {
 
     private void checkOverlappedStation(String target) {
         if (isContainedStation(target)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.OVERLAP_STATION);
             throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_STATION);
         }
@@ -67,6 +68,7 @@ public class Line implements Comparable<Line> {
 
     private void checkNameLength(String name) {
         if (name.length() < DomainConstant.NAME_LIMIT_LENGTH) {
+            System.out.println();
             System.out.println(DomainErrorMessage.LINE_LENGTH);
             throw new IllegalArgumentException(DomainErrorMessage.LINE_LENGTH);
         }
@@ -75,6 +77,7 @@ public class Line implements Comparable<Line> {
     /** 해당 역 삭제시에 문제가 없는지 체크하는 메소드 **/
     private void checkAbleDeleteStation() {
         if (stations.size() <= DomainConstant.MINIMUM_STATION) {
+            System.out.println();
             System.out.println(DomainErrorMessage.MINIMUM_STATION);
             throw new IllegalArgumentException(DomainErrorMessage.MINIMUM_STATION);
         }
@@ -84,6 +87,7 @@ public class Line implements Comparable<Line> {
     private void checkEndName(String name) {
         String last = name.substring(name.length() - DomainConstant.LAST_LOCATION);
         if (!last.equals(DomainConstant.LINE_STRING)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.LINE_FORMAT);
             throw new IllegalArgumentException(DomainErrorMessage.LINE_FORMAT);
         }

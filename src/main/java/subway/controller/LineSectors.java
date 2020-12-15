@@ -66,6 +66,7 @@ public enum LineSectors {
     private static String getValidatedStation(Scanner scanner) {
         String stationTitle = scanner.nextLine();
         if (!StationRepository.isExistedStation(stationTitle)) {
+            System.out.println();
             System.out.println(ControllerErrorMessage.NO_EXIST_STATION);
             throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_STATION);
         }
@@ -84,6 +85,7 @@ public enum LineSectors {
 
     private static void isSameDepartureTerminal(String departure, String terminal) {
         if (departure.equals(terminal)) {
+            System.out.println();
             System.out.println(ControllerErrorMessage.SAME_DEPARTURE_TERMINAL);
             throw new IllegalArgumentException(ControllerErrorMessage.SAME_DEPARTURE_TERMINAL);
         }

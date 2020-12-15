@@ -23,10 +23,12 @@ public class StationRepository {
 
     public static void deleteStation(String name) {
         if (!isExistedStation(name)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.NO_CONTAIN_STATION);
             throw new IllegalArgumentException(DomainErrorMessage.NO_CONTAIN_STATION);
         }
         if (!LineRepository.isValidDeleteStationOnData(name)){
+            System.out.println();
             System.out.println(DomainErrorMessage.EXISTED_ON_LINES);
             throw new IllegalArgumentException(DomainErrorMessage.EXISTED_ON_LINES);
         }

@@ -29,6 +29,7 @@ public class Station implements Comparable<Station> {
 
     private void checkNameLength(String name) {
         if (name.length() < DomainConstant.NAME_LIMIT_LENGTH) {
+            System.out.println();
             System.out.println(DomainErrorMessage.STATION_LENGTH);
             throw new IllegalArgumentException(DomainErrorMessage.STATION_LENGTH);
         }
@@ -37,6 +38,7 @@ public class Station implements Comparable<Station> {
     private void checkEndName(String name) {
         String last = name.substring(name.length() - DomainConstant.LAST_LOCATION);
         if (!last.equals(DomainConstant.STATION_STRING)) {
+            System.out.println();
             System.out.println(DomainErrorMessage.STATION_FORMAT);
             throw new IllegalArgumentException(DomainErrorMessage.STATION_FORMAT);
         }
