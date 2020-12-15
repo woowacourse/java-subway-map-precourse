@@ -1,4 +1,4 @@
-package subway;
+package subway.controller;
 /*
  * Subway
  *
@@ -11,6 +11,9 @@ package subway;
 import subway.domain.Constants;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
+import subway.manager.InputLineManager;
+import subway.manager.InputSectionManager;
+import subway.manager.InputStationManager;
 
 import java.util.HashMap;
 import java.util.Map;

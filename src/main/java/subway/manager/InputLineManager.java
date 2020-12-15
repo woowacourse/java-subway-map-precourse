@@ -1,4 +1,4 @@
-package subway;
+package subway.manager;
 /*
  * InputLineManager
  *
@@ -8,6 +8,7 @@ package subway;
  *
  * Copyright (c) by Davinci.J
  */
+import subway.controller.SubwayManager;
 import subway.domain.*;
 
 import java.util.Arrays;

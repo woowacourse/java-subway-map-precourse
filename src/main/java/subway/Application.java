@@ -8,8 +8,10 @@ package subway;
  *
  * Copyright (c) by Davinci.J
  */
+import subway.controller.Subway;
 import subway.domain.Constants;
 import subway.domain.LineRepository;
+import subway.manager.InputManager;
 
 import java.util.Scanner;
 

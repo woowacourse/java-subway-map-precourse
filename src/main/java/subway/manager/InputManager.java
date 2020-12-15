@@ -1,4 +1,4 @@
-package subway;
+package subway.manager;
 
 public interface InputManager {
     void selectMenu();

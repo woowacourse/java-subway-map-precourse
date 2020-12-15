@@ -1,4 +1,4 @@
-package subway;
+package subway.manager;
 /*
  * InputStationManager
  *
@@ -8,6 +8,7 @@ package subway;
  *
  * Copyright (c) by Davinci.J
  */
+import subway.controller.SubwayManager;
 import subway.domain.Constants;
 import subway.domain.Station;
 import subway.domain.StationName;
