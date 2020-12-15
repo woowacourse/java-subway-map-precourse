@@ -5,9 +5,9 @@ import java.util.function.Supplier;
 
 public class MainMenu {
     public enum MainView{
-        STATION_MANAGEMENT("1", "역 관리", () -> ),
-        LINE_MANAGEMENT("2", "노선 관리", () -> ),
-        SECTION_MANAGEMENT("3", "구간 관리", () -> ),
+        STATION_MANAGEMENT("1", "역 관리", () -> StationConsole.selectMenu()),
+        LINE_MANAGEMENT("2", "노선 관리", () -> LineConsole.selectMenu()),
+        SECTION_MANAGEMENT("3", "구간 관리", () -> SectionConsole.selectMenu()),
         PRINT_SUBWAY_MAP("4", "지하철 노선도 출력", () -> ),
         QUIT("Q", "종료");
 
