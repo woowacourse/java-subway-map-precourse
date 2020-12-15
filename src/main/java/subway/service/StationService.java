@@ -27,13 +27,13 @@ public class StationService {
     }
 
     private static void validateNameLength(String name) {
-        if(name.length() < MIN_NAME_LENGTH) {
+        if (name.length() < MIN_NAME_LENGTH) {
             throw new NameLengthException();
         }
     }
 
     private static void validateDuplicateName(String name) {
-        if(StationRepository.findByName(name).isPresent()) {
+        if (StationRepository.findByName(name).isPresent()) {
             throw new StationNameDuplicateException();
         }
     }

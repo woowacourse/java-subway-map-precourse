@@ -20,7 +20,7 @@ public class StationController {
     }
 
     public void remove() {
-        try{
+        try {
             Output.printNewLine();
             StationService.remove(Input.input(Input.PLEASE_INPUT_REMOVE_STATION_NAME));
         } catch (IllegalArgumentException e) {

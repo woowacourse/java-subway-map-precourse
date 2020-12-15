@@ -5,7 +5,7 @@ public enum InitLine {
 
     private String name;
 
-    InitLine(String name){
+    InitLine(String name) {
         this.name = name;
     }
 
