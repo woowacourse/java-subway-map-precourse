@@ -7,14 +7,20 @@ public class StationService {
 
     public static final int MIN_STATION_NAME_LENGTH = 2;
 
-    public static boolean addStation(String name, boolean isPrint) {
-        // TODO - 조건검사 함수 분리하기
+    public static boolean isNotStationState(String name) {
         if (name.length() < MIN_STATION_NAME_LENGTH) {
             OutPut.printStationNameLengthError();
-            return false;
+            return true;
         }
         if (StationRepository.isEqualStationName(name)) {
             OutPut.printStationNameDuplicateError();
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean addStation(String name, boolean isPrint) {
+        if (isNotStationState(name)) {
             return false;
         }
         StationRepository.addStation(new Station(name));
