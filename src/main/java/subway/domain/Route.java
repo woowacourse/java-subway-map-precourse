@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import subway.utils.PrintUtils;
 
+/**
+ * 지하철 노선 구간을 관리하는 클래스
+ *
+ * @author 483759@naver.com / 윤이진
+ * @version 1.0 2020/12/13
+ */
 public class Route {
 
     private Line line;

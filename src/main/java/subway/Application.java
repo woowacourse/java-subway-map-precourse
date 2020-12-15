@@ -18,6 +18,12 @@ import subway.menu.StationFunction;
 import subway.utils.InputUtils;
 import subway.utils.PrintUtils;
 
+/**
+ * 지하철 프로그램을 관리하는 클래스
+ *
+ * @author 483759@naver.com / 윤이진
+ * @version 1.0 2020/12/15
+ */
 public class Application {
     private static StationRepository stationRepository;
     private static LineRepository lineRepository;
