@@ -43,10 +43,17 @@ public final class Line {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (!(o instanceof Line)) { return false; }
-        Line line = (Line) o;
+    public boolean equals(Object checkObject) {
+        if (this == checkObject) {
+            return true;
+        }
+
+        if (!(checkObject instanceof Line)) {
+            return false;
+        }
+
+        Line line = (Line) checkObject;
+
         return Objects.equals(getName(), line.getName());
     }
 

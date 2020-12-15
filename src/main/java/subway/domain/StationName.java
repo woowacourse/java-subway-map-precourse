@@ -24,10 +24,10 @@ public final class StationName {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (!(o instanceof StationName)) { return false; }
-        StationName that = (StationName) o;
+    public boolean equals(Object checkObject) {
+        if (this == checkObject) { return true; }
+        if (!(checkObject instanceof StationName)) { return false; }
+        StationName that = (StationName) checkObject;
         return Objects.equals(getName(), that.getName());
     }
 

@@ -15,10 +15,17 @@ public final class Station {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (!(o instanceof Station)) { return false; }
-        Station station = (Station) o;
+    public boolean equals(Object checkObject) {
+        if (this == checkObject) {
+            return true;
+        }
+
+        if (!(checkObject instanceof Station)) {
+            return false;
+        }
+
+        Station station = (Station) checkObject;
+
         return Objects.equals(stationName, station.stationName);
     }
 

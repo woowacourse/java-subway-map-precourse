@@ -24,10 +24,17 @@ public final class LineName {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (!(o instanceof LineName)) { return false; }
-        LineName lineName = (LineName) o;
+    public boolean equals(Object checkObject) {
+        if (this == checkObject) {
+            return true;
+        }
+
+        if (!(checkObject instanceof LineName)) {
+            return false;
+        }
+
+        LineName lineName = (LineName) checkObject;
+
         return Objects.equals(getName(), lineName.getName());
     }
 

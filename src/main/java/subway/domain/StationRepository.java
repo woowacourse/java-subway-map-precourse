@@ -108,10 +108,17 @@ public final class StationRepository {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (!(o instanceof StationRepository)) { return false; }
-        StationRepository that = (StationRepository) o;
+    public boolean equals(Object checkObject) {
+        if (this == checkObject) {
+            return true;
+        }
+
+        if (!(checkObject instanceof StationRepository)) {
+            return false;
+        }
+
+        StationRepository that = (StationRepository) checkObject;
+
         return Objects.equals(stations, that.stations);
     }
 
