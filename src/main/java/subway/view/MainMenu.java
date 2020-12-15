@@ -26,6 +26,10 @@ public class MainMenu {
             this.next = next;
         }
 
+        public static boolean isValidKey(String input) {
+            return Arrays.stream(values()).anyMatch(menu -> menu.getKey().equals(input));
+        }
+
         public String getKey() {
             return key;
         }
