@@ -30,7 +30,7 @@ public class SectionUtils {
         System.out.println("## 원하는 기능을 선택하세요.");
         chosen = scanner.next();
         if (!chosen.equals("B")) {
-            chosenNumber = Validator.isInputRight(chosen);
+            chosenNumber = Validator.isSectionInputRight(chosen);
             choose(chosenNumber);
         }
     }
