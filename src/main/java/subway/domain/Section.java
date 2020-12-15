@@ -31,7 +31,7 @@ public class Section {
     }
 
     public void addStationWithPosition(Station station, String position) {
-        int integerPosition = validatePositionInteger(position)-COVER_INDEX;
+        int integerPosition = validatePositionInteger(position) - COVER_INDEX;
         validatePositionRange(integerPosition);
         stations.add(integerPosition, station);
     }

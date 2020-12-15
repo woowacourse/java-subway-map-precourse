@@ -11,7 +11,8 @@ public class InitData {
 
     public enum InitLine {
         이호선("2호선", Arrays.asList(InitStation.교대역, InitStation.강남역, InitStation.역삼역)),
-        삼호선("3호선", Arrays.asList(InitStation.교대역, InitStation.남부터미널역, InitStation.양재역, InitStation.매봉역)),
+        삼호선("3호선",
+            Arrays.asList(InitStation.교대역, InitStation.남부터미널역, InitStation.양재역, InitStation.매봉역)),
         신분당선("신분당선", Arrays.asList(InitStation.강남역, InitStation.양재역, InitStation.양재시민의숲역));
 
         private final String lineName;
@@ -26,7 +27,7 @@ public class InitData {
             return lineName;
         }
 
-        public List<InitStation> getInitStations(){
+        public List<InitStation> getInitStations() {
             return stations;
         }
     }

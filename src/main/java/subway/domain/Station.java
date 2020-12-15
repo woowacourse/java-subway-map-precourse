@@ -24,7 +24,6 @@ public class Station {
         return name;
     }
 
-
     private void validateNameLastCharacter(String name) {
         if (!name.substring(name.length() - LAST_INDEX).equals(RULE_STATION_NAME)) {
             throw new IllegalArgumentException("지하철 역 이름은 \"역\"으로 끝나야 합니다.");

@@ -27,7 +27,7 @@ public class SectionRepository {
         }
     }
 
-    public static Section getSectionByLineName(String lineName){
+    public static Section getSectionByLineName(String lineName) {
         try {
             return sections().stream()
                 .filter(section -> section.getLine().getName().equals(lineName))

@@ -2,9 +2,9 @@ package subway.view;
 
 public class Display {
 
-    private static String NOTICE_PREFIX = "## ";;
-    private static String INFO_PREFIX = "[INFO] ";
-    private static String ERROR_PREFIX = "[ERROR] ";
+    private static final String NOTICE_PREFIX = "## ";
+    private static final String INFO_PREFIX = "[INFO] ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public static void printNotice(String notice) {
         printEnterLine();
@@ -16,7 +16,7 @@ public class Display {
         System.out.println(INFO_PREFIX + information);
     }
 
-    public static void printInformationList(String element){
+    public static void printInformationList(String element) {
         System.out.println(INFO_PREFIX + element);
     }
 

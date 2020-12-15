@@ -13,7 +13,7 @@ public enum MainMenu {
 
     private final String menuKey;
     private final String menuName;
-    private Consumer<String> menuSelect;
+    private final Consumer<String> menuSelect;
 
     MainMenu(String menuKey, String menuName, Consumer<String> menuSelect) {
         this.menuKey = menuKey;
@@ -27,6 +27,9 @@ public enum MainMenu {
             .findAny().get();
     }
 
+    private static void back() {
+    }
+
     public String getMenuKey() {
         return menuKey;
     }
@@ -38,6 +41,4 @@ public enum MainMenu {
     public void executeMenu(String menuKey) {
         menuSelect.accept(menuKey);
     }
-
-    private static void back() { }
 }

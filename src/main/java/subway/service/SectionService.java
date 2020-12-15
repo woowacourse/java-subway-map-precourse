@@ -30,7 +30,6 @@ public class SectionService {
         SectionDisplay.printDeleteSuccess();
     }
 
-
     public static void printSections() {
         SectionRepository.validateSectionsEmpty();
         MainDisplay.printAllSections(SectionRepository.sections());
@@ -50,8 +49,9 @@ public class SectionService {
     }
 
     public static void validateContainStation(Station station) {
-        if(SectionRepository.sections().stream().anyMatch(
-            line -> line.getStations().stream().anyMatch(thisStation -> thisStation.equals(station)))){
+        if (SectionRepository.sections().stream().anyMatch(
+            line -> line.getStations().stream()
+                .anyMatch(thisStation -> thisStation.equals(station)))) {
             throw new IllegalArgumentException("지하철 노선에 등록되어 있는 역은 삭제 할 수 없습니다.");
         }
     }

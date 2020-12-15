@@ -2,7 +2,8 @@ package subway.view;
 
 import java.util.Scanner;
 
-public class UserInput extends Display{
+public class UserInput extends Display {
+
     private static final String REQUEST_SELECT_MENU_MESSAGE = "원하는 기능을 선택하세요.";
     private static final String REQUEST_SAVE_STATION_MESSAGE = "등록할 역 이름을 입력하세요.";
     private static final String REQUEST_DELETE_STATION_MESSAGE = "삭제할 역 이름을 입력하세요.";
@@ -23,7 +24,7 @@ public class UserInput extends Display{
         return scanner.nextLine().toUpperCase(); // 소문자 입력 예외처리
     }
 
-    public static String getSaveStationName(){
+    public static String getSaveStationName() {
         printNotice(REQUEST_SAVE_STATION_MESSAGE);
         return scanner.nextLine();
     }

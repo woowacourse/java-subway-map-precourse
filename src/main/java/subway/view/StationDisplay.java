@@ -30,10 +30,10 @@ public class StationDisplay extends Display {
         while (true) {
             printMenu();
             StationMenu selectedMenu = selectMenuByInput();
-            try{
+            try {
                 selectedMenu.executeMenu(selectedMenu.getMenuKey());
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 printError(e.getMessage());
             }
         }
