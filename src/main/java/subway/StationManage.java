@@ -1,9 +1,10 @@
 package subway;
 
 import static log.ErrorCase.ALREADY_EXIST_ERROR;
-import static log.ErrorCase.FUNCTION_INPUT_ERROR;
 import static log.ErrorCase.NAME_LENGTH_ERROR;
 import static log.ErrorCase.NO_SUCH_NAME_ERROR;
+import static log.Logger.displayInputScreen;
+import static log.Logger.displayMainScreen;
 import static log.Logger.displayStationManageScreen;
 import static log.Logger.errorPrint;
 import static log.Logger.guidePrint;
@@ -13,6 +14,8 @@ import static subway.domain.StationRepository.deleteStation;
 import static subway.domain.StationRepository.hasStation;
 import static subway.domain.StationRepository.stations;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import subway.domain.Station;
@@ -26,28 +29,29 @@ public class StationManage {
     static final int MIN_STATION_NAME_LENGTH = 2;
 
     static public void stationManage(Scanner scanner) {
-        displayStationManageScreen();
-        String stationManageInput = scanner.next();
-        inputValidate(scanner, stationManageInput);
+        boolean exitFlag = false;
+        while (!exitFlag) {
+            displayStationManageScreen();
+            exitFlag = isExit(scanner);
+        }
     }
 
-    private static void inputValidate(Scanner scanner, String stationManageInput) {
-        if (stationManageInput.equalsIgnoreCase(ADD_STATION)) {
+    private static boolean isExit(Scanner scanner) {
+        String input = displayInputScreen(scanner, new ArrayList<>(Arrays.asList(
+            ADD_STATION, DELETE_STATION, ALL_STATIONS, BACK_SCREEN)));
+        if (input.equals(BACK_SCREEN)) {
+            return true;
+        }
+        if (input.equals(ADD_STATION)) {
             addStationControl(scanner);
-            return;
         }
-        if (stationManageInput.equalsIgnoreCase(DELETE_STATION)) {
+        if (input.equals(DELETE_STATION)) {
             deleteStationControl(scanner);
-            return;
         }
-        if (stationManageInput.equalsIgnoreCase(ALL_STATIONS)) {
+        if (input.equals(ALL_STATIONS)) {
             allStationsContol();
-            return;
         }
-        if (stationManageInput.equalsIgnoreCase(BACK_SCREEN)) {
-            return;
-        }
-        errorPrint(FUNCTION_INPUT_ERROR);
+        return false;
     }
 
     private static void addStationControl(Scanner scanner) {
