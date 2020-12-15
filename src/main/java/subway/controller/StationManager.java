@@ -44,16 +44,20 @@ public class StationManager {
     }
 
     private void addStation() {
-        System.out.println(MSG_INPUT_STATION_TO_ADD);
-        String station = InputView.askName(scanner);
         try {
-            validateOverTwoCharacters(station);
-            validateNotExisting(station);
+            String station = askStationAndValidate();
             StationRepository.addStation(new Station(station));
             System.out.println(MSG_COMPLETE_STATION_ADDED);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
         }
+    }
+
+    private String askStationAndValidate() throws IllegalArgumentException {
+        String station = InputView.askName(scanner, MSG_INPUT_STATION_TO_ADD);
+        validateOverTwoCharacters(station);
+        validateNotExisting(station);
+        return station;
     }
 
     private void validateNotExisting(String station) {
@@ -69,17 +73,21 @@ public class StationManager {
     }
 
     private void deleteStation() {
-        System.out.println(INPUT_MSG_STATION_TO_DELETE);
-        String station = InputView.askName(scanner);
         try {
-            validateExisting(station);
-            validateRegisteredToLine(station);
+            String station = askStationToDeleteAndValidate();
             StationRepository.deleteStation(station);
             System.out.println(MSG_COMPLETE_STATION_DELETED);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();
         }
+    }
+
+    private String askStationToDeleteAndValidate() throws IllegalArgumentException {
+        String station = InputView.askName(scanner, INPUT_MSG_STATION_TO_DELETE);
+        validateExisting(station);
+        validateRegisteredToLine(station);
+        return station;
     }
 
     private void validateExisting(String station) {

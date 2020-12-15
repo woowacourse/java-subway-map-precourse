@@ -37,29 +37,36 @@ public class SectionManager {
 
     private void selectMenu(String menuNumber) {
         if (menuNumber.equals(MENU_INT_ADD_STATION_TO_SECTION)) {
-            addStationToLine();
+            addStationToStation();
         } else if (menuNumber.equals(MENU_INT_DELETE_STATION_FROM_SECTION)) {
             deleteLine();
         }
     }
 
-    private void addStationToLine() {
-        System.out.println(MSG_INPUT_LINE_TO_REGISTER);
-        String line = InputView.askName(scanner);
-        System.out.println(MSG_INPUT_STATION_TO_REGISTER_TO_SECTION);
-        String station = InputView.askName(scanner);
-        System.out.println(MSG_INPUT_STATION_ORDER_IN_SECTION);
-        String index = InputView.askName(scanner);
+    private void addStationToStation() {
         try {
-            validateExistingLine(line);
-            validateExistingStation(station);
-            Line line1 = LineRepository.searchLineByName(line);
+            String line = askLineAndValidate();
+            String station = askStationAndValidate();
+            String index = InputView.askName(scanner, MSG_INPUT_STATION_ORDER_IN_SECTION);
+            Line lineToRegister = LineRepository.searchLineByName(line);
             int toCodingIndex = Integer.parseInt(index) - INT_ORDINARY_TO_CODING_INDEX;
-            line1.addStationToSection(toCodingIndex, station);
+            lineToRegister.addStationToSection(toCodingIndex, station);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();
         }
+    }
+
+    private String askStationAndValidate() throws IllegalArgumentException {
+        String station = InputView.askName(scanner, MSG_INPUT_STATION_TO_REGISTER_TO_SECTION);
+        validateExistingStation(station);
+        return station;
+    }
+
+    private String askLineAndValidate() throws IllegalArgumentException {
+        String line = InputView.askName(scanner, MSG_INPUT_LINE_TO_REGISTER);
+        validateExistingLine(line);
+        return line;
     }
 
     private void validateExistingLine(String line) {
@@ -75,20 +82,22 @@ public class SectionManager {
     }
 
     private void deleteLine() {
-        System.out.println(MSG_INPUT_LINE);
-        String line = InputView.askName(scanner);
-        System.out.println(MSG_INPUT_STATION_TO_DELETE);
-        String station = InputView.askName(scanner);
         try {
+            String line = InputView.askName(scanner, MSG_INPUT_LINE);
+            String station = InputView.askName(scanner, MSG_INPUT_STATION_TO_DELETE);
             validateExistingLine(line);
             validateLineHasLeastTwoStation(line);
-            if (!LineRepository.searchLineByName(line).deleteStationFromSection(station)) {
-                throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_STATION_IN_SECTION);
-            }
+            validateStationInSection(line, station);
             System.out.println(MSG_COMPLETE_LINE_DELETED);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();
+        }
+    }
+
+    private void validateStationInSection(String line, String station) {
+        if (!LineRepository.searchLineByName(line).deleteStationFromSection(station)) {
+            throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_STATION_IN_SECTION);
         }
     }
 

@@ -60,28 +60,29 @@ public class LineManager {
     }
 
     private void addLine() {
-        System.out.println(MSG_INPUT_LINE_TO_REGISTER);
-        String line = InputView.askName(scanner);
         try {
-            validateOverTwoChracters(line);
-            validateNotExistingLine(line);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
-            run();
-        }
-        Line newLine = new Line(line);
-        System.out.println(MSG_INPUT_FIRST_STATION_TO_REGISTER_TO_SECTION);
-        String startStation = InputView.askName(scanner);
-        System.out.println(MSG_INPUT_LAST_STATION_TO_REGISTER_TO_SECTION);
-        String endStation = InputView.askName(scanner);
-        try {
-            newLine.initializeSection(startStation, endStation);
+            String line = askLineAndValidate();
+            Line newLine = new Line(line);
+            askStartEndStationAndRegister(newLine);
             LineRepository.addLine(newLine);
             System.out.println(MSG_OUTPUT_LINE_REGISTERING_COMPLETE);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();
         }
+    }
+
+    private String askLineAndValidate() throws IllegalArgumentException {
+        String line = InputView.askName(scanner, MSG_INPUT_LINE_TO_REGISTER);
+        validateOverTwoChracters(line);
+        validateNotExistingLine(line);
+        return line;
+    }
+
+    private void askStartEndStationAndRegister(Line newLine) {
+        String startStation = InputView.askName(scanner, MSG_INPUT_FIRST_STATION_TO_REGISTER_TO_SECTION);
+        String endStation = InputView.askName(scanner, MSG_INPUT_LAST_STATION_TO_REGISTER_TO_SECTION);
+        newLine.initializeSection(startStation, endStation);
     }
 
     private void validateNotExistingLine(String line) {
@@ -97,8 +98,7 @@ public class LineManager {
     }
 
     private void deleteLine() {
-        System.out.println(MSG_INPUT_LINE_TO_DELETE);
-        String station = InputView.askName(scanner);
+        String station = InputView.askName(scanner, MSG_INPUT_LINE_TO_DELETE);
         try {
             if (!LineRepository.deleteLineByName(station)) {
                 throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_LINE);

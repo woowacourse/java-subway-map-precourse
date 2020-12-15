@@ -80,4 +80,9 @@ public class InputView {
         return scanner.nextLine().trim();
     }
 
+    public static String askName(Scanner scanner, String message) {
+        System.out.println(message);
+        return scanner.nextLine().trim();
+    }
+
 }

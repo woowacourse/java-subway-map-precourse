@@ -41,10 +41,14 @@ public class SubwayProgram {
             SectionManager newSectionManager = new SectionManager(scanner);
             newSectionManager.run();
         } else if (mainMenuNumber.equals(MENU_INT_PRINT_ALL_LINES_AND_STATIONS)) {
-            System.out.println(TITLE_STATION_PRINTING);
-            for (Line line : LineRepository.lines()) {
-                System.out.println(line);
-            }
+            printAllLinesAndStations();
+        }
+    }
+
+    private void printAllLinesAndStations() {
+        System.out.println(TITLE_STATION_PRINTING);
+        for (Line line : LineRepository.lines()) {
+            System.out.println(line);
         }
     }
 }
