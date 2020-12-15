@@ -17,8 +17,8 @@ public class Input {
     
     public static String inputAddStationName() {
         StationScreen.askAddStationName();
-	    return scanner.next();
-	}
+        return scanner.next();
+    }
     
     public static String inputDeleteStationName() {
         StationScreen.askDeleteStationName();

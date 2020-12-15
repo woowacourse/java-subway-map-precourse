@@ -37,5 +37,5 @@ public enum MainMenu {
         .findFirst()
         .orElseThrow(()->new IllegalArgumentException())
         .getHandler().run();
-	}
+    }
 }

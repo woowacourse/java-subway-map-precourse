@@ -26,7 +26,7 @@ public class LineController {
             line.addDownTerminal(down);
             LineRepository.addLine(line);
             SubwayController.output.printResult(ADD_SUCCESS_MESSAGE);
-        }catch(Exception error) {
+        } catch (Exception error) {
             SubwayController.output.printError(error.getMessage());
         }
     }
@@ -35,7 +35,7 @@ public class LineController {
         try {
             LineRepository.deleteLineByName(Input.inputDeleteLineName());
             SubwayController.output.printResult(DELETE_SUCCESS_MESSAGE);
-        }catch(Exception error) {
+        } catch (Exception error) {
             SubwayController.output.printError(error.getMessage());
         }
     }

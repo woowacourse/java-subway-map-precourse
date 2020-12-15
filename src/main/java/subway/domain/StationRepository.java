@@ -28,7 +28,7 @@ public class StationRepository {
 
     public static boolean deleteStationByName(String name) {
         if (LineRepository.isStationExistOnLines(name)) {
-        	throw new IllegalArgumentException(STATION_EXIST_ON_LINE_ERROR);
+            throw new IllegalArgumentException(STATION_EXIST_ON_LINE_ERROR);
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }

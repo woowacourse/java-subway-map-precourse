@@ -16,7 +16,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        if(!line.isValidName()) {
+        if (!line.isValidName()) {
             throw new IllegalArgumentException(LINE_NAME_LENGTH_ERROR);
         }
         if (lines.contains(line)) {

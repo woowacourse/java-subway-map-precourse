@@ -12,8 +12,8 @@ public class StationScreen implements Screen{
     public void printScreen() {
         System.out.println();
         System.out.println(SHARP + STATION_MANAGE_SCREEN_INFO);
-        for (int i=0;i<3;i++) {
-            System.out.println((i+1)+DOT+STATION_MANAGE_INFO[i]);
+        for (int i = 0; i < 3; i++) {
+            System.out.println((i + 1) + DOT + STATION_MANAGE_INFO[i]);
         }
         System.out.println(BACK);
         System.out.println();

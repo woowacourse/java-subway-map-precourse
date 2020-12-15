@@ -15,7 +15,7 @@ public class LineScreen implements Screen{
         System.out.println();
         System.out.println(SHARP + LINE_MANAGE_SCREEN_INFO);
         for (int i = 0; i < 3; i++) {
-            System.out.println((i+1) + DOT + LINE_MANAGE_INFO[i]);
+            System.out.println((i + 1) + DOT + LINE_MANAGE_INFO[i]);
         }
         System.out.println(BACK);
         System.out.println();
@@ -28,7 +28,7 @@ public class LineScreen implements Screen{
     
     public static void askAddLineName() {
         System.out.println(SHARP + INPUT_ADD_LINE_NAME);
-	}
+    }
     
     public static void askAddLineUpTerminalName() {
         System.out.println(SHARP + INPUT_ADD_LINE_UP_TERMINAL_NAME);

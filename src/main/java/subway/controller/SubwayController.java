@@ -13,18 +13,17 @@ import subway.view.Input;
 import subway.view.Output;
 
 public class SubwayController {
-    public static boolean progress;
+    public static boolean progress = true;
     public static Output output;
     
     public SubwayController(Scanner scanner) {
     	initialization();
         Input.scanner = scanner;
         output = new Output();
-        progress = true;
     }
     
     public static void run() {
-        while(progress) {
+        while (progress) {
             output.printMainMenu();
             MainMenu.execute(Input.chooseFunction());
         }

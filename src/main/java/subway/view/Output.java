@@ -29,7 +29,7 @@ public class Output {
     
     public void printError(String message) {
         System.out.println(ERROR_PREFIX + message);
-	}
+    }
 	
     public void printResult(String message) {
         System.out.println(RESULT_PREFIX + message);
@@ -63,10 +63,10 @@ public class Output {
         System.out.println();
         System.out.println(Screen.SHARP + SUBWAY_MAP_INFO);
         for (Line line : LineRepository.lines()) {
-        	System.out.println(line.getName());
-        	System.out.println(DIVIDING_LINE);
-        	printStationsOnLine(line);
-        	System.out.println();
+            System.out.println(line.getName());
+            System.out.println(DIVIDING_LINE);
+            printStationsOnLine(line);
+            System.out.println();
         }
     }
     

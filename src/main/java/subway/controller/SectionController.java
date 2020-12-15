@@ -24,7 +24,7 @@ public class SectionController {
             int order = Integer.parseInt(info[2]);
             LineRepository.addSection(line, station, order);
             SubwayController.output.printResult(ADD_SUCCESS_MESSAGE);
-        }catch(Exception error) {
+        } catch (Exception error) {
             SubwayController.output.printError(error.getMessage());
         }
     }
@@ -36,7 +36,7 @@ public class SectionController {
             Station station = StationRepository.getStationByName(info[1]);
             LineRepository.deleteSection(line, station);
             SubwayController.output.printResult(DELETE_SUCCESS_MESSAGE);
-        }catch(Exception error) {
+        } catch (Exception error) {
             SubwayController.output.printError(error.getMessage());
         }
     }

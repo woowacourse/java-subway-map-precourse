@@ -19,16 +19,16 @@ public class StationController {
             Station station = new Station(Input.inputAddStationName());
             StationRepository.addStation(station);
             SubwayController.output.printResult(ADD_SUCCESS_MESSAGE);
-        }catch(Exception error) {
+        } catch (Exception error) {
             SubwayController.output.printError(error.getMessage());
         }
-	}
+    }
 
     public static void deleteStation() {
         try {
             StationRepository.deleteStationByName(Input.inputDeleteStationName());
             SubwayController.output.printResult(DELETE_SUCCESS_MESSAGE);
-        }catch(Exception error) {
+        } catch (Exception error) {
             SubwayController.output.printError(error.getMessage());
         }
     }
