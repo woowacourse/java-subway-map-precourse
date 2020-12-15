@@ -8,6 +8,7 @@ import subway.repository.StationRepository;
 import subway.views.sectionviews.SectionInputView;
 import subway.views.sectionviews.SectionOutputView;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class SectionService {
@@ -17,7 +18,9 @@ public class SectionService {
     private static final String CANNOT_CONVERT_TO_INTEGER = "\n[ERROR] 순서는 숫자를 입력하셔야 합니다.";
     private static final String UNAVAILABLE_ORDER_INDEX_MESSAGE = "\n[ERROR] 상행 종점과 하행 종점 사이의 순서를 입력해야 합니다.";
     private static final String NOT_EXIST_STATION_IN_LINE = "\n[ERROR] 해당 노선에 이 역이 등록되어 있지 않습니다.";
+    private static final String CANNOT_DELETE_SECTION_WHEN_SIZE_IS_TWO_UNDER = "\n[ERROR] 구간에는 역이 2개 이상 있어야 합니다.";
     private static final int MINIMUM_AVAILABLE_ORDER_INDEX = 0;
+    private static final int MINIMUM_AVAILABLE_DELETE_SECTION_SIZE = 2;
 
     final Scanner scanner;
 
@@ -77,21 +80,26 @@ public class SectionService {
     }
 
     private void isAvailableOrder(int sectionOrder, String lineName) {
-        int maximumOrder = LineRepository.lines().stream()
-                          .filter(line -> line.getName().equals(lineName))
-                          .findFirst()
-                          .map(line -> line.getStations().size())
-                          .get();
-        if (sectionOrder < MINIMUM_AVAILABLE_ORDER_INDEX || sectionOrder > maximumOrder+1) {
+        int maximumOrder = getLineStationSize(lineName);
+        if (sectionOrder < MINIMUM_AVAILABLE_ORDER_INDEX || sectionOrder > maximumOrder + 1) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_INDEX_MESSAGE);
         }
     }
 
+    private Optional<Line> findLineByName(String lineName) {
+        return LineRepository.lines().stream()
+            .filter(line -> line.getName().equals(lineName))
+            .findFirst();
+    }
+
+    private int getLineStationSize(String lineName) {
+        return findLineByName(lineName)
+            .map(line -> line.getStations().size())
+            .get();
+    }
+
     private void sectionAdd(String lineName, String stationName, int sectionOrder) {
-        Line lineToSectionAdd = LineRepository.lines().stream()
-                                .filter(line -> line.getName().equals(lineName))
-                                .findFirst()
-                                .get();
+        Line lineToSectionAdd = findLineByName(lineName).get();
         lineToSectionAdd.addLineStation(sectionOrder-1, new Station(stationName));
     }
 
@@ -101,6 +109,7 @@ public class SectionService {
             isExistLine(lineName);
             String stationName = SectionInputView.inputStation(scanner);
             isExistLine(lineName, stationName);
+            isBiggerSizeThanTwo(lineName);
             sectionDelete(lineName, stationName);
             SectionOutputView.printDeleteSuccess();
         } catch (IllegalArgumentException e) {
@@ -120,5 +129,11 @@ public class SectionService {
     private void sectionDelete(String lineName, String stationName) {
         Line lineToDelete = findLineByLineName(lineName);
         lineToDelete.deleteLineStation(new Station(stationName));
+    }
+
+    private void isBiggerSizeThanTwo(String lineName) {
+        if (getLineStationSize(lineName) <= MINIMUM_AVAILABLE_DELETE_SECTION_SIZE) {
+            throw new IllegalArgumentException(CANNOT_DELETE_SECTION_WHEN_SIZE_IS_TWO_UNDER);
+        }
     }
 }
