@@ -14,8 +14,6 @@ import subway.view.linesectionoutput.LineSectionOutputView;
 import java.util.Scanner;
 
 public class LineSectionController extends FunctionController {
-    private static final int ADJUST_SECTION = 1;
-
     public static void start(Scanner scanner) {
         runLineSectionController(scanner);
     }
@@ -103,7 +101,7 @@ public class LineSectionController extends FunctionController {
         Station sectionStation = StationRepository.getStationByName(userInputStation);
         int order = Integer.parseInt(userInputOrder);
         sectionStation.addBelongToWhichLine(registerLine);
-        registerLine.getStationsInLine().add(order - ADJUST_SECTION, sectionStation);
+        registerLine.updateStationsInLine(order, sectionStation);
         LineSectionInfoView.printRegisterInfo();
     }
 

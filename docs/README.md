@@ -105,6 +105,70 @@
 - __지하철 노선도 노선-역 순서로 출력__
     - 등록된 노선이 없다면 등록된 노선이 없다고 안내문구 출력
 
+## 📜 디렉토리 구조
+- 제가 작업한 디렉토리는 다음과 같습니다
+```bash
+|-- docs
+|   `-- README.md
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- subway
+    |           |-- Application.java                        - 어플리케이션을 실행
+    |           |-- controller
+    |           |   |-- FunctionController.java             - functioncontroller 패키지의 공유 변수 모음
+    |           |   |-- InitialSetupController.java         - 사전 등록 정보를 초기 설정
+    |           |   |-- MainController.java                 - 메인 화면 제어에 필요한 domain-view 연결
+    |           |   `-- functioncontroller                  
+    |           |       |-- LineController.java             - 노선 관리 제어에 필요한 domain-view 연결
+    |           |       |-- LineSectionController.java      - 구간 관리 제어에 필요한 domain-view 연결
+    |           |       |-- MapPrintController.java         - 지하철 노선도 출력에 필요한 view 연결
+    |           |       `-- StationController.java          - 역 관리 제어에 필요한 domain-view 연결
+    |           |-- domain
+    |           |   |-- Line.java                           - 노선 자체의 생성, 노선 소속의 역에 대한 CRUD 제공
+    |           |   |-- LineRepository.java                 - 현재 프로그램에 등록된 노선 관리
+    |           |   |-- Station.java                        - 역 자체의 생성, 역이 소속된 노선들의 목록 관리 
+    |           |   `-- StationRepository.java              - 현재 프로그램에 등록된 역 관리
+    |           |-- exception
+    |           |   `-- UserInputException.java
+    |           |-- validator
+    |           |   |-- LineSectionValidation.java
+    |           |   |-- LineValidation.java
+    |           |   |-- MainValidation.java
+    |           |   |-- StationValidation.java
+    |           |   `-- Validation.java
+    |           `-- view
+    |               |-- ErrorView.java
+    |               |-- InfoView.java
+    |               |-- InputView.java
+    |               |-- OutputView.java
+    |               |-- lineoutput
+    |               |   |-- LineErrorView.java
+    |               |   |-- LineInfoView.java
+    |               |   `-- LineOutputView.java
+    |               |-- linesectionoutput
+    |               |   |-- LineSectionErrorView.java
+    |               |   |-- LineSectionInfoView.java
+    |               |   `-- LineSectionOutputView.java
+    |               |-- mainoutput
+    |               |   |-- MainErrorView.java
+    |               |   |-- MainInfoView.java
+    |               |   `-- MainOutputView.java
+    |               |-- mapprintoutput
+    |               |   |-- MapPrintErrorView.java
+    |               |   |-- MapPrintInfoView.java
+    |               |   `-- MapPrintOutputView.java
+    |               `-- stationoutput
+    |                   |-- StationErrorView.java
+    |                   |-- StationInfoView.java
+    |                   `-- StationOutputView.java
+    `-- test
+        `-- java
+            `-- subway
+                `-- empty.txt
+
+```
+
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
