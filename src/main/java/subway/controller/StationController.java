@@ -34,6 +34,7 @@ public class StationController implements Controller {
         String station = InputView.getCommand(scanner);
         if (StationRepository.addStation(new Station(station))) {
             OutputView.printAlert(action, NAME);
+            OutputView.printNewLine();
             return;
         }
         OutputView.printDuplicatedErrorMessage(station.toString());

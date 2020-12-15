@@ -15,31 +15,29 @@ public class OutputView {
         System.out.println(menu);
     }
 
-    public static final void printWithDoubleSharp(String string){
+    public static final void printWithDoubleSharp(String string) {
         printNewLine();
         System.out.println(DOUBLE_SHARP + string);
     }
 
-    public static final void printSelectFunction(){
+    public static final void printSelectFunction() {
         printNewLine();
         printWithDoubleSharp(SELECT_FUNCTION);
     }
 
-    public static final void printWithAction(String string, String type){
-        printNewLine();
+    public static final void printWithAction(String string, String type) {
         printWithDoubleSharp(String.format(INPUT_WITH_ACTION, string, type));
     }
 
-    public static final void printUpAndDownLineMessage(String string){
-        printNewLine();
+    public static final void printUpAndDownLineMessage(String string) {
         printWithDoubleSharp(String.format(ADD_UP_AND_DOWN_LINE, string));
     }
 
-    public static final void printAlert(String function, String type){
-        printNewLine();
+    public static final void printAlert(String function, String type) {
         printWithInformationMark(String.format(ALERT_MESSAGE, type, function));
     }
-    public static final void printNewLine(){
+
+    public static final void printNewLine() {
         System.out.println();
     }
 
@@ -48,12 +46,11 @@ public class OutputView {
         System.out.println(INFORMATION_MARK + SEPARATER);
     }
 
-    public static final void printList(String name){
-        printNewLine();
+    public static final void printList(String name) {
         printWithDoubleSharp(name + LIST);
     }
+
     public static final void printWithInformationMark(String string) {
-        printNewLine();
         System.out.println(INFORMATION_MARK + string);
     }
 
@@ -69,11 +66,20 @@ public class OutputView {
         System.out.println(String.format(ERROR_MARK + "%s은 이미 존재합니다.", string));
     }
 
-    public static final void printStationDeleteErrorMessage(){
+    public static final void printStationDeleteErrorMessage() {
         System.out.println(ERROR_MARK + "해당 역이 노선에 포함되어 있거나, 존재하지 않아 삭제할 수 없습니다.");
     }
 
-    public static final void printNameLengthErrorMessage(String string){
-        System.out.println(String.format(ERROR_MARK + "역 명은 두 글자 이상이어야 합니다. (입력값: %s)", string));
+    public static final void printNameLengthErrorMessage(String type, String string) {
+        System.out.println(String.format(ERROR_MARK + "%s 명은 두 글자 이상이어야 합니다. (입력값: %s)", type, string));
+    }
+
+    public static final void printSameNameErrorMessage() {
+        System.out.println("상행선과 하행선은 서로 다른 역이어야 합니다.");
+    }
+
+    public static final void printStationDoesNotExistErrorMessage(String station) {
+        System.out.println(String.format("입력한 %s은 존재하지 않아, 등록할 수 없습니다.", station));
     }
 }
+

@@ -9,6 +9,7 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+    private static final String NAME = "역";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -16,7 +17,7 @@ public class StationRepository {
 
     public static boolean addStation(Station station) {
         if (!station.isNameMoreThan2Letters()) {
-            OutputView.printNameLengthErrorMessage(station.getName());
+            OutputView.printNameLengthErrorMessage(NAME, station.getName());
             return false;
         }
         if (hasDuplicatedStation(station)) {
@@ -31,6 +32,7 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name) && !station.isStationHasLine());
     }
 
+    // boolean으로 바꿔서 중복 확인 해야함.
     public static void addStations(List<Station> stations) {
         stations.forEach(StationRepository::addStation);
     }
