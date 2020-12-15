@@ -33,6 +33,7 @@ public class TextConstant {
             String.format("[ERROR] 노선에 등록된 역의 개수는 %d개 보다 많아야 합니다.", STATION_MINIMUM_SIZE);
     public static final String ERR_SHORT_NAME_MSG =
             String.format("[ERROR] 노선의 이름은 %d글자 이상이어야 합니다.", NAME_MIN_LENGTH);
+    public static final String ERR_STATION_CASCADE_LINE_MSG = "[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.";
 
     //구간(Section) 관련
     public static final String SECTION = "구간";
@@ -41,6 +42,8 @@ public class TextConstant {
     public static final String SEQUENCE = "순서";
     public static final String REQUEST_INPUT_MSG_FORMAT = "## %s을(를) 입력하세요.";
     public static final String VALID_NUMBER_RANGE_MSG_FORMAT = "(0 ~ %d 사이의 숫자를 입력)";
+    public static final String ERR_WRONG_SEQUENCE_MSG = "[ERROR] 순서가 올바르지 않습니다.";
+    public static final String ERR_MUST_INPUT_INT_MSG = "[ERROR] 숫자만 입력하셔야 합니다.";
 
     //메뉴 관련
     public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";

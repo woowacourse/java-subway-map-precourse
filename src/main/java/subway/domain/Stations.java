@@ -18,7 +18,11 @@ public class Stations {
 
     public void addStation(int index, Station station) {
         if (!stations.contains(station)) {
-            stations.add(index, station);
+            try {
+                stations.add(index, station);
+            } catch (IndexOutOfBoundsException e) {
+                throw new IllegalArgumentException(ERR_WRONG_SEQUENCE_MSG);
+            }
             return;
         }
         throw new IllegalStateException(ERR_ALREADY_ADD_STATION_NAME_MSG);

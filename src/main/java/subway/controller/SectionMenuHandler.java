@@ -3,6 +3,7 @@ package subway.controller;
 import static subway.util.TextConstant.*;
 
 import subway.domain.*;
+import subway.util.ValidateUtil;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -16,9 +17,9 @@ public class SectionMenuHandler {
 
         OutputView.showRequestInputMessage(SEQUENCE);
         OutputView.showValidSequence(line.size());
-        int sequence = Integer.parseInt(InputView.nextLine());
-
+        int sequence = ValidateUtil.parseInt(InputView.nextLine());
         SectionRepository.addSection(line, lineStation, sequence);
+
         OutputView.showCompleteMessage(SECTION, ADD);
     }
 
