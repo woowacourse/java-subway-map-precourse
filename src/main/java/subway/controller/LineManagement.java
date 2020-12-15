@@ -8,12 +8,12 @@ import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-enum StationButton {
+enum LineButton {
 	REGISTER("1"), DELETE("2"), LOOK_UP("3"), BACK_TO_MAIN("B");
 	
 	private final String button;
 	
-	StationButton(String button) {
+	LineButton(String button) {
 		this.button = button;
 	}
 	
@@ -26,10 +26,10 @@ public class LineManagement {
 	private LineRepository lineRepository = new LineRepository();
 	
 	private static final List<String> menu = Arrays.asList(
-			StationButton.REGISTER.getButton(),
-			StationButton.DELETE.getButton(),
-			StationButton.LOOK_UP.getButton(),
-			StationButton.BACK_TO_MAIN.getButton()
+			LineButton.REGISTER.getButton(),
+			LineButton.DELETE.getButton(),
+			LineButton.LOOK_UP.getButton(),
+			LineButton.BACK_TO_MAIN.getButton()
 	);
 	
 	public static void execute() {
@@ -39,13 +39,13 @@ public class LineManagement {
 	}
 	
 	public static void proceduresExecute(String selectedButton) {
-		if (selectedButton.equals(StationButton.BACK_TO_MAIN.getButton())) {
+		if (selectedButton.equals(LineButton.BACK_TO_MAIN.getButton())) {
 			return;
-		} else if (selectedButton.equals(StationButton.REGISTER.getButton())) {
+		} else if (selectedButton.equals(LineButton.REGISTER.getButton())) {
 			
-		} else if (selectedButton.equals(StationButton.DELETE.getButton())) {
+		} else if (selectedButton.equals(LineButton.DELETE.getButton())) {
 			
-		} else if (selectedButton.equals(StationButton.LOOK_UP.getButton())) {
+		} else if (selectedButton.equals(LineButton.LOOK_UP.getButton())) {
 			
 		}
 	}
