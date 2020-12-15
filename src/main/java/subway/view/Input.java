@@ -10,6 +10,7 @@ public class Input {
     public static final String PLEASE_INPUT_LINE_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
     public static final String PLEASE_INPUT_UPWARD_TERMINAL_STATION_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String PLEASE_INPUT_DOWN_TERMINAL_STATION_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String PLEASE_INPUT_REMOVE_LINE_NAME = "## 삭제할 노션 이름을 입력하세요.";
 
     private Input() {
     }
