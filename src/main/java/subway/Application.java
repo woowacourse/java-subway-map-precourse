@@ -13,6 +13,8 @@ public class Application {
     public static final int FUNCTION_INPUT_ERROR = 0;
     public static final int SAME_NAME_ERROR = 1;
     public static final int NAME_LENGTH_ERROR = 2;
+    public static final int NO_SUCH_NAME_ERROR = 3;
+    public static final int HAS_IN_LINE_ERROR = 4;
     public static final List<String> MAIN_FUNCTIONS = Arrays.asList("1", "2", "3", "4", "Q");
     public static final String STATION_MENU = "1";
     public static final String LINE_MENU = "2";
@@ -59,7 +61,7 @@ public class Application {
     }
 
     public static void showMainMenu() {
-        System.out.println("## 메인 화면");
+        System.out.println("\n## 메인 화면");
         System.out.println("1. 역 관리");
         System.out.println("2. 노선 관리");
         System.out.println("3. 구간 관리");
@@ -129,25 +131,41 @@ public class Application {
 
     public static void manageSection(Scanner kbd) {
         showSectionMenu();
-        inputFunction(kbd, SECTION_FUNCTIONS);
+        String input = inputFunction(kbd, SECTION_FUNCTIONS);
+//        if (input.equals(ADD_MENU))
+//            addSection(kbd);
+//        if (input.equals(DELETE_MENU))
+//            deleteSection(kbd);
+        if (input.equals(GO_BACK_MENU))
+            startProgram(kbd);
     }
 
     public static void addStation(Scanner kbd) {
-        System.out.println("\n## 등록할 역 이름을 입력하세요.");
-        String stationName = kbd.nextLine();
-        while(checkSameName(stationName) || checkTextLength(stationName)) {
+        try {
             System.out.println("\n## 등록할 역 이름을 입력하세요.");
-            stationName = kbd.nextLine();
+            String stationName = kbd.nextLine();
+            checkSameName(stationName);
+            checkTextLength(stationName);
+            StationRepository.addStation(new Station(stationName));
+            System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
+            startProgram(kbd);
+        } catch (Exception e) {
+            startProgram(kbd);
         }
-        StationRepository.addStation(new Station(stationName));
-        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
-        startProgram(kbd);
     }
 
     public static void deleteStation(Scanner kbd) {
-        System.out.println("## 삭제할 역 이름을 입력하세요.");
-        String stationName = kbd.nextLine();
-        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        try {
+            System.out.println("\n## 삭제할 역 이름을 입력하세요.");
+            String stationName = kbd.nextLine();
+            checkExist(stationName);
+            checkInLine(stationName);
+            StationRepository.deleteStation(stationName);
+            System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+            startProgram(kbd);
+        } catch (Exception e) {
+            startProgram(kbd);
+        }
     }
 
     public static void searchStation() {
@@ -158,7 +176,7 @@ public class Application {
     }
 
     public static void addLine(Scanner kbd) {
-        System.out.println("## 등록할 노선 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         String lineName = kbd.nextLine();
         System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         String firstStation = kbd.nextLine();
@@ -168,7 +186,7 @@ public class Application {
     }
 
     public static void deleteLine(Scanner kbd) {
-        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
         String stationName = kbd.nextLine();
         System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
     }
@@ -180,20 +198,33 @@ public class Application {
         System.out.println();
     }
 
-    public static boolean checkSameName(String name) {
+    public static void checkSameName(String name) {
         if (StationRepository.isExist(name)) {
             displayErrorMessage(SAME_NAME_ERROR);
-            return true;
+            throw new IllegalArgumentException();
         }
-        return false;
     }
 
-    public static boolean checkTextLength(String name) {
+    public static void checkTextLength(String name) {
         if (name.length() < 2) {
             displayErrorMessage(NAME_LENGTH_ERROR);
-            return true;
+            throw new IllegalArgumentException();
         }
-        return false;
+    }
+
+    public static void checkExist(String name) {
+        if (!StationRepository.isExist(name)) {
+            displayErrorMessage(NO_SUCH_NAME_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkInLine(String name) {
+        for (Line line : LineRepository.lines())
+            if (line.hasStation(name)) {
+                displayErrorMessage(HAS_IN_LINE_ERROR);
+                throw new IllegalArgumentException();
+            }
     }
 
     public static void showStationMenu() {
@@ -239,5 +270,9 @@ public class Application {
             System.out.println("[ERROR] 이미 등록된 역 이름입니다.");
         if (errorCase == NAME_LENGTH_ERROR)
             System.out.println("[ERROR] 이름을 2글자 이상 입력해주세요.");
+        if (errorCase == NO_SUCH_NAME_ERROR)
+            System.out.println("[ERROR] 등록되지 않은 역 이름입니다.");
+        if (errorCase == HAS_IN_LINE_ERROR)
+            System.out.println("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
     }
 }
