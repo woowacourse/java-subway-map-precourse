@@ -52,7 +52,7 @@ public class SectionManager {
             int toCodingIndex = Integer.parseInt(index) - INT_ORDINARY_TO_CODING_INDEX;
             lineToRegister.addStationToSection(toCodingIndex, station);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             run();
         }
     }
@@ -90,7 +90,7 @@ public class SectionManager {
             validateStationInSection(line, station);
             System.out.println(MSG_COMPLETE_LINE_DELETED);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             run();
         }
     }

@@ -49,7 +49,7 @@ public class StationManager {
             StationRepository.addStation(new Station(station));
             System.out.println(MSG_COMPLETE_STATION_ADDED);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             run();
         }
     }
@@ -79,7 +79,7 @@ public class StationManager {
             StationRepository.deleteStation(station);
             System.out.println(MSG_COMPLETE_STATION_DELETED);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             run();
         }
     }

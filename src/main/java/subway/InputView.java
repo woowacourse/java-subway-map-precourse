@@ -64,7 +64,7 @@ public class InputView {
         try {
             return menuInputNumber(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return nextMenu();
         }
     }

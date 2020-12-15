@@ -67,7 +67,7 @@ public class LineManager {
             LineRepository.addLine(newLine);
             System.out.println(MSG_OUTPUT_LINE_REGISTERING_COMPLETE);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             run();
         }
     }
@@ -104,7 +104,7 @@ public class LineManager {
                 throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_LINE);
             }
         } catch (IllegalArgumentException e)  {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             run();
         }
     }
