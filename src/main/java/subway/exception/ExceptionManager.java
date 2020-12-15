@@ -2,6 +2,8 @@ package subway.exception;
 
 import java.util.regex.Pattern;
 import subway.Scene;
+import subway.domain.Line;
+import subway.domain.Station;
 
 public class ExceptionManager {
 
@@ -17,11 +19,11 @@ public class ExceptionManager {
         return Pattern.matches(numberPattern, input);
     }
 
-    protected static boolean isValidStationNameLength(String name) {
-        return name.length() >= Error.MINIMUM_STATION_NAME_LENGTH;
+    protected static boolean isValidStationName(String name) {
+        return Station.isValidName(name);
     }
 
-    protected static boolean isValidLineNameLength(String name) {
-        return name.length() >= Error.MINIMUM_LINE_NAME_LENGTH;
+    protected static boolean isValidLineName(String name) {
+        return Line.isValidName(name);
     }
 }

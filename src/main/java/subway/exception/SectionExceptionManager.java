@@ -6,7 +6,7 @@ import subway.domain.StationRepository;
 
 public class SectionExceptionManager extends ExceptionManager {
     public static Error checkValidLineOfSectionRegister(String name) {
-        if (!isValidLineNameLength(name)) {
+        if (!isValidLineName(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (!LineRepository.hasLine(name)) {
@@ -16,7 +16,7 @@ public class SectionExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidStationOfSectionRegister(String stationName, String lineName) {
-        if (!isValidStationNameLength(stationName)) {
+        if (!isValidStationName(stationName)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(stationName)) {
@@ -39,21 +39,20 @@ public class SectionExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidLineOfSectionRemoval(String lineName) {
-        if (!isValidLineNameLength(lineName)) {
+        if (!isValidLineName(lineName)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (!LineRepository.hasLine(lineName)) {
             return Error.NON_EXISTENT_LINE_NAME;
         }
-        if (SectionRepository
-                .getNumberOfStationInLine(lineName) <= Error.MINIMUM_STATION_NUMBER_IN_LINE) {
+        if (!SectionRepository.isRemovableNumberOfStationInLine(lineName)) {
             return Error.INVALID_NUMBER_OF_STATION_IN_LINE;
         }
         return Error.OK;
     }
 
     public static Error checkValidStationOfSectionRemoval(String stationName, String lineName) {
-        if (!isValidStationNameLength(stationName)) {
+        if (!isValidStationName(stationName)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(stationName)) {

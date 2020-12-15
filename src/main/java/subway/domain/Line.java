@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final int MINIMUM_LINE_NAME_LENGTH = 2;
+    private static final int MINIMUM_STATION_NUMBER_IN_LINE = 2;
+
     private String name;
     private final List<Station> sections = new ArrayList<>();
 
@@ -49,6 +52,10 @@ public class Line {
         return (index >= 0) && (index <= sections.size());
     }
 
+    public boolean isRemovableNumberOfStation() {
+        return sections.size() > MINIMUM_LINE_NAME_LENGTH;
+    }
+
     public List<Station> getStations() {
         return Collections.unmodifiableList(sections);
     }
@@ -57,7 +64,15 @@ public class Line {
         return name;
     }
 
-    public int getNumberOfSections() {
-        return sections.size();
+    public static int getMinimumLineNameLength() {
+        return MINIMUM_LINE_NAME_LENGTH;
+    }
+
+    public static int getMinimumStationNumberInLine() {
+        return MINIMUM_STATION_NUMBER_IN_LINE;
+    }
+
+    public static boolean isValidName(String name) {
+        return name.length() >= MINIMUM_LINE_NAME_LENGTH;
     }
 }

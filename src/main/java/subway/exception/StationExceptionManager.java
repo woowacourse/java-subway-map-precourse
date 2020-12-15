@@ -4,7 +4,7 @@ import subway.domain.StationRepository;
 
 public class StationExceptionManager extends ExceptionManager {
     public static Error checkValidStationRegister(String name) {
-        if (!isValidStationNameLength(name)) {
+        if (!isValidStationName(name)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (StationRepository.hasStation(name)) {
@@ -14,7 +14,7 @@ public class StationExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidStationRemoval(String name) {
-        if (!isValidStationNameLength(name)) {
+        if (!isValidStationName(name)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(name)) {

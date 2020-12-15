@@ -12,7 +12,7 @@ public class LineExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidLineRegister(String name) {
-        if (!isValidLineNameLength(name)) {
+        if (!isValidLineName(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (LineRepository.hasLine(name)) {
@@ -22,7 +22,7 @@ public class LineExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidTerminatingStation(String name) {
-        if (!isValidStationNameLength(name)) {
+        if (!isValidStationName(name)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(name)) {
@@ -32,7 +32,7 @@ public class LineExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidLineRemoval(String name) {
-        if (!isValidLineNameLength(name)) {
+        if (!isValidLineName(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (!LineRepository.hasLine(name)) {

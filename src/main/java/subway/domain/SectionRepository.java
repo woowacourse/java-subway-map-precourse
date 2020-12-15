@@ -20,8 +20,8 @@ public class SectionRepository {
     public static boolean isValidRangeInLine(int index, String lineName) {
         return LineRepository.getLineByName(lineName).isValidRange(index);
     }
-    
-    public static int getNumberOfStationInLine(String lineName) {
-        return LineRepository.getLineByName(lineName).getNumberOfSections();
+
+    public static boolean isRemovableNumberOfStationInLine(String lineName) {
+        return LineRepository.getLineByName(lineName).isRemovableNumberOfStation();
     }
 }
