@@ -12,4 +12,32 @@ public class Station {
     }
 
     // 추가 기능 구현
+
+    private int count = 0;
+
+    public void increaseCount() {
+        this.count++;
+    }
+
+    public void decreaseCount() {
+        this.count--;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
+
+    public boolean isRemovable() {
+        if (this.count == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean delete() {
+        if (isRemovable()) {
+            return StationRepository.deleteStation(this.name);
+        }
+        return false;
+    }
 }
