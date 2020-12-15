@@ -17,7 +17,7 @@ public class MainConsole {
         while (true) {
             String input = InputView.getMenu();
             if (MainMenu.MainView.isValidKey(input)) {
-                OutputView.cannotSelectMenuError();
+                OutputViewOfError.cannotSelectMenuError();
             }
         }
     }
