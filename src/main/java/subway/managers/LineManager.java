@@ -40,13 +40,14 @@ public class LineManager {
     }
 
     static void addLine(Scanner scanner, UserInput userInput) {
-        newLine(userInput);
-        addUpwardStation(scanner, userInput);
-        addDownwardStation(scanner, userInput);
+        String name = newLine(userInput);
+        Station upwardStation = addUpwardStation(scanner, userInput);
+        Station downwardStation = addDownwardStation(scanner, userInput);
+        new Line(name, upwardStation, downwardStation);
         SystemOutput.printInfo(SystemMessages.ADD_STATION_COMPLETE_MESSAGE);
     }
 
-    static void newLine(UserInput userInput) {
+    static String newLine(UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_LINE_MESSAGE);
         String lineName = userInput.getNameInput();
         try {
@@ -55,31 +56,31 @@ public class LineManager {
         } catch (SubwayException e) {
             newLine(userInput);
         }
-        line = new Line(lineName);
+        return lineName;
     }
 
-    static void addUpwardStation(Scanner scanner, UserInput userInput) {
+    static Station addUpwardStation(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_UPWARD_STATION_MESSAGE);
         String upward = userInput.getNameInput();
         try {
             Station upwardStation = validation.isExistStation(upward);
-            line.addSection(upwardStation);
+            return upwardStation;
         } catch (SubwayException e) {
-            deleteLine(line.getName());
             SubwayManager.runManager(scanner);
         }
+        return null;
     }
 
-    static void addDownwardStation(Scanner scanner, UserInput userInput) {
+    static Station addDownwardStation(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_DOWNWARD_STATION_MESSAGE);
         String downward = userInput.getNameInput();
         try {
             Station downwardStation = validation.isExistStation(downward);
-            line.addSection(downwardStation);
+            return downwardStation;
         } catch (SubwayException e) {
-            deleteLine(line.getName());
             SubwayManager.runManager(scanner);
         }
+        return null;
     }
 
     static void deleteLine(Scanner scanner, UserInput userInput) {
@@ -92,10 +93,6 @@ public class LineManager {
             SubwayManager.runManager(scanner);
         }
         SystemOutput.printInfo(SystemMessages.DEL_STATION_COMPLETE_MESSAGE);
-    }
-
-    static void deleteLine(String lineName) {
-        LineRepository.deleteLineByName(lineName);
     }
 
     static void showLineList() {

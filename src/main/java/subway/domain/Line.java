@@ -1,14 +1,17 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Line {
     private String name;
     private List<Station> section = new ArrayList<>();
 
-    public Line(String name) {
+    public Line(String name, Station upward, Station downward) {
         this.name = name;
+        addSection(upward);
+        addSection(downward);
     }
 
     public String getName() {
