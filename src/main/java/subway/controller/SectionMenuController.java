@@ -7,7 +7,7 @@ import subway.views.sectionviews.SectionOutputView;
 
 import java.util.Scanner;
 
-public class SectionMenuController {
+public class SectionMenuController implements Controller{
     private static SectionMenuController sectionMenuController = new SectionMenuController();
     private SectionService sectionService;
 
@@ -18,7 +18,7 @@ public class SectionMenuController {
         return sectionMenuController;
     }
 
-    public void mappingSectionMenu(Scanner scanner) {
+    public void mappingMenu(Scanner scanner) {
         SectionOutputView.printSectionManagePage();
         sectionService = new SectionService(scanner);
         branchBySelectedOption(SectionInputView.selectSectionMenu(scanner));

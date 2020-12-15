@@ -31,7 +31,7 @@ public class StationService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             StationMenuController stationMenuController = StationMenuController.getInstance();
-            stationMenuController.mappingStationMenu(scanner);
+            stationMenuController.mappingMenu(scanner);
         }
     }
 
@@ -51,7 +51,7 @@ public class StationService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             StationMenuController stationMenuController = StationMenuController.getInstance();
-            stationMenuController.mappingStationMenu(scanner);
+            stationMenuController.mappingMenu(scanner);
         }
     }
 

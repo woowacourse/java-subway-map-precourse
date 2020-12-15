@@ -40,7 +40,7 @@ public class LineService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             LineMenuController lineMenuController = LineMenuController.getInstance();
-            lineMenuController.mappingLineMenu(scanner);
+            lineMenuController.mappingMenu(scanner);
         }
     }
 
@@ -71,7 +71,7 @@ public class LineService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             LineMenuController lineMenuController = LineMenuController.getInstance();
-            lineMenuController.mappingLineMenu(scanner);
+            lineMenuController.mappingMenu(scanner);
         }
     }
 

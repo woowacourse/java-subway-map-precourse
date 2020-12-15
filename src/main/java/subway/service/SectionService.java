@@ -42,7 +42,7 @@ public class SectionService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             SectionMenuController sectionMenuController = SectionMenuController.getInstance();
-            sectionMenuController.mappingSectionMenu(scanner);
+            sectionMenuController.mappingMenu(scanner);
         }
     }
 
@@ -115,7 +115,7 @@ public class SectionService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             SectionMenuController sectionMenuController = SectionMenuController.getInstance();
-            sectionMenuController.mappingSectionMenu(scanner);
+            sectionMenuController.mappingMenu(scanner);
         }
     }
 

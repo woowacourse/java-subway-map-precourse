@@ -7,7 +7,7 @@ import subway.views.lineviews.LineOutputView;
 
 import java.util.Scanner;
 
-public class LineMenuController {
+public class LineMenuController implements Controller{
     private static LineMenuController lineMenuController = new LineMenuController();
     private LineService lineService;
 
@@ -18,7 +18,7 @@ public class LineMenuController {
         return lineMenuController;
     }
 
-    public void mappingLineMenu(Scanner scanner) {
+    public void mappingMenu(Scanner scanner) {
           LineOutputView.printLineManagePage();
           lineService = new LineService(scanner);
           branchBySelectedOption(LineInputView.selectLineMenu(scanner));

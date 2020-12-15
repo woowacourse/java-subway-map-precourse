@@ -26,7 +26,7 @@ public class SubwayManager {
 
     public void run(Scanner scanner) {
         MainMenuController mainMenuController = MainMenuController.getInstance();
-        mainMenuController.mappingMainMenu(scanner);
+        mainMenuController.mappingMenu(scanner);
     }
 
     private void settingInitialSubways() {

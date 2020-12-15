@@ -7,7 +7,7 @@ import subway.views.stationviews.StationOutputView;
 
 import java.util.Scanner;
 
-public class StationMenuController {
+public class StationMenuController implements Controller{
     private static StationMenuController stationMenuController = new StationMenuController();
     StationService stationService;
 
@@ -18,7 +18,7 @@ public class StationMenuController {
         return stationMenuController;
     }
 
-    public void mappingStationMenu(Scanner scanner) {
+    public void mappingMenu(Scanner scanner) {
         StationOutputView.printStationManagePage();
         stationService = new StationService(scanner);
         branchBySelectedOption(StationInputView.selectStationMenu(scanner));

@@ -7,8 +7,8 @@ import subway.views.mainviews.MainOutputView;
 
 import java.util.Scanner;
 
-public class MainMenuController {
-    private static MainMenuController instance = new MainMenuController();
+public class MainMenuController implements Controller{
+    private static MainMenuController mainMenuController = new MainMenuController();
     private final StationMenuController stationMenuController = StationMenuController.getInstance();
     private final LineMenuController lineMenuController = LineMenuController.getInstance();
     private final SectionMenuController sectionMenuController = SectionMenuController.getInstance();
@@ -17,10 +17,10 @@ public class MainMenuController {
     }
 
     public static MainMenuController getInstance() {
-        return instance;
+        return mainMenuController;
     }
 
-    public void mappingMainMenu(Scanner scanner) {
+    public void mappingMenu(Scanner scanner) {
         MainMenu selectedOption;
         do {
             MainOutputView.printMainPage();
@@ -34,13 +34,13 @@ public class MainMenuController {
             return;
         }
         if (selectedOption.equals(MainMenu.STATION_MANAGEMENT)) {
-            stationMenuController.mappingStationMenu(scanner);
+            stationMenuController.mappingMenu(scanner);
         }
         if (selectedOption.equals(MainMenu.LINE_MANAGEMENT)) {
-            lineMenuController.mappingLineMenu(scanner);
+            lineMenuController.mappingMenu(scanner);
         }
         if (selectedOption.equals(MainMenu.SECTION_MANAGEMENT)) {
-            sectionMenuController.mappingSectionMenu(scanner);
+            sectionMenuController.mappingMenu(scanner);
         }
         if (selectedOption.equals(MainMenu.SHOW_SUBWAY_MAP)) {
             OutPutSubwayMap.printAllSubwayMap();
