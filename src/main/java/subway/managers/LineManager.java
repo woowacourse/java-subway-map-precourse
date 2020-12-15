@@ -43,7 +43,8 @@ public class LineManager {
         String name = newLine(userInput);
         Station upwardStation = addUpwardStation(scanner, userInput);
         Station downwardStation = addDownwardStation(scanner, userInput);
-        new Line(name, upwardStation, downwardStation);
+        Line line = new Line(name, upwardStation, downwardStation);
+        LineRepository.addLine(line);
         SystemOutput.printInfo(SystemMessages.ADD_STATION_COMPLETE_MESSAGE);
     }
 
