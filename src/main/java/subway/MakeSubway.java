@@ -25,14 +25,14 @@ public class MakeSubway {
 
         Line secondLine = new Line("2호선", gyodae, yeoksam);
         Line thirdLine = new Line("3호선", gyodae, maebong);
-        Line sinbundangLine = new Line("신분당선", gangnam, yangjae);
+        Line sinbundangLine = new Line("신분당선", gangnam, yangjaeForest);
 
         LineRepository.addLine(secondLine);
         LineRepository.addLine(thirdLine);
         LineRepository.addLine(sinbundangLine);
 
         secondLine.addSection(2, gangnam);
-        thirdLine.addSection(3, nambuTerminal);
+        thirdLine.addSection(2, nambuTerminal);
         thirdLine.addSection(3, yangjae);
         sinbundangLine.addSection(2, yangjae);
     }
