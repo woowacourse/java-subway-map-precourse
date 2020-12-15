@@ -40,7 +40,11 @@ public class SectionController {
         String stationName = scanner.next();
         System.out.println(GET_ORDER_NAME);
         String order = scanner.next();
-        sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
+        try {
+            sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
+        }catch(IndexOutOfBoundsException e){
+            System.out.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
+        }
     }
 
     void deleteSection(){

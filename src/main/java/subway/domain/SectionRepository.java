@@ -20,8 +20,9 @@ public class SectionRepository {
             Line targetLine = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get();
             targetLine.stations.add(order, new Station(stationName));
         }catch (IndexOutOfBoundsException e){
-            System.out.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
-            return;
+            throw new IndexOutOfBoundsException();
+//            System.out.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
+//            return;
         }
         System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
     }
