@@ -27,6 +27,7 @@ public class OutputView {
     public static final String DELETE_INPUT_PREFIX = "삭제할 구간의 ";
     public static final String INDEX_VALID_ERROR_MESSAGE = "순서는 숫자만 입력 가능합니다.";
     public static final String SIZE_IS_SMALLER_THAN_MIN_ERROR = "%s에 남은 역이 최소 개수이므로, %s을 삭제할 수 없습니다.";
+    public static final String INDEX_OUT_OF_RANGE = "순서가 노선의 길이를 넘어섰습니다.";
     public static final String LIST = " 목록";
 
     public static final void printMenus(String menu) {
@@ -136,6 +137,10 @@ public class OutputView {
 
     public static final void printPathSizeIsSmallerThanMin(String line, String station){
         System.out.println(String.format(ERROR_MARK + SIZE_IS_SMALLER_THAN_MIN_ERROR, line, station));
+    }
+
+    public static final void printIndexOutOfRange(){
+        System.out.println(ERROR_MARK + INDEX_OUT_OF_RANGE);
     }
 }
 

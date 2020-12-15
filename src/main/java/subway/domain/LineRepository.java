@@ -33,7 +33,12 @@ public class LineRepository {
             return false;
         }
         Station station = StationRepository.getStation(inputStation);
-        getLine(findLine).getPath().addOneStationBetweenStations(station, inputIndex);
+        Path path = getLine(findLine).getPath();
+        if (path.getSize() <= inputIndex) {
+            OutputView.printIndexOutOfRange();
+            return false;
+        }
+        path.addOneStationBetweenStations(station, inputIndex);
         return true;
     }
 
@@ -46,14 +51,6 @@ public class LineRepository {
         getLine(findLine).getPath().checkSizeBeforedeleteStation(StationRepository.getStation(deleteStation));
         return true;
     }
-
-//    public static void deleteSpecificStationInPath(Station station) {
-//        for (Line line : lines) {
-//            if (line.getPath().isStationInLine(station) && !line.getPath().deleteStation(station)) {
-//                OutputView.printPathSizeIsSmallerThanMin(line.getName(), station.getName());
-//            }
-//        }
-//    }
 
     public static Line getLine(String findLine) {
         for (Line line : lines) {
@@ -70,16 +67,16 @@ public class LineRepository {
 
     public static boolean hasDuplicatedLine(String checkedLineName) {
         for (Line line : lines) {
-            if (line.getName() == checkedLineName) {
+            if (line.getName().equals(checkedLineName)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean isStationInLine(Station station){
-        for(Line line: lines){
-            if(line.getPath().isStationInLine(station)){
+    public static boolean isStationInLine(Station station) {
+        for (Line line : lines) {
+            if (line.getPath().isStationInLine(station)) {
                 return true;
             }
         }

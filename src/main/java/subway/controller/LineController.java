@@ -41,7 +41,7 @@ public class LineController implements Controller {
     }
 
     public void addLine(String action) {
-        if (!isLineNameMoreThanTwoLetters() || !isLineAlreadyExist()) {
+        if (!isLineNameMoreThanTwoLetters() || isLineAlreadyExist()) {
             return;
         }
         if (isSameNameBetweenUpStationAndDownStation()) {
@@ -95,9 +95,9 @@ public class LineController implements Controller {
     public boolean isLineAlreadyExist() {
         if (LineRepository.hasDuplicatedLine(lineName)) {
             OutputView.printDuplicatedErrorMessage(lineName);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void deleteLine(String action) {

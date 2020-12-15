@@ -53,5 +53,9 @@ public class Path {
     public boolean isStationInLine(Station station) {
         return paths.contains(station);
     }
+
+    public int getSize(){
+        return paths.size();
+    }
 }
 
