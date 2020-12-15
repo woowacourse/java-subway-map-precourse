@@ -43,9 +43,17 @@ public class LineRepository {
             OutputView.printDoesNotExistErrorMessage(findLine);
             return false;
         }
-        getLine(findLine).getPath().deleteStation(StationRepository.getStation(deleteStation));
+        getLine(findLine).getPath().checkSizeBeforedeleteStation(StationRepository.getStation(deleteStation));
         return true;
     }
+
+//    public static void deleteSpecificStationInPath(Station station) {
+//        for (Line line : lines) {
+//            if (line.getPath().isStationInLine(station) && !line.getPath().deleteStation(station)) {
+//                OutputView.printPathSizeIsSmallerThanMin(line.getName(), station.getName());
+//            }
+//        }
+//    }
 
     public static Line getLine(String findLine) {
         for (Line line : lines) {
@@ -63,6 +71,15 @@ public class LineRepository {
     public static boolean hasDuplicatedLine(String checkedLineName) {
         for (Line line : lines) {
             if (line.getName() == checkedLineName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isStationInLine(Station station){
+        for(Line line: lines){
+            if(line.getPath().isStationInLine(station)){
                 return true;
             }
         }

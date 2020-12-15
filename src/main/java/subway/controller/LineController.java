@@ -8,12 +8,9 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.screen.Action;
 
-import java.security.spec.NamedParameterSpec;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class LineController implements Controller {
     private static final String NAME = "노선";
@@ -70,7 +67,7 @@ public class LineController implements Controller {
     }
 
     public boolean isSameNameBetweenUpStationAndDownStation() {
-        if(upStation.getName().equals(downStation.getName())){
+        if (upStation.getName().equals(downStation.getName())) {
             OutputView.printSameNameErrorMessage();
             return true;
         }
@@ -78,7 +75,7 @@ public class LineController implements Controller {
     }
 
     public boolean isLineNameMoreThanTwoLetters() {
-        if(lineName.length() < MIN_NAME_LENGTH){
+        if (lineName.length() < MIN_NAME_LENGTH) {
             OutputView.printNameLengthErrorMessage(NAME, lineName);
             return false;
         }
@@ -87,7 +84,7 @@ public class LineController implements Controller {
 
     public boolean isStationAlreadyExist(List<Station> stations) {
         for (Station station : stations) {
-            if (StationRepository.hasDuplicatedStation(station)) {
+            if (!StationRepository.hasDuplicatedStation(station)) {
                 OutputView.printStationDoesNotExistErrorMessage(station.getName());
                 return true;
             }
@@ -95,8 +92,8 @@ public class LineController implements Controller {
         return false;
     }
 
-    public boolean isLineAlreadyExist(){
-        if(LineRepository.hasDuplicatedLine(lineName)){
+    public boolean isLineAlreadyExist() {
+        if (LineRepository.hasDuplicatedLine(lineName)) {
             OutputView.printDuplicatedErrorMessage(lineName);
             return false;
         }

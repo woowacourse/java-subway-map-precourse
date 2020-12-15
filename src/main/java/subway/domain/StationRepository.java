@@ -30,16 +30,30 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name) && !station.isStationHasLine());
+        return stations.removeIf(station -> Objects.equals(station.getName(), name) && !isStationHasLine(station));
     }
 
-    // boolean으로 바꿔서 중복 확인 해야함.
+    private static boolean isStationHasLine(Station station) {
+        for(Line line: LineRepository.lines()){
+            if(line.getPath().isStationInLine(station)){
+                System.out.println("라인을 가지고 있음^^");
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void addStations(List<Station> stations) {
         stations.forEach(StationRepository::addStation);
     }
 
-    public static boolean hasDuplicatedStation(Station station) {
-        return stations.contains(station);
+    public static boolean hasDuplicatedStation(Station checkedStation) {
+        for (Station station : stations) {
+            if (station.getName().equals(checkedStation.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void printStations() {

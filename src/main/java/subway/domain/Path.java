@@ -8,6 +8,7 @@ import java.util.LinkedList;
 // 상행, 하행을 포함한 노선의 구간 정보를 가진다.
 public class Path {
     private LinkedList<Station> paths;
+    private static final int MIN_SIZE = 2;
 
     public Path(Station... stations) {
         paths = new LinkedList<>(Arrays.asList(stations));
@@ -27,11 +28,14 @@ public class Path {
         paths.add(index, station);
     }
 
-    public void deleteStation(Station station) {
-        paths.remove(station);
+    public boolean checkSizeBeforedeleteStation(Station station) {
+        if (paths.size() > MIN_SIZE) {
+            paths.remove(station);
+            return true;
+        }
+        return false;
     }
 
-    // 상행선의 정보를 전달
     public Station getUpLine() {
         return paths.getFirst();
     }
@@ -46,7 +50,7 @@ public class Path {
         }
     }
 
-    public boolean isStationInLine(Station station){
+    public boolean isStationInLine(Station station) {
         return paths.contains(station);
     }
 }

@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -37,17 +38,16 @@ public class StationController implements Controller {
             OutputView.printNewLine();
             return;
         }
-        OutputView.printDuplicatedErrorMessage(station.toString());
     }
 
     private void deleteStation(String action) {
         OutputView.printWithAction(action, NAME);
         String station = InputView.getCommand(scanner);
-        if (StationRepository.deleteStation(station)) {
-            OutputView.printAlert(action, NAME);
+        if(LineRepository.isStationInLine(new Station(station)) || !StationRepository.deleteStation(station)) {
+            OutputView.printStationDeleteErrorMessage();
             return;
         }
-        OutputView.printStationDeleteErrorMessage();
+        OutputView.printAlert(action, NAME);
     }
 
     private void selectStation() {
