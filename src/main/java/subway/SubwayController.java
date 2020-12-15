@@ -53,18 +53,20 @@ public class SubwayController {
             OutputView.zeroLineListErrorPrint();
             return;
         }
-
+        OutputView.stationMapGuidePrint();
         for (Line line : lines) {
-            OutputView.stationMapGuidePrint();
+            OutputView.infoLineNamePrint(line);
             OutputView.line();
             for (Station station : line.getLineMembers()) {
                 OutputView.infoStationNamePrint(station.getName());
             }
+            OutputView.spacePrint();
         }
-        OutputView.stationMapPrint();
     }
 
     private boolean noRegisteredLine() {
         return LineRepository.lines().isEmpty();
     }
+
+
 }

@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.Line;
 import subway.message.CommonMessage;
 import subway.message.LineMessage;
 import subway.message.SectionMessage;
@@ -7,7 +8,7 @@ import subway.message.StationMessage;
 
 public class OutputView {
 
-    private static void spacePrint() {
+    public static void spacePrint() {
         System.out.println();
     }
 
@@ -175,14 +176,8 @@ public class OutputView {
         System.out.println(SectionMessage.SECTION_DELETE_SUCCESS.getSectionMessage());
     }
 
-    public static void stationMapPrint() {
-
-    }
-
     public static void stationMapGuidePrint() {
-        System.out.println(
-            CommonMessage.INFO +
-                CommonMessage.STATION_MAP_GUIDE.getCommonMessage());
+        System.out.println(CommonMessage.STATION_MAP_GUIDE.getCommonMessage());
     }
 
     public static void line() {
@@ -193,5 +188,10 @@ public class OutputView {
 
     public static void infoStationNamePrint(String stationName) {
         System.out.println(CommonMessage.INFO.getCommonMessage() + stationName);
+    }
+
+    public static void infoLineNamePrint(Line line) {
+        System.out.println(CommonMessage.INFO.getCommonMessage() + line.getName());
+
     }
 }
