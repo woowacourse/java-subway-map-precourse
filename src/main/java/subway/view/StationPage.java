@@ -7,7 +7,7 @@ import utils.InfoUtils;
 import java.util.List;
 
 public class StationPage {
-    public void printStationManagementPage(){
+    public void printStationManagementPage() {
         System.out.println("\n## 역 관리 화면");
         System.out.println("1. 역 등록");
         System.out.println("2. 역 삭제");
@@ -16,44 +16,48 @@ public class StationPage {
         System.out.println("\n## 원하는 기능을 선택하세요.");
     }
 
-    public void printAddStationPage(){
+    public void printAddStationPage() {
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
     }
 
-    public void printDeleteStationPage(){
+    public void printDeleteStationPage() {
         System.out.println("\n## 삭제할 역 이름을 입력하세요.");
     }
 
-    public void printSelectStationsPage(List<Station> stations){
+    public void printSelectStationsPage(List<Station> stations) {
+        if (stations == null || stations.size() == 0) {
+            ErrorUtils.printError("현재 등록된 역이 없습니다.");
+            return;
+        }
         System.out.println("\n## 역 목록");
         stations.forEach(station -> InfoUtils.printInfo(station.getName()));
     }
 
-    public void printCompleteAdd(){
+    public void printCompleteAdd() {
         InfoUtils.printInfo("역이 등록되었습니다.");
     }
 
-    public void printCompleteDelete(){
+    public void printCompleteDelete() {
         InfoUtils.printInfo("역이 삭제되었습니다.");
     }
 
     public void printFailToDeleteError() {
-        ErrorUtils.printError("삭제를 실패했습니다.");
+        ErrorUtils.printError("노선에 등록된 역은 삭제할 수 없습니다.");
     }
 
-    public void printWrongItemError(){
+    public void printWrongItemError() {
         ErrorUtils.printError("잘못된 입력입니다.");
     }
 
-    public void printShortNameError(){
+    public void printShortNameError() {
         ErrorUtils.printError("역 이름은 두 글자 이상이어야 합니다.");
     }
 
-    public void printDuplicateError(){
+    public void printDuplicateError() {
         ErrorUtils.printError("이미 존재하는 역입니다.");
     }
 
-    public void printNullStationError(){
+    public void printNullStationError() {
         ErrorUtils.printError("존재하지 않는 역입니다.");
     }
 }
