@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SectionManageMenu {
-    public enum SectionManageMenuEnums {
+    private enum SectionManageMenuEnums {
         SECTION_ADD() {
             @Override
             public void SectionManageMenuSelect() {

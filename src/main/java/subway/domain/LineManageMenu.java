@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LineManageMenu {
-    public enum LineManageMenuEnums {
+    private enum LineManageMenuEnums {
         LINE_ADD() {
             @Override
             public void lineManageMenuSelect() {

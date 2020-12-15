@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StationManageMenu {
 
-    public enum StationManageMenuEnums {
+    private enum StationManageMenuEnums {
         STATION_ADD() {
             @Override
             public void stationManageMenuSelect() {
@@ -42,7 +42,7 @@ public class StationManageMenu {
 
     private static boolean isStationMenuRun = true;
 
-    public static boolean getIsStationMenuRun() {
+    private static boolean getIsStationMenuRun() {
         return isStationMenuRun;
     }
 
@@ -52,7 +52,7 @@ public class StationManageMenu {
 
     public static void stationManageMenuRun() {
         isStationMenuRun = true;
-        while (isStationMenuRun) {
+        while (getIsStationMenuRun()) {
             try {
                 OutputView.stationManageView();
                 stationManageMenuInput();

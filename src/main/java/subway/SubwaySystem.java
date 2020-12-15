@@ -10,7 +10,7 @@ public class SubwaySystem {
         LineController.lineInit();
     }
 
-    public static void run() {
+    public void run() {
         subwayInit();
         while (MainMenu.getIsMainMenuRun()) {
             MainMenu.mainMenuRun();

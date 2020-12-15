@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Validator {
     private static final int NAME_MINIMUM_LENGTH = 2;
+    private static final int MIN_INDEX = 0;
 
     public static boolean isValidNameLength(String name) {
         return name.length() >= NAME_MINIMUM_LENGTH;
@@ -63,8 +64,8 @@ public class Validator {
         return stations.contains(stationName);
     }
 
-    public static boolean isValidSectionRange(String lineName, int location){
+    public static boolean isValidSectionRange(String lineName, int location) {
         int lineSize = LineRepository.getLineSize(lineName);
-        return location >= 0 && location <= (lineSize + 1);
+        return location >= MIN_INDEX && location <= (lineSize + 1);
     }
 }

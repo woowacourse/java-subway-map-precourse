@@ -100,15 +100,9 @@ public class LineController {
 
     private static String lineNameInputForDelete() throws IllegalArgumentException {
         String lineName = InputView.getInput();
-//        lineName = lineName.replace(" ", "");
-//        if (!Validator.isExistLineName(lineName)) {
-//            throw new IllegalArgumentException("존재하지 않는 노선 이름 입니다");
-//        }
-
         if (!LineRepository.deleteLineByName(lineName)) {
             throw new IllegalArgumentException("잘못된 노선 이름 입니다");
         }
-
         return lineName;
     }
 }
