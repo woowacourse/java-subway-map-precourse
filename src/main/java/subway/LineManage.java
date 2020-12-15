@@ -56,7 +56,7 @@ public class LineManage {
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String downWardTerminal = scanner.next();
         terminalNameValidate(downWardTerminal);
-        addLine(new Line(lineName));
+        addLine(new Line(lineName, new Station(upwardTerminal), new Station(downWardTerminal)));
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
     }
 
@@ -86,7 +86,7 @@ public class LineManage {
         System.out.println("\n## 역 목록");
         List<Line> allLines = lines();
         for (Line line : allLines) {
-            line.print();
+            line.printName();
         }
     }
 
