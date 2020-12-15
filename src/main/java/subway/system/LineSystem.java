@@ -26,7 +26,7 @@ public class LineSystem {
     public static String getUserOption(Scanner scanner) {
         try {
             System.out.println(ASK_OPTION_MESSAGE);
-            String userOption = scanner.nextLine();
+            String userOption = scanner.nextLine().trim();
             System.out.println();
             LineSystemInputValidator.validateUserOption(userOption);
             return userOption;
@@ -37,7 +37,7 @@ public class LineSystem {
     }
 
     public void callOptionMenu(String userOption, Scanner scanner) {
-        if (!Character.isDefined(userOption.charAt(0))) {
+        if (!Character.isDigit(userOption.charAt(0))) {
             return;
         }
         int optionNumber = Integer.parseInt(userOption);

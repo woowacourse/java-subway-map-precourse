@@ -21,7 +21,7 @@ public class Line {
     }
 
     // 추가 기능 구현
-    public Line addStation(Station station){
+    public Line addStation(Station station) {
         stationLine.add(station);
         return this;
     }
@@ -34,7 +34,7 @@ public class Line {
         if (order > stationLine.toArray().length + 1) {
             order = stationLine.toArray().length + 1;
         }
-        stationLine.add(order-1, new Station(stationName));
+        stationLine.add(order - 1, new Station(stationName));
     }
 
     public boolean deleteStation(String stationName) {
@@ -48,7 +48,7 @@ public class Line {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String result = "";
         result += INFO_PREFIX + this.getName() + NEWLINE_CHARACTER;
         result += INFO_PREFIX + EMPTY_INFO_MESSAGE + NEWLINE_CHARACTER;

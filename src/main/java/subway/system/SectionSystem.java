@@ -26,7 +26,7 @@ public class SectionSystem {
     public String getUserOption(Scanner scanner) {
         try {
             System.out.println(ASK_OPTION_MESSAGE);
-            String userOption = scanner.nextLine();
+            String userOption = scanner.nextLine().trim();
             System.out.println();
             SectionSystemInputValidator.validateUserOption(userOption);
             return userOption;
