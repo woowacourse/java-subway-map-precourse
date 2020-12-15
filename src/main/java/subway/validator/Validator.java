@@ -5,6 +5,7 @@ import subway.domain.StationRepository;
 public class Validator {
     private static final String UNABLE_INPUT = "[ERROR] 선택할 수 없는 기능입니다.";
     private static final String ALREADY_EXIST_STATION = "[ERROR] 이미 등록된 역 이름입니다.";
+    private static final String NOT_EXIST_STATION = "[ERROR] 등록되지 않은 역 이름입니다.";
     private static final int MIN_STATION_AND_LINE_NUMBER = 1;
     private static final int MAX_STATION_AND_LINE_NUMBER = 3;
     private static final int MIN_MAIN_NUMBER = 1;
@@ -75,6 +76,13 @@ public class Validator {
 
     public static void isStationAlreadyExist(String name) {
         if (StationRepository.getStationByName(name) != null) {
+            throw new IllegalArgumentException(ALREADY_EXIST_STATION);
+        }
+
+    }
+
+    public static void isStationExist(String name) {
+        if (StationRepository.getStationByName(name) == null) {
             throw new IllegalArgumentException(ALREADY_EXIST_STATION);
         }
 
