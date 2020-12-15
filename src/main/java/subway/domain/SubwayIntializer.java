@@ -2,13 +2,19 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SubwayIntializer {
     private static final List<String> initialStationNames = new ArrayList<>(
             Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"));
-    private static final List<String> initialLineNames = new ArrayList<>(
-            Arrays.asList("2호선", "3호선", "신분당선"));
+    private static final Map<String, List<String>> initialRoutes = new LinkedHashMap<>();
+    static {
+        initialRoutes.put("2호선", new ArrayList<>(Arrays.asList("교대역", "강남역", "역삼역")));
+        initialRoutes.put("3호선", new ArrayList<>(Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역")));
+        initialRoutes.put("신분당선", new ArrayList<>(Arrays.asList("강남역", "양재역", "양재시민의숲역")));
+    }
     
     public static void initialize() {
         initializeStations();
@@ -23,21 +29,11 @@ public class SubwayIntializer {
     }
     
     private static void initializeLines() {
-        for (String lineName : initialLineNames) {
-            LineRepository.addLine(new Line(lineName));
-        }
+        initialRoutes.forEach((lineName, stationNames) -> LineRepository.addLine(new Line(lineName)));
     }
     
     private static void initializeRoutes() {
-        LineRepository.addStationToRouteByName("2호선", "교대역");
-        LineRepository.addStationToRouteByName("2호선", "강남역");
-        LineRepository.addStationToRouteByName("2호선", "역삼역");
-        LineRepository.addStationToRouteByName("3호선", "교대역");
-        LineRepository.addStationToRouteByName("3호선", "남부터미널역");
-        LineRepository.addStationToRouteByName("3호선", "양재역");
-        LineRepository.addStationToRouteByName("3호선", "매봉역");
-        LineRepository.addStationToRouteByName("신분당선", "강남역");
-        LineRepository.addStationToRouteByName("신분당선", "양재역");
-        LineRepository.addStationToRouteByName("신분당선", "양재시민의숲역");
+        initialRoutes.forEach((lineName, stationNames) -> stationNames.stream()
+                .forEachOrdered(stationName -> LineRepository.addStationToRouteByName(lineName, stationName)));
     }
 }
