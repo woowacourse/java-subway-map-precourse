@@ -6,7 +6,7 @@ import subway.util.FeatureGroup;
 public class InputView {
     private static final String INVALID_INPUT = "[ERROR] 선택할 수 없는 기능입니다.\n";
     private static final String INVALID_LENGTH = "[ERROR] 이름은 2글자 이상이어야 합니다.\n";
-    private static final String NEGATIVE_NUMBER_ERROR = "[ERROR] 순서는 음수가 될 수 없습니다.\n";
+    private static final String NEGATIVE_NUMBER_ERROR = "[ERROR] 순서는 자연수여야 합니다.\n";
     private static final String NEW_LINE = "";
     private static final String BLANK_ERROR = "[ERROR] 빈 칸을 포함하면 안됩니다.\n";
     private static final String BLANK = " ";
@@ -58,7 +58,7 @@ public class InputView {
             int number = scanner.nextInt();
             scanner.nextLine();
             OutputView.print(NEW_LINE);
-            validateNegativeNumber(number);
+            validateNonPositiveNumber(number);
             return number;
         } catch (Exception e) {
             OutputView.print(e.getMessage());
@@ -79,8 +79,8 @@ public class InputView {
         }
     }
 
-    private void validateNegativeNumber(int number) {
-        if (number > ZERO) {
+    private void validateNonPositiveNumber(int number) {
+        if (number <= ZERO) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
         }
     }
