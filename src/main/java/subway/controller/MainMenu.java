@@ -23,6 +23,14 @@ public class MainMenu extends Menu{
         sectionMenu = new SectionMenu(scanner);
     }
 
+    public void initPrimaryStation(String[] stations) {
+        Arrays.asList(stations).forEach(StationManager::addStation);
+    }
+
+    public void initPrimaryLine(String lineName, String[] stations) {
+        LineManager.initLine(lineName, stations);
+    }
+
     @Override
     protected void info() {
         PrintInfo.mainMenu();
