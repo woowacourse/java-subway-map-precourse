@@ -37,6 +37,7 @@ public class MainController {
         if (isSelect(STATION_MENU)) {
             StationController stationController = new StationController();
             stationController.goToMenu();
+            OutputView.printLineBreak();
         }
     }
 
@@ -44,6 +45,7 @@ public class MainController {
         if (isSelect(LINE_MENU)) {
             LineController lineController = new LineController();
             lineController.goToMenu();
+            OutputView.printLineBreak();
         }
     }
 
@@ -51,6 +53,7 @@ public class MainController {
         if (isSelect(SECTION_MENU)) {
             SectionController sectionController = new SectionController();
             sectionController.goToMenu();
+            OutputView.printLineBreak();
         }
     }
 

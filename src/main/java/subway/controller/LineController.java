@@ -20,14 +20,11 @@ public class LineController extends SubController {
 
     @Override
     public void goToMenu() {
-        do {
-            OutputView.printLineMenu();
-            selection = InputView.receiveMenu(LINE_MENU);
-            goToRegisterMenuIfUserSelect();
-            goToDeleteMenuIfUserSelect();
-            goToInquireMenuIfUserSelect();
-        } while (!isBack());
-        OutputView.printLineBreak();
+        OutputView.printLineMenu();
+        String selection = InputView.receiveMenu(LINE_MENU);
+        goToRegisterMenuIfUserSelect(selection);
+        goToDeleteMenuIfUserSelect(selection);
+        goToInquireMenuIfUserSelect(selection);
     }
 
     @Override
@@ -39,6 +36,7 @@ public class LineController extends SubController {
             OutputView.printLineRegisterSuccess();
         } catch (NameFormatException | DuplicationException | IllegalElementException e) {
             OutputView.printExceptionMessage(e.getMessage());
+            goToMenu();
         }
     }
 
@@ -87,6 +85,7 @@ public class LineController extends SubController {
             OutputView.printLineDeleteSuccess();
         } catch (NotExistedElementException e) {
             OutputView.printExceptionMessage(e.getMessage());
+            goToMenu();
         }
     }
 

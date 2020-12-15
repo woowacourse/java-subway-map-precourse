@@ -20,13 +20,10 @@ public class SectionController extends SubController {
 
     @Override
     public void goToMenu() {
-        do {
-            OutputView.printSectionMenu();
-            selection = InputView.receiveMenu(SECTION_MENU);
-            goToRegisterMenuIfUserSelect();
-            goToDeleteMenuIfUserSelect();
-        } while (!isBack());
-        OutputView.printLineBreak();
+        OutputView.printSectionMenu();
+        String selection = InputView.receiveMenu(SECTION_MENU);
+        goToRegisterMenuIfUserSelect(selection);
+        goToDeleteMenuIfUserSelect(selection);
     }
 
     @Override
@@ -40,6 +37,7 @@ public class SectionController extends SubController {
             OutputView.printSectionRegisterSuccess();
         } catch (NameFormatException | NotExistedElementException | IllegalElementException e) {
             OutputView.printExceptionMessage(e.getMessage());
+            goToMenu();
         }
     }
 
@@ -84,6 +82,7 @@ public class SectionController extends SubController {
             OutputView.printSectionDeleteSuccess();
         } catch (NotExistedElementException | IllegalElementException e) {
             OutputView.printExceptionMessage(e.getMessage());
+            goToMenu();
         }
     }
 

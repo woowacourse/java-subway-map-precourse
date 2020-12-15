@@ -8,7 +8,7 @@ import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class StationValidator {
-    private static final String STATION_FORMAT_REGEX = "[가-힣]+역";
+    private static final String STATION_FORMAT_REGEX = "[가-힣]{0,}역";
     private static final int MINIMUM_STATION_NAME_LENGTH = 2;
 
     public static void validateStationName(String stationName) {
