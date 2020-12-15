@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        initialize();
+        Init.initialize();
         startProgram(scanner);
     }
 
@@ -19,44 +19,15 @@ public class Application {
         goSubMenu(mainInput, kbd);
     }
 
-    public static void initialize() {
-        initializeStation();
-        initializeLine();
-    }
-
-    public static void initializeStation() {
-        List<String> names = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
-        for (String name : names)
-            StationRepository.addStation(new Station(name));
-    }
-
-    public static void initializeLine() {
-        Line line2 = new Line("2호선");
-        LineRepository.addLine(line2, Arrays.asList("교대역", "강남역", "역삼역"));
-        Line line3 = new Line("3호선");
-        LineRepository.addLine(line3, Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역"));
-        Line lineSinbundang = new Line("신분당선");
-        LineRepository.addLine(lineSinbundang, Arrays.asList("강남역", "양재역", "양재시민의숲역"));
-    }
-
     public static String inputFunction(Scanner kbd, List<String> functions) {
         String input = "0";
         boolean check = false;
         while(!check) {
             System.out.println("\n## 원하는 기능을 선택하세요.");
             input = kbd.nextLine();
-            check = checkInput(input, functions);
+            check = Errors.checkInput(input, functions);
         }
         return input;
-    }
-
-    public static boolean checkInput(String input, List<String> functions) {
-        boolean check = true;
-        if (!functions.contains(input)) {
-            ErrorMessage.displayErrorMessage(Constants.FUNCTION_INPUT_ERROR);
-            check = false;
-        }
-        return check;
     }
 
     public static void goSubMenu(String input, Scanner kbd) {
@@ -68,7 +39,7 @@ public class Application {
         if (input.equals(Constants.SECTION_MENU))
             manageSection(kbd);
         if (input.equals(Constants.PRINT_LINES))
-            displayAllLines(kbd);
+            View.displayAllLines(kbd);
         if (input.equalsIgnoreCase(Constants.FINISH_PROGRAM))
             finishProgram();
     }
@@ -229,16 +200,6 @@ public class Application {
         System.out.println("\n## 노선 목록");
         for (Line line : LineRepository.lines())
             System.out.println("[INFO] " + line.getName());
-        startProgram(kbd);
-    }
-
-    public static void displayAllLines(Scanner kbd) {
-        System.out.println("## 지하철 노선도");
-        for(Line line : LineRepository.lines()) {
-            System.out.println("[INFO] " + line.getName());
-            System.out.println("[INFO] ---");
-            line.displayLine();
-        }
         startProgram(kbd);
     }
 

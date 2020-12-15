@@ -1,6 +1,17 @@
 package subway.domain;
 
+import java.util.List;
+
 public class Errors {
+    public static boolean checkInput(String input, List<String> functions) {
+        boolean check = true;
+        if (!functions.contains(input)) {
+            ErrorMessage.displayErrorMessage(Constants.FUNCTION_INPUT_ERROR);
+            check = false;
+        }
+        return check;
+    }
+
     public static void checkSameStation(String name) {
         if (StationRepository.isExist(name)) {
             ErrorMessage.displayErrorMessage(Constants.ALREADY_EXIST_ERROR);

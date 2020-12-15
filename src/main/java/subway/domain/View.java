@@ -1,5 +1,8 @@
 package subway.domain;
 
+import java.util.Scanner;
+import static subway.Application.startProgram;
+
 public class View {
     public static void showMainMenu() {
         System.out.println("\n## 메인 화면");
@@ -31,5 +34,15 @@ public class View {
         System.out.println("1. 구간 등록");
         System.out.println("2. 구간 삭제");
         System.out.println("B. 돌아가기");
+    }
+
+    public static void displayAllLines(Scanner kbd) {
+        System.out.println("## 지하철 노선도");
+        for(Line line : LineRepository.lines()) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INFO] ---");
+            line.displayLine();
+        }
+        startProgram(kbd);
     }
 }
