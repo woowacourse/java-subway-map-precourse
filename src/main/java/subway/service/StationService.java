@@ -4,7 +4,6 @@ import static subway.console.Output.print;
 
 import java.util.Collections;
 import java.util.List;
-import subway.console.message.ErrorMessage;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 
@@ -36,10 +35,11 @@ public class StationService {
     }
 
     public List<Station> findAll() {
-        if (StationRepository.stations().isEmpty()) {
-            print(ErrorMessage.EMPTY_STATION);
+        try {
+            return StationRepository.stations();
+        } catch (IllegalArgumentException error) {
+            print(error.getMessage());
             return Collections.emptyList();
         }
-        return StationRepository.stations();
     }
 }

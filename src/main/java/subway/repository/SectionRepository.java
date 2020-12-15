@@ -1,11 +1,14 @@
 package subway.repository;
 
+import static subway.console.message.ErrorMessage.DUPLICATE_STATION;
+import static subway.console.message.ErrorMessage.INVALID_RANGE;
+import static subway.console.message.ErrorMessage.SIZE;
+
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 
@@ -35,7 +38,7 @@ public class SectionRepository {
 
     private static void validateDuplicateStation(Line line, Station station) {
         if (sections.get(line).contains(station)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_STATION);
+            throw new IllegalArgumentException(DUPLICATE_STATION.getMessage());
         }
     }
 
@@ -50,7 +53,7 @@ public class SectionRepository {
     private static void validateOrder(Line line, int order) {
         List<Station> stations = sections.get(line);
         if (order < VALID_ORDER_SIZE || order >= stations.size()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
+            throw new IllegalArgumentException(INVALID_RANGE.getMessage());
         }
     }
 
@@ -63,7 +66,7 @@ public class SectionRepository {
 
     private static void validateStationsSize(List<Station> stations) {
         if (stations.size() <= VALID_STATION_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.SIZE);
+            throw new IllegalArgumentException(SIZE.getMessage());
         }
     }
 

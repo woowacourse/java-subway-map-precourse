@@ -1,10 +1,10 @@
 package subway.console;
 
 import static java.lang.System.out;
+import static subway.console.message.ErrorMessage.EMPTY_LINE;
 
 import java.util.List;
 import java.util.Map;
-import subway.console.message.ErrorMessage;
 import subway.console.message.InfoMessage;
 import subway.domain.Line;
 import subway.domain.Station;
@@ -30,13 +30,15 @@ public class Output {
     }
 
     public static void printLines(List<Line> lines) {
-        print(InfoMessage.LINES);
-        lines.forEach(line -> print(combine(line.getName())));
+        if (!lines.isEmpty()) {
+            print(InfoMessage.LINES);
+            lines.forEach(line -> print(combine(line.getName())));
+        }
     }
 
     public static void printSubwayLine(Map<Line, List<Station>> sections) {
         if (isEmpty(sections)) {
-            print(ErrorMessage.EMPTY_LINE);
+            print(EMPTY_LINE.getMessage());
             return;
         }
 

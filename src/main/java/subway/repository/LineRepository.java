@@ -1,9 +1,13 @@
 package subway.repository;
 
+import static subway.console.message.ErrorMessage.EMPTY_LINE;
+import static subway.console.message.ErrorMessage.EXIST_LINE;
+import static subway.console.message.ErrorMessage.NOT_EXIST_LINE;
+import static subway.console.message.ErrorMessage.SIZE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 
 public class LineRepository {
@@ -11,7 +15,7 @@ public class LineRepository {
 
     public static List<Line> lines() {
         if (lines.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_LINE);
+            throw new IllegalArgumentException(EMPTY_LINE.getMessage());
         }
         return Collections.unmodifiableList(lines);
     }
@@ -23,7 +27,7 @@ public class LineRepository {
 
     private static void validateExistLine(Line line) {
         if (lines.contains(line)) {
-            throw new IllegalArgumentException(ErrorMessage.EXIST_LINE);
+            throw new IllegalArgumentException(EXIST_LINE.getMessage());
         }
     }
 
@@ -34,7 +38,7 @@ public class LineRepository {
 
     private static void validateEmptyLines() {
         if (lines.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.SIZE);
+            throw new IllegalArgumentException(SIZE.getMessage());
         }
     }
 
@@ -42,6 +46,6 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_LINE.getMessage()));
     }
 }

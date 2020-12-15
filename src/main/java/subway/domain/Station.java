@@ -16,13 +16,13 @@ public class Station {
 
     private static void validateNameLength(String name) {
         if (name.length() < STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH);
+            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH.getMessage());
         }
     }
 
     private static void validateNameEndWord(String name) {
         if (!name.endsWith(STATION_END_NAME)) {
-            throw new IllegalArgumentException(ErrorMessage.STATION_NAME_END);
+            throw new IllegalArgumentException(ErrorMessage.STATION_NAME_END.getMessage());
         }
     }
 
