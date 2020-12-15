@@ -5,19 +5,10 @@ import java.util.ArrayList;
 public class Station {
     private String name;
 
-    public Station(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    // 추가 기능 구현
     private ArrayList<Line> belongToWhichLine = new ArrayList<Line>();
 
-    public ArrayList<Line> getBelongToWhichLine() {
-        return belongToWhichLine;
+    public Station(String name) {
+        this.name = name;
     }
 
     public void addBelongToWhichLine(Line line) {
@@ -30,5 +21,13 @@ public class Station {
 
     public boolean checkSameStationName(String name) {
         return (this.name.equals(name));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Line> getBelongToWhichLine() {
+        return belongToWhichLine;
     }
 }

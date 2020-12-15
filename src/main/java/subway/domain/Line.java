@@ -5,19 +5,10 @@ import java.util.ArrayList;
 public class Line {
     private String name;
 
-    public Line(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    // 추가 기능 구현
     private ArrayList<Station> stationsInLine = new ArrayList<Station>();
 
-    public ArrayList<Station> getStationsInLine() {
-        return stationsInLine;
+    public Line(String name) {
+        this.name = name;
     }
 
     public void addStationsInLine(Station station) {
@@ -34,5 +25,13 @@ public class Line {
 
     public boolean checkStationInLine(Station station) {
         return stationsInLine.contains(station);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Station> getStationsInLine() {
+        return stationsInLine;
     }
 }
