@@ -11,5 +11,7 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean isNameMoreThan2Letters() {
+        return name.length() >= 2;
+    }
 }
