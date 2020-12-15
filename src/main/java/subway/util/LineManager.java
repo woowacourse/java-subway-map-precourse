@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class LineManager {
     public void lineMain(Scanner scanner) {
-
         while(true) {
             try {
                 Constants.printLine();
@@ -92,9 +91,7 @@ public class LineManager {
         } else {
             throw new IllegalArgumentException(Constants.LINE_REMOVE_FAIL);
         }
-
-
-
+        SectionRepository.deleteSectionLine(input);
     }
 
     public void visitLine() {

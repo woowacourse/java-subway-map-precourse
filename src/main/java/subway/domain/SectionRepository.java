@@ -18,7 +18,15 @@ public class SectionRepository {
         sections.add(section);
     }
 
-    public static boolean deleteSection(String stationName, String lineName) {
+    public static void deleteSectionLine(String lineName) {
+        for(Section section : SectionRepository.sections()) {
+            if(section.getLine().getName().equals(lineName)) {
+            }
+        }
+        SectionRepository.sections().removeIf(section -> Objects.equals(section.getLine().getName(), lineName));
+    }
+
+    public static boolean deleteSectionStation(String stationName, String lineName) {
         for(Section section : SectionRepository.sections()) {
             if(section.getLine().getName().equals(lineName)) {
                 return section.getStation().removeIf(st -> Objects.equals(st.getName(), stationName));
