@@ -58,8 +58,8 @@ public class StationMenu implements Menu {
         while (true) {
             printMenu();
             System.out.println(CHOOSE);
-
             String select = scanner.next();
+            System.out.println();
 
             if (subFunction(select)) {
                 return false;

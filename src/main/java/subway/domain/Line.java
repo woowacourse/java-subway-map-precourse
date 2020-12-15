@@ -2,6 +2,7 @@ package subway.domain;
 
 import subway.exception.*;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +24,11 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public List<Station> sections() {
+        return Collections.unmodifiableList(section);
+    }
+
+
     public boolean contains(String stationName) {
         Station find = StationRepository.findStationByName(stationName);
         if (find == null) {
@@ -86,10 +92,5 @@ public class Line {
         }
 
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return name + ": " + section.stream().map(Station::toString).collect(Collectors.joining(" - "));
     }
 }

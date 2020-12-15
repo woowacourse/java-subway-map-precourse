@@ -7,6 +7,7 @@ import subway.domain.StationRepository;
 import subway.exception.SelectNotValidException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -95,8 +96,8 @@ public class Board implements Menu {
         while (true) {
             printMenu();
             System.out.println(CHOOSE);
-
             String select = scanner.next();
+            System.out.println();
 
             if (subMenu(select)) {
                 return;
@@ -128,9 +129,14 @@ public class Board implements Menu {
         sb.append(SUBWAY_MESSAGE).append("\n");
 
         for(Line line : LineRepository.lines()) {
-            sb.append(INFO).append(" ").append(line.toString()).append("\n");
-        }
+            sb.append(INFO).append(" ").append(line.getName()).append("\n").append(INFO).append(" ---\n");
 
+            String str = line.sections().stream()
+                    .map(Station::getName)
+                    .map(s -> INFO + " " + s + "\n")
+                    .collect(Collectors.joining());
+            sb.append(str).append("\n");
+        }
         return sb.toString();
     }
 
