@@ -25,11 +25,11 @@ public class Application {
         while (!exitFlag) {
             mainScreenPrint();
             String mainInput = scanner.next();
-            exitFlag = ValidateAndNextScreen(scanner, mainInput);
+            exitFlag = validateAndNextScreen(scanner, mainInput);
         }
     }
 
-    public static void initSetting() {
+    private static void initSetting() {
         final ArrayList<String> initStations = new ArrayList<>(
             Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"));
         final ArrayList<String> initLines = new ArrayList<>(
@@ -43,7 +43,7 @@ public class Application {
         }
     }
 
-    public static void mainScreenPrint() {
+    private static void mainScreenPrint() {
         System.out.println("## 메인 화면\n"
             + "1. 역 관리\n"
             + "2. 노선 관리\n"
@@ -54,7 +54,7 @@ public class Application {
             + "## 원하는 기능을 선택하세요.");
     }
 
-    public static boolean ValidateAndNextScreen(Scanner scanner, String mainInput) {
+    private static boolean validateAndNextScreen(Scanner scanner, String mainInput) {
         if (mainInput.equalsIgnoreCase(stationManageInput)) {
             stationManage(scanner);
             return false;
