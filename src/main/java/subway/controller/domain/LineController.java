@@ -46,11 +46,8 @@ public class LineController {
 
     private static void delete() {
         String line = InputView.getDeleteLine();
-        if (LineRepository.deleteLineByName(line)) {
-            OutputView.printDeleteLineSuccess();
-            return;
-        }
-        OutputView.printInfo("해당 역은 존재하지 않습니다.");
+        LineRepository.deleteLineByName(line);
+        OutputView.printDeleteLineSuccess();
     }
 
     private static void traverse() {
