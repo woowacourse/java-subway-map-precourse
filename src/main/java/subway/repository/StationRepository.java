@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.repository;
+
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +18,7 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
+    public static boolean deleteStationByName(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
