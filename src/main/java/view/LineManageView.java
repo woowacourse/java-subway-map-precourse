@@ -33,6 +33,7 @@ public class LineManageView {
     public void run() {
         while (true) {
             showMenu();
+            printMessage(INPUT_MESSAGE);
             String input = input();
             while (!controller.validateInput(input)) {
                 printMessage(INVALID_INPUT);
