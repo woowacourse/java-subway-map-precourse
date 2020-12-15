@@ -28,6 +28,9 @@ public class SectionRepository {
             throw new IllegalArgumentException();
         }
         List<Station> stations = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get().stations;
+        if(stations.size()<=Constant.MIN_NAME_LENGTH){
+            throw new IllegalStateException();
+        }
         return stations.removeIf(s -> Objects.equals(s.getName(), stationName));
     }
 

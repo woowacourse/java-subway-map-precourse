@@ -16,7 +16,8 @@ public class SectionController {
     private static final String NO_SECTION_INFO = "등록된 노선이 없습니다.";
     private static final String ADD_SECTION_SUCCESS = "구간이 등록되었습니다.\n";
     private static final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.\n";
-    private static final String NOT_POSSIBLE_SECTION = "추가할 수 없는 구간입니다.";
+    private static final String NOT_ADD_POSSIBLE_SECTION = "추가할 수 없는 구간입니다.";
+    private static final String NOT_DELETE_POSSIBLE_SECTION = "삭제할 수 없는 구간입니다.";
 
     public SectionController(Scanner scanner) {
         this.scanner = scanner;
@@ -47,7 +48,7 @@ public class SectionController {
         }catch(IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }catch(IndexOutOfBoundsException e){
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_POSSIBLE_SECTION));
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_ADD_POSSIBLE_SECTION));
         }catch (IllegalStateException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
         }
@@ -67,6 +68,8 @@ public class SectionController {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
         }catch (IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
+        }catch (IllegalStateException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_DELETE_POSSIBLE_SECTION));
         }
 
     }
