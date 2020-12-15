@@ -1,8 +1,10 @@
 package subway;
 
 import java.util.Scanner;
+import controller.LineManageController;
 import controller.StationManageController;
 import utils.ValidateUtils;
+import view.LineManageView;
 import view.MainView;
 import view.StationManageView;
 
@@ -17,6 +19,7 @@ public class SubwayManager {
 
     private MainView mainView;
     private StationManageView stationManageView;
+    private LineManageView lineManageView;
 
     public SubwayManager(Scanner scanner) {
         mainView = new MainView(scanner);
@@ -25,6 +28,10 @@ public class SubwayManager {
         StationManageController stationManagerController =
                 new StationManageController(stationManageView);
         stationManageView.setController(stationManagerController);
+
+        lineManageView = new LineManageView(scanner);
+        LineManageController lineManageController = new LineManageController(lineManageView);
+        lineManageView.setController(lineManageController);
     }
 
     public void run() {
@@ -46,6 +53,9 @@ public class SubwayManager {
     private void processInput(int input) {
         if (input == INPUT_MANAGE_STATION) {
             stationManageView.run();
+        }
+        if (input == INPUT_MANAGE_LINE) {
+            lineManageView.run();
         }
     }
 }
