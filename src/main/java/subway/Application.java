@@ -45,9 +45,8 @@ public class Application {
         addLine(new Line("3호선", new LinkedList<Station>(Arrays.asList(
             new Station("교대역"), new Station("남부터미널역"),
             new Station("양재역"), new Station("매봉역")))));
-        addLine(new Line("3호선", new LinkedList<Station>(Arrays.asList(
-            new Station("신분당선"), new Station("강남역"),
-            new Station("양재역"), new Station("양재시민의숲역")))));
+        addLine(new Line("신분당선", new LinkedList<Station>(Arrays.asList(
+            new Station("강남역"), new Station("양재역"), new Station("양재시민의숲역")))));
     }
 
     private static boolean isExit(Scanner scanner) {

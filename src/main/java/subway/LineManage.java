@@ -1,9 +1,9 @@
 package subway;
 
 import static log.ErrorCase.ALREADY_EXIST_ERROR;
-import static log.ErrorCase.FUNCTION_INPUT_ERROR;
 import static log.ErrorCase.NAME_LENGTH_ERROR;
 import static log.ErrorCase.NO_SUCH_NAME_ERROR;
+import static log.Logger.displayInputScreen;
 import static log.Logger.displayLineManageScreen;
 import static log.Logger.errorPrint;
 import static log.Logger.guidePrint;
@@ -14,6 +14,8 @@ import static subway.domain.LineRepository.hasLine;
 import static subway.domain.LineRepository.lines;
 import static subway.domain.StationRepository.hasStation;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import subway.domain.Line;
@@ -28,90 +30,97 @@ public class LineManage {
     static final int MIN_LINE_NAME_LENGTH = 2;
 
     static public void linaManage(Scanner scanner) {
-        displayLineManageScreen();
-        String lineManageInput = scanner.next();
-        inputValidate(scanner, lineManageInput);
+        boolean exitFlag = false;
+        while (!exitFlag) {
+            displayLineManageScreen();
+            exitFlag = isExit(scanner);
+        }
     }
 
-    private static boolean inputValidate(Scanner scanner, String lineManageInput) {
-        if (lineManageInput.equalsIgnoreCase(ADD_LINE)) {
-            addLineControl(scanner);
-            return true;
+    private static boolean isExit(Scanner scanner) {
+        String input = displayInputScreen(scanner, new ArrayList<>(Arrays.asList(
+            ADD_LINE, DELETE_LINE, ALL_LINES, BACK_SCREEN)));
+        if (input.equalsIgnoreCase(ADD_LINE)) {
+            return addLineControl(scanner);
         }
-        if (lineManageInput.equalsIgnoreCase(DELETE_LINE)) {
-            deleteLineControl(scanner);
-            return true;
+        if (input.equalsIgnoreCase(DELETE_LINE)) {
+            return deleteLineControl(scanner);
         }
-        if (lineManageInput.equalsIgnoreCase(ALL_LINES)) {
-            allLinesControl();
-            return true;
+        if (input.equalsIgnoreCase(ALL_LINES)) {
+            return allLinesControl();
         }
-        if (lineManageInput.equalsIgnoreCase(BACK_SCREEN)) {
-            return true;
-        }
-        errorPrint(FUNCTION_INPUT_ERROR);
-        throw new IllegalArgumentException();
+        return input.equalsIgnoreCase(BACK_SCREEN);
     }
 
-    private static void addLineControl(Scanner scanner) {
-        guidePrint("등록할 노선 이름을 입력하세요. ");
+    private static boolean addLineControl(Scanner scanner) {
+        guidePrint("등록할 노선 이름을 입력하세요. \n");
         String lineName = scanner.next();
-        lineNameValidate(lineName);
-
-        guidePrint("등록할 노선의 상행 종점역 이름을 입력하세요. ");
+        if (!validateLineName(lineName)) {
+            return false;
+        }
+        guidePrint("등록할 노선의 상행 종점역 이름을 입력하세요. \n");
         String upwardTerminal = scanner.next();
-        terminalNameValidate(upwardTerminal);
-
-        guidePrint("등록할 노선의 하행 종점역 이름을 입력하세요. ");
+        if (!validateTerminalName(upwardTerminal)) {
+            return false;
+        }
+        guidePrint("등록할 노선의 하행 종점역 이름을 입력하세요. \n");
         String downWardTerminal = scanner.next();
-        terminalNameValidate(downWardTerminal);
-
+        if (!validateTerminalName(downWardTerminal)) {
+            return false;
+        }
         addLine(new Line(lineName, new Station(upwardTerminal), new Station(downWardTerminal)));
-        infoPrint("지하철 노선이 등록되었습니다.");
+        infoPrint("지하철 노선이 등록되었습니다. \n");
+        return true;
     }
 
-    private static void deleteLineControl(Scanner scanner) {
-        guidePrint("삭제할 노선 이름을 입력하세요. ");
+    private static boolean deleteLineControl(Scanner scanner) {
+        guidePrint("삭제할 노선 이름을 입력하세요. \n");
         String lineName = scanner.next();
         if (!lineExists(lineName)) {
             errorPrint(NO_SUCH_NAME_ERROR);
-            throw new IllegalArgumentException();
+            return false;
         }
         deleteLineByName(lineName);
-        infoPrint("지하철 노선이 삭제되었습니다. ");
+        infoPrint("지하철 노선이 삭제되었습니다. \n");
+        return true;
     }
 
-    private static void allLinesControl() {
-        guidePrint("역 목록");
+    private static boolean allLinesControl() {
+        guidePrint("노선 목록");
         List<Line> allLines = lines();
         for (Line line : allLines) {
             line.printName();
         }
+        System.out.println();
+        return true;
     }
 
-    private static void lineNameValidate(String lineName) {
+    private static boolean validateLineName(String lineName) {
         if (!lineNameLengthValidate(lineName)) {
             errorPrint(NAME_LENGTH_ERROR);
-            throw new IllegalArgumentException();
+            return false;
         }
         if (lineExists(lineName)) {
             errorPrint(ALREADY_EXIST_ERROR);
-            throw new IllegalArgumentException();
+            return false;
         }
+        return true;
+    }
+
+    private static boolean validateTerminalName(String terminalName) {
+        if (!hasStation(terminalName)) {
+            errorPrint(NO_SUCH_NAME_ERROR);
+            return false;
+        }
+        return true;
     }
 
     private static boolean lineNameLengthValidate(String lineName) {
         return lineName.length() >= MIN_LINE_NAME_LENGTH;
     }
 
-    public static boolean lineExists(String lineName) {
+    private static boolean lineExists(String lineName) {
         return hasLine(lineName);
     }
 
-    private static void terminalNameValidate(String terminalName) {
-        if (!hasStation(terminalName)) {
-            errorPrint(NO_SUCH_NAME_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
 }
