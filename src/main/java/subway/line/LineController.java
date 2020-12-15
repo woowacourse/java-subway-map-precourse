@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.line.validation.CheckRegisteredLine;
 import subway.line.validation.NotAllowSameStartEnd;
 import subway.main.SubwayController;
 import subway.station.Station;
@@ -54,13 +55,11 @@ public class LineController {
         Line line = getNewLine(inputView);
         Station startStation = getStartStation(inputView);
         Station endStation = getEndStation(startStation, inputView);
-        boolean success = LineService.addLine(line, startStation, endStation);
 
-        if (success) {
-            LineManagementView.addLineComplete();
-        }
+        LineService.addLineWithStartEndStation(line, startStation, endStation);
 
-        return success;
+        LineManagementView.addLineComplete();
+        return true;
     }
 
     private static Line getNewLine(InputView inputView) {
@@ -85,13 +84,12 @@ public class LineController {
     private static boolean deleteLine(InputView inputView) {
         LineManagementView.askDeleteLineName();
         String lineName = inputView.lineName();
-        boolean success = LineService.deleteLine(lineName);
 
-        if (success) {
-            LineManagementView.deleteLineComplete();
-        }
+        CheckRegisteredLine.validation(lineName);
+        LineService.deleteLine(lineName);
 
-        return success;
+        LineManagementView.deleteLineComplete();
+        return true;
     }
 
     private static boolean printRegisteredLine() {

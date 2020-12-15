@@ -10,16 +10,14 @@ public class LineService {
         LineRepository.addLine(line);
     }
 
-    public static boolean addLine(Line line, Station startStation, Station endStation) {
+    public static void addLineWithStartEndStation(Line line, Station startStation, Station endStation) {
         line.addStation(startStation);
         line.addStation(endStation);
         LineRepository.addLine(line);
-        return true;
     }
 
-    public static boolean deleteLine(String lineName) {
-        CheckRegisteredLine.validation(lineName);
-        return LineRepository.deleteLineByName(lineName);
+    public static void deleteLine(String lineName) {
+        LineRepository.deleteLineByName(lineName);
     }
 
     public static Line findLine(String lineName) {
