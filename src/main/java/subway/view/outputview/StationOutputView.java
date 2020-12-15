@@ -27,7 +27,7 @@ public class StationOutputView {
         stringBuilder.append(STATION_LIST);
         stations.forEach(station ->
                 stringBuilder.append(INFO_SYMBOL+station.getName()));
-        stringBuilder.append("\n");
+        stringBuilder.append(NEXT_LINE);
         print();
     }
 
@@ -46,6 +46,12 @@ public class StationOutputView {
     public static void deleteStationName() {
         stringBuilder.append(MENU_SYMBOL);
         stringBuilder.append(DELETE_STATION);
+        print();
+    }
+
+    public static void successDelete() {
+        stringBuilder.append(INFO_SYMBOL);
+        stringBuilder.append(SUCCESS_DELETE_STATION);
         print();
     }
 }

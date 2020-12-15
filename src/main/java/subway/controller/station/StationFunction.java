@@ -29,6 +29,7 @@ public class StationFunction {
             String station = InputView.input();
             InputValidator.validStationName(station);
             StationRepository.deleteStation(station);
+            StationOutputView.successDelete();
         } catch (NotExistStationException | DuplicateStationOfLineException | InvalidStationNameException e) {
 
         }
