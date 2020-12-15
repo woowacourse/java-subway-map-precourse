@@ -47,6 +47,7 @@ public class Subway {
         menus.put(THREE, "3");
         menus.put(FOUR, "4");
         menus.put(APPLICATION_QUIT, "Q");
+        SubwayManager.initSubwayManager(menus);
     }
 
     public Object getMenus(String name) {
