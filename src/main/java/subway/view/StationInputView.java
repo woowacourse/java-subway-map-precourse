@@ -16,6 +16,7 @@ public class StationInputView {
     private static final String STATION_NAME_SHOULD_BE_ENDED_WITH_STATION_MESSAGE = "[ERROR] 역 이름 맨 뒤에 '역'을 붙여주세요.";
     private static final String STATION_NAME_INCLUDE_NUMBER_MESSAGE = "[ERROR] 역 이름에 숫자를 포함하면 안 됩니다.";
     private static final String STATION_NAME_INCLUDE_SPACE_MESSAGE = "[ERROR] 역 이름에 공백을 포함하면 안 됩니다.";
+    private static final String STATION_NAME_HAS_DUPLICATION_MESSAGE = "[ERROR] 이미 등록되어 있는 역입니다.";
     private static final char ONE = '1';
     private static final char MINIMUM_STATION_NAME_LENGTH = 2;
     private static final char THREE = '3';
@@ -83,7 +84,6 @@ public class StationInputView {
         String stationName = scanner.nextLine();
         try {
             validateStationName(stationName);
-            // TODO 역 추가
             StationRepository.addStation(new Station(stationName));
         } catch (Exception e) {
             System.out.println();
@@ -98,6 +98,7 @@ public class StationInputView {
         validateStationNameHasNumber(stationName);
         validateStationNameHasOnlyKorean(stationName);
         validateStationNameHasSpace(stationName);
+        validateStationNameHasDuplication(stationName);
     }
 
     private static void validateStationNameLength(String stationName) {
@@ -127,6 +128,15 @@ public class StationInputView {
     private static void validateStationNameHasSpace(String stationName) {
         if (stationName.contains(SPACE)) {
             throw new IllegalArgumentException(STATION_NAME_INCLUDE_SPACE_MESSAGE);
+        }
+    }
+
+    private static void validateStationNameHasDuplication(String stationName) {
+        for (Station station : StationRepository.stations()) {
+            System.out.println(station.getName());
+            if (station.isSameName(stationName)) {
+                throw new IllegalArgumentException(STATION_NAME_HAS_DUPLICATION_MESSAGE);
+            }
         }
     }
 
