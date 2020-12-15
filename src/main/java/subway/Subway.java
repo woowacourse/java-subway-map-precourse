@@ -1,7 +1,6 @@
 package subway;
 
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import subway.domain.Line;
@@ -42,13 +41,13 @@ public class Subway {
     }
 
     private void loadInitSectionData() {
-        for (Entry<String, List<String>> sectionsEntry : InitConstants.SECTION_LIST.entrySet()) {
-            List<Station> stations = sectionsEntry.getValue().stream() // stationName
-                .map(stationRepository::findByName) //Station
-                .collect(Collectors.toList()); //List<Station>
-            Line line = lineRepository.findByName(sectionsEntry.getKey());
-            sectionRepository.addStationList(line, stations);
-        }
+        InitConstants.SECTION_LIST.forEach((key, value) -> { // {lineName, List<stationName>}
+            List<Station> stations = value.stream() // stationName
+                .map(stationRepository::findByName) // Station
+                .collect(Collectors.toList()); // List<Station>
+            Line line = lineRepository.findByName(key); // Line
+            sectionRepository.addStationList(line, stations); // Map.put(Line,List<Station>)
+        });
     }
 
     public StationRepository getStationRepository() {

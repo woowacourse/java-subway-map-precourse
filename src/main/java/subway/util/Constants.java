@@ -88,7 +88,6 @@ public class Constants {
     public final static String NO_EXIST_LINE = "존재하지 않는 노선 이름입니다.";
     public static final String INVALID_START_TO_END_STATION = "상행과 하행의 이름이 동일합니다.";
 
-
     public final static String ADD_SECTION_LINE_ASK = "## 노선을 입력하세요.";
     public final static String ADD_SECTION_STATION_ASK = "## 역이름을 입력하세요.";
     public final static String ADD_SECTION_INDEX_ASK = "## 순서를 입력하세요.";

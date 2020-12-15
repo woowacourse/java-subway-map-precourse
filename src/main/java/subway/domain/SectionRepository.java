@@ -55,7 +55,7 @@ public class SectionRepository {
     public Map<Line, List<Station>> findAll() {
         Map<Line, List<Station>> copiedMap = new HashMap<>();
         sections.forEach((line, stations) -> //Line, List<Station>
-            copiedMap.put(line, new ArrayList<>(stations)));
-        return copiedMap; // immutable
+            copiedMap.put(line, new ArrayList<>(stations))); // Map.put(Line, List<Station>)
+        return copiedMap; // Copy to protect instance data (but, return data is mutable)
     }
 }
