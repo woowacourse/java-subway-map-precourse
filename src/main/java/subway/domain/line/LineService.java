@@ -55,7 +55,7 @@ public class LineService {
     private void deleteLine() {
         try {
             String name = lineInputManager.getLineNameToDelete();
-            LineRepository.deleteLineByName(name);
+            SubwayRepository.deleteSubwayLineByName(name);
             LineOutputManager.printDeletedInfo();
         } catch (ErrorMessageException errorMessageException) {
             ErrorMessage.print(errorMessageException);

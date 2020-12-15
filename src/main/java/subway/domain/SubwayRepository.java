@@ -39,6 +39,7 @@ public class SubwayRepository {
     public static void deleteSubwayLineByName(String lineName) {
         Line line = LineRepository.findLineByName(lineName);
         subwayRealLines.remove(line);
+        LineRepository.deleteLineByName(lineName);
     }
 
     public static boolean isUnacceptableIndexSize(String lineName, int index) {

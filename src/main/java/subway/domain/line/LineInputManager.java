@@ -50,19 +50,19 @@ public class LineInputManager {
         checkNotEnrolledLine(lineName);
         checkEmptyIncluded(lineName);
     }
-    // 이름 2이상
+
     private void checkLength(String lineName) {
         if (lineName.length() < MIN_TWO_LETTERS_EXCEPT_LAST_WORD) {
             throw new ErrorMessageException(NAME_OVER_TWO);
         }
     }
-    // 끝에은 선이라고 붙여줘야 함
+
     private void checkLastLetter(String lineName) {
         if (lineName.charAt(lineName.length() - 1) != LINE) {
             throw new ErrorMessageException(LAST_LETTER_LINE);
         }
     }
-    //노선 중복 불가
+
     private void checkNotEnrolledLine(String lineName) {
         if (LineRepository.containsName(lineName)) {
             throw new ErrorMessageException(ALREADY_ENROLLED_NAME);
@@ -86,7 +86,7 @@ public class LineInputManager {
         checkEnrolledStation(stationName);
     }
 
-    //등록되어 있는 역인지 확인
+
     private void checkEnrolledStation(String stationName) {
         if (!StationRepository.containsStationByName(stationName)) {
             throw new ErrorMessageException(NOT_EXIST_STATION);
@@ -99,12 +99,12 @@ public class LineInputManager {
         checkDownStationName(upStation, stationName);
         return stationName;
     }
-    // 이미 등록되어 있는 역인지 확인
+
     private void checkDownStationName(String upStation, String stationName) {
         isEqualToUpStation(upStation, stationName);
         checkEnrolledStation(stationName);
     }
-    //상행역이랑 같은지 확인
+
     private void isEqualToUpStation(String upStation, String stationName) {
         if (stationName.equals(upStation)) {
             throw new ErrorMessageException(SAME_UP_DOWN_STATION);
