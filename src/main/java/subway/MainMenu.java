@@ -3,6 +3,8 @@ package subway;
 import java.util.Scanner;
 
 public class MainMenu {
+    public static final String REGEX_QUIT = "[Qq]";
+    public static final String KEY_MAIN = "main";
     private final Scanner scanner;
     private boolean doNext = true;
 
@@ -12,9 +14,9 @@ public class MainMenu {
     }
 
     public String run() {
-        InputView inputView = new InputView(scanner, "main");
+        InputView inputView = new InputView(scanner, KEY_MAIN);
         String menuNumber = inputView.nextMenu();
-        if (menuNumber.matches("[Qq]")) {
+        if (menuNumber.matches(REGEX_QUIT)) {
             doNext = false;
         }
         return menuNumber;

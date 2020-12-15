@@ -1,12 +1,18 @@
 package subway.domain;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.StringJoiner;
 
 import static subway.domain.StationRepository.searchStation;
 
 public class Line {
+    public static final int INDEX_START_STATION = 0;
+    public static final int INDEX_END_STATION = 1;
+    public static final String ERROR_MSG_INVALID_ORDER = "[ERROR] 잘못된 순서입니다.";
+    public static final int INT_ZERO_SIZE = 0;
+    public static final String ERROR_MSG_HAS_DUPLICATE_STATION_IN_SECTION = "[ERROR] 노선에 중복된 역이 존재합니다.";
+    public static final String PREFIX_INFO = "[INFO] ";
+    public static final String HORIZONTAL_LINE = "---";
+    public static final String NEW_LINE = "\n";
     private String name;
     private ArrayList<Station> section;
 
@@ -21,26 +27,26 @@ public class Line {
     // 추가 기능 구현
     public void initializeSection(String start, String end) throws IllegalArgumentException {
         section = new ArrayList<>();
-        addStationToSection(0, start);
-        addStationToSection(1, end);
+        addStationToSection(INDEX_START_STATION, start);
+        addStationToSection(INDEX_END_STATION, end);
     }
 
     public void addStationToSection(int index, String name) throws IllegalArgumentException {
-        validateIndex(index);
-        validateDuplicate(name);
+        validatePossibleIndex(index);
+        validateNotDuplicate(name);
         section.add(index, searchStation(name));
     }
 
-    private void validateIndex(int index) {
-        if (index > section.size() || index < 0) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 순서입니다.");
+    private void validatePossibleIndex(int index) {
+        if (index > section.size() || index < INT_ZERO_SIZE) {
+            throw new IllegalArgumentException(ERROR_MSG_INVALID_ORDER);
         }
     }
 
-    private void validateDuplicate(String name) {
+    private void validateNotDuplicate(String name) {
         for (Station station : section) {
             if (station.getName().equals(name)) {
-                throw new IllegalArgumentException("[ERROR] 노선에 중복된 역이 존재합니다.");
+                throw new IllegalArgumentException(ERROR_MSG_HAS_DUPLICATE_STATION_IN_SECTION);
             }
         }
     }
@@ -64,13 +70,13 @@ public class Line {
 
     @Override
     public String toString() {
-        String topString = "[INFO] " + name + "\n";
-        String horizontalLine = "[INFO] " + "---" + "\n";
+        String topString = PREFIX_INFO + name + NEW_LINE;
+        String horizontalLine = PREFIX_INFO + HORIZONTAL_LINE + NEW_LINE;
         StringBuilder sb = new StringBuilder();
         for (Station station : section) {
-            sb.append("[INFO] ");
+            sb.append(PREFIX_INFO);
             sb.append(station.getName());
-            sb.append("\n");
+            sb.append(NEW_LINE);
         }
         return topString + horizontalLine + sb;
     }

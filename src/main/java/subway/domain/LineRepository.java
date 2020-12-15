@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+    public static final String ERROR_MSG_NON_EXISTING_LINE = "[ERROR] 존재하지 않는 노선입니다.";
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -34,11 +35,11 @@ public class LineRepository {
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
+                    throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_LINE);
                 });
     }
 
-    public static boolean hasStationInSection(String name) {
+    public static boolean isStationInSection(String name) {
         for (Line line : lines) {
             if (line.hasStation(name)) {
                 return true;

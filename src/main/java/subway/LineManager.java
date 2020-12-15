@@ -6,6 +6,19 @@ import subway.domain.LineRepository;
 import java.util.Scanner;
 
 public class LineManager {
+    public static final String KEY_LINE_MANAGER = "lineManager";
+    public static final String MENU_INT_ADD_LINE = "1";
+    public static final String MENU_INT_DELETE_LINE = "2";
+    public static final String MENU_INT_PRINT_LINE = "3";
+    public static final String MSG_INPUT_LINE_TO_REGISTER = "\n## 등록할 노선 이름을 입력하세요.";
+    public static final String MSG_INPUT_FIRST_STATION_TO_REGISTER_TO_SECTION = "\n등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static final String MSG_INPUT_LAST_STATION_TO_REGISTER_TO_SECTION = "\n등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String MSG_INPUT_LINE_TO_DELETE = "\n## 삭제할 노선 이름을 입력하세요.";
+    public static final String MSG_OUTPUT_LINE_REGISTERING_COMPLETE = "\n[INFO] 노선이 등록되었습니다.";
+    public static final String ERROR_MSG_NON_EXISTING_LINE = "\n[ERROR] 존재하지 않는 노선입니다.";
+    public static final String ERROR_MSG_DUPLICATE_LINE = "\n[ERROR] 이미 등록된 노선입니다.";
+    public static final String ERROR_MSG_LINE_NAME_SHOULD_OVER_2_CHARACTERS = "\n[ERROR] 노선 이름은 2글자 이상이어야 합니다.";
+    public static final int INT_MINIMUM_CHARACTERS = 2;
     private final Scanner scanner;
 
     public LineManager(Scanner scanner) {
@@ -13,7 +26,7 @@ public class LineManager {
     }
 
     public void run() {
-        InputView inputView = new InputView(scanner, "lineManager");
+        InputView inputView = new InputView(scanner, KEY_LINE_MANAGER);
         String menuNumber = inputView.nextMenu();
         selectMenu(menuNumber);
     }
@@ -23,13 +36,11 @@ public class LineManager {
         line2.initializeSection("교대역", "역삼역");
         line2.addStationToSection(1, "강남역");
         LineRepository.addLine(line2);
-
         Line line3 = new Line("3호선");
         line3.initializeSection("교대역", "매봉역");
         line3.addStationToSection(1, "남부터미널역");
         line3.addStationToSection(2, "양재역");
         LineRepository.addLine(line3);
-
         Line lineSinbundang = new Line("신분당선");
         lineSinbundang.initializeSection("강남역", "양재시민의숲역");
         lineSinbundang.addStationToSection(1, "양재역");
@@ -38,17 +49,17 @@ public class LineManager {
 
 
     private void selectMenu(String menuNumber) {
-        if (menuNumber.equals("1")) {
+        if (menuNumber.equals(MENU_INT_ADD_LINE)) {
             addLine();
-        } else if (menuNumber.equals("2")) {
+        } else if (menuNumber.equals(MENU_INT_DELETE_LINE)) {
             deleteLine();
-        } else if (menuNumber.equals("3")) {
+        } else if (menuNumber.equals(MENU_INT_PRINT_LINE)) {
             printLine();
         }
     }
 
     private void addLine() {
-        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
+        System.out.println(MSG_INPUT_LINE_TO_REGISTER);
         String line = InputView.askName(scanner);
         try {
             validateOverTwoChracters(line);
@@ -58,14 +69,14 @@ public class LineManager {
             run();
         }
         Line newLine = new Line(line);
-        System.out.println("\n등록할 노선의 상행 종점역 이름을 입력하세요.");
+        System.out.println(MSG_INPUT_FIRST_STATION_TO_REGISTER_TO_SECTION);
         String startStation = InputView.askName(scanner);
-        System.out.println("\n등록할 노선의 하행 종점역 이름을 입력하세요.");
+        System.out.println(MSG_INPUT_LAST_STATION_TO_REGISTER_TO_SECTION);
         String endStation = InputView.askName(scanner);
         try {
             newLine.initializeSection(startStation, endStation);
             LineRepository.addLine(newLine);
-            System.out.println("[INFO] 노선이 등록되었습니다.");
+            System.out.println(MSG_OUTPUT_LINE_REGISTERING_COMPLETE);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             run();
@@ -74,22 +85,22 @@ public class LineManager {
 
     private void validateNotExistingLine(String line) {
         if (LineRepository.hasLine(line)){
-            throw new IllegalArgumentException("\n[ERROR] 이미 등록된 노선입니다.");
+            throw new IllegalArgumentException(ERROR_MSG_DUPLICATE_LINE);
         }
     }
 
     private void validateOverTwoChracters(String line) {
-        if (line.length() < 2) {
-            throw new IllegalArgumentException("\n[ERROR] 노선 이름은 2글자 이상이어야 합니다.");
+        if (line.length() < INT_MINIMUM_CHARACTERS) {
+            throw new IllegalArgumentException(ERROR_MSG_LINE_NAME_SHOULD_OVER_2_CHARACTERS);
         }
     }
 
     private void deleteLine() {
-        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
+        System.out.println(MSG_INPUT_LINE_TO_DELETE);
         String station = InputView.askName(scanner);
         try {
             if (!LineRepository.deleteLineByName(station)) {
-                throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
+                throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_LINE);
             }
         } catch (IllegalArgumentException e)  {
             System.out.println(e);

@@ -9,6 +9,7 @@ public class Application {
 
         SubwayProgram newSubwayProgram = new SubwayProgram(scanner);
         newSubwayProgram.run();
+        scanner.close();
 
     }
 }

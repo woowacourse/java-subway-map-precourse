@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+    public static final String ERROR_MSG_NON_EXISTING_STATION = "[ERROR] 조건에 맞는 역이 없습니다.";
 
     static {
         stations.add(new Station("교대역"));
@@ -44,7 +45,7 @@ public class StationRepository {
                 .filter((station) -> station.getName().equals(name))
                 .findAny()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("[ERROR] 조건에 맞는 역이 없습니다.");
+                    throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_STATION);
                 });
     }
 
