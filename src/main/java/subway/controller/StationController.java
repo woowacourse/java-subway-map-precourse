@@ -94,7 +94,7 @@ public class StationController {
             MainController.startMainPage(scanner);
             return;
         }
-        STATION_PAGE.printNullLineError();
+        STATION_PAGE.printNullStationError();
         startStationPage(scanner);
     }
 
