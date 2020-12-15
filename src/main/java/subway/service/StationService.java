@@ -30,7 +30,6 @@ public class StationService {
     }
 
     public static void listAllStations() {
-        // todo OutPutView로 이동? StationRepository.stations() 전달만 해줄까?
         StationRepository.stations().forEach(station -> OutputView.printInfo(station.getName()));
     }
 }

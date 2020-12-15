@@ -25,7 +25,6 @@ public class LineService {
     }
 
     public static void listAllLines() {
-        // todo OutPutView로 이동? StationRepository.stations() 전달만 해줄까?
         LineRepository.lines().forEach(line -> OutputView.printInfo(line.getName()));
     }
 
