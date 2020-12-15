@@ -66,7 +66,7 @@ public class DeleteAction extends Action {
     }
 
     private String requestInputDelete() {
-        return inputView.inputDelete();
+        return inputView.inputDelete(category);
     }
 
     // 임시 - 컴파일 에러 방지.

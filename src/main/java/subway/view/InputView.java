@@ -86,11 +86,11 @@ public class InputView {
         return name;
     }
 
-    public String inputDelete() {
+    public String inputDelete(String category) {
         String name = CommonMessage.ERROR;
         while (true) {
             try {
-                name = validate.isAccptedDeleteInput(scanner.nextLine());
+                name = validate.isAccptedDeleteInput(scanner.nextLine(), category);
                 System.out.println();
             } catch(NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());

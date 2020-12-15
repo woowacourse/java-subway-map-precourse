@@ -17,6 +17,8 @@ import subway.domain.menu.exception.NotRegisterStationException;
 import subway.domain.menu.exception.TerminalStationNameEqualException;
 
 public class Validate {
+    private static final int MIN_LENGTH = 2;
+
     public char isAccptedInput(List<Character> selMenu, char input) {
         if (selMenu.stream().anyMatch(menu -> menu == input)) {
             return input;
@@ -47,7 +49,7 @@ public class Validate {
 
         // 이 함수의 반환값이 false라면, 삭제할 역이 존재한다는 의미이고,
         // 다시 말해서 역 리스트에 역이 존재한다는 뜻.
-        if (isNotAccptedDeleteInput(input)) {
+        if (isNotAccptedDeleteInput(input, CategoryType.STATION)) {
             throw new NotRegisterStationException();
         }
         return input;
@@ -57,8 +59,8 @@ public class Validate {
         if (isNotAccptedInputLength(input)) {
             throw new NotAccptedInputLengthException();
         }
-        
-        if (isNotAccptedDeleteInput(input)) {
+
+        if (isNotAccptedDeleteInput(input, CategoryType.STATION)) {
             throw new NotRegisterStationException();
         }
 
@@ -68,23 +70,23 @@ public class Validate {
         return input;
     }
 
-    public String isAccptedDeleteInput(String input) {
+    public String isAccptedDeleteInput(String input, String category) {
         if (isNotAccptedInputLength(input)) {
             throw new NotAccptedInputLengthException();
         }
 
-        if (isDuplicatedStationInLine(input)) {
-            throw new DuplicatedStationInLineException();
+        if (isNotAccptedDeleteInput(input, category)) {
+            throw new NotAccptedDeleteInputException();
         }
 
-        if (isNotAccptedDeleteInput(input)) {
-            throw new NotAccptedDeleteInputException();
+        if (category.equals(CategoryType.STATION) && isDuplicatedStationInLine(input)) {
+            throw new DuplicatedStationInLineException();
         }
         return input;
     }
 
     private boolean isNotAccptedInputLength(String input) {
-        if (input.length() < 2) {
+        if (input.length() < MIN_LENGTH) {
             return true;
         }
         return false;
@@ -112,7 +114,14 @@ public class Validate {
         return false;
     }
 
-    private boolean isNotAccptedDeleteInput(String input) {
-        return StationRepository.stations().stream().noneMatch(station -> station.getName().equals(input));
+    private boolean isNotAccptedDeleteInput(String input, String category) {
+        if (category.equals(CategoryType.STATION)) {
+            return StationRepository.stations().stream().noneMatch(station -> station.getName().equals(input));
+        }
+
+        if (category.equals(CategoryType.LINE)) {
+            return LineRepository.lines().stream().noneMatch(line -> line.getName().equals(input));
+        }
+        return false;
     }
 }
