@@ -20,16 +20,28 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    private static final int FROM_ORDER_TO_INDEX = 1;
+
     public static Line getLine(String name) {
-//        return (Line) lines.stream()
-//                .filter(line -> line.getName().equals(name));
-        int index = 0;
-        for(int i=0; i<lines.size(); i++) {
-            if(lines.get(i).getName().equals(name)) {
-                index = i;
-            }
+        return lines.stream()
+                .filter(station -> station.getName().equals(name))
+                .findAny()
+                .get();
+    }
+
+    public static Line getNewLine() {
+        return lines.get(lines.size() - FROM_ORDER_TO_INDEX);
+    }
+
+    public static void deleteStationInLine(String name) {
+        for (Line line : lines) {
+            line.getSections().removeIf(station -> Objects.equals(station.getName(), name));
         }
-        return lines.get(index);
+    }
+
+    public static boolean isDuplicate(String name) {
+        return lines.stream()
+                .anyMatch(station -> station.getName().equals(name));
     }
 
     public static List<Line> getLines() {
