@@ -51,10 +51,14 @@ public class StationController {
 
     private static void add() {
         String name = InputView.getAddStation();
-        StationExceptionHandler.duplicatedStation(name);
-        StationExceptionHandler.stationNameShorterThanTwo(name);
+        addable(name);
         StationRepository.addStation(new Station(name));
         OutputView.printAddStationSuccess();
+    }
+
+    private static void addable(String name) {
+        StationExceptionHandler.duplicatedStation(name);
+        StationExceptionHandler.stationNameShorterThanTwo(name);
     }
 
     private static void traverse() {

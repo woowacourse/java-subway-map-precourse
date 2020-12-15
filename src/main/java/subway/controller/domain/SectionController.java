@@ -41,15 +41,19 @@ public class SectionController {
 
     private static void add() {
         String line = InputView.getAddStationToLine();
-        SectionExceptionHandler.notLineContained(line); //
         String station = InputView.getAddStation();
-        SectionExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
         String order = InputView.getAddStationOrder();
-        SectionExceptionHandler.positiveInt(order);
-        SectionExceptionHandler.lineOverflow(line, order);
+        addable(line, station, order);
         Line targetLine = LineRepository.findByLineName(line);
         targetLine.addStationByOrder(new Station(station), Integer.parseInt(order));
         OutputView.printAddStationToLineSuccess();
+    }
+
+    private static void addable(String line, String station, String order) {
+        SectionExceptionHandler.notLineContained(line);
+        SectionExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
+        SectionExceptionHandler.positiveInt(order);
+        SectionExceptionHandler.lineOverflow(line, order);
     }
 
     private static void delete() {

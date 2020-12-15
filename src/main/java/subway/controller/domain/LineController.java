@@ -59,22 +59,36 @@ public class LineController {
 
     private static void add() {
         String line = InputView.getAddLine();
-        LineExceptionHandler.lineNameShortThanMin(line);
-        LineExceptionHandler.lineDuplicated(line);
         String from = InputView.getAddLineUpwardStation();
         String to = InputView.getAddLineDownwardStation();
-        LineExceptionHandler.fromAndToStationDuplicated(from, to);
-
-        Line newLine = new Line(line);
-        Station fromStation = new Station(from);
-        Station toStation = new Station(to);
-
-        StationRepository.addStation(fromStation);
-        StationRepository.addStation(toStation);
-
-        newLine.addStationByOrder(fromStation, 0);
-        newLine.addStationByOrder(toStation, 1);
-        LineRepository.addLine(newLine);
+        addable(line, from, to);
+        Station fromStation = addStation(from);
+        Station toStation = addStation(to);
+        Line addedLine = addLine(line);
+        addSection(addedLine, fromStation, toStation);
         OutputView.printAddLineSuccess();
+    }
+
+    private static void addable(String line, String fromStation, String toStation) {
+        LineExceptionHandler.lineNameShortThanMin(line);
+        LineExceptionHandler.lineDuplicated(line);
+        LineExceptionHandler.fromAndToStationDuplicated(fromStation, toStation);
+    }
+
+    private static Station addStation(String station) {
+        Station newStation = new Station(station);
+        StationRepository.addStation(newStation);
+        return newStation;
+    }
+
+    private static Line addLine(String line) {
+        Line newLine = new Line(line);
+        LineRepository.addLine(newLine);
+        return newLine;
+    }
+
+    private static void addSection(Line line, Station from, Station to) {
+        line.addStationByOrder(from, 0);
+        line.addStationByOrder(to, 0);
     }
 }
