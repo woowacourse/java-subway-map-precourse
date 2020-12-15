@@ -28,6 +28,10 @@ public class OutputView {
         System.out.print(Constant.VIEW_HEADER);
         System.out.printf(Constant.MANAGEMENT_VIEW_HEADER_FORMAT, service.getName());
         for(ManagementMenu menu : menuList) {
+            if(menu.getOrder().equals(Constant.BACK_KEY)){
+                System.out.printf(Constant.MANAGEMENT_VIEW_BODY_BACK_FORMAT, menu.getOrder(), menu.getMessage());
+                continue;
+            }
             System.out.printf(Constant.MANAGEMENT_VIEW_BODY_FORMAT, menu.getOrder(), service.getName(), menu.getMessage());
         }
     }

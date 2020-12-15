@@ -29,7 +29,6 @@ public class StationManager extends ServiceManager {
             OutputView.printError(e.getMessage());
             doStationManagement();
         }
-
     }
 
     private void checkInputData(String inputData) {
