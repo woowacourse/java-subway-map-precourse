@@ -20,7 +20,7 @@ public class MainMenu {
         this.scanner = scanner;
     }
 
-    //TODO 메뉴 이외의 입력을 받았을 때 예외사항 출력 구현해야함
+    //TODO 메뉴번호 이외의 입력을 받았을 때 예외사항 출력 구현해야함
     public void start() {
         new DefaultSetting().defaultSetting();
         while (true) {

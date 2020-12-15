@@ -31,4 +31,28 @@ public class StationValidator {
         System.out.println("[ ERROR ] 역 이름은 2글자 이상이어야합니다.");
         return false;
     }
+
+    public static boolean checkRemovableStation(String name) {
+        if (haveStationName(name) && checkValidRemoveStation(name)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkValidRemoveStation(String name) {
+        Station station = StationRepository.findStationByName(name);
+        if (station.isRemovable()) {
+            return true;
+        }
+        System.out.println("[ ERROR ] 노선과 연결되어 있어서 삭제할 수 없는 역입니다.");
+        return false;
+    }
+
+    public static boolean haveStationName(String name) {
+        if (checkDuplicateName(name)) {
+            return true;
+        }
+        System.out.println("[ ERROR ] 존재하지 않는 지하철 역입니다.");
+        return false;
+    }
 }

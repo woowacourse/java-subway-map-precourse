@@ -62,7 +62,8 @@ public class StationMenu {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
         String stationName = scanner.nextLine();
         System.out.println();
-        if (StationService.deleteStation(stationName)) {
+        if (StationValidator.checkRemovableStation(stationName)) {
+            StationService.deleteStation(stationName);
             System.out.println("[ INFO ] 지하철 역이 삭제되었습니다.\n");
         }
     }

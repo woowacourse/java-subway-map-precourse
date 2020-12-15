@@ -58,8 +58,9 @@ public class LineMenu {
             }
             System.out.println();
         }
-
     }
+
+
 
     //TODO 출력 기능을 다른곳에 모으기
     public void printLineMenu() {
