@@ -1,11 +1,12 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Section {
     private Line line;
-    private List<Station> station = new ArrayList<>();
+    private static final List<Station> station = new ArrayList<>();
 
     public Section(Line line) {
         this.line = line;
@@ -19,8 +20,8 @@ public class Section {
         return line;
     }
 
-    public List<Station> getStation() {
-        return this.station;
+    public static List<Station> getStation() {
+        return Collections.unmodifiableList(station);
     }
 
 

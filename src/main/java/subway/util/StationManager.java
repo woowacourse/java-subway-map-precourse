@@ -38,7 +38,17 @@ public class StationManager {
         }
         Station station = new Station(input);
         StationRepository.addStation(station);
-        System.out.println(Constants.STATION_ADD_COMPLETE);
+        System.out.println(Constants.SECTION_ADD_COMPLETE);
+    }
+
+    public void addStation(String input) throws IllegalArgumentException {
+        ErrorManager.checkNameLength(input);
+        if(ErrorManager.isStationExist(input)) {
+
+        } else {
+            Station station = new Station(input);
+            StationRepository.addStation(station);
+        }
     }
 
     public void removeStation(Scanner scanner) throws IllegalArgumentException {

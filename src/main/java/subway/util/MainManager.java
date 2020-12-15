@@ -1,9 +1,5 @@
 package subway.util;
 
-import subway.domain.Section;
-import subway.domain.SectionRepository;
-import subway.domain.Station;
-
 import java.awt.desktop.SystemSleepEvent;
 import java.util.Scanner;
 
@@ -39,16 +35,7 @@ public class MainManager {
             } else if (input.equals("3")) {
                 sectionManager.SectionMain(scanner);
             } else if (input.equals("4")) {
-                printMap();
-            }
-    }
 
-    public void printMap() {
-        for(Section section : SectionRepository.sections()) {
-            System.out.println(section.getLine().getName());
-            for(Station station : section.getStation()) {
-                System.out.println(station.getName());
             }
-        }
     }
 }

@@ -38,11 +38,11 @@ public class LineManager {
         }
         Line line = new Line(input);
         LineRepository.addLine(line);
-        String [] stations = getStationName(scanner);
-        addSection(line, stations);
+        Section section = new Section(line);
+        addStations(scanner, section);
     }
 
-    public String[] getStationName(Scanner scanner) {
+    public void addStations(Scanner scanner, Section section) {
         String [] inputStations = new String[2];
         while(true) {
             try {
@@ -57,7 +57,14 @@ public class LineManager {
                 System.out.println(exception.getMessage());
             }
         }
-        return inputStations;
+        for(int i = 0; i < 1; i++) {
+            for(Station station : StationRepository.stations()) {
+                if(station.getName() == inputStations[i]) {
+                    section.addStations(station);
+                }
+            }
+        }
+        SectionRepository.addSection(section);
     }
 
     public void checkStation(String input) throws IllegalArgumentException {
@@ -65,18 +72,6 @@ public class LineManager {
         if(!ErrorManager.isStationExist(input)) {
             throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
         }
-    }
-
-    public void addSection(Line line, String [] stations) {
-        Section section = new Section(line);
-        for(int i = 0; i < 2; i++) {
-            for(Station station : StationRepository.stations()) {
-                if(station.getName().equals(stations[i])) {
-                    section.addStations(station);
-                }
-            }
-        }
-        SectionRepository.addSection(section);
     }
 
     public void removeLine(Scanner scanner) throws IllegalArgumentException {
