@@ -15,6 +15,12 @@ public class Line {
         return name;
     }
 
+    public void displayLine() {
+        for (String station : stationNames)
+            System.out.println("[INFO] " + station);
+        System.out.println();
+    }
+
     public void addStation(int index, String name) {
         stationNames.add(index-1, name);
     }
