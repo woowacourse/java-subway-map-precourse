@@ -8,21 +8,25 @@ public abstract class SubController {
     protected String selection;
 
     protected final void goToRegisterMenuIfUserSelect() {
-        if (selection.equals(REGISTER_MENU)) {
+        if (isSelect(REGISTER_MENU)) {
             register();
         }
     }
 
     protected final void goToDeleteMenuIfUserSelect() {
-        if (selection.equals(DELETE_MENU)) {
+        if (isSelect(DELETE_MENU)) {
             delete();
         }
     }
 
     protected final void goToInquireMenuIfUserSelect() {
-        if (selection.equals(INQUIRE_MENU)) {
+        if (isSelect(INQUIRE_MENU)) {
             inquire();
         }
+    }
+
+    private boolean isSelect(String menu) {
+        return selection.equals(menu);
     }
 
     protected void inquire() {
