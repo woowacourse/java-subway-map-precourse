@@ -36,8 +36,10 @@ public class SectionValidator {
 
     public static boolean haveSection(String lineName, String stationName) {
         Line line = LineRepository.findLineByName(lineName);
-        if (line.isRemovable(stationName)) {
-            return true;
+        for (Station station : line.stationList()) {
+            if (station.getName().equals(stationName)) {
+                return true;
+            }
         }
         System.out.println("[ ERROR ] 구간에 존재하지 않는 역입니다.");
         return false;

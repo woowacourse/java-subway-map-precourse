@@ -43,14 +43,5 @@ public class LineTest {
         assertEquals(line.stationList().get(0).getName(), "중앙역");
     }
 
-    @Order(1)
-    @Test
-    public void 구간_삭제된다() {
-        Line line = LineRepository.findLineByName("2호선");
-        int beforeSize = line.size();
-        line.isRemovable("강남역");
-        assertEquals(beforeSize-3, line.size());
-    }
-
 
 }
