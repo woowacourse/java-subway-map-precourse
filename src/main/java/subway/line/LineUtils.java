@@ -46,30 +46,32 @@ public class LineUtils {
         Station upTerminal;
         Station downTerminal;
 
-        System.out.println("## 등록할 노선 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         Line newLine = new Line(scanner.next());
 
-        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         upTerminal = StationRepository.getStationByName(scanner.next());
 
-        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         downTerminal = StationRepository.getStationByName(scanner.next());
 
         newLine.setTerminal(upTerminal, downTerminal);
         LineRepository.addLine(newLine);
-        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.\n");
     }
 
     public void deleteLine() {
-        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
         LineRepository.deleteLineByName(scanner.next());
-        System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
+        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
 
     public void showLine() {
         List<Line> lines = LineRepository.lines();
+        System.out.println("");
         for (Line line : lines) {
             System.out.println("[INFO] " + line.getName());
         }
+        System.out.println("");
     }
 }

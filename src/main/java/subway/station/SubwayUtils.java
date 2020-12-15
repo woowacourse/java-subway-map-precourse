@@ -21,6 +21,7 @@ public class SubwayUtils {
 
     public void showSubwayMap() {
         List<Line> lines = LineRepository.lines();
+        System.out.println();
         for (Line line : lines) {
             List<Station> stations = line.showStations();
 

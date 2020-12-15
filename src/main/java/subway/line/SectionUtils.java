@@ -43,26 +43,26 @@ public class SectionUtils {
         Line selectedLine;
         int lineIndex;
 
-        System.out.println("## 노선을 입력하세요.");
+        System.out.println("\n## 노선을 입력하세요.");
         selectedLine = LineRepository.selectLineByName(scanner.next());
-        System.out.println("## 역이름을 입력하세요.");
+        System.out.println("\n## 역이름을 입력하세요.");
         selectedStation = StationRepository.getStationByName(scanner.next());
-        System.out.println("## 순서를 입력하세요.");
+        System.out.println("\n## 순서를 입력하세요.");
         lineIndex = scanner.nextInt();
         selectedLine.addStation(lineIndex, selectedStation);
-        System.out.println("[INFO] 구간이 등록되었습니다.");
+        System.out.println("\n[INFO] 구간이 등록되었습니다.\n");
     }
 
     public void deleteSection() {
         Line selectedLine;
 
-        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
         selectedLine = LineRepository.selectLineByName(scanner.next());
 
-        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
         selectedLine.deleteStation(scanner.next());
 
-        System.out.println("[INFO] 구간이 삭제되었습니다.");
+        System.out.println("\n[INFO] 구간이 삭제되었습니다.\n");
     }
 
 }

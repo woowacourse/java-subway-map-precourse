@@ -43,21 +43,23 @@ public class StationUtils {
     }
 
     public void registerStation() {
-        System.out.println("## 등록할 역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 역 이름을 입력하세요.");
         Station newStation = new Station(scanner.next());
         StationRepository.addStation(newStation);
     }
 
     public void deleteStation() {
-        System.out.println("## 삭제할 역 이름을 입력하세요.");
+        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
         StationRepository.deleteStation(scanner.next());
-        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.\n");
     }
 
     public void showStation() {
         List<Station> stations = StationRepository.stations();
+        System.out.println("");
         for (Station station : stations) {
             System.out.println("[INFO] " + station.getName());
         }
+        System.out.println("");
     }
 }
