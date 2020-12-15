@@ -16,7 +16,6 @@ public class SectionManager extends ServiceManager {
     @Override
     public void doStationManagement(Scanner scanner) {
         OutputView.printManagementView(ServiceList.SECTION, menuList);
-        String inputData = InputView.inputMainMenu(scanner);
 
     }
 

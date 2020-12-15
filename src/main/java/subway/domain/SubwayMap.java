@@ -33,8 +33,12 @@ public class SubwayMap {
 
     private String selectService() {
         OutputView.printMainView();
-        String inputData = InputView.inputMainMenu(scanner);
-        return inputData;
+        try {
+            return InputView.inputMainMenu(scanner);
+        } catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            return selectService();
+        }
     }
 
 

@@ -16,8 +16,6 @@ public class LineManager extends ServiceManager{
     @Override
     public void doStationManagement(Scanner scanner) {
         OutputView.printManagementView(ServiceList.LINE, menuList);
-        String inputData = InputView.inputMainMenu(scanner);
-
     }
 
     @Override

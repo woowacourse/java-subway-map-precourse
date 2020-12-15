@@ -16,7 +16,13 @@ public class StationManager extends ServiceManager {
     @Override
     public void doStationManagement(Scanner scanner) {
         OutputView.printManagementView(ServiceList.STATION, menuList);
-        String inputData = InputView.inputMainMenu(scanner);
+        try{
+            String inputData = InputView.inputManagementMenu(scanner, menuList);
+        } catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            doStationManagement(scanner);
+        }
+
     }
 
     @Override

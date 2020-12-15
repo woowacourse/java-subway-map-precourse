@@ -9,4 +9,7 @@ public class Constant {
     public static final String MANAGEMENT_VIEW_HEADER_FORMAT = "%s 관리 화면\n";
     public static final String MANAGEMENT_VIEW_BODY_FORMAT = "%s. %s %s\n";
 
+    public static final String ILLEGAL_ARGUMENT_EXCEPTION_HEADER = "[ERROR] ";
+    public static final String ILLEGAL_ARGUMENT_EXCEPTION_INVALID_MENU_ORDER = "선택할 수 없는 기능입니다.";
+
 }

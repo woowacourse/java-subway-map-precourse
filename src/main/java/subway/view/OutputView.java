@@ -43,6 +43,8 @@ public class OutputView {
     }
 
     public static void printError(String errorMessage){
-
+        System.out.print(Constant.ILLEGAL_ARGUMENT_EXCEPTION_HEADER);
+        System.out.println(errorMessage);
+        System.out.println();
     }
 }
