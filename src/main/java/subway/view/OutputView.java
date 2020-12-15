@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.Constant;
+import subway.domain.data.Station;
 import subway.domain.menu.MainMenu;
 import subway.domain.menu.ManagementMenu;
 import subway.domain.menu.ServiceList;
@@ -46,8 +47,11 @@ public class OutputView {
         System.out.printf(format, service);
     }
 
-    public static void printFunctionResult(String resultMessage){
-
+    public static void printFunctionResult(String resultMessageFormat, String service){
+        System.out.println();
+        System.out.print(Constant.RESULT_HEADER);
+        System.out.printf(resultMessageFormat, service);
+        System.out.println();
     }
 
     public static void printError(String errorMessage){
@@ -64,4 +68,20 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printStationList(List<Station> list, String service){
+        System.out.println();
+
+        if(list.isEmpty()){
+            System.out.print(Constant.ILLEGAL_ARGUMENT_EXCEPTION_HEADER);
+            System.out.printf(Constant.FIND_EMPTY_LIST, service);
+        }
+
+        System.out.print(Constant.VIEW_HEADER);
+        System.out.println(Constant.STATION_LIST_HEADER);
+        for(Station station : list) {
+            System.out.print(Constant.RESULT_HEADER);
+            System.out.println(station.getName());
+        }
+        System.out.println();
+    }
 }

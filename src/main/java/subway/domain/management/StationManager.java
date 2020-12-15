@@ -40,7 +40,7 @@ public class StationManager extends ServiceManager {
     }
 
     private void findStation() {
-
+        OutputView.printStationList(StationRepository.stations(), ServiceList.STATION.getName());
     }
 
     private void registerStation() {
@@ -53,7 +53,8 @@ public class StationManager extends ServiceManager {
             return;
         }
 
-        OutputView.printFunctionResult();
+        StationRepository.addStation(station);
+        OutputView.printFunctionResult(Constant.REGISTER_RESULT_FORMAT, ServiceList.STATION.getName());
         return;
     }
 
