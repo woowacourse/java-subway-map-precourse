@@ -1,7 +1,6 @@
 package subway.controller;
 
 import java.util.Scanner;
-import subway.view.DetailView;
 import subway.view.MenuView;
 import utils.Category;
 
@@ -39,7 +38,7 @@ public class MenuController {
 
     public static void executeSelection(Category category, int selection, Scanner scanner) {
         if (category == Category.STATION) {
-            StationController.startStationManagement(scanner, selection);
+            StationController.manageStation(scanner, selection);
         }
 
     }
