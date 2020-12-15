@@ -67,8 +67,13 @@
 지하철 관리 프로그램에서 사용할 I/O들을 관리
 - Response(class): 프로그램에서 발생하는 출력 관리
 - Request(class): 프로그램에서 발생하는 입력을 관리하고 예외 발생 처리
-- ExceptionManager(class): 발생할 수 있는 예외 상황 체크 및 관리
-  - Error(inner enum): 에러 상태
+### exception(package)
+지하철 관리 프로그램에서 발생가능한 예외상황 관리
+- Error: 예외 메시지 관리
+- ExceptionManager(class): 발생할 수 있는 예외 상황 체크 및 관리. 모든 ExceptionManager들의 조상 클래스
+- StationExceptionManager(class): 지하철 역 관련 연산에서 발생할 수 있는 예외 상황 관리
+- LineExceptionManager(class): 노선 관련 연산에서 발생할 수 있는 예외 상황 관리
+- SectionExceptionManager(class): 구간 관련 연산에서 발생할 수 있는 예외 상황 관리
 ### SubwayManager(class)
 지하철 관리 프로그램에 필요한 I/O 정보와 화면들을 관리
 ### Scene(class)
