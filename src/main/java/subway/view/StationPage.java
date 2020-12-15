@@ -37,6 +37,10 @@ public class StationPage {
         InfoUtils.printInfo("역이 삭제되었습니다.");
     }
 
+    public void printFailToDeleteError() {
+        ErrorUtils.printError("삭제를 실패했습니다.");
+    }
+
     public void printWrongItemError(){
         ErrorUtils.printError("잘못된 입력입니다.");
     }
