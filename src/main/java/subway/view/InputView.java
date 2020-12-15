@@ -31,48 +31,53 @@ public class InputView {
         return getInput();
     }
 
+    private static void printWithPreLn(String message) {
+        System.out.println();
+        System.out.print(message);
+    }
+
     public static String getAddStation() {
-        print(ADD_STATION);
+        printWithPreLn(ADD_STATION);
         return getInput();
     }
 
     public static String getDeleteStation() {
-        print(DELETE_STATION);
+        printWithPreLn(DELETE_STATION);
         return getInput();
     }
 
     public static String getAddLine() {
-        print(ADD_LINE);
+        printWithPreLn(ADD_LINE);
         return getInput();
     }
 
     public static String getAddLineUpwardStation() {
-        print(ADD_LINE_UPWARD_STATION);
+        printWithPreLn(ADD_LINE_UPWARD_STATION);
         return getInput();
     }
 
     public static String getAddLineDownwardStation() {
-        print(ADD_LINE_DOWNWARD_STATION);
+        printWithPreLn(ADD_LINE_DOWNWARD_STATION);
         return getInput();
     }
 
     public static String getDeleteLine() {
-        print(DELETE_LINE);
+        printWithPreLn(DELETE_LINE);
         return getInput();
     }
 
     public static String getAddStationToLine() {
-        print(ADD_STATION_TO_LINE);
+        printWithPreLn(ADD_STATION_TO_LINE);
         return getInput();
     }
 
     public static String getAddStationOrder() {
-        print(ADD_STATION_ORDER);
+        printWithPreLn(ADD_STATION_ORDER);
         return getInput();
     }
 
     public static String getDeleteStationFromLine() {
-        print(DELETE_STATION_FROM_LINE);
+        printWithPreLn(DELETE_STATION_FROM_LINE);
         return getInput();
     }
 

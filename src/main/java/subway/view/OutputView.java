@@ -1,5 +1,10 @@
 package subway.view;
 
+import java.util.List;
+
+import subway.domain.Line;
+import subway.domain.Station;
+
 public class OutputView {
 
     private static final String MAIN_VIEW = "## 메인 화면\n"
@@ -46,74 +51,110 @@ public class OutputView {
 
     private static final String TRAVERSE_MAP = "## 지하철 노선도\n";
 
-    private static final String DIVIDER = "--";
-
-    public static void printMap() {
-        print(TRAVERSE_MAP);
-    }
+    private static final String DIVIDER = "---";
 
     public static void printMainView() {
-        print(MAIN_VIEW);
+        printView(MAIN_VIEW);
     }
 
     public static void printStationView() {
-        print(STATION_VIEW);
-    }
-
-    public static void printLineView() {
-        print(LINE_VIEW);
-    }
-
-    public static void printStationLineView() {
-        print(STATION_LINE_VIEW);
-    }
-
-    public static void printStationList() {
-        print(STATION_LIST);
+        printView(STATION_VIEW);
     }
 
     public static void printAddStationSuccess() {
-        printInfo(ADD_STATION_SUCCESS);
+        printSuccessOrFailureInfo(ADD_STATION_SUCCESS);
+    }
+
+    private static void printSuccessOrFailureInfo(String successOrFailure) {
+        println();
+        printInfo(successOrFailure);
+    }
+
+    public static void printStationList(List<Station> stations) {
+        println();
+        print(STATION_LIST);
+        stations.forEach(station -> {
+            printInfo(station.getName());
+            println();
+        });
     }
 
     public static void printDeleteStationSuccess() {
-        printInfo(DELETE_STATION_SUCCESS);
+        printSuccessOrFailureInfo(DELETE_STATION_SUCCESS);
+    }
+
+    public static void printLineView() {
+        printView(LINE_VIEW);
     }
 
     public static void printAddLineSuccess() {
-        printInfo(ADD_LINE_SUCCESS);
+        printSuccessOrFailureInfo(ADD_LINE_SUCCESS);
+    }
+
+    public static void printLineList(List<Line> lines) {
+        println();
+        print(LINE_LIST);
+        lines.forEach(line -> {
+            printInfo(line.getName());
+            println();
+        });
     }
 
     public static void printDeleteLineSuccess() {
-        printInfo(DELETE_LINE_SUCCESS);
+        printSuccessOrFailureInfo(DELETE_STATION_SUCCESS);
+    }
+
+    public static void printStationLineView() {
+        printView(STATION_LINE_VIEW);
     }
 
     public static void printAddStationToLineSuccess() {
-        printInfo(ADD_STATION_TO_LINE_SUCCESS);
+        printSuccessOrFailureInfo(ADD_STATION_TO_LINE_SUCCESS);
     }
 
     public static void printDeleteStationFromLineSuccess() {
-        printInfo(DELETE_STATION_FROM_LINE_SUCCESS);
+        printSuccessOrFailureInfo(DELETE_STATION_FROM_LINE_SUCCESS);
     }
 
-    public static void printLineList() {
-        print(LINE_LIST);
+    public static void printMap(List<Line> map) {
+        println();
+        print(TRAVERSE_MAP);
+        map.forEach(line -> {
+            printInfo(line.getName());
+            println();
+            printInfo(DIVIDER);
+            println();
+            line.getStations().forEach(station -> {
+                printInfo(station.getName());
+                println();
+            });
+        });
     }
 
     public static void printError(String error) {
-        System.out.println(error);
+        println();
+        print(error);
     }
 
-    private static void print(String message) {
-        System.out.print(message);
+    private static void printView(String view) {
+        println();
+        print(view);
+        println();
     }
 
-    public static void printInfo(String message) {
-        System.out.println(INFO + message);
+    public static void printInfo(String output) {
+        print(INFO + output);
     }
 
-    public static void println() {
+    private static void println(String output) {
+        System.out.println(output);
+    }
+
+    private static void println() {
         System.out.println();
     }
-}
 
+    private static void print(String output) {
+        System.out.print(output);
+    }
+}

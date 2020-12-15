@@ -53,8 +53,7 @@ public class LineController {
     }
 
     private static void traverse() {
-        OutputView.printLineList();
-        LineRepository.lines().stream().forEach(line -> OutputView.printInfo(line.getName()));
+        OutputView.printLineList(LineRepository.lines());
     }
 
     private static void add() {

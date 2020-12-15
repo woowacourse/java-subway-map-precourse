@@ -58,8 +58,7 @@ public class StationController {
     }
 
     private static void traverse() {
-        OutputView.printLineView();
-        StationRepository.stations().forEach(station -> OutputView.printInfo(station.getName()));
+        OutputView.printStationList(StationRepository.stations());
         MainController.run();
     }
 }

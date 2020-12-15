@@ -10,15 +10,7 @@ public class MapController {
     }
 
     private static void traverse() {
-        OutputView.printMap();
-        LineRepository.lines().forEach(line -> {
-            OutputView.printInfo(line.getName());
-            OutputView.printInfo("--");
-            line.getStations().forEach(station -> {
-                OutputView.printInfo(station.getName());
-            });
-            OutputView.println();
-        });
+        OutputView.printMap(LineRepository.lines());
         MainController.run();
     }
 }
