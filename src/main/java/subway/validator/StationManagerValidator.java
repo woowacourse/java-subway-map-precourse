@@ -17,13 +17,9 @@ public class StationManagerValidator {
         if (userOption.equals(WANT_QUIT_CODE)) {
             return;
         }
-        try {
-            int optionNumber = Integer.parseInt(userOption);
-            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
-                throw new IllegalArgumentException();
-            }
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ERROR_PREFIX + OPTION_ERROR_MESSAGE);
+        int optionNumber = Integer.parseInt(userOption);
+        if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+            throw new IllegalArgumentException(OPTION_ERROR_MESSAGE);
         }
     }
 

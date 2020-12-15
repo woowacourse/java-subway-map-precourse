@@ -10,12 +10,8 @@ public class SubwayManagerValidator {
         if (userOption.equals(WANT_QUIT_CODE)) {
             return;
         }
-        try {
-            int optionNumber = Integer.parseInt(userOption);
-            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
-                throw new IllegalArgumentException();
-            }
-        } catch (Exception e) {
+        int optionNumber = Integer.parseInt(userOption);
+        if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
