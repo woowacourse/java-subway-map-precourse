@@ -79,7 +79,26 @@ public class Menu {
         return true;
     }
 
-    public static boolean runStationMenu(InputView inputView, String subMenuAction) {
+    public static boolean runCategoricalAction(InputView inputView, SubMenu menu, String subMenuAction) {
+        if (menu == stationMenu) {
+            return runStationMenu(inputView, subMenuAction);
+        }
+        if (menu == lineMenu) {
+            return runLineMenu(inputView, subMenuAction);
+        }
+        if (menu == edgeMenu) {
+            return runEdgeMenu(inputView, subMenuAction);
+        }
+        return false;
+    }
+
+    public static void runNonCategoricalAction(SubMenu menu) {
+        if (menu == lineMap) {
+            runLineMapMenu();
+        }
+    }
+
+    private static boolean runStationMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             StationRepository.add(inputView, STATION_MENU_TITLE);
         }
@@ -95,7 +114,7 @@ public class Menu {
         return true;
     }
 
-    public static boolean runLineMenu(InputView inputView, String subMenuAction) {
+    private static boolean runLineMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             LineRepository.add(inputView, LINE_MENU_TITLE, STATION_MENU_TITLE);
         }
@@ -111,7 +130,7 @@ public class Menu {
         return true;
     }
 
-    public static boolean runEdgeMenu(InputView inputView, String subMenuAction) {
+    private static boolean runEdgeMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             Edge.add(inputView);
         }
@@ -124,8 +143,7 @@ public class Menu {
         return true;
     }
 
-    public static boolean runLineMapMenu() {
+    private static void runLineMapMenu() {
         LineRepository.runLineMap();
-        return true;
     }
 }

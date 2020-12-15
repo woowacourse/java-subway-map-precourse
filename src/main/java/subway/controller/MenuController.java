@@ -74,21 +74,12 @@ public class MenuController {
     }
 
     private void runAction(SubMenu menu) {
-        boolean runActionStatus = true;
-        if (menu == Menu.stationMenu) {
-            runActionStatus = Menu.runStationMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        if (!Menu.isCategoricalMenu(menu)) {
+            Menu.runNonCategoricalAction(menu);
+            return;
         }
-        if (menu == Menu.lineMenu) {
-            runActionStatus = Menu.runLineMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
-        }
-        if (menu == Menu.edgeMenu) {
-            runActionStatus = Menu.runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
-        }
-        if (menu == Menu.lineMap) {
-            runActionStatus = Menu.runLineMapMenu();
-        }
-        //돌아가기를 선택한 경우
-        if (!runActionStatus) {
+        boolean backAction = !Menu.runCategoricalAction(inputView, menu, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        if (backAction) {
             selectedMenus.clear();
         }
     }
