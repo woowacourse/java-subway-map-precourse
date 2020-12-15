@@ -7,7 +7,6 @@ import static subway.resource.TextResource.ASK_STATION_NAME_WHEN_ADD_SECTION;
 import static subway.resource.TextResource.ASK_STATION_NAME_WHEN_DELETE_SECTION;
 import static subway.resource.TextResource.COMPLETE_SECTION_ADD;
 import static subway.resource.TextResource.COMPLETE_SECTION_DELETE;
-import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_SECTION_ADD;
 import static subway.resource.TextResource.FUNCTION_SECTION_DELETE;

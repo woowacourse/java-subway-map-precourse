@@ -30,7 +30,7 @@ public class RouteMapPrintView extends View {
     private void printRouteMap() {
         for (Line line : LineRepository.lines()) {
             System.out.println(PREFIX_INFO + " " + line.getName());
-            System.out.println(DIVISION_LINE);
+            System.out.println(PREFIX_INFO + " " + DIVISION_LINE);
             Sections sections = line.getSections();
             for (String station : sections.getSections()) {
                 System.out.println(PREFIX_INFO + " " + station);

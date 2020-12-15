@@ -10,6 +10,8 @@ import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_LINE_ADD;
 import static subway.resource.TextResource.FUNCTION_LINE_DELETE;
 import static subway.resource.TextResource.FUNCTION_LINE_LIST_SHOW;
+import static subway.resource.TextResource.HEADER_LINE_LIST;
+import static subway.resource.TextResource.HEADER_LINE_MANAGEMENT_VIEW;
 import static subway.resource.TextResource.PREFIX_INFO;
 
 import java.util.Scanner;
@@ -33,6 +35,7 @@ public class LineManagementView extends View {
 
     @Override
     public void startView() {
+        System.out.println(HEADER_LINE_MANAGEMENT_VIEW);
         printMenu();
         String selection = scanner.nextLine();
         try {
@@ -89,6 +92,7 @@ public class LineManagementView extends View {
     }
 
     private void showLineList() {
+        System.out.println(HEADER_LINE_LIST);
         for (Line line : LineRepository.lines()) {
             System.out.println(PREFIX_INFO + " " + line.getName());
         }

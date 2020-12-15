@@ -1,5 +1,6 @@
 package subway.view;
 
+import static subway.resource.TextResource.ASK_FUNCTION;
 import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
 
 import java.util.LinkedHashMap;
@@ -24,6 +25,7 @@ public abstract class View {
         for (String key : menu.keySet()) {
             System.out.println(key + ". " + menu.get(key));
         }
+        System.out.println(ASK_FUNCTION);
     }
 
     protected void checkKey(String selection) {

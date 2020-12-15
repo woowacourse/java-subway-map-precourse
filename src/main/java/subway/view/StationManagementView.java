@@ -2,10 +2,14 @@ package subway.view;
 
 import static subway.resource.TextResource.ASK_ADD_STATION_NAME;
 import static subway.resource.TextResource.ASK_DELETE_STATION_NAME;
+import static subway.resource.TextResource.COMPLETE_STATION_ADD;
+import static subway.resource.TextResource.COMPLETE_STATION_DELETE;
 import static subway.resource.TextResource.FUNCTION_BACK;
 import static subway.resource.TextResource.FUNCTION_STATION_ADD;
 import static subway.resource.TextResource.FUNCTION_STATION_DELETE;
 import static subway.resource.TextResource.FUNCTION_STATION_LIST_SHOW;
+import static subway.resource.TextResource.HEADER_LINE_LIST;
+import static subway.resource.TextResource.HEADER_STATION_LIST;
 import static subway.resource.TextResource.HEADER_STATION_MANAGEMENT_VIEW;
 import static subway.resource.TextResource.PREFIX_INFO;
 
@@ -71,6 +75,7 @@ public class StationManagementView extends View {
         System.out.println(ASK_ADD_STATION_NAME);
         String name = scanner.nextLine();
         StationManagementController.getInstance().addStation(name);
+        System.out.println(COMPLETE_STATION_ADD);
         onBackListener.onBack();
     }
 
@@ -78,10 +83,12 @@ public class StationManagementView extends View {
         System.out.println(ASK_DELETE_STATION_NAME);
         String name = scanner.nextLine();
         StationManagementController.getInstance().deleteStation(name);
+        System.out.println(COMPLETE_STATION_DELETE);
         onBackListener.onBack();
     }
 
     private void showStationList() {
+        System.out.println(HEADER_STATION_LIST);
         for (Station station : StationRepository.stations()) {
             System.out.println(PREFIX_INFO + " " + station.getName());
         }
