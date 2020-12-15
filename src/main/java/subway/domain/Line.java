@@ -29,7 +29,12 @@ public class Line {
         return stationList.size();
     }
 
-    public void add(String index, String stationName) {
+    public void addStation(String stationName) {
+        Station station = StationRepository.findStationByName(stationName);
+        stationList.add(station);
+    }
+
+    public void addStation(String index, String stationName) {
         Station station = StationRepository.findStationByName(stationName);
         stationList.add(Integer.parseInt(index)-1, station);
     }

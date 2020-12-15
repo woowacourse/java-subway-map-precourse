@@ -2,6 +2,7 @@ package subway.menu;
 
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
+import subway.util.DefaultSetting;
 
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class MainMenu {
 
     //TODO 메뉴 이외의 입력을 받았을 때 예외사항 출력 구현해야함
     public void start() {
+        new DefaultSetting().defaultSetting();
         while (true) {
             printMainMenu();
             String input = scanner.nextLine();
