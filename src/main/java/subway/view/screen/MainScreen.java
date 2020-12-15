@@ -48,7 +48,7 @@ public class MainScreen implements Screen {
     // 입력 값 확인
     private static final void checkCommandValidateAndMappingAppropriateScreen(String command) {
         int parseCommandToInt = screen.isCommandValidate(command, MAX_MENU_NUMBER);
-        if(parseCommandToInt != ERROR) {
+        if (parseCommandToInt != ERROR) {
             ScreenMapper.mapping(parseCommandToInt, screen);
         }
     }

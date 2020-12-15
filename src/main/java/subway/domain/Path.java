@@ -5,7 +5,6 @@ import subway.view.OutputView;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-// 상행, 하행을 포함한 노선의 구간 정보를 가진다.
 public class Path {
     private LinkedList<Station> paths;
     private static final int MIN_SIZE = 2;
@@ -28,7 +27,7 @@ public class Path {
         paths.add(index, station);
     }
 
-    public boolean checkSizeBeforedeleteStation(Station station) {
+    public boolean checkSizeBeforeDeleteStation(Station station) {
         if (paths.size() > MIN_SIZE) {
             paths.remove(station);
             return true;
@@ -54,7 +53,7 @@ public class Path {
         return paths.contains(station);
     }
 
-    public int getSize(){
+    public int getSize() {
         return paths.size();
     }
 }

@@ -60,7 +60,7 @@ public class LineRepository {
             OutputView.printDoesNotExistErrorMessage(findLine);
             return false;
         }
-        getLine(findLine).getPath().checkSizeBeforedeleteStation(StationRepository.getStation(deleteStation));
+        getLine(findLine).getPath().checkSizeBeforeDeleteStation(StationRepository.getStation(deleteStation));
         return true;
     }
 

@@ -1,7 +1,5 @@
 package subway.view.screen;
 
-import subway.view.screen.Screen;
-
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -14,10 +12,6 @@ public class ScreenStack {
 
     public static Screen popScreen() {
         return stack.pop();
-    }
-
-    public static Screen peek() {
-        return stack.peek();
     }
 
     public static void show() {

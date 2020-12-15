@@ -5,7 +5,6 @@ import subway.view.OutputView;
 import java.util.Scanner;
 
 public interface Screen {
-    public static final String DOUBLE_SHARP = "## ";
     public static final String SPACE = " ";
     public static final String EXIT_MARK = "Q. ";
     public static final String BACK_MARK = "B. ";
@@ -15,11 +14,11 @@ public interface Screen {
     public static final int ERROR = -1;
 
 
-    void show(); //화면을 출력하는 함수
+    void show();
 
     void run(Scanner scanner);
 
-    default int isCommandValidate(String command, int MAX_MENU_NUMBER){
+    default int isCommandValidate(String command, int MAX_MENU_NUMBER) {
         if (!command.matches(DIGIT_REGEX)) {
             OutputView.printInvalidCommandExceptionErrorMessage(command);
             return ERROR;

@@ -1,9 +1,5 @@
 package subway.view;
 
-import subway.view.screen.Screen;
-import subway.view.screen.ScreenMapper;
-import subway.view.screen.ScreenStack;
-
 import java.util.Scanner;
 
 public class InputView {

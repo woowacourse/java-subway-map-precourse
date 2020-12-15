@@ -43,7 +43,7 @@ public class StationController implements Controller {
     private void deleteStation(String action) {
         OutputView.printWithAction(action, NAME);
         String station = InputView.getCommand(scanner);
-        if(LineRepository.isStationInLine(new Station(station)) || !StationRepository.deleteStation(station)) {
+        if (LineRepository.isStationInLine(new Station(station)) || !StationRepository.deleteStation(station)) {
             OutputView.printStationDeleteErrorMessage();
             return;
         }

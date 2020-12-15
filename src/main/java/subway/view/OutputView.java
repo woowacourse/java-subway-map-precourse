@@ -1,7 +1,5 @@
 package subway.view;
 
-import javax.print.StreamPrintServiceFactory;
-
 public class OutputView {
     public static final String INFORMATION_MARK = "[INFO] ";
     public static final String ERROR_MARK = "\n[ERROR] ";
@@ -145,7 +143,7 @@ public class OutputView {
         System.out.println(ERROR_MARK + INDEX_OUT_OF_RANGE);
     }
 
-    public static final void printSameStationAlreadyInLineError(String station){
+    public static final void printSameStationAlreadyInLineError(String station) {
         System.out.println(String.format(ERROR_MARK + SAME_STATION_IN_LINE_ERROR_MESSAGE, station));
     }
 }

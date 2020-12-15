@@ -34,8 +34,8 @@ public class StationRepository {
     }
 
     private static boolean isStationHasLine(Station station) {
-        for(Line line: LineRepository.lines()){
-            if(line.getPath().isStationInLine(station)){
+        for (Line line : LineRepository.lines()) {
+            if (line.getPath().isStationInLine(station)) {
                 return true;
             }
         }

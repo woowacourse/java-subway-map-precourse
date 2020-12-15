@@ -1,8 +1,6 @@
 package subway.domain;
 
-import subway.view.InputView;
 import subway.view.screen.MainScreen;
-import subway.view.screen.ScreenMapper;
 import subway.view.screen.ScreenStack;
 
 import java.util.Scanner;
@@ -12,7 +10,7 @@ public class SubwayMap {
         Initializer.load();
         ScreenStack.pushScreen(new MainScreen());
 
-        while(!ScreenStack.isEmpty()) {
+        while (!ScreenStack.isEmpty()) {
             ScreenStack.show();
             ScreenStack.run(scanner);
         }

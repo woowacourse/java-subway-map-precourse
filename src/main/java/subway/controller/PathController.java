@@ -1,8 +1,6 @@
 package subway.controller;
 
 import subway.domain.LineRepository;
-import subway.domain.Path;
-import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.screen.Action;
