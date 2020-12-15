@@ -40,28 +40,28 @@ public class Validation {
     }
 
     public Station isExistStation(String name) throws SubwayException {
-        List<Station> stations = StationRepository.getStations();
+        List<Station> stations = StationRepository.stations();
         return stations.stream()
             .filter(station -> station.getName().equals(name))
             .findFirst().orElseThrow(() -> new SubwayException(NULL_STATION));
     }
 
     public void stationDuplication(String name) throws SubwayException {
-        List<Station> stations = StationRepository.getStations();
+        List<Station> stations = StationRepository.stations();
         if (stations.stream().anyMatch(station -> station.getName().equals(name))) {
             throw new SubwayException(STATION_DUPLICATION);
         }
     }
 
     public Line isExistLine(String name) throws SubwayException {
-        List<Line> lines = LineRepository.getLines();
+        List<Line> lines = LineRepository.lines();
         return lines.stream()
             .filter(line -> line.getName().equals(name))
             .findFirst().orElseThrow(() -> new SubwayException(NULL_LINE));
     }
 
     public void lineDuplication(String name) throws SubwayException {
-        List<Line> lines = LineRepository.getLines();
+        List<Line> lines = LineRepository.lines();
         if (lines.stream().anyMatch(line -> line.getName().equals(name))) {
             throw new SubwayException(LINE_DUPLICATION);
         }

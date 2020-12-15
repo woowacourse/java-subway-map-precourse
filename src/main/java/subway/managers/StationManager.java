@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class StationManager {
     private static Validation validation = new Validation();
 
@@ -67,7 +66,7 @@ public class StationManager {
 
     static void showStationList() {
         SystemOutput.printMessage(SystemMessages.STATION_LIST_MESSAGE);
-        List<Station> stations = StationRepository.getStations();
+        List<Station> stations = StationRepository.stations();
         List<String> names = new ArrayList();
         for (Station station : stations) {
             names.add(station.getName());

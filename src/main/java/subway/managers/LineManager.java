@@ -97,7 +97,7 @@ public class LineManager {
 
     static void showLineList() {
         SystemOutput.printMessage(SystemMessages.LINE_LIST_MESSAGE);
-        List<Line> lines = LineRepository.getLines();
+        List<Line> lines = LineRepository.lines();
         List<String> names = new ArrayList();
         for (Line line : lines) {
             names.add(line.getName());

@@ -55,7 +55,7 @@ public class SubwayManager {
 
     private static void subwayMapManager() {
         SystemOutput.printMessage(SystemMessages.SUBWAY_MAP_MESSAGE);
-        List<Line> lines = LineRepository.getLines();
+        List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
             SystemOutput.printInfo(line.getName());
             SystemOutput.printInfo(SystemMessages.DIVIDE);
