@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import subway.domain.Line;
 
 public class LineRepository {
@@ -23,5 +24,10 @@ public class LineRepository {
 
     public static boolean findNoLine(String name) {
         return lines.stream().noneMatch(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static Line findLine(String name) {
+        return lines.stream().filter(line ->
+            Objects.equals(line.getName(), name)).collect(Collectors.toList()).get(0);
     }
 }

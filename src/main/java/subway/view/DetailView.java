@@ -22,6 +22,26 @@ public class DetailView {
         return inputName(scanner);
     }
 
+    public String askSection(Scanner scanner, String script) {
+        System.out.println(script);
+        return inputName(scanner);
+    }
+
+    public int askSectionNumber(Scanner scanner, String script) {
+        System.out.println(script);
+        return inputInt(scanner);
+    }
+
+    private int inputInt(Scanner scanner) {
+        String input = scanner.nextLine();
+        try {
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ScriptUtils.ERROR_INVALIDATE_VALUE);
+        }
+        return -1;
+    }
+
     public String additionalAsk(Scanner scanner, String ask) {
         if (category == Category.LINE) {
             System.out.println(ask);
