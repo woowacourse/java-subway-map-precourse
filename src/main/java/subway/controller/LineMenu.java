@@ -6,6 +6,7 @@ import subway.view.PrintInfo;
 import subway.view.Error;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class LineMenu extends Menu {
     public LineMenu(Scanner scanner) {
@@ -20,6 +21,20 @@ public class LineMenu extends Menu {
     @Override
     protected boolean functionOne() {
         return addLine();
+    }
+
+    @Override
+    protected boolean functionTwo() {
+        return deleteLine();
+    }
+
+    private boolean deleteLine() {
+        PrintInfo.inputDeleteLineName();
+        if (!LineManager.deleteLineByName(scanner.nextLine())) {
+            return Error.notExist();
+        }
+        PrintInfo.deleteLineSuccess();
+        return true;
     }
 
     private boolean addLine() {

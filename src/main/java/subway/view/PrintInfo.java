@@ -87,6 +87,16 @@ public class PrintInfo {
                 "[INFO] 지하철 노선이 등록되었습니다.\n");
     }
 
+    public static void inputDeleteLineName() {
+        System.out.println("\n" +
+                "## 삭제할 노선 이름을 입력하세요.");
+    }
+
+    public static void deleteLineSuccess() {
+        System.out.println("\n" +
+                "[INFO] 지하철 노선이 삭제되었습니다.\n");
+    }
+
     public static void printList(List<String> list) {
         list.forEach(item -> System.out.println("[INFO] " + item));
         System.out.println();
