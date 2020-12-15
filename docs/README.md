@@ -148,7 +148,118 @@
     - [x] 1주차 피드백을 반영한다.
     - [x] 2주차 피드백을 반영한다.
 - [x] 주석은 Javadoc 형태로 작성한다.
-- [ ] README 문서를 상세하게 작성한다.
+- [x] README 문서를 상세하게 작성한다.
+
+## 📂 완성된 디렉토리 구조
+```
+└─java-subway-map-precourse
+    │
+    ├─docs
+    │   └─README.md
+    │
+    └─src
+        └─main
+            └─java
+                └─subway
+                    ├─controller
+                    │   ├─LineController.java
+                    │   ├─SectionController.java
+                    │   ├─StationController.java
+                    │   ├─SubwayController.java
+                    │   └─TransitMapController.java
+                    ├─domain
+                    │   ├─Line.java
+                    │   ├─Section.java
+                    │   ├─Station.java
+                    │   ├─Stations.java
+                    │   └─TransitMap.java
+                    ├─repository
+                    │   ├─LineRepository.java
+                    │   ├─StataionRepository.java
+                    │   └─TransitMapRepository.java
+                    ├─service
+                    │   ├─initialization
+                    │   │   ├─LineInitialization.java
+                    │   │   ├─StationInitialization.java
+                    │   │   └─TransitMapInitialization.java
+                    │   ├─line
+                    │   │   ├─addition
+                    │   │   │   ├─LineAdditionService.java
+                    │   │   │   └─LineAdditionValidation.java
+                    │   │   ├─deletion
+                    │   │   │   ├─LineDeletionService.java
+                    │   │   │   └─LineDeletionValidation.java
+                    │   │   ├─show
+                    │   │   │   └─LineShowService.java
+                    │   │   └─LineService.java
+                    │   ├─section
+                    │   │   ├─addition
+                    │   │   │   ├─SectionAdditionService.java
+                    │   │   │   └─SectionAdditionValidation.java
+                    │   │   ├─deletion
+                    │   │   │   ├─SectionDeletionService.java
+                    │   │   │   └─SectionDeletionValidation.java
+                    │   │   └─SectionService.java
+                    │   ├─station
+                    │   │   ├─addition
+                    │   │   │   ├─StationAdditionValidation.java
+                    │   │   │   └─StationAdditionValidationInterface.java
+                    │   │   ├─deletion
+                    │   │   │   ├─StationDeletionValidation.java
+                    │   │   │   └─StationDeletionValidationInterface.java
+                    │   │   ├─show
+                    │   │   │   ├─StationShowInterface.java
+                    │   │   │   └─StationShowService.java
+                    │   │   └─StationService.java
+                    │   ├─subway
+                    │   │   ├─SubwayInterface.java
+                    │   │   └─SubwayService.java
+                    │   ├─transitmap
+                    │   │   ├─show
+                    │   │   │   └─TransitMapShowService.java
+                    │   │   └─TransitMapService.java
+                    │   └─util
+                    │       ├─ChoiceInterface.java
+                    │       ├─ChoiceService.java
+                    │       └─FeatureInterface.java
+                    ├─type
+                    │   ├─BoundaryType.java
+                    │   ├─CheckType.java
+                    │   ├─ExceptionType.java
+                    │   ├─InformationType.java
+                    │   ├─InputType.java
+                    │   ├─LineType.java
+                    │   ├─ScreenType.java
+                    │   ├─StationType.java
+                    │   └─TextType.java
+                    ├─view
+                    │   ├─input
+                    │   │   ├─line
+                    │   │   │   └─LineScanView.java
+                    │   │   ├─section
+                    │   │   │   └─SectionScanView.java
+                    │   │   ├─station
+                    │   │   │   └─StationScanView.java
+                    │   │   └─subway
+                    │   │       └─SubwayScanView.java
+                    │   └─output
+                    │       ├─line
+                    │       │   ├─LineExceptionView.java
+                    │       │   ├─LineInformationView.java
+                    │       │   └─LineTextView.java
+                    │       ├─section
+                    │       │   ├─SectionExceptionView.java
+                    │       │   ├─SectionInformationView.java
+                    │       │   └─SectionTextView.java
+                    │       ├─station
+                    │       │   ├─StationExceptionView.java
+                    │       │   ├─StationInformationView.java
+                    │       │   └─StationTextView.java
+                    │       └─util
+                    │           ├─FeatureChoiceExceptionView.java
+                    │           └─ScreenView.java
+                    └─Application.java
+```
 
 ## 📝 License
 
