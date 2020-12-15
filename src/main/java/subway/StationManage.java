@@ -19,27 +19,25 @@ public class StationManage {
 
     static public void stationManage(Scanner scanner) {
         stationManagePrint();
-        boolean validateFlag = true;
         String stationManageInput = scanner.next();
-        validateFlag = inputValidate(scanner, stationManageInput);
-
+        inputValidate(scanner, stationManageInput);
     }
 
-    private static boolean inputValidate(Scanner scanner, String mainInput) {
+    private static void inputValidate(Scanner scanner, String mainInput) {
         if (mainInput.equalsIgnoreCase(ADD_STATION)) {
             addStationPrint(scanner);
-            return true;
+            return;
         }
         if (mainInput.equalsIgnoreCase(DELETE_STATION)) {
             deleteStationPrint(scanner);
-            return true;
+            return;
         }
         if (mainInput.equalsIgnoreCase(ALL_STATIONS)) {
             allStationsPrint();
-            return true;
+            return;
         }
         if (mainInput.equalsIgnoreCase(BACK_SCREEN)) {
-            return true;
+            return;
         }
         System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
         throw new IllegalArgumentException();
