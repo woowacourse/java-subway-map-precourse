@@ -14,12 +14,12 @@ public class OutputView {
     private static final String LIST_TITLE = " 목록";
 
     public static void printTitle(String functionHeader) {
-        System.out.println();
+        printEnter();
         System.out.println(HEADER_SHARP + functionHeader);
     }
 
     public static void printListTitle(String screenName) {
-        System.out.println();
+        printEnter();
         System.out.println(HEADER_SHARP + screenName + LIST_TITLE);
     }
 
