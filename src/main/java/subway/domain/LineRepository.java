@@ -50,4 +50,10 @@ public class LineRepository {
             OutputView.printNewLine();
         });
     }
+
+    public static void printOnlyLineName(){
+        lines.forEach(line -> {
+            OutputView.printWithInformationMark(line.getName());
+        });
+    }
 }

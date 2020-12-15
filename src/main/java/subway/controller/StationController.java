@@ -24,7 +24,7 @@ public class StationController implements Controller {
             return;
         }
         if (command == Action.SELECT.getActionNumber()) {
-            selectStation(Action.SELECT.getAction());
+            selectStation();
             return;
         }
     }
@@ -50,7 +50,7 @@ public class StationController implements Controller {
         OutputView.printStationDeleteErrorMessage();
     }
 
-    private void selectStation(String action) {
+    private void selectStation() {
         OutputView.printList(NAME);
         StationRepository.printStations();
     }

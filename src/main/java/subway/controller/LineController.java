@@ -38,7 +38,7 @@ public class LineController implements Controller {
             return;
         }
         if (command == Action.SELECT.getActionNumber()) {
-            selectLine(Action.SELECT.getAction());
+            selectLine();
             return;
         }
     }
@@ -113,7 +113,8 @@ public class LineController implements Controller {
         OutputView.printLineDeleteErrorMessage(line);
     }
 
-    public void selectLine(String action) {
-
+    public void selectLine() {
+        OutputView.printList(NAME);
+        LineRepository.printOnlyLineName();
     }
 }
