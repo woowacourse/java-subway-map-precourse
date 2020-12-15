@@ -1,12 +1,10 @@
 package subway;
 
 import subway.controller.Edge;
-import subway.controller.MenuController;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class Menu {
@@ -22,8 +20,6 @@ public class Menu {
     private static final String LINE_MENU_TITLE = "노선 ";
     private static final String EDGE_MENU_TITLE = "구간 ";
     private static final String LIST_MENU_TITLE = "지하철 노선도";
-    private static final int SUB_MENU_INDEX = 0;
-    private static final int SUB_MENU_ACTION_INDEX = 1;
     public static final String MENU_TITLE_SIGN = "title";
 
     public static final SubMenu stationMenu = new SubMenu(
