@@ -42,12 +42,22 @@ public class LineRepository {
         lineMap.remove(name);
     }
 
+    public static boolean deleteStationInLine(String lineName, String stationName) {
+        List<String> list = new ArrayList<>(lineMap.get(lineName));
+        if (list.size() <= 2) {
+            return false;
+        }
+        list.remove(stationName);
+        lineMap.put(lineName, list);
+        return true;
+    }
+
     public static List<String> getLineContainStations(String lineName) {
         List<String> lineContainStations = new ArrayList<>(lineMap.get(lineName));
         return Collections.unmodifiableList(lineContainStations);
     }
 
-    public static int getLineSize(String lineName){
+    public static int getLineSize(String lineName) {
         List<String> lineContainStations = new ArrayList<>(lineMap.get(lineName));
         return lineContainStations.size();
     }

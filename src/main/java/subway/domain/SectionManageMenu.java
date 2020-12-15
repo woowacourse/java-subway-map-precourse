@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.controller.SectionController;
 import subway.utils.Validator;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -14,14 +15,16 @@ public class SectionManageMenu {
             @Override
             public void SectionManageMenuSelect() {
                 // 구간 등록 호출
-                sectionManageMenuStop();
+                SectionController.sectionAdd();
+                // sectionManageMenuStop();
             }
         },
         SECTION_DELETE() {
             @Override
             public void SectionManageMenuSelect() {
                 // 구간 삭제 호출
-                sectionManageMenuStop();
+                SectionController.sectionDelete();
+                // sectionManageMenuStop();
             }
         };
 
@@ -34,7 +37,7 @@ public class SectionManageMenu {
         return isSectionManageMenuRun;
     }
 
-    private static void sectionManageMenuStop() {
+    public static void sectionManageMenuStop() {
         isSectionManageMenuRun = false;
     }
 
