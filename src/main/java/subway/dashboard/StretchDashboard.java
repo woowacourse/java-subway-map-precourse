@@ -133,6 +133,7 @@ public class StretchDashboard {
             StationRepository.addStation(newStation);
             chosenLine.getStations().add(order, newStation);
             System.out.println(INFO_STRETCH_INSERT_SUCCESS);
+            power = false;
         } catch (NumberFormatException e) {
             System.out.println(ERROR_ORDER_OUT_OF_RANGE);
             return;
@@ -179,6 +180,7 @@ public class StretchDashboard {
             StationRepository.getStationByName(stationName).subtractNumberOnLines();
             checkOnLineStatus(stationName);
             System.out.println(INFO_STRETCH_DELETE_SUCCESS);
+            power = false;
             return;
         }
         System.out.println(ERROR_STATION_NAME_NO_EXISTS);

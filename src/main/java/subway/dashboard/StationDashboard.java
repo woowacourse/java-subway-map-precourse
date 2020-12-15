@@ -66,19 +66,20 @@ public class StationDashboard {
     }
 
     public void startChosenOption(String option) {
-
         if (option.equals(OPTION_NUM_1)) {
-            if (startOption1(inputView)) {
+            if (!startOption1(inputView)) {
+                power = false;
             }
         }
-
         if (option.equals(OPTION_NUM_2)) {
-            if (startOption2(inputView)) {
+            if (!startOption2(inputView)) {
+                power = false;
             }
         }
         if (option.equals(OPTION_NUM_3)) {
             showStations();
             System.out.println();
+            power = false;
         }
         if (option.equals(OPTION_BACK)) {
             power = false;
