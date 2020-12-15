@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Line {
     private static final int ONE = 1;
-    
+
     private String name;
     private List<Station> stations = new ArrayList<>();
 
@@ -16,7 +16,7 @@ public class Line {
     public String getName() {
         return name;
     }
-    
+
     public List<Station> getStations() {
         return stations;
     }
@@ -29,27 +29,21 @@ public class Line {
         int index = parseInt(order) - ONE; // 역이 삽입되는 index = 순서 - 1
         stations.add(index, new Station(stationName));
     }
-    
+
     private int parseInt(String number) {
         return Integer.parseInt(number);
     }
 
     public void deleteSection(String stationName) {
-        for (Station station : stations) {
-            if (station.isEqualName(stationName)) {
-                stations.remove(station);
-                return;
-            }
-        }
+        stations.stream()
+                .filter(station -> station.isEqualName(stationName))
+                .findAny()
+                .ifPresent(station -> stations.remove(station));
     }
 
     public boolean isStation(String stationName) {
-        for (Station station : stations) {
-            if (station.isEqualName(stationName)) {
-                return true;
-            }
-        }
-        return false;
+        return stations.stream()
+                       .anyMatch(station -> station.isEqualName(stationName));
     }
 
     public boolean isEqualName(String lineName) {
@@ -57,6 +51,6 @@ public class Line {
     }
 
     public boolean isBiggerThan(int number) {
-        return stations.size() >= number;
+        return (stations.size() >= number);
     }
 }

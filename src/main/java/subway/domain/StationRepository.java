@@ -21,15 +21,7 @@ public class StationRepository {
     }
 
     public static boolean isExistedStation(String name) {
-        for (Station station : stations) {
-            if (isEqual(station, name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean isEqual(Station station, String name) {
-        return station.isEqualName(name);
+        return stations.stream()
+                       .anyMatch(station -> station.isEqualName(name));
     }
 }
