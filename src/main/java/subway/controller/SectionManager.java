@@ -20,7 +20,7 @@ public class SectionManager {
     public static final String ERROR_MSG_NON_EXISTING_STATION = "\n[ERROR] 존재하지 않는 역입니다.";
     public static final String ERROR_MSG_NON_EXISTING_STATION_IN_SECTION = "\n[ERROR] 노선에 존재하지 않는 역입니다.";
     public static final String ERROR_MSG_LINE_SHOULD_HAVE_AT_LEAST_TWO_STATIONS = "\n[ERROR] 노선에 등록된 역이 2개인 경우 역을 삭제할 수 없습니다.";
-    public static final String ERROR_MSG_NON_EXSITING_LINE = "\n[ERROR] 존재하지 않는 노선입니다.";
+    public static final String ERROR_MSG_NON_EXISTING_LINE = "\n[ERROR] 존재하지 않는 노선입니다.";
     public static final int INT_ORDINARY_TO_CODING_INDEX = 1;
     public static final int INT_MINIMUM_STATIONS_AT_SECTION = 2;
     private final Scanner scanner;
@@ -64,7 +64,7 @@ public class SectionManager {
 
     private void validateExistingLine(String line) {
         if (!LineRepository.hasLine(line)) {
-            throw new IllegalArgumentException(ERROR_MSG_NON_EXSITING_LINE);
+            throw new IllegalArgumentException(ERROR_MSG_NON_EXISTING_LINE);
         }
     }
 

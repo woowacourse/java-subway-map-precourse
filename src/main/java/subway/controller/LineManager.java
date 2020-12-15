@@ -12,8 +12,8 @@ public class LineManager {
     public static final String MENU_INT_DELETE_LINE = "2";
     public static final String MENU_INT_PRINT_LINE = "3";
     public static final String MSG_INPUT_LINE_TO_REGISTER = "\n## 등록할 노선 이름을 입력하세요.";
-    public static final String MSG_INPUT_FIRST_STATION_TO_REGISTER_TO_SECTION = "\n등록할 노선의 상행 종점역 이름을 입력하세요.";
-    public static final String MSG_INPUT_LAST_STATION_TO_REGISTER_TO_SECTION = "\n등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String MSG_INPUT_FIRST_STATION_TO_REGISTER_TO_SECTION = "\n##등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static final String MSG_INPUT_LAST_STATION_TO_REGISTER_TO_SECTION = "\n##등록할 노선의 하행 종점역 이름을 입력하세요.";
     public static final String MSG_INPUT_LINE_TO_DELETE = "\n## 삭제할 노선 이름을 입력하세요.";
     public static final String MSG_OUTPUT_LINE_REGISTERING_COMPLETE = "\n[INFO] 노선이 등록되었습니다.";
     public static final String ERROR_MSG_NON_EXISTING_LINE = "\n[ERROR] 존재하지 않는 노선입니다.";

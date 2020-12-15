@@ -8,6 +8,9 @@ import java.util.Objects;
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
     public static final String ERROR_MSG_NON_EXISTING_STATION = "[ERROR] 조건에 맞는 역이 없습니다.";
+    public static final String PREFIX_INFO = "[INFO] ";
+    public static final String NEW_LINE = "\n";
+    public static final String STATIONS_LIST = "\n## 역 목록";
 
     static {
         stations.add(new Station("교대역"));
@@ -50,13 +53,14 @@ public class StationRepository {
     }
 
     public static void print() {
+        String topString = STATIONS_LIST + NEW_LINE;
         StringBuilder sb = new StringBuilder();
         for (Station station : stations) {
-            sb.append("[INFO] ");
+            sb.append(PREFIX_INFO);
             sb.append(station.getName());
-            sb.append("\n");
+            sb.append(NEW_LINE);
         }
-        System.out.println(sb.toString());
+        System.out.println(topString + sb.toString());
     }
 
 }
