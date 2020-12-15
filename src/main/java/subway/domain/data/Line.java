@@ -29,7 +29,13 @@ public class Line {
         return stations;
     }
 
-    public void addStation(Station station){
+    public void initLineSection(Station firstStation, Station lastStation, List<Station> stations){
+        this.firstStation = firstStation;
+        this.lastStation = lastStation;
+        this.stations = stations;
+    }
+
+    public void addSection(Station station, int position){
 
     }
 

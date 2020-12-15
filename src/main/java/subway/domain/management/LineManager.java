@@ -3,8 +3,6 @@ package subway.domain.management;
 import subway.Constant;
 import subway.domain.data.Line;
 import subway.domain.data.LineRepository;
-import subway.domain.data.Station;
-import subway.domain.data.StationRepository;
 import subway.domain.menu.ManagementMenu;
 import subway.domain.menu.ServiceList;
 import subway.view.InputView;
