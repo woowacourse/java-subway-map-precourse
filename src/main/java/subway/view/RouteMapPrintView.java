@@ -1,8 +1,6 @@
 package subway.view;
 
-import static subway.resource.TextResource.HEADER_ROUTE_MAP_PRINT_VIEW;
-import static subway.resource.TextResource.PREFIX_INFO;
-
+import static subway.resource.TextResource.*;
 import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.LineRepository;

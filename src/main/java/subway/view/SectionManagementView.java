@@ -1,17 +1,6 @@
 package subway.view;
 
-import static subway.resource.TextResource.ASK_LINE_NAME_WHEN_ADD_SECTION;
-import static subway.resource.TextResource.ASK_LINE_NAME_WHEN_DELETE_SECTION;
-import static subway.resource.TextResource.ASK_ORDER_WHEN_ADD_SECTION;
-import static subway.resource.TextResource.ASK_STATION_NAME_WHEN_ADD_SECTION;
-import static subway.resource.TextResource.ASK_STATION_NAME_WHEN_DELETE_SECTION;
-import static subway.resource.TextResource.COMPLETE_SECTION_ADD;
-import static subway.resource.TextResource.COMPLETE_SECTION_DELETE;
-import static subway.resource.TextResource.FUNCTION_BACK;
-import static subway.resource.TextResource.FUNCTION_SECTION_ADD;
-import static subway.resource.TextResource.FUNCTION_SECTION_DELETE;
-import static subway.resource.TextResource.HEADER_SECTION_MANAGEMENT_VIEW;
-
+import static subway.resource.TextResource.*;
 import java.util.Scanner;
 import subway.controller.SectionManagementController;
 import subway.view.MainView.OnBackListener;

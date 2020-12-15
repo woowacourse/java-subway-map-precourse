@@ -2,8 +2,6 @@ package subway.domain;
 
 import static subway.resource.TextResource.ERROR_DELETE_STATION_IN_LINE;
 import static subway.resource.TextResource.ERROR_STATION_NAME_DUPLICATED;
-import static subway.resource.TextResource.ERROR_STATION_NAME_LENGTH;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

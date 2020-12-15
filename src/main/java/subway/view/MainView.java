@@ -1,7 +1,6 @@
 package subway.view;
 
 import static subway.resource.TextResource.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

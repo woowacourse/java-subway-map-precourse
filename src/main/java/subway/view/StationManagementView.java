@@ -1,18 +1,6 @@
 package subway.view;
 
-import static subway.resource.TextResource.ASK_ADD_STATION_NAME;
-import static subway.resource.TextResource.ASK_DELETE_STATION_NAME;
-import static subway.resource.TextResource.COMPLETE_STATION_ADD;
-import static subway.resource.TextResource.COMPLETE_STATION_DELETE;
-import static subway.resource.TextResource.FUNCTION_BACK;
-import static subway.resource.TextResource.FUNCTION_STATION_ADD;
-import static subway.resource.TextResource.FUNCTION_STATION_DELETE;
-import static subway.resource.TextResource.FUNCTION_STATION_LIST_SHOW;
-import static subway.resource.TextResource.HEADER_LINE_LIST;
-import static subway.resource.TextResource.HEADER_STATION_LIST;
-import static subway.resource.TextResource.HEADER_STATION_MANAGEMENT_VIEW;
-import static subway.resource.TextResource.PREFIX_INFO;
-
+import static subway.resource.TextResource.*;
 import java.util.Scanner;
 import subway.controller.StationManagementController;
 import subway.domain.Station;

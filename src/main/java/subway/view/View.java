@@ -1,8 +1,6 @@
 package subway.view;
 
-import static subway.resource.TextResource.ASK_FUNCTION;
-import static subway.resource.TextResource.ERROR_INVALID_FUNCTION;
-
+import static subway.resource.TextResource.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;

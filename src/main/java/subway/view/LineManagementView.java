@@ -1,19 +1,6 @@
 package subway.view;
 
-import static subway.resource.TextResource.ASK_ADD_LINE_END;
-import static subway.resource.TextResource.ASK_ADD_LINE_NAME;
-import static subway.resource.TextResource.ASK_ADD_LINE_START;
-import static subway.resource.TextResource.ASK_DELETE_LINE_NAME;
-import static subway.resource.TextResource.COMPLETE_LINE_ADD;
-import static subway.resource.TextResource.COMPLETE_LINE_DELETE;
-import static subway.resource.TextResource.FUNCTION_BACK;
-import static subway.resource.TextResource.FUNCTION_LINE_ADD;
-import static subway.resource.TextResource.FUNCTION_LINE_DELETE;
-import static subway.resource.TextResource.FUNCTION_LINE_LIST_SHOW;
-import static subway.resource.TextResource.HEADER_LINE_LIST;
-import static subway.resource.TextResource.HEADER_LINE_MANAGEMENT_VIEW;
-import static subway.resource.TextResource.PREFIX_INFO;
-
+import static subway.resource.TextResource.*;
 import java.util.Scanner;
 import subway.controller.LineManagementController;
 import subway.domain.Line;
