@@ -5,17 +5,17 @@ import subway.type.TextType;
 public class SectionTextView {
     public static void printSectionAddingLineText() {
         System.out.println();
-        System.out.println(TextType.SECTION_ADDING_LINE_TEXT.getText());
+        System.out.println(TextType.SECTION_ADDITION_LINE_TEXT.getText());
     }
 
     public static void printSectionAddingStationText() {
         System.out.println();
-        System.out.println(TextType.SECTION_ADDING_STATION_TEXT.getText());
+        System.out.println(TextType.SECTION_ADDITION_STATION_TEXT.getText());
     }
 
     public static void printSectionAddingOrderText() {
         System.out.println();
-        System.out.println(TextType.SECTION_ADDING_ORDER_TEXT.getText());
+        System.out.println(TextType.SECTION_ADDITION_ORDER_TEXT.getText());
     }
 
     public static void printSectionDeletionLineText() {

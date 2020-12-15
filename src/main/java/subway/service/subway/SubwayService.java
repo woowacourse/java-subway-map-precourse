@@ -1,17 +1,17 @@
-package subway.service;
+package subway.service.subway;
 
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
 import subway.controller.TransitMapController;
-import subway.service.abstraction.SubwayInterface;
+import subway.service.util.StateService;
 import subway.type.InputType;
-import subway.view.output.ExceptionView;
-import subway.view.output.ScreenView;
+import subway.view.output.util.FeatureExceptionView;
+import subway.view.output.util.ScreenView;
 
 import java.util.Scanner;
 
-public class SubwayService implements SubwayInterface {
+public class SubwayService extends StateService implements SubwayInterface {
     @Override
     public void manage(Scanner scanner) {
         SubwayService subwayService = new SubwayService();
@@ -20,19 +20,15 @@ public class SubwayService implements SubwayInterface {
             ScreenView.printMainScreen();
             String mainInput = scanner.nextLine();
 
-            if (quit(mainInput)) {
-                break;
-            }
             if (subwayService.check(mainInput)) {
                 subwayService.choose(mainInput, scanner);
                 continue;
             }
-            ExceptionView.printInvalidFeatureChoiceException();
+            if (quit(mainInput)) {
+                break;
+            }
+            FeatureExceptionView.printInvalidFeatureChoiceException();
         }
-    }
-
-    public static boolean quit(String mainInput) {
-        return mainInput.equals(InputType.INPUT_QUITTING.getInput());
     }
 
     @Override
@@ -64,5 +60,9 @@ public class SubwayService implements SubwayInterface {
             TransitMapController.startTransitMap();
         }
         return true;
+    }
+
+    public static boolean quit(String mainInput) {
+        return mainInput.equals(InputType.INPUT_QUITTING.getInput());
     }
 }

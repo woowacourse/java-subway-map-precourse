@@ -5,7 +5,7 @@ import subway.type.TextType;
 public class StationTextView {
     public static void printStationAddingText() {
         System.out.println();
-        System.out.println(TextType.STATION_ADDING_TEXT.getText());
+        System.out.println(TextType.STATION_ADDITION_TEXT.getText());
     }
 
     public static void printStationDeletionText() {

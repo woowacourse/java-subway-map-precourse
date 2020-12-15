@@ -1,16 +1,15 @@
-package subway.service.station;
+package subway.service.station.addition;
 
 import subway.repository.StationRepository;
-import subway.service.abstraction.AddingValidationInterface;
 import subway.type.BoundaryType;
 import subway.type.CheckType;
 import subway.view.output.station.StationExceptionView;
 
 import java.util.List;
 
-public class StationAddingValidation implements AddingValidationInterface {
+public class StationAdditionValidation implements StationAdditionValidationInterface {
     @Override
-    public boolean checkAddingValidation(String stationName) {
+    public boolean checkNameAdditionValidation(String stationName) {
         if (checkNameDuplication(stationName)) {
             StationExceptionView.printInvalidStationNameException();
             return false;

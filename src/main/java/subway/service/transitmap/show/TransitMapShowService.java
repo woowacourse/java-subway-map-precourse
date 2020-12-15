@@ -1,4 +1,4 @@
-package subway.service;
+package subway.service.transitmap.show;
 
 import subway.domain.Line;
 import subway.domain.Station;
@@ -11,15 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class TransitMapService {
-    public static void showTransitMap() {
-        StringBuilder stringBuilder = new StringBuilder();
-        Map<Line, LinkedList<Station>> transitMaps = TransitMapRepository.transitMaps();
-
-        TransitMapService.readTransitMap(stringBuilder, transitMaps);
-        System.out.println(stringBuilder);
-    }
-
+public class TransitMapShowService {
     public static void readTransitMap(StringBuilder stringBuilder, Map<Line, LinkedList<Station>> transitMaps) {
         appendTransitMapText(stringBuilder);
 

@@ -1,4 +1,4 @@
-package subway.service.line;
+package subway.service.line.deletion;
 
 import subway.domain.Line;
 import subway.repository.LineRepository;
@@ -21,7 +21,7 @@ public class LineDeletionService {
         return lineForDeletion;
     }
 
-    public static void deleteName(Line lineForDeletion) {
+    public static void deleteLineInTransitMap(Line lineForDeletion) {
         TransitMapRepository.deleteTransitMap(lineForDeletion);
         LineInformationView.printLineDeletionInformation();
         System.out.println();

@@ -1,4 +1,4 @@
-package subway.service.section;
+package subway.service.section.deletion;
 
 import subway.repository.TransitMapRepository;
 import subway.type.BoundaryType;
@@ -20,40 +20,40 @@ public class SectionDeletionValidation {
     }
 
     public boolean checkLineNameValidation(String lineName) {
-        if (!checkExistingLineNameInTransitMap(lineName)) {
+        if (!checkLineNameInTransitMapExistence(lineName)) {
             LineExceptionView.printInvalidLineNameExistenceException();
             return false;
         }
         return true;
     }
 
-    public static boolean checkExistingLineNameInTransitMap(String lineName) {
+    public static boolean checkLineNameInTransitMapExistence(String lineName) {
         List<String> transitMapsLineNames = TransitMapRepository.transitMapsLineNames();
         return transitMapsLineNames.contains(lineName);
     }
 
     public boolean checkStationNameValidation(String lineName, String stationName) {
-        if (!checkExistingStationNameInTransitMap(lineName, stationName)) {
+        if (!checkStationNameInTransitMapExistence(lineName, stationName)) {
             StationExceptionView.printInvalidStationNameExistenceException();
             return false;
         }
         return true;
     }
 
-    public static boolean checkExistingStationNameInTransitMap(String lienName, String stationName) {
+    public static boolean checkStationNameInTransitMapExistence(String lienName, String stationName) {
         List<String> transitMapStations = TransitMapRepository.transitMapStations(lienName);
         return transitMapStations.contains(stationName);
     }
 
     private boolean checkStationsInLineValidation(String lineName) {
-        if (checkExistingStationsInLine(lineName)) {
-            SectionExceptionView.printInvalidSectionStationsInLineException();
+        if (checkStationsInLineExistence(lineName)) {
+            SectionExceptionView.printInvalidNumberOfSectionStationsInLineException();
             return false;
         }
         return true;
     }
 
-    public static boolean checkExistingStationsInLine(String lineName) {
+    public static boolean checkStationsInLineExistence(String lineName) {
         List<String> transitMapStations = TransitMapRepository.transitMapStations(lineName);
         return transitMapStations.size() <= BoundaryType.STATIONS_IN_LINE_BOUNDARY.getBoundary();
     }

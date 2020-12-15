@@ -1,4 +1,4 @@
-package subway.service.line;
+package subway.service.line.addition;
 
 import subway.domain.Line;
 import subway.domain.Station;
@@ -9,7 +9,7 @@ import subway.view.output.line.LineInformationView;
 
 import java.util.LinkedList;
 
-public class LineAddingService {
+public class LineAdditionService {
     public static LinkedList<Station> addStationNames(String upStationName, String downStationName) {
         LinkedList<Station> stationNames = new LinkedList<>();
 
@@ -18,18 +18,17 @@ public class LineAddingService {
         return stationNames;
     }
 
-    public static Line addLineName(String lineName) {
+    public static void addLineByStationNames(String lineName, LinkedList<Station> stationNames) {
+        Line line = addLineByLineName(lineName);
+        TransitMapRepository.addTransitMap(new TransitMap(line, stationNames));
+        LineInformationView.printLineAdditionInformation();
+        System.out.println();
+    }
+
+    public static Line addLineByLineName(String lineName) {
         Line line = new Line(lineName);
 
         LineRepository.addLine(line);
         return line;
-    }
-
-    public static void addNames(String lineName, LinkedList<Station> stationNames) {
-        Line line = addLineName(lineName);
-
-        TransitMapRepository.addTransitMap(new TransitMap(line, stationNames));
-        LineInformationView.printLineAddingInformation();
-        System.out.println();
     }
 }

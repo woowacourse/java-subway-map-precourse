@@ -1,12 +1,12 @@
-package subway.service.line;
+package subway.service.line.deletion;
 
 import subway.repository.LineRepository;
-import subway.service.station.StationDeletionValidation;
+import subway.service.station.deletion.StationDeletionValidation;
 import subway.view.output.line.LineExceptionView;
 
 public class LineDeletionValidation extends StationDeletionValidation {
     @Override
-    public boolean checkDeletionValidation(String lineName) {
+    public boolean checkNameDeletionValidation(String lineName) {
         if (!LineRepository.deleteLineByName(lineName)) {
             LineExceptionView.printInvalidLineNameExistenceException();
             return false;

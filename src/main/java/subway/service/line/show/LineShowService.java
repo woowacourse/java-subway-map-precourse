@@ -1,22 +1,22 @@
-package subway.service.line;
+package subway.service.line.show;
 
-import subway.service.station.StationNameService;
+import subway.service.station.show.StationShowService;
 import subway.type.InformationType;
 import subway.type.TextType;
 
 import java.util.List;
 
-public class LineNameService extends StationNameService {
+public class LineShowService extends StationShowService {
     @Override
     public void readNames(StringBuilder stringBuilder, List<String> lineNames) {
-        appendNameText(stringBuilder);
+        appendListText(stringBuilder);
         appendNames(stringBuilder, lineNames);
     }
 
     @Override
-    public void appendNameText(StringBuilder stringBuilder) {
+    public void appendListText(StringBuilder stringBuilder) {
         stringBuilder.append(TextType.NEW_LINE.getText())
-                .append(TextType.LINE_NAME_TEXT.getText())
+                .append(TextType.LINE_LIST_TEXT.getText())
                 .append(TextType.NEW_LINE.getText());
     }
 

@@ -5,7 +5,7 @@ import subway.type.TextType;
 public class LineTextView {
     public static void printLineAddingText() {
         System.out.println();
-        System.out.println(TextType.LINE_ADDING_TEXT.getText());
+        System.out.println(TextType.LINE_ADDITION_TEXT.getText());
     }
 
     public static void printLineUpStationNameText() {

@@ -1,4 +1,4 @@
-package subway.service.abstraction;
+package subway.service.util;
 
 import java.util.Scanner;
 

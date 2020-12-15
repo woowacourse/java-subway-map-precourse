@@ -3,9 +3,9 @@ package subway.view.output.station;
 import subway.type.InformationType;
 
 public class StationInformationView {
-    public static void printStationAddingInformation() {
+    public static void printStationAdditionInformation() {
         System.out.println();
-        System.out.println(InformationType.STATION_ADDING_INFORMATION.getInformation());
+        System.out.println(InformationType.STATION_ADDITION_INFORMATION.getInformation());
     }
 
     public static void printStationDeletionInformation() {

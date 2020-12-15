@@ -1,11 +1,16 @@
 package subway.service.section;
 
 import subway.domain.Section;
+import subway.service.section.addition.SectionAdditionService;
+import subway.service.section.addition.SectionAdditionValidation;
+import subway.service.section.deletion.SectionDeletionService;
+import subway.service.section.deletion.SectionDeletionValidation;
 import subway.service.station.StationService;
 import subway.type.InputType;
-import subway.view.input.section.SectionInputView;
-import subway.view.output.ExceptionView;
-import subway.view.output.ScreenView;
+import subway.view.input.section.SectionScanView;
+import subway.view.output.util.FeatureExceptionView;
+import subway.view.output.util.ScreenView;
+import subway.view.output.util.StateView;
 import subway.view.output.section.SectionInformationView;
 import subway.view.output.section.SectionTextView;
 
@@ -25,7 +30,7 @@ public class SectionService extends StationService {
                 sectionService.choose(sectionInput, scanner);
                 break;
             }
-            ExceptionView.printInvalidFeatureChoiceException();
+            FeatureExceptionView.printInvalidFeatureChoiceException();
         }
     }
 
@@ -49,24 +54,23 @@ public class SectionService extends StationService {
             return delete(scanner);
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
-            System.out.println();
-            return true;
+            return StateView.printNewLine();
         }
         return false;
     }
 
     @Override
     public boolean add(Scanner scanner) {
-        SectionAddingValidation sectionAddingValidation = new SectionAddingValidation();
+        SectionAdditionValidation sectionAdditionValidation = new SectionAdditionValidation();
 
-        String lineName = SectionInputView.scanLineName(scanner);
-        String stationName = SectionInputView.scanStationName(scanner);
-        String order = SectionInputView.scanOrder(scanner);
+        String lineName = SectionScanView.scanLineName(scanner);
+        String stationName = SectionScanView.scanStationName(scanner);
+        String order = SectionScanView.scanOrder(scanner);
         Section section = new Section(lineName, stationName, order);
 
-        if (sectionAddingValidation.checkSectionAddingValidation(section)) {
-            SectionAddingService.addSection(section);
-            SectionInformationView.printSectionAddingInformation();
+        if (sectionAdditionValidation.checkSectionAdditionValidation(section)) {
+            SectionAdditionService.addSection(section);
+            SectionInformationView.printSectionAdditionInformation();
             System.out.println();
             return true;
         }

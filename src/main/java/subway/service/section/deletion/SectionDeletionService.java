@@ -1,4 +1,4 @@
-package subway.service.section;
+package subway.service.section.deletion;
 
 import subway.domain.Line;
 import subway.domain.Station;

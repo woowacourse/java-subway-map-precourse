@@ -1,6 +1,6 @@
 package subway.controller;
 
-import subway.service.SubwayService;
+import subway.service.subway.SubwayService;
 import subway.service.initialization.LineInitialization;
 import subway.service.initialization.StationInitialization;
 import subway.service.initialization.TransitMapInitialization;

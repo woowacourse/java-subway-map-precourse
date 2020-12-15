@@ -1,17 +1,25 @@
-package subway.service.line;
+package subway.service.line.addition;
 
+import subway.domain.Stations;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
-import subway.service.abstraction.AddingValidationInterface;
+import subway.service.station.addition.StationAdditionValidation;
 import subway.type.BoundaryType;
 import subway.type.CheckType;
 import subway.view.output.line.LineExceptionView;
 
 import java.util.List;
 
-public class LineAddingValidation implements AddingValidationInterface {
-    @Override
-    public boolean checkAddingValidation(String lineName) {
+public class LineAdditionValidation extends StationAdditionValidation {
+    public boolean checkNameAdditionValidation(String lineName, Stations stations) {
+        if (!checkLineNameAdditionValidation(lineName)) {
+            return false;
+        }
+        return checkStationNamesAdditionValidation(
+                stations.getUpStationName(),stations.getDownStationName());
+    }
+
+    public boolean checkLineNameAdditionValidation(String lineName) {
         if (checkNameDuplication(lineName)) {
             LineExceptionView.printInvalidLineNameException();
             return false;
@@ -44,9 +52,9 @@ public class LineAddingValidation implements AddingValidationInterface {
         return !lastCharacter.equals(CheckType.LINE_CHECK.getCheck());
     }
 
-    public boolean checkStationNamesAddingValidation(String upStationName, String downStationName) {
-        if (checkExistingStationNames(upStationName, downStationName)) {
-            LineExceptionView.printInvalidLineExistingStationNamesException();
+    public boolean checkStationNamesAdditionValidation(String upStationName, String downStationName) {
+        if (checkStationNamesExistence(upStationName, downStationName)) {
+            LineExceptionView.printInvalidLineStationNamesExistenceException();
             return false;
         }
         if (checkSameStationNames(upStationName, downStationName)) {
@@ -56,7 +64,7 @@ public class LineAddingValidation implements AddingValidationInterface {
         return true;
     }
 
-    public static boolean checkExistingStationNames(String upStationName, String downStationName) {
+    public static boolean checkStationNamesExistence(String upStationName, String downStationName) {
         List<String> stationNames = StationRepository.stationNames();
         return !((stationNames.contains(upStationName)) && (stationNames.contains(downStationName)));
     }

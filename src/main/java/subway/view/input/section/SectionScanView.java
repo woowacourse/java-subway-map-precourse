@@ -4,7 +4,7 @@ import subway.view.output.section.SectionTextView;
 
 import java.util.Scanner;
 
-public class SectionInputView {
+public class SectionScanView {
     public static String scanLineName(Scanner scanner) {
         SectionTextView.printSectionAddingLineText();
         return scanner.nextLine();

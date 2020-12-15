@@ -1,14 +1,26 @@
-package subway.service.station;
+package subway.service.station.deletion;
 
 import subway.repository.StationRepository;
 import subway.repository.TransitMapRepository;
-import subway.service.abstraction.DeletionValidationInterface;
 import subway.view.output.station.StationExceptionView;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class StationDeletionValidation implements DeletionValidationInterface {
+public class StationDeletionValidation implements StationDeletionValidationInterface {
+    @Override
+    public boolean checkNameDeletionValidation(String stationName) {
+        if (checkNameInTransitMap(stationName)) {
+            StationExceptionView.printInvalidStationNameInTransitMapException();
+            return false;
+        }
+        if (!StationRepository.deleteStation(stationName)) {
+            StationExceptionView.printInvalidStationNameExistenceException();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public boolean checkNameInTransitMap(String stationName) {
         List<LinkedList<String>> transitMapsStationsNames
@@ -20,18 +32,5 @@ public class StationDeletionValidation implements DeletionValidationInterface {
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean checkDeletionValidation(String stationName) {
-        if (checkNameInTransitMap(stationName)) {
-            StationExceptionView.printInvalidStationNameInTransitMapException();
-            return false;
-        }
-        if (!StationRepository.deleteStation(stationName)) {
-            StationExceptionView.printInvalidStationNameExistenceException();
-            return false;
-        }
-        return true;
     }
 }

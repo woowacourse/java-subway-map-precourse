@@ -1,9 +1,8 @@
-package subway.service.abstraction;
+package subway.service.util;
 
 import java.util.Scanner;
 
-public interface SubwayInterface {
-    void manage(Scanner scanner);
+public interface StateInterface {
     boolean check(String input);
     boolean choose(String input, Scanner scanner);
 }

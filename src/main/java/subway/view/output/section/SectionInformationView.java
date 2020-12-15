@@ -3,9 +3,9 @@ package subway.view.output.section;
 import subway.type.InformationType;
 
 public class SectionInformationView {
-    public static void printSectionAddingInformation() {
+    public static void printSectionAdditionInformation() {
         System.out.println();
-        System.out.println(InformationType.SECTION_ADDING_INFORMATION.getInformation());
+        System.out.println(InformationType.SECTION_ADDITION_INFORMATION.getInformation());
     }
 
     public static void printSectionDeletionInformation() {

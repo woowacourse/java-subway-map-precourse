@@ -4,7 +4,7 @@ import subway.view.output.line.LineTextView;
 
 import java.util.Scanner;
 
-public class LineInputView {
+public class LineScanView {
     public static String scanLineName(Scanner scanner) {
         LineTextView.printLineAddingText();
         return scanner.nextLine();
