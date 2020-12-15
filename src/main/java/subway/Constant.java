@@ -29,4 +29,5 @@ public class Constant {
     public static final String NAME_POSTFIX = "이름을 입력해주세요.";
     public static final String LINE_STATION_POSTFIX = "종점역 이름을 입력하세요.";
     public static final String NO_EXIST_INFO = "등록되지 않은 역 또는 노선입니다.\n";
+    public static final String FAIL = "실패했습니다.";
 }

@@ -39,10 +39,11 @@ public class SectionController {
         String order = scanner.next();
         try {
             sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
         }catch(IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }catch(IndexOutOfBoundsException e){
-            System.out.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
         }
     }
 
@@ -55,7 +56,9 @@ public class SectionController {
             boolean deleteFlag = sectionRepository.deleteSection(lineName, stationName);
             if (deleteFlag) {
                 System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
+                return;
             }
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
         }catch (IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }

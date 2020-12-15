@@ -9,7 +9,7 @@ public class SectionRepository {
     private static StationRepository stationRepository = new StationRepository();
 
     public static void addSection(String lineName, String stationName, int order) {
-        if (!validate(lineName, stationName)) { // 존재하지 않는 노선 또는 역
+        if (!validate(lineName, stationName)) {
             throw new IllegalArgumentException();
         }
         try{
@@ -18,11 +18,10 @@ public class SectionRepository {
         }catch (IndexOutOfBoundsException e){
             throw new IndexOutOfBoundsException();
         }
-        System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
     }
 
     public static boolean deleteSection(String lineName, String stationName) {
-        if (!validate(lineName, stationName)) { // 존재하지 않는 노선 또는 역
+        if (!validate(lineName, stationName)) {
             throw new IllegalArgumentException();
         }
         List<Station> stations = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get().stations;
@@ -30,7 +29,7 @@ public class SectionRepository {
     }
 
     static boolean validate(String lineName, String stationName){
-        if (!lineRepository.checkExistLine(lineName) || !stationRepository.checkExistStation(stationName)) { // 존재하지 않는 노선
+        if (!lineRepository.checkExistLine(lineName) || !stationRepository.checkExistStation(stationName)) {
             return false;
         }
         return true;

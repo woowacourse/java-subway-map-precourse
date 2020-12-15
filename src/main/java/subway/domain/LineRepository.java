@@ -13,28 +13,21 @@ public class LineRepository {
     }
 
     public static void addLine(String lineName, String upwardName, String downwardName) {
-        if (checkExistLine(lineName)) {
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_LINE_NAME));
-            return;
-        } else if (!stationRepository.checkExistStation(upwardName) || !stationRepository.checkExistStation(downwardName)) {
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_STATION_INFO));
-            return;
-        } else if(upwardName.equals(downwardName)) {
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, "상행과 하행 종점은 같을 수 없습니다."));
-            return;
+        if (checkExistLine(lineName) || !stationRepository.checkExistStation(upwardName)
+                || !stationRepository.checkExistStation(downwardName) || upwardName.equals(downwardName)) {
+            throw new IllegalArgumentException();
         }
         Line line = new Line(lineName);
         line.stations.add(new Station(upwardName));
         line.stations.add(new Station(downwardName));
         lines.add(line);
-        System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
     }
 
-    public static boolean deleteLineByName(String name) {
-        if (!checkExistLine(name)) {
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_LINE_INFO));
+    public static boolean deleteLineByName(String lineName) {
+        if (!checkExistLine(lineName)) {
+            throw new IllegalArgumentException();
         }
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+        return lines.removeIf(line -> Objects.equals(line.getName(), lineName));
     }
 
     public static void printLines() {

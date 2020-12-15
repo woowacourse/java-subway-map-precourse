@@ -16,11 +16,9 @@ public class StationRepository {
 
     public static void addStation(String stationName) {
         if (checkExistStation(stationName)) {
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
-            return;
+            throw new IllegalArgumentException();
         }
         stations.add(new Station(stationName));
-        System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_STATION_SUCCESS));
     }
 
     public static boolean deleteStation(String name) {

@@ -36,7 +36,12 @@ public class LineController {
         String upwardName = scanner.next();
         System.out.println(String.join(" 노선의 하행 ", Constant.ADD_PREFIX, Constant.LINE_STATION_POSTFIX));
         String downwardName = scanner.next();
-        lineRepository.addLine(lineName, upwardName, downwardName);
+        try {
+            lineRepository.addLine(lineName, upwardName, downwardName);
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
+        }catch (IllegalArgumentException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
+        }
     }
 
     void deleteLine() {
