@@ -12,7 +12,7 @@ public class ScreenMapper {
             return;
         }
         if (element == Element.PATH) {
-            ScreenStack.pushScreen(new PathManageScreen());
+            ScreenStack.pushScreen(new PathManageScreen(element.toString(), screen));
             return;
         }
         ScreenStack.pushScreen(new ManageScreen(element.toString(), screen));
