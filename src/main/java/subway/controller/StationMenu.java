@@ -5,6 +5,7 @@ import subway.view.PrintInfo;
 import subway.view.Error;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class StationMenu extends Menu {
     public StationMenu(Scanner scanner) {
@@ -19,6 +20,21 @@ public class StationMenu extends Menu {
     @Override
     protected boolean functionOne() {
         return addStation();
+    }
+
+    @Override
+    protected boolean functionTwo() {
+        return deleteStation();
+    }
+
+    @Override
+    protected boolean functionThree() {
+        return printStations();
+    }
+
+    private boolean printStations() {
+        PrintInfo.stations(StationManager.allStations().stream().map(station -> station.getName()).collect(Collectors.toList()));
+        return true;
     }
 
     private boolean addStation() {
