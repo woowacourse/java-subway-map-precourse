@@ -1,6 +1,5 @@
 package subway.views;
 
-
 public class SystemOutput {
     static final String INFO = SystemMessages.INFO;
 
