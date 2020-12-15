@@ -46,16 +46,16 @@ public class LineController {
             OutputViewOfError.isNotValidNameLength();
             return false;
         }
-        if (isNotValidStreamStationName(upstreamStation=InputView.upstreamStationName())) {
+        if (!isValidStreamStationName(upstreamStation=InputView.upstreamStationName())) {
             return false;
         }
-        if (isNotValidStreamStationName(downstreamStation=InputView.downstreamStationName())) {
+        if (!isValidStreamStationName(downstreamStation=InputView.downstreamStationName())) {
             return false;
         }
         return true;
     }
 
-    private boolean isNotValidStreamStationName(String s) {
+    private boolean isValidStreamStationName(String s) {
         if (s.length() < MIN_NAME_LENGTH) {
             OutputViewOfError.isNotValidNameLength();
             return false;
@@ -89,7 +89,7 @@ public class LineController {
         if (!isExistLine()) {
             return false;
         }
-        if (isValidStationNameLength()) {
+        if (!isValidStationNameLength()) {
             return false;
         }
         if (!isValidOrder()) {

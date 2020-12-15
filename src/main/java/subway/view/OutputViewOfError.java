@@ -33,18 +33,18 @@ public class OutputViewOfError {
     }
 
     public static void isNotExistStation() {
-        System.out.println(ERROR + NOT_EXIST_STATION_ERROR);
+        System.out.println(ERROR + NOT_EXIST_STATION_ERROR + "\n");
     }
 
     public static void isNotExistLine() {
-        System.out.println(ERROR + NOT_EXIST_LINE_ERROR);
+        System.out.println(ERROR + NOT_EXIST_LINE_ERROR + "\n");
     }
 
     public static void isNotValidOrder() {
-        System.out.println(ERROR + NOT_VALID_ORDER_ERROR);
+        System.out.println(ERROR + NOT_VALID_ORDER_ERROR + "\n");
     }
 
     public static void cannotDeleteStationInLine() {
-        System.out.println(ERROR + CANNOT_DELETE_STATION_IN_LINE);
+        System.out.println(ERROR + CANNOT_DELETE_STATION_IN_LINE + "\n");
     }
 }
