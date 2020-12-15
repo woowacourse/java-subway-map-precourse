@@ -6,6 +6,8 @@
 ---
 # 지하철 프로젝트
 
+feat(SectionMenu.java): 구간 추가 기능 추가
+
 feat(LineMenu.java): 노선 출력 기능 추가
 
 feat(LineMenu.java): 노선 삭제 기능 추가

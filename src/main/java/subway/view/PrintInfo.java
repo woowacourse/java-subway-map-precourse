@@ -103,6 +103,38 @@ public class PrintInfo {
         printList(list);
     }
 
+
+
+    public static void manageSection() {
+        System.out.println(
+                "## 구간 관리 화면\n" +
+                "1. 구간 등록\n" +
+                "2. 구간 삭제\n" +
+                "B. 돌아가기\n" +
+                "\n" +
+                "## 원하는 기능을 선택하세요.");
+    }
+
+    public static void inputAddSectionLineName() {
+        System.out.println("\n" +
+                "## 노선을 입력하세요.");
+    }
+
+    public static void inputAddSectionStationName() {
+        System.out.println("\n" +
+                "## 역이름을 입력하세요.");
+    }
+
+    public static void inputAddSectionIndex() {
+        System.out.println("\n" +
+                "## 순서를 입력하세요.");
+    }
+
+    public static void addSectionSuccess() {
+        System.out.println("\n" +
+                "[INFO] 구간이 등록되었습니다.\n");
+    }
+
     public static void printList(List<String> list) {
         list.forEach(item -> System.out.println("[INFO] " + item));
         System.out.println();
