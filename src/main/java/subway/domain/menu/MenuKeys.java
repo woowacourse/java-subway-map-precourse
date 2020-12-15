@@ -12,4 +12,5 @@ public enum MenuKeys {
     public String getKey() {
         return key;
     }
+
 }

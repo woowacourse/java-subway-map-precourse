@@ -142,4 +142,5 @@ public class PathInputManager {
             throw new ErrorMessageException(NOT_EXIST_STATION_ON_PATH);
         }
     }
+
 }

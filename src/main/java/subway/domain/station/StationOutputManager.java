@@ -37,4 +37,5 @@ public class StationOutputManager {
             InfoMessage.print(station.getName());
         }
     }
+
 }

@@ -11,7 +11,6 @@ public class StationRepository {
     private static final String NOT_DELETED = "삭제하지 못했습니다.";
     private static final String NOT_VALID_STATION = "없는 역입니다.";
 
-
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
