@@ -37,15 +37,6 @@ public class Line {
         }
     }
 
-    public boolean isExistStation(String stationName) {
-        for (Station station : stations) {
-            if (station.getName().equals(stationName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean addStation(String stationName) {
         if (stationName.length() < MINIMUM_LENGTH) {
             ErrorView.nameLengthError();
@@ -53,13 +44,6 @@ public class Line {
         }
         stations.add(StationRepository.ifNotExistRegister(stationName));
         return true;
-    }
-
-    public void status() {
-        for (Station station : stations) {
-            OutputView.status(station.getName());
-        }
-        OutputView.space();
     }
 
     public boolean addStationByIndex(String stationName, Scanner scanner) {
@@ -78,6 +62,22 @@ public class Line {
         }
         stations.add(orderNumber, StationRepository.ifNotExistRegister(stationName));
         return true;
+    }
+
+    public boolean isExistStation(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void status() {
+        for (Station station : stations) {
+            OutputView.status(station.getName());
+        }
+        OutputView.space();
     }
 
     private int orderNumber(String stringNumber) {

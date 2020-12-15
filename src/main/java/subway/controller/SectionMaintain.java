@@ -1,4 +1,4 @@
-package subway.maintain;
+package subway.controller;
 
 import subway.controller.Controller;
 import subway.domain.Line;
