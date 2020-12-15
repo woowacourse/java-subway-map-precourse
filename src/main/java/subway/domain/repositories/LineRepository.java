@@ -52,7 +52,7 @@ public class LineRepository {
         return true;
     }
 
-    public static List<String> getLineContainStations(String lineName) {
+    public static List<String> getStationsByLineName(String lineName) {
         List<String> lineContainStations = new ArrayList<>(lineMap.get(lineName));
         return Collections.unmodifiableList(lineContainStations);
     }
