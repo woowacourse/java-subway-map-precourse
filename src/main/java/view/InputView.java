@@ -1,10 +1,6 @@
 package view;
 
-import subway.domain.LineRepository;
-import subway.domain.LineStationRepository;
-import subway.domain.StationRepository;
-import validator.ExceptionMessage;
-import validator.Validator;
+import Category.CategoryValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,14 +20,14 @@ public class InputView {
     private static final String INPUT_DELETE_SECTION_FOR_LINE = "\n## 삭제할 구간의 노선을 입력하세요";
     private static final String INPUT_DELETE_SECTION = "\n## 삭제할 구간의 역을 입력하세요";
 
-    private static Validator validator = new Validator();
+    private static CategoryValidator categoryValidator = new CategoryValidator();
 
     public static String inputFunction(Scanner scanner) {
         try {
             System.out.println(INPUT_FUNCTION);
             String input = scanner.next();
 
-            validator.isValidFunction(input);
+            categoryValidator.isValidFunction(input);
             return input;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -44,7 +40,7 @@ public class InputView {
             System.out.println(INPUT_FUNCTION);
             String input = scanner.next();
 
-            validator.isValidStationFunction(input);
+            categoryValidator.isValidStationFunction(input);
             return input;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -67,7 +63,7 @@ public class InputView {
             System.out.println(INPUT_FUNCTION);
             String input = scanner.next();
 
-            validator.isValidLineFunction(input);
+            categoryValidator.isValidLineFunction(input);
             return input;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -95,7 +91,7 @@ public class InputView {
             System.out.println(INPUT_FUNCTION);
             String input = scanner.next();
 
-            validator.isValidSectionFunction(input);
+            categoryValidator.isValidSectionFunction(input);
             return input;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());

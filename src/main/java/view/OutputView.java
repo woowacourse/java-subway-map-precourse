@@ -59,6 +59,4 @@ public class OutputView {
     public static void printFinishProgram() {
         System.out.println(FINISH_SUBWAY_PROGRAM);
     }
-
-
 }
