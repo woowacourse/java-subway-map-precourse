@@ -74,6 +74,8 @@ public class OutputView {
         if(list.isEmpty()){
             System.out.print(Constant.ILLEGAL_ARGUMENT_EXCEPTION_HEADER);
             System.out.printf(Constant.FIND_EMPTY_LIST, service);
+            System.out.println();
+            return;
         }
 
         System.out.print(Constant.VIEW_HEADER);

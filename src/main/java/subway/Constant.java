@@ -22,6 +22,8 @@ public class Constant {
 
     public static final String REGISTER_DUPLICATE_DATA_ERROR_FORMAT = "이미 등록된 %s 이름입니다.";
     public static final String REGISTER_RESULT_FORMAT = "%s이 등록되었습니다.";
+    public static final String DELETE_DATA_ERROR_FORMAT = "등록되지 않은 %s 이름입니다.";
+    public static final String DELETE_RESULT_FORMAT = "%s이 삭제되었습니다.";
 
     public static final String FIND_EMPTY_LIST = "등록된 %s이 없습니다.";
 

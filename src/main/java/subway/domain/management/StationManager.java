@@ -24,19 +24,42 @@ public class StationManager extends ServiceManager {
         String inputData = getInputData(scanner);
 
         try {
-            if(inputData.equals(ManagementMenu.REGISTER.getOrder())){
-                registerStation();
-                return;
-            }
-            if(inputData.equals(ManagementMenu.FIND.getOrder())){
-                findStation();
-                return;
-            }
+            checkInputData(inputData);
         } catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());
             doStationManagement();
         }
 
+    }
+
+    private void checkInputData(String inputData) {
+        if(inputData.equals(ManagementMenu.REGISTER.getOrder())){
+            registerStation();
+            return;
+        }
+        if(inputData.equals(ManagementMenu.DELETE.getOrder())){
+            deleteStation();
+            return;
+        }
+        if(inputData.equals(ManagementMenu.FIND.getOrder())){
+            findStation();
+            return;
+        }
+    }
+
+    private void deleteStation() {
+        String name = getStationName();
+
+        for(Station savedStation : StationRepository.stations()){
+            if(savedStation.getName().equals(name)){
+                OutputView.printFunctionResult(Constant.DELETE_RESULT_FORMAT, ServiceList.STATION.getName());
+                StationRepository.deleteStation(name);
+                return;
+            }
+        }
+
+        OutputView.printErrorWithFormat(Constant.DELETE_DATA_ERROR_FORMAT, ServiceList.STATION.getName());
+        return;
     }
 
     private void findStation() {
@@ -45,14 +68,15 @@ public class StationManager extends ServiceManager {
 
     private void registerStation() {
         String name = getStationName();
-        Station station = new Station(name);
-        List<Station> stations = StationRepository.stations();
 
-        if(stations.contains(station)){
-            OutputView.printErrorWithFormat(Constant.REGISTER_DUPLICATE_DATA_ERROR_FORMAT, ServiceList.STATION.getName());
-            return;
+        for(Station savedStation : StationRepository.stations()){
+            if(savedStation.getName().equals(name)){
+                OutputView.printErrorWithFormat(Constant.REGISTER_DUPLICATE_DATA_ERROR_FORMAT, ServiceList.STATION.getName());
+                return;
+            }
         }
 
+        Station station = new Station(name);
         StationRepository.addStation(station);
         OutputView.printFunctionResult(Constant.REGISTER_RESULT_FORMAT, ServiceList.STATION.getName());
         return;
