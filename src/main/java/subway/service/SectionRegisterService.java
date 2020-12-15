@@ -11,12 +11,12 @@ import subway.repository.line.LineRepository;
 import subway.repository.station.StationRepository;
 import subway.specification.StationExistOnSpecificLineSpecification;
 
-public class StationAddToLineService {
+public class SectionRegisterService {
     private final StationRepository stationRepository;
     private final LineRepository lineRepository;
 
-    public StationAddToLineService(StationRepository stationRepository,
-                                   LineRepository lineRepository) {
+    public SectionRegisterService(StationRepository stationRepository,
+                                  LineRepository lineRepository) {
         this.stationRepository = stationRepository;
         this.lineRepository = lineRepository;
     }
