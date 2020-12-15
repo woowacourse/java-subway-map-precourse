@@ -1,7 +1,9 @@
 package subway;
 
+import static log.ErrorCase.FUNCTION_INPUT_ERROR;
+import static log.Logger.displayMainScreen;
+import static log.Logger.errorPrint;
 import static subway.LineManage.linaManage;
-import static subway.SectionManage.sectionManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.StationRepository.addStation;
@@ -9,6 +11,7 @@ import static subway.routeMap.routeMapPrint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.Station;
@@ -26,9 +29,9 @@ public class Application {
         initSetting();
         boolean exitFlag = false;
         while (!exitFlag) {
-            mainScreenPrint();
+            displayMainScreen();
             String mainInput = scanner.next();
-            exitFlag = validateAndNextScreen(scanner, mainInput);
+            exitFlag = checkInput(scanner, mainInput);
         }
     }
 
@@ -41,23 +44,29 @@ public class Application {
         for (String stationName : initStations) {
             addStation(new Station(stationName));
         }
-        addLine(new Line("2호선", new Station("교대역"), new Station("역삼역")));
-        addLine(new Line("3호선", new Station("교대역"), new Station("매봉역")));
-        addLine(new Line("신분당선", new Station("강남역"), new Station("양재시민의숲역")));
+        addLine(new Line("2호선",
+            new LinkedList<Station>(Arrays.asList(
+                new Station("교대역"),
+                new Station("강남역"),
+                new Station("역삼역")
+            ))));
+        addLine(new Line("3호선",
+            new LinkedList<Station>(Arrays.asList(
+                new Station("교대역"),
+                new Station("남부터미널역"),
+                new Station("양재역"),
+                new Station("매봉역")
+            ))));
+        addLine(new Line("3호선",
+            new LinkedList<Station>(Arrays.asList(
+                new Station("신분당선"),
+                new Station("강남역"),
+                new Station("양재역"),
+                new Station("양재시민의숲역")
+            ))));
     }
 
-    private static void mainScreenPrint() {
-        System.out.println("\n## 메인 화면\n"
-            + "1. 역 관리\n"
-            + "2. 노선 관리\n"
-            + "3. 구간 관리\n"
-            + "4. 지하철 노선도 출력\n"
-            + "Q. 종료\n"
-            + "\n"
-            + "## 원하는 기능을 선택하세요.");
-    }
-
-    private static boolean validateAndNextScreen(Scanner scanner, String mainInput) {
+    private static boolean checkInput(Scanner scanner, String mainInput) {
         if (mainInput.equalsIgnoreCase(STATION_MANAGE)) {
             stationManage(scanner);
             return false;
@@ -67,7 +76,7 @@ public class Application {
             return false;
         }
         if (mainInput.equalsIgnoreCase(SECTION_MANAGE)) {
-            sectionManage(scanner);
+            //sectionManage(scanner);
             return false;
         }
         if (mainInput.equalsIgnoreCase(ALL_INFO)) {
@@ -77,7 +86,7 @@ public class Application {
         if (mainInput.equalsIgnoreCase(EXIT)) {
             return true;
         }
-        System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
+        errorPrint(FUNCTION_INPUT_ERROR);
         throw new IllegalArgumentException();
     }
 }
