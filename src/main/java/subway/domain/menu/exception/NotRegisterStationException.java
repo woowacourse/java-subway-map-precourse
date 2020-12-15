@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class NotRegisterStationException extends RuntimeException {
     public NotRegisterStationException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.NOT_REGISTERED_STATION + CommonMessage.NEW_LINE);
+                + ExceptionMessage.NOT_REGISTERED_STATION + CommonMessage.NEW_LINE);
     }
 }

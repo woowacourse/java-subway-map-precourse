@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class StationInLineMinNumException extends RuntimeException {
     public StationInLineMinNumException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.STATION_IN_LINE_MIN_NUM + CommonMessage.NEW_LINE);
+                + ExceptionMessage.STATION_IN_LINE_MIN_NUM + CommonMessage.NEW_LINE);
     }
 }

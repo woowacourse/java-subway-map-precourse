@@ -7,7 +7,7 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class DuplicatedInputException extends RuntimeException {
     public DuplicatedInputException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.DUPLICATED_INPUT_STATION + CommonMessage.NEW_LINE);
+                + ExceptionMessage.DUPLICATED_INPUT_STATION + CommonMessage.NEW_LINE);
     }
 
     public DuplicatedInputException(String message) {

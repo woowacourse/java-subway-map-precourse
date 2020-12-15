@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class DuplicatedStationInLineException extends RuntimeException {
     public DuplicatedStationInLineException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.DUPLICATED_STATION_IN_LINE + CommonMessage.NEW_LINE);
+                + ExceptionMessage.DUPLICATED_STATION_IN_LINE + CommonMessage.NEW_LINE);
     }
 }

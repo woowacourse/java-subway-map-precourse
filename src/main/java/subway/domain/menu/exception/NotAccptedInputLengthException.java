@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class NotAccptedInputLengthException extends RuntimeException {
     public NotAccptedInputLengthException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.NOT_ACCPTED_INPUT_LENGTH_MESSAGE + CommonMessage.NEW_LINE);
+                + ExceptionMessage.NOT_ACCPTED_INPUT_LENGTH_MESSAGE + CommonMessage.NEW_LINE);
     }
 }

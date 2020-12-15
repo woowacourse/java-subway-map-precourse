@@ -109,7 +109,8 @@ public class DeleteAction extends Action {
 
     private String deleteSectionStation(String line) {
         printDeleteMessage(CategoryType.STATION);
-        return requestInputDeleteSectionStation(LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
+        return requestInputDeleteSectionStation(
+                LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
     }
 
     private void printSuccessMessage() {

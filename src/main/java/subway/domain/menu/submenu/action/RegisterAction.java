@@ -48,7 +48,8 @@ public class RegisterAction extends Action {
     }
 
     private void printRegisterMessage() {
-        System.out.println(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
+        System.out
+                .println(CommonMessage.SHARP + CommonMessage.SHARP + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER
                         + CommonMessage.SPACE + category + CommonMessage.SPACE + ActionMessage.INPUT_REGISTER_NAME);
     }
 
@@ -174,12 +175,14 @@ public class RegisterAction extends Action {
 
     private String registerInputSectionStation(String line) {
         printRegisterSectionMessage(ActionMessage.INPUT_SECTION_STATION);
-        return requestInputSectionStation(LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
+        return requestInputSectionStation(
+                LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
     }
 
     private String registerInputSectionOrder(String line) {
         printRegisterSectionMessage(ActionMessage.INPUT_SECTION_ORDER);
-        return requestInputSectionOrder(LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
+        return requestInputSectionOrder(
+                LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
     }
 
     private void printSuccessMessage(String error) {

@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class NotAccptedSectionStationInputException extends RuntimeException {
     public NotAccptedSectionStationInputException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.NOT_ACCPTED_SECTION_STATION_INPUT + CommonMessage.NEW_LINE);
+                + ExceptionMessage.NOT_ACCPTED_SECTION_STATION_INPUT + CommonMessage.NEW_LINE);
     }
 }

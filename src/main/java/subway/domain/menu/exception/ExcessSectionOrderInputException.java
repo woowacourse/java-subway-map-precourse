@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class ExcessSectionOrderInputException extends RuntimeException {
     public ExcessSectionOrderInputException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.EXCESS_SECTION_ORDER_INPUT + CommonMessage.NEW_LINE);
+                + ExceptionMessage.EXCESS_SECTION_ORDER_INPUT + CommonMessage.NEW_LINE);
     }
 }

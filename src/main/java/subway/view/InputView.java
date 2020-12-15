@@ -36,7 +36,7 @@ public class InputView {
                 sel = validate.isAccptedInput(selMenu, scanner.nextLine().charAt(0));
                 System.out.println();
                 break;
-            } catch(NotAccptedInputException e) {
+            } catch (NotAccptedInputException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -49,9 +49,9 @@ public class InputView {
             try {
                 name = validate.isAccptedRegisterInput(scanner.nextLine(), category);
                 System.out.println();
-            } catch(NotAccptedInputLengthException e) {
+            } catch (NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
-            } catch(DuplicatedInputException e) {
+            } catch (DuplicatedInputException e) {
                 System.out.println(e.getMessage());
             }
             break;
@@ -65,11 +65,11 @@ public class InputView {
             try {
                 name = validate.isAccptedInputTerminalStation(scanner.nextLine());
                 System.out.println();
-            } catch(NotAccptedInputLengthException e) {
+            } catch (NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
-            } catch(NotRegisterStationException e) {
+            } catch (NotRegisterStationException e) {
                 System.out.println(e.getMessage());
-            } 
+            }
             break;
         }
         return name;
@@ -81,14 +81,14 @@ public class InputView {
             try {
                 name = validate.isAccptedInputTerminalStation(scanner.nextLine(), upwardStation);
                 System.out.println();
-            } catch(NotAccptedInputLengthException e) {
+            } catch (NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
-            } catch(NotRegisterStationException e) {
+            } catch (NotRegisterStationException e) {
                 System.out.println(e.getMessage());
-            } catch(TerminalStationNameEqualException e) {
+            } catch (TerminalStationNameEqualException e) {
                 System.out.println(e.getMessage());
             }
-            break; 
+            break;
         }
         return name;
     }
@@ -99,11 +99,11 @@ public class InputView {
             try {
                 name = validate.isAccptedDeleteInput(scanner.nextLine(), category);
                 System.out.println();
-            } catch(NotAccptedInputLengthException e) {
+            } catch (NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
-            } catch(DuplicatedStationInLineException e) {
+            } catch (DuplicatedStationInLineException e) {
                 System.out.println(e.getMessage());
-            } catch(NotAccptedDeleteInputException e) {
+            } catch (NotAccptedDeleteInputException e) {
                 System.out.println(e.getMessage());
             }
             break;
@@ -117,9 +117,9 @@ public class InputView {
             try {
                 name = validate.isAccptedInputSectionLine(scanner.nextLine());
                 System.out.println();
-            } catch(NotAccptedInputLengthException e) {
+            } catch (NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
-            } catch(NotRegisterSectionException e) {
+            } catch (NotRegisterSectionException e) {
                 System.out.println(e.getMessage());
             }
             break;
@@ -132,7 +132,7 @@ public class InputView {
         while (true) {
             try {
                 name = validate.isAccptedInputSectionStation(input, line);
-            } catch(NotAccptedSectionStationInputException e) {
+            } catch (NotAccptedSectionStationInputException e) {
                 System.out.println(e.getMessage());
             }
             break;
@@ -146,9 +146,9 @@ public class InputView {
             try {
                 order = validate.isAccptedInputSectionOrder(scanner.nextLine(), line);
                 System.out.println();
-            } catch(NotAccptedSectionOrderInputException e) {
+            } catch (NotAccptedSectionOrderInputException e) {
                 System.out.println(e.getMessage());
-            } catch(ExcessSectionOrderInputException e) {
+            } catch (ExcessSectionOrderInputException e) {
                 System.out.println(e.getMessage());
             }
             break;
@@ -162,11 +162,11 @@ public class InputView {
             try {
                 name = validate.isAccptedInputSectionDeleteStation(scanner.nextLine(), line);
                 System.out.println();
-            } catch(NotAccptedInputLengthException e) {
+            } catch (NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());
-            } catch(NotAccptedDeleteSectionStationInputException e) {
+            } catch (NotAccptedDeleteSectionStationInputException e) {
                 System.out.println(e.getMessage());
-            } catch(StationInLineMinNumException e) {
+            } catch (StationInLineMinNumException e) {
                 System.out.println(e.getMessage());
             }
             break;

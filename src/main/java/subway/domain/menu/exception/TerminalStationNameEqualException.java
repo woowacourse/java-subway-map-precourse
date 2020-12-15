@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class TerminalStationNameEqualException extends RuntimeException {
     public TerminalStationNameEqualException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.TERMINAL_STATION_NAME_EQUAL + CommonMessage.NEW_LINE);
+                + ExceptionMessage.TERMINAL_STATION_NAME_EQUAL + CommonMessage.NEW_LINE);
     }
 }

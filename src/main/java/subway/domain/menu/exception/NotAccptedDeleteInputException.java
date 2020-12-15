@@ -7,6 +7,6 @@ import subway.domain.menu.constant.ExceptionMessage;
 public class NotAccptedDeleteInputException extends RuntimeException {
     public NotAccptedDeleteInputException() {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
-        + ExceptionMessage.NOT_ACCPTED_DELETE_INPUT_MESSAGE + CommonMessage.NEW_LINE);
+                + ExceptionMessage.NOT_ACCPTED_DELETE_INPUT_MESSAGE + CommonMessage.NEW_LINE);
     }
 }

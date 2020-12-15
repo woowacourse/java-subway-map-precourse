@@ -122,7 +122,7 @@ public class Validate {
         if (ExcessSectionOrder(n, line)) {
             throw new ExcessSectionOrderInputException();
         }
-        
+
         return String.valueOf(n - MIN_ORDER);
     }
 
@@ -191,7 +191,7 @@ public class Validate {
                 return true;
             }
         }
-        
+
         int n = Integer.parseInt(input);
         if (n < MIN_ORDER) {
             return true;
