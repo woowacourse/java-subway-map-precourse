@@ -2,11 +2,10 @@ package subway;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import javax.lang.model.util.Types;
 
 public class Application {
+
     static final String stationInput = "1";
     static final String lineInput = "2";
     static final String sectionInput = "3";
@@ -21,7 +20,7 @@ public class Application {
         while (!exitFlag) {
             mainScreenPrint();
             String mainInput = scanner.next();
-            exitFlag = isExit(mainInput);
+            exitFlag = isExitAndValidate(mainInput);
         }
     }
 
@@ -36,14 +35,11 @@ public class Application {
             + "## 원하는 기능을 선택하세요.");
     }
 
-    public static boolean isExit(String mainInput) {
+    public static boolean isExitAndValidate(String mainInput) {
         if (!mainInputWhiteList.contains(mainInput)) {
             System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
-            return true;
+            throw new IllegalArgumentException();
         }
-        if (mainInput.equalsIgnoreCase(exitInput)) {
-            return true;
-        }
-        return false;
+        return mainInput.equalsIgnoreCase(exitInput);
     }
 }
