@@ -33,7 +33,8 @@ public class SubwayManageController {
                 || isSubMenu(selector)) {
                 continue;
             }
-            executeItem(selector);
+            executeItem(selector, menu);
+            setMenuIdInformation(MAIN_MENU_ID, MAIN_MENU_ID);
         }
     }
 
@@ -67,13 +68,14 @@ public class SubwayManageController {
         this.currentMenuId = currentMenuId;
     }
 
-    private void executeItem(Selector selector) {
+    private void executeItem(Selector selector, Menu menu) {
         try {
             Manipulable item = (Manipulable) selector;
             item.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            setMenuIdInformation(MAIN_MENU_ID, MAIN_MENU_ID);
+            outputView.printScreen(menu);
+            executeItem(selector, menu);
         }
     }
 

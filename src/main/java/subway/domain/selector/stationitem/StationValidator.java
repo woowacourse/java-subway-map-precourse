@@ -9,7 +9,7 @@ import subway.domain.station.StationRepository;
 public class StationValidator {
 
     public static final int MIN_NAME_LENGTH = 2;
-    public static final String DUPLICATE_STATION_NAME_ERROR = "[ERROR] 이미 등록되어있는 역 입니다.";
+    public static final String DUPLICATE_STATION_NAME_ERROR = "\n[ERROR] 이미 등록되어있는 역 입니다.";
     public static final String UNDER_NAME_LENGTH_ERROR = "[ERROR] 역 이름은 2글자 이상이어야 합니다.";
     public static final String CONTAINS_LINE_ERROR = "[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.";
     public static final String NOT_CONTAINS_ERROR = "[ERROR] 입력하신 역은 등록되지 않았습니다.";

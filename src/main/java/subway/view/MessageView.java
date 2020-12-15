@@ -3,7 +3,7 @@ package subway.view;
 public class MessageView {
 
     public static final String STATION_ADD = "## 등록할 역 이름을 입력하세요.";
-    public static final String STATION_ADD_SUCCESS = "[INFO] 지하철 역이 등록되었습니다.";
+    public static final String STATION_ADD_SUCCESS = "\n[INFO] 지하철 역이 등록되었습니다.";
     public static final String STATION_GET_SUCCESS = "\n## 역 목록";
     public static final String STATION_REMOVE_INPUT = "## 삭제할 역 이름을 입력하세요.";
     public static final String STATION_REMOVE_SUCCESS = "[INFO] 지하철 역이 삭제되었습니다.";

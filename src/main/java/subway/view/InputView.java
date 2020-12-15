@@ -9,18 +9,20 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final InputValidator inputValidator = new InputValidator();
     private static final MessageView messageView = new MessageView();
+    private static final OutputView outputView = new OutputView();
 
     public Selector getSelector(Menu menu) {
         try {
             messageView.printSelectSelectorMessage();
             String input = scanner.nextLine();
-            inputValidator.validateSelectorNumber(menu, input);
+            inputValidator.validateSelectorId(menu, input);
             if (menu.getMenus().get(input) != null) {
                 return menu.getMenus().get(input);
             }
             return menu.getItems().get(input);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            outputView.printScreen(menu);
             return getSelector(menu);
         }
     }
