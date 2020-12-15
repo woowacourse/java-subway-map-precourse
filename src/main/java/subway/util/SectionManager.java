@@ -27,14 +27,17 @@ public class SectionManager {
 
     public void addSection(Scanner scanner) throws IllegalArgumentException {
         Station station = null;
+        String inputStation = getStationName(scanner);
         for(Station st : StationRepository.stations()) {
-            if(st.getName().equals(getStationName(scanner))) {
+            if(st.getName().equals(inputStation)) {
                 station = st;
             }
         }
+        String inputLine = getLineName(scanner);
+        int order = getOrder(scanner);
         for(Section section : SectionRepository.sections()) {
-            if(section.getLine().getName().equals(getLineName(scanner))) {
-                section.addStation(getOrder(scanner), station);
+            if(section.getLine().getName().equals(inputLine)) {
+                section.addStation(order, station);
             }
         }
         System.out.println(Constants.SECTION_ADD_COMPLETE);
@@ -76,14 +79,13 @@ public class SectionManager {
 
 
     public void removeSection(Scanner scanner) {
-        String inputLine, inputStation;
         System.out.println(Constants.ASK_SECTION_REMOVE_LINE);
-        inputLine = scanner.nextLine().trim();
+        String inputLine = scanner.nextLine().trim();
         if(!ErrorManager.isLineExist(inputLine)) {
             throw new IllegalArgumentException(Constants.LINE_NOT_EXIST);
         }
         System.out.println(Constants.ASK_SECTION_REMOVE_STATION);
-        inputStation = scanner.nextLine().trim();
+        String inputStation = scanner.nextLine().trim();
         if(!ErrorManager.isStationExist(inputStation)) {
             throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
         }

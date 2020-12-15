@@ -22,10 +22,8 @@ public class StationRepository {
         int check = 0;
         for(Section section : SectionRepository.sections()) {
             for(Station station : section.getStation()) {
-                if(station.getName().equals(name)) {
-                    if(section.getStation().size() <= 2) {
+                if(station.getName().equals(name) && section.getStation().size() <= 2) {
                         check = 1;
-                    }
                 }
             }
         }

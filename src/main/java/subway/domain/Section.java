@@ -12,18 +12,14 @@ public class Section {
     }
 
     public void addStation(int index, Station station) {
-        this.station.add(index, station);
+        if(index > this.station.size()) { index = this.station.size(); }
+        if(index <= 0) { index = 1; }
+        this.station.add(index-1, station);
     }
 
     public void addStation(Station station) { this.station.add(station); }
 
-    public Line getLine() {
-        return line;
-    }
+    public Line getLine() { return line; }
 
-    public List<Station> getStation() {
-        return this.station;
-    }
-
-
+    public List<Station> getStation() { return this.station; }
 }

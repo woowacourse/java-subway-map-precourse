@@ -50,7 +50,6 @@ public class LineManager {
         System.out.println(Constants.ASK_LOWER_END);
         inputStations[1] = scanner.nextLine().trim();
         checkStation(inputStations[1]);
-
         return inputStations;
     }
 
