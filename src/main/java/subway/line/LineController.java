@@ -34,31 +34,32 @@ public class LineController {
     }
 
     private static boolean selectOption(char option, InputView inputView) {
-        if (option == ADD_LINE) {
-            return addNewLine(inputView);
-        }
-        if (option == DELETE_LINE) {
-            return deleteLine(inputView);
-        }
-        if (option == PRINT_LINE) {
-            return printRegisteredLine();
+        try {
+            if (option == ADD_LINE) {
+                return addNewLine(inputView);
+            }
+            if (option == DELETE_LINE) {
+                return deleteLine(inputView);
+            }
+            if (option == PRINT_LINE) {
+                return printRegisteredLine();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     private static boolean addNewLine(InputView inputView) {
-        boolean success = false;
-        try {
-            Line line = getNewLine(inputView);
-            Station startStation = getStartStation(inputView);
-            Station endStation = getEndStation(startStation, inputView);
-            success = LineService.addLine(line, startStation, endStation);
-            if (success) {
-                LineManagementView.addLineComplete();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        Line line = getNewLine(inputView);
+        Station startStation = getStartStation(inputView);
+        Station endStation = getEndStation(startStation, inputView);
+        boolean success = LineService.addLine(line, startStation, endStation);
+
+        if (success) {
+            LineManagementView.addLineComplete();
         }
+
         return success;
     }
 
@@ -82,17 +83,14 @@ public class LineController {
     }
 
     private static boolean deleteLine(InputView inputView) {
-        boolean success = false;
-        try {
-            LineManagementView.askDeleteLineName();
-            String lineName = inputView.lineName();
-            success = LineService.deleteLine(lineName);
-            if (success) {
-                LineManagementView.deleteLineComplete();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        LineManagementView.askDeleteLineName();
+        String lineName = inputView.lineName();
+        boolean success = LineService.deleteLine(lineName);
+
+        if (success) {
+            LineManagementView.deleteLineComplete();
         }
+
         return success;
     }
 
