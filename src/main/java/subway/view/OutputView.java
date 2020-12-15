@@ -15,8 +15,10 @@ public class OutputView {
     public static final String SECTION_MENU_HEADER = "## 구간 관리 화면";
     public static final String PLEASE_SELECT_MENU_MSG = "## 원하는 기능을 선택하세요.";
     public static final String ADD_NAME_MSG_FORMAT = "## 등록할 %s 이름을 입력하세요.";
-    public static final String DELETE_NAME_MSG_FORMAT = "삭제할 %s 이름을 입력하세요.";
+    public static final String DELETE_NAME_MSG_FORMAT = "## 삭제할 %s 이름을 입력하세요.";
     public static final String INFO_PREFIX_MSG = "[INFO] ";
+    public static final String INFO_COMPLETE_MSG_FORMAT = "%s이 %s되었습니다.";
+    public static final String EMPTY_STRING = "";
 
     public static void showMainMenu() {
         String header = MAIN_MENU_HEADER + System.lineSeparator();
@@ -78,6 +80,12 @@ public class OutputView {
         names.stream()
                 .map(INFO_PREFIX_MSG::concat)
                 .forEach(System.out::println);
-        System.out.println();
+        println(EMPTY_STRING);
+    }
+
+    public static void showCompleteMessage(String subject, String action) {
+        println(EMPTY_STRING);
+        println(String.format(INFO_PREFIX_MSG.concat(INFO_COMPLETE_MSG_FORMAT), subject, action));
+        println(EMPTY_STRING);
     }
 }
