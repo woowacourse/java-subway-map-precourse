@@ -19,6 +19,8 @@ public class ManagementInitializer {
     public static final String THIRD_LINE = "3호선";
     public static final String SINBUNDANG_LINE = "신분당선";
 
+    private ManagementInitializer() {}
+
     public static ManagementController initialize() {
         String[] stations = {KYODAE_STATION, KANGNAM_STATION, YEOKSAM_STATION,
                 NAMBU_TERMINAL_STATION, YANGJAE_STATION, YANGJAE_CITIZEN_STATION, MAEBONG_STATION};
