@@ -34,6 +34,7 @@ public class StationController {
     }
 
     public static void printStation() {
+        SubwayController.output.printStationListInfoMessage();
         for (Station station : StationRepository.stations()) {
             SubwayController.output.printResult(station.getName());
         }

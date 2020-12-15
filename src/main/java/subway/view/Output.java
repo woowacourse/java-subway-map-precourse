@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.screen.LineScreen;
 import subway.screen.MainScreen;
+import subway.screen.Screen;
 import subway.screen.SectionScreen;
 import subway.screen.StationScreen;
 
@@ -12,7 +13,7 @@ public class Output {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_PREFIX = "[INFO] ";
     private static final String DIVIDING_LINE = "---";
-
+    private static final String SUBWAY_MAP_INFO = "지하철 노선도";
 	
     private MainScreen main;
     private StationScreen station;
@@ -50,8 +51,17 @@ public class Output {
         section.printScreen();
     }
     
-
+    public void printStationListInfoMessage() {
+        station.printStationListInfoMessage();
+    }
+    
+    public void printLineListInfoMessage() {
+        line.printLineListInfoMessage();
+    }
+    
     public static void printSubwayMap() {
+        System.out.println();
+        System.out.println(Screen.SHARP + SUBWAY_MAP_INFO);
         for (Line line : LineRepository.lines()) {
         	System.out.println(line.getName());
         	System.out.println(DIVIDING_LINE);

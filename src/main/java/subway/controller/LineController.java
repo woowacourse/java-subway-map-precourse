@@ -41,6 +41,7 @@ public class LineController {
     }
 	
     public static void printLine() {
+        SubwayController.output.printLineListInfoMessage();
         for (Line line : LineRepository.lines()) {
             SubwayController.output.printResult(line.getName());
         }

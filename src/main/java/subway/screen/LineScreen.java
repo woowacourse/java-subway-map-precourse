@@ -3,6 +3,7 @@ package subway.screen;
 public class LineScreen implements Screen{
     private static final String LINE_MANAGE_SCREEN_INFO = "노선 관리 화면";
     private static final String[] LINE_MANAGE_INFO = {"노선 등록", "노선 삭제", "노선 조회"};
+    private static final String LINE_LIST_INFO = "노선 목록";
 	
     private static final String INPUT_ADD_LINE_NAME = "등록할 노선 이름을 입력하세요.";
     private static final String INPUT_ADD_LINE_UP_TERMINAL_NAME = "등록할 노선의 상행 종점역 이름을 입력하세요.";
@@ -18,6 +19,11 @@ public class LineScreen implements Screen{
         }
         System.out.println(BACK);
         System.out.println();
+    }
+    
+    public static void printLineListInfoMessage() {
+    	System.out.println();
+    	System.out.println(SHARP + LINE_LIST_INFO);
     }
     
     public static void askAddLineName() {
