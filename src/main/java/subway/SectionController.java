@@ -37,10 +37,6 @@ public class SectionController {
         }
     }
 
-    private static boolean sectionDelete(Scanner scanner) {
-        return true;
-    }
-
     private static boolean sectionAdd(Scanner scanner) {
         String lineName;
         String stationName;
@@ -67,6 +63,23 @@ public class SectionController {
         LineRepository.getLineByName(lineName).addStation(insertStation, stationNumber);
 
         OutputView.sectionAddSuccess();
+        return true;
+    }
+
+    private static boolean sectionDelete(Scanner scanner) {
+        String deleteLineName;
+        String deleteStationName;
+        Line line;
+        System.out.println("임시 메세지 : 삭제 노선 입력");
+        deleteLineName = scanner.nextLine();
+
+        System.out.println("임시 메세지 : 삭제 역 이름 입력");
+        deleteStationName = scanner.nextLine();
+
+        line = LineRepository.getLineByName(deleteLineName);
+        line.deleteStationByName(deleteStationName);
+
+        System.out.println("임시 메세지 : 성공");
         return true;
     }
 

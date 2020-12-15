@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -16,8 +17,12 @@ public class Line {
         return name;
     }
 
+    public boolean deleteStationByName(String name) {
+        return this.registeredStation.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
     public int length(){
-        return registeredStation.size();
+        return this.registeredStation.size();
     }
     public void addStation(Station stationName) {
         this.registeredStation.add(stationName);
