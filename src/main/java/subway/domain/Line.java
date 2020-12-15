@@ -31,7 +31,7 @@ public class Line {
         return stations.removeIf(station -> Objects.equals(station, target));
     }
 
-    public List<Station> getStations() {
+    public List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
 

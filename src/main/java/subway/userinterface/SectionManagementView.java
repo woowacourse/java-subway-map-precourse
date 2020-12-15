@@ -106,7 +106,7 @@ public class SectionManagementView extends View {
     }
 
     private void validatePossibleSequence(Line line, int sequence) {
-        if (line.getStations().size() < sequence) {
+        if (line.stations().size() < sequence) {
             throw new IllegalArgumentException("가능하지 않는 순서입니다.");
         }
     }
@@ -134,7 +134,7 @@ public class SectionManagementView extends View {
         System.out.println("## 삭제할 구간의 역을 입력하세요.");
         String input = scanner.nextLine();
 
-        return line.getStations()
+        return line.stations()
                 .stream()
                 .filter(station -> Objects.equals(station.getName(), input))
                 .findFirst()

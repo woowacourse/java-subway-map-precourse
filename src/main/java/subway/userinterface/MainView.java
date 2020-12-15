@@ -79,7 +79,7 @@ public class MainView extends View {
     private String getStringAllStation(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        line.getStations().forEach(stringBuilder::append);
+        line.stations().forEach(stringBuilder::append);
 
         return stringBuilder.toString();
     }
