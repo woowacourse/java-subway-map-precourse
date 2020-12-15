@@ -1,13 +1,17 @@
 package subway.view;
 
+import static subway.console.Button.BACK;
+import static subway.console.Button.ONE;
+import static subway.console.Button.THREE;
+import static subway.console.Button.TWO;
 import static subway.console.Output.print;
-import static subway.console.Output.printPage;
 import static subway.console.Output.printStations;
 
 import java.util.Arrays;
 import java.util.List;
-import subway.console.Button;
 import subway.console.Input;
+import subway.console.Output;
+import subway.console.Page;
 import subway.console.message.InfoMessage;
 import subway.console.message.InputMessage;
 import subway.controller.StationController;
@@ -17,14 +21,7 @@ import subway.controller.StationController;
  * @since 2020/12/11
  */
 public class StationView {
-    private static final List<String> STATION_PAGE = Arrays.asList(
-            "\n## 역 관리 화면",
-            "1. 역 등록",
-            "2. 역 삭제",
-            "3. 역 조회",
-            "B. 돌아가기",
-            "\n## 원하는 기능을 선택하세요.");
-    private static final List<String> STATION_BUTTONS = Arrays.asList("1", "2", "3", "B");
+    private static final List<String> STATION_BUTTONS = Arrays.asList(ONE, TWO, THREE, BACK);
 
     private final Input input;
     private final StationController stationController;
@@ -49,12 +46,12 @@ public class StationView {
     }
 
     private String inputButton() {
-        printPage(STATION_PAGE);
+        Output.printPage(Page.STATION.getPages());
         return input.nextButton(STATION_BUTTONS);
     }
 
     private boolean isCreate(String button) {
-        if (button.equals(Button.ONE)) {
+        if (button.equals(ONE)) {
             print(InputMessage.CREATE_STATION);
             if (isCreateStation()) {
                 print(InfoMessage.CREATE_STATION);
@@ -68,7 +65,7 @@ public class StationView {
     }
 
     private boolean isDelete(String button) {
-        if (button.equals(Button.TWO)) {
+        if (button.equals(TWO)) {
             print(InputMessage.DELETE_STATION);
             if (isDeleteStation()) {
                 print(InfoMessage.DELETE_STATION);
@@ -82,7 +79,7 @@ public class StationView {
     }
 
     private boolean isRead(String button) {
-        if (button.equals(Button.THREE)) {
+        if (button.equals(THREE)) {
             readStations();
             return true;
         }
@@ -94,6 +91,6 @@ public class StationView {
     }
 
     private boolean isBack(String button) {
-        return button.equals(Button.BACK);
+        return button.equals(BACK);
     }
 }

@@ -1,15 +1,18 @@
 package subway.view;
 
+import static subway.console.Button.BACK;
+import static subway.console.Button.ONE;
+import static subway.console.Button.THREE;
+import static subway.console.Button.TWO;
 import static subway.console.Output.print;
-import static subway.console.Output.printPage;
 
 import java.util.Arrays;
 import java.util.List;
-import subway.console.Button;
 import subway.console.Input;
+import subway.console.Output;
+import subway.console.Page;
 import subway.console.message.InfoMessage;
 import subway.console.message.InputMessage;
-import subway.console.Output;
 import subway.controller.LineController;
 
 /**
@@ -17,14 +20,7 @@ import subway.controller.LineController;
  * @since 2020/12/11
  */
 public class LineView {
-    private static final List<String> LINE_PAGE = Arrays.asList(
-            "\n## 노선 관리 화면",
-            "1. 노선 등록",
-            "2. 노선 삭제",
-            "3. 노선 조회",
-            "B. 돌아가기",
-            "\n## 원하는 기능을 선택하세요.");
-    private static final List<String> LINE_BUTTONS = Arrays.asList("1", "2", "3", "B");
+    private static final List<String> LINE_BUTTONS = Arrays.asList(ONE, TWO, THREE, BACK);
 
     private final Input input;
     private final LineController lineController;
@@ -49,12 +45,12 @@ public class LineView {
     }
 
     private String inputButton() {
-        printPage(LINE_PAGE);
+        Output.printPage(Page.LINE.getPages());
         return input.nextButton(LINE_BUTTONS);
     }
 
     private boolean isCreate(String button) {
-        if (button.equals(Button.ONE)) {
+        if (button.equals(ONE)) {
             print(InputMessage.CREATE_LINE);
             if (isCreateLine(input.nextLine())) {
                 print(InfoMessage.CREATE_LINE);
@@ -84,7 +80,7 @@ public class LineView {
     }
 
     private boolean isDelete(String button) {
-        if (button.equals(Button.TWO)) {
+        if (button.equals(TWO)) {
             print(InputMessage.DELETE_LINE);
             if (isDeleteLine()) {
                 print(InfoMessage.DELETE_LINE);
@@ -98,7 +94,7 @@ public class LineView {
     }
 
     private boolean isRead(String button) {
-        if (button.equals(Button.THREE)) {
+        if (button.equals(THREE)) {
             readLines();
             return true;
         }
@@ -110,6 +106,6 @@ public class LineView {
     }
 
     private boolean isBack(final String button) {
-        return button.equals(Button.BACK);
+        return button.equals(BACK);
     }
 }

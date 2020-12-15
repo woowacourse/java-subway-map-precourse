@@ -1,25 +1,23 @@
 package subway.view;
 
+import static subway.console.Button.END;
+import static subway.console.Button.FOUR;
+import static subway.console.Button.ONE;
+import static subway.console.Button.THREE;
+import static subway.console.Button.TWO;
+
 import java.util.Arrays;
 import java.util.List;
-import subway.console.Button;
 import subway.console.Input;
 import subway.console.Output;
+import subway.console.Page;
 
 /**
  * @author yhh1056
  * @since 2020/12/11
  */
 public class MainView {
-    private static final List<String> MAIN_PAGE = Arrays.asList(
-            "## 메인 화면",
-            "1. 역 관리",
-            "2. 노선 관리",
-            "3. 구간 관리",
-            "4. 지하철 노선도 출력",
-            "Q. 종료",
-            "\n## 원하는 기능을 선택하세요.");
-    private static final List<String> MAIN_BUTTONS = Arrays.asList("1", "2", "3", "4", "Q");
+    private static final List<String> MAIN_BUTTONS = Arrays.asList(ONE, TWO, THREE, FOUR, END);
 
     private final Input input;
     private final StationView stationView;
@@ -36,7 +34,7 @@ public class MainView {
     }
 
     public void selectMainPage() {
-        Output.printPage(MAIN_PAGE);
+        Output.printPage(Page.MAIN.getPages());
         selectPage(input.nextButton(MAIN_BUTTONS));
     }
 
@@ -53,34 +51,34 @@ public class MainView {
 
     private String inputButton() {
         Output.printBlankLine();
-        Output.printPage(MAIN_PAGE);
+        Output.printPage(Page.MAIN.getPages());
         return input.nextButton(MAIN_BUTTONS);
     }
 
     private boolean isEnd(String button) {
-        return button.equals(Button.END);
+        return button.equals(END);
     }
 
     private void selectStationPage(final String button) {
-        if (button.equals(Button.ONE)) {
+        if (button.equals(ONE)) {
             stationView.selectStationPage();
         }
     }
 
     private void selectLinePage(final String button) {
-        if (button.equals(Button.TWO)) {
+        if (button.equals(TWO)) {
             lineView.selectLinePage();
         }
     }
 
     private void selectSectionPage(final String button) {
-        if (button.equals(Button.THREE)) {
+        if (button.equals(THREE)) {
             sectionView.selectSectionPage();
         }
     }
 
     private void selectSubwayLinePage(final String button) {
-        if (button.equals(Button.FOUR)) {
+        if (button.equals(FOUR)) {
             subwayLineView.showSubwayLine();
         }
     }

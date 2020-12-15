@@ -1,12 +1,15 @@
 package subway.view;
 
+import static subway.console.Button.BACK;
+import static subway.console.Button.ONE;
+import static subway.console.Button.TWO;
 import static subway.console.Output.print;
-import static subway.console.Output.printPage;
 
 import java.util.Arrays;
 import java.util.List;
-import subway.console.Button;
 import subway.console.Input;
+import subway.console.Output;
+import subway.console.Page;
 import subway.console.message.InfoMessage;
 import subway.console.message.InputMessage;
 import subway.controller.SectionController;
@@ -16,13 +19,7 @@ import subway.controller.SectionController;
  * @since 2020/12/11
  */
 public class SectionView {
-    private static final List<String> SECTION_PAGE = Arrays.asList(
-            "\n## 구간 관리 화면",
-            "1. 구간 등록",
-            "2. 구간 삭제",
-            "B. 돌아가기",
-            "\n## 원하는 기능을 선택하세요.");
-    private static final List<String> SECTION_BUTTONS = Arrays.asList("1", "2", "B");
+    private static final List<String> SECTION_BUTTONS = Arrays.asList(ONE, TWO, BACK);
 
     private final Input input;
     private final SectionController sectionController;
@@ -46,12 +43,12 @@ public class SectionView {
     }
 
     private String inputButton() {
-        printPage(SECTION_PAGE);
+        Output.printPage(Page.SECTION.getPages());
         return input.nextButton(SECTION_BUTTONS);
     }
 
     private boolean isCreate(String button) {
-        if (button.equals(Button.ONE)) {
+        if (button.equals(ONE)) {
 
             if (createSection()) {
                 print(InfoMessage.CREATE_SECTION);
@@ -90,7 +87,7 @@ public class SectionView {
     }
 
     private boolean isDelete(String button) {
-        if (button.equals(Button.TWO)) {
+        if (button.equals(TWO)) {
             if (deleteSection()) {
                 print(InfoMessage.DELETE_SECTION);
             }
@@ -123,6 +120,6 @@ public class SectionView {
     }
 
     private boolean isBack(String button) {
-        return button.equals(Button.BACK);
+        return button.equals(BACK);
     }
 }
