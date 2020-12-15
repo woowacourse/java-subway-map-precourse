@@ -35,10 +35,8 @@ public class LineRepository {
 
 	public static void viewLineRepository() {
 		for (int line = 0; line < lines.size(); line++) {
-			System.out.println(lines.get(line).getName());
 			lines.get(line).viewLine();
-			
-			System.out.println("=============");
+			System.out.println("");
 		}
 	}
 }

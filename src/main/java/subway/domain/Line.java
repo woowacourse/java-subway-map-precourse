@@ -32,8 +32,10 @@ public class Line {
 	}
 
 	public void viewLine() {
+		System.out.println("[INFO] " + name);
+		System.out.println("[INFO] " + "---");		
 		for (int station = 0; station < stations.size(); station++) {
-			System.out.println(stations.get(station).getName());
+			System.out.println("[INFO] " + stations.get(station).getName());
 		}
 	}
 
