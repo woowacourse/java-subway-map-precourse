@@ -83,28 +83,32 @@ public class LineController {
         String lineName;
 
         lineName = InputView.scanLineDeleteName(scanner);
-
-        if (!LineRepository.deleteLineByName(lineName)) { // 역 이름이 존재하지 않을 경우
+        if (notFoundStationName(lineName)) {
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
-
-
         OutputView.stationDeleteSuccessPrint();
         return true;
+    }
+
+    private static boolean notFoundStationName(String lineName) {
+        return !LineRepository.deleteLineByName(lineName);
     }
 
     private static boolean lineCheck() {
         String[] lineList;
         lineList = LineRepository.getAllLineNames().toArray(String[]::new);
-
-        if (lineList.length < BoundaryCheckDigit.LINE_LIST_LIMIT_MINIMUM
-            .getBoundaryCheckDigit()) {
+        if (isEmptyLineRepository(lineList)) {
             OutputView.zeroLineListErrorPrint();
             return false;
         }
         OutputView.lineListPrint(lineList);
         return true;
+    }
+
+    private static boolean isEmptyLineRepository(String[] lineList) {
+        return lineList.length < BoundaryCheckDigit.LINE_LIST_LIMIT_MINIMUM
+            .getBoundaryCheckDigit();
     }
 
 

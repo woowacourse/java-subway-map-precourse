@@ -59,10 +59,6 @@ public class SectionController {
             line = LineRepository.getLineByName(lineName);
             stationNumber = InputView.scanSectionAddIndex(scanner, line);
 
-
-
-
-
         } catch (IllegalArgumentException error) {
             return false;
         }
