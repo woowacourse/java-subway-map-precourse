@@ -23,25 +23,33 @@ public class MainMenu {
     //TODO 메뉴번호 이외의 입력을 받았을 때 예외사항 출력 구현해야함
     public void start() {
         new DefaultSetting().defaultSetting();
+        selectMainMenu();
+    }
+
+    private void selectMainMenu() {
         while (true) {
             printMainMenu();
             String input = scanner.nextLine();
             System.out.println();
-            if (input.equals("1")) {
-                new StationMenu(scanner).startStationMenu();
-            }
-            if (input.equals("2")) {
-                new LineMenu(scanner).startLineMenu();
-            }
-            if (input.equals("3")) {
-                new SectionMenu(scanner).startSectionMenu();
-            }
-            if (input.equals("4")) {
-                new SubwayMapMenu().printSubwayMap();
-            }
+            mainMenu(input);
             if (input.equals("Q")) {
                 break;
             }
+        }
+    }
+
+    private void mainMenu(String input) {
+        if (input.equals("1")) {
+            new StationMenu(scanner).startStationMenu();
+        }
+        if (input.equals("2")) {
+            new LineMenu(scanner).startLineMenu();
+        }
+        if (input.equals("3")) {
+            new SectionMenu(scanner).startSectionMenu();
+        }
+        if (input.equals("4")) {
+            new SubwayMapMenu().printSubwayMap();
         }
     }
 
