@@ -31,45 +31,43 @@ public class StationController {
     }
 
     private static boolean selectOption(char option, InputView inputView) {
-        if (option == ADD_STATION) {
-            return addNewStation(inputView);
-        }
-        if (option == DELETE_STATION) {
-            return deleteStation(inputView);
-        }
-        if (option == PRINT_STATION) {
-            return printRegisteredStation();
+        try {
+            if (option == ADD_STATION) {
+                return addNewStation(inputView);
+            }
+            if (option == DELETE_STATION) {
+                return deleteStation(inputView);
+            }
+            if (option == PRINT_STATION) {
+                return printRegisteredStation();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     private static boolean addNewStation(InputView inputView) {
-        boolean success = false;
-        try {
-            StationManagementView.askNewStationName();
-            String stationName = inputView.stationName();
-            success = StationService.addStation(stationName);
-            if (success) {
-                StationManagementView.addStationComplete();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        StationManagementView.askNewStationName();
+        String stationName = inputView.stationName();
+        boolean success = StationService.addStation(stationName);
+
+        if (success) {
+            StationManagementView.addStationComplete();
         }
+
         return success;
     }
 
     private static boolean deleteStation(InputView inputView) {
-        boolean success = false;
-        try {
-            StationManagementView.askDeleteStationName();
-            String stationName = inputView.stationName();
-            success = StationService.deleteStation(stationName);
-            if (success) {
-                StationManagementView.deleteStationComplete();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        StationManagementView.askDeleteStationName();
+        String stationName = inputView.stationName();
+        boolean success = StationService.deleteStation(stationName);
+
+        if (success) {
+            StationManagementView.deleteStationComplete();
         }
+
         return success;
     }
 
