@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class User {
 
-    final Scanner scanner = new Scanner(System.in);
+    final static Scanner scanner = new Scanner(System.in);
 
-    public String getInput(){
+    public static String getInput(){
         return scanner.nextLine();
     }
 }
