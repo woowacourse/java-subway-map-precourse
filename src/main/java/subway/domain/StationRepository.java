@@ -24,4 +24,12 @@ public class StationRepository {
     {
     	System.out.println(stations.size());
     }
+    
+    public static void viewStations()
+    {
+    	for(int station=0; station<stations.size();station++)
+    	{
+    		System.out.println(stations.get(station).getName());
+    	}
+    }
 }
