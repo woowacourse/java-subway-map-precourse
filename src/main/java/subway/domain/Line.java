@@ -76,13 +76,6 @@ public class Line {
         return true;
     }
 
-    public static boolean validateExistentLineName(String lineName, String lineMessage) {
-        if (LineRepository.validateUniqueName(lineName)) {
-            throw new NonExistentNameException(lineMessage);
-        }
-        return true;
-    }
-
     private static boolean validateLineNameLength(String stationName) {
         if (stationName.length() >=  MINIMUM_LENGTH) {
             return true;

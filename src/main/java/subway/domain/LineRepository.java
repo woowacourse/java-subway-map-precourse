@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.domain.exception.NonExistentNameException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -68,7 +69,7 @@ public class LineRepository {
     public static void delete(InputView inputView, String lineMessage) {
         OutputView.printDeleteActionMessage(lineMessage);
         String deleteLineName = inputView.getInput();
-        if (Line.validateExistentLineName(deleteLineName, lineMessage)) {
+        if (validateExistentLineName(deleteLineName, lineMessage)) {
             LineRepository.deleteLineByName(deleteLineName);
             OutputView.printDeleteActionFinishMessage(lineMessage);
         }
@@ -84,5 +85,12 @@ public class LineRepository {
             lineNames.add(lines.get(i).getName());
         }
         return lineNames;
+    }
+
+    public static boolean validateExistentLineName(String lineName, String lineMessage) {
+        if (LineRepository.validateUniqueName(lineName)) {
+            throw new NonExistentNameException(lineMessage);
+        }
+        return true;
     }
 }

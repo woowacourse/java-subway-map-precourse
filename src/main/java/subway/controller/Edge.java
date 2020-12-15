@@ -49,7 +49,7 @@ public class Edge {
     }
 
     private static void validateLineState(String lineName) {
-        Line.validateExistentLineName(lineName, LINE_MESSAGE);
+        LineRepository.validateExistentLineName(lineName, LINE_MESSAGE);
         validateLineRange(lineName);
     }
 
@@ -78,7 +78,7 @@ public class Edge {
     private static String scanAddEdgeLineName(InputView inputView) {
         OutputView.printInputMessage(LINE_MESSAGE);
         String lineName = inputView.getInput();
-        Line.validateExistentLineName(lineName, LINE_MESSAGE);
+        LineRepository.validateExistentLineName(lineName, LINE_MESSAGE);
         return lineName;
     }
 
