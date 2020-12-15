@@ -3,6 +3,9 @@ package subway.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -41,15 +44,28 @@ public class SectionManagement {
 		if (selectedButton.equals(SectionButton.BACK_TO_MAIN.getButton())) {
 			return;
 		} else if (selectedButton.equals(SectionButton.REGISTER.getButton())) {
-			
+			registerSection();
 		} else if (selectedButton.equals(SectionButton.DELETE.getButton())) {
-			
+			deleteSection();
 		}
 	}
 	
 	public static void registerSection() {
 		String lineName = InputView.getSelectLineSection();
 		String stationName = InputView.getSelectStationSection();
-		
+		Line sectionLine = LineRepository.getLineName(lineName);
+		Station sectionStation = StationRepository.getStationName(stationName);
+		int sequence = InputView.getRegisterSequenceSection();
+		sectionLine.registerSection(sequence, stationName);
+		sectionStation.registerStationSet(stationName);
+	}
+	
+	public static void deleteSection() {
+		String lineName = InputView.getDeleteLineSection();
+		String stationName = InputView.getDeleteStationSection();
+		Line sectionLine = LineRepository.getLineName(lineName);
+		Station sectionStation = StationRepository.getStationName(stationName);
+		sectionLine.deleteSection(lineName);
+		sectionStation.deleteStationSet(stationName);
 	}
 }
