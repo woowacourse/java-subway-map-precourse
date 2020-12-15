@@ -1,59 +1,34 @@
 package subway.service;
 
-import subway.constant.Information;
 import subway.domain.Line;
 import subway.domain.Link;
 import subway.domain.Station;
 import subway.exception.InvalidInputException;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
-
-import java.util.Scanner;
+import subway.view.InputView;
+import subway.view.OutputView;
 
 import static subway.constant.Constant.MIN_ORDER;
 import static subway.constant.Constant.MIN_STATIONS_IN_LINE;
+import static subway.constant.Information.*;
 
 public class LinkService extends CrudService {
 
-    private Scanner scanner;
-
-    public LinkService(Scanner scanner) {
-        super(scanner, Information.LINK_INFO);
-        this.scanner = scanner;
+    public LinkService(InputView inputView, OutputView outputView) {
+        super(inputView, outputView, LINK_INFO);
     }
 
     @Override
     public void add() {
         try {
-            Link newLink = getNewLinkInput();
+            Link newLink = getInputView().getNewLinkInput();
             validateNewLink(newLink);
             addNewLink(newLink);
-            System.out.println(Information.ADD_LINK_SUCCESS);
+            getOutputView().printInformation(ADD_LINK_SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NON_NUMBER_INPUT);
         }
-    }
-
-    private Link getNewLinkInput() throws NumberFormatException {
-        String lineName = getLineNameOnAdd();
-        String stationName = getStationNameOnAdd();
-        int order = getOrderOnAdd();
-        return new Link(lineName, stationName, order);
-    }
-
-    private String getLineNameOnAdd() {
-        System.out.println(Information.ADD_LINK_INFO_LINE);
-        return scanner.nextLine();
-    }
-
-    private String getStationNameOnAdd() {
-        System.out.println(Information.ADD_LINK_INFO_STATION);
-        return scanner.nextLine();
-    }
-
-    private int getOrderOnAdd() throws NumberFormatException {
-        System.out.println(Information.ADD_LINK_INFO_ORDER);
-        return Integer.parseInt(scanner.nextLine()) - 1;
     }
 
     private void validateNewLink(Link newLink) {
@@ -92,26 +67,10 @@ public class LinkService extends CrudService {
 
     @Override
     public void delete() {
-        Link targetLink = getTargetLinkInput();
+        Link targetLink = getInputView().getTargetLinkInput();
         validateTargetLink(targetLink);
         deleteTargetLink(targetLink);
-        System.out.println(Information.DELETE_LINK_SUCCESS);
-    }
-
-    private Link getTargetLinkInput() {
-        String targetLineName = getTargetLineNameOnDelete();
-        String targetStationName = getTargetStationNameOnDelete();
-        return new Link(targetLineName, targetStationName);
-    }
-
-    private String getTargetLineNameOnDelete() {
-        System.out.println(Information.DELETE_LINK_INFO_LINE);
-        return scanner.nextLine();
-    }
-
-    private String getTargetStationNameOnDelete() {
-        System.out.println(Information.DELETE_LINK_INFO_STATION);
-        return scanner.nextLine();
+        getOutputView().printInformation(DELETE_LINK_SUCCESS);
     }
 
     private void validateTargetLink(Link targetLink) {

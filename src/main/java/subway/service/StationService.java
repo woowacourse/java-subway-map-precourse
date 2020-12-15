@@ -8,19 +8,16 @@ import subway.domain.Station;
 import subway.exception.InvalidInputException;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
+import subway.view.InputView;
+import subway.view.OutputView;
 
-import java.util.Scanner;
-
+import static subway.constant.Information.ADD_STATION_SUCCESS;
 import static subway.constant.Information.DELETE_STATION_SUCCESS;
-import static subway.constant.Information.INFO_HEADER;
 
 public class StationService extends CrudService {
 
-    private Scanner scanner;
-
-    public StationService(Scanner scanner) {
-        super(scanner, Information.STATION_INFO);
-        this.scanner = scanner;
+    public StationService(InputView inputView, OutputView outputView) {
+        super(inputView, outputView, Information.STATION_INFO);
         initStations();
     }
 
@@ -31,16 +28,12 @@ public class StationService extends CrudService {
 
     @Override
     public void add() {
-        Station newStation = getNewStationInput();
+        Station newStation = getInputView().getNewStationInput();
         validateNewStation(newStation);
         StationRepository.addStation(newStation);
-        System.out.println(Information.ADD_STATION_SUCCESS);
+        getOutputView().printInformation(ADD_STATION_SUCCESS);
     }
 
-    private Station getNewStationInput() {
-        System.out.println(Information.ADD_STATION_INFO);
-        return new Station(scanner.nextLine());
-    }
 
     private void validateNewStation(Station newStation) {
         validateNameLength(newStation);
@@ -60,15 +53,10 @@ public class StationService extends CrudService {
 
     @Override
     public void delete() {
-        Station targetStation = getTargetStationInput();
+        Station targetStation = getInputView().getTargetStationInput();
         validateTargetStation(targetStation);
         StationRepository.deleteStationByName(targetStation.getName());
-        System.out.println(DELETE_STATION_SUCCESS);
-    }
-
-    private Station getTargetStationInput() {
-        System.out.println(Information.DELETE_STATION_INFO);
-        return new Station(scanner.nextLine());
+        getOutputView().printInformation(DELETE_STATION_SUCCESS);
     }
 
     private void validateTargetStation(Station targetStation) {
@@ -94,9 +82,6 @@ public class StationService extends CrudService {
 
     @Override
     public void show() {
-        System.out.print(Information.SHOW_STATION_INFO);
-        for (Station station : StationRepository.stations())
-            System.out.print(INFO_HEADER + station.getName());
-        System.out.println();
+        getOutputView().printStationList();
     }
 }

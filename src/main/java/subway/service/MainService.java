@@ -1,15 +1,18 @@
 package subway.service;
 
-import subway.constant.Information;
 import subway.constant.Service;
 import subway.exception.InvalidInputException;
+import subway.view.InputView;
+import subway.view.OutputView;
 
 import java.util.Scanner;
 
 public class MainService {
 
-    private Scanner scanner;
     private boolean isContinue = true;
+
+    private InputView inputView;
+    private OutputView outputView;
 
     private StationService stationService;
     private LineService lineService;
@@ -17,15 +20,20 @@ public class MainService {
     private PrintService printService;
 
     public MainService(Scanner scanner) {
-        this.scanner = scanner;
-        initServices(scanner);
+        initViews(scanner);
+        initServices();
     }
 
-    private void initServices(Scanner scanner) {
-        stationService = new StationService(scanner);
-        lineService = new LineService(scanner);
-        linkService = new LinkService(scanner);
-        printService = new PrintService();
+    private void initServices() {
+        stationService = new StationService(inputView, outputView);
+        lineService = new LineService(inputView, outputView);
+        linkService = new LinkService(inputView, outputView);
+        printService = new PrintService(outputView);
+    }
+
+    private void initViews(Scanner scanner) {
+        this.inputView = new InputView(scanner);
+        this.outputView = new OutputView();
     }
 
 
@@ -36,22 +44,12 @@ public class MainService {
 
     private void runService() {
         try {
-            String selectedService = selectService();
+            String selectedService = inputView.getSelectedServiceInput();
+            Service.validate(selectedService);
             runSelectedService(selectedService);
         } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
         }
-    }
-
-    private String selectService() {
-        String line = getServiceInput();
-        Service.validate(line);
-        return line;
-    }
-
-    private String getServiceInput() {
-        System.out.println(Information.MAIN_INFO);
-        return scanner.nextLine();
     }
 
     private void runSelectedService(String selectedService) {

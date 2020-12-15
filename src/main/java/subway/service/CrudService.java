@@ -2,38 +2,38 @@ package subway.service;
 
 import subway.constant.Function;
 import subway.exception.InvalidInputException;
-
-import java.util.Scanner;
+import subway.view.InputView;
+import subway.view.OutputView;
 
 public abstract class CrudService implements MapService {
 
-    private Scanner scanner;
+    private InputView inputView;
+    private OutputView outputView;
     private String information;
 
-    public CrudService(Scanner scanner, String information) {
-        this.scanner = scanner;
+    public CrudService(InputView inputView, OutputView outputView, String information) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.information = information;
+    }
+
+    public InputView getInputView() {
+        return inputView;
+    }
+
+    public OutputView getOutputView() {
+        return outputView;
     }
 
     @Override
     public void run() {
         try {
-            String selectedFunction = selectFunction();
+            String selectedFunction = inputView.getFunctionInput(information);
+            Function.validate(selectedFunction);
             runSelectedFunction(selectedFunction);
         } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
         }
-    }
-
-    private String selectFunction() {
-        String input = getFunctionInput();
-        Function.validate(input);
-        return input;
-    }
-
-    private String getFunctionInput() {
-        System.out.println(information);
-        return scanner.nextLine();
     }
 
     private void runSelectedFunction(String selectedFunction) {
