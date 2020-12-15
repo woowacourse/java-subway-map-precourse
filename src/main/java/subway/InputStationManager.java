@@ -17,13 +17,16 @@ public class InputStationManager implements InputManager {
     private static final String INPUT_STATION_TO_DELETE = "## 삭제할 역 이름을 입력하세요.";
     private static final String NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN = "[ERROR] 해당 역이 없거나 이미 노선에 등록되어 있습니다.";
     private static final String STATION_DELETED = "\n[INFO] 지하철 역이 삭제되었습니다.\n";
+    private static final String STATION_MENU_NUMBER = "1";
 
     private Scanner scanner;
 
     private enum Menu {
-        REGISTER("1", ((InputStationManager) SubwayManager.getMenus("1"))::register),
-        DELETE("2", ((InputStationManager) SubwayManager.getMenus("1"))::delete);
-//        INQUIRY("3"),
+        REGISTER("1",
+                    ((InputStationManager) SubwayManager.getMenus(STATION_MENU_NUMBER))::register),
+        DELETE("2",
+                    ((InputStationManager) SubwayManager.getMenus(STATION_MENU_NUMBER))::delete),
+        INQUIRY("3", StationRepository::printStation);
 //        BACK("B");
 
         private final String name;

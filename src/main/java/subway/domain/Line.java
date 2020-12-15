@@ -16,6 +16,7 @@ public class Line {
     }
 
     public void addStations(Station station) {
+        station.setRegister(true);
         stations.add(station);
     }
 

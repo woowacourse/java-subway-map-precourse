@@ -32,4 +32,13 @@ public class Station {
         return register;
     }
 
+    public boolean setRegister(boolean register) {
+        return this.register = register;
+    }
+
+    @Override
+    public String toString() {
+        return "[INFO]" + name.toString();
+    }
+
 }

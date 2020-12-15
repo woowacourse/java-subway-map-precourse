@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
+    public static final String STATION_LIST = "\n## 역 목록\n";
+
     private static final List<Station> stations = new ArrayList<>();
 
     public static void init() {
@@ -27,7 +29,7 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        return stations.removeIf(station -> Objects.equals(station.getName().toString(), name));
     }
 
     public static boolean isRegisteredStation(Station anotherStation) {
@@ -37,5 +39,13 @@ public class StationRepository {
             }
         }
         return false;
+    }
+
+    public static void printStation() {
+        System.out.println(STATION_LIST);
+        for (Station station : stations) {
+            System.out.println(station);
+        }
+        System.out.println();
     }
 }
