@@ -56,7 +56,7 @@ public final class OutputView {
 
         for (Menu menu : menus) {
             System.out.printf(ViewFormat.FUNCTION_FORMAT, menu.getIdentifier(),
-                    menu.getDescription());
+                    menu.getName());
         }
 
         System.out.println();

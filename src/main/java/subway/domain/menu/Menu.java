@@ -15,7 +15,7 @@ public interface Menu {
 
     String getIdentifier();
 
-    String getDescription();
+    String getName();
 
     Function<ManagementController, ManagementController> getFunction();
 

@@ -5,23 +5,21 @@ import java.util.function.Function;
 import subway.controller.ManagementController;
 
 public enum StationMenu implements Menu {
-    ADD("1", "역 등록", ManagementController::addStation),
-    REMOVE("2", "역 삭제", ManagementController::removeStation),
-    LOAD("3", "역 조회", ManagementController::loadStations),
-    BACK("B", "돌아가기", Function.identity());
-
-    public static final String TITLE = "역 관리";
+    ADD(MenuIdentifier.ONE, MenuName.ADD_STATION, ManagementController::addStation),
+    REMOVE(MenuIdentifier.TWO, MenuName.REMOVE_STATION, ManagementController::removeStation),
+    LOAD(MenuIdentifier.THREE, MenuName.LOAD_STATION, ManagementController::loadStations),
+    BACK(MenuIdentifier.BACK, MenuName.BACK, Function.identity());
 
     private final String identifier;
 
-    private final String description;
+    private final String name;
 
     private final Function<ManagementController, ManagementController> function;
 
-    StationMenu(final String identifier, final String description,
+    StationMenu(final String identifier, final String name,
                 final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
-        this.description = description;
+        this.name = name;
         this.function = function;
     }
 
@@ -31,8 +29,8 @@ public enum StationMenu implements Menu {
     }
 
     @Override
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -5,22 +5,20 @@ import java.util.function.Function;
 import subway.controller.ManagementController;
 
 public enum SectionMenu implements Menu {
-    ADD("1", "구간 등록", ManagementController::addSection),
-    REMOVE("2", "구간 삭제", ManagementController::removeSection),
-    BACK("B", "돌아가기", Function.identity());
-
-    public static final String TITLE = "구간 관리";
+    ADD(MenuIdentifier.ONE, MenuName.ADD_SECTION, ManagementController::addSection),
+    REMOVE(MenuIdentifier.TWO, MenuName.REMOVE_SECTION, ManagementController::removeSection),
+    BACK(MenuIdentifier.BACK, MenuName.BACK, Function.identity());
 
     private final String identifier;
 
-    private final String description;
+    private final String name;
 
     private final Function<ManagementController, ManagementController> function;
 
-    SectionMenu(final String identifier, final String description,
+    SectionMenu(final String identifier, final String name,
                 final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
-        this.description = description;
+        this.name = name;
         this.function = function;
     }
 
@@ -30,8 +28,8 @@ public enum SectionMenu implements Menu {
     }
 
     @Override
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     @Override

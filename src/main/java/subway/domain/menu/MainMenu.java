@@ -5,31 +5,31 @@ import java.util.function.Function;
 import subway.controller.ManagementController;
 
 public enum MainMenu implements Menu {
-    STATION("1", StationMenu.TITLE, managementController -> Menu
-            .function(managementController, StationMenu.TITLE, StationMenu.values())),
+    STATION(MenuIdentifier.ONE, MenuName.STATION_MANAGEMENT, managementController -> Menu
+            .function(managementController, MenuName.STATION_MANAGEMENT, StationMenu.values())),
 
-    LINE("2", LineMenu.TITLE, managementController -> Menu
-            .function(managementController, LineMenu.TITLE, LineMenu.values())),
+    LINE(MenuIdentifier.TWO, MenuName.LINE_MANAGEMENT, managementController -> Menu
+            .function(managementController, MenuName.LINE_MANAGEMENT, LineMenu.values())),
 
-    SECTION("3", SectionMenu.TITLE, managementController -> Menu
-            .function(managementController, SectionMenu.TITLE, SectionMenu.values())),
+    SECTION(MenuIdentifier.THREE, MenuName.SECTION_MANAGEMENT, managementController -> Menu
+            .function(managementController, MenuName.SECTION_MANAGEMENT, SectionMenu.values())),
 
-    SUBWAY_MAP("4", "지하철 노선도 출력", ManagementController::loadSubwayMap),
+    SUBWAY_MAP(MenuIdentifier.FOUR, MenuName.LOAD_SUBWAY_MAP, ManagementController::loadSubwayMap),
 
-    QUIT("Q", "종료", managementController -> null);
+    QUIT(MenuIdentifier.QUIT, MenuName.QUIT, managementController -> null);
 
     public static final String TITLE = "메인";
 
     private final String identifier;
 
-    private final String description;
+    private final String name;
 
     private final Function<ManagementController, ManagementController> function;
 
-    MainMenu(final String identifier, final String description,
+    MainMenu(final String identifier, final String name,
              final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
-        this.description = description;
+        this.name = name;
         this.function = function;
     }
 
@@ -39,8 +39,8 @@ public enum MainMenu implements Menu {
     }
 
     @Override
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     @Override

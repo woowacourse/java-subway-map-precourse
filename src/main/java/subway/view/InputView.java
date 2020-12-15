@@ -63,7 +63,7 @@ public final class InputView {
 
         String input = scanner.nextLine();
         System.out.println();
-        
+
         final Validator validator = ValidatorPool.getValidator(validatorClass);
 
         try {

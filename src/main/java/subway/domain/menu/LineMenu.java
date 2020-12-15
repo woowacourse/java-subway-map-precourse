@@ -5,23 +5,21 @@ import java.util.function.Function;
 import subway.controller.ManagementController;
 
 public enum LineMenu implements Menu {
-    ADD("1", "노선 등록", ManagementController::addLine),
-    REMOVE("2", "노선 삭제", ManagementController::removeLine),
-    LOAD("3", "노선 조회", ManagementController::loadLines),
-    BACK("B", "돌아가기", Function.identity());
-
-    public static final String TITLE = "노선 관리";
+    ADD(MenuIdentifier.ONE, MenuName.ADD_LINE, ManagementController::addLine),
+    REMOVE(MenuIdentifier.TWO, MenuName.REMOVE_LINE, ManagementController::removeLine),
+    LOAD(MenuIdentifier.THREE, MenuName.LOAD_LINE, ManagementController::loadLines),
+    BACK(MenuIdentifier.BACK, MenuName.BACK, Function.identity());
 
     private final String identifier;
 
-    private final String description;
+    private final String name;
 
     private final Function<ManagementController, ManagementController> function;
 
-    LineMenu(final String identifier, final String description,
+    LineMenu(final String identifier, final String name,
              final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
-        this.description = description;
+        this.name = name;
         this.function = function;
     }
 
@@ -31,8 +29,8 @@ public enum LineMenu implements Menu {
     }
 
     @Override
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     @Override
