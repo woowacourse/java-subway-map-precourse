@@ -10,13 +10,17 @@ public class OutPutSubwayMap implements OutputView{
 
     public static void printAllSubwayMap() {
         System.out.println(SUBWAY_MAP_PAGE);
-        for (Line line : LineRepository.lines()) {
-            System.out.println(INFO_PREFIX + line.getName());
-            System.out.println(INFO_PREFIX + SEPARATOR);
-            line.getStations().stream()
-                .map(Station::getName)
-                .forEach(stationName -> System.out.println(INFO_PREFIX + stationName));
-            System.out.println();
+        for (Line lineInRepository : LineRepository.lines()) {
+            printLineAndStation(lineInRepository);
         }
+    }
+
+    private static void printLineAndStation(Line lineInRepository) {
+        System.out.println(INFO_PREFIX + lineInRepository.getName());
+        System.out.println(INFO_PREFIX + SEPARATOR);
+        lineInRepository.getStations().stream()
+            .map(Station::getName)
+            .forEach(stationName -> System.out.println(INFO_PREFIX + stationName));
+        System.out.println();
     }
 }

@@ -15,6 +15,7 @@ public class Line {
         return name.getName();
     }
 
+    // stationOrder의 순서에 역(구간)을 삽입한다.
     public void addLineStation(int stationOrder, Station station) {
         stations.add(stationOrder, station);
     }
