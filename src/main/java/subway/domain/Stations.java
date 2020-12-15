@@ -68,14 +68,6 @@ public class Stations {
         return stations.contains(station);
     }
 
-    public Station firstStation() {
-        return stations.get(0);
-    }
-
-    public Station lastStation() {
-        return stations.get(stations.size() - 1);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,5 +79,12 @@ public class Stations {
     @Override
     public int hashCode() {
         return Objects.hash(stations);
+    }
+
+    @Override
+    public String toString() {
+        return "Stations{" +
+                "stations=" + stations +
+                '}';
     }
 }

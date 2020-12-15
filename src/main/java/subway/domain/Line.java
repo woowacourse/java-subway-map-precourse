@@ -15,7 +15,6 @@ public class Line {
         this.name = name;
         this.stations.addStation(uplineTerminalStation);
         this.stations.addStation(downlineTerminalStation);
-
     }
 
     public String getName() {
@@ -36,14 +35,6 @@ public class Line {
             throw new SubwayException(ERR_POOR_SIZE_OF_STATION_MSG);
         }
         stations.deleteStation(name);
-    }
-
-    public Station getUplineTerminalStation() {
-        return stations.firstStation();
-    }
-
-    public Station getDownlineTerminalStation() {
-        return stations.lastStation();
     }
 
     public int size() {

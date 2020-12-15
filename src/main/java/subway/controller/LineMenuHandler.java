@@ -1,7 +1,7 @@
 package subway.controller;
 
 import subway.domain.*;
-import subway.exception.SubwayException;
+import subway.util.ValidateUtil;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -12,24 +12,16 @@ import static subway.util.TextConstant.*;
 public class LineMenuHandler {
     public static void addLine() {
         OutputView.showRequestInputForAddMessage(ROUTE);
-        //todo : validate Util로 검증로직들 뽑아서 line 이름에 대해 검증해야 함
-        String lineName = InputView.nextLine();
-        if (LineRepository.isPresentLine(lineName)) {
-            throw new SubwayException(ERR_ALREADY_ADD_LINE_NAME_MSG);
-        }
-        if (lineName.length() < NAME_MIN_LENGTH) {
-            throw new SubwayException(ERR_SHORT_NAME_MSG);
-        }
-        if (!lineName.endsWith(LINE)) {
-            throw new SubwayException(ERR_WRONG_LINE_NAME_SUFFIX);
-        }
+
+        String lineName = ValidateUtil.validateLineName(InputView.nextLine());
+
         OutputView.showRequestInputForAddMessage(UPLINE_TERMINAL_STATION);
-        Station uplineTerminalStation = StationRepository.findStationByName(InputView.nextLine().trim());
+        Station startStation = StationRepository.findStationByName(InputView.nextLine().trim());
 
         OutputView.showRequestInputForAddMessage(DOWNLINE_TERMINAL_STATION);
-        Station downlineTerminalStation = StationRepository.findStationByName(InputView.nextLine().trim());
+        Station endStation = StationRepository.findStationByName(InputView.nextLine().trim());
 
-        LineRepository.addLine(LineFactory.makeLine(lineName, uplineTerminalStation, downlineTerminalStation));
+        LineRepository.addLine(LineFactory.makeLine(lineName, startStation, endStation));
     }
 
     public static void deleteLine() {
@@ -48,5 +40,6 @@ public class LineMenuHandler {
     }
 
     public static void back() {
+        //just through
     }
 }
