@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.validator.Validator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -16,28 +17,30 @@ public class LineUtils {
     }
 
     public void play() {
+        String chosen;
+        int chosenNumber;
+
         System.out.println("## 노선 관리 화면\n" +
                 "1. 노선 등록\n" +
                 "2. 노선 삭제\n" +
                 "3. 노선 조회\n" +
                 "B. 돌아가기\n");
         System.out.println("## 원하는 기능을 선택하세요.");
-        String chosen = scanner.next();
+        chosen = scanner.next();
         if (!chosen.equals("B")) {
-            choose(chosen);
+            chosenNumber = Validator.isInputRight(chosen);
+            choose(chosenNumber);
         }
     }
 
-    public void choose(String chosen) {
-        int number = Integer.parseInt(chosen);
-
-        if (number == 1) {
+    public void choose(int chosenNumber) {
+        if (chosenNumber == 1) {
             registerLine();
         }
-        if (number == 2) {
+        if (chosenNumber == 2) {
             deleteLine();
         }
-        if (number == 3) {
+        if (chosenNumber == 3) {
             showLine();
         }
     }

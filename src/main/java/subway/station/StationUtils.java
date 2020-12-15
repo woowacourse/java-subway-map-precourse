@@ -2,13 +2,16 @@ package subway.station;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.validator.Validator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class StationUtils {
+    private final int STATION_REGISTER = 1;
+    private final int STATION_DELETE = 2;
+    private final int STATION_SHOW = 3;
+    private final int STATION_BACK = 0;
     private Scanner scanner;
 
     public StationUtils(Scanner scanner) {
@@ -16,28 +19,32 @@ public class StationUtils {
     }
 
     public void play() {
+        String chosen;
+        int chosenNumber;
+
         System.out.println("## 역 관리 화면\n" +
                 "1. 역 등록\n" +
                 "2. 역 삭제\n" +
                 "3. 역 조회\n" +
                 "B. 돌아가기\n");
         System.out.println("## 원하는 기능을 선택하세요.");
-        String chosen = scanner.next();
+        chosen = scanner.next();
         if (!chosen.equals("B")) {
-            choose(chosen);
+            chosenNumber = Validator.isInputRight(chosen);
+            choose(chosenNumber);
         }
     }
 
-    public void choose(String chosen) {
-        int number = Integer.parseInt(chosen);
-
-        if (number == 1) {
+    public void choose(int chosenNumber) {
+        if (chosenNumber == STATION_BACK) {
+        }
+        if (chosenNumber == STATION_REGISTER) {
             registerStation();
         }
-        if (number == 2) {
+        if (chosenNumber == STATION_DELETE) {
             deleteStation();
         }
-        if (number == 3) {
+        if (chosenNumber == STATION_SHOW) {
             showStation();
         }
     }
