@@ -1,15 +1,14 @@
 package subway.domain;
 
 public class Station {
-    private String name;
+    private StationName name;
 
-    public Station(String name) {
+    public Station(StationName name) {
         this.name = name;
     }
 
-    public String getName() {
+    public StationName getName() {
         return name;
     }
 
-    // 추가 기능 구현
 }
