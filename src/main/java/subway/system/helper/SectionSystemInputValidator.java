@@ -1,8 +1,8 @@
-package subway.validator;
+package subway.system.helper;
 
 import subway.manager.SubwayManager;
 
-public class SectionManagerValidator {
+public class SectionSystemInputValidator {
 
     static final int OPTION_MIN = 1;
     static final int OPTION_MAX = 2;
@@ -10,9 +10,10 @@ public class SectionManagerValidator {
     static final String WANT_QUIT_CODE = "B";
     static final String ERROR_PREFIX = "[ERROR] ";
     static final String LINE_NAME_DELETION_ERROR_MESSAGE = "존재하는 2자 이상의 노선 이름을 입력하세요";
-    static final int MIN_NAME_LENGTH = 2;
     static final String STATION_NAME_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
     static final String ORDER_ERROR_MESSAGE = "숫자로 순서를 입력하세요";
+    static final int MIN_NAME_LENGTH = 2;
+
 
     public static void validateUserOption(String userOption) throws IllegalArgumentException {
         if (userOption.equals(WANT_QUIT_CODE)) {
@@ -46,7 +47,7 @@ public class SectionManagerValidator {
 
     public static void validateOrderForEnrollment(String order) throws IllegalArgumentException {
         try {
-            int intOrder = Integer.parseInt(order);
+            Integer.parseInt(order);
         } catch (Exception e) {
             throw new IllegalArgumentException(ERROR_PREFIX + ORDER_ERROR_MESSAGE);
         }

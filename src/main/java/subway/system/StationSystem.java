@@ -2,16 +2,17 @@ package subway.system;
 
 import java.util.Scanner;
 import subway.manager.StationManager;
-import subway.validator.StationManagerValidator;
+import subway.system.helper.StationSystemInputValidator;
 import subway.view.StationManagerView;
 
 public class StationSystem {
+
     static final int OPTION_ONE = 1;
     static final int OPTION_TWO = 2;
     static final int OPTION_THREE = 3;
-    public static final String ASK_OPTION_MESSAGE = "## 원하는 기능을 선택하세요.";
-    public static final String ERROR_PREFIX = "[ERROR] ";
-    public static String userOption = "";
+    static final String ASK_OPTION_MESSAGE = "## 원하는 기능을 선택하세요.";
+    static final String ERROR_PREFIX = "[ERROR] ";
+    static String userOption = "";
 
     private StationManager stationManager;
 
@@ -25,12 +26,12 @@ public class StationSystem {
         callOptionMenu(userOption, scanner);
     }
 
-    public static String getUserOption(Scanner scanner) {
+    public String getUserOption(Scanner scanner) {
         try {
             System.out.println(ASK_OPTION_MESSAGE);
             String userOption = scanner.nextLine();
             System.out.println();
-            StationManagerValidator.validateUserOption(userOption);
+            StationSystemInputValidator.validateUserOption(userOption);
             return userOption;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());

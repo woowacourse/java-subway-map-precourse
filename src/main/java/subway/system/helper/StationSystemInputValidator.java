@@ -1,8 +1,8 @@
-package subway.validator;
+package subway.system.helper;
 
 import subway.manager.SubwayManager;
 
-public class StationManagerValidator {
+public class StationSystemInputValidator {
     static final String WANT_QUIT_CODE = "B";
     static final int OPTION_MIN = 1;
     static final int OPTION_MAX = 3;

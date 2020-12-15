@@ -80,7 +80,7 @@ public class SubwayManager {
         return subway.isStationInLine(name);
     }
 
-    public static void printMap() {
+    public void printMap() {
         subway.printMap();
     }
 }

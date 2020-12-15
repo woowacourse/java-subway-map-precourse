@@ -1,7 +1,7 @@
 package subway.manager;
 
 import java.util.Scanner;
-import subway.validator.StationManagerValidator;
+import subway.system.helper.StationSystemInputValidator;
 
 public class StationManager {
 
@@ -14,9 +14,9 @@ public class StationManager {
     public static final String DELETION_FAIL_INFO_MESSAGE = "지하철 역이 존재하지 않거나 삭제할 수 없습니다";
 
     public static String inputStationNameForEnrollment(Scanner scanner) {
-        String stationName = scanner.nextLine();
+        String stationName = scanner.nextLine().trim();
         try {
-            StationManagerValidator.validateStationNameForEnrollment(stationName);
+            StationSystemInputValidator.validateStationNameForEnrollment(stationName);
             return stationName;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
@@ -25,9 +25,9 @@ public class StationManager {
     }
 
     public static String inputStationNameForDeletion(Scanner scanner) {
-        String stationName = scanner.nextLine();
+        String stationName = scanner.nextLine().trim();
         try {
-            StationManagerValidator.validateStationNameForDeletion(stationName);
+            StationSystemInputValidator.validateStationNameForDeletion(stationName);
             return stationName;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());

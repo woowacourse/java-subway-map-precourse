@@ -22,9 +22,7 @@ public class LineRepository {
 
     public LineRepository() {
         initDefaultLines();
-        for (Line line : defaultLines) {
-            lines.add(line);
-        }
+        lines.addAll(defaultLines);
     }
 
     public static void initDefaultLines() {

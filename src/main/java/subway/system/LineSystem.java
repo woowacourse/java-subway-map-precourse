@@ -2,7 +2,7 @@ package subway.system;
 
 import java.util.Scanner;
 import subway.manager.LineManager;
-import subway.validator.LineManagerValidator;
+import subway.system.helper.LineSystemInputValidator;
 import subway.view.LineManagerView;
 
 public class LineSystem {
@@ -28,7 +28,7 @@ public class LineSystem {
             System.out.println(ASK_OPTION_MESSAGE);
             String userOption = scanner.nextLine();
             System.out.println();
-            LineManagerValidator.validateUserOption(userOption);
+            LineSystemInputValidator.validateUserOption(userOption);
             return userOption;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());

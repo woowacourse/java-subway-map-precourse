@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Line {
 
-    private static final String EMPTY_INFO_MESSAGE = "---";
-    private static final String INFO_PREFIX = "[INFO] ";
-    private static final String NEWLINE_CHARACTER = "\n";
+    static final String EMPTY_INFO_MESSAGE = "---";
+    static final String INFO_PREFIX = "[INFO] ";
+    static final String NEWLINE_CHARACTER = "\n";
 
     private List<Station> stationLine = new ArrayList<>();
     private String name;

@@ -1,8 +1,8 @@
-package subway.validator;
+package subway.system.helper;
 
 import subway.manager.SubwayManager;
 
-public class LineManagerValidator {
+public class LineSystemInputValidator {
 
     static final String WANT_QUIT_CODE = "B";
     static final String OPTION_ERROR_MESSAGE = "1~3 또는 B 옵션 중 하나를 입력하세요";

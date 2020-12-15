@@ -1,7 +1,7 @@
 package subway.manager;
 
 import java.util.Scanner;
-import subway.validator.SectionManagerValidator;
+import subway.system.helper.SectionSystemInputValidator;
 
 public class SectionManager {
 
@@ -30,9 +30,9 @@ public class SectionManager {
     }
 
     public static String inputLineNameForSection(Scanner scanner) {
-        String lineName = scanner.nextLine();
+        String lineName = scanner.nextLine().trim();
         try {
-            SectionManagerValidator.validateLineNameForEnrollment(lineName);
+            SectionSystemInputValidator.validateLineNameForEnrollment(lineName);
             return lineName;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
@@ -41,9 +41,9 @@ public class SectionManager {
     }
 
     public static String inputStationNameForEnrollment(Scanner scanner) {
-        String stationName = scanner.nextLine();
+        String stationName = scanner.nextLine().trim();
         try {
-            SectionManagerValidator.validateStationNameForEnrollment(stationName);
+            SectionSystemInputValidator.validateStationNameForEnrollment(stationName);
             return stationName;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
@@ -52,9 +52,9 @@ public class SectionManager {
     }
 
     public static int inputOrderForEnrollment(Scanner scanner) {
-        String order = scanner.nextLine();
+        String order = scanner.nextLine().trim();
         try {
-            SectionManagerValidator.validateOrderForEnrollment(order);
+            SectionSystemInputValidator.validateOrderForEnrollment(order);
             return Integer.parseInt(order);
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
