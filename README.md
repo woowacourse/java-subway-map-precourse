@@ -44,7 +44,7 @@
 
 ### 초기 실행 관련
 
-- [ ] json 파일을 읽어 `StationRepository`와 `LineRepository` 초기화 
+- [X] `StationRepository`와 `LineRepository` 초기화 
 
 <br>
 
