@@ -74,6 +74,7 @@ public class SectionMaintain {
         if (line.addStationByIndex(scanner.next(), scanner)) {
             OutputView.completeRegisterSection();
             new Controller(scanner);
+            return;
         }
         maintainPage();
     }

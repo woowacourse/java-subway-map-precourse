@@ -1,6 +1,5 @@
 package subway.controller;
 
-import subway.controller.Controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.utils.Util;
@@ -65,6 +64,7 @@ public class LineMaintain {
         if (!LineRepository.deleteLineByName(scanner.next())) {
             ErrorView.notExistName();
             maintainPage();
+            return;
         }
         OutputView.completeDeleteLine();
         new Controller(scanner);

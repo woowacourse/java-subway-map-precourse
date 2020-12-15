@@ -76,7 +76,6 @@ public class StationMaintain {
         }
         OutputView.completeDeleteStation();
         new Controller(scanner);
-
     }
 
     private void registerStation() {
