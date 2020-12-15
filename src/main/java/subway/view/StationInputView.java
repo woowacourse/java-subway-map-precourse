@@ -10,6 +10,7 @@ public class StationInputView {
     private static final String SELECT_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String CANNOT_SELECT_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
     private static final String REGISTER_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
+    private static final String REGISTER_COMPLETE_MESSAGE = "[INFO] 지하철 역이 등록되었습니다.";
     private static final String REMOVE_STATION_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
     private static final String STATION_NAME_LENGTH_MESSAGE = "[ERROR] 역 이름은 두 글자 이상이어야 합니다.";
     private static final String STATION_NAME_INCLUDE_NOT_KOREAN_MESSAGE = "[ERROR] 역 이름은 한글이어야 합니다.";
@@ -22,7 +23,6 @@ public class StationInputView {
     private static final char THREE = '3';
     private static final char BACK = 'B';
     private static final String SPACE = " ";
-
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -79,16 +79,30 @@ public class StationInputView {
         }
     }
 
-    public static void getStationName() {
+    public static void registerStation() {
         System.out.println(REGISTER_STATION_MESSAGE);
         String stationName = scanner.nextLine();
         try {
             validateStationName(stationName);
             StationRepository.addStation(new Station(stationName));
+            System.out.println(REGISTER_COMPLETE_MESSAGE);
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.getMessage());
-            getStationName();
+            registerStation();
+        }
+    }
+
+    public static void removeStation() {
+        System.out.println(REMOVE_STATION_MESSAGE);
+        String stationName = scanner.nextLine();
+        try {
+            //validateStationName(stationName);        // TODO 노선에 등록되어있는 지 확인할 것
+            StationRepository.deleteStation(stationName);
+        } catch (Exception e) {
+            System.out.println();
+            System.out.println(e.getMessage());
+            removeStation();
         }
     }
 
@@ -133,11 +147,9 @@ public class StationInputView {
 
     private static void validateStationNameHasDuplication(String stationName) {
         for (Station station : StationRepository.stations()) {
-            System.out.println(station.getName());
             if (station.isSameName(stationName)) {
                 throw new IllegalArgumentException(STATION_NAME_HAS_DUPLICATION_MESSAGE);
             }
         }
     }
-
 }
