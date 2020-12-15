@@ -5,6 +5,7 @@ import controller.LineManageController;
 
 public class LineManageView {
     private static final String INPUT_MESSAGE = "## 원하는 기능을 선택하세요.";
+    private static final String INPUT_BACK = "B";
     private Scanner scanner;
 
     private static final String MENU =
@@ -29,6 +30,16 @@ public class LineManageView {
     }
 
     public void run() {
-        showMenu();
+        while (true) {
+            showMenu();
+            String input = input();
+            if (input.equals(INPUT_BACK)) {
+                break;
+            }
+        }
+    }
+
+    public String input() {
+        return scanner.nextLine();
     }
 }
