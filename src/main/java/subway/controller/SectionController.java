@@ -18,10 +18,9 @@ public class SectionController {
     
     public static void addSection() {
         try {
-            String[] info = Input.inputAddSection();
-            Line line = LineRepository.getLineByName(info[0]);
-            Station station = StationRepository.getStationByName(info[1]);
-            int order = Integer.parseInt(info[2]);
+            Line line = LineRepository.getLineByName(Input.inputAddSectionLineName());
+            Station station = StationRepository.getStationByName(Input.inputAddSectionStationName());
+            int order = Integer.parseInt(Input.inputAddSectionOrder());
             LineRepository.addSection(line, station, order);
             SubwayController.output.printResult(ADD_SUCCESS_MESSAGE);
         } catch (Exception error) {
@@ -31,9 +30,8 @@ public class SectionController {
     
     public static void deleteSection() {
         try {
-            String[] info = Input.inputDeleteSection();
-            Line line = LineRepository.getLineByName(info[0]);
-            Station station = StationRepository.getStationByName(info[1]);
+            Line line = LineRepository.getLineByName(Input.inputDeleteSectionLineName());
+            Station station = StationRepository.getStationByName(Input.inputDeleteSectionStationName());
             LineRepository.deleteSection(line, station);
             SubwayController.output.printResult(DELETE_SUCCESS_MESSAGE);
         } catch (Exception error) {

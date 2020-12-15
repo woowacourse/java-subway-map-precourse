@@ -18,12 +18,11 @@ public class LineController {
     
     public static void addLine() {
         try {
-            String[] info = Input.inputAddLine();
-            Line line = new Line(info[0]);
-            Station up = StationRepository.getStationByName(info[1]);
-            Station down = StationRepository.getStationByName(info[2]);
-            line.addUpTerminal(up);
-            line.addDownTerminal(down);
+            Line line = new Line(Input.inputAddLineName());
+            Station upTerminal = StationRepository.getStationByName(Input.inputAddLineUpTerminalName());
+            Station downTerminal = StationRepository.getStationByName(Input.inputAddLineDownTerminalName());
+            line.addUpTerminal(upTerminal);
+            line.addDownTerminal(downTerminal);
             LineRepository.addLine(line);
             SubwayController.output.printResult(ADD_SUCCESS_MESSAGE);
         } catch (Exception error) {
