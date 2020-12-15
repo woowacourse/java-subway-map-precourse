@@ -24,12 +24,17 @@ import subway.domain.menu.exception.StationInLineMinNumException;
 import subway.domain.menu.exception.TerminalStationNameEqualException;
 
 public class Validate {
+    private static final int BASE = 0;
     private static final int MIN_ORDER = 1;
     private static final int MIN_LENGTH = 2;
 
-    public char isAccptedInput(List<Character> selMenu, char input) {
-        if (selMenu.stream().anyMatch(menu -> menu == input)) {
-            return input;
+    public char isAccptedInput(List<Character> selMenu, String input) {
+        if (input.length() == BASE) {
+            throw new NotAccptedInputException();
+        }
+
+        if (selMenu.stream().anyMatch(menu -> menu == input.charAt(BASE))) {
+            return input.charAt(BASE);
         }
         throw new NotAccptedInputException();
     }

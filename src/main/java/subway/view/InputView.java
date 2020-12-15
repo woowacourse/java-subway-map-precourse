@@ -33,7 +33,7 @@ public class InputView {
         while (true) {
             try {
                 System.out.println(CommonMessage.SELECT_MESSAGE);
-                sel = validate.isAccptedInput(selMenu, scanner.nextLine().charAt(0));
+                sel = validate.isAccptedInput(selMenu, scanner.nextLine());
                 System.out.println();
                 break;
             } catch (NotAccptedInputException e) {
