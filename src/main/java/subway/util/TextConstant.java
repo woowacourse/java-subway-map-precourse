@@ -36,8 +36,11 @@ public class TextConstant {
 
     //구간(Section) 관련
     public static final String SECTION = "구간";
+    public static final String ROUTE_OF_SECTION = "구간의 노선";
+    public static final String STATION_OF_SECTION = "구간의 역";
     public static final String SEQUENCE = "순서";
     public static final String REQUEST_INPUT_MSG_FORMAT = "## %s을(를) 입력하세요.";
+    public static final String VALID_NUMBER_RANGE_MSG_FORMAT = "(0 ~ %d 사이의 숫자를 입력)";
 
     //메뉴 관련
     public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";

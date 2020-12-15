@@ -56,6 +56,10 @@ public class Line {
         return stations.isPresentStation(station);
     }
 
+    public Station findStation(String stationName){
+        return stations.findStation(stationName);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

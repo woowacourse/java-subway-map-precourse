@@ -10,6 +10,7 @@ import subway.menu.StationMenu;
 import java.util.List;
 
 public class OutputView {
+
     public static void showMainMenu() {
         String header = MAIN_MENU_HEADER + System.lineSeparator();
         List<String> commands = MainMenu.getCommands();
@@ -87,5 +88,9 @@ public class OutputView {
             menu.append(menuLine);
         }
         return menu.toString();
+    }
+
+    public static void showValidSequence(int size) {
+        println(String.format(VALID_NUMBER_RANGE_MSG_FORMAT, size));
     }
 }
