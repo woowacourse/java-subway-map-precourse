@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<subway>
+    <line>
+        <name>2호선</name>
+        <station>교대역</station>
+        <station>강남역</station>
+        <station>역삼역</station>
+    </line>
+    <line>
+        <name>3호선</name>
+        <station>교대역</station>
+        <station>남부터미널역</station>
+        <station>양재역</station>
+        <station>매봉역</station>
+    </line>
+    <line>
+        <name>신분당선</name>
+        <station>강남역</station>
+        <station>양재역</station>
+        <station>양재시민의숲역</station>
+    </line>
+</subway>
+
+
+
