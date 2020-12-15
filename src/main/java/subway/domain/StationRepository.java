@@ -36,9 +36,11 @@ public class StationRepository {
 	}
 
 	public static void viewStations() {
+		System.out.println("\n");
 		for (int station = 0; station < stations.size(); station++) {
-			System.out.println(stations.get(station).getName());
+			System.out.println("[INFO] "+ stations.get(station).getName());
 		}
+		System.out.println("\n");
 	}
 
 }
