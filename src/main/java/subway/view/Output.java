@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.screen.LineScreen;
 import subway.screen.MainScreen;
 import subway.screen.StationScreen;
 
@@ -9,10 +10,12 @@ public class Output {
 	
     private MainScreen main;
     private StationScreen station;
+    private LineScreen line;
 	
     public Output() {
         main = new MainScreen();
         station = new StationScreen();
+        line = new LineScreen();
     }
     
     public void printError(String message) {
@@ -29,5 +32,9 @@ public class Output {
     
     public void printStationMenu() {
     	station.printScreen();
+    }
+    
+    public void printLineMenu() {
+        line.printScreen();
     }
 }
