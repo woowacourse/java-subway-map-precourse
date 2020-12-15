@@ -30,6 +30,10 @@ public class Line {
         stations.add(index, station);
     }
 
+    public void deleteStationByName(String name) {
+        stations.removeIf(station -> station.getName().equals(name));
+    }
+
     public boolean isContainsStation(Station station) {
         for (Station each : stations) {
             if (each.getName().equals(station.getName())) {

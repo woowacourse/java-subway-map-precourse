@@ -20,6 +20,9 @@ public class MessageView {
     public static final String SECTION_STATION_NAME_INPUT = "## 역 이름을 입력하세요.";
     public static final String SECTION_ORDER_INPUT = "## 순서를 입력하세요.";
     public static final String SECTION_REGISTER_SUCCESS = "## 구간이 등록되었습니다.";
+    public static final String SECTION_REMOVE_LINE_INPUT = "## 삭제할 구간의 노선을 입력하세요.";
+    public static final String SECTION_REMOVE_STATION_INPUT = "## 삭제할 구간의 역을 입력하세요.";
+    public static final String SECTION_REMOVE_SUCCESS = "[INFO] 구간이 삭제되었습니다.";
 
     public void printAddStationMessage() {
         System.out.println(ADD_STATION);
@@ -92,4 +95,17 @@ public class MessageView {
     public void printSectionRegisterSuccessMessage() {
         System.out.println(SECTION_REGISTER_SUCCESS);
     }
+
+    public void printSectionRemoveLineInputMessage() {
+        System.out.println(SECTION_REMOVE_LINE_INPUT);
+    }
+
+    public void printSectionRemoveStationInputMessage() {
+        System.out.println(SECTION_REMOVE_STATION_INPUT);
+    }
+
+    public void printSectionRemoveSuccessMessage() {
+        System.out.println(SECTION_REMOVE_SUCCESS);
+    }
+
 }

@@ -17,6 +17,15 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static Line getLineByName(String name) {
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
+                return line;
+            }
+        }
+        return null;
+    }
+
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
