@@ -12,7 +12,7 @@ public class StationValidator {
     public static final String DUPLICATE_STATION_NAME_ERROR = "[ERROR] 이미 등록되어있는 역 입니다.";
     public static final String UNDER_NAME_LENGTH_ERROR = "[ERROR] 역 이름은 2글자 이상이어야 합니다.";
     public static final String CONTAINS_LINE_ERROR = "[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.";
-    public static final String NOT_CONTAINS_ERROR = "[ERROR] 등록되지 않은 역 입니다.";
+    public static final String NOT_CONTAINS_ERROR = "[ERROR] 입력하신 역은 등록되지 않았습니다.";
 
     public void validateAddStation(String name) {
         validateNameDuplication(name);
@@ -20,7 +20,7 @@ public class StationValidator {
     }
 
     public void validateRemoveStation(String name) {
-        validateContain(name);
+        validateContainsStations(name);
         validateContainsLines(name);
     }
 
@@ -46,7 +46,7 @@ public class StationValidator {
         }
     }
 
-    private static void validateContainsLine(Line line, String name) {
+    private void validateContainsLine(Line line, String name) {
         List<Station> stations = line.stations();
 
         for (Station station : stations) {
@@ -56,7 +56,7 @@ public class StationValidator {
         }
     }
 
-    private static void validateContain(String name) {
+    public void validateContainsStations(String name) {
         List<Station> stations = StationRepository.stations();
 
         for (Station station : stations) {

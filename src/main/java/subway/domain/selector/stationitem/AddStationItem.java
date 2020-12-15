@@ -22,7 +22,7 @@ public class AddStationItem extends Selector implements Manipulable {
         stationValidator.validateAddStation(stationName);
         StationRepository.addStation(new Station(stationName));
 
-        messageView.printAddSuccessMessage();
+        messageView.printAddStationSuccessMessage();
     }
 
 }

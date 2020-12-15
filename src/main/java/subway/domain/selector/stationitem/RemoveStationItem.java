@@ -17,7 +17,7 @@ public class RemoveStationItem extends Selector implements Manipulable {
     public void execute() {
         messageView.printRemoveStationMessage();
 
-        String stationName = inputView.getStationName();
+        String stationName = inputView.getName();
         stationValidator.validateRemoveStation(stationName);
         StationRepository.deleteStation(stationName);
 
