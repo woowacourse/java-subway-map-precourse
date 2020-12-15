@@ -21,7 +21,7 @@ public class StationManager {
 
     public static void execute() { // 역 관리 실행
         OutputView.functionView(Category.STATION.getName(), Category.STATION.getActionOrder());
-        String input = InputView.inputStationFunction(scanner);
+        String input = InputView.inputCategory(scanner, Category.STATION.getActionType());
 
         if (input.equals(STATION_INSERT)) {
             stationService.addStation(InputView.inputStation(scanner));

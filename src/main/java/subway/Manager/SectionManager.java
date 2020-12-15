@@ -20,7 +20,8 @@ public class SectionManager {
 
     public static void execute() {
         OutputView.functionView(Category.SECTION.getName(), Category.SECTION.getActionOrder());
-        String input = InputView.inputSectionFunction(scanner);
+        String input = InputView.inputCategory(scanner, Category.SECTION.getActionType());
+//        String input = InputView.inputSectionFunction(scanner);
 
         if (input.equals(SECTION_INSERT)) {
             sectionService.addSectionOnTheLine(InputView.inputSectionInfo(scanner));

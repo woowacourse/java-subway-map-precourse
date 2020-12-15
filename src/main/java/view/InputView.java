@@ -22,29 +22,16 @@ public class InputView {
 
     private static CategoryValidator categoryValidator = new CategoryValidator();
 
-    public static String inputFunction(Scanner scanner) {
+    public static String inputCategory(Scanner scanner, List<String> actionType) {
         try {
             System.out.println(INPUT_FUNCTION);
             String input = scanner.next();
 
-            categoryValidator.isValidFunction(input);
+            categoryValidator.isValidCategory(input, actionType);
             return input;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
-            return inputFunction(scanner);
-        }
-    }
-
-    public static String inputStationFunction(Scanner scanner) {
-        try {
-            System.out.println(INPUT_FUNCTION);
-            String input = scanner.next();
-
-            categoryValidator.isValidStationFunction(input);
-            return input;
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            return inputFunction(scanner);
+            return inputCategory(scanner, actionType);
         }
     }
 
@@ -58,18 +45,6 @@ public class InputView {
         return scanner.next();
     }
 
-    public static String inputLineFunction(Scanner scanner) {
-        try {
-            System.out.println(INPUT_FUNCTION);
-            String input = scanner.next();
-
-            categoryValidator.isValidLineFunction(input);
-            return input;
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            return inputLineFunction(scanner);
-        }
-    }
 
     public static List<String> inputLineInfo(Scanner scanner) {
         System.out.println(INPUT_lINE_NAME);
@@ -84,19 +59,6 @@ public class InputView {
     public static String inputDeleteLineName(Scanner scanner) {
         System.out.println(DELETE_lINE_NAME);
         return scanner.next();
-    }
-
-    public static String inputSectionFunction(Scanner scanner) {
-        try {
-            System.out.println(INPUT_FUNCTION);
-            String input = scanner.next();
-
-            categoryValidator.isValidSectionFunction(input);
-            return input;
-        } catch (IllegalArgumentException ie) {
-            System.out.println(ie.getMessage());
-            return inputSectionFunction(scanner);
-        }
     }
 
     public static List<String> inputSectionInfo(Scanner scanner) {

@@ -19,9 +19,9 @@ public class LineManager {
         lineService = new LineService();
     }
 
-    public static void execute() { // 노선 관리 실행
+    public static void execute() {
         OutputView.functionView(Category.LINE.getName(), Category.LINE.getActionOrder());
-        String input = InputView.inputLineFunction(scanner);
+        String input = InputView.inputCategory(scanner, Category.LINE.getActionType());
 
         if (input.equals(LINE_INSERT)) {
             lineService.createLine(InputView.inputLineInfo(scanner));

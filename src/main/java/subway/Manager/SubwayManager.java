@@ -23,14 +23,14 @@ public class SubwayManager {
         while (true)
         {
             OutputView.functionView(Category.MAIN.getName(), Category.MAIN.getActionOrder());
-            String status = execute(InputView.inputFunction(scanner));
+            String status = execute(InputView.inputCategory(scanner, Category.MAIN.getActionType()));
             if (status.equals("Q")) {
                 break;
             }
         }
     }
 
-    private String execute(String input) { // 지하철 관리 실행
+    private String execute(String input) {
         if (input.equals(STATION_MANAGE)) {
             StationManager.execute();
         }
