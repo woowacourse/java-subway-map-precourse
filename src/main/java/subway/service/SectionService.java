@@ -1,8 +1,7 @@
 package subway.service;
 
-import static subway.console.Output.*;
+import static subway.console.Output.print;
 
-import subway.console.Output;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
@@ -17,8 +16,8 @@ public class SectionService {
 
     public boolean addSection(String lineName, String stationName, String order) {
         try {
-            Line line = LineRepository.findOne(lineName);
-            Station station = StationRepository.findOne(stationName);
+            Line line = LineRepository.findLineByName(lineName);
+            Station station = StationRepository.findByName(stationName);
 
             SectionRepository.addSection(line, station, Integer.parseInt(order));
             return true;
@@ -29,20 +28,21 @@ public class SectionService {
     }
 
     public boolean deleteSection(String lineName, String stationName) {
-        Line line = LineRepository.findOne(lineName);
-        Station station = StationRepository.findOne(stationName);
         try {
+            Line line = LineRepository.findLineByName(lineName);
+            Station station = StationRepository.findByName(stationName);
+
             SectionRepository.deleteSection(line, station);
+            return true;
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
             return false;
         }
-        return true;
     }
 
     public boolean findLine(String name) {
         try {
-            LineRepository.findOne(name);
+            LineRepository.findLineByName(name);
             return true;
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
@@ -52,7 +52,7 @@ public class SectionService {
 
     public boolean findStation(String name) {
         try {
-            StationRepository.findOne(name);
+            StationRepository.findByName(name);
             return true;
         } catch (IllegalArgumentException error) {
             print(error.getMessage());

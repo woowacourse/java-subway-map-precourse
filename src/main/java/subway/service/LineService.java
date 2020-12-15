@@ -4,7 +4,6 @@ import static subway.console.Output.print;
 
 import java.util.Collections;
 import java.util.List;
-import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.repository.LineRepository;
@@ -16,68 +15,40 @@ import subway.repository.StationRepository;
  * @since 2020/12/13
  */
 public class LineService {
-    private static final int STATION_NAME_LENGTH = 2;
-    private static final String STATION_END_NAME = "선";
 
     public boolean addLine(String name) {
-        if (isValidate(name)) {
+        try {
             LineRepository.addLine(new Line(name));
             return true;
-        }
-        return false;
-    }
-
-    private boolean isValidate(String name) {
-        try {
-            validateNameLength(name);
-            validateNameEndWord(name);
-            validateExistLine(name);
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
             return false;
-        }
-        return true;
-    }
-
-    private void validateNameLength(String name) {
-        if (name.length() < STATION_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.NAME_LENGTH);
-        }
-    }
-
-    private void validateNameEndWord(String name) {
-        if (!name.endsWith(STATION_END_NAME)) {
-            throw new IllegalArgumentException(ErrorMessage.LINE_NAME_END);
-        }
-    }
-
-    private void validateExistLine(String name) throws IllegalArgumentException {
-        if (LineRepository.isExist(name)) {
-            throw new IllegalArgumentException(ErrorMessage.EXIST_LINE);
         }
     }
 
     public boolean addSection(String name, String stationName) {
-        Line line = LineRepository.findOne(name);
+        Line line = LineRepository.findLineByName(name);
         try {
-            Station station = StationRepository.findOne(stationName);
+            Station station = StationRepository.findByName(stationName);
+
             SectionRepository.addSection(line, station);
+            return true;
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
-            LineRepository.deleteLineByName(name);
+            LineRepository.deleteLine(line);
             return false;
         }
-        return true;
     }
 
     public boolean deleteLine(String name) {
         try {
-            LineRepository.deleteLineByName(name);
+            Line line = LineRepository.findLineByName(name);
+            LineRepository.deleteLine(line);
+            return true;
         } catch (IllegalArgumentException error) {
             print(error.getMessage());
             return false;
         }
-        return true;
     }
 
     public List<Line> findAll() {

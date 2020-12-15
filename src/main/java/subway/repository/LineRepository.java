@@ -3,7 +3,6 @@ package subway.repository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import subway.console.message.ErrorMessage;
 import subway.domain.Line;
 
@@ -18,13 +17,19 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        validateExistLine(line);
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
+    private static void validateExistLine(Line line) {
+        if (lines.contains(line)) {
+            throw new IllegalArgumentException(ErrorMessage.EXIST_LINE);
+        }
+    }
+
+    public static boolean deleteLine(Line line) {
         validateEmptyLines();
-        validateExistLines(name);
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+        return lines.remove(line);
     }
 
     private static void validateEmptyLines() {
@@ -33,20 +38,10 @@ public class LineRepository {
         }
     }
 
-    private static void validateExistLines(String name) {
-        if (!isExist(name)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
-        }
-    }
-
-    public static Line findOne(String name) {
+    public static Line findLineByName(String name) {
         return lines.stream()
                 .filter(line -> line.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
-    }
-
-    public static boolean isExist(String name) {
-        return lines.stream().anyMatch(station -> station.getName().equals(name));
     }
 }

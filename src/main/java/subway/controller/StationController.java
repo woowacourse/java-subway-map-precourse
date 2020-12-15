@@ -15,7 +15,7 @@ public class StationController {
         this.stationService = new StationService();
     }
 
-    public boolean createStation(final String name) {
+    public boolean createStation(String name) {
         return stationService.addStation(name);
     }
 

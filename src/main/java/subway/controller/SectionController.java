@@ -21,11 +21,11 @@ public class SectionController {
         return sectionService.deleteSection(name, station);
     }
 
-    public boolean existLine(String name) {
-        return sectionService.findLine(name);
+    public boolean isNotExistLine(String name) {
+        return !sectionService.findLine(name);
     }
 
-    public boolean existStation(String name) {
-        return sectionService.findStation(name);
+    public boolean isNotExistStation(String name) {
+        return !sectionService.findStation(name);
     }
 }

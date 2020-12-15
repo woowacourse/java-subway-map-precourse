@@ -1,8 +1,8 @@
 package subway.repository;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import subway.console.message.ErrorMessage;
@@ -16,56 +16,59 @@ import subway.domain.Station;
 public class SectionRepository {
     private static final Map<Line, List<Station>> sections = new LinkedHashMap<>();
     private static final int VALID_STATION_SIZE = 2;
+    private static final int VALID_ORDER_SIZE = 1;
 
     public static Map<Line, List<Station>> sections() {
         return Collections.unmodifiableMap(sections);
     }
 
     public static void addSection(Line line, Station station) {
-        findDuplicateStation(line, station);
-//        validateExistLine(line);
-        sections.computeIfAbsent(line, key -> new ArrayList<>()).add(station);
+        findDuplicateStationInLine(line, station);
+        sections.computeIfAbsent(line, key -> new LinkedList<>()).add(station);
     }
 
-    public static void findDuplicateStation(Line line, Station station) {
+    private static void findDuplicateStationInLine(Line line, Station station) {
         if (sections.containsKey(line)) {
-            if (sections.get(line).contains(station)) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_STATION);
-            }
+            validateDuplicateStation(line, station);
         }
     }
 
-    private static void validateExistLine(Line line) {
-        if (!sections.containsKey(line)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
+    private static void validateDuplicateStation(Line line, Station station) {
+        if (sections.get(line).contains(station)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_STATION);
         }
     }
 
     public static void addSection(Line line, Station station, int order) {
+        findDuplicateStationInLine(line, station);
         validateOrder(line, order);
+
         List<Station> stations = sections.get(line);
         stations.add(order, station);
     }
 
     private static void validateOrder(Line line, int order) {
         List<Station> stations = sections.get(line);
-        if (order < 1 || order >= stations.size()) {
+        if (order < VALID_ORDER_SIZE || order >= stations.size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
         }
     }
 
     public static void deleteSection(Line line, Station station) {
-        validateExistLine(line);
         List<Station> stations = sections.get(line);
-        if (stations.size() <= VALID_STATION_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.SIZE);
-        }
+        validateStationsSize(stations);
+
         stations.remove(station);
     }
 
-    public static boolean isExistStation(String name) {
-        return sections.keySet().stream()
-                .flatMap(line -> sections.get(line).stream())
-                .anyMatch(station -> station.getName().equals(name));
+    private static void validateStationsSize(List<Station> stations) {
+        if (stations.size() <= VALID_STATION_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.SIZE);
+        }
+    }
+
+    public static boolean isExistStation(Station station) {
+        return sections.values().stream()
+                .anyMatch(stations -> stations.contains(station));
     }
 }
