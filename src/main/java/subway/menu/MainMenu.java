@@ -1,5 +1,8 @@
 package subway.menu;
 
+import subway.domain.LineRepository;
+import subway.domain.StationRepository;
+
 import java.util.Scanner;
 
 public class MainMenu {
@@ -20,21 +23,20 @@ public class MainMenu {
 
     public void start() {
         String input = "";
-        while (!input.equals("Q")) {
+        while (true) {
             printMainMenu();
             input = scanner.nextLine();
-            switch (input) {
-                case "1" :
-                    new StationMenu(scanner).startStationMenu();
-                    break;
-                case "2" :
-                    break;
-                case "3" :
-                    break;
-                case "4" :
-                    break;
-                case "Q" :
-                    break;
+            if (input.equals("1")) {
+                new StationMenu(scanner).startStationMenu();
+            }
+            if (input.equals("2")) {
+            }
+            if (input.equals("3")) {
+            }
+            if (input.equals("4")) {
+            }
+            if (input.equals("Q")) {
+                break;
             }
         }
     }

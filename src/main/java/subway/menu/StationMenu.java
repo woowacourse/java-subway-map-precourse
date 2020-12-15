@@ -1,5 +1,9 @@
 package subway.menu;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
+import subway.util.StationValidator;
+
 import java.util.Scanner;
 
 public class StationMenu {
@@ -17,11 +21,24 @@ public class StationMenu {
     }
 
     public void startStationMenu() {
-        this.scanner = scanner;
         String input = "";
-        while (!input.equals("B")) {
+        while (true) {
             printStationMenu();
             input = this.scanner.nextLine();
+            if (input.equals("1")) {
+                System.out.println("## 등록할 역 이름을 입력하세요.");
+                String stationName = scanner.nextLine();
+                if (StationValidator.checkValidStationName(stationName, StationRepository.stations())) {
+                    StationRepository.addStation(new Station(stationName));
+                }
+            }
+            if (input.equals("2")) {
+            }
+            if (input.equals("3")) {
+            }
+            if (input.equals("B")) {
+                break;
+            }
         }
     }
 
