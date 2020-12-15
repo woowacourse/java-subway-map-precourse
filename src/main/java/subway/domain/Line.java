@@ -15,6 +15,10 @@ public class Line {
         this.name = name;
     }
 
+    public List<Station> stations() {
+        return Collections.unmodifiableList(stations);
+    }
+
     public String getName() {
         return name;
     }
@@ -24,15 +28,19 @@ public class Line {
     }
 
     public void addStation(int index, Station station) {
-        stations.add(index, station);
+        try {
+            stations.add(index, station);
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            throw new IllegalArgumentException("[ERROR] 가능하지 않는 순서입니다.");
+        }
     }
 
     public boolean deleteStation(Station target) {
         return stations.removeIf(station -> Objects.equals(station, target));
     }
 
-    public List<Station> stations() {
-        return Collections.unmodifiableList(stations);
+    public boolean isContainedStationName(String name) {
+        return stations.stream().anyMatch(station -> Objects.equals(station.getName(), name));
     }
 
     @Override
