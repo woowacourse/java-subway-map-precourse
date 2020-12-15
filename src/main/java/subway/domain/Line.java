@@ -21,9 +21,10 @@ public class Line {
         return this.registeredStation.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public int length(){
+    public int length() {
         return this.registeredStation.size();
     }
+
     public void addStation(Station stationName) {
         this.registeredStation.add(stationName);
     }

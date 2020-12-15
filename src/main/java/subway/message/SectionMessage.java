@@ -20,8 +20,10 @@ public enum SectionMessage {
     SECTION_NOT_FOUND_STATION_NAME_ERROR("[ERROR] 역 이름을 찾을 수 없습니다."),
     IS_NOT_DIGIT("[ERROR] 숫자만 입력할 수 있습니다."),
     OUT_OF_RANGE("[ERROR] 현재 역 범위를 초과하였습니다."),
-    SECTION_MINIMUM_STATION_COUNT_ERROR("[ERROR] 역 숫자가 2개 이하일 때 삭제가 불가능합니다.")
+    SECTION_MINIMUM_STATION_COUNT_ERROR("[ERROR] 역 숫자가 2개 이하일 때 삭제가 불가능합니다."),
+    SECTION_DUPLICATION_STATION_ERROR("[ERROR] 한 노선에 중복된 역 이름은 들어갈 수 없습니다."),
     ;
+
 
     private final String text;
 

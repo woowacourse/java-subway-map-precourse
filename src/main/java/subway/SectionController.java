@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import subway.constant.BoundaryCheckDigit;
 import subway.constant.UserChoiceOptionToName;
 import subway.domain.Line;
@@ -52,9 +53,15 @@ public class SectionController {
             OutputView.sectionAddStationNamePrint();
             stationName = InputView.scansectionStationName(scanner);
 
+            stationNameDuplicationErrorCheck(lineName, stationName);
+
             OutputView.sectionAddIndexPrint();
             line = LineRepository.getLineByName(lineName);
             stationNumber = InputView.scanSectionAddIndex(scanner, line);
+
+
+
+
 
         } catch (IllegalArgumentException error) {
             return false;
@@ -64,6 +71,20 @@ public class SectionController {
         LineRepository.getLineByName(lineName).addStation(insertStation, stationNumber);
 
         OutputView.sectionAddSuccess();
+        return true;
+    }
+
+    private static boolean stationNameDuplicationErrorCheck(String lineName, String stationName) {
+        if (LineRepository
+            .getLineByName(lineName)
+            .getLineMembers()
+            .stream()
+            .map(Station::getName)
+            .collect(Collectors.toList())
+            .contains(stationName)) {
+            OutputView.sectionDuplicationStationError();
+            throw new IllegalArgumentException();
+        }
         return true;
     }
 

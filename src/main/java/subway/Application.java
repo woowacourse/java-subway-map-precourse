@@ -7,6 +7,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class Application {
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
@@ -18,6 +19,7 @@ public class Application {
 
 
     private static void initialDataInput() {
+
         StationRepository.addStation(new Station("교대역"));
         StationRepository.addStation(new Station("강남역"));
         StationRepository.addStation(new Station("역삼역"));

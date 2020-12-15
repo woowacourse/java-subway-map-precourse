@@ -194,4 +194,8 @@ public class OutputView {
         System.out.println(CommonMessage.INFO.getCommonMessage() + line.getName());
 
     }
+
+    public static void sectionDuplicationStationError() {
+        System.out.println(SectionMessage.SECTION_DUPLICATION_STATION_ERROR.getSectionMessage());
+    }
 }
