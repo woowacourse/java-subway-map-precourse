@@ -20,6 +20,7 @@ public enum FunctionType {
         return Objects.equals(this.functionNumber, functionNumber);
     }
 
+    @Override
     public String toString() {
         return message;
     }

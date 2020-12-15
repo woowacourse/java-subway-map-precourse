@@ -45,7 +45,7 @@ class SectionsTest {
 
         assertThatCode(() -> {
             sections.addSection(targetStation, sectionOrderNumber);
-        }).isInstanceOf(InvalidSectionOrderException.class)
+        }).isInstanceOf(InvalidSectionOrderNumberException.class)
                 .hasMessage("잘못된 구간 순서 번호를 입력하셨습니다.");
     }
 

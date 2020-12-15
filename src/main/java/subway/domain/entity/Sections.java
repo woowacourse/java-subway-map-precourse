@@ -36,7 +36,7 @@ public class Sections {
     private void validateSectionRegistrationRequest(Station station, int sectionOrderNumber) {
         int maximumSectionOrderNumber = stations.size() + INDEX_ADJUSTMENT_NUMBER;
         if (sectionOrderNumber < MINIMUM_SECTION_ORDER_NUMBER || sectionOrderNumber > maximumSectionOrderNumber) {
-            throw new InvalidSectionOrderException();
+            throw new InvalidSectionOrderNumberException();
         }
         if (stations.contains(station)) {
             throw new SectionDuplicationException();

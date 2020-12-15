@@ -18,11 +18,11 @@ public class OutputView {
     private static final String EMPTY_DATA_MESSAGE = "등록된 데이터가 없어 출력이 불가능합니다.";
     private static final String SUBWAY_MAP_PRINT_HEADER = "\n## 지하철 노선도";
     private static final String SUBWAY_MAP_DELIMITER = "\n[INFO] ---";
+    private static final String NAMES_PRINT_HEADER_FORMAT = "\n## %s 목록";
     private static final String INFORMATION_SUCCESS_MESSAGE_FORMAT = "\n[INFO] 지하철 %s이 %s되었습니다.\n";
     private static final String INFORMATION_SECTION_SUCCESS_MESSAGE_FORMAT = "\n[INFO] 구간이 %s되었습니다.\n";
     private static final String INFORMATION_MESSAGE_FORMAT = "\n[INFO] %s";
     private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] %s\n";
-    private static final String NAMES_PRINT_HEADER_FORMAT = "\n## %s 목록";
 
     private OutputView() {
     }

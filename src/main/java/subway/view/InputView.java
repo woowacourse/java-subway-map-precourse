@@ -1,6 +1,6 @@
 package subway.view;
 
-import subway.domain.entity.InvalidSectionOrderException;
+import subway.domain.entity.InvalidSectionOrderNumberException;
 import subway.dto.LineDto;
 import subway.dto.SectionDto;
 import subway.vo.FunctionType;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final String MANAGEMENT_FUNCTION_NUMBER_NOTICE = "\n## 원하는 기능을 선택하세요.";
+    private static final String INPUT_MANAGEMENT_FUNCTION_NOTICE = "\n## 원하는 기능을 선택하세요.";
     private static final String INPUT_NAME_MESSAGE_FORMAT = "\n## %s할 %s 이름을 입력하세요.";
     private static final String UPWARD_LAST_STATION_NAME_NOTICE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String DOWNWARD_LAST_STATION_NAME_NOTICE = "\n## 등록할 노선의 하행 종점역 이름을 입력하세요.";
@@ -40,7 +40,7 @@ public class InputView {
     }
 
     public ManagementType inputManagementType() {
-        String managementNumber = scanInputWithNoticeMessage(MANAGEMENT_FUNCTION_NUMBER_NOTICE);
+        String managementNumber = scanInputWithNoticeMessage(INPUT_MANAGEMENT_FUNCTION_NOTICE);
         try {
             return ManagementType.findManagementType(managementNumber);
         } catch (RuntimeException runtimeException) {
@@ -55,7 +55,7 @@ public class InputView {
     }
 
     public FunctionType inputFunctionType(ManagementType managementType) {
-        String functionNumber = scanInputWithNoticeMessage(MANAGEMENT_FUNCTION_NUMBER_NOTICE);
+        String functionNumber = scanInputWithNoticeMessage(INPUT_MANAGEMENT_FUNCTION_NOTICE);
         try {
             return managementType.findFunctionType(functionNumber);
         } catch (RuntimeException runtimeException) {
@@ -98,7 +98,7 @@ public class InputView {
         boolean isNumberFormat = sectionOrderNumber.chars()
                 .allMatch(Character::isDigit);
         if (!isNumberFormat) {
-            throw new InvalidSectionOrderException();
+            throw new InvalidSectionOrderNumberException();
         }
     }
 }
