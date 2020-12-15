@@ -103,4 +103,11 @@ public class Validation {
             throw new SubwayException(SECTION_DELETE_RULE);
         }
     }
+
+    public void sectionDuplication(Line line, Station station, int order) throws SubwayException {
+        List<Station> section = line.getSection();
+        if (section.get(order) == station) {
+            throw new SubwayException(SECTION_DUPLICATION);
+        }
+    }
 }

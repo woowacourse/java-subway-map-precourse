@@ -21,7 +21,6 @@ public class SectionManager {
         } catch (SubwayException e) {
             runSectionManager(scanner, userInput);
         }
-
         if (input.equals("1")) {
             addSection(scanner, userInput);
         }
@@ -39,6 +38,12 @@ public class SectionManager {
         SystemOutput.printMessage(SystemMessages.ADD_SECTION_STATION_MESSAGE);
         Station station = getStation(scanner, userInput);
         int order = getOrder(scanner, userInput);
+        try {
+            validation.sectionDuplication(line, station, order);
+        } catch (SubwayException e) {
+            SubwayManager.runManager(scanner);
+            return;
+        }
         line.addSection(order, station);
         SystemOutput.printInfo(SystemMessages.ADD_SECTION_COMPLETE_MESSAGE);
     }
@@ -52,7 +57,7 @@ public class SectionManager {
         try {
             validation.sectionDeleteValidation(line);
         } catch (SubwayException e) {
-            SubwayManager.runManager(scanner);
+            return;
         }
         line.deleteSection(order);
         SystemOutput.printInfo(SystemMessages.DEL_SECTION_COMPLETE_MESSAGE);
@@ -86,6 +91,6 @@ public class SectionManager {
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
         };
-        return Integer.parseInt(input);
+        return Integer.parseInt(input)-1;
     }
 }
