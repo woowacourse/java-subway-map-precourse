@@ -3,7 +3,6 @@ package subway.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
 import subway.controller.manager.Manager;
 import subway.domain.SubwayIntializer;
 import subway.exception.Validator;
@@ -11,20 +10,19 @@ import subway.screen.ActionType;
 import subway.screen.Choice;
 import subway.screen.EntityType;
 import subway.screen.Screen;
-import subway.screen.ScreenRepository;
 import subway.screen.ScreenRepositoryInitializer;
+import subway.screen.ScreenStack;
 import subway.screen.ScreenType;
 import subway.view.View;
 
 public class Controller {
-    private final Stack<Screen> screenStack = new Stack<>();
     private final View view;
     private final Manager manager;
     
     public Controller(Scanner scanner) {
         SubwayIntializer.initialize();
         ScreenRepositoryInitializer.initialize();
-        screenStack.add(ScreenRepository.getScreenByType(ScreenType.MAIN));
+        ScreenStack.addScreenByScreenType(ScreenType.MAIN);
         view = new View(scanner);
         manager = new Manager(this, view);
     }
@@ -33,8 +31,8 @@ public class Controller {
         Screen currentScreen;
         String userCommand;
         
-        while(!screenStack.isEmpty()) {
-            currentScreen = screenStack.peek();
+        while(!ScreenStack.isEmpty()) {
+            currentScreen = ScreenStack.peekScreen();
             userCommand = view.askUserCommand(currentScreen);
             operateUserCommand(userCommand, currentScreen);
         }
@@ -87,30 +85,14 @@ public class Controller {
     
     private void operateUserChoice(Choice userChoice) {
         if(userChoice.actionTypeEquals(ActionType.MANAGE)) {
-            addScreenByEntityType(userChoice.getEntityType());
+            ScreenStack.addManagerScreenByEntityType(userChoice.getEntityType());
             return;
         }
         if(userChoice.actionTypeEquals(ActionType.MOVE_BACK) || userChoice.actionTypeEquals(ActionType.EXIT)) {
-            popScreen();
+            ScreenStack.popScreen();
             return;
         }
         manager.manageEntity(userChoice);
-    }
-    
-    private void addScreenByEntityType(EntityType entityType) {
-        if(entityType == EntityType.STATION) {
-            screenStack.add(ScreenRepository.getScreenByType(ScreenType.STATION_MANAGEMENT));
-        }
-        if(entityType == EntityType.LINE) {
-            screenStack.add(ScreenRepository.getScreenByType(ScreenType.LINE_MANAGEMENT));
-        }
-        if(entityType == EntityType.ROUTE) {
-            screenStack.add(ScreenRepository.getScreenByType(ScreenType.ROUTE_MANAGEMENT));
-        }
-    }
-    
-    private void popScreen() {
-        screenStack.pop();
     }
     
     private void askUpwardEndStationNames(List<String> endStationNames) {
