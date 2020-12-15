@@ -13,10 +13,6 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static void addStation(Station station, int index) {
-        stations.add(index-1, station);
-    }
-
     public static boolean deleteStation(String name) {
         Station thisStation = findStationByName(name);
         if (thisStation != null && thisStation.isRemovable()) {
