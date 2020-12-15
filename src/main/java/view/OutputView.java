@@ -14,9 +14,9 @@ public class OutputView {
 
     private static final String FINISH_SUBWAY_PROGRAM = "\n[END] 지하철 노선도 관리 프로그램이 종료 되었습니다.";
 
-    public static void functionView(String main, String function) {
-        System.out.println(main);
-        System.out.println(function);
+    public static void functionView(String orderName, String actionOrder) {
+        System.out.println(orderName);
+        System.out.println(actionOrder);
     }
 
     public static void stationInsertSuccess() {

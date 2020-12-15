@@ -1,5 +1,6 @@
 package subway.Manager;
 
+import Category.Category;
 import subway.domain.LineStationRepository;
 import view.InputView;
 import view.OutputView;
@@ -7,8 +8,6 @@ import view.OutputView;
 import java.util.Scanner;
 
 public class SubwayManager {
-    private static final String MAIN_VIEW = "\n## 메인화면";
-    private static final String MAIN_FUNCTION = "1. 역관리\n" + "2. 노선관리\n" + "3. 구간 관리\n" + "4. 지하철 노선도 출력\n" + "Q. 종료";
     private static final String STATION_MANAGE = "1";
     private static final String LINE_MANAGE = "2";
     private static final String SECTION_MANAGE = "3";
@@ -23,7 +22,7 @@ public class SubwayManager {
     public void manage() {
         while (true)
         {
-            OutputView.functionView(MAIN_VIEW, MAIN_FUNCTION);
+            OutputView.functionView(Category.MAIN.getName(), Category.MAIN.getActionOrder());
             String status = execute(InputView.inputFunction(scanner));
             if (status.equals("Q")) {
                 break;
