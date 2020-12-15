@@ -45,4 +45,13 @@ public class LineRepository {
         }
         return false;
     }
+    
+    public static Line getLineByName(String name) {
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
+                return line;
+            }
+        }
+        return null;
+    }
 }
