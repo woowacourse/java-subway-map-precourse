@@ -35,7 +35,6 @@ public class MainController {
 	public static void run(Scanner scanner) {
 		try {
 			String option = Options.createOption(scanner, options);
-			;
 			controlByOption(option, scanner);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
