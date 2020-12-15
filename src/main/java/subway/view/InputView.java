@@ -20,7 +20,9 @@ public class InputView {
         String userInput = scanner.nextLine();
         try {
             validateUserInput(userInput);
-            executeFunction(userInput);
+            if (!isUserInputQuit(userInput.charAt(0))) {
+                executeFunction(userInput);
+            }
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.getMessage());
@@ -30,7 +32,7 @@ public class InputView {
 
     private static void executeFunction(String userInput) {
         for (FunctionType functionType : FunctionType.values()) {
-            if(functionType.isSameFunctionCode(Integer.parseInt(userInput))) {
+            if (functionType.isSameFunctionCode(Integer.parseInt(userInput))) {
                 functionType.execute();
             }
         }
