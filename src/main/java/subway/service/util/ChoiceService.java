@@ -8,7 +8,7 @@ import subway.view.output.util.ScreenView;
 import java.util.Scanner;
 
 /**
- * StateService.java : 지하철 역, 지하철 노선 기능 선택에 대한 서비스 클래스
+ * ChoiceService.java : 지하철 역, 지하철 노선 기능 선택에 대한 서비스 클래스
  *
  * @author Daeun Lee
  * @version 1.0
