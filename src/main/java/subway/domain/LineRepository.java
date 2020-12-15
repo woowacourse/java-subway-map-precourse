@@ -21,6 +21,12 @@ public class LineRepository {
     }
 
     public static Line selectLineByName(String name) {
-        return (Line) lines.stream().filter(line -> Objects.equals(line.getName(), name));
+        for (Line line : lines) {
+            if (line.getName().equals(name)) {
+                return line;
+            }
+        }
+
+        return null;
     }
 }

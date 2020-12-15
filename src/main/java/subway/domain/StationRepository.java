@@ -21,6 +21,12 @@ public class StationRepository {
     }
 
     public static Station getStationByName(String name) {
-        return (Station) stations.stream().filter(station -> Objects.equals(station.getName(), name));
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
+                return station;
+            }
+        }
+
+        return null;
     }
 }
