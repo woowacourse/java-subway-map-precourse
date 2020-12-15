@@ -8,30 +8,28 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
-    private static final List<Station> stations = new ArrayList<>();
+    public static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(String stationName) {
-        if (checkNameLength(stationName)) {
+    public static void addStations(List<Station> stations){
+        stations.forEach(StationRepository::addStation);
+    }
+
+    public static void addStation(Station station) {
+        if (checkNameLength(station.getName())) {
             throw new IllegalStateException();
         }
-        if (checkExistStation(stationName)) {
+        if (checkExistStation(station.getName())) {
             throw new IllegalArgumentException();
         }
-        stations.add(new Station(stationName));
+        stations.add(station);
     }
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
-    }
-
-    public static void printStations() {
-        for (int i = 0; i < stations.size(); i++) {
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, stations.get(i).getName()));
-        }
     }
 
     public static boolean checkExistStation(String stationName) {

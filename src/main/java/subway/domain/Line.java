@@ -13,16 +13,23 @@ public class Line {
         this.name = name;
     }
 
+    public Line(String name, Station... stations) {
+        this.name = name;
+        for(int i=0; i< stations.length; i++){
+            this.stations.add(stations[i]);
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public boolean existStation(String stationName) {
-        return stations.stream().noneMatch(s -> s.getName().equals(stationName));
+        return stations.stream().anyMatch(s -> s.getName().equals(stationName));
     }
 
     public void addStation(String stationName, int order) {
-        stations.add(order, new Station(stationName));
+        stations.add(order-1, new Station(stationName));
     }
 
     public boolean checkStationSize() {

@@ -34,7 +34,7 @@ public class StationController {
         System.out.println(String.join(" 역 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String stationName = scanner.next();
         try {
-            stationRepository.addStation(stationName);
+            stationRepository.addStation(new Station(stationName));
             System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_STATION_SUCCESS));
         } catch (IllegalArgumentException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
@@ -55,6 +55,8 @@ public class StationController {
     }
 
     void readStations() {
-        stationRepository.printStations();
+        for (int i = 0; i < stationRepository.stations.size(); i++) {
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, stationRepository.stations.get(i).getName()));
+        }
     }
 }

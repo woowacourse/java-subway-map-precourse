@@ -59,6 +59,8 @@ public class LineController {
     }
 
     void readLines() {
-        lineRepository.printLines();
+        for (int i = 0; i < lineRepository.lines.size(); i++) {
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
+        }
     }
 }

@@ -46,9 +46,11 @@ public class SectionRepository {
             throw new IllegalStateException();
         }
         for (int i = 0; i < lineRepository.lines.size(); i++) {
-            System.out.print(String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
+            System.out.println("\n" + String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, "---"));
             for (int j = 0; j < lineRepository.lines.get(i).stations.size(); j++) {
-                System.out.print(lineRepository.lines.get(i).stations.get(j).getName() + " ");
+                System.out.println(String.join
+                        (" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).stations.get(j).getName()));
             }
         }
     }

@@ -12,6 +12,10 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public static void addLines(List<Line> lineList){
+        lineList.forEach(line -> lines.add(line));
+    }
+
     public static void addLine(String lineName, String upwardName, String downwardName) {
         if (stationRepository.checkNameLength(lineName)) {
             throw new IllegalStateException();
@@ -31,12 +35,6 @@ public class LineRepository {
             throw new IllegalArgumentException();
         }
         return lines.removeIf(line -> Objects.equals(line.getName(), lineName));
-    }
-
-    public static void printLines() {
-        for (int i = 0; i < lines.size(); i++) {
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, lines.get(i).getName()));
-        }
     }
 
     public static boolean checkExistLine(String lineName) {
