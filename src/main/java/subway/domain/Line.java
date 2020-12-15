@@ -4,12 +4,14 @@ import java.util.Iterator;
 import subway.utils.ValidationUtils;
 
 public class Line implements Iterable<String> {
+    private static final DomainNamingForm namingForm = DomainNamingForm.LINE;
+
     private String name;
     private ResisteredStations stations;
 
     public Line(String name) {
-        ValidationUtils.validateTooShortName(name, DomainNamingForm.LINE);
-        ValidationUtils.validateInvalidSuffix(name, DomainNamingForm.LINE);
+        ValidationUtils.validateTooShortName(name, namingForm);
+        ValidationUtils.validateInvalidSuffix(name, namingForm);
 
         this.name = name;
     }
