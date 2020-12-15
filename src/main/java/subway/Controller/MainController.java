@@ -1,16 +1,16 @@
 package subway.Controller;
 
-import subway.Exception.MainExceptionHandler;
+import subway.exception.input.MainInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class MainController {
 
-    private static final String[] MAIN_PATTERN = {"1", "2", "3", "4"};
-    private static final String STAION = "1";
+    private static final String STATION = "1";
     private static final String LINE = "2";
     private static final String SECTION = "3";
     private static final String MAP = "4";
+    private static final String STOP = "Q";
 
     public static void run() {
         OutputView.printMainView();
@@ -19,15 +19,15 @@ public class MainController {
 
     public static void select() {
         String selection = InputView.getSelectionView();
-        if (selection.equals("Q")) {
+        MainInputExceptionHandler.unselectable(selection);
+        if (selection.equals(STOP)) {
             return;
         }
-        MainExceptionHandler.unselectableMain(selection, MAIN_PATTERN);
         execute(selection);
     }
 
     private static void execute(String selection) {
-        if (selection.equals(STAION)) {
+        if (selection.equals(STATION)) {
             StationController.run();
         }
         if (selection.equals(LINE)) {
@@ -40,6 +40,4 @@ public class MainController {
             MapController.run();
         }
     }
-
-
 }

@@ -1,4 +1,4 @@
-package subway.Exception;
+package subway.exception;
 
 import subway.Controller.LineController;
 import subway.view.OutputView;
@@ -16,7 +16,7 @@ public class MainExceptionHandler {
 
     public static void unselectableMain(String selection, String[] pattern) {
         try {
-            ExceptionHandler.isUnSelectable(selection, pattern);
+            ExceptionHandler.unselectable(selection, pattern);
         } catch (CustomException e) {
             printErrorAndGoBack(e.getMessage());
         }

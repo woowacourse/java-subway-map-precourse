@@ -1,16 +1,16 @@
 package subway.Controller;
 
-import subway.Exception.SectionExceptionHandler;
-import subway.Exception.StationExceptionHandler;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.exception.domain.SectionExceptionHandler;
+import subway.exception.domain.StationExceptionHandler;
+import subway.exception.input.SectionInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class SectionController {
 
-    private static final String[] SECTION_PATTERN = {"1", "2", "B"};
     private static final String ADD = "1";
     private static final String DELETE = "2";
     private static final String BACK = "B";
@@ -22,10 +22,10 @@ public class SectionController {
 
     public static void select() {
         String selection = InputView.getSelectionView();
+        SectionInputExceptionHandler.unselectable(selection);
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        SectionExceptionHandler.unselectable(selection, SECTION_PATTERN);
         execute(selection);
     }
 

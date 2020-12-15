@@ -101,7 +101,7 @@ public class OutputView {
     }
 
     public static void printDeleteLineSuccess() {
-        printSuccessOrFailureInfo(DELETE_STATION_SUCCESS);
+        printSuccessOrFailureInfo(DELETE_LINE_SUCCESS);
     }
 
     public static void printStationLineView() {

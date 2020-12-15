@@ -1,4 +1,4 @@
-package subway.Exception;
+package subway.exception;
 
 public class CustomException extends RuntimeException {
 

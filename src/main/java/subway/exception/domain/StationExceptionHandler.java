@@ -1,8 +1,9 @@
-package subway.Exception;
+package subway.exception.domain;
 
 import subway.Controller.StationController;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
+import subway.exception.CustomException;
 import subway.view.OutputView;
 
 public class StationExceptionHandler {
@@ -16,14 +17,6 @@ public class StationExceptionHandler {
     private static void printErrorAndGoBack(String error) {
         OutputView.printError(error);
         goBack();
-    }
-
-    public static void unselectable(String selection, String[] pattern) {
-        try {
-            ExceptionHandler.isUnSelectable(selection, pattern);
-        } catch (CustomException e) {
-            printErrorAndGoBack(e.getMessage());
-        }
     }
 
     public static void stationContainedInLine(String name) {

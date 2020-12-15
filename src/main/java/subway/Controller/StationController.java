@@ -1,14 +1,14 @@
 package subway.Controller;
 
-import subway.Exception.StationExceptionHandler;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.exception.domain.StationExceptionHandler;
+import subway.exception.input.StationInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class StationController {
 
-    private static final String[] STATION_PATTERN = {"1", "2", "3", "B"};
     private static final String ADD = "1";
     private static final String DELETE = "2";
     private static final String TRAVERSE = "3";
@@ -21,10 +21,10 @@ public class StationController {
 
     public static void select() {
         String selection = InputView.getSelectionView();
+        StationInputExceptionHandler.unselectable(selection);
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        StationExceptionHandler.unselectable(selection, STATION_PATTERN);
         execute(selection);
     }
 

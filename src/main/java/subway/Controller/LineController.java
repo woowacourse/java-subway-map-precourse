@@ -1,15 +1,15 @@
 package subway.Controller;
 
-import subway.Exception.LineExceptionHandler;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.exception.domain.LineExceptionHandler;
+import subway.exception.input.LineInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class LineController {
 
-    private static final String[] LINE_PATTERN = {"1", "2", "3", "B"};
     private static final String ADD = "1";
     private static final String DELETE = "2";
     private static final String TRAVERSE = "3";
@@ -20,12 +20,12 @@ public class LineController {
         select();
     }
 
-    private static void select() {
+    public static void select() {
         String selection = InputView.getSelectionView();
+        LineInputExceptionHandler.unselectable(selection);
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        LineExceptionHandler.unselectable(selection, LINE_PATTERN);
         execute(selection);
     }
 

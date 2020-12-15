@@ -1,7 +1,8 @@
-package subway.Exception;
+package subway.exception.domain;
 
 import subway.Controller.LineController;
 import subway.domain.LineRepository;
+import subway.exception.CustomException;
 import subway.view.OutputView;
 
 public class LineExceptionHandler {
@@ -15,14 +16,6 @@ public class LineExceptionHandler {
     private static void printErrorAndGoBack(String error) {
         OutputView.printError(error);
         goBack();
-    }
-
-    public static void unselectable(String selection, String[] pattern) {
-        try {
-            ExceptionHandler.isUnSelectable(selection, pattern);
-        } catch (CustomException e) {
-            printErrorAndGoBack(e.getMessage());
-        }
     }
 
     public static void lineNameShortThanMin(String lineName) {
