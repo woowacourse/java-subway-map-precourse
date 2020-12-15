@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import subway.SubwayExceptions.ExceptionCannotDeleteStationOnLine;
+import subway.SubwayExceptions.ExceptionStationNameNoExists;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -136,13 +138,14 @@ public class StationDashboard {
 
     public boolean deleteStation(InputView inputView) {
         String submittedStationName = inputView.readDeletingStationName();
-        if (!StationRepository.canDeleteStation(submittedStationName)) {
-            System.out.println(ERROR_CANNOT_DELETE_STATION_ON_LINE);
+        try {
+            StationRepository.canDeleteStation(submittedStationName);
+            StationRepository.deleteStation(submittedStationName);
+        } catch (ExceptionCannotDeleteStationOnLine e) {
+            System.out.println(e.getMessage());
             return false;
-        }
-
-        if (!StationRepository.deleteStation(submittedStationName)) {
-            System.out.println(ERROR_STATION_NAME_NO_EXISTS);
+        } catch (ExceptionStationNameNoExists e) {
+            System.out.println(e.getMessage());
             return false;
         }
         return true;

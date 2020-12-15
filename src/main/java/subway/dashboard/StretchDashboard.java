@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
+import subway.SubwayExceptions.ExceptionStationNameNoExists;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -173,7 +174,11 @@ public class StretchDashboard {
     public void checkOnLineStatus(String stationName) {
         StationRepository.getStationByName(stationName).subtractNumberOnLines();
         if (StationRepository.getStationByName(stationName).isNotOnLines()) {
-            StationRepository.deleteStation(stationName);
+            try {
+                StationRepository.deleteStation(stationName);
+            } catch (ExceptionStationNameNoExists e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
