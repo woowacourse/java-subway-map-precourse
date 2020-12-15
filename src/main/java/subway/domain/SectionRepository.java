@@ -36,14 +36,14 @@ public class SectionRepository {
         return false;
     }
 
-//    public static void printSections(){
-//        map.entrySet().forEach(entry->{
-//            System.out.println("key -> " + entry.getKey().getName());
-////                    + " " + entry.getValue());
-//            for(int i=0; i<entry.getValue().size(); i++){
-//                System.out.print("value -> " + entry.getValue().get(i).getName() + " ");
-//            }
-//        });
-//    }
+
+    public static void printMap(){
+        for(int i=0; i<lineRepository.lines.size(); i++){
+            System.out.print(String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
+            for(int j=0; j<lineRepository.lines.get(i).stations.size(); j++){
+                System.out.print(lineRepository.lines.get(i).stations.get(j).getName() + " " );
+            }
+        }
+    }
 
 }

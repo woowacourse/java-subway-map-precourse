@@ -7,7 +7,6 @@ import java.util.*;
 public class LineRepository {
     public static final List<Line> lines = new ArrayList<>();
     static StationRepository stationRepository = new StationRepository();
-    static SectionRepository sectionRepository = new SectionRepository();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
@@ -28,7 +27,6 @@ public class LineRepository {
         line.stations.add(new Station(upwardName));
         line.stations.add(new Station(downwardName));
         lines.add(line);
-        printMap();
         System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
     }
 
@@ -42,15 +40,6 @@ public class LineRepository {
     public static void printLines() {
         for (int i = 0; i < lines.size(); i++) {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, lines.get(i).getName()));
-        }
-    }
-
-    public static void printMap(){
-        for(int i=0; i<lines.size(); i++){
-            System.out.print(String.join(" ", Constant.INFO_PREFIX, lines.get(i).getName()));
-            for(int j=0; j<lines.get(i).stations.size(); j++){
-                System.out.print(lines.get(i).stations.get(j).getName() + " " );
-            }
         }
     }
 

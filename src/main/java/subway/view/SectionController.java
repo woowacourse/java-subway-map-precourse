@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class SectionController {
     Scanner scanner;
     SectionRepository sectionRepository = new SectionRepository();
-    LineRepository lineRepository = new LineRepository();
     private static final String GET_LINE_NAME = "\n## 노선을 입력하세요.";
     private static final String GET_STATION_NAME = "\n## 역 이름을 입력하세요.";
     private static final String GET_ORDER_NAME = "\n## 순서를 입력하세요.";
@@ -53,6 +52,6 @@ public class SectionController {
     }
 
     public void readSections() {
-        lineRepository.printMap();
+        sectionRepository.printMap();
     }
 }
