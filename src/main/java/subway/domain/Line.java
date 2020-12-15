@@ -17,6 +17,10 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public void setLineStations(ArrayList<Station> lineStations) {
+        this.lineStations = lineStations;
+    }
+
     public void setTerminal(Station upTerminal, Station downTerninal) {
         this.lineStations.add(upTerminal);
         this.lineStations.add(downTerninal);

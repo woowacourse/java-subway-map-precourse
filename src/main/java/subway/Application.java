@@ -1,18 +1,34 @@
 package subway;
 
 import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.line.LineUtils;
 import subway.line.SectionUtils;
 import subway.station.StationUtils;
 import subway.station.SubwayUtils;
 import subway.validator.Validator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
+
+        Line secondLine = new Line("2호선");
+        secondLine.setLineStations(new ArrayList<Station>(Arrays.asList(StationRepository.getStationByName("교대역"), StationRepository.getStationByName("강남역"), StationRepository.getStationByName("역삼역"))));
+        Line thirdLine = new Line("3호선");
+        thirdLine.setLineStations(new ArrayList<Station>(Arrays.asList(StationRepository.getStationByName("교대역"), StationRepository.getStationByName("남부터미널역"), StationRepository.getStationByName("양재역"), StationRepository.getStationByName("매봉역"))));
+        Line newBundangLine = new Line("신분당선");
+        newBundangLine.setLineStations(new ArrayList<Station>(Arrays.asList(StationRepository.getStationByName("강남역"), StationRepository.getStationByName("양재역"), StationRepository.getStationByName("양재시민의숲역"))));
+
+        LineRepository.addLine(secondLine);
+        LineRepository.addLine(thirdLine);
+        LineRepository.addLine(newBundangLine);
 
         StationUtils stationUtils = new StationUtils(scanner);
         LineUtils lineUtils = new LineUtils(scanner);
