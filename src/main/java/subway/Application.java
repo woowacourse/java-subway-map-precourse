@@ -32,7 +32,8 @@ public class Application {
 	private static final String DELETE_LINE_MESSAGE = "[INFO] 지하철 노선이 삭제되었습니다.";
 	private static final String ERROR_DELETE_LINE_MESSAGE = "[ERROR] 없는 지하철노선 이름입니다.";
 	private static final String ERROR_INPUT_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
-	private static final String END_PROGRAM_MESSAGE = "##프로그램을 종료한다.";
+	
+	private static final String END_PROGRAM_MESSAGE = "##프로그램을 종료합니다.";
 
 	public static void main(String[] args) {
 		final Scanner scanner = new Scanner(System.in);
