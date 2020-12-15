@@ -6,4 +6,6 @@
 ---
 # 지하철 프로젝트
 
+feat(Menu.java): 메뉴 순환 기능 추가
+
 docs(README.md): 구현할 기능 목록 추가
