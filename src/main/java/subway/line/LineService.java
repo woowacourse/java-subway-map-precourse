@@ -9,6 +9,10 @@ public class LineService {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String NOT_EXIST = ERROR_PREFIX + "등록되지 않은 노선입니다.";
 
+    public static void addLine(Line line) {
+        LineRepository.addLine(line);
+    }
+
     public static boolean addLine(Line line, Station startStation, Station endStation) {
         line.addStation(startStation);
         line.addStation(endStation);

@@ -1,7 +1,6 @@
 package subway.line;
 
 import subway.station.Station;
-import subway.station.StationRepository;
 import subway.station.StationService;
 import utils.StringSeparation;
 
@@ -21,7 +20,7 @@ public class LineInitialization {
             String lineName = stations.get(0);
             EachLineStations lineStations = new EachLineStations(getStationList(stations, lineName));
             Line line = new Line(lineName, lineStations);
-            LineRepository.addLine(line);
+            LineService.addLine(line);
         }
     }
 
