@@ -2,13 +2,10 @@ package subway;
 
 import java.util.Scanner;
 import subway.controller.MainMenuController;
-import subway.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        SubwayInitializer.init();
-        InputView.registerScanner(scanner);
-        MainMenuController.main();
+        MainMenuController.main(scanner);
     }
 }

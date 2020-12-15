@@ -42,6 +42,12 @@ public class LineRepository {
                 .anyMatch(line -> line.getName().equals(name));
     }
 
+    public static boolean isStationRegisteredInAnyLine(String stationName) {
+        return LineRepository.lines().stream()
+                .anyMatch(line -> line.getSections()
+                        .contains(StationRepository.findByName(stationName)));
+    }
+
     public static void deleteAll() {
         lines.clear();
     }

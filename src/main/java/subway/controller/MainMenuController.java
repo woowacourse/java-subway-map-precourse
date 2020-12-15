@@ -4,7 +4,9 @@ import static subway.view.OutputView.DOT;
 import static subway.view.OutputView.NEWLINE;
 
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.Collectors;
+import subway.SubwayInitializer;
 import subway.domain.LineRepository;
 import subway.exception.ExitSystemException;
 import subway.exception.InvalidChoiceException;
@@ -24,7 +26,9 @@ public class MainMenuController extends MenuController {
     private MainMenuController() {
     }
 
-    public static void main() {
+    public static void main(Scanner scanner) {
+        init(scanner);
+
         while (true) {
             printMenu();
             try {
@@ -35,6 +39,12 @@ public class MainMenuController extends MenuController {
             }
         }
     }
+
+    private static void init(Scanner scanner) {
+        SubwayInitializer.init();
+        InputView.registerScanner(scanner);
+    }
+
 
     private static void printMenu() {
         OutputView.printMenu(TITLE, Menu.getMenus());
