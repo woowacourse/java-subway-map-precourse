@@ -16,12 +16,14 @@ public class StationUtils {
     }
 
     public void play() {
-        while (true) {
-            System.out.println("## 원하는 기능을 선택하세요.");
-            String chosen = scanner.next();
-            if (chosen.equals("B")) {
-                break;
-            }
+        System.out.println("## 역 관리 화면\n" +
+                "1. 역 등록\n" +
+                "2. 역 삭제\n" +
+                "3. 역 조회\n" +
+                "B. 돌아가기\n");
+        System.out.println("## 원하는 기능을 선택하세요.");
+        String chosen = scanner.next();
+        if (!chosen.equals("B")) {
             choose(chosen);
         }
     }
