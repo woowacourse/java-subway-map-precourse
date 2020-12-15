@@ -1,9 +1,11 @@
 package view;
 
 public class OutputView {
+    private static final String STATION_LIST = "\n## 역 목록";
     private static final String STATION_INSERT_SUCCESS = "\n[INFO] 지하철 역이 등록되었습니다\n";
     private static final String STATION_DELETE_SUCCESS = "\n[INFO] 지하철 역이 삭제되었습니다\n";
 
+    private static final String LINE_LIST = "\n## 노선 목록";
     private static final String LINE_INSERT_SUCCESS = "\n[INFO] 지하철 노선이 등록되었습니다\n";
     private static final String LINE_DELETE_SUCCESS = "\n[INFO] 지하철 노선이 삭제되었습니다\n";
 
@@ -28,6 +30,7 @@ public class OutputView {
     }
 
     public static void stationsPrint(String stations) {
+        System.out.println(STATION_LIST);
         System.out.println(stations);
     }
 
@@ -40,6 +43,7 @@ public class OutputView {
     }
 
     public static void linesPrint(String lines) {
+        System.out.println(LINE_LIST);
         System.out.println(lines);
     }
 
