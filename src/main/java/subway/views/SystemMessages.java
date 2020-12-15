@@ -44,7 +44,7 @@ public class SystemMessages {
     public static final String SECTION_VIEW_MESSAGE = "## 구간 관리 화면";
     public static final String[] SECTION_CONTROL_MESSAGE = {
             "1. 구간 등록",
-            "2. 노선 삭제",
+            "2. 구간 삭제",
             "B. 돌아가기"
     };
     public static final String ADD_SECTION_LINE_MESSAGE = "## 노선을 입력하세요.";
