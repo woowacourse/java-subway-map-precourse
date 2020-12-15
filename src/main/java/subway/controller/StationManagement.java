@@ -3,6 +3,7 @@ package subway.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -47,6 +48,17 @@ public class StationManagement {
 		} else if (selectedButton.equals(StationButton.LOOK_UP.getButton())) {
 			
 		}
+	}
+	
+	public static void registerStation() {
+		String stationName = InputView.getRegisterStation();
+		Station station = new Station(stationName);
+		StationRepository.addStation(station);
+	}
+	
+	public static void deleteStation() {
+		String stationName = InputView.getDeleteStation();
+		StationRepository.deleteStation(stationName);
 	}
 	
 	
