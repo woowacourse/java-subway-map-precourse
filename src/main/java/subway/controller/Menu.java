@@ -31,10 +31,35 @@ public abstract class Menu {
     // 유효 입력 여과
     protected boolean managing(String choice) {
         if (PRIMARY_FUNCTIONS.contains(choice)) {
-            return false;
+            return executeFunction(choice);
         }
         Error.noFunction();
         return true;
     }
 
+    // true -> 반복, false -> 종료
+    protected boolean executeFunction(String choice) {
+        if (choice.equals(MENU_ONE)) {
+            return !functionOne();
+        }
+        if (choice.equals(MENU_TWO)) {
+            return !functionTwo();
+        }
+        if (choice.equals(MENU_THREE)) {
+            return !functionThree();
+        }
+        return false;
+    }
+
+    protected boolean functionOne() {
+        return false;
+    }
+
+    protected boolean functionTwo() {
+        return false;
+    }
+
+    protected boolean functionThree() {
+        return false;
+    }
 }
