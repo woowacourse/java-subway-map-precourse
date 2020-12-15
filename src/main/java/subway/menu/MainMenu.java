@@ -37,6 +37,7 @@ public class MainMenu {
                 new SectionMenu(scanner).startSectionMenu();
             }
             if (input.equals("4")) {
+                new SubwayMapMenu().printSubwayMap();
             }
             if (input.equals("Q")) {
                 break;
