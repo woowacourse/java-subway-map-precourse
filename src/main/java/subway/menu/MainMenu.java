@@ -1,5 +1,7 @@
 package subway.menu;
 
+import static subway.util.TextConstant.*;
+
 import subway.controller.MainMenuHandler;
 
 import java.util.Arrays;
@@ -13,7 +15,6 @@ public enum MainMenu {
     SHOW_SUBWAY_MAP("지하철 노선도 출력", "4", MainMenuHandler::showSubwayMap),
     QUIT("종료", "Q", MainMenuHandler::end);
 
-    public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
 
     MainMenu(String title, String command, Runnable action) {
         this.title = title;

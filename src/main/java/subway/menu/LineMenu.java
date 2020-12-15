@@ -1,7 +1,8 @@
 package subway.menu;
 
+import static subway.util.TextConstant.*;
+
 import subway.controller.LineMenuHandler;
-import subway.controller.SectionMenuHandler;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,6 @@ public enum LineMenu {
     SHOW_LINE("라인 조회", "3", LineMenuHandler::showLine),
     BACK("돌아가기", "B", LineMenuHandler::back);
 
-    public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
 
     LineMenu(String title, String command, Runnable action) {
         this.title = title;

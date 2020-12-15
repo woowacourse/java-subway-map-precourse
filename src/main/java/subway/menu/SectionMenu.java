@@ -1,18 +1,17 @@
 package subway.menu;
 
+import static subway.util.TextConstant.*;
+
 import subway.controller.SectionMenuHandler;
-import subway.controller.StationMenuHandler;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public enum SectionMenu {
-    ADD_SECTION("구간 등록", "1",SectionMenuHandler::addSection),
+    ADD_SECTION("구간 등록", "1", SectionMenuHandler::addSection),
     DELETE_SECTION("구간 삭제", "2", SectionMenuHandler::deleteSection),
-    BACK("돌아가기", "B",SectionMenuHandler::back);
-
-    public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
+    BACK("돌아가기", "B", SectionMenuHandler::back);
 
     SectionMenu(String title, String command, Runnable action) {
         this.title = title;

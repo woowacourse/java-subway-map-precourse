@@ -1,5 +1,6 @@
 package subway.view;
 
+import static subway.util.TextConstant.*;
 
 import subway.menu.LineMenu;
 import subway.menu.MainMenu;
@@ -8,18 +9,6 @@ import subway.menu.StationMenu;
 import java.util.List;
 
 public class OutputView {
-    public static final String DOT_AND_BLANK = ". ";
-    public static final String MAIN_MENU_HEADER = "## 메인 화면";
-    public static final String STATION_MENU_HEADER = "## 역 관리 화면";
-    public static final String LINE_MENU_HEADER = "## 노선 관리 화면";
-    public static final String SECTION_MENU_HEADER = "## 구간 관리 화면";
-    public static final String PLEASE_SELECT_MENU_MSG = "## 원하는 기능을 선택하세요.";
-    public static final String ADD_NAME_MSG_FORMAT = "## 등록할 %s 이름을 입력하세요.";
-    public static final String DELETE_NAME_MSG_FORMAT = "## 삭제할 %s 이름을 입력하세요.";
-    public static final String INFO_PREFIX_MSG = "[INFO] ";
-    public static final String INFO_COMPLETE_MSG_FORMAT = "%s이 %s되었습니다.";
-    public static final String EMPTY_STRING = "";
-
     public static void showMainMenu() {
         String header = MAIN_MENU_HEADER + System.lineSeparator();
         List<String> commands = MainMenu.getCommands();
@@ -85,7 +74,7 @@ public class OutputView {
 
     public static void showCompleteMessage(String subject, String action) {
         println(EMPTY_STRING);
-        println(String.format(INFO_PREFIX_MSG.concat(INFO_COMPLETE_MSG_FORMAT), subject, action));
+        println(String.format(INFO_COMPLETE_MSG_FORMAT, subject, action));
         println(EMPTY_STRING);
     }
 }

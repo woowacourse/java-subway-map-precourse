@@ -1,5 +1,7 @@
 package subway.domain;
 
+import static subway.util.TextConstant.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -8,9 +10,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Stations {
-    private static final String ERR_ALREADY_ADD_STATION_NAME_MSG = "[ERROR] 이미 등록된 역명입니다.";
-    private static final String ERR_NO_SUCH_NAME_STATION_MSG = "[ERROR] 해당 역이 없습니다.";
-
     private final List<Station> stations = new ArrayList<>();
 
     public void addStation(Station station) {
@@ -49,15 +48,20 @@ public class Stations {
                 .collect(Collectors.toList());
     }
 
-    public boolean contains(Station station) {
+    public boolean isPresentStation(String name) {
+        return stations.stream()
+                .anyMatch(station -> Objects.equals(station.getName(), name));
+    }
+
+    public boolean isPresentStation(Station station) {
         return stations.contains(station);
     }
 
-    public Station firstStation(){
+    public Station firstStation() {
         return stations.get(0);
     }
 
-    public Station lastStation(){
+    public Station lastStation() {
         return stations.get(stations.size() - 1);
     }
 

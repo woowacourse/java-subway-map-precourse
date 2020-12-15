@@ -14,4 +14,12 @@ public class LineRepository {
     public static void deleteLineByName(String name) {
         lines.deleteLine(name);
     }
+
+    public static boolean isPresentLine(String name) {
+        return lines.isPresentLine(name);
+    }
+
+    public static Line findLine(String name) {
+        return lines.findLine(name);
+    }
 }

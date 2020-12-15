@@ -1,7 +1,8 @@
 package subway.menu;
 
-import subway.controller.MainMenuHandler;
 import subway.controller.StationMenuHandler;
+
+import static subway.util.TextConstant.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,6 @@ public enum StationMenu {
     DELETE_STATION("역 삭제", "2", StationMenuHandler::deleteStation),
     SHOW_STATIONS("역 조회", "3", StationMenuHandler::showStation),
     BACK("돌아가기", "B", StationMenuHandler::back);
-
-    public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
 
     StationMenu(String title, String command, Runnable action) {
         this.title = title;

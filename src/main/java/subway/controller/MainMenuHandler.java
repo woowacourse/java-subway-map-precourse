@@ -1,5 +1,7 @@
 package subway.controller;
 
+import static subway.util.TextConstant.*;
+
 import subway.menu.LineMenu;
 import subway.menu.SectionMenu;
 import subway.menu.StationMenu;
@@ -7,8 +9,6 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class MainMenuHandler {
-    public static final int ZERO = 0;
-
     public static void stationManage() {
         OutputView.showStationMenu();
         StationMenu menuAction = StationMenu.findByCommand(InputView.nextLine());
@@ -30,7 +30,7 @@ public class MainMenuHandler {
     public static void showSubwayMap() {
     }
 
-    public static void end(){
+    public static void end() {
         System.exit(ZERO);
     }
 
