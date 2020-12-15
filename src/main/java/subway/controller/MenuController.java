@@ -1,6 +1,7 @@
 package subway.controller;
 
 import java.util.Scanner;
+import subway.domain.service.LineService;
 import subway.view.MenuView;
 import utils.Category;
 
@@ -42,6 +43,10 @@ public class MenuController {
         }
 
         if (category == Category.LINE) {
+            if (selection == LineController.GET_LIST) {
+                LineService.readLineList();
+                return;
+            }
             LineController.manageLine(scanner, selection);
         }
     }

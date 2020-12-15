@@ -29,6 +29,6 @@ public class StationRepository {
 
     public static List<Station> readStation(String name) {
         return StationRepository.stations().stream().filter(station ->
-            station.getName() == name).collect(Collectors.toList());
+            Objects.equals(station.getName(), name)).collect(Collectors.toList());
     }
 }
