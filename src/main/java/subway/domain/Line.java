@@ -43,4 +43,8 @@ public class Line {
     	int index = lineSection.indexOf(stationName);
     	lineSection.remove(index);
     }
+    
+    public ArrayList<String> getStationInLine(){
+    	return lineSection;
+    }
 }

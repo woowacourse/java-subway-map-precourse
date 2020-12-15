@@ -46,7 +46,7 @@ public class StationManagement {
 		} else if (selectedButton.equals(StationButton.DELETE.getButton())) {
 			deleteStation();
 		} else if (selectedButton.equals(StationButton.LOOK_UP.getButton())) {
-			
+			OutputView.printTotalStation();
 		}
 	}
 	

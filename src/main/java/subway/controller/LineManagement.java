@@ -46,7 +46,7 @@ public class LineManagement {
 		} else if (selectedButton.equals(LineButton.DELETE.getButton())) {
 			deleteLine();
 		} else if (selectedButton.equals(LineButton.LOOK_UP.getButton())) {
-			
+			OutputView.printTotalLine();
 		}
 	}
 	

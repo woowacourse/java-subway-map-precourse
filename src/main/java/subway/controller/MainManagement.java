@@ -44,7 +44,7 @@ public class MainManagement {
 		} else if (selectedButton.equals(MainButton.SECTION.getButton())) {
 			SectionManagement.execute();
 		} else if (selectedButton.equals(MainButton.PRINT_SUBWAY_MAP.getButton())) {
-			
+			OutputView.printTotalMap();
 		}
 	}
 }
