@@ -10,7 +10,7 @@ import static subway.util.TextConstant.*;
 
 public class LineMenuHandler {
     public static void addLine() {
-        OutputView.showAddMessage(ROUTE);
+        OutputView.showRequestInputForAddMessage(ROUTE);
         //todo : validate Util로 검증로직들 뽑아서 line 이름에 대해 검증해야 함
         String lineName = InputView.nextLine();
         if (LineRepository.isPresentLine(lineName)) {
@@ -22,17 +22,17 @@ public class LineMenuHandler {
         if (!lineName.endsWith(LINE)) {
             throw new IllegalArgumentException(ERR_WRONG_LINE_NAME_SUFFIX);
         }
-        OutputView.showAddMessage(UPLINE_TERMINAL_STATION);
+        OutputView.showRequestInputForAddMessage(UPLINE_TERMINAL_STATION);
         Station uplineTerminalStation = StationRepository.findStationByName(InputView.nextLine().trim());
 
-        OutputView.showAddMessage(DOWNLINE_TERMINAL_STATION);
+        OutputView.showRequestInputForAddMessage(DOWNLINE_TERMINAL_STATION);
         Station downlineTerminalStation = StationRepository.findStationByName(InputView.nextLine().trim());
 
         LineRepository.addLine(LineFactory.makeLine(lineName, uplineTerminalStation, downlineTerminalStation));
     }
 
     public static void deleteLine() {
-        OutputView.showDeleteMessage(ROUTE);
+        OutputView.showRequestInputForDeleteMessage(ROUTE);
         LineRepository.deleteLineByName(InputView.nextLine().trim());
         OutputView.showCompleteMessage(ROUTE, DELETE);
     }

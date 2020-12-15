@@ -11,13 +11,13 @@ import java.util.List;
 
 public class StationMenuHandler {
     public static void addStation() {
-        OutputView.showAddMessage(STATION);
+        OutputView.showRequestInputForAddMessage(STATION);
         StationRepository.addStation(StationFactory.makeStation(InputView.nextLine().trim()));
         OutputView.showCompleteMessage(SUBWAY_STATION, ADD);
     }
 
     public static void deleteStation() {
-        OutputView.showDeleteMessage(STATION);
+        OutputView.showRequestInputForDeleteMessage(STATION);
         StationRepository.deleteStation(InputView.nextLine().trim());
         OutputView.showCompleteMessage(SUBWAY_STATION, DELETE);
     }

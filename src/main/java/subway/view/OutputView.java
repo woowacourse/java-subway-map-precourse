@@ -41,12 +41,16 @@ public class OutputView {
         println(PLEASE_SELECT_MENU_MSG);
     }
 
-    public static void showAddMessage(String subject) {
-        println(String.format(ADD_NAME_MSG_FORMAT, subject));
+    public static void showRequestInputForAddMessage(String subject) {
+        println(String.format(REQUEST_INPUT_FOR_ADD_NAME_MSG_FORMAT, subject));
     }
 
-    public static void showDeleteMessage(String subject) {
-        println(String.format(DELETE_NAME_MSG_FORMAT, subject));
+    public static void showRequestInputMessage(String subject){
+        println(String.format(REQUEST_INPUT_MSG_FORMAT, subject));
+    }
+
+    public static void showRequestInputForDeleteMessage(String subject) {
+        println(String.format(REQUEST_INPUT_FOR_DELETE_NAME_MSG_FORMAT, subject));
     }
 
     public static void showList(List<String> names) {

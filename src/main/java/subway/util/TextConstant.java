@@ -34,6 +34,11 @@ public class TextConstant {
     public static final String ERR_SHORT_NAME_MSG =
             String.format("[ERROR] 노선의 이름은 %d글자 이상이어야 합니다.", NAME_MIN_LENGTH);
 
+    //구간(Section) 관련
+    public static final String SECTION = "구간";
+    public static final String SEQUENCE = "순서";
+    public static final String REQUEST_INPUT_MSG_FORMAT = "## %s을(를) 입력하세요.";
+
     //메뉴 관련
     public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
 
@@ -46,8 +51,8 @@ public class TextConstant {
     public static final String LINE_MENU_HEADER = "## 노선 관리 화면";
     public static final String SECTION_MENU_HEADER = "## 구간 관리 화면";
     public static final String PLEASE_SELECT_MENU_MSG = "## 원하는 기능을 선택하세요.";
-    public static final String ADD_NAME_MSG_FORMAT = "## 등록할 %s 이름을 입력하세요.";
-    public static final String DELETE_NAME_MSG_FORMAT = "## 삭제할 %s 이름을 입력하세요.";
+    public static final String REQUEST_INPUT_FOR_ADD_NAME_MSG_FORMAT = "## 등록할 %s 이름을 입력하세요.";
+    public static final String REQUEST_INPUT_FOR_DELETE_NAME_MSG_FORMAT = "## 삭제할 %s 이름을 입력하세요.";
     public static final String INFO_COMPLETE_MSG_FORMAT = INFO_PREFIX_MSG.concat("%s이 %s되었습니다.");
     public static final String INFO_NO_ELEMENT_FORMAT = INFO_PREFIX_MSG.concat("%s이 없습니다.");
 }
