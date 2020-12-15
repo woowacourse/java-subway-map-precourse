@@ -53,4 +53,20 @@ public class SectionService {
         }
         return false;
     }
+
+    public static boolean deleteSection(String lineName, String stationName) {
+        if (isNotExistLineAndStation(lineName, stationName)) {
+            return false;
+        }
+        Line line = LineRepository.getLine(lineName);
+        if (isNotDeleteSize(line)) {
+            return false;
+        }
+        if (!line.deleteLineByName(stationName)) {
+            OutPut.printNonExistStationError(stationName);
+            return false;
+        }
+        OutPut.printSectionDeleteMessage();
+        return true;
+    }
 }
