@@ -37,28 +37,29 @@ public class SectionController {
     }
 
     private static boolean selectOption(char option, InputView inputView) {
-        if (option == ADD_SECTION) {
-            return addNewSection(inputView);
-        }
-        if (option == DELETE_SECTION) {
-            return deleteSection(inputView);
+        try {
+            if (option == ADD_SECTION) {
+                return addNewSection(inputView);
+            }
+            if (option == DELETE_SECTION) {
+                return deleteSection(inputView);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     private static boolean addNewSection(InputView inputView) {
-        boolean success = false;
-        try {
-            Line line = getAddSectionLine(inputView);
-            Station station = getAddSectionStation(line, inputView);
-            int sectionOrder = getAddSectionOrder(line, inputView);
-            success = SectionService.addSection(line, station, sectionOrder);
-            if (success) {
-                SectionManagementView.addSectionComplete();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        Line line = getAddSectionLine(inputView);
+        Station station = getAddSectionStation(line, inputView);
+        int sectionOrder = getAddSectionOrder(line, inputView);
+        boolean success = SectionService.addSection(line, station, sectionOrder);
+
+        if (success) {
+            SectionManagementView.addSectionComplete();
         }
+
         return success;
     }
 
@@ -83,17 +84,14 @@ public class SectionController {
     }
 
     private static boolean deleteSection(InputView inputView) {
-        boolean success = false;
-        try {
-            Line line = getDeleteSectionLine(inputView);
-            Station station = getDeleteSectionStation(line, inputView);
-            success = SectionService.deleteSection(line, station);
-            if (success) {
-                SectionManagementView.deleteSectionComplete();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        Line line = getDeleteSectionLine(inputView);
+        Station station = getDeleteSectionStation(line, inputView);
+        boolean success = SectionService.deleteSection(line, station);
+
+        if (success) {
+            SectionManagementView.deleteSectionComplete();
         }
+
         return success;
     }
 
