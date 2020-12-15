@@ -2,6 +2,7 @@ package subway.menu;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.service.SectionService;
 import subway.util.LineValidator;
 import subway.util.SectionValidator;
 import subway.util.StationValidator;
@@ -23,39 +24,63 @@ public class SectionMenu {
     }
 
     public void startSectionMenu() {
+        selectSectionMenu();
+    }
+
+    private void selectSectionMenu() {
         while (true) {
             printSectionMenu();
             String input = scanner.nextLine();
             if (input.equals("1")) {
-                System.out.println("\n## 노선을 입력하세요.");
-                String lineName = scanner.nextLine();
-                if (LineValidator.checkDuplicateName(lineName)) {
-                    System.out.println("\n## 역 이름을 입력하세요.");
-                    String stationName = scanner.nextLine();
-                    if (StationValidator.checkDuplicateName(stationName)) {
-                        System.out.println("\n## 순서를 입력하세요.");
-                        String index = scanner.nextLine();
-                        if (SectionValidator.checkValidIndex(index, lineName)) {
-                            Objects.requireNonNull(LineRepository.findLineByName(lineName)).addStation(index, stationName);
-                            System.out.println("\n[ INFO ] 구간이 등록되었습니다.");
-                        }
-                    }
-                }
+                addSectionMenu();
             }
             if (input.equals("2")) {
-                System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
-                String lineName = scanner.nextLine();
-                Line line = LineRepository.findLineByName(lineName);
-                if (line != null) {
-                    System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-                    String stationName = scanner.nextLine();
-                    if (line.isRemovable(stationName)) {
-                        System.out.println("\n[ INFO ] 구간이 삭제되었습니다.");
-                    }
-                }
+                deleteSectionMenu();
             }
             if (input.equals("B")) {
                 break;
+            }
+        }
+    }
+
+    private void addSectionMenu() {
+        addLine();
+    }
+
+    private void addLine() {
+        System.out.println("\n## 노선을 입력하세요.");
+        String lineName = scanner.nextLine();
+        if (LineValidator.haveLineName(lineName)) {
+            addStation(lineName);
+        }
+    }
+
+    private void addStation(String lineName) {
+        System.out.println("\n## 역 이름을 입력하세요.");
+        String stationName = scanner.nextLine();
+        if (StationValidator.haveStationName(stationName)) {
+            addIndex(lineName, stationName);
+        }
+    }
+
+    private void addIndex(String lineName, String stationName) {
+        System.out.println("\n## 순서를 입력하세요.");
+        String index = scanner.nextLine();
+        if (SectionValidator.checkValidIndex(index, lineName)) {
+            SectionService.addSection(lineName, index, stationName);
+            System.out.println("\n[ INFO ] 구간이 등록되었습니다.");
+        }
+    }
+
+    private void deleteSectionMenu() {
+        System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
+        String lineName = scanner.nextLine();
+        if (LineValidator.haveLineName(lineName)) {
+            System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
+            String stationName = scanner.nextLine();
+            if (SectionValidator.checkRemovableSection(lineName, stationName)) {
+                SectionService.removeSection(stationName, lineName);
+                System.out.println("\n[ INFO ] 구간이 삭제되었습니다.");
             }
         }
     }

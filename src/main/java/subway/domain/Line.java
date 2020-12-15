@@ -44,12 +44,8 @@ public class Line {
 
     //TODO 삭제 여부를 알아보는 메서드와 삭제를 진행하는 메서드로 나눠야함
     // 구간 삭제
-    public boolean isRemovable(String stationName) {
-        if (stationList.removeIf(station -> station.getName().equals(stationName))) {
-            Objects.requireNonNull(StationRepository.findStationByName(stationName)).decreaseCount();
-            return true;
-        }
-        return false;
+    public boolean removeStation(String stationName) {
+        return stationList.removeIf(station -> station.getName().equals(stationName));
     }
 
     public void beforeRemove() {
