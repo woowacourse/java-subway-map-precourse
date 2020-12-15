@@ -44,6 +44,8 @@ public class LineController {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_LINE_SUCCESS));
         }catch (IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
+        }catch (IllegalStateException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NAME_LENGTH_SHORT));
         }
     }
 
@@ -53,7 +55,9 @@ public class LineController {
         boolean deleteFlag = lineRepository.deleteLineByName(lineName);
         if (deleteFlag) {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, DELETE_LINE_SUCCESS));
+            return;
         }
+        System.out.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
     }
 
     void readLines() {

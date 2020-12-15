@@ -14,6 +14,9 @@ public class SectionRepository {
         }
         try{
             Line targetLine = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get();
+            if(targetLine.stations.stream().noneMatch(s -> s.getName().equals(stationName))){
+                throw new IllegalStateException();
+            }
             targetLine.stations.add(order, new Station(stationName));
         }catch (IndexOutOfBoundsException e){
             throw new IndexOutOfBoundsException();

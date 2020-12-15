@@ -15,7 +15,10 @@ public class StationRepository {
     }
 
     public static void addStation(String stationName) {
-        if (checkNameLength(stationName) || checkExistStation(stationName)) {
+        if (checkNameLength(stationName)){
+            throw new IllegalStateException();
+        }
+        if(checkExistStation(stationName)) {
             throw new IllegalArgumentException();
         }
         stations.add(new Station(stationName));
@@ -36,6 +39,6 @@ public class StationRepository {
     }
 
     public static boolean checkNameLength(String name) {
-        return name.length() <= 2;
+        return name.length() <= Constant.MIN_NAME_LENGTH;
     }
 }

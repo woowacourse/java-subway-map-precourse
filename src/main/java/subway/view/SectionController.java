@@ -48,6 +48,8 @@ public class SectionController {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }catch(IndexOutOfBoundsException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_POSSIBLE_SECTION));
+        }catch (IllegalStateException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
         }
     }
 

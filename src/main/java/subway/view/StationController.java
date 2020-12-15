@@ -7,7 +7,6 @@ import subway.domain.StationRepository;
 import java.util.Scanner;
 
 public class StationController {
-    private static final String DUPLICATE_STATION_NAME = "이미 등록된 역 이름입니다.\n";
     private static final String ADD_STATION_SUCCESS = "지하철 역이 등록되었습니다.\n";
     private static final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.\n";
     Scanner scanner;
@@ -39,6 +38,8 @@ public class StationController {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_STATION_SUCCESS));
         }catch (IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
+        }catch(IllegalStateException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NAME_LENGTH_SHORT));
         }
     }
 
@@ -48,7 +49,9 @@ public class StationController {
         boolean deleteFlag = stationRepository.deleteStation(stationName);
         if (deleteFlag) {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, DELETE_STATION_SUCCESS));
+            return;
         }
+        System.out.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
     }
 
     void readStations() {
