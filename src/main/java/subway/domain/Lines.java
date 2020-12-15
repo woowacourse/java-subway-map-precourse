@@ -38,9 +38,9 @@ public class Lines {
                 .orElseThrow(() -> new SubwayException(ERR_NO_SUCH_NAME_LINE_MSG));
     }
 
-    public boolean containsStation(Station station) {
+    public boolean isPresentStation(Station station) {
         return lines.stream()
-                .anyMatch(line -> line.containsStation(station));
+                .anyMatch(line -> line.isPresentStation(station));
     }
 
     public List<String> lineNames() {

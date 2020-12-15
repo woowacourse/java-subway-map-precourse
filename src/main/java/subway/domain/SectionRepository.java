@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SectionRepository {
     public static void addSection(Line line, Station station, int sequence){
-        line.addStation(sequence, station);
+        line.addSection(sequence, station);
     }
 
     public static void deleteSection(String lineName, String stationName){

@@ -14,16 +14,8 @@ public class Stations {
     private final List<Station> stations = new ArrayList<>();
 
     public void addStation(Station station) {
-        addStation(stations.size(), station);
-    }
-
-    public void addStation(int index, Station station) {
         if (!stations.contains(station)) {
-            try {
-                stations.add(index, station);
-            } catch (IndexOutOfBoundsException e) {
-                throw new SubwayException(ERR_WRONG_SEQUENCE_MSG);
-            }
+            stations.add(station);
             return;
         }
         throw new SubwayException(ERR_ALREADY_ADD_STATION_NAME_MSG);
@@ -51,17 +43,6 @@ public class Stations {
                 .map(Station::getName)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
-    }
-
-    public List<String> unorderedStationNames() {
-        return stations.stream()
-                .map(Station::getName)
-                .collect(Collectors.toList());
-    }
-
-    public boolean isPresentStation(String name) {
-        return stations.stream()
-                .anyMatch(station -> Objects.equals(station.getName(), name));
     }
 
     public boolean isPresentStation(Station station) {

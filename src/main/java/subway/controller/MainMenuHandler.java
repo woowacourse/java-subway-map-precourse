@@ -40,7 +40,7 @@ public class MainMenuHandler {
                                 Collectors.toMap(Function.identity()
                                         , lineName -> LineRepository
                                                 .findLine(lineName)
-                                                .unorderedStationNames())
+                                                .sectionsNames())
                         );
         OutputView.showSubwayMap(lineNamesAndStationNamesMap);
     }

@@ -22,20 +22,20 @@ public class LineTest {
         secondLine = LineFactory.makeLine(SECOND_LINE_NAME, startStation, endStation);
     }
 
-    @DisplayName("노선에 역을 추가한다")
+    @DisplayName("노선에 구간을 추가한다")
     @Test
     void addStationAtLineTest(){
         String testName = "산본역";
-        secondLine.addStation(1, StationFactory.makeStation(testName));
+        secondLine.addSection(1, StationFactory.makeStation(testName));
 
-        assertThat(secondLine.stationsNames()).contains(testName);
+        assertThat(secondLine.sectionsNames()).contains(testName);
     }
 
 
-    @DisplayName("노선에 등록된 역을 삭제한다")
+    @DisplayName("노선에 등록된 구간을 삭제한다")
     @Test
     void deleteStationAtLineTest() {
-        secondLine.addStation(0, StationFactory.makeStation("산본역"));
+        secondLine.addSection(0, StationFactory.makeStation("산본역"));
         int beforeSize = secondLine.size();
         secondLine.deleteStation(SADANG_STATION);
         assertThat(secondLine.size()).isEqualTo(beforeSize - 1);

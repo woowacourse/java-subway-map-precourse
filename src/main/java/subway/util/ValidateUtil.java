@@ -8,7 +8,7 @@ import subway.exception.SubwayException;
 
 public class ValidateUtil {
     public static boolean canDeleteStation(Station station) {
-        if (LineRepository.lines().containsStation(station)) {
+        if (LineRepository.lines().isPresentStation(station)) {
             throw new SubwayException(ERR_STATION_CASCADE_LINE_MSG);
         }
         return true;
