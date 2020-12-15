@@ -11,92 +11,14 @@ import subway.domain.Route;
 import subway.domain.RouteRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.menu.LineFunction;
+import subway.menu.MainFunction;
+import subway.menu.RouteFunction;
+import subway.menu.StationFunction;
 import subway.utils.InputUtils;
 import subway.utils.PrintUtils;
 
 public class Application {
-
-    enum MainFunction {
-        STATION_MANAGEMENT('1'), LINE_MANAGEMENT('2'), SECTION_MANAGEMENT('3'), SUBWAY_MAP(
-            '4'), QUIT('Q');
-
-        final private char menu;
-
-        MainFunction(char menu) {
-            this.menu = menu;
-        }
-
-        public char getMenu() {
-            return menu;
-        }
-    }
-
-    enum StationFunction {
-        ADD('1'), DELETE('2'), INQUIRY('3'), GET_BACK('B');
-
-        final private char menu;
-
-        StationFunction(char menu) {
-            this.menu = menu;
-        }
-
-        public char getMenu() {
-            return menu;
-        }
-
-        public boolean matchMenu(char menu) {
-            if (this.menu == menu) {
-                return true;
-            }
-            return false;
-        }
-
-    }
-
-    enum LineFunction {
-        ADD('1'), DELETE('2'), INQUIRY('3'), GET_BACK('B');
-
-        final private char menu;
-
-        LineFunction(char menu) {
-            this.menu = menu;
-        }
-
-        public char getMenu() {
-            return menu;
-        }
-
-        public boolean matchMenu(char menu) {
-            if (this.menu == menu) {
-                return true;
-            }
-            return false;
-        }
-
-    }
-
-    enum RouteFunction {
-        ADD('1'), DELETE('2'), GET_BACK('B');
-
-        final private char menu;
-
-        RouteFunction(char menu) {
-            this.menu = menu;
-        }
-
-        public char getMenu() {
-            return menu;
-        }
-
-        public boolean matchMenu(char menu) {
-            if (this.menu == menu) {
-                return true;
-            }
-            return false;
-        }
-
-    }
-
     private static StationRepository stationRepository;
     private static LineRepository lineRepository;
     private static RouteRepository routeRepository;
