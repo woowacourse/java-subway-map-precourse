@@ -17,10 +17,9 @@ public class RegisterAction extends Action {
     @Override
     public void runAction() {
         String name;
-
-        // 미구현 - 구간 추가할 때 고칠 예정.
         if (category.equals(CategoryType.SECTION)) {
             registerSection();
+            return;
         }
 
         printRegisterMessage();
@@ -44,10 +43,6 @@ public class RegisterAction extends Action {
 
         if (category.equals(CategoryType.LINE)) {
             error = registerLine(name);
-        }
-
-        if (category.equals(CategoryType.SECTION)) {
-            error = registerSection();
         }
         printSuccessMessage(error);
     }
@@ -98,16 +93,25 @@ public class RegisterAction extends Action {
         return inputView.inputTerminalStation(upwardStation);
     }
 
+    private String requestInputSectionLine() {
+        return inputView.inputSectionLine();
+    }
+
+    private String requestInputSectionStation(Line line) {
+        String name = inputView.inputTerminalStation();
+
+        if (!isErrorInput(name)) {
+            return inputView.inputSectionStation(name, line);
+        }
+        return name;
+    }
+
+    private String requestInputSectionOrder(Line line) {
+        return inputView.inputSectionOrder(line);
+    }
+
     private void registerStation(String name) {
         StationRepository.addStation(new Station(name));
-    }
-    
-
-    // 임시 - 컴파일 에러 방지.
-    private String inputRegister() {
-        String name = inputView.getScanner().nextLine();
-        System.out.println();
-        return name;
     }
 
     private String registerLine(String name) {
@@ -138,22 +142,44 @@ public class RegisterAction extends Action {
         return requestInputTerminalStation(upwardStation);
     }
 
-    private String registerSection() {
-        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_LINE);
-        String line = inputRegister();
+    private void registerSection() {
+        String line = registerInputSectionLine();
+        if (isErrorInput(line)) {
+            return;
+        }
 
-        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_STATION);
-        String name = inputRegister();
+        String name = registerInputSectionStation(line);
+        if (isErrorInput(name)) {
+            return;
+        }
 
-        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_ORDER);
-        int order = Integer.parseInt(inputRegister()) - 1;
+        String order = registerInputSectionOrder(line);
+        if (isErrorInput(String.valueOf(order))) {
+            return;
+        }
+        realRegisterSection(line, name, Integer.parseInt(order));
+    }
 
+    private void realRegisterSection(String line, String name, int order) {
         LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList()
                 .add(order, new Station(name));
 
-        // 이 아래는 컴파일 에러 방지.
         printSuccessMessage(line);
-        return line;
+    }
+
+    private String registerInputSectionLine() {
+        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_LINE);
+        return requestInputSectionLine();
+    }
+
+    private String registerInputSectionStation(String line) {
+        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_STATION);
+        return requestInputSectionStation(LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
+    }
+
+    private String registerInputSectionOrder(String line) {
+        printRegisterSectionMessage(ActionMessage.INPUT_SECTION_ORDER);
+        return requestInputSectionOrder(LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
     }
 
     private void printSuccessMessage(String error) {
