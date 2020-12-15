@@ -24,4 +24,8 @@ public class Line {
     public void addStation(int index, String name) {
         stationNames.add(index-1, name);
     }
+
+    public boolean hasStation(String name) {
+        return stationNames.contains(name);
+    }
 }
