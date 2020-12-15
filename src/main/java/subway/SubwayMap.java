@@ -2,6 +2,7 @@ package subway;
 
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
+import subway.view.OutputView;
 
 import java.util.Scanner;
 
@@ -22,7 +23,8 @@ public class SubwayMap {
     }
 
     private void selectService() {
-        
+        OutputView.printMainView();
+
     }
 
 
