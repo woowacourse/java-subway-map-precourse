@@ -9,14 +9,21 @@ import view.SectionManageView;
 
 public class SectionManageController {
     private static final String INPUT_ADD_SECTION = "1";
+    private static final String INPUT_REMOVE_SECTION = "2";
     private static final String INPUT_MESSAGE_LINE_NAME = "## 노선을 입력하세요.";
     private static final String INPUT_MESSAGE_STATION_NAME = "## 역이름을 입력하세요.";
     private static final String INPUT_MESSAGE_POSITION = "## 순서를 입력하세요.";
+    private static final String INPUT_MESSAGE_LINE_NAME_TO_DELETE = "## 삭제할 구간의 노선을 입력하세요.";
+    private static final String INPUT_MESSAGE_STATION_NAME_TO_DELETE = "## 삭제할 구간의 역을 입력하세요.";
     private static final String COMPLETE_ADD_SECTION = "[INFO] 구간이 등록되었습니다.";
+    private static final String COMPLETE_REMOVE_SECTION = "[INFO] 구간이 삭제되었습니다.";
     private static final String ERROR_NOT_EXIST_LINE = "\n[ERROR] 존재하지 않는 노선입니다.\n";
     private static final String ERROR_NOT_EXIST_STATION = "\n[ERROR] 존재하지 않는 역입니다.\n";
     private static final String ERROR_INPUT_ONLY_NUMBER = "\n[ERROR] 위치에 숫자만 입력해주세요.\n";
+    private static final String ERROR_NOT_EXIST_STATION_IN_LINE = "\n[ERROR] 노선에 존재하지 않는 구간입니다.\n";
     private static final String ERROR_EXIST_STATION_IN_LINE = "\n[ERROR] 이미 노선에 존재하는 구간입니다.\n";
+    private static final String ERROR_SECTION_LESS_THAN_TWO =
+            "\n[ERROR] 구간에 역이 2개 이하로 존재하는 경우 삭제할 수 없습니다.\n";
     private static final String ERROR_CAN_NOT_ADD_POSITION_AT =
             "\n[ERROR] 해당 위치에 구간을 추가 할 수 없습니다.\n";
 
@@ -30,6 +37,45 @@ public class SectionManageController {
         if (input.equals(INPUT_ADD_SECTION)) {
             addSection();
         }
+        if (input.equals(INPUT_REMOVE_SECTION)) {
+            removeSection();
+        }
+    }
+
+    private void removeSection() {
+        String lineNameToDelete = inputFromView(INPUT_MESSAGE_LINE_NAME_TO_DELETE);
+        String stationNameToDelete = inputFromView(INPUT_MESSAGE_STATION_NAME_TO_DELETE);
+
+        if (validateRemoveSectionInputs(lineNameToDelete, stationNameToDelete)) {
+            Line line = LineRepository.getLineByName(lineNameToDelete);
+            Station station = StationRepository.getStationByName(stationNameToDelete);
+            line.removeStation(station);
+            view.printMessage(COMPLETE_REMOVE_SECTION);
+        }
+    }
+
+    private boolean validateRemoveSectionInputs(String lineName, String stationName) {
+        return validateLineName(lineName) && validateIsStationExistInLine(lineName, stationName)
+                && validateSectionLength(lineName);
+    }
+
+    private boolean validateSectionLength(String lineName) {
+        Line line = LineRepository.getLineByName(lineName);
+        if (line.sections().size() <= 2) {
+            view.printMessage(ERROR_SECTION_LESS_THAN_TWO);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateIsStationExistInLine(String lineName, String stationName) {
+        Line line = LineRepository.getLineByName(lineName);
+        Station station = StationRepository.getStationByName(stationName);
+        if (!line.contains(station)) {
+            view.printMessage(ERROR_NOT_EXIST_STATION_IN_LINE);
+            return false;
+        }
+        return true;
     }
 
     private void addSection() {

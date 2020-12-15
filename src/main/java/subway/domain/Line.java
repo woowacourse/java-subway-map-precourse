@@ -21,6 +21,10 @@ public class Line {
         sections.add(index, station);
     }
 
+    public void removeStation(Station station) {
+        sections.remove(station);
+    }
+
     public boolean contains(Station station) {
         return sections.contains(station);
     }
