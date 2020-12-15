@@ -1,6 +1,7 @@
 package subway;
 
 import java.util.Scanner;
+import subway.constant.BoundaryCheckDigit;
 import subway.constant.UserChoiceOptionToName;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -70,18 +71,24 @@ public class SectionController {
         String deleteLineName;
         String deleteStationName;
         Line line;
+        try {
+            OutputView.sectionDeleteLineNamePrint();
+            deleteLineName = InputView.scanSectionLineName(scanner);
 
-        OutputView.sectionDeleteLineNamePrint();
-        deleteLineName = InputView.scanSectionLineName(scanner);
-
-
-        OutputView.sectionDeleteStationNamePrint();
-        deleteStationName = InputView.scansectionStationName(scanner);
+            OutputView.sectionDeleteStationNamePrint();
+            deleteStationName = InputView.scansectionStationName(scanner);
+        } catch (IllegalArgumentException error) {
+            return false;
+        }
 
         line = LineRepository.getLineByName(deleteLineName);
-        line.deleteStationByName(deleteStationName);
+        if (isDeleteStationCount(line)) {   // 노선의 역이 2개 이하인지 판별
+            OutputView.minimumStationCountErrorPrint();
+            return false;
+        }
 
-        System.out.println("임시 메세지 : 성공");
+        line.deleteStationByName(deleteStationName);
+        OutputView.sectionDeleteStationSuccess();
         return true;
     }
 
@@ -89,4 +96,7 @@ public class SectionController {
         return !workStatus;
     }
 
+    private static boolean isDeleteStationCount(Line line) {
+        return line.length() <= BoundaryCheckDigit.MINIMUM_STATION_COUNT.getBoundaryCheckDigit();
+    }
 }

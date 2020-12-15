@@ -14,15 +14,14 @@ public enum SectionMessage {
     SECTION_DELETE_STATION_NAME("## 삭제할 구간의 역을 입력하세요."),
 
     SECTION_ADD_SUCCESS("[INFO] 구간이 등록되었습니다"),
+    SECTION_DELETE_SUCCESS("[INFO] 구간이 삭제되었습니다."),
 
     SECTION_NOT_FOUND_LINE_NAME_ERROR("[ERROR] 노선을 찾을 수 없습니다."),
     SECTION_NOT_FOUND_STATION_NAME_ERROR("[ERROR] 역 이름을 찾을 수 없습니다."),
     IS_NOT_DIGIT("[ERROR] 숫자만 입력할 수 있습니다."),
     OUT_OF_RANGE("[ERROR] 현재 역 범위를 초과하였습니다."),
-
+    SECTION_MINIMUM_STATION_COUNT_ERROR("[ERROR] 역 숫자가 2개 이하일 때 삭제가 불가능합니다.")
     ;
-
-
 
     private final String text;
 

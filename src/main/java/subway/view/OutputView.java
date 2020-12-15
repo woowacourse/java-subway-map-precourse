@@ -166,4 +166,12 @@ public class OutputView {
     public static void sectionDeleteStationNamePrint() {
         System.out.println(SectionMessage.SECTION_DELETE_STATION_NAME.getSectionMessage());
     }
+
+    public static void minimumStationCountErrorPrint() {
+        System.out.println(SectionMessage.SECTION_MINIMUM_STATION_COUNT_ERROR.getSectionMessage());
+    }
+
+    public static void sectionDeleteStationSuccess() {
+        System.out.println(SectionMessage.SECTION_DELETE_SUCCESS.getSectionMessage());
+    }
 }

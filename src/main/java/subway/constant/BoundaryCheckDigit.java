@@ -6,6 +6,7 @@ public enum BoundaryCheckDigit {
     LINE_LIST_LIMIT_MINIMUM(1),
     LIST_GET_FIRST(0),
     LINE_ADD_LIMIT(2),
+    MINIMUM_STATION_COUNT(2),
     NOT_EMPTY(0),
     ;
 
