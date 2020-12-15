@@ -4,6 +4,7 @@ import subway.Constant;
 import subway.domain.menu.MainMenu;
 import subway.domain.menu.ManagementMenu;
 
+import javax.xml.validation.Validator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,5 +29,11 @@ public class InputView {
             }
         }
         throw new IllegalArgumentException(Constant.ILLEGAL_ARGUMENT_EXCEPTION_INVALID_MENU_ORDER);
+    }
+
+    public static String inputData(Scanner scanner){
+        String inputData = scanner.nextLine();
+
+        return inputData;
     }
 }

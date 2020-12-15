@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class LineManager extends ServiceManager{
 
-    public LineManager() {
-        super();
+    public LineManager(Scanner scanner) {
+        super(scanner);
     }
 
     @Override
-    public void doStationManagement(Scanner scanner) {
+    public void doStationManagement() {
         OutputView.printManagementView(ServiceList.LINE, menuList);
     }
 

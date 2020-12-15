@@ -1,5 +1,6 @@
 package subway.domain.management;
 
+import subway.Constant;
 import subway.domain.menu.ManagementMenu;
 import subway.domain.menu.ServiceList;
 import subway.view.InputView;
@@ -7,22 +8,40 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
+
 public class StationManager extends ServiceManager {
 
-    public StationManager() {
-        super();
+    private Scanner scanner;
+    public StationManager(Scanner scanner) {
+        super(scanner);
     }
 
     @Override
-    public void doStationManagement(Scanner scanner) {
+    public void doStationManagement() {
         OutputView.printManagementView(ServiceList.STATION, menuList);
-        try{
-            String inputData = InputView.inputManagementMenu(scanner, menuList);
-        } catch (IllegalArgumentException e){
-            OutputView.printError(e.getMessage());
-            doStationManagement(scanner);
+        String inputData = getInputData(scanner);
+
+        if(inputData.equals(ManagementMenu.REGISTER.getOrder())){
+            registerStation();
+            return;
         }
     }
+
+    private void registerStation() {
+        String name = getStationName();
+
+    }
+
+    private String getStationName() {
+        try{
+            OutputView.printInputData(Constant.INPUT_DATA_REGISTER_FORMAT, ServiceList.STATION.getName());
+            return InputView.inputData(scanner);
+        }catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            return getStationName();
+        }
+    }
+
 
     @Override
     protected void initMenuList() {

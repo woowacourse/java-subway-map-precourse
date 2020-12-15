@@ -23,9 +23,8 @@ public class SubwayMap {
     }
 
     private void startService() {
-        OutputView.printMainView();
-
         while (true) {
+            OutputView.printMainView();
             String inputData = selectService();
             if (inputData.equals(MainMenu.END.getOrder())){
                 return;
@@ -36,7 +35,7 @@ public class SubwayMap {
 
     private String selectService() {
         try {
-            OutputView.printSelectFunction(Constant.ASKING_FUNCTION_BODY);
+            OutputView.printAskingFunction(Constant.ASKING_FUNCTION_INPUT_FUNCTION_ORDER);
             return InputView.inputMainMenu(scanner);
         } catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());

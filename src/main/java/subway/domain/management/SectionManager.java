@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class SectionManager extends ServiceManager {
 
-    public SectionManager() {
-        super();
+    public SectionManager(Scanner scanner) {
+        super(scanner);
     }
 
     @Override
-    public void doStationManagement(Scanner scanner) {
+    public void doStationManagement() {
         OutputView.printManagementView(ServiceList.SECTION, menuList);
 
     }
