@@ -28,12 +28,22 @@ public class LineMenu extends Menu {
         return deleteLine();
     }
 
+    @Override
+    protected boolean functionThree() {
+        return printLines();
+    }
+
     private boolean deleteLine() {
         PrintInfo.inputDeleteLineName();
         if (!LineManager.deleteLineByName(scanner.nextLine())) {
             return Error.notExist();
         }
         PrintInfo.deleteLineSuccess();
+        return true;
+    }
+
+    private boolean printLines() {
+        PrintInfo.allLines(LineManager.allLines().stream().map(line -> line.getName()).collect(Collectors.toList()));
         return true;
     }
 

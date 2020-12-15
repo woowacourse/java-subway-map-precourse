@@ -97,6 +97,12 @@ public class PrintInfo {
                 "[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
 
+    public static void allLines(List<String> list) {
+        System.out.println("\n" +
+                "## 노선 목록");
+        printList(list);
+    }
+
     public static void printList(List<String> list) {
         list.forEach(item -> System.out.println("[INFO] " + item));
         System.out.println();
