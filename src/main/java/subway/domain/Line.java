@@ -44,4 +44,12 @@ public class Line {
         return stations;
     }
 
+    public int size() {
+        return stations.size();
+    }
+
+    public void addStations(int index, Station station) {
+        stations.add(index, station);
+    }
+
 }

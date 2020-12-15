@@ -14,6 +14,8 @@ public class InputSectionManager implements InputManager {
     private static final String SECTION_MENU = "3";
     private static final String INPUT_STATION = "## 역이름을 입력하세요.";
     private static final String NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN = "[ERROR] 해당 역이 없거나 이미 노선에 등록되어 있습니다.";
+    public static final String INPUT_ORDER = "## 순서를 입력하세요.";
+    public static final String INDEX_OUT_OF_BOUNDS_TRY_AGAIN = "[ERROR] 인덱스가 초과되었습니다.";
 
     private Scanner scanner;
 
@@ -79,9 +81,26 @@ public class InputSectionManager implements InputManager {
                     || LineRepository.containsStationOfLine(line, station)) {
                 throw new IllegalArgumentException(NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN);
             }
+            registerOrderInSection(line, station);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             registerStationInSection(line);
+        }
+    }
+
+    private void registerOrderInSection(Line line, Station station) {
+        try {
+            System.out.println(INPUT_ORDER);
+            PositiveNumber orderNumber = new PositiveNumber(scanner.next());
+            PositiveNumber lineSize = new PositiveNumber(LineRepository.getLineSize(line));
+            if (orderNumber.compareTo(lineSize) > 0) {
+                throw new IllegalArgumentException(INDEX_OUT_OF_BOUNDS_TRY_AGAIN);
+            }
+            station.setRegister(true);
+            LineRepository.addSection(line, station, orderNumber.getNumber() - 1);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            registerOrderInSection(line, station);
         }
     }
 

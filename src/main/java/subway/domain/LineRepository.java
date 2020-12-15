@@ -57,4 +57,24 @@ public class LineRepository {
         }
         return false;
     }
+
+    public static int getLineSize(Line line) {
+        int size = 0;
+        for (Line n : lines) {
+            if (n.equals(line)) {
+                size = n.size();
+                break;
+            }
+        }
+        return size;
+    }
+
+    public static void addSection(Line line, Station station, int orderNumber) {
+        for (Line n : lines) {
+            if (n.equals(line)) {
+                n.addStations(orderNumber, station);
+            }
+        }
+    }
+
 }
