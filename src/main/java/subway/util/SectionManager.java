@@ -14,10 +14,8 @@ public class SectionManager {
                     return;
                 } else if(inputString.equals("1")) {
                     addSection(scanner);
-                    break;
                 } else if(inputString.equals("2")) {
                     removeSection(scanner);
-                    break;
                 }
                 break;
             } catch (Exception e) {
@@ -27,44 +25,55 @@ public class SectionManager {
         return;
     }
 
-    public void addSection(Scanner scanner) {
-        String inputLine, inputStation, inputOrder;
+    public void addSection(Scanner scanner) throws IllegalArgumentException {
+        Station station = null;
+        for(Station st : StationRepository.stations()) {
+            if(st.getName().equals(getStationName(scanner))) {
+                station = st;
+            }
+        }
+        for(Section section : SectionRepository.sections()) {
+            if(section.getLine().getName().equals(getLineName(scanner))) {
+                section.addStation(getOrder(scanner), station);
+            }
+        }
+        System.out.println(Constants.SECTION_ADD_COMPLETE);
+    }
+
+    public String getLineName(Scanner scanner) {
+        String inputLine;
         System.out.println(Constants.ASK_SECTION_ADD_LINE);
         inputLine = scanner.nextLine().trim();
         if(!ErrorManager.isLineExist(inputLine)) {
-           throw new IllegalArgumentException(Constants.LINE_NOT_EXIST);
+            throw new IllegalArgumentException(Constants.LINE_NOT_EXIST);
         }
+        return inputLine;
+    }
+
+    public String getStationName(Scanner scanner) {
+        String inputStation;
         System.out.println(Constants.ASK_SECTION_ADD_NAME);
         inputStation = scanner.nextLine().trim();
         if(!ErrorManager.isStationExist(inputStation)) {
             throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
         }
+        return inputStation;
+    }
+
+    public int getOrder(Scanner scanner) {
+        String inputOrder;
         System.out.println(Constants.ASK_SECTION_ADD_ORDER);
         inputOrder = scanner.nextLine().trim();
-
         for(int i = 0; i < inputOrder.length(); i++) {
             char tmp = inputOrder.charAt(i);
-
             if(!Character.isDigit(tmp)) {
                 throw new IllegalArgumentException(Constants.ORDER_MUST_INT);
             }
         }
-
-        int order = Integer.parseInt(inputOrder);
-
-        Station station = null;
-        for(Station st : StationRepository.stations()) {
-            if(st.getName().equals(inputStation)) {
-                station = st;
-            }
-        }
-        for(Section section : SectionRepository.sections()) {
-            if(section.getLine().getName().equals(inputLine)) {
-                section.addStation(order, station);
-            }
-        }
-        System.out.println(Constants.SECTION_ADD_COMPLETE);
+        return Integer.parseInt(inputOrder);
     }
+
+
 
     public void removeSection(Scanner scanner) {
         String inputLine, inputStation;
@@ -78,7 +87,7 @@ public class SectionManager {
         if(!ErrorManager.isStationExist(inputStation)) {
             throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
         }
-        if(!SectionRepository.deleteSection(inputStation, inputLine)) {
+        if(!SectionRepository.deleteSectionStation(inputStation, inputLine)) {
             throw new IllegalArgumentException(Constants.SECTION_REMOVE_FAIL);
         } else {
             System.out.println(Constants.SECTION_REMOVE_COMPLETE);
