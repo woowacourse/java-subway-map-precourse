@@ -51,7 +51,7 @@ public class SectionView {
         if (button.equals(ONE)) {
 
             if (createSection()) {
-                print(InfoMessage.CREATE_SECTION);
+                print(InfoMessage.CREATE_SECTION.getMessage());
             }
         }
         return false;
@@ -89,7 +89,7 @@ public class SectionView {
     private boolean isDelete(String button) {
         if (button.equals(TWO)) {
             if (deleteSection()) {
-                print(InfoMessage.DELETE_SECTION);
+                print(InfoMessage.DELETE_SECTION.getMessage());
             }
         }
         return false;

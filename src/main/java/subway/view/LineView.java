@@ -53,7 +53,7 @@ public class LineView {
         if (button.equals(ONE)) {
             print(InputMessage.CREATE_LINE.getMessage());
             if (isCreateLine(input.nextLine())) {
-                print(InfoMessage.CREATE_LINE);
+                print(InfoMessage.CREATE_LINE.getMessage());
             }
         }
         return false;
@@ -83,7 +83,7 @@ public class LineView {
         if (button.equals(TWO)) {
             print(InputMessage.DELETE_LINE.getMessage());
             if (isDeleteLine()) {
-                print(InfoMessage.DELETE_LINE);
+                print(InfoMessage.DELETE_LINE.getMessage());
             }
         }
         return false;

@@ -54,7 +54,7 @@ public class StationView {
         if (button.equals(ONE)) {
             print(InputMessage.CREATE_STATION.getMessage());
             if (isCreateStation()) {
-                print(InfoMessage.CREATE_STATION);
+                print(InfoMessage.CREATE_STATION.getMessage());
             }
         }
         return false;
@@ -68,7 +68,7 @@ public class StationView {
         if (button.equals(TWO)) {
             print(InputMessage.DELETE_STATION.getMessage());
             if (isDeleteStation()) {
-                print(InfoMessage.DELETE_STATION);
+                print(InfoMessage.DELETE_STATION.getMessage());
             }
         }
         return false;
