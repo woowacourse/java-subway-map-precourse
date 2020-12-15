@@ -48,8 +48,8 @@ public class LineRepository {
 
     public static void insertStationToLine(String lineTitle, String stationTitle, int order) {
         if (isContainedStationOnLine(lineTitle, stationTitle)) {
-            System.out.println(DomainErrorMessage.EXSITED_ON_INTERVAL);
-            throw new IllegalArgumentException(DomainErrorMessage.EXSITED_ON_INTERVAL);
+            System.out.println(DomainErrorMessage.EXISTED_ON_INTERVAL);
+            throw new IllegalArgumentException(DomainErrorMessage.EXISTED_ON_INTERVAL);
         }
         lines.stream()
                 .filter(line -> line.compareName(lineTitle))
@@ -58,8 +58,8 @@ public class LineRepository {
 
     public static void deleteStationToLine(String lineTitle, String stationTitle) {
         if (!isContainedStationOnLine(lineTitle, stationTitle)) {
-            System.out.println(DomainErrorMessage.NO_EXSITED_ON_INTERVAL);
-            throw new IllegalArgumentException(DomainErrorMessage.NO_EXSITED_ON_INTERVAL);
+            System.out.println(DomainErrorMessage.NO_EXISTED_ON_INTERVAL);
+            throw new IllegalArgumentException(DomainErrorMessage.NO_EXISTED_ON_INTERVAL);
         }
         lines.stream()
                 .filter(line -> line.compareName(lineTitle))
@@ -79,24 +79,15 @@ public class LineRepository {
         }
     }
 
-    /** 역을 삭제했을 때, 모든 노선에 해당되는 역 데이터들을 삭제하는 메소드 **/
-    public static void deleteStationOnData(String stationTitle) {
-        checkValidDeleteStationOnData(stationTitle);
-        lines.stream()
+    /** 역 삭제 시도시, 노선에 등록되어있는지 확인하는 메소드 **/
+    public static boolean isValidDeleteStationOnData(String stationTitle) {
+        long unavailableLineNumber = lines.stream()
                 .filter(line -> line.isContainedStation(stationTitle))
-                .forEach(line -> line.deleteStation(stationTitle));
-    }
-
-    /** 역 삭제 시도시, 노선들의 유효성을 체크하는 메소드 **/
-    private static void checkValidDeleteStationOnData(String stationTitle) {
-        long unavaiableLineNumber = lines.stream()
-                .filter(line -> line.isContainedStation(stationTitle))
-                .filter(line -> line.getStationNumber() <= DomainConstant.MINIMUM_STATION)
                 .count();
-        if (unavaiableLineNumber != DomainConstant.ZERO_LONG_NUMBER) {
-            System.out.println(DomainErrorMessage.ENTIRE_MINIMUM_STATION);
-            throw new IllegalArgumentException(DomainErrorMessage.ENTIRE_MINIMUM_STATION);
+        if (unavailableLineNumber == DomainConstant.ZERO_LONG_NUMBER) {
+            return true;
         }
+        return false;
     }
 
     private static boolean isContainedStationOnLine(String lineTitle, String stationTitle) {
