@@ -12,7 +12,6 @@ public class Output {
     public static void print(String message) {
         printNewLine();
         System.out.println(message);
-        printNewLine();
     }
 
     public static void printByList(List<?> list) {

@@ -12,7 +12,6 @@ public class StationController implements IController{
     @Override
     public void save() {
         try {
-            Output.printNewLine();
             StationService.save(new Station(Input.input(Input.PLEASE_INPUT_STATION_MESSAGE)));
         } catch (IllegalArgumentException e) {
             Output.printNewLine();
