@@ -110,7 +110,7 @@ public class LineController implements Controller {
             OutputView.printAlert(action, NAME);
             return;
         }
-        OutputView.printLineDeleteErrorMessage(line);
+        OutputView.printLineDoesNotExistErrorMessage(line);
     }
 
     public void selectLine() {

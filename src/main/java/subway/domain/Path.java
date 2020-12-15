@@ -24,7 +24,6 @@ public class Path {
     }
 
     public void addOneStationBetweenStations(Station station, int index) {
-        // 중복 역에 대한 검사는 station을 등록할 때 진행할 것이므로 하지 않아도 됨.
         paths.add(index, station);
     }
 

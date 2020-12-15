@@ -46,4 +46,13 @@ public class StationRepository {
             OutputView.printWithInformationMark(station.getName());
         }
     }
+
+    public static Station getStation(String name){
+        for(Station station: stations){
+            if (station.getName() == name){
+                return station;
+            }
+        }
+        return null;
+    }
 }

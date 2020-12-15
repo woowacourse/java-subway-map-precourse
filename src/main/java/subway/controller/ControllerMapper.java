@@ -8,6 +8,9 @@ public class ControllerMapper {
         if (Element.STATION.getElement().equals(name)) {
             return new StationController();
         }
-        return new LineController(); //Station Or Line
+        if (Element.LINE.getElement().equals(name)){
+            return new LineController();
+        }
+        return new PathController();
     }
 }

@@ -1,5 +1,7 @@
 package subway.view;
 
+import javax.print.StreamPrintServiceFactory;
+
 public class OutputView {
     public static final String INFORMATION_MARK = "[INFO] ";
     public static final String ERROR_MARK = "[ERROR] ";
@@ -9,6 +11,20 @@ public class OutputView {
     public static final String INPUT_WITH_ACTION = "%s할 %s 이름을 입력하세요.";
     public static final String ALERT_MESSAGE = "지하철 %s이 %s되었습니다.";
     public static final String ADD_UP_AND_DOWN_LINE = "등록할 노선의 %s행 종점역 이름을 입력하세요.";
+    public static final String INVALID_COMMAND = "메뉴에 제시된 기능만 선택할 수 있습니다. (입력 값: %s)";
+    public static final String EXIT = "프로그램을 종료합니다.";
+    public static final String DUPLICATE_MESSAGE = "%s은 이미 존재합니다.";
+    public static final String STATION_DELETE_ERROR_MESSAGE = "해당 역이 노선에 포함되어 있거나, 존재하지 않아 삭제할 수 없습니다.";
+    public static final String ADD_PATH_ERROR_MESSAGE = "노선이 존재하지 않거나, 역이 존재하지 않아 구간을 등록할 수 없습니다.";
+    public static final String DELETE_ERROR_ABOUT_EXIST = "%s은 존재하지 않습니다.";
+    public static final String NAME_LENGTH_ERROR_MESSAGE = "%s 명은 두 글자 이상이어야 합니다. (입력값: %s)";
+    public static final String SAME_NAME_ERROR_MESSAGE = "상행선과 하행선은 서로 다른 역이어야 합니다.";
+    public static final String DOES_NOT_EXIST_ERROR_MESSAGE = "입력한 %s은 존재하지 않아, 등록할 수 없습니다.";
+    public static final String INPUT_LINE = "노선을 입력하세요.";
+    public static final String INPUT_STATION = "역을 입력하세요.";
+    public static final String INPUT_ORDER = "순서를 입력하세요.";
+    public static final String ALERT_ABOUT_PATH = "구간이 %s되었습니다.";
+    public static final String DELETE_INPUT_PREFIX = "삭제할 구간의 ";
     public static final String LIST = " 목록";
 
     public static final void printMenus(String menu) {
@@ -55,35 +71,63 @@ public class OutputView {
     }
 
     public static final void printInvalidCommandExceptionErrorMessage(String command) {
-        System.out.println(String.format(ERROR_MARK + "메뉴에 제시된 기능만 선택할 수 있습니다. (입력 값: %s)", command));
+        System.out.println(String.format(ERROR_MARK + INVALID_COMMAND, command));
     }
 
     public static final void printExitMessage() {
-        System.out.println("프로그램을 종료합니다.");
+        System.out.println(EXIT);
     }
 
     public static final void printDuplicatedErrorMessage(String string) {
-        System.out.println(String.format(ERROR_MARK + "%s은 이미 존재합니다.", string));
+        System.out.println(String.format(ERROR_MARK + DUPLICATE_MESSAGE, string));
     }
 
     public static final void printStationDeleteErrorMessage() {
-        System.out.println(ERROR_MARK + "해당 역이 노선에 포함되어 있거나, 존재하지 않아 삭제할 수 없습니다.");
+        System.out.println(ERROR_MARK + STATION_DELETE_ERROR_MESSAGE);
     }
 
-    public static final void printLineDeleteErrorMessage(String line) {
-        System.out.println(String.format(ERROR_MARK + "%s는 존재하지 않습니다.", line));
+    public static final void printLineDoesNotExistErrorMessage(String line) {
+        System.out.println(String.format(ERROR_MARK + DELETE_ERROR_ABOUT_EXIST, line));
     }
 
     public static final void printNameLengthErrorMessage(String type, String string) {
-        System.out.println(String.format(ERROR_MARK + "%s 명은 두 글자 이상이어야 합니다. (입력값: %s)", type, string));
+        System.out.println(String.format(ERROR_MARK + NAME_LENGTH_ERROR_MESSAGE, type, string));
     }
 
     public static final void printSameNameErrorMessage() {
-        System.out.println(ERROR_MARK + "상행선과 하행선은 서로 다른 역이어야 합니다.");
+        System.out.println(ERROR_MARK + SAME_NAME_ERROR_MESSAGE);
     }
 
     public static final void printStationDoesNotExistErrorMessage(String station) {
-        System.out.println(String.format(ERROR_MARK + "입력한 %s은 존재하지 않아, 등록할 수 없습니다.", station));
+        System.out.println(String.format(ERROR_MARK + DOES_NOT_EXIST_ERROR_MESSAGE, station));
+    }
+
+    public static final void printInputLine() {
+        printWithDoubleSharp(INPUT_LINE);
+    }
+
+    public static final void printInputStation() {
+        printWithDoubleSharp(INPUT_STATION);
+    }
+
+    public static final void printInputOrder(){
+        printWithDoubleSharp(INPUT_ORDER);
+    }
+
+    public static final void printDeleteLineInPath(){
+        printWithDoubleSharp(DELETE_INPUT_PREFIX + INPUT_LINE);
+    }
+
+    public static final void printDeleteStationInPath(){
+        printWithDoubleSharp(DELETE_INPUT_PREFIX + INPUT_STATION);
+    }
+
+    public static final void printAlertAboutPath(String action){
+        printWithInformationMark(String.format(ALERT_ABOUT_PATH, action));
+    }
+
+    public static final void printErrorAboutAddPath(){
+        System.out.println(ERROR_MARK + ADD_PATH_ERROR_MESSAGE);
     }
 }
 
