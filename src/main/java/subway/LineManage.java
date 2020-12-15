@@ -5,7 +5,6 @@ import static subway.domain.LineRepository.deleteLineByName;
 import static subway.domain.LineRepository.hasLine;
 import static subway.domain.LineRepository.lines;
 import static subway.domain.StationRepository.hasStation;
-import static subway.domain.StationRepository.stations;
 
 import java.util.List;
 import java.util.Scanner;
@@ -26,20 +25,20 @@ public class LineManage {
         inputValidate(scanner, lineManageInput);
     }
 
-    private static boolean inputValidate(Scanner scanner, String mainInput) {
-        if (mainInput.equalsIgnoreCase(ADD_LINE)) {
+    private static boolean inputValidate(Scanner scanner, String lineManageInput) {
+        if (lineManageInput.equalsIgnoreCase(ADD_LINE)) {
             addLinePrint(scanner);
             return true;
         }
-        if (mainInput.equalsIgnoreCase(DELETE_LINE)) {
+        if (lineManageInput.equalsIgnoreCase(DELETE_LINE)) {
             deleteLinePrint(scanner);
             return true;
         }
-        if (mainInput.equalsIgnoreCase(ALL_LINES)) {
+        if (lineManageInput.equalsIgnoreCase(ALL_LINES)) {
             allLinesPrint();
             return true;
         }
-        if (mainInput.equalsIgnoreCase(BACK_SCREEN)) {
+        if (lineManageInput.equalsIgnoreCase(BACK_SCREEN)) {
             return true;
         }
         System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
@@ -76,7 +75,7 @@ public class LineManage {
             System.out.println("\n[ERROR] 노선의 이름은 최소 2자 이상이어야 합니다. ");
             throw new IllegalArgumentException();
         }
-        if(lineExists(lineName)) {
+        if (lineExists(lineName)) {
             System.out.println("\n[ERROR] 이미 등록된 노선 이름입니다. ");
             throw new IllegalArgumentException();
         }

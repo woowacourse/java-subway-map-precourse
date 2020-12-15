@@ -23,20 +23,20 @@ public class StationManage {
         inputValidate(scanner, stationManageInput);
     }
 
-    private static void inputValidate(Scanner scanner, String mainInput) {
-        if (mainInput.equalsIgnoreCase(ADD_STATION)) {
+    private static void inputValidate(Scanner scanner, String stationManageInput) {
+        if (stationManageInput.equalsIgnoreCase(ADD_STATION)) {
             addStationPrint(scanner);
             return;
         }
-        if (mainInput.equalsIgnoreCase(DELETE_STATION)) {
+        if (stationManageInput.equalsIgnoreCase(DELETE_STATION)) {
             deleteStationPrint(scanner);
             return;
         }
-        if (mainInput.equalsIgnoreCase(ALL_STATIONS)) {
+        if (stationManageInput.equalsIgnoreCase(ALL_STATIONS)) {
             allStationsPrint();
             return;
         }
-        if (mainInput.equalsIgnoreCase(BACK_SCREEN)) {
+        if (stationManageInput.equalsIgnoreCase(BACK_SCREEN)) {
             return;
         }
         System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
