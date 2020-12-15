@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.domain.Action;
 import subway.domain.MenuRepository;
 import subway.domain.Menu;
 
@@ -38,7 +39,7 @@ public class OutputView {
 
     public static void printSubScreen(Menu menu) {
         printTitle(menu);
-        printSubMenus(menu);
+        printActions(menu);
     }
 
     private static void printTitle(Menu menu) {
@@ -58,16 +59,15 @@ public class OutputView {
         System.out.println(HASH + title);
     }
 
-    private static void printSubMenus(Menu menu) {
-        Iterator<String> menuIter = menu.actionSign.keySet().iterator();
+    private static void printActions(Menu menu) {
+        Iterator<Action> menuIter = menu.actionList.iterator();
         while (menuIter.hasNext()) {
-            String key = menuIter.next();
-            String value = menu.actionSign.get(key);
-            String subMenuTitle = key + ". ";
-            if (key != BACK_SIGN) {
+            Action action = menuIter.next();
+            String subMenuTitle = action.sign + ". ";
+            if (action.sign != BACK_SIGN) {
                 subMenuTitle += menu.menuTitle;
             }
-            subMenuTitle+= value;
+            subMenuTitle+= action.message;
             System.out.println(subMenuTitle);
         }
     }

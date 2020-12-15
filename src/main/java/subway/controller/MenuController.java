@@ -101,8 +101,7 @@ public class MenuController {
 
     private void scanSubMenu(Menu menu) {
         OutputView.printSubScreen(menu);
-        List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
-        String selectedSubMenu = scanValidMenu(subMenuSigns);
+        String selectedSubMenu = scanValidMenu(menu.getActionSigns());
         selectedMenus.add(selectedSubMenu);
     }
 
