@@ -61,11 +61,10 @@ public class StationRepository {
 
     public static boolean isDuplicated(String name) {
         for (Station station : stations) {
-            if (station.isSameName(name)){
+            if (station.isSameName(name)) {
                 return true;
             }
         }
         return false;
     }
-
 }

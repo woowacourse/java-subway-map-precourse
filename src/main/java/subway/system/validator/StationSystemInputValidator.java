@@ -3,6 +3,7 @@ package subway.system.validator;
 import subway.system.manager.SubwayManager;
 
 public class StationSystemInputValidator {
+
     static final String WANT_QUIT_CODE = "B";
     static final int OPTION_MIN = 1;
     static final int OPTION_MAX = 3;
@@ -15,7 +16,8 @@ public class StationSystemInputValidator {
     public static void validateUserOption(String userOption) throws IllegalArgumentException {
         if (userOption.equals(WANT_QUIT_CODE)) {
             return;
-        }try {
+        }
+        try {
             int optionNumber = Integer.parseInt(userOption);
             if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
                 throw new IllegalArgumentException(OPTION_ERROR_MESSAGE);
@@ -25,7 +27,8 @@ public class StationSystemInputValidator {
         }
     }
 
-    public static void validateStationNameForEnrollment(String stationName) throws IllegalArgumentException {
+    public static void validateStationNameForEnrollment(String stationName)
+        throws IllegalArgumentException {
         if (stationName.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
         }
@@ -34,7 +37,8 @@ public class StationSystemInputValidator {
         }
     }
 
-    public static void validateStationNameForDeletion(String stationName) throws IllegalArgumentException {
+    public static void validateStationNameForDeletion(String stationName)
+        throws IllegalArgumentException {
         if (stationName.length() < MIN_NAME_LENGTH) {
             throw new IllegalArgumentException(STATION_NAME_ERROR_MESSAGE);
         }

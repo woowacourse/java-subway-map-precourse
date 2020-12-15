@@ -18,6 +18,5 @@ public class SubwaySystemInputValidator {
         } catch (Exception e) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
-
     }
 }

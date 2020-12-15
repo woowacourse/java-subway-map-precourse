@@ -49,6 +49,7 @@ public class SubwayManager {
         }
         return false;
     }
+
     public static boolean isExistLine(String lineName) {
         for (Line line : subway.lines()) {
             if (line.isSameName(lineName)) {

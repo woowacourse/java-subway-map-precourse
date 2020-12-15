@@ -22,7 +22,7 @@ public class SubwaySystem {
     SectionSystem sectionSystem;
 
     public SubwaySystem() {
-        this.subwayManager =  new SubwayManager();
+        this.subwayManager = new SubwayManager();
         this.stationSystem = new StationSystem();
         this.lineSystem = new LineSystem();
         this.sectionSystem = new SectionSystem();

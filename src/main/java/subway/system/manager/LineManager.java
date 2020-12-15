@@ -73,7 +73,6 @@ public class LineManager {
         }
     }
 
-
     public static void searchLine(Scanner scanner) {
         SubwayManager.printLine();
     }

@@ -13,7 +13,6 @@ public class SectionSystemInputValidator {
     static final String ORDER_ERROR_MESSAGE = "1이상의 숫자로 순서를 입력하세요";
     static final int MIN_NAME_LENGTH = 2;
 
-
     public static void validateUserOption(String userOption) throws IllegalArgumentException {
         if (userOption.equals(WANT_QUIT_CODE)) {
             return;
@@ -58,5 +57,4 @@ public class SectionSystemInputValidator {
             throw new IllegalArgumentException(ORDER_ERROR_MESSAGE);
         }
     }
-
 }

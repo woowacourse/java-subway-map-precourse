@@ -1,10 +1,8 @@
 package subway.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Subway {
-    private static final String INFO_PREFIX = "[INFO] ";
 
     public StationRepository stationRepository = new StationRepository();
     public LineRepository lineRepository = new LineRepository();
@@ -21,13 +19,6 @@ public class Subway {
         return lineRepository.deleteLineByName(lineName);
     }
 
-    public void printStation() {
-        for (Station station : stationRepository.stations()) {
-            System.out.println(INFO_PREFIX + station.getName());
-        }
-        System.out.println();
-    }
-
     public boolean isDuplicatedStation(String stationName) {
         return stationRepository.isDuplicated(stationName);
     }
@@ -39,30 +30,6 @@ public class Subway {
 
     public boolean isDuplicatedLine(String lineName) {
         return lineRepository.isDuplicated(lineName);
-    }
-
-    public boolean isExistStation(String stationName) {
-        for (Station station : stationRepository.stations()) {
-            if (station.isSameName(stationName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public boolean isExistLine(String lineName) {
-        for (Line line : lineRepository.lines()) {
-            if (line.isSameName(lineName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void printLine() {
-        for (Line line : lineRepository.lines()) {
-            System.out.println(INFO_PREFIX + line.getName());
-        }
-        System.out.println();
     }
 
     public void addSection(String lineName, String stationName, int order) {
