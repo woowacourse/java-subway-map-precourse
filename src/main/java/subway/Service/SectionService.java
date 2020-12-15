@@ -56,7 +56,7 @@ public class SectionService {
             throw new DuplicateStationInLine();
         }
         if (updateSection.size() < Integer.parseInt(sectionInfo.get(SECTION_ORDER))) {
-            throw new OutOfRangeLineException();
+            throw new OutOfRangeLineException(updateSection.size());
         }
     }
 
