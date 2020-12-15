@@ -70,10 +70,14 @@ public class SectionUtils {
         Line selectedLine;
 
         System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
-        selectedLine = LineRepository.selectLineByName(scanner.next());
+        String selectedLineName = scanner.next();
+        Validator.isLineExist(selectedLineName);
+        selectedLine = LineRepository.selectLineByName(selectedLineName);
 
         System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-        selectedLine.deleteStation(scanner.next());
+        String deleteStationName = scanner.next();
+        Validator.isStationExist(deleteStationName);
+        selectedLine.deleteStation(deleteStationName);
 
         System.out.println("\n[INFO] 구간이 삭제되었습니다.\n");
     }
