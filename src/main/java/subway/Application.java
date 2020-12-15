@@ -3,8 +3,8 @@ package subway;
 import static subway.LineManage.linaManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
-import static subway.domain.LineRepository.lines;
 import static subway.domain.StationRepository.addStation;
+import static subway.routeMap.routeMapPrint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,9 +40,9 @@ public class Application {
         for (String stationName : initStations) {
             addStation(new Station(stationName));
         }
-        for (String lineName : initLines) {
-            addLine(new Line(lineName));
-        }
+        addLine(new Line("2호선", new Station("교대역"), new Station("역삼역")));
+        addLine(new Line("3호선", new Station("교대역"), new Station("매봉역")));
+        addLine(new Line("신분당선", new Station("강남역"), new Station("양재시민의숲역")));
     }
 
     private static void mainScreenPrint() {
@@ -63,6 +63,14 @@ public class Application {
         }
         if (mainInput.equalsIgnoreCase(LINE_MANAGE)) {
             linaManage(scanner);
+            return false;
+        }
+        if (mainInput.equalsIgnoreCase(SECTION_MANAGE)) {
+            //sectionManage(scanner);
+            return false;
+        }
+        if (mainInput.equalsIgnoreCase(ALL_INFO)) {
+            routeMapPrint();
             return false;
         }
         if (mainInput.equalsIgnoreCase(EXIT)) {
