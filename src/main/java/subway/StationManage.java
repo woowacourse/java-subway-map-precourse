@@ -1,6 +1,7 @@
 package subway;
 
 import static subway.domain.StationRepository.addStation;
+import static subway.domain.StationRepository.deleteStation;
 import static subway.domain.StationRepository.hasStation;
 
 import java.util.Scanner;
@@ -41,7 +42,7 @@ public class StationManage {
             System.out.println("\n[ERROR] 역의 이름은 최소 2자 이상이어야 합니다. ");
             throw new IllegalArgumentException();
         }
-        if (stationNameDuplicate(stationName)) {
+        if (stationExists(stationName)) {
             System.out.println("\n[ERROR] 이미 등록된 역 이름입니다. ");
             throw new IllegalArgumentException();
         }
@@ -49,11 +50,22 @@ public class StationManage {
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
 
+    private static void deleteStationPrint(Scanner scanner) {
+        System.out.println("\n## 삭제할 역 이름을 입력하세요.");
+        String stationName = scanner.next();
+        if (!stationExists(stationName)) {
+            System.out.println("\n[ERROR] 존재하지 않는 역 이름입니다. ");
+            throw new IllegalArgumentException();
+        }
+        deleteStation(stationName);
+        System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
     private static boolean stationNameLengthValidate(String stationName) {
         return stationName.length() >= stationNameMinLength;
     }
 
-    private static boolean stationNameDuplicate(String stationName) {
+    private static boolean stationExists(String stationName) {
         return hasStation(stationName);
     }
 
