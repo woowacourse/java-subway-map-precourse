@@ -9,7 +9,7 @@ public class Line {
     private final List<Station> stations;
 
     public Line(String name, List<Station> stations) {
-        if(name.length() < MIN_STATION_AND_LINE_NAME_LENGTH) {
+        if (name.length() < MIN_STATION_AND_LINE_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 노선 이름은 2글자 이상이여야 합니다.");
         }
         this.name = name;
@@ -30,5 +30,14 @@ public class Line {
 
     public boolean equalsName(String lineName) {
         return this.name.equals(lineName);
+    }
+
+    public void deleteStation(String stationName) {
+        for (Station station : this.stations) {
+            if (station.equalsName(stationName)) {
+                this.stations.remove(station);
+                return;
+            }
+        }
     }
 }
