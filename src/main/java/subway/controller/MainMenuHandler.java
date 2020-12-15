@@ -1,5 +1,7 @@
 package subway.controller;
 
+import subway.menu.LineMenu;
+import subway.menu.SectionMenu;
 import subway.menu.StationMenu;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -9,22 +11,23 @@ public class MainMenuHandler {
 
     public static void stationManage() {
         OutputView.showStationMenu();
-        StationMenu.findByCommand(InputView.nextLine());
+        StationMenu menuAction = StationMenu.findByCommand(InputView.nextLine());
+        menuAction.run();
     }
 
     public static void lineManage() {
         OutputView.showStationMenu();
-        StationMenu.findByCommand(InputView.nextLine());
+        LineMenu menuAction = LineMenu.findByCommand(InputView.nextLine());
+        menuAction.run();
     }
 
     public static void sectionManage() {
         OutputView.showStationMenu();
-        StationMenu.findByCommand(InputView.nextLine());
+        SectionMenu menuAction = SectionMenu.findByCommand(InputView.nextLine());
+        menuAction.run();
     }
 
     public static void showSubwayMap() {
-        OutputView.showStationMenu();
-        StationMenu.findByCommand(InputView.nextLine());
     }
 
     public static void end(){
