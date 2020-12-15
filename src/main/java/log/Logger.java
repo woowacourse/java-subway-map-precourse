@@ -11,7 +11,7 @@ public class Logger {
     public static final String LEVEL_INFO = "\n[INFO] ";
 
     public static void guidePrint(String errorBody) {
-        System.out.println(LEVEL_GUIDE + errorBody);
+        System.out.print(LEVEL_GUIDE + errorBody);
     }
 
     public static void errorPrint(String errorBody) {
@@ -19,7 +19,7 @@ public class Logger {
     }
 
     public static void infoPrint(String infoBody) {
-        System.out.println(LEVEL_INFO + infoBody);
+        System.out.print(LEVEL_INFO + infoBody);
     }
 
     public static void displayMainScreen() {
@@ -34,7 +34,7 @@ public class Logger {
     public static String displayInputScreen(Scanner scanner, List<String> whiteList) {
         String input;
         while(true) {
-            guidePrint("원하는 기능을 선택하세요.");
+            guidePrint("원하는 기능을 선택하세요.\n");
             input = scanner.next();
             if (whiteList.contains(input)) {
                 break;

@@ -54,7 +54,7 @@ public class StationManage {
     }
 
     private static boolean addStationControl(Scanner scanner) {
-        guidePrint("등록할 역 이름을 입력하세요. ");
+        guidePrint("등록할 역 이름을 입력하세요. \n");
         String stationName = scanner.next();
         if (!stationNameLengthValidate(stationName)) {
             errorPrint(NAME_LENGTH_ERROR);
@@ -65,24 +65,24 @@ public class StationManage {
             return false;
         }
         addStation(new Station(stationName));
-        infoPrint("지하철 역이 등록되었습니다. ");
+        infoPrint("지하철 역이 등록되었습니다. \n");
         return true;
     }
 
     private static boolean deleteStationControl(Scanner scanner) {
-        guidePrint("삭제할 역 이름을 입력하세요. ");
+        guidePrint("삭제할 역 이름을 입력하세요. \n");
         String stationName = scanner.next();
         if (!stationExists(stationName)) {
             errorPrint(NO_SUCH_NAME_ERROR);
             return false;
         }
         deleteStation(stationName);
-        infoPrint("지하철 역이 삭제되었습니다. ");
+        infoPrint("지하철 역이 삭제되었습니다. \n");
         return true;
     }
 
     private static boolean allStationsContol() {
-        guidePrint("역 목록");
+        guidePrint("역 목록\n");
         List<Station> allStations = stations();
         for (Station station : allStations) {
             station.print();
