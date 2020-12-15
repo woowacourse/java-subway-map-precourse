@@ -1,6 +1,7 @@
 package subway.controller;
 
 public class MenuController {
+
     public static final String BUTTON_1 = "1";
     public static final String BUTTON_2 = "2";
     public static final String BUTTON_3 = "3";

@@ -33,13 +33,13 @@ public class SubwayInitializer {
 
     private static void initLines() {
         Arrays.asList(
-                Line.of(LINE_2호선, StationRepository.findByName(STATION_교대역), StationRepository.findByName(
-                        STATION_역삼역)),
-                Line.of(LINE_3호선, StationRepository.findByName(STATION_교대역), StationRepository.findByName(
-                        STATION_매봉역)),
-                Line.of(LINE_신분당선, StationRepository.findByName(STATION_강남역), StationRepository.findByName(
-                        STATION_양재시민의숲역)))
-                .forEach(Line::save);
+                Line.of(LINE_2호선, StationRepository.findByName(STATION_교대역),
+                        StationRepository.findByName(STATION_역삼역)),
+                Line.of(LINE_3호선, StationRepository.findByName(STATION_교대역),
+                        StationRepository.findByName(STATION_매봉역)),
+                Line.of(LINE_신분당선, StationRepository.findByName(STATION_강남역),
+                        StationRepository.findByName(STATION_양재시민의숲역))
+        ).forEach(Line::save);
     }
 
     private static void initSections() {
