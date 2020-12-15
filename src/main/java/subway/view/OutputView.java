@@ -160,7 +160,10 @@ public class OutputView {
     }
 
     public static void sectionDeleteLineNamePrint() {
-        System.out.println(SectionMessage.SECTION_DELETE_GUIDE.getSectionMessage());
+        System.out.println(SectionMessage.SECTION_DELETE_LINE_NAME.getSectionMessage());
     }
 
+    public static void sectionDeleteStationNamePrint() {
+        System.out.println(SectionMessage.SECTION_DELETE_STATION_NAME.getSectionMessage());
+    }
 }

@@ -74,8 +74,9 @@ public class SectionController {
         OutputView.sectionDeleteLineNamePrint();
         deleteLineName = InputView.scanSectionLineName(scanner);
 
-        System.out.println("임시 메세지 : 삭제 역 이름 입력");
-        deleteStationName = scanner.nextLine();
+
+        OutputView.sectionDeleteStationNamePrint();
+        deleteStationName = InputView.scansectionStationName(scanner);
 
         line = LineRepository.getLineByName(deleteLineName);
         line.deleteStationByName(deleteStationName);
