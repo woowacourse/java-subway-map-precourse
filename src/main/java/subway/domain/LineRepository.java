@@ -28,17 +28,29 @@ public class LineRepository {
     }
 
     public static boolean addPathInLine(String findLine, String inputStation, int inputIndex) {
-        if (getLine(findLine) == null) {
+        if (!checkBeforeAddPathInLine(findLine, inputStation, inputIndex)) {
+            return false;
+        }
+        getLine(findLine).getPath().addOneStationBetweenStations(StationRepository.getStation(inputStation), inputIndex);
+        return true;
+    }
+
+    private static boolean checkBeforeAddPathInLine(String findLine, String inputStation, int inputIndex) {
+        Line line = getLine(findLine);
+        if (line == null) {
             OutputView.printDoesNotExistErrorMessage(findLine);
             return false;
         }
         Station station = StationRepository.getStation(inputStation);
-        Path path = getLine(findLine).getPath();
+        if (line.getPath().isStationInLine(station)) {
+            OutputView.printSameStationAlreadyInLineError(station.getName());
+            return false;
+        }
+        Path path = line.getPath();
         if (path.getSize() <= inputIndex) {
             OutputView.printIndexOutOfRange();
             return false;
         }
-        path.addOneStationBetweenStations(station, inputIndex);
         return true;
     }
 

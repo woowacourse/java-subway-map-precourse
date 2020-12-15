@@ -23,6 +23,7 @@ public class MainScreen implements Screen {
 
     @Override
     public void show() {
+        OutputView.printNewLine();
         OutputView.printWithDoubleSharp(TITLE);
         int i;
         for (i = 0; i < MAIN_MENU_ELEMENT.size(); i++) {

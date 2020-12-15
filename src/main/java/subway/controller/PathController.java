@@ -39,6 +39,7 @@ public class PathController implements Controller {
         if (!LineRepository.addPathInLine(line, station, Integer.parseInt(order))) {
             return;
         }
+        OutputView.printNewLine();
         OutputView.printAlertAboutPath(action);
     }
 
@@ -64,6 +65,7 @@ public class PathController implements Controller {
             OutputView.printErrorAboutPath(action);
             return;
         }
+        OutputView.printNewLine();
         OutputView.printAlertAboutPath(action);
     }
 }

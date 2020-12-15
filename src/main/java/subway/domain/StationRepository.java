@@ -36,7 +36,6 @@ public class StationRepository {
     private static boolean isStationHasLine(Station station) {
         for(Line line: LineRepository.lines()){
             if(line.getPath().isStationInLine(station)){
-                System.out.println("라인을 가지고 있음^^");
                 return true;
             }
         }

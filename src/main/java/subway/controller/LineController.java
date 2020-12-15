@@ -53,8 +53,8 @@ public class LineController implements Controller {
         }
         Line line = new Line(lineName, upStation, downStation);
         LineRepository.addLine(line);
-        OutputView.printAlert(action, NAME);
         OutputView.printNewLine();
+        OutputView.printAlert(action, NAME);
     }
 
     public void inputLineFromUser(String action) {
@@ -104,6 +104,7 @@ public class LineController implements Controller {
         OutputView.printWithAction(action, NAME);
         String line = InputView.getCommand(scanner);
         if (LineRepository.deleteLineByName(line)) {
+            OutputView.printNewLine();
             OutputView.printAlert(action, NAME);
             return;
         }
@@ -111,6 +112,7 @@ public class LineController implements Controller {
     }
 
     public void selectLine() {
+        OutputView.printNewLine();
         OutputView.printList(NAME);
         LineRepository.printOnlyLineName();
     }

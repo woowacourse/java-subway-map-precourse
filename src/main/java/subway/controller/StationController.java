@@ -34,8 +34,8 @@ public class StationController implements Controller {
         OutputView.printWithAction(action, NAME);
         String station = InputView.getCommand(scanner);
         if (StationRepository.addStation(new Station(station))) {
-            OutputView.printAlert(action, NAME);
             OutputView.printNewLine();
+            OutputView.printAlert(action, NAME);
             return;
         }
     }
@@ -47,10 +47,12 @@ public class StationController implements Controller {
             OutputView.printStationDeleteErrorMessage();
             return;
         }
+        OutputView.printNewLine();
         OutputView.printAlert(action, NAME);
     }
 
     private void selectStation() {
+        OutputView.printNewLine();
         OutputView.printList(NAME);
         StationRepository.printStations();
     }
