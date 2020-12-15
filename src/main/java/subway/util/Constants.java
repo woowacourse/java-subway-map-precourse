@@ -3,6 +3,9 @@ package subway.util;
 public class Constants {
     public static final String ASK_COMMAND = "## 원하는 기능을 선택하세요.";
     public static final String COMMAND_FAIL = "[ERROR] 선택할 수 없는 기능입니다.\n";
+    public static final String NAME_LENGTH_FAIL = "[ERROR] 이름은 2글자 이상이어야 합니다.";
+    public static final String ORDER_MUST_INT = "[ERROR] 순서는 숫자여야 합니다.";
+    public static final String PRINT_MAP = "## 지하철 노선도";
     // 메인 화면
     public static final String MAIN = "## 메인 화면";
     public static final String MAIN_STATION = "1. 역 관리";
@@ -50,6 +53,7 @@ public class Constants {
     public static final String ASK_SECTION_REMOVE_STATION = "## 삭제할 구간의 역을 입력하세요.";
     public static final String SECTION_ADD_COMPLETE = "[INFO] 구간이 등록되었습니다.\n";
     public static final String SECTION_REMOVE_COMPLETE = "[INFO] 구간이 삭제되었습니다.\n";
+    public static final String SECTION_REMOVE_FAIL = "[ERROR] 해당 구간은 삭제할 수 없습니다.\n";
 
     public static void printMain() {
         System.out.println(MAIN);
