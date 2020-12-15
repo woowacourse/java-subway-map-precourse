@@ -3,7 +3,6 @@ package subway.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.service.LineService;
 import subway.domain.service.StationService;
@@ -21,22 +20,29 @@ public class LineController {
     private LineController() {}
 
     public static void manageLine(Scanner scanner, int selection) {
-        if (selection == GET_LIST) {
-            LineService.readLineList();
-            return;
-        }
         String name = lineView.ask(scanner, selection);
         if (name == null) {
             return;
         }
-        if (selection == ADD) {
-            addLine(scanner, name);
+        if (selection == DELETE) {
+            LineService.deleteLine(name);
             return;
         }
-        LineService.deleteLine(name);
+        addLine(scanner, name);
     }
 
     private static void addLine(Scanner scanner, String name) {
+        try {
+            if (LineService.duplicateName(name)) {
+                throw new IllegalArgumentException(ScriptUtils.ERROR_DUPLICATE(Category.LINE));
+            }
+            addTerminals(scanner, name);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void addTerminals(Scanner scanner, String name) {
         List<Station> terminals = new ArrayList<>();
         for (int i = 0; i < ScriptUtils.ASK_ADD_LINE.length; i++) {
             String terminalName = lineView.additionalAsk(scanner, ScriptUtils.ASK_ADD_LINE[i]);
@@ -52,5 +58,4 @@ public class LineController {
         }
         LineService.createLine(name, terminals);
     }
-
 }

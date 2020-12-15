@@ -5,10 +5,17 @@ import java.util.stream.Collectors;
 import subway.domain.Station;
 import subway.domain.repository.StationRepository;
 import utils.Category;
+import utils.InitUtils;
 import utils.ScriptUtils;
 
 public class StationService {
     private StationService() {}
+
+    public static void init() {
+        for (String station : InitUtils.INIT_STATIONS) {
+            createStation(station);
+        }
+    }
 
     public static void createStation(String name) {
         try {
