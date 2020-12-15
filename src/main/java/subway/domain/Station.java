@@ -15,8 +15,8 @@ public class Station implements Comparable<Station> {
         return name;
     }
 
-    public boolean compareName(String compareName) {
-        if (name.equals(compareName)) {
+    public boolean compareName(String targetName) {
+        if (name.equals(targetName)) {
             return true;
         }
         return false;
@@ -42,6 +42,11 @@ public class Station implements Comparable<Station> {
         }
     }
 
+    /**
+     * 역 이름 순서대로 정렬을 위해서 역 이름을 비교하여 정수로 반환하는 메소드 오버라이딩
+     * @param station 타겟 역
+     * @return 비교했을 때의 결과 값을 정수로 반환
+     */
     @Override
     public int compareTo(Station station) {
         return this.name.compareTo(station.name);

@@ -1,6 +1,7 @@
 package subway.viewer.constants;
 
 public enum StationInputInitiator {
+    INITIAL_BLANK(""),
     MAIN_STATION_MANAGE("## 역 관리 화면"),
     ENROLL_STATION("1. 역 등록"),
     DELETE_STATION("2. 역 삭제"),
@@ -11,7 +12,7 @@ public enum StationInputInitiator {
 
     final private String message;
 
-    StationInputInitiator(String message) {
+    private StationInputInitiator(String message) {
         this.message = message;
     }
 

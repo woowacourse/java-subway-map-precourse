@@ -1,6 +1,7 @@
 package subway.viewer.constants;
 
 public enum SystemInputInitiator {
+    INITIAL_BLANK(""),
     MAIN_SCREEN("## 메인화면"),
     MANAGE_STATION("1. 역 관리"),
     MANAGE_LINE("2. 노선 관리"),
@@ -12,7 +13,7 @@ public enum SystemInputInitiator {
 
     final private String message;
 
-    SystemInputInitiator(String message) {
+    private SystemInputInitiator(String message) {
         this.message = message;
     }
 

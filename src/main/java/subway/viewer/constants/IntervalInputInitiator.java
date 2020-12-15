@@ -1,6 +1,7 @@
 package subway.viewer.constants;
 
 public enum IntervalInputInitiator {
+    INITIAL_BLANK(""),
     MAIN_INTERVAL_MANAGE("## 구간 관리 화면"),
     ENROLL_INTERVAL("1. 구간 등록"),
     DELETE_INTERVAL("2. 구간 삭제"),
@@ -10,7 +11,7 @@ public enum IntervalInputInitiator {
 
     final private String message;
 
-    IntervalInputInitiator(String message) {
+    private IntervalInputInitiator(String message) {
         this.message = message;
     }
 

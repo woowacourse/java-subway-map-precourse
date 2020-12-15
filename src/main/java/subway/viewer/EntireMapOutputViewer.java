@@ -11,6 +11,7 @@ public class EntireMapOutputViewer {
     private static final String SUBWAY_MAP = "## 지하철 노선도";
 
     public static void showEntireMap(List<Line> lines) {
+        System.out.println();
         System.out.println(SUBWAY_MAP);
         for (Line line : lines) {
             System.out.printf(INFO_MESSAGE, line.getName());

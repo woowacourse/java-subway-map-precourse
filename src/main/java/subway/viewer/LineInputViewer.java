@@ -16,18 +16,22 @@ public class LineInputViewer {
     }
 
     public static void askEnrollLine() {
+        System.out.println();
         System.out.println(ASK_ENROLL_LINE);
     }
 
     public static void askDeleteLine() {
+        System.out.println();
         System.out.println(DELETE_ENROLL_LINE);
     }
 
     public static void askDepartureStation() {
+        System.out.println();
         System.out.println(ASK_DEPARTURE_STATION);
     }
 
     public static void askTerminalStation() {
+        System.out.println();
         System.out.println(ASK_TERMINAL_STATION);
     }
 }

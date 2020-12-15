@@ -8,7 +8,7 @@ public enum InitialSecondLine {
     private final int order;
     private final String stationName;
 
-    InitialSecondLine(int order, String stationName) {
+    private InitialSecondLine(int order, String stationName) {
         this.order = order;
         this.stationName = stationName;
     }

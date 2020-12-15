@@ -17,22 +17,27 @@ public class IntervalInputViewer {
     }
 
     public static void askEnrollLine() {
+        System.out.println();
         System.out.println(ASK_ENROLL_LINE);
     }
 
     public static void askEnrollStation() {
+        System.out.println();
         System.out.println(ASK_ENROLL_STATION);
     }
 
     public static void askEnrollOrder() {
+        System.out.println();
         System.out.println(ASK_ENROLL_ORDER);
     }
 
     public static void deleteLine() {
+        System.out.println();
         System.out.println(DELETE_LINE);
     }
 
-    public static void deleteStaiton() {
+    public static void deleteStation() {
+        System.out.println();
         System.out.println(DELETE_STATION);
     }
 }

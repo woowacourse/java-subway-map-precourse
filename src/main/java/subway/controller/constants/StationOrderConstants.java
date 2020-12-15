@@ -6,7 +6,7 @@ public enum StationOrderConstants {
 
     private int location;
 
-    StationOrderConstants(int location) {
+    private StationOrderConstants(int location) {
         this.location = location;
     }
 

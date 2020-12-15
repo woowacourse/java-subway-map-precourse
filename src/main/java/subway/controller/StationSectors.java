@@ -9,11 +9,11 @@ import subway.viewer.StationOutputViewer;
 import java.util.List;
 import java.util.Scanner;
 
-public enum StationOptions {
+public enum StationSectors {
     ADD(QuestionNumber.ONE.getOption()) {
         public void processUnit(Scanner scanner) {
             StationInputViewer.askEnrollStation();
-            String stationName = scanner.next();
+            String stationName = scanner.nextLine();
             StationRepository.addStation(new Station(stationName));
             StationOutputViewer.showEnrollStation();
         }
@@ -21,7 +21,7 @@ public enum StationOptions {
     DELETE(QuestionNumber.TWO.getOption()) {
         public void processUnit(Scanner scanner) {
             StationInputViewer.askDeleteStation();
-            String stationName = scanner.next();
+            String stationName = scanner.nextLine();
             StationRepository.deleteStation(stationName);
             StationOutputViewer.showDeleteStation();
         }
@@ -33,13 +33,12 @@ public enum StationOptions {
         }
     },
     BACK(QuestionNumber.BACK.getOption()) {
-        public void processUnit(Scanner scanner) {
-        }
+        public void processUnit(Scanner scanner) {}
     };
 
     private String option;
 
-    StationOptions(String option) {
+    private StationSectors(String option) {
         this.option = option;
     }
 

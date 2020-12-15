@@ -25,6 +25,7 @@ public class StationRepository {
         if (isExistedStation(name)) {
             LineRepository.deleteStationOnData(name);
             stations.removeIf(station -> Objects.equals(station.getName(), name));
+            return;
         }
         System.out.println(DomainErrorMessage.NO_CONTAIN_STATION);
         throw new IllegalArgumentException(DomainErrorMessage.NO_CONTAIN_STATION);

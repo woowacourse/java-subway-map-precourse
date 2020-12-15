@@ -12,7 +12,7 @@ import subway.viewer.LineOutputViewer;
 
 import java.util.Scanner;
 
-public enum LineOptions {
+public enum LineSectors {
     ADD(QuestionNumber.ONE.getOption()) {
         public void processUnit(Scanner scanner) {
             enrollLine(scanner);
@@ -31,13 +31,12 @@ public enum LineOptions {
         }
     },
     BACK(QuestionNumber.BACK.getOption()) {
-        public void processUnit(Scanner scanner) {
-        }
+        public void processUnit(Scanner scanner) {}
     };
 
     private String option;
 
-    LineOptions(String option) {
+    private LineSectors(String option) {
         this.option = option;
     }
 
@@ -59,13 +58,13 @@ public enum LineOptions {
     }
 
     private static String getValidatedLine(Scanner scanner) {
-        String lineTitle = scanner.next();
+        String lineTitle = scanner.nextLine();
         LineRepository.checkOverlappedLine(lineTitle);
         return lineTitle;
     }
 
     private static String getValidatedStation(Scanner scanner) {
-        String stationTitle = scanner.next();
+        String stationTitle = scanner.nextLine();
         if (!StationRepository.isExistedStation(stationTitle)) {
             System.out.println(ControllerErrorMessage.NO_EXIST_STATION);
             throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_STATION);
@@ -85,14 +84,14 @@ public enum LineOptions {
 
     private static void isSameDepartureTerminal(String departure, String terminal) {
         if (departure.equals(terminal)) {
-            System.out.println(ControllerErrorMessage.Same_DEPARTURE_TERMINAL);
-            throw new IllegalArgumentException(ControllerErrorMessage.Same_DEPARTURE_TERMINAL);
+            System.out.println(ControllerErrorMessage.SAME_DEPARTURE_TERMINAL);
+            throw new IllegalArgumentException(ControllerErrorMessage.SAME_DEPARTURE_TERMINAL);
         }
     }
 
     private static void deleteLine(Scanner scanner) {
         LineInputViewer.askDeleteLine();
-        String lineTitle = scanner.next();
+        String lineTitle = scanner.nextLine();
         LineRepository.deleteLineByName(lineTitle);
     }
 }

@@ -14,43 +14,38 @@ public class EntireSystem {
     }
 
     public void runProgram() {
-        String option;
+        String sector;
         do {
             SystemInputViewer.askMainScreen();
-            option = scanner.next();
-            isValidatedOption(option);
-            EntireOptions selectedOption = translateOption(option);
-            turnOption(selectedOption);
-        } while (!option.equals(QuestionNumber.TERMINATE.getOption()));
+            sector = scanner.nextLine();
+            isValidSector(sector);
+            goSector(sector);
+        } while (!sector.equals(QuestionNumber.TERMINATE.getOption()));
     }
 
-    private void isValidatedOption(String option) {
+    private void isValidSector(String sector) {
         try {
-            isContainOptionList(option);
-        }catch (Exception e) {
+            isContainSectorList(sector);
+        } catch (Exception error) {
             System.out.println(SelectOptionConstants.OPTION_ERROR);
-            System.out.println();
         }
     }
 
-    private void isContainOptionList(String option) {
-        if (!SelectOptionConstants.ENTIRE_OPTION.contains(option)) {
-            throw new IllegalArgumentException();
+    private void isContainSectorList(String sector) {
+        if (!SelectOptionConstants.ENTIRE_SECTOR.contains(sector)) {
+            throw new IllegalArgumentException(SelectOptionConstants.OPTION_ERROR);
         }
     }
 
-    private EntireOptions translateOption(String option) {
-        for (EntireOptions entireOption : EntireOptions.values()) {
-            if (entireOption.getOption().equals(option)) {
-                return entireOption;
-            }
+    private void goSector(String sector) {
+        for (EntireSet entireOption : EntireSet.values()) {
+            filterSector(entireOption, scanner, sector);
         }
-        return null;
     }
 
-    private void turnOption(EntireOptions selectedOption) {
-        if (selectedOption != null) {
-            selectedOption.processSet(scanner);
+    private void filterSector(EntireSet candidate, Scanner scanner, String option) {
+        if (candidate.getOption().equals(option)) {
+            candidate.processSet(scanner);
         }
     }
 }

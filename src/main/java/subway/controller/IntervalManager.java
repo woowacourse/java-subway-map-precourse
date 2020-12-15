@@ -17,34 +17,36 @@ public class IntervalManager {
         do {
             IntervalInputViewer.askMainScreen();
             happenedError = checkSectorStatus();
-        } while(happenedError);
+        } while (happenedError);
     }
 
     private boolean checkSectorStatus() {
         try {
-            String option = scanner.next();
-            IntervalOptions selectedOption = translateOption(option);
-            turnOption(selectedOption);
+            String unit = scanner.nextLine();
+            isValidUnit(unit);
+            goUnit(scanner, unit);
             return false;
-        } catch (Exception e) {
+        } catch (Exception error) {
             return true;
         }
     }
 
-    private IntervalOptions translateOption(String option) {
-        for (IntervalOptions intervalOption : IntervalOptions.values()) {
-            if (intervalOption.getOption().equals(option)) {
-                return intervalOption;
-            }
+    private void isValidUnit(String unit) {
+        if (!SelectOptionConstants.INTERVAL_OPTION.contains(unit)) {
+            System.out.println(SelectOptionConstants.OPTION_ERROR);
+            throw new IllegalArgumentException(SelectOptionConstants.OPTION_ERROR);
         }
-        System.out.println(SelectOptionConstants.OPTION_ERROR);
-        System.out.println();
-        throw new IllegalArgumentException();
     }
 
-    private void turnOption(IntervalOptions selectedOption) {
-        if (selectedOption != null) {
-            selectedOption.processUnit(scanner);
+    private void goUnit(Scanner scanner, String unit) {
+        for (IntervalSectors intervalSector : IntervalSectors.values()) {
+            filterUnit(intervalSector, scanner, unit);
+        }
+    }
+
+    private void filterUnit(IntervalSectors candidate, Scanner scanner, String unit) {
+        if (candidate.getOption().equals(unit)) {
+            candidate.processUnit(scanner);
         }
     }
 }

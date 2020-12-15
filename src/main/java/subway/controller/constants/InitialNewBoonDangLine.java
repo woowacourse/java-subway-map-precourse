@@ -8,7 +8,7 @@ public enum InitialNewBoonDangLine {
     private final int order;
     private final String stationName;
 
-    InitialNewBoonDangLine(int order, String stationName) {
+    private InitialNewBoonDangLine(int order, String stationName) {
         this.order = order;
         this.stationName = stationName;
     }

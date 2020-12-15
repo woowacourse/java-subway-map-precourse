@@ -4,7 +4,7 @@ import subway.controller.constants.QuestionNumber;
 
 import java.util.Scanner;
 
-public enum EntireOptions {
+public enum EntireSet {
     STATION(QuestionNumber.ONE.getOption()) {
         public void processSet(Scanner scanner) {
             StationManager stationManager = new StationManager(scanner);
@@ -30,13 +30,12 @@ public enum EntireOptions {
         }
     },
     QUIT(QuestionNumber.TERMINATE.getOption()) {
-        public void processSet(Scanner scanner) {
-        }
+        public void processSet(Scanner scanner) {}
     };
 
     private String option;
 
-    EntireOptions(String option) {
+    private EntireSet(String option) {
         this.option = option;
     }
 

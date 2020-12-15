@@ -43,7 +43,7 @@ public class Line implements Comparable<Line> {
         stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public int checkStationNumber() {
+    public int getStationNumber() {
         return stations.size();
     }
 
@@ -72,6 +72,7 @@ public class Line implements Comparable<Line> {
         }
     }
 
+    /** 해당 역 삭제시에 문제가 없는지 체크하는 메소드 **/
     private void checkAbleDeleteStation() {
         if (stations.size() <= DomainConstant.MINIMUM_STATION) {
             System.out.println(DomainErrorMessage.MINIMUM_STATION);
@@ -79,6 +80,7 @@ public class Line implements Comparable<Line> {
         }
     }
 
+    /** 문자 마지막이 선으로 끝나는지 확인하는 메소드 **/
     private void checkEndName(String name) {
         String last = name.substring(name.length() - DomainConstant.LAST_LOCATION);
         if (!last.equals(DomainConstant.LINE_STRING)) {
@@ -87,6 +89,11 @@ public class Line implements Comparable<Line> {
         }
     }
 
+    /**
+     * 노선 정렬을 위해 오버라이딩한 메소드
+     * @param line 노선
+     * @return 노선과의 순서 정렬을 위한 정수
+     */
     @Override
     public int compareTo(Line line) {
         return this.name.compareTo(line.name);

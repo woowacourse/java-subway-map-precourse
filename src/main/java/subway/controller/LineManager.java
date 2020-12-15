@@ -17,33 +17,36 @@ public class LineManager {
         do {
             LineInputViewer.askMainScreen();
             happenedError = checkSectorStatus();
-        } while(happenedError);
+        } while (happenedError);
     }
 
     private boolean checkSectorStatus() {
         try {
-            String option = scanner.next();
-            LineOptions selectedOption = translateOption(option);
-            turnOption(selectedOption);
+            String unit = scanner.nextLine();
+            isValidUnit(unit);
+            goUnit(scanner, unit);
             return false;
-        } catch (Exception e) {
+        } catch (Exception error) {
             return true;
         }
     }
-    private LineOptions translateOption(String option) {
-        for (LineOptions lineOption : LineOptions.values()) {
-            if (lineOption.getOption().equals(option)) {
-                return lineOption;
-            }
+
+    private void isValidUnit(String unit) {
+        if (!SelectOptionConstants.LINE_OPTION.contains(unit)) {
+            System.out.println(SelectOptionConstants.OPTION_ERROR);
+            throw new IllegalArgumentException(SelectOptionConstants.OPTION_ERROR);
         }
-        System.out.println(SelectOptionConstants.OPTION_ERROR);
-        System.out.println();
-        throw new IllegalArgumentException();
     }
 
-    private void turnOption(LineOptions selectedOption) {
-        if (selectedOption != null) {
-            selectedOption.processUnit(scanner);
+    private void goUnit(Scanner scanner, String unit) {
+        for (LineSectors lineSector : LineSectors.values()) {
+            filterUnit(lineSector, scanner, unit);
+        }
+    }
+
+    private void filterUnit(LineSectors candidate, Scanner scanner, String unit) {
+        if (candidate.getOption().equals(unit)) {
+            candidate.processUnit(scanner);
         }
     }
 }

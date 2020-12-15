@@ -11,14 +11,17 @@ public class LineOutputViewer {
     private static final String SHOW_LINE_UNIT = "[INFO] %s\n";
 
     public static void showDeleteLine() {
+        System.out.println();
         System.out.println(COMPLETE_DELETE_MESSAGE);
     }
 
     public static void showEnrollLine() {
+        System.out.println();
         System.out.println(COMPLETE_ENROLL_MESSAGE);
     }
 
     public static void showLineList(List<Line> lines) {
+        System.out.println();
         System.out.printf(SHOW_LINE_UNIT, LINE_LIST);
         for (Line line : lines) {
             System.out.printf(SHOW_LINE_UNIT, line.getName());

@@ -12,7 +12,7 @@ public enum QuestionNumber {
 
     private String option;
 
-    QuestionNumber(String option) {
+    private QuestionNumber(String option) {
         this.option = option;
     }
 
