@@ -12,11 +12,11 @@ import subway.domain.Station;
 
 public class Application {
 
-    static final String stationManageInput = "1";
-    static final String lineManageInput = "2";
-    static final String sectionManageInput = "3";
-    static final String allLinesInfoPrintInput = "4";
-    static final String exitInput = "Q";
+    static final String STATION_MANAGE = "1";
+    static final String LINE_MANAGE = "2";
+    static final String SECTION_MANAGE = "3";
+    static final String ALL_INFO = "4";
+    static final String EXIT = "Q";
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
@@ -55,11 +55,15 @@ public class Application {
     }
 
     private static boolean validateAndNextScreen(Scanner scanner, String mainInput) {
-        if (mainInput.equalsIgnoreCase(stationManageInput)) {
+        if (mainInput.equalsIgnoreCase(STATION_MANAGE)) {
             stationManage(scanner);
             return false;
         }
-        if (mainInput.equalsIgnoreCase(exitInput)) {
+        if (mainInput.equalsIgnoreCase(LINE_MANAGE)) {
+            stationManage(scanner);
+            return false;
+        }
+        if (mainInput.equalsIgnoreCase(EXIT)) {
             return true;
         }
         System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
