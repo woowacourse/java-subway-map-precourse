@@ -23,7 +23,7 @@ public class ManagementControllerTest {
     public void initialize_ManagementController_InitializedManagementController() {
 
         // when
-        ManagementController hasStationsManagementController = ManagementController.initialize();
+        ManagementController hasStationsManagementController = ManagementInitializer.initialize();
 
         //then
         assertThat(hasStationsManagementController.stations().stationNames())

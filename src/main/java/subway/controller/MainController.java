@@ -6,7 +6,7 @@ import subway.domain.menu.Menu;
 public final class MainController {
 
     public void run() {
-        ManagementController managementController = ManagementController.initialize();
+        ManagementController managementController = ManagementInitializer.initialize();
 
         while (isProgressing(managementController)) {
             managementController =
