@@ -35,7 +35,7 @@ public class LineController implements Controller {
 
     private void execute(LineMenu lineMenu) {
         if (LineMenu.isRunning(lineMenu)) {
-            lineMenu.runFunction(lineRepository);
+            lineMenu.runFunction();
         }
     }
 

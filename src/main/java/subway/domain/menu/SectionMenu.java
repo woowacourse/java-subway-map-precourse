@@ -5,18 +5,18 @@ import subway.domain.exception.NoSuchMenuException;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 
 public enum SectionMenu {
-    ADD("1", SectionFunction::add),
-    DELETE("2", SectionFunction::delete),
+    ADD("1", () -> SectionFunction.add()),
+    DELETE("2", () -> SectionFunction.delete()),
     BACK("B", null);
 
     private final String button;
-    private final Function function;
+    private final Supplier function;
 
-    SectionMenu(String button, Function<Object, Object> function) {
+    SectionMenu(String button, Supplier function) {
         this.button = button;
         this.function = function;
     }
@@ -36,7 +36,7 @@ public enum SectionMenu {
                 .orElseThrow(() -> new NoSuchMenuException());
     }
 
-    public void runFunction(Object object) {
-        function.apply(new Object());
+    public void runFunction() {
+        function.get();
     }
 }

@@ -1,23 +1,22 @@
 package subway.domain.menu;
 
 import subway.controller.line.LineFunction;
-import subway.domain.LineRepository;
 import subway.domain.exception.NoSuchMenuException;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 public enum LineMenu {
-    ADD("1", LineFunction::add),
-    DELETE("2", LineFunction::delete),
-    PRINT_ALL("3", LineFunction::printAll),
+    ADD("1", ()->LineFunction.add()),
+    DELETE("2", () -> LineFunction.delete()),
+    PRINT_ALL("3", () -> LineFunction.printAll()),
     BACK("B", null);
 
     private final String button;
-    private final Function function;
+    private final Supplier function;
 
-    LineMenu(String button, Function<LineRepository, LineRepository> function) {
+    LineMenu(String button, Supplier function) {
         this.button = button;
         this.function = function;
     }
@@ -37,7 +36,7 @@ public enum LineMenu {
                 .orElseThrow(() -> new NoSuchMenuException());
     }
 
-    public void runFunction(LineRepository lineRepository) {
-        function.apply(lineRepository);
+    public void runFunction() {
+        function.get();
     }
 }

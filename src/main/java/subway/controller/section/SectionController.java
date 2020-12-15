@@ -30,7 +30,7 @@ public class SectionController implements Controller {
 
     private void execute(SectionMenu sectionMenu) {
         if (SectionMenu.isRunning(sectionMenu)) {
-            sectionMenu.runFunction(new Object());
+            sectionMenu.runFunction();
         }
     }
 }

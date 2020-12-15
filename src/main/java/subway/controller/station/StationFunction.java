@@ -11,11 +11,11 @@ import subway.view.InputView;
 import subway.view.outputview.StationOutputView;
 
 public class StationFunction {
-    public static StationRepository add(StationRepository stationRepository) {
+    public static StationRepository add() {
         StationOutputView.registerStationName();
         try {
             String station = InputView.input();
-            stationRepository.addStation(new Station(station));
+            StationRepository.addStation(new Station(station));
             StationOutputView.successAdd();
         } catch (AlreadyExistStationException | InvalidStationNameException e) {
 
@@ -23,20 +23,20 @@ public class StationFunction {
         return null;
     }
 
-    public static StationRepository delete(StationRepository stationRepository) {
+    public static StationRepository delete() {
         StationOutputView.deleteStationName();
         try {
             String station = InputView.input();
             InputValidator.validStationName(station);
-            stationRepository.deleteStation(station);
+            StationRepository.deleteStation(station);
         } catch (NotExistStationException | DuplicateStationOfLineException | InvalidStationNameException e) {
 
         }
         return null;
     }
 
-    public static StationRepository printAll(StationRepository stationRepository) {
-        StationOutputView.showAllStations(stationRepository.stations());
+    public static StationRepository printAll() {
+        StationOutputView.showAllStations(StationRepository.stations());
         return null;
     }
 }

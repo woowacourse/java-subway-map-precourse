@@ -32,7 +32,7 @@ public class StationController implements Controller {
 
     private void execute(StationMenu stationMenu) {
         if (StationMenu.isRunning(stationMenu)) {
-            stationMenu.runFunction(stationRepository);
+            stationMenu.runFunction();
         }
     }
 }

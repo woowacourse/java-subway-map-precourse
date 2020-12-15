@@ -30,7 +30,7 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public boolean deleteStation(String name) {
+    public static boolean deleteStation(String name) {
         InputValidator.validStationName(name);
         notExistStationName(name);
         LineRepository.duplicateStationInLine(name);

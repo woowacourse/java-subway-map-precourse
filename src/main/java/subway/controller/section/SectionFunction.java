@@ -8,7 +8,7 @@ import subway.view.InputView;
 import subway.view.outputview.SectionOutputView;
 
 public class SectionFunction {
-    public static Object add(Object nothing) {
+    public static boolean add() {
         try {
             String line = inputAddLine();
             String station = inputAddStation(line);
@@ -16,9 +16,9 @@ public class SectionFunction {
             LineRepository.addSection(line, station, order);
             SectionOutputView.successAdd();
         } catch (NullPointerException e) {
-
+            return false;
         }
-        return null;
+        return true;
     }
 
     private static String inputAddLine() {
@@ -58,16 +58,16 @@ public class SectionFunction {
         }
     }
 
-    public static Object delete(Object o) {
+    public static boolean delete() {
         try {
             String line = inputDeleteLine();
             String station = inputDeleteStation(line);
             LineRepository.deleteSectionOfLine(line, station);
             SectionOutputView.successRemove();
         } catch (NullPointerException e) {
-
+            return false;
         }
-        return null;
+        return true;
     }
 
     private static String inputDeleteLine() {

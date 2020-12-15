@@ -1,23 +1,22 @@
 package subway.domain.menu;
 
 import subway.controller.station.StationFunction;
-import subway.domain.StationRepository;
 import subway.domain.exception.NoSuchMenuException;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 public enum StationMenu {
-    ADD("1", StationFunction::add),
-    DELETE("2", StationFunction::delete),
-    PRINT_ALL("3", StationFunction::printAll),
+    ADD("1", () -> StationFunction.add()),
+    DELETE("2", () -> StationFunction.delete()),
+    PRINT_ALL("3", () -> StationFunction.printAll()),
     BACK("B", null);
 
     private final String button;
-    private final Function function;
+    private final Supplier function;
 
-    StationMenu(String button, Function<StationRepository, StationRepository> function) {
+    StationMenu(String button, Supplier function) {
         this.button = button;
         this.function = function;
     }
@@ -37,7 +36,7 @@ public enum StationMenu {
                 .orElseThrow(() -> new NoSuchMenuException());
     }
 
-    public void runFunction(StationRepository stationRepository) {
-        function.apply(stationRepository);
+    public void runFunction() {
+        function.get();
     }
 }

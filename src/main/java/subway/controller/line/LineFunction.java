@@ -13,33 +13,33 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class LineFunction {
-    public static LineRepository add(LineRepository lineRepository) {
+    public static boolean add() {
         try {
-            String line = inputAddLine(lineRepository);
-            lineRepository.addLine(inputStations(line, lineRepository));
+            String line = inputAddLine();
+            LineRepository.addLine(inputStations(line));
             LineOutputView.successAdd();
         } catch (NullPointerException e) {
-            return null;
+            return false;
         }
-        return lineRepository;
+        return true;
     }
 
-    private static String inputAddLine(LineRepository lineRepository) {
+    private static String inputAddLine() {
         try {
             LineOutputView.registerLineName();
             String line = InputView.input();
             InputValidator.validLineName(line);
-            lineRepository.duplicateLineName(line);
+            LineRepository.duplicateLineName(line);
             return line;
         } catch (InvalidLineNameException | DuplicateLineNameException e) {
             throw new NullPointerException();
         }
     }
 
-    private static Line inputStations(String line, LineRepository lineRepository) {
+    private static Line inputStations(String line) {
         try {
-            String firstStation = inputFirstStation(line, lineRepository);
-            String lastStation = inputLastStation(line, lineRepository);
+            String firstStation = inputFirstStation(line);
+            String lastStation = inputLastStation(line);
             isDuplicateStations(firstStation, lastStation);
             return new Line(line, new ArrayList<>(Arrays.asList(firstStation, lastStation)));
         } catch (NullPointerException | DuplicateFirstLastStationException e) {
@@ -47,13 +47,13 @@ public class LineFunction {
         }
     }
 
-    private static String inputFirstStation(String line, LineRepository lineRepository) {
+    private static String inputFirstStation(String line) {
         try {
             LineOutputView.firstLineName();
             String firstStation = InputView.input();
             InputValidator.validStationName(firstStation);
             StationRepository.notExistStationName(firstStation);
-            lineRepository.duplicateStationSelectLine(firstStation, line);
+            LineRepository.duplicateStationSelectLine(firstStation, line);
             return firstStation;
         } catch (DuplicateStationOfLineException |
                 NotExistStationException | InvalidStationNameException e) {
@@ -61,13 +61,13 @@ public class LineFunction {
         }
     }
 
-    private static String inputLastStation(String line, LineRepository lineRepository) {
+    private static String inputLastStation(String line) {
         try {
             LineOutputView.lastLineName();
             String lastStation = InputView.input();
             InputValidator.validStationName(lastStation);
             StationRepository.notExistStationName(lastStation);
-            lineRepository.duplicateStationSelectLine(lastStation, line);
+            LineRepository.duplicateStationSelectLine(lastStation, line);
             return lastStation;
         } catch (DuplicateStationOfLineException |
                 NotExistStationException | InvalidStationNameException e) {
@@ -81,21 +81,21 @@ public class LineFunction {
         }
     }
 
-    public static LineRepository delete(LineRepository lineRepository) {
+    public static boolean delete() {
         try {
             LineOutputView.deleteLineName();
             String line = InputView.input();
             InputValidator.validLineName(line);
-            lineRepository.deleteLineByName(line);
+            LineRepository.deleteLineByName(line);
             LineOutputView.successDelete();
         } catch (InvalidLineNameException | NotExistLineException e ){
-
+            return false;
         }
-        return null;
+        return true;
     }
 
-    public static LineRepository printAll(LineRepository lineRepository) {
-        LineOutputView.showAllLines(lineRepository.lines());
+    public static LineRepository printAll() {
+        LineOutputView.showAllLines(LineRepository.lines());
         return null;
     }
 }

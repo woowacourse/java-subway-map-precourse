@@ -26,7 +26,7 @@ public class LineRepository {
         lines.add(bundang);
     }
 
-    public List<Line> lines() {
+    public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 
@@ -86,7 +86,7 @@ public class LineRepository {
     }
 
 
-    public void duplicateLineName(String lineName) {
+    public static void duplicateLineName(String lineName) {
         lines.stream()
                 .filter(line -> Objects.equals(line.getName(), lineName))
                 .findAny()
