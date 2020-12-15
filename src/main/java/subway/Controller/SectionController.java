@@ -1,7 +1,7 @@
 package subway.Controller;
 
-import subway.Exception.ExceptionHandler;
 import subway.Exception.SectionExceptionHandler;
+import subway.Exception.StationExceptionHandler;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -25,7 +25,7 @@ public class SectionController {
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        ExceptionHandler.unselectableStation(selection, SECTION_PATTERN);
+        SectionExceptionHandler.unselectable(selection, SECTION_PATTERN);
         execute(selection);
     }
 
@@ -37,17 +37,16 @@ public class SectionController {
             delete();
         }
         MainController.run();
-
     }
 
     private static void add() {
         String line = InputView.getAddStationToLine();
-        ExceptionHandler.notLineContained(line); //
+        SectionExceptionHandler.notLineContained(line); //
         String station = InputView.getAddStation();
-        ExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
+        StationExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
         String order = InputView.getAddStationOrder();
-        ExceptionHandler.positiveInt(order);
-        ExceptionHandler.lineOverflow(line, order);
+        SectionExceptionHandler.positiveInt(order);
+        SectionExceptionHandler.lineOverflow(line, order);
         Line targetLine = LineRepository.findByLineName(line);
         targetLine.addStationByOrder(new Station(station), Integer.parseInt(order));
         OutputView.printAddStationToLineSuccess();

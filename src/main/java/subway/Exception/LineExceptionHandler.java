@@ -17,6 +17,14 @@ public class LineExceptionHandler {
         goBack();
     }
 
+    public static void unselectable(String selection, String[] pattern) {
+        try {
+            ExceptionHandler.isUnSelectable(selection, pattern);
+        } catch (CustomException e) {
+            printErrorAndGoBack(e.getMessage());
+        }
+    }
+
     public static void lineNameShortThanMin(String lineName) {
         try {
             if (lineName.length() < MIN_LENGTH) {

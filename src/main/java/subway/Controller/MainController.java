@@ -1,6 +1,6 @@
 package subway.Controller;
 
-import subway.Exception.ExceptionHandler;
+import subway.Exception.MainExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -22,7 +22,7 @@ public class MainController {
         if (selection.equals("Q")) {
             return;
         }
-        ExceptionHandler.unselectableMain(selection, MAIN_PATTERN);
+        MainExceptionHandler.unselectableMain(selection, MAIN_PATTERN);
         execute(selection);
     }
 

@@ -1,6 +1,5 @@
 package subway.Controller;
 
-import subway.Exception.ExceptionHandler;
 import subway.Exception.LineExceptionHandler;
 import subway.domain.Line;
 import subway.domain.LineRepository;
@@ -26,7 +25,7 @@ public class LineController {
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        ExceptionHandler.unselectableLine(selection, LINE_PATTERN);
+        LineExceptionHandler.unselectable(selection, LINE_PATTERN);
         execute(selection);
     }
 

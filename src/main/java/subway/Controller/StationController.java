@@ -1,6 +1,6 @@
 package subway.Controller;
 
-import subway.Exception.ExceptionHandler;
+import subway.Exception.StationExceptionHandler;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -24,7 +24,7 @@ public class StationController {
         if (selection.equals(BACK)) {
             MainController.run();
         }
-        ExceptionHandler.unselectableStation(selection, STATION_PATTERN);
+        StationExceptionHandler.unselectable(selection, STATION_PATTERN);
         execute(selection);
     }
 
@@ -38,27 +38,25 @@ public class StationController {
         if (selection.equals(DELETE)) {
             delete();
         }
+        MainController.run();
     }
 
     private static void delete() {
         String name = InputView.getDeleteStation();
-        ExceptionHandler.stationContainedInLine(name);
+        StationExceptionHandler.stationContainedInLine(name);
         StationRepository.deleteStation(name);
         OutputView.printDeleteStationSuccess();
-        MainController.run();
     }
 
     private static void add() {
         String name = InputView.getAddStation();
-        ExceptionHandler.duplicatedStation(name);
-        ExceptionHandler.stationNameShorterThanTwo(name);
+        StationExceptionHandler.duplicatedStation(name);
+        StationExceptionHandler.stationNameShorterThanTwo(name);
         StationRepository.addStation(new Station(name));
         OutputView.printAddStationSuccess();
-        MainController.run();
     }
 
     private static void traverse() {
         OutputView.printStationList(StationRepository.stations());
-        MainController.run();
     }
 }
