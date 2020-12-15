@@ -125,7 +125,7 @@ public class StretchDashboard {
     public void insertPosition(Line chosenLine, Station newStation) {
         String tempOrder = inputView.readStationOrder();
         try {
-            int order = Integer.parseInt(tempOrder);
+            int order = Integer.parseInt(tempOrder)-1;
             if (order < 0 || order > chosenLine.getStations().size()) {
                 System.out.println(ERROR_ORDER_OUT_OF_RANGE);
                 return;
