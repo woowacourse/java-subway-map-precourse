@@ -99,7 +99,7 @@ public class Application {
             manageSection(kbd);
         if (input.equals(PRINT_LINES))
             displayAllLines();
-        if (input.equals(FINISH_PROGRAM))
+        if (input.equalsIgnoreCase(FINISH_PROGRAM))
             finishProgram();
     }
 
@@ -111,8 +111,8 @@ public class Application {
         if (input.equals(DELETE_MENU))
             deleteStation(kbd);
         if (input.equals(SEARCH_MENU))
-            searchStation();
-        if (input.equals(GO_BACK_MENU))
+            searchStation(kbd);
+        if (input.equalsIgnoreCase(GO_BACK_MENU))
             startProgram(kbd);
     }
 
@@ -124,8 +124,8 @@ public class Application {
         if (input.equals(DELETE_MENU))
             deleteLine(kbd);
         if (input.equals(SEARCH_MENU))
-            searchLine();
-        if (input.equals(GO_BACK_MENU))
+            searchLine(kbd);
+        if (input.equalsIgnoreCase(GO_BACK_MENU))
             startProgram(kbd);
     }
 
@@ -168,11 +168,11 @@ public class Application {
         }
     }
 
-    public static void searchStation() {
+    public static void searchStation(Scanner kbd) {
         System.out.println("\n## 역 목록");
         for (Station station : StationRepository.stations())
             System.out.println("[INFO] " + station.getName());
-        System.out.println();
+        startProgram(kbd);
     }
 
     public static void addLine(Scanner kbd) {
@@ -191,11 +191,11 @@ public class Application {
         System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
-    public static void searchLine() {
+    public static void searchLine(Scanner kbd) {
         System.out.println("\n## 노선 목록");
         for (Line line : LineRepository.lines())
             System.out.println("[INFO] " + line.getName());
-        System.out.println();
+        startProgram(kbd);
     }
 
     public static void checkSameName(String name) {
