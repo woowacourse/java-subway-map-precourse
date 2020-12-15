@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 지하철 노선 구간의 객체를 관리하는 클래스
@@ -50,6 +51,13 @@ public class RouteRepository {
         return true;
     }
 
+    public static void deleteStationOnAllRoute(String stationName){
+        for(Route route:routes){
+            if(route.doesIncludeStation(stationName))
+                route.deleteStation(stationName);
+        }
+    }
+
     public static boolean isLineIncluded(String lineName) {
         Route route = getRouteMatchingName(lineName);
         if (route != null) {
@@ -72,5 +80,10 @@ public class RouteRepository {
             return route.getNumberOfStations();
         }
         return -1;
+    }
+
+
+    public static boolean deleteLine(String name) {
+        return routes.removeIf(route -> route.matchLineName(name));
     }
 }

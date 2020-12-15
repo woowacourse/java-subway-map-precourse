@@ -42,15 +42,10 @@ public class Application {
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        printUtils = new PrintUtils();
-        inputUtils = new InputUtils();
-        stationRepository = new StationRepository();
-        lineRepository = new LineRepository();
         char mainFunction;
 
-        initializeStation();
-        initializeLines();
-        initializeRoutes();
+        setObjectValue();
+        initializeSubwayProgram();
         while (true) {
             mainFunction = mainMenu();
             if (mainFunction == MainFunction.QUIT.getMenu()) {
@@ -58,6 +53,20 @@ public class Application {
             }
             selectDetailMenu(mainFunction);
         }
+    }
+
+    public static void setObjectValue() {
+        printUtils = new PrintUtils();
+        inputUtils = new InputUtils();
+        stationRepository = new StationRepository();
+        lineRepository = new LineRepository();
+        routeRepository = new RouteRepository();
+    }
+
+    private static void initializeSubwayProgram(){
+        initializeStation();
+        initializeLines();
+        initializeRoutes();
     }
 
     private static void initializeStation() {
@@ -147,6 +156,7 @@ public class Application {
                 throw new IllegalArgumentException();
             }
             stationRepository.deleteStation(delStation.getName());
+            routeRepository.deleteStationOnAllRoute(delStation.getName());
             printUtils.printCompleteDeleteStation();
         } catch (IllegalArgumentException e) {
             printUtils.nonExistentStationError();
@@ -240,6 +250,7 @@ public class Application {
                 throw new IllegalArgumentException();
             }
             lineRepository.deleteLineByName(delLine.getName());
+            routeRepository.deleteLine(delLine.getName());
             printUtils.printCompleteDeleteLine();
         } catch (IllegalArgumentException e) {
             printUtils.nonExistentStationError();
