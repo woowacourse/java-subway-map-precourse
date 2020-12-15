@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private String name;
@@ -21,8 +22,8 @@ public class Line {
 
     public Line(String name, String upLineLastStop, String downLineLastStop) {
         this.name = name;
-        stationList.add(StationRepository.findStationByName(upLineLastStop));
-        stationList.add(StationRepository.findStationByName(downLineLastStop));
+        addStation(upLineLastStop);
+        addStation(downLineLastStop);
     }
 
     public int size() {
@@ -32,15 +33,21 @@ public class Line {
     public void addStation(String stationName) {
         Station station = StationRepository.findStationByName(stationName);
         stationList.add(station);
+        station.increaseCount();
     }
 
     public void addStation(String index, String stationName) {
         Station station = StationRepository.findStationByName(stationName);
         stationList.add(Integer.parseInt(index)-1, station);
+        station.increaseCount();
     }
 
     public boolean isRemovable(String stationName) {
-        return stationList.removeIf(station -> station.getName().equals(stationName));
+        if (stationList.removeIf(station -> station.getName().equals(stationName))) {
+            Objects.requireNonNull(StationRepository.findStationByName(stationName)).decreaseCount();
+            return true;
+        }
+        return false;
     }
 
     public List<Station> stationList() {

@@ -18,7 +18,11 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        Station thisStation = findStationByName(name);
+        if (thisStation != null && thisStation.isRemovable()) {
+            return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        }
+        return false;
     }
 
     public static Station findStationByName(String name) {
