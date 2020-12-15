@@ -42,6 +42,7 @@ public class Line {
         station.increaseCount();
     }
 
+    //TODO 삭제 여부를 알아보는 메서드와 삭제를 진행하는 메서드로 나눠야함
     public boolean isRemovable(String stationName) {
         if (stationList.removeIf(station -> station.getName().equals(stationName))) {
             Objects.requireNonNull(StationRepository.findStationByName(stationName)).decreaseCount();

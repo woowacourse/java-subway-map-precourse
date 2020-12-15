@@ -1,6 +1,7 @@
 package subway.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import subway.util.DefaultSetting;
 
@@ -22,8 +23,33 @@ public class LineTest {
     }
 
     @Test
-    public void 구간_추가된다() {
+    public void 상행_하행_생성자() {
+        Line line = new Line("4호선", "서울역", "중앙역");
+        assertEquals(line.size(), 2);
+    }
 
+    @Test
+    public void 가장_마지막에_구간_추가() {
+        Line line = new Line("5호선");
+        line.addStation("중앙역");
+        assertEquals(line.size(), 1);
+    }
+
+    @Order(2)
+    @Test
+    public void 순서_정해서_구간_추가() {
+        Line line = LineRepository.findLineByName("2호선");
+        line.addStation("1", "중앙역");
+        assertEquals(line.stationList().get(0).getName(), "중앙역");
+    }
+
+    @Order(1)
+    @Test
+    public void 구간_삭제된다() {
+        Line line = LineRepository.findLineByName("2호선");
+        int beforeSize = line.size();
+        line.isRemovable("강남역");
+        assertEquals(beforeSize-3, line.size());
     }
 
 

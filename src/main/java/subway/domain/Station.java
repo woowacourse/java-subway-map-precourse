@@ -13,7 +13,7 @@ public class Station {
 
     // 추가 기능 구현
 
-    private int count;
+    private int count = 0;
 
     public void increaseCount() {
         this.count++;
