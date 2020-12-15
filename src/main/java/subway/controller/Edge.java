@@ -33,7 +33,7 @@ public class Edge {
                 line.addStationByName(stationName, order);
             }
         }
-        OutputView.printEdgeAddActionFinishMessage(LINE_MESSAGE);
+        OutputView.printEdgeAddActionFinishMessage(EDGE_MESSAGE);
     }
 
     public static void delete(InputView inputView) {
