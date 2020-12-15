@@ -33,4 +33,11 @@ public class Station {
         }
         return false;
     }
+
+    public boolean delete() {
+        if (isRemovable()) {
+            return StationRepository.deleteStation(this.name);
+        }
+        return false;
+    }
 }

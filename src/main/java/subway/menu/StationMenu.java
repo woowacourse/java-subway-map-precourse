@@ -2,8 +2,10 @@ package subway.menu;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.service.StationService;
 import subway.util.StationValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StationMenu {
@@ -21,32 +23,23 @@ public class StationMenu {
     }
 
     public void startStationMenu() {
+        selectStationMenu();
+    }
+
+    private void selectStationMenu() {
         while (true) {
             printStationMenu();
             String input = this.scanner.nextLine();
             System.out.println();
             //TODO 함수 분리하기
             if (input.equals("1")) {
-                System.out.println("## 등록할 역 이름을 입력하세요.");
-                String stationName = scanner.nextLine();
-                System.out.println();
-                if (StationValidator.checkValidStationName(stationName)) {
-                    StationRepository.addStation(new Station(stationName));
-                    System.out.println("[ INFO ] 지하철 역이 등록되었습니다.\n");
-                }
+                addStationMenu();
             }
-            //TODO 역이 노선이 등록된 역인지 확인하고 이미 노선에 등록된 역이라면 삭제할 수 없도록 구현해야함
             if (input.equals("2")) {
-                System.out.println("## 삭제할 역 이름을 입력하세요.");
-                String stationName = scanner.nextLine();
-                System.out.println();
-                if (StationRepository.deleteStation(stationName)) {
-                    System.out.println("[ INFO ] 지하철 역이 삭제되었습니다.\n");
-                }
+                deleteStationMenu();
             }
             if (input.equals("3")) {
-                System.out.println("## 역 목록");
-                StationRepository.printStationList();
+                printStationList();
             }
             if (input.equals("B")) {
                 break;
@@ -54,8 +47,41 @@ public class StationMenu {
         }
     }
 
+    private void addStationMenu() {
+        System.out.println("## 등록할 역 이름을 입력하세요.");
+        String stationName = scanner.nextLine();
+        System.out.println();
+        if (StationValidator.checkValidStationName(stationName)) {
+            StationService.addStation(stationName);
+            System.out.println("[ INFO ] 지하철 역이 등록되었습니다.\n");
+        }
+    }
+
+    //TODO 역이 노선이 등록된 역인지 확인하고 이미 노선에 등록된 역이라면 삭제할 수 없도록 구현해야함
+    private void deleteStationMenu() {
+        System.out.println("## 삭제할 역 이름을 입력하세요.");
+        String stationName = scanner.nextLine();
+        System.out.println();
+        if (StationService.deleteStation(stationName)) {
+            System.out.println("[ INFO ] 지하철 역이 삭제되었습니다.\n");
+        }
+    }
+
+    private void printStationList() {
+        System.out.println("## 역 목록");
+        List<Station> stations = StationService.getStationList();
+        if (stations.size() == 0) {
+            System.out.println("[ INFO ] 존재하는 역이 없습니다.");
+            return;
+        }
+        for (Station station : stations) {
+            System.out.println("[ INFO ] " + station.getName());
+        }
+        System.out.println();
+    }
+
     //TODO 출력 기능을 다른곳에 모으기
-    public void printStationMenu() {
+    private void printStationMenu() {
         StringBuilder sb = new StringBuilder();
         sb.append(MENU_TITLE).append("\n")
                 .append(MENU1).append("\n")
