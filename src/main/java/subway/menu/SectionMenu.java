@@ -26,7 +26,7 @@ public enum SectionMenu {
 
     public static SectionMenu findByCommand(String command) {
         return Arrays.stream(SectionMenu.values())
-                .filter(sectionMenu -> sectionMenu.command.equals(command))
+                .filter(sectionMenu -> sectionMenu.command.equalsIgnoreCase(command))
                 .findAny()
                 .orElseThrow(() -> {
                     throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);

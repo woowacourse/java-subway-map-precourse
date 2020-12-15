@@ -27,7 +27,7 @@ public enum StationMenu {
 
     public static StationMenu findByCommand(String command) {
         return Arrays.stream(StationMenu.values())
-                .filter(StationMenu -> StationMenu.command.equals(command))
+                .filter(StationMenu -> StationMenu.command.equalsIgnoreCase(command))
                 .findAny()
                 .orElseThrow(() -> {
                     throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum LineMenu {
-    ADD_LINE("라인 관리", "1", LineMenuHandler::addLine),
+    ADD_LINE("라인 등록", "1", LineMenuHandler::addLine),
     DELETE_LINE("라인 삭제", "2", LineMenuHandler::deleteLine),
     SHOW_LINE("라인 조회", "3", LineMenuHandler::showLine),
     BACK("돌아가기", "B", LineMenuHandler::back);
@@ -27,7 +27,7 @@ public enum LineMenu {
 
     public static LineMenu findByCommand(String command) {
         return Arrays.stream(LineMenu.values())
-                .filter(lineMenu -> lineMenu.command.equals(command))
+                .filter(lineMenu -> lineMenu.command.equalsIgnoreCase(command))
                 .findAny()
                 .orElseThrow(() -> {
                     throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);

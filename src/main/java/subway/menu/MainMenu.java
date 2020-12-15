@@ -27,15 +27,11 @@ public enum MainMenu {
 
     public static MainMenu findByCommand(String command) {
         return Arrays.stream(MainMenu.values())
-                .filter(mainMenu -> mainMenu.command.equals(command))
+                .filter(mainMenu -> mainMenu.command.equalsIgnoreCase(command))
                 .findAny()
                 .orElseThrow(() -> {
                     throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);
                 });
-    }
-
-    public void run() {
-        this.action.run();
     }
 
     public static List<String> getTitles() {
@@ -48,5 +44,9 @@ public enum MainMenu {
         return Arrays.stream(MainMenu.values())
                 .map(mainMenu -> mainMenu.command)
                 .collect(Collectors.toList());
+    }
+
+    public void run() {
+        this.action.run();
     }
 }
