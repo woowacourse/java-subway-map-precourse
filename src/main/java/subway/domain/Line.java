@@ -40,4 +40,8 @@ public class Line {
         return "[INFO] " + name;
     }
 
+    public List<Station> getStations() {
+        return stations;
+    }
+
 }

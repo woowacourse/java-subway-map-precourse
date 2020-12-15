@@ -1,8 +1,6 @@
 package subway;
 
-import subway.domain.Line;
-import subway.domain.LineName;
-import subway.domain.LineRepository;
+import subway.domain.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -14,6 +12,8 @@ public class InputSectionManager implements InputManager {
     private static final String SECTION_ENROLLED = "\n[INFO] 구간이 등록되었습니다.\n";
     private static final String LINE_NOTHING_TRY_AGAIN = "[ERROR] 해당 노선이 없습니다.";
     private static final String SECTION_MENU = "3";
+    private static final String INPUT_STATION = "## 역이름을 입력하세요.";
+    private static final String NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN = "[ERROR] 해당 역이 없거나 이미 노선에 등록되어 있습니다.";
 
     private Scanner scanner;
 
@@ -62,11 +62,26 @@ public class InputSectionManager implements InputManager {
             if (!LineRepository.lines().contains(line)) {
                 throw new IllegalArgumentException(LINE_NOTHING_TRY_AGAIN);
             }
+            registerStationInSection(line);
             System.out.println(SECTION_ENROLLED);
         } catch (IllegalArgumentException
                 e) {
             System.out.println(e.getMessage());
             register();
+        }
+    }
+
+    private void registerStationInSection(Line line) {
+        try {
+            System.out.println(INPUT_STATION);
+            Station station = new Station(new StationName(scanner.next()));
+            if (!StationRepository.stations().contains(station)
+                    || LineRepository.containsStationOfLine(line, station)) {
+                throw new IllegalArgumentException(NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            registerStationInSection(line);
         }
     }
 

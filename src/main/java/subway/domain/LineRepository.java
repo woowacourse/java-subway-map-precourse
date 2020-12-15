@@ -48,4 +48,13 @@ public class LineRepository {
         }
         System.out.println();
     }
+
+    public static boolean containsStationOfLine(Line line, Station station) {
+        for (Line n : lines) {
+            if (n.equals(line) && n.getStations().contains(station)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
