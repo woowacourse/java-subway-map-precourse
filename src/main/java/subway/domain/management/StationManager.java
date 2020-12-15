@@ -34,11 +34,11 @@ public class StationManager extends ServiceManager {
 
     private void checkInputData(String inputData) {
         if(inputData.equals(ManagementMenu.REGISTER.getOrder())){
-            registerStation();
+            registerStation(ManagementMenu.REGISTER);
             return;
         }
         if(inputData.equals(ManagementMenu.DELETE.getOrder())){
-            deleteStation();
+            deleteStation(ManagementMenu.DELETE);
             return;
         }
         if(inputData.equals(ManagementMenu.FIND.getOrder())){
@@ -47,8 +47,8 @@ public class StationManager extends ServiceManager {
         }
     }
 
-    private void deleteStation() {
-        String name = getStationName();
+    private void deleteStation(ManagementMenu menu) {
+        String name = getStationName(menu);
 
         for(Station savedStation : StationRepository.stations()){
             if(savedStation.getName().equals(name)){
@@ -66,8 +66,8 @@ public class StationManager extends ServiceManager {
         OutputView.printStationList(StationRepository.stations(), ServiceList.STATION.getName());
     }
 
-    private void registerStation() {
-        String name = getStationName();
+    private void registerStation(ManagementMenu menu) {
+        String name = getStationName(menu);
 
         for(Station savedStation : StationRepository.stations()){
             if(savedStation.getName().equals(name)){
@@ -82,8 +82,13 @@ public class StationManager extends ServiceManager {
         return;
     }
 
-    private String getStationName() {
-        OutputView.printInputData(Constant.INPUT_DATA_REGISTER_FORMAT, ServiceList.STATION.getName());
+    private String getStationName(ManagementMenu menu) {
+        if(menu.equals(ManagementMenu.REGISTER)) {
+            OutputView.printInputData(Constant.INPUT_DATA_REGISTER_FORMAT, ServiceList.STATION.getName());
+        }
+        if(menu.equals(ManagementMenu.DELETE)) {
+            OutputView.printInputData(Constant.INPUT_DATA_DELETE_FORMAT, ServiceList.STATION.getName());
+        }
         String data = InputView.inputData(scanner);
         return data;
     }

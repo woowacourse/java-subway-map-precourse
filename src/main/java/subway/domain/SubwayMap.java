@@ -2,6 +2,7 @@ package subway.domain;
 
 import subway.Constant;
 import subway.domain.data.LineRepository;
+import subway.domain.data.Station;
 import subway.domain.data.StationRepository;
 import subway.domain.menu.MainMenu;
 import subway.view.InputView;
@@ -17,7 +18,16 @@ public class SubwayMap {
 
     public SubwayMap(Scanner scanner) {
         this.scanner = scanner;
+        initData();
         startService();
+    }
+
+    private void initData() {
+        String[] initStation = {
+                "교대역", "강남역" ,"역삼역" ,"남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
+        for(String stationName : initStation){
+            StationRepository.addStation(new Station(stationName));
+        }
     }
 
     private void startService() {
