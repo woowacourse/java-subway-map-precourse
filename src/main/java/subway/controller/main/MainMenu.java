@@ -1,6 +1,8 @@
 package subway.controller.main;
 
+import subway.controller.ControllerContainer;
 import subway.exception.InvalidFunctionException;
+import subway.view.output.OutputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,16 +13,17 @@ import java.util.stream.Collectors;
 enum MainMenu {
 
     STATION_MANAGEMENT("1", "역 관리", () -> {
-
+        ControllerContainer.getStationManagementController().run();
     }),
     LINE_MANAGEMENT("2", "노선 관리", () -> {
-
+        ControllerContainer.getLineManagementController().run();
     }),
     SECTION_MANAGEMENT("3", "구간 관리", () -> {
-
+        ControllerContainer.getSectionManagementController().run();
     }),
     PRINT_SUBWAY_MAP("4", "지하철 노선도 출력", () -> {
-
+        String routeMap = ControllerContainer.getMainMenuController().getRouteMap();
+        OutputView.print(routeMap);
     }),
     EXIT("Q", "종료", null);
 

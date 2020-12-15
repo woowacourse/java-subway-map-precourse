@@ -3,6 +3,7 @@ package subway.controller.main;
 import subway.exception.InvalidFunctionException;
 import subway.repository.line.LineRepository;
 import subway.repository.station.StationRepository;
+import subway.service.RouteMapService;
 import subway.view.inputView.InputView;
 import subway.view.output.MainMenuView;
 import subway.view.output.OutputView;
@@ -42,6 +43,10 @@ public class MainMenuController implements Runnable {
         }
 
         return function;
+    }
+
+    public String getRouteMap() {
+        return new RouteMapService(lineRepository).get();
     }
 
     public static void main(String[] args) {
