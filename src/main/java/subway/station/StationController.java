@@ -1,6 +1,8 @@
 package subway.station;
 
+import subway.line.validation.CheckStationRegisteredLine;
 import subway.main.SubwayController;
+import subway.station.validation.CheckRegisteredStation;
 import subway.view.InputView;
 import subway.view.station.StationManagementView;
 
@@ -50,25 +52,24 @@ public class StationController {
     private static boolean addNewStation(InputView inputView) {
         StationManagementView.askNewStationName();
         String stationName = inputView.stationName();
-        boolean success = StationService.addStation(stationName);
 
-        if (success) {
-            StationManagementView.addStationComplete();
-        }
+        Station station = new Station(stationName);
+        StationService.addStation(station);
 
-        return success;
+        StationManagementView.addStationComplete();
+        return true;
     }
 
     private static boolean deleteStation(InputView inputView) {
         StationManagementView.askDeleteStationName();
         String stationName = inputView.stationName();
-        boolean success = StationService.deleteStation(stationName);
 
-        if (success) {
-            StationManagementView.deleteStationComplete();
-        }
+        CheckRegisteredStation.validation(stationName);
+        CheckStationRegisteredLine.validation(stationName);
+        StationService.deleteStation(stationName);
 
-        return success;
+        StationManagementView.deleteStationComplete();
+        return true;
     }
 
     private static boolean printRegisteredStation() {

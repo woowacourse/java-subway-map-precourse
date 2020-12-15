@@ -6,16 +6,12 @@ import subway.station.validation.CheckRegisteredStation;
 import java.util.List;
 
 public class StationService {
-    public static boolean addStation(String stationName) {
-        Station station = new Station(stationName);
+    public static void addStation(Station station) {
         StationRepository.addStation(station);
-        return true;
     }
 
-    public static boolean deleteStation(String stationName) {
-        CheckRegisteredStation.validation(stationName);
-        CheckStationRegisteredLine.validation(stationName);
-        return StationRepository.deleteStation(stationName);
+    public static void deleteStation(String stationName) {
+        StationRepository.deleteStation(stationName);
     }
 
     public static Station findStation(String stationName) {

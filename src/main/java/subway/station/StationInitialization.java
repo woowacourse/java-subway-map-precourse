@@ -11,7 +11,8 @@ public class StationInitialization {
 
     public static void setBasicStations() {
         for (String name : basicStations) {
-            StationService.addStation(name);
+            Station station = new Station(name);
+            StationService.addStation(station);
         }
     }
 }
