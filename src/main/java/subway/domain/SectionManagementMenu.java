@@ -27,7 +27,7 @@ public class SectionManagementMenu {
             LineRepository.addSection(order, lineName, name);
             printScreen.printAlarmAddSection();
         } catch (IllegalArgumentException e) {
-            printScreen.printErrorAddSection();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class SectionManagementMenu {
             LineRepository.deleteSection(lineName, name);
             printScreen.printAlarmDeleteSection();
         } catch (IllegalArgumentException e) {
-            printScreen.printErrorDeleteSection();
+            System.out.println(e.getMessage());
         }
     }
 

@@ -32,7 +32,7 @@ public class LineManagementMenu {
             LineRepository.addLine(lineName, firstStation, lastStation);
             printScreen.printAlarmAddLine();
         } catch (IllegalArgumentException e) {
-            printScreen.printErrorAddLine();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -43,7 +43,7 @@ public class LineManagementMenu {
             LineRepository.deleteLineByName(lineName);
             printScreen.printAlarmDeleteLine();
         } catch (IllegalArgumentException e) {
-            printScreen.printErrorDeleteLine();
+            System.out.println(e.getMessage());
         }
     }
 

@@ -13,7 +13,7 @@ public class MainMenu {
                 }
                 selectMainFunction(input);
             } catch (IllegalArgumentException e) {
-                printScreen.printErrorMainSelect();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -49,9 +49,8 @@ public class MainMenu {
                 return;
             }
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
+            System.out.println(e.getMessage());
         }
-        throw new IllegalArgumentException();
     }
 
     private static void checkMainSelect(String select) {
@@ -63,7 +62,7 @@ public class MainMenu {
             return;
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다.\n");
     }
 
     private static void checkManagementSelect(String select) {
@@ -74,6 +73,6 @@ public class MainMenu {
             return;
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다.\n");
     }
 }

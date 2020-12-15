@@ -14,22 +14,25 @@ public class StationRepository {
 
     public static void addStation(String name) {
         //예외 처리 : 길이 2이상, 중복 체크
-        if (checkNameLength(name) && !checkNameInStations(name)) {
-            stations.add(new Station(name));
-            return;
+        if (!checkNameLength(name)) {
+            throw new IllegalArgumentException("[ERROR] 역 이름은 두 글자 이상이여야 합니다.\n");
+        }
+        if (checkNameInStations(name)) {
+            throw new IllegalArgumentException("[ERROR] 이미 등록된 역 이름입니다.\n");
         }
 
-        throw new IllegalArgumentException();
+        stations.add(new Station(name));
     }
 
     public static void deleteStation(String name) {
         //예외 처리 : 존재하는 역이여야한다, 노선에 있는 역이 아니여야한다.
-        if (checkNameInStations(name) && !checkStationInLines(name)) {
-            stations.removeIf(station -> Objects.equals(station.getName(), name));
-            return;
+        if (!checkNameInStations(name)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.\n");
         }
-
-        throw new IllegalArgumentException();
+        if (checkStationInLines(name)) {
+            throw new IllegalArgumentException("[ERROR] 노선에 등록된 역입니다.\n");
+        }
+        stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
     public static boolean checkStationInLines(String name) {

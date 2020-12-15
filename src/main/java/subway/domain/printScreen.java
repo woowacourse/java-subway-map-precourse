@@ -142,32 +142,4 @@ public class printScreen {
             System.out.println();
         }
     }
-
-    public static void printErrorMainSelect() {
-        System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.\n");
-    }
-
-    public static void printErrorAddStation() {
-        System.out.println("\n[ERROR] 등록할 수 없는 역 이름입니다.\n");
-    }
-
-    public static void printErrorDeleteStation() {
-        System.out.println("\n[ERROR] 삭제할 수 없는 역 이름입니다.\n");
-    }
-
-    public static void printErrorAddLine() {
-        System.out.println("\n[ERROR] 등록할 수 없는 노선입니다.\n");
-    }
-
-    public static void printErrorDeleteLine() {
-        System.out.println("\n[ERROR] 삭제할 수 없는 노선입니다.\n");
-    }
-
-    public static void printErrorAddSection() {
-        System.out.println("\n[ERROR] 등록할 수 없는 구간입니다.\n");
-    }
-
-    public static void printErrorDeleteSection() {
-        System.out.println("\n[ERROR] 삭제할 수 없는 구간입니다.\n");
-    }
 }

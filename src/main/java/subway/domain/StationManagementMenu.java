@@ -27,7 +27,7 @@ public class StationManagementMenu {
             StationRepository.addStation(User.getInput());
             printScreen.printAlarmAddStation();
         } catch (IllegalArgumentException e) {
-            printScreen.printErrorAddStation();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ public class StationManagementMenu {
             StationRepository.deleteStation(User.getInput());
             printScreen.printAlarmDeleteStation();
         } catch (IllegalArgumentException e) {
-            printScreen.printErrorDeleteStation();
+            System.out.println(e.getMessage());
         }
     }
 

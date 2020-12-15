@@ -13,45 +13,59 @@ public class LineRepository {
     }
 
     public static void addLine(String lineName, String firstStation, String lastStation) {
-        //예외 처리 : 상행 종점과 하행 종점역이 같을 경우, 노선 이름 길이 2이상, 노선 이름 중복, 입력받은 2개의 역이 존재하는 역인지 확인
-        if (!isEqualFirstStationAndLastStation(firstStation, lastStation) && checkNameLength(lineName) && !checkNameInLines(lineName)
-                && StationRepository.checkNameInStations(firstStation) && StationRepository.checkNameInStations(lastStation)) {
-            lines.add(new Line(lineName, firstStation, lastStation));
-            return;
+        if (isEqualFirstStationAndLastStation(firstStation, lastStation)) {
+            throw new IllegalArgumentException("[ERROR] 상행 종점과 하행 종점 역 이름은 달라야합니다.\n");
         }
-
-        throw new IllegalArgumentException();
+        if (!checkNameLength(lineName)) {
+            throw new IllegalArgumentException("[ERROR] 노선의 이름은 두 글자이상이여야 합니다.\n");
+        }
+        if (checkNameInLines(lineName)) {
+            throw new IllegalArgumentException("[ERROR] 이미 등록된 노선 이름입니다.\n");
+        }
+        if (!StationRepository.checkNameInStations(firstStation) || !StationRepository.checkNameInStations(lastStation)) {
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 이름입니다.\n");
+        }
+        lines.add(new Line(lineName, firstStation, lastStation));
     }
 
     public static void deleteLineByName(String name) {
-        //예외 처리 : 존재하는 노선인지 확인
-        if (checkNameInLines(name)) {
-            lines.removeIf(line -> Objects.equals(line.getName(), name));
-            return;
+        if (!checkNameInLines(name)) {
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 노선 이름입니다.\n");
         }
-
-        throw new IllegalArgumentException();
+        lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static void addSection(String order, String lineName, String name) {
-        //예외 처리 : 순서가 숫자인지 확인, 존재하는 노선인지, 역 이름이 존재하는지, 순서가 노선 사이즈보다 작은지, 노선안에 중복되있는 역이름이 있는지
-        if (isNumber(order) && checkNameInLines(lineName) && StationRepository.checkNameInStations(name)
-                && checkOrderSize(Integer.parseInt(order), findByLineName(lineName)) && !checkStationInLine(findByLineName(lineName), name)) {
-            executeAddSection(order, lineName, name);
-            return;
+        if (!isNumber(order)) {
+            throw new IllegalArgumentException("[ERROR] 순서는 숫자로 입력해야합니다.\n");
         }
-
-        throw new IllegalArgumentException();
+        if (!checkNameInLines(lineName)) {
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 노선 이름입니다.\n");
+        }
+        if (!StationRepository.checkNameInStations(name)) {
+            throw new IllegalArgumentException("[ERROR] 등록되지 않은 역 이름입니다.\n");
+        }
+        if (!checkOrderSize(Integer.parseInt(order), findByLineName(lineName))) {
+            throw new IllegalArgumentException("[ERROR] 순서는 해당 노선 길이보다 작아야합니다.\n");
+        }
+        if (checkStationInLine(findByLineName(lineName), name)) {
+            throw new IllegalArgumentException("[ERROR] 해당 노선에 이미 존재하는 역입니다.\n");
+        }
+        executeAddSection(order, lineName, name);
     }
 
     public static void deleteSection(String lineName, String name) {
         //예외처리 : 있는 노선인지, 노선안에 해당 역이 있는지, 삭제후 노선 안에 역이 2개 이상
-        if (checkNameInLines(lineName) && checkStationInLine(findByLineName(lineName), name) && isMinCountInLine(findByLineName(lineName))) {
-            executeDeleteSection(lineName, name);
-            return;
+        if (!checkNameInLines(lineName)) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.\n");
         }
-
-        throw new IllegalArgumentException();
+        if (!checkStationInLine(findByLineName(lineName), name)) {
+            throw new IllegalArgumentException("[ERROR] 해당 노선에 존재하지 않는 역입니다.\n");
+        }
+        if (!isMinCountInLine(findByLineName(lineName))) {
+            throw new IllegalArgumentException("[ERROR] 노선에는 최소 2개의 역이 존재해야합니다.\n");
+        }
+        executeDeleteSection(lineName, name);
     }
 
     private static void executeDeleteSection(String lineName, String name) {
