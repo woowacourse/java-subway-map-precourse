@@ -1,10 +1,13 @@
 package subway.view;
 
 import java.util.List;
+import subway.domain.line.Line;
 import subway.domain.selector.menu.Menu;
 import subway.domain.station.Station;
 
 public class OutputView {
+
+    private static final String INFORMATION_TAG = "[INFO]";
 
     public void printScreen(Menu menu) {
         System.out.println("\n## " + menu + " 화면");
@@ -27,7 +30,13 @@ public class OutputView {
 
     public void printStations(List<Station> stations) {
         for (Station station : stations) {
-            System.out.println("[INFO] " + station.getName());
+            System.out.println(INFORMATION_TAG + " " + station.getName());
+        }
+    }
+
+    public void printLines(List<Line> lines) {
+        for (Line line : lines) {
+            System.out.println(INFORMATION_TAG + " " + line.getName());
         }
     }
 

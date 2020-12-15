@@ -12,6 +12,7 @@ public class MessageView {
     public static final String ADD_LINE_SUCCESS = "[INFO] 지하철 노선이 등록되었습니다.";
     public static final String UPWARD_TERMINAL_STATION_NAME_INPUT = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String DOWN_TERMINAL_STATION_NAME_INPUT = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String GET_LINES_SUCCESS = "\n## 노선 목록";
 
     public void printAddStationMessage() {
         System.out.println(ADD_STATION);
@@ -53,4 +54,7 @@ public class MessageView {
         System.out.println(DOWN_TERMINAL_STATION_NAME_INPUT);
     }
 
+    public void printGetLinesMessage() {
+        System.out.println(GET_LINES_SUCCESS);
+    }
 }
