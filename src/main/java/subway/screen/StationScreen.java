@@ -17,4 +17,14 @@ public class StationScreen implements Screen{
         System.out.println(BACK);
         System.out.println();
     }
+    
+    public static void askAddStationName() {
+        System.out.println();
+        System.out.println(SHARP + INPUT_ADD_STATION_NAME);
+    }
+	
+    public static void askDeleteStationName() {
+        System.out.println();
+        System.out.println(SHARP + INPUT_DELETE_STATION_NAME);
+    }
 }
