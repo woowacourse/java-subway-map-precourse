@@ -3,10 +3,14 @@ package subway;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.LineRepository.deleteLineByName;
 import static subway.domain.LineRepository.hasLine;
+import static subway.domain.LineRepository.lines;
 import static subway.domain.StationRepository.hasStation;
+import static subway.domain.StationRepository.stations;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.domain.Line;
+import subway.domain.Station;
 
 public class LineManage {
 
@@ -32,7 +36,7 @@ public class LineManage {
             return true;
         }
         if (mainInput.equalsIgnoreCase(ALL_LINES)) {
-            //allLinesPrint();
+            allLinesPrint();
             return true;
         }
         if (mainInput.equalsIgnoreCase(BACK_SCREEN)) {
@@ -75,6 +79,14 @@ public class LineManage {
         if(lineExists(lineName)) {
             System.out.println("\n[ERROR] 이미 등록된 노선 이름입니다. ");
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void allLinesPrint() {
+        System.out.println("\n## 역 목록");
+        List<Line> allLines = lines();
+        for (Line line : allLines) {
+            line.print();
         }
     }
 
