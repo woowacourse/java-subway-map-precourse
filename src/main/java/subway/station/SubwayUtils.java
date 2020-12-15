@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SubwayUtils {
-    private Scanner scanner;
 
-    public SubwayUtils(Scanner scanner) {
-        this.scanner = scanner;
+    public SubwayUtils() {
     }
 
     public void play() {

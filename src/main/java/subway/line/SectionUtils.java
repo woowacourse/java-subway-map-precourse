@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SectionUtils {
+    private final int SECTION_REGISTER = 1;
+    private final int SECTION_DELETE = 2;
+    private final int SECTION_BACK = 0;
     private Scanner scanner;
 
     public SectionUtils(Scanner scanner) {
@@ -33,10 +36,12 @@ public class SectionUtils {
     }
 
     public void choose(int chosenNumber) {
-        if (chosenNumber == 1) {
+        if (chosenNumber == SECTION_BACK) {
+        }
+        if (chosenNumber == SECTION_REGISTER) {
             registerSection();
         }
-        if (chosenNumber == 2) {
+        if (chosenNumber == SECTION_DELETE) {
             deleteSection();
         }
     }

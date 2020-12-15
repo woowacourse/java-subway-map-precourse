@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LineUtils {
+    private final int LINE_REGISTER = 1;
+    private final int LINE_DELETE = 2;
+    private final int LINE_SHOW = 3;
+    private final int LINE_BACK = 0;
     private Scanner scanner;
 
     public LineUtils(Scanner scanner) {
@@ -34,13 +38,15 @@ public class LineUtils {
     }
 
     public void choose(int chosenNumber) {
-        if (chosenNumber == 1) {
+        if (chosenNumber == LINE_BACK) {
+        }
+        if (chosenNumber == LINE_REGISTER) {
             registerLine();
         }
-        if (chosenNumber == 2) {
+        if (chosenNumber == LINE_DELETE) {
             deleteLine();
         }
-        if (chosenNumber == 3) {
+        if (chosenNumber == LINE_SHOW) {
             showLine();
         }
     }

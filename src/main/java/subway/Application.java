@@ -16,7 +16,7 @@ public class Application {
         StationUtils stationUtils = new StationUtils(scanner);
         LineUtils lineUtils = new LineUtils(scanner);
         SectionUtils sectionUtils = new SectionUtils(scanner);
-        SubwayUtils subwayUtils = new SubwayUtils(scanner);
+        SubwayUtils subwayUtils = new SubwayUtils();
 
         selectUtils(scanner, stationUtils, lineUtils, sectionUtils, subwayUtils);
     }
