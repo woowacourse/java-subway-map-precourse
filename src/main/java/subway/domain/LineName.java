@@ -3,14 +3,11 @@ package subway.domain;
 import java.util.Objects;
 
 public class LineName {
-    private static final String NAME_LENGTH_LIMIT_ERROR = "[ERROR] 이름은 2글자 이상입니다.";
-    private static final int NAME_LENGTH_LIMIT = 2;
-
     private String name;
 
     public LineName(String name) {
-        if (name.length() < NAME_LENGTH_LIMIT) {
-            throw new IllegalArgumentException(NAME_LENGTH_LIMIT_ERROR);
+        if (name.length() < Constants.NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(Constants.NAME_LENGTH_LIMIT_ERROR);
         }
         this.name = name;
     }

@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class LineRepository {
-    private static final String LINE_LIST = "\n## 노선 목록";
-
     private static final List<Line> lines = new ArrayList<>();
 
     public static void init() {
@@ -42,7 +40,7 @@ public class LineRepository {
     }
 
     public static void printLine() {
-        System.out.println(LINE_LIST);
+        System.out.println(Constants.LINE_LIST);
         for (Line line : lines) {
             System.out.println(line.toString());
         }
@@ -87,7 +85,7 @@ public class LineRepository {
 
     public static void printLineAndStation() {
         for (Line line : lines) {
-            System.out.println(line.toString() + "\n[INFO] ---");
+            System.out.println(line.toString() + Constants.INFORMATION_BAR);
             for (Station station : line.getStations()) {
                 System.out.println(station.toString());
             }

@@ -37,7 +37,7 @@ public class Line {
 
     @Override
     public String toString() {
-        return "[INFO] " + name;
+        return Constants.INFORMATION + name;
     }
 
     public List<Station> getStations() {
