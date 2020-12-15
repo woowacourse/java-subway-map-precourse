@@ -1,5 +1,10 @@
 package Controller;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class SubwayController {
@@ -26,21 +31,41 @@ public class SubwayController {
         boolean inputCheck = false;
         if (userInput.equals("1")) {
             inputCheck = true;
+            StationController.runStationController(scanner);
         }
         if (userInput.equals("2")) {
             inputCheck = true;
+            LineController.runLineController(scanner);
         }
         if (userInput.equals("3")) {
             inputCheck = true;
+            SectionController.runSectionController(scanner);
         }
         if (userInput.equals("4")) {
             inputCheck = true;
+            printSubway();
         }
         if (userInput.equals("Q")) {
             inputCheck = true;
+            scanner.close();
         }
         if (inputCheck == false) {
             System.out.println("[ERROR] 올바른 번호를 입력해주세요");
+            run(scanner);
+        }
+    }
+
+    private static void printSubway() {
+        System.out.println("## 지하철 노선도");
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INFO] ---");
+            List<Station> stations = line.getSection();
+            for (Station station : stations) {
+                System.out.println("[INFO] " + station.getName());
+            }
+            System.out.println();
         }
     }
 }
