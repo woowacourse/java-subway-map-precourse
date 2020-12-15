@@ -15,6 +15,7 @@ public class Output {
     }
 
     public static void printByList(List<?> list) {
+        printNewLine();
         list.forEach(obj -> System.out.printf(INFO_MESSAGE, obj));
     }
 
