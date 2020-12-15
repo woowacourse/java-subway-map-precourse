@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EachLineStations {
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
     private static final int MIN_ORDER_NUMBER = 1;
     private static final int MIN_STATION_NUMBER = 2;
     private static final int SET_POSITION_INDEX = 1;
@@ -45,11 +47,10 @@ public class EachLineStations {
         return number < MIN_ORDER_NUMBER || number > stations.size() + SET_POSITION_INDEX;
     }
 
-    public boolean deleteStation(Station station) {
-        if (stations.size() > MIN_STATION_NUMBER) {
-            stations.remove(station);
-            return true;
+    public void deleteStation(Station station) {
+        if (stations.size() <= MIN_STATION_NUMBER) {
+            throw new IllegalArgumentException(STATION_NUMBER_LACK);
         }
-        return false;
+        stations.remove(station);
     }
 }

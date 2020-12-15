@@ -49,7 +49,7 @@ public class Line {
         return stations.isNotExistSection(number);
     }
 
-    public boolean deleteSection(Station station) {
-        return stations.deleteStation(station);
+    public void deleteSection(Station station) {
+        stations.deleteStation(station);
     }
 }

@@ -54,13 +54,11 @@ public class SectionController {
         Line line = getAddSectionLine(inputView);
         Station station = getAddSectionStation(line, inputView);
         int sectionOrder = getAddSectionOrder(line, inputView);
-        boolean success = SectionService.addSection(line, station, sectionOrder);
 
-        if (success) {
-            SectionManagementView.addSectionComplete();
-        }
+        SectionService.addSection(line, station, sectionOrder);
 
-        return success;
+        SectionManagementView.addSectionComplete();
+        return true;
     }
 
     private static Line getAddSectionLine(InputView inputView) {
@@ -86,13 +84,11 @@ public class SectionController {
     private static boolean deleteSection(InputView inputView) {
         Line line = getDeleteSectionLine(inputView);
         Station station = getDeleteSectionStation(line, inputView);
-        boolean success = SectionService.deleteSection(line, station);
 
-        if (success) {
-            SectionManagementView.deleteSectionComplete();
-        }
+        SectionService.deleteSection(line, station);
 
-        return success;
+        SectionManagementView.deleteSectionComplete();
+        return true;
     }
 
     private static Line getDeleteSectionLine(InputView inputView) {
