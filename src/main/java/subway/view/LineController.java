@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class LineController {
     private static final String ADD_LINE_SUCCESS = "지하철 노선이 등록되었습니다.\n";
     private static final String DELETE_LINE_SUCCESS = "지하철 노선이 삭제되었습니다.\n";
-    Scanner scanner;
-    LineRepository lineRepository = new LineRepository();
+    private Scanner scanner;
+    private LineRepository lineRepository = new LineRepository();
 
     public LineController(Scanner scanner) {
         this.scanner = scanner;

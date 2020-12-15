@@ -8,7 +8,7 @@ import java.util.*;
 
 public class LineRepository {
     public static final List<Line> lines = new ArrayList<>();
-    static StationRepository stationRepository = new StationRepository();
+    private static StationRepository stationRepository = new StationRepository();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);

@@ -19,9 +19,9 @@ public class SectionController {
     private static final String NOT_DELETE_POSSIBLE_SECTION = "삭제할 수 없는 구간입니다.";
     private static final String NOT_NUMBER_FORMAT = "순서에는 숫자만 입력 가능합니다.";
     private static final String BAR = "---";
-    Scanner scanner;
-    SectionRepository sectionRepository = new SectionRepository();
-    LineRepository lineRepository = new LineRepository();
+    private Scanner scanner;
+    private SectionRepository sectionRepository = new SectionRepository();
+    private LineRepository lineRepository = new LineRepository();
 
     public SectionController(Scanner scanner) {
         this.scanner = scanner;

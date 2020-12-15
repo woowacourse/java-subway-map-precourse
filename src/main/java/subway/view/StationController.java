@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class StationController {
     private static final String ADD_STATION_SUCCESS = "지하철 역이 등록되었습니다.\n";
     private static final String DELETE_STATION_SUCCESS = "지하철 역이 삭제되었습니다.\n";
-    Scanner scanner;
-    StationRepository stationRepository = new StationRepository();
+    private Scanner scanner;
+    private StationRepository stationRepository = new StationRepository();
 
     public StationController(Scanner scanner) {
         this.scanner = scanner;

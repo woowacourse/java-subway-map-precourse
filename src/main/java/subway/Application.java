@@ -12,7 +12,7 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         initialSetting();
         Input input = new Input(scanner);
-        while(!input.quit){
+        while (!input.quit) {
             input.mainInput();
         }
     }

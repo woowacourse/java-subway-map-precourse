@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class Input {
     Scanner scanner;
-    StationController stationController;
-    LineController lineController;
-    SectionController sectionController;
+    private StationController stationController;
+    private LineController lineController;
+    private SectionController sectionController;
     public static Boolean quit = false;
 
     public Input(Scanner scanner) {
