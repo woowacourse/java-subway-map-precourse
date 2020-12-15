@@ -35,6 +35,7 @@ public class MainMenu {
                 new LineMenu(scanner).startLineMenu();
             }
             if (input.equals("3")) {
+                new SectionMenu(scanner).startSectionMenu();
             }
             if (input.equals("4")) {
             }

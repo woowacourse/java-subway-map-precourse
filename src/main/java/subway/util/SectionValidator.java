@@ -4,7 +4,7 @@ import subway.domain.Station;
 
 import java.util.List;
 
-public class IntervalValidator {
+public class SectionValidator {
     private static final int SIZE = 2;
 
     public static boolean checkValidStation(String name, List<Station> stationList) {

@@ -2,8 +2,6 @@ package subway.menu;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.util.LineValidator;
 import subway.util.StationValidator;
 
@@ -28,7 +26,7 @@ public class LineMenu {
         while (true) {
             printLineMenu();
             input = scanner.nextLine();
-            //TODO 함수 분리하기
+            //TODO 함수 분리하기!!!!!
             if (input.equals("1")) {
                 System.out.println("\n## 등록할 노선 이름을 입력하세요.");
                 String lineName = scanner.nextLine();
