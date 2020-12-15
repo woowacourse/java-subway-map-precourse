@@ -38,23 +38,12 @@ public class AddSectionItem extends Selector implements Manipulable {
     }
 
     private void addStation(String lineName, String stationName, int order) {
-        Line line = getLine(lineName);
+        Line line = LineRepository.getLineByName(lineName);
         List<Station> stations = line.stations();
         sectionValidator.validateSectionOrder(order, stations.size());
         Station station = new Station(stationName);
         sectionValidator.validateStationsDuplication(line, station);
         line.addStationByIndex(station, order - 1);
-    }
-
-    private Line getLine(String lineName) {
-        List<Line> lines = LineRepository.lines();
-
-        for (Line line : lines) {
-            if (line.getName().equals(lineName)) {
-                return line;
-            }
-        }
-        return null;
     }
 
 }
