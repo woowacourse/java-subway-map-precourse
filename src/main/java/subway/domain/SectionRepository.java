@@ -17,6 +17,8 @@ public class SectionRepository {
     }
 
     public static void deleteSection(String name) {
-
+        for(Section section : SectionRepository.sections()) {
+                section.getStation().removeIf(st -> Objects.equals(st.getName(), name));
+        }
     }
 }

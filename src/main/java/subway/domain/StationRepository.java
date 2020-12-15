@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.util.Constants;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +19,21 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        int check = 0;
+        for(Section section : SectionRepository.sections()) {
+            for(Station station : section.getStation()) {
+                if(station.getName().equals(name)) {
+                    if(section.getStation().size() <= 2) {
+                        check = 1;
+                    }
+                }
+            }
+        }
+        if(check == 0) {
+            SectionRepository.deleteSection(name);
+            return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        } else {
+            throw new IllegalArgumentException(Constants.STATION_REMOVE_FAIL);
+        }
     }
 }

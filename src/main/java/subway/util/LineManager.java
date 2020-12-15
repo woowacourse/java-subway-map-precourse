@@ -72,7 +72,7 @@ public class LineManager {
         for(int i = 0; i < 2; i++) {
             for(Station station : StationRepository.stations()) {
                 if(station.getName().equals(stations[i])) {
-                    section.addStations(station);
+                    section.addStation(station);
                 }
             }
         }

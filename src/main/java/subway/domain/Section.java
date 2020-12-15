@@ -11,9 +11,11 @@ public class Section {
         this.line = line;
     }
 
-    public void addStations(Station station) {
-        this.station.add(station);
+    public void addStation(int index, Station station) {
+        this.station.add(index, station);
     }
+
+    public void addStation(Station station) { this.station.add(station); }
 
     public Line getLine() {
         return line;
