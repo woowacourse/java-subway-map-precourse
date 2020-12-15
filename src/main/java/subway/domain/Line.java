@@ -1,15 +1,43 @@
 package subway.domain;
 
-public class Line {
-    private String name;
+import java.util.List;
 
-    public Line(String name) {
+import static subway.utils.Constant.MIN_STATION_AND_LINE_NAME_LENGTH;
+
+public class Line {
+    private final String name;
+    private final List<Station> stations;
+
+    public Line(String name, List<Station> stations) {
+        if (name.length() < MIN_STATION_AND_LINE_NAME_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 노선 이름은 2글자 이상이여야 합니다.");
+        }
         this.name = name;
+        this.stations = stations;
     }
 
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
+    public List<Station> getStations() {
+        return stations;
+    }
+
+    public void addSectionStation(Station station, int index) {
+        this.stations.add(index, station);
+    }
+
+    public boolean equalsName(String lineName) {
+        return this.name.equals(lineName);
+    }
+
+    public void deleteStation(String stationName) {
+        for (Station station : this.stations) {
+            if (station.equalsName(stationName)) {
+                this.stations.remove(station);
+                return;
+            }
+        }
+    }
 }
