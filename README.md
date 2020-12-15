@@ -38,7 +38,20 @@
 
 ## ⭐️ 클래스 정의
 
-
+- *domain*
+  - Input : 사용자에게 기능을 선택받는 메인 화면을 출력하는 클래스
+  - Station : 역 이름을 가지는 객체 클래스
+  - Line : 노선 이름과 노선에 포함된 역 정보를 가지고 관리하는 클래스
+  - Constant : 프로그램 내에서 사용되는 상수를 가지고 있는 클래스
+- *repository*
+  - StationRepository : 역 등록, 삭제를 수행하는 함수를 가지는 클래스
+  - LineRepository : 노선 등록, 삭제를 수행하는 함수를 가지는 클래스
+  - SectionRepository : 구간 등록, 삭제를 수행하는 함수를 가지는 클래스
+- *controller*
+  - StationController : 역 등록, 삭제에 대한 결과를 출력하고, 전체 역 조회를 수행하는 클래스
+  - LineController : 노선 등록, 삭제에 대한 결과를 출력하고, 전체 노선 조회를 수행하는 클래스
+  - SectionController : 구간 등록, 삭제에 대한 결과를 출력하고, 전체 지하철 노선과 포함된 역 조회를 수행하는 클래스
+- *Application* : Input 클래스의 메소드를 호출해 프로그램을 시작하고 flag로 프로그램 종료를 관리하는 클래스
 
 <br>
 
