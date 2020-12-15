@@ -128,6 +128,7 @@ public class OutputView {
                 printInfo(station.getName());
                 println();
             });
+            println();
         });
     }
 
