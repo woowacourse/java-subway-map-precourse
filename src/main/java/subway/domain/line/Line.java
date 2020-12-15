@@ -8,7 +8,7 @@ import subway.domain.station.Station;
 public class Line {
 
     private String name;
-    private static final List<Station> stations = new ArrayList<>();
+    private final List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -24,6 +24,19 @@ public class Line {
 
     public void addAllStation(List<Station> stationsList) {
         stations.addAll(stationsList);
+    }
+
+    public void addStationByIndex(Station station, int index) {
+        stations.add(index, station);
+    }
+
+    public boolean isContainsStation(Station station) {
+        for (Station each : stations) {
+            if (each.getName().equals(station.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Station> stations() {
