@@ -16,5 +16,7 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean getEquals(String stationName) {
+        return this.name.equals(stationName);
+    }
 }

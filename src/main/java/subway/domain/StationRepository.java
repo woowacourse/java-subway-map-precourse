@@ -16,13 +16,13 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static Station getEqualsStation(String stationName) {
+    public static Station getStationByName(String stationName) {
         for (Station station : stations) {
-            if (station.getName().equals(stationName)) {
+            if (station.getEquals(stationName)) {
                 return station;
             }
         }
-        return new Station(stationName);
+        return null;
     }
 
     public static boolean deleteStation(String name) {
@@ -37,4 +37,5 @@ public class StationRepository {
     public static List<Station> getStations() {
         return stations;
     }
+
 }
