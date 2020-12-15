@@ -11,6 +11,8 @@ public class ExceptionMessage {
     public static final String NOT_REGISTERED_LINE = "노선 리스트에 등록되어있는 노선을 입력해야 합니다.";
     public static final String TERMINAL_STATION_NAME_EQUAL = "상행 종점역과 하행 종점역의 이름은 달라야 합니다.";
     public static final String NOT_ACCPTED_SECTION_STATION_INPUT = "현재 노선에 없는 역을 입력해야 합니다.";
+    public static final String NOT_ACCPTED_DELETE_SECTION_STATION_INPUT = "현재 노선에 있는 역을 입력해야 합니다.";
+    public static final String STATION_IN_LINE_MIN_NUM = "노선의 지하철 역이 2개일 경우 구간을 삭제할 수 없습니다.";
     public static final String NOT_ACCPTED_SECTION_ORDER_INPUT = "1 이상의 정수를 입력해야 합니다.";
     public static final String EXCESS_SECTION_ORDER_INPUT = "종점역 위치 이하의 정수를 입력해야 합니다.";
 }

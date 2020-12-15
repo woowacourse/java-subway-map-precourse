@@ -13,12 +13,14 @@ import subway.domain.menu.exception.DuplicatedInputException;
 import subway.domain.menu.exception.DuplicatedStationInLineException;
 import subway.domain.menu.exception.ExcessSectionOrderInputException;
 import subway.domain.menu.exception.NotAccptedDeleteInputException;
+import subway.domain.menu.exception.NotAccptedDeleteSectionStationInputException;
 import subway.domain.menu.exception.NotAccptedInputException;
 import subway.domain.menu.exception.NotAccptedInputLengthException;
 import subway.domain.menu.exception.NotAccptedSectionOrderInputException;
 import subway.domain.menu.exception.NotAccptedSectionStationInputException;
 import subway.domain.menu.exception.NotRegisterSectionException;
 import subway.domain.menu.exception.NotRegisterStationException;
+import subway.domain.menu.exception.StationInLineMinNumException;
 import subway.domain.menu.exception.TerminalStationNameEqualException;
 
 public class Validate {
@@ -124,6 +126,21 @@ public class Validate {
         return String.valueOf(n - MIN_ORDER);
     }
 
+    public String isAccptedInputSectionDeleteStation(String input, Line line) {
+        if (isNotAccptedInputLength(input)) {
+            throw new NotAccptedInputLengthException();
+        }
+
+        if (isNotAccptedDeleteSectionStation(input, line)) {
+            throw new NotAccptedDeleteSectionStationInputException();
+        }
+
+        if (isStationInLineMinNum(line)) {
+            throw new StationInLineMinNumException();
+        }
+        return input;
+    }
+
     private boolean isNotAccptedInputLength(String input) {
         if (input.length() < MIN_LENGTH) {
             return true;
@@ -189,5 +206,13 @@ public class Validate {
             return true;
         }
         return false;
+    }
+
+    private boolean isNotAccptedDeleteSectionStation(String input, Line line) {
+        return line.getStationList().stream().noneMatch(station -> station.getName().equals(input));
+    }
+
+    private boolean isStationInLineMinNum(Line line) {
+        return line.getStationList().size() == MIN_LENGTH;
     }
 }

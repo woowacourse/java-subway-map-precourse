@@ -1,5 +1,6 @@
 package subway.domain.menu.submenu.action;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.domain.menu.constant.CategoryType;
@@ -15,10 +16,9 @@ public class DeleteAction extends Action {
     @Override
     public void runAction() {
         String name;
-
-        // 미구현 - 구간 추가할 때 고칠 예정.
         if (category.equals(CategoryType.SECTION)) {
             deleteSection();
+            return;
         }
 
         printDeleteMessage();
@@ -30,6 +30,10 @@ public class DeleteAction extends Action {
         runDetailAction(name);
     }
 
+    private boolean isErrorInput(String input) {
+        return input.equals(CommonMessage.ERROR);
+    }
+
     private void runDetailAction(String name) {
         if (category.equals(CategoryType.STATION)) {
             deleteStation(name);
@@ -37,10 +41,6 @@ public class DeleteAction extends Action {
 
         if (category.equals(CategoryType.LINE)) {
             deleteLine(name);
-        }
-
-        if (category.equals(CategoryType.SECTION)) {
-            deleteSection();
         }
         printSuccessMessage();
     }
@@ -69,11 +69,12 @@ public class DeleteAction extends Action {
         return inputView.inputDelete(category);
     }
 
-    // 임시 - 컴파일 에러 방지.
-    private String inputDelete() {
-        String name = inputView.getScanner().nextLine();
-        System.out.println();
-        return name;
+    private String requestInputDeleteSectionLine() {
+        return inputView.inputSectionLine();
+    }
+
+    private String requestInputDeleteSectionStation(Line line) {
+        return inputView.inputSectionDeleteStation(line);
     }
 
     private void deleteStation(String name) {
@@ -85,16 +86,30 @@ public class DeleteAction extends Action {
     }
 
     private void deleteSection() {
-        printDeleteMessage(CategoryType.LINE);
-        String line = inputDelete();
+        String line = deleteSectionLine();
+        if (isErrorInput(line)) {
+            return;
+        }
 
-        printDeleteMessage(CategoryType.STATION);
-        String name = inputDelete();
+        String name = deleteSectionStation(line);
+        if (isErrorInput(name)) {
+            return;
+        }
 
         LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get()
                 .deleteStation(name);
 
         printSuccessMessage();
+    }
+
+    private String deleteSectionLine() {
+        printDeleteMessage(CategoryType.LINE);
+        return requestInputDeleteSectionLine();
+    }
+
+    private String deleteSectionStation(String line) {
+        printDeleteMessage(CategoryType.STATION);
+        return requestInputDeleteSectionStation(LineRepository.lines().stream().filter(i -> i.getName().equals(line)).findFirst().get());
     }
 
     private void printSuccessMessage() {

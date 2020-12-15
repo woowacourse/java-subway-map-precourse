@@ -9,12 +9,14 @@ import subway.domain.menu.exception.DuplicatedInputException;
 import subway.domain.menu.exception.DuplicatedStationInLineException;
 import subway.domain.menu.exception.ExcessSectionOrderInputException;
 import subway.domain.menu.exception.NotAccptedDeleteInputException;
+import subway.domain.menu.exception.NotAccptedDeleteSectionStationInputException;
 import subway.domain.menu.exception.NotAccptedInputException;
 import subway.domain.menu.exception.NotAccptedInputLengthException;
 import subway.domain.menu.exception.NotAccptedSectionOrderInputException;
 import subway.domain.menu.exception.NotAccptedSectionStationInputException;
 import subway.domain.menu.exception.NotRegisterSectionException;
 import subway.domain.menu.exception.NotRegisterStationException;
+import subway.domain.menu.exception.StationInLineMinNumException;
 import subway.domain.menu.exception.TerminalStationNameEqualException;
 
 public class InputView {
@@ -154,8 +156,21 @@ public class InputView {
         return order;
     }
 
-    // 임시 - 잠시 컴파일 에러 방지하기 위함.
-    public Scanner getScanner() {
-        return scanner;
+    public String inputSectionDeleteStation(Line line) {
+        String name = CommonMessage.ERROR;
+        while (true) {
+            try {
+                name = validate.isAccptedInputSectionDeleteStation(scanner.nextLine(), line);
+                System.out.println();
+            } catch(NotAccptedInputLengthException e) {
+                System.out.println(e.getMessage());
+            } catch(NotAccptedDeleteSectionStationInputException e) {
+                System.out.println(e.getMessage());
+            } catch(StationInLineMinNumException e) {
+                System.out.println(e.getMessage());
+            }
+            break;
+        }
+        return name;
     }
 }
