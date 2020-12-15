@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 public class Application {
     public static final int FUNCTION_INPUT_ERROR = 0;
+    public static final int SAME_NAME_ERROR = 1;
+    public static final int NAME_LENGTH_ERROR = 2;
     public static final List<String> MAIN_FUNCTIONS = Arrays.asList("1", "2", "3", "4", "Q");
     public static final String STATION_MENU = "1";
     public static final String LINE_MENU = "2";
@@ -128,6 +130,70 @@ public class Application {
     public static void manageSection(Scanner kbd) {
         showSectionMenu();
         inputFunction(kbd, SECTION_FUNCTIONS);
+    }
+
+    public static void addStation(Scanner kbd) {
+        System.out.println("\n## 등록할 역 이름을 입력하세요.");
+        String stationName = kbd.nextLine();
+        while(checkSameName(stationName) || checkTextLength(stationName)) {
+            System.out.println("\n## 등록할 역 이름을 입력하세요.");
+            stationName = kbd.nextLine();
+        }
+        StationRepository.addStation(new Station(stationName));
+        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
+        startProgram(kbd);
+    }
+
+    public static void deleteStation(Scanner kbd) {
+        System.out.println("## 삭제할 역 이름을 입력하세요.");
+        String stationName = kbd.nextLine();
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
+    public static void searchStation() {
+        System.out.println("\n## 역 목록");
+        for (Station station : StationRepository.stations())
+            System.out.println("[INFO] " + station.getName());
+        System.out.println();
+    }
+
+    public static void addLine(Scanner kbd) {
+        System.out.println("## 등록할 노선 이름을 입력하세요.");
+        String lineName = kbd.nextLine();
+        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        String firstStation = kbd.nextLine();
+        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        String lastStation = kbd.nextLine();
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    public static void deleteLine(Scanner kbd) {
+        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        String stationName = kbd.nextLine();
+        System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
+    }
+
+    public static void searchLine() {
+        System.out.println("\n## 노선 목록");
+        for (Line line : LineRepository.lines())
+            System.out.println("[INFO] " + line.getName());
+        System.out.println();
+    }
+
+    public static boolean checkSameName(String name) {
+        if (StationRepository.isExist(name)) {
+            displayErrorMessage(SAME_NAME_ERROR);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkTextLength(String name) {
+        if (name.length() < 2) {
+            displayErrorMessage(NAME_LENGTH_ERROR);
+            return true;
+        }
+        return false;
     }
 
     public static void showStationMenu() {
