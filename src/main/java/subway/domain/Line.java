@@ -130,7 +130,7 @@ public class Line {
     }
 
     public boolean validateRange(int order) {
-        if (order > this.stations.size()+1) {
+        if (order > this.stations.size()) {
             return false;
         }
         return true;

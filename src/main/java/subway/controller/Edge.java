@@ -17,6 +17,7 @@ public class Edge {
     private static final String LINE_MESSAGE = "노선";
     private static final String EDGE_MESSAGE = "구간";
     private static final String NAME_MESSAGE = "이름";
+    private static final int ORDER_INDEX_CONSTANT = 1;
     private static final int MINIMUM_DELETE_CONDITION_STAION_NUMBER = 3;
 
     private Edge() {
@@ -53,6 +54,10 @@ public class Edge {
 
     private static void validateLineState(String lineName) {
         Line.validateExistentLineName(lineName, LINE_MESSAGE);
+        validateLineRange(lineName);
+    }
+
+    private static void validateLineRange(String lineName) {
         boolean isValidRange = false;
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
@@ -141,7 +146,8 @@ public class Edge {
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
             if (line.getName().equals(lineName)) {
-                return line.validateRange(order);
+                int orderIndex = order - ORDER_INDEX_CONSTANT;
+                return line.validateRange(orderIndex);
             }
         }
         return false;
