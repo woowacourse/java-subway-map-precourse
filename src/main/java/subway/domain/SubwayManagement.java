@@ -199,13 +199,13 @@ public class SubwayManagement {
 
     private void addSection() {
         printScreen.printInputAddLine();
-        String line = user.getInput();
+        String lineName = user.getInput();
         printScreen.printInputAddStation();
         String name = user.getInput();
         printScreen.printInputOrder();
         String order = user.getInput();
         try {
-            LineRepository.addSection(order, line, name);
+            LineRepository.addSection(order, lineName, name);
             printScreen.printAlarmAddSection();
         } catch (IllegalArgumentException e) {
             printScreen.printErrorAddSection();
@@ -214,11 +214,16 @@ public class SubwayManagement {
 
     private void deleteSection() {
         printScreen.printInputDeleteLine();
-        String line = user.getInput();
+        String lineName = user.getInput();
         printScreen.printInputDeleteStation();
         String name = user.getInput();
-        LineRepository.deleteSection(line, name);
-        printScreen.printAlarmDeleteSection();
+
+        try {
+            LineRepository.deleteSection(lineName, name);
+            printScreen.printAlarmDeleteSection();
+        } catch (IllegalArgumentException e) {
+            printScreen.printErrorDeleteSection();
+        }
     }
 
     private void printSubwayLine() {

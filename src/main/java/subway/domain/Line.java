@@ -35,10 +35,6 @@ public class Line {
         return false;
     }
 
-    public boolean isMinLength() {
-        return sections.size() >= Constants.MIN_NAME_LENGTH;
-    }
-
     public void addStationInSection(int idx, String name) {
         sections.add(idx - 1, new Station(name));
         if (idx == sections.size()) {

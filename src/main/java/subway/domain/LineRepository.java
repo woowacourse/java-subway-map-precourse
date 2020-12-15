@@ -34,16 +34,16 @@ public class LineRepository {
 
     public static void addSection(String order, String lineName, String name) {
 
-        if (isNumber(order) && checkNameInLines(lineName)
-                && StationRepository.checkNameInStations(name) && checkOrderSize(Integer.parseInt(order), lineName)) {
-            findByLineName(order, lineName, name);
+        if (isNumber(order) && checkNameInLines(lineName) && StationRepository.checkNameInStations(name)
+                && checkOrderSize(Integer.parseInt(order), findByLineName(lineName)) && !checkStationInLine(findByLineName(lineName), name)) {
+            executeAddSection(order, lineName, name);
             return;
         }
 
         throw new IllegalArgumentException();
     }
 
-    private static void findByLineName(String order, String lineName, String name) {
+    private static void executeAddSection(String order, String lineName, String name) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
                 line.addStationInSection(Integer.parseInt(order), name);
@@ -53,14 +53,8 @@ public class LineRepository {
         }
     }
 
-    public static boolean checkOrderSize(int order, String lineName) {
-        for (Line line : lines) {
-            if(line.getName().equals(lineName)){
-                return order <= line.getSection().size()+1;
-            }
-        }
-
-        return false;
+    public static boolean checkOrderSize(int order, Line line) {
+        return order <= line.getSection().size() + 1;
     }
 
     public static boolean isNumber(String str) {
@@ -72,17 +66,55 @@ public class LineRepository {
         }
     }
 
-    public static void deleteSection(String line, String name) {
-        for (int i = 0; i < lines.size(); i++) {
-            if (lines.get(i).getName().equals(line)) {
-                lines.get(i).deleteStationInSection(name);
+    public static void deleteSection(String lineName, String name) {
+        //예외처리 : 있는 노선인지, 노선안에 해당 역이 있는지, 삭제후 노선 안에 역이 2개 이상
+        if (checkNameInLines(lineName) && checkStationInLine(findByLineName(lineName), name) && isMinCountInLine(findByLineName(lineName))) {
+            executeDeleteSection(lineName, name);
+            return;
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    public static void executeDeleteSection(String lineName, String name) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                line.deleteStationInSection(name);
+                line.updateTerminalStations();
             }
         }
     }
 
-    public static boolean checkNameInLines(String name) {
+    public static boolean isMinCountInLine(Line line) {
+        return line.getSection().size() > Constants.MIN_COUNT_SECTION;
+    }
+
+    public static Line findByLineName(String lineName) {
+        Line result = null;
+
         for (Line line : lines) {
-            if (line.getName().equals(name)) {
+            if (line.getName().equals(lineName)) {
+                result = line;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public static boolean checkStationInLine(Line line, String name) {
+        for (Station station : line.getSection()) {
+            if (station.getName().equals(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean checkNameInLines(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
                 return true;
             }
         }
