@@ -1,33 +1,33 @@
 package subway.domain;
 
-import subway.view.OutputView;
-
-import java.util.Arrays;
+import subway.view.LineOutputView;
+import subway.view.SectionOutputView;
+import subway.view.StationOutputView;
 
 public enum FunctionType {
     MANAGE_STATION(1) {
         @Override
         public void execute() {
-            OutputView.printManageStationScreen();
+            StationOutputView.printManageStationScreen();
         }
     },
     MANAGE_LINE(2) {
         @Override
         public void execute() {
-            System.out.println("2 고름");
+            LineOutputView.printManageLineScreen();
         }
     },
     MANAGE_SECTION(3) {
         @Override
         public void execute() {
-            System.out.println("3 고름");
+            SectionOutputView.printManageSectionScreen();
         }
     },
     PRINT_MAP(4) {
-        @Override
+        @Override // TODO 지하철 노선도 출력
         public void execute() {
             System.out.println("4 고름");
-        }
+        } 
     };
 
     private final int functionCode;
