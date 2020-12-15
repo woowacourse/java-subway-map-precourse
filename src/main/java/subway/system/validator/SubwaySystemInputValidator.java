@@ -10,9 +10,14 @@ public class SubwaySystemInputValidator {
         if (userOption.equals(WANT_QUIT_CODE)) {
             return;
         }
-        int optionNumber = Integer.parseInt(userOption);
-        if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+        try {
+            int optionNumber = Integer.parseInt(userOption);
+            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+                throw new IllegalArgumentException(ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
+
     }
 }

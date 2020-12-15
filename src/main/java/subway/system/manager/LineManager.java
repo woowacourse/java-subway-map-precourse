@@ -15,7 +15,6 @@ public class LineManager {
     public static final String DELETION_INFO_MESSAGE = "지하철 노선이 삭제되었습니다";
     public static final String DELETION_FAIL_MESSAGE = "지하철 노선이 존재하지 않거나 삭제할 수 없습니다";
 
-
     public void enrollLine(Scanner scanner) {
         System.out.println(INPUT_LINE_MESSAGE);
         String lineName = inputLineNameForEnrollment(scanner);

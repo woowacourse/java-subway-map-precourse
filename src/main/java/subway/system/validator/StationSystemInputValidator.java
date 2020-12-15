@@ -16,9 +16,12 @@ public class StationSystemInputValidator {
     public static void validateUserOption(String userOption) throws IllegalArgumentException {
         if (userOption.equals(WANT_QUIT_CODE)) {
             return;
-        }
-        int optionNumber = Integer.parseInt(userOption);
-        if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+        }try {
+            int optionNumber = Integer.parseInt(userOption);
+            if (optionNumber < OPTION_MIN || optionNumber > OPTION_MAX) {
+                throw new IllegalArgumentException(OPTION_ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
             throw new IllegalArgumentException(OPTION_ERROR_MESSAGE);
         }
     }
