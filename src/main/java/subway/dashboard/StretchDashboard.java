@@ -19,6 +19,7 @@ public class StretchDashboard {
     TreeMap<String, String> options;
     InputView inputView;
     boolean power;
+
     public StretchDashboard(InputView inputView) {
         this.inputView = inputView;
         power = true;
@@ -36,7 +37,7 @@ public class StretchDashboard {
 
     public void startStretchDashboard(InputView inputView) {
 
-        while(power) {
+        while (power) {
             showOptions();
 
             String chosenOption = makeUserChooseOption(inputView);
@@ -47,9 +48,9 @@ public class StretchDashboard {
     }
 
     public String makeUserChooseOption(InputView inputView) {
-        while(true) {
+        while (true) {
             String optionChosen = chooseOption(inputView);
-            try{
+            try {
                 checkOptions(optionChosen);
                 return optionChosen;
             } catch (Exception e) {
@@ -147,10 +148,21 @@ public class StretchDashboard {
                 break;
             }
         }
+        if (!checkCanDeleteStationFromLine(chosenLine)) {
+            return;
+        }
         String chosenStationName = inputView.readDeletingStationName();
         deleteChosenStretch(chosenLine, chosenStationName);
-
     }
+
+    public boolean checkCanDeleteStationFromLine(Line chosenLine) {
+        if (chosenLine.getStations().size() < 3) {
+            System.out.println(ERROR_CANNOT_DELETE_TERMINAL_STATION);
+            return false;
+        }
+        return true;
+    }
+
 
     public boolean validLineNameSubmitted(Line line) {
         if (LineRepository.lines().contains(line)) {
@@ -164,6 +176,7 @@ public class StretchDashboard {
     public void deleteChosenStretch(Line chosenLine, String stationName) {
         if (chosenLine.getStations()
             .removeIf(station -> Objects.equals(station.getName(), stationName))) {
+            StationRepository.getStationByName(stationName).subtractNumberOnLines();
             checkOnLineStatus(stationName);
             System.out.println(INFO_STRETCH_DELETE_SUCCESS);
             return;
@@ -172,7 +185,6 @@ public class StretchDashboard {
     }
 
     public void checkOnLineStatus(String stationName) {
-        StationRepository.getStationByName(stationName).subtractNumberOnLines();
         if (StationRepository.getStationByName(stationName).isNotOnLines()) {
             try {
                 StationRepository.deleteStation(stationName);

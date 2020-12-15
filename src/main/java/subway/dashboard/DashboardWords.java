@@ -54,6 +54,7 @@ public class DashboardWords {
     public static final String ERROR_ORDER_OUT_OF_RANGE = "[ERROR] 유효하지 않은 위치입니다.";
     public static final String ERROR_NAME_LENGTH = "[ERROR] 2글자 이상의 이름을 지정할 수 있습니다.";
     public static final String ERROR_CANNOT_DELETE_STATION_ON_LINE = "[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.";
+    public static final String ERROR_CANNOT_DELETE_TERMINAL_STATION = "[ERROR] 종점 역은 삭제할 수 없습니다.";
 
 
     public static final String INFO = "[INFO]";
