@@ -1,7 +1,10 @@
 package subway.type;
 
 /**
- * 기능 입력 문자 상수를 모아둔 Enum 클래스
+ * InputType.java : 화면 기능 입력 값 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
  */
 public enum InputType {
     INPUT_ONE("1"),

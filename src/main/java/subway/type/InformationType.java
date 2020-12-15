@@ -1,5 +1,11 @@
 package subway.type;
 
+/**
+ * InformationType.java : 실행 결과 문구 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public enum InformationType {
     INFORMATION("[INFO] "),
 

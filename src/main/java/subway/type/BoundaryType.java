@@ -1,5 +1,11 @@
 package subway.type;
 
+/**
+ * BoundaryType.java : 경계 값 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public enum BoundaryType {
     NAME_LENGTH_BOUNDARY(2),
 

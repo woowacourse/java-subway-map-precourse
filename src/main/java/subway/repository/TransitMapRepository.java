@@ -6,6 +6,12 @@ import subway.domain.TransitMap;
 
 import java.util.*;
 
+/**
+ * TransitMapRepository.java : 지하철 노선도에 대한 저장소 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class TransitMapRepository {
     private static final Map<Line, LinkedList<Station>> transitMaps = new LinkedHashMap<>();
 

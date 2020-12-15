@@ -2,6 +2,12 @@ package subway.view.output.station;
 
 import subway.type.ExceptionType;
 
+/**
+ * StationExceptionView.java : 지하철 역 예외 처리 문구 출력에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class StationExceptionView {
     public static void printInvalidStationNameException() {
         System.out.println();

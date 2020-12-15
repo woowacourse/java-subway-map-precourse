@@ -4,35 +4,39 @@ import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
 import subway.controller.TransitMapController;
-import subway.service.util.StateService;
+import subway.service.util.ChoiceService;
 import subway.type.InputType;
-import subway.view.output.util.FeatureExceptionView;
-import subway.view.output.util.ScreenView;
+import subway.view.input.subway.SubwayScanView;
+import subway.view.output.util.FeatureChoiceExceptionView;
 
 import java.util.Scanner;
 
-public class SubwayService extends StateService implements SubwayInterface {
+/**
+ * SubwayService.java : 지하철 비즈니스 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
+public class SubwayService extends ChoiceService implements SubwayInterface {
     @Override
     public void manage(Scanner scanner) {
         SubwayService subwayService = new SubwayService();
 
         while (true) {
-            ScreenView.printMainScreen();
-            String mainInput = scanner.nextLine();
+            String mainInput = SubwayScanView.scanMainInputForManagement(scanner);
 
-            if (subwayService.check(mainInput)) {
+            if (check(mainInput)) {
                 subwayService.choose(mainInput, scanner);
                 continue;
             }
             if (quit(mainInput)) {
                 break;
             }
-            FeatureExceptionView.printInvalidFeatureChoiceException();
+            FeatureChoiceExceptionView.printInvalidFeatureChoiceException();
         }
     }
 
-    @Override
-    public boolean check(String input) {
+    public static boolean check(String input) {
         if (input.equals(InputType.INPUT_ONE.getInput())) {
             return true;
         }

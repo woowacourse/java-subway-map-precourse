@@ -10,6 +10,12 @@ import subway.view.output.line.LineExceptionView;
 
 import java.util.List;
 
+/**
+ * LineAdditionValidation.java : 지하철 노선 추가 로직 검증에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class LineAdditionValidation extends StationAdditionValidation {
     public boolean checkNameAdditionValidation(String lineName, Stations stations) {
         if (!checkLineNameAdditionValidation(lineName)) {

@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * SectionAdditionValidation.java : 지하철 구간 추가 로직 검증에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class SectionAdditionValidation {
     public boolean checkSectionAdditionValidation(Section section) {
         if (!checkNamesValidation(section.getLineName(), section.getStationName())) {

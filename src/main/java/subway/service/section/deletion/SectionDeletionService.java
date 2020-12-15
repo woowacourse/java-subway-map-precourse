@@ -7,6 +7,12 @@ import subway.repository.TransitMapRepository;
 import java.util.LinkedList;
 import java.util.Map;
 
+/**
+ * SectionDeletionService.java : 지하철 구간 삭제 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class SectionDeletionService {
     public static void deleteSection(String lineName, String stationName) {
         Map<Line, LinkedList<Station>> transitMaps = TransitMapRepository.transitMaps();

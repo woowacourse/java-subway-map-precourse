@@ -1,7 +1,10 @@
 package subway.type;
 
 /**
- * 지하철 노선 초기 설정 상수를 모아둔 Enum 클래스
+ * LineType.java : 지하철 노선 초기화용 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
  */
 public enum  LineType {
     TWO("2호선"),

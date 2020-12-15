@@ -1,5 +1,11 @@
 package subway.type;
 
+/**
+ * StationType.java : 지하철 역 초기화용 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public enum  StationType {
     EDUCATION_UNIVERSITY("교대역"),
     GANGNAM("강남역"),

@@ -4,7 +4,6 @@ import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.Stations;
 import subway.repository.LineRepository;
-import subway.service.util.StateService;
 import subway.service.subway.SubwayService;
 import subway.service.util.FeatureInterface;
 import subway.service.line.addition.LineAdditionService;
@@ -14,27 +13,29 @@ import subway.service.line.deletion.LineDeletionValidation;
 import subway.service.line.show.LineShowService;
 import subway.type.InputType;
 import subway.view.input.line.LineScanView;
+import subway.view.output.util.FeatureChoiceExceptionView;
 import subway.view.output.util.ScreenView;
-import subway.view.output.util.StateView;
-import subway.view.output.line.LineTextView;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * LineService.java : 지하철 노선 비즈니스 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class LineService extends SubwayService implements FeatureInterface {
     @Override
     public void manage(Scanner scanner){
-        StateService stateService = new StateService();
         LineService lineService = new LineService();
 
         System.out.println();
         while (true) {
-            ScreenView.printLineManagementScreen();
-            String lineInput = scanner.nextLine();
+            String lineInput = LineScanView.scanLineInputForManagement(scanner);
 
-            if ((stateService.check(lineInput))
-                    && (lineService.choose(lineInput, scanner))) {
+            if (lineService.choose(lineInput, scanner)) {
                 break;
             }
         }
@@ -52,18 +53,18 @@ public class LineService extends SubwayService implements FeatureInterface {
             return show();
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
-            return StateView.printNewLine();
+            return ScreenView.printNewLine();
         }
-        return false;
+        return FeatureChoiceExceptionView.printInvalidChoiceException();
     }
 
     @Override
     public boolean add(Scanner scanner) {
         LineAdditionValidation lineAdditionValidation = new LineAdditionValidation();
 
-        String lineName = LineScanView.scanLineName(scanner);
-        String upStationName = LineScanView.scanUpStationName(scanner);
-        String downStationName = LineScanView.scanDownStationName(scanner);
+        String lineName = LineScanView.scanLineNameForAddition(scanner);
+        String upStationName = LineScanView.scanUpStationNameForAddition(scanner);
+        String downStationName = LineScanView.scanDownStationNameForAddition(scanner);
 
         if (lineAdditionValidation.checkNameAdditionValidation(
                 lineName, new Stations(upStationName, downStationName))) {
@@ -79,8 +80,7 @@ public class LineService extends SubwayService implements FeatureInterface {
     public boolean delete(Scanner scanner) {
         LineDeletionValidation lineNameDeletionValidation = new LineDeletionValidation();
 
-        LineTextView.printLineDeletionText();
-        String lineName = scanner.nextLine();
+        String lineName = LineScanView.scanLineNameForDeletion(scanner);
 
         Line lineForDeletion = LineDeletionService.getLineForDeletion(lineName);
 

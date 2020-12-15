@@ -5,6 +5,12 @@ import subway.type.TextType;
 
 import java.util.List;
 
+/**
+ * StationShowService.java : 지하철 역 조회 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class StationShowService implements StationShowInterface {
     @Override
     public void readNames(StringBuilder stringBuilder, List<String> stationNames) {

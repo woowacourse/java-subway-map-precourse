@@ -11,6 +11,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * TransitMapShowService.java : 지하철 노선도 출력 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class TransitMapShowService {
     public static void readTransitMap(StringBuilder stringBuilder, Map<Line, LinkedList<Station>> transitMaps) {
         appendTransitMapText(stringBuilder);

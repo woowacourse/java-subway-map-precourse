@@ -1,5 +1,11 @@
 package subway.type;
 
+/**
+ * ExceptionType.java : 예외 처리 문구 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public enum  ExceptionType {
     ERROR("[ERROR] "),
 

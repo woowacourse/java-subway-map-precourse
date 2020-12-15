@@ -2,31 +2,34 @@ package subway.service.station;
 
 import subway.domain.Station;
 import subway.repository.StationRepository;
-import subway.service.util.StateService;
+import subway.service.util.ChoiceService;
 import subway.service.subway.SubwayService;
 import subway.service.util.FeatureInterface;
 import subway.service.station.addition.StationAdditionValidation;
 import subway.service.station.deletion.StationDeletionValidation;
 import subway.service.station.show.StationShowService;
+import subway.view.input.station.StationScanView;
 import subway.view.output.station.StationInformationView;
-import subway.view.output.util.ScreenView;
-import subway.view.output.station.StationTextView;
 
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * StationService.java : 지하철 역 비즈니스 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class StationService extends SubwayService implements FeatureInterface {
     @Override
     public void manage(Scanner scanner) {
-        StateService stateService = new StateService();
+        ChoiceService stateService = new ChoiceService();
 
         System.out.println();
         while (true) {
-            ScreenView.printStationManagementScreen();
-            String stationInput = scanner.nextLine();
+            String stationInput = StationScanView.scanStationInputForManagement(scanner);
 
-            if ((stateService.check(stationInput))
-                    && (stateService.choose(stationInput, scanner))) {
+            if (stateService.choose(stationInput, scanner)) {
                 break;
             }
         }
@@ -36,8 +39,7 @@ public class StationService extends SubwayService implements FeatureInterface {
     public boolean add(Scanner scanner) {
         StationAdditionValidation stationAdditionValidation = new StationAdditionValidation();
 
-        StationTextView.printStationAddingText();
-        String stationName = scanner.nextLine();
+        String stationName = StationScanView.scanStationNameForAddition(scanner);
 
         if (stationAdditionValidation.checkNameAdditionValidation(stationName)) {
             StationRepository.addStation(new Station(stationName));
@@ -52,8 +54,7 @@ public class StationService extends SubwayService implements FeatureInterface {
     public boolean delete(Scanner scanner) {
         StationDeletionValidation stationNameDeletionValidation = new StationDeletionValidation();
 
-        StationTextView.printStationDeletionText();
-        String stationName = scanner.nextLine();
+        String stationName = StationScanView.scanStationNameForDeletion(scanner);
 
         if (stationNameDeletionValidation.checkNameDeletionValidation(stationName)) {
             StationInformationView.printStationDeletionInformation();

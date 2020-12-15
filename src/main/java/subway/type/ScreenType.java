@@ -1,7 +1,10 @@
 package subway.type;
 
 /**
- * 각종 화면 출력 문구 상수를 모아둔 Enum 클래스
+ * ScreenType.java : 화면 문구 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
  */
 public enum ScreenType {
     MAIN_SCREEN("## 메인 화면\n"),

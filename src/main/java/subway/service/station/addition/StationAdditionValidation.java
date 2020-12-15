@@ -7,6 +7,12 @@ import subway.view.output.station.StationExceptionView;
 
 import java.util.List;
 
+/**
+ * StationAdditionValidation.java : 지하철 역 추가 로직 검증에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class StationAdditionValidation implements StationAdditionValidationInterface {
     @Override
     public boolean checkNameAdditionValidation(String stationName) {

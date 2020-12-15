@@ -9,6 +9,12 @@ import subway.view.output.line.LineInformationView;
 
 import java.util.LinkedList;
 
+/**
+ * LineAdditionService.java : 지하철 노선 추가 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class LineAdditionService {
     public static LinkedList<Station> addStationNames(String upStationName, String downStationName) {
         LinkedList<Station> stationNames = new LinkedList<>();

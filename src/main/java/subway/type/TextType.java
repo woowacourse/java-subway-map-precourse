@@ -1,5 +1,11 @@
 package subway.type;
 
+/**
+ * TextType.java : 화면 출력 문구 상수를 모아둔 Enum 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public enum TextType {
     NEW_LINE("\n"),
     HORIZONTAL_LINES("---"),

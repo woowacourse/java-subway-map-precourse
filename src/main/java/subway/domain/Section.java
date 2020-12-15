@@ -1,5 +1,11 @@
 package subway.domain;
 
+/**
+ * Section.java : 지하철 구간에 대한 도메인 모델 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class Section {
     private final String lineName;
     private final String stationName;

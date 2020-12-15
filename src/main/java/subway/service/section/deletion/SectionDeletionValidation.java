@@ -8,6 +8,12 @@ import subway.view.output.station.StationExceptionView;
 
 import java.util.List;
 
+/**
+ * SectionDeletionValidation.java : 지하철 구간 삭제 로직 검증에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class SectionDeletionValidation {
     public boolean checkSectionDeletionValidation(String lineName, String stationName) {
         if (!checkLineNameValidation(lineName)) {

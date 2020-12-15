@@ -2,6 +2,12 @@ package subway.view.output.line;
 
 import subway.type.ExceptionType;
 
+/**
+ * LineExceptionView.java : 지하철 노선 예외 처리 문구 출력에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class LineExceptionView {
     public static void printInvalidLineNameException() {
         System.out.println();

@@ -2,6 +2,12 @@ package subway.view.output.util;
 
 import subway.type.ScreenType;
 
+/**
+ * ScreenView.java : 화면 출력에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class ScreenView {
     public static void printMainScreen() {
         System.out.println(ScreenType.MAIN_SCREEN.getScreen()
@@ -37,5 +43,10 @@ public class ScreenView {
                 + ScreenType.SECTION_DELETION.getScreen()
                 + ScreenType.BACK.getScreen()
                 + ScreenType.FEATURE_CHOICE.getScreen());
+    }
+
+    public static boolean printNewLine() {
+        System.out.println();
+        return true;
     }
 }

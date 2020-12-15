@@ -7,6 +7,12 @@ import subway.repository.TransitMapRepository;
 
 import java.util.*;
 
+/**
+ * SectionAdditionService.java : 지하철 구간 추가 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class SectionAdditionService {
     public static LinkedList<Station> getStationValuesInLine(String lineName) {
         Map<Line, LinkedList<Station>> transitMaps = TransitMapRepository.transitMaps();

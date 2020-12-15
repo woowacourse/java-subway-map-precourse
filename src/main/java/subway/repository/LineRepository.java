@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * LineRepository.java : 지하철 노선에 대한 저장소 클래스
+ */
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 

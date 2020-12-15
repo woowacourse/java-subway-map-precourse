@@ -7,6 +7,12 @@ import subway.service.initialization.TransitMapInitialization;
 
 import java.util.Scanner;
 
+/**
+ * SubwayController.java : 지하철에 대한 컨트롤러 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class SubwayController {
     public void runSubway(Scanner scanner) {
         initializeSubway();

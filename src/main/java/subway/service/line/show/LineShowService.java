@@ -6,6 +6,12 @@ import subway.type.TextType;
 
 import java.util.List;
 
+/**
+ * LineShowService.java : 지하철 노선 조회 로직에 대한 서비스 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class LineShowService extends StationShowService {
     @Override
     public void readNames(StringBuilder stringBuilder, List<String> lineNames) {

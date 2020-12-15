@@ -10,6 +10,12 @@ import subway.type.StationType;
 
 import java.util.*;
 
+/**
+ * TransitMapInitialization.java : 지하철 노선도 초기화에 대한 클래스
+ *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class TransitMapInitialization {
     private static final List<Station> stations = StationRepository.stations();
 

@@ -8,14 +8,18 @@ import subway.service.section.deletion.SectionDeletionValidation;
 import subway.service.station.StationService;
 import subway.type.InputType;
 import subway.view.input.section.SectionScanView;
-import subway.view.output.util.FeatureExceptionView;
+import subway.view.output.util.FeatureChoiceExceptionView;
 import subway.view.output.util.ScreenView;
-import subway.view.output.util.StateView;
 import subway.view.output.section.SectionInformationView;
-import subway.view.output.section.SectionTextView;
 
 import java.util.Scanner;
 
+/**
+ * SectionService.java : 지하철 구간 비즈니스 로직에 대한 서비스 클래스
+ *  *
+ * @author Daeun Lee
+ * @version 1.0
+ */
 public class SectionService extends StationService {
     @Override
     public void manage(Scanner scanner) {
@@ -23,26 +27,12 @@ public class SectionService extends StationService {
 
         System.out.println();
         while (true) {
-            ScreenView.printSectionManagementScreen();
-            String sectionInput = scanner.nextLine();
+            String sectionInput = SectionScanView.scanSectionInputForManagement(scanner);
 
-            if (sectionService.check(sectionInput)) {
-                sectionService.choose(sectionInput, scanner);
+            if (sectionService.choose(sectionInput, scanner)) {
                 break;
             }
-            FeatureExceptionView.printInvalidFeatureChoiceException();
         }
-    }
-
-    @Override
-    public boolean check(String input) {
-        if (input.equals(InputType.INPUT_ONE.getInput())) {
-            return true;
-        }
-        if (input.equals(InputType.INPUT_TWO.getInput())) {
-            return true;
-        }
-        return input.equals(InputType.INPUT_BACK.getInput());
     }
 
     @Override
@@ -54,18 +44,18 @@ public class SectionService extends StationService {
             return delete(scanner);
         }
         if (input.equals(InputType.INPUT_BACK.getInput())) {
-            return StateView.printNewLine();
+            return ScreenView.printNewLine();
         }
-        return false;
+        return FeatureChoiceExceptionView.printInvalidChoiceException();
     }
 
     @Override
     public boolean add(Scanner scanner) {
         SectionAdditionValidation sectionAdditionValidation = new SectionAdditionValidation();
 
-        String lineName = SectionScanView.scanLineName(scanner);
-        String stationName = SectionScanView.scanStationName(scanner);
-        String order = SectionScanView.scanOrder(scanner);
+        String lineName = SectionScanView.scanLineNameForAddition(scanner);
+        String stationName = SectionScanView.scanStationNameForAddition(scanner);
+        String order = SectionScanView.scanOrderForAddition(scanner);
         Section section = new Section(lineName, stationName, order);
 
         if (sectionAdditionValidation.checkSectionAdditionValidation(section)) {
@@ -81,10 +71,8 @@ public class SectionService extends StationService {
     public boolean delete(Scanner scanner) {
         SectionDeletionValidation sectionDeletionValidation = new SectionDeletionValidation();
 
-        SectionTextView.printSectionDeletionLineText();
-        String lineName = scanner.nextLine();
-        SectionTextView.printSectionDeletionStationText();
-        String stationName = scanner.nextLine();
+        String lineName = SectionScanView.scanLineNameForDeletion(scanner);
+        String stationName = SectionScanView.scanStationNameForDeletion(scanner);
 
         if (sectionDeletionValidation.checkSectionDeletionValidation(lineName, stationName)) {
             SectionDeletionService.deleteSection(lineName, stationName);
