@@ -1,6 +1,8 @@
-package subway.domain;
+package subway.view;
 
 import subway.Constant;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 import java.util.Scanner;
 
@@ -8,11 +10,11 @@ public class StationController {
     Scanner scanner;
     StationRepository stationRepository = new StationRepository();
 
-    public StationController(Scanner scanner){
+    public StationController(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    void printSelection(){
+    public void printSelection() {
         System.out.println(Constant.STATION_ANNOUNCEMENT);
         String command = scanner.next();
         if (command.equals(Constant.FIRST_COMMAND)) {
@@ -26,23 +28,23 @@ public class StationController {
         }
     }
 
-    void addStation(){
+    void addStation() {
         System.out.println(String.join(" 역 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String stationName = scanner.next();
         Station station = new Station(stationName);
         stationRepository.addStation(station);
     }
 
-    void deleteStation(){
+    void deleteStation() {
         System.out.println(String.join(" 역 ", Constant.DELETE_PREFIX, Constant.NAME_POSTFIX));
         String stationName = scanner.next();
         boolean deleteFlag = stationRepository.deleteStation(stationName);
-        if(deleteFlag){
+        if (deleteFlag) {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
         }
     }
 
-    void readStations(){
+    void readStations() {
         stationRepository.printStations();
     }
 }

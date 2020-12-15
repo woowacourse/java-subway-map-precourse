@@ -1,6 +1,9 @@
-package subway.domain;
+package subway.view;
 
 import subway.Constant;
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
 
 import java.util.Scanner;
 
@@ -8,11 +11,11 @@ public class LineController {
     Scanner scanner;
     LineRepository lineRepository = new LineRepository();
 
-    public LineController(Scanner scanner){
+    public LineController(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    void printSelection(){
+    public void printSelection() {
         System.out.println(Constant.LINE_ANNOUNCEMENT);
         String command = scanner.next();
         if (command.equals(Constant.FIRST_COMMAND)) {
@@ -26,27 +29,26 @@ public class LineController {
         }
     }
 
-    void addLine(){
+    void addLine() {
         System.out.println(String.join(" 노선 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String lineName = scanner.next();
-        Line line = new Line(lineName);
-        System.out.println(String.join(" 노선의 상행 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
+        System.out.println(String.join(" 노선의 상행 ", Constant.ADD_PREFIX, Constant.LINE_STATION_POSTFIX));
         String upward = scanner.next();
-        System.out.println(String.join(" 노선의 하행 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
+        System.out.println(String.join(" 노선의 하행 ", Constant.ADD_PREFIX, Constant.LINE_STATION_POSTFIX));
         String downward = scanner.next();
-        lineRepository.addLine(line, new Station(upward), new Station(downward));
+        lineRepository.addLine(lineName, new Station(upward), new Station(downward));
     }
 
-    void deleteLine(){
+    void deleteLine() {
         System.out.println(String.join(" 노선 ", Constant.DELETE_PREFIX, Constant.NAME_POSTFIX));
         String lineName = scanner.next();
         boolean deleteFlag = lineRepository.deleteLineByName(lineName);
-        if(deleteFlag){
+        if (deleteFlag) {
             System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_LINE_SUCCESS));
         }
     }
 
-    void readLines(){
+    void readLines() {
         lineRepository.printLines();
     }
 }

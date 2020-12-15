@@ -1,8 +1,10 @@
 package subway.domain;
 
 import subway.Constant;
+import subway.view.LineController;
+import subway.view.SectionController;
+import subway.view.StationController;
 
-import java.awt.print.Book;
 import java.util.Scanner;
 
 public class Input {
@@ -29,9 +31,11 @@ public class Input {
             lineController.printSelection();
             return;
         } else if (flag.equals(Constant.THIRD_COMMAND)) {
-
+            sectionController.printSelection();
+            return;
         } else if(flag.equals(Constant.FORTH_COMMAND)){
-
+            sectionController.readSections();
+            return;
         } else if (flag.equals(Constant.QUIT_COMMAND)) {
             quit = true;
         }
