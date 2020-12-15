@@ -38,32 +38,18 @@ public class Application {
     private static void initSetting() {
         final ArrayList<String> initStations = new ArrayList<>(
             Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"));
-        final ArrayList<String> initLines = new ArrayList<>(
-            Arrays.asList("2호선", "3호선", "신분당선"));
 
         for (String stationName : initStations) {
             addStation(new Station(stationName));
         }
-        addLine(new Line("2호선",
-            new LinkedList<Station>(Arrays.asList(
-                new Station("교대역"),
-                new Station("강남역"),
-                new Station("역삼역")
-            ))));
-        addLine(new Line("3호선",
-            new LinkedList<Station>(Arrays.asList(
-                new Station("교대역"),
-                new Station("남부터미널역"),
-                new Station("양재역"),
-                new Station("매봉역")
-            ))));
-        addLine(new Line("3호선",
-            new LinkedList<Station>(Arrays.asList(
-                new Station("신분당선"),
-                new Station("강남역"),
-                new Station("양재역"),
-                new Station("양재시민의숲역")
-            ))));
+        addLine(new Line("2호선", new LinkedList<Station>(Arrays.asList(
+            new Station("교대역"), new Station("강남역"), new Station("역삼역")))));
+        addLine(new Line("3호선", new LinkedList<Station>(Arrays.asList(
+            new Station("교대역"), new Station("남부터미널역"),
+            new Station("양재역"), new Station("매봉역")))));
+        addLine(new Line("3호선", new LinkedList<Station>(Arrays.asList(
+            new Station("신분당선"), new Station("강남역"),
+            new Station("양재역"), new Station("양재시민의숲역")))));
     }
 
     private static boolean checkInput(Scanner scanner, String mainInput) {
