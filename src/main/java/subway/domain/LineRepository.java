@@ -13,8 +13,8 @@ public class LineRepository {
     }
 
     public static void addLine(Line line, List<String> names) {
-        for (int i = 0; i < names.size(); i++)
-            line.addStation(i, names.get(i));
+        for (int i = 1; i <= names.size(); i++)
+            line.addStation(i, names.get(i-1));
         lines.add(line);
     }
 
