@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.utils.Util;
 import subway.view.ErrorView;
 import subway.view.OutputView;
 
@@ -26,14 +27,14 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public List<Station> getStations() {
+        return stations;
+    }
+
     public void addStations(String[] stationNames) {
         for (String station : stationNames) {
             stations.add(new Station(station));
         }
-    }
-
-    public List<Station> getStations() {
-        return stations;
     }
 
     public boolean isExistStation(String stationName) {
@@ -66,7 +67,8 @@ public class Line {
             ErrorView.nameLengthError();
             return false;
         }
-        if (duplicateName(stationName)) {
+        if (isExistStation(stationName)) {
+            ErrorView.duplicateName();
             return false;
         }
         OutputView.writeOrderNumber();
@@ -78,18 +80,8 @@ public class Line {
         return true;
     }
 
-    private boolean duplicateName(String name) {
-        for (Station station : stations) {
-            if (station.getName().equals(name)) {
-                ErrorView.duplicateName();
-                return true;
-            }
-        }
-        return false;
-    }
-
     private int orderNumber(String stringNumber) {
-        if (!isDigit(stringNumber)) {
+        if (!Util.isNumber(stringNumber)) {
             return ERROR;
         }
         int orderNumber = Integer.parseInt(stringNumber);
@@ -98,16 +90,6 @@ public class Line {
             return ERROR;
         }
         return orderNumber - 1;
-    }
-
-    private boolean isDigit(String stringNumber) {
-        int length = stringNumber.length();
-        for (int i = 0; i < length; i++) {
-            if (!Character.isDigit(stringNumber.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public boolean deleteStation(Scanner scanner) {

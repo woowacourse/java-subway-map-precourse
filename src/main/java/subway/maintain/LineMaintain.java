@@ -18,7 +18,6 @@ public class LineMaintain {
     private static final int DELETE_LINE = 2;
     private static final int LINE_STATUS = 3;
 
-
     private final Scanner scanner;
 
     public LineMaintain(Scanner scanner) {
@@ -79,7 +78,7 @@ public class LineMaintain {
             maintainPage();
             return;
         }
-        if(LineRepository.isDuplicateLine(line.getName())){
+        if(LineRepository.isExistLine(line.getName())){
             ErrorView.duplicateName();
             maintainPage();
             return;

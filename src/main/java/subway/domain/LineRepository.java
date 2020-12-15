@@ -45,7 +45,7 @@ public class LineRepository {
         return false;
     }
 
-    private static boolean isExistLine(String lineName) {
+    public static boolean isExistLine(String lineName) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
                 return true;
@@ -84,15 +84,6 @@ public class LineRepository {
             }
         }
         ErrorView.notExistName();
-        return false;
-    }
-
-    public static boolean isDuplicateLine(String lineName) {
-        for(Line line : lines){
-            if(line.getName().equals(lineName)){
-                return true;
-            }
-        }
         return false;
     }
 }

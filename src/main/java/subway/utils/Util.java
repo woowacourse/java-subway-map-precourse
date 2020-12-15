@@ -25,7 +25,7 @@ public class Util {
         return operationNumber;
     }
 
-    private static boolean isNumber(String number) {
+    public static boolean isNumber(String number) {
         int length = number.length();
         for (int i = 0; i < length; i++) {
             if (!Character.isDigit(number.charAt(i))) {
