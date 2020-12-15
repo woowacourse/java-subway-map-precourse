@@ -34,11 +34,11 @@ public class InputView {
         return sel;
     }
 
-    public String inputRegister() {
+    public String inputRegister(String category) {
         String name = CommonMessage.ERROR;
         while (true) {
             try {
-                name = validate.isAccptedRegisterInput(scanner.nextLine());
+                name = validate.isAccptedRegisterInput(scanner.nextLine(), category);
                 System.out.println();
             } catch(NotAccptedInputLengthException e) {
                 System.out.println(e.getMessage());

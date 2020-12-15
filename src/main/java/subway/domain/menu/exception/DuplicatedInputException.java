@@ -9,4 +9,8 @@ public class DuplicatedInputException extends RuntimeException {
         super(CommonMessage.NEW_LINE + CommonMessage.ERROR + CommonMessage.SPACE
         + ExceptionMessage.DUPLICATED_INPUT_STATION + CommonMessage.NEW_LINE);
     }
+
+    public DuplicatedInputException(String message) {
+        super(message);
+    }
 }
