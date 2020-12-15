@@ -264,6 +264,7 @@ public class UserInterfaceView {
             return;
         }
         if (TWO_STRING.equals(userInput)) {
+            deleteSection();
         }
     }
 
@@ -292,6 +293,14 @@ public class UserInterfaceView {
         String stationName = getUserInput(INPUT_SECTION_STATION_NAME);
         int index = getUserInputInt();
         if (!SectionService.addSection(lineName, stationName, index, true)) {
+            sectionStart();
+        }
+    }
+
+    private void deleteSection() {
+        String lineName = getUserInput(INPUT_SECTION_DELETE_LINE_NAME);
+        String stationName = getUserInput(INPUT_SECTION_DELETE_STATION_NAME);
+        if (!SectionService.deleteSection(lineName, stationName)) {
             sectionStart();
         }
     }
