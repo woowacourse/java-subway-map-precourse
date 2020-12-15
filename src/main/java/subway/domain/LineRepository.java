@@ -36,7 +36,7 @@ public class LineRepository {
         return lines.isEmpty();
     }
 
-    public static Line getLineByName(String name) {
+    protected static Line getLineByName(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).findFirst()
                 .get();
     }
