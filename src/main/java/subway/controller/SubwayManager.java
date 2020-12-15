@@ -28,7 +28,11 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(QUIT)) {
                 break;
             }
-            MainMenu.request(selection);
+            try {
+                MainMenu.request(selection);
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
@@ -66,7 +70,12 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(BACK)) {
                 break;
             }
-            StationMenu.request(selection);
+            try {
+                StationMenu.request(selection);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
@@ -77,7 +86,12 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(BACK)) {
                 break;
             }
-            LineMenu.request(selection);
+            try {
+                LineMenu.request(selection);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
@@ -88,7 +102,12 @@ public class SubwayManager implements Message {
             if (selection.equalsIgnoreCase(BACK)) {
                 break;
             }
-            SectionMenu.request(selection);
+            try {
+                SectionMenu.request(selection);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 }

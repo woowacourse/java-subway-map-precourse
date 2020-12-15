@@ -10,20 +10,16 @@ import subway.view.OutputView;
 public class LineManager implements Message {
 
     protected static void register() {
-        try {
-            Line newLine = new Line(InputView.getLineName());
+        Line newLine = new Line(InputView.getLineName());
 
-            Station firstStation = StationManager.getStation(InputView.getFirstStationName());
-            newLine.addFirst(firstStation);
+        Station firstStation = StationManager.getStation(InputView.getFirstStationName());
+        newLine.addFirst(firstStation);
 
-            Station lastStation = StationManager.getStation(InputView.getLastStationName());
-            newLine.addLast(lastStation);
+        Station lastStation = StationManager.getStation(InputView.getLastStationName());
+        newLine.addLast(lastStation);
 
-            LineRepository.addLine(newLine);
-            OutputView.printInfo(INFO_LINE_REGISTERED);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-        }
+        LineRepository.addLine(newLine);
+        OutputView.printInfo(INFO_LINE_REGISTERED);
     }
 
     protected static void delete() {

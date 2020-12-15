@@ -9,23 +9,15 @@ import subway.view.OutputView;
 public class StationManager implements Message {
 
     protected static void register() {
-        try {
-            String name = InputView.getStationName();
-            StationRepository.addStation(new Station(name));
-            OutputView.printInfo(INFO_STATION_REGISTERED);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-        }
+        String name = InputView.getStationName();
+        StationRepository.addStation(new Station(name));
+        OutputView.printInfo(INFO_STATION_REGISTERED);
     }
 
     protected static void delete() {
         String stationName = InputView.getStationNameToDelete();
-        try {
-            StationRepository.deleteStation(stationName);
-            OutputView.printInfo(INFO_STATION_DELETED);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-        }
+        StationRepository.deleteStation(stationName);
+        OutputView.printInfo(INFO_STATION_DELETED);
     }
 
     protected static Station getStation(String name) {
