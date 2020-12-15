@@ -23,4 +23,13 @@ public enum MainMenu {
         return message;
     }
 
+    public static boolean isValidOrder(String order){
+        for(MainMenu mainMenu : MainMenu.values()){
+            if(mainMenu.getOrder().equals(order)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

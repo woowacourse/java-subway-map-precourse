@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.menu.MainMenu;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -9,8 +11,9 @@ public class InputView {
 
     public static String inputMainMenu(Scanner scanner){
         String inputData = scanner.nextLine();
-
-        return inputData;
+        if(MainMenu.isValidOrder(inputData)){
+            return inputData;
+        }
+        return inputMainMenu(scanner);
     }
-
 }
