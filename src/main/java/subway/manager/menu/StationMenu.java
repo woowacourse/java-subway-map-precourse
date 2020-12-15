@@ -40,6 +40,10 @@ public enum StationMenu {
         nextAction.accept(stationController);
     }
 
+    public static void initMenuStatus() {
+        restart = true;
+    }
+
     private static void goBackMenu() {
         restart = false;
     }
