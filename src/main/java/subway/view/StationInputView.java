@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.type.StationScreenFunctionType;
 
 import java.util.Scanner;
@@ -82,6 +84,7 @@ public class StationInputView {
         try {
             validateStationName(stationName);
             // TODO 역 추가
+            StationRepository.addStation(new Station(stationName));
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.getMessage());
