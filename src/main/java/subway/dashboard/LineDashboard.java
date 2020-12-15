@@ -30,7 +30,7 @@ public class LineDashboard {
     }
 
     public void showLineDashboardName() {
-        System.out.println(DASHBOARD_STATION);
+        System.out.println(DASHBOARD_LINE);
     }
 
     public void startLineDashboard(InputView inputView) {

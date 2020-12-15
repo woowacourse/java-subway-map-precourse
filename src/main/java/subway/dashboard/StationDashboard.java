@@ -94,7 +94,7 @@ public class StationDashboard {
     }
 
     public boolean startOption2(InputView inputView) {
-        if (deleteStation(inputView)) {
+        if (!deleteStation(inputView)) {
             System.out.println();
             return true;
         }
@@ -136,11 +136,16 @@ public class StationDashboard {
 
     public boolean deleteStation(InputView inputView) {
         String submittedStationName = inputView.readDeletingStationName();
+        if (!StationRepository.canDeleteStation(submittedStationName)) {
+            System.out.println(ERROR_CANNOT_DELETE_STATION_ON_LINE);
+            return false;
+        }
+
         if (!StationRepository.deleteStation(submittedStationName)) {
             System.out.println(ERROR_STATION_NAME_NO_EXISTS);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public void showStations() {

@@ -27,6 +27,13 @@ public class StationRepository {
         return false;
     }
 
+    public static boolean canDeleteStation(String name) {
+        if (StationRepository.stations().contains(StationRepository.getStationByName(name))) {
+            return false;
+        }
+        return true;
+    }
+
     public static Station getStationByName(String stationName) {
         for (Station station : StationRepository.stations()) {
             if (station.getName().equals(stationName)) {
