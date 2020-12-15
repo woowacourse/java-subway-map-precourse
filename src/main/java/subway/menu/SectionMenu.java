@@ -3,11 +3,12 @@ package subway.menu;
 import java.util.Arrays;
 
 import subway.controller.SectionController;
+import subway.controller.SubwayController;
 
 public enum SectionMenu {
     ADD_SECTION("1", SectionController::addSection),
     DELETE_SECTION("2", SectionController::deleteSection),
-    BACK("B", SectionController::section);
+    BACK("B", SubwayController::run);
 	
     private final String code;
     private final Runnable handler;
