@@ -21,7 +21,7 @@ public class SectionService {
             List<Station> updateSection = LineStationRepository.findByLineGetSections(sectionInfo.get(LINE_NAME));
             Station section = StationRepository.findByName(sectionInfo.get(SECTION_NAME));
             int sectionOrder = Integer.parseInt(sectionInfo.get(SECTION_ORDER));
-            updateSection.add(sectionOrder, section);
+            updateSection.add(sectionOrder - 1, section);
             return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
@@ -54,6 +54,9 @@ public class SectionService {
         Station station = StationRepository.findByName(sectionInfo.get(SECTION_NAME));
         if (updateSection.contains(station)) {
             throw new DuplicateStationInLine();
+        }
+        if (!sectionInfo.get(SECTION_ORDER).matches("[1-9]")){
+            throw new NotDigitException();
         }
         if (updateSection.size() < Integer.parseInt(sectionInfo.get(SECTION_ORDER))) {
             throw new OutOfRangeLineException(updateSection.size());
