@@ -127,6 +127,7 @@ public class UserInterfaceView {
             return;
         }
         if (FOUR_STRING.equals(userInput)) {
+            printSubwayLine();
         }
     }
 
@@ -303,5 +304,11 @@ public class UserInterfaceView {
         if (!SectionService.deleteSection(lineName, stationName)) {
             sectionStart();
         }
+    }
+
+    private void printSubwayLine() {
+        System.out.println(SUBWAY_LINES_LIST);
+        SectionService.print();
+        System.out.println();
     }
 }
