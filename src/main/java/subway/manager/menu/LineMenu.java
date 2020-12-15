@@ -41,11 +41,15 @@ public enum LineMenu {
         nextAction.accept(lineController);
     }
 
+    public static void initMenuStatus() {
+        back = true;
+    }
+
     private static void goBack() {
         back = false;
     }
 
-    public boolean isBack() {
+    public static boolean isBack() {
         return back;
     }
 

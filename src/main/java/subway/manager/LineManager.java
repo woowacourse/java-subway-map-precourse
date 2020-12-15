@@ -8,12 +8,10 @@ import subway.view.Output;
 public class LineManager {
 
     public static void run() {
-        LineMenu lineMenu;
         do {
             LineMenu.printMenu();
-            lineMenu = chooseMenu();
-            lineMenu.execute(LineController.getInstance());
-        } while (lineMenu.isBack());
+            chooseMenu().execute(LineController.getInstance());
+        } while (LineMenu.isBack());
     }
 
     private static LineMenu chooseMenu() {

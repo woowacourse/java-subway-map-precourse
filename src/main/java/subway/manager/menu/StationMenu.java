@@ -44,7 +44,7 @@ public enum StationMenu {
         back = false;
     }
 
-    public boolean isBack() {
+    public static boolean isBack() {
         return back;
     }
 

@@ -8,12 +8,10 @@ import subway.manager.menu.StationMenu;
 public class StationManager {
 
     public static void run() {
-        StationMenu stationMenu;
         do {
             StationMenu.printMenu();
-            stationMenu = chooseMenu();
-            stationMenu.execute(StationController.getInstance());
-        } while (stationMenu.isBack());
+            chooseMenu().execute(StationController.getInstance());
+        } while (StationMenu.isBack());
     }
 
     private static StationMenu chooseMenu() {

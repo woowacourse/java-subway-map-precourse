@@ -10,12 +10,10 @@ public class MainManager {
     }
 
     public static void run() {
-        MainMenu mainMenu;
         do {
             MainMenu.printMenu();
-            mainMenu = chooseMenu();
-            mainMenu.execute();
-        } while (mainMenu.isExit());
+            chooseMenu().execute();
+        } while (MainMenu.isExit());
     }
 
     private static MainMenu chooseMenu() {

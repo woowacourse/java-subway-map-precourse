@@ -46,7 +46,7 @@ public enum MainMenu {
         nextAction.run();
     }
 
-    public boolean isExit() {
+    public static boolean isExit() {
         return gameExit;
     }
 
