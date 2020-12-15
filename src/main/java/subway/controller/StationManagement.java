@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.exception.AttemptToDeleteDependentObjectException;
+import subway.exception.NoneObjectException;
 import subway.menuType.ManagementMenuType;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class StationManagement {
     private static final String ERROR_CANNOT_REMOVE = "노선에 등록된 역은 삭제할 수 없습니다.";
+    private static final String ERROR_NO_STATIONS = "등록된 역이 없습니다.";
 
     private static StationView stationView = StationView.getInstance();
     private static ManagementMenuType menu;
@@ -47,6 +49,10 @@ public class StationManagement {
 
     private static void deleteStation() {
         String name = stationView.getNameToDelete();
+
+        if (StationRepository.isEmpty()) {
+            throw new NoneObjectException(ERROR_NO_STATIONS);
+        }
         throwExceptionIfItisInLines(name);
 
         StationRepository.deleteStation(name);

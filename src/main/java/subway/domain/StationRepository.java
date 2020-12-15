@@ -47,4 +47,8 @@ public class StationRepository {
         }
         throw new NoSuchObjectException(ERROR_NOT_EXIST);
     }
+
+    public static boolean isEmpty() {
+        return stations.isEmpty();
+    }
 }
