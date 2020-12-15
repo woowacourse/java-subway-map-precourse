@@ -16,14 +16,29 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            if (line.isExistStationInLine(name)) {
+                return false;
+            }
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isExistName(String name){
+    public static Station selectOneStationByName(String name) {
+        for (Station station : stations) {
+            if (name.equals(station.getName())) {
+                return station;
+            }
+        }
+        return null;
+    }
+
+    public static boolean isExistName(String name) {
         return stations.stream().anyMatch(station -> Objects.equals(station.getName(), name));
     }
 
-    public static boolean isLongName(String name){
+    public static boolean isLongName(String name) {
         String pattern = "^[a-zA-Z가-힣]{2,}$";
         return Pattern.matches(pattern, name);
     }
