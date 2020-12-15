@@ -46,4 +46,11 @@ public class SectionService {
         return true;
     }
 
+    private static boolean isNotDeleteSize(Line line) {
+        if (line.lineInStationList().size() <= DELETE_MIN_SIZE) {
+            OutPut.printSectionDeleteSizeError();
+            return true;
+        }
+        return false;
+    }
 }
