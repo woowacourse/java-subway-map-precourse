@@ -2,6 +2,8 @@ package subway.managers;
 
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.exceptions.SubwayException;
+import subway.exceptions.Validation;
 import subway.views.SystemMessages;
 import subway.views.SystemOutput;
 import subway.views.UserInput;
@@ -12,15 +14,21 @@ import java.util.Scanner;
 
 
 public class StationManager {
+    private static Validation validation = new Validation();
+
     public static void runStationManager(Scanner scanner, UserInput userInput) {
         SystemOutput.printStationMessage();
         String input = userInput.getStationLineInput();
-
+        try {
+            validation.stationLineOptionValidation(input);
+        } catch (SubwayException e) {
+            runStationManager(scanner, userInput);
+        }
         if (input.equals("1")) {
             addStation(userInput);
         }
         if (input.equals("2")) {
-            deleteStation(userInput);
+            deleteStation(scanner, userInput);
         }
         if (input.equals("3")) {
             showStationList();
@@ -33,14 +41,26 @@ public class StationManager {
     static void addStation(UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_STATION_MESSAGE);
         String name = userInput.getNameInput();
+        try {
+            validation.stationNameValidation(name);
+            validation.stationDuplication(name);
+        } catch (SubwayException e) {
+            addStation(userInput);
+        }
         Station station = new Station(name);
         StationRepository.addStation(station);
         SystemOutput.printInfo(SystemMessages.ADD_STATION_COMPLETE_MESSAGE);
     }
 
-    static void deleteStation(UserInput userInput) {
+    static void deleteStation(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.DEL_STATION_MESSAGE);
         String name = userInput.getNameInput();
+        try {
+            validation.isExistStation(name);
+            StationRepository.deleteStation(name);
+        } catch (SubwayException e) {
+            SubwayManager.runManager(scanner);
+        }
         StationRepository.deleteStation(name);
         SystemOutput.printInfo(SystemMessages.DEL_STATION_COMPLETE_MESSAGE);
     }

@@ -50,6 +50,12 @@ public class LineManager {
     static void newLine(UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_LINE_MESSAGE);
         String lineName = userInput.getNameInput();
+        try {
+            validation.lineNameValidation(lineName);
+            validation.lineDuplication(lineName);
+        } catch (SubwayException e) {
+            newLine(userInput);
+        }
         line = new Line(lineName);
     }
 

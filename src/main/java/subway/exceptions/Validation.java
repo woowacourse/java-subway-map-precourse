@@ -33,7 +33,7 @@ public class Validation {
     }
 
     public void lineNameValidation(String name) throws SubwayException {
-        if (!name.substring(name.length() - 2, name.length()).equals(LINE_CHECKER)) {
+        if (!name.startsWith(LINE_CHECKER, name.length() - 2)) {
             throw new SubwayException(LINE_NAMING_RULE);
         }
         if (name.length()-2 < 2) {
@@ -44,8 +44,15 @@ public class Validation {
     public Station isExistStation(String name) throws SubwayException {
         List<Station> stations = StationRepository.getStations();
         return stations.stream()
-                .filter(station -> station.getName().equals(name))
-                .findFirst().orElseThrow(() -> new SubwayException(NULL_STATION));
+            .filter(station -> station.getName().equals(name))
+            .findFirst().orElseThrow(() -> new SubwayException(NULL_STATION));
+    }
+
+    public void stationDuplication(String name) throws SubwayException {
+        List<Station> stations = StationRepository.getStations();
+        if (stations.stream().anyMatch(station -> station.getName().equals(name))) {
+            throw new SubwayException(STATION_DUPLICATION);
+        }
     }
 
     public Line isExistLine(String name) throws SubwayException {
@@ -55,8 +62,11 @@ public class Validation {
             .findFirst().orElseThrow(() -> new SubwayException(NULL_LINE));
     }
 
-    public void stationDuplication(String name) {
-
+    public void lineDuplication(String name) throws SubwayException {
+        List<Line> lines = LineRepository.getLines();
+        if (lines.stream().anyMatch(line -> line.getName().equals(name))) {
+            throw new SubwayException(LINE_DUPLICATION);
+        }
     }
 
     public void orderIsNumber(String input) throws SubwayException {
