@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
 
     private String name;
-    private List<Station> lineMembers = new ArrayList<>();
+    private List<Station> registeredStation = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -16,15 +16,18 @@ public class Line {
         return name;
     }
 
+    public int length(){
+        return registeredStation.size();
+    }
     public void addStation(Station stationName) {
-        this.lineMembers.add(stationName);
+        this.registeredStation.add(stationName);
     }
 
     public void addStation(Station stationName, int index) {
-        this.lineMembers.add(index, stationName);
+        this.registeredStation.add(index, stationName);
     }
 
     public List<Station> getLineMembers() {
-        return this.lineMembers;
+        return this.registeredStation;
     }
 }

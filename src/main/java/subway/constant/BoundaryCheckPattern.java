@@ -5,7 +5,9 @@ public enum BoundaryCheckPattern {
     STATION_MENU_OPTION_LIMIT("[123B]{1}"),
     LINE_MENU_OPTION_LIMIT("[123B]{1}"),
     SECTION_MENU_OPTION_LIMIT("[12B]{1}"),
+    IS_DIGIT("[0-9]+"),
     ;
+
 
     private final String pattern;
 

@@ -2,6 +2,7 @@ package subway;
 
 import java.util.Scanner;
 import subway.constant.UserChoiceOptionToName;
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -44,6 +45,7 @@ public class SectionController {
         String lineName;
         String stationName;
         Station insertStation;
+        Line line;
         int stationNumber;
 
         try {
@@ -54,7 +56,9 @@ public class SectionController {
             stationName = InputView.scansectionStationName(scanner);
 
             OutputView.sectionAddIndexPrint();
-            stationNumber = Integer.parseInt(scanner.nextLine());
+            line = LineRepository.getLineByName(lineName);
+            stationNumber = InputView.scanSectionAddIndex(scanner, line);
+
         } catch (IllegalArgumentException error) {
             return false;
         }
@@ -62,7 +66,7 @@ public class SectionController {
         insertStation = StationRepository.getStationByName(stationName);
         LineRepository.getLineByName(lineName).addStation(insertStation, stationNumber);
 
-        System.out.println("임시 문구 : 구간 등록 성공");
+        OutputView.sectionAddSuccess();
         return true;
     }
 

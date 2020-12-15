@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import subway.constant.BoundaryCheckDigit;
 import subway.constant.BoundaryCheckPattern;
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -204,16 +205,35 @@ public class InputView {
 
     public static String scansectionStationName(Scanner scanner) {
         String stationName = scanner.nextLine();
-        if (!StationRepository.contains(stationName)){
+        if (!StationRepository.contains(stationName)) {
             OutputView.sectionNotFoundStationError();
             throw new IllegalArgumentException();
         }
         return stationName;
     }
 
-    public static int scanLineIndex() {
-        return 0;
+    public static int scanSectionAddIndex(Scanner scanner, Line line) {
+        String indexString = scanner.nextLine();
+        int index;
+        if (isNotDigit(indexString)) {
+            OutputView.isNotDigitPrint();
+            throw new IllegalArgumentException();
+        }
+
+        index = Integer.parseInt(indexString);
+
+        if (line.length() < index) {
+            OutputView.outOfRange();
+            throw new IllegalArgumentException();
+        }
+
+        return index;
     }
 
-
+    private static boolean isNotDigit(String indexString) {
+        return !Pattern
+            .matches(BoundaryCheckPattern
+                .IS_DIGIT
+                .getRegexBoundaryCheckPattern(), indexString);
+    }
 }

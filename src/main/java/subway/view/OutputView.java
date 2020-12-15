@@ -146,4 +146,16 @@ public class OutputView {
     public static void sectionNotFoundStationError() {
         System.out.println(SectionMessage.SECTION_NOT_FOUND_STATION_NAME_ERROR.getSectionMessage());
     }
+
+    public static void isNotDigitPrint() {
+        System.out.println(SectionMessage.IS_NOT_DIGIT.getSectionMessage());
+    }
+
+    public static void outOfRange() {
+        System.out.println(SectionMessage.OUT_OF_RANGE.getSectionMessage());
+    }
+
+    public static void sectionAddSuccess() {
+        System.out.println(SectionMessage.SECTION_ADD_SUCCESS.getSectionMessage());
+    }
 }
