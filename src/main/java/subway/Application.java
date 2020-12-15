@@ -1,10 +1,14 @@
 package subway;
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        // TODO: 프로그램 구현
+        final PrintStream printStream = new PrintStream(System.out);
+        InitialSetup.apply();
+        SubwayManager subwayManager = new SubwayManager(scanner, printStream);
+        subwayManager.run();
     }
 }

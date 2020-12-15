@@ -12,11 +12,32 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(Line line) {
+    public static void addLine(String lineName, String upboundStationName,
+            String downboundStationName) {
+        Line line = new Line(lineName);
+        line.pushSections(upboundStationName, downboundStationName);
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLine(String name) {
+        getLineByName(name).removeAllSections();
+        lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static void deleteAllLine() {
+        lines.clear();
+    }
+
+    public static boolean hasLine(String name) {
+        return lines.stream().filter(line -> Objects.equals(line.getName(), name)).count() > 0;
+    }
+
+    public static boolean isEmpty() {
+        return lines.isEmpty();
+    }
+
+    protected static Line getLineByName(String name) {
+        return lines.stream().filter(line -> Objects.equals(line.getName(), name)).findFirst()
+                .get();
     }
 }
