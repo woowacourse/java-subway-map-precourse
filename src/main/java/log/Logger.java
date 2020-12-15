@@ -28,6 +28,16 @@ public class Logger {
             + "## 원하는 기능을 선택하세요.");
     }
 
+    public static void displayStationManageScreen() {
+        System.out.println("\n## 역 관리 화면\n"
+            + "1. 역 등록\n"
+            + "2. 역 삭제\n"
+            + "3. 역 조회\n"
+            + "B. 돌아가기\n"
+            + "\n"
+            + "## 원하는 기능을 선택하세요.");
+    }
+
     public static void displayLineManageScreen() {
         System.out.println("\n## 노선 관리 화면\n"
             + "1. 노선 등록\n"
