@@ -22,22 +22,22 @@ public class SectionScreen implements Screen{
     }
     
     public static void askAddSectionLineName() {
-    	System.out.println(INPUT_LINE_NAME);
+    	System.out.println(SHARP + INPUT_LINE_NAME);
     }
     
     public static void askAddSectionStationName() {
-    	System.out.println(INPUT_STATION_NAME);
+    	System.out.println(SHARP + INPUT_STATION_NAME);
     }
     
     public static void askAddSectionOrder() {
-    	System.out.println(INPUT_ORDER);
+    	System.out.println(SHARP + INPUT_ORDER);
     }
     
     public static void askDeleteLineName() {
-    	System.out.println(INPUT_DELETE_LINE_NAME);
+    	System.out.println(SHARP + INPUT_DELETE_LINE_NAME);
     }
     
     public static void askDeleteStationName() {
-    	System.out.println(INPUT_DELETE_STATION_NAME);
+    	System.out.println(SHARP + INPUT_DELETE_STATION_NAME);
     }
 }
