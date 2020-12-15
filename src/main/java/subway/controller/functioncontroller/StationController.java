@@ -1,6 +1,5 @@
 package subway.controller.functioncontroller;
 
-import subway.controller.FunctionController;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.validator.StationValidation;

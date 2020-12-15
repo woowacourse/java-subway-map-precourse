@@ -1,6 +1,5 @@
 package subway.controller.functioncontroller;
 
-import subway.controller.FunctionController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;

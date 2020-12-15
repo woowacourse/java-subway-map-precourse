@@ -1,6 +1,5 @@
 package subway.controller.functioncontroller;
 
-import subway.controller.FunctionController;
 import subway.view.mapprintoutput.MapPrintInfoView;
 import subway.view.mapprintoutput.MapPrintOutputView;
 

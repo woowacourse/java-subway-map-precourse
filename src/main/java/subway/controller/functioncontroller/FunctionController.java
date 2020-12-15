@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.controller.functioncontroller;
 
 public class FunctionController {
     protected static final String REGISTER = "1";
