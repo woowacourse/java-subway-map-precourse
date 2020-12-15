@@ -1,5 +1,7 @@
 package subway.managers;
 
+import subway.exceptions.SubwayException;
+import subway.exceptions.Validation;
 import subway.managers.StationManager;
 import subway.views.SystemOutput;
 import subway.views.UserInput;
@@ -21,6 +23,11 @@ public class SubwayManager {
     }
 
     private static void mainOption(Scanner scanner, UserInput userInput, String input) {
+        try {
+            new Validation().mainOptionValidation(input);
+        } catch (SubwayException e) {
+            runManager(scanner);
+        };
         if (input.equals("1")) {
             StationManager.runStationManager(scanner, userInput);
             runManager(scanner);
