@@ -15,11 +15,11 @@ public class Application {
 
     public static void run(InputView inputView) {
         Initializer.set();
-        boolean runStatus;
+        boolean ongoingStatus;
         do {
             MenuController.scanMenu(inputView);
-            runStatus = MenuController.runMenus(inputView);
+            ongoingStatus = MenuController.runMenus(inputView);
             MenuController.selectedMenus.clear();
-        } while(runStatus);
+        } while(ongoingStatus);
     }
 }
