@@ -44,7 +44,7 @@ public class Application {
     }
 
     private static void mainScreenPrint() {
-        System.out.println("## 메인 화면\n"
+        System.out.println("\n## 메인 화면\n"
             + "1. 역 관리\n"
             + "2. 노선 관리\n"
             + "3. 구간 관리\n"

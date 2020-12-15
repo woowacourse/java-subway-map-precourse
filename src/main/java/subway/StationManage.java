@@ -3,7 +3,9 @@ package subway;
 import static subway.domain.StationRepository.addStation;
 import static subway.domain.StationRepository.deleteStation;
 import static subway.domain.StationRepository.hasStation;
+import static subway.domain.StationRepository.stations;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.domain.Station;
 
@@ -33,7 +35,7 @@ public class StationManage {
             return true;
         }
         if (mainInput.equalsIgnoreCase(ALL_STATIONS)) {
-            //allStationsPrint();
+            allStationsPrint();
             return true;
         }
         if (mainInput.equalsIgnoreCase(BACK_SCREEN)) {
@@ -67,6 +69,14 @@ public class StationManage {
         }
         deleteStation(stationName);
         System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
+    private static void allStationsPrint() {
+        System.out.println("\n## 역 목록");
+        List<Station> allStations = stations();
+        for (Station station : allStations) {
+            station.print();
+        }
     }
 
     private static boolean stationNameLengthValidate(String stationName) {
