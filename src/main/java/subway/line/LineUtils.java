@@ -77,7 +77,9 @@ public class LineUtils {
 
     public void deleteLine() {
         System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
-        LineRepository.deleteLineByName(scanner.next());
+        String deleteLineName = scanner.next();
+        Validator.isLineExist(deleteLineName);
+        LineRepository.deleteLineByName(deleteLineName);
         System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.\n");
     }
 
