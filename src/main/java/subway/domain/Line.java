@@ -3,6 +3,8 @@ package subway.domain;
 import java.util.Objects;
 
 public class Line {
+    public static final int MIN_LINE_NAME_LENGTH = 2;
+
     private String name;
 
     public Line(String name) {

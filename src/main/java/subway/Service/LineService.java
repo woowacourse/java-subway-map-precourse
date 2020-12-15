@@ -1,15 +1,17 @@
 package subway.Service;
 
+import subway.Exception.LineException.CanNotFindLineException;
+import subway.Exception.LineException.DuplicateLineNameException;
+import subway.Exception.LineException.ShorterThanMinLineNameException;
+import subway.Exception.StationException.CanNotFindStationException;
 import subway.Manager.LineManager;
 import subway.domain.*;
-import validator.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LineService {
-    private static final int MIN_LINE_NAME_LENGTH = 2;
     private static final int LINE_NAME = 0;
     private static final int UP_TERMINAL_STATION = 1;
     private static final int DOWN_TERMINAL_STATION = 2;
@@ -18,29 +20,28 @@ public class LineService {
 
     public void createLine(List<String> insertLineInfo) {
         try {
-            String lineName = insertLineInfo.get(LINE_NAME);
-            String upTerminal = insertLineInfo.get(UP_TERMINAL_STATION);
-            String downTerminal = insertLineInfo.get(DOWN_TERMINAL_STATION);
-            checkBeforeCreateLine(lineName, upTerminal, downTerminal);
-            addLineAndStation(lineName, upTerminal, downTerminal);
+            checkBeforeCreateLine(insertLineInfo);
+            addLineAndStation(insertLineInfo);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             LineManager.execute();
         }
     }
 
-    public void addLineAndStation(String lineName, String upTerminal, String downTerminal) { // 노선이름, 상행, 하행 종점 등록
-        Station upTerminalStation = StationRepository.findByName(upTerminal);
-        Station downTerminalStation = StationRepository.findByName(downTerminal);
-        Line newLine = new Line(lineName);
+    public void addLineAndStation(List<String> insertLineInfo) { // 노선이름, 상행, 하행 종점 등록
+        Line newLine = new Line(insertLineInfo.get(LINE_NAME));
+        Station upTerminalStation = StationRepository.findByName(insertLineInfo.get(UP_TERMINAL_STATION));
+        Station downTerminalStation = StationRepository.findByName(insertLineInfo.get(DOWN_TERMINAL_STATION));
         List<Station> sections = new ArrayList<>(Arrays.asList(upTerminalStation, downTerminalStation));
+
+        LineRepository.addLine(newLine);
         LineStationRepository.addLineStation(new LineStation(newLine, sections));
     }
 
     public void deleteLine(String lineName) {
         try {
             if(!LineRepository.deleteLineByName(lineName)) {
-                throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_LINE);
+                throw new CanNotFindLineException();
             }
             LineStationRepository.deleteLineOnSubway(lineName);
         } catch (IllegalArgumentException ie) {
@@ -49,18 +50,18 @@ public class LineService {
         }
     }
 
-    public void checkBeforeCreateLine(String lineName, String upTerminal, String downTerminal) {
-        if (lineName.length() < MIN_LINE_NAME_LENGTH) {
-            throw new IllegalArgumentException(ExceptionMessage.LINE_NAME_OVER_TWO);
+    public void checkBeforeCreateLine(List<String> insertLineInfo) {
+        if (LineRepository.isValidLineNameLength(insertLineInfo.get(LINE_NAME))) {
+            throw new ShorterThanMinLineNameException();
         }
-        if (LineRepository.contains(lineName)) {
-            throw new IllegalArgumentException(ExceptionMessage.LINE_NAME_EXISTS);
+        if (LineRepository.contains(insertLineInfo.get(LINE_NAME))) {
+            throw new DuplicateLineNameException();
         }
-        if (!StationRepository.contains(upTerminal)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+        if (!StationRepository.contains(insertLineInfo.get(UP_TERMINAL_STATION))) {
+            throw new CanNotFindStationException();
         }
-        if (!StationRepository.contains(downTerminal)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+        if (!StationRepository.contains(insertLineInfo.get(DOWN_TERMINAL_STATION))) {
+            throw new CanNotFindStationException();
         }
     }
 
