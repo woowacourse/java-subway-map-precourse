@@ -23,4 +23,12 @@ public class StationRepository {
     public static List<String> getStationNames() {
         return stations.stationNames();
     }
+
+    public static boolean isPresentStation(String name) {
+        return stations.isPresentStation(StationFactory.makeStation(name));
+    }
+
+    public static Station findStationByName(String name) {
+        return stations.findStation(name);
+    }
 }

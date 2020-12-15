@@ -1,5 +1,7 @@
 package subway.domain;
 
+import java.util.List;
+
 public class LineRepository {
     private static final Lines lines = new Lines();
 
@@ -13,6 +15,10 @@ public class LineRepository {
 
     public static void deleteLineByName(String name) {
         lines.deleteLine(name);
+    }
+
+    public static List<String> getLineNames() {
+        return lines.lineNames();
     }
 
     public static boolean isPresentLine(String name) {
