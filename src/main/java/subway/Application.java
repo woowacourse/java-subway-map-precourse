@@ -98,7 +98,7 @@ public class Application {
         if (input.equals(SECTION_MENU))
             manageSection(kbd);
         if (input.equals(PRINT_LINES))
-            displayAllLines();
+            displayAllLines(kbd);
         if (input.equalsIgnoreCase(FINISH_PROGRAM))
             finishProgram();
     }
@@ -250,13 +250,14 @@ public class Application {
         System.out.println("B. 돌아가기");
     }
 
-    public static void displayAllLines() {
+    public static void displayAllLines(Scanner kbd) {
         System.out.println("## 지하철 노선도");
         for(Line line : LineRepository.lines()) {
             System.out.println("[INFO] " + line.getName());
             System.out.println("[INFO] ---");
             line.displayLine();
         }
+        startProgram(kbd);
     }
 
     public static void finishProgram() {
