@@ -3,14 +3,11 @@ package subway.userinterface.mainmenu;
 import subway.service.MainService;
 import subway.userinterface.Menu;
 import subway.userinterface.intervalmenu.IntervalMenuView;
-
 import java.util.Scanner;
 
 public class IntervalController implements Menu {
-
     private final static String MENU_NAME = "3. 구간 관리";
     private final static String MENU_KEY = "3";
-
     private static IntervalController intervalController;
 
     private IntervalController() {}
@@ -44,7 +41,6 @@ public class IntervalController implements Menu {
         if (intervalController == null) {
             intervalController = new IntervalController();
         }
-
         return intervalController;
     }
 }

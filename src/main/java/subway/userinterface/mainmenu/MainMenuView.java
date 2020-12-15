@@ -3,12 +3,10 @@ package subway.userinterface.mainmenu;
 import subway.userinterface.Menu;
 import subway.userinterface.MenuView;
 import subway.userinterface.OutputController;
-
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class MainMenuView implements MenuView {
-
     private static final String MENU_INTRO = "\n## 메인 화면";
     private static MainMenuView mainMenuView;
     private static MainViewInputController mainViewInputController = new MainViewInputController();
@@ -22,7 +20,6 @@ public class MainMenuView implements MenuView {
         if (mainMenuView == null) {
             mainMenuView = new MainMenuView();
         }
-
         return mainMenuView;
     }
 

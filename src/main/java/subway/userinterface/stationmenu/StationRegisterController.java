@@ -3,11 +3,9 @@ package subway.userinterface.stationmenu;
 import subway.service.StationService;
 import subway.userinterface.Menu;
 import subway.userinterface.OutputController;
-
 import java.util.Scanner;
 
 public class StationRegisterController implements Menu {
-
     private final static String MENU_NAME = "1. 역 등록";
     private final static String MENU_KEY = "1";
     private final static String STATION_REGISTERED = "\n[INFO] 지하철 역이 등록되었습니다.";
@@ -22,7 +20,6 @@ public class StationRegisterController implements Menu {
         if (stationRegisterController == null) {
             stationRegisterController = new StationRegisterController();
         }
-
         return stationRegisterController;
     }
 
@@ -38,11 +35,7 @@ public class StationRegisterController implements Menu {
 
     @Override
     public void run(Scanner scanner) throws IllegalArgumentException {
-        String newStation;
-        newStation = stationRegisterInputController.getUserInput(scanner);
-
-        stationService.registerStation(newStation);
-
+        stationService.registerStation(stationRegisterInputController.getUserInput(scanner));
         OutputController.printInfo(STATION_REGISTERED);
     }
 }

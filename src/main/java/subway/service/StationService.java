@@ -4,7 +4,6 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class StationService {
-
     private static final String STATION_REGISTERED_TO_LINE = "\n[ERROR] 노선에 등록되어 있는 역 입니다.";
 
     public void registerStation(String stationName) {

@@ -3,11 +3,9 @@ package subway.userinterface.stationmenu;
 import subway.service.StationService;
 import subway.userinterface.Menu;
 import subway.userinterface.OutputController;
-
 import java.util.Scanner;
 
 public class StationDeleteController implements Menu {
-
     private final static String MENU_NAME = "2. 역 삭제";
     private final static String MENU_KEY = "2";
     private final static String STATION_DELETED = "\n[INFO] 지하철 역이 삭제되었습니다.";
@@ -30,11 +28,7 @@ public class StationDeleteController implements Menu {
 
     @Override
     public void run(Scanner scanner) throws IllegalArgumentException {
-        String deleteStation;
-        deleteStation = stationDeleteInputController.getUserInput(scanner);
-
-        stationService.deleteStation(deleteStation);
-
+        stationService.deleteStation(stationDeleteInputController.getUserInput(scanner));
         OutputController.printInfo(STATION_DELETED);
     }
 

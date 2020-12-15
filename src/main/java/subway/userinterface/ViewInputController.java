@@ -9,7 +9,7 @@ public class ViewInputController extends InputController {
     }
 
     @Override
-    protected void validateInput() throws IllegalArgumentException{
+    protected void validateInput() throws IllegalArgumentException {
         InputValidator.validateSubMenuInput(userInput);
     }
 }

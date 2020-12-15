@@ -3,11 +3,9 @@ package subway.userinterface.mainmenu;
 import subway.service.MainService;
 import subway.userinterface.Menu;
 import subway.userinterface.stationmenu.StationMenuView;
-
 import java.util.Scanner;
 
 public class StationController implements Menu {
-
     private static final String MENU_NAME = "1. 역 관리";
     private static final String MENU_KEY = "1";
     private static StationController stationController;
@@ -28,7 +26,6 @@ public class StationController implements Menu {
         if (stationController == null) {
             stationController = new StationController();
         }
-
         return stationController;
     }
 

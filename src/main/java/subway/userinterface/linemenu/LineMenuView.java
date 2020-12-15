@@ -1,12 +1,14 @@
 package subway.userinterface.linemenu;
 
-import subway.userinterface.*;
-
+import subway.userinterface.Menu;
+import subway.userinterface.MenuView;
+import subway.userinterface.OutputController;
+import subway.userinterface.ReturnController;
+import subway.userinterface.ViewInputController;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class LineMenuView implements MenuView {
-
     private static final String MENU_INTRO = "\n## 노선 관리 화면";
     private static LineMenuView lineMenuView;
     private static ViewInputController viewInputController = new ViewInputController();
@@ -20,7 +22,6 @@ public class LineMenuView implements MenuView {
         if (lineMenuView == null) {
             lineMenuView = new LineMenuView();
         }
-
         return lineMenuView;
     }
 

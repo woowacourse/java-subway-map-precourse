@@ -3,14 +3,11 @@ package subway.userinterface.mainmenu;
 import subway.service.MainService;
 import subway.userinterface.Menu;
 import subway.userinterface.linemenu.LineMenuView;
-
 import java.util.Scanner;
 
 public class LineController implements Menu {
-
     private final static String MENU_NAME = "2. 노선 관리";
     private final static String MENU_KEY = "2";
-
     private static LineController lineController;
 
     private LineController() {}
@@ -44,7 +41,6 @@ public class LineController implements Menu {
         if (lineController == null) {
             lineController = new LineController();
         }
-
         return lineController;
     }
 }

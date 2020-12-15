@@ -1,12 +1,14 @@
 package subway.userinterface.stationmenu;
 
-import subway.userinterface.*;
-
+import subway.userinterface.Menu;
+import subway.userinterface.MenuView;
+import subway.userinterface.OutputController;
+import subway.userinterface.ReturnController;
+import subway.userinterface.ViewInputController;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class StationMenuView implements MenuView {
-
     private static final String MENU_INTRO = "\n## 역 관리 화면";
     private static StationMenuView stationMenuView;
     private static ViewInputController viewInputController = new ViewInputController();
@@ -20,7 +22,6 @@ public class StationMenuView implements MenuView {
         if (stationMenuView == null) {
             stationMenuView = new StationMenuView();
         }
-
         return stationMenuView;
     }
 

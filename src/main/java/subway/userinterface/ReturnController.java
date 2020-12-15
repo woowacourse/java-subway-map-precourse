@@ -3,10 +3,8 @@ package subway.userinterface;
 import java.util.Scanner;
 
 public class ReturnController implements Menu {
-
     private final static String MENU_NAME = "B. 돌아가기";
     private final static String MENU_KEY = "B";
-
     private static ReturnController returnController;
 
     private ReturnController() {}
@@ -28,7 +26,6 @@ public class ReturnController implements Menu {
         if (returnController == null) {
             returnController = new ReturnController();
         }
-
         return returnController;
     }
 }

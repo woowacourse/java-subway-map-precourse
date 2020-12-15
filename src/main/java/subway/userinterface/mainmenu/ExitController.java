@@ -1,14 +1,11 @@
 package subway.userinterface.mainmenu;
 
 import subway.userinterface.Menu;
-
 import java.util.Scanner;
 
 public class ExitController implements Menu {
-
     private final static String MENU_NAME = "Q. 종료";
     private final static String MENU_KEY = "Q";
-
     private static ExitController exitController;
 
     private ExitController() {}
@@ -30,7 +27,6 @@ public class ExitController implements Menu {
         if (exitController == null) {
             exitController = new ExitController();
         }
-
         return exitController;
     }
 }

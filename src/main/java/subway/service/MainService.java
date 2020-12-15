@@ -6,9 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class MainService {
-
     private static MainService mainService;
-
     private Menu selectedMenu;
 
     private MainService() {}

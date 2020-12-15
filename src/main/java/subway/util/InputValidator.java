@@ -3,11 +3,9 @@ package subway.util;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
-
 import java.util.regex.Pattern;
 
 public class InputValidator {
-
     final static String MAIN_MENU_INPUT_REGULAR_EXPRESS = "^[1-4Q]{1}$";
     final static String SUB_MENU_INPUT_REGULAR_EXPRESS = "^[1-3B]{1}$";
     final static String POSITIVE_INT_REGULAR_EXPRESS = "^[0-9]+$";

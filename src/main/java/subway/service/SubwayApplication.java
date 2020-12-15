@@ -1,18 +1,15 @@
 package subway.service;
 
 import subway.domain.LineRepository;
-import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.userinterface.mainmenu.MainMenuView;
 
 import java.util.Scanner;
 
 public class SubwayApplication {
-
     private static final StationService stationService = new StationService();
     private static final LineService lineService = new LineService();
     private static final IntervalService intervalService = new IntervalService();
-    private static String userSelectMenu = "";
 
     public static void init() {
         initStation();
@@ -51,6 +48,7 @@ public class SubwayApplication {
     }
 
     public static void run(Scanner scanner) {
+        String userSelectMenu = "";
         init();
 
         while (!userSelectMenu.equals("Q")) {

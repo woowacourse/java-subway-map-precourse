@@ -1,15 +1,12 @@
 package subway.userinterface.linemenu;
 
-import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.service.LineService;
 import subway.userinterface.Menu;
 import subway.userinterface.OutputController;
-
 import java.util.Scanner;
 
 public class LineRegisterController implements Menu {
-
     private static final String LINE_REGISTERED = "\n[INFO] 지하철 노선이 등록되었습니다.";
     private static final String MENU_NAME = "1. 노선 등록";
     private static final String MENU_KEY = "1";
@@ -28,7 +25,6 @@ public class LineRegisterController implements Menu {
         if (lineRegisterController == null) {
             lineRegisterController = new LineRegisterController();
         }
-
         return lineRegisterController;
     }
 
@@ -44,13 +40,9 @@ public class LineRegisterController implements Menu {
 
     @Override
     public void run(Scanner scanner) throws IllegalArgumentException {
-        String lineName = lineRegisterInputController.getUserInput(scanner);
-        Station topStation =
-                StationRepository.findStationByName(topStationInput.getUserInput(scanner));
-        Station bottomStation =
-                StationRepository.findStationByName(bottomStationInput.getUserInput(scanner));
-
-        lineService.registerLine(lineName, topStation, bottomStation);
+        lineService.registerLine(lineRegisterInputController.getUserInput(scanner),
+                StationRepository.findStationByName(topStationInput.getUserInput(scanner)),
+                StationRepository.findStationByName(bottomStationInput.getUserInput(scanner)));
 
         OutputController.printInfo(LINE_REGISTERED);
     }
