@@ -12,6 +12,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class LineController extends SubController {
+    private static final String LINE_MENU = "Line";
     private static final String LINE_REGISTER_MESSAGE = "\n## 등록할 노선 이름을 입력하세요.";
     private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 노선 이름을 입력하세요.";
     private static final String UP_STATION_MESSAGE = "\n## 등록할 노선의 상행 종점역 이름을 입력하세요.";
@@ -20,7 +21,7 @@ public class LineController extends SubController {
     @Override
     public void goToMenu() {
         OutputView.printLineMenu();
-        selection = InputView.receiveMenu("Line");
+        selection = InputView.receiveMenu(LINE_MENU);
         goToRegisterMenuIfUserSelect();
         goToDeleteMenuIfUserSelect();
         goToInquireMenuIfUserSelect();
@@ -35,7 +36,7 @@ public class LineController extends SubController {
             addLineToRepository(lineName);
             OutputView.printLineRegisterSuccess();
         } catch (NameFormatException | DuplicationException | IllegalElementException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             goToMenu();
         }
     }
@@ -84,7 +85,7 @@ public class LineController extends SubController {
             LineRepository.deleteLineByName(lineName);
             OutputView.printLineDeleteSuccess();
         } catch (NotExistedElementException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             goToMenu();
         }
     }

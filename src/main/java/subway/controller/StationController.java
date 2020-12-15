@@ -11,13 +11,14 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class StationController extends SubController {
+    private static final String STATION_MENU = "Station";
     private static final String STATION_REGISTER_MESSAGE = "\n## 등록할 역 이름을 입력하세요.";
     private static final String STATION_DELETE_MESSAGE = "\n## 삭제할 역 이름을 입력하세요.";
 
     @Override
     public void goToMenu() {
         OutputView.printStationMenu();
-        this.selection = InputView.receiveMenu("Station");
+        this.selection = InputView.receiveMenu(STATION_MENU);
         goToRegisterMenuIfUserSelect();
         goToDeleteMenuIfUserSelect();
         goToInquireMenuIfUserSelect();
@@ -32,7 +33,7 @@ public class StationController extends SubController {
             StationRepository.addStation(new Station(stationName));
             OutputView.printStationRegisterSuccess();
         } catch (NameFormatException | DuplicationException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             goToMenu();
         }
     }
@@ -50,7 +51,7 @@ public class StationController extends SubController {
             StationRepository.deleteStation(stationName);
             OutputView.printStationDeleteSuccess();
         } catch (NotExistedElementException | IllegalElementException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             goToMenu();
         }
     }

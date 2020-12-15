@@ -11,6 +11,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class SectionController extends SubController {
+    private static final String SECTION_MENU = "Section";
     private static final String LINE_INPUT_MESSAGE = "\n## 노선을 입력하세요.";
     private static final String STATION_INPUT_MESSAGE = "\n## 역이름을 입력하세요.";
     private static final String ORDER_INPUT_MESSAGE = "\n## 순서를 입력하세요.";
@@ -20,7 +21,7 @@ public class SectionController extends SubController {
     @Override
     public void goToMenu() {
         OutputView.printSectionMenu();
-        selection = InputView.receiveMenu("Section");
+        selection = InputView.receiveMenu(SECTION_MENU);
         goToRegisterMenuIfUserSelect();
         goToDeleteMenuIfUserSelect();
         OutputView.printLineBreak();
@@ -36,7 +37,7 @@ public class SectionController extends SubController {
             LineRepository.addSectionToLine(lineName, stationName, order);
             OutputView.printSectionRegisterSuccess();
         } catch (NameFormatException | NotExistedElementException | IllegalElementException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             goToMenu();
         }
     }
@@ -81,7 +82,7 @@ public class SectionController extends SubController {
             validateAndDeleteSection(lineName, stationName);
             OutputView.printSectionDeleteSuccess();
         } catch (NotExistedElementException | IllegalElementException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             goToMenu();
         }
     }

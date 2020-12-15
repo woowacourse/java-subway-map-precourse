@@ -1,22 +1,26 @@
 package subway.controller;
 
 public abstract class SubController {
+    private static final String REGISTER_MENU = "1";
+    private static final String DELETE_MENU = "2";
+    private static final String INQUIRE_MENU = "3";
+
     protected String selection;
 
     protected final void goToRegisterMenuIfUserSelect() {
-        if (selection.equals("1")) {
+        if (selection.equals(REGISTER_MENU)) {
             register();
         }
     }
 
     protected final void goToDeleteMenuIfUserSelect() {
-        if (selection.equals("2")) {
+        if (selection.equals(DELETE_MENU)) {
             delete();
         }
     }
 
     protected final void goToInquireMenuIfUserSelect() {
-        if (selection.equals("3")) {
+        if (selection.equals(INQUIRE_MENU)) {
             inquire();
         }
     }

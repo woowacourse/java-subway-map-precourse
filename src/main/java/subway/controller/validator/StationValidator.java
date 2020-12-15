@@ -8,43 +8,62 @@ import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class StationValidator {
+    private static final String STATION_FORMAT_REGEX = "[가-힣]+역";
+    private static final int MINIMUM_STATION_NAME_LENGTH = 2;
+
     public static void validateStationName(String stationName) {
         validateFormat(stationName);
         validateLength(stationName);
     }
-    
+
     public static void validateDeleteStation(String stationName) {
         validateNotExistedStation(stationName);
         validateStationRegisterInLine(stationName);
     }
 
     private static void validateFormat(String stationName) {
-        if (!stationName.matches("[가-힣]+역")) {
+        if (!isStationNameMatchFormat(stationName)) {
             throw new NameFormatException("\n[ERROR] 잘못된 역 이름입니다.");
         }
     }
 
+    private static boolean isStationNameMatchFormat(String stationName) {
+        return stationName.matches(STATION_FORMAT_REGEX);
+    }
+
     private static void validateLength(String stationName) {
-        if (stationName.length() < 2) {
+        if (isInsufficientLength(stationName)) {
             throw new NameFormatException("\n[ERROR] 두 글자 이상 입력하세요.");
         }
     }
 
+    private static boolean isInsufficientLength(String stationName) {
+        return stationName.length() < MINIMUM_STATION_NAME_LENGTH;
+    }
+
     public static void validateDuplication(String stationName) {
-        if (StationRepository.isExistedStation(stationName)) {
+        if (isStationExistedInRepository(stationName)) {
             throw new DuplicationException("\n[ERROR] 이미 등록된 역 이름입니다.");
         }
     }
 
     public static void validateNotExistedStation(String stationName) {
-        if (!StationRepository.isExistedStation(stationName)) {
+        if (!isStationExistedInRepository(stationName)) {
             throw new NotExistedElementException("\n[ERROR] 존재하지 않는 역 이름입니다.");
         }
     }
 
+    private static boolean isStationExistedInRepository(String stationName) {
+        return StationRepository.isExistedStation(stationName);
+    }
+
     public static void validateStationRegisterInLine(String stationName) {
-        if (LineRepository.hasStation(stationName)) {
+        if (hasStationInLine(stationName)) {
             throw new IllegalElementException("\n[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
         }
+    }
+
+    private static boolean hasStationInLine(String stationName) {
+        return LineRepository.hasStation(stationName);
     }
 }
