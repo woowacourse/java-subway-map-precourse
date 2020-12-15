@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.MainConsole;
+import subway.view.MainMenu;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +22,17 @@ public class SubwayMapController {
         this.scanner = scanner;
         this.mainConsole = new MainConsole();
         onStart();
+    }
+
+    public void run() {
+        while (true) {
+            mainConsole.showMenu();
+            MainMenu.MainView selector = mainConsole.selectMenu();
+            if (selector == MainMenu.MainView.QUIT) {
+                break;
+            }
+            selector.moveNext(selector.getKey());
+        }
     }
 
     private void onStart() {

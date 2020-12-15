@@ -13,7 +13,7 @@ public class LineRepository {
     private static final String SUBWAY_MAP = "## 지하철 노선도";
     private static final int MIN_STATION_SIZE = 2;
 
-    private static final List<Line> lines = new ArrayList<>();
+    public static final List<Line> lines = new ArrayList<>();
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);

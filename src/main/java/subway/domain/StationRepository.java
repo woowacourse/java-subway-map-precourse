@@ -33,6 +33,11 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
+        boolean hasStation = LineRepository.lines.stream()
+                                .anyMatch(line -> line.hasStation(name));
+        if (hasStation) {
+            return false;
+        }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

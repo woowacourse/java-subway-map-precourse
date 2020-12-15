@@ -39,4 +39,8 @@ public class Line {
         stations.add(parseInt-1, new Station(stationName)); // 구간의 순서가 1부터 시작하기 때문에 1을 뺀다.
         return true;
     }
+
+    public boolean hasStation(String name) {
+        return stations.stream().anyMatch(station -> station.getName().equals(name));
+    }
 }
