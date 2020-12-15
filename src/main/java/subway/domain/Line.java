@@ -88,17 +88,22 @@ public class Line {
         return false;
     }
 
-    public static List<String> getBoundsStation(InputView inputView, String stationMessage) {
+    public static List<String> getValidBoundsStation(InputView inputView, String stationMessage) {
         OutputView.printUpBoundStationMessage();
-        String upBoundStationName = inputView.getInput();
-        validateBoundStation(upBoundStationName, stationMessage);
+        String upBoundStationName = scanValidBoundStation(inputView, stationMessage);
         OutputView.printDownBoundStationMessage();
-        String downBoundStationName = inputView.getInput();
-        validateBoundStation(downBoundStationName, stationMessage);
+        String downBoundStationName = scanValidBoundStation(inputView, stationMessage);
         List<String> boundStations = Arrays.asList(upBoundStationName, downBoundStationName);
         validateSameBoundStations(boundStations);
         return boundStations;
     }
+
+    private static String scanValidBoundStation(InputView inputView, String stationMessage) {
+        String boundStationName = inputView.getInput();
+        validateBoundStation(boundStationName, stationMessage);
+        return boundStationName;
+    };
+
 
     private static boolean validateBoundStation(String boundStationName, String stationMessage) {
         if (!validateExistentStation(boundStationName)) {
@@ -136,7 +141,7 @@ public class Line {
         return true;
     }
 
-    public void runLineMap() {
+    public void printLine() {
         for (int i = 0; i < this.stations.size(); i++) {
             Station station = this.stations.get(i);
             OutputView.printLineMapElement(station.getName());

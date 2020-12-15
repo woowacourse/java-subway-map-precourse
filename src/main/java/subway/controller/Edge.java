@@ -24,8 +24,8 @@ public class Edge {
     }
 
     public static void add(InputView inputView) {
-        String lineName = scanLineName(inputView);
-        String stationName = scanStationName(inputView, lineName);
+        String lineName = scanAddEdgeLineName(inputView);
+        String stationName = scanAddEdgeStationName(inputView, lineName);
         int order = scanOrder(inputView, lineName);
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
@@ -37,12 +37,8 @@ public class Edge {
     }
 
     public static void delete(InputView inputView) {
-        OutputView.printDeleteEdgeOptionMessage(LINE_MESSAGE);
-        String lineName = inputView.getInput();
-        validateLineState(lineName);
-        OutputView.printDeleteEdgeOptionMessage(STATION_MESSAGE);
-        String stationName = inputView.getInput();
-        validateStationState(stationName, lineName);
+        String lineName = scanDeleteEdgeLineName(inputView);
+        String stationName = scanDeleteEdgeStationName(inputView, lineName);
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
             if (line.getName().equals(lineName)) {
@@ -79,18 +75,32 @@ public class Edge {
         }
     }
 
-    private static String scanLineName(InputView inputView) {
+    private static String scanAddEdgeLineName(InputView inputView) {
         OutputView.printInputMessage(LINE_MESSAGE);
         String lineName = inputView.getInput();
         Line.validateExistentLineName(lineName, LINE_MESSAGE);
         return lineName;
     }
 
-    private static String scanStationName(InputView inputView, String lineName) {
+    private static String scanAddEdgeStationName(InputView inputView, String lineName) {
         String stationNameMessage = STATION_MESSAGE + NAME_MESSAGE;
         OutputView.printInputMessage(stationNameMessage);
         String stationName = inputView.getInput();
         validateStationName(lineName, stationName);
+        return stationName;
+    }
+
+    private static String scanDeleteEdgeLineName(InputView inputView) {
+        OutputView.printDeleteEdgeOptionMessage(LINE_MESSAGE);
+        String lineName = inputView.getInput();
+        validateLineState(lineName);
+        return lineName;
+    }
+
+    private static String scanDeleteEdgeStationName(InputView inputView, String lineName) {
+        OutputView.printDeleteEdgeOptionMessage(STATION_MESSAGE);
+        String stationName = inputView.getInput();
+        validateStationState(stationName, lineName);
         return stationName;
     }
 
@@ -125,7 +135,7 @@ public class Edge {
             throw new OrderTypeException();
         }
         int orderNumber = Integer.parseInt(order);
-        if (!validateOrderRange(orderNumber, lineName)) {
+        if ((!validateOrderPositiveNumber(orderNumber)) || (!validateOrderRange(orderNumber, lineName))){
             throw new OrderRangeException();
         }
     }
@@ -140,9 +150,6 @@ public class Edge {
     }
 
     private static boolean validateOrderRange(int order, String lineName) {
-        if (!validateOrderPositiveNumber(order)) {
-            return false;
-        }
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
             if (line.getName().equals(lineName)) {

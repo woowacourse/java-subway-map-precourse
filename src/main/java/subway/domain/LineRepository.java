@@ -48,7 +48,7 @@ public class LineRepository {
             Line line = lines.get(i);
             OutputView.printLineMapElement(line.getName());
             OutputView.printLineMapElement(DIVIDING_LINE);
-            line.runLineMap();
+            line.printLine();
             OutputView.printEmptyLine();
         }
     }
@@ -57,7 +57,7 @@ public class LineRepository {
         OutputView.printAddActionMessage(lineMessage);
         String newLineName = inputView.getInput();
         if (Line.validateAddLineName(newLineName, lineMessage)) {
-            List<String> boundStations = Line.getBoundsStation(inputView, stationMessage);
+            List<String> boundStations = Line.getValidBoundsStation(inputView, stationMessage);
             Line newLine = new Line(newLineName);
             newLine.setBoundStations(boundStations);
             LineRepository.addLine(newLine);
