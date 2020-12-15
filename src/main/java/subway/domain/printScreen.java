@@ -156,18 +156,18 @@ public class printScreen {
     }
 
     public static void printErrorAddLine() {
-        System.out.println("\n[ERROR] 등록할 수 없는 노선입니다.");
+        System.out.println("\n[ERROR] 등록할 수 없는 노선입니다.\n");
     }
 
     public static void printErrorDeleteLine() {
-        System.out.println("\n[ERROR] 삭제할 수 없는 노선입니다.");
+        System.out.println("\n[ERROR] 삭제할 수 없는 노선입니다.\n");
     }
 
     public static void printErrorAddSection() {
-        System.out.println("\n[ERROR] 등록할 수 없는 구간입니다.");
+        System.out.println("\n[ERROR] 등록할 수 없는 구간입니다.\n");
     }
 
     public static void printErrorDeleteSection() {
-        System.out.println("\n[ERROR] 삭제할 수 없는 구간입니다.");
+        System.out.println("\n[ERROR] 삭제할 수 없는 구간입니다.\n");
     }
 }
