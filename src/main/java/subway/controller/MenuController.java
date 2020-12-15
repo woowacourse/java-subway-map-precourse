@@ -57,7 +57,7 @@ public class MenuController {
             if (isQuit()) {
                 return QUIT_SIGN;
             }
-            runAction(getSubMenu(selectedMenus.get(SUB_MENU_ACTION_INDEX)));
+            runAction(getSubMenu(selectedMenus.get(SUB_MENU_INDEX)));
             return NORMAL_SIGN;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -85,7 +85,7 @@ public class MenuController {
             runActionStatus = Menu.runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         }
         if (menu == Menu.lineMap) {
-            Menu.runLineMapMenu();
+            runActionStatus = Menu.runLineMapMenu();
         }
         //돌아가기를 선택한 경우
         if (!runActionStatus) {

@@ -128,7 +128,8 @@ public class Menu {
         return true;
     }
 
-    public static void runLineMapMenu() {
+    public static boolean runLineMapMenu() {
         LineRepository.runLineMap();
+        return true;
     }
 }
