@@ -1,13 +1,15 @@
 package subway.view;
 
+import subway.controller.LineController;
+
 import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class SectionMenu {
     public enum SectionView{
-        REGISTER_SECTION("1", "구간 등록", () -> ),
-        DELETE_SECTION("2", "구간 삭제", () -> ),
-        BACK("B", "돌아가기", () ->);
+        REGISTER_SECTION("1", "구간 등록", () -> LineController.getInstance().registerSection()),
+        DELETE_SECTION("2", "구간 삭제", () -> LineController.getInstance().deleteSection()),
+        BACK("B", "돌아가기", () -> LineController.getInstance().back());
 
         private String key;
         private String menuList;
