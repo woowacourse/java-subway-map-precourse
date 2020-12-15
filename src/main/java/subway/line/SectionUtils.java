@@ -52,11 +52,16 @@ public class SectionUtils {
         int lineIndex;
 
         System.out.println("\n## 노선을 입력하세요.");
-        selectedLine = LineRepository.selectLineByName(scanner.next());
+        String selectedLineName = scanner.next();
+        Validator.isLineExist(selectedLineName);
+        selectedLine = LineRepository.selectLineByName(selectedLineName);
         System.out.println("\n## 역이름을 입력하세요.");
-        selectedStation = StationRepository.getStationByName(scanner.next());
+        String selectedStationName = scanner.next();
+        Validator.isStationExist(selectedStationName);
+        selectedStation = StationRepository.getStationByName(selectedStationName);
         System.out.println("\n## 순서를 입력하세요.");
         lineIndex = scanner.nextInt();
+        Validator.isIndexInBound(lineIndex);
         selectedLine.addStation(lineIndex, selectedStation);
         System.out.println("\n[INFO] 구간이 등록되었습니다.\n");
     }

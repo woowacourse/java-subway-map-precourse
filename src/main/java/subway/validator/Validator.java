@@ -9,6 +9,7 @@ public class Validator {
     private static final String NOT_EXIST_STATION = "[ERROR] 등록되지 않은 역 이름입니다.";
     private static final String ALREADY_EXIST_LINE = "[ERROR] 이미 등록된 노선 이름입니다.";
     private static final String NOT_EXIST_LINE = "[ERROR] 등록되지 않은 노선 이름입니다.";
+    private static final String OVER_INDEX_OF_LINE_NUMBER = "[ERROR] 역의 수를 초과하는 입력입니다.";
     private static final int MIN_STATION_AND_LINE_NUMBER = 1;
     private static final int MAX_STATION_AND_LINE_NUMBER = 3;
     private static final int MIN_MAIN_NUMBER = 1;
@@ -97,7 +98,13 @@ public class Validator {
 
     public static void isLineExist(String name) {
         if (LineRepository.selectLineByName(name) == null) {
-            throw new IllegalArgumentException(ALREADY_EXIST_LINE);
+            throw new IllegalArgumentException(NOT_EXIST_LINE);
+        }
+    }
+    
+    public static void isIndexInBound(int index) {
+        if (LineRepository.lines().size() < index) {
+            throw new IllegalArgumentException(OVER_INDEX_OF_LINE_NUMBER);
         }
     }
 }
