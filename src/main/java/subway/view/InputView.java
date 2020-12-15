@@ -28,7 +28,14 @@ public class InputView {
     }
 
     public String getName() {
-        return scanner.nextLine();
+        try {
+            String name = scanner.nextLine();
+            inputValidator.validateContainSpecialCharacters(name);
+            return name;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return getName();
+        }
     }
 
     public int getNumber() {
