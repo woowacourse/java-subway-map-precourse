@@ -5,7 +5,6 @@ import static subway.console.message.ErrorMessage.EMPTY_LINE;
 
 import java.util.List;
 import java.util.Map;
-import subway.console.message.InfoMessage;
 import subway.domain.Line;
 import subway.domain.Station;
 
@@ -14,6 +13,11 @@ import subway.domain.Station;
  * @since 2020/12/13
  */
 public class Output {
+    public static final String STATIONS = "\n## 역목록";
+    public static final String LINES = "\n## 노선목록";
+    public static final String SUBWAY_LINE = "\n## 지하철 노선도";
+    public static final String INFO = "[INFO] ";
+    public static final String SUBWAY_INFO = "[INFO] ---";
 
     private Output() {
     }
@@ -24,14 +28,14 @@ public class Output {
 
     public static void printStations(List<Station> stations) {
         if (!stations.isEmpty()) {
-            print(InfoMessage.STATIONS);
+            print(STATIONS);
             stations.forEach(station -> print(combine(station.getName())));
         }
     }
 
     public static void printLines(List<Line> lines) {
         if (!lines.isEmpty()) {
-            print(InfoMessage.LINES);
+            print(LINES);
             lines.forEach(line -> print(combine(line.getName())));
         }
     }
@@ -42,14 +46,14 @@ public class Output {
             return;
         }
 
-        print(InfoMessage.SUBWAY_LINE);
+        print(SUBWAY_LINE);
         printSubwayInformation(sections);
     }
 
     private static void printSubwayInformation(Map<Line, List<Station>> sections) {
         for (Line line : sections.keySet()) {
             print(combine(line.getName()));
-            print(InfoMessage.SUBWAY_INFO);
+            print(SUBWAY_INFO);
 
             sections.get(line).forEach(station -> print(combine(station.getName())));
             printBlankLine();
@@ -57,7 +61,7 @@ public class Output {
     }
 
     private static String combine(String name) {
-        return InfoMessage.INFO + name;
+        return INFO + name;
     }
 
     private static boolean isEmpty(Map<Line, List<Station>> sections) {
