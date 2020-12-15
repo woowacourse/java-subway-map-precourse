@@ -1,10 +1,10 @@
 package subway.domain.menu;
 
 public enum MainMenu {
-    STATION("1", MenuList.STATION.getName()+" 관리")
-    , LINE("2", MenuList.LINE.getName()+" 관리")
-    , SECTION("3", MenuList.SECTION.getName()+" 관리")
-    , MAP("4", MenuList.MAP.getName()+" 출력")
+    STATION(String.valueOf(DataList.STATION.ordinal()+1), DataList.STATION.getName()+" 관리")
+    , LINE(String.valueOf(DataList.LINE.ordinal()+1), DataList.LINE.getName()+" 관리")
+    , SECTION(String.valueOf(DataList.SECTION.ordinal()+1), DataList.SECTION.getName()+" 관리")
+    , MAP(String.valueOf(DataList.MAP.ordinal()+1), DataList.MAP.getName()+" 출력")
     , END("Q", "종료");
 
     final private String order;

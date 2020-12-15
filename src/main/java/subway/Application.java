@@ -1,5 +1,6 @@
 package subway;
 
+import subway.domain.menu.DataList;
 import subway.view.OutputView;
 
 import java.util.Scanner;
@@ -10,5 +11,6 @@ public class Application {
         // TODO: 프로그램 구현
 
         OutputView.printMainView();
+        OutputView.printManagementView(DataList.SECTION);
     }
 }
