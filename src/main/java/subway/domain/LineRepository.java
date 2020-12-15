@@ -29,10 +29,16 @@ public class LineRepository {
     			return line;
     		}
     	}
-    	System.out.println(name+ " ¸øÃ£À½");
+    	System.out.println();
 		return null;
 	}
-
+	public static void viewLine() {
+		for (int line = 0; line < lines.size(); line++) {
+			System.out.println("[INFO] " +lines.get(line).getName());
+		}
+		System.out.println();
+	}
+	
 	public static void viewLineRepository() {
 		for (int line = 0; line < lines.size(); line++) {
 			lines.get(line).viewLine();
