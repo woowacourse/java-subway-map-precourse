@@ -63,10 +63,8 @@ public class SectionManagementView extends View {
 
     private void addSection() {
         Line line = getLine();
-        Station station = getStation();
+        Station station = getStation(line);
         int sequence = getSequence();
-
-        validatePossibleSequence(line, sequence);
 
         line.addStation(sequence, station);
         System.out.println("[INFO] 구간이 등록되었습니다.");
@@ -83,12 +81,15 @@ public class SectionManagementView extends View {
         return LineRepository.getLine(input);
     }
 
-    private Station getStation() {
+    private Station getStation(Line line) {
         System.out.println("## 역이름을 입력하세요.");
         String input = scanner.nextLine();
 
         if (!StationRepository.isContainedStationName(input)) {
             throw new DomainIsNotExistedException();
+        }
+        if (line.isContainedStationName(input)) {
+            throw new IllegalArgumentException("[ERROR] 이미 노선에 등록된 역입니다.");
         }
 
         return StationRepository.getStation(input);
@@ -101,13 +102,7 @@ public class SectionManagementView extends View {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
-        }
-    }
-
-    private void validatePossibleSequence(Line line, int sequence) {
-        if (line.stations().size() < sequence) {
-            throw new IllegalArgumentException("가능하지 않는 순서입니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
 
