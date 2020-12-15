@@ -32,6 +32,7 @@ public class MainMenu {
                 new StationMenu(scanner).startStationMenu();
             }
             if (input.equals("2")) {
+                new LineMenu(scanner).startLineMenu();
             }
             if (input.equals("3")) {
             }
