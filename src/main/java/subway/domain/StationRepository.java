@@ -32,4 +32,13 @@ public class StationRepository {
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+    
+    public static Station getStationByName(String name) {
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
+                return station;
+            }
+        }
+        return null;
+    }
 }

@@ -19,4 +19,20 @@ public class LineScreen implements Screen{
         System.out.println(BACK);
         System.out.println();
     }
+    
+    public static void askAddLineName() {
+        System.out.println(SHARP + INPUT_ADD_LINE_NAME);
+	}
+    
+    public static void askAddLineUpTerminalName() {
+        System.out.println(SHARP + INPUT_ADD_LINE_UP_TERMINAL_NAME);
+    }
+	
+    public static void askAddLineDownTerminalName() {
+        System.out.println(SHARP + INPUT_ADD_LINE_DOWN_TERMINAL_NAME);
+    }
+
+    public static void askDeleteLineName() {
+        System.out.println(SHARP + INPUT_DELETE_LINE_NAME);
+    }
 }
