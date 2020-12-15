@@ -10,22 +10,15 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SubwayManager {
-    private static final String GYODAE = "교대역";
-    private static final String GANGNAM = "강남역";
-    private static final String YUKSAM = "역삼역";
-    private static final String NAMBUTERMINAL = "남부터미널역";
-    private static final String YANGJAE = "양재역";
-    private static final String YANGJAECITIZENFOREST = "양재시민의숲역";
-    private static final String MAEBONG = "매봉역";
     private static final String[] INITIAL_STATIONS =
-        {GYODAE, GANGNAM, YUKSAM, NAMBUTERMINAL, YANGJAE, YANGJAECITIZENFOREST, MAEBONG};
+        {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
     private static final String LINE_TWO = "2호선";
     private static final String LINE_THREE = "3호선";
     private static final String LINE_SINBUNDANG = "신분당선";
-    private static final int FIRST_STATION = 0;
-    private static final int SECOND_STATION = 1;
-    private static final int THIRD_STATION = 2;
-    private static final int FOURTH_STATION = 3;
+    private static final String[] LINE_TWO_STATIONS = {"교대역", "강남역", "역삼역"};
+    private static final String[] LINE_THREE_STATIONS = {"교대역", "남부터미널역", "양재역", "매봉역"};
+    private static final String[] LINE_SINBUNDANG_STATIONS = {"강남역", "양재역", "양재시민의숲역"};
+    private static final int UPWARD_END_STATION_ORDER = 0;
 
     public SubwayManager() {
         settingInitialSubways();
@@ -37,27 +30,30 @@ public class SubwayManager {
     }
 
     private void settingInitialSubways() {
-        Arrays.asList(INITIAL_STATIONS).stream()
+        settingInitialStations();
+
+        settingInitialLines(LINE_TWO, LINE_TWO_STATIONS);
+        settingInitialLines(LINE_THREE, LINE_THREE_STATIONS);
+        settingInitialLines(LINE_SINBUNDANG, LINE_SINBUNDANG_STATIONS);
+    }
+
+    private void settingInitialStations() {
+        Arrays.stream(INITIAL_STATIONS)
             .map(Station::new)
             .forEach(StationRepository::addStation);
+    }
 
-        Line lineTwo = new Line(LINE_TWO);
-        lineTwo.addLineStation(FIRST_STATION, new Station(GYODAE));
-        lineTwo.addLineStation(SECOND_STATION, new Station(GANGNAM));
-        lineTwo.addLineStation(THIRD_STATION, new Station(YUKSAM));
-        LineRepository.addLine(lineTwo);
+    private void settingInitialLines(String lineName, String[] stationNames) {
+        Line line = new Line(lineName);
+        addStationInLine(line, stationNames);
+        LineRepository.addLine(line);
+    }
 
-        Line lineThree = new Line(LINE_THREE);
-        lineThree.addLineStation(FIRST_STATION, new Station(GYODAE));
-        lineThree.addLineStation(SECOND_STATION, new Station(NAMBUTERMINAL));
-        lineThree.addLineStation(THIRD_STATION, new Station(YANGJAE));
-        lineThree.addLineStation(FOURTH_STATION, new Station(MAEBONG));
-        LineRepository.addLine(lineThree);
-
-        Line lineSinBundang = new Line(LINE_SINBUNDANG);
-        lineSinBundang.addLineStation(FIRST_STATION, new Station(GANGNAM));
-        lineSinBundang.addLineStation(SECOND_STATION, new Station(YANGJAE));
-        lineSinBundang.addLineStation(THIRD_STATION, new Station(YANGJAECITIZENFOREST));
-        LineRepository.addLine(lineSinBundang);
+    private void addStationInLine(Line line, String[] stationNames) {
+        int order = UPWARD_END_STATION_ORDER;
+        for (String stationName : stationNames) {
+            line.addLineStation(order, new Station(stationName));
+            order++;
+        }
     }
 }
