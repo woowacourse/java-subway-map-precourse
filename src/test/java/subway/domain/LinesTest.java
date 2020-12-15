@@ -16,6 +16,7 @@ class LinesTest {
     static final String THIRD_LINE_NAME = "3호선";
     static final String FORTH_LINE_NAME = "4호선";
     static final String SADANG_STATION = "사당역";
+
     Lines lines;
     Line secondLine;
     Station startStation;
@@ -46,7 +47,7 @@ class LinesTest {
 
     @DisplayName("예외 : 같은 이름의 노선이 있으면 예외를 발생시킨다")
     @Test
-    void shortLineNameTest() {
+    void sameLineNameTest() {
         Station startStation = StationFactory.makeStation("사당역");
         Station lastStation = StationFactory.makeStation("신대방역");
 
@@ -64,7 +65,6 @@ class LinesTest {
         lines.deleteLine(SECOND_LINE_NAME);
         assertThat(lines.size()).isEqualTo(beforeSize - 1);
     }
-
 
     @DisplayName("노선을 찾는다")
     @Test
