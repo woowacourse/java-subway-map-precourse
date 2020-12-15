@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,5 +17,15 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean existStation(String stationName){
+        return stations.stream().noneMatch(s -> s.getName().equals(stationName));
+    }
+
+    public void addStation(String stationName, int order){
+        stations.add(order, new Station(stationName));
+    }
+
+    public boolean checkStationSize(){
+        return stations.size()<= Constant.MIN_LENGTH;
+    }
 }

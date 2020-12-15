@@ -39,6 +39,6 @@ public class StationRepository {
     }
 
     public static boolean checkNameLength(String name) {
-        return name.length() <= Constant.MIN_NAME_LENGTH;
+        return name.length() <= Constant.MIN_LENGTH;
     }
 }

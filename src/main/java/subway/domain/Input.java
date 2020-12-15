@@ -27,16 +27,20 @@ public class Input {
         if (flag.equals(Constant.FIRST_COMMAND)) {
             stationController.printSelection();
             return;
-        } else if (flag.equals(Constant.SECOND_COMMAND)) {
+        }
+        if (flag.equals(Constant.SECOND_COMMAND)) {
             lineController.printSelection();
             return;
-        } else if (flag.equals(Constant.THIRD_COMMAND)) {
+        }
+        if (flag.equals(Constant.THIRD_COMMAND)) {
             sectionController.printSelection();
             return;
-        } else if(flag.equals(Constant.FORTH_COMMAND)){
+        }
+        if(flag.equals(Constant.FORTH_COMMAND)){
             sectionController.readSections();
             return;
-        } else if (flag.equals(Constant.QUIT_COMMAND)) {
+        }
+        if (flag.equals(Constant.QUIT_COMMAND)) {
             quit = true;
             return;
         }

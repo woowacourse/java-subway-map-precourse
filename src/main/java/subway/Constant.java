@@ -1,7 +1,7 @@
 package subway;
 
 public class Constant {
-    public static final int MIN_NAME_LENGTH = 2;
+    public static final int MIN_LENGTH = 2;
     public static final String FIRST_COMMAND = "1";
     public static final String SECOND_COMMAND = "2";
     public static final String THIRD_COMMAND = "3";

@@ -14,10 +14,10 @@ public class SectionRepository {
         }
         try{
             Line targetLine = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get();
-            if(targetLine.stations.stream().noneMatch(s -> s.getName().equals(stationName))){
+            if(targetLine.existStation(stationName)){
                 throw new IllegalStateException();
             }
-            targetLine.stations.add(order, new Station(stationName));
+            targetLine.addStation(stationName, order);
         }catch (IndexOutOfBoundsException e){
             throw new IndexOutOfBoundsException();
         }
@@ -27,11 +27,11 @@ public class SectionRepository {
         if (!validate(lineName, stationName)) {
             throw new IllegalArgumentException();
         }
-        List<Station> stations = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get().stations;
-        if(stations.size()<=Constant.MIN_NAME_LENGTH){
+        Line line = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get();
+        if(line.checkStationSize()){
             throw new IllegalStateException();
         }
-        return stations.removeIf(s -> Objects.equals(s.getName(), stationName));
+        return line.stations.removeIf(s -> Objects.equals(s.getName(), stationName));
     }
 
     static boolean validate(String lineName, String stationName){
