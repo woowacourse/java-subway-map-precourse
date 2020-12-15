@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import subway.Controller.StationController;
+import subway.Controller.domain.StationController;
 
 public class StationInputExceptionHandler extends InputExceptionHandler {
 

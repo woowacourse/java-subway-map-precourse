@@ -1,5 +1,6 @@
-package subway.Controller;
+package subway.Controller.domain;
 
+import subway.Controller.MainController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -70,7 +71,7 @@ public class LineController {
 
         StationRepository.addStation(fromStation);
         StationRepository.addStation(toStation);
-        
+
         newLine.addStationByOrder(fromStation, 0);
         newLine.addStationByOrder(toStation, 1);
         LineRepository.addLine(newLine);

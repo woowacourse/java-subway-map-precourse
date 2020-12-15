@@ -1,6 +1,6 @@
 package subway.exception.domain;
 
-import subway.Controller.StationController;
+import subway.Controller.domain.StationController;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 import subway.exception.CustomException;
