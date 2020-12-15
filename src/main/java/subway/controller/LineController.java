@@ -7,6 +7,9 @@ import subway.view.Output;
 
 public class LineController {
 
+    private LineController() {
+    }
+
     public void save() {
         try {
             LineService.save(new Line(Input.input(Input.PLEASE_INPUT_LINE_MESSAGE)));
