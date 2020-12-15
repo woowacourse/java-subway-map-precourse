@@ -20,8 +20,7 @@ public class SubwayManager {
     }
 
     public void manage() {
-        while (true)
-        {
+        while (true) {
             OutputView.functionView(Category.MAIN.getName(), Category.MAIN.getActionOrder());
             String status = execute(InputView.inputCategory(scanner, Category.MAIN.getActionType()));
             if (status.equals("Q")) {

@@ -28,7 +28,7 @@ public class LineRepository {
                 .orElseThrow(CanNotFindLineException::new);
     }
 
-    public static boolean contains(String name) { // 이미 존재하는 노선인지 확인, 유효성 검사
+    public static boolean contains(String name) {
         return lines().stream()
                 .anyMatch(line -> Objects.equals(line.getName(), name));
     }

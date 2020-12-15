@@ -48,11 +48,11 @@ public class InputView {
 
     public static List<String> inputLineInfo(Scanner scanner) {
         System.out.println(INPUT_lINE_NAME);
-        String lineName =  scanner.next();
+        String lineName = scanner.next();
         System.out.println(UP_TERMINAL_STATION);
-        String upTerminalStation =  scanner.next();
+        String upTerminalStation = scanner.next();
         System.out.println(DOWN_TERMINAL_STATION);
-        String downTerminalStation =  scanner.next();
+        String downTerminalStation = scanner.next();
         return Arrays.asList(lineName, upTerminalStation, downTerminalStation);
     }
 

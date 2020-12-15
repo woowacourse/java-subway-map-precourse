@@ -42,10 +42,10 @@ public class SectionService {
     }
 
     private void isPossibleInsertSection(List<String> sectionInfo) {
-        if (!LineRepository.contains(sectionInfo.get(LINE_NAME))){
+        if (!LineRepository.contains(sectionInfo.get(LINE_NAME))) {
             throw new CanNotFindLineException();
         }
-        if (!StationRepository.contains(sectionInfo.get(SECTION_NAME))){
+        if (!StationRepository.contains(sectionInfo.get(SECTION_NAME))) {
             throw new CanNotFindStationException();
         }
         List<Station> updateSection = LineStationRepository.findByLineGetSections(sectionInfo.get(LINE_NAME));
@@ -60,10 +60,10 @@ public class SectionService {
 
 
     private void isPossibleDeleteSection(String lineName, String stationName) {
-        if (!LineRepository.contains(lineName)){
+        if (!LineRepository.contains(lineName)) {
             throw new CanNotFindLineException();
         }
-        if (!StationRepository.contains(stationName)){
+        if (!StationRepository.contains(stationName)) {
             throw new CanNotFindStationException();
         }
         List<Station> sections = LineStationRepository.findByLineGetSections(lineName);

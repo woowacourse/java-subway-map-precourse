@@ -19,7 +19,7 @@ public class StationManager {
         stationService = new StationService();
     }
 
-    public static void execute() { // 역 관리 실행
+    public static void execute() {
         OutputView.functionView(Category.STATION.getName(), Category.STATION.getActionOrder());
         String input = InputView.inputCategory(scanner, Category.STATION.getActionType());
 

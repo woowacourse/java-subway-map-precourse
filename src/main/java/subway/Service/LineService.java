@@ -1,9 +1,7 @@
 package subway.Service;
 
-import subway.Exception.LineException.CanNotFindLineException;
-import subway.Exception.LineException.DuplicateLineNameException;
-import subway.Exception.LineException.ShorterThanMinLineNameException;
-import subway.Exception.StationException.CanNotFindStationException;
+import subway.Exception.LineException.*;
+import subway.Exception.StationException.*;
 import subway.Manager.LineManager;
 import subway.domain.*;
 
@@ -28,7 +26,7 @@ public class LineService {
         }
     }
 
-    public void addLineAndStation(List<String> insertLineInfo) { // 노선이름, 상행, 하행 종점 등록
+    public void addLineAndStation(List<String> insertLineInfo) {
         Line newLine = new Line(insertLineInfo.get(LINE_NAME));
         Station upTerminalStation = StationRepository.findByName(insertLineInfo.get(UP_TERMINAL_STATION));
         Station downTerminalStation = StationRepository.findByName(insertLineInfo.get(DOWN_TERMINAL_STATION));
@@ -40,7 +38,7 @@ public class LineService {
 
     public void deleteLine(String lineName) {
         try {
-            if(!LineRepository.deleteLineByName(lineName)) {
+            if (!LineRepository.deleteLineByName(lineName)) {
                 throw new CanNotFindLineException();
             }
             LineStationRepository.deleteLineOnSubway(lineName);

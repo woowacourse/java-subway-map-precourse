@@ -11,8 +11,8 @@ public class SectionManager {
     private static final String SECTION_INSERT = "1";
     private static final String SECTION_DELETE = "2";
 
-    private static SectionService sectionService;
     private static final Scanner scanner = new Scanner(System.in);
+    private static SectionService sectionService;
 
     static {
         sectionService = new SectionService();
@@ -21,7 +21,6 @@ public class SectionManager {
     public static void execute() {
         OutputView.functionView(Category.SECTION.getName(), Category.SECTION.getActionOrder());
         String input = InputView.inputCategory(scanner, Category.SECTION.getActionType());
-//        String input = InputView.inputSectionFunction(scanner);
 
         if (input.equals(SECTION_INSERT)) {
             sectionService.addSectionOnTheLine(InputView.inputSectionInfo(scanner));
