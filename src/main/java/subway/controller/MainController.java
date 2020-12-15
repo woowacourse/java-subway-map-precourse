@@ -25,7 +25,7 @@ public class MainController {
         String selection = InputView.getSelectionView();
         MainInputExceptionHandler.unselectable(selection);
         if (selection.equals(STOP)) {
-            return;
+            System.exit(0);
         }
         execute(selection);
     }
