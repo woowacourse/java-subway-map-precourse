@@ -15,6 +15,7 @@ public class MessageView {
     public static final String GET_LINES_SUCCESS = "\n## 노선 목록";
     public static final String REMOVE_LINE_INPUT = "## 삭제할 노선 이름을 입력하세요.";
     public static final String REMOVE_LINE_SUCCESS = "[INFO] 지하철 노선이 삭제되었습니다.";
+    public static final String SUBWAY_LINE_MAP = "## 지하철 노선도";
 
     public void printAddStationMessage() {
         System.out.println(ADD_STATION);
@@ -66,5 +67,9 @@ public class MessageView {
 
     public void printRemoveLineSuccessMessage() {
         System.out.println(REMOVE_LINE_SUCCESS);
+    }
+
+    public void printSubwayLineMapMessage() {
+        System.out.println(SUBWAY_LINE_MAP);
     }
 }

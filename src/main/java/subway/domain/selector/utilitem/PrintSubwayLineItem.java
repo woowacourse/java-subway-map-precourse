@@ -12,7 +12,8 @@ public class PrintSubwayLineItem extends Selector implements Manipulable {
 
     @Override
     public void execute() {
-
+        messageView.printSubwayLineMapMessage();
+        outputView.printSubwayLineMap();
     }
 
 }

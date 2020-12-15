@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.List;
 import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
 import subway.domain.selector.menu.Menu;
 import subway.domain.station.Station;
 
@@ -37,6 +38,19 @@ public class OutputView {
     public void printLines(List<Line> lines) {
         for (Line line : lines) {
             System.out.println(INFORMATION_TAG + " " + line.getName());
+        }
+    }
+
+    public void printSubwayLineMap(){
+        List<Line> lines =  LineRepository.lines();
+
+        for(Line line : lines){
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INFO] ---");
+            for(Station station : line.stations()){
+                System.out.println("[INFO] " + station.getName());
+            }
+            System.out.println();
         }
     }
 
