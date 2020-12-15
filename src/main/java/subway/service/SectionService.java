@@ -14,7 +14,7 @@ import subway.repository.StationRepository;
  */
 public class SectionService {
 
-    public boolean addSection(String lineName, String stationName, String order) {
+    public boolean insertStation(String lineName, String stationName, String order) {
         try {
             Line line = LineRepository.findLineByName(lineName);
             Station station = StationRepository.findByName(stationName);

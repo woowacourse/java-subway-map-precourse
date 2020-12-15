@@ -71,7 +71,7 @@ public class SectionView {
         }
         String order = inputOrder();
 
-        return sectionController.createSection(line, station, order);
+        return sectionController.insertStation(line, station, order);
     }
 
     private String inputLine() {

@@ -13,8 +13,8 @@ public class SectionController {
         this.sectionService = new SectionService();
     }
 
-    public boolean createSection(String name, String line, String order) {
-        return sectionService.addSection(name, line, order);
+    public boolean insertStation(String name, String line, String order) {
+        return sectionService.insertStation(name, line, order);
     }
 
     public boolean deleteSection(String name, String station) {

@@ -19,8 +19,8 @@ public class LineController {
         return lineService.addLine(name);
     }
 
-    public boolean createSection(String name, String firstStation) {
-        return lineService.addSection(name, firstStation);
+    public boolean createSection(String lineName, String stationName) {
+        return lineService.addSection(lineName, stationName);
     }
 
     public boolean deleteLine(String name) {
