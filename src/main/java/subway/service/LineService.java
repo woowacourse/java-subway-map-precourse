@@ -11,7 +11,7 @@ public class LineService {
     private static final String DUPLICATE_ERROR = "[ERROR] 이미 등록된 노선 이름입니다.\n";
     private static final String NOT_DELETE_ERROR = "[ERROR] 삭제할 수 없습니다.\n";
     private static final String OUT_OF_BOUND_ERROR = "[ERROR] 범위 밖의 순서입니다.\n";
-    private static final String NOT_EXIST_ERROR = "[ERROR] 등록할 수 없습니다.\n";
+    private static final String NOT_EXIST_ERROR = "[ERROR] 해당 노선을 찾을 수 없습니다.\n";
     private static final String STATION_COUNT_ERROR = "[ERROR] 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다.\n";
     private static final String JUNCTION_ERROR = "[ERROR] 갈래길을 생성할 수 없습니다.\n";
 
