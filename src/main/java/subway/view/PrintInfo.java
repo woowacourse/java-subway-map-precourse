@@ -150,6 +150,16 @@ public class PrintInfo {
                 "[INFO] 구간이 삭제되었습니다.\n");
     }
 
+
+
+    public static void subwayMapTitle() {
+        System.out.println("\n## 지하철 노선도");
+    }
+
+    public static void subwayMapLine(String lineName) {
+        System.out.println("[INFO] " + lineName + "\n[INFO] ---");
+    }
+
     public static void printList(List<String> list) {
         list.forEach(item -> System.out.println("[INFO] " + item));
         System.out.println();
