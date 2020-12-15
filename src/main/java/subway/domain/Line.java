@@ -12,7 +12,7 @@ public class Line extends LineException {
     private static final String SYMBOL_INFO = "[INFO] ";
     private static final String HORIZONTAL_DELIMITER = SYMBOL_INFO + "---";
     private String name;
-    private LinkedList<Station> stationsOnLine = new LinkedList<>(); // 해당 노선에 소속된 역(들)
+    private LinkedList<Station> stationsOnLine = new LinkedList<>();
 
     public Line(String name) {
         this.name = name;

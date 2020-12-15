@@ -64,7 +64,7 @@ public class LineRepository extends LineException {
 
     public static void deleteLineByName(String lineName) {
         Line lineSelected = getLine(lineName);
-        disEnrollStations(lineSelected); // 노선에 속한 역 등록 해제
+        disEnrollStations(lineSelected);
         lines.remove(lineSelected);
     }
 

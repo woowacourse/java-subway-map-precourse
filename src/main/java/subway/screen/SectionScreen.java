@@ -3,7 +3,6 @@ package subway.screen;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import subway.menu.SectionMenu;
@@ -16,25 +15,40 @@ public class SectionScreen implements SubwayScreen, SectionMessage {
     public void startProcess(Scanner scanner) {
         do {
             printScreen();
-            sectionScreenInput = validateInput(scanner.nextLine());
-            SectionMenu.executeMenuByInput(scanner, sectionScreenInput);
+            validateInput(scanner);
+            selectProcess(scanner, sectionScreenInput);
         } while (!sectionScreenInput.equals(SectionMenu.BACK.getSymbol()));
     }
 
     @Override
     public void printScreen() {
         System.out.println(SectionMenu.getScreen());
-        System.out.println(MESSAGE_MENU_SELECT);
     }
 
     @Override
-    public String validateInput(String input) {
+    public void validateInput(Scanner scanner) {
         List<String> choices = Arrays.stream(SectionMenu.values())
             .map(SectionMenu::getSymbol)
             .collect(Collectors.toCollection(ArrayList::new));
-        if (!choices.contains(input)) {
-            throw new NoSuchElementException(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
+        do {
+            System.out.println(MESSAGE_MENU_SELECT);
+            sectionScreenInput = scanner.nextLine();
+        } while (!IsInputOnTheMenuList(sectionScreenInput, choices));
+    }
+
+    public void selectProcess(Scanner scanner, String sectionScreenInput) {
+        try {
+            SectionMenu.executeMenuByInput(scanner, sectionScreenInput);
+        } catch (Exception e) {
+            System.out.println(NEW_LINE + e.getMessage());
         }
-        return input;
+    }
+
+    private boolean IsInputOnTheMenuList(String input, List<String> choices) {
+        if (!choices.contains(input)) {
+            System.out.println(ERROR_MAIN_SCREEN_NOT_VALID_INPUT);
+            return false;
+        }
+        return true;
     }
 }

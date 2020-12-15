@@ -9,19 +9,19 @@ import subway.screen.StationScreen;
 
 public enum MainMenu {
     STATION_MANAGE("1") {
-        @Override void executeMenu(Scanner scanner) { new StationScreen().startProcess(scanner); }
+        @Override void execute(Scanner scanner) { new StationScreen().startProcess(scanner); }
     },
     LINE_MANAGE("2") {
-        @Override void executeMenu(Scanner scanner) { new LineScreen().startProcess(scanner); }
+        @Override void execute(Scanner scanner) { new LineScreen().startProcess(scanner); }
     },
     SECTION_MANAGE("3") {
-        @Override void executeMenu(Scanner scanner) { new SectionScreen().startProcess(scanner); }
+        @Override void execute(Scanner scanner) { new SectionScreen().startProcess(scanner); }
     },
     SUBWAY_MAP("4") {
-        @Override void executeMenu(Scanner scanner) { LineRepository.printSubwayMap(); }
+        @Override void execute(Scanner scanner) { LineRepository.printSubwayMap(); }
     },
     QUIT("Q") {
-        @Override void executeMenu(Scanner scanner) { }
+        @Override void execute(Scanner scanner) { }
     };
 
     private final String symbol;
@@ -30,13 +30,13 @@ public enum MainMenu {
     MainMenu(String symbol) { this.symbol = symbol; }
     public String getSymbol() { return symbol; }
     public static String getScreen() { return screen; }
-    abstract void executeMenu(Scanner scanner);
+    abstract void execute(Scanner scanner);
 
     public static void executeMenuByInput(String input, Scanner scanner) {
         Arrays.stream(MainMenu.values())
             .filter(menu -> menu.getSymbol().equals(input))
             .findAny()
             .get()
-            .executeMenu(scanner);
+            .execute(scanner);
     }
 }
