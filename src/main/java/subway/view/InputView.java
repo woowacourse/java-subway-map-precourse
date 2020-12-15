@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.exception.CategorySelectionException;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -21,7 +23,7 @@ public class InputView {
             System.out.println(CHOOSE_CATEGORY);
             try {
                 return validateCategorySelection(getUserInput(), endInclusive);
-            } catch (IllegalArgumentException e) {
+            } catch (Exception e) {
                 System.err.println(e);
                 isValidInput = false;
             }
@@ -35,7 +37,7 @@ public class InputView {
         if (!(userInput.matches(USER_INPUT_REGEX_START +
                 endInclusive + USER_INPUT_REGEX_END)
                 || userInput.equals(BACK) || userInput.equals(QUIT))) {
-            throw new IllegalArgumentException();
+            throw new CategorySelectionException();
         }
         return userInput;
     }

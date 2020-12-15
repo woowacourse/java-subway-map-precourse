@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.exception.LineNotExistException;
+
 import java.util.*;
 
 public class SectionRepository {
@@ -17,7 +19,7 @@ public class SectionRepository {
         if (sections.containsKey(line)) {
             sections.remove(line);
         }
-        throw new IllegalArgumentException();
+        throw new LineNotExistException();
     }
 
     public static Section findSection(Line line) {

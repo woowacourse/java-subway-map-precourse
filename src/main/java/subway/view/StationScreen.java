@@ -56,7 +56,7 @@ public class StationScreen implements Screen {
         System.out.println(NEW_LINE + INFO + COMPLETE_MESSAGE_DELETION);
     }
 
-    public void printError(Exception e) {
+    public void printError(String e) {
         System.out.println(e);
     }
 

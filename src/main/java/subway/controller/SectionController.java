@@ -1,6 +1,10 @@
 package subway.controller;
 
 import subway.domain.*;
+import subway.exception.AlreadyExistException;
+import subway.exception.SectionNotExistException;
+import subway.exception.StationEmptyException;
+import subway.exception.StationNotExistException;
 import subway.view.SectionScreen;
 import subway.view.InputView;
 
@@ -44,8 +48,8 @@ public class SectionController implements Controller {
         String userInput = screen.showPromptRegisterSection();
         try {
             registerSectionHelper(userInput);
-        } catch (IllegalArgumentException e) {
-            screen.printError(e);
+        } catch (Exception e) {
+            screen.printError(e.getMessage());
             return;
         }
         screen.printRegistrationCompleted();
@@ -55,9 +59,8 @@ public class SectionController implements Controller {
         Line line = LineRepository.findLine(userInput);
         Section section = SectionRepository.findSection(line);
         Station station = getStationToAdd();
-
         if (section.contains(station)) {
-            throw new IllegalArgumentException();
+            throw new AlreadyExistException();
         }
         int indexToAdd = getIndexToAdd(section.getSection()) - 1;
         section.getSection().add(indexToAdd, station);
@@ -71,18 +74,18 @@ public class SectionController implements Controller {
     private int getIndexToAdd(List<Station> section) {
         screen.printSectionToAdd();
         int indexToAdd = Integer.parseInt(InputView.getUserInput());
-        if (indexToAdd > 0 || indexToAdd <= section.size()) {
+        if (indexToAdd > 0 && indexToAdd <= section.size()) {
             return indexToAdd;
         }
-        throw new IllegalArgumentException();
+        throw new SectionNotExistException();
     }
 
     private void deleteSection() {
         String userInput = screen.showPromptDeleteSection();
         try {
             deleteSectionHelper(userInput);
-        } catch (IllegalArgumentException e) {
-            screen.printError(e);
+        } catch (Exception e) {
+            screen.printError(e.getMessage());
             return;
         }
         screen.printDeletionCompleted();
@@ -92,11 +95,11 @@ public class SectionController implements Controller {
         Line line = LineRepository.findLine(userInput);
         Section section = SectionRepository.findSection(line);
         if (section.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new StationEmptyException();
         }
         Station station = screen.showPromptStationToDelete();
         if (!section.contains(station)) {
-            throw new IllegalArgumentException();
+            throw new StationNotExistException();
         }
         section.removeSection(station);
     }

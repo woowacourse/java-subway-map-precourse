@@ -1,5 +1,8 @@
 package subway.domain;
 
+import subway.exception.StationEmptyException;
+import subway.exception.StationNotExistException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +16,7 @@ public class StationRepository {
 
     public static void addStation(Station station) {
         if (stations.contains(station)) {
-            throw new IllegalArgumentException();
+            throw new StationNotExistException();
         }
         stations.add(station);
     }
@@ -24,19 +27,19 @@ public class StationRepository {
                 return station;
             }
         }
-        throw new IllegalArgumentException();
+        throw new StationNotExistException();
     }
 
-    public static boolean deleteStation(String name) {
+    public static void deleteStation(String name) {
         if (stations.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new StationEmptyException();
         }
         for (Station station : stations) {
             if (station.getName().equals(name)) {
                 stations.remove(station);
-                return true;
+                return;
             }
         }
-        throw new IllegalArgumentException();
+        throw new StationNotExistException();
     }
 }

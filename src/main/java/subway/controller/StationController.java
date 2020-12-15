@@ -46,8 +46,8 @@ public class StationController implements Controller {
         String userInput = screen.showPromptRegisterStation();
         try {
             StationRepository.addStation(new Station(userInput));
-        } catch (IllegalArgumentException e) {
-            screen.printError(e);
+        } catch (Exception e) {
+            screen.printError(e.getMessage());
             registerStation();
         }
         screen.printRegistrationCompleted();
@@ -57,8 +57,8 @@ public class StationController implements Controller {
         String userInput = screen.showPromptDeleteStation();
         try {
             StationRepository.deleteStation(userInput);
-        } catch (IllegalArgumentException e) {
-            screen.printError(e);
+        } catch (Exception e) {
+            screen.printError(e.getMessage());
             return;
         }
         screen.printDeletionCompleted();

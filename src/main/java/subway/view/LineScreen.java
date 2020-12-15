@@ -67,7 +67,7 @@ public class LineScreen implements Screen {
         System.out.println(INFO + COMPLETION_MESSAGE_DELETION);
     }
 
-    public void printError(Exception e) {
+    public void printError(String e) {
         System.out.println(e);
     }
 

@@ -69,7 +69,7 @@ public class SectionScreen implements Screen {
         System.out.println(PROMPT_SECTION_TO_ADD);
     }
 
-    public void printError(Exception e) {
+    public void printError(String e) {
         System.out.println(e);
     }
 }

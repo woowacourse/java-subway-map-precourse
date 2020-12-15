@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.exception.DuplicateStationException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class Section {
 
     private void validateIfDuplicate(Station upstreamStation, Station downstreamStation) {
         if (upstreamStation.equals(downstreamStation)) {
-            throw new IllegalArgumentException();
+            throw new DuplicateStationException();
         }
     }
 }

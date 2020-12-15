@@ -38,8 +38,10 @@ public class MainScreen implements Screen {
     public void printTransitMap() {
         StringBuilder transitMap = new StringBuilder();
         transitMap.append(TRANSIT_MAP);
+
         for (Line line : SectionRepository.sections().keySet()) {
             transitMap.append(INFO + line.getName() + INFO + DASH);
+
             for (Station station : SectionRepository.findSection(line).getSection()) {
                 transitMap.append(INFO + station.getName());
             }

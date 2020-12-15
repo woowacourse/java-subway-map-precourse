@@ -1,5 +1,8 @@
 package subway.domain;
 
+import subway.exception.LineEmptyException;
+import subway.exception.LineNotExistException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,17 +24,17 @@ public class LineRepository {
                 return line;
             }
         }
-        throw new IllegalArgumentException();
+        throw new LineNotExistException();
     }
 
     public static void deleteLine(Line line) {
         if (lines.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new LineEmptyException();
         }
         if (lines.contains(line)) {
             lines.remove(line);
             return;
         }
-        throw new IllegalArgumentException();
+        throw new LineNotExistException();
     }
 }

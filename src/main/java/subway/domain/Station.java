@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.exception.NotValidNameException;
+
 import java.util.Objects;
 
 public class Station {
@@ -14,7 +16,7 @@ public class Station {
 
     private void validateLength(String userInput) {
         if (!(userInput.length() >= VALID_LENGTH)) {
-            throw new IllegalArgumentException();
+            throw new NotValidNameException();
         }
     }
 

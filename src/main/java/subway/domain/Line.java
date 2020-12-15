@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.exception.NotValidNameException;
+
 public class Line {
     private static final int VALID_LENGTH = 2;
 
@@ -16,7 +18,7 @@ public class Line {
 
     private void validateLength(String userInput) {
         if (!(userInput.length() >= VALID_LENGTH)) {
-            throw new IllegalArgumentException();
+            throw new NotValidNameException();
         }
     }
 }

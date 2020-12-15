@@ -49,8 +49,8 @@ public class LineController implements Controller {
             initiateSection(section);
             LineRepository.addLine(line);
             SectionRepository.addSection(line, section);
-        } catch (IllegalArgumentException e) {
-            screen.printError(e);
+        } catch (Exception e) {
+            screen.printError(e.getMessage());
             registerLine();
             return;
         }
@@ -66,11 +66,11 @@ public class LineController implements Controller {
 
             String userInputDownstreamStation = screen.showPromptDownstreamStation();
             downstreamStation = StationRepository.findStation(userInputDownstreamStation);
+            section.initiateSection(upstreamStation, downstreamStation);
         } catch (Exception e) {
-            screen.printError(e);
+            screen.printError(e.getMessage());
             initiateSection(section);
         }
-        section.initiateSection(upstreamStation, downstreamStation);
     }
 
     private void deleteLine() {
@@ -79,8 +79,9 @@ public class LineController implements Controller {
             Line lineToDelete = LineRepository.findLine(userInput);
             SectionRepository.deleteSection(lineToDelete);
             LineRepository.deleteLine(lineToDelete);
-        } catch (IllegalArgumentException e) {
-            screen.printError(e);
+        } catch (Exception e) {
+            screen.printError(e.getMessage());
+            action();
             return;
         }
         screen.printDeletionCompleted();
