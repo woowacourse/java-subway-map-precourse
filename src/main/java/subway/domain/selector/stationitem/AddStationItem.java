@@ -18,7 +18,7 @@ public class AddStationItem extends Selector implements Manipulable {
     public void execute() {
         messageView.printAddStationMessage();
 
-        String stationName = inputView.getStationName();
+        String stationName = inputView.getName();
         stationValidator.validateAddStation(stationName);
         StationRepository.addStation(new Station(stationName));
 
