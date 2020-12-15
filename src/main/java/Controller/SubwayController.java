@@ -32,18 +32,22 @@ public class SubwayController {
         if (userInput.equals("1")) {
             inputCheck = true;
             StationController.runStationController(scanner);
+            run(scanner);
         }
         if (userInput.equals("2")) {
             inputCheck = true;
             LineController.runLineController(scanner);
+            run(scanner);
         }
         if (userInput.equals("3")) {
             inputCheck = true;
             SectionController.runSectionController(scanner);
+            run(scanner);
         }
         if (userInput.equals("4")) {
             inputCheck = true;
             printSubway();
+            run(scanner);
         }
         if (userInput.equals("Q")) {
             inputCheck = true;

@@ -63,6 +63,7 @@ public class StationController {
         }
         if (!flag) {
             System.out.println("[ERROR] 등록되자않은 역입니다.");
+            deleteStation(scanner);
         }
     }
 
