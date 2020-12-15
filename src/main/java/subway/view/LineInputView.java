@@ -152,12 +152,12 @@ public class LineInputView {
         System.out.println(REMOVE_LINE_MESSAGE);
         String lineName = scanner.nextLine();
         try {
-            //validateLineName(lineName); // TODO 노선의 역 개수 확인하고 삭제..
+            LineRepository.isLineExist(lineName);
             LineRepository.deleteLineByName(lineName);
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.getMessage());
-            removeLine();
+            getLineScreenUserSelection();
         }
     }
 
