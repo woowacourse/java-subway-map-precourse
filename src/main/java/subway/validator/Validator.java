@@ -83,7 +83,7 @@ public class Validator {
 
     public static void isStationExist(String name) {
         if (StationRepository.getStationByName(name) == null) {
-            throw new IllegalArgumentException(ALREADY_EXIST_STATION);
+            throw new IllegalArgumentException(NOT_EXIST_STATION);
         }
 
     }
