@@ -96,8 +96,6 @@ public class Constant {
     static final String ADD_SECTION_DONE = "구간이 등록되었습니다.";
     static final String DELETE_SECTION_DONE = "구간이 삭제되었습니다.";
 
-    static final String IS_NOT_EMPTY = "입력이 없습니다.";
-    static final String IS_NOT_SPACE = "공백은 허용되지 않습니다.";
     static final String IS_IN_MENU = "존재하지 않는 항목입니다.";
     static final String IS_STATION = "역을 입력해주세요";
     static final String IS_LENGTH_TWO_OR_MORE = "2자 이상 입력해야합니다.";
