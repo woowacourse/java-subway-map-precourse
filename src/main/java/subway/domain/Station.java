@@ -12,4 +12,19 @@ public class Station {
     }
 
     // 추가 기능 구현
+
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Station) {
+            Station compare = (Station) obj;
+            return compare.getName().equals(this.getName());
+        }
+        return false;
+    }
 }
