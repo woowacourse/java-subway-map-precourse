@@ -55,6 +55,7 @@ public class StationView {
             print(InputMessage.CREATE_STATION.getMessage());
             if (isCreateStation()) {
                 print(InfoMessage.CREATE_STATION.getMessage());
+                return true;
             }
         }
         return false;
@@ -69,6 +70,7 @@ public class StationView {
             print(InputMessage.DELETE_STATION.getMessage());
             if (isDeleteStation()) {
                 print(InfoMessage.DELETE_STATION.getMessage());
+                return true;
             }
         }
         return false;
