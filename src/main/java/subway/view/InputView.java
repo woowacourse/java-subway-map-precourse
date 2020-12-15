@@ -73,11 +73,11 @@ public class InputView {
 
         OutputView.stationAddGuidePrint();
         stationName = scanner.nextLine();
-        if (!stationAddValidCheck(stationName)) {
+        if (!stationNameCountCheck(stationName)) {
             OutputView.stationAddFailPrint();
             throw new IllegalArgumentException();
         }
-        if (!stationDuplicationNameValidCheck(stationName)) {
+        if (!stationDuplicationNameCheck(stationName)) {
             OutputView.stationDuplicationFailPrint();
             throw new IllegalArgumentException();
         }
@@ -86,12 +86,12 @@ public class InputView {
         return stationName;
     }
 
-    private static boolean stationAddValidCheck(String stationName) {
+    private static boolean stationNameCountCheck(String stationName) {
         return stationName.length() >= BoundaryCheckDigit.STATION_ADD_LIMIT_MINIMUM
             .getBoundaryCheckDigit();
     }
 
-    private static boolean stationDuplicationNameValidCheck(String stationName) {
+    private static boolean stationDuplicationNameCheck(String stationName) {
         return !StationRepository.stations()
             .stream()
             .map(Station::getName)

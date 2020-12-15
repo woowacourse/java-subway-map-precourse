@@ -62,11 +62,11 @@ public class StationController {
 
         stationName = InputView.scanStationDeleteName(scanner);
 
-        if (!StationRepository.contains(stationName)) { // 역 이름이 존재하지 않을 경우
+        if (notFoundStationName(stationName)) {
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
-        if (StationRepository.registeredStationsInLine().contains(stationName)) { // 노선에 등록된 역인 경우
+        if (isAlreadyRegisteredStation(stationName)) {
             OutputView.lineRegisteredStationErrorPrint();
             return false;
         }
@@ -75,17 +75,31 @@ public class StationController {
         return true;
     }
 
+    private static boolean isAlreadyRegisteredStation(String stationName) {
+        return StationRepository.registeredStationsInLine().contains(stationName);
+    }
+
+    private static boolean notFoundStationName(String stationName) {
+        return !StationRepository.contains(stationName);
+    }
+
     private static boolean stationCheck() {
         String[] stationList;
         stationList = StationRepository.getAllStationNames().toArray(String[]::new);
 
-        if (stationList.length < BoundaryCheckDigit.STATION_LIST_LIMIT_MINIMUM
-            .getBoundaryCheckDigit()) {
+        if (isEmptyStationRepository(stationList)) {
             OutputView.zeroStationListErrorPrint();
             return false;
         }
+
         OutputView.stationListPrint(stationList);
         return true;
     }
+
+    private static boolean isEmptyStationRepository(String[] stationList) {
+        return stationList.length < BoundaryCheckDigit.STATION_LIST_LIMIT_MINIMUM
+            .getBoundaryCheckDigit();
+    }
+
 
 }
