@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.Constant;
+import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
 
 import java.util.Scanner;
@@ -17,8 +18,10 @@ public class SectionController {
     private static final String NOT_ADD_POSSIBLE_SECTION = "추가할 수 없는 구간입니다.";
     private static final String NOT_DELETE_POSSIBLE_SECTION = "삭제할 수 없는 구간입니다.";
     private static final String NOT_NUMBER_FORMAT = "순서에는 숫자만 입력 가능합니다.";
+    private static final String BAR = "---";
     Scanner scanner;
     SectionRepository sectionRepository = new SectionRepository();
+    LineRepository lineRepository = new LineRepository();
 
     public SectionController(Scanner scanner) {
         this.scanner = scanner;
@@ -79,10 +82,16 @@ public class SectionController {
     }
 
     public void readSections() {
-        try {
-            sectionRepository.printMap();
-        } catch (IllegalStateException e) {
+        if (lineRepository.lines.size() == 0) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, NO_SECTION_INFO));
+            return;
+        }
+        for (int i = 0; i < lineRepository.lines.size(); i++) {
+            System.out.println("\n" + String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, BAR));
+            for (int j = 0; j < lineRepository.lines.get(i).stations.size(); j++) {
+                System.out.println(String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).stations.get(j).getName()));
+            }
         }
     }
 }

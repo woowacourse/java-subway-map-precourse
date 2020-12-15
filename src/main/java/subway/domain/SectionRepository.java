@@ -41,18 +41,4 @@ public class SectionRepository {
         return true;
     }
 
-    public static void printMap() {
-        if (lineRepository.lines.size() == 0) {
-            throw new IllegalStateException();
-        }
-        for (int i = 0; i < lineRepository.lines.size(); i++) {
-            System.out.println("\n" + String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, "---"));
-            for (int j = 0; j < lineRepository.lines.get(i).stations.size(); j++) {
-                System.out.println(String.join
-                        (" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).stations.get(j).getName()));
-            }
-        }
-    }
-
 }
