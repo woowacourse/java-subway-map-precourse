@@ -14,8 +14,10 @@ public class MainController {
     private static final String QUIT = "Q";
     private static final MainPage MAIN_PAGE = new MainPage();
 
-    public MainController(Scanner scanner) {
+
+    public static void startProgram(Scanner scanner){
         InitialSetting initialSetting = new InitialSetting();
+        initialSetting.setting();
         startMainPage(scanner);
     }
 
