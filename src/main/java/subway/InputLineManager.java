@@ -1,8 +1,6 @@
 package subway;
 
-import subway.domain.Line;
-import subway.domain.LineName;
-import subway.domain.LineRepository;
+import subway.domain.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -15,6 +13,10 @@ public class InputLineManager implements InputManager {
     private static final String DUPLICATED_TRY_AGAIN = "[ERROR] 중복됩니다.";
     private static final String INPUT_START_STATION_TO_ENROLL = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String LINE_MENU = "2";
+    public static final String LINE_ENROLLED = "\n[INFO] 지하철 노선이 등록되었습니다.\n";
+    public static final String NOTHING_TRY_AGAIN = "[ERROR] 해당 역이 없습니다.";
+    public static final String NOTHING_OR_START_END_SAME_TRY_AGAIN = "[ERROR] 해당 역이 없거나 상행 종점, 하행 종점역이 같습니다.";
+    public static final String INPUT_END_STATION_TO_ENROLL = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 
     private Scanner scanner;
 
@@ -64,11 +66,42 @@ public class InputLineManager implements InputManager {
             if (LineRepository.lines().contains(line)) {
                 throw new IllegalArgumentException(DUPLICATED_TRY_AGAIN);
             }
-            System.out.println(INPUT_START_STATION_TO_ENROLL);
             LineRepository.addLine(line);
+            registerStartStation(line);
+            System.out.println(LINE_ENROLLED);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             register();
+        }
+    }
+
+    private void registerStartStation(Line line) {
+        try {
+            System.out.println(INPUT_START_STATION_TO_ENROLL);
+            Station station = new Station(new StationName(scanner.next()));
+            if (!StationRepository.stations().contains(station)) {
+                throw new IllegalArgumentException(NOTHING_TRY_AGAIN);
+            }
+            registerEndStation(line, station);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            registerStartStation(line);
+        }
+    }
+
+    private void registerEndStation(Line line, Station startStation) {
+        try {
+            System.out.println(INPUT_END_STATION_TO_ENROLL);
+            Station endStation = new Station(new StationName(scanner.next()));
+            if (!StationRepository.stations().contains(endStation)
+                    || startStation.equals(endStation)) {
+                throw new IllegalArgumentException(NOTHING_OR_START_END_SAME_TRY_AGAIN);
+            }
+            line.addStations(startStation);
+            line.addStations(endStation);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            registerEndStation(line, startStation);
         }
     }
 

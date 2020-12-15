@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
     private LineName name;
@@ -18,6 +19,20 @@ public class Line {
     public void addStations(Station station) {
         station.setRegister(true);
         stations.add(station);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Line) {
+            Line anotherStation = (Line) object;
+            return name.equals(anotherStation.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
 }
