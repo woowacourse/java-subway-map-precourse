@@ -1,7 +1,11 @@
 package subway.domain.menu;
 
 public enum MainMenu {
-    STATION("1", "역 관리"), LINE("2", "노선 관리"), SECTION("3", "구간 관리"), MAP("4", "지하철 노선도 출력"), END("Q", "종료");
+    STATION("1", MenuList.STATION.getName()+" 관리")
+    , LINE("2", MenuList.LINE.getName()+" 관리")
+    , SECTION("3", MenuList.SECTION.getName()+" 관리")
+    , MAP("4", MenuList.MAP.getName()+" 출력")
+    , END("Q", "종료");
 
     final private String order;
     final private String message;
