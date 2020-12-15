@@ -23,7 +23,6 @@ public class StationManager {
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
-                break;
             }
         }
         return;
