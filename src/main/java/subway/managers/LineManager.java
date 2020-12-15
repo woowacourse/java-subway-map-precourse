@@ -44,7 +44,7 @@ public class LineManager {
         Station downwardStation = addDownwardStation(scanner, userInput);
         Line line = new Line(name, upwardStation, downwardStation);
         LineRepository.addLine(line);
-        SystemOutput.printInfo(SystemMessages.ADD_STATION_COMPLETE_MESSAGE);
+        SystemOutput.printInfo(SystemMessages.ADD_LINE_COMPLETE_MESSAGE);
     }
 
     static String newLine(UserInput userInput) {
@@ -84,7 +84,7 @@ public class LineManager {
     }
 
     static void deleteLine(Scanner scanner, UserInput userInput) {
-        SystemOutput.printMessage(SystemMessages.DEL_STATION_MESSAGE);
+        SystemOutput.printMessage(SystemMessages.DEL_LINE_MESSAGE);
         String name = userInput.getInput();
         try {
             validation.isExistLine(name);
@@ -92,7 +92,7 @@ public class LineManager {
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
         }
-        SystemOutput.printInfo(SystemMessages.DEL_STATION_COMPLETE_MESSAGE);
+        SystemOutput.printInfo(SystemMessages.DEL_LINE_COMPLETE_MESSAGE);
     }
 
     static void showLineList() {
