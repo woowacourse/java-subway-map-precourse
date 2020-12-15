@@ -1,11 +1,12 @@
 package subway.domain;
 
+import subway.exception.SubwayException;
+
 import static subway.util.TextConstant.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ public class Lines {
 
     public void deleteLine(String name) {
         if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
-            throw new NoSuchElementException(ERR_NO_SUCH_NAME_LINE_MSG);
+            throw new SubwayException(ERR_NO_SUCH_NAME_LINE_MSG);
         }
     }
 
@@ -23,7 +24,7 @@ public class Lines {
             lines.add(line);
             return;
         }
-        throw new IllegalStateException(ERR_ALREADY_ADD_LINE_NAME_MSG);
+        throw new SubwayException(ERR_ALREADY_ADD_LINE_NAME_MSG);
     }
 
     public int size() {
@@ -34,7 +35,7 @@ public class Lines {
         return lines.stream()
                 .filter(line -> Objects.equals(line.getName(), name))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(ERR_NO_SUCH_NAME_LINE_MSG));
+                .orElseThrow(() -> new SubwayException(ERR_NO_SUCH_NAME_LINE_MSG));
     }
 
     public boolean containsStation(Station station) {

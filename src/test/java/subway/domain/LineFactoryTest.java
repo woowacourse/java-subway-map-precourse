@@ -2,6 +2,7 @@ package subway.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.SubwayException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,7 +28,7 @@ class LineFactoryTest {
         Station lastStation = StationFactory.makeStation("홍대입구역");
 
         assertThatThrownBy(() -> LineFactory.makeLine(shortLineName,startStation,lastStation))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 노선의 이름은 2글자 이상이어야 합니다.");
     }
 
@@ -38,7 +39,7 @@ class LineFactoryTest {
         Station lastStation = StationFactory.makeStation("신대방역");
 
         assertThatThrownBy(() -> LineFactory.makeLine("선아님", startStation, lastStation))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 노선의 이름은 ~선 형태여야 합니다.");
     }
 
@@ -50,7 +51,7 @@ class LineFactoryTest {
         Station lastStation = StationFactory.makeStation("홍대입구역");
 
         assertThatThrownBy(() -> LineFactory.makeLine(shortLineName,startStation,lastStation))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 상행선 종점역과 하행선 종점역은 같을 수 없습니다.");
     }
 }

@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.domain.*;
+import subway.exception.SubwayException;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -14,13 +15,13 @@ public class LineMenuHandler {
         //todo : validate Util로 검증로직들 뽑아서 line 이름에 대해 검증해야 함
         String lineName = InputView.nextLine();
         if (LineRepository.isPresentLine(lineName)) {
-            throw new IllegalArgumentException(ERR_ALREADY_ADD_LINE_NAME_MSG);
+            throw new SubwayException(ERR_ALREADY_ADD_LINE_NAME_MSG);
         }
         if (lineName.length() < NAME_MIN_LENGTH) {
-            throw new IllegalArgumentException(ERR_SHORT_NAME_MSG);
+            throw new SubwayException(ERR_SHORT_NAME_MSG);
         }
         if (!lineName.endsWith(LINE)) {
-            throw new IllegalArgumentException(ERR_WRONG_LINE_NAME_SUFFIX);
+            throw new SubwayException(ERR_WRONG_LINE_NAME_SUFFIX);
         }
         OutputView.showRequestInputForAddMessage(UPLINE_TERMINAL_STATION);
         Station uplineTerminalStation = StationRepository.findStationByName(InputView.nextLine().trim());

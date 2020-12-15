@@ -3,10 +3,10 @@ package subway.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.SubwayException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -54,7 +54,7 @@ class LinesTest {
         Line sameNameline = LineFactory.makeLine(SECOND_LINE_NAME, startStation, lastStation);
 
         assertThatThrownBy(() -> lines.addLine(sameNameline))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 이미 등록된 노선명입니다.");
     }
 
@@ -76,7 +76,7 @@ class LinesTest {
     @Test
     void 노선이름이_없으면_예외() {
         assertThatThrownBy(() -> lines.findLine("3호선"))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 해당 노선이 없습니다.");
     }
 

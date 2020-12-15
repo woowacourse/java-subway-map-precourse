@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.exception.SubwayException;
+
 import static subway.util.TextConstant.*;
 
 import java.util.List;
@@ -26,12 +28,12 @@ public class Line {
             return;
         }
 
-        throw new IllegalStateException(ERR_ALREADY_ADD_STATION_NAME_MSG);
+        throw new SubwayException(ERR_ALREADY_ADD_STATION_NAME_MSG);
     }
 
     public void deleteStation(String name) {
         if (stations.size() <= STATION_MINIMUM_SIZE) {
-            throw new IllegalStateException(ERR_POOR_SIZE_OF_STATION_MSG);
+            throw new SubwayException(ERR_POOR_SIZE_OF_STATION_MSG);
         }
         stations.deleteStation(name);
     }

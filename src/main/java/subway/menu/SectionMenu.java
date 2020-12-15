@@ -3,6 +3,7 @@ package subway.menu;
 import static subway.util.TextConstant.*;
 
 import subway.controller.SectionMenuHandler;
+import subway.exception.SubwayException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,7 @@ public enum SectionMenu {
                 .filter(sectionMenu -> sectionMenu.command.equalsIgnoreCase(command))
                 .findAny()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);
+                    throw new SubwayException(ERR_NO_SUCH_MENU_MSG);
                 });
     }
 

@@ -1,11 +1,12 @@
 package subway.domain;
 
+import subway.exception.SubwayException;
+
 import static subway.util.TextConstant.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -21,16 +22,16 @@ public class Stations {
             try {
                 stations.add(index, station);
             } catch (IndexOutOfBoundsException e) {
-                throw new IllegalArgumentException(ERR_WRONG_SEQUENCE_MSG);
+                throw new SubwayException(ERR_WRONG_SEQUENCE_MSG);
             }
             return;
         }
-        throw new IllegalStateException(ERR_ALREADY_ADD_STATION_NAME_MSG);
+        throw new SubwayException(ERR_ALREADY_ADD_STATION_NAME_MSG);
     }
 
     public void deleteStation(String name) {
         if (!stations.removeIf(station -> Objects.equals(station.getName(), name))) {
-            throw new NoSuchElementException(ERR_NO_SUCH_NAME_STATION_MSG);
+            throw new SubwayException(ERR_NO_SUCH_NAME_STATION_MSG);
         }
     }
 
@@ -42,7 +43,7 @@ public class Stations {
         return stations.stream()
                 .filter(station -> Objects.equals(station.getName(), name))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(ERR_NO_SUCH_NAME_STATION_MSG));
+                .orElseThrow(() -> new SubwayException(ERR_NO_SUCH_NAME_STATION_MSG));
     }
 
     public List<String> stationNames() {

@@ -2,6 +2,7 @@ package subway.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.SubwayException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,7 +19,7 @@ class StationFactoryTest {
     @Test
     void 역이름_2글자_예외처리() {
         assertThatThrownBy(() -> StationFactory.makeStation("일"))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 역의 이름은 2글자 이상이어야 합니다.");
     }
 
@@ -26,7 +27,7 @@ class StationFactoryTest {
     @Test
     void stationNameSuffixWrongTest() {
         assertThatThrownBy(() -> StationFactory.makeStation("역아님"))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 역의 이름은 ~역 형태여야 합니다.");
     }
 }

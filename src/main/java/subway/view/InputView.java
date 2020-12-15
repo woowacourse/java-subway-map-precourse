@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.exception.SubwayException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,13 +10,5 @@ public class InputView {
 
     public static String nextLine() {
         return scanner.nextLine();
-    }
-
-    public static int nextInt(){
-        try {
-            return scanner.nextInt();
-        }catch (InputMismatchException e){
-            throw new InputMismatchException("[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.");
-        }
     }
 }

@@ -3,11 +3,10 @@ package subway.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.SubwayException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -40,7 +39,7 @@ class StationsTest {
         stations.addStation(StationFactory.makeStation(testName));
 
         assertThatThrownBy(() -> stations.addStation(StationFactory.makeStation(testName)))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 이미 등록된 역명입니다.");
     }
 
@@ -60,7 +59,7 @@ class StationsTest {
         String testName = "신대방역";
 
         assertThatThrownBy(() -> stations.findStation(testName))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 해당 역이 없습니다.");
     }
 
@@ -82,7 +81,7 @@ class StationsTest {
 
         String errorName = "장승역";
         assertThatThrownBy(() -> stations.deleteStation(errorName))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 해당 역이 없습니다.");
     }
 
@@ -99,7 +98,7 @@ class StationsTest {
         LineRepository.addLine(LineFactory.makeLine("2호선", station1, station2));
 
         assertThatThrownBy(() -> StationRepository.deleteStation(station1.getName()))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
     }
 

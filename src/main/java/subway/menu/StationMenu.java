@@ -1,6 +1,7 @@
 package subway.menu;
 
 import subway.controller.StationMenuHandler;
+import subway.exception.SubwayException;
 
 import static subway.util.TextConstant.*;
 
@@ -29,7 +30,7 @@ public enum StationMenu {
                 .filter(StationMenu -> StationMenu.command.equalsIgnoreCase(command))
                 .findAny()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException(ERR_NO_SUCH_MENU_MSG);
+                    throw new SubwayException(ERR_NO_SUCH_MENU_MSG);
                 });
     }
 

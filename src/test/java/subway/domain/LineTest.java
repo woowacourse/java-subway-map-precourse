@@ -3,6 +3,7 @@ package subway.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.SubwayException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -45,7 +46,7 @@ public class LineTest {
     @Test
     void 노선에_등록된_역의_수가_적다() {
         assertThatThrownBy(() -> secondLine.deleteStation(SADANG_STATION))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 노선에 등록된 역의 개수는 2개 보다 많아야 합니다.");
     }
 }
