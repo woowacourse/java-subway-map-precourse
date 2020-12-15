@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 
+import subway.exception.validator.ValidationException;
 import subway.validator.Validator;
 import subway.validator.ValidatorPool;
 
@@ -62,27 +63,16 @@ public final class InputView {
 
         String input = scanner.nextLine();
         System.out.println();
-
-        while (!isValid(input, validatorClass)) {
-            input = scanner.nextLine();
-            System.out.println();
-        }
-
-        return input;
-    }
-
-    public static boolean isValid(final String input,
-                                  final Class<? extends Validator> validatorClass) {
+        
         final Validator validator = ValidatorPool.getValidator(validatorClass);
 
         try {
             validator.validate(input);
-        } catch (IllegalArgumentException e) {
+        } catch (ValidationException e) {
             System.out.println(e.getMessage());
-            return false;
+            return input(message, validatorClass);
         }
-
-        return true;
+        return input;
     }
 
     private static void printQuestionAddedPrefix(final String message) {
