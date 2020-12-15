@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -45,5 +46,9 @@ public class Line {
             return;
         }
         lineInStationList.add(index, station);
+    }
+
+    public boolean deleteLineByName(String name) {
+        return lineInStationList.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
