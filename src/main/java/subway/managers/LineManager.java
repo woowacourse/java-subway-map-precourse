@@ -53,10 +53,11 @@ public class LineManager {
         try {
             validation.lineNameValidation(lineName);
             validation.lineDuplication(lineName);
+            return lineName;
         } catch (SubwayException e) {
             newLine(userInput);
         }
-        return lineName;
+        return null;
     }
 
     static Station addUpwardStation(Scanner scanner, UserInput userInput) {
@@ -89,10 +90,10 @@ public class LineManager {
         try {
             validation.isExistLine(name);
             LineRepository.deleteLineByName(name);
+            SystemOutput.printInfo(SystemMessages.DEL_LINE_COMPLETE_MESSAGE);
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
         }
-        SystemOutput.printInfo(SystemMessages.DEL_LINE_COMPLETE_MESSAGE);
     }
 
     static void showLineList() {

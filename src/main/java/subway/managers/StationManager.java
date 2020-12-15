@@ -43,12 +43,12 @@ public class StationManager {
         try {
             validation.stationNameValidation(name);
             validation.stationDuplication(name);
+            Station station = new Station(name);
+            StationRepository.addStation(station);
+            SystemOutput.printInfo(SystemMessages.ADD_STATION_COMPLETE_MESSAGE);
         } catch (SubwayException e) {
             addStation(userInput);
         }
-        Station station = new Station(name);
-        StationRepository.addStation(station);
-        SystemOutput.printInfo(SystemMessages.ADD_STATION_COMPLETE_MESSAGE);
     }
 
     static void deleteStation(Scanner scanner, UserInput userInput) {
@@ -57,11 +57,11 @@ public class StationManager {
         try {
             validation.isExistStation(name);
             StationRepository.deleteStation(name);
+            StationRepository.deleteStation(name);
+            SystemOutput.printInfo(SystemMessages.DEL_STATION_COMPLETE_MESSAGE);
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
         }
-        StationRepository.deleteStation(name);
-        SystemOutput.printInfo(SystemMessages.DEL_STATION_COMPLETE_MESSAGE);
     }
 
     static void showStationList() {
