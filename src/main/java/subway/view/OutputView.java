@@ -158,4 +158,9 @@ public class OutputView {
     public static void sectionAddSuccess() {
         System.out.println(SectionMessage.SECTION_ADD_SUCCESS.getSectionMessage());
     }
+
+    public static void sectionDeleteLineNamePrint() {
+        System.out.println(SectionMessage.SECTION_DELETE_GUIDE.getSectionMessage());
+    }
+
 }

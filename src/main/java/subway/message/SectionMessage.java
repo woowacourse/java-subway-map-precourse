@@ -10,6 +10,7 @@ public enum SectionMessage {
     SECTION_GUIDE_TO_LINE("## 노선을 입력하세요."),
     SECTION_GUIDE_TO_STATION("## 역이름을 입력하세요."),
     SECTION_GUIDE_TO_INDEX("## 순서를 입력하세요."),
+    SECTION_DELETE_GUIDE("## 삭제할 구간의 노선을 입력하세요."),
 
     SECTION_ADD_SUCCESS("[INFO] 구간이 등록되었습니다"),
 
@@ -18,6 +19,7 @@ public enum SectionMessage {
     IS_NOT_DIGIT("[ERROR] 숫자만 입력할 수 있습니다."),
     OUT_OF_RANGE("[ERROR] 현재 역 범위를 초과하였습니다."),
     ;
+
 
     private final String text;
 

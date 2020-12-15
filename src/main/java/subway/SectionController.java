@@ -70,8 +70,9 @@ public class SectionController {
         String deleteLineName;
         String deleteStationName;
         Line line;
-        System.out.println("임시 메세지 : 삭제 노선 입력");
-        deleteLineName = scanner.nextLine();
+
+        OutputView.sectionDeleteLineNamePrint();
+        deleteLineName = InputView.scanSectionLineName(scanner);
 
         System.out.println("임시 메세지 : 삭제 역 이름 입력");
         deleteStationName = scanner.nextLine();
