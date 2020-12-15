@@ -204,31 +204,31 @@
 # 📌 프로그램 요구사항
 
 ### 프로그래밍 요구사항 - Station, Line
-- [ ] Station, Line 클래스를 활용하여 지하철역과 노선을 구현해야 한다.
-- [ ] 제공하는 각 클래스의 기본 생성자를 추가할 수 없다.
-- [ ] 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
-- [ ] 가능하면 setter 메소드(ex. setXXX)를 추가하지 않고 구현한다.
+- [x] Station, Line 클래스를 활용하여 지하철역과 노선을 구현해야 한다.
+- [x] 제공하는 각 클래스의 기본 생성자를 추가할 수 없다.
+- [x] 필드(인스턴스 변수)인 name의 접근 제어자 private을 변경할 수 없다.
+- [x] 가능하면 setter 메소드(ex. setXXX)를 추가하지 않고 구현한다.
 
 <br>
 
 ### 프로그래밍 요구사항 - StationRepository, LineRepository
-- [ ] Station과 Line의 상태를 저장할 수 있는 StationRepository, LineRepository를 제공한다.
-- [ ] 필요 시 StationRepository, LineRepository 이 외 추가로 Repository를 만들 수 있다.
-- [ ] 추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가할 수 있다.
-- [ ] 객체들의 상태를 관리하기 위해서 XXXRepository 클래스를 활용해 저장 로직을 구현해야 한다.
+- [x] Station과 Line의 상태를 저장할 수 있는 StationRepository, LineRepository를 제공한다.
+- [x] 필요 시 StationRepository, LineRepository 이 외 추가로 Repository를 만들 수 있다.
+- [x] 추가로 생성되는 객체에 대해서 XXXRepository 네이밍으로 저장 클래스를 추가할 수 있다.
+- [x] 객체들의 상태를 관리하기 위해서 XXXRepository 클래스를 활용해 저장 로직을 구현해야 한다.
 
 <br>
 
 ### 피드백 요구사항
 
-- [ ] 값을 하드코딩하지 마라 :: 상수는 항상 체크하자
-- [ ] 배열 대신 java collection을 사용하라 :: List, Set, Map 등
-- [ ] 필드(인스턴스 변수)의 수를 줄이기 위해 노력한다
-- [ ] 비지니스 로직과 UI 로직을 분리해라.
+- [x] 값을 하드코딩하지 마라 :: 상수는 항상 체크하자
+- [x] 배열 대신 java collection을 사용하라 :: List, Set, Map 등
+- [x] 필드(인스턴스 변수)의 수를 줄이기 위해 노력한다
+- [x] 비지니스 로직과 UI 로직을 분리해라.
 
-    - [ ] 현재 객체의 상태를 보기 위한 로그 메시지 성격이 강하다면 toString()을 통해 구현한다.
-    - [ ] View에서 사용할 데이터라면 getter 메소드를 통해 데이터를 전달한다.
+    - [x] 현재 객체의 상태를 보기 위한 로그 메시지 성격이 강하다면 toString()을 통해 구현한다.
+    - [x] View에서 사용할 데이터라면 getter 메소드를 통해 데이터를 전달한다.
 
-- [ ] 함수는 15라인 이하로 구성한다. (Main도 마찬가지)
-- [ ] 객체에 메시지를 보내라 :: 상태 데이터를 가지는 객체에서 데이터를 꺼내려(get)하지 말고 객체에 메시지를 보내라.
+- [x] 함수는 15라인 이하로 구성한다. (Main도 마찬가지)
+- [x] 객체에 메시지를 보내라 :: 상태 데이터를 가지는 객체에서 데이터를 꺼내려(get)하지 말고 객체에 메시지를 보내라.
 
