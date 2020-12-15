@@ -12,6 +12,10 @@ import java.util.Scanner;
 
 public class SectionManager {
     private static Validation validation = new Validation();
+    private static Line line;
+    private static Station station;
+    private static int order;
+    private static boolean flag = true;
 
     public static void runSectionManager(Scanner scanner, UserInput userInput) {
         SystemOutput.printSectionMessage();
@@ -22,75 +26,102 @@ public class SectionManager {
             runSectionManager(scanner, userInput);
         }
         if (input.equals("1")) {
-            addSection(scanner, userInput);
+            getLine(scanner, userInput, true);
         }
         if (input.equals("2")) {
-            deleteSection(scanner, userInput);
+            getLine(scanner, userInput);
         }
         if (input.equals("B")) {
             SubwayManager.runManager(scanner);
         }
     }
 
-    static void addSection(Scanner scanner, UserInput userInput){
-        SystemOutput.printMessage(SystemMessages.ADD_SECTION_LINE_MESSAGE);
-        Line line = getLine(scanner, userInput);
-        SystemOutput.printMessage(SystemMessages.ADD_SECTION_STATION_MESSAGE);
-        Station station = getStation(scanner, userInput);
-        int order = getOrder(scanner, userInput);
+
+    static void addSection(Scanner scanner){
         try {
             validation.sectionDuplication(line, station, order);
+            line.addSection(order, station);
+            SystemOutput.printInfo(SystemMessages.ADD_SECTION_COMPLETE_MESSAGE);
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
-            return;
         }
-        line.addSection(order, station);
-        SystemOutput.printInfo(SystemMessages.ADD_SECTION_COMPLETE_MESSAGE);
     }
 
-    static void deleteSection(Scanner scanner, UserInput userInput){
-        SystemOutput.printMessage(SystemMessages.DEL_SECTION_LINE_MESSAGE);
-        Line line = getLine(scanner, userInput);
-        SystemOutput.printMessage(SystemMessages.DEL_SECTION_STATION_MESSAGE);
-        Station station = getStation(scanner, userInput);
-        int order = getOrder(scanner, userInput);
+    static void deleteSection(Scanner scanner){
         try {
             validation.sectionDeleteValidation(line);
+            line.deleteSection(order);
+            SystemOutput.printInfo(SystemMessages.DEL_SECTION_COMPLETE_MESSAGE);
         } catch (SubwayException e) {
-            return;
+            SubwayManager.runManager(scanner);
         }
-        line.deleteSection(order);
-        SystemOutput.printInfo(SystemMessages.DEL_SECTION_COMPLETE_MESSAGE);
     }
 
-    static Line getLine(Scanner scanner, UserInput userInput) {
+    static void getLine(Scanner scanner, UserInput userInput, boolean flag) {
+        SystemOutput.printMessage(SystemMessages.ADD_SECTION_LINE_MESSAGE);
         String lineName = userInput.getInput();
         try {
-            return validation.isExistLine(lineName);
+            line = validation.isExistLine(lineName);
+            getStation(scanner, userInput, flag);
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
         }
-        return null;
     }
 
-    static Station getStation(Scanner scanner, UserInput userInput){
+    static void getLine(Scanner scanner, UserInput userInput) {
+        SystemOutput.printMessage(SystemMessages.DEL_SECTION_LINE_MESSAGE);
+        String lineName = userInput.getInput();
+        try {
+            line = validation.isExistLine(lineName);
+            getStation(scanner, userInput);
+        } catch (SubwayException e) {
+            SubwayManager.runManager(scanner);
+        }
+    }
+
+    static void getStation(Scanner scanner, UserInput userInput, boolean flag){
+        SystemOutput.printMessage(SystemMessages.ADD_SECTION_STATION_MESSAGE);
         String stationName = userInput.getInput();
         try {
-            return validation.isExistStation(stationName);
+            station = validation.isExistStation(stationName);
+            getOrder(scanner, userInput, flag);
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
         }
-        return null;
     }
 
-    static int getOrder(Scanner scanner, UserInput userInput) {
-        SystemOutput.printMessage(SystemMessages.ADD_SECTION_ORDER_MESSAGE);
+    static void getStation(Scanner scanner, UserInput userInput){
+        SystemOutput.printMessage(SystemMessages.DEL_SECTION_STATION_MESSAGE);
+        String stationName = userInput.getInput();
+        try {
+            station = validation.isExistStation(stationName);
+            getOrder(scanner, userInput);
+        } catch (SubwayException e) {
+            SubwayManager.runManager(scanner);
+        }
+    }
+
+    static void getOrder(Scanner scanner, UserInput userInput, boolean flag) {
+        SystemOutput.printMessage(SystemMessages.SECTION_ORDER_MESSAGE);
         String input = userInput.getInput();
         try {
             validation.orderIsNumber(input);
+            order = Integer.parseInt(input)-1;
+            addSection(scanner);
         } catch (SubwayException e) {
             SubwayManager.runManager(scanner);
-        };
-        return Integer.parseInt(input)-1;
+        }
+    }
+
+    static void getOrder(Scanner scanner, UserInput userInput) {
+        SystemOutput.printMessage(SystemMessages.SECTION_ORDER_MESSAGE);
+        String input = userInput.getInput();
+        try {
+            validation.orderIsNumber(input);
+            order = Integer.parseInt(input)-1;
+            deleteSection(scanner);
+        } catch (SubwayException e) {
+            SubwayManager.runManager(scanner);
+        }
     }
 }

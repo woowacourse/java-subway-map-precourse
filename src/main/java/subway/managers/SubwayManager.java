@@ -29,27 +29,27 @@ public class SubwayManager {
     private static void mainOption(Scanner scanner, UserInput userInput, String input) {
         try {
             new Validation().mainOptionValidation(input);
+            if (input.equals("1")) {
+                StationManager.runStationManager(scanner, userInput);
+                runManager(scanner);
+            }
+            if (input.equals("2")) {
+                LineManager.runLineManager(scanner, userInput);
+                runManager(scanner);
+            }
+            if (input.equals("3")) {
+                SectionManager.runSectionManager(scanner, userInput);
+                runManager(scanner);
+            }
+            if (input.equals("4")) {
+                subwayMapManager();
+                runManager(scanner);
+            }
+            if (input.equals("Q")) {
+                scanner.close();
+            }
         } catch (SubwayException e) {
             runManager(scanner);
-        };
-        if (input.equals("1")) {
-            StationManager.runStationManager(scanner, userInput);
-            runManager(scanner);
-        }
-        if (input.equals("2")) {
-            LineManager.runLineManager(scanner, userInput);
-            runManager(scanner);
-        }
-        if (input.equals("3")) {
-            SectionManager.runSectionManager(scanner, userInput);
-            runManager(scanner);
-        }
-        if (input.equals("4")) {
-            subwayMapManager();
-            runManager(scanner);
-        }
-        if (input.equals("Q")) {
-            return;
         }
     }
 

@@ -49,7 +49,7 @@ public class SystemMessages {
     };
     public static final String ADD_SECTION_LINE_MESSAGE = "## 노선을 입력하세요.";
     public static final String ADD_SECTION_STATION_MESSAGE = "## 역이름을 입력하세요.";
-    public static final String ADD_SECTION_ORDER_MESSAGE = "## 순서를 입력하세요.";
+    public static final String SECTION_ORDER_MESSAGE = "## 순서를 입력하세요.";
     public static final String ADD_SECTION_COMPLETE_MESSAGE = "구간이 등록되었습니다.";
     public static final String DEL_SECTION_LINE_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
     public static final String DEL_SECTION_STATION_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
