@@ -24,11 +24,6 @@ public class StationRepository {
         stations.clear();
     }
 
-    public static Station getByName(String name) {
-        return stations.stream().filter(station -> Objects.equals(station.getName(), name))
-                .findFirst().get();
-    }
-
     public static boolean hasStation(String name) {
         return stations.stream().filter(station -> Objects.equals(station.getName(), name))
                 .count() > 0;
@@ -40,5 +35,10 @@ public class StationRepository {
 
     public static boolean isEmpty() {
         return stations.isEmpty();
+    }
+    
+    public static Station getByName(String name) {
+        return stations.stream().filter(station -> Objects.equals(station.getName(), name))
+                .findFirst().get();
     }
 }

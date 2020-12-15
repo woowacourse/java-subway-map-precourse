@@ -28,7 +28,6 @@ public class LineRepository {
         lines.clear();
     }
 
-
     public static boolean hasLine(String name) {
         return lines.stream().filter(line -> Objects.equals(line.getName(), name)).count() > 0;
     }

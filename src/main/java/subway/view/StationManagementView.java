@@ -17,13 +17,13 @@ public class StationManagementView extends View {
             new LinkedHashMap<String, Command>();
 
     static {
-        MENUS.put("1", new Command("역 등록", StationManagementView::registerStaion));
+        MENUS.put("1", new Command("역 등록", StationManagementView::registerStation));
         MENUS.put("2", new Command("역 삭제", StationManagementView::removeStation));
         MENUS.put("3", new Command("역 조회", StationManagementView::viewStations));
         MENUS.put("B", new Command("돌아가기", StationManagementView::back));
     }
 
-    private static void registerStaion(Scene scene, Request request, Response response) {
+    private static void registerStation(Scene scene, Request request, Response response) {
         response.printHeadlineMessage(STATION_REGISTER_MESSAGE);
         if (request.applyInput(StationExceptionManager::checkValidStationRegister,
                 StationRepository::addStation)) {

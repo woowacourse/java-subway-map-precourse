@@ -1,12 +1,14 @@
 package subway.exception;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class SectionExceptionManager extends ExceptionManager {
     public static Error checkValidLineOfSectionRegister(String name) {
-        if (!isValidLineName(name)) {
+        if (!Line.isValidName(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (!LineRepository.hasLine(name)) {
@@ -16,7 +18,7 @@ public class SectionExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidStationOfSectionRegister(String stationName, String lineName) {
-        if (!isValidStationName(stationName)) {
+        if (!Station.isValidName(stationName)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(stationName)) {
@@ -39,7 +41,7 @@ public class SectionExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidLineOfSectionRemoval(String lineName) {
-        if (!isValidLineName(lineName)) {
+        if (!Line.isValidName(lineName)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (!LineRepository.hasLine(lineName)) {
@@ -52,7 +54,7 @@ public class SectionExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidStationOfSectionRemoval(String stationName, String lineName) {
-        if (!isValidStationName(stationName)) {
+        if (!Station.isValidName(stationName)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(stationName)) {

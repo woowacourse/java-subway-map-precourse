@@ -1,6 +1,8 @@
 package subway.exception;
 
+import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 public class LineExceptionManager extends ExceptionManager {
@@ -12,7 +14,7 @@ public class LineExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidLineRegister(String name) {
-        if (!isValidLineName(name)) {
+        if (!Line.isValidName(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (LineRepository.hasLine(name)) {
@@ -22,7 +24,7 @@ public class LineExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidTerminatingStation(String name) {
-        if (!isValidStationName(name)) {
+        if (!Station.isValidName(name)) {
             return Error.INVALID_STATION_NAME_LENGTH;
         }
         if (!StationRepository.hasStation(name)) {
@@ -32,7 +34,7 @@ public class LineExceptionManager extends ExceptionManager {
     }
 
     public static Error checkValidLineRemoval(String name) {
-        if (!isValidLineName(name)) {
+        if (!Line.isValidName(name)) {
             return Error.INVALID_LINE_NAME_LENGTH;
         }
         if (!LineRepository.hasLine(name)) {
