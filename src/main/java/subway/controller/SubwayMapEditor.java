@@ -1,7 +1,8 @@
 package subway.controller;
 
 import subway.domain.SubwayMap;
-import subway.view.OutputView;
+import subway.view.MainScreenInputView;
+import subway.view.MainScreenOutputView;
 
 import java.util.Scanner;
 
@@ -14,6 +15,10 @@ public class SubwayMapEditor {
 
     public void run() {
         SubwayMap subwayMap = new SubwayMap();
-        OutputView.printMainScreen();
+        boolean isPersist = false;
+        do {
+            isPersist = MainScreenInputView.getMainScreenUserSelection(scanner);
+        } while (isPersist);
+
     }
 }

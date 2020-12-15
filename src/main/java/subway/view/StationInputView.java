@@ -102,7 +102,7 @@ public class StationInputView {
     public static void removeStation() {
         System.out.println(REMOVE_STATION_MESSAGE);
         String stationName = scanner.nextLine();
-        try { // TODO 노선에 등록되어있는 지 확인할 것
+        try { // TODO 노선에 포함된 역이 두 개 이하이면 역을 삭제할 수 없다.
             validateStationRegisteredOnLine(stationName);
             StationRepository.deleteStation(stationName);
         } catch (Exception e) {

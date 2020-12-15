@@ -2,6 +2,7 @@ package subway.type;
 
 import subway.domain.LineRepository;
 import subway.view.LineInputView;
+import subway.view.SectionInputView;
 import subway.view.SectionOutputView;
 import subway.view.StationInputView;
 
@@ -21,7 +22,7 @@ public enum MainScreenFunctionType {
     MANAGE_SECTION(3) {
         @Override
         public void execute() {
-            SectionOutputView.printManageSectionScreen();
+            SectionInputView.getSectionScreenUserSelection();
         }
     },
     PRINT_MAP(4) {

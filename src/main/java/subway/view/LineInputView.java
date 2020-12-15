@@ -31,7 +31,6 @@ public class LineInputView {
     private static final String KOREAN_REGULAR_EXPRESSION = "^[가-힣]*$";
     private static final String HAS_NUMBER_REGULAR_EXPRESSION = ".*[0-9].*";
 
-
     private static final Scanner scanner = new Scanner(System.in);
 
     private LineInputView() {
@@ -146,8 +145,8 @@ public class LineInputView {
         return new Station(downwardTerminalStation);
     }
 
-    private static void validateStationExistence(String upwardTerminalStation) {
-        if (!StationRepository.isStationExist(upwardTerminalStation)) {
+    private static void validateStationExistence(String stationName) {
+        if (!StationRepository.isStationExist(stationName)) {
             throw new IllegalArgumentException("존재하지 않는 역입니다.");
         }
     }
