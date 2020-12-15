@@ -77,7 +77,7 @@ public class InputView {
     }
 
     public static String askName(Scanner scanner) {
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
 }
