@@ -1,6 +1,7 @@
 package subway;
 
 import static subway.domain.LineRepository.addLine;
+import static subway.domain.LineRepository.deleteLineByName;
 import static subway.domain.LineRepository.hasLine;
 import static subway.domain.StationRepository.hasStation;
 
@@ -27,7 +28,7 @@ public class LineManage {
             return true;
         }
         if (mainInput.equalsIgnoreCase(DELETE_LINE)) {
-            //deleteLinePrint(scanner);
+            deleteLinePrint(scanner);
             return true;
         }
         if (mainInput.equalsIgnoreCase(ALL_LINES)) {
@@ -53,6 +54,17 @@ public class LineManage {
         terminalNameValidate(downWardTerminal);
         addLine(new Line(lineName));
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    private static void deleteLinePrint(Scanner scanner) {
+        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
+        String lineName = scanner.next();
+        if (!lineExists(lineName)) {
+            System.out.println("\n[ERROR] 존재하지 않는 노선 이름입니다. ");
+            throw new IllegalArgumentException();
+        }
+        deleteLineByName(lineName);
+        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
     }
 
     private static void lineNameValidate(String lineName) {
