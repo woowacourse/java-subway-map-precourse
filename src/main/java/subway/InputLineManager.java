@@ -26,8 +26,8 @@ public class InputLineManager implements InputManager {
     private enum Menu {
         REGISTER("1", ((InputLineManager) SubwayManager.getMenus(LINE_MENU))::register),
         DELETE("2", ((InputLineManager) SubwayManager.getMenus(LINE_MENU))::delete),
-        INQUIRY("3", LineRepository::printLine);
-//        BACK("B");
+        INQUIRY("3", LineRepository::printLine),
+        BACK("B", System.out::println);
 
         private final String name;
         private final Runnable runnable;
