@@ -47,4 +47,5 @@ public class TextConstant {
     public static final String ADD_NAME_MSG_FORMAT = "## 등록할 %s 이름을 입력하세요.";
     public static final String DELETE_NAME_MSG_FORMAT = "## 삭제할 %s 이름을 입력하세요.";
     public static final String INFO_COMPLETE_MSG_FORMAT = INFO_PREFIX_MSG.concat("%s이 %s되었습니다.");
+    public static final String INFO_NO_ELEMENT_FORMAT = INFO_PREFIX_MSG.concat("%s이 없습니다.");
 }

@@ -49,6 +49,25 @@ public class OutputView {
         println(String.format(DELETE_NAME_MSG_FORMAT, subject));
     }
 
+    public static void showList(List<String> names) {
+        names.stream()
+                .map(INFO_PREFIX_MSG::concat)
+                .forEach(System.out::println);
+        println(EMPTY_STRING);
+    }
+
+    public static void showCompleteMessage(String subject, String action) {
+        println(EMPTY_STRING);
+        println(String.format(INFO_COMPLETE_MSG_FORMAT, subject, action));
+        println(EMPTY_STRING);
+    }
+
+    public static void showEmptyListMessage(String subwayStation) {
+        println(EMPTY_STRING);
+        println(String.format(INFO_NO_ELEMENT_FORMAT, subwayStation));
+        println(EMPTY_STRING);
+    }
+
     public static void println(String message) {
         System.out.println(message);
     }
@@ -63,18 +82,5 @@ public class OutputView {
             menu.append(menuLine);
         }
         return menu.toString();
-    }
-
-    public static void showList(List<String> names) {
-        names.stream()
-                .map(INFO_PREFIX_MSG::concat)
-                .forEach(System.out::println);
-        println(EMPTY_STRING);
-    }
-
-    public static void showCompleteMessage(String subject, String action) {
-        println(EMPTY_STRING);
-        println(String.format(INFO_COMPLETE_MSG_FORMAT, subject, action));
-        println(EMPTY_STRING);
     }
 }

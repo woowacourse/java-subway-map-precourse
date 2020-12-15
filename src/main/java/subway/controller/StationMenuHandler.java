@@ -7,6 +7,8 @@ import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.List;
+
 public class StationMenuHandler {
     public static void addStation() {
         OutputView.showAddMessage(STATION);
@@ -21,7 +23,12 @@ public class StationMenuHandler {
     }
 
     public static void showStation() {
-        OutputView.showList(StationRepository.getStationNames());
+        List<String> stationNames = StationRepository.getStationNames();
+        if (stationNames.isEmpty()) {
+            OutputView.showEmptyListMessage(SUBWAY_STATION);
+            return;
+        }
+        OutputView.showList(stationNames);
     }
 
     public static void back() {
