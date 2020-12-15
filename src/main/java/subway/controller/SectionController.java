@@ -11,7 +11,7 @@ public class SectionController {
     private static final String ADD_SUCCESS_MESSAGE = "구간이 등록되었습니다.";
     private static final String DELETE_SUCCESS_MESSAGE = "구간이 삭제되었습니다.";
     
-    public static void section() {
+    public static void executeSectionMenu() {
     	SubwayController.output.printSectionMenu();
     	SectionMenu.execute(Input.chooseFunction());
     }

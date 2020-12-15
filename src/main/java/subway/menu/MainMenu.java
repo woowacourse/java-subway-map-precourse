@@ -9,9 +9,9 @@ import subway.controller.SectionController;
 import subway.view.Output;
 
 public enum MainMenu {
-    STATION_MANAGE("1", StationController::station),
-    LINE_MANAGE("2", LineController::line),
-    SECTION_MANAGE("3", SectionController::section),
+    STATION_MANAGE("1", StationController::executeStationMenu),
+    LINE_MANAGE("2", LineController::executeLineMenu),
+    SECTION_MANAGE("3", SectionController::executeSectionMenu),
     PRINT_SUBWAY_MAP("4", Output::printSubwayMap),
     QUIT("Q", SubwayController::quit);
 

@@ -9,7 +9,7 @@ public class StationController {
     private static final String ADD_SUCCESS_MESSAGE = "지하철 역이 등록되었습니다.";
     private static final String DELETE_SUCCESS_MESSAGE = "지하철 역이 삭제되었습니다.";
 
-    public static void station() {
+    public static void executeStationMenu() {
         SubwayController.output.printStationMenu();
         StationMenu.execute(Input.chooseFunction());
     }

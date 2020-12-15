@@ -11,7 +11,7 @@ public class LineController {
     private static final String ADD_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
     private static final String DELETE_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
 	
-    public static void line() {
+    public static void executeLineMenu() {
     	SubwayController.output.printLineMenu();
         LineMenu.execute(Input.chooseFunction());
     }
