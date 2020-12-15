@@ -5,6 +5,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.exception.domain.SectionExceptionHandler;
+import subway.exception.domain.StationExceptionHandler;
 import subway.exception.input.SectionInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -50,6 +51,7 @@ public class SectionController {
     }
 
     private static void addable(String line, String station, String order) {
+        StationExceptionHandler.stationNameShorterThanTwo(station);
         SectionExceptionHandler.notLineContained(line);
         SectionExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
         SectionExceptionHandler.positiveInt(order);
