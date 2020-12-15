@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Station {
     private StationName name;
+    private boolean register;
 
     public Station(StationName name) {
         this.name = name;
@@ -25,6 +26,10 @@ public class Station {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public boolean isRegister() {
+        return register;
     }
 
 }

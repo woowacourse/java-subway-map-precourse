@@ -29,4 +29,13 @@ public class StationRepository {
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
+
+    public static boolean isRegisteredStation(Station anotherStation) {
+        for (Station station : stations) {
+            if (station.equals(anotherStation) && station.isRegister()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

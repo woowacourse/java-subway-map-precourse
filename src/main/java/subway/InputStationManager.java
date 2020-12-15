@@ -14,12 +14,15 @@ public class InputStationManager implements InputManager {
     private static final String INPUT_STATION_TO_ENROLL = "## 등록할 역 이름을 입력하세요.";
     private static final String DUPLICATED_TRY_AGAIN = "[ERROR] 중복됩니다.";
     private static final String STATION_ENROLLED = "\n[INFO] 지하철 역이 등록되었습니다.\n";
+    private static final String INPUT_STATION_TO_DELETE = "## 삭제할 역 이름을 입력하세요.";
+    private static final String NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN = "[ERROR] 해당 역이 없거나 이미 노선에 등록되어 있습니다.";
+    private static final String STATION_DELETED = "\n[INFO] 지하철 역이 삭제되었습니다.\n";
 
     private Scanner scanner;
 
     private enum Menu {
-        REGISTER("1", ((InputStationManager) SubwayManager.getMenus("1"))::register);
-//        DELETE("2"),
+        REGISTER("1", ((InputStationManager) SubwayManager.getMenus("1"))::register),
+        DELETE("2", ((InputStationManager) SubwayManager.getMenus("1"))::delete);
 //        INQUIRY("3"),
 //        BACK("B");
 
@@ -73,7 +76,18 @@ public class InputStationManager implements InputManager {
 
     @Override
     public void delete() {
-
+        try {
+            System.out.println(INPUT_STATION_TO_DELETE);
+            String stationToDelete = scanner.next();
+            if (StationRepository.isRegisteredStation(new Station(new StationName(stationToDelete)))
+                    || !StationRepository.deleteStation(stationToDelete)) {
+                throw new IllegalArgumentException(NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN);
+            }
+            System.out.println(STATION_DELETED);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            delete();
+        }
     }
 
 }
