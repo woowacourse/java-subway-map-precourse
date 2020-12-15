@@ -36,7 +36,7 @@ public class Input {
             sectionController.printSelection();
             return;
         }
-        if(flag.equals(Constant.FORTH_COMMAND)){
+        if (flag.equals(Constant.FORTH_COMMAND)) {
             sectionController.readSections();
             return;
         }

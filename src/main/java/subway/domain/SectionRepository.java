@@ -12,13 +12,13 @@ public class SectionRepository {
         if (!validate(lineName, stationName)) {
             throw new IllegalArgumentException();
         }
-        try{
+        try {
             Line targetLine = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get();
-            if(targetLine.existStation(stationName)){
+            if (targetLine.existStation(stationName)) {
                 throw new IllegalStateException();
             }
             targetLine.addStation(stationName, order);
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -28,27 +28,27 @@ public class SectionRepository {
             throw new IllegalArgumentException();
         }
         Line line = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get();
-        if(line.checkStationSize()){
+        if (line.checkStationSize()) {
             throw new IllegalStateException();
         }
         return line.stations.removeIf(s -> Objects.equals(s.getName(), stationName));
     }
 
-    static boolean validate(String lineName, String stationName){
+    static boolean validate(String lineName, String stationName) {
         if (!lineRepository.checkExistLine(lineName) || !stationRepository.checkExistStation(stationName)) {
             return false;
         }
         return true;
     }
 
-    public static void printMap(){
-        if(lineRepository.lines.size()==0){
+    public static void printMap() {
+        if (lineRepository.lines.size() == 0) {
             throw new IllegalStateException();
         }
-        for(int i=0; i<lineRepository.lines.size(); i++){
+        for (int i = 0; i < lineRepository.lines.size(); i++) {
             System.out.print(String.join(" ", Constant.INFO_PREFIX, lineRepository.lines.get(i).getName()));
-            for(int j=0; j<lineRepository.lines.get(i).stations.size(); j++){
-                System.out.print(lineRepository.lines.get(i).stations.get(j).getName() + " " );
+            for (int j = 0; j < lineRepository.lines.get(i).stations.size(); j++) {
+                System.out.print(lineRepository.lines.get(i).stations.get(j).getName() + " ");
             }
         }
     }

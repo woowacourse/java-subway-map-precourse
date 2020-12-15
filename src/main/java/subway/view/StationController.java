@@ -36,9 +36,9 @@ public class StationController {
         try {
             stationRepository.addStation(stationName);
             System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_STATION_SUCCESS));
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
-        }catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NAME_LENGTH_SHORT));
         }
     }

@@ -11,5 +11,4 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
 }

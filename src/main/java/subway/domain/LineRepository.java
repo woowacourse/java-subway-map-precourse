@@ -13,10 +13,10 @@ public class LineRepository {
     }
 
     public static void addLine(String lineName, String upwardName, String downwardName) {
-        if (stationRepository.checkNameLength(lineName)){
+        if (stationRepository.checkNameLength(lineName)) {
             throw new IllegalStateException();
         }
-        if(checkExistLine(lineName) || !stationRepository.checkExistStation(upwardName)
+        if (checkExistLine(lineName) || !stationRepository.checkExistStation(upwardName)
                 || !stationRepository.checkExistStation(downwardName) || upwardName.equals(downwardName)) {
             throw new IllegalArgumentException();
         }

@@ -17,15 +17,15 @@ public class Line {
         return name;
     }
 
-    public boolean existStation(String stationName){
+    public boolean existStation(String stationName) {
         return stations.stream().noneMatch(s -> s.getName().equals(stationName));
     }
 
-    public void addStation(String stationName, int order){
+    public void addStation(String stationName, int order) {
         stations.add(order, new Station(stationName));
     }
 
-    public boolean checkStationSize(){
-        return stations.size()<= Constant.MIN_LENGTH;
+    public boolean checkStationSize() {
+        return stations.size() <= Constant.MIN_LENGTH;
     }
 }

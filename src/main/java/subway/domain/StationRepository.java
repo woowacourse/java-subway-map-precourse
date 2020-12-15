@@ -15,10 +15,10 @@ public class StationRepository {
     }
 
     public static void addStation(String stationName) {
-        if (checkNameLength(stationName)){
+        if (checkNameLength(stationName)) {
             throw new IllegalStateException();
         }
-        if(checkExistStation(stationName)) {
+        if (checkExistStation(stationName)) {
             throw new IllegalArgumentException();
         }
         stations.add(new Station(stationName));

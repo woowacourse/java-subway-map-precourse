@@ -6,8 +6,6 @@ import subway.domain.SectionRepository;
 import java.util.Scanner;
 
 public class SectionController {
-    Scanner scanner;
-    SectionRepository sectionRepository = new SectionRepository();
     private static final String GET_LINE_NAME = "\n## 노선을 입력하세요.";
     private static final String GET_STATION_NAME = "\n## 역 이름을 입력하세요.";
     private static final String GET_ORDER_NAME = "\n## 순서를 입력하세요.";
@@ -18,6 +16,9 @@ public class SectionController {
     private static final String DELETE_SECTION_SUCCESS = "구간이 삭제되었습니다.\n";
     private static final String NOT_ADD_POSSIBLE_SECTION = "추가할 수 없는 구간입니다.";
     private static final String NOT_DELETE_POSSIBLE_SECTION = "삭제할 수 없는 구간입니다.";
+    private static final String NOT_NUMBER_FORMAT = "순서에는 숫자만 입력 가능합니다.";
+    Scanner scanner;
+    SectionRepository sectionRepository = new SectionRepository();
 
     public SectionController(Scanner scanner) {
         this.scanner = scanner;
@@ -35,7 +36,7 @@ public class SectionController {
         }
     }
 
-    void addSection(){
+    void addSection() {
         System.out.println(GET_LINE_NAME);
         String lineName = scanner.next();
         System.out.println(GET_STATION_NAME);
@@ -43,18 +44,21 @@ public class SectionController {
         System.out.println(GET_ORDER_NAME);
         String order = scanner.next();
         try {
-            sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
+            int orderNum = Integer.parseInt(order);
+            sectionRepository.addSection(lineName, stationName, orderNum);
             System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_SECTION_SUCCESS));
-        }catch(IllegalArgumentException e){
+        } catch (NumberFormatException e) {
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_NUMBER_FORMAT));
+        } catch (IllegalArgumentException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
-        }catch(IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_ADD_POSSIBLE_SECTION));
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
         }
     }
 
-    void deleteSection(){
+    void deleteSection() {
         System.out.println(GET_DELETE_LINE_NAME);
         String lineName = scanner.next();
         System.out.println(GET_DELETE_STATION_NAME);
@@ -66,9 +70,9 @@ public class SectionController {
                 return;
             }
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, NOT_DELETE_POSSIBLE_SECTION));
         }
 
@@ -77,7 +81,7 @@ public class SectionController {
     public void readSections() {
         try {
             sectionRepository.printMap();
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, NO_SECTION_INFO));
         }
     }
