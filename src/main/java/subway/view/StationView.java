@@ -56,26 +56,28 @@ public class StationView {
     private boolean isCreate(String button) {
         if (button.equals(Button.ONE)) {
             print(InputMessage.CREATE_STATION);
-            return isCreateStation();
+            if (isCreateStation()) {
+                print(InfoMessage.CREATE_STATION);
+            }
         }
         return false;
     }
 
     private boolean isCreateStation() {
-        print(InfoMessage.CREATE_STATION);
         return stationController.createStation(input.nextLine());
     }
 
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
             print(InputMessage.DELETE_STATION);
-            return isDeleteStation();
+            if (isDeleteStation()) {
+                print(InfoMessage.DELETE_STATION);
+            }
         }
         return false;
     }
 
     private boolean isDeleteStation() {
-        print(InfoMessage.DELETE_STATION);
         return stationController.deleteStation(input.nextLine());
     }
 

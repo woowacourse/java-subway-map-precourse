@@ -86,13 +86,14 @@ public class LineView {
     private boolean isDelete(String button) {
         if (button.equals(Button.TWO)) {
             print(InputMessage.DELETE_LINE);
-            return isDeleteLine();
+            if (isDeleteLine()) {
+                print(InfoMessage.DELETE_LINE);
+            }
         }
         return false;
     }
 
     private boolean isDeleteLine() {
-        print(InfoMessage.DELETE_LINE);
         return lineController.deleteLine(input.nextLine());
     }
 
