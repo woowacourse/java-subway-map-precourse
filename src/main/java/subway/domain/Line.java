@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -10,6 +11,10 @@ public class Line {
 
     public Line(String name) {
         this.name = name;
+    }
+
+    public List<Station> lineInStationList() {
+        return Collections.unmodifiableList(lineInStationList);
     }
 
     public String getName() {
