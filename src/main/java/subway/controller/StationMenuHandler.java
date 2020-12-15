@@ -10,17 +10,17 @@ public class StationMenuHandler {
     public static final String STATION = "역";
 
     public static void addStation() {
-        OutputView.showAddMenu(STATION);
+        OutputView.showAddMessage(STATION);
         StationRepository.addStation(StationFactory.makeStation(InputView.nextLine().trim()));
     }
 
     public static void deleteStation() {
-        OutputView.showDeleteMenu(STATION);
+        OutputView.showDeleteMessage(STATION);
         StationRepository.deleteStation(InputView.nextLine().trim());
     }
 
     public static void showStation() {
-        OutputView.showList(StationRepository.stations().stationNames());
+        OutputView.showList(StationRepository.getStationNames());
     }
 
     public static void back() {

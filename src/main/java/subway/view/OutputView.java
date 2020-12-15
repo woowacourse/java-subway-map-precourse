@@ -50,11 +50,11 @@ public class OutputView {
         println(PLEASE_SELECT_MENU_MSG);
     }
 
-    public static void showAddMenu(String subject) {
+    public static void showAddMessage(String subject) {
         println(String.format(ADD_NAME_MSG_FORMAT, subject));
     }
 
-    public static void showDeleteMenu(String subject) {
+    public static void showDeleteMessage(String subject) {
         println(String.format(DELETE_NAME_MSG_FORMAT, subject));
     }
 
