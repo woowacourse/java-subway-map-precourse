@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
-import subway.service.StationService;
 
 import java.util.List;
 
