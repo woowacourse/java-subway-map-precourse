@@ -28,6 +28,7 @@ public class LineDeleteService {
     }
 
     private String makeLineNameToDelete(Scanner scanner) {
+        LineOutputView.printLineNameToDeleteMessage();
         String lineNameToDelete = InputView.userInput(scanner);
         isNotExistLine(lineNameToDelete);
         return lineNameToDelete;

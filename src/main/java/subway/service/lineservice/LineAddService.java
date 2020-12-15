@@ -25,7 +25,9 @@ public class LineAddService {
     public void lineAddService(Scanner scanner) {
         try {
             Line newLine = makeLineToAdd(scanner);
+            LineOutputView.printUpwardEndToAddMessage();
             Station upwardEndStation = makeStationToAdd(scanner);
+            LineOutputView.printDownwardEndToAddMessage();
             Station downwardEndStation = makeStationToAdd(scanner);
             isUpAndDownIsSame(upwardEndStation, downwardEndStation);
             putStationIntoLine(newLine, upwardEndStation, downwardEndStation);
