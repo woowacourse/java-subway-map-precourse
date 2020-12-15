@@ -76,12 +76,16 @@ public class SectionMenu {
         System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
         String lineName = scanner.nextLine();
         if (LineValidator.haveLineName(lineName)) {
-            System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
-            String stationName = scanner.nextLine();
-            if (SectionValidator.checkRemovableSection(lineName, stationName)) {
-                SectionService.removeSection(stationName, lineName);
-                System.out.println("\n[ INFO ] 구간이 삭제되었습니다.");
-            }
+            inputDeleteStation(lineName);
+        }
+    }
+
+    private void inputDeleteStation(String lineName) {
+        System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
+        String stationName = scanner.nextLine();
+        if (SectionValidator.checkRemovableSection(lineName, stationName)) {
+            SectionService.removeSection(stationName, lineName);
+            System.out.println("\n[ INFO ] 구간이 삭제되었습니다.");
         }
     }
 
