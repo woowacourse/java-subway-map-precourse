@@ -2,6 +2,7 @@ package subway.domain;
 
 import subway.domain.data.LineRepository;
 import subway.domain.data.StationRepository;
+import subway.domain.menu.MainMenu;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -21,12 +22,19 @@ public class SubwayMap {
     }
 
     private void startService() {
-        selectService();
+        while (true) {
+            String inputData = selectService();
+            if (inputData.equals(MainMenu.END.getOrder())){
+                return;
+            }
+            Services.doService(inputData, scanner);
+        }
     }
 
-    private void selectService() {
+    private String selectService() {
         OutputView.printMainView();
         String inputData = InputView.inputMainMenu(scanner);
+        return inputData;
     }
 
 

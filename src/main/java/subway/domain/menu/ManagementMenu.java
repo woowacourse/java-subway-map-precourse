@@ -22,4 +22,13 @@ public enum  ManagementMenu {
     public String getMessage() {
         return message;
     }
+
+    public static boolean isValidOrder(String order){
+        for(ManagementMenu managementMenu : ManagementMenu.values()){
+            if(managementMenu.getOrder().equals(order)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

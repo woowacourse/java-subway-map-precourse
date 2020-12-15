@@ -1,6 +1,7 @@
 package subway.view;
 
 import subway.domain.menu.MainMenu;
+import subway.domain.menu.ManagementMenu;
 
 import java.util.Scanner;
 
@@ -16,4 +17,5 @@ public class InputView {
         }
         return inputMainMenu(scanner);
     }
+
 }
