@@ -16,6 +16,8 @@ import java.util.Set;
 public class Line {
     private static final int MINIMUM_LENGTH = 2;
     private static final int ORDER_CONSTANT = 1;
+    private static final String UPBOUND = "상행 종점역 ";
+    private static final String DOWNBOUND = "하행 종점역 ";
 
     private String name;
     private List<Station> stations = new ArrayList<>();
@@ -89,9 +91,9 @@ public class Line {
     }
 
     public static List<String> getValidBoundsStation(InputView inputView, String stationMessage) {
-        OutputView.printUpBoundStationMessage();
+        OutputView.printBoundStationMessage(UPBOUND);
         String upBoundStationName = scanValidBoundStation(inputView, stationMessage);
-        OutputView.printDownBoundStationMessage();
+        OutputView.printBoundStationMessage(DOWNBOUND);
         String downBoundStationName = scanValidBoundStation(inputView, stationMessage);
         List<String> boundStations = Arrays.asList(upBoundStationName, downBoundStationName);
         validateSameBoundStations(boundStations);
