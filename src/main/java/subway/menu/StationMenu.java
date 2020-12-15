@@ -21,10 +21,9 @@ public class StationMenu {
     }
 
     public void startStationMenu() {
-        String input;
         while (true) {
             printStationMenu();
-            input = this.scanner.nextLine();
+            String input = this.scanner.nextLine();
             System.out.println();
             //TODO 함수 분리하기
             if (input.equals("1")) {

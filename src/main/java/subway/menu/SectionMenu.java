@@ -16,7 +16,16 @@ public class SectionMenu {
     }
 
     public void startSectionMenu() {
-
+        while (true) {
+            String input = scanner.nextLine();
+            if (input.equals("1")) {
+            }
+            if (input.equals("2")) {
+            }
+            if (input.equals("B")) {
+                break;
+            }
+        }
     }
 
     private void printMainMenu() {

@@ -22,10 +22,9 @@ public class LineMenu {
     }
 
     public void startLineMenu() {
-        String input;
         while (true) {
             printLineMenu();
-            input = scanner.nextLine();
+            String input = scanner.nextLine();
             //TODO 함수 분리하기!!!!!
             if (input.equals("1")) {
                 System.out.println("\n## 등록할 노선 이름을 입력하세요.");
