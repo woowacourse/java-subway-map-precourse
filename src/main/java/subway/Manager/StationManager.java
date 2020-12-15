@@ -24,12 +24,14 @@ public class StationManager {
         String input = InputView.inputCategory(scanner, Category.STATION.getActionType());
 
         if (input.equals(STATION_INSERT)) {
-            stationService.addStation(InputView.inputStation(scanner));
-            OutputView.stationInsertSuccess();
+            if (stationService.addStation(InputView.inputStation(scanner))) {
+                OutputView.stationInsertSuccess();
+            }
         }
         if (input.equals(STATION_DELETE)) {
-            stationService.deleteStation(InputView.inputDeleteStationName(scanner));
-            OutputView.stationDeleteSuccess();
+            if (stationService.deleteStation(InputView.inputDeleteStationName(scanner))) {
+                OutputView.stationDeleteSuccess();
+            }
         }
         if (input.equals(STATION_LOOKUP)) {
             OutputView.stationsPrint(stationService.stationLookup());

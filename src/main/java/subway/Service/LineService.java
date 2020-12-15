@@ -16,13 +16,15 @@ public class LineService {
 
     private LineRepository lineRepository = new LineRepository();
 
-    public void createLine(List<String> insertLineInfo) {
+    public boolean createLine(List<String> insertLineInfo) {
         try {
             checkBeforeCreateLine(insertLineInfo);
             addLineAndStation(insertLineInfo);
+            return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             LineManager.execute();
+            return false;
         }
     }
 
@@ -36,15 +38,17 @@ public class LineService {
         LineStationRepository.addLineStation(new LineStation(newLine, sections));
     }
 
-    public void deleteLine(String lineName) {
+    public boolean deleteLine(String lineName) {
         try {
             if (!LineRepository.deleteLineByName(lineName)) {
                 throw new CanNotFindLineException();
             }
             LineStationRepository.deleteLineOnSubway(lineName);
+            return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             LineManager.execute();
+            return false;
         }
     }
 

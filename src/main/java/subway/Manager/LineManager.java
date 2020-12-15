@@ -24,12 +24,14 @@ public class LineManager {
         String input = InputView.inputCategory(scanner, Category.LINE.getActionType());
 
         if (input.equals(LINE_INSERT)) {
-            lineService.createLine(InputView.inputLineInfo(scanner));
-            OutputView.lineInsertSuccess();
+            if (lineService.createLine(InputView.inputLineInfo(scanner))) {
+                OutputView.lineInsertSuccess();
+            }
         }
         if (input.equals(LINE_DELETE)) {
-            lineService.deleteLine(InputView.inputDeleteLineName(scanner));
-            OutputView.lineDeleteSuccess();
+            if (lineService.deleteLine(InputView.inputDeleteLineName(scanner))) {
+                OutputView.lineDeleteSuccess();
+            }
         }
         if (input.equals(LINE_LOOKUP)) {
             OutputView.linesPrint(lineService.lineLookup());

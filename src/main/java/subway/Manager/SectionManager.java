@@ -23,12 +23,14 @@ public class SectionManager {
         String input = InputView.inputCategory(scanner, Category.SECTION.getActionType());
 
         if (input.equals(SECTION_INSERT)) {
-            sectionService.addSectionOnTheLine(InputView.inputSectionInfo(scanner));
-            OutputView.sectionInsertSuccess();
+            if (sectionService.addSectionOnTheLine(InputView.inputSectionInfo(scanner))) {
+                OutputView.sectionInsertSuccess();
+            }
         }
         if (input.equals(SECTION_DELETE)) {
-            sectionService.deleteSectionOnTheLine(InputView.inputDeleteSectionInfo(scanner));
-            OutputView.sectionDeleteSuccess();
+            if (sectionService.deleteSectionOnTheLine(InputView.inputDeleteSectionInfo(scanner))) {
+                OutputView.sectionDeleteSuccess();
+            }
         }
     }
 }

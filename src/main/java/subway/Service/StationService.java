@@ -9,23 +9,27 @@ import subway.domain.StationRepository;
 public class StationService {
     private static final StationRepository stationRepository = new StationRepository();
 
-    public void addStation(String stationName) {
+    public boolean addStation(String stationName) {
         try {
             isValidStation(stationName);
             StationRepository.addStation(new Station(stationName));
+            return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             StationManager.execute();
+            return false;
         }
     }
 
-    public void deleteStation(String deleteStationName) {
+    public boolean deleteStation(String deleteStationName) {
         try {
             isPossibleDeleteStation(deleteStationName);
             StationRepository.deleteStation(deleteStationName);
+            return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             StationManager.execute();
+            return false;
         }
     }
 

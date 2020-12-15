@@ -14,7 +14,7 @@ public class SectionService {
     private static final int SECTION_ORDER = 2;
 
 
-    public void addSectionOnTheLine(List<String> sectionInfo) {
+    public boolean addSectionOnTheLine(List<String> sectionInfo) {
         try {
             isPossibleInsertSection(sectionInfo);
 
@@ -22,22 +22,24 @@ public class SectionService {
             Station section = StationRepository.findByName(sectionInfo.get(SECTION_NAME));
             int sectionOrder = Integer.parseInt(sectionInfo.get(SECTION_ORDER));
             updateSection.add(sectionOrder, section);
+            return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             SectionManager.execute();
+            return false;
         }
     }
 
-    public void deleteSectionOnTheLine(List<String> deleteSectionInfo) {
+    public boolean deleteSectionOnTheLine(List<String> deleteSectionInfo) {
         try {
             isPossibleDeleteSection(deleteSectionInfo.get(LINE_NAME), deleteSectionInfo.get(SECTION_NAME));
 
-            Station deleteStation = StationRepository.findByName(deleteSectionInfo.get(SECTION_NAME));
-            List<Station> selections = LineStationRepository.findByLineGetSections(deleteSectionInfo.get(LINE_NAME));
-            selections.remove(deleteStation);
+            LineStationRepository.deleteSectionOnLine(deleteSectionInfo.get(LINE_NAME), deleteSectionInfo.get(SECTION_NAME));
+            return true;
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             SectionManager.execute();
+            return false;
         }
     }
 
