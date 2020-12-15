@@ -1,7 +1,9 @@
 package subway.controller;
 
 import subway.menus.LineMenu;
-import subway.service.LineService;
+import subway.service.lineservice.LineAddService;
+import subway.service.lineservice.LineDeleteService;
+import subway.service.lineservice.LinesPrintService;
 import subway.views.lineviews.LineInputView;
 import subway.views.lineviews.LineOutputView;
 
@@ -9,7 +11,6 @@ import java.util.Scanner;
 
 public class LineMenuController implements Controller{
     private static final LineMenuController lineMenuController = new LineMenuController();
-    private LineService lineService;
 
     private LineMenuController() {
     }
@@ -20,23 +21,24 @@ public class LineMenuController implements Controller{
 
     public void mappingMenu(Scanner scanner) {
           LineOutputView.printLineManagePage();
-          lineService = new LineService(scanner);
-          branchBySelectedOption(LineInputView.selectLineMenu(scanner));
+          branchBySelectedOption(scanner, LineInputView.selectLineMenu(scanner));
     }
 
-    private void branchBySelectedOption(LineMenu selectedOption) {
+    private void branchBySelectedOption(Scanner scanner, LineMenu selectedOption) {
         if (selectedOption.equals(LineMenu.GO_BACK_TO_MAIN_MENU)) {
             System.out.println();
             return;
         }
         if (selectedOption.equals(LineMenu.LINE_ADD)) {
-            lineService.lineAddService();
+            LineAddService lineAddService = LineAddService.getInstance();
+            lineAddService.lineAddService(scanner);
         }
         if (selectedOption.equals(LineMenu.LINE_DELETE)) {
-            lineService.lineDeleteService();
+            LineDeleteService lineDeleteService = LineDeleteService.getInstance();
+            lineDeleteService.lineDeleteService(scanner);
         }
         if (selectedOption.equals(LineMenu.LINE_SELECT)) {
-            lineService.showAllLines();
+            LinesPrintService.showAllLines();
         }
     }
 }
