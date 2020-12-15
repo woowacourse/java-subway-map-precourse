@@ -13,21 +13,27 @@ import static subway.utils.Constant.*;
 
 public class SectionManager {
     public static void sectionChoice() {
-        while (true) {
+        boolean isContinue = true;
+        while (isContinue) {
             OutputView.printSectionContents();
 
             String inputSectionSelect = InputView.inputSelect();
             ValidateSectionSelect.validateSectionSelect(inputSectionSelect);
-            if (inputSectionSelect.equals(CONTENTS_NUMBER_FIRST)) {
-                registerSection();
-            }
-            if (inputSectionSelect.equals(CONTENTS_NUMBER_SECOND)) {
-                deleteSection();
-            }
-            if (inputSectionSelect.equals(CONTENTS_NUMBER_BACK)) {
-                break;
-            }
+            isContinue = selectSection(inputSectionSelect);
         }
+    }
+
+    private static boolean selectSection(String inputSectionSelect) {
+        if (inputSectionSelect.equals(CONTENTS_NUMBER_FIRST)) {
+            registerSection();
+        }
+        if (inputSectionSelect.equals(CONTENTS_NUMBER_SECOND)) {
+            deleteSection();
+        }
+        if (inputSectionSelect.equals(CONTENTS_NUMBER_BACK)) {
+            return false;
+        }
+        return true;
     }
 
     private static void registerSection() {

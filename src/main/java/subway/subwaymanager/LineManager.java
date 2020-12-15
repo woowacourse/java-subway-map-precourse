@@ -14,25 +14,31 @@ import java.util.List;
 import static subway.utils.Constant.*;
 
 public class LineManager {
-    public static void lineChoice() {
-        while (true) {
-            OutputView.printLineContents();
 
+    public static void lineChoice() {
+        boolean isContinue = true;
+        while (isContinue) {
+            OutputView.printLineContents();
             String inputLineSelect = InputView.inputSelect();
             ValidateStationOrLineSelect.validateStationOrLineSelect(inputLineSelect);
-            if (inputLineSelect.equals(CONTENTS_NUMBER_FIRST)) {
-                registerLine();
-            }
-            if (inputLineSelect.equals(CONTENTS_NUMBER_SECOND)) {
-                deleteLine();
-            }
-            if (inputLineSelect.equals(CONTENTS_NUMBER_THIRD)) {
-                OutputView.printLines();
-            }
-            if (inputLineSelect.equals(CONTENTS_NUMBER_BACK)) {
-                break;
-            }
+            isContinue = selectLine(inputLineSelect);
         }
+    }
+
+    private static boolean selectLine(String inputLineSelect) {
+        if (inputLineSelect.equals(CONTENTS_NUMBER_FIRST)) {
+            registerLine();
+        }
+        if (inputLineSelect.equals(CONTENTS_NUMBER_SECOND)) {
+            deleteLine();
+        }
+        if (inputLineSelect.equals(CONTENTS_NUMBER_THIRD)) {
+            OutputView.printLines();
+        }
+        if (inputLineSelect.equals(CONTENTS_NUMBER_BACK)) {
+            return false;
+        }
+        return true;
     }
 
     private static void registerLine() {

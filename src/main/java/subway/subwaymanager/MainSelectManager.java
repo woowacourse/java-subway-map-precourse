@@ -8,27 +8,32 @@ import static subway.utils.Constant.*;
 
 public class MainSelectManager {
     public static void mainSelectManager() {
-        while (true) {
+        boolean isContinue = true;
+        while (isContinue) {
             OutputView.printMainContents();
             String inputMainSelect = InputView.inputSelect();
             ValidateMainSelect.validateMainSelect(inputMainSelect);
-
-            if (inputMainSelect.equals(CONTENTS_NUMBER_FIRST)) {
-                StationManager.stationChoice();
-            }
-            if (inputMainSelect.equals(CONTENTS_NUMBER_SECOND)) {
-                LineManager.lineChoice();
-            }
-            if (inputMainSelect.equals(CONTENTS_NUMBER_THIRD)) {
-                SectionManager.sectionChoice();
-            }
-            if (inputMainSelect.equals(CONTENTS_NUMBER_FOURTH)) {
-                OutputView.printSubways();
-            }
-            if (inputMainSelect.equals(CONTENTS_NUMBER_QUIT)) {
-                System.out.println("종료합니다.");
-                break;
-            }
+            isContinue = selectMenu(inputMainSelect);
         }
+    }
+
+    private static boolean selectMenu(String inputMainSelect) {
+        if (inputMainSelect.equals(CONTENTS_NUMBER_FIRST)) {
+            StationManager.stationChoice();
+        }
+        if (inputMainSelect.equals(CONTENTS_NUMBER_SECOND)) {
+            LineManager.lineChoice();
+        }
+        if (inputMainSelect.equals(CONTENTS_NUMBER_THIRD)) {
+            SectionManager.sectionChoice();
+        }
+        if (inputMainSelect.equals(CONTENTS_NUMBER_FOURTH)) {
+            OutputView.printSubways();
+        }
+        if (inputMainSelect.equals(CONTENTS_NUMBER_QUIT)) {
+            System.out.println("종료합니다.");
+            return false;
+        }
+        return true;
     }
 }
