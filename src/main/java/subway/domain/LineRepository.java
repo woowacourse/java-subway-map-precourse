@@ -85,4 +85,14 @@ public class LineRepository {
         }
     }
 
+    public static void printLineAndStation() {
+        for (Line line : lines) {
+            System.out.println(line.toString() + "\n[INFO] ---");
+            for (Station station : line.getStations()) {
+                System.out.println(station.toString());
+            }
+            System.out.println();
+        }
+    }
+
 }

@@ -38,7 +38,7 @@ public class Station {
 
     @Override
     public String toString() {
-        return "[INFO]" + name.toString();
+        return "[INFO] " + name.toString();
     }
 
 }
