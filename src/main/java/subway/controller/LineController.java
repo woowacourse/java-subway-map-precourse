@@ -17,6 +17,8 @@ public class LineController {
     private String upstreamStation;
     private String downstreamStation;
     private static final int MIN_NAME_LENGTH = 2;
+    private static final int ZERO = 48;
+    private static final int NINE = 57;
 
 
     public static LineController getInstance() {
@@ -83,6 +85,62 @@ public class LineController {
         return true;
     }
 
-    public Boolean back() {
+    public Boolean registerSection() {
+        if (!isExistLine()) {
+            return false;
+        }
+        if (isValidStationNameLength()) {
+            return false;
+        }
+        if (!isValidOrder()) {
+            return false;
+        }
+        boolean result = LineRepository.searchByName(lineName).addStation(Integer.parseInt(order), stationName);
+        OutputViewOfInfo.registerSectionComplete();
+        return result;
     }
+
+    private boolean isExistLine() {
+        lineName = InputView.registerLineInSection();
+        if (!LineRepository.isExistLine(lineName)) {
+            OutputViewOfError.isNotExistLine();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidStationNameLength() {
+        stationName = InputView.registerStationInSection();
+        if (stationName.length() < MIN_NAME_LENGTH) {
+            OutputViewOfError.isNotValidNameLength();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidOrder() {
+        order = InputView.registerOrderInSection();
+        if (isNum(order) && Integer.parseInt(order) >= 1 // 상행 종점으로 추가 될 경우 1부터 가능하다.
+                && Integer.parseInt(order) <= LineRepository.searchByName(lineName).getStations().size()+1){ // 하행 종점으로 구간 추가될 경우 노선에 등록된 역 개수 +1 이 된다.
+            return true;
+        }
+        OutputViewOfError.isNotValidOrder();
+        return false;
+    }
+
+    private boolean isNum(String order) {
+        return order.chars().allMatch(this::isDigit);
+    }
+
+    private boolean isDigit(int c) {
+        return ZERO <= c && c <= NINE;
+    }
+
+    public Boolean deleteSection() {
+    }
+
+    public Boolean back() {
+        return true;
+    }
+
 }
