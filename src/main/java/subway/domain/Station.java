@@ -1,6 +1,7 @@
 package subway.domain;
 
-public class Station {
+public class Station{
+
     private String name;
 
     public Station(String name) {
@@ -11,5 +12,8 @@ public class Station {
         return name;
     }
 
+    public boolean equalWith(String newName) {
+        return name.equals(newName);
+    }
     // 추가 기능 구현
 }

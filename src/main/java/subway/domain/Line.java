@@ -1,15 +1,39 @@
 package subway.domain;
 
-public class Line {
-    private String name;
+import java.util.ArrayList;
+import java.util.List;
+import subway.domain.repository.PassingRouteRepository;
 
-    public Line(String name) {
+public class Line{
+
+    private static final String CONTOUR = "---";
+    private String name;
+    public PassingRouteRepository passingRoutes = null;
+
+    public Line(String name, PassingRouteRepository passingRoutes) {
         this.name = name;
+        this.passingRoutes = passingRoutes;
     }
 
     public String getName() {
         return name;
     }
 
-    // 추가 기능 구현
+    public PassingRouteRepository getPassingRoutes() {
+        return this.passingRoutes;
+    }
+
+    public boolean equalWith(String newName) {
+        return name.equals(newName);
+    }
+
+    public List<String> inquiryStations() {
+        List<String> stationNames = new ArrayList<>();
+
+        stationNames.add(this.name);
+        stationNames.add(CONTOUR);
+
+        stationNames = this.passingRoutes.addStationNames(stationNames);
+        return stationNames;
+    }
 }
