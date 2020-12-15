@@ -6,6 +6,7 @@ import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
+    private static int LINE_MIN_LENGTH = 2;
 
     public LineRepository() {
         init();
@@ -114,7 +115,7 @@ public class LineRepository {
     public static void twoMoreLines(String lineName) {
         lines.stream()
                 .filter(line -> Objects.equals(line.getName(), lineName))
-                .filter(line -> line.getStations().size() <= 2)
+                .filter(line -> line.getStations().size() <= LINE_MIN_LENGTH)
                 .findFirst()
                 .ifPresent(s -> {
                     throw new InvalidLineLengthException();

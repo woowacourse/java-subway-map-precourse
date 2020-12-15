@@ -24,6 +24,24 @@ public class LineFunction {
         return true;
     }
 
+    public static boolean delete() {
+        try {
+            LineOutputView.deleteLineName();
+            String line = InputView.input();
+            InputValidator.validLineName(line);
+            LineRepository.deleteLineByName(line);
+            LineOutputView.successDelete();
+        } catch (InvalidLineNameException | NotExistLineException e ){
+            return false;
+        }
+        return true;
+    }
+
+    public static LineRepository printAll() {
+        LineOutputView.showAllLines(LineRepository.lines());
+        return null;
+    }
+
     private static String inputAddLine() {
         try {
             LineOutputView.registerLineName();
@@ -79,23 +97,5 @@ public class LineFunction {
         if (Objects.equals(firstStation, lastStation)) {
             throw new DuplicateFirstLastStationException();
         }
-    }
-
-    public static boolean delete() {
-        try {
-            LineOutputView.deleteLineName();
-            String line = InputView.input();
-            InputValidator.validLineName(line);
-            LineRepository.deleteLineByName(line);
-            LineOutputView.successDelete();
-        } catch (InvalidLineNameException | NotExistLineException e ){
-            return false;
-        }
-        return true;
-    }
-
-    public static LineRepository printAll() {
-        LineOutputView.showAllLines(LineRepository.lines());
-        return null;
     }
 }

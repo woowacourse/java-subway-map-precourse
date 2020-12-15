@@ -16,7 +16,7 @@ public class LineOutputView {
     private static String DELETE_LINE = "삭제할 노선 이름을 입력하세요.\n";
     private static String SUCCESS_ADD_LINE = "지하철 노선이 등록되었습니다.\n";
     private static String SUCCESS_DELETE_LINE = "지하철 노선이 삭제되었습니다.\n";
-    private static String NEXT_LINE = "\n";
+
 
     public static void showMenu() {
         stringBuilder.append(MENU_SYMBOL);

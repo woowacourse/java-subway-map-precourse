@@ -5,6 +5,7 @@ public class OutputView {
     static final String MENU_SYMBOL = "\n## ";
     static final String INFO_SYMBOL = "\n[INFO] ";
     static final String SELECT_MENU = "원하는 기능을 선택하세요.\n";
+    static final String NEXT_LINE = "\n";
 
     static void print() {
         System.out.print(stringBuilder.toString());

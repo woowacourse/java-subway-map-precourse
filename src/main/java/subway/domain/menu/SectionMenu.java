@@ -25,15 +25,15 @@ public enum SectionMenu {
         return !Objects.equals(sectionMenu, SectionMenu.BACK);
     }
 
-    public boolean equals(String button) {
-        return Objects.equals(this.button, button);
-    }
-
     public static SectionMenu findMenu(String inputMenu) {
         return Arrays.stream(SectionMenu.values())
                 .filter(menu -> menu.equals(inputMenu))
                 .findAny()
                 .orElseThrow(() -> new NoSuchMenuException());
+    }
+
+    public boolean equals(String button) {
+        return Objects.equals(this.button, button);
     }
 
     public void runFunction() {

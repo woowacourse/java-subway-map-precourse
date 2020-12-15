@@ -23,7 +23,8 @@ public class Line {
     }
 
     public void addSection(String station, int order) {
-        stations.add(order-1, station);
+        int index = order-1;
+        stations.add(index, station);
     }
 
     public void deleteLineByName(String name) {

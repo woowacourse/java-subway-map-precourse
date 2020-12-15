@@ -21,6 +21,18 @@ public class SectionFunction {
         return true;
     }
 
+    public static boolean delete() {
+        try {
+            String line = inputDeleteLine();
+            String station = inputDeleteStation(line);
+            LineRepository.deleteSectionOfLine(line, station);
+            SectionOutputView.successRemove();
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
+
     private static String inputAddLine() {
         try {
             SectionOutputView.registerSectionLineName();
@@ -56,18 +68,6 @@ public class SectionFunction {
         } catch (InvalidOrderException | InvalidOrderLengthException e) {
             throw new NullPointerException();
         }
-    }
-
-    public static boolean delete() {
-        try {
-            String line = inputDeleteLine();
-            String station = inputDeleteStation(line);
-            LineRepository.deleteSectionOfLine(line, station);
-            SectionOutputView.successRemove();
-        } catch (NullPointerException e) {
-            return false;
-        }
-        return true;
     }
 
     private static String inputDeleteLine() {

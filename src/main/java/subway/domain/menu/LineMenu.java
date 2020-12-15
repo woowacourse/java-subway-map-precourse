@@ -21,10 +21,6 @@ public enum LineMenu {
         this.function = function;
     }
 
-    public boolean equals(String button) {
-        return Objects.equals(this.button, button);
-    }
-
     public static boolean isRunning(LineMenu lineMenu) {
         return !Objects.equals(lineMenu, LineMenu.BACK);
     }
@@ -34,6 +30,10 @@ public enum LineMenu {
                 .filter(menu -> menu.equals(inputMenu))
                 .findAny()
                 .orElseThrow(() -> new NoSuchMenuException());
+    }
+
+    public boolean equals(String button) {
+        return Objects.equals(this.button, button);
     }
 
     public void runFunction() {

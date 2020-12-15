@@ -28,18 +28,18 @@ public enum MainMenu {
         return !Objects.equals(menu, MainMenu.EXIT);
     }
 
+    public static MainMenu findMenu(String inputMenu) {
+        return Arrays.stream(MainMenu.values())
+                .filter(menu -> menu.equals(inputMenu))
+                .findAny()
+                .orElseThrow(() -> new NoSuchMenuException());
+    }
+
     public Controller getController() {
         return controller;
     }
 
     private boolean equals(String value) {
         return Objects.equals(this.button, value);
-    }
-
-    public static MainMenu findMenu(String inputMenu) {
-        return Arrays.stream(MainMenu.values())
-                .filter(menu -> menu.equals(inputMenu))
-                .findAny()
-                .orElseThrow(() -> new NoSuchMenuException());
     }
 }

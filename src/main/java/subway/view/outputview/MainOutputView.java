@@ -42,6 +42,6 @@ public class MainOutputView {
     private static void showStationsOfLine(List<String> stations) {
         stations.forEach(station ->
                 stringBuilder.append(INFO_SYMBOL+station));
-        stringBuilder.append("\n");
+        stringBuilder.append(NEXT_LINE);
     }
 }
