@@ -62,7 +62,7 @@ public class StationController {
 
         stationName = InputView.scanStationDeleteName(scanner);
 
-        if (!StationRepository.deleteStation(stationName)) { // 역 이름이 존재하지 않을 경우
+        if (!StationRepository.contains(stationName)) { // 역 이름이 존재하지 않을 경우
             OutputView.stationNameDeleteErrorPrint();
             return false;
         }
