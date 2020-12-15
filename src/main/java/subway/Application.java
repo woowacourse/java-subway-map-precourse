@@ -12,11 +12,63 @@ import java.util.Scanner;
 public class Application {
     public static final int FUNCTION_INPUT_ERROR = 0;
     public static final List<String> mainFunctions = Arrays.asList("1", "2", "3", "4", "Q");
+    public static final String STATION_MENU = "1";
+    public static final String LINE_MENU = "2";
+    public static final String SECTION_MENU = "3";
+    public static final String PRINT_LINES = "4";
+    public static final String FINISH_PROGRAM = "Q";
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         initialize();
         showMainMenu();
-        System.out.println(inputMainFunction(scanner));
+        String input = inputMainFunction(scanner);
+        goSubMenu(input);
+    }
+
+    public static void goSubMenu(String input) {
+        System.out.println();
+        if (input.equals(STATION_MENU))
+            showStationMenu();
+        if (input.equals(LINE_MENU))
+            showLineMenu();
+        if (input.equals(SECTION_MENU))
+            showSectionMenu();
+        if (input.equals(PRINT_LINES))
+            showPrintLines();
+        if (input.equals(FINISH_PROGRAM))
+            finishProgram();
+    }
+
+    public static void showStationMenu() {
+        System.out.println("## 역 관리 화면");
+        System.out.println("1. 역 등록");
+        System.out.println("2. 역 삭제");
+        System.out.println("3. 역 조회");
+        System.out.println("B. 돌아가기");
+    }
+
+    public static void showLineMenu() {
+        System.out.println("## 노선 관리 화면");
+        System.out.println("1. 노선 등록");
+        System.out.println("2. 노선 삭제");
+        System.out.println("3. 노선 조회");
+        System.out.println("B. 돌아가기");
+    }
+
+    public static void showSectionMenu() {
+        System.out.println("## 구간 관리 화면");
+        System.out.println("1. 구간 등록");
+        System.out.println("2. 구간 삭제");
+        System.out.println("B. 돌아가기");
+    }
+
+    public static void showPrintLines() {
+        System.out.println("## 지하철 노선도");
+    }
+
+    public static void finishProgram() {
+        System.out.println("## 프로그램 종료");
     }
 
     public static void showMainMenu() {
