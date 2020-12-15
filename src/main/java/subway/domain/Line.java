@@ -21,6 +21,10 @@ public class Line {
     public String getName() {
         return name;
     }
+    
+    public List<Station> stations() {
+        return stations;
+    }
 
     public boolean isValidName() {
         if (name.length() >= MINIMUM_LENGTH) {

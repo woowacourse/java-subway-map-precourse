@@ -1,5 +1,8 @@
 package subway.view;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.screen.LineScreen;
 import subway.screen.MainScreen;
 import subway.screen.SectionScreen;
@@ -8,6 +11,8 @@ import subway.screen.StationScreen;
 public class Output {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_PREFIX = "[INFO] ";
+    private static final String DIVIDING_LINE = "---";
+
 	
     private MainScreen main;
     private StationScreen station;
@@ -43,5 +48,21 @@ public class Output {
     
     public void printSectionMenu() {
         section.printScreen();
+    }
+    
+
+    public static void printSubwayMap() {
+        for (Line line : LineRepository.lines()) {
+        	System.out.println(line.getName());
+        	System.out.println(DIVIDING_LINE);
+        	printStationsOnLine(line);
+        	System.out.println();
+        }
+    }
+    
+    public static void printStationsOnLine(Line line) {
+        for (Station station : line.stations()) {
+            System.out.println(station.getName());
+        }
     }
 }
