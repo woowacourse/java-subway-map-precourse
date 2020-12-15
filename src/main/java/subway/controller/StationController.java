@@ -32,6 +32,7 @@ public class StationController implements IController{
 
     @Override
     public void getList() {
+        Output.print(Output.STATION_LIST);
         Output.printByList(StationService.getAllStations());
     }
 

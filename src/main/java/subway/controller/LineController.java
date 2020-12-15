@@ -2,7 +2,6 @@ package subway.controller;
 
 import subway.domain.Line;
 import subway.service.LineService;
-import subway.service.StationService;
 import subway.view.Input;
 import subway.view.Output;
 
@@ -20,7 +19,7 @@ public class LineController implements IController {
 
     @Override
     public void remove() {
-        try{
+        try {
             LineService.remove(Input.input(Input.PLEASE_INPUT_REMOVE_LINE_NAME));
         } catch (IllegalArgumentException e) {
             Output.printNewLine();
@@ -30,7 +29,8 @@ public class LineController implements IController {
 
     @Override
     public void getList() {
-
+        Output.print(Output.LINE_LIST);
+        Output.printByList(LineService.getAllLines());
     }
 
     public static LineController getInstance() {
