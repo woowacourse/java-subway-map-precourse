@@ -18,9 +18,12 @@ public class StationService {
 
     public static void remove(String name) {
         validateNameLength(name);
-        StationRepository.deleteStation(
-                StationRepository.findByName(name)
-                        .orElseThrow(StationNameNotFoundException::new).getName());
+        StationRepository.deleteStation(isExists(name).getName());
+    }
+
+    public static Station isExists(String name) {
+        return StationRepository.findByName(name)
+                .orElseThrow(StationNameNotFoundException::new);
     }
 
     private static void validateNameLength(String name) {
