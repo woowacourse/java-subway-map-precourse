@@ -47,6 +47,7 @@ public class SubwayManager {
         }
         if (input.equals("4")) {
             subwayMapManager();
+            runManager(scanner);
         }
         if (input.equals("Q")) {
             return;
