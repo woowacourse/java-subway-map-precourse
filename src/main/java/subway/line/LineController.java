@@ -1,8 +1,8 @@
 package subway.line;
 
+import subway.common.SelectOption;
 import subway.line.validation.CheckRegisteredLine;
 import subway.line.validation.NotAllowSameStartEnd;
-import subway.main.SubwayController;
 import subway.station.Station;
 import subway.station.StationService;
 import subway.view.InputView;
@@ -22,7 +22,7 @@ public class LineController {
 
         while (true) {
             LineManagementView.showLineManagementMenu();
-            char option = SubwayController.selectOption(optionList, inputView);
+            char option = SelectOption.choice(optionList, inputView);
 
             if (option == GO_BACK) {
                 break;

@@ -1,6 +1,5 @@
 package subway.station;
 
-import subway.line.validation.CheckStationRegisteredLine;
 import subway.station.validation.CheckRegisteredStation;
 
 import java.util.List;

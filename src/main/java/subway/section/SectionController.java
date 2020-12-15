@@ -1,11 +1,11 @@
 package subway.section;
 
+import subway.common.SelectOption;
 import subway.line.Line;
 import subway.line.LineService;
 import subway.line.validation.CheckAlreadyRegisteredStation;
 import subway.line.validation.CheckNotExistStation;
 import subway.line.validation.CheckRightSectionNumber;
-import subway.main.SubwayController;
 import subway.station.Station;
 import subway.station.StationService;
 import subway.view.InputView;
@@ -24,7 +24,7 @@ public class SectionController {
 
         while (true) {
             SectionManagementView.showSectionManagementMenu();
-            char option = SubwayController.selectOption(optionList, inputView);
+            char option = SelectOption.choice(optionList, inputView);
 
             if (option == GO_BACK) {
                 break;
