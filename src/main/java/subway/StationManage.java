@@ -4,7 +4,6 @@ import static log.ErrorCase.ALREADY_EXIST_ERROR;
 import static log.ErrorCase.NAME_LENGTH_ERROR;
 import static log.ErrorCase.NO_SUCH_NAME_ERROR;
 import static log.Logger.displayInputScreen;
-import static log.Logger.displayMainScreen;
 import static log.Logger.displayStationManageScreen;
 import static log.Logger.errorPrint;
 import static log.Logger.guidePrint;
@@ -43,49 +42,52 @@ public class StationManage {
             return true;
         }
         if (input.equals(ADD_STATION)) {
-            addStationControl(scanner);
+            return addStationControl(scanner);
         }
         if (input.equals(DELETE_STATION)) {
-            deleteStationControl(scanner);
+            return deleteStationControl(scanner);
         }
         if (input.equals(ALL_STATIONS)) {
-            allStationsContol();
+            return allStationsContol();
         }
         return false;
     }
 
-    private static void addStationControl(Scanner scanner) {
+    private static boolean addStationControl(Scanner scanner) {
         guidePrint("등록할 역 이름을 입력하세요. ");
         String stationName = scanner.next();
         if (!stationNameLengthValidate(stationName)) {
             errorPrint(NAME_LENGTH_ERROR);
-            return;
+            return false;
         }
         if (stationExists(stationName)) {
             errorPrint(ALREADY_EXIST_ERROR);
-            return;
+            return false;
         }
         addStation(new Station(stationName));
         infoPrint("지하철 역이 등록되었습니다. ");
+        return true;
     }
 
-    private static void deleteStationControl(Scanner scanner) {
+    private static boolean deleteStationControl(Scanner scanner) {
         guidePrint("삭제할 역 이름을 입력하세요. ");
         String stationName = scanner.next();
         if (!stationExists(stationName)) {
             errorPrint(NO_SUCH_NAME_ERROR);
-            return;
+            return false;
         }
         deleteStation(stationName);
         infoPrint("지하철 역이 삭제되었습니다. ");
+        return true;
     }
 
-    private static void allStationsContol() {
+    private static boolean allStationsContol() {
         guidePrint("역 목록");
         List<Station> allStations = stations();
         for (Station station : allStations) {
             station.print();
         }
+        return true;
     }
 
     private static boolean stationNameLengthValidate(String stationName) {
