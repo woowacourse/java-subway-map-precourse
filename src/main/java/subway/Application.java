@@ -3,7 +3,6 @@ package subway;
 import static log.Logger.displayInputScreen;
 import static log.Logger.displayMainScreen;
 import static subway.LineManage.linaManage;
-import static subway.SectionManage.sectionManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.StationRepository.addStation;
@@ -55,19 +54,19 @@ public class Application {
         String input = displayInputScreen(scanner, new ArrayList<>(Arrays.asList(
             STATION_MANAGE, LINE_MANAGE, SECTION_MANAGE, ALL_INFO, EXIT)));
 
-        if (input.equalsIgnoreCase(EXIT)) {
+        if (input.equals(EXIT)) {
             return true;
         }
-        if (input.equalsIgnoreCase(STATION_MANAGE)) {
+        if (input.equals(STATION_MANAGE)) {
             stationManage(scanner);
         }
-        if (input.equalsIgnoreCase(LINE_MANAGE)) {
+        if (input.equals(LINE_MANAGE)) {
             linaManage(scanner);
         }
-        if (input.equalsIgnoreCase(SECTION_MANAGE)) {
-            sectionManage(scanner);
+        if (input.equals(SECTION_MANAGE)) {
+            //sectionManage(scanner);
         }
-        if (input.equalsIgnoreCase(ALL_INFO)) {
+        if (input.equals(ALL_INFO)) {
             routeMapPrint();
         }
         return false;
