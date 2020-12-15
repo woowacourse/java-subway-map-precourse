@@ -3,7 +3,7 @@ package subway.menus;
 import java.util.stream.Stream;
 
 public enum SectionMenu implements Menu {
-    SECTION_INSERT("1", "구간 등록"),
+    SECTION_ADD("1", "구간 등록"),
     SECTION_DELETE("2", "구간 삭제"),
     GO_BACK_TO_MAIN_MENU("B", "돌아가기");
 

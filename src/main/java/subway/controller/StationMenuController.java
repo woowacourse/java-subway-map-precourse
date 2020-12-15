@@ -29,7 +29,7 @@ public class StationMenuController {
             System.out.println();
             return;
         }
-        if (selectedOption.equals(StationMenu.STATION_INSERT)) {
+        if (selectedOption.equals(StationMenu.STATION_ADD)) {
             stationService.stationAddService();
         }
         if (selectedOption.equals(StationMenu.STATION_DELETE)) {

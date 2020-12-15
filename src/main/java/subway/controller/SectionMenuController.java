@@ -29,7 +29,7 @@ public class SectionMenuController {
             System.out.println();
             return;
         }
-        if (selectedOption.equals(SectionMenu.SECTION_INSERT)) {
+        if (selectedOption.equals(SectionMenu.SECTION_ADD)) {
             sectionService.sectionAddService();
         }
         if (selectedOption.equals(SectionMenu.SECTION_DELETE)) {

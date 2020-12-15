@@ -29,7 +29,7 @@ public class LineMenuController {
             System.out.println();
             return;
         }
-        if (selectedOption.equals(LineMenu.LINE_INSERT)) {
+        if (selectedOption.equals(LineMenu.LINE_ADD)) {
             lineService.lineAddService();
         }
         if (selectedOption.equals(LineMenu.LINE_DELETE)) {

@@ -3,7 +3,7 @@ package subway.menus;
 import java.util.stream.Stream;
 
 public enum LineMenu implements Menu {
-    LINE_INSERT("1", "노선 등록"),
+    LINE_ADD("1", "노선 등록"),
     LINE_DELETE("2", "노선 삭제"),
     LINE_SELECT("3", "노선 조회"),
     GO_BACK_TO_MAIN_MENU("B", "돌아가기");

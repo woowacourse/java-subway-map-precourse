@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class SectionMenuTest {
     @Test
     public void getMenu_메소드_테스트() {
-        Assertions.assertEquals(SectionMenu.SECTION_INSERT, SectionMenu.getMenu("1"));
+        Assertions.assertEquals(SectionMenu.SECTION_ADD, SectionMenu.getMenu("1"));
         Assertions.assertEquals(SectionMenu.SECTION_DELETE, SectionMenu.getMenu("2"));
         Assertions.assertEquals(SectionMenu.GO_BACK_TO_MAIN_MENU, SectionMenu.getMenu("B"));
     }
