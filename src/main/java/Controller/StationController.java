@@ -3,6 +3,7 @@ package Controller;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StationController {
@@ -24,9 +25,11 @@ public class StationController {
         }
         if (userInput.equals("2")) {
             inputCheck = true;
+            deleteStation(scanner);
         }
         if (userInput.equals("3")) {
             inputCheck = true;
+            showStation();
         }
         if (userInput.equals("B")) {
             inputCheck = true;
@@ -43,5 +46,21 @@ public class StationController {
         Station station = new Station(name);
         StationRepository.addStation(station);
         System.out.println("[INFO] 지하철 역이 등록되었습니다.");
+    }
+
+    public static void deleteStation(Scanner scanner) {
+        System.out.println("## 삭제할 역 이름을 입력하세요");
+        String name = scanner.nextLine();
+        StationRepository.deleteStation(name);
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
+    public static void showStation() {
+        System.out.println("## 역 목록");
+        List<Station> stations = StationRepository.stations();
+        for (Station station : stations) {
+            System.out.println("[INFO] " + station.getName());
+        }
+        System.out.println();
     }
 }
