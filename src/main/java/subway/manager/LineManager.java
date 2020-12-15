@@ -2,16 +2,13 @@ package subway.manager;
 
 import java.util.Scanner;
 import subway.validator.LineManagerValidator;
-import view.LineManagerView;
 
 public class LineManager {
 
     public static final String ERROR_PREFIX = "[ERROR] ";
-    private static final int MIN_NAME_LENGTH = 2;
     public static final String INPUT_LINE_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
     public static final String INPUT_UPWARD_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String INPUT_DOWNWARD_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
-    public static final String LINE_NAME_DELETION_ERROR_MESSAGE = "존재하는 2자 이상의 노선 이름을 입력하세요";
     public static final String INFO_PREFIX = "[INFO] ";
     public static final String ENROLLMENT_LINE_INFO_MESSAGE = "지하철 노선이 등록되었습니다";
     public static final String ASK_DELETION_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
@@ -69,7 +66,7 @@ public class LineManager {
     public static String inputLineNameForDeletion(Scanner scanner) {
         String lineName = scanner.nextLine();
         try {
-            validateStationNameForDeletion(lineName);
+            LineManagerValidator.validateStationNameForDeletion(lineName);
             return lineName;
         } catch (IllegalArgumentException iae) {
             System.out.println(ERROR_PREFIX + iae.getMessage());
@@ -77,15 +74,6 @@ public class LineManager {
         }
     }
 
-    public static void validateStationNameForDeletion(String lineName)
-        throws IllegalArgumentException {
-        if (lineName.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException(LINE_NAME_DELETION_ERROR_MESSAGE);
-        }
-        if (!SubwayManager.isExistLine(lineName)) {
-            throw new IllegalArgumentException(LINE_NAME_DELETION_ERROR_MESSAGE);
-        }
-    }
 
     public static void searchLine(Scanner scanner) {
         SubwayManager.printLine();

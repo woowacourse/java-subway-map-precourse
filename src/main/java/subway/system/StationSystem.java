@@ -1,10 +1,9 @@
 package subway.system;
 
 import java.util.Scanner;
-import subway.domain.Station;
 import subway.manager.StationManager;
 import subway.validator.StationManagerValidator;
-import view.StationManagerView;
+import subway.view.StationManagerView;
 
 public class StationSystem {
     static final int OPTION_ONE = 1;

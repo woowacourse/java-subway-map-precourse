@@ -1,4 +1,4 @@
-package view;
+package subway.view;
 
 public class SubwayManagerView {
 

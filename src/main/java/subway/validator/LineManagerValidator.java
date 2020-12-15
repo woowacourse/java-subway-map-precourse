@@ -9,6 +9,7 @@ public class LineManagerValidator {
     static final String ERROR_PREFIX = "[ERROR] ";
     static final String STATION_NAME_ERROR_MESSAGE = "존재하는 2자 이상의 역 이름을 입력하세요";
     static final String LINE_NAME_INPUT_ERROR_MESSAGE = "존재하지 않는 2자 이상의 노선 이름을 입력하세요";
+    static final String LINE_NAME_DELETION_ERROR_MESSAGE = "존재하는 2자 이상의 노선 이름을 입력하세요";
     private static final int MIN_NAME_LENGTH = 2;
     static final int OPTION_MIN = 1;
     static final int OPTION_MAX = 3;
@@ -44,6 +45,16 @@ public class LineManagerValidator {
         }
         if (SubwayManager.isDuplicatedLine(lineName)) {
             throw new IllegalArgumentException(LINE_NAME_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateStationNameForDeletion(String lineName)
+        throws IllegalArgumentException {
+        if (lineName.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(LINE_NAME_DELETION_ERROR_MESSAGE);
+        }
+        if (!SubwayManager.isExistLine(lineName)) {
+            throw new IllegalArgumentException(LINE_NAME_DELETION_ERROR_MESSAGE);
         }
     }
 }

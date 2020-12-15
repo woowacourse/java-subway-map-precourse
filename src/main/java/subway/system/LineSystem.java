@@ -3,7 +3,7 @@ package subway.system;
 import java.util.Scanner;
 import subway.manager.LineManager;
 import subway.validator.LineManagerValidator;
-import view.LineManagerView;
+import subway.view.LineManagerView;
 
 public class LineSystem {
 

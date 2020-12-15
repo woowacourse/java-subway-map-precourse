@@ -3,7 +3,7 @@ package subway.system;
 import java.util.Scanner;
 import subway.manager.SectionManager;
 import subway.validator.SectionManagerValidator;
-import view.SectionManagerView;
+import subway.view.SectionManagerView;
 
 public class SectionSystem {
 

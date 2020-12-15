@@ -2,7 +2,6 @@ package subway.manager;
 
 import java.util.Scanner;
 import subway.validator.StationManagerValidator;
-import view.StationManagerView;
 
 public class StationManager {
 

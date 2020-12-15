@@ -2,7 +2,6 @@ package subway.manager;
 
 import java.util.Scanner;
 import subway.validator.SectionManagerValidator;
-import view.SectionManagerView;
 
 public class SectionManager {
 

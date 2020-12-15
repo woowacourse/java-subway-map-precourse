@@ -1,5 +1,8 @@
 package subway.domain;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Subway {
     private static final String INFO_PREFIX = "[INFO] ";
 
@@ -76,5 +79,13 @@ public class Subway {
 
     public void printMap() {
         lineRepository.printAll();
+    }
+
+    public List<Station> stations() {
+        return stationRepository.stations();
+    }
+
+    public List<Line> lines() {
+        return lineRepository.lines();
     }
 }
