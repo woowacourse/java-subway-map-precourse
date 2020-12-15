@@ -10,6 +10,6 @@ public class Application {
 
         MainController mainController = new MainController();
         mainController.init();
-        mainController.forward(scanner);
+        mainController.selectMenu(scanner);
     }
 }
