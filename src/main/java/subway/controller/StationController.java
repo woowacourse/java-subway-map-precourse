@@ -5,11 +5,10 @@ import subway.service.StationService;
 import subway.view.Input;
 import subway.view.Output;
 
-public class StationController implements IController{
+public class StationController {
 
     private StationController() {}
 
-    @Override
     public void save() {
         try {
             StationService.save(new Station(Input.input(Input.PLEASE_INPUT_STATION_MESSAGE)));
@@ -19,7 +18,6 @@ public class StationController implements IController{
         }
     }
 
-    @Override
     public void remove() {
         try{
             Output.printNewLine();
@@ -30,7 +28,6 @@ public class StationController implements IController{
         }
     }
 
-    @Override
     public void getList() {
         Output.print(Output.STATION_LIST);
         Output.printByList(StationService.getAllStations());
