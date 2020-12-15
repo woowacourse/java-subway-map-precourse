@@ -42,6 +42,7 @@ public class LineManageView {
             if (input.equals(INPUT_BACK)) {
                 break;
             }
+            controller.processInput(input);
         }
     }
 
