@@ -19,6 +19,11 @@ public class LineStationRepository {
         subwayLine.remove(getLineStation(lineName));
     }
 
+    public static void deleteSectionOnLine(String lineName, String deleteSection) {
+        List<Station> selections = LineStationRepository.findByLineGetSections(lineName);
+        selections.removeIf(station -> station.getName().equals(deleteSection));
+    }
+
     public static LineStation getLineStation(String lineName) {
         int findIndex = -1;
         for (LineStation lineStation : subwayLine) {
