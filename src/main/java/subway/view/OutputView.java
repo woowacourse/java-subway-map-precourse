@@ -47,6 +47,10 @@ public class OutputView {
         println(PLEASE_SELECT_MENU_MSG);
     }
 
+    public static void println(String message){
+        System.out.println(message);
+    }
+
     private static String convertMenuToStringForConsoleOutput(String header, List<String> commands, List<String> titles) {
         StringBuilder menu = new StringBuilder(header);
         for (int i = 0; i < commands.size(); i++) {
@@ -57,12 +61,5 @@ public class OutputView {
             menu.append(menuLine);
         }
         return menu.toString();
-    }
-
-    public static void print(String message){
-        System.out.print(message);
-    }
-    public static void println(String message){
-        System.out.println(message);
     }
 }
