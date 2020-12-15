@@ -16,12 +16,13 @@ public class InputSectionManager implements InputManager {
     private static final String NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN = "[ERROR] 해당 역이 없거나 이미 노선에 등록되어 있습니다.";
     public static final String INPUT_ORDER = "## 순서를 입력하세요.";
     public static final String INDEX_OUT_OF_BOUNDS_TRY_AGAIN = "[ERROR] 인덱스가 초과되었습니다.";
+    public static final String INPUT_LINE_OF_SECTION_TO_DELETE = "## 삭제할 구간의 노선을 입력하세요.";
 
     private Scanner scanner;
 
     private enum Menu {
-        REGISTER("1", ((InputSectionManager) SubwayManager.getMenus(SECTION_MENU))::register);
-//        DELETE("2"),
+        REGISTER("1", ((InputSectionManager) SubwayManager.getMenus(SECTION_MENU))::register),
+        DELETE("2", ((InputSectionManager) SubwayManager.getMenus(SECTION_MENU))::delete);
 //        BACK("B");
 
         private final String name;
@@ -106,6 +107,15 @@ public class InputSectionManager implements InputManager {
 
     @Override
     public void delete() {
-
+        try {
+            System.out.println(INPUT_LINE_OF_SECTION_TO_DELETE);
+            Line line = new Line(new LineName(scanner.next()));
+            if (!LineRepository.lines().contains(line)) {
+                throw new IllegalArgumentException(LINE_NOTHING_TRY_AGAIN);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            delete();
+        }
     }
 }
