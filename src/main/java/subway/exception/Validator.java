@@ -14,7 +14,7 @@ public class Validator {
     private static String INVALID_STATION_NAME_LENGTH_MESSAGE_SUFFIX = "글자 이상 입력해 주십시오.";
     private static String STATION_NAME_DUPLICATED_MESSAGE = "이미 등록된 역 이름입니다.";
     private static String STATION_NAME_NOT_REGISTERED_MESSAGE = "등록되지 않은 역 이름입니다.";
-    private static String STATION_NAME_REGISTERED_IN_ANY_ROUTE_MESSAGE = "노선에 등록된 역은 삭제할 수 없니다.";
+    private static String STATION_NAME_REGISTERED_IN_ANY_ROUTE_MESSAGE = "노선에 등록된 역은 삭제할 수 없습니다.";
     private static String LINE_NAME_DUPLICATED_MESSAGE = "이미 등록된 노선 이름입니다.";
     private static String END_STATION_NAMES_DUPLICATED_MESSAGE = "서로 다른 상·하행 종점역 이름을 입력해 주십시오.";
     private static String LINE_NAME_NOT_REGISTERED_MESSAGE = "등록되지 않은 노선 이름입니다.";
