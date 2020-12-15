@@ -1,7 +1,8 @@
 package subway.controller;
 
 import subway.menus.SectionMenu;
-import subway.service.SectionService;
+import subway.service.sectionservice.SectionAddService;
+import subway.service.sectionservice.SectionDeleteService;
 import subway.views.sectionviews.SectionInputView;
 import subway.views.sectionviews.SectionOutputView;
 
@@ -9,7 +10,6 @@ import java.util.Scanner;
 
 public class SectionMenuController implements Controller{
     private static final SectionMenuController sectionMenuController = new SectionMenuController();
-    private SectionService sectionService;
 
     private SectionMenuController() {
     }
@@ -20,20 +20,21 @@ public class SectionMenuController implements Controller{
 
     public void mappingMenu(Scanner scanner) {
         SectionOutputView.printSectionManagePage();
-        sectionService = new SectionService(scanner);
-        branchBySelectedOption(SectionInputView.selectSectionMenu(scanner));
+        branchBySelectedOption(scanner, SectionInputView.selectSectionMenu(scanner));
     }
 
-    private void branchBySelectedOption(SectionMenu selectedOption) {
+    private void branchBySelectedOption(Scanner scanner, SectionMenu selectedOption) {
         if (selectedOption.equals(SectionMenu.GO_BACK_TO_MAIN_MENU)) {
             System.out.println();
             return;
         }
         if (selectedOption.equals(SectionMenu.SECTION_ADD)) {
-            sectionService.sectionAddService();
+            SectionAddService sectionAddService = SectionAddService.getInstance();
+            sectionAddService.sectionAddService(scanner);
         }
         if (selectedOption.equals(SectionMenu.SECTION_DELETE)) {
-            sectionService.sectionDeleteService();
+            SectionDeleteService sectionDeleteService = SectionDeleteService.getInstance();
+            sectionDeleteService.sectionDeleteService(scanner);
         }
     }
 }
