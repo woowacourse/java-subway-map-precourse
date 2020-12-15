@@ -18,6 +18,8 @@ public class Application {
     public static final int SAME_NAME_ERROR = 5;
     public static final int HAS_IN_SPECIFIC_LINE_ERROR = 6;
     public static final int UNVALID_INDEX_ERROR = 7;
+    public static final int CANT_DELETE_SECTION_ERROR = 8;
+    public static final int HAS_NOT_IN_SPECIFIC_LINE_ERROR = 9;
     public static final List<String> MAIN_FUNCTIONS = Arrays.asList("1", "2", "3", "4", "Q");
     public static final String STATION_MENU = "1";
     public static final String LINE_MENU = "2";
@@ -137,8 +139,8 @@ public class Application {
         String input = inputFunction(kbd, SECTION_FUNCTIONS);
         if (input.equals(ADD_MENU))
             addSection(kbd);
-//        if (input.equals(DELETE_MENU))
-//            deleteSection(kbd);
+        if (input.equals(DELETE_MENU))
+            deleteSection(kbd);
         if (input.equals(GO_BACK_MENU))
             startProgram(kbd);
     }
@@ -146,7 +148,7 @@ public class Application {
     public static void addSection(Scanner kbd) {
         try {
             makeNewSection(kbd);
-            System.out.println("\n## [INFO] 구간이 등록되었습니다.");
+            System.out.println("\n[INFO] 구간이 등록되었습니다.");
             startProgram(kbd);
         } catch (Exception e) {
             startProgram(kbd);
@@ -165,6 +167,23 @@ public class Application {
         String index = kbd.nextLine();
         checkValidIndex(line, index);
         LineRepository.addStationToLine(lineName, stationName, Integer.parseInt(index));
+    }
+
+    public static void deleteSection(Scanner kbd) {
+        try {
+            System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
+            String lineName = kbd.nextLine();
+            checkExistLine(lineName);
+            checkValidLine(lineName);
+            System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
+            String stationName = kbd.nextLine();
+            checkNotInSpecificLine(lineName, stationName);
+            LineRepository.deleteStationInLine(lineName, stationName);
+            System.out.println("\n[INFO] 구간이 삭제되었습니다.");
+            startProgram(kbd);
+        } catch (Exception e) {
+            startProgram(kbd);
+        }
     }
 
     public static void addStation(Scanner kbd) {
@@ -307,6 +326,14 @@ public class Application {
         return line;
     }
 
+    public static void checkNotInSpecificLine(String lineName, String stationName) {
+        Line line = LineRepository.getLineByName(lineName);
+        if (!line.hasStation(stationName)) {
+            displayErrorMessage(HAS_NOT_IN_SPECIFIC_LINE_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void checkValidIndex(Line line, String index) {
         try {
             int intIndex = Integer.parseInt(index);
@@ -315,6 +342,14 @@ public class Application {
                 throw new IndexOutOfBoundsException();
         } catch (Exception e) {
             displayErrorMessage(UNVALID_INDEX_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkValidLine(String name) {
+        Line line = LineRepository.getLineByName(name);
+        if (line.getSize() < 3) {
+            displayErrorMessage(CANT_DELETE_SECTION_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -373,5 +408,9 @@ public class Application {
             System.out.println("[ERROR] 이미 해당 노선에 존재하는 역입니다.");
         if (errorCase == UNVALID_INDEX_ERROR)
             System.out.println("[ERROR] Range 내의 정수만 입력할 수 있습니다.");
+        if (errorCase == CANT_DELETE_SECTION_ERROR)
+            System.out.println("[ERROR] 역이 2개 이하인 노선의 구간은 삭제할 수 없습니다.");
+        if (errorCase == HAS_NOT_IN_SPECIFIC_LINE_ERROR)
+            System.out.println("[ERROR] 해당 노선에 존재하지 않는 역입니다.");
     }
 }
