@@ -15,8 +15,9 @@ public class Application {
     public static final int NAME_LENGTH_ERROR = 2;
     public static final int NO_SUCH_NAME_ERROR = 3;
     public static final int HAS_IN_LINE_ERROR = 4;
-    public static final int SAME_LINE_ERROR = 5;
-    public static final int SAME_NAME_ERROR = 6;
+    public static final int SAME_NAME_ERROR = 5;
+    public static final int HAS_IN_SPECIFIC_LINE_ERROR = 6;
+    public static final int UNVALID_INDEX_ERROR = 7;
     public static final List<String> MAIN_FUNCTIONS = Arrays.asList("1", "2", "3", "4", "Q");
     public static final String STATION_MENU = "1";
     public static final String LINE_MENU = "2";
@@ -134,12 +135,36 @@ public class Application {
     public static void manageSection(Scanner kbd) {
         showSectionMenu();
         String input = inputFunction(kbd, SECTION_FUNCTIONS);
-//        if (input.equals(ADD_MENU))
-//            addSection(kbd);
+        if (input.equals(ADD_MENU))
+            addSection(kbd);
 //        if (input.equals(DELETE_MENU))
 //            deleteSection(kbd);
         if (input.equals(GO_BACK_MENU))
             startProgram(kbd);
+    }
+
+    public static void addSection(Scanner kbd) {
+        try {
+            makeNewSection(kbd);
+            System.out.println("\n## [INFO] 구간이 등록되었습니다.");
+            startProgram(kbd);
+        } catch (Exception e) {
+            startProgram(kbd);
+        }
+    }
+
+    public static void makeNewSection(Scanner kbd) {
+        System.out.println("\n## 노선을 입력하세요.");
+        String lineName = kbd.nextLine();
+        checkExistLine(lineName);
+        System.out.println("\n## 역이름을 입력하세요.");
+        String stationName = kbd.nextLine();
+        checkExistStation(stationName);
+        Line line = checkInSpecificLine(lineName, stationName);
+        System.out.println("\n## 순서를 입력하세요.");
+        String index = kbd.nextLine();
+        checkValidIndex(line, index);
+        LineRepository.addStationToLine(lineName, stationName, Integer.parseInt(index));
     }
 
     public static void addStation(Scanner kbd) {
@@ -180,7 +205,7 @@ public class Application {
     public static void addLine(Scanner kbd) {
         try {
             makeNewLine(kbd);
-            System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+            System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
             startProgram(kbd);
         } catch (Exception e) {
             startProgram(kbd);
@@ -192,10 +217,10 @@ public class Application {
         String lineName = kbd.nextLine();
         checkSameLine(lineName);
         checkTextLength(lineName);
-        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         String firstStation = kbd.nextLine();
         checkExistStation(firstStation);
-        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String lastStation = kbd.nextLine();
         checkExistStation(lastStation);
         checkSameName(firstStation, lastStation);
@@ -273,6 +298,27 @@ public class Application {
             }
     }
 
+    public static Line checkInSpecificLine(String lineName, String stationName) {
+        Line line = LineRepository.getLineByName(lineName);
+        if (line.hasStation(stationName)) {
+            displayErrorMessage(HAS_IN_SPECIFIC_LINE_ERROR);
+            throw new IllegalArgumentException();
+        }
+        return line;
+    }
+
+    public static void checkValidIndex(Line line, String index) {
+        try {
+            int intIndex = Integer.parseInt(index);
+            int size = line.getSize();
+            if (intIndex < 1 || intIndex > size+1)
+                throw new IndexOutOfBoundsException();
+        } catch (Exception e) {
+            displayErrorMessage(UNVALID_INDEX_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void showStationMenu() {
         System.out.println("## 역 관리 화면");
         System.out.println("1. 역 등록");
@@ -323,5 +369,9 @@ public class Application {
             System.out.println("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
         if (errorCase == SAME_NAME_ERROR)
             System.out.println("[ERROR] 상행역과 하행역은 같을 수 없습니다.");
+        if (errorCase == HAS_IN_SPECIFIC_LINE_ERROR)
+            System.out.println("[ERROR] 이미 해당 노선에 존재하는 역입니다.");
+        if (errorCase == UNVALID_INDEX_ERROR)
+            System.out.println("[ERROR] Range 내의 정수만 입력할 수 있습니다.");
     }
 }
