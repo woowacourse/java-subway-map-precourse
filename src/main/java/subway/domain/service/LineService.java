@@ -1,9 +1,7 @@
 package subway.domain.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import jdk.nashorn.internal.ir.Terminal;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.repository.LineRepository;
@@ -27,6 +25,10 @@ public class LineService {
             );
             createLine(InitUtils.INIT_LINES[i], terminals);
         }
+    }
+
+    public static Line readLine(String name) {
+        return LineRepository.findLine(name);
     }
 
     public static void readLineList() {
