@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 import subway.controller.StationController;
 import subway.controller.LineController;
+import subway.controller.SectionController;
 
 public enum MainMenu {
     STATION_MANAGE("1", StationController::station),
     LINE_MANAGE("2", LineController::line),
-    SECTION_MANAGE("3", StationController::station),
+    SECTION_MANAGE("3", SectionController::section),
     PRINT_SUBWAY_MAP("4", StationController::station),
     QUIT("Q", StationController::station);
 
