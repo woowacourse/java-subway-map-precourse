@@ -2,6 +2,8 @@ package subway.view;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.type.LineScreenFunctionType;
 
 import java.util.Scanner;
@@ -92,12 +94,57 @@ public class LineInputView {
         String lineName = scanner.nextLine();
         try {
             validateLineName(lineName);
-            LineRepository.addLine(new Line(lineName));
+            // TODO 상행 종점 입력, 하행 종점 입력받고 존재하는 Station인지 확인하고 add
+            Line newLine = new Line(lineName);
+            Station upwardTerminalStation = getUpwardTerminalStation();
+            Station downwardTerminalStation = getDownwardTerminalStation();
+            newLine.registerStation(upwardTerminalStation);
+            newLine.registerStation(downwardTerminalStation);
+            validateAreStationSame(upwardTerminalStation, downwardTerminalStation);
+            LineRepository.addLine(newLine);
             System.out.println(REGISTER_COMPLETE_MESSAGE);
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.getMessage());
             registerLine();
+        }
+    }
+
+    private static void validateAreStationSame(Station upwardTerminalStation, Station downwardTerminalStation) {
+        if (upwardTerminalStation.equals(downwardTerminalStation)) {
+            throw new IllegalArgumentException("상행 종점과 하행 종점끼리 같은 역일 수 없습니다.");
+        }
+    }
+
+    private static Station getUpwardTerminalStation() {
+        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        String upwardTerminalStation = scanner.nextLine();
+        try {
+            validateStationExistence(upwardTerminalStation);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            getUpwardTerminalStation();
+        }
+        return new Station(upwardTerminalStation);
+    }
+
+    private static Station getDownwardTerminalStation() {
+        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        String downwardTerminalStation = scanner.nextLine();
+        try {
+            validateStationExistence(downwardTerminalStation);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            getDownwardTerminalStation();
+        }
+        return new Station(downwardTerminalStation);
+    }
+
+    private static void validateStationExistence(String upwardTerminalStation) {
+        if (!StationRepository.isStationExist(upwardTerminalStation)) {
+            throw new IllegalArgumentException("존재하지 않는 역입니다.");
         }
     }
 
