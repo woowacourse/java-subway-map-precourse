@@ -45,6 +45,11 @@ public class SectionManager {
         Line line = getLine(scanner, userInput);
         Station station = getStation(scanner, userInput);
         int order = getOrder(scanner, userInput);
+        try {
+            validation.sectionDeleteValidation(line);
+        } catch (SubwayException e) {
+            SubwayManager.runManager(scanner);
+        }
         line.deleteSection(order);
         SystemOutput.printInfo(SystemMessages.DEL_SECTION_COMPLETE_MESSAGE);
     }

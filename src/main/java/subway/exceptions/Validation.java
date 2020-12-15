@@ -20,6 +20,7 @@ public class Validation {
     private final String SECTION_DUPLICATION = "이미 등록된 구간입니다.";
     private final String ORDER_NUMBER_RULE = "1 이상의 숫자만 입력할 수 있습니다.";
     private final String OPTION_RULE = "올바른 번호를 입력해 주세요.";
+    private final String SECTION_DELETE_RULE = "노선이 포함된 역이 두 개 이하인 구간에서는 삭제할 수 없습니다.";
     private final String[] OPTION_INPUT_MAIN = {"1", "2", "3", "4", "Q", "q"};
     private final String[] OPTION_INPUT_STATION_LINE = {"1", "2", "3", "B", "b"};
     private final String[] OPTION_INPUT_SECTION = {"1", "2", "B", "b"};
@@ -93,6 +94,13 @@ public class Validation {
     public void sectionOptionValidation(String input) throws SubwayException {
         if (Arrays.stream(OPTION_INPUT_SECTION).noneMatch(input::equals)) {
             throw new SubwayException(OPTION_RULE);
+        }
+    }
+
+    public void sectionDeleteValidation(Line line) throws SubwayException {
+        List<Station> section = line.getSection();
+        if (section.size() < 3) {
+            throw new SubwayException(SECTION_DELETE_RULE);
         }
     }
 }
