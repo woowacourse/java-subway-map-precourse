@@ -8,6 +8,7 @@ import subway.domain.StationRepository;
 public class SectionService {
 
     private static final int DELETE_MIN_SIZE = 2;
+    private static final String THREE_MINUS = "---";
 
     private static boolean isNotExistLineAndStation(String lineName, String stationName) {
         if (!LineRepository.isEqualLineName(lineName)) {
@@ -68,5 +69,16 @@ public class SectionService {
         }
         OutPut.printSectionDeleteMessage();
         return true;
+    }
+
+    public static void print() {
+        for (Line line : LineRepository.lines()) {
+            OutPut.printName(line.getName());
+            OutPut.printName(THREE_MINUS);
+            for (Station station : line.lineInStationList()) {
+                OutPut.printName(station.getName());
+            }
+            OutPut.printNextLine();
+        }
     }
 }
