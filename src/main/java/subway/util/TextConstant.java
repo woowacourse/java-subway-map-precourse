@@ -16,6 +16,8 @@ public class TextConstant {
     public static final String ERR_WRONG_STATION_NAME_SUFFIX = "[ERROR] 역의 이름은 ~역 형태여야 합니다.";
     public static final String ERR_ALREADY_ADD_STATION_NAME_MSG = "[ERROR] 이미 등록된 역명입니다.";
     public static final String ERR_NO_SUCH_NAME_STATION_MSG = "[ERROR] 해당 역이 없습니다.";
+    public static final String ERR_STATION_SHORT_NAME_MSG =
+            String.format("[ERROR] 역의 이름은 %d글자 이상이어야 합니다.", NAME_MIN_LENGTH);
 
     //노선(Line) 관련
     public static final String LINE = "선";
