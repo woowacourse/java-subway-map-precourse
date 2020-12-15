@@ -135,6 +135,21 @@ public class PrintInfo {
                 "[INFO] 구간이 등록되었습니다.\n");
     }
 
+    public static void inputDeleteSectionLineName() {
+        System.out.println("\n" +
+                "## 삭제할 구간의 노선을 입력하세요.");
+    }
+
+    public static void inputDeleteSectionStationName() {
+        System.out.println("\n" +
+                "## 삭제할 구간의 역을 입력하세요.");
+    }
+
+    public static void deleteSectionSuccess() {
+        System.out.println("\n" +
+                "[INFO] 구간이 삭제되었습니다.\n");
+    }
+
     public static void printList(List<String> list) {
         list.forEach(item -> System.out.println("[INFO] " + item));
         System.out.println();

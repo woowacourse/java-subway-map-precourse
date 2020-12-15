@@ -22,6 +22,16 @@ public class SectionMenu extends Menu {
         return addSection();
     }
 
+    @Override
+    protected boolean functionTwo() {
+        return deleteSection();
+    }
+
+    @Override
+    protected boolean functionThree() {
+        return noFunctionThree();
+    }
+
     private boolean addSection() {
         PrintInfo.inputAddSectionLineName();
         String lineName = scanner.nextLine();
@@ -56,5 +66,27 @@ public class SectionMenu extends Menu {
         LineManager.addSectionInLine(lineName, stationName, index);
         PrintInfo.addSectionSuccess();
         return true;
+    }
+
+    private boolean deleteSection() {
+        PrintInfo.inputDeleteSectionLineName();
+        String lineName = scanner.nextLine();
+        if (!LineManager.anyMatchLineName(lineName)) {
+            return Error.notExist();
+        }
+        PrintInfo.inputDeleteSectionStationName();
+        String stationName = scanner.nextLine();
+        if (StationManager.getByName(stationName) == null) {
+            return Error.notExist();
+        }
+        if (!LineManager.deleteSectionInLine(lineName, stationName)) {
+            return Error.stationHasLine();
+        }
+        PrintInfo.deleteSectionSuccess();
+        return true;
+    }
+
+    private boolean noFunctionThree() {
+        return !Error.noFunction();
     }
 }
