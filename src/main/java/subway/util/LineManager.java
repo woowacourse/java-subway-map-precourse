@@ -36,34 +36,28 @@ public class LineManager {
             throw new IllegalArgumentException(Constants.LINE_EXIST);
         }
         Line line = new Line(input);
-        LineRepository.addLine(line);
         String [] stations = getStationName(scanner);
         addSection(line, stations);
+        LineRepository.addLine(line);
         System.out.println(Constants.LINE_ADD_COMPLETE);
     }
 
-    public String[] getStationName(Scanner scanner) {
+    public String[] getStationName(Scanner scanner) throws IllegalArgumentException{
         String [] inputStations = new String[2];
-        while(true) {
-            try {
-                System.out.println(Constants.ASK_UPPER_END);
-                inputStations[0] = scanner.nextLine().trim();
-                checkStation(inputStations[0]);
-                System.out.println(Constants.ASK_LOWER_END);
-                inputStations[1] = scanner.nextLine().trim();
-                checkStation(inputStations[1]);
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        System.out.println(Constants.ASK_UPPER_END);
+        inputStations[0] = scanner.nextLine().trim();
+        checkStation(inputStations[0]);
+        System.out.println(Constants.ASK_LOWER_END);
+        inputStations[1] = scanner.nextLine().trim();
+        checkStation(inputStations[1]);
+
         return inputStations;
     }
 
     public void checkStation(String input) throws IllegalArgumentException {
         ErrorManager.checkNameLength(input);
         if(!ErrorManager.isStationExist(input)) {
-            throw new IllegalArgumentException(Constants.LINE_NOT_EXIST);
+            throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
         }
     }
 
