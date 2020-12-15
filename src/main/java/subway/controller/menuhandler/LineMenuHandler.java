@@ -22,6 +22,7 @@ public class LineMenuHandler {
         Station endStation = StationRepository.findStationByName(InputView.nextLine().trim());
 
         LineRepository.addLine(LineFactory.makeLine(lineName, startStation, endStation));
+        OutputView.showCompleteMessage(ROUTE, ADD);
     }
 
     public static void deleteLine() {
