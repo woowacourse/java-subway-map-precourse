@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.line;
 
 public class Line {
     private String name;
@@ -10,6 +10,4 @@ public class Line {
     public String getName() {
         return name;
     }
-
-    // 추가 기능 구현
 }
