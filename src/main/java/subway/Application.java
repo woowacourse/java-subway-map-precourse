@@ -1,8 +1,8 @@
 package subway;
 
+import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.StationRepository.addStation;
-import static subway.domain.StationRepository.stations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,13 +12,11 @@ import subway.domain.Station;
 
 public class Application {
 
-    static final String stationInput = "1";
-    static final String lineInput = "2";
-    static final String sectionInput = "3";
-    static final String allPrintInput = "4";
+    static final String stationManageInput = "1";
+    static final String lineManageInput = "2";
+    static final String sectionManageInput = "3";
+    static final String allLinesInfoPrintInput = "4";
     static final String exitInput = "Q";
-    private static final ArrayList<String> mainInputWhiteList = new ArrayList<>(Arrays.asList(
-        stationInput, lineInput, sectionInput, allPrintInput, exitInput));
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
@@ -27,7 +25,7 @@ public class Application {
         while (!exitFlag) {
             mainScreenPrint();
             String mainInput = scanner.next();
-            exitFlag = isExitAndValidate(mainInput);
+            exitFlag = ValidateAndNextScreen(scanner, mainInput);
         }
     }
 
@@ -56,11 +54,15 @@ public class Application {
             + "## 원하는 기능을 선택하세요.");
     }
 
-    public static boolean isExitAndValidate(String mainInput) {
-        if (!mainInputWhiteList.contains(mainInput)) {
-            System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
-            throw new IllegalArgumentException();
+    public static boolean ValidateAndNextScreen(Scanner scanner, String mainInput) {
+        if (mainInput.equalsIgnoreCase(stationManageInput)) {
+            stationManage(scanner);
+            return false;
         }
-        return mainInput.equalsIgnoreCase(exitInput);
+        if (mainInput.equalsIgnoreCase(exitInput)) {
+            return true;
+        }
+        System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
+        throw new IllegalArgumentException();
     }
 }
