@@ -9,6 +9,8 @@ import subway.domain.menu.exception.DuplicatedStationInLineException;
 import subway.domain.menu.exception.NotAccptedDeleteInputException;
 import subway.domain.menu.exception.NotAccptedInputException;
 import subway.domain.menu.exception.NotAccptedInputLengthException;
+import subway.domain.menu.exception.NotRegisterStationException;
+import subway.domain.menu.exception.TerminalStationNameEqualException;
 
 public class InputView {
     private Scanner scanner;
@@ -46,6 +48,40 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
             break;
+        }
+        return name;
+    }
+
+    public String inputTerminalStation() {
+        String name = CommonMessage.ERROR;
+        while (true) {
+            try {
+                name = validate.isAccptedInputTerminalStation(scanner.nextLine());
+                System.out.println();
+            } catch(NotAccptedInputLengthException e) {
+                System.out.println(e.getMessage());
+            } catch(NotRegisterStationException e) {
+                System.out.println(e.getMessage());
+            } 
+            break;
+        }
+        return name;
+    }
+
+    public String inputTerminalStation(String upwardStation) {
+        String name = CommonMessage.ERROR;
+        while (true) {
+            try {
+                name = validate.isAccptedInputTerminalStation(scanner.nextLine(), upwardStation);
+                System.out.println();
+            } catch(NotAccptedInputLengthException e) {
+                System.out.println(e.getMessage());
+            } catch(NotRegisterStationException e) {
+                System.out.println(e.getMessage());
+            } catch(TerminalStationNameEqualException e) {
+                System.out.println(e.getMessage());
+            }
+            break; 
         }
         return name;
     }

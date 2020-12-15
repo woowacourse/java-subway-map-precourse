@@ -25,26 +25,31 @@ public class RegisterAction extends Action {
 
         printRegisterMessage();
         name = requestInputRegister();
-        if (name.equals(CommonMessage.ERROR)) {
+        if (isErrorInput(name)) {
             return;
         }
 
         runDetailAction(name);
     }
 
+    private boolean isErrorInput(String input) {
+        return input.equals(CommonMessage.ERROR);
+    }
+
     private void runDetailAction(String name) {
+        String error = "";
         if (category.equals(CategoryType.STATION)) {
             registerStation(name);
         }
 
         if (category.equals(CategoryType.LINE)) {
-            registerLine(name);
+            error = registerLine(name);
         }
 
         if (category.equals(CategoryType.SECTION)) {
-            registerSection();
+            error = registerSection();
         }
-        printSuccessMessage();
+        printSuccessMessage(error);
     }
 
     private void printRegisterMessage() {
@@ -85,9 +90,18 @@ public class RegisterAction extends Action {
         return inputView.inputRegister(category);
     }
 
+    private String requestInputTerminalStation() {
+        return inputView.inputTerminalStation();
+    }
+
+    private String requestInputTerminalStation(String upwardStation) {
+        return inputView.inputTerminalStation(upwardStation);
+    }
+
     private void registerStation(String name) {
         StationRepository.addStation(new Station(name));
     }
+    
 
     // 임시 - 컴파일 에러 방지.
     private String inputRegister() {
@@ -96,22 +110,35 @@ public class RegisterAction extends Action {
         return name;
     }
 
-    private void registerLine(String name) {
+    private String registerLine(String name) {
         Line line = new Line(name);
+        String upwardStation = registerInputLine();
+        if (isErrorInput(upwardStation)) {
+            return upwardStation;
+        }
 
-        printRegisterMessage(ActionMessage.INPUT_UPWARD_TERMINAL_STATION);
-        String upward = inputRegister();
+        String downStation = registerInputLine(upwardStation);
+        if (isErrorInput(downStation)) {
+            return downStation;
+        }
 
-        printRegisterMessage(ActionMessage.INPUT_DOWN_TERMIANL_STATION);
-        String down = inputRegister();
-
-        line.addStation(new Station(upward));
-        line.addStation(new Station(down));
-
+        line.addStation(new Station(upwardStation));
+        line.addStation(new Station(downStation));
         LineRepository.addLine(line);
+        return name;
     }
 
-    private void registerSection() {
+    private String registerInputLine() {
+        printRegisterMessage(ActionMessage.INPUT_UPWARD_TERMINAL_STATION);
+        return requestInputTerminalStation();
+    }
+
+    private String registerInputLine(String upwardStation) {
+        printRegisterMessage(ActionMessage.INPUT_DOWN_TERMIANL_STATION);
+        return requestInputTerminalStation(upwardStation);
+    }
+
+    private String registerSection() {
         printRegisterSectionMessage(ActionMessage.INPUT_SECTION_LINE);
         String line = inputRegister();
 
@@ -124,10 +151,15 @@ public class RegisterAction extends Action {
         LineRepository.lines().stream().filter(item -> item.getName().equals(line)).findFirst().get().getStationList()
                 .add(order, new Station(name));
 
-        printSuccessMessage();
+        // 이 아래는 컴파일 에러 방지.
+        printSuccessMessage(line);
+        return line;
     }
 
-    private void printSuccessMessage() {
+    private void printSuccessMessage(String error) {
+        if (isErrorInput(error)) {
+            return;
+        }
         System.out.println(CommonMessage.INFO + CommonMessage.SPACE + ActionMessage.SUCCESS_SUBWAY + CommonMessage.SPACE
                 + category + ActionMessage.SUCCESS_POSTPOSITION + CommonMessage.SPACE + ActionMessage.SUCCESS_REGISTER);
         System.out.println();
