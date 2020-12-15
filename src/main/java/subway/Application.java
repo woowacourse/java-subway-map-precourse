@@ -1,16 +1,10 @@
 package subway;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-import subway.domain.Constants;
+import subway.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import static subway.domain.ErrorMessage.displayErrorMessage;
 
 public class Application {
     public static void main(String[] args) {
@@ -20,7 +14,7 @@ public class Application {
     }
 
     public static void startProgram(Scanner kbd) {
-        showMainMenu();
+        View.showMainMenu();
         String mainInput = inputFunction(kbd, Constants.MAIN_FUNCTIONS);
         goSubMenu(mainInput, kbd);
     }
@@ -45,15 +39,6 @@ public class Application {
         LineRepository.addLine(lineSinbundang, Arrays.asList("강남역", "양재역", "양재시민의숲역"));
     }
 
-    public static void showMainMenu() {
-        System.out.println("\n## 메인 화면");
-        System.out.println("1. 역 관리");
-        System.out.println("2. 노선 관리");
-        System.out.println("3. 구간 관리");
-        System.out.println("4. 지하철 노선도 출력");
-        System.out.println("Q. 종료");
-    }
-
     public static String inputFunction(Scanner kbd, List<String> functions) {
         String input = "0";
         boolean check = false;
@@ -68,7 +53,7 @@ public class Application {
     public static boolean checkInput(String input, List<String> functions) {
         boolean check = true;
         if (!functions.contains(input)) {
-            displayErrorMessage(Constants.FUNCTION_INPUT_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.FUNCTION_INPUT_ERROR);
             check = false;
         }
         return check;
@@ -89,7 +74,7 @@ public class Application {
     }
 
     public static void manageStation(Scanner kbd) {
-        showStationMenu();
+        View.showStationMenu();
         String input = inputFunction(kbd, Constants.SUB_FUNCTIONS);
         if (input.equals(Constants.ADD_MENU))
             addStation(kbd);
@@ -102,7 +87,7 @@ public class Application {
     }
 
     public static void manageLine(Scanner kbd) {
-        showLineMenu();
+        View.showLineMenu();
         String input = inputFunction(kbd, Constants.SUB_FUNCTIONS);
         if (input.equals(Constants.ADD_MENU))
             addLine(kbd);
@@ -115,7 +100,7 @@ public class Application {
     }
 
     public static void manageSection(Scanner kbd) {
-        showSectionMenu();
+        View.showSectionMenu();
         String input = inputFunction(kbd, Constants.SECTION_FUNCTIONS);
         if (input.equals(Constants.ADD_MENU))
             addSection(kbd);
@@ -249,42 +234,42 @@ public class Application {
 
     public static void checkSameStation(String name) {
         if (StationRepository.isExist(name)) {
-            displayErrorMessage(Constants.ALREADY_EXIST_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.ALREADY_EXIST_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkSameLine(String name) {
         if (LineRepository.isExist(name)) {
-            displayErrorMessage(Constants.ALREADY_EXIST_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.ALREADY_EXIST_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkSameName(String firstName, String lastName) {
         if (firstName.equals(lastName)) {
-            displayErrorMessage(Constants.SAME_NAME_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.SAME_NAME_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkTextLength(String name) {
         if (name.length() < 2) {
-            displayErrorMessage(Constants.NAME_LENGTH_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.NAME_LENGTH_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkExistStation(String name) {
         if (!StationRepository.isExist(name)) {
-            displayErrorMessage(Constants.NO_SUCH_NAME_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.NO_SUCH_NAME_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkExistLine(String name) {
         if (!LineRepository.isExist(name)) {
-            displayErrorMessage(Constants.NO_SUCH_NAME_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.NO_SUCH_NAME_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -292,7 +277,7 @@ public class Application {
     public static void checkInLine(String name) {
         for (Line line : LineRepository.lines())
             if (line.hasStation(name)) {
-                displayErrorMessage(Constants.HAS_IN_LINE_ERROR);
+                ErrorMessage.displayErrorMessage(Constants.HAS_IN_LINE_ERROR);
                 throw new IllegalArgumentException();
             }
     }
@@ -300,7 +285,7 @@ public class Application {
     public static Line checkInSpecificLine(String lineName, String stationName) {
         Line line = LineRepository.getLineByName(lineName);
         if (line.hasStation(stationName)) {
-            displayErrorMessage(Constants.HAS_IN_SPECIFIC_LINE_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.HAS_IN_SPECIFIC_LINE_ERROR);
             throw new IllegalArgumentException();
         }
         return line;
@@ -309,7 +294,7 @@ public class Application {
     public static void checkNotInSpecificLine(String lineName, String stationName) {
         Line line = LineRepository.getLineByName(lineName);
         if (!line.hasStation(stationName)) {
-            displayErrorMessage(Constants.HAS_NOT_IN_SPECIFIC_LINE_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.HAS_NOT_IN_SPECIFIC_LINE_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -321,7 +306,7 @@ public class Application {
             if (intIndex < 1 || intIndex > size+1)
                 throw new IndexOutOfBoundsException();
         } catch (Exception e) {
-            displayErrorMessage(Constants.UNVALID_INDEX_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.UNVALID_INDEX_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -329,32 +314,9 @@ public class Application {
     public static void checkValidLine(String name) {
         Line line = LineRepository.getLineByName(name);
         if (line.getSize() < 3) {
-            displayErrorMessage(Constants.CANT_DELETE_SECTION_ERROR);
+            ErrorMessage.displayErrorMessage(Constants.CANT_DELETE_SECTION_ERROR);
             throw new IllegalArgumentException();
         }
-    }
-
-    public static void showStationMenu() {
-        System.out.println("## 역 관리 화면");
-        System.out.println("1. 역 등록");
-        System.out.println("2. 역 삭제");
-        System.out.println("3. 역 조회");
-        System.out.println("B. 돌아가기");
-    }
-
-    public static void showLineMenu() {
-        System.out.println("## 노선 관리 화면");
-        System.out.println("1. 노선 등록");
-        System.out.println("2. 노선 삭제");
-        System.out.println("3. 노선 조회");
-        System.out.println("B. 돌아가기");
-    }
-
-    public static void showSectionMenu() {
-        System.out.println("## 구간 관리 화면");
-        System.out.println("1. 구간 등록");
-        System.out.println("2. 구간 삭제");
-        System.out.println("B. 돌아가기");
     }
 
     public static void displayAllLines(Scanner kbd) {
