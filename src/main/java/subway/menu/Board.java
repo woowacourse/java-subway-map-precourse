@@ -4,9 +4,10 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.exception.SelectNotValidException;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Board implements Menu {
@@ -37,18 +38,29 @@ public class Board implements Menu {
 
     private final static String SPLIT = ". ";
 
-    private final static String MENU =
-            "## 메인 화면\n" +
-                    "1. 역 관리\n" +
-                    "2. 노선 관리\n" +
-                    "3. 구간 관리\n" +
-                    "4. 지하철 노선도 출력\n" +
-                    "Q. 종료\n";
+    private final static String CHOOSE = "## 원하는 기능을 선택하세요.";
 
-    public Board() {
+    private final static int MIN_NAME_LENGTH = 2;
+
+    private final static String SUBWAY_MESSAGE = "## 지하철 노선도";
+
+
+    private final Scanner scanner;
+
+    private final StationMenu stationMenu;
+    private final LineMenu lineMenu;
+    private final SectionMenu sectionMenu;
+
+    public Board(Scanner scanner) {
         for (String str : initSections) {
             setInitSection(str);
         }
+
+        this.scanner = scanner;
+
+        stationMenu = new StationMenu(scanner, MIN_NAME_LENGTH);
+        lineMenu = new LineMenu(scanner, MIN_NAME_LENGTH);
+        sectionMenu = new SectionMenu(scanner);
     }
 
     @Override
@@ -78,5 +90,61 @@ public class Board implements Menu {
         }
     }
 
+    public void menuSelect() {
+        while (true) {
+            printMenu();
+            System.out.println(CHOOSE);
+
+            String select = scanner.next();
+
+            if (subMenu(select)) {
+                return;
+            }
+        }
+    }
+
+    private boolean subMenu(String select) {
+        if (checkSelectNotValid(select)) {
+            return false;
+        } else if (select.equals(MANAGE_STATION_SELECT)) {
+            return stationMenu.menuSelect();
+        } else if (select.equals(MANAGE_LINE_SELECT)) {
+            return lineMenu.menuSelect();
+        } else if (select.equals(MANAGE_SECTION_SELECT)) {
+            return sectionMenu.menuSelect();
+        } else if (select.equals(PRINT_SUBWAY_SELECT)) {
+            System.out.println(subwayToString());
+            return false;
+        } else if (select.equals(QUIT_SELECT)) {
+            return true;
+        }
+        return false;
+    }
+
+    private String subwayToString() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(SUBWAY_MESSAGE).append("\n");
+
+        for(Line line : LineRepository.lines()) {
+            sb.append(INFO).append(" ").append(line.toString()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    private boolean checkSelectNotValid(String select) {
+        try {
+
+            if (!MENU_SELECTIONS.contains(select)) {
+                throw new SelectNotValidException();
+            }
+
+            return false;
+        } catch (SelectNotValidException e) {
+            System.out.println(e.getMessage() + "\n");
+            return true;
+        }
+    }
 
 }
