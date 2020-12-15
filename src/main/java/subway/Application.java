@@ -21,26 +21,35 @@ public class Application {
         for (String line : lines) {
             LineRepository.addLine(new Line(line));
         }
+        initiate2호선();
+        initiate3호선();
+        initiate신분당선();
+    }
 
+    public static void initiate2호선() {
         Line 호선2 = LineRepository.findLine("2호선");
         Section 호선2구간 = new Section();
         호선2구간.initiateSection(StationRepository.findStation("교대역"),
                 StationRepository.findStation("역삼역"));
         SectionRepository.addSection(호선2, 호선2구간);
+    }
 
+    public static void initiate3호선() {
         Line 호선3 = LineRepository.findLine("3호선");
         Section 호선3구간 = new Section();
         호선3구간.initiateSection(StationRepository.findStation("교대역"),
                 StationRepository.findStation("매봉역"));
         SectionRepository.addSection(호선3, 호선3구간);
-        호선3구간.getSection().add(1,StationRepository.findStation("양재역"));
-        호선3구간.getSection().add(1,StationRepository.findStation("남부터미널역"));
+        호선3구간.getSection().add(1, StationRepository.findStation("양재역"));
+        호선3구간.getSection().add(1, StationRepository.findStation("남부터미널역"));
+    }
 
+    public static void initiate신분당선() {
         Line 신분당 = LineRepository.findLine("신분당선");
         Section 신분당구간 = new Section();
         신분당구간.initiateSection(StationRepository.findStation("강남역"),
                 StationRepository.findStation("양재시민의숲역"));
         SectionRepository.addSection(신분당, 신분당구간);
-        신분당구간.getSection().add(1,StationRepository.findStation("양재역"));
+        신분당구간.getSection().add(1, StationRepository.findStation("양재역"));
     }
 }
