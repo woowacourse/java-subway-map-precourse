@@ -6,6 +6,7 @@ import controller.LineManageController;
 public class LineManageView {
     private static final String INPUT_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String INPUT_BACK = "B";
+    private static final String INVALID_INPUT = "\n[ERROR] 유효하지 않은 입력입니다.\n";
     private Scanner scanner;
 
     private static final String MENU =
@@ -33,6 +34,11 @@ public class LineManageView {
         while (true) {
             showMenu();
             String input = input();
+            while (!controller.validateInput(input)) {
+                printMessage(INVALID_INPUT);
+                printMessage(INPUT_MESSAGE);
+                input = input();
+            }
             if (input.equals(INPUT_BACK)) {
                 break;
             }
