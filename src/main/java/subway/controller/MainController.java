@@ -28,8 +28,12 @@ public class MainController {
             MapController.run();
         }
         if (functionIndex.equals(Screen.QUIT.getIndex())) {
-            InputView.closeScanner();
-            System.exit(0);
+            quitProgram();
         }
+    }
+
+    private static void quitProgram() {
+        InputView.closeScanner();
+        System.exit(0);
     }
 }
