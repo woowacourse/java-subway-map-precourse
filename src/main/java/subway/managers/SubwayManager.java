@@ -1,18 +1,23 @@
 package subway.managers;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.exceptions.SubwayException;
 import subway.exceptions.Validation;
 import subway.managers.StationManager;
+import subway.views.SystemMessages;
 import subway.views.SystemOutput;
 import subway.views.UserInput;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SubwayManager {
     private static UserInput userInput;
 
     public SubwayManager(Scanner scanner) {
-        this.runManager(scanner);
+        runManager(scanner);
     }
 
     public static void runManager(Scanner scanner) {
@@ -48,19 +53,17 @@ public class SubwayManager {
         }
     }
 
-    private static void stationManager(UserInput userInput) {
-
-    }
-
-    private static void lineManager() {
-        // SystemOutput.printLineMessage();
-    }
-
-    private static void sectionManager() {
-//        SystemOutput.printSectionMessage();
-    }
-
     private static void subwayMapManager() {
-
+        SystemOutput.printMessage(SystemMessages.SUBWAY_MAP_MESSAGE);
+        List<Line> lines = LineRepository.getLines();
+        for (Line line : lines) {
+            SystemOutput.printInfo(line.getName());
+            SystemOutput.printInfo(SystemMessages.DIVIDE);
+            List<Station> stations = line.getSection();
+            for (Station station : stations) {
+                SystemOutput.printInfo(station.getName());
+            }
+            SystemOutput.printMessage("");
+        }
     }
 }

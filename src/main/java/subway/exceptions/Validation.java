@@ -20,7 +20,7 @@ public class Validation {
     private final String SECTION_DUPLICATION = "이미 등록된 구간입니다.";
     private final String ORDER_NUMBER_RULE = "1 이상의 숫자만 입력할 수 있습니다.";
     private final String OPTION_RULE = "올바른 번호를 입력해 주세요.";
-    private final String[] OPTION_INPUT_MAIN = {"1", "2", "3", "Q", "q"};
+    private final String[] OPTION_INPUT_MAIN = {"1", "2", "3", "4", "Q", "q"};
     private final String[] OPTION_INPUT_STATION_LINE = {"1", "2", "3", "B", "b"};
     private final String[] OPTION_INPUT_SECTION = {"1", "2", "B", "b"};
 
