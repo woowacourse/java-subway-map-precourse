@@ -17,13 +17,68 @@ public class Application {
     public static final String SECTION_MENU = "3";
     public static final String PRINT_LINES = "4";
     public static final String FINISH_PROGRAM = "Q";
+    public static final List<String> subFunctions = Arrays.asList("1", "2", "3", "B");
+    public static final String ADD_MENU = "1";
+    public static final String DELETE_MENU = "2";
+    public static final String SEARCH_MENU = "3";
+    public static final String GO_BACK_MENU = "B";
+    public static final List<String> sectionFunctions = Arrays.asList("1", "2", "B");
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         initialize();
         showMainMenu();
-        String input = inputMainFunction(scanner);
-        goSubMenu(input);
+        goSubMenu(inputMainFunction(scanner));
+        System.out.println(inputSubFunction(scanner));
+    }
+
+    public static void initialize() {
+        initializeStation();
+        initializeLine();
+    }
+
+    public static void initializeStation() {
+        List<String> names = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
+        for (String name : names)
+            StationRepository.addStation(new Station(name));
+    }
+
+    public static void initializeLine() {
+        Line line2 = new Line("2호선");
+        LineRepository.addLine(line2, Arrays.asList("교대역", "강남역", "역삼역"));
+        Line line3 = new Line("3호선");
+        LineRepository.addLine(line3, Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역"));
+        Line lineSinbundang = new Line("신분당선");
+        LineRepository.addLine(lineSinbundang, Arrays.asList("강남역", "양재역", "양재시민의숲역"));
+    }
+
+    public static void showMainMenu() {
+        System.out.println("## 메인 화면");
+        System.out.println("1. 역 관리");
+        System.out.println("2. 노선 관리");
+        System.out.println("3. 구간 관리");
+        System.out.println("4. 지하철 노선도 출력");
+        System.out.println("Q. 종료");
+    }
+
+    public static String inputMainFunction(Scanner kbd) {
+        String input = "0";
+        boolean check = false;
+        while(!check) {
+            System.out.println("\n## 원하는 기능을 선택하세요.");
+            input = kbd.nextLine();
+            check = checkMainInput(input);
+        }
+        return input;
+    }
+
+    public static boolean checkMainInput(String input) {
+        boolean check = true;
+        if (!mainFunctions.contains(input)) {
+            displayErrorMessage(FUNCTION_INPUT_ERROR);
+            check = false;
+        }
+        return check;
     }
 
     public static void goSubMenu(String input) {
@@ -76,53 +131,24 @@ public class Application {
         System.out.println("## 프로그램 종료");
     }
 
-    public static void showMainMenu() {
-        System.out.println("## 메인 화면");
-        System.out.println("1. 역 관리");
-        System.out.println("2. 노선 관리");
-        System.out.println("3. 구간 관리");
-        System.out.println("4. 지하철 노선도 출력");
-        System.out.println("Q. 종료");
-    }
-
-    public static String inputMainFunction(Scanner kbd) {
+    public static String inputSubFunction(Scanner kbd) {
         String input = "0";
         boolean check = false;
         while(!check) {
             System.out.println("\n## 원하는 기능을 선택하세요.");
             input = kbd.nextLine();
-            check = checkMainInput(input);
+            check = checkSubInput(input);
         }
         return input;
     }
 
-    public static boolean checkMainInput(String input) {
+    public static boolean checkSubInput(String input) {
         boolean check = true;
-        if (!mainFunctions.contains(input)) {
+        if (!subFunctions.contains(input)) {
             displayErrorMessage(FUNCTION_INPUT_ERROR);
             check = false;
         }
         return check;
-    }
-
-    public static void initialize() {
-        initializeStation();
-        initializeLine();
-    }
-
-    public static void initializeStation() {
-        List<String> names = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
-        for (String name : names)
-            StationRepository.addStation(new Station(name));
-    }
-
-    public static void initializeLine() {
-        Line line2 = new Line("2호선");
-        LineRepository.addLine(line2, Arrays.asList("교대역", "강남역", "역삼역"));
-        Line line3 = new Line("3호선");
-        LineRepository.addLine(line3, Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역"));
-        Line lineSinbundang = new Line("신분당선");
-        LineRepository.addLine(lineSinbundang, Arrays.asList("강남역", "양재역", "양재시민의숲역"));
     }
 
     public static void displayErrorMessage(int errorCase) {
