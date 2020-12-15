@@ -49,12 +49,13 @@ public class StationUtils {
     public void deleteStation() {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
         StationRepository.deleteStation(scanner.next());
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
     }
 
     public void showStation() {
         List<Station> stations = StationRepository.stations();
         for (Station station : stations) {
-            System.out.println("[INFO] " + station.getName() + "역");
+            System.out.println("[INFO] " + station.getName());
         }
     }
 }
