@@ -33,51 +33,50 @@ public class StationManage {
 
     private static void inputValidate(Scanner scanner, String stationManageInput) {
         if (stationManageInput.equalsIgnoreCase(ADD_STATION)) {
-            addStationPrint(scanner);
+            addStationControl(scanner);
             return;
         }
         if (stationManageInput.equalsIgnoreCase(DELETE_STATION)) {
-            deleteStationPrint(scanner);
+            deleteStationControl(scanner);
             return;
         }
         if (stationManageInput.equalsIgnoreCase(ALL_STATIONS)) {
-            allStationsPrint();
+            allStationsContol();
             return;
         }
         if (stationManageInput.equalsIgnoreCase(BACK_SCREEN)) {
             return;
         }
         errorPrint(FUNCTION_INPUT_ERROR);
-        throw new IllegalArgumentException();
     }
 
-    private static void addStationPrint(Scanner scanner) {
+    private static void addStationControl(Scanner scanner) {
         guidePrint("등록할 역 이름을 입력하세요. ");
         String stationName = scanner.next();
         if (!stationNameLengthValidate(stationName)) {
             errorPrint(NAME_LENGTH_ERROR);
-            throw new IllegalArgumentException();
+            return;
         }
         if (stationExists(stationName)) {
             errorPrint(ALREADY_EXIST_ERROR);
-            throw new IllegalArgumentException();
+            return;
         }
         addStation(new Station(stationName));
         infoPrint("지하철 역이 등록되었습니다. ");
     }
 
-    private static void deleteStationPrint(Scanner scanner) {
+    private static void deleteStationControl(Scanner scanner) {
         guidePrint("삭제할 역 이름을 입력하세요. ");
         String stationName = scanner.next();
         if (!stationExists(stationName)) {
             errorPrint(NO_SUCH_NAME_ERROR);
-            throw new IllegalArgumentException();
+            return;
         }
         deleteStation(stationName);
         infoPrint("지하철 역이 삭제되었습니다. ");
     }
 
-    private static void allStationsPrint() {
+    private static void allStationsContol() {
         guidePrint("역 목록");
         List<Station> allStations = stations();
         for (Station station : allStations) {
@@ -89,7 +88,7 @@ public class StationManage {
         return stationName.length() >= MIN_STATION_NAME_LENGTH;
     }
 
-    public static boolean stationExists(String stationName) {
+    private static boolean stationExists(String stationName) {
         return hasStation(stationName);
     }
 }
