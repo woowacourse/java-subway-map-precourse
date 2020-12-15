@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.exception.LineNameDuplicateException;
 import subway.exception.LineNameNotFoundException;
 import subway.exception.NameLengthException;
+import java.util.List;
 
 public class LineService {
     private static final int MIN_NAME_LENGTH = 2;
@@ -36,5 +37,9 @@ public class LineService {
         if (LineRepository.findByName(name).isPresent()) {
             throw new LineNameDuplicateException();
         }
+    }
+
+    public static List<Line> getAllLines() {
+        return LineRepository.lines();
     }
 }

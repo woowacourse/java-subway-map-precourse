@@ -32,4 +32,9 @@ public class Line {
         this.upwardTerminalStation = upwardTerminalStation;
         this.downTerminalStation = downTerminalStation;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
