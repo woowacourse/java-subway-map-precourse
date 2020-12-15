@@ -39,7 +39,7 @@ public class SectionController {
         String order = scanner.next();
         try {
             sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_SECTION_SUCCESS));
         }catch(IllegalArgumentException e){
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }catch(IndexOutOfBoundsException e){
@@ -55,7 +55,7 @@ public class SectionController {
         try {
             boolean deleteFlag = sectionRepository.deleteSection(lineName, stationName);
             if (deleteFlag) {
-                System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
+                System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_SECTION_SUCCESS));
                 return;
             }
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
