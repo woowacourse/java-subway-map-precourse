@@ -60,8 +60,7 @@ public class OutputView {
 
     public static void printNames(ManagementType managementType, List<String> names) {
         if (names.isEmpty()) {
-            System.out.printf(ERROR_MESSAGE_FORMAT, EMPTY_DATA_MESSAGE);
-            return;
+            throw new IllegalArgumentException(EMPTY_DATA_MESSAGE);
         }
         System.out.printf(NAMES_PRINT_HEADER_FORMAT, managementType.toString());
         names.forEach(name -> System.out.printf(INFORMATION_MESSAGE_FORMAT, name));
