@@ -20,20 +20,18 @@ public class SectionManageView {
     }
 
     public void run() {
-        while (true) {
-            showMenu();
-            printMessage(INPUT_MESSAGE);
-            String input = input();
-            if (input.equals(INPUT_BACK)) {
-                break;
-            }
-            while (!controller.validateInput(input)) {
-                printMessage(INVALID_INPUT);
-                printMessage(INPUT_MESSAGE);
-                input = input();
-            }
-            controller.processInput(input);
+        showMenu();
+        printMessage(INPUT_MESSAGE);
+        String input = input();
+        if (input.equals(INPUT_BACK)) {
+            return;
         }
+        while (!controller.validateInput(input)) {
+            printMessage(INVALID_INPUT);
+            printMessage(INPUT_MESSAGE);
+            input = input();
+        }
+        controller.processInput(input);
     }
 
     private void showMenu() {

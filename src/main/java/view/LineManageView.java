@@ -31,20 +31,18 @@ public class LineManageView {
     }
 
     public void run() {
-        while (true) {
-            showMenu();
+        showMenu();
+        printMessage(INPUT_MESSAGE);
+        String input = input();
+        while (!controller.validateInput(input)) {
+            printMessage(INVALID_INPUT);
             printMessage(INPUT_MESSAGE);
-            String input = input();
-            while (!controller.validateInput(input)) {
-                printMessage(INVALID_INPUT);
-                printMessage(INPUT_MESSAGE);
-                input = input();
-            }
-            if (input.equals(INPUT_BACK)) {
-                break;
-            }
-            controller.processInput(input);
+            input = input();
         }
+        if (input.equals(INPUT_BACK)) {
+            return;
+        }
+        controller.processInput(input);
     }
 
     public String input() {

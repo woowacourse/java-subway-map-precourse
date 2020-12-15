@@ -28,20 +28,18 @@ public class StationManageView {
     }
 
     public void run() {
-        while (true) {
-            showMenu();
+        showMenu();
+        printInputMessage();
+        String input = input();
+        while (!controller.validateInput(input)) {
+            printInvalidInputMessage();
             printInputMessage();
-            String input = input();
-            while (!controller.validateInput(input)) {
-                printInvalidInputMessage();
-                printInputMessage();
-                input = input();
-            }
-            if (input.equals(INPUT_FOR_BACK)) {
-                return;
-            }
-            controller.processInput(input);
+            input = input();
         }
+        if (input.equals(INPUT_FOR_BACK)) {
+            return;
+        }
+        controller.processInput(input);
     }
 
 
