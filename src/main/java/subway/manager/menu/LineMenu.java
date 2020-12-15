@@ -9,7 +9,7 @@ public enum LineMenu {
     ADD("1", "1. 노선 등록", LineController::save),
     REMOVE("2", "2. 노선 삭제", LineController::remove),
     MANAGEMENT("3", "3. 노선 조회", LineController::getList),
-    BACK("B", "B. 돌아가기", (LineController) -> goBack());
+    BACK("B", "B. 돌아가기", (LineController) -> LineMenu.goBack());
 
     private String number;
     private String name;
