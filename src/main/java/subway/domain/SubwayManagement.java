@@ -204,8 +204,12 @@ public class SubwayManagement {
         String name = user.getInput();
         printScreen.printInputOrder();
         String order = user.getInput();
-        LineRepository.addSection(Integer.parseInt(order), line, name);
-        printScreen.printAlarmAddSection();
+        try {
+            LineRepository.addSection(order, line, name);
+            printScreen.printAlarmAddSection();
+        } catch (IllegalArgumentException e) {
+            printScreen.printErrorAddSection();
+        }
     }
 
     private void deleteSection() {

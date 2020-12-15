@@ -32,12 +32,43 @@ public class LineRepository {
         throw new IllegalArgumentException();
     }
 
-    public static void addSection(int idx, String line, String name) {
-        for (int i = 0; i < lines.size(); i++) {
-            if (lines.get(i).getName().equals(line)) {
-                lines.get(i).addStationInSection(idx, name);
+    public static void addSection(String order, String lineName, String name) {
+
+        if (isNumber(order) && checkNameInLines(lineName)
+                && StationRepository.checkNameInStations(name) && checkOrderSize(Integer.parseInt(order), lineName)) {
+            findByLineName(order, lineName, name);
+            return;
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+    private static void findByLineName(String order, String lineName, String name) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                line.addStationInSection(Integer.parseInt(order), name);
+                line.updateTerminalStations();
                 return;
             }
+        }
+    }
+
+    public static boolean checkOrderSize(int order, String lineName) {
+        for (Line line : lines) {
+            if(line.getName().equals(lineName)){
+                return order <= line.getSection().size()+1;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 

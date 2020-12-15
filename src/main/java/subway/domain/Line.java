@@ -56,4 +56,9 @@ public class Line {
     public List<Station> getSection() {
         return Collections.unmodifiableList(sections);
     }
+
+    public void updateTerminalStations() {
+        firstStation = sections.get(0).getName();
+        lastStation = sections.get(sections.size()-1).getName();
+    }
 }
