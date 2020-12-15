@@ -38,9 +38,9 @@ public class SubwayInitializer {
     }
 
     private static void initSections() {
-        LineService.insertStationInLine(LINE_2호선, 강남역, 1);
-        LineService.insertStationInLine(LINE_3호선, 남부터미널역, 1);
-        LineService.insertStationInLine(LINE_3호선, 양재역, 2);
-        LineService.insertStationInLine(LINE_신분당선, 양재역, 1);
+        LineService.insertSection(LINE_2호선, 강남역, 1);
+        LineService.insertSection(LINE_3호선, 남부터미널역, 1);
+        LineService.insertSection(LINE_3호선, 양재역, 2);
+        LineService.insertSection(LINE_신분당선, 양재역, 1);
     }
 }

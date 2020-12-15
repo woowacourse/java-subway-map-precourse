@@ -63,7 +63,7 @@ public class SectionMenuController extends MenuController {
         OutputView.printNotice(INPUT_INDEX_OF_SECTION_TO_REGISTER);
         Integer index = Integer.parseInt(InputView.getInput());
 
-        LineService.insertStationInLine(lineName, stationName, index);
+        LineService.insertSection(lineName, stationName, index);
         OutputView.printInfo(SECTION_IS_REGISTERED);
     }
 
@@ -74,7 +74,7 @@ public class SectionMenuController extends MenuController {
         OutputView.printNotice(INPUT_STATION_OF_SECTION_TO_UNREGISTER);
         String stationName = InputView.getInput();
 
-        LineService.removeStationInLine(lineName, stationName);
+        LineService.removeSection(lineName, stationName);
         OutputView.printInfo(SECTION_IS_UNREGISTERED);
     }
 

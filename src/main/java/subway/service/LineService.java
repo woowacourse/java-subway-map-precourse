@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.CannotFindLineByNameException;
+import subway.exception.CannotRemoveSectionException;
 import subway.exception.InvalidIndexException;
 import subway.view.OutputView;
 
@@ -26,19 +27,22 @@ public class LineService {
         LineRepository.lines().forEach(line -> OutputView.printInfo(line.getName()));
     }
 
-    public static void insertStationInLine(String lineName, String stationName, Integer index) {
+    public static void insertSection(String lineName, String stationName, Integer index) {
         if (index < 0 || index > LineRepository.findByName(lineName).getSections().size()) {
             throw new InvalidIndexException(index.toString());
         }
-
         Station station = StationRepository.findByName(stationName);
+
         LineRepository.addSection(lineName, index, station);
     }
 
-    public static void removeStationInLine(String lineName, String stationName) {
-        // todo 노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없다.
+    public static void removeSection(String lineName, String stationName) {
         Line line = LineRepository.findByName(lineName);
         Station station = StationRepository.findByName(stationName);
+        if (line.getSections().size() <= 2) {
+            throw new CannotRemoveSectionException();
+        }
+
         line.getSections().remove(station);
     }
 }

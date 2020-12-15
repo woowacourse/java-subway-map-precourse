@@ -46,7 +46,7 @@ public class LineServiceTest {
     @Test
     public void insertStationInLine() {
         int idx = 1;
-        LineService.insertStationInLine(testLine.getName(), testStation.getName(), idx);
+        LineService.insertSection(testLine.getName(), testStation.getName(), idx);
         assertThat(testLine.getSections().size())
                 .isEqualTo(3);
         assertThat(testLine.getSections().get(idx))
