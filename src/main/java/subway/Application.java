@@ -65,6 +65,11 @@ public class Application {
 
     public static void showPrintLines() {
         System.out.println("## 지하철 노선도");
+        for(Line line : LineRepository.lines()) {
+            System.out.println("[INFO] " + line.getName());
+            System.out.println("[INFO] ---");
+            line.displayLine();
+        }
     }
 
     public static void finishProgram() {
