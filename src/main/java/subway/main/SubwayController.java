@@ -1,9 +1,10 @@
 package subway.main;
 
-import subway.common.CommonService;
 import subway.line.LineController;
+import subway.main.validation.CheckValidOption;
 import subway.section.SectionController;
 import subway.station.StationController;
+import subway.subwaymap.SubwayMapController;
 import subway.view.InputView;
 import subway.view.MainOutputView;
 
@@ -22,7 +23,7 @@ public class SubwayController {
 
         while (true) {
             MainOutputView.showMainMenu();
-            char option = CommonService.selectOption(optionList, inputView);
+            char option = selectOption(optionList, inputView);
 
             if (option == EXIT_SERVICE) {
                 break;
@@ -30,6 +31,21 @@ public class SubwayController {
 
             navigateSubMenu(option, inputView);
         }
+    }
+
+    public static char selectOption(List<Character> optionList, InputView inputView) {
+        char option;
+        while (true) {
+            try {
+                MainOutputView.askOptionChoice();
+                option = inputView.selectOption();
+                CheckValidOption.validation(option, optionList);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return option;
     }
 
     private static void navigateSubMenu(char option, InputView inputView) {
@@ -43,7 +59,7 @@ public class SubwayController {
             SectionController.sectionManagement(inputView);
         }
         if (option == PRINT_LINE_MAP) {
-            LineController.showSubwayMap();
+            SubwayMapController.showSubwayMap();
         }
     }
 }

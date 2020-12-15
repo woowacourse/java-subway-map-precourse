@@ -1,6 +1,6 @@
 package subway.station;
 
-import subway.common.CommonService;
+import subway.main.SubwayController;
 import subway.view.InputView;
 import subway.view.station.StationManagementView;
 
@@ -18,7 +18,7 @@ public class StationController {
 
         while (true) {
             StationManagementView.showStationManagementMenu();
-            char option = CommonService.selectOption(optionList, inputView);
+            char option = SubwayController.selectOption(optionList, inputView);
 
             if (option == GO_BACK) {
                 break;
@@ -44,26 +44,38 @@ public class StationController {
     }
 
     private static boolean addNewStation(InputView inputView) {
-        StationManagementView.askNewStationName();
-        String stationName = inputView.stationName();
-        boolean success = StationService.addStation(stationName);
-        if (success) {
-            StationManagementView.addStationComplete();
+        boolean success = false;
+        try {
+            StationManagementView.askNewStationName();
+            String stationName = inputView.stationName();
+            success = StationService.addStation(stationName);
+            if (success) {
+                StationManagementView.addStationComplete();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return success;
     }
 
     private static boolean deleteStation(InputView inputView) {
-        StationManagementView.askDeleteStationName();
-        String stationName = inputView.stationName();
-        boolean success = StationService.deleteStation(stationName);
-        if (success) {
-            StationManagementView.deleteStationComplete();
+        boolean success = false;
+        try {
+            StationManagementView.askDeleteStationName();
+            String stationName = inputView.stationName();
+            success = StationService.deleteStation(stationName);
+            if (success) {
+                StationManagementView.deleteStationComplete();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return success;
     }
 
     private static boolean printRegisteredStation() {
-        return StationService.printAllStation();
+        List<Station> stations = StationService.AllStation();
+        StationManagementView.printAllStation(stations);
+        return true;
     }
 }
