@@ -8,6 +8,7 @@ import java.util.*;
 public class LineRepository {
     private static final String[] LINES = {"2호선", "3호선", "신분당선"};
     private static final String[][] STATIONS = {{"교대역", "강남역", "역삼역"}, {"교대역", "남부터미널역", "양재역", "매봉역"}, {"강남역", "양재역", "양재시민의숲역"}};
+    private static int INDEX = 0;
 
     private static final List<Line> lines = new ArrayList<>();
 
@@ -16,7 +17,7 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        if (existLine(line.getName())) {
+        if (isExistLine(line.getName())) {
             ErrorView.duplicateName();
             return;
         }
@@ -28,26 +29,25 @@ public class LineRepository {
     }
 
     public static void init() {
-        int index = 0;
         for (String lineName : LINES) {
             Line line = new Line(lineName);
-            line.addStations(STATIONS[index++]);
+            line.addStations(STATIONS[INDEX++]);
             addLine(line);
         }
     }
 
-    public static boolean lineRegisterStation(String name) {
+    public static boolean isLineRegisterStation(String stationName) {
         for (Line line : lines) {
-            if (line.isExistStation(name)) {
+            if (line.isExistStation(stationName)) {
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean existLine(String name) {
+    private static boolean isExistLine(String lineName) {
         for (Line line : lines) {
-            if (line.getName().equals(name)) {
+            if (line.getName().equals(lineName)) {
                 return true;
             }
         }
@@ -68,9 +68,9 @@ public class LineRepository {
         OutputView.space();
     }
 
-    public static Line getLineByName(String name) {
+    public static Line getLineByName(String lineName) {
         for (Line line : lines) {
-            if (line.getName().equals(name)) {
+            if (line.getName().equals(lineName)) {
                 return line;
             }
         }
@@ -84,6 +84,15 @@ public class LineRepository {
             }
         }
         ErrorView.notExistName();
+        return false;
+    }
+
+    public static boolean isDuplicateLine(String lineName) {
+        for(Line line : lines){
+            if(line.getName().equals(lineName)){
+                return true;
+            }
+        }
         return false;
     }
 }

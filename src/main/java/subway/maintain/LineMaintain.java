@@ -79,6 +79,11 @@ public class LineMaintain {
             maintainPage();
             return;
         }
+        if(LineRepository.isDuplicateLine(line.getName())){
+            ErrorView.duplicateName();
+            maintainPage();
+            return;
+        }
         registerStation(line);
     }
 

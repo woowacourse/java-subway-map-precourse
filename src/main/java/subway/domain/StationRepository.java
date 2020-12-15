@@ -21,7 +21,7 @@ public class StationRepository {
         if (station.getName() == null) {
             return false;
         }
-        if (duplicateStation(station.getName())) {
+        if (isDuplicateStation(station.getName())) {
             ErrorView.duplicateName();
             return false;
         }
@@ -33,7 +33,7 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    private static boolean duplicateStation(String stationName) {
+    private static boolean isDuplicateStation(String stationName) {
         for (Station station : stations) {
             if (station.getName().equals(stationName)) {
                 return true;

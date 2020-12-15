@@ -64,7 +64,7 @@ public class StationMaintain {
     private void deleteStation() {
         OutputView.deleteStationName();
         String name = scanner.next();
-        if (LineRepository.lineRegisterStation(name)) {
+        if (LineRepository.isLineRegisterStation(name)) {
             ErrorView.lineRegisterStation();
             maintainPage();
             return;
