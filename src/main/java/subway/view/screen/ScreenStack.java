@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class ScreenStack {
     private static final Stack<Screen> stack = new Stack<>();
+    private static final int MIN_SIZE = 1;
 
     public static void pushScreen(Screen item) {
         stack.push(item);
@@ -33,7 +34,7 @@ public class ScreenStack {
     }
 
     public static void returnToFirstScreen() {
-        while (stack.size() > 1) {
+        while (stack.size() > MIN_SIZE) {
             stack.pop();
         }
     }

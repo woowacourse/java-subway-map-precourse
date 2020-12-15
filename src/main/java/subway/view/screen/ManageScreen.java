@@ -1,6 +1,5 @@
 package subway.view.screen;
 
-import subway.controller.Controller;
 import subway.controller.ControllerMapper;
 import subway.view.InputView;
 import subway.view.OutputView;
