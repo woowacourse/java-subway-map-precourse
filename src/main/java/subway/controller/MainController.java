@@ -34,38 +34,42 @@ public class MainController {
     }
 
     private void goToStationMenuIfUserSelect() {
-        if (selection.equals(STATION_MENU)) {
+        if (isSelect(STATION_MENU)) {
             StationController stationController = new StationController();
             stationController.goToMenu();
         }
     }
 
     private void goToLineMenuIfUserSelect() {
-        if (selection.equals(LINE_MENU)) {
+        if (isSelect(LINE_MENU)) {
             LineController lineController = new LineController();
             lineController.goToMenu();
         }
     }
 
     private void goToSectionMenuIfUserSelect() {
-        if (selection.equals(SECTION_MENU)) {
+        if (isSelect(SECTION_MENU)) {
             SectionController sectionController = new SectionController();
             sectionController.goToMenu();
         }
     }
 
     private void goToSubwayMapIfUserSelect() {
-        if (selection.equals(SUBWAY_MAP_MENU)) {
+        if (isSelect(SUBWAY_MAP_MENU)) {
             SubwayMap subwayMap = new SubwayMap();
             SubwayMapView.printMap(subwayMap.makeSubwayMap());
         }
     }
 
     private boolean isQuit() {
-        if (selection.equals(QUIT)) {
+        if (isSelect(QUIT)) {
             OutputView.printQuit();
             return true;
         }
         return false;
+    }
+
+    private boolean isSelect(String menu) {
+        return selection.equals(menu);
     }
 }
