@@ -20,6 +20,15 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static Line findLineByName(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                return line;
+            }
+        }
+        return null;
+    }
+
     public static void printLineList() {
         if (lines.size() == 0) {
             System.out.println("존재하는 노선이 없습니다.");

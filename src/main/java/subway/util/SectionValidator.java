@@ -1,5 +1,6 @@
 package subway.util;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 
 import java.util.List;
@@ -21,6 +22,14 @@ public class SectionValidator {
             return false;
         }
         return true;
+    }
+
+    public static boolean checkValidIndex(String index, String lineName) {
+        int lineSize = LineRepository.findLineByName(lineName).size();
+        if (Integer.parseInt(index) > 0 && Integer.parseInt(index) <= lineSize) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -21,6 +21,15 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
+    public static Station findStationByName(String name) {
+        for (Station station : stations()) {
+            if (station.getName().equals(name)) {
+                return station;
+            }
+        }
+        return null;
+    }
+
     public static void printStationList() {
         if (stations.size() == 0) {
             System.out.println("존재하는 역이 없습니다.\n");
