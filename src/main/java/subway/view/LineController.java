@@ -33,10 +33,10 @@ public class LineController {
         System.out.println(String.join(" 노선 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String lineName = scanner.next();
         System.out.println(String.join(" 노선의 상행 ", Constant.ADD_PREFIX, Constant.LINE_STATION_POSTFIX));
-        String upward = scanner.next();
+        String upwardName = scanner.next();
         System.out.println(String.join(" 노선의 하행 ", Constant.ADD_PREFIX, Constant.LINE_STATION_POSTFIX));
-        String downward = scanner.next();
-        lineRepository.addLine(lineName, new Station(upward), new Station(downward));
+        String downwardName = scanner.next();
+        lineRepository.addLine(lineName, upwardName, downwardName);
     }
 
     void deleteLine() {

@@ -13,20 +13,20 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
-    public static void addLine(String lineName, Station upward, Station downward) {
+    public static void addLine(String lineName, String upwardName, String downwardName) {
         if (checkExistLine(lineName)) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_LINE_NAME));
             return;
-        } else if (!stationRepository.checkExistStation(upward) || !stationRepository.checkExistStation(downward)) {
+        } else if (!stationRepository.checkExistStation(upwardName) || !stationRepository.checkExistStation(downwardName)) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_STATION_INFO));
             return;
-        } else if(upward.equals(downward)) {
+        } else if(upwardName.equals(downwardName)) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, "상행과 하행 종점은 같을 수 없습니다."));
             return;
         }
         Line line = new Line(lineName);
-        line.stations.add(upward);
-        line.stations.add(downward);
+        line.stations.add(new Station(upwardName));
+        line.stations.add(new Station(downwardName));
         lines.add(line);
         printMap();
         System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_LINE_SUCCESS));
