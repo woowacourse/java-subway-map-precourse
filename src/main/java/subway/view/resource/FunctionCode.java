@@ -1,6 +1,6 @@
 package subway.view.resource;
 
-public enum Function {
+public enum FunctionCode {
     REGISTER("1"),
     DELETE("2"),
     LOOKUP("3"),
@@ -8,7 +8,7 @@ public enum Function {
 
     private String index;
 
-    Function(String index) {
+    FunctionCode(String index) {
         this.index = index;
     }
 

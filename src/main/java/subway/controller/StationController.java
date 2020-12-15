@@ -4,7 +4,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.resource.Function;
+import subway.view.resource.FunctionCode;
 import subway.view.resource.Message;
 import subway.view.resource.Screen;
 
@@ -20,16 +20,16 @@ public class StationController {
     }
 
     private static void callFunction(String functionIndex) {
-        if (functionIndex.equals(Function.REGISTER.getIndex())) {
+        if (functionIndex.equals(FunctionCode.REGISTER.getIndex())) {
             registerStation();
         }
-        if (functionIndex.equals(Function.DELETE.getIndex())) {
+        if (functionIndex.equals(FunctionCode.DELETE.getIndex())) {
             deleteStation();
         }
-        if (functionIndex.equals(Function.LOOKUP.getIndex())) {
+        if (functionIndex.equals(FunctionCode.LOOKUP.getIndex())) {
             lookUpStation();
         }
-        if (functionIndex.equals(Function.BACK.getIndex())) {
+        if (functionIndex.equals(FunctionCode.BACK.getIndex())) {
             goBackToMain();
         }
     }

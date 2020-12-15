@@ -3,7 +3,7 @@ package subway.controller;
 import subway.domain.SectionRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.resource.Function;
+import subway.view.resource.FunctionCode;
 import subway.view.resource.Message;
 import subway.view.resource.Screen;
 
@@ -20,13 +20,13 @@ public class SectionController {
     }
 
     private static void callFunction(String functionIndex) {
-        if (functionIndex.equals(Function.REGISTER.getIndex())) {
+        if (functionIndex.equals(FunctionCode.REGISTER.getIndex())) {
             registerSection();
         }
-        if (functionIndex.equals(Function.DELETE.getIndex())) {
+        if (functionIndex.equals(FunctionCode.DELETE.getIndex())) {
             deleteSection();
         }
-        if (functionIndex.equals(Function.BACK.getIndex())) {
+        if (functionIndex.equals(FunctionCode.BACK.getIndex())) {
             goBackToMain();
         }
     }
