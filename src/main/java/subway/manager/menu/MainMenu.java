@@ -5,8 +5,6 @@ import subway.manager.RouteMapManager;
 import subway.manager.StationManager;
 import subway.view.Output;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.function.Consumer;
 
 public enum MainMenu {
     STATION_MENU("1", "1. 역 관리", StationManager::run),
@@ -15,10 +13,11 @@ public enum MainMenu {
     ROUTE_MAP_MENU("4", "4. 지하철 노선도 출력", RouteMapManager::run),
     EXIT("Q", "Q. 종료", MainMenu::exitGame);
 
+    private static final String menu = "## 메인 화면";
+    private static boolean gameExit = true;
     private String number;
     private String name;
     private Runnable nextAction;
-    private static boolean gameExit = true;
 
     MainMenu(String number, String name, Runnable nextAction) {
         this.number = number;
@@ -27,10 +26,9 @@ public enum MainMenu {
     }
 
     public static void printMenu() {
-        System.out.println("## 메인 화면");
+        Output.print(menu);
         Arrays.stream(MainMenu.values())
                 .forEach(System.out::println);
-        Output.printNewLine();
     }
 
     public static MainMenu getMainMenuType(String selectMenu) {

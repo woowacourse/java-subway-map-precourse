@@ -5,12 +5,11 @@ import subway.manager.menu.LineMenu;
 import subway.view.Input;
 import subway.view.Output;
 
-public class LineManager{
+public class LineManager {
 
     public static void run() {
         LineMenu lineMenu;
         do {
-            Output.printNewLine();
             LineMenu.printMenu();
             lineMenu = chooseMenu();
             lineMenu.execute(LineController.getInstance());

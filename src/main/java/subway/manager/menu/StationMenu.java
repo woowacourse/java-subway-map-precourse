@@ -3,8 +3,6 @@ package subway.manager.menu;
 import subway.controller.StationController;
 import subway.view.Output;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public enum StationMenu {
@@ -13,10 +11,11 @@ public enum StationMenu {
     MANAGEMENT("3", "3. 역 조회", StationController::getList),
     BACK("B", "B. 돌아가기", (StationController) -> goBack());
 
+    private static final String menu = "## 역 관리 화면";
+    private static boolean back = true;
     private String number;
     private String name;
     private Consumer<StationController> nextAction;
-    private static boolean back = true;
 
     StationMenu(String number, String name, Consumer<StationController> nextAction) {
         this.number = number;
@@ -25,10 +24,9 @@ public enum StationMenu {
     }
 
     public static void printMenu() {
-        System.out.println("## 역 관리 화면");
+        Output.print(menu);
         Arrays.stream(StationMenu.values())
                 .forEach(System.out::println);
-        Output.printNewLine();
     }
 
     public static StationMenu getStationMenuType(String selectMenu) {

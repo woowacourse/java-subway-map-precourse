@@ -11,10 +11,12 @@ public enum LineMenu {
     MANAGEMENT("3", "3. 노선 조회", LineController::getList),
     BACK("B", "B. 돌아가기", (LineController) -> LineMenu.goBack());
 
+    private static final String menu = "## 노선 관리 화면";
+    private static boolean back = true;
     private String number;
     private String name;
     private Consumer<LineController> nextAction;
-    private static boolean back = true;
+
 
     LineMenu(String number, String name, Consumer<LineController> nextAction) {
         this.number = number;
@@ -23,10 +25,9 @@ public enum LineMenu {
     }
 
     public static void printMenu() {
-        System.out.println("## 노선 관리 화면");
+        Output.print(menu);
         Arrays.stream(LineMenu.values())
                 .forEach(System.out::println);
-        Output.printNewLine();
     }
 
     public static LineMenu getLineMenuType(String selectMenu) {

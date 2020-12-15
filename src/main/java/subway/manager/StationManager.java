@@ -10,7 +10,6 @@ public class StationManager {
     public static void run() {
         StationMenu stationMenu;
         do {
-            Output.printNewLine();
             StationMenu.printMenu();
             stationMenu = chooseMenu();
             stationMenu.execute(StationController.getInstance());

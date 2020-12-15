@@ -12,12 +12,13 @@ public class Input {
     }
 
     public static void init(Scanner scanner) {
-        if (Input.scanner == null){
+        if (Input.scanner == null) {
             Input.scanner = scanner;
         }
     }
 
-    public static String input( String message) {
+    public static String input(String message) {
+        Output.printNewLine();
         System.out.println(message);
         return Input.scanner.nextLine();
     }
