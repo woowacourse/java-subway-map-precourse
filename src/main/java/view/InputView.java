@@ -45,7 +45,6 @@ public class InputView {
         return scanner.next();
     }
 
-
     public static List<String> inputLineInfo(Scanner scanner) {
         System.out.println(INPUT_lINE_NAME);
         String lineName = scanner.next();
