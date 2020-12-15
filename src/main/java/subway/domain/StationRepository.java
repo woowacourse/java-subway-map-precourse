@@ -21,18 +21,18 @@ public class StationRepository {
     }
 
     public static Station getStation(String name) {
-        int index = 0;
-        for(int i=0; i<stations.size(); i++) {
-            if(stations.get(i).getName().equals(name)) {
-                index = i;
-            }
-        }
-        return stations.get(index);
+        return stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findAny()
+                .get();
+    }
+
+    public static boolean isDuplicate(String name) {
+        return stations.stream()
+                .anyMatch(station -> station.getName().equals(name));
     }
 
     public static List<Station> getStations() {
         return stations;
     }
-
-
 }
