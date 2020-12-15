@@ -32,8 +32,8 @@ public class SectionRepository {
         }else if(!stationRepository.checkExistStation(stationName)){ // 존재하지 않는 역
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_STATION_INFO));
         }
-
-        return false;
+        List<Station> stations = lineRepository.lines.stream().filter(l -> lineName.equals(l.getName())).findFirst().get().stations;
+        return stations.removeIf(s -> Objects.equals(s.getName(), stationName));
     }
 
 

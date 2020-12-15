@@ -48,7 +48,10 @@ public class SectionController {
         String lineName = scanner.next();
         System.out.println(GET_DELETE_STATION_NAME);
         String stationName = scanner.next();
-        sectionRepository.deleteSection(lineName, stationName);
+        boolean deleteFlag = sectionRepository.deleteSection(lineName, stationName);
+        if (deleteFlag) {
+            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
+        }
     }
 
     public void readSections() {
