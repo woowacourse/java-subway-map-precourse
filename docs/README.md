@@ -117,33 +117,38 @@
     |   `-- java
     |       `-- subway
     |           |-- Application.java                        - 어플리케이션을 실행
+    |           |
     |           |-- controller                              [프로그램 실행에 필요한 domain-view 연결]
-    |           |   |-- FunctionController.java             - 공통 관리 기능 (부모 클래스)
-    |           |   |-- InitialSetupController.java         - 사전 등록 정보를 초기 설정
-    |           |   |-- MainController.java                 - 메인 화면 기능에 필요한 domain-view 연결
-    |           |   `-- functioncontroller                  - 각 관리 기능들에 대한 domain-view를 연결
-    |           |       |-- LineController.java             
-    |           |       |-- LineSectionController.java      
-    |           |       |-- MapPrintController.java         
-    |           |       `-- StationController.java          
+    |           |   |-- InitialSetupController.java         - 사전 등록 정보 설정
+    |           |   |-- MainController.java                 - 메인 화면 기능 제어
+    |           |   `-- functioncontroller 
+    |           |       |-- FunctionController.java         - 공통 기능 제어 (부모 클래스)
+    |           |       |-- LineController.java                 - 노선 관리
+    |           |       |-- LineSectionController.java          - 구간 관리
+    |           |       |-- MapPrintController.java             - 지하철 노선도 출력
+    |           |       `-- StationController.java              - 역 관리
+    |           |
     |           |-- domain                                  [노선과 역 정보를 저장 및 관리]
-    |           |   |-- Line.java                           - 노선 자체의 생성, 노선 소속의 역에 대한 CRUD 제공
-    |           |   |-- LineRepository.java                 - 현재 프로그램에 등록된 노선 관리
-    |           |   |-- Station.java                        - 역 자체의 생성, 역이 소속된 노선들의 목록 관리 
-    |           |   `-- StationRepository.java              - 현재 프로그램에 등록된 역 관리
+    |           |   |-- Line.java                           - 노선 생성, 노선 소속의 역에 대한 CRUD 제공
+    |           |   |-- LineRepository.java                 - 생성된 노선 관리
+    |           |   |-- Station.java                        - 역 생성, 역이 소속된 노선들의 목록 관리 
+    |           |   `-- StationRepository.java              - 생성된 역 관리
+    |           |
     |           |-- exception
     |           |   `-- UserInputException.java
-    |           |-- validator                               [각 관리 기능들에 필요한 Validation 제공]
-    |           |   |-- LineSectionValidation.java          
-    |           |   |-- LineValidation.java                 
-    |           |   |-- MainValidation.java                 
-    |           |   |-- StationValidation.java              
-    |           |   `-- Validation.java                     - 공통 Validation (부모 클래스)
-    |           `-- view
-    |               |-- ErrorView.java
-    |               |-- InfoView.java
-    |               |-- InputView.java
-    |               |-- OutputView.java
+    |           |
+    |           |-- validator                               [사용자 Input 검증]
+    |           |   |-- Validation.java                     - 공통 Validation (부모 클래스)
+    |           |   |-- LineValidation.java                     - 노선 관리 Validation
+    |           |   |-- MainValidation.java                     - 메인 화면 Validation
+    |           |   |-- StationValidation.java                  - 역 관리 Validation
+    |           |   `-- LineSectionValidation.java              - 구간 관리 Validation
+    |           |
+    |           `-- view                                    [사용자에게 보여지는 UI]
+    |               |-- ErrorView.java                      - Error 출력 (부모 클래스)
+    |               |-- InfoView.java                       - Info 출력 (부모 클래스)
+    |               |-- OutputView.java                     - Instruction 출력 (부모 클래스) 
+    |               |-- InputView.java                      - 사용자 Input 입력 받기
     |               |-- lineoutput
     |               |   |-- LineErrorView.java
     |               |   |-- LineInfoView.java
