@@ -528,7 +528,7 @@ This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/b
     - [x] 구간 삭제 시 상하행 종점역을 갱신한다.
 - [x] 지하철 노선도
     - [x] 모든 노선과 역을 순서대로 출력한다.
-- [ ] 리팩토링
+- [x] 리팩토링
     - [x] 비즈니스 로직과 UI 로직을 분리한다.
-    - [ ] InputView를 통해 사용자 입력을 받는다.
-    - [ ] OutputView를 통해 안내 문구와 결과를 출력한다.
+    - [x] InputView를 통해 사용자 입력을 받는다.
+    - [x] OutputView를 통해 안내 문구와 결과를 출력한다.
