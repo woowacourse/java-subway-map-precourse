@@ -65,8 +65,8 @@ public class StationMenuController extends MenuController {
     }
 
     private static void unregisterStation() {
-        OutputView.printNotice(INPUT_NAME_OF_STATION_TO_UNREGISTER);
         while (true) {
+            OutputView.printNotice(INPUT_NAME_OF_STATION_TO_UNREGISTER);
             try {
                 // todo 구간에 등록된 역은 삭제불가
                 StationService.removeStationByName(InputView.getInput());

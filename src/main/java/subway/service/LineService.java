@@ -7,6 +7,7 @@ import subway.domain.StationRepository;
 import subway.exception.CannotFindLineByNameException;
 import subway.exception.CannotRemoveSectionException;
 import subway.exception.InvalidIndexException;
+import subway.exception.UnregisteredSectionException;
 import subway.view.OutputView;
 
 public class LineService {
@@ -41,6 +42,10 @@ public class LineService {
         Station station = StationRepository.findByName(stationName);
         if (line.getSections().size() <= 2) {
             throw new CannotRemoveSectionException();
+        }
+
+        if (!line.getSections().contains(station)) {
+            throw new UnregisteredSectionException();
         }
 
         line.getSections().remove(station);

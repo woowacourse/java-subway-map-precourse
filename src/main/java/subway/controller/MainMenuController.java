@@ -36,6 +36,8 @@ public class MainMenuController extends MenuController {
             } catch (ExitSystemException e) {
                 OutputView.println(e.getMessage());
                 return;
+            } catch (Exception e) {
+                OutputView.printError(e);
             }
         }
     }
