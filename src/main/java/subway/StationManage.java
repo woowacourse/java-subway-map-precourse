@@ -1,11 +1,13 @@
 package subway;
 
 import static subway.domain.StationRepository.addStation;
+import static subway.domain.StationRepository.hasStation;
 
 import java.util.Scanner;
 import subway.domain.Station;
 
 public class StationManage {
+
     static final String stationAddInput = "1";
     static final String stationDeleteInput = "2";
     static final String stationsGetInput = "3";
@@ -28,29 +30,35 @@ public class StationManage {
         if (mainInput.equalsIgnoreCase(backScreenInput)) {
             return true;
         }
-        System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
+        System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
         throw new IllegalArgumentException();
     }
 
     private static void addStationPrint(Scanner scanner) {
-        System.out.println("## 등록할 역 이름을 입력하세요.");
+        System.out.println("\n## 등록할 역 이름을 입력하세요.");
         String stationName = scanner.next();
         if (!stationNameLengthValidate(stationName)) {
-            System.out.println("[ERROR] 역의 이름은 최소 2자 이상이어야 합니다.");
+            System.out.println("\n[ERROR] 역의 이름은 최소 2자 이상이어야 합니다. ");
+            throw new IllegalArgumentException();
+        }
+        if (stationNameDuplicate(stationName)) {
+            System.out.println("\n[ERROR] 이미 등록된 역 이름입니다. ");
             throw new IllegalArgumentException();
         }
         addStation(new Station(stationName));
+        System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
     }
 
     private static boolean stationNameLengthValidate(String stationName) {
-        if (stationName.length() < stationNameMinLength) {
-            return false;
-        }
-        return true;
+        return stationName.length() >= stationNameMinLength;
+    }
+
+    private static boolean stationNameDuplicate(String stationName) {
+        return hasStation(stationName);
     }
 
     private static void stationManagePrint() {
-        System.out.println("## 역 관리 화면\n"
+        System.out.println("\n## 역 관리 화면\n"
             + "1. 역 등록\n"
             + "2. 역 삭제\n"
             + "3. 역 조회\n"
