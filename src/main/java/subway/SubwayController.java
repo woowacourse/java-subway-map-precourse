@@ -1,7 +1,11 @@
 package subway;
 
+import java.util.List;
 import java.util.Scanner;
 import subway.constant.UserChoiceOptionToName;
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -28,13 +32,30 @@ public class SubwayController {
                 StationController.stationControlMenu(scanner);
             }
             if (mainMenuOptionChoice
-                .equals(UserChoiceOptionToName.LINE_MANAGEMENT.getUserChoiceOptionToName())){
+                .equals(UserChoiceOptionToName.LINE_MANAGEMENT.getUserChoiceOptionToName())) {
                 LineController.lineControlMenu(scanner);
             }
             if (mainMenuOptionChoice
-                .equals(UserChoiceOptionToName.SECTION_MANAGEMENT.getUserChoiceOptionToName())){
+                .equals(UserChoiceOptionToName.SECTION_MANAGEMENT.getUserChoiceOptionToName())) {
                 SectionController.sectionControlMenu(scanner);
             }
+            if (mainMenuOptionChoice
+                .equals(UserChoiceOptionToName.STATION_MAP_PRINT.getUserChoiceOptionToName())) {
+                stationMapPrint();
+            }
         }
+    }
+
+    private void stationMapPrint() {
+        List<Line> lines = LineRepository.lines();
+
+        for(Line line:lines){
+            OutputView.stationMapGuidePrint();
+            OutputView.line();
+            for(Station station:line.getLineMembers()){
+                OutputView.infoStationNamePrint(station.getName());
+            }
+        }
+        OutputView.stationMapPrint();
     }
 }

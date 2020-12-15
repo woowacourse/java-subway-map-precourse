@@ -174,4 +174,24 @@ public class OutputView {
     public static void sectionDeleteStationSuccess() {
         System.out.println(SectionMessage.SECTION_DELETE_SUCCESS.getSectionMessage());
     }
+
+    public static void stationMapPrint() {
+
+    }
+
+    public static void stationMapGuidePrint() {
+        System.out.println(
+            CommonMessage.INFO +
+                CommonMessage.STATION_MAP_GUIDE.getCommonMessage());
+    }
+
+    public static void line() {
+        System.out.println(
+            CommonMessage.INFO.getCommonMessage() +
+                CommonMessage.LINE.getCommonMessage());
+    }
+
+    public static void infoStationNamePrint(String stationName) {
+        System.out.println(CommonMessage.INFO.getCommonMessage() + stationName);
+    }
 }
