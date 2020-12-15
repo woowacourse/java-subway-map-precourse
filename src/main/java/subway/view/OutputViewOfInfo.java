@@ -35,4 +35,8 @@ public class OutputViewOfInfo {
     public static void deleteSectionComplete() {
         System.out.println(INFO + DELETE_SECTION_COMPLETE + "\n");
     }
+
+    public static void printStations(String name) {
+        System.out.println(INFO + name);
+    }
 }

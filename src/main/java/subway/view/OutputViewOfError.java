@@ -24,7 +24,7 @@ public class OutputViewOfError {
         System.out.println(ERROR + NAME_LENGTH_ERROR + "\n");
     }
 
-    public static void CannotDeleteError() {
+    public static void cannotDeleteError() {
         System.out.println(ERROR + CANNOT_DELETE_ERROR + "\n");
     }
 }
