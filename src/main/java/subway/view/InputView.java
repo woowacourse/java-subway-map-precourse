@@ -68,35 +68,35 @@ public class InputView {
         return input;
     }
 
-    public static String registerSectionLine() {
+    public static String registerLineInSection() {
         System.out.println(REGISTER_SECTION_LINE_MESSAGE);
         String input = scanner.nextLine();
         System.out.println();
         return input;
     }
 
-    public static String registerSectionStation() {
+    public static String registerStationInSection() {
         System.out.println(REGISTER_SECTION_STATION_MESSAGE);
         String input = scanner.nextLine();
         System.out.println();
         return input;
     }
 
-    public static String registerSectionOrder() {
+    public static String registerOrderInSection() {
         System.out.println(REGISTER_SECTION_ORDER_MESSAGE);
         String input = scanner.nextLine();
         System.out.println();
         return input;
     }
 
-    public static String deleteSectionLine() {
+    public static String deleteLineInSection() {
         System.out.println(DELETE_SECTION_LINE_MESSAGE);
         String input = scanner.nextLine();
         System.out.println();
         return input;
     }
 
-    public static String deleteSectionStation() {
+    public static String deleteStationInSection() {
         System.out.println(DELETE_SECTION_STATION_MESSAGE);
         String input = scanner.nextLine();
         System.out.println();
