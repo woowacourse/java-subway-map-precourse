@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.domain.Station;
+import subway.domain.StationManageMenu;
 import subway.domain.repositories.StationRepository;
 import subway.utils.Validator;
 import subway.view.InputView;
@@ -18,6 +19,7 @@ public class StationController {
             String StationName = stationNameInputForAdd();
             StationRepository.addStation(new Station(StationName));
             StationView.printStationAddSuccessMsg();
+            StationManageMenu.stationManageMenuStop();
         } catch (IllegalArgumentException e) {
             System.out.println();
             System.out.println("[ERROR] " + e.getMessage());
@@ -47,6 +49,7 @@ public class StationController {
 
     public static void stationCheck() {
         StationView.printStationCheck();
+        StationManageMenu.stationManageMenuStop();
     }
 
     public static void stationDelete() {
@@ -55,6 +58,7 @@ public class StationController {
             String StationName = stationNameInputForDelete();
             StationRepository.deleteStation(StationName);
             StationView.printStationDeleteSuccessMsg();
+            StationManageMenu.stationManageMenuStop();
         } catch (IllegalArgumentException e) {
             System.out.println();
             System.out.println("[ERROR] " + e.getMessage());

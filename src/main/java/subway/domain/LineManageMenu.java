@@ -16,7 +16,7 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 등록 호출
                 LineController.lineAdd();
-                lineManageMenuStop();
+                // lineManageMenuStop();
             }
         },
         LINE_DELETE() {
@@ -24,7 +24,7 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 삭제 호출
                 LineController.lineDelete();
-                lineManageMenuStop();
+                // lineManageMenuStop();
             }
         },
         LINE_CHECK() {
@@ -32,7 +32,7 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 조회 호출
                 LineController.lineCheck();
-                lineManageMenuStop();
+                // lineManageMenuStop();
             }
         };
 
@@ -46,7 +46,7 @@ public class LineManageMenu {
         return isLineMenuRun;
     }
 
-    private static void lineManageMenuStop() {
+    public static void lineManageMenuStop() {
         isLineMenuRun = false;
     }
 

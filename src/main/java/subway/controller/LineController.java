@@ -1,6 +1,7 @@
 package subway.controller;
 
 import subway.domain.Line;
+import subway.domain.LineManageMenu;
 import subway.domain.repositories.LineRepository;
 import subway.utils.Validator;
 import subway.view.InputView;
@@ -35,10 +36,9 @@ public class LineController {
             LineRepository.addLine(new Line(lineName));
             LineRepository.addStationToLine(lineName, frontStationName, backStationName);
             LineView.printLineAddSuccessMsg();
+            LineManageMenu.lineManageMenuStop();
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println("[ERROR] " + e.getMessage());
-            System.out.println();
+            System.out.println("\n[ERROR] " + e.getMessage() + "\n");
         }
     }
 
@@ -82,6 +82,7 @@ public class LineController {
 
     public static void lineCheck() {
         LineView.printLineCheck();
+        LineManageMenu.lineManageMenuStop();
     }
     public static void lineDelete() {
         try {
@@ -89,7 +90,7 @@ public class LineController {
             String lineName = lineNameInputForDelete();
             LineRepository.deleteLineMapByName(lineName);
             LineView.printLineDeleteSuccessMsg();
-
+            LineManageMenu.lineManageMenuStop();
         } catch (IllegalArgumentException e) {
             System.out.println();
             System.out.println("[ERROR] " + e.getMessage());
