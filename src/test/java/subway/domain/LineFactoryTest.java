@@ -31,6 +31,17 @@ class LineFactoryTest {
                 .hasMessage("[ERROR] 노선의 이름은 2글자 이상이어야 합니다.");
     }
 
+    @DisplayName("예외 : 이름이 ~선이 아니면 예외를 발생시킨다")
+    @Test
+    void wrongSuffixNameTest() {
+        Station startStation = StationFactory.makeStation("사당역");
+        Station lastStation = StationFactory.makeStation("신대방역");
+
+        assertThatThrownBy(() -> LineFactory.makeLine("선아님", startStation, lastStation))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 노선의 이름은 ~선 형태여야 합니다.");
+    }
+
     @DisplayName("예외 : 상행종점과 하행종점이 같으면 예외")
     @Test
     void sameTerminalExceptionTest() {
