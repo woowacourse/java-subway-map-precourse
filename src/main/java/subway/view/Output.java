@@ -1,8 +1,10 @@
 package subway.view;
 
+import subway.controller.SubwayController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.screen.LineScreen;
 import subway.screen.MainScreen;
 import subway.screen.Screen;
@@ -70,6 +72,20 @@ public class Output {
         }
     }
     
+    public static void printStation() {
+        SubwayController.output.printStationListInfoMessage();
+        for (Station station : StationRepository.stations()) {
+            SubwayController.output.printResult(station.getName());
+        }
+    }
+    
+    public static void printLine() {
+        SubwayController.output.printLineListInfoMessage();
+        for (Line line : LineRepository.lines()) {
+            SubwayController.output.printResult(line.getName());
+        }
+    }
+
     public static void printStationsOnLine(Line line) {
         for (Station station : line.stations()) {
             System.out.println(station.getName());

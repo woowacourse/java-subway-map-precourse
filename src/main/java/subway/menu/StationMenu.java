@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 import subway.controller.StationController;
 import subway.controller.SubwayController;
+import subway.view.Output;
 
 public enum StationMenu {
     ADD_STATION("1",StationController::addStation),
     DELETE_STATION("2",StationController::deleteStation),
-    PRINT_STATION("3",StationController::printStation),
+    PRINT_STATION("3",Output::printStation),
     BACK("B",SubwayController::run);
 	
     private final String code;

@@ -32,11 +32,4 @@ public class StationController {
             SubwayController.output.printError(error.getMessage());
         }
     }
-
-    public static void printStation() {
-        SubwayController.output.printStationListInfoMessage();
-        for (Station station : StationRepository.stations()) {
-            SubwayController.output.printResult(station.getName());
-        }
-    }
 }

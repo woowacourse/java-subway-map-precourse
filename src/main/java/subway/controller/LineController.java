@@ -38,11 +38,4 @@ public class LineController {
             SubwayController.output.printError(error.getMessage());
         }
     }
-	
-    public static void printLine() {
-        SubwayController.output.printLineListInfoMessage();
-        for (Line line : LineRepository.lines()) {
-            SubwayController.output.printResult(line.getName());
-        }
-    }
 }
