@@ -73,26 +73,27 @@ public class InputView {
 
         OutputView.stationAddGuidePrint();
         stationName = scanner.nextLine();
-        if (!stationNameCountCheck(stationName)) {
+
+        if (isStationNameCountUpLimit(stationName)) {
             OutputView.stationAddFailPrint();
             throw new IllegalArgumentException();
         }
-        if (!stationDuplicationNameCheck(stationName)) {
+
+        if (isNotStationNameDuplication(stationName)) {
             OutputView.stationDuplicationFailPrint();
             throw new IllegalArgumentException();
         }
-
         OutputView.stationAddSuccessPrint();
         return stationName;
     }
 
-    private static boolean stationNameCountCheck(String stationName) {
-        return stationName.length() >= BoundaryCheckDigit.STATION_ADD_LIMIT_MINIMUM
+    private static boolean isStationNameCountUpLimit(String stationName) {
+        return stationName.length() < BoundaryCheckDigit.STATION_ADD_LIMIT_MINIMUM
             .getBoundaryCheckDigit();
     }
 
-    private static boolean stationDuplicationNameCheck(String stationName) {
-        return !StationRepository.stations()
+    private static boolean isNotStationNameDuplication(String stationName) {
+        return StationRepository.stations()
             .stream()
             .map(Station::getName)
             .collect(Collectors.toList())
@@ -134,33 +135,37 @@ public class InputView {
 
         String lineName = scanner.nextLine();
 
-        if (LineNameDuplicationCheck(lineName)) {
+        if (isLineNameDuplication(lineName)) {
             OutputView.lineNameDuplicationFailPrint();
             throw new IllegalArgumentException();
         }
 
-        if (lineNameLessThanLimit(lineName.length())) {
+        if (isLineNameBelowLimit(lineName.length())) {
             OutputView.lineNameCountLimitFailPrint();
             throw new IllegalArgumentException();
         }
         return lineName;
     }
 
-    private static boolean lineNameLessThanLimit(int length) {
+    private static boolean isLineNameBelowLimit(int length) {
         return length < BoundaryCheckDigit.LINE_ADD_LIMIT.getBoundaryCheckDigit();
     }
 
-    private static boolean LineNameDuplicationCheck(String lineName) {
+    private static boolean isLineNameDuplication(String lineName) {
         return LineRepository.getAllLineNames().contains(lineName);
     }
 
     public static String scanStationName(Scanner scanner) {
         String TerminusName = scanner.nextLine();
-        if (StationRepository.contains(TerminusName)) {
+        if (stationRepositoryHaveStation(TerminusName)) {
             return TerminusName;
         }
         OutputView.lineAddFailPrint();
         throw new IllegalArgumentException();
+    }
+
+    private static boolean stationRepositoryHaveStation(String stationName) {
+        return StationRepository.contains(stationName);
     }
 
     public static String scanLineDeleteName(Scanner scanner) {
@@ -222,7 +227,7 @@ public class InputView {
 
         index = Integer.parseInt(indexString);
 
-        if (line.length() < index) {
+        if (indexOutOfRange(line,index)) {
             OutputView.outOfRange();
             throw new IllegalArgumentException();
         }
@@ -235,5 +240,9 @@ public class InputView {
             .matches(BoundaryCheckPattern
                 .IS_DIGIT
                 .getRegexBoundaryCheckPattern(), indexString);
+    }
+
+    private static boolean indexOutOfRange(Line line,int index){
+        return line.length() < index;
     }
 }
