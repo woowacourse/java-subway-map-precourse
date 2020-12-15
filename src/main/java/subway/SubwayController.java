@@ -49,13 +49,22 @@ public class SubwayController {
     private void stationMapPrint() {
         List<Line> lines = LineRepository.lines();
 
-        for(Line line:lines){
+        if (noRegisteredLine()) {
+            OutputView.zeroLineListErrorPrint();
+            return;
+        }
+
+        for (Line line : lines) {
             OutputView.stationMapGuidePrint();
             OutputView.line();
-            for(Station station:line.getLineMembers()){
+            for (Station station : line.getLineMembers()) {
                 OutputView.infoStationNamePrint(station.getName());
             }
         }
         OutputView.stationMapPrint();
+    }
+
+    private boolean noRegisteredLine() {
+        return LineRepository.lines().isEmpty();
     }
 }
