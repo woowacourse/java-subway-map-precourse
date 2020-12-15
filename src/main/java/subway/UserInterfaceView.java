@@ -265,4 +265,24 @@ public class UserInterfaceView {
         if (TWO_STRING.equals(userInput)) {
         }
     }
+
+    private int getUserInputInt() {
+        int userInput;
+        while (true) {
+            System.out.println(INPUT_SECTION_ORDER);
+            try {
+                userInput = Integer.parseInt(scanner.next());
+                System.out.println();
+            } catch (Exception e) {
+                System.out.println(INPUT_TYPE_ERROR);
+                continue;
+            }
+            if (userInput < ZERO) {
+                System.out.println(INPUT_NUMBER_ERROR);
+                continue;
+            }
+            break;
+        }
+        return userInput;
+    }
 }
