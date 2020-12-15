@@ -9,11 +9,11 @@ import subway.domain.Station;
 
 public class StationManage {
 
-    static final String stationAddInput = "1";
-    static final String stationDeleteInput = "2";
-    static final String stationsGetInput = "3";
-    static final String backScreenInput = "B";
-    static final int stationNameMinLength = 2;
+    static final String ADD_STATION = "1";
+    static final String DELETE_STATION = "2";
+    static final String ALL_STATIONS = "3";
+    static final String BACK_SCREEN = "B";
+    static final int MIN_STATION_NAME_LENGTH = 2;
 
     static public void stationManage(Scanner scanner) {
         stationManagePrint();
@@ -24,11 +24,19 @@ public class StationManage {
     }
 
     private static boolean inputValidate(Scanner scanner, String mainInput) {
-        if (mainInput.equalsIgnoreCase(stationAddInput)) {
+        if (mainInput.equalsIgnoreCase(ADD_STATION)) {
             addStationPrint(scanner);
             return true;
         }
-        if (mainInput.equalsIgnoreCase(backScreenInput)) {
+        if (mainInput.equalsIgnoreCase(DELETE_STATION)) {
+            deleteStationPrint(scanner);
+            return true;
+        }
+        if (mainInput.equalsIgnoreCase(ALL_STATIONS)) {
+            //allStationsPrint();
+            return true;
+        }
+        if (mainInput.equalsIgnoreCase(BACK_SCREEN)) {
             return true;
         }
         System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
@@ -62,7 +70,7 @@ public class StationManage {
     }
 
     private static boolean stationNameLengthValidate(String stationName) {
-        return stationName.length() >= stationNameMinLength;
+        return stationName.length() >= MIN_STATION_NAME_LENGTH;
     }
 
     private static boolean stationExists(String stationName) {
