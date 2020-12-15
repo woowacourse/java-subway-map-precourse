@@ -35,6 +35,7 @@ public class MainMenu {
             @Override
             public void mainMenuSelect() {
                 // 노선 출력 기능 호출
+                LinePrinter.LinePrinterRun();
             }
         };
 
