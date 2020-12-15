@@ -28,12 +28,17 @@ public abstract class CrudService implements MapService {
     @Override
     public void run() {
         try {
-            String selectedFunction = inputView.getFunctionInput(functionInformation);
+            String selectedFunction = getSelectedFunction();
             Function.validate(selectedFunction);
             runSelectedFunction(selectedFunction);
         } catch (InvalidInputException e) {
             outputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    private String getSelectedFunction() {
+        outputView.printInformation(functionInformation);
+        return inputView.getSelectedFunctionInput();
     }
 
     private void runSelectedFunction(String selectedFunction) {

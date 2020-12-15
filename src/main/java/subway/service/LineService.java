@@ -3,11 +3,16 @@ package subway.service;
 import subway.constant.Constant;
 import subway.constant.InitialData;
 import subway.domain.Line;
+import subway.domain.Station;
 import subway.exception.InvalidInputException;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static subway.constant.Information.*;
 
@@ -25,10 +30,37 @@ public class LineService extends CrudService {
 
     @Override
     public void add() {
-        Line newLine = getInputView().getNewLineInput();
+        Line newLine = getNewLine();
         validateNewLine(newLine);
         LineRepository.addLine(newLine);
         getOutputView().printInformation(ADD_LINE_SUCCESS);
+    }
+
+    private Line getNewLine() {
+        String name = getNewLineName();
+        List<Station> endStations = getNewLineEndStations();
+        return new Line(name, endStations);
+    }
+
+    private String getNewLineName() {
+        getOutputView().printInformation(ADD_LINE_INFO);
+        return getInputView().getLineName();
+    }
+
+    private List<Station> getNewLineEndStations() {
+        Station upEnd = getNewLineUpEnd();
+        Station downEnd = getNewLineDownEnd();
+        return new ArrayList<>(Arrays.asList(upEnd, downEnd));
+    }
+
+    private Station getNewLineUpEnd() {
+        getOutputView().printInformation(ADD_LINE_INFO_UP_END);
+        return new Station(getInputView().getStationName());
+    }
+
+    private Station getNewLineDownEnd() {
+        getOutputView().printInformation(ADD_LINE_INFO_DOWN_END);
+        return new Station(getInputView().getStationName());
     }
 
     private void validateNewLine(Line newLine) {
@@ -56,10 +88,15 @@ public class LineService extends CrudService {
 
     @Override
     public void delete() {
-        String targetLineName = getInputView().getTargetLineNameInput();
+        String targetLineName = getTargetLineName();
         validateTargetLine(targetLineName);
         LineRepository.deleteLineByName(targetLineName);
         getOutputView().printInformation(DELETE_LINE_SUCCESS);
+    }
+
+    private String getTargetLineName() {
+        getOutputView().printInformation(DELETE_STATION_INFO);
+        return getInputView().getLineName();
     }
 
     private void validateTargetLine(String targetLineName) {

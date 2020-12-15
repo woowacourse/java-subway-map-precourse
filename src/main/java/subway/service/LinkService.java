@@ -22,13 +22,35 @@ public class LinkService extends CrudService {
     @Override
     public void add() {
         try {
-            Link newLink = getInputView().getNewLinkInput();
+            Link newLink = getNewLink();
             validateNewLink(newLink);
             addNewLink(newLink);
             getOutputView().printInformation(ADD_LINK_SUCCESS);
         } catch (NumberFormatException e) {
             throw new InvalidInputException(InvalidInputException.ExceptionCode.NON_NUMBER_INPUT);
         }
+    }
+
+    private Link getNewLink() throws NumberFormatException {
+        String lineName = getLineNameOnAdd();
+        String stationName = getStationNameOnAdd();
+        int order = getOrderOnAdd();
+        return new Link(lineName, stationName, order);
+    }
+
+    private String getLineNameOnAdd() {
+        getOutputView().printInformation(ADD_LINK_INFO_LINE);
+        return getInputView().getLineName();
+    }
+
+    private String getStationNameOnAdd() {
+        getOutputView().printInformation(ADD_LINK_INFO_STATION);
+        return getInputView().getStationName();
+    }
+
+    private int getOrderOnAdd() throws NumberFormatException {
+        getOutputView().printInformation(ADD_LINK_INFO_ORDER);
+        return getInputView().getOrder();
     }
 
     private void validateNewLink(Link newLink) {
@@ -67,10 +89,26 @@ public class LinkService extends CrudService {
 
     @Override
     public void delete() {
-        Link targetLink = getInputView().getTargetLinkInput();
+        Link targetLink = getTargetLink();
         validateTargetLink(targetLink);
         deleteTargetLink(targetLink);
         getOutputView().printInformation(DELETE_LINK_SUCCESS);
+    }
+
+    private Link getTargetLink() {
+        String targetLineName = getTargetLineNameOnDelete();
+        String targetStationName = getTargetStationNameOnDelete();
+        return new Link(targetLineName, targetStationName);
+    }
+
+    private String getTargetLineNameOnDelete() {
+        getOutputView().printInformation(DELETE_LINK_INFO_LINE);
+        return getInputView().getLineName();
+    }
+
+    private String getTargetStationNameOnDelete() {
+        getOutputView().printInformation(DELETE_LINK_INFO_STATION);
+        return getInputView().getStationName();
     }
 
     private void validateTargetLink(Link targetLink) {

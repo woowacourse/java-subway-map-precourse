@@ -11,8 +11,7 @@ import subway.repository.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import static subway.constant.Information.ADD_STATION_SUCCESS;
-import static subway.constant.Information.DELETE_STATION_SUCCESS;
+import static subway.constant.Information.*;
 
 public class StationService extends CrudService {
 
@@ -28,12 +27,16 @@ public class StationService extends CrudService {
 
     @Override
     public void add() {
-        Station newStation = getInputView().getNewStationInput();
+        Station newStation = getNewStation();
         validateNewStation(newStation);
         StationRepository.addStation(newStation);
         getOutputView().printInformation(ADD_STATION_SUCCESS);
     }
 
+    private Station getNewStation() {
+        getOutputView().printInformation(ADD_STATION_INFO);
+        return new Station(getInputView().getStationName());
+    }
 
     private void validateNewStation(Station newStation) {
         validateNameLength(newStation);
@@ -53,10 +56,15 @@ public class StationService extends CrudService {
 
     @Override
     public void delete() {
-        Station targetStation = getInputView().getTargetStationInput();
+        Station targetStation = getTargetStation();
         validateTargetStation(targetStation);
         StationRepository.deleteStationByName(targetStation.getName());
         getOutputView().printInformation(DELETE_STATION_SUCCESS);
+    }
+
+    private Station getTargetStation() {
+        getOutputView().printInformation(DELETE_STATION_INFO);
+        return new Station(getInputView().getStationName());
     }
 
     private void validateTargetStation(Station targetStation) {

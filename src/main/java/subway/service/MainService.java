@@ -7,6 +7,8 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
+import static subway.constant.Information.MAIN_INFO;
+
 public class MainService implements MapService {
 
     private boolean isContinue = true;
@@ -45,12 +47,17 @@ public class MainService implements MapService {
 
     private void runService() {
         try {
-            String selectedService = inputView.getSelectedServiceInput();
+            String selectedService = getSelectedService();
             Service.validate(selectedService);
             runSelectedService(selectedService);
         } catch (InvalidInputException e) {
             outputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    private String getSelectedService() {
+        outputView.printInformation(MAIN_INFO);
+        return inputView.getSelectedServiceInput();
     }
 
     private void runSelectedService(String selectedService) {
