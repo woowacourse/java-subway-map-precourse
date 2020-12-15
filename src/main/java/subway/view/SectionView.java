@@ -72,17 +72,17 @@ public class SectionView {
     }
 
     private String inputLine() {
-        print(InputMessage.LINE_SECTION);
+        print(InputMessage.LINE_SECTION.getMessage());
         return input.nextLine();
     }
 
     private String inputStation() {
-        print(InputMessage.STATION_SECTION);
+        print(InputMessage.STATION_SECTION.getMessage());
         return input.nextLine();
     }
 
     private String inputOrder() {
-        print(InputMessage.ORDER_SECTION);
+        print(InputMessage.ORDER_SECTION.getMessage());
         return input.nextInt();
     }
 
@@ -110,12 +110,12 @@ public class SectionView {
     }
 
     private String inputDeleteSection() {
-        print(InputMessage.DELETE_SECTION);
+        print(InputMessage.DELETE_SECTION.getMessage());
         return input.nextLine();
     }
 
     private String inputDeleteStation() {
-        print(InputMessage.DELETE_ORDER_SECTION);
+        print(InputMessage.DELETE_ORDER_SECTION.getMessage());
         return input.nextLine();
     }
 

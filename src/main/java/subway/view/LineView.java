@@ -51,7 +51,7 @@ public class LineView {
 
     private boolean isCreate(String button) {
         if (button.equals(ONE)) {
-            print(InputMessage.CREATE_LINE);
+            print(InputMessage.CREATE_LINE.getMessage());
             if (isCreateLine(input.nextLine())) {
                 print(InfoMessage.CREATE_LINE);
             }
@@ -70,18 +70,18 @@ public class LineView {
     }
 
     private boolean createFirstStation(String name) {
-        print(InputMessage.FIRST_STATION);
+        print(InputMessage.FIRST_STATION.getMessage());
         return lineController.createSection(name, input.nextLine());
     }
 
     private boolean createLastStation(String name) {
-        print(InputMessage.LAST_STATION);
+        print(InputMessage.LAST_STATION.getMessage());
         return lineController.createSection(name, input.nextLine());
     }
 
     private boolean isDelete(String button) {
         if (button.equals(TWO)) {
-            print(InputMessage.DELETE_LINE);
+            print(InputMessage.DELETE_LINE.getMessage());
             if (isDeleteLine()) {
                 print(InfoMessage.DELETE_LINE);
             }

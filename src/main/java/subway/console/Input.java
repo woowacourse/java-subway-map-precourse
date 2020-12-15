@@ -31,7 +31,7 @@ public class Input {
 
         while (!buttons.contains(button)) {
             print(NOT_BUTTON.getMessage());
-            print(InputMessage.SELECT_BUTTON);
+            print(InputMessage.SELECT_BUTTON.getMessage());
             button = toUpper(nextLine());
         }
         return button;
