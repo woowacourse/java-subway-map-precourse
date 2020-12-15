@@ -6,7 +6,8 @@ import subway.common.ErrorMessageException;
 
 public class LineInputManager {
     private static final int MIN_TWO_LETTERS_EXCEPT_LAST_WORD = 3;
-    private static final String NAME_OVER_TWO = "마지막 글자 선을 제외한 노선이름은 2글자 이상이어야 합니다.";
+    private static final String NAME_OVER_TWO =
+        "마지막 글자는 선이어야 하며, 마지막 글자 선을 제외한 노선이름은 2글자 이상이어야 합니다.";
     private static final char LINE = '선';
     private static final String LAST_LETTER_LINE = "노선이름 끝에는 선이라고 붙여주세요.";
     private static final String ALREADY_ENROLLED_NAME = "이미 존재하는 이름입니다.";

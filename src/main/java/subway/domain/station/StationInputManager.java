@@ -6,7 +6,8 @@ import subway.domain.SubwayRepository;
 
 public class StationInputManager {
     private static final int MIN_TWO_LETTERS_EXCEPT_LAST_WORD = 3;
-    private static final String NAME_OVER_TWO = "마지막 글자 역을 제외한 역이름은 2글자 이상이어야 합니다.";
+    private static final String NAME_OVER_TWO =
+        "마지막 글자는 역이어야 하며, 역을 제외한 역이름은 2글자 이상이어야 합니다.";
     private static final char STATION = '역';
     private static final String EMPTY = " ";
     private static final String EMPTY_SPACE_UNACCEPTABLE = "이름에 공백은 허용하지 않습니다.";
