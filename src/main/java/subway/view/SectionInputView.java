@@ -16,6 +16,7 @@ public class SectionInputView {
     private static final String DELETE_STATION_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
     private static final String INPUT_STATION_MESSAGE = "## 역 이름을 입력하세요.";
     private static final String INPUT_ORDER_MESSAGE = "## 순서를 입력하세요.";
+    private static final String SECTION_REMOVAL_MESSAGE = "[INFO] 구간이 삭제되었습니다.";
     private static final String STATION_NOT_EXIST = "[ERROR] 노선에 역이 존재하지 않습니다.";
     private static final String INVALID_ORDER_MESSAGE = "[ERROR] 순서는 양수이며 노선에 포함된 역의 개수 이하여야 합니다.";
     private static final String INVALID_STATION_MESSAGE = "[ERROR] 노선에 이미 등록되어 있는 역이므로 등록이 불가능합니다.";
@@ -156,6 +157,7 @@ public class SectionInputView {
             String stationName = scanner.nextLine();
             validateStationOnLine(lineName, stationName);
             removeStation(lineName, stationName);
+            System.out.println(SECTION_REMOVAL_MESSAGE);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             getSectionScreenUserSelection();
