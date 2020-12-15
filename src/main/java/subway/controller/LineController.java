@@ -137,6 +137,17 @@ public class LineController {
     }
 
     public Boolean deleteSection() {
+        String lineName = InputView.deleteLineInSection();
+        String stationName = InputView.deleteStationInSection();
+        Line deleteLine = LineRepository.searchByName(lineName);
+        boolean result = LineRepository.deleteStationByName(deleteLine, stationName);
+        if (result) {
+            OutputViewOfInfo.deleteSectionComplete();
+        }
+        if (!result) {
+            OutputViewOfError.cannotDeleteError();
+        }
+        return result;
     }
 
     public Boolean back() {
