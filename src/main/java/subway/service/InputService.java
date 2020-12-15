@@ -14,112 +14,89 @@ public class InputService extends InputValidation {
     public String inputSelectMenu(Scanner scanner, MenuType menuType) {
         inputSelectMenuRequestMessage();
         String menu = parseStringToTrimString(scanner.nextLine());
-        if (!validateMenuRange(menuType.getKeys(), menu)) {
-            return inputSelectMenu(scanner, menuType);
-        }
+        validateMenuRange(menuType.getKeys(), menu);
         return menu;
     }
 
     public String inputAddStationName(Scanner scanner) {
         inputAddStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateNameLengthIsMoreThan2(stationName) || !validateStationNameIsDuplicate(stationName)) {
-            return isFail();
-        }
+        validateNameLengthIsMoreThan2(stationName);
+        validateStationNameIsDuplicate(stationName);
         return stationName;
     }
 
     public String inputDeleteStationName(Scanner scanner, LineStationRepository lineStation) {
         inputDeleteStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateStationNameIsContains(stationName) || !validateStationIsContainsLineStation(stationName, lineStation)) {
-            return isFail();
-        }
+        validateStationNameIsContains(stationName);
+        validateStationIsContainsLineStation(stationName, lineStation);
         return stationName;
     }
 
     public String inputAddLineName(Scanner scanner) {
         inputAddLineNameRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
-        if (!validateNameLengthIsMoreThan2(lineName) || !validateLineNameIsDuplicate(lineName)) {
-            return isFail();
-        }
+        validateNameLengthIsMoreThan2(lineName);
+        validateLineNameIsDuplicate(lineName);
         return lineName;
     }
 
     public String inputDeleteLineName(Scanner scanner) {
         inputDeleteLineNameRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
-        if (!validateLineNameIsContains(lineName)) {
-            return isFail();
-        }
+        validateLineNameIsContains(lineName);
         return lineName;
     }
 
     public String inputAddStartStationName(Scanner scanner) {
         inputAddStartStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateStationNameIsContains(stationName)) {
-            return isFail();
-        }
+        validateStationNameIsContains(stationName);
         return stationName;
     }
 
     public String inputAddEndStationName(Scanner scanner) {
         inputAddEndStationNameRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateStationNameIsContains(stationName)) {
-            return isFail();
-        }
+        validateStationNameIsContains(stationName);
         return stationName;
     }
 
     public String inputLineNameToAddSection(Scanner scanner) {
         inputLineNameToAddSectionRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
-        if (!validateLineNameIsContains(lineName)) {
-            return isFail();
-        }
+        validateLineNameIsContains(lineName);
         return lineName;
     }
 
     public String inputStationNameToAddSection(Scanner scanner) {
         inputStationNameToAddSectionRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateStationNameIsContains(stationName)) {
-            return isFail();
-        }
+        validateStationNameIsContains(stationName);
         return stationName;
     }
 
     public String inputPositionToAddSection(Scanner scanner) {
         inputPositionToAddSectionRequestMessage();
         String position = parseStringToTrimString(scanner.nextLine());
-        if (!validatePositionIsDigit(position)) {
-            return isFail();
-        }
+        validatePositionIsDigit(position);
         return position;
     }
 
     public String inputLineNameToDeleteSection(Scanner scanner, LineStationRepository lineStation) {
         inputLineNameToDeleteSectionRequestMessage();
         String lineName = parseStringToTrimString(scanner.nextLine());
-        if (!validateLineNameIsContains(lineName) || !validateStationSizeOfLineIsMoreThan2(lineName, lineStation)) {
-            return isFail();
-        }
+        validateLineNameIsContains(lineName);
+        validateStationSizeOfLineIsMoreThan2(lineName, lineStation);
         return lineName;
     }
 
     public String inputStationNameToDeleteSection(Scanner scanner, String lineName, LineStationRepository lineStation) {
         inputStationNameToDeleteSectionRequestMessage();
         String stationName = parseStringToTrimString(scanner.nextLine());
-        if (!validateStationNameIsContains(stationName) || !validateStationIsContainsInLineStation(lineName, stationName, lineStation)) {
-            return isFail();
-        }
+        validateStationNameIsContains(stationName);
+        validateStationIsContainsInLineStation(lineName, stationName, lineStation);
         return stationName;
-    }
-
-    public boolean isInputFail(String input) {
-        return input.equals(isFail());
     }
 }

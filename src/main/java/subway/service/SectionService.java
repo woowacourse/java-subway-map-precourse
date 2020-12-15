@@ -26,29 +26,30 @@ public class SectionService extends InputService {
     }
 
     private boolean addSection(Scanner scanner, LineStationRepository lineStation) {
-        String lineName = inputLineNameToAddSection(scanner);
-        String stationName = inputStationNameToAddSection(scanner);
-        String position = inputPositionToAddSection(scanner);
-        if (isInputFail(lineName) || isInputFail(stationName) || isInputFail(position)) {
+        try {
+            String lineName = inputLineNameToAddSection(scanner);
+            String stationName = inputStationNameToAddSection(scanner);
+            String position = inputPositionToAddSection(scanner);
+            int pos = validatePositionIsOutOfRange(lineName, position, lineStation);
+            lineStation.addStationInLine(findLine(lineName), findStation(stationName), pos);
+            printAddSectionSuccessMessage();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        int pos = validatePositionIsOutOfRange(lineName, position, lineStation);
-        lineStation.addStationInLine(findLine(lineName), findStation(stationName), pos);
-        printAddSectionSuccessMessage();
         return true;
     }
 
     private boolean deleteSection(Scanner scanner, LineStationRepository lineStation) {
-        String lineName = inputLineNameToDeleteSection(scanner, lineStation);
-        if (isInputFail(lineName)) {
+        try {
+            String lineName = inputLineNameToDeleteSection(scanner, lineStation);
+            String stationName = inputStationNameToDeleteSection(scanner, lineName, lineStation);
+            lineStation.deleteStationInLineByName(findLine(lineName), stationName);
+            printDeleteSectionSuccessMessage();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        String stationName = inputStationNameToDeleteSection(scanner, lineName, lineStation);
-        if (isInputFail(stationName)) {
-            return false;
-        }
-        lineStation.deleteStationInLineByName(findLine(lineName), stationName);
-        printDeleteSectionSuccessMessage();
         return true;
     }
 }

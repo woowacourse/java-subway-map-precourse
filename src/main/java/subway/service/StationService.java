@@ -29,21 +29,25 @@ public class StationService extends InputService {
     }
 
     private boolean addStation(Scanner scanner) {
-        String stationName = inputAddStationName(scanner);
-        if (isInputFail(stationName)) {
+        try {
+            String stationName = inputAddStationName(scanner);
+            StationRepository.addStation(new Station(stationName));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        StationRepository.addStation(new Station(stationName));
         printAddStationSuccessMessage();
         return true;
     }
 
     private boolean deleteStation(Scanner scanner, LineStationRepository lineStation) {
-        String stationName = inputDeleteStationName(scanner, lineStation);
-        if (isInputFail(stationName)) {
+        try {
+            String stationName = inputDeleteStationName(scanner, lineStation);
+            StationRepository.deleteStation(stationName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        StationRepository.deleteStation(stationName);
         printDeleteStationSuccessMessage();
         return true;
     }

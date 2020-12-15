@@ -34,25 +34,40 @@ public class SubwayMapService extends InputService {
     }
 
     private void stationManagement(Scanner scanner, LineStationRepository lineStation) {
-        printStationManagementMenu();
-        String menu = inputSelectMenu(scanner, STATION_MENU_RANGE);
-        if (!stationService.selectStationManagementMenu(scanner, menu, lineStation)) {
+        try {
+            printStationManagementMenu();
+            String menu = inputSelectMenu(scanner, STATION_MENU_RANGE);
+            if (!stationService.selectStationManagementMenu(scanner, menu, lineStation)) {
+                stationManagement(scanner, lineStation);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             stationManagement(scanner, lineStation);
         }
     }
 
     private void lineStationManagement(Scanner scanner, LineStationRepository lineStation) {
-        printLineStationManagementMenu();
-        String menu = inputSelectMenu(scanner, LINE_STATION_MENU_RANGE);
-        if (!lineStationService.selectLineStationManagementMenu(scanner, menu, lineStation)) {
+        try {
+            printLineStationManagementMenu();
+            String menu = inputSelectMenu(scanner, LINE_STATION_MENU_RANGE);
+            if (!lineStationService.selectLineStationManagementMenu(scanner, menu, lineStation)) {
+                lineStationManagement(scanner, lineStation);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             lineStationManagement(scanner, lineStation);
         }
     }
 
     private void sectionManagement(Scanner scanner, LineStationRepository lineStation) {
-        printSectionManagementMenu();
-        String menu = inputSelectMenu(scanner, SECTION_MENU_RANGE);
-        if (!sectionService.selectSectionManagementMenu(scanner, menu, lineStation)) {
+        try {
+            printSectionManagementMenu();
+            String menu = inputSelectMenu(scanner, SECTION_MENU_RANGE);
+            if (!sectionService.selectSectionManagementMenu(scanner, menu, lineStation)) {
+                sectionManagement(scanner, lineStation);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             sectionManagement(scanner, lineStation);
         }
     }

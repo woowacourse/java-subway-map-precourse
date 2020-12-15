@@ -15,66 +15,52 @@ public class InputValidation {
     private static final int SECTION_POINT_ONE = 1;
     private static final int SECTION_POINT_ZERO = 0;
 
-    public boolean validateMenuRange(List<String> menuRange, String menu) {
+    public void validateMenuRange(List<String> menuRange, String menu) {
         boolean isContains = menuRange.contains(menu);
         if (!isContains) {
-            System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 선택할 수 없는 기능입니다.");
         }
-        return true;
     }
 
-    public boolean validateNameLengthIsMoreThan2(String name) {
+    public void validateNameLengthIsMoreThan2(String name) {
         if (name.length() < NAME_MIN_LENGTH) {
-            System.out.println("\n[ERROR] 이름의 길이는 최소 2이상이어야 합니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 이름의 길이는 최소 2이상이어야 합니다.");
         }
-        return true;
     }
 
-    public boolean validateStationNameIsDuplicate(String name) {
+    public void validateStationNameIsDuplicate(String name) {
         Station findStation = findStation(name);
         if (!Objects.equals(findStation, null)) {
-            System.out.println("\n[ERROR] 이미 등록된 역 이름입니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 이미 등록된 역 이름입니다.");
         }
-        return true;
     }
 
-    public boolean validateStationNameIsContains(String name) {
+    public void validateStationNameIsContains(String name) {
         Station findStation = findStation(name);
         if (Objects.equals(findStation, null)) {
-            System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 존재하지 않는 역입니다.");
         }
-        return true;
     }
 
-    public boolean validateLineNameIsDuplicate(String name) {
+    public void validateLineNameIsDuplicate(String name) {
         Line findLine = findLine(name);
         if (!Objects.equals(findLine, null)) {
-            System.out.println("\n[ERROR] 이미 등록된 노선 이름입니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 이미 등록된 노선 이름입니다.");
         }
-        return true;
     }
 
-    public boolean validateLineNameIsContains(String name) {
+    public void validateLineNameIsContains(String name) {
         Line findLine = findLine(name);
         if (Objects.equals(findLine, null)) {
-            System.out.println("\n[ERROR] 존재하지 않는 노선입니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 존재하지 않는 노선입니다.");
         }
-        return true;
     }
 
-    public boolean validatePositionIsDigit(String position) {
+    public void validatePositionIsDigit(String position) {
         boolean isDigit = position.chars().allMatch(Character::isDigit);
         if (!isDigit) {
-            System.out.println("\n[ERROR] 순서는 숫자만 입력 가능합니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 순서는 숫자만 입력 가능합니다.");
         }
-        return true;
     }
 
     public int validatePositionIsOutOfRange(String lineName, String position, LineStationRepository lineStation) {
@@ -89,33 +75,23 @@ public class InputValidation {
         return pos;
     }
 
-    public boolean validateStationSizeOfLineIsMoreThan2(String lineName, LineStationRepository lineStation) {
+    public void validateStationSizeOfLineIsMoreThan2(String lineName, LineStationRepository lineStation) {
         int stationSizeOfLine = lineStation.getStationSizeOfLine(findLine(lineName));
         if (stationSizeOfLine <= MIN_COUNT_OF_DELETE_SECTION) {
-            System.out.println("\n[ERROR] 노선에 포함된 역이 두개 이하입니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 노선에 포함된 역이 두개 이하입니다.");
         }
-        return true;
     }
 
-    public boolean validateStationIsContainsInLineStation(String lineName, String stationName, LineStationRepository lineStation) {
+    public void validateStationIsContainsInLineStation(String lineName, String stationName, LineStationRepository lineStation) {
         if (!lineStation.findStationInLine(findLine(lineName), findStation(stationName))) {
-            System.out.println("\n[ERROR] 노선에 해당 역이 존재하지 않습니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 노선에 해당 역이 존재하지 않습니다.");
         }
-        return true;
     }
 
-    public boolean validateStationIsContainsLineStation(String stationName, LineStationRepository lineStation) {
+    public void validateStationIsContainsLineStation(String stationName, LineStationRepository lineStation) {
         Station findStation = findStation(stationName);
         if (lineStation.findStationInLine(findStation)) {
-            System.out.println("\n[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
-            return false;
+            throw new IllegalArgumentException("\n[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
         }
-        return true;
-    }
-
-    public String isFail() {
-        return "[ERROR] INPUT FAIL";
     }
 }

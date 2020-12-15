@@ -31,28 +31,32 @@ public class LineStationService extends InputService {
     }
 
     private boolean addLineStation(Scanner scanner, LineStationRepository lineStation) {
-        String lineName = inputAddLineName(scanner);
-        String startStationName = inputAddStartStationName(scanner);
-        String endStationName = inputAddEndStationName(scanner);
-        if (isInputFail(lineName) || isInputFail(startStationName) || isInputFail(endStationName)) {
+        try {
+            String lineName = inputAddLineName(scanner);
+            String startStationName = inputAddStartStationName(scanner);
+            String endStationName = inputAddEndStationName(scanner);
+            Line line = new Line(lineName);
+            addLine(line);
+            lineStation.addLineStation(line, findStation(startStationName));
+            lineStation.addLineStation(line, findStation(endStationName));
+            printAddLineStationSuccessMessage();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        Line line = new Line(lineName);
-        addLine(line);
-        lineStation.addLineStation(line, findStation(startStationName));
-        lineStation.addLineStation(line, findStation(endStationName));
-        printAddLineStationSuccessMessage();
         return true;
     }
 
     private boolean deleteLineStation(Scanner scanner, LineStationRepository lineStation) {
-        String lineName = inputDeleteLineName(scanner);
-        if (isInputFail(lineName)) {
+        try {
+            String lineName = inputDeleteLineName(scanner);
+            lineStation.deleteLineStation(findLine(lineName));
+            deleteLineByName(lineName);
+            printDeleteLineStationSuccessMessage();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        lineStation.deleteLineStation(findLine(lineName));
-        deleteLineByName(lineName);
-        printDeleteLineStationSuccessMessage();
         return true;
     }
 
