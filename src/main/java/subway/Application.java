@@ -16,6 +16,7 @@ public class Application {
     public static final int NO_SUCH_NAME_ERROR = 3;
     public static final int HAS_IN_LINE_ERROR = 4;
     public static final int SAME_LINE_ERROR = 5;
+    public static final int SAME_NAME_ERROR = 6;
     public static final List<String> MAIN_FUNCTIONS = Arrays.asList("1", "2", "3", "4", "Q");
     public static final String STATION_MENU = "1";
     public static final String LINE_MENU = "2";
@@ -197,6 +198,7 @@ public class Application {
         System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String lastStation = kbd.nextLine();
         checkExist(lastStation);
+        checkSameName(firstStation, lastStation);
         Line newLine = new Line(lineName);
         LineRepository.addLine(newLine, Arrays.asList(firstStation, lastStation));
     }
@@ -228,6 +230,13 @@ public class Application {
     public static void checkSameLine(String name) {
         if (LineRepository.isExist(name)) {
             displayErrorMessage(SAME_LINE_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkSameName(String firstName, String lastName) {
+        if (firstName.equals(lastName)) {
+            displayErrorMessage(SAME_NAME_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -304,5 +313,7 @@ public class Application {
             System.out.println("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
         if (errorCase == SAME_LINE_ERROR)
             System.out.println("[ERROR] 이미 등록된 노선 이름입니다.");
+        if (errorCase == SAME_NAME_ERROR)
+            System.out.println("[ERROR] 상행역과 하행역은 같을 수 없습니다.");
     }
 }
