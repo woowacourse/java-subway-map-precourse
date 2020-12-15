@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.CannotFindLineByNameException;
+import subway.exception.CannotInsertSectionException;
 import subway.exception.CannotRemoveSectionException;
 import subway.exception.InvalidIndexException;
 import subway.exception.UnregisteredSectionException;
@@ -33,6 +34,10 @@ public class LineService {
             throw new InvalidIndexException(index.toString());
         }
         Station station = StationRepository.findByName(stationName);
+
+        if (LineRepository.findByName(lineName).getSections().contains(station)) {
+            throw new CannotInsertSectionException();
+        }
 
         LineRepository.addSection(lineName, index, station);
     }
