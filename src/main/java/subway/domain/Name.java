@@ -6,7 +6,7 @@ public class Name {
     private static final String NAME_REGEX = "^[가-힣|0-9]*$";
     private static final String NOT_KOREAN_AND_NUMBER_NAME = "\n[ERROR] 이름은 올바른 한글과 숫자만 가능합니다.";
 
-    private String name;
+    private final String name;
 
     public Name(String name) {
         isNameLongerThanTwo(name);

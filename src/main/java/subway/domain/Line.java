@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
-    private Name name;
-    private List<Station> stations = new LinkedList<>();
+    private final Name name;
+    private final List<Station> stations = new LinkedList<>();
 
     public Line(String name) {
         this.name = new Name(name);
@@ -19,7 +19,7 @@ public class Line {
         stations.add(stationOrder, station);
     }
 
-    public void deleteLineStation(Station station){
+    public void deleteLineStation(Station station) {
         stations.removeIf(stations -> stations.equals(station));
     }
 
@@ -29,6 +29,9 @@ public class Line {
 
     @Override
     public boolean equals(Object object) {
+        if (getClass() != object.getClass()) {
+            return false;
+        }
         boolean isEqualObject = false;
         Line line = (Line) object;
         if (getName().equals(line.getName())) {
