@@ -93,7 +93,7 @@ public class LineManage {
         return lineName.length() >= MIN_LINE_NAME_LENGTH;
     }
 
-    private static boolean lineExists(String lineName) {
+    public static boolean lineExists(String lineName) {
         return hasLine(lineName);
     }
 

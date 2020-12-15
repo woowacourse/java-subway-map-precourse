@@ -81,7 +81,7 @@ public class StationManage {
         return stationName.length() >= MIN_STATION_NAME_LENGTH;
     }
 
-    private static boolean stationExists(String stationName) {
+    public static boolean stationExists(String stationName) {
         return hasStation(stationName);
     }
 

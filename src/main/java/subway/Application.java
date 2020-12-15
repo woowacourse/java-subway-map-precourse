@@ -1,6 +1,7 @@
 package subway;
 
 import static subway.LineManage.linaManage;
+import static subway.SectionManage.sectionManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.StationRepository.addStation;
@@ -66,7 +67,7 @@ public class Application {
             return false;
         }
         if (mainInput.equalsIgnoreCase(SECTION_MANAGE)) {
-            //sectionManage(scanner);
+            sectionManage(scanner);
             return false;
         }
         if (mainInput.equalsIgnoreCase(ALL_INFO)) {
