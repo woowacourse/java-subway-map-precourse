@@ -25,4 +25,13 @@ public class LineRepository {
     public static boolean isExist(String name) {
         return lines.stream().map(Line::getName).anyMatch(x -> x.equals(name));
     }
+
+    public static Line getLineByName(String Name) {
+        return lines.stream().filter(line -> line.getName().equals(Name)).findAny().orElse(null);
+    }
+
+    public static void addStationToLine(String lineName, String stationName, int index) {
+        Line line = getLineByName(lineName);
+        line.addStation(index, stationName);
+    }
 }
