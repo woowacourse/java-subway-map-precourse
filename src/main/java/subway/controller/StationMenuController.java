@@ -8,7 +8,7 @@ import subway.views.stationviews.StationOutputView;
 import java.util.Scanner;
 
 public class StationMenuController implements Controller{
-    private static StationMenuController stationMenuController = new StationMenuController();
+    private static final StationMenuController stationMenuController = new StationMenuController();
     StationService stationService;
 
     private StationMenuController() {

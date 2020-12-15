@@ -8,7 +8,7 @@ import subway.views.sectionviews.SectionOutputView;
 import java.util.Scanner;
 
 public class SectionMenuController implements Controller{
-    private static SectionMenuController sectionMenuController = new SectionMenuController();
+    private static final SectionMenuController sectionMenuController = new SectionMenuController();
     private SectionService sectionService;
 
     private SectionMenuController() {

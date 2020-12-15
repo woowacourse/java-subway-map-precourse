@@ -8,7 +8,7 @@ import subway.views.lineviews.LineOutputView;
 import java.util.Scanner;
 
 public class LineMenuController implements Controller{
-    private static LineMenuController lineMenuController = new LineMenuController();
+    private static final LineMenuController lineMenuController = new LineMenuController();
     private LineService lineService;
 
     private LineMenuController() {

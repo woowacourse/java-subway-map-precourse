@@ -8,7 +8,7 @@ import subway.views.mainviews.MainOutputView;
 import java.util.Scanner;
 
 public class MainMenuController implements Controller{
-    private static MainMenuController mainMenuController = new MainMenuController();
+    private static final MainMenuController mainMenuController = new MainMenuController();
     private final StationMenuController stationMenuController = StationMenuController.getInstance();
     private final LineMenuController lineMenuController = LineMenuController.getInstance();
     private final SectionMenuController sectionMenuController = SectionMenuController.getInstance();
