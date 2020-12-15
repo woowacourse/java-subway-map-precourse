@@ -30,6 +30,7 @@ public class LineRepository {
         boolean flag = false;
         for (Line line : lines) {
             flag = line.getName().equals(lineName);
+            if(flag) break;
         }
         if (!flag) {
             throw new IllegalArgumentException(LINE_NOT_EXIST);
