@@ -2,8 +2,11 @@ package subway.domain.selector.stationitem;
 
 import subway.domain.selector.Manipulable;
 import subway.domain.selector.Selector;
+import subway.domain.station.StationRepository;
 
 public class RemoveStationItem extends Selector implements Manipulable {
+
+    StationValidator stationValidator = new StationValidator();
 
     public RemoveStationItem(String id, String name) {
         this.id = id;
@@ -12,7 +15,13 @@ public class RemoveStationItem extends Selector implements Manipulable {
 
     @Override
     public void execute() {
+        messageView.printRemoveStationMessage();
 
+        String stationName = inputView.getStationName();
+        stationValidator.validateRemoveStation(stationName);
+        StationRepository.deleteStation(stationName);
+
+        messageView.printRemoveStationSuccessMessage();
     }
 
 }
