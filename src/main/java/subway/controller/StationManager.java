@@ -50,6 +50,7 @@ public class StationManager {
             System.out.println(MSG_COMPLETE_STATION_ADDED);
         } catch (IllegalArgumentException e) {
             System.out.println(e);
+            run();
         }
     }
 
