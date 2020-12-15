@@ -1,10 +1,7 @@
 package subway.view;
 
 import subway.Constant;
-import subway.domain.Line;
-import subway.domain.LineRepository;
 import subway.domain.SectionRepository;
-import subway.domain.Station;
 
 import java.util.Scanner;
 
@@ -42,6 +39,8 @@ public class SectionController {
         String order = scanner.next();
         try {
             sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
+        }catch(IllegalArgumentException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }catch(IndexOutOfBoundsException e){
             System.out.println(String.join(" ", Constant.ERROR_PREFIX, "추가할 수 없는 구간입니다."));
         }
@@ -52,10 +51,15 @@ public class SectionController {
         String lineName = scanner.next();
         System.out.println(GET_DELETE_STATION_NAME);
         String stationName = scanner.next();
-        boolean deleteFlag = sectionRepository.deleteSection(lineName, stationName);
-        if (deleteFlag) {
-            System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
+        try {
+            boolean deleteFlag = sectionRepository.deleteSection(lineName, stationName);
+            if (deleteFlag) {
+                System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.DELETE_STATION_SUCCESS));
+            }
+        }catch (IllegalArgumentException e){
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
         }
+
     }
 
     public void readSections() {
