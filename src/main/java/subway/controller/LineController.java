@@ -66,6 +66,15 @@ public class LineController {
     }
 
     public Boolean deleteLine() {
+        String name = InputView.deleteLineName();
+        boolean result = LineRepository.deleteLineByName(name);
+        if (result) {
+            OutputViewOfInfo.deleteLineComplete();
+        }
+        if (!result) {
+            OutputViewOfError.cannotDeleteError();
+        }
+        return result;
     }
 
     public Boolean inquiryLine() {
