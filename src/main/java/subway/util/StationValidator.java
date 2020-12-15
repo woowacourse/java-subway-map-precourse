@@ -17,7 +17,7 @@ public class StationValidator {
     public static boolean checkDuplicateName(String name) {
         for(Station station : StationRepository.stations()) {
             if (station.getName().equals(name)) {
-                System.out.println("[ ERROR ] 이미 존재하는 역입니다.");
+                System.out.println("[ ERROR ] 이미 존재하는 역입니다.\n");
                 return true;
             }
         }
@@ -28,7 +28,7 @@ public class StationValidator {
         if (name.length() >= SIZE) {
             return true;
         }
-        System.out.println("[ ERROR ] 역 이름은 2글자 이상이어야합니다.");
+        System.out.println("[ ERROR ] 역 이름은 2글자 이상이어야합니다.\n");
         return false;
     }
 
@@ -44,15 +44,17 @@ public class StationValidator {
         if (station.isRemovable()) {
             return true;
         }
-        System.out.println("[ ERROR ] 노선과 연결되어 있어서 삭제할 수 없는 역입니다.");
+        System.out.println("[ ERROR ] 노선과 연결되어 있어서 삭제할 수 없는 역입니다.\n");
         return false;
     }
 
     public static boolean haveStationName(String name) {
-        if (checkDuplicateName(name)) {
-            return true;
+        for(Station station : StationRepository.stations()) {
+            if (station.getName().equals(name)) {
+                return true;
+            }
         }
-        System.out.println("[ ERROR ] 존재하지 않는 지하철 역입니다.");
+        System.out.println("[ ERROR ] 등록 되지않은 지하철 역입니다.\n");
         return false;
     }
 }

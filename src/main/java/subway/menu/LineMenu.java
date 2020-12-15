@@ -1,10 +1,11 @@
 package subway.menu;
 
 import subway.domain.Line;
-import subway.domain.LineRepository;
+import subway.service.LineService;
 import subway.util.LineValidator;
 import subway.util.StationValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LineMenu {
@@ -22,37 +23,14 @@ public class LineMenu {
     }
 
     public void startLineMenu() {
+        selectLineMenu();
+    }
+
+    public void selectLineMenu() {
         while (true) {
             printLineMenu();
             String input = scanner.nextLine();
-            //TODO 함수 분리하기!!!!!
-            if (input.equals("1")) {
-                System.out.println("\n## 등록할 노선 이름을 입력하세요.");
-                String lineName = scanner.nextLine();
-                if (LineValidator.checkValidLineName(lineName)) {
-                    System.out.println("\n## 등록할 상행 종점역 이름을 입력하세요.");
-                    String upLineLastStop = scanner.nextLine();
-                    if (StationValidator.checkDuplicateName(upLineLastStop)) {
-                        System.out.println("\n##등록할 하행 종점역 이름을 입력하세요.");
-                        String downLineLastStop = scanner.nextLine();
-                        if (StationValidator.checkDuplicateName(downLineLastStop)) {
-                            LineRepository.addLine(new Line(lineName, upLineLastStop, downLineLastStop));
-                            System.out.println("\n[ INFO ] 지하철 노선이 등록되었습니다.");
-                        }
-                    }
-                }
-            }
-            if (input.equals("2")) {
-                System.out.println("## 삭제할 노선 이름을 입력하세요.");
-                String lineName = scanner.nextLine();
-                if (LineRepository.deleteLineByName(lineName)) {
-                    System.out.println("[ INFO ] 지하철 노선이 삭제되었습니다.");
-                }
-            }
-            if (input.equals("3")) {
-                System.out.println("## 노선 목록");
-                LineRepository.printLineList();
-            }
+            lineMenu(input);
             if (input.equals("B")) {
                 break;
             }
@@ -60,7 +38,67 @@ public class LineMenu {
         }
     }
 
+    private void lineMenu(String input) {
+        if (input.equals("1")) {
+            addLineMenu();
+        }
+        if (input.equals("2")) {
+            deleteLineMenu();
+        }
+        if (input.equals("3")) {
+            printLineList();
+        }
+    }
 
+    private void addLineMenu() {
+        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
+        String lineName = scanner.nextLine();
+        addLineName(lineName);
+    }
+
+    private void addLineName(String lineName) {
+        if (LineValidator.checkValidLineName(lineName)) {
+            addUpLineLastStop(lineName);
+        }
+    }
+
+    private void addUpLineLastStop(String lineName) {
+        System.out.println("\n## 등록할 상행 종점역 이름을 입력하세요.");
+        String upLineLastStop = scanner.nextLine();
+        if (StationValidator.haveStationName(upLineLastStop)) {
+            addDownLineLastStop(lineName, upLineLastStop);
+        }
+    }
+
+    private void addDownLineLastStop(String lineName, String upLineLastStop) {
+        System.out.println("\n## 등록할 하행 종점역 이름을 입력하세요.");
+        String downLineLastStop = scanner.nextLine();
+        if (LineValidator.checkValidDownLastStop(upLineLastStop, downLineLastStop)) {
+            LineService.addLine(lineName, upLineLastStop, downLineLastStop);
+            System.out.println("\n[ INFO ] 지하철 노선이 등록되었습니다.");
+        }
+    }
+
+    private void deleteLineMenu(){
+        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        String lineName = scanner.nextLine();
+        if (LineValidator.haveLineName(lineName)) {
+            LineService.deleteLine(lineName);
+            System.out.println("[ INFO ] 지하철 노선이 삭제되었습니다.");
+        }
+    }
+
+    private void printLineList() {
+        System.out.println("## 노선 목록");
+        List<Line> lines = LineService.getLineList();
+        if (lines.size() == 0) {
+            System.out.println("존재하는 노선이 없습니다.");
+            return;
+        }
+        for (Line line : lines) {
+            System.out.println("[ INFO ] " + line.getName());
+        }
+    }
 
     //TODO 출력 기능을 다른곳에 모으기
     public void printLineMenu() {

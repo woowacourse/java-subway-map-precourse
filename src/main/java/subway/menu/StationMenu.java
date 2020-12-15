@@ -1,7 +1,6 @@
 package subway.menu;
 
 import subway.domain.Station;
-import subway.domain.StationRepository;
 import subway.service.StationService;
 import subway.util.StationValidator;
 
@@ -31,7 +30,6 @@ public class StationMenu {
             printStationMenu();
             String input = this.scanner.nextLine();
             System.out.println();
-            //TODO 함수 분리하기
             if (input.equals("1")) {
                 addStationMenu();
             }
