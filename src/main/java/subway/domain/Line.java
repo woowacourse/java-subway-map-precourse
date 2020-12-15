@@ -1,5 +1,6 @@
 package subway.domain;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,9 +21,8 @@ public class Line {
 
     // 추가 기능 구현
 
-    public void addStreamStation(String upstreamStation, String downstreamStation) {
-        stations.add(new Station(upstreamStation));
-        stations.add(new Station(downstreamStation));
+    public void addStations(String... stationNames) {
+        Arrays.stream(stationNames).forEach(stationName -> stations.add(new Station(stationName)));
     }
 
     public List<Station> getStations() {

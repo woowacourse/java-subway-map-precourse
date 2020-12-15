@@ -33,7 +33,7 @@ public class LineController {
             return false;
         }
         Line line = new Line(lineName);
-        line.addStreamStation(upstreamStation, downstreamStation);
+        line.addStations(upstreamStation, downstreamStation);
         boolean result = LineRepository.addLine(line);
         if (result) {
             OutputViewOfInfo.registerLineComplete();
