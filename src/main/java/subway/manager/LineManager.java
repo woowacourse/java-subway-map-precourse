@@ -9,6 +9,7 @@ public class LineManager {
 
     public static void run() {
         do {
+            LineMenu.initMenuStatus();
             LineMenu.printMenu();
             chooseMenu().execute(LineController.getInstance());
         } while (LineMenu.isRestart());

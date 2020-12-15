@@ -9,6 +9,7 @@ public class StationManager {
 
     public static void run() {
         do {
+            StationMenu.initMenuStatus();
             StationMenu.printMenu();
             chooseMenu().execute(StationController.getInstance());
         } while (StationMenu.isRestart());
