@@ -15,7 +15,7 @@ public class OutputView {
     public static final String EXIT = "프로그램을 종료합니다.";
     public static final String DUPLICATE_MESSAGE = "%s은 이미 존재합니다.";
     public static final String STATION_DELETE_ERROR_MESSAGE = "해당 역이 노선에 포함되어 있거나, 존재하지 않아 삭제할 수 없습니다.";
-    public static final String ADD_PATH_ERROR_MESSAGE = "노선이 존재하지 않거나, 역이 존재하지 않아 구간을 등록할 수 없습니다.";
+    public static final String PATH_ERROR_MESSAGE = "노선이 존재하지 않거나, 역이 존재하지 않아 구간을 %s할 수 없습니다.";
     public static final String DELETE_ERROR_ABOUT_EXIST = "%s은 존재하지 않습니다.";
     public static final String NAME_LENGTH_ERROR_MESSAGE = "%s 명은 두 글자 이상이어야 합니다. (입력값: %s)";
     public static final String SAME_NAME_ERROR_MESSAGE = "상행선과 하행선은 서로 다른 역이어야 합니다.";
@@ -110,24 +110,24 @@ public class OutputView {
         printWithDoubleSharp(INPUT_STATION);
     }
 
-    public static final void printInputOrder(){
+    public static final void printInputOrder() {
         printWithDoubleSharp(INPUT_ORDER);
     }
 
-    public static final void printDeleteLineInPath(){
+    public static final void printDeleteLineInPath() {
         printWithDoubleSharp(DELETE_INPUT_PREFIX + INPUT_LINE);
     }
 
-    public static final void printDeleteStationInPath(){
+    public static final void printDeleteStationInPath() {
         printWithDoubleSharp(DELETE_INPUT_PREFIX + INPUT_STATION);
     }
 
-    public static final void printAlertAboutPath(String action){
+    public static final void printAlertAboutPath(String action) {
         printWithInformationMark(String.format(ALERT_ABOUT_PATH, action));
     }
 
-    public static final void printErrorAboutAddPath(){
-        System.out.println(ERROR_MARK + ADD_PATH_ERROR_MESSAGE);
+    public static final void printErrorAboutPath(String action) {
+        System.out.println(String.format(ERROR_MARK + PATH_ERROR_MESSAGE, action));
     }
 }
 

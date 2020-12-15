@@ -40,6 +40,19 @@ public class LineRepository {
         return true;
     }
 
+    public static boolean deletePathInLine(String findLine, String deleteStation) {
+        if (getLine(findLine) == null) {
+            OutputView.printLineDoesNotExistErrorMessage(findLine);
+            return false;
+        }
+        Station station = StationRepository.getStation(deleteStation);
+        if (station == null) {
+            return false;
+        }
+        getLine(findLine).getPath().deleteStation(station);
+        return true;
+    }
+
     public static Line getLine(String findLine) {
         for (Line line : lines) {
             if (line.getName().equals(findLine)) {

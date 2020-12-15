@@ -25,15 +25,27 @@ public class PathController implements Controller {
         }
     }
 
-    public void addPath(String action){
+    public void addPath(String action) {
         OutputView.printInputLine();
         String findLine = InputView.getCommand(scanner);
         OutputView.printInputStation();
         String inputStation = InputView.getCommand(scanner);
         OutputView.printInputOrder();
         int inputOrder = Integer.parseInt(InputView.getCommand(scanner)); //숫자가 아닌 경우 에러 처리 해야함.
-        if(!LineRepository.addPathInLine(findLine, inputStation, inputOrder)){
-            OutputView.printErrorAboutAddPath();
+        if (!LineRepository.addPathInLine(findLine, inputStation, inputOrder)) {
+            OutputView.printErrorAboutPath(action);
+            return;
+        }
+        OutputView.printAlertAboutPath(action);
+    }
+
+    public void deletePath(String action) {
+        OutputView.printDeleteLineInPath();
+        String findLine = InputView.getCommand(scanner);
+        OutputView.printDeleteStationInPath();
+        String deleteStation = InputView.getCommand(scanner);
+        if (!LineRepository.deletePathInLine(findLine, deleteStation)) {
+            OutputView.printErrorAboutPath(action);
             return;
         }
         OutputView.printAlertAboutPath(action);

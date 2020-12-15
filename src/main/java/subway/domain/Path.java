@@ -27,6 +27,10 @@ public class Path {
         paths.add(index, station);
     }
 
+    public void deleteStation(Station station) {
+        paths.remove(station);
+    }
+
     // 상행선의 정보를 전달
     public Station getUpLine() {
         return paths.getFirst();
@@ -36,8 +40,8 @@ public class Path {
         return paths.getLast();
     }
 
-    public void printAllPath(){
-        for(Station station: paths){
+    public void printAllPath() {
+        for (Station station : paths) {
             OutputView.printWithInformationMark(station.getName());
         }
     }
