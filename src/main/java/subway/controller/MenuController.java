@@ -94,9 +94,9 @@ public class MenuController {
     }
 
     public void scanMenu() {
-        String selectedMainMenu = scanMainMenu();
-        if (Menu.isCategoricalMenu(mainMenu.get(selectedMainMenu))) {
-            scanSubMenu(mainMenu.get(selectedMainMenu));
+        String selectedMenuSign = scanMainMenu();
+        if (Menu.isCategoricalMenu(getSubMenu(selectedMenuSign))) {
+            scanSubMenu(mainMenu.get(selectedMenuSign));
         }
     }
 
@@ -116,10 +116,10 @@ public class MenuController {
     }
 
     private String scanValidMenu(List<String> signs) {
-        String menu = scanMenuCommand();
-        while (!isValidMenu(menu, signs)) {
+        String menu;
+        do {
             menu = scanMenuCommand();
-        }
+        } while (!isValidMenu(menu, signs));
         return menu;
     }
 
