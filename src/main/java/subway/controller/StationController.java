@@ -89,7 +89,7 @@ public class StationController {
     public static void deleteStation(Scanner scanner) {
         String stationName = input(scanner);
         if (StationRepository.isExistName(stationName)) {
-            if(StationRepository.deleteStation(stationName)){
+            if (StationRepository.deleteStation(stationName)) {
                 STATION_PAGE.printCompleteDelete();
                 MainController.startMainPage(scanner);
                 return;
