@@ -35,4 +35,9 @@ public class Line {
         return Objects.hash(name);
     }
 
+    @Override
+    public String toString() {
+        return "[INFO] " + name;
+    }
+
 }
