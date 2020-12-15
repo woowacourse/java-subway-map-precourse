@@ -1,6 +1,6 @@
-package subway.Controller.domain;
+package subway.controller.domain;
 
-import subway.Controller.MainController;
+import subway.controller.MainController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;

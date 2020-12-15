@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import subway.Controller.domain.LineController;
+import subway.controller.domain.LineController;
 
 public class LineInputExceptionHandler extends InputExceptionHandler {
 

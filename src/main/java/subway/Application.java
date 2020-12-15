@@ -2,7 +2,7 @@ package subway;
 
 import java.util.Scanner;
 
-import subway.Controller.MainController;
+import subway.controller.MainController;
 
 public class Application {
 

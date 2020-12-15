@@ -1,9 +1,9 @@
-package subway.Controller;
+package subway.controller;
 
-import subway.Controller.domain.LineController;
-import subway.Controller.domain.MapController;
-import subway.Controller.domain.SectionController;
-import subway.Controller.domain.StationController;
+import subway.controller.domain.LineController;
+import subway.controller.domain.MapController;
+import subway.controller.domain.SectionController;
+import subway.controller.domain.StationController;
 import subway.exception.input.MainInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;

@@ -1,6 +1,6 @@
-package subway.Controller.domain;
+package subway.controller.domain;
 
-import subway.Controller.MainController;
+import subway.controller.MainController;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.domain.StationExceptionHandler;

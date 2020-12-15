@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import subway.Controller.domain.SectionController;
+import subway.controller.domain.SectionController;
 
 public class SectionInputExceptionHandler extends InputExceptionHandler {
 
