@@ -17,6 +17,11 @@ public class Sections {
     }
 
     public void addSection(String name, int position) {
+        checkAddSectionValidation(name, position);
+        sections.add(position - 1, name);
+    }
+
+    private void checkAddSectionValidation(String name, int position) {
         if (!StationRepository.hasStation(name)) {
             throw new IllegalArgumentException(ERROR_NOT_EXISTENCE_STATION);
         }
@@ -28,15 +33,9 @@ public class Sections {
         if (position < 1 || position > sections.size() + 1) {
             throw new IllegalArgumentException(ERROR_SECTIONS_POSITION_NOT_VALID);
         }
-
-        sections.add(position - 1, name);
     }
 
-    public boolean hasStationInSection(String name) {
-        return sections.contains(name);
-    }
-
-    public void deleteSection(String name) {
+    private void checkDeleteSectionValidation(String name) {
         if (!hasStationInSection(name)) {
             throw new IllegalArgumentException(ERROR_STATION_NOT_IN_SECTION);
         }
@@ -44,7 +43,14 @@ public class Sections {
         if (sections.size() <= MIN_SECTION_LENGTH) {
             throw new IllegalArgumentException(ERROR_SECTIONS_SIZE_UNDER_TWO);
         }
+    }
 
+    public boolean hasStationInSection(String name) {
+        return sections.contains(name);
+    }
+
+    public void deleteSection(String name) {
+        checkDeleteSectionValidation(name);
         sections.remove(name);
     }
 
