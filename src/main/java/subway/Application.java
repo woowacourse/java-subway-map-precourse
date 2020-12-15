@@ -1,8 +1,14 @@
 package subway;
 
+import static subway.domain.LineRepository.addLine;
+import static subway.domain.StationRepository.addStation;
+import static subway.domain.StationRepository.stations;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import subway.domain.Line;
+import subway.domain.Station;
 
 public class Application {
 
@@ -16,11 +22,26 @@ public class Application {
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
+        initSetting();
         boolean exitFlag = false;
         while (!exitFlag) {
             mainScreenPrint();
             String mainInput = scanner.next();
             exitFlag = isExitAndValidate(mainInput);
+        }
+    }
+
+    public static void initSetting() {
+        final ArrayList<String> initStations = new ArrayList<>(
+            Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"));
+        final ArrayList<String> initLines = new ArrayList<>(
+            Arrays.asList("2호선", "3호선", "신분당선"));
+
+        for (String stationName : initStations) {
+            addStation(new Station(stationName));
+        }
+        for (String lineName : initLines) {
+            addLine(new Line(lineName));
         }
     }
 
