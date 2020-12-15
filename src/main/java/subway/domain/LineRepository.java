@@ -1,7 +1,9 @@
 package subway.domain;
 
+import subway.exception.LineAlreadyExistException;
 import subway.exception.LineEmptyException;
 import subway.exception.LineNotExistException;
+import subway.exception.StationAlreadyExistException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +18,21 @@ public class LineRepository {
 
     public static void addLine(Line line) {
         lines.add(line);
+    }
+
+    public static void validateAlreadyExists(String lineName){
+        if(contains(lineName)){
+            throw new LineAlreadyExistException();
+        }
+    }
+
+    public static boolean contains(String lineName) {
+        for(Line line : lines){
+            if(line.getName().equals(lineName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Line findLine(String name) {

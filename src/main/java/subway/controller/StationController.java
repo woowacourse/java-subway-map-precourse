@@ -45,6 +45,7 @@ public class StationController implements Controller {
     private void registerStation() {
         String userInput = screen.showPromptRegisterStation();
         try {
+            StationRepository.validateAlreadyExists(userInput);
             StationRepository.addStation(new Station(userInput));
         } catch (Exception e) {
             screen.printError(e.getMessage());

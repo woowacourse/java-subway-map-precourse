@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.exception.StationAlreadyExistException;
 import subway.exception.StationEmptyException;
 import subway.exception.StationNotExistException;
 
@@ -12,6 +13,21 @@ public class StationRepository {
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
+    }
+
+    public static void validateAlreadyExists(String stationName){
+        if(contains(stationName)){
+            throw new StationAlreadyExistException();
+        }
+    }
+
+    public static boolean contains(String stationName) {
+        for(Station station : stations){
+            if(station.getName().equals(stationName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void addStation(Station station) {

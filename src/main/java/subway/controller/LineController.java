@@ -44,6 +44,7 @@ public class LineController implements Controller {
     private void registerLine() {
         String userInput = screen.showPromptRegisterLine();
         try {
+            LineRepository.validateAlreadyExists(userInput);
             Line line = new Line(userInput);
             Section section = new Section();
             initiateSection(section);
