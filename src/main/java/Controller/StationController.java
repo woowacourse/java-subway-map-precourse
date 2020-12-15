@@ -33,10 +33,11 @@ public class StationController {
         }
         if (userInput.equals("B")) {
             inputCheck = true;
+            SubwayController.run(scanner);
         }
         if (inputCheck == false) {
             System.out.println("[ERROR] 올바른 번호를 입력해주세요");
-            SubwayController.run(scanner);
+            StationController.runStationController(scanner);
         }
     }
 
@@ -51,8 +52,18 @@ public class StationController {
     public static void deleteStation(Scanner scanner) {
         System.out.println("## 삭제할 역 이름을 입력하세요");
         String name = scanner.nextLine();
-        StationRepository.deleteStation(name);
-        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        List<Station> stations = StationRepository.stations();
+        boolean flag = false;
+        for (Station station : stations) {
+            if(station.getName().equals(name)) flag = true;
+        }
+        if(flag) {
+            StationRepository.deleteStation(name);
+            System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+        }
+        if (!flag) {
+            System.out.println("[ERROR] 등록되자않은 역입니다.");
+        }
     }
 
     public static void showStation() {
