@@ -17,7 +17,7 @@ public class LineValidator {
 
     private static void validateFormat(String lineName) {
         if (!isLineNameMatchFormat(lineName)) {
-            throw new NameFormatException("\n[ERROR] 잘못된 노선 이름입니다.");
+            throw new NameFormatException("[ERROR] 잘못된 노선 이름입니다.");
         }
     }
 
@@ -27,7 +27,7 @@ public class LineValidator {
 
     private static void validateLength(String lineName) {
         if (isInsufficientLength(lineName)) {
-            throw new NameFormatException("\n[ERROR] 두 글자 이상 입력하세요.");
+            throw new NameFormatException("[ERROR] 두 글자 이상 입력하세요.");
         }
     }
 
@@ -37,13 +37,13 @@ public class LineValidator {
 
     public static void validateDuplication(String lineName) {
         if (isLineExistedInRepository(lineName)) {
-            throw new DuplicationException("\n[ERROR] 이미 등록된 노선 이름입니다.");
+            throw new DuplicationException("[ERROR] 이미 등록된 노선 이름입니다.");
         }
     }
     
     public static void validateNotExistedLine(String lineName) {
         if (!isLineExistedInRepository(lineName)) {
-            throw new NotExistedElementException("\n[ERROR] 존재하지 않는 노선 이름입니다.");
+            throw new NotExistedElementException("[ERROR] 존재하지 않는 노선 이름입니다.");
         }
     }
     
@@ -53,7 +53,7 @@ public class LineValidator {
 
     public static void validateUpAndDownIsEqual(String upStation, String downStation) {
         if (isEqualEither(upStation, downStation)) {
-            throw new IllegalElementException("\n[ERROR] 상행역과 하행역이 동일합니다.");
+            throw new IllegalElementException("[ERROR] 상행역과 하행역이 동일합니다.");
         }
     }
     

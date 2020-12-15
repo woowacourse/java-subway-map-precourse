@@ -12,7 +12,7 @@ public class InputView {
             MenuInputValidator.validateMenuSelection(menuType, menu);
             return menu;
         } catch (MenuInputException e) {
-            System.out.println(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             return receiveMenu(menuType);
         }
     }

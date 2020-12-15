@@ -12,13 +12,13 @@ public class SectionValidator {
 
     public static void validateSectionDuplication(String lineName, String stationName) {
         if (hasStationInLine(lineName, stationName)) {
-            throw new IllegalElementException("\n[ERROR] 해당 노선에 이미 역이 존재합니다.");
+            throw new IllegalElementException("[ERROR] 해당 노선에 이미 역이 존재합니다.");
         }
     }
 
     public static void validateStationIsExistedInTheLine(String lineName, String stationName) {
         if (!hasStationInLine(lineName, stationName)) {
-            throw new NotExistedElementException("\n[ERROR] 존재하지 않는 역 이름입니다.");
+            throw new NotExistedElementException("[ERROR] 존재하지 않는 역 이름입니다.");
         }
     }
 
@@ -28,7 +28,7 @@ public class SectionValidator {
 
     public static void validateLineSizeIsSufficient(String lineName) {
         if (!isBiggerLineSizeThanNumber(lineName, MINIMUM_STATIONS_IN_LINE_WHEN_DELETE_SECTION)) {
-            throw new IllegalElementException("\n[ERROR] 노선에 등록된 역이 2개 이하인 경우 삭제할 수 없습니다.");
+            throw new IllegalElementException("[ERROR] 노선에 등록된 역이 2개 이하인 경우 삭제할 수 없습니다.");
         }
     }
 

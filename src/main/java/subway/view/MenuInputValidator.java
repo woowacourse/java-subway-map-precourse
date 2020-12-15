@@ -26,7 +26,7 @@ public class MenuInputValidator {
     public static void validateMenuSelection(String menuType, String menu) {
         String format = menuFormat.get(menuType);
         if (!isMenuMatchFormat(menu, format)) {
-            throw new MenuInputException("\n[ERROR] 선택할 수 없는 기능입니다.\n");
+            throw new MenuInputException("[ERROR] 선택할 수 없는 기능입니다.\n");
         }
     }
 

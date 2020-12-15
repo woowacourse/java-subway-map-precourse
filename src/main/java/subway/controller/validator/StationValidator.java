@@ -23,7 +23,7 @@ public class StationValidator {
 
     private static void validateFormat(String stationName) {
         if (!isStationNameMatchFormat(stationName)) {
-            throw new NameFormatException("\n[ERROR] 잘못된 역 이름입니다.");
+            throw new NameFormatException("[ERROR] 잘못된 역 이름입니다.");
         }
     }
 
@@ -33,7 +33,7 @@ public class StationValidator {
 
     private static void validateLength(String stationName) {
         if (isInsufficientLength(stationName)) {
-            throw new NameFormatException("\n[ERROR] 두 글자 이상 입력하세요.");
+            throw new NameFormatException("[ERROR] 두 글자 이상 입력하세요.");
         }
     }
 
@@ -43,13 +43,13 @@ public class StationValidator {
 
     public static void validateDuplication(String stationName) {
         if (isStationExistedInRepository(stationName)) {
-            throw new DuplicationException("\n[ERROR] 이미 등록된 역 이름입니다.");
+            throw new DuplicationException("[ERROR] 이미 등록된 역 이름입니다.");
         }
     }
 
     public static void validateNotExistedStation(String stationName) {
         if (!isStationExistedInRepository(stationName)) {
-            throw new NotExistedElementException("\n[ERROR] 존재하지 않는 역 이름입니다.");
+            throw new NotExistedElementException("[ERROR] 존재하지 않는 역 이름입니다.");
         }
     }
 
@@ -59,7 +59,7 @@ public class StationValidator {
 
     public static void validateStationRegisterInLine(String stationName) {
         if (hasStationInLine(stationName)) {
-            throw new IllegalElementException("\n[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
+            throw new IllegalElementException("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
         }
     }
 
