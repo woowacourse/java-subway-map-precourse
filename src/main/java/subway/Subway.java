@@ -43,7 +43,7 @@ public class Subway {
 
     private void initSubway() {
         menus.put(ONE, new InputStationManager(scanner));
-        menus.put(TOW, "2");
+        menus.put(TOW, new InputLineManager(scanner));
         menus.put(THREE, "3");
         menus.put(FOUR, "4");
         menus.put(APPLICATION_QUIT, "Q");
