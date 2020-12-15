@@ -5,6 +5,7 @@ import controller.LineManageController;
 import controller.MainController;
 import controller.SectionManageController;
 import controller.StationManageController;
+import utils.ConstantsString;
 import utils.ValidateUtils;
 import view.LineManageView;
 import view.MainView;
@@ -12,13 +13,6 @@ import view.SectionManageView;
 import view.StationManageView;
 
 public class SubwayManager {
-    public static final int INPUT_MANAGE_STATION = 1;
-    public static final int INPUT_MANAGE_LINE = 2;
-    public static final int INPUT_MANAGE_SECTION = 3;
-    public static final int INPUT_PRINT_LINES = 4;
-    public static final String INPUT_QUIT = "Q";
-
-    public static final String ERROR_INVALID_INPUT = "\n[ERROR] 유효하지 않은 입력입니다.\n";
 
     private MainView mainView;
     private StationManageView stationManageView;
@@ -65,11 +59,11 @@ public class SubwayManager {
             mainView.run();
             String input = mainView.input();
             while (!ValidateUtils.validateMainInput(input)) {
-                mainView.printMessage(ERROR_INVALID_INPUT);
-                mainView.printInputMessage();
+                mainView.printMessage(ConstantsString.ERROR_INVALID_INPUT);
+                mainView.printMessage(ConstantsString.INPUT_MESSAGE);
                 input = mainView.input();
             }
-            if (input.equals(INPUT_QUIT)) {
+            if (input.equals(ConstantsString.INPUT_QUIT)) {
                 break;
             }
             processInput(Integer.valueOf(input));
@@ -77,16 +71,16 @@ public class SubwayManager {
     }
 
     private void processInput(int input) {
-        if (input == INPUT_MANAGE_STATION) {
+        if (input == ConstantsString.INPUT_MANAGE_STATION) {
             stationManageView.run();
         }
-        if (input == INPUT_MANAGE_LINE) {
+        if (input == ConstantsString.INPUT_MANAGE_LINE) {
             lineManageView.run();
         }
-        if (input == INPUT_MANAGE_SECTION) {
+        if (input == ConstantsString.INPUT_MANAGE_SECTION) {
             sectionManageView.run();
         }
-        if (input == INPUT_PRINT_LINES) {
+        if (input == ConstantsString.INPUT_PRINT_LINES) {
             mainView.showLines();
         }
     }

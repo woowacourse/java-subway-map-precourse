@@ -4,28 +4,11 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import utils.ConstantsString;
 import utils.ValidateUtils;
 import view.SectionManageView;
 
 public class SectionManageController {
-    private static final String INPUT_ADD_SECTION = "1";
-    private static final String INPUT_REMOVE_SECTION = "2";
-    private static final String INPUT_MESSAGE_LINE_NAME = "## 노선을 입력하세요.";
-    private static final String INPUT_MESSAGE_STATION_NAME = "## 역이름을 입력하세요.";
-    private static final String INPUT_MESSAGE_POSITION = "## 순서를 입력하세요.";
-    private static final String INPUT_MESSAGE_LINE_NAME_TO_DELETE = "## 삭제할 구간의 노선을 입력하세요.";
-    private static final String INPUT_MESSAGE_STATION_NAME_TO_DELETE = "## 삭제할 구간의 역을 입력하세요.";
-    private static final String COMPLETE_ADD_SECTION = "[INFO] 구간이 등록되었습니다.";
-    private static final String COMPLETE_REMOVE_SECTION = "[INFO] 구간이 삭제되었습니다.";
-    private static final String ERROR_NOT_EXIST_LINE = "\n[ERROR] 존재하지 않는 노선입니다.\n";
-    private static final String ERROR_NOT_EXIST_STATION = "\n[ERROR] 존재하지 않는 역입니다.\n";
-    private static final String ERROR_INPUT_ONLY_NUMBER = "\n[ERROR] 위치에 숫자만 입력해주세요.\n";
-    private static final String ERROR_NOT_EXIST_STATION_IN_LINE = "\n[ERROR] 노선에 존재하지 않는 구간입니다.\n";
-    private static final String ERROR_EXIST_STATION_IN_LINE = "\n[ERROR] 이미 노선에 존재하는 구간입니다.\n";
-    private static final String ERROR_SECTION_LESS_THAN_TWO =
-            "\n[ERROR] 구간에 역이 2개 이하로 존재하는 경우 삭제할 수 없습니다.\n";
-    private static final String ERROR_CAN_NOT_ADD_POSITION_AT =
-            "\n[ERROR] 해당 위치에 구간을 추가 할 수 없습니다.\n";
 
     private SectionManageView view;
 
@@ -34,23 +17,24 @@ public class SectionManageController {
     }
 
     public void processInput(String input) {
-        if (input.equals(INPUT_ADD_SECTION)) {
+        if (input.equals(ConstantsString.INPUT_ADD_SECTION)) {
             addSection();
         }
-        if (input.equals(INPUT_REMOVE_SECTION)) {
+        if (input.equals(ConstantsString.INPUT_REMOVE_SECTION)) {
             removeSection();
         }
     }
 
     private void removeSection() {
-        String lineNameToDelete = inputFromView(INPUT_MESSAGE_LINE_NAME_TO_DELETE);
-        String stationNameToDelete = inputFromView(INPUT_MESSAGE_STATION_NAME_TO_DELETE);
+        String lineNameToDelete = inputFromView(ConstantsString.INPUT_MESSAGE_LINE_NAME_TO_DELETE);
+        String stationNameToDelete =
+                inputFromView(ConstantsString.INPUT_MESSAGE_STATION_NAME_TO_DELETE);
 
         if (validateRemoveSectionInputs(lineNameToDelete, stationNameToDelete)) {
             Line line = LineRepository.getLineByName(lineNameToDelete);
             Station station = StationRepository.getStationByName(stationNameToDelete);
             line.removeStation(station);
-            view.printMessage(COMPLETE_REMOVE_SECTION);
+            view.printMessage(ConstantsString.COMPLETE_REMOVE_SECTION);
         }
     }
 
@@ -62,7 +46,7 @@ public class SectionManageController {
     private boolean validateSectionLength(String lineName) {
         Line line = LineRepository.getLineByName(lineName);
         if (line.sections().size() <= 2) {
-            view.printMessage(ERROR_SECTION_LESS_THAN_TWO);
+            view.printMessage(ConstantsString.ERROR_SECTION_LESS_THAN_TWO);
             return false;
         }
         return true;
@@ -72,23 +56,23 @@ public class SectionManageController {
         Line line = LineRepository.getLineByName(lineName);
         Station station = StationRepository.getStationByName(stationName);
         if (!line.contains(station)) {
-            view.printMessage(ERROR_NOT_EXIST_STATION_IN_LINE);
+            view.printMessage(ConstantsString.ERROR_NOT_EXIST_STATION_IN_LINE);
             return false;
         }
         return true;
     }
 
     private void addSection() {
-        String lineName = inputFromView(INPUT_MESSAGE_LINE_NAME);
-        String stationName = inputFromView(INPUT_MESSAGE_STATION_NAME);
-        String position = inputFromView(INPUT_MESSAGE_POSITION);
+        String lineName = inputFromView(ConstantsString.INPUT_MESSAGE_LINE_NAME);
+        String stationName = inputFromView(ConstantsString.INPUT_MESSAGE_STATION_NAME);
+        String position = inputFromView(ConstantsString.INPUT_MESSAGE_POSITION);
 
         if (validateAddSectionInputs(lineName, stationName, position)) {
             Line line = LineRepository.getLineByName(lineName);
             Station station = StationRepository.getStationByName(stationName);
             line.addStationAt(Integer.valueOf(position), station);
 
-            view.printMessage(COMPLETE_ADD_SECTION);
+            view.printMessage(ConstantsString.COMPLETE_ADD_SECTION);
         }
     }
 
@@ -103,7 +87,7 @@ public class SectionManageController {
 
     private boolean validateLineName(String lineName) {
         if (!LineRepository.isExistLine(lineName)) {
-            view.printMessage(ERROR_NOT_EXIST_LINE);
+            view.printMessage(ConstantsString.ERROR_NOT_EXIST_LINE);
             return false;
         }
         return true;
@@ -111,14 +95,14 @@ public class SectionManageController {
 
     private boolean validateStationName(String lineName, String stationName) {
         if (!StationRepository.isExistStation(stationName)) {
-            view.printMessage(ERROR_NOT_EXIST_STATION);
+            view.printMessage(ConstantsString.ERROR_NOT_EXIST_STATION);
             return false;
         }
 
         Line line = LineRepository.getLineByName(lineName);
         Station station = StationRepository.getStationByName(stationName);
         if (line.contains(station)) {
-            view.printMessage(ERROR_EXIST_STATION_IN_LINE);
+            view.printMessage(ConstantsString.ERROR_EXIST_STATION_IN_LINE);
             return false;
         }
         return true;
@@ -126,13 +110,13 @@ public class SectionManageController {
 
     private boolean validatePosition(String lineName, String position) {
         if (!isNumeric(position)) {
-            view.printMessage(ERROR_INPUT_ONLY_NUMBER);
+            view.printMessage(ConstantsString.ERROR_INPUT_ONLY_NUMBER);
             return false;
         }
         int pos = Integer.parseInt(position);
         int sectionLength = LineRepository.getLineByName(lineName).sections().size();
         if (pos > sectionLength + 1) {
-            view.printMessage(ERROR_CAN_NOT_ADD_POSITION_AT);
+            view.printMessage(ConstantsString.ERROR_CAN_NOT_ADD_POSITION_AT);
             return false;
         }
         return true;
