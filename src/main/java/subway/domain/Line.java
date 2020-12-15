@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private static final int ONE = 1;
+    
     private String name;
     private List<Station> stations = new ArrayList<>();
 
@@ -24,8 +26,12 @@ public class Line {
     }
 
     public void addSection(String stationName, String order) {
-        int index = Integer.parseInt(order) - 1; // 역이 삽입되는 index = 순서 - 1
+        int index = parseInt(order) - ONE; // 역이 삽입되는 index = 순서 - 1
         stations.add(index, new Station(stationName));
+    }
+    
+    private int parseInt(String number) {
+        return Integer.parseInt(number);
     }
 
     public void deleteSection(String stationName) {

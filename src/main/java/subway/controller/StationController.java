@@ -17,11 +17,13 @@ public class StationController extends SubController {
 
     @Override
     public void goToMenu() {
-        OutputView.printStationMenu();
-        this.selection = InputView.receiveMenu(STATION_MENU);
-        goToRegisterMenuIfUserSelect();
-        goToDeleteMenuIfUserSelect();
-        goToInquireMenuIfUserSelect();
+        do {
+            OutputView.printStationMenu();
+            this.selection = InputView.receiveMenu(STATION_MENU);
+            goToRegisterMenuIfUserSelect();
+            goToDeleteMenuIfUserSelect();
+            goToInquireMenuIfUserSelect();
+        } while (!isBack());
         OutputView.printLineBreak();
     }
 
@@ -34,7 +36,6 @@ public class StationController extends SubController {
             OutputView.printStationRegisterSuccess();
         } catch (NameFormatException | DuplicationException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            goToMenu();
         }
     }
 
@@ -52,7 +53,6 @@ public class StationController extends SubController {
             OutputView.printStationDeleteSuccess();
         } catch (NotExistedElementException | IllegalElementException e) {
             OutputView.printExceptionMessage(e.getMessage());
-            goToMenu();
         }
     }
 

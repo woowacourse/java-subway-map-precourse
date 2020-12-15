@@ -4,6 +4,7 @@ public abstract class SubController {
     private static final String REGISTER_MENU = "1";
     private static final String DELETE_MENU = "2";
     private static final String INQUIRE_MENU = "3";
+    private static final String BACK = "B";
 
     protected String selection;
 
@@ -23,6 +24,13 @@ public abstract class SubController {
         if (isSelect(INQUIRE_MENU)) {
             inquire();
         }
+    }
+    
+    protected final boolean isBack() {
+        if (isSelect(BACK)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isSelect(String menu) {
