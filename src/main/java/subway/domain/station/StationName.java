@@ -1,5 +1,6 @@
 package subway.domain.station;
 
+import subway.exception.SubwayApplicationException;
 import subway.exception.station.StationNameFormatException;
 import subway.exception.station.StationNameLengthException;
 
@@ -12,7 +13,12 @@ public class StationName {
     private String name;
 
     private StationName(String name) {
-        validateName(name);
+        try {
+            validateName(name);
+        } catch (StationNameFormatException | StationNameLengthException e) {
+            throw new SubwayApplicationException(e);
+        }
+
         this.name = name;
     }
 
