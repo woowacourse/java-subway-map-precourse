@@ -23,7 +23,6 @@ public class LineManager {
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
-                break;
             }
         }
         return;
@@ -41,6 +40,7 @@ public class LineManager {
         LineRepository.addLine(line);
         String [] stations = getStationName(scanner);
         addSection(line, stations);
+        System.out.println(Constants.LINE_ADD_COMPLETE);
     }
 
     public String[] getStationName(Scanner scanner) {
@@ -64,7 +64,7 @@ public class LineManager {
     public void checkStation(String input) throws IllegalArgumentException {
         ErrorManager.checkNameLength(input);
         if(!ErrorManager.isStationExist(input)) {
-            throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
+            throw new IllegalArgumentException(Constants.LINE_NOT_EXIST);
         }
     }
 
@@ -87,12 +87,14 @@ public class LineManager {
         if(!ErrorManager.isLineExist(input)) {
             throw new IllegalArgumentException(Constants.LINE_NOT_EXIST);
         }
-        boolean check = StationRepository.deleteStation(input);
-        if(check) {
-            System.out.println(Constants.STATION_REMOVE_COMPLETE);
+        if(LineRepository.deleteLineByName(input)) {
+            System.out.println(Constants.LINE_REMOVE_COMPLETE);
         } else {
-            throw new IllegalArgumentException(Constants.STATION_REMOVE_FAIL);
+            throw new IllegalArgumentException(Constants.LINE_REMOVE_FAIL);
         }
+
+
+
     }
 
     public void visitLine() {
