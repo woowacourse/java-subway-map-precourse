@@ -3,23 +3,23 @@ package subway.view;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-public class StationMenu {
-    public enum StationView{
-        REGISTER_STATION("1", "역 등록", () -> ),
-        DELETE_STATION("2", "역 삭제", () -> ),
-        INQUIRY_STATION("3", "역 조회", () -> ),
+public class LineMenu {
+    public enum LineView{
+        REGISTER_LINE("1", "노선 등록", () -> ),
+        DELETE_LINE("2", "노선 삭제", () -> ),
+        INQUIRY_LINE("3", "노 조회", () -> ),
         BACK("B", "돌아가기", () ->);
 
         private String key;
         private String menuList;
         private Supplier<Boolean> next;
 
-        StationView(String key, String menuList) {
+        LineView(String key, String menuList) {
             this.key = key;
             this.menuList = menuList;
         }
 
-        StationView(String key, String menuList, Supplier<Boolean> next) {
+        LineView(String key, String menuList, Supplier<Boolean> next) {
             this.key = key;
             this.menuList = menuList;
             this.next = next;
@@ -41,7 +41,7 @@ public class StationMenu {
             return next.get();
         }
 
-        public static StationMenu.StationView moveByKey(String key) {
+        public static LineMenu.LineView moveByKey(String key) {
             return Arrays.stream(values())
                     .filter(menu -> menu.getKey().equals(key))
                     .findAny().get();
