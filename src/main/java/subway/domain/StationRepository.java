@@ -1,8 +1,10 @@
 package subway.domain;
 
+import subway.exceptions.SubwayException;
+import subway.exceptions.Validation;
+
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -23,10 +25,8 @@ public class StationRepository {
         return stations;
     }
 
-    public static Station searchStationByName(String name) {
-        System.out.println(name);
-        return stations.stream()
-                .filter(station -> station.getName().equals(name))
-                .findFirst().orElseThrow();
-    }
+//    public static Station searchStationByName(String name) throws SubwayException {
+//        Validation validation = new Validation();
+//        return validation.isExistStation(name);
+//    }
 }

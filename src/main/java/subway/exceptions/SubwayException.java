@@ -1,6 +1,5 @@
 package subway.exceptions;
 
-import java.util.function.Supplier;
 
 public class SubwayException extends Exception {
     private final String ERROR_MESSAGE = "[ERROR] ";

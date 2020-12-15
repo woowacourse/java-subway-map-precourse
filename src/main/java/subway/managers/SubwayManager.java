@@ -5,7 +5,6 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.exceptions.SubwayException;
 import subway.exceptions.Validation;
-import subway.managers.StationManager;
 import subway.views.SystemMessages;
 import subway.views.SystemOutput;
 import subway.views.UserInput;
@@ -23,7 +22,7 @@ public class SubwayManager {
     public static void runManager(Scanner scanner) {
         userInput = new UserInput(scanner);
         SystemOutput.printMainMessage();
-        String input = userInput.getMainInput();
+        String input = userInput.getInput();
         mainOption(scanner, userInput, input);
     }
 

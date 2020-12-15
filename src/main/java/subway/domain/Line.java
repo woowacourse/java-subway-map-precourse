@@ -1,7 +1,6 @@
 package subway.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Line {
@@ -18,7 +17,6 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
     public void addSection(Station station) {
         section.add(station);
     }

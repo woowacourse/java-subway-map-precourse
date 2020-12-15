@@ -14,12 +14,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LineManager {
-    private static Line line;
     private static Validation validation = new Validation();
 
     public static void runLineManager(Scanner scanner, UserInput userInput) {
         SystemOutput.printLineMessage();
-        String input = userInput.getStationLineInput();
+        String input = userInput.getInput();
         try {
             validation.stationLineOptionValidation(input);
         } catch (SubwayException e) {
@@ -50,7 +49,7 @@ public class LineManager {
 
     static String newLine(UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_LINE_MESSAGE);
-        String lineName = userInput.getNameInput();
+        String lineName = userInput.getInput();
         try {
             validation.lineNameValidation(lineName);
             validation.lineDuplication(lineName);
@@ -62,7 +61,7 @@ public class LineManager {
 
     static Station addUpwardStation(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_UPWARD_STATION_MESSAGE);
-        String upward = userInput.getNameInput();
+        String upward = userInput.getInput();
         try {
             Station upwardStation = validation.isExistStation(upward);
             return upwardStation;
@@ -74,7 +73,7 @@ public class LineManager {
 
     static Station addDownwardStation(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_DOWNWARD_STATION_MESSAGE);
-        String downward = userInput.getNameInput();
+        String downward = userInput.getInput();
         try {
             Station downwardStation = validation.isExistStation(downward);
             return downwardStation;
@@ -86,7 +85,7 @@ public class LineManager {
 
     static void deleteLine(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.DEL_STATION_MESSAGE);
-        String name = userInput.getNameInput();
+        String name = userInput.getInput();
         try {
             validation.isExistLine(name);
             LineRepository.deleteLineByName(name);

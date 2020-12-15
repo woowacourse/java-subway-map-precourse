@@ -15,7 +15,7 @@ public class SectionManager {
 
     public static void runSectionManager(Scanner scanner, UserInput userInput) {
         SystemOutput.printSectionMessage();
-        String input = userInput.getSectionInput();
+        String input = userInput.getInput();
         try {
             validation.sectionOptionValidation(input);
         } catch (SubwayException e) {
@@ -56,7 +56,7 @@ public class SectionManager {
 
     static Line getLine(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_SECTION_LINE_MESSAGE);
-        String lineName = userInput.getNameInput();
+        String lineName = userInput.getInput();
         try {
             return validation.isExistLine(lineName);
         } catch (SubwayException e) {
@@ -67,7 +67,7 @@ public class SectionManager {
 
     static Station getStation(Scanner scanner, UserInput userInput){
         SystemOutput.printMessage(SystemMessages.ADD_SECTION_STATION_MESSAGE);
-        String stationName = userInput.getNameInput();
+        String stationName = userInput.getInput();
         try {
             return validation.isExistStation(stationName);
         } catch (SubwayException e) {
@@ -78,7 +78,7 @@ public class SectionManager {
 
     static int getOrder(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_SECTION_ORDER_MESSAGE);
-        String input = userInput.getNameInput();  // 이름 나중에 바꿀 것
+        String input = userInput.getInput();  // 이름 나중에 바꿀 것
         try {
             validation.orderIsNumber(input);
         } catch (SubwayException e) {

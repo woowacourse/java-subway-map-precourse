@@ -18,7 +18,7 @@ public class StationManager {
 
     public static void runStationManager(Scanner scanner, UserInput userInput) {
         SystemOutput.printStationMessage();
-        String input = userInput.getStationLineInput();
+        String input = userInput.getInput();
         try {
             validation.stationLineOptionValidation(input);
         } catch (SubwayException e) {
@@ -40,7 +40,7 @@ public class StationManager {
 
     static void addStation(UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.ADD_STATION_MESSAGE);
-        String name = userInput.getNameInput();
+        String name = userInput.getInput();
         try {
             validation.stationNameValidation(name);
             validation.stationDuplication(name);
@@ -54,7 +54,7 @@ public class StationManager {
 
     static void deleteStation(Scanner scanner, UserInput userInput) {
         SystemOutput.printMessage(SystemMessages.DEL_STATION_MESSAGE);
-        String name = userInput.getNameInput();
+        String name = userInput.getInput();
         try {
             validation.isExistStation(name);
             StationRepository.deleteStation(name);
