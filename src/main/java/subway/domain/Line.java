@@ -2,7 +2,6 @@ package subway.domain;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class Line {
     private String name;
@@ -17,7 +16,15 @@ public class Line {
 
     // 추가 기능 구현
 
-    private StationRepository stationRepository = new StationRepository();
+    List<Station> stationList = new LinkedList<>();
+
+    public Line(String name, String upLineLastStop, String downLineLastStop) {
+        this.name = name;
+        stationList.add(new Station(upLineLastStop));
+        stationList.add(new Station(downLineLastStop));
+    }
+
+
 
     /*public boolean equal(String lineName) {
         return name.equals(lineName);

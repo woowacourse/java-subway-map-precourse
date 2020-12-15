@@ -1,7 +1,10 @@
 package subway.menu;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.util.LineValidator;
 import subway.util.StationValidator;
 
 import java.util.Scanner;
@@ -25,17 +28,36 @@ public class LineMenu {
         while (true) {
             printLineMenu();
             input = scanner.nextLine();
-            System.out.println();
             //TODO 함수 분리하기
             if (input.equals("1")) {
+                System.out.println("\n## 등록할 노선 이름을 입력하세요.");
+                String lineName = scanner.nextLine();
+                if (LineValidator.checkValidLineName(lineName)) {
+                    System.out.println("\n## 등록할 상행 종점역 이름을 입력하세요.");
+                    String upLineLastStop = scanner.nextLine();
+                    if (StationValidator.checkDuplicateName(upLineLastStop)) {
+                        System.out.println("\n##등록할 하행 종점역 이름을 입력하세요.");
+                        String downLineLastStop = scanner.nextLine();
+                        if (StationValidator.checkDuplicateName(downLineLastStop)) {
+                            LineRepository.addLine(new Line(lineName, upLineLastStop, downLineLastStop));
+                            System.out.println("\n[ INFO ] 지하철 노선이 등록되었습니다.");
+                        }
+                    }
+                }
             }
             if (input.equals("2")) {
+                System.out.println("## 삭제할 노선 이름을 입력하세요.");
+                String lineName = scanner.nextLine();
+                if (LineRepository.deleteLineByName(lineName)) {
+                    System.out.println("[ INFO ] 지하철 노선이 삭제되었습니다.");
+                }
             }
             if (input.equals("3")) {
             }
             if (input.equals("B")) {
                 break;
             }
+            System.out.println();
         }
 
     }
