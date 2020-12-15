@@ -248,6 +248,7 @@ public class UserInterfaceView {
             }
             printErrorMessage();
         }
+        SectionToNextFunction(userInput);
     }
 
     private void printSectionView() {
@@ -255,5 +256,13 @@ public class UserInterfaceView {
             System.out.println(str);
         }
         System.out.println();
+    }
+
+    private void SectionToNextFunction(String userInput) {
+        if (ONE_STRING.equals(userInput)) {
+            return;
+        }
+        if (TWO_STRING.equals(userInput)) {
+        }
     }
 }
