@@ -101,12 +101,28 @@ public class Application {
 
     public static void manageStation(Scanner kbd) {
         showStationMenu();
-        inputFunction(kbd, SUB_FUNCTIONS);
+        String input = inputFunction(kbd, SUB_FUNCTIONS);
+        if (input.equals(ADD_MENU))
+            addStation(kbd);
+        if (input.equals(DELETE_MENU))
+            deleteStation(kbd);
+        if (input.equals(SEARCH_MENU))
+            searchStation();
+        if (input.equals(GO_BACK_MENU))
+            startProgram(kbd);
     }
 
     public static void manageLine(Scanner kbd) {
         showLineMenu();
-        inputFunction(kbd, SUB_FUNCTIONS);
+        String input = inputFunction(kbd, SUB_FUNCTIONS);
+        if (input.equals(ADD_MENU))
+            addLine(kbd);
+        if (input.equals(DELETE_MENU))
+            deleteLine(kbd);
+        if (input.equals(SEARCH_MENU))
+            searchLine();
+        if (input.equals(GO_BACK_MENU))
+            startProgram(kbd);
     }
 
     public static void manageSection(Scanner kbd) {
@@ -153,5 +169,9 @@ public class Application {
     public static void displayErrorMessage(int errorCase) {
         if (errorCase == FUNCTION_INPUT_ERROR)
             System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
+        if (errorCase == SAME_NAME_ERROR)
+            System.out.println("[ERROR] 이미 등록된 역 이름입니다.");
+        if (errorCase == NAME_LENGTH_ERROR)
+            System.out.println("[ERROR] 이름을 2글자 이상 입력해주세요.");
     }
 }
