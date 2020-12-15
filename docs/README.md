@@ -159,23 +159,24 @@
 # 🚩 프로그램 구성
 
 - 📁 controller
-  - 📁 line
-    
-    - 📃 LineController
-    - 📃 LineFunction
-    
-  - 📁 station
-    
-    - 📃 SectionController
-    - 📃 SectionFunction
 
-  - 📁 section
+    - 📁 station
     
-    - 📃 StationController
-    - 📃 StationFunction
+        - 📃 StationController : `StationMenu`와 `StationOutputView`를 연결을 관리해주는 컨트롤러
+        - 📃 StationFunction : `지하철 역 관련 기능` 메소드를 수행하는 클래스  
     
-  - 📃 Controller
-  - 📃 MainController
+    - 📁 line
+    
+        - 📃 LineController : `LineMenu`와 `LineOutputView`를 연결을 관리해주는 컨트롤러
+        - 📃 LineFunction : `지하철 노선 관련 기능` 메소드를 수행하는 클래스
+
+    - 📁 section
+
+        - 📃 SectionController : `SectionMenu`와 `SectionOutputView`를 연결을 관리해주는 컨트롤러
+        - 📃 SectionFunction : `지하철 구간 관련 기능` 메소드를 수행하는 클래스
+    
+    - 📃 Controller : 모든 컨트롤러의 공통 함수를 가지고 있는 인터페이스 컨트롤러
+    - 📃 MainController : `MainMenu`와 `MainOutpuView`를 연결을 관리해주는 컨트롤러
     
 - 📁 domain
 
@@ -194,10 +195,36 @@
         - 📃 NotExistLineException : 입력된 노선이 존재하지 않는 경우의 예외 클래스
         - 📃 NotExistStationException : 입력된 역이 존재하지 않는 경우의 예외 클래스
         - 📃 NotStationInSelectLinException : 해당 노선에 역이 중복되지 않는 경우의 예외 클래스
+    
+    - 📁 menu
+    
+        - 📃 LineMenu : `지하철 노선 관련 기능` 메뉴의 정보를 담고 있는 클래스
+        - 📃 MainMenu : `메인 기능` 메뉴의 정보를 담고 있는 클래스
+        - 📃 SectionMenu : `지하철 구간 관련 기능` 메뉴의 정보를 담고 있는 클래스
+        - 📃 StationMenu : `지하철 역 관련 기능` 메뉴의 정보를 담고 있는 클래스
+    
+    - 📃 Line : 지하철 노선 정보를 담고 있는 클래스
+    - 📃 LineRepository : 지하철 노선 리스트를 관리하는 클래스
+    - 📃 Station : 지하철 역 정보를 담고 있는 클래스
+    - 📃 StationRepository : 지하철 역 리스트를 관리하는 클래스
 
 - 📁 view
+  
+    - 📁 OutputView
+    
+        - 📃 ErrorOutputView : `예외 처리`와 관련된 출력 기능 담당
+        - 📃 LineOutputView : `지하철 노선 관련 기능`과 관련된 출력 기능 담당
+        - 📃 MainOutputView : `메인 기능`과 관련된 출력 기능 담당
+        - 📃 SectionOutputView : `지하철 구간 관련 기능`과 관련된 출력 기능 담당
+        - 📃 StationOutputView : `지하철 역 관련 기능`과 관련된 출력 기능 담당
+    
+    - 📃 InputView : 사용자의 입력 값을 받는 기능 담당
+
 - 📁 utils
-- 📃 Application
+
+    - InputValidator : 사용자의 입력 값에 대한 검증 담당
+    
+- 📃 Application : 어플리케이션 실행을 관리 담당
 
 <br>
 
