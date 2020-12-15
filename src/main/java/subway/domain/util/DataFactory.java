@@ -34,11 +34,11 @@ public class DataFactory {
         LineRepository.addLine(line1);
 
         Line line2 = new Line("3호선");
-        line1.addAllStation(Arrays.asList(stations.get(0), stations.get(3), stations.get(4), stations.get(6)));
+        line2.addAllStation(Arrays.asList(stations.get(0), stations.get(3), stations.get(4), stations.get(6)));
         LineRepository.addLine(line2);
 
         Line line3 = new Line("신분당선");
-        line1.addAllStation(Arrays.asList(stations.get(1), stations.get(4), stations.get(5)));
+        line3.addAllStation(Arrays.asList(stations.get(1), stations.get(4), stations.get(5)));
         LineRepository.addLine(line3);
     }
 }
