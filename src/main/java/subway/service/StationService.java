@@ -19,8 +19,19 @@ public class StationService {
         StationRepository.addStation(station);
     }
 
+    public void addStationByName(String stationName) {
+        if (isExistentName(stationName)) {
+            throw new IllegalArgumentException(DUPLICATION_ERROR_MESSAGE);
+        }
+        StationRepository.addStation(new Station(stationName));
+    }
+
     public boolean isExistent(Station station) {
         return StationRepository.isExistent(station);
+    }
+
+    public boolean isExistentName(String stationName) {
+        return StationRepository.isExistentName(stationName);
     }
 
     public boolean deleteStation(String stationName) {
