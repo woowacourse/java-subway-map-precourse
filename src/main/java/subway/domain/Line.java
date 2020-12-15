@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Line {
     private String name;
@@ -20,7 +21,11 @@ public class Line {
         this.lineStations.add(downTerninal);
     }
 
-    public void addStation(Station station) {
+    public void addStation(int index, Station station) {
+        lineStations.add(index - 1, station);
+    }
 
+    public void deleteStation(String name) {
+        lineStations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 }
