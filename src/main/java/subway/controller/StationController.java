@@ -3,8 +3,6 @@ package subway.controller;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.StationPage;
-import utils.ErrorUtils;
-import utils.InfoUtils;
 
 import java.util.Scanner;
 
@@ -14,10 +12,10 @@ public class StationController {
     private static final String DELETE_STATION = "2";
     private static final String SELECT_STATION = "3";
     private static final String BACK = "B";
-    private static StationPage stationPage = new StationPage();
+    private static final StationPage STATION_PAGE = new StationPage();
 
     public static void startStationPage(Scanner scanner) {
-        stationPage.printStationManagementPage();
+        STATION_PAGE.printStationManagementPage();
         forkPath(chooseItem(scanner), scanner);
     }
 
@@ -39,7 +37,7 @@ public class StationController {
     public static String chooseItem(Scanner scanner) {
         String item = input(scanner);
         if (!isValidItem(item)) {
-            stationPage.printWrongItemError();
+            STATION_PAGE.printWrongItemError();
             startStationPage(scanner);
         }
         return item;
@@ -50,15 +48,12 @@ public class StationController {
     }
 
     public static boolean isValidItem(String item) {
-        if (ADD_STATION.equals(item) || DELETE_STATION.equals(item) ||
-                SELECT_STATION.equals(item) || BACK.equals(item)) {
-            return true;
-        }
-        return false;
+        return ADD_STATION.equals(item) || DELETE_STATION.equals(item) ||
+                SELECT_STATION.equals(item) || BACK.equals(item);
     }
 
     public static void startInsertStation(Scanner scanner) {
-        stationPage.printAddStationPage();
+        STATION_PAGE.printAddStationPage();
         insertStation(scanner);
     }
 
@@ -67,7 +62,7 @@ public class StationController {
         if (isValidName(stationName)) {
             Station station = new Station(stationName);
             StationRepository.addStation(station);
-            stationPage.printCompleteAdd();
+            STATION_PAGE.printCompleteAdd();
             MainController.startMainPage(scanner);
             return;
         }
@@ -79,15 +74,15 @@ public class StationController {
             if (!StationRepository.isExistName(name)) {
                 return true;
             }
-            stationPage.printDuplicateError();
+            STATION_PAGE.printDuplicateError();
             return false;
         }
-        stationPage.printShortNameError();
+        STATION_PAGE.printShortNameError();
         return false;
     }
 
     public static void startDeleteStation(Scanner scanner) {
-        stationPage.printDeleteStationPage();
+        STATION_PAGE.printDeleteStationPage();
         deleteStation(scanner);
     }
 
@@ -95,16 +90,16 @@ public class StationController {
         String stationName = input(scanner);
         if (StationRepository.isExistName(stationName)) {
             StationRepository.deleteStation(stationName);
-            stationPage.printCompleteDelete();
+            STATION_PAGE.printCompleteDelete();
             MainController.startMainPage(scanner);
             return;
         }
-        stationPage.printNullLineError();
+        STATION_PAGE.printNullLineError();
         startStationPage(scanner);
     }
 
     public static void startSelectStation(Scanner scanner) {
-        stationPage.printSelectStationsPage(StationRepository.stations());
+        STATION_PAGE.printSelectStationsPage(StationRepository.stations());
         MainController.startMainPage(scanner);
     }
 
