@@ -1,9 +1,10 @@
 package subway.domain;
 
+import java.util.ArrayList;
+
 public class Line {
     private String name;
-    private String upTerminal;
-    private String downTerninal;
+    private ArrayList<Station> lineStations = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -14,8 +15,12 @@ public class Line {
     }
 
     // 추가 기능 구현
-    public void setTerminal(String upTerminal, String downTerninal) {
-        this.upTerminal = upTerminal;
-        this.downTerninal = downTerninal;
+    public void setTerminal(Station upTerminal, Station downTerninal) {
+        this.lineStations.add(upTerminal);
+        this.lineStations.add(downTerninal);
+    }
+
+    public void addStation(Station station) {
+
     }
 }

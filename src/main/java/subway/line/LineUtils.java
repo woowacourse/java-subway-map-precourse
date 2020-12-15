@@ -2,6 +2,8 @@ package subway.line;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
+import subway.domain.StationRepository;
 
 import java.util.List;
 import java.util.Scanner;
@@ -39,17 +41,17 @@ public class LineUtils {
     }
 
     public void registerLine() {
-        String upTerminal;
-        String downTerminal;
+        Station upTerminal;
+        Station downTerminal;
 
         System.out.println("## 등록할 노선 이름을 입력하세요.");
         Line newLine = new Line(scanner.next());
 
         System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-        upTerminal = scanner.next();
+        upTerminal = StationRepository.getStationByName(scanner.next());
 
         System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
-        downTerminal = scanner.next();
+        downTerminal = StationRepository.getStationByName(scanner.next());
 
         newLine.setTerminal(upTerminal, downTerminal);
         LineRepository.addLine(newLine);
