@@ -12,6 +12,8 @@ public class LineValidatorTest {
         LineValidator.validateLineName("HankukUniversity");
         LineValidator.validateLineName("    ");
         LineValidator.validateLineName("선");
+        LineValidator.validateLineName("22222");
+        LineValidator.validateLineName("2");
     }
 
     @Test(expected = DuplicationException.class)

@@ -7,7 +7,7 @@ import subway.controller.exception.NotExistedElementException;
 import subway.domain.LineRepository;
 
 public class LineValidator {
-    private static final String LINE_FORMAT_REGEX = "[0-9가-힣]+"; // "의정부경전철"과 같은 노선이름도 있기 때문에, "OO선" 형식을 적용하지 않음
+    private static final String LINE_FORMAT_REGEX = "\\d{0,}[가-힣]+"; // "의정부경전철"과 같은 노선이름도 있기 때문에, "OO선" 형식을 적용하지 않음
     private static final int MINIMUM_LINE_NAME_LENGTH = 2;
 
     public static void validateLineName(String lineName) {
