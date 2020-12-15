@@ -1,8 +1,8 @@
 package subway.system;
 
 import java.util.Scanner;
-import subway.manager.SectionManager;
-import subway.system.helper.SectionSystemInputValidator;
+import subway.system.manager.SectionManager;
+import subway.system.validator.SectionSystemInputValidator;
 import subway.system.view.SectionManagerView;
 
 public class SectionSystem {

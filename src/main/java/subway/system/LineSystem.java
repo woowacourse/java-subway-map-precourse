@@ -1,8 +1,8 @@
 package subway.system;
 
 import java.util.Scanner;
-import subway.manager.LineManager;
-import subway.system.helper.LineSystemInputValidator;
+import subway.system.manager.LineManager;
+import subway.system.validator.LineSystemInputValidator;
 import subway.system.view.LineManagerView;
 
 public class LineSystem {

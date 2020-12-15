@@ -1,6 +1,5 @@
-package subway.manager;
+package subway.system.manager;
 
-import java.util.Scanner;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.Subway;

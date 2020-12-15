@@ -1,4 +1,4 @@
-package subway.system.helper;
+package subway.system.validator;
 
 public class SubwaySystemInputValidator {
     static final String WANT_QUIT_CODE = "Q";

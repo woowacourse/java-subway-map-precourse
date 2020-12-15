@@ -1,6 +1,6 @@
-package subway.system.helper;
+package subway.system.validator;
 
-import subway.manager.SubwayManager;
+import subway.system.manager.SubwayManager;
 
 public class LineSystemInputValidator {
 
