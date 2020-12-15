@@ -72,7 +72,7 @@ public class LineView extends AbstractView {
 
     private void checkValidationLineNameOrThrow(String lineName) {
         InputUtils.checkMinLengthOrThrow(lineName);
-        if (subway.getLineRepository().findByName(lineName) != null) {
+        if (subway.getLineRepository().isExistByName(lineName)) {
             throw new RuntimeException(Constants.EXIST_LINE);
         }
     }

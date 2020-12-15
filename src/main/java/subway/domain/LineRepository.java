@@ -24,6 +24,10 @@ public class LineRepository {
             .orElse(null);
     }
 
+    public boolean isExistByName(String name) {
+        return findByName(name) != null;
+    }
+
     public boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
