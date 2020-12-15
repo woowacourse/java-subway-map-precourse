@@ -28,16 +28,7 @@ public class StationValidator {
         if (name.length() >= SIZE) {
             return true;
         }
-        System.out.println("[ ERROR ] 유효하지 않은 역이름입니다.");
-        return false;
-    }
-
-    public static boolean haveStationName(String name) {
-        for(Station station : StationRepository.stations()) {
-            if (station.getName().equals(name)) {
-                return true;
-            }
-        }
+        System.out.println("[ ERROR ] 역 이름은 2글자 이상이어야합니다.");
         return false;
     }
 }
