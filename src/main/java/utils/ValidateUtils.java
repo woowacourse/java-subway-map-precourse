@@ -7,6 +7,7 @@ import java.util.List;
 public class ValidateUtils {
     private static final List<String> mainValidInputs = Arrays.asList("Q", "1", "2", "3", "4");
     private static final List<String> validInputs = Arrays.asList("B", "1", "2", "3");
+    private static final List<String> sectionValidInputs = Arrays.asList("B", "1", "2");
 
     public static boolean validateMainInput(String input) {
         return mainValidInputs.contains(input);
@@ -14,6 +15,10 @@ public class ValidateUtils {
 
     public static boolean validateInput(String input) {
         return validInputs.contains(input);
+    }
+
+    public static boolean validateSectionInput(String input) {
+        return sectionValidInputs.contains(input);
     }
 
     public static boolean validateLengthMoreThanTwo(String input) {
