@@ -13,7 +13,7 @@ public class StationRepository {
     }
 
     public static void addStation(String name) {
-        //길이 2이상, 중복 체크
+        //예외 처리 : 길이 2이상, 중복 체크
         if (checkNameLength(name) && !checkNameInStations(name)) {
             stations.add(new Station(name));
             return;
@@ -23,7 +23,7 @@ public class StationRepository {
     }
 
     public static void deleteStation(String name) {
-
+        //예외 처리 : 존재하는 역이여야한다, 노선에 있는 역이 아니여야한다.
         if (checkNameInStations(name) && !checkStationInLines(name)) {
             stations.removeIf(station -> Objects.equals(station.getName(), name));
             return;
@@ -36,7 +36,7 @@ public class StationRepository {
         List<Line> lines = LineRepository.retrieveLine();
 
         for (Line line : lines) {
-            if (line.isContain(name)) {
+            if (line.isStationContainInLine(name)) {
                 return true;
             }
         }

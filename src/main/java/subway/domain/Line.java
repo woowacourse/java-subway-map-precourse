@@ -25,7 +25,7 @@ public class Line {
 
     // 추가 기능 구현
 
-    public boolean isContain(String name) {
+    public boolean isStationContainInLine(String name) {
         for (Station section : sections) {
             if (section.getName().equals(name)) {
                 return true;
@@ -37,24 +37,20 @@ public class Line {
 
     public void addStationInSection(int idx, String name) {
         sections.add(idx - 1, new Station(name));
-        if (idx == sections.size()) {
-            lastStation = name;
-        }
-        if (idx == 1) {
-            firstStation = name;
-        }
+        updateTerminalStations();
     }
 
     public void deleteStationInSection(String name) {
         sections.removeIf(station -> Objects.equals(station.getName(), name));
+        updateTerminalStations();
     }
 
     public List<Station> getSection() {
         return Collections.unmodifiableList(sections);
     }
 
-    public void updateTerminalStations() {
+    private void updateTerminalStations() {
         firstStation = sections.get(0).getName();
-        lastStation = sections.get(sections.size()-1).getName();
+        lastStation = sections.get(sections.size() - 1).getName();
     }
 }

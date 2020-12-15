@@ -17,7 +17,7 @@ public class InitSetting {
         }
     }
 
-    private static void initLine(){
+    private static void initLine() {
         for (int i = 0; i < initLine.length; i++) {
             String line = initLine[i][0];
             String firstStation = initLine[i][1];
