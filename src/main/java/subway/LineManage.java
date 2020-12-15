@@ -1,5 +1,13 @@
 package subway;
 
+import static log.ErrorCase.ALREADY_EXIST_ERROR;
+import static log.ErrorCase.FUNCTION_INPUT_ERROR;
+import static log.ErrorCase.NAME_LENGTH_ERROR;
+import static log.ErrorCase.NO_SUCH_NAME_ERROR;
+import static log.Logger.displayLineManageScreen;
+import static log.Logger.errorPrint;
+import static log.Logger.guidePrint;
+import static log.Logger.infoPrint;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.LineRepository.deleteLineByName;
 import static subway.domain.LineRepository.hasLine;
@@ -20,72 +28,75 @@ public class LineManage {
     static final int MIN_LINE_NAME_LENGTH = 2;
 
     static public void linaManage(Scanner scanner) {
-        lineManagePrint();
+        displayLineManageScreen();
         String lineManageInput = scanner.next();
         inputValidate(scanner, lineManageInput);
     }
 
     private static boolean inputValidate(Scanner scanner, String lineManageInput) {
         if (lineManageInput.equalsIgnoreCase(ADD_LINE)) {
-            addLinePrint(scanner);
+            addLineControl(scanner);
             return true;
         }
         if (lineManageInput.equalsIgnoreCase(DELETE_LINE)) {
-            deleteLinePrint(scanner);
+            deleteLineControl(scanner);
             return true;
         }
         if (lineManageInput.equalsIgnoreCase(ALL_LINES)) {
-            allLinesPrint();
+            allLinesControl();
             return true;
         }
         if (lineManageInput.equalsIgnoreCase(BACK_SCREEN)) {
             return true;
         }
-        System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
+        errorPrint(FUNCTION_INPUT_ERROR);
         throw new IllegalArgumentException();
     }
 
-    private static void addLinePrint(Scanner scanner) {
-        System.out.println("\n## 등록할 노선 이름을 입력하세요.");
+    private static void addLineControl(Scanner scanner) {
+        guidePrint("등록할 노선 이름을 입력하세요. ");
         String lineName = scanner.next();
         lineNameValidate(lineName);
-        System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+
+        guidePrint("등록할 노선의 상행 종점역 이름을 입력하세요. ");
         String upwardTerminal = scanner.next();
         terminalNameValidate(upwardTerminal);
-        System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+
+        guidePrint("등록할 노선의 하행 종점역 이름을 입력하세요. ");
         String downWardTerminal = scanner.next();
         terminalNameValidate(downWardTerminal);
+
         addLine(new Line(lineName, new Station(upwardTerminal), new Station(downWardTerminal)));
-        System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
+        infoPrint("지하철 노선이 등록되었습니다.");
     }
 
-    private static void deleteLinePrint(Scanner scanner) {
-        System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
+    private static void deleteLineControl(Scanner scanner) {
+        guidePrint("삭제할 노선 이름을 입력하세요. ");
         String lineName = scanner.next();
         if (!lineExists(lineName)) {
-            System.out.println("\n[ERROR] 존재하지 않는 노선 이름입니다. ");
+            errorPrint(NO_SUCH_NAME_ERROR);
             throw new IllegalArgumentException();
         }
         deleteLineByName(lineName);
-        System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
+        infoPrint("지하철 노선이 삭제되었습니다. ");
+    }
+
+    private static void allLinesControl() {
+        guidePrint("역 목록");
+        List<Line> allLines = lines();
+        for (Line line : allLines) {
+            line.printName();
+        }
     }
 
     private static void lineNameValidate(String lineName) {
         if (!lineNameLengthValidate(lineName)) {
-            System.out.println("\n[ERROR] 노선의 이름은 최소 2자 이상이어야 합니다. ");
+            errorPrint(NAME_LENGTH_ERROR);
             throw new IllegalArgumentException();
         }
         if (lineExists(lineName)) {
-            System.out.println("\n[ERROR] 이미 등록된 노선 이름입니다. ");
+            errorPrint(ALREADY_EXIST_ERROR);
             throw new IllegalArgumentException();
-        }
-    }
-
-    private static void allLinesPrint() {
-        System.out.println("\n## 역 목록");
-        List<Line> allLines = lines();
-        for (Line line : allLines) {
-            line.printName();
         }
     }
 
@@ -99,18 +110,8 @@ public class LineManage {
 
     private static void terminalNameValidate(String terminalName) {
         if (!hasStation(terminalName)) {
-            System.out.println("\n[ERROR] 해당 역이 존재하지 않습니다. ");
+            errorPrint(NO_SUCH_NAME_ERROR);
             throw new IllegalArgumentException();
         }
-    }
-
-    private static void lineManagePrint() {
-        System.out.println("\n## 노선 관리 화면\n"
-            + "1. 노선 등록\n"
-            + "2. 노선 삭제\n"
-            + "3. 노선 조회\n"
-            + "B. 돌아가기\n"
-            + "\n"
-            + "## 원하는 기능을 선택하세요.");
     }
 }
