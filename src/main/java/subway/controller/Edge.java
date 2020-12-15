@@ -67,7 +67,7 @@ public class Edge {
     }
 
     private static void validateStationState(String stationName, String lineName) {
-        if (StationRepository.validateNewName(stationName)) {
+        if (StationRepository.validateUniqueName(stationName)) {
             throw new NonExistentNameException(STATION_MESSAGE);
         }
         if (!validateLineIncludeStation(lineName, stationName)) {
@@ -112,7 +112,7 @@ public class Edge {
     }
 
     private static void validateStationName(String lineName, String stationName) {
-        if (StationRepository.validateNewName(stationName)) {
+        if (StationRepository.validateUniqueName(stationName)) {
             throw new NonExistentNameException(STATION_MESSAGE);
         }
         if (validateLineIncludeStation(lineName, stationName)) {
@@ -124,7 +124,7 @@ public class Edge {
         for (int i = 0; i < LineRepository.lines().size(); i++) {
             Line line = LineRepository.lines().get(i);
             if (line.getName().equals(lineName)) {
-                return !line.validateNewName(stationName);
+                return !line.validateLineIncludeStation(stationName);
             }
         }
         return false;
@@ -142,7 +142,7 @@ public class Edge {
 
     private static boolean validateOrderType(String order) {
         try {
-            int orderNumber = Integer.parseInt(order);
+            Integer.parseInt(order);
             return true;
         } catch (RuntimeException e) {
             return false;

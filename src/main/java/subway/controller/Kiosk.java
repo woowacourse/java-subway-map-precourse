@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.Action;
 import subway.domain.MenuRepository;
 import subway.domain.Menu;
 import subway.domain.exception.NonExistentMenuException;
@@ -11,14 +12,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
-public class MenuController {
+public class Kiosk {
     private static final String STATION_MANAGEMENT_SIGN = "1";
     private static final String LINE_MANAGEMENT_SIGN = "2";
     private static final String EDGE_MANAGEMENT_SIGN = "3";
     private static final String LINE_MAP_SIGN = "4";
     private static final String QUIT_SIGN = "Q";
-    private static final int SUB_MENU_INDEX = 0;
-    private static final int SUB_MENU_ACTION_INDEX = 1;
+    private static final int MENU_INDEX = 0;
+    private static final int ACTION_INDEX = 1;
     private static final String NORMAL_SIGN = "NORMAL";
     private static final String ERROR_SIGN = "ERROR";
     private static final Map<String, Menu> mainMenu = new LinkedHashMap<String, Menu>() {
@@ -31,22 +32,22 @@ public class MenuController {
         }
     };
 
-    public ArrayList<String> selectedMenus;
+    private final ArrayList<String> selectedMenus;
     private final InputView inputView;
 
-    public MenuController(InputView inputView) {
+    public Kiosk(InputView inputView) {
         this.inputView = inputView;
         this.selectedMenus = new ArrayList<String>();
     }
 
-    public boolean runMenus() {
-        String runStatus = runMenu();
-        while (runStatus.equals(ERROR_SIGN)) {
-            selectedMenus.remove(SUB_MENU_ACTION_INDEX);
-            scanSubMenu(getSubMenu(selectedMenus.get(SUB_MENU_INDEX)));
-            runStatus = runMenu();
+    public boolean run() {
+        String status = runMenu();
+        while (status.equals(ERROR_SIGN)) {
+            removeAction();
+            scanSubMenu(getMenu(selectedMenus.get(MENU_INDEX)));
+            status = runMenu();
         }
-        if (runStatus.equals(QUIT_SIGN)) {
+        if (status.equals(QUIT_SIGN)) {
             return false;
         }
         return true;
@@ -57,7 +58,7 @@ public class MenuController {
             if (isQuit()) {
                 return QUIT_SIGN;
             }
-            runAction(getSubMenu(selectedMenus.get(SUB_MENU_INDEX)));
+            runAction(getMenu(selectedMenus.get(MENU_INDEX)));
             return NORMAL_SIGN;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -66,7 +67,7 @@ public class MenuController {
     }
 
     private boolean isQuit() {
-        Menu menu = getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
+        Menu menu = getMenu(selectedMenus.get(MENU_INDEX));
         if (menu == MenuRepository.quit) {
             return true;
         }
@@ -78,15 +79,19 @@ public class MenuController {
             MenuRepository.runNonCategoricalAction(menu);
             return;
         }
-        boolean backAction = !MenuRepository.runCategoricalAction(inputView, menu, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        boolean backAction = !MenuRepository.runCategoricalAction(inputView, menu, selectedMenus.get(ACTION_INDEX));
         if (backAction) {
-            selectedMenus.clear();
+            orderClear();
         }
     }
 
-    public void scanMenu() {
+    private void removeAction() {
+        selectedMenus.remove(ACTION_INDEX);
+    }
+
+    public void scan() {
         String selectedMenuSign = scanMainMenu();
-        if (MenuRepository.isCategoricalMenu(getSubMenu(selectedMenuSign))) {
+        if (MenuRepository.isCategoricalMenu(getMenu(selectedMenuSign))) {
             scanSubMenu(mainMenu.get(selectedMenuSign));
         }
     }
@@ -160,7 +165,11 @@ public class MenuController {
         return true;
     }
 
-    private Menu getSubMenu(String menuSign) {
+    public void orderClear() {
+        selectedMenus.clear();
+    }
+
+    private Menu getMenu(String menuSign) {
         return mainMenu.get(menuSign);
     }
 }

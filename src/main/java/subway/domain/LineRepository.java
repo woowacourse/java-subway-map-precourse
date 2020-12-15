@@ -24,16 +24,16 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static boolean validateNewStationName(String name) {
+    public static boolean validateLinesIncludeStation(String name) {
         for (int i = 0; i < lines.size(); i++) {
-            if (!lines.get(i).validateNewName(name)) {
+            if (!lines.get(i).validateLineIncludeStation(name)) {
                 return false;
             }
         }
         return true;
     }
 
-    public static boolean validateNewLineName(String name) {
+    public static boolean validateUniqueName(String name) {
         for (int i = 0; i < lines.size(); i++) {
             if (lines.get(i).getName().equals(name)) {
                 return false;
@@ -74,7 +74,7 @@ public class LineRepository {
         }
     }
 
-    public static void printList(String lineMessage) {
+    public static void catalogue(String lineMessage) {
         OutputView.printList(lineMessage, getLineNameList());
     }
 

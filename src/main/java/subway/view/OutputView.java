@@ -84,10 +84,10 @@ public class OutputView {
         System.out.println(HASH + DELETE_ORDER_START_MESSAGE + title + NAME_MESSAGE + INPUT_MESSAGE);
     }
 
-    public static void printList(String title, List<String> stationNames) {
+    public static void printList(String title, List<String> names) {
         printListTitle(title);
-        for (int i = 0; i < stationNames.size(); i++) {
-            System.out.println(INFO_TAG + stationNames.get(i));
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(INFO_TAG + names.get(i));
         }
     }
 

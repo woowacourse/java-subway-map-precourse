@@ -18,7 +18,7 @@ public class Station {
     }
 
     public static boolean validateAddStationName(String stationName, String stationMessage) {
-        if (!StationRepository.validateNewName(stationName)) {
+        if (!StationRepository.validateUniqueName(stationName)) {
             throw new ExistentNameException(stationMessage);
         }
         if (!validateStationNameLength(stationName)) {
@@ -28,10 +28,10 @@ public class Station {
     }
 
     public static boolean validateDeleteStationName(String stationName, String stationMessage) {
-        if (StationRepository.validateNewName(stationName)) {
+        if (StationRepository.validateUniqueName(stationName)) {
             throw new NonExistentNameException(stationMessage);
         }
-        if (!LineRepository.validateNewStationName(stationName)) {
+        if (!LineRepository.validateLinesIncludeStation(stationName)) {
             throw new RegisteredStationException();
         }
         return true;

@@ -55,7 +55,7 @@ public class Line {
         }
     }
 
-    public boolean validateNewName(String stationName) {
+    public boolean validateLineIncludeStation(String stationName) {
         for (int i = 0; i < stations.size(); i++) {
             if (stations.get(i).getName().equals(stationName)) {
                 return false;
@@ -65,7 +65,7 @@ public class Line {
     }
 
     public static boolean validateAddLineName(String stationName, String lineMessage) {
-        if (!LineRepository.validateNewLineName(stationName)) {
+        if (!LineRepository.validateUniqueName(stationName)) {
             throw new ExistentNameException(lineMessage);
         }
         if (!validateLineNameLength(stationName)) {
@@ -75,7 +75,7 @@ public class Line {
     }
 
     public static boolean validateExistentLineName(String lineName, String lineMessage) {
-        if (LineRepository.validateNewLineName(lineName)) {
+        if (LineRepository.validateUniqueName(lineName)) {
             throw new NonExistentNameException(lineMessage);
         }
         return true;
@@ -128,7 +128,7 @@ public class Line {
     }
 
     private static boolean validateExistentStation(String boundStationName) {
-        if (StationRepository.validateNewName(boundStationName)) {
+        if (StationRepository.validateUniqueName(boundStationName)) {
             return false;
         }
         return true;

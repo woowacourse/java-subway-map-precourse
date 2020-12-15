@@ -41,7 +41,7 @@ public class StationRepository {
         }
     }
 
-    public static boolean validateNewName(String name) {
+    public static boolean validateUniqueName(String name) {
         for (int i = 0; i < stations.size(); i++) {
             if (stations.get(i).getName().equals(name)) {
                 return false;
@@ -50,7 +50,7 @@ public class StationRepository {
         return true;
     }
 
-    public static void printList(String stationMessage) {
+    public static void catalogue(String stationMessage) {
         OutputView.printList(stationMessage, getStationNameList());
     }
 

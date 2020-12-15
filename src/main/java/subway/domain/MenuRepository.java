@@ -83,7 +83,7 @@ public class MenuRepository {
             StationRepository.delete(inputView, STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(LIST_SIGN)) {
-            StationRepository.printList(STATION_MENU_TITLE);
+            StationRepository.catalogue(STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
             return false;
@@ -99,7 +99,7 @@ public class MenuRepository {
             LineRepository.delete(inputView, LINE_MENU_TITLE);
         }
         if (subMenuAction.equals(LIST_SIGN)) {
-            LineRepository.printList(LINE_MENU_TITLE);
+            LineRepository.catalogue(LINE_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
             return false;
