@@ -1,5 +1,19 @@
 # 지하철 노선도 미션
 
+### ▶ 실행 방법
+
+- 원하는 디렉토리 위치에서 git 명령어 입력
+```
+git clone -b yhh1056 https://github.com/yhh1056/java-subway-map-precourse.git
+```
+- 프로그램 실행 (인텔리제이)
+
+```
+src/main/java/subway 경로에 있는 Application 실행
+```
+
+<br>
+
 ## 📃구현 기능 목록
 
 ### 초기 설정
@@ -54,3 +68,14 @@
 ### 지하철 노선도 관련 기능
 - 지하철 노선도를 출력한다.
 - 지하철 노선도가 비어있는지 검증한다.
+
+<br>
+
+## 📃 커밋 메시지 규칙
+
+- Feat : 새로운 기능 추가
+- Fix : 버그 수정
+- Docs : 문서의 수정
+- Style : 코드의 수정 없이 스타일만 변경
+- Refactor : 코드를 리펙토링
+- Test : Test 관련한 코드의 추가, 수정
