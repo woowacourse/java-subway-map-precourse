@@ -1,39 +1,37 @@
 package subway.Service;
 
+import subway.Exception.LineException.*;
+import subway.Exception.SectionException.*;
+import subway.Exception.StationException.*;
 import subway.Manager.SectionManager;
-import subway.domain.LineRepository;
-import subway.domain.LineStationRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
-import validator.ExceptionMessage;
+import subway.domain.*;
 
 import java.util.List;
 
 public class SectionService {
-
-    private static final int MIN_SECTION_SIZE = 2;
     private static final int LINE_NAME = 0;
     private static final int SECTION_NAME = 1;
     private static final int SECTION_ORDER = 2;
 
 
-    public void addSectionOnTheLine(List<String> insetSectionInfo) {
+    public void addSectionOnTheLine(List<String> sectionInfo) {
         try {
-            String lineName = insetSectionInfo.get(LINE_NAME);
-            String stationName = insetSectionInfo.get(SECTION_NAME);
-            String order = insetSectionInfo.get(SECTION_ORDER);
-            isPossibleSection(lineName, stationName, order);
-            List<Station> updateSection = LineStationRepository.findByLineGetSections(lineName);
-            updateSection.add(Integer.parseInt(order), StationRepository.findByName(stationName));
+            isPossibleInsertSection(sectionInfo);
+
+            List<Station> updateSection = LineStationRepository.findByLineGetSections(sectionInfo.get(LINE_NAME));
+            Station section = StationRepository.findByName(sectionInfo.get(SECTION_NAME));
+            int sectionOrder = Integer.parseInt(sectionInfo.get(SECTION_ORDER));
+            updateSection.add(sectionOrder, section);
         } catch (IllegalArgumentException ie) {
             System.out.println(ie.getMessage());
             SectionManager.execute();
         }
     }
 
-    public  void deleteSectionOnTheLine(List<String> deleteSectionInfo) {
+    public void deleteSectionOnTheLine(List<String> deleteSectionInfo) {
         try {
             isPossibleDeleteSection(deleteSectionInfo.get(LINE_NAME), deleteSectionInfo.get(SECTION_NAME));
+
             Station deleteStation = StationRepository.findByName(deleteSectionInfo.get(SECTION_NAME));
             List<Station> selections = LineStationRepository.findByLineGetSections(deleteSectionInfo.get(LINE_NAME));
             selections.remove(deleteStation);
@@ -43,38 +41,38 @@ public class SectionService {
         }
     }
 
-    private void isPossibleSection(String lineName, String stationName, String order) {
-        if (!LineRepository.contains(lineName)){
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_LINE);
+    private void isPossibleInsertSection(List<String> sectionInfo) {
+        if (!LineRepository.contains(sectionInfo.get(LINE_NAME))){
+            throw new CanNotFindLineException();
         }
-        if (!StationRepository.contains(stationName)){
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+        if (!StationRepository.contains(sectionInfo.get(SECTION_NAME))){
+            throw new CanNotFindStationException();
         }
-        List<Station> updateSection = LineStationRepository.findByLineGetSections(lineName);
-        Station station = StationRepository.findByName(stationName);
+        List<Station> updateSection = LineStationRepository.findByLineGetSections(sectionInfo.get(LINE_NAME));
+        Station station = StationRepository.findByName(sectionInfo.get(SECTION_NAME));
         if (updateSection.contains(station)) {
-            throw new IllegalArgumentException(ExceptionMessage.SAME_STATION_IN_LINE);
+            throw new DuplicateStationInLine();
         }
-        if (updateSection.size() < Integer.parseInt(order)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_VALID_ORDER);
+        if (updateSection.size() < Integer.parseInt(sectionInfo.get(SECTION_ORDER))) {
+            throw new OutOfRangeLineException();
         }
     }
 
 
     private void isPossibleDeleteSection(String lineName, String stationName) {
         if (!LineRepository.contains(lineName)){
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_LINE);
+            throw new CanNotFindLineException();
         }
         if (!StationRepository.contains(stationName)){
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_STATION);
+            throw new CanNotFindStationException();
         }
         List<Station> sections = LineStationRepository.findByLineGetSections(lineName);
         Station station = StationRepository.findByName(stationName);
         if (!sections.contains(station)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EXIST_DELETE_STATION);
+            throw new CanNotFindStationException();
         }
-        if (sections.size() <= MIN_SECTION_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.DO_NOT_DELETE_SECTION);
+        if (sections.size() <= LineStation.MIN_LINE_IN_SECTION_SIZE) {
+            throw new ShorterThanMinLineSizeException();
         }
     }
 }

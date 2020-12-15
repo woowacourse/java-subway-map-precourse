@@ -3,6 +3,8 @@ package subway.domain;
 import java.util.List;
 
 public class LineStation {
+    public static final int MIN_LINE_IN_SECTION_SIZE = 2;
+
     private Line line;
     private List<Station> stations;
 

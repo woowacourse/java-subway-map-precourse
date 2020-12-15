@@ -8,6 +8,7 @@ public class LineStationRepository {
     private static final String NEW_LINE = "\n";
     private static final String PRINT_INFO = "[INFO] ";
     private static final String SEPARATOR = "[INFO] --- \n";
+
     private static final List<LineStation> subwayLine = new ArrayList<>();
 
     public static void addLineStation(LineStation lineStation) {
@@ -33,7 +34,7 @@ public class LineStationRepository {
         return getLineStation(lineName).getStations();
     }
 
-    public static boolean isStationContainSubwayLine(Station station) {
+    public static boolean isStationContainLine(Station station) {
         for (LineStation lineStation : subwayLine) {
             if (lineStation.contains(station))
                 return true;
