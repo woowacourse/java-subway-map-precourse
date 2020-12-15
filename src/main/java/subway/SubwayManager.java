@@ -2,10 +2,12 @@ package subway;
 
 import java.util.Scanner;
 import controller.LineManageController;
+import controller.SectionManageController;
 import controller.StationManageController;
 import utils.ValidateUtils;
 import view.LineManageView;
 import view.MainView;
+import view.SectionManageView;
 import view.StationManageView;
 
 public class SubwayManager {
@@ -20,6 +22,7 @@ public class SubwayManager {
     private MainView mainView;
     private StationManageView stationManageView;
     private LineManageView lineManageView;
+    private SectionManageView sectionManageView;
 
     public SubwayManager(Scanner scanner) {
         mainView = new MainView(scanner);
@@ -32,6 +35,11 @@ public class SubwayManager {
         lineManageView = new LineManageView(scanner);
         LineManageController lineManageController = new LineManageController(lineManageView);
         lineManageView.setController(lineManageController);
+
+        sectionManageView = new SectionManageView(scanner);
+        SectionManageController sectionManageController =
+                new SectionManageController(sectionManageView);
+        sectionManageView.setController(sectionManageController);
     }
 
     public void run() {
@@ -56,6 +64,9 @@ public class SubwayManager {
         }
         if (input == INPUT_MANAGE_LINE) {
             lineManageView.run();
+        }
+        if (input == INPUT_MANAGE_SECTION) {
+            sectionManageView.run();
         }
     }
 }
