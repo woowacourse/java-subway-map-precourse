@@ -12,7 +12,7 @@ public class LineController {
 
     public void save() {
         try {
-            LineService.save(new Line(Input.input(Input.PLEASE_INPUT_LINE_MESSAGE)));
+            LineService.save(new Line(Input.input(Input.PLEASE_INPUT_LINE_NAME)));
         } catch (IllegalArgumentException e) {
             Output.printNewLine();
             System.out.println(e.getMessage());

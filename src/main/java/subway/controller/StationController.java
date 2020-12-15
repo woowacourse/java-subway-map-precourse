@@ -12,7 +12,7 @@ public class StationController {
 
     public void save() {
         try {
-            StationService.save(new Station(Input.input(Input.PLEASE_INPUT_STATION_MESSAGE)));
+            StationService.save(new Station(Input.input(Input.PLEASE_INPUT_STATION_NAME)));
         } catch (IllegalArgumentException e) {
             Output.printNewLine();
             System.out.println(e.getMessage());

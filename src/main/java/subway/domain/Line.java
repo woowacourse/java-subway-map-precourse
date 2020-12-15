@@ -20,10 +20,10 @@ public class Line {
     // 추가 기능 구현
     public void initTerminalStations() {
         Station upwardTerminalStation = StationService.isExists(
-                Input.input(Input.PLEASE_INPUT_UPWARD_TERMINAL_STATION_MESSAGE));
+                Input.input(Input.PLEASE_INPUT_UPWARD_TERMINAL_STATION_NAME));
 
         Station downTerminalStation = StationService.isExists(
-                Input.input(Input.PLEASE_INPUT_DOWN_TERMINAL_STATION_MESSAGE));
+                Input.input(Input.PLEASE_INPUT_DOWN_TERMINAL_STATION_NAME));
 
         if (upwardTerminalStation.equals(downTerminalStation)) {
             throw new TerminalNamesOverlapException();

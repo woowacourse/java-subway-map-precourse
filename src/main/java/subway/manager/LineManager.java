@@ -17,7 +17,7 @@ public class LineManager {
 
     private static LineMenu chooseMenu() {
         try {
-            return LineMenu.getLineMenuType(Input.input(Input.CHOOSE_FUNCTION_MESSAGE));
+            return LineMenu.getLineMenuType(Input.input(Input.CHOOSE_FUNCTION));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return chooseMenu();

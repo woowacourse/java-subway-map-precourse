@@ -17,7 +17,7 @@ public class StationManager {
 
     private static StationMenu chooseMenu() {
         try {
-            return StationMenu.getStationMenuType(Input.input(Input.CHOOSE_FUNCTION_MESSAGE));
+            return StationMenu.getStationMenuType(Input.input(Input.CHOOSE_FUNCTION));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return chooseMenu();

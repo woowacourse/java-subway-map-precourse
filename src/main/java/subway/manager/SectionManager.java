@@ -18,7 +18,7 @@ public class SectionManager {
 
     private static SectionMenu chooseMenu() {
         try {
-            return SectionMenu.getSectionMenuType(Input.input(Input.CHOOSE_FUNCTION_MESSAGE));
+            return SectionMenu.getSectionMenuType(Input.input(Input.CHOOSE_FUNCTION));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return chooseMenu();

@@ -18,7 +18,7 @@ public class MainManager {
 
     private static MainMenu chooseMenu() {
         try {
-            return MainMenu.getMainMenuType(Input.input(Input.CHOOSE_FUNCTION_MESSAGE));
+            return MainMenu.getMainMenuType(Input.input(Input.CHOOSE_FUNCTION));
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
             return chooseMenu();
