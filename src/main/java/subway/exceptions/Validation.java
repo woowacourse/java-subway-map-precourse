@@ -5,12 +5,10 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 
-import javax.print.DocFlavor;
 import java.util.Arrays;
 import java.util.List;
 
 public class Validation {
-    private final String NAMING_RULE = "이름은 두 글자 이상 입력해야 합니다.";
     private final String STATION_CHECKER = "역";
     private final String STATION_NAMING_RULE = "OO역 형태로 입력해야 합니다.";
     private final String LINE_CHECKER = "호선";
@@ -32,17 +30,11 @@ public class Validation {
         if (!name.startsWith(STATION_CHECKER, name.length() - 1)) {
             throw new SubwayException(STATION_NAMING_RULE);
         }
-        if (name.length()-1 < 2) {
-            throw new SubwayException(NAMING_RULE);
-        }
     }
 
     public void lineNameValidation(String name) throws SubwayException {
         if (!name.startsWith(LINE_CHECKER, name.length() - 2)) {
             throw new SubwayException(LINE_NAMING_RULE);
-        }
-        if (name.length()-2 < 2) {
-            throw new SubwayException(NAMING_RULE);
         }
     }
 
