@@ -260,6 +260,7 @@ public class UserInterfaceView {
 
     private void SectionToNextFunction(String userInput) {
         if (ONE_STRING.equals(userInput)) {
+            addSection();
             return;
         }
         if (TWO_STRING.equals(userInput)) {
@@ -284,5 +285,14 @@ public class UserInterfaceView {
             break;
         }
         return userInput;
+    }
+
+    private void addSection() {
+        String lineName = getUserInput(INPUT_SECTION_LINE_NAME);
+        String stationName = getUserInput(INPUT_SECTION_STATION_NAME);
+        int index = getUserInputInt();
+        if (!SectionService.addSection(lineName, stationName, index, true)) {
+            sectionStart();
+        }
     }
 }
