@@ -1,4 +1,4 @@
-package subway.domain.subRepository;
+package subway.domain.repository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,9 @@
 package view.io;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import javax.sql.rowset.serial.SQLInputImpl;
 
 public class InputView {
 
@@ -28,51 +30,48 @@ public class InputView {
         return choice;
     }
 
-    public static Map<String, String> inputNewLineInfo() {
-        Map<String, String> info = Map.of();
+    private static HashMap<String, String> saveNewInfo(HashMap<String, String> info, String inputMessage, String key) {
+        System.out.println(inputMessage);
+        info.put(key, scanner.next());
+        System.out.println();
+        return info;
+    }
 
-        System.out.println(NEW_LINE_NAME);
-        info.put("lineName", scanner.next());
+    public static HashMap<String, String> inputNewLineInfo() {
+        HashMap<String, String> info = new HashMap<>(Map.of());
 
-        System.out.println(START_TERMINAL_NAME);
-        info.put("startTerminalName", scanner.next());
-
-        System.out.println(END_TERMINAL_NAME);
-        info.put("endTerminalName", scanner.next());
+        saveNewInfo(info, NEW_LINE_NAME, "lineName");
+        saveNewInfo(info, START_TERMINAL_NAME, "startTerminalName");
+        saveNewInfo(info, END_TERMINAL_NAME, "endTerminalName");
 
         return info;
     }
 
-    public static String inputDeleteLineName() {
-        System.out.println(DELETE_LINE_NAME);
-        String lineName = scanner.next();
-        return lineName;
+    private static String inputName(String inputMessage) {
+        System.out.println(inputMessage);
+        String name = scanner.next();
+        System.out.println();
+        return name;
     }
 
+    public static String inputDeleteLineName() {
+        return inputName(DELETE_LINE_NAME);
+    }
 
     public static String inputLineName() {
-        System.out.println(INPUT_LINE_NAME);
-        String lineName = scanner.next();
-        return lineName;
-    }
-
-    public static String inputNewStationName() {
-        System.out.println(INPUT_NEW_STATION_NAME);
-        String stationName = scanner.next();
-        System.out.println();
-        return stationName;
-    }
-
-    public static String inputDeleteStationName() {
-        System.out.println(DELETE_STATION_NAME);
-        String stationName = scanner.next();
-        return stationName;
+        return inputName(INPUT_LINE_NAME);
     }
 
     public static String inputStationName() {
-        System.out.println(INPUT_STATION_NAME);
-        String stationName = scanner.next();
-        return stationName;
+        return inputName(INPUT_STATION_NAME);
+    }
+
+    public static String inputNewStationName() {
+        return inputName(INPUT_NEW_STATION_NAME);
+    }
+
+    public static String inputDeleteStationName() {
+        return inputName(DELETE_STATION_NAME);
     }
 
     public static int inputOrder() {
@@ -83,10 +82,8 @@ public class InputView {
 
     public static String[] inputDeleteIntervalInfo() {
         String[] info = new String[2];
-        System.out.println(DELETE_LINE_OF_INTERVAL);
-        info[0] = scanner.next();
-        System.out.println(DELETE_STATION_OF_INTERVAL);
-        info[1] = scanner.next();
+        info[0] = inputName(DELETE_LINE_OF_INTERVAL);
+        info[1] = inputName(DELETE_STATION_OF_INTERVAL);
         return info;
     }
 }

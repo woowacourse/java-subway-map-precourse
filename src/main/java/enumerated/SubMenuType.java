@@ -1,8 +1,8 @@
-package subwaymapenum;
+package enumerated;
 
 public enum SubMenuType {
 
-    STATION('1'), LINE('2'), INTERVAL('3'), EXIT('Q'), MAIN('0');
+    STATION('1'), LINE('2'), INTERVAL('3'), EXIT('Q'), GO_TO_MAIN('B');
 
     SubMenuType(final char choice) {
         this.choice = choice;
@@ -29,7 +29,7 @@ public enum SubMenuType {
     }
 
     public boolean isMain() {
-        return this == SubMenuType.MAIN;
+        return this == SubMenuType.GO_TO_MAIN;
     }
 
 }

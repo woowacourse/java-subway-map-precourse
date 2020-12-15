@@ -1,15 +1,16 @@
-package subway.domain.subRepository;
+package subway.domain.repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import subway.Exception.SubwayRelatedException;
-import subway.domain.Line;
 import subway.domain.Station;
+import subway.exception.SubwayRelatedException;
+import subway.domain.Line;
 
 public class LineRepository{
     private static final String NO_LINE_EXIST = "노선이 존재하지 않습니다";
+    private static final String ONE_LINE = "\n";
     private static List<Line> lines = new ArrayList<>();
 
     public LineRepository() {
@@ -31,9 +32,12 @@ public class LineRepository{
     }
 
     public static boolean isRepeatedName(String newName) {
-        return lines.
-            stream().
-            anyMatch(station -> station.getName() == newName);
+        for(Line line: lines) {
+            if(line.getName().equals(newName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Line searchLine(String target) {
@@ -54,9 +58,16 @@ public class LineRepository{
     public static List<String> inquiryAllStations() {
         List<String> result = new ArrayList<>();
         for(Line line: lines) {
+            System.out.println(line.getName());
             result.addAll(line.inquiryStations());
         }
         return result;
+    }
+
+    public static void deleteStation(String stationName) {
+        for(Line line: lines) {
+            line.getPassingRoutes().delete(StationRepository.searchStation(stationName));
+        }
     }
 
 }

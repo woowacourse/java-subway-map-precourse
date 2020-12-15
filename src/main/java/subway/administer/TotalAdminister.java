@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.administer;
 
 import view.io.InputView;
 import view.io.OutputView;
@@ -10,27 +10,27 @@ import view.submenu.PassingRouteView;
 import java.util.HashMap;
 import java.util.Map;
 
-import subwaymapenum.SubMenuType;
-import subwaymapenum.Operation;
+import enumerated.SubMenuType;
+import enumerated.Operation;
 
-public class TotalDirector {
+public class TotalAdminister {
 
     private Map<SubMenuType, Object> menuToView = new HashMap<SubMenuType, Object>(
         Map.of(SubMenuType.STATION, new StationView(),
                SubMenuType.LINE, new LineView(),
                SubMenuType.INTERVAL, new PassingRouteView(),
-               SubMenuType.MAIN, new MainView())
+               SubMenuType.GO_TO_MAIN, new MainView())
     );
     SubMenuType menu;
     UserInteractionView curView;
     Operation operation;
     char command;
-    InitialAdminister initialAdminister;
+    InitialConfiguration initialAdminister;
 
-    public TotalDirector() {
-        menu = SubMenuType.MAIN;
+    public TotalAdminister() {
+        menu = SubMenuType.GO_TO_MAIN;
         curView = (UserInteractionView) menuToView.get(menu);
-        initialAdminister = new InitialAdminister();
+        initialAdminister = new InitialConfiguration();
         initialAdminister.initConfigure();
     }
 
@@ -38,7 +38,7 @@ public class TotalDirector {
         while (!menu.isExit()) {
             userInputProcess();
             if (operation.isGoBack()) {
-                curView = (UserInteractionView) menuToView.get(SubMenuType.MAIN);
+                curView = (UserInteractionView) menuToView.get(SubMenuType.GO_TO_MAIN);
                 continue;
             }
             curView.execute(operation);
@@ -50,8 +50,15 @@ public class TotalDirector {
         OutputView.printManual(curView.getManual());
         command = InputView.inputChoice();
         operation = Operation.fromCommand(command);
-        if(menu.isMain()) {
+        if(menu.isExit()) {
+            return;
+        }
+        if(this.isMenuUpdated()) {
             menu = SubMenuType.fromCommand(command);
         }
+    }
+
+    private boolean isMenuUpdated() {
+        return (menu.isMain() && !operation.isPrintMap()) || operation.isGoBack();
     }
 }

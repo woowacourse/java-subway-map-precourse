@@ -1,12 +1,12 @@
-package subway.controller.RepositoryAdminister;
+package subway.administer.repository.adminisiter;
 
 import view.io.InputView;
 import view.io.OutputView;
-import subway.Exception.SubwayRelatedException;
+import subway.exception.SubwayRelatedException;
 import subway.domain.Line;
-import subway.domain.subRepository.LineRepository;
+import subway.domain.repository.LineRepository;
 import subway.domain.Station;
-import subway.domain.subRepository.StationRepository;
+import subway.domain.repository.StationRepository;
 import validation.ValidationCheck;
 
 public class PassingRouteAdminister {
@@ -21,12 +21,12 @@ public class PassingRouteAdminister {
     public static void addInterval() {
         try {
             String lineName = InputView.inputLineName();
-            String stationName = InputView.inputStationName();
-            int order = InputView.inputOrder();
             Line line = LineRepository.searchLine(lineName);
+            String stationName = InputView.inputStationName();
             Station station = StationRepository.searchStation(stationName);
             ValidationCheck.RegisteredIntervalCheck(line, station);
-            line.passingRoutes.add(order, station);
+            int order = InputView.inputOrder();
+            line.getPassingRoutes().add(order, station);
             OutputView.printAfterCommand(INTERVAL_REGISTERED);
         }
         catch (SubwayRelatedException e) {

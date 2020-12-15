@@ -1,10 +1,10 @@
 package view;
 
-import subwaymapenum.Operation;
+import enumerated.Operation;
 
 import java.util.Map;
 
-import subway.controller.RepositoryAdminister.PassingRouteAdminister;
+import subway.administer.repository.adminisiter.PassingRouteAdminister;
 
 public class MainView extends UserInteractionView{
 

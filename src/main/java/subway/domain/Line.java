@@ -2,7 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import subway.domain.subRepository.PassingRouteRepository;
+import subway.domain.repository.PassingRouteRepository;
 
 public class Line{
 

@@ -1,4 +1,4 @@
-package subway.controller.RepositoryAdminister;
+package subway.administer.repository.adminisiter;
 
 import java.util.Map;
 
@@ -6,11 +6,11 @@ import validation.ValidationCheck;
 import view.io.InputView;
 import view.io.OutputView;
 
-import subway.Exception.SubwayRelatedException;
+import subway.exception.SubwayRelatedException;
 import subway.domain.Line;
-import subway.domain.subRepository.LineRepository;
-import subway.domain.subRepository.PassingRouteRepository;
-import subway.domain.subRepository.StationRepository;
+import subway.domain.repository.LineRepository;
+import subway.domain.repository.PassingRouteRepository;
+import subway.domain.repository.StationRepository;
 
 public class LineAdminister {
 
@@ -26,11 +26,11 @@ public class LineAdminister {
         try {
             Map<String, String> info = InputView.inputNewLineInfo();
             String name = info.get("lineName");
+            ValidationCheck.repeatedLineCheck(name);
+            ValidationCheck.lineNameLengthCheck(name);
             Line line = new Line(name,
                         new PassingRouteRepository(new String[]{info.get("startTerminalName"), info.get("endTerminalName")}));
             LineRepository.addBack(line);
-            ValidationCheck.repeatedLineCheck(line);
-            ValidationCheck.lineLengthCheck(line);
             OutputView.printAfterCommand(LINE_REGISTERED);
         } catch (SubwayRelatedException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -42,7 +42,7 @@ public class LineAdminister {
         try {
             String name = InputView.inputDeleteLineName();
             ValidationCheck.lineExistenceCheck(name);
-            StationRepository.delete(name);
+            LineRepository.delete(name);
             OutputView.printAfterCommand(LINE_DELETED);
         } catch (SubwayRelatedException e) {
             OutputView.printErrorMessage(e.getMessage());

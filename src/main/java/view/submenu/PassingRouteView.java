@@ -2,11 +2,11 @@ package view.submenu;
 
 import java.util.Map;
 
-import subwaymapenum.Operation;
+import enumerated.Operation;
 
 import view.UserInteractionView;
 
-import subway.controller.RepositoryAdminister.PassingRouteAdminister;
+import subway.administer.repository.adminisiter.PassingRouteAdminister;
 
 public class PassingRouteView extends UserInteractionView{
 

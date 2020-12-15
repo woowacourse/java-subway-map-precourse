@@ -2,11 +2,11 @@ package view.submenu;
 
 import java.util.Map;
 
-import subwaymapenum.Operation;
+import enumerated.Operation;
 
 import view.UserInteractionView;
 
-import subway.controller.RepositoryAdminister.LineAdminister;
+import subway.administer.repository.adminisiter.LineAdminister;
 
 public class LineView extends UserInteractionView{
 

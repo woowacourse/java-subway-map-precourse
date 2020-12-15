@@ -1,10 +1,12 @@
-package subway.controller.RepositoryAdminister;
+package subway.administer.repository.adminisiter;
 
+import subway.domain.repository.LineRepository;
+import subway.domain.repository.PassingRouteRepository;
 import view.io.InputView;
 import view.io.OutputView;
-import subway.Exception.SubwayRelatedException;
+import subway.exception.SubwayRelatedException;
 import subway.domain.Station;
-import subway.domain.subRepository.StationRepository;
+import subway.domain.repository.StationRepository;
 import validation.ValidationCheck;
 
 public class StationAdminister {
@@ -22,7 +24,7 @@ public class StationAdminister {
             String name = InputView.inputNewStationName();
             Station station = new Station(name);
             ValidationCheck.repeatedStationCheck(station);
-            ValidationCheck.stationLengthCheck(station);
+            ValidationCheck.stationNameLengthCheck(station);
             StationRepository.addBack(station);
             OutputView.printAfterCommand(STATION_REGISTERED);
         } catch (SubwayRelatedException e) {
@@ -34,7 +36,7 @@ public class StationAdminister {
     public static void deleteStation() {
         try {
             String name = InputView.inputDeleteStationName();
-            ValidationCheck.StationExistenceCheck(name);
+            LineRepository.deleteStation(name);
             StationRepository.delete(name);
             OutputView.printAfterCommand(STATION_DELETED);
         } catch (SubwayRelatedException e) {

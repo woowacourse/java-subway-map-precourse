@@ -1,10 +1,10 @@
 package validation;
 
-import subway.Exception.SubwayRelatedException;
+import subway.exception.SubwayRelatedException;
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.domain.subRepository.StationRepository;
-import subway.domain.subRepository.LineRepository;
+import subway.domain.repository.StationRepository;
+import subway.domain.repository.LineRepository;
 
 public class ValidationCheck {
 
@@ -16,14 +16,14 @@ public class ValidationCheck {
     private static final int LEAST_LENGTH = 2;
     private static final int LEAST_STATION_NUM = 3;
 
-    public static void stationLengthCheck(Station station) {
+    public static void stationNameLengthCheck(Station station) {
         if (station.getName().length() < LEAST_LENGTH) {
             throw new SubwayRelatedException(NAME_LENGTH_WARNING);
         }
     }
 
-    public static void lineLengthCheck(Line line) {
-        if (line.getName().length() < LEAST_LENGTH) {
+    public static void lineNameLengthCheck(String name) {
+        if (name.length() < LEAST_LENGTH) {
             throw new SubwayRelatedException(NAME_LENGTH_WARNING);
         }
     }
@@ -34,8 +34,8 @@ public class ValidationCheck {
         }
     }
 
-    public static void repeatedLineCheck(Line line) {
-        if (LineRepository.isRepeatedName(line.getName())) {
+    public static void repeatedLineCheck(String name) {
+        if (LineRepository.isRepeatedName(name)) {
             throw new SubwayRelatedException(REPEATED_LINE_NAME);
         }
     }

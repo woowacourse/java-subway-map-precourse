@@ -1,19 +1,19 @@
-package subway.controller;
+package subway.administer;
 
 import java.util.Map;
 import subway.domain.Line;
 import subway.domain.Station;
-import subway.domain.subRepository.PassingRouteRepository;
-import subway.domain.subRepository.StationRepository;
-import subway.domain.subRepository.LineRepository;
+import subway.domain.repository.PassingRouteRepository;
+import subway.domain.repository.StationRepository;
+import subway.domain.repository.LineRepository;
 
-public class InitialAdminister {
+public class InitialConfiguration {
 
     String [] stationNames;
     String [] lineNames;
     Map<String, String[]> StationsForLine;
 
-    InitialAdminister() {
+    InitialConfiguration() {
         stationNames = new String[]{"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
         lineNames = new String[]{"2호선", "3호선", "신분당선"};
         StationsForLine = Map.of(

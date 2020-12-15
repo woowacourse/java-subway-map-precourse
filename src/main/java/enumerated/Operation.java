@@ -1,8 +1,8 @@
-package subwaymapenum;
+package enumerated;
 
 public enum Operation {
 
-    INSERT('1'), DELETE('2'), TRAVERSAL('3'),  PRINT_SUBWAY_MAP('4'), GO_TO_MAIN('B');
+    INSERT('1'), DELETE('2'), TRAVERSAL('3'),  PRINT_SUBWAY_MAP('4'), GO_TO_MAIN('B'), EXIT('Q');
 
     Operation(final char choice) {
         this.choice = choice;

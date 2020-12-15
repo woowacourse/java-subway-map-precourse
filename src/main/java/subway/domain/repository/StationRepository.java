@@ -1,11 +1,11 @@
-package subway.domain.subRepository;
+package subway.domain.repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import subway.Exception.SubwayRelatedException;
+import subway.exception.SubwayRelatedException;
 import subway.domain.Station;
 
 public class StationRepository{
