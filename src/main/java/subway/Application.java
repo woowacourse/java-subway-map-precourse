@@ -16,7 +16,7 @@ public class Application {
         mainView.startView();
     }
 
-    private static void init() {
+    public static void init() {
         StationRepository.addStation(new Station("교대역"));
         StationRepository.addStation(new Station("강남역"));
         StationRepository.addStation(new Station("역삼역"));

@@ -5,29 +5,32 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static subway.resource.TextResource.ERROR_LINE_NAME_DUPLICATED;
 import static subway.resource.TextResource.ERROR_LINE_NOT_EXISTENCE;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.Application;
 
 public class LineRepositoryTest {
+
+    @BeforeAll
+    public static void init() {
+        Application.init();
+    }
 
     @DisplayName("해당 노선을 가지고 있는가")
     @Test
     public void checkStationDuplicated() {
-        StationRepository.addStation(new Station("강남역"));
-        StationRepository.addStation(new Station("교대역"));
         assertThat(LineRepository.hasLine("없어요")).isFalse();
-        LineRepository.addLine(new Line("있어요", "강남역", "교대역"));
-        assertThat(LineRepository.hasLine("있어요")).isTrue();
+        LineRepository.addLine(new Line("중복체크테스트", "강남역", "교대역"));
+        assertThat(LineRepository.hasLine("중복체크테스트")).isTrue();
     }
 
     @DisplayName("중복된 노선은 등록 될 수 없다.")
     @Test
     public void checkAddStationPossible() {
-        StationRepository.addStation(new Station("강남역"));
-        StationRepository.addStation(new Station("교대역"));
-        LineRepository.addLine(new Line("있어요", "강남역", "교대역"));
+        LineRepository.addLine(new Line("중복노선등록테스트", "강남역", "교대역"));
         assertThatThrownBy(() -> {
-            LineRepository.addLine(new Line("있어요", "강남역", "교대역"));
+            LineRepository.addLine(new Line("중복노선등록테스트", "강남역", "교대역"));
         }).isInstanceOf(IllegalArgumentException.class).hasMessage(
             ERROR_LINE_NAME_DUPLICATED
         );
@@ -37,10 +40,9 @@ public class LineRepositoryTest {
     @Test
     public void checkNotionEXISTENCEWhenDelete() {
         assertThatThrownBy(() -> {
-            LineRepository.deleteLineByName("없어요");
+            LineRepository.deleteLineByName("존재하지않는노선인지테스트");
         }).isInstanceOf(IllegalArgumentException.class).hasMessage(
             ERROR_LINE_NOT_EXISTENCE
         );
     }
-
 }
