@@ -1,4 +1,4 @@
-package subway.view;
+package subway.system.view;
 
 public class SectionManagerView {
 
