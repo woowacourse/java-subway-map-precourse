@@ -78,6 +78,9 @@ public class LineController {
     }
 
     public Boolean inquiryLine() {
+        LineRepository.printLines();
+        System.out.println();
+        return true;
     }
 
     public Boolean back() {
