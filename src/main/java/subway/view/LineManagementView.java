@@ -1,6 +1,7 @@
 package subway.view;
 
 import static subway.resource.TextResource.*;
+
 import java.util.Scanner;
 import subway.controller.LineManagementController;
 import subway.domain.Line;
@@ -8,6 +9,7 @@ import subway.domain.LineRepository;
 import subway.view.MainView.OnBackListener;
 
 public class LineManagementView extends View {
+
     private static final String KEY_ADD_LINE = "1";
     private static final String KEY_DELETE_LINE = "2";
     private static final String KEY_SHOW_LINE_LIST = "3";

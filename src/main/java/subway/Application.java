@@ -9,6 +9,7 @@ import subway.domain.StationRepository;
 import subway.view.MainView;
 
 public class Application {
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         init();

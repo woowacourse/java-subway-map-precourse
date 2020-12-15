@@ -1,6 +1,7 @@
 package subway.view;
 
 import static subway.resource.TextResource.*;
+
 import java.util.Scanner;
 import subway.controller.SectionManagementController;
 import subway.view.MainView.OnBackListener;

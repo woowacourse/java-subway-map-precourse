@@ -2,6 +2,7 @@ package subway.domain;
 
 import static subway.resource.TextResource.ERROR_LINE_NAME_DUPLICATED;
 import static subway.resource.TextResource.ERROR_LINE_NOT_EXISTENCE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

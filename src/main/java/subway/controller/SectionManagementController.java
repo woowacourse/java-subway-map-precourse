@@ -5,6 +5,7 @@ import subway.domain.LineRepository;
 import subway.domain.Sections;
 
 public class SectionManagementController {
+
     private static SectionManagementController instance;
 
     private SectionManagementController() {

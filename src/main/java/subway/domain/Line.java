@@ -8,6 +8,7 @@ import static subway.resource.TextResource.ERROR_START_END_STATION_DUPLICATED;
 import java.util.LinkedList;
 
 public class Line {
+
     public static final int MIN_LINE_NAME_LENGTH = 2;
     private String name;
     private Sections sections;
@@ -42,7 +43,6 @@ public class Line {
     public Sections getSections() {
         return sections;
     }
-
 
 
 }

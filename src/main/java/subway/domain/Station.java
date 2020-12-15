@@ -3,6 +3,7 @@ package subway.domain;
 import static subway.resource.TextResource.ERROR_STATION_NAME_LENGTH;
 
 public class Station {
+
     public static final int MIN_STATION_NAME_LENGTH = 2;
     private String name;
 

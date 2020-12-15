@@ -1,6 +1,7 @@
 package subway.view;
 
 import static subway.resource.TextResource.*;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;

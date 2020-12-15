@@ -9,6 +9,7 @@ import static subway.resource.TextResource.ERROR_STATION_NOT_IN_SECTION;
 import java.util.LinkedList;
 
 public class Sections {
+
     public static final int MIN_SECTION_LENGTH = 2;
     private LinkedList<String> sections;
 
