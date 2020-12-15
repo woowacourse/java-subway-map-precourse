@@ -12,12 +12,12 @@ public class Menu {
         this.actionList = actionList;
     }
 
-    public List<String> getActionSigns() {
-        List<String> signs = new ArrayList<String>();
+    public boolean includeAction(String actionSign) {
         for (int i = 0; i < actionList.size(); i++) {
-            String actionSign = actionList.get(i).sign;
-            signs.add(actionSign);
+            if (actionList.get(i).sign.equals(actionSign)) {
+                return true;
+            }
         }
-        return signs;
+        return false;
     }
 }

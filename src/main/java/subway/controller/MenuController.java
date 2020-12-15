@@ -101,7 +101,7 @@ public class MenuController {
 
     private void scanSubMenu(Menu menu) {
         OutputView.printSubScreen(menu);
-        String selectedSubMenu = scanValidMenu(menu.getActionSigns());
+        String selectedSubMenu = scanValidAction(menu);
         selectedMenus.add(selectedSubMenu);
     }
 
@@ -111,6 +111,14 @@ public class MenuController {
             menu = scanMenuCommand();
         } while (!isValidMenu(menu, signs));
         return menu;
+    }
+
+    private String scanValidAction(Menu menu) {
+        String action;
+        do {
+            action = scanMenuCommand();
+        } while (!isValidAction(menu, action));
+        return action;
     }
 
     private String scanMenuCommand() {
@@ -128,8 +136,25 @@ public class MenuController {
         }
     }
 
+    private boolean isValidAction(Menu menu, String actionSign) {
+        try {
+            validateAction(menu, actionSign);
+            return true;
+        } catch (NonExistentMenuException menuError) {
+            System.out.println(menuError.getMessage());
+            return false;
+        }
+    }
+
     private boolean validateMenu(String menu, List<String> signs) {
         if (!signs.contains(menu)) {
+            throw new NonExistentMenuException();
+        }
+        return true;
+    }
+
+    private boolean validateAction(Menu menu, String actionSign) {
+        if (!menu.includeAction(actionSign)) {
             throw new NonExistentMenuException();
         }
         return true;
