@@ -1,8 +1,7 @@
 package subway;
 
-import static log.ErrorCase.FUNCTION_INPUT_ERROR;
+import static log.Logger.displayInputScreen;
 import static log.Logger.displayMainScreen;
-import static log.Logger.errorPrint;
 import static subway.LineManage.linaManage;
 import static subway.SectionManage.sectionManage;
 import static subway.StationManage.stationManage;
@@ -31,12 +30,7 @@ public class Application {
         boolean exitFlag = false;
         while (!exitFlag) {
             displayMainScreen();
-            String mainInput = scanner.next();
-
-            if (mainInput.equalsIgnoreCase(EXIT)) {
-                exitFlag = true;
-            }
-            checkInput(scanner, mainInput);
+            exitFlag = isExit(scanner);
         }
     }
 
@@ -57,23 +51,25 @@ public class Application {
             new Station("양재역"), new Station("양재시민의숲역")))));
     }
 
-    private static void checkInput(Scanner scanner, String mainInput) {
-        if (mainInput.equalsIgnoreCase(STATION_MANAGE)) {
+    private static boolean isExit(Scanner scanner) {
+        String input = displayInputScreen(scanner, new ArrayList<>(Arrays.asList(
+            STATION_MANAGE, LINE_MANAGE, SECTION_MANAGE, ALL_INFO, EXIT)));
+
+        if (input.equalsIgnoreCase(EXIT)) {
+            return true;
+        }
+        if (input.equalsIgnoreCase(STATION_MANAGE)) {
             stationManage(scanner);
-            return;
         }
-        if (mainInput.equalsIgnoreCase(LINE_MANAGE)) {
+        if (input.equalsIgnoreCase(LINE_MANAGE)) {
             linaManage(scanner);
-            return;
         }
-        if (mainInput.equalsIgnoreCase(SECTION_MANAGE)) {
+        if (input.equalsIgnoreCase(SECTION_MANAGE)) {
             sectionManage(scanner);
-            return;
         }
-        if (mainInput.equalsIgnoreCase(ALL_INFO)) {
+        if (input.equalsIgnoreCase(ALL_INFO)) {
             routeMapPrint();
-            return;
         }
-        errorPrint(FUNCTION_INPUT_ERROR);
+        return false;
     }
 }

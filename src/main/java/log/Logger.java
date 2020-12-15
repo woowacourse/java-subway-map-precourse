@@ -1,5 +1,10 @@
 package log;
 
+import static log.ErrorCase.FUNCTION_INPUT_ERROR;
+
+import java.util.List;
+import java.util.Scanner;
+
 public class Logger {
     public static final String LEVEL_GUIDE = "\n## ";
     public static final String LEVEL_ERROR = "\n[ERROR] ";
@@ -28,14 +33,25 @@ public class Logger {
             + "## 원하는 기능을 선택하세요.");
     }
 
+    public static String displayInputScreen(Scanner scanner, List<String> whiteList) {
+        String input;
+        while(true) {
+            guidePrint("원하는 기능을 선택하세요.");
+            input = scanner.next();
+            if (whiteList.contains(input)) {
+                break;
+            }
+            errorPrint(FUNCTION_INPUT_ERROR);
+        }
+        return input;
+    }
+
     public static void displayStationManageScreen() {
         System.out.println("\n## 역 관리 화면\n"
             + "1. 역 등록\n"
             + "2. 역 삭제\n"
             + "3. 역 조회\n"
-            + "B. 돌아가기\n"
-            + "\n"
-            + "## 원하는 기능을 선택하세요.");
+            + "B. 돌아가기");
     }
 
     public static void displayLineManageScreen() {
@@ -43,8 +59,13 @@ public class Logger {
             + "1. 노선 등록\n"
             + "2. 노선 삭제\n"
             + "3. 노선 조회\n"
-            + "B. 돌아가기\n"
-            + "\n"
-            + "## 원하는 기능을 선택하세요.");
+            + "B. 돌아가기");
+    }
+
+    public static void displaySectionManageScreen() {
+        System.out.println("\n## 구간 관리 화면\n"
+            + "1. 구간 등록\n"
+            + "2. 구간 삭제\n"
+            + "B. 돌아가기");
     }
 }
