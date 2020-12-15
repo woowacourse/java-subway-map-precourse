@@ -35,10 +35,9 @@ public class LineStationService extends InputService {
             String lineName = inputAddLineName(scanner);
             String startStationName = inputAddStartStationName(scanner);
             String endStationName = inputAddEndStationName(scanner);
-            Line line = new Line(lineName);
-            addLine(line);
-            lineStation.addLineStation(line, findStation(startStationName));
-            lineStation.addLineStation(line, findStation(endStationName));
+            addLine(new Line(lineName));
+            lineStation.addLineStation(findLine(lineName), findStation(startStationName));
+            lineStation.addLineStation(findLine(lineName), findStation(endStationName));
             printAddLineStationSuccessMessage();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
