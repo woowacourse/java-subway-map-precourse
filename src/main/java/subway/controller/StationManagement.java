@@ -8,6 +8,7 @@ import subway.domain.StationRepository;
 import subway.dto.DTO;
 import subway.view.menuView.StationView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,29 +17,26 @@ public class StationManagement {
 
     private static StationView stationView = StationView.getInstance();
     private static ManagementMenuType menu;
+    private static HashMap<ManagementMenuType, matchedFunction> mapToFunction;
+
+    static {
+        StationManagement.mapToFunction = new HashMap<>();
+        mapToFunction.put(ManagementMenuType.CREATE, StationManagement::registerStation);
+        mapToFunction.put(ManagementMenuType.DELETE, StationManagement::deleteStation);
+        mapToFunction.put(ManagementMenuType.READ, StationManagement::printAllStation);
+        mapToFunction.put(ManagementMenuType.ESCAPE, () -> {});
+    }
 
     public static void run() {
         do {
             try {
                 stationView.printMenu();
                 menu = stationView.getMenuSelection();
-                runSelectedMenuFunction();
+                mapToFunction.get(menu).run();
             } catch (RuntimeException e) {
                 stationView.printErrorMessage(e);
             }
         } while (!menu.equals(ManagementMenuType.ESCAPE));
-    }
-
-    private static void runSelectedMenuFunction() {
-        if (menu.equals(ManagementMenuType.CREATE)) {
-            registerStation();
-        }
-        if (menu.equals(ManagementMenuType.DELETE)) {
-            deleteStation();
-        }
-        if (menu.equals(ManagementMenuType.READ)) {
-            printAllStation();
-        }
     }
 
     private static void registerStation() {

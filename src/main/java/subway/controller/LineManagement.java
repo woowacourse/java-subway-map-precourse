@@ -8,35 +8,33 @@ import subway.domain.StationRepository;
 import subway.dto.DTO;
 import subway.view.menuView.LineView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LineManagement {
     private static LineView lineView = LineView.getInstance();
     private static ManagementMenuType menu;
+    private static HashMap<ManagementMenuType, matchedFunction> mapToFunction;
+
+    static {
+        LineManagement.mapToFunction = new HashMap<>();
+        mapToFunction.put(ManagementMenuType.CREATE, LineManagement::registerLine);
+        mapToFunction.put(ManagementMenuType.DELETE, LineManagement::deleteLine);
+        mapToFunction.put(ManagementMenuType.READ, LineManagement::printAllLines);
+        mapToFunction.put(ManagementMenuType.ESCAPE, () -> {});
+    }
 
     public static void run() {
         do {
             try {
                 lineView.printMenu();
                 menu = lineView.getMenuSelection();
-                runSelectedMenuFunction();
+                mapToFunction.get(menu).run();
             } catch (RuntimeException e) {
                 lineView.printErrorMessage(e);
             }
         } while (!menu.equals(ManagementMenuType.ESCAPE));
-    }
-
-    private static void runSelectedMenuFunction() {
-        if (menu.equals(ManagementMenuType.CREATE)) {
-            registerLine();
-        }
-        if (menu.equals(ManagementMenuType.DELETE)) {
-            deleteLine();
-        }
-        if (menu.equals(ManagementMenuType.READ)) {
-            printAllLines();
-        }
     }
 
     private static void registerLine() {
@@ -62,4 +60,5 @@ public class LineManagement {
 
         lineView.printAll(lineNames);
     }
+
 }

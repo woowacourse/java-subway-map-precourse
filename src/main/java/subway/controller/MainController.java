@@ -4,38 +4,35 @@ import subway.domain.LineRepository;
 import subway.menuType.MainMenuType;
 import subway.view.menuView.MainView;
 
+import java.util.HashMap;
+
 public class MainController {
     private static MainMenuType menu;
     private static MainView mainView = MainView.getInstance();
+    private static HashMap<MainMenuType, matchedFunction> mapToFunction;
+
+    static {
+        MainController.mapToFunction = new HashMap<>();
+        mapToFunction.put(MainMenuType.STATION, StationManagement::run);
+        mapToFunction.put(MainMenuType.LINE, LineManagement::run);
+        mapToFunction.put(MainMenuType.SECTION, SectionManagement::run);
+        mapToFunction.put(MainMenuType.PRINT, MainController::showSubwayMap);
+        mapToFunction.put(MainMenuType.ESCAPE, () -> {});
+    }
 
     public static void run() {
         do {
-            mainView.printMenu();
-            menu = mainView.getMenuSelection();
-            runSelectedMenuFunction();
+            try {
+                mainView.printMenu();
+                menu = mainView.getMenuSelection();
+                mapToFunction.get(menu).run();
+            } catch (Exception e) {
+                mainView.printErrorMessage(e);
+            }
         } while (!menu.equals(MainMenuType.ESCAPE));
     }
 
-    private static void runSelectedMenuFunction() {
-        if (menu.equals(MainMenuType.STATION)) {
-            StationManagement.run();
-        }
-        if (menu.equals(MainMenuType.LINE)) {
-            LineManagement.run();
-        }
-        if (menu.equals(MainMenuType.SECTION)) {
-            SectionManagement.run();
-        }
-        if (menu.equals(MainMenuType.PRINT)) {
-            showSubwayMap();
-        }
-    }
-
     private static void showSubwayMap() {
-        try {
-            MainView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
-        } catch (RuntimeException e) {
-            mainView.printErrorMessage(e);
-        }
+        MainView.showSubwayMap(LineRepository.exprotsAllLinesToDTO());
     }
 }
