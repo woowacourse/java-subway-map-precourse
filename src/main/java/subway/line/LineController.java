@@ -1,6 +1,8 @@
 package subway.line;
 
-import subway.common.CommonService;
+import subway.main.SubwayController;
+import subway.station.Station;
+import subway.station.StationService;
 import subway.view.InputView;
 import subway.view.line.LineManagementView;
 
@@ -18,7 +20,7 @@ public class LineController {
 
         while (true) {
             LineManagementView.showLineManagementMenu();
-            char option = CommonService.selectOption(optionList, inputView);
+            char option = SubwayController.selectOption(optionList, inputView);
 
             if (option == GO_BACK) {
                 break;
@@ -44,30 +46,57 @@ public class LineController {
     }
 
     private static boolean addNewLine(InputView inputView) {
-        LineManagementView.askNewLineName();
-        String lineName = inputView.lineName();
-        boolean success = LineService.addLine(lineName, inputView);
-        if (success) {
-            LineManagementView.addLineComplete();
+        boolean success = false;
+        try {
+            Line line = getNewLine(inputView);
+            Station startStation = getStartStation(inputView);
+            Station endStation = getEndStation(inputView);
+            success = LineService.addLine(line, startStation, endStation);
+            if (success) {
+                LineManagementView.addLineComplete();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return success;
     }
 
-    private static boolean deleteLine(InputView inputView) {
-        LineManagementView.askDeleteLineName();
+    private static Line getNewLine(InputView inputView) {
+        LineManagementView.askNewLineName();
         String lineName = inputView.lineName();
-        boolean success = LineService.deleteLine(lineName);
-        if (success) {
-            LineManagementView.deleteLineComplete();
+        return new Line(lineName);
+    }
+
+    private static Station getStartStation(InputView inputView) {
+        LineManagementView.askStartStationName();
+        String startStationName = inputView.stationName();
+        return StationService.findStation(startStationName);
+    }
+
+    private static Station getEndStation(InputView inputView) {
+        LineManagementView.askEndStationName();
+        String endStationName = inputView.stationName();
+        return StationService.findStation(endStationName);
+    }
+
+    private static boolean deleteLine(InputView inputView) {
+        boolean success = false;
+        try {
+            LineManagementView.askDeleteLineName();
+            String lineName = inputView.lineName();
+            success = LineService.deleteLine(lineName);
+            if (success) {
+                LineManagementView.deleteLineComplete();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         return success;
     }
 
     private static boolean printRegisteredLine() {
-        return LineService.printAllLine();
-    }
-
-    public static void showSubwayMap() {
-        LineService.printAllLineInformation();
+        List<Line> lines = LineService.allLine();
+        LineManagementView.showAllLine(lines);
+        return true;
     }
 }
