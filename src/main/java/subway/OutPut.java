@@ -83,4 +83,8 @@ public class OutPut {
     public static void printSectionDeleteMessage() {
         System.out.println(INFO + SECTION_DELETE_MESSAGE);
     }
+
+    public static void printNextLine() {
+        System.out.println();
+    }
 }
