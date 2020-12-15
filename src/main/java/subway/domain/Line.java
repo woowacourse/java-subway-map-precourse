@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
@@ -13,6 +14,7 @@ public class Line {
 
     public Line(String name) {
         this.name = name;
+        this.stations = new LinkedList<>();
     }
 
     public String getName() {
