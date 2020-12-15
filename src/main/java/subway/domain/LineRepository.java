@@ -34,4 +34,9 @@ public class LineRepository {
         Line line = getLineByName(lineName);
         line.addStation(index, stationName);
     }
+
+    public static void deleteStationInLine(String lineName, String stationName) {
+        Line line = getLineByName(lineName);
+        line.deleteStation(stationName);
+    }
 }
