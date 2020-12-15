@@ -1,6 +1,6 @@
 package subway.menu;
 
-import subway.controller.StationMenuHandler;
+import subway.controller.menuhandler.StationMenuHandler;
 import subway.exception.SubwayException;
 
 import static subway.util.TextConstant.*;

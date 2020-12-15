@@ -14,7 +14,7 @@ public class SectionRepository {
         line.deleteStation(station.getName());
     }
 
-    public static Map<List<String>, String> getSubwayMap(){
-        return null;
+    public static List<String> getSectionNames(String line){
+        return LineRepository.findLine(line).sectionsNames();
     }
 }

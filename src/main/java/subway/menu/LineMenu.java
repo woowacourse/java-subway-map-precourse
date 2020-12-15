@@ -2,7 +2,7 @@ package subway.menu;
 
 import static subway.util.TextConstant.*;
 
-import subway.controller.LineMenuHandler;
+import subway.controller.menuhandler.LineMenuHandler;
 import subway.exception.SubwayException;
 
 import java.util.Arrays;
@@ -14,7 +14,6 @@ public enum LineMenu {
     DELETE_LINE("라인 삭제", "2", LineMenuHandler::deleteLine),
     SHOW_LINE("라인 조회", "3", LineMenuHandler::showLine),
     BACK("돌아가기", "B", LineMenuHandler::back);
-
 
     LineMenu(String title, String command, Runnable action) {
         this.title = title;

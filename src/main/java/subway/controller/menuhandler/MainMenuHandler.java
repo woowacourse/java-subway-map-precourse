@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.controller.menuhandler;
 
 import static subway.util.TextConstant.*;
 
@@ -9,8 +9,6 @@ import subway.menu.StationMenu;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -34,19 +32,19 @@ public class MainMenuHandler {
     }
 
     public static void showSubwayMap() {
-        Map<String, List<String>> lineNamesAndStationNamesMap =
-                LineRepository.lines().lineNames().stream()
+        OutputView.showSubwayMap(
+                LineRepository
+                        .getLineNames().stream()
                         .collect(
                                 Collectors.toMap(Function.identity()
                                         , lineName -> LineRepository
                                                 .findLine(lineName)
                                                 .sectionsNames())
-                        );
-        OutputView.showSubwayMap(lineNamesAndStationNamesMap);
+                        )
+        );
     }
 
     public static void end() {
         System.exit(ZERO);
     }
-
 }

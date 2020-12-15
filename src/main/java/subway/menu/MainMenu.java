@@ -2,7 +2,7 @@ package subway.menu;
 
 import static subway.util.TextConstant.*;
 
-import subway.controller.MainMenuHandler;
+import subway.controller.menuhandler.MainMenuHandler;
 import subway.exception.SubwayException;
 
 import java.util.Arrays;

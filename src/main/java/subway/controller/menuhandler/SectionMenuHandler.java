@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.controller.menuhandler;
 
 import static subway.util.TextConstant.*;
 

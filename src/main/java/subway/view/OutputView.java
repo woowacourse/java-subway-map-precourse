@@ -62,6 +62,7 @@ public class OutputView {
     public static void showName(String name) {
         println(INFO_PREFIX_MSG.concat(name));
     }
+
     public static void showCompleteMessage(String subject, String action) {
         println(EMPTY_STRING);
         println(String.format(INFO_COMPLETE_MSG_FORMAT, subject, action));
