@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class LineRepository {
     private static final String LINE_LIST = "## 노선 목록";
+    private static final String SUBWAY_MAP = "## 지하철 노선도";
     private static final int MIN_STATION_SIZE = 2;
 
     private static final List<Line> lines = new ArrayList<>();
@@ -55,5 +56,18 @@ public class LineRepository {
             return false;
         }
         return deleteLine.getStations().removeIf(station -> station.getName().equals(stationName));
+    }
+
+    public static Boolean printLinesAndStations() {
+        System.out.println(SUBWAY_MAP);
+        lines.forEach(line -> {
+            OutputViewOfInfo.printLines(line.getName());
+            OutputViewOfInfo.printInfoLine();
+            line.getStations().forEach(station -> {
+                OutputViewOfInfo.printStations(station.getName());
+            });
+            System.out.println();
+        });
+        return true;
     }
 }
