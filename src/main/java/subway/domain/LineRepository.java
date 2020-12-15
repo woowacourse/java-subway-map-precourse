@@ -29,27 +29,21 @@ public class LineRepository {
 
     public static boolean addPathInLine(String findLine, String inputStation, int inputIndex) {
         if (getLine(findLine) == null) {
-            OutputView.printLineDoesNotExistErrorMessage(findLine);
+            OutputView.printDoesNotExistErrorMessage(findLine);
             return false;
         }
         Station station = StationRepository.getStation(inputStation);
-        if (station == null) {
-            return false;
-        }
         getLine(findLine).getPath().addOneStationBetweenStations(station, inputIndex);
         return true;
     }
 
     public static boolean deletePathInLine(String findLine, String deleteStation) {
-        if (getLine(findLine) == null) {
-            OutputView.printLineDoesNotExistErrorMessage(findLine);
+        Line line = getLine(findLine);
+        if (line == null || !line.getPath().isStationInLine(StationRepository.getStation(deleteStation))) {
+            OutputView.printDoesNotExistErrorMessage(findLine);
             return false;
         }
-        Station station = StationRepository.getStation(deleteStation);
-        if (station == null) {
-            return false;
-        }
-        getLine(findLine).getPath().deleteStation(station);
+        getLine(findLine).getPath().deleteStation(StationRepository.getStation(deleteStation));
         return true;
     }
 

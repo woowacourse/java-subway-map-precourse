@@ -29,6 +29,7 @@ public class MainScreen implements Screen {
             OutputView.printMenus(Integer.toString(i + 1) + DOT + MAIN_MENU_ELEMENT.get(i).toString() + SPACE + MAIN_MENU_ACTION.get(i).toString());
         }
         OutputView.printMenus(EXIT_MARK + MAIN_MENU_ACTION.get(i).toString());
+        OutputView.printNewLine();
     }
 
     @Override

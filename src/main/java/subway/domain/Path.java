@@ -45,5 +45,9 @@ public class Path {
             OutputView.printWithInformationMark(station.getName());
         }
     }
+
+    public boolean isStationInLine(Station station){
+        return paths.contains(station);
+    }
 }
 

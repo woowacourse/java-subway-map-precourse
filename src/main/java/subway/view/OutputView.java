@@ -25,6 +25,7 @@ public class OutputView {
     public static final String INPUT_ORDER = "순서를 입력하세요.";
     public static final String ALERT_ABOUT_PATH = "구간이 %s되었습니다.";
     public static final String DELETE_INPUT_PREFIX = "삭제할 구간의 ";
+    public static final String INDEX_VALID_ERROR_MESSAGE = "순서는 숫자만 입력 가능합니다.";
     public static final String LIST = " 목록";
 
     public static final void printMenus(String menu) {
@@ -32,12 +33,10 @@ public class OutputView {
     }
 
     public static final void printWithDoubleSharp(String string) {
-        printNewLine();
         System.out.println(DOUBLE_SHARP + string);
     }
 
     public static final void printSelectFunction() {
-        printNewLine();
         printWithDoubleSharp(SELECT_FUNCTION);
     }
 
@@ -86,7 +85,7 @@ public class OutputView {
         System.out.println(ERROR_MARK + STATION_DELETE_ERROR_MESSAGE);
     }
 
-    public static final void printLineDoesNotExistErrorMessage(String line) {
+    public static final void printDoesNotExistErrorMessage(String line) {
         System.out.println(String.format(ERROR_MARK + DELETE_ERROR_ABOUT_EXIST, line));
     }
 
@@ -128,6 +127,10 @@ public class OutputView {
 
     public static final void printErrorAboutPath(String action) {
         System.out.println(String.format(ERROR_MARK + PATH_ERROR_MESSAGE, action));
+    }
+
+    public static final void printErrorAboutNotValidIndex(){
+        System.out.println(INDEX_VALID_ERROR_MESSAGE);
     }
 }
 

@@ -10,6 +10,7 @@ import java.util.Objects;
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
     private static final String NAME = "역";
+    private static final int NONE = -1;
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -47,12 +48,21 @@ public class StationRepository {
         }
     }
 
-    public static Station getStation(String name){
-        for(Station station: stations){
-            if (station.getName() == name){
-                return station;
+    private static int getIndexOfStationIfExist(String name) {
+        for (Station station : stations) {
+            if (station.getName().equals(name)) {
+                return stations.indexOf(station);
             }
         }
-        return null;
+        return NONE;
+    }
+
+    public static Station getStation(String name) {
+        if (getIndexOfStationIfExist(name) == NONE) {
+            Station station = new Station(name);
+            addStation(station);
+            return station;
+        }
+        return stations.get(getIndexOfStationIfExist(name));
     }
 }

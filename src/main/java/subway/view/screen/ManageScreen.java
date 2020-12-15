@@ -32,6 +32,7 @@ public class ManageScreen implements Screen {
             OutputView.printMenus(Integer.toString(i + 1) + DOT + name + SPACE + MANAGE_MENU_ACTION.get(i).toString());
         }
         OutputView.printMenus(BACK_MARK + MANAGE_MENU_ACTION.get(i).toString());
+        OutputView.printNewLine();
     }
 
     @Override
