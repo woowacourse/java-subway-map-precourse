@@ -16,10 +16,11 @@ public class IntervalService {
             IllegalArgumentException {
         validateLineSize(currLine);
         currLine.deleteIntervals(deleteStation);
+        deleteStation.deleteRegisteredLine(currLine);
     }
 
     private void validateLineSize(Line currLine) throws IllegalArgumentException {
-        if (currLine.intervals().size() < MIN_LINE_SIZE) {
+        if (currLine.intervals().size() <= MIN_LINE_SIZE) {
             throw new IllegalArgumentException(LINE_UNDER_TWO);
         }
     }

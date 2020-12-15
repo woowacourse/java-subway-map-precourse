@@ -21,4 +21,8 @@ public class Station {
     public boolean isRegisteredToLine() {
         return !registeredLines.isEmpty();
     }
+
+    public void deleteRegisteredLine(Line registeredLine) {
+        registeredLines.remove(registeredLine);
+    }
 }

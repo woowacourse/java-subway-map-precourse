@@ -21,7 +21,8 @@ public class MainService {
         return mainService;
     }
 
-    public void selectMenu(LinkedHashMap<String, Menu> menuList, String menuKey, Scanner scanner) {
+    public void selectMenu(LinkedHashMap<String, Menu> menuList,
+                           String menuKey, Scanner scanner) throws IllegalArgumentException {
         selectedMenu = menuList.get(menuKey);
         runSelectMenu(scanner);
     }
