@@ -21,24 +21,23 @@ public class LineRepository {
 	}
 
 	public static Line findStation(String name) {
-    	for(int templine=0; templine<lines.size();templine++)
-    	{
-    		if (lines.get(templine).getName().equals(name))
-    		{
-    			Line line = lines.get(templine);
-    			return line;
-    		}
-    	}
-    	System.out.println();
+		for (int templine = 0; templine < lines.size(); templine++) {
+			if (lines.get(templine).getName().equals(name)) {
+				Line line = lines.get(templine);
+				return line;
+			}
+		}
+		System.out.println();
 		return null;
 	}
+
 	public static void viewLine() {
 		for (int line = 0; line < lines.size(); line++) {
-			System.out.println("[INFO] " +lines.get(line).getName());
+			System.out.println("[INFO] " + lines.get(line).getName());
 		}
 		System.out.println();
 	}
-	
+
 	public static void viewLineRepository() {
 		for (int line = 0; line < lines.size(); line++) {
 			lines.get(line).viewLine();

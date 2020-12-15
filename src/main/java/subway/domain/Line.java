@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+	private static final String ERROR_STATION_MESSAGE = "[ERROR] 해당 노선에 없는 역입니다.";
 	private String name;
 	private List<Station> stations = new ArrayList<>();
 
@@ -33,10 +34,20 @@ public class Line {
 
 	public void viewLine() {
 		System.out.println("[INFO] " + name);
-		System.out.println("[INFO] " + "---");		
+		System.out.println("[INFO] " + "---");
 		for (int station = 0; station < stations.size(); station++) {
 			System.out.println("[INFO] " + stations.get(station).getName());
 		}
+	}
+
+	public void deleteStation(String name) {
+		for (int count = 0; count < stations.size(); count++) {
+			if (stations.get(count).equals(name)) {
+				stations.remove(count);
+				return;
+			}
+		}
+		System.out.println(ERROR_STATION_MESSAGE);
 	}
 
 }

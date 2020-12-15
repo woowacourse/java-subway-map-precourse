@@ -16,6 +16,8 @@ public class Application {
 			+ "B. 돌아가기" + "\n\n" + "## 원하는 기능을 선택하세요.";
 	private static final String LINE_SELECT_MESSAGE = "## 노선 관리 화면\r\n" + "1. 노선 등록\r\n" + "2. 노선 삭제\r\n"
 			+ "3. 노선 조회\r\n" + "B. 돌아가기\n" + "\n\n" + "## 원하는 기능을 선택하세요.";
+	private static final String STATION_LINE_MESSAGE = "## 구간 관리 화면\r\n" + "1. 구간 등록\r\n" + "2. 구간 삭제\r\n"
+			+ "B. 돌아가기\r\n" + "## 원하는 기능을 선택하세요.";
 	private static final String NEW_STATION_MESSAGE = "\n## 등록할 역 이름을 입력하세요.";
 	private static final String CREATE_STATION_MESSAGE = "[INFO] 지하철 역이 등록되었습니다.";
 	private static final String ERROR_CREATE_STATION_MESSAGE = "[ERROR] 이미 등록된 역 이름입니다.";
@@ -31,8 +33,12 @@ public class Application {
 	private static final String DELETE_LINE_INPUT = "\n## 삭제할 노선 이름을 입력하세요.";
 	private static final String DELETE_LINE_MESSAGE = "[INFO] 지하철 노선이 삭제되었습니다.";
 	private static final String ERROR_DELETE_LINE_MESSAGE = "[ERROR] 없는 지하철노선 이름입니다.";
+	private static final String INPUT_LINESTATION_LINE = "## 노선을 입력하세요.";
+	private static final String INPUT_LINESTATION_STATION = "## 역이름을 입력하세요.";
+	private static final String INPUT_LINESTATION_COUNT = "## 순서을 입력하세요.";
+	private static final String INPUT_LINESTATION_DELETE_LINE = "## 삭제할 구간의 노선을 입력하세요.";
+	private static final String INPUT_LINESTATION_DELETE__STATION = "## 삭제할 구간의 역을 입력하세요.";
 	private static final String ERROR_INPUT_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
-	
 	private static final String END_PROGRAM_MESSAGE = "##프로그램을 종료합니다.";
 
 	public static void main(String[] args) {
@@ -88,7 +94,7 @@ public class Application {
 			return false;
 		}
 		if (select.equals("3")) {
-			stationManagement(scanner, stationRepositiory, lineRepositiory);
+			stationLineManagement(scanner, stationRepositiory, lineRepositiory);
 			return false;
 		}
 		if (select.equals("4")) {
@@ -206,23 +212,22 @@ public class Application {
 			}
 			createLine(lineRepositiory, line);
 			Line tempLine = lineRepositiory.findStation(line);
-			
+
 			System.out.println(INPUT_START_LINE);
 			String startLine = scanner.nextLine();
 			tempLine.startStation(stationRepositiory.findStation(startLine));
-			
+
 			System.out.println(INPUT_END_LINE);
 			String endLine = scanner.nextLine();
 			tempLine.endStation(stationRepositiory.findStation(endLine));
-			
+
 			System.out.println(CREATE_LINE_MESSAGE + "\n");
 			return;
 		}
 		System.out.println(ERROR_CREATE_STATION_MESSAGE + "\n");
 	}
 
-	public static void deleteLine(Scanner scanner, LineRepository lineRepositiory)
-	{
+	public static void deleteLine(Scanner scanner, LineRepository lineRepositiory) {
 		System.out.println(DELETE_LINE_INPUT);
 		String line = scanner.nextLine();
 		if (lineRepositiory.findStation(line) != null) {
@@ -232,11 +237,57 @@ public class Application {
 		}
 		System.out.println(ERROR_DELETE_LINE_MESSAGE + "\n");
 	}
+
 	public static void statusLine(LineRepository lineRepositiory) {
 		lineRepositiory.viewLine();
 	}
-	
-	
+
+	public static void stationLineManagement(Scanner scanner, StationRepository stationRepositiory,
+			LineRepository lineRepositiory) {
+		while (true) {
+			System.out.println(STATION_SELECT_MESSAGE);
+			String Select = scanner.nextLine();
+			if (Select.equals("1")) {
+				newStationLine(scanner, stationRepositiory, lineRepositiory);
+				return;
+			}
+			if (Select.equals("2")) {
+				deleteStationLine(scanner, stationRepositiory, lineRepositiory);
+				return;
+			}
+			if (Select.equals("B")) {
+				return;
+			}
+			System.out.println(ERROR_INPUT_MESSAGE);
+		}
+	}
+
+	public static void newStationLine(Scanner scanner, StationRepository stationRepositiory,
+			LineRepository lineRepositiory) {
+		System.out.println(INPUT_LINESTATION_LINE);
+		String line = scanner.nextLine();
+		System.out.println(INPUT_LINESTATION_STATION);
+		String station = scanner.nextLine();
+		System.out.println(INPUT_LINESTATION_COUNT);
+		String count = scanner.nextLine();
+
+		Line tempLine = lineRepositiory.findStation(line);
+
+		tempLine.addStation(stationRepositiory, station, Integer.parseInt(count));
+	}
+
+	public static void deleteStationLine(Scanner scanner, StationRepository stationRepositiory,
+			LineRepository lineRepositiory) {
+		System.out.println(INPUT_LINESTATION_DELETE_LINE);
+		String line = scanner.nextLine();
+		System.out.println(INPUT_LINESTATION_DELETE__STATION);
+		String station = scanner.nextLine();
+
+		Line tempLine = lineRepositiory.findStation(line);
+
+		tempLine.deleteStation(station);
+	}
+
 	public static void showStatus(LineRepository lineRepositiory) {
 		lineRepositiory.viewLineRepository();
 	}
