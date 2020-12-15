@@ -4,7 +4,6 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.exception.domain.SectionExceptionHandler;
-import subway.exception.domain.StationExceptionHandler;
 import subway.exception.input.SectionInputExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -43,7 +42,7 @@ public class SectionController {
         String line = InputView.getAddStationToLine();
         SectionExceptionHandler.notLineContained(line); //
         String station = InputView.getAddStation();
-        StationExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
+        SectionExceptionHandler.stationShouldNotBeInLineForAddingToSection(line, station);
         String order = InputView.getAddStationOrder();
         SectionExceptionHandler.positiveInt(order);
         SectionExceptionHandler.lineOverflow(line, order);
