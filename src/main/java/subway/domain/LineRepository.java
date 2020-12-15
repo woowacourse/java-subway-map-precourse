@@ -24,14 +24,14 @@ public class LineRepository {
     }
 
     public static boolean deleteLineByName(String name) {
-        Line getLine = getEqualsLine(name);
+        Line getLine = getLineByName(name);
         if (getLine == null) {
             throw new IllegalArgumentException("[ERROR] 등록 되어 있지 않은 노선입니다.");
         }
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Line getEqualsLine(String lineName) {
+    public static Line getLineByName(String lineName) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
                 return line;
@@ -57,11 +57,6 @@ public class LineRepository {
                 throw new IllegalArgumentException("[ERROR] 노선에 등록된 역은 삭제가 불가능합니다.");
             }
         }
-    }
-
-    public static void addSectionLineOfStation(String line, String station, int indexNum) {
-        Station stationName = StationRepository.getStationByName(station);
-        getEqualsLine(line).getStations().add(indexNum, stationName);
     }
 
     public static void validateSectionDeleteStationCount(Line lines) {

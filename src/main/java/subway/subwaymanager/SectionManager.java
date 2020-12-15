@@ -2,6 +2,7 @@ package subway.subwaymanager;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.utils.InputView;
 import subway.utils.OutputView;
@@ -30,10 +31,7 @@ public class SectionManager {
         if (inputSectionSelect.equals(CONTENTS_NUMBER_SECOND)) {
             deleteSection();
         }
-        if (inputSectionSelect.equals(CONTENTS_NUMBER_BACK)) {
-            return false;
-        }
-        return true;
+        return !inputSectionSelect.equals(CONTENTS_NUMBER_BACK);
     }
 
     private static void registerSection() {
@@ -43,7 +41,23 @@ public class SectionManager {
         String stationName = InputView.inputSelect();
         System.out.println("순서를 입력하세요.");
         int indexNum = InputView.inputNumber();
-        LineRepository.addSectionLineOfStation(lineName, stationName, indexNum);
+        addSectionLineOfStation(lineName, stationName, indexNum);
+    }
+
+    public static void addSectionLineOfStation(String lineName, String stationName, int indexNum) {
+        Line line = LineRepository.getLineByName(lineName);
+        Station station = StationRepository.getStationByName(stationName);
+        validateAddSectionLineOfStation(line,station);
+        line.addSectionStation(station, indexNum);
+    }
+
+    public static void validateAddSectionLineOfStation(Line line, Station station) {
+        if(line == null) {
+            throw new IllegalArgumentException("[ERROR] 라인이 존재하지 않습니다. 라인을 먼저 만들고 시도 바랍니다.");
+        }
+        if(station == null) {
+            throw new IllegalArgumentException("[ERROR] 역이 존재하지 않습니다. 역을 먼저 만들고 시도 바랍니다.");
+        }
     }
 
     private static void deleteSection() {

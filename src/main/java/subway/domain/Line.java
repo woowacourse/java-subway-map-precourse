@@ -23,4 +23,8 @@ public class Line {
     public List<Station> getStations() {
         return stations;
     }
+
+    public void addSectionStation(Station station, int index) {
+        this.stations.add(index, station);
+    }
 }
