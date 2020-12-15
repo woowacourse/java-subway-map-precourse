@@ -18,4 +18,11 @@ public class InputView {
         return inputMainMenu(scanner);
     }
 
+    public static String inputManagementMenu(Scanner scanner, ManagementMenu menu){
+        String inputData = scanner.nextLine();
+        if(MainMenu.isValidOrder(inputData)){
+            return inputData;
+        }
+        return inputMainMenu(scanner);
+    }
 }

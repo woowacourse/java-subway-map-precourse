@@ -5,6 +5,8 @@ import subway.domain.menu.MainMenu;
 import subway.domain.menu.ManagementMenu;
 import subway.domain.menu.ServiceList;
 
+import java.util.List;
+
 public class OutputView {
 
     public OutputView() {
@@ -19,18 +21,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printManagementView(ServiceList data){
+    public static void printManagementView(ServiceList service, List<ManagementMenu> menuList){
         System.out.print(Constant.VIEW_HEADER);
-        System.out.printf(Constant.MANAGEMENT_VIEW_HEADER_FORMAT, data.getName());
-        for(ManagementMenu managementMenu : ManagementMenu.values()) {
-            if(data == ServiceList.SECTION && managementMenu == ManagementMenu.FIND ){          /*구간 관리 화면에는 조회 없음*/
-                continue;
-            }
-
-            System.out.printf(Constant.MANAGEMENT_VIEW_BODY_FORMAT, managementMenu.getOrder()
-                    , data.getName(), managementMenu.getMessage());
+        System.out.printf(Constant.MANAGEMENT_VIEW_HEADER_FORMAT, service.getName());
+        for(ManagementMenu menu : menuList) {
+            System.out.printf(Constant.MANAGEMENT_VIEW_BODY_FORMAT, menu.getOrder(), service.getName(), menu.getMessage());
         }
-
+        System.out.println();
     }
 
     public static void printSubwayMap(){
