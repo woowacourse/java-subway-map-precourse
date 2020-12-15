@@ -70,16 +70,20 @@ public class OutputView {
         System.out.println(ERROR_MARK + "해당 역이 노선에 포함되어 있거나, 존재하지 않아 삭제할 수 없습니다.");
     }
 
+    public static final void printLineDeleteErrorMessage(String line) {
+        System.out.println(String.format(ERROR_MARK + "%s는 존재하지 않습니다.", line));
+    }
+
     public static final void printNameLengthErrorMessage(String type, String string) {
         System.out.println(String.format(ERROR_MARK + "%s 명은 두 글자 이상이어야 합니다. (입력값: %s)", type, string));
     }
 
     public static final void printSameNameErrorMessage() {
-        System.out.println("상행선과 하행선은 서로 다른 역이어야 합니다.");
+        System.out.println(ERROR_MARK + "상행선과 하행선은 서로 다른 역이어야 합니다.");
     }
 
     public static final void printStationDoesNotExistErrorMessage(String station) {
-        System.out.println(String.format("입력한 %s은 존재하지 않아, 등록할 수 없습니다.", station));
+        System.out.println(String.format(ERROR_MARK + "입력한 %s은 존재하지 않아, 등록할 수 없습니다.", station));
     }
 }
 

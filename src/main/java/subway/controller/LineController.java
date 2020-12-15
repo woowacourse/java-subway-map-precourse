@@ -104,7 +104,13 @@ public class LineController implements Controller {
     }
 
     public void deleteLine(String action) {
-
+        OutputView.printWithAction(action, NAME);
+        String line = InputView.getCommand(scanner);
+        if (LineRepository.deleteLineByName(line)) {
+            OutputView.printAlert(action, NAME);
+            return;
+        }
+        OutputView.printLineDeleteErrorMessage(line);
     }
 
     public void selectLine(String action) {
