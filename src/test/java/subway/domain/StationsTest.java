@@ -3,11 +3,10 @@ package subway.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import subway.exception.SubwayException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -40,7 +39,7 @@ class StationsTest {
         stations.addStation(StationFactory.makeStation(testName));
 
         assertThatThrownBy(() -> stations.addStation(StationFactory.makeStation(testName)))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 이미 등록된 역명입니다.");
     }
 
@@ -60,7 +59,7 @@ class StationsTest {
         String testName = "신대방역";
 
         assertThatThrownBy(() -> stations.findStation(testName))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 해당 역이 없습니다.");
     }
 
@@ -82,8 +81,25 @@ class StationsTest {
 
         String errorName = "장승역";
         assertThatThrownBy(() -> stations.deleteStation(errorName))
-                .isInstanceOf(NoSuchElementException.class)
+                .isInstanceOf(SubwayException.class)
                 .hasMessage("[ERROR] 해당 역이 없습니다.");
+    }
+
+    @DisplayName("예외 : 삭제하려는 역이 노선에 등록되어 있으면 에러를 발생시킨다")
+    @Test
+    void 노선에_등록된_역() {
+        Station station1 = StationFactory.makeStation("상도역");
+        Station station2 = StationFactory.makeStation("장승역");
+        Station station3 = StationFactory.makeStation("잠실새내역");
+
+        StationRepository.addStation(station1);
+        StationRepository.addStation(station2);
+        StationRepository.addStation(station3);
+        LineRepository.addLine(LineFactory.makeLine("2호선", station1, station2));
+
+        assertThatThrownBy(() -> StationRepository.deleteStation(station1.getName()))
+                .isInstanceOf(SubwayException.class)
+                .hasMessage("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
     }
 
     @DisplayName("지하철역 목록을 조회한다")
@@ -98,7 +114,7 @@ class StationsTest {
         stations.addStation(StationFactory.makeStation(testName3));
 
         // 9와4/3역, 신도림역, 울릉도역 순서
-        List<String> expectedNames = Arrays.asList(testName2,testName1,testName3);
+        List<String> expectedNames = Arrays.asList(testName2, testName1, testName3);
 
         assertThat(stations.stationNames()).isEqualTo(expectedNames);
     }

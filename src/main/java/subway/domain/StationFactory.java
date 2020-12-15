@@ -1,16 +1,17 @@
 package subway.domain;
 
-public class StationFactory {
-    private static final int NAME_MIN_LENGTH = 2;
-    private static final String ERR_SHORT_NAME_MSG =
-            String.format("[ERROR] 역의 이름은 %d글자 이상이어야 합니다.", NAME_MIN_LENGTH);
+import subway.exception.SubwayException;
 
+import static subway.util.TextConstant.*;
+
+public class StationFactory {
     public static Station makeStation(String name) {
         if (name.length() < NAME_MIN_LENGTH) {
-            throw new IllegalArgumentException(ERR_SHORT_NAME_MSG);
+            throw new SubwayException(ERR_STATION_SHORT_NAME_MSG);
+        }
+        if (!name.endsWith(STATION)) {
+            throw new SubwayException(ERR_WRONG_STATION_NAME_SUFFIX);
         }
         return new Station(name);
     }
-
-
 }
