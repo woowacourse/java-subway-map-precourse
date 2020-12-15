@@ -1,8 +1,6 @@
 package subway.util;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
+import subway.domain.*;
 
 import java.util.Scanner;
 
@@ -40,36 +38,40 @@ public class LineManager {
         }
         Line line = new Line(input);
         LineRepository.addLine(line);
+        Section section = new Section(line);
+        addStations(scanner, section);
     }
 
-    public void addStations(Scanner scanner) throws IllegalArgumentException {
+    public void addStations(Scanner scanner, Section section) {
         String [] inputStations = new String[2];
-        String inputLine;
-        StationManager stationManager = new StationManager();
-        System.out.println(Constants.ASK_LINE_ADD);
-        inputLine = scanner.nextLine().trim();
         while(true) {
             try {
                 System.out.println(Constants.ASK_UPPER_END);
                 inputStations[0] = scanner.nextLine().trim();
-                stationManager.addStation(inputStations[0]);
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(Constants.NAME_LENGTH_FAIL);
-            }
-        }
-        while(true) {
-            try {
+                checkStation(inputStations[0]);
                 System.out.println(Constants.ASK_LOWER_END);
                 inputStations[1] = scanner.nextLine().trim();
-                stationManager.addStation(scanner);
+                checkStation(inputStations[1]);
                 break;
             } catch (IllegalArgumentException exception) {
-                System.out.println(Constants.NAME_LENGTH_FAIL);
+                System.out.println(exception.getMessage());
             }
         }
+        for(int i = 0; i < 1; i++) {
+            for(Station station : StationRepository.stations()) {
+                if(station.getName() == inputStations[i]) {
+                    section.addStations(station);
+                }
+            }
+        }
+        SectionRepository.addSection(section);
+    }
 
-
+    public void checkStation(String input) throws IllegalArgumentException {
+        ErrorManager.checkNameLength(input);
+        if(!ErrorManager.isStationExist(input)) {
+            throw new IllegalArgumentException(Constants.STATION_NOT_EXIST);
+        }
     }
 
     public void removeLine(Scanner scanner) throws IllegalArgumentException {

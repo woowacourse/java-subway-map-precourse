@@ -5,16 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class Section {
-    private String line;
+    private Line line;
     private static final List<Station> station = new ArrayList<>();
 
-    public Section(String line, Station upperStation, Station lowerStation) {
+    public Section(Line line) {
         this.line = line;
-        station.add(upperStation);
-        station.add(lowerStation);
     }
 
-    public String getLine() {
+    public void addStations(Station station) {
+        this.station.add(station);
+    }
+
+    public Line getLine() {
         return line;
     }
 
