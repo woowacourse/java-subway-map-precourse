@@ -21,7 +21,7 @@ public class SectionExceptionHandler {
         try {
             ExceptionHandler.isUnSelectable(selection, pattern);
         } catch (CustomException e) {
-
+            printErrorAndGoBack(e.getMessage());
         }
     }
 
@@ -30,8 +30,7 @@ public class SectionExceptionHandler {
             isNotInt(string);
             isNotPositive(string);
         } catch (CustomException e) {
-            OutputView.printError(e.getMessage());
-            SectionController.run();
+            printErrorAndGoBack(e.getMessage());
         }
     }
 
@@ -99,8 +98,7 @@ public class SectionExceptionHandler {
         try {
             isStationInLine(lineName, stationName);
         } catch (CustomException e) {
-            OutputView.printError(e.getMessage());
-            SectionController.run();
+            printErrorAndGoBack(e.getMessage());
         }
     }
 
@@ -114,8 +112,7 @@ public class SectionExceptionHandler {
         try {
             overflow(line, Integer.parseInt(order));
         } catch (CustomException e) {
-            OutputView.printError(e.getMessage());
-            SectionController.run();
+            printErrorAndGoBack(e.getMessage());
         }
     }
 
