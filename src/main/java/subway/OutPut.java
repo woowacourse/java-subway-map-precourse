@@ -17,6 +17,7 @@ public class OutPut {
     private static final String STATION_DELETE_ERROR = "노선에 등록된 지하철 역은 삭제할 수 없습니다.\n";
     private static final String STATION_DELETE_MESSAGE = "지하철 역이 삭제되었습니다.\n";
     private static final String LINE_DELETE_MESSAGE = "지하철 노선이 삭제되었습니다.\n";
+    private static final String SECTION_DELETE_SIZE_ERROR = "노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다.\n";
 
     public static void printStationNameLengthError() {
         System.out.println(ERROR + STATION_NAME_LENGTH_ERROR);
@@ -72,5 +73,9 @@ public class OutPut {
 
     public static void printLineDeleteMessage() {
         System.out.println(INFO + LINE_DELETE_MESSAGE);
+    }
+
+    public static void printSectionDeleteSizeError() {
+        System.out.println(ERROR + SECTION_DELETE_SIZE_ERROR);
     }
 }
