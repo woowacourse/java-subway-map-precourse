@@ -123,14 +123,14 @@ public class Application {
     public static void makeNewSection(Scanner kbd) {
         System.out.println("\n## 노선을 입력하세요.");
         String lineName = kbd.nextLine();
-        checkExistLine(lineName);
+        Errors.checkExistLine(lineName);
         System.out.println("\n## 역이름을 입력하세요.");
         String stationName = kbd.nextLine();
-        checkExistStation(stationName);
-        Line line = checkInSpecificLine(lineName, stationName);
+        Errors.checkExistStation(stationName);
+        Line line = Errors.checkInSpecificLine(lineName, stationName);
         System.out.println("\n## 순서를 입력하세요.");
         String index = kbd.nextLine();
-        checkValidIndex(line, index);
+        Errors.checkValidIndex(line, index);
         LineRepository.addStationToLine(lineName, stationName, Integer.parseInt(index));
     }
 
@@ -138,11 +138,11 @@ public class Application {
         try {
             System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
             String lineName = kbd.nextLine();
-            checkExistLine(lineName);
-            checkValidLine(lineName);
+            Errors.checkExistLine(lineName);
+            Errors.checkValidLine(lineName);
             System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
             String stationName = kbd.nextLine();
-            checkNotInSpecificLine(lineName, stationName);
+            Errors.checkNotInSpecificLine(lineName, stationName);
             LineRepository.deleteStationInLine(lineName, stationName);
             System.out.println("\n[INFO] 구간이 삭제되었습니다.");
             startProgram(kbd);
@@ -155,8 +155,8 @@ public class Application {
         try {
             System.out.println("\n## 등록할 역 이름을 입력하세요.");
             String stationName = kbd.nextLine();
-            checkSameStation(stationName);
-            checkTextLength(stationName);
+            Errors.checkSameStation(stationName);
+            Errors.checkTextLength(stationName);
             StationRepository.addStation(new Station(stationName));
             System.out.println("\n[INFO] 지하철 역이 등록되었습니다.");
             startProgram(kbd);
@@ -169,8 +169,8 @@ public class Application {
         try {
             System.out.println("\n## 삭제할 역 이름을 입력하세요.");
             String stationName = kbd.nextLine();
-            checkExistStation(stationName);
-            checkInLine(stationName);
+            Errors.checkExistStation(stationName);
+            Errors.checkInLine(stationName);
             StationRepository.deleteStation(stationName);
             System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
             startProgram(kbd);
@@ -199,15 +199,15 @@ public class Application {
     public static void makeNewLine(Scanner kbd) throws IllegalArgumentException {
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         String lineName = kbd.nextLine();
-        checkSameLine(lineName);
-        checkTextLength(lineName);
+        Errors.checkSameLine(lineName);
+        Errors.checkTextLength(lineName);
         System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         String firstStation = kbd.nextLine();
-        checkExistStation(firstStation);
+        Errors.checkExistStation(firstStation);
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String lastStation = kbd.nextLine();
-        checkExistStation(lastStation);
-        checkSameName(firstStation, lastStation);
+        Errors.checkExistStation(lastStation);
+        Errors.checkSameName(firstStation, lastStation);
         Line newLine = new Line(lineName);
         LineRepository.addLine(newLine, Arrays.asList(firstStation, lastStation));
     }
@@ -216,7 +216,7 @@ public class Application {
         try {
             System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
             String lineName = kbd.nextLine();
-            checkExistLine(lineName);
+            Errors.checkExistLine(lineName);
             LineRepository.deleteLineByName(lineName);
             System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
             startProgram(kbd);
@@ -230,93 +230,6 @@ public class Application {
         for (Line line : LineRepository.lines())
             System.out.println("[INFO] " + line.getName());
         startProgram(kbd);
-    }
-
-    public static void checkSameStation(String name) {
-        if (StationRepository.isExist(name)) {
-            ErrorMessage.displayErrorMessage(Constants.ALREADY_EXIST_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkSameLine(String name) {
-        if (LineRepository.isExist(name)) {
-            ErrorMessage.displayErrorMessage(Constants.ALREADY_EXIST_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkSameName(String firstName, String lastName) {
-        if (firstName.equals(lastName)) {
-            ErrorMessage.displayErrorMessage(Constants.SAME_NAME_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkTextLength(String name) {
-        if (name.length() < 2) {
-            ErrorMessage.displayErrorMessage(Constants.NAME_LENGTH_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkExistStation(String name) {
-        if (!StationRepository.isExist(name)) {
-            ErrorMessage.displayErrorMessage(Constants.NO_SUCH_NAME_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkExistLine(String name) {
-        if (!LineRepository.isExist(name)) {
-            ErrorMessage.displayErrorMessage(Constants.NO_SUCH_NAME_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkInLine(String name) {
-        for (Line line : LineRepository.lines())
-            if (line.hasStation(name)) {
-                ErrorMessage.displayErrorMessage(Constants.HAS_IN_LINE_ERROR);
-                throw new IllegalArgumentException();
-            }
-    }
-
-    public static Line checkInSpecificLine(String lineName, String stationName) {
-        Line line = LineRepository.getLineByName(lineName);
-        if (line.hasStation(stationName)) {
-            ErrorMessage.displayErrorMessage(Constants.HAS_IN_SPECIFIC_LINE_ERROR);
-            throw new IllegalArgumentException();
-        }
-        return line;
-    }
-
-    public static void checkNotInSpecificLine(String lineName, String stationName) {
-        Line line = LineRepository.getLineByName(lineName);
-        if (!line.hasStation(stationName)) {
-            ErrorMessage.displayErrorMessage(Constants.HAS_NOT_IN_SPECIFIC_LINE_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkValidIndex(Line line, String index) {
-        try {
-            int intIndex = Integer.parseInt(index);
-            int size = line.getSize();
-            if (intIndex < 1 || intIndex > size+1)
-                throw new IndexOutOfBoundsException();
-        } catch (Exception e) {
-            ErrorMessage.displayErrorMessage(Constants.UNVALID_INDEX_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void checkValidLine(String name) {
-        Line line = LineRepository.getLineByName(name);
-        if (line.getSize() < 3) {
-            ErrorMessage.displayErrorMessage(Constants.CANT_DELETE_SECTION_ERROR);
-            throw new IllegalArgumentException();
-        }
     }
 
     public static void displayAllLines(Scanner kbd) {
