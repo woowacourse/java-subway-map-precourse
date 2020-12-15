@@ -1,4 +1,4 @@
-package subway.view.validator;
+package subway.view;
 
 import org.junit.Test;
 
