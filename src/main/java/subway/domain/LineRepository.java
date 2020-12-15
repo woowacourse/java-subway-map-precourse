@@ -46,9 +46,8 @@ public class LineRepository {
     }
 
     public static void printMap(){
-        System.out.println("print map");
         for(int i=0; i<lines.size(); i++){
-            System.out.print(lines.get(i).getName());
+            System.out.print(String.join(" ", Constant.INFO_PREFIX, lines.get(i).getName()));
             for(int j=0; j<lines.get(i).stations.size(); j++){
                 System.out.print(lines.get(i).stations.get(j).getName() + " " );
             }

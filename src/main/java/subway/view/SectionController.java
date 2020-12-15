@@ -41,7 +41,7 @@ public class SectionController {
         String stationName = scanner.next();
         System.out.println(GET_ORDER_NAME);
         String order = scanner.next();
-        sectionRepository.addSection(lineName, new Station(stationName), Integer.parseInt(order));
+        sectionRepository.addSection(lineName, stationName, Integer.parseInt(order));
     }
 
     void deleteSection(){

@@ -14,12 +14,12 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
-        if (checkExistStation(station)) {
+    public static void addStation(String stationName) {
+        if (checkExistStation(stationName)) {
             System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.DUPLICATE_STATION_NAME));
             return;
         }
-        stations.add(station);
+        stations.add(new Station(stationName));
         System.out.println(String.join(" ", Constant.INFO_PREFIX, Constant.ADD_STATION_SUCCESS));
     }
 
@@ -33,7 +33,7 @@ public class StationRepository {
         }
     }
 
-    public static boolean checkExistStation(Station station) {
-        return stations.stream().anyMatch(o -> o.getName().equals(station.getName()));
+    public static boolean checkExistStation(String stationName) {
+        return stations.stream().anyMatch(o -> o.getName().equals(stationName));
     }
 }

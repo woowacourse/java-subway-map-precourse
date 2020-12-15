@@ -31,8 +31,7 @@ public class StationController {
     void addStation() {
         System.out.println(String.join(" 역 ", Constant.ADD_PREFIX, Constant.NAME_POSTFIX));
         String stationName = scanner.next();
-        Station station = new Station(stationName);
-        stationRepository.addStation(station);
+        stationRepository.addStation(stationName);
     }
 
     void deleteStation() {
