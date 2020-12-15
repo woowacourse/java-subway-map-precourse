@@ -22,7 +22,7 @@ public class MainMenu {
     }
 
     public void start() {
-        String input = "";
+        String input;
         while (true) {
             printMainMenu();
             input = scanner.nextLine();

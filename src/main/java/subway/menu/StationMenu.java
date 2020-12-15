@@ -21,18 +21,25 @@ public class StationMenu {
     }
 
     public void startStationMenu() {
-        String input = "";
+        String input;
         while (true) {
             printStationMenu();
             input = this.scanner.nextLine();
+            //TODO 함수 분리하기
             if (input.equals("1")) {
                 System.out.println("## 등록할 역 이름을 입력하세요.");
                 String stationName = scanner.nextLine();
-                if (StationValidator.checkValidStationName(stationName, StationRepository.stations())) {
+                if (StationValidator.checkValidStationName(stationName)) {
                     StationRepository.addStation(new Station(stationName));
+                    System.out.println("[ INFO ] 지하철 역이 등록되었습니다.");
                 }
             }
             if (input.equals("2")) {
+                System.out.println("## 삭제할 역 이름을 입력하세요.");
+                String stationName = scanner.nextLine();
+                if (StationRepository.deleteStation(stationName)) {
+                    System.out.println("[ INFO ] 지하철 역이 삭제되었습니다.");
+                }
             }
             if (input.equals("3")) {
             }
