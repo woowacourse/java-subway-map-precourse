@@ -41,4 +41,11 @@ public class Line {
         return this.name.equals(lineName);
     }
 
+    public int getSize() {
+        return stationsOnLine.size();
+    }
+
+    public void insert(Station station, int order) {
+        stationsOnLine.add(order-1, station);
+    }
 }
