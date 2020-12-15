@@ -4,6 +4,7 @@ import static subway.util.TextConstant.*;
 
 import subway.menu.LineMenu;
 import subway.menu.MainMenu;
+import subway.menu.SectionMenu;
 import subway.menu.StationMenu;
 
 import java.util.List;
@@ -35,8 +36,8 @@ public class OutputView {
 
     public static void showSectionMenu() {
         String header = SECTION_MENU_HEADER + System.lineSeparator();
-        List<String> commands = LineMenu.getCommands();
-        List<String> titles = LineMenu.getTitles();
+        List<String> commands = SectionMenu.getCommands();
+        List<String> titles = SectionMenu.getTitles();
         println(convertMenuToStringForConsoleOutput(header, commands, titles));
         println(PLEASE_SELECT_MENU_MSG);
     }
