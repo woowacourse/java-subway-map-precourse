@@ -7,10 +7,9 @@ import subway.menu.MainMenu;
 import subway.menu.SectionMenu;
 import subway.menu.StationMenu;
 
-import java.util.List;
+import java.util.*;
 
 public class OutputView {
-
     public static void showMainMenu() {
         String header = MAIN_MENU_HEADER + System.lineSeparator();
         List<String> commands = MainMenu.getCommands();
@@ -47,7 +46,7 @@ public class OutputView {
         println(String.format(REQUEST_INPUT_FOR_ADD_NAME_MSG_FORMAT, subject));
     }
 
-    public static void showRequestInputMessage(String subject){
+    public static void showRequestInputMessage(String subject) {
         println(String.format(REQUEST_INPUT_MSG_FORMAT, subject));
     }
 
@@ -56,21 +55,22 @@ public class OutputView {
     }
 
     public static void showList(List<String> names) {
-        names.stream()
-                .map(INFO_PREFIX_MSG::concat)
-                .forEach(System.out::println);
+        names.forEach(OutputView::showName);
         println(EMPTY_STRING);
     }
 
+    public static void showName(String name) {
+        println(INFO_PREFIX_MSG.concat(name));
+    }
     public static void showCompleteMessage(String subject, String action) {
         println(EMPTY_STRING);
         println(String.format(INFO_COMPLETE_MSG_FORMAT, subject, action));
         println(EMPTY_STRING);
     }
 
-    public static void showEmptyListMessage(String subwayStation) {
+    public static void showEmptyListMessage(String subject) {
         println(EMPTY_STRING);
-        println(String.format(INFO_NO_ELEMENT_FORMAT, subwayStation));
+        println(String.format(INFO_NO_ELEMENT_FORMAT, subject));
         println(EMPTY_STRING);
     }
 
@@ -92,5 +92,17 @@ public class OutputView {
 
     public static void showValidSequence(int size) {
         println(String.format(VALID_NUMBER_RANGE_MSG_FORMAT, size));
+    }
+
+    public static void showSubwayMap(Map<String, List<String>> lineNamesAndStationNamesMap) {
+        List<String> orderedLineNames = new ArrayList<>(lineNamesAndStationNamesMap.keySet());
+        orderedLineNames.sort(Comparator.naturalOrder());
+        orderedLineNames.forEach(
+                lineName -> {
+                    showName(lineName);
+                    println(THREE_DASH);
+                    showList(lineNamesAndStationNamesMap.get(lineName));
+                }
+        );
     }
 }

@@ -49,8 +49,9 @@ public class TextConstant {
     public static final String ERR_NO_SUCH_MENU_MSG = "[ERROR] 해당 메뉴가 없습니다.";
 
     //콘솔 화면(OutPutView) 출력 관련
-    public static final String DOT_AND_BLANK = ". ";
     public static final String EMPTY_STRING = "";
+    public static final String DOT_AND_BLANK = ". ";
+    public static final String THREE_DASH = "---";
     public static final String INFO_PREFIX_MSG = "[INFO] ";
     public static final String MAIN_MENU_HEADER = "## 메인 화면";
     public static final String STATION_MENU_HEADER = "## 역 관리 화면";

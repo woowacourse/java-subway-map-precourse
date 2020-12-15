@@ -54,11 +54,15 @@ public class Line {
         return stations.stationNames();
     }
 
+    public List<String> unorderedStationNames() {
+        return stations.unorderedStationNames();
+    }
+
     public boolean containsStation(Station station) {
         return stations.isPresentStation(station);
     }
 
-    public Station findStation(String stationName){
+    public Station findStation(String stationName) {
         return stations.findStation(stationName);
     }
 

@@ -53,6 +53,12 @@ public class Stations {
                 .collect(Collectors.toList());
     }
 
+    public List<String> unorderedStationNames() {
+        return stations.stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
+    }
+
     public boolean isPresentStation(String name) {
         return stations.stream()
                 .anyMatch(station -> Objects.equals(station.getName(), name));
