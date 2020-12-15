@@ -1,7 +1,9 @@
 package subway;
 
+import static subway.LineManage.linaManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
+import static subway.domain.LineRepository.lines;
 import static subway.domain.StationRepository.addStation;
 
 import java.util.ArrayList;
@@ -60,7 +62,7 @@ public class Application {
             return false;
         }
         if (mainInput.equalsIgnoreCase(LINE_MANAGE)) {
-            stationManage(scanner);
+            linaManage(scanner);
             return false;
         }
         if (mainInput.equalsIgnoreCase(EXIT)) {
