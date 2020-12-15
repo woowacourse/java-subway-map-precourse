@@ -55,10 +55,8 @@ public class Constants {
     public static final int NAME_LENGTH_LIMIT = 2;
     public static final String LINE_LIST = "\n## 노선 목록";
     public static final String INFORMATION_BAR = "\n[INFO] ---";
-    public static final String ERROR_ONLY_SINGLE_DIGIT_POSITIVE_NUMBER = "[ERROR] 한 자리 양의 정수만 가능합니다.";
+    public static final String ERROR_ONLY_POSITIVE_NUMBER = "[ERROR] 양의 정수만 가능합니다.";
     public static final int SINGLE_DIGIT_MIN = 0;
     public static final int SINGLE_DIGIT_MAX = 9;
-//    public static final String NAME_LENGTH_LIMIT_ERROR = "[ERROR] 이름은 2글자 이상입니다.";
-//    public static final int NAME_LENGTH_LIMIT = 2;
     public static final String STATION_LIST = "\n## 역 목록\n";
 }
