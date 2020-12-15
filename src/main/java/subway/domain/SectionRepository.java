@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class SectionRepository {
-    private static final List<Section> sections = new ArrayList<>();
+    private static List<Section> sections = new ArrayList<>();
 
     public static List<Section> sections() {
-        return Collections.unmodifiableList(sections);
+        return sections;
     }
 
     public static void addSection(Section section) {
@@ -19,15 +19,11 @@ public class SectionRepository {
     }
 
     public static void deleteSectionLine(String lineName) {
-        for(Section section : SectionRepository.sections()) {
-            if(section.getLine().getName().equals(lineName)) {
-            }
-        }
-        SectionRepository.sections().removeIf(section -> Objects.equals(section.getLine().getName(), lineName));
+        sections.removeIf(section -> Objects.equals(section.getLine().getName(), lineName));
     }
 
     public static boolean deleteSectionStation(String stationName, String lineName) {
-        for(Section section : SectionRepository.sections()) {
+        for(Section section : sections()) {
             if(section.getLine().getName().equals(lineName)) {
                 return section.getStation().removeIf(st -> Objects.equals(st.getName(), stationName));
             }
@@ -36,7 +32,7 @@ public class SectionRepository {
     }
 
     public static void  deleteSection(String name) {
-        for(Section section : SectionRepository.sections()) {
+        for(Section section : sections()) {
             section.getStation().removeIf(st -> Objects.equals(st.getName(), name));
         }
     }
