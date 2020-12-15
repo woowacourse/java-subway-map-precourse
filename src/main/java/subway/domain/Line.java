@@ -81,7 +81,7 @@ public class Line {
     }
 
     private int orderNumber(String stringNumber) {
-        if (!Util.isNumber(stringNumber)) {
+        if (!stringNumber.chars().allMatch(Character::isDigit)) {
             return ERROR;
         }
         int orderNumber = Integer.parseInt(stringNumber);

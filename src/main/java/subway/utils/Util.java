@@ -13,7 +13,7 @@ public class Util {
         if (number.equals(QUIT) || number.equals(BACK)) {
             return BACK_NUMBER;
         }
-        if (!isNumber(number)) {
+        if (!number.chars().allMatch(Character::isDigit)) {
             ErrorView.writeAppropriateNumber();
             return ERROR;
         }
@@ -23,15 +23,5 @@ public class Util {
             return ERROR;
         }
         return operationNumber;
-    }
-
-    public static boolean isNumber(String number) {
-        int length = number.length();
-        for (int i = 0; i < length; i++) {
-            if (!Character.isDigit(number.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 }
