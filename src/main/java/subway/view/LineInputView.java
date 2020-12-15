@@ -94,14 +94,7 @@ public class LineInputView {
         String lineName = scanner.nextLine();
         try {
             validateLineName(lineName);
-            // TODO 상행 종점 입력, 하행 종점 입력받고 존재하는 Station인지 확인하고 add
-            Line newLine = new Line(lineName);
-            Station upwardTerminalStation = getUpwardTerminalStation();
-            Station downwardTerminalStation = getDownwardTerminalStation();
-            newLine.registerStation(upwardTerminalStation);
-            newLine.registerStation(downwardTerminalStation);
-            validateAreStationSame(upwardTerminalStation, downwardTerminalStation);
-            LineRepository.addLine(newLine);
+            makeNewLine(lineName);
             System.out.println(REGISTER_COMPLETE_MESSAGE);
             System.out.println();
         } catch (Exception e) {
@@ -109,6 +102,16 @@ public class LineInputView {
             System.out.println(e.getMessage());
             registerLine();
         }
+    }
+
+    private static void makeNewLine(String lineName) {
+        Line newLine = new Line(lineName);
+        Station upwardTerminalStation = getUpwardTerminalStation();
+        Station downwardTerminalStation = getDownwardTerminalStation();
+        validateAreStationSame(upwardTerminalStation, downwardTerminalStation);
+        newLine.registerStation(upwardTerminalStation);
+        newLine.registerStation(downwardTerminalStation);
+        LineRepository.addLine(newLine);
     }
 
     private static void validateAreStationSame(Station upwardTerminalStation, Station downwardTerminalStation) {
