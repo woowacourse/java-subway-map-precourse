@@ -1,152 +1,71 @@
 package subway.controller;
 
 import subway.domain.*;
+import subway.view.ActionOutputView;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class SubwayController {
-    private final InputView inputView;
+    protected static InputView inputView;
 
     public SubwayController(InputView inputView) {
-        this.inputView = inputView;
+        SubwayController.inputView = inputView;
     }
 
     public void run() {
-        initSetting();
+        InitSetting.initSetting();
         startSubway();
     }
 
     private void startSubway() {
         while (true) {
             OutputView.printMain();
-            MainFunctions nowFunction = receiveMainFunction();
+            MainActions nowAction = receiveMainAction();
+            if (nowAction.equals(MainActions.FINISH)) {
+                break;
+            }
+            if (nowAction.equals(MainActions.SUBWAY)) {
+                subwayAction();
+                continue;
+            }
+            startMainAction(nowAction);
+        }
+    }
+
+    private MainActions receiveMainAction() {
+        try {
+            return MainActions.haveNumber(inputView.receiveAction());
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
             OutputView.printOneLine();
-            if (nowFunction.equals(MainFunctions.FINISH)) {
+            return receiveMainAction();
+        }
+    }
+
+    private void startMainAction(MainActions mainActions) {
+        while (true) {
+            OutputView.printDetailAction(mainActions);
+            DetailActions detailActions = receiveDetailAction(mainActions);
+            if (detailActions.equals(DetailActions.BACK)) {
                 break;
             }
-            if (nowFunction.equals(MainFunctions.STATION)) {
-                stationFunction();
-            }
-            if (nowFunction.equals(MainFunctions.LINE)) {
-                lineFunction();
-            }
-            if (nowFunction.equals(MainFunctions.WAY)) {
-                wayFunction();
-            }
-            if (nowFunction.equals(MainFunctions.SUBWAY)) {
-                subwayFunction();
+            if (mainActions.act.apply(detailActions)) {
+                break;
             }
         }
     }
 
-    private MainFunctions receiveMainFunction() {
+    private static DetailActions receiveDetailAction(MainActions mainActions) {
         try {
-            return MainFunctions.haveNumber(this.inputView.receiveFunction());
+            return DetailActions.haveNumber(inputView.receiveAction(), mainActions);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return receiveMainFunction();
+            OutputView.printOneLine();
+            return receiveDetailAction(mainActions);
         }
     }
 
-    private void stationFunction() {
-        while (true) {
-            OutputView.printDetailFunction(MainFunctions.STATION);
-            DetailFunctions detailFunction = receiveDetailFunction();
-            if (detailFunction.equals(DetailFunctions.BACK)) {
-                break;
-            }
-            StationController.doFunction(detailFunction, this.inputView);
-        }
-    }
-
-    private DetailFunctions receiveDetailFunction() {
-        try {
-            return DetailFunctions.haveNumber(this.inputView.receiveFunction());
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return receiveDetailFunction();
-        }
-    }
-
-    private void lineFunction() {
-        while (true) {
-            OutputView.printDetailFunction(MainFunctions.LINE);
-            DetailFunctions detailFunction = receiveDetailFunction();
-            if (detailFunction.equals(DetailFunctions.BACK)) {
-                break;
-            }
-            LineController.doFunction(detailFunction, this.inputView);
-        }
-    }
-
-    private void wayFunction() {
-        while (true) {
-            OutputView.printDetailFunction(MainFunctions.WAY);
-            DetailFunctions detailFunction = receiveDetailFunction();
-            if (detailFunction.equals(DetailFunctions.BACK)) {
-                break;
-            }
-            WayController.doFunction(detailFunction, this.inputView);
-        }
-    }
-
-    private void subwayFunction() {
-        OutputView.printSubway(SubwayRepository.subway());
-    }
-
-    private void initSetting() {
-        List<String> initStations = Arrays.asList("교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역");
-        List<String> initLines = Arrays.asList("2호선", "3호선", "신분당선");
-
-        addInitStations(initStations);
-        addInitLines(initLines);
-        for (Line line : LineRepository.lines()) {
-            SubwayRepository.addLine(line);
-            addInitSecondLine(initStations, line);
-            addInitThirdLine(initStations, line);
-            addInitSinLine(initStations, line);
-        }
-    }
-
-    private void addInitStations(List<String> initStations) {
-        for (String station : initStations) {
-            StationRepository.addStation(new Station(station));
-        }
-    }
-
-    private void addInitLines(List<String> initLines) {
-        for (String line : initLines) {
-            LineRepository.addLine(new Line(line));
-        }
-    }
-
-    private void addInitSecondLine(List<String> initStations, Line line) {
-        if (line.getName().equals("2호선")) {
-            List<Integer> initSecondStations = Arrays.asList(0, 1, 2);
-            for (Integer index : initSecondStations) {
-                SubwayRepository.addLineStation(line, StationRepository.findStationByName(initStations.get(index)));
-            }
-        }
-    }
-
-    private void addInitThirdLine(List<String> initStations, Line line) {
-        if (line.getName().equals("3호선")) {
-            List<Integer> initSecondStations = Arrays.asList(0, 3, 4, 6);
-            for (Integer index : initSecondStations) {
-                SubwayRepository.addLineStation(line, StationRepository.findStationByName(initStations.get(index)));
-            }
-        }
-    }
-
-    private void addInitSinLine(List<String> initStations, Line line) {
-        if (line.getName().equals("신분당선")) {
-            List<Integer> initSecondStations = Arrays.asList(1, 4, 5);
-            for (Integer index : initSecondStations) {
-                SubwayRepository.addLineStation(line, StationRepository.findStationByName(initStations.get(index)));
-            }
-        }
+    public static void subwayAction() {
+        ActionOutputView.printFormat(ActionOutputView.makeSubwayResult(SubwayRepository.subway()));
     }
 }

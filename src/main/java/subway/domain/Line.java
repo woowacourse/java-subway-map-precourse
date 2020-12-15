@@ -1,7 +1,9 @@
 package subway.domain;
 
+import static subway.view.OutputView.INFO_HEAD;
+
 public class Line {
-    private String name;
+    private final String name;
 
     public Line(String name) {
         this.name = name;
@@ -12,4 +14,11 @@ public class Line {
     }
 
     // 추가 기능 구현
+    public String formatName() {
+        return INFO_HEAD + name;
+    }
+
+    public boolean isSameNameThan(String comparingName) {
+        return this.name.equals(comparingName);
+    }
 }

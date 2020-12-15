@@ -2,6 +2,8 @@ package subway.view;
 
 import java.util.Scanner;
 
+import static subway.view.OutputView.NOTICE_HEAD;
+
 public class InputView {
     private final Scanner scanner;
 
@@ -9,12 +11,12 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public String receiveFunction() {
-        System.out.println("## 원하는 기능을 선택하세요.");
+    public String receiveAction() {
+        System.out.println(NOTICE_HEAD + "원하는 기능을 선택하세요.");
         return this.scanner.nextLine();
     }
 
-    public String receiveFunctionInfo() {
+    public String receiveActionInfo() {
         return this.scanner.nextLine();
     }
 }

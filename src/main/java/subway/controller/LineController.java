@@ -2,71 +2,63 @@ package subway.controller;
 
 import subway.domain.*;
 import subway.view.InputView;
-import subway.view.FunctionOutputView;
+import subway.view.ActionOutputView;
 import subway.view.OutputView;
 
 public class LineController {
-    public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
-        if (detailFunction.equals(DetailFunctions.ENROLL)) {
-            enrollLine(inputView);
-        }
-        if (detailFunction.equals(DetailFunctions.REMOVE)) {
-            LineRepository.deleteLineByName((makeValidRemoveLineName(inputView)));
-            FunctionOutputView.printSuccess(detailFunction, MainFunctions.LINE);
-        }
-        if (detailFunction.equals(DetailFunctions.RESEARCH)) {
-            FunctionOutputView.printResearch(MainFunctions.LINE);
+    private static final String UP_LINE = "상행";
+    private static final String DOWN_LINE = "하행";
+
+    private static InputView inputView;
+
+    public static boolean doAction(DetailActions detailActions) {
+        LineController.inputView = SubwayController.inputView;
+        try {
+            LineActions.findAction(detailActions).run();
+            return true;
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return false;
         }
     }
 
-    private static void enrollLine(InputView inputView) {
-        String enrollingLine = makeValidEnrollLineName(inputView);
+    public static void enrollLine() {
+        ActionOutputView.printFormat(ActionOutputView.makeReceiveActionNotice(DetailActions.ENROLL, MainActions.LINE));
+        String enrollingLine = LineValidator.checkUnrolledLine(NameValidator.makeName(inputView.receiveActionInfo()));
+
+        ActionOutputView.printFormat(ActionOutputView.makeReceiveStartOrFinishStationNotice(UP_LINE));
+        String startStation = StationValidator.checkEnrolledStation(inputView.receiveActionInfo());
+
+        ActionOutputView.printFormat(ActionOutputView.makeReceiveStartOrFinishStationNotice(DOWN_LINE));
+        String finishStation = StationValidator.checkEnrolledStation(inputView.receiveActionInfo());
+
+        enrollToSubway(enrollingLine, startStation, finishStation);
+
+        ActionOutputView.printFormat(ActionOutputView.makeSuccessNotice(DetailActions.ENROLL, MainActions.LINE));
+    }
+
+    private static void enrollToSubway(String enrollingLine, String startStation, String finishStation) {
+        if (startStation.equals(finishStation)) {
+            throw new IllegalArgumentException("상행역과 하행역이 같을 수 없습니다.");
+        }
 
         LineRepository.addLine(new Line(enrollingLine));
         SubwayRepository.addLine(LineRepository.findLineByName(enrollingLine));
-        enrollLineToSubway(inputView, enrollingLine, "상행");
-        enrollLineToSubway(inputView, enrollingLine, "하행");
-
-        FunctionOutputView.printSuccess(DetailFunctions.ENROLL, MainFunctions.LINE);
+        SubwayRepository.addStationInLine(LineRepository.findLineByName(enrollingLine), StationRepository.findStationByName(startStation));
+        SubwayRepository.addStationInLine(LineRepository.findLineByName(enrollingLine), StationRepository.findStationByName(finishStation));
     }
 
-    private static String makeValidEnrollLineName(InputView inputView) {
-        try {
-            FunctionOutputView.printFunction(DetailFunctions.ENROLL, MainFunctions.LINE);
-            return LineNameValidator.makeName(inputView.receiveFunctionInfo());
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return makeValidEnrollLineName(inputView);
-        }
+    public static void removeLine() {
+        ActionOutputView.printFormat(ActionOutputView.makeReceiveActionNotice(DetailActions.REMOVE, MainActions.LINE));
+
+        String deleteLineName = LineValidator.checkEnrolledLine(inputView.receiveActionInfo());
+        SubwayRepository.deleteLine(deleteLineName);
+        LineRepository.deleteLineByName(deleteLineName);
+
+        ActionOutputView.printFormat(ActionOutputView.makeSuccessNotice(DetailActions.REMOVE, MainActions.LINE));
     }
 
-    private static void enrollLineToSubway(InputView inputView, String enrollingLine, String startOrFinish) {
-        try {
-            SubwayRepository.addLineStation(LineRepository.findLineByName(enrollingLine), makeValidStation(startOrFinish, inputView));
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            enrollLineToSubway(inputView, enrollingLine, startOrFinish);
-        }
+    public static void researchLine() {
+        ActionOutputView.printFormat(ActionOutputView.makeResearchResult(MainActions.LINE));
     }
-
-    private static Station makeValidStation(String startOrFinish, InputView inputView) {
-        try {
-            FunctionOutputView.printStartOrFinishStation(startOrFinish);
-            return StationRepository.findStationByName(StationNameValidator.makeEnrolledStationName(inputView.receiveFunctionInfo()));
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return makeValidStation(startOrFinish, inputView);
-        }
-    }
-
-    public static String makeValidRemoveLineName(InputView inputView) {
-        try {
-            FunctionOutputView.printFunction(DetailFunctions.REMOVE, MainFunctions.LINE);
-            return LineNameValidator.makeEnrolledLineName(inputView.receiveFunctionInfo());
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return makeValidRemoveLineName(inputView);
-        }
-    }
-
 }

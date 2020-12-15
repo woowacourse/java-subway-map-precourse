@@ -2,43 +2,40 @@ package subway.controller;
 
 import subway.domain.*;
 import subway.view.InputView;
-import subway.view.FunctionOutputView;
+import subway.view.ActionOutputView;
 import subway.view.OutputView;
 
 public class StationController {
+    private static InputView inputView;
 
-    public static void doFunction(DetailFunctions detailFunction, InputView inputView) {
-        if (detailFunction.equals(DetailFunctions.ENROLL)) {
-            StationRepository.addStation(new Station(makeValidateEnrollName(inputView)));
-            FunctionOutputView.printSuccess(DetailFunctions.ENROLL, MainFunctions.STATION);
-        }
-        if (detailFunction.equals(DetailFunctions.REMOVE)) {
-            StationRepository.deleteStation((makeValidateRemoveName(inputView)));
-            FunctionOutputView.printSuccess(DetailFunctions.REMOVE, MainFunctions.STATION);
-        }
-        if (detailFunction.equals(DetailFunctions.RESEARCH)) {
-            FunctionOutputView.printResearch(MainFunctions.STATION);
-        }
-    }
-
-    private static String makeValidateEnrollName(InputView inputView) {
+    public static boolean doAction(DetailActions detailActions) {
+        StationController.inputView = SubwayController.inputView;
         try {
-            FunctionOutputView.printFunction(DetailFunctions.ENROLL, MainFunctions.STATION);
-            return StationNameValidator.makeName(inputView.receiveFunctionInfo());
+            StationActions.findAction(detailActions).run();
+            return true;
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
-            return makeValidateEnrollName(inputView);
+            return false;
         }
     }
 
-    private static String makeValidateRemoveName(InputView inputView) {
-        try {
-            FunctionOutputView.printFunction(DetailFunctions.REMOVE, MainFunctions.STATION);
-            return StationNameValidator.makeRemoveName(inputView.receiveFunctionInfo());
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return makeValidateRemoveName(inputView);
-        }
+    public static void enrollStation() {
+        ActionOutputView.printFormat(ActionOutputView.makeReceiveActionNotice(DetailActions.ENROLL, MainActions.STATION));
+
+        StationRepository.addStation(new Station(StationValidator.checkUnrolledStation(NameValidator.makeName(inputView.receiveActionInfo()))));
+
+        ActionOutputView.printFormat(ActionOutputView.makeSuccessNotice(DetailActions.ENROLL, MainActions.STATION));
     }
 
+    public static void removeStation() {
+        ActionOutputView.printFormat(ActionOutputView.makeReceiveActionNotice(DetailActions.REMOVE, MainActions.STATION));
+
+        StationRepository.deleteStation(SubwayRepository.isStationNotInLine(StationValidator.checkEnrolledStation(inputView.receiveActionInfo())));
+
+        ActionOutputView.printFormat(ActionOutputView.makeSuccessNotice(DetailActions.REMOVE, MainActions.STATION));
+    }
+
+    public static void researchStation() {
+        ActionOutputView.printFormat(ActionOutputView.makeResearchResult(MainActions.STATION));
+    }
 }
