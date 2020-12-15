@@ -1,23 +1,18 @@
-package subway.domain.function;
+package subway.domain.menu;
 
 import java.util.function.Function;
 
 import subway.controller.ManagementController;
 
-public enum MainFunction implements Functionable {
-    STATION("1", StationFunction.TITLE,
-            managementController -> Functionable
-                    .function(managementController, StationFunction.TITLE,
-                            StationFunction.values())),
+public enum MainMenu implements Menu {
+    STATION("1", StationMenu.TITLE, managementController -> Menu
+            .function(managementController, StationMenu.TITLE, StationMenu.values())),
 
-    LINE("2", LineFunction.TITLE,
-            managementController -> Functionable
-                    .function(managementController, LineFunction.TITLE, LineFunction.values())),
+    LINE("2", LineMenu.TITLE, managementController -> Menu
+            .function(managementController, LineMenu.TITLE, LineMenu.values())),
 
-    SECTION("3", SectionFunction.TITLE,
-            managementController -> Functionable
-                    .function(managementController, SectionFunction.TITLE,
-                            SectionFunction.values())),
+    SECTION("3", SectionMenu.TITLE, managementController -> Menu
+            .function(managementController, SectionMenu.TITLE, SectionMenu.values())),
 
     SUBWAY_MAP("4", "지하철 노선도 출력", ManagementController::loadSubwayMap),
 
@@ -31,8 +26,8 @@ public enum MainFunction implements Functionable {
 
     private final Function<ManagementController, ManagementController> function;
 
-    MainFunction(final String identifier, final String description,
-                 final Function<ManagementController, ManagementController> function) {
+    MainMenu(final String identifier, final String description,
+             final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;

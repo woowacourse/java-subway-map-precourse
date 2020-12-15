@@ -1,16 +1,15 @@
-package subway.domain.function;
+package subway.domain.menu;
 
 import java.util.function.Function;
 
 import subway.controller.ManagementController;
 
-public enum StationFunction implements Functionable {
-    ADD("1", "역 등록", ManagementController::addStation),
-    REMOVE("2", "역 삭제", ManagementController::removeStation),
-    LOAD("3", "역 조회", ManagementController::loadStations),
+public enum SectionMenu implements Menu {
+    ADD("1", "구간 등록", ManagementController::addSection),
+    REMOVE("2", "구간 삭제", ManagementController::removeSection),
     BACK("B", "돌아가기", Function.identity());
 
-    public static final String TITLE = "역 관리";
+    public static final String TITLE = "구간 관리";
 
     private final String identifier;
 
@@ -18,8 +17,8 @@ public enum StationFunction implements Functionable {
 
     private final Function<ManagementController, ManagementController> function;
 
-    StationFunction(final String identifier, final String description,
-                    final Function<ManagementController, ManagementController> function) {
+    SectionMenu(final String identifier, final String description,
+                final Function<ManagementController, ManagementController> function) {
         this.identifier = identifier;
         this.description = description;
         this.function = function;
