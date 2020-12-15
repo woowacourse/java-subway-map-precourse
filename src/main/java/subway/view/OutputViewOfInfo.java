@@ -39,4 +39,12 @@ public class OutputViewOfInfo {
     public static void printStations(String name) {
         System.out.println(INFO + name);
     }
+
+    public static void printLines(String name) {
+        System.out.println(INFO + name);
+    }
+
+    public static void printInfoLine() {
+        System.out.println(INFO + INFO_LINE);
+    }
 }

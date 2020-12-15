@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class StationConsole {
     private static final String CURRENT_MENU_VIEW = "## 역 관리 화면";
 
-    public void showMenu() {
+    public static void showMenu() {
         System.out.println(CURRENT_MENU_VIEW);
         Arrays.stream(StationMenu.StationView.values())
                 .forEach(menu -> {
@@ -13,7 +13,7 @@ public class StationConsole {
                 });
     }
 
-    public boolean selectMenu() {
+    public static boolean selectMenu() {
         while (true) {
             showMenu();
             String input = InputView.getMenu();

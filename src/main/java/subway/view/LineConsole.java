@@ -3,9 +3,9 @@ package subway.view;
 import java.util.Arrays;
 
 public class LineConsole {
-    private static final String CURRENT_MENU_VIEW = "## 노 관리 화면";
+    private static final String CURRENT_MENU_VIEW = "## 노선 관리 화면";
 
-    public void showMenu() {
+    public static void showMenu() {
         System.out.println(CURRENT_MENU_VIEW);
         Arrays.stream(LineMenu.LineView.values())
                 .forEach(menu -> {
@@ -13,7 +13,7 @@ public class LineConsole {
                 });
     }
 
-    public boolean selectMenu() {
+    public static boolean selectMenu() {
         while (true) {
             showMenu();
             String input = InputView.getMenu();

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class SectionConsole {
     private static final String CURRENT_MENU_VIEW = "## 구 관리 화면";
 
-    public void showMenu() {
+    public static void showMenu() {
         System.out.println(CURRENT_MENU_VIEW);
         Arrays.stream(SectionMenu.SectionView.values())
                 .forEach(menu -> {
@@ -13,7 +13,7 @@ public class SectionConsole {
                 });
     }
 
-    public boolean selectMenu() {
+    public static boolean selectMenu() {
         while (true) {
             showMenu();
             String input = InputView.getMenu();

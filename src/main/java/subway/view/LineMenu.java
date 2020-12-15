@@ -1,14 +1,16 @@
 package subway.view;
 
+import subway.controller.LineController;
+
 import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class LineMenu {
     public enum LineView{
-        REGISTER_LINE("1", "노선 등록", () -> LineController.getInstatnce.registerLine()),
-        DELETE_LINE("2", "노선 삭제", () -> LineController.getInstatnce.deleteLine()),
-        INQUIRY_LINE("3", "노 조회", () -> LineController.getInstatnce.inquiryLine()),
-        BACK("B", "돌아가기", () -> LineController.getInstatnce.back());
+        REGISTER_LINE("1", "노선 등록", () -> LineController.getInstance().registerLine()),
+        DELETE_LINE("2", "노선 삭제", () -> LineController.getInstance().deleteLine()),
+        INQUIRY_LINE("3", "노 조회", () -> LineController.getInstance().inquiryLine()),
+        BACK("B", "돌아가기", () -> LineController.getInstance().back());
 
         private String key;
         private String menuList;
