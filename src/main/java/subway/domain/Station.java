@@ -1,15 +1,36 @@
 package subway.domain;
 
-public class Station {
-    private String name;
+import java.util.Objects;
 
-    public Station(String name) {
-        this.name = name;
+public final class Station {
+
+    private final StationName stationName;
+
+    public Station(final String name) {
+        this.stationName = new StationName(name);
     }
 
     public String getName() {
-        return name;
+        return stationName.getName();
     }
 
-    // 추가 기능 구현
+    @Override
+    public boolean equals(Object checkObject) {
+        if (this == checkObject) {
+            return true;
+        }
+
+        if (!(checkObject instanceof Station)) {
+            return false;
+        }
+
+        Station station = (Station) checkObject;
+
+        return Objects.equals(stationName, station.stationName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stationName);
+    }
 }
