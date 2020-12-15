@@ -42,19 +42,15 @@ public class LineManager {
     }
 
     private static void registerLine() {
-        System.out.println("등록할 노선 이름을 입력하세요.");
-        String registerLineName = InputView.inputName();
+        String registerLineName = InputView.inputRegisterLineName();
         List<Station> registerUpDownStations = new ArrayList<>();
-        System.out.println("등록할 노선의 상행 종점역 이름을 입력하세요.");
-        registerUpDownStation(registerUpDownStations);
-        System.out.println("등록할 노선의 하행 종점역 이름을 입력하세요.");
-        registerUpDownStation(registerUpDownStations);
+        registerUpDownStation(registerUpDownStations, InputView.inputUpStationsName());
+        registerUpDownStation(registerUpDownStations, InputView.inputDownStationsName());
         LineRepository.addLine(new Line(registerLineName, registerUpDownStations));
-        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+        OutputView.printRegisteredLine();
     }
 
-    private static void registerUpDownStation(List<Station> registerUpDownStations) {
-        String stationName = InputView.inputName();
+    private static void registerUpDownStation(List<Station> registerUpDownStations, String stationName) {
         registerUpDownStations.add(getStation(stationName));
     }
 
@@ -67,9 +63,8 @@ public class LineManager {
     }
 
     private static void deleteLine() {
-        System.out.println("삭제할 노선 이름을 입력하세요. ");
-        String deleteLineName = InputView.inputName();
+        String deleteLineName = InputView.inputDeleteLineName();
         LineRepository.deleteLineByName(deleteLineName);
-        System.out.println("[INFO] 노선이 삭제 되었습니다.");
+        OutputView.printDeletedLine();
     }
 }

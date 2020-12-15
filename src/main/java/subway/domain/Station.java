@@ -16,7 +16,7 @@ public class Station {
         return name;
     }
 
-    public boolean getEquals(String stationName) {
+    public boolean equalsName(String stationName) {
         return this.name.equals(stationName);
     }
 }

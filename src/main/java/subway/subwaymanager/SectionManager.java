@@ -35,12 +35,9 @@ public class SectionManager {
     }
 
     private static void registerSection() {
-        System.out.println("노선을 입력하세요. ");
-        String lineName = InputView.inputSelect();
-        System.out.println("역이름을 입력하세요.");
-        String stationName = InputView.inputSelect();
-        System.out.println("순서를 입력하세요.");
-        int indexNum = InputView.inputNumber();
+        String lineName = InputView.inputLineName();
+        String stationName = InputView.inputStationName();
+        int indexNum = InputView.inputSectionIndex();
         addSectionLineOfStation(lineName, stationName, indexNum);
     }
 
@@ -61,25 +58,23 @@ public class SectionManager {
     }
 
     private static void deleteSection() {
-        System.out.println("삭제할 구간의 노선을 입력하세요.");
-        String deleteSectionLine = InputView.inputName();
+        String deleteSectionLine = InputView.inputDeleteSectionLine();
         List<Line> lines = LineRepository.getLines();
         for (int i = 0; i < lines.size(); i++) {
             if (lines.get(i).getName().equals(deleteSectionLine)) {
                 deleteStationOfSection(lines, i);
             }
         }
-        System.out.println();
+        OutputView.printEmptyLine();
     }
 
     private static void deleteStationOfSection(List<Line> lines, int i) {
-        System.out.println("삭제할 구간의 역을 입력하세요.");
-        String deleteStation = InputView.inputName();
+        String deleteStation = InputView.inputDeleteSectionStation();
         for (int j = 0; j < lines.get(i).getStations().size(); j++) {
             if (lines.get(i).getStations().get(j).getName().equals(deleteStation)) {
                 StationRepository.sectionDeleteStation(deleteStation);
             }
         }
-        System.out.println("[INFO] 삭제되었습니다.");
+        OutputView.printDeleteMassage();
     }
 }

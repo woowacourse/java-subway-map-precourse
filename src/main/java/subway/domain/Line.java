@@ -27,4 +27,8 @@ public class Line {
     public void addSectionStation(Station station, int index) {
         this.stations.add(index, station);
     }
+
+    public boolean equalsName(String lineName) {
+        return this.name.equals(lineName);
+    }
 }

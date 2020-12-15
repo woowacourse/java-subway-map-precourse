@@ -80,4 +80,24 @@ public class OutputView {
             System.out.println();
         }
     }
+
+    public static void printRegisteredLine() {
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    public static void printDeletedLine() {
+        System.out.println("[INFO] 노선이 삭제 되었습니다.");
+    }
+
+    public static void printEndMessage() {
+        System.out.println("종료합니다.");
+    }
+
+    public static void printDeleteMassage() {
+        System.out.println("[INFO] 삭제되었습니다.");
+    }
+
+    public static void printEmptyLine() {
+        System.out.println();
+    }
 }

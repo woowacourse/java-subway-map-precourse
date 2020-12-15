@@ -31,7 +31,7 @@ public class MainSelectManager {
             OutputView.printSubways();
         }
         if (inputMainSelect.equals(CONTENTS_NUMBER_QUIT)) {
-            System.out.println("종료합니다.");
+            OutputView.printEndMessage();
             return false;
         }
         return true;

@@ -18,7 +18,7 @@ public class StationRepository {
 
     public static Station getStationByName(String stationName) {
         for (Station station : stations) {
-            if (station.getEquals(stationName)) {
+            if (station.equalsName(stationName)) {
                 return station;
             }
         }

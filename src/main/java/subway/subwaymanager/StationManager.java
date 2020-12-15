@@ -37,14 +37,12 @@ public class StationManager {
     }
 
     private static void registerStation() {
-        System.out.println("등록할 역 이름을 입력하세요.");
-        String registerStationName = InputView.inputName();
+        String registerStationName = InputView.inputRegisterStationName();
         StationRepository.addStation(new Station(registerStationName));
     }
 
     private static void deleteStation() {
-        System.out.println("삭제할 역 이름을 입력하세요. ");
-        String deleteStationName = InputView.inputName();
+        String deleteStationName = InputView.inputDeleteStationName();
         StationRepository.deleteStation(deleteStationName);
     }
 }

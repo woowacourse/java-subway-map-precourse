@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static subway.utils.Constant.MIN_SECTION_DELETE_STATION_COUNT;
-
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
@@ -33,7 +31,7 @@ public class LineRepository {
 
     public static Line getLineByName(String lineName) {
         for (Line line : lines) {
-            if (line.getName().equals(lineName)) {
+            if (line.equalsName(lineName)) {
                 return line;
             }
         }
@@ -53,7 +51,7 @@ public class LineRepository {
 
     private static void stationNameEqualsCheck(String stationName, List<Station> stations) {
         for (Station station : stations) {
-            if (station.getName().equals(stationName)) {
+            if (station.equalsName(stationName)) {
                 throw new IllegalArgumentException("[ERROR] 노선에 등록된 역은 삭제가 불가능합니다.");
             }
         }
