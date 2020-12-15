@@ -58,10 +58,4 @@ public class LineRepository {
             }
         }
     }
-
-    public static void validateSectionDeleteStationCount(Line lines) {
-        if(lines.getStations().size() < MIN_SECTION_DELETE_STATION_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 해당 라인에 역 개수가 2개 이하이므로 삭제가 불가능 합니다.");
-        }
-    }
 }
