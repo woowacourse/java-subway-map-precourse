@@ -27,7 +27,7 @@ public class Line {
         stations.add(index, station);
     }
 
-    public void deleteLineByName(String name) {
-        this.stations.removeIf(station -> Objects.equals(station, name));
+    public void deleteLineByName(String stationName) {
+        this.stations.removeIf(station -> Objects.equals(station, stationName));
     }
 }

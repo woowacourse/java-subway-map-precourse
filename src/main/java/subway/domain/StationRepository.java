@@ -30,25 +30,25 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        InputValidator.validStationName(name);
-        notExistStationName(name);
-        LineRepository.duplicateStationInLine(name);
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean deleteStation(String stationName) {
+        InputValidator.validStationName(stationName);
+        notExistStationName(stationName);
+        LineRepository.duplicateStationInLine(stationName);
+        return stations.removeIf(station -> Objects.equals(station.getName(), stationName));
     }
 
-    private static void existStationName(String name) {
+    private static void existStationName(String stationName) {
         stations.stream()
-                .filter(station -> Objects.equals(station.getName(), name))
+                .filter(station -> Objects.equals(station.getName(), stationName))
                 .findAny()
                 .ifPresent(s -> {
                     throw new AlreadyExistStationException();
                 });
     }
 
-    public static void notExistStationName(String name) {
+    public static void notExistStationName(String stationName) {
         stations.stream()
-                .filter(station -> Objects.equals(station.getName(), name))
+                .filter(station -> Objects.equals(station.getName(), stationName))
                 .findAny()
                 .orElseThrow(() -> new NotExistStationException());
     }

@@ -56,10 +56,10 @@ public class LineRepository {
                 .deleteLineByName(station);
     }
 
-    public static void duplicateStationInLine(String name) {
+    public static void duplicateStationInLine(String stationName) {
         lines.stream()
                 .map(line -> line.getStations())
-                .filter(station -> station.contains(name))
+                .filter(station -> station.contains(stationName))
                 .findAny()
                 .ifPresent(s -> {
                     throw new DuplicateStationOfLineException();
