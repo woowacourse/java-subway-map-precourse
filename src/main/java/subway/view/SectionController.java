@@ -1,8 +1,8 @@
 package subway.view;
 
-import subway.Constant;
-import subway.domain.LineRepository;
-import subway.domain.SectionRepository;
+import subway.domain.Constant;
+import subway.repository.LineRepository;
+import subway.repository.SectionRepository;
 
 import java.util.Scanner;
 

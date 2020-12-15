@@ -1,7 +1,5 @@
 package subway.domain;
 
-import subway.Constant;
-
 import java.util.ArrayList;
 import java.util.List;
 

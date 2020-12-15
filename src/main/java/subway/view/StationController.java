@@ -1,8 +1,8 @@
 package subway.view;
 
-import subway.Constant;
+import subway.domain.Constant;
 import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.repository.StationRepository;
 
 import java.util.Scanner;
 

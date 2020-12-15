@@ -1,9 +1,7 @@
 package subway.view;
 
-import subway.Constant;
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
+import subway.domain.Constant;
+import subway.repository.LineRepository;
 
 import java.util.Scanner;
 

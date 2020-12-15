@@ -1,6 +1,5 @@
 package subway.domain;
 
-import subway.Constant;
 import subway.view.LineController;
 import subway.view.SectionController;
 import subway.view.StationController;

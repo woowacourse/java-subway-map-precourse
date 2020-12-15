@@ -1,4 +1,4 @@
-package subway;
+package subway.domain;
 
 public class Constant {
     public static final int MIN_LENGTH = 2;

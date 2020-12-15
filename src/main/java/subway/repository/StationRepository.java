@@ -1,6 +1,7 @@
-package subway.domain;
+package subway.repository;
 
-import subway.Constant;
+import subway.domain.Constant;
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
