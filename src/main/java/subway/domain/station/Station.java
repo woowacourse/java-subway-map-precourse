@@ -1,7 +1,8 @@
-package subway.domain;
+package subway.domain.station;
 
 public class Station {
-    private String name;
+
+    private final String name;
 
     public Station(String name) {
         this.name = name;
@@ -11,5 +12,4 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
 }
