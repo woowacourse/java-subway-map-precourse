@@ -38,14 +38,8 @@ public class StationInputManager {
     private void checkNameToAdd(String stationName) {
         checkLength(stationName);
         checkLastLetter(stationName);
-        checkEnrolledStation(stationName);
+        checkNotEnrolledStation(stationName);
         checkEmptyIncluded(stationName);
-    }
-
-    private void checkEmptyIncluded(String stationName) {
-        if(stationName.contains(EMPTY)){
-            throw new ErrorMessageException(EMPTY_SPACE_UNACCEPTABLE);
-        }
     }
 
     private void checkLength(String stationName) {
@@ -61,18 +55,24 @@ public class StationInputManager {
         }
     }
 
-    private void checkEnrolledStation(String stationName) {
+    private void checkNotEnrolledStation(String stationName) {
         if (StationRepository.containsStationByName(stationName)) {
             throw new ErrorMessageException(VALUE_EXIST);
         }
     }
 
+    private void checkEmptyIncluded(String stationName) {
+        if(stationName.contains(EMPTY)){
+            throw new ErrorMessageException(EMPTY_SPACE_UNACCEPTABLE);
+        }
+    }
+
     private void checkNameToDelete(String stationName) {
-        checkAlreadyExist(stationName);
+        checkEnrolledStation(stationName);
         checkNotOnPath(stationName);
     }
 
-    private void checkAlreadyExist(String stationName) {
+    private void checkEnrolledStation(String stationName) {
         if (!StationRepository.containsStationByName(stationName)) {
             throw new ErrorMessageException(NOT_EXIST_STATION);
         }

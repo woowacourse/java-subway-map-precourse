@@ -7,15 +7,15 @@ import subway.domain.station.StationRepository;
 import subway.common.ErrorMessageException;
 
 public class PathInputManager {
-    private static final int MIN_ORDER = 1;
     private static final String NOT_EXIST_LINE = "존재하지 않는 노선입니다.";
-    private static final String NOT_ENROLLED_STATION = "등록되지 않은 역입니다.";
     private static final String STATION_ALREADY_ON_PATH = "입력하신 역은 구간에 이미 등록되어 있습니다.";
+    private static final String NOT_ENROLLED_STATION = "등록되지 않은 역입니다.";
     private static final String NOT_NUMBER = "정수가 아닙니다. 순서는 1이상의 정수를 입력해 주세요.";
+    private static final int MIN_ORDER = 1;
     private static final String NOT_OVER_ONE = "순서는 1이상의 정수로 가능합니다.";
     private static final String OVER_SIZE_PATH = "순서가 가능한 순서의 크기를 넘어갑니다.";
-    private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
     private static final String NOT_DELETE_ENDS_ONLY_EXIST = "종점만 남은 노선의 구간은 삭제할 수 없습니다.";
+    private static final String NOT_EXIST_STATION_ON_PATH = "노선에 등록되어 있지 않은 역입니다.";
 
     private final Scanner scanner;
 
@@ -31,11 +31,23 @@ public class PathInputManager {
         return pathInfo;
     }
 
+    public String[] getPathInfoToDelete() {
+        String[] pathInfo = new String[2];
+        pathInfo[0] = getLineNameToDelete();
+        pathInfo[1] = getStationNameToDelete(pathInfo[0]);
+        return pathInfo;
+    }
+
+
     private String getLineNameToAdd() {
         PathOutputManager.printLineToAddPathGuide();
         String lineName = scanner.nextLine().trim();
-        checkEnrolledLineName(lineName);
+        checkLineNameToAdd(lineName);
         return lineName;
+    }
+
+    private void checkLineNameToAdd(String lineName) {
+        checkEnrolledLineName(lineName);
     }
 
     //등록되어 있는 라인인지
@@ -48,9 +60,13 @@ public class PathInputManager {
     private String getStationNameToAdd(String lineName) {
         PathOutputManager.printStationToAddPathGuide();
         String stationName = scanner.nextLine().trim();
+        checkStationNameToAdd(stationName, lineName);
+        return stationName;
+    }
+
+    private void checkStationNameToAdd(String stationName, String lineName) {
         checkEnrolledStationNameOnPath(stationName, lineName);
         checkEnrolledStation(stationName);
-        return stationName;
     }
 
     //그 노선에 등록되어 있는 역인지
@@ -98,19 +114,16 @@ public class PathInputManager {
         }
     }
 
-    public String[] getPathInfoToDelete() {
-        String[] pathInfo = new String[2];
-        pathInfo[0] = getLineNameToDelete();
-        pathInfo[1] = getStationNameToDelete(pathInfo[0]);
-        return pathInfo;
-    }
-
     private String getLineNameToDelete() {
         PathOutputManager.printLineToDeleteGuide();
         String lineName = scanner.nextLine().trim();
+        checkLineNameToDelete(lineName);
+        return lineName;
+    }
+
+    private void checkLineNameToDelete(String lineName) {
         checkPathOfLineSizeOverTwo(lineName);
         checkEnrolledLineName(lineName);
-        return lineName;
     }
 
     //종점만 남은건 아닌지 체크.
@@ -123,12 +136,16 @@ public class PathInputManager {
     private String getStationNameToDelete(String lineName) {
         PathOutputManager.printStationToDeleteGuide();
         String stationName = scanner.nextLine().trim();
-        checkEnrolledStationOnPathToDelete(stationName, lineName);
+        checkStationNameToDelete(stationName, lineName);
         return stationName;
     }
 
+    private void checkStationNameToDelete(String stationName, String lineName) {
+        checkEnrolledStationInTheLineToDelete(stationName, lineName);
+    }
+
     //노선에 등록되어 있는 역인지 확인
-    private void checkEnrolledStationOnPathToDelete(String stationName, String lineName) {
+    private void checkEnrolledStationInTheLineToDelete(String stationName, String lineName) {
         if (!SubwayRepository.containsStationOnPathInTheLine(stationName, lineName)) {
             throw new ErrorMessageException(NOT_EXIST_STATION_ON_PATH);
         }
