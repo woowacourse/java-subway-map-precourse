@@ -13,7 +13,7 @@ public class StationManagementView extends ScreenView {
     private static final String DELETE_FINISH_MESSAGE = Formatter.Info("지하철 역이 삭제되었습니다.");
 
     public static void printDeleteMessage() {
-        System.out.println(deleteFunction(FUNCTION));
+        System.out.println("\n"+deleteFunction(FUNCTION));
     }
 
     public static void printRegisterMessage() {
@@ -21,11 +21,11 @@ public class StationManagementView extends ScreenView {
     }
 
     public static void printRegisterFinishMessage() {
-        System.out.println(REGISTER_FINISH_MESSAGE);
+        System.out.println("\n"+REGISTER_FINISH_MESSAGE);
     }
 
     public static void printDeleteFinishMessage() {
-        System.out.println(DELETE_FINISH_MESSAGE);
+        System.out.println("\n"+DELETE_FINISH_MESSAGE);
     }
 
     public static void printStationList(List<Station> list) {
@@ -36,7 +36,5 @@ public class StationManagementView extends ScreenView {
                 .map(StationName::toString)
                 .map(Formatter::Info)
                 .forEach(System.out::println);
-
-        System.out.println();
     }
 }

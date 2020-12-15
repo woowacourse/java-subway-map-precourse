@@ -27,7 +27,7 @@ enum MainMenu {
     }),
     EXIT("Q", "종료", null);
 
-    private final static String HEADER = "## 메인 화면";
+    private final static String HEADER = "\n## 메인 화면";
     private final static String DELIMITER = ". ";
 
     String order;

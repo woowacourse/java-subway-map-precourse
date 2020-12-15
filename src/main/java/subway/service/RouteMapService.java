@@ -34,6 +34,6 @@ public class RouteMapService {
             return String.join(System.lineSeparator(), lineMap);
         }).collect(Collectors.toList());
 
-        return String.join(System.lineSeparator(), routeMap);
+        return String.join(System.lineSeparator()+System.lineSeparator(), routeMap);
     }
 }

@@ -4,6 +4,7 @@ import subway.controller.line.LineManagementController;
 import subway.controller.main.MainMenuController;
 import subway.controller.section.SectionManagementController;
 import subway.controller.station.StationManagementController;
+import subway.domain.station.Station;
 import subway.repository.line.LineRepository;
 import subway.repository.line.LineRepositoryImpl;
 import subway.repository.station.StationRepository;
@@ -12,16 +13,16 @@ import subway.repository.station.StationRepositoryImpl;
 public class ControllerContainer {
 
     private static LineRepository lineRepository = new LineRepositoryImpl();
-    private static StationRepository stationRegisterService = new StationRepositoryImpl();
+    private static StationRepository stationRepository = new StationRepositoryImpl();
 
     private static MainMenuController mainMenuController =
-            new MainMenuController(stationRegisterService, lineRepository);
+            new MainMenuController(stationRepository, lineRepository);
     private static LineManagementController lineManagementController =
-            new LineManagementController(stationRegisterService, lineRepository);
+            new LineManagementController(stationRepository, lineRepository);
     private static StationManagementController stationManagementController =
-            new StationManagementController(stationRegisterService, lineRepository);
+            new StationManagementController(stationRepository, lineRepository);
     private static SectionManagementController sectionManagementController =
-            new SectionManagementController(stationRegisterService, lineRepository);
+            new SectionManagementController(stationRepository, lineRepository);
 
     public static MainMenuController getMainMenuController() {
         return mainMenuController;
@@ -39,4 +40,11 @@ public class ControllerContainer {
         return sectionManagementController;
     }
 
+    public static LineRepository getLineRepository() {
+        return lineRepository;
+    }
+
+    public static StationRepository getStationRepository() {
+        return stationRepository;
+    }
 }

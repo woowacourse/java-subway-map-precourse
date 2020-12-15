@@ -11,18 +11,17 @@ public class LineManagementView extends ScreenView {
     private static final String NAME = "이름";
     private static final String UPLINE_TERMINAL = "상행 종점역";
     private static final String DOWNLINE_TERMINAL = "상행 종점역";
-    private static final String LINE_HEADER = "## 노선 목록";
-    private static final String LINE_REGISTER_START_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
-    private static final String LINE_REGISTER_FINISH_MESSAGE = "지하철 노선이 등록되었습니다.";
-    private static final String LINE_DELETE_MESSAGE = "## 삭제할 노선 이름을 입력하세요..";
-    private static final String LINE_DELETE_FINISH_MESSAGE = "지하철 노선이 삭제되었습니다.";
-    private static final String LINE_MANAGEMENT_MENU = "## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n" +
+    private static final String LINE_HEADER = "\n## 노선 목록";
+    private static final String LINE_REGISTER_START_MESSAGE = "\n## 등록할 노선 이름을 입력하세요.";
+    private static final String LINE_REGISTER_FINISH_MESSAGE = "\n지하철 노선이 등록되었습니다.";
+    private static final String LINE_DELETE_MESSAGE = "\n## 삭제할 노선 이름을 입력하세요..";
+    private static final String LINE_DELETE_FINISH_MESSAGE = "\n지하철 노선이 삭제되었습니다.";
+    private static final String LINE_MANAGEMENT_MENU = "\n## 노선 관리 화면\n1. 노선 등록\n2. 노선 삭제\n" +
             "3. 노선 조회\nB. 돌아가기\n";
 
 
     public static void printMenu() {
-        System.out.println(LINE_MANAGEMENT_MENU);
-        System.out.println();
+        System.out.println(LINE_MANAGEMENT_MENU);;
     }
 
     public static void printRegisterMessage() {
@@ -51,7 +50,7 @@ public class LineManagementView extends ScreenView {
     }
 
     public static void printLineRegisteredFinishMessage() {
-        System.out.println(Formatter.Info(LINE_REGISTER_FINISH_MESSAGE));
+        System.out.println("\n" + Formatter.Info(LINE_REGISTER_FINISH_MESSAGE));
     }
 
     public static void printLineList(List<Line> list) {
