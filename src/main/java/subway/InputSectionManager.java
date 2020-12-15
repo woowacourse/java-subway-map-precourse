@@ -29,8 +29,8 @@ public class InputSectionManager implements InputManager {
 
     private enum Menu {
         REGISTER("1", ((InputSectionManager) SubwayManager.getMenus(SECTION_MENU))::register),
-        DELETE("2", ((InputSectionManager) SubwayManager.getMenus(SECTION_MENU))::delete);
-//        BACK("B");
+        DELETE("2", ((InputSectionManager) SubwayManager.getMenus(SECTION_MENU))::delete),
+        BACK("B", System.out::println);
 
         private final String name;
         private final Runnable runnable;
