@@ -17,6 +17,14 @@ public class Line {
         return Collections.unmodifiableList(sections);
     }
 
+    public void addStationAt(int index, Station station) {
+        sections.add(index, station);
+    }
+
+    public boolean contains(Station station) {
+        return sections.contains(station);
+    }
+
     public String getName() {
         return name;
     }

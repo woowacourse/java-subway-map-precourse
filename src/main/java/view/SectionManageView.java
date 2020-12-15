@@ -32,6 +32,7 @@ public class SectionManageView {
                 printMessage(INPUT_MESSAGE);
                 input = input();
             }
+            controller.processInput(input);
         }
     }
 
