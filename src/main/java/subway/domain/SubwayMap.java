@@ -1,6 +1,7 @@
 package subway.domain;
 
 import subway.Constant;
+import subway.domain.data.Line;
 import subway.domain.data.LineRepository;
 import subway.domain.data.Station;
 import subway.domain.data.StationRepository;
@@ -23,9 +24,22 @@ public class SubwayMap {
     }
 
     private void initData() {
-        String[] initStation = {
+        initStation();
+        initLine();
+    }
+
+    private void initLine() {
+        String[] initLineData = {
+                "2호선", "3호선", "신분당선"};
+        for(String lineName : initLineData){
+            LineRepository.addLine(new Line(lineName));
+        }
+    }
+
+    private void initStation() {
+        String[] initStationData = {
                 "교대역", "강남역" ,"역삼역" ,"남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
-        for(String stationName : initStation){
+        for(String stationName : initStationData){
             StationRepository.addStation(new Station(stationName));
         }
     }
