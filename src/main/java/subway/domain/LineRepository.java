@@ -1,11 +1,11 @@
 package subway.domain;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LineRepository {
-    private static final Map<String, Line> lines = new HashMap<>();
+    private static final Map<String, Line> lines = new LinkedHashMap<>();
 
     public static Map<String, Line> lines() {
         return Collections.unmodifiableMap(lines);
