@@ -15,7 +15,7 @@ public class StationRepository {
     }
 
     public static void addStation(String stationName) {
-        if (checkExistStation(stationName)) {
+        if (checkNameLength(stationName) || checkExistStation(stationName)) {
             throw new IllegalArgumentException();
         }
         stations.add(new Station(stationName));
@@ -33,5 +33,9 @@ public class StationRepository {
 
     public static boolean checkExistStation(String stationName) {
         return stations.stream().anyMatch(o -> o.getName().equals(stationName));
+    }
+
+    public static boolean checkNameLength(String name) {
+        return name.length() <= 2;
     }
 }

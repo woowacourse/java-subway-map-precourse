@@ -43,7 +43,7 @@ public class LineController {
             lineRepository.addLine(lineName, upwardName, downwardName);
             System.out.println(String.join(" ", Constant.INFO_PREFIX, ADD_LINE_SUCCESS));
         }catch (IllegalArgumentException e){
-            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.NO_EXIST_INFO));
+            System.err.println(String.join(" ", Constant.ERROR_PREFIX, Constant.FAIL));
         }
     }
 

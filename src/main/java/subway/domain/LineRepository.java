@@ -13,7 +13,7 @@ public class LineRepository {
     }
 
     public static void addLine(String lineName, String upwardName, String downwardName) {
-        if (checkExistLine(lineName) || !stationRepository.checkExistStation(upwardName)
+        if (stationRepository.checkNameLength(lineName) || checkExistLine(lineName) || !stationRepository.checkExistStation(upwardName)
                 || !stationRepository.checkExistStation(downwardName) || upwardName.equals(downwardName)) {
             throw new IllegalArgumentException();
         }
@@ -39,4 +39,5 @@ public class LineRepository {
     public static boolean checkExistLine(String lineName) {
         return lines.stream().anyMatch(o -> o.getName().equals(lineName));
     }
+
 }

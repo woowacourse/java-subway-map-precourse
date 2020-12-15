@@ -19,11 +19,11 @@ public class Constant {
     public static final String SECTION_ANNOUNCEMENT = "\n## 구간 관리 화면\n1. 구간 등록\n2. 구간 삭제\nB. 돌아가기\n";
     public static final String INPUT_ANNOUNCEMENT = "## 원하는 기능을 선택하세요.\n";
     public static final String INPUT_ERROR_ANNOUNCEMENT = "선택할 수 없는 기능입니다.";
+    public static final String NO_EXIST_INFO = "등록되지 않은 역 또는 노선입니다.\n";
+    public static final String LINE_STATION_POSTFIX = "종점역 이름을 입력하세요.";
 
     public static final String ADD_PREFIX = "\n## 등록할";
     public static final String DELETE_PREFIX = "\n## 삭제할";
     public static final String NAME_POSTFIX = "이름을 입력해주세요.";
-    public static final String LINE_STATION_POSTFIX = "종점역 이름을 입력하세요.";
-    public static final String NO_EXIST_INFO = "등록되지 않은 역 또는 노선입니다.\n";
     public static final String FAIL = "실패했습니다.";
 }
