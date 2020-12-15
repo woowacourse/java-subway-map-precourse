@@ -9,10 +9,6 @@ public class Line {
     private Station downwardTerminal;
     private LinkedList<Station> terminals;
 
-    public Line(String name) {
-        this.name = name;
-        terminals = new LinkedList<>();
-    }
     public Line(String name, Station upwardTerminal, Station downwardTerminal) {
         this.name = name;
         this.upwardTerminal = upwardTerminal;
