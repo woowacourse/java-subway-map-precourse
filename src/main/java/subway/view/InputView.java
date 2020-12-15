@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.FunctionType;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -18,9 +20,19 @@ public class InputView {
         String userInput = scanner.nextLine();
         try {
             validateUserInput(userInput);
+            executeFunction(userInput);
         } catch (Exception e) {
+            System.out.println();
             System.out.println(e.getMessage());
             getMainScreenUserSelection(scanner);
+        }
+    }
+
+    private static void executeFunction(String userInput) {
+        for (FunctionType functionType : FunctionType.values()) {
+            if(functionType.isSameFunctionCode(Integer.parseInt(userInput))) {
+                functionType.execute();
+            }
         }
     }
 
