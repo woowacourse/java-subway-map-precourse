@@ -1,13 +1,13 @@
 package subway.line;
 
+import subway.common.Prefix;
 import subway.station.Station;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EachLineStations {
-    private static final String ERROR_PREFIX = "[ERROR] ";
-    private static final String STATION_NUMBER_LACK = ERROR_PREFIX + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
+    private static final String STATION_NUMBER_LACK = Prefix.ERROR.getPrefix() + "등록된 역이 2개 이하이므로 삭제할 수 없습니다.";
     private static final int MIN_ORDER_NUMBER = 1;
     private static final int MIN_STATION_NUMBER = 2;
     private static final int SET_POSITION_INDEX = 1;
