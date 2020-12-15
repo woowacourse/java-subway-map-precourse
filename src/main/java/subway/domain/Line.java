@@ -24,7 +24,7 @@ public class Line {
     }
 
     public void addSection(int index, Station station) {
-        section.add(index, station);
+        section.add(index-1, station);
     }
 
     public List<Station> getSection() {
