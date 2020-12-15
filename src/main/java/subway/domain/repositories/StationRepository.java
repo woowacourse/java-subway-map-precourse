@@ -1,9 +1,8 @@
-package subway.domain;
+package subway.domain.repositories;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import subway.domain.Station;
+
+import java.util.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
