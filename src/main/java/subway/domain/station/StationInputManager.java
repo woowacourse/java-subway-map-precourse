@@ -62,7 +62,7 @@ public class StationInputManager {
     }
 
     private void checkEmptyIncluded(String stationName) {
-        if(stationName.contains(EMPTY)){
+        if (stationName.contains(EMPTY)) {
             throw new ErrorMessageException(EMPTY_SPACE_UNACCEPTABLE);
         }
     }

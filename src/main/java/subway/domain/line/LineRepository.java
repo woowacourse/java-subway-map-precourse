@@ -20,7 +20,7 @@ public class LineRepository {
     }
 
     public static void deleteLineByName(String name) {
-        if(!lines.removeIf(line -> Objects.equals(line.getName(), name))){
+        if (!lines.removeIf(line -> Objects.equals(line.getName(), name))) {
             throw new ErrorMessageException(FAIL_TO_DELETE);
         }
     }

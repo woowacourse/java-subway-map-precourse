@@ -33,7 +33,7 @@ public class PathRepository {
     }
 
     public void deletePathByName(String name) {
-        if(!path.removeIf(station -> Objects.equals(station.getName(), name))){
+        if (!path.removeIf(station -> Objects.equals(station.getName(), name))) {
             throw new ErrorMessageException(FAIL_TO_DELETE_PATH);
         }
     }
@@ -41,6 +41,5 @@ public class PathRepository {
     public int pathSize() {
         return path.size();
     }
-
 
 }

@@ -38,7 +38,6 @@ public class PathInputManager {
         return pathInfo;
     }
 
-
     private String getLineNameToAdd() {
         PathOutputManager.printLineToAddPathGuide();
         String lineName = scanner.nextLine().trim();
@@ -50,7 +49,6 @@ public class PathInputManager {
         checkEnrolledLineName(lineName);
     }
 
-    //등록되어 있는 라인인지
     private void checkEnrolledLineName(String lineName) {
         if (!LineRepository.containsName(lineName)) {
             throw new ErrorMessageException(NOT_EXIST_LINE);
@@ -69,14 +67,12 @@ public class PathInputManager {
         checkEnrolledStation(stationName);
     }
 
-    //그 노선에 등록되어 있는 역인지
     private void checkEnrolledStationNameOnPath(String stationName, String lineName) {
         if (SubwayRepository.containsStationOnPathInTheLine(stationName, lineName)) {
             throw new ErrorMessageException(STATION_ALREADY_ON_PATH);
         }
     }
 
-    //역에 등록되어 있는 역인지
     private void checkEnrolledStation(String stationName) {
         if (!StationRepository.containsStationByName(stationName)) {
             throw new ErrorMessageException(NOT_ENROLLED_STATION);
@@ -100,14 +96,12 @@ public class PathInputManager {
         }
     }
 
-    //순서가 1이상인지
     private void checkOverOne(int indexNumber) {
         if (indexNumber < MIN_ORDER) {
             throw new ErrorMessageException(NOT_OVER_ONE);
         }
     }
 
-    //순서가 가능한 사이즈를 넘지는 않는지
     private void checkNotOverSize(int indexNumber, String lineName) {
         if (SubwayRepository.isUnacceptableIndexSize(lineName, indexNumber)) {
             throw new ErrorMessageException(OVER_SIZE_PATH);
@@ -126,7 +120,6 @@ public class PathInputManager {
         checkEnrolledLineName(lineName);
     }
 
-    //종점만 남은건 아닌지 체크.
     private void checkPathOfLineSizeOverTwo(String lineName) {
         if (SubwayRepository.isOnlyEndsRemained(lineName)) {
             throw new ErrorMessageException(NOT_DELETE_ENDS_ONLY_EXIST);
@@ -144,7 +137,6 @@ public class PathInputManager {
         checkEnrolledStationInTheLineToDelete(stationName, lineName);
     }
 
-    //노선에 등록되어 있는 역인지 확인
     private void checkEnrolledStationInTheLineToDelete(String stationName, String lineName) {
         if (!SubwayRepository.containsStationOnPathInTheLine(stationName, lineName)) {
             throw new ErrorMessageException(NOT_EXIST_STATION_ON_PATH);

@@ -70,12 +70,12 @@ public class LineInputManager {
     }
 
     private void checkEmptyIncluded(String lineName) {
-        if(lineName.contains(EMPTY)){
+        if (lineName.contains(EMPTY)) {
             throw new ErrorMessageException(EMPTY_SPACE_UNACCEPTABLE);
         }
     }
 
-    public String getUpStationName() {
+    private String getUpStationName() {
         LineOutputManager.printUpStationGuide();
         String stationName = scanner.nextLine().trim();
         checkUpStationName(stationName);
@@ -114,7 +114,7 @@ public class LineInputManager {
     private void checkNameToDelete(String lineName) {
         checkEnrolledLine(lineName);
     }
-    //이미 등록되어 있는 노선만 삭제 가능
+
     private void checkEnrolledLine(String lineName) {
         if (!LineRepository.containsName(lineName)) {
             throw new ErrorMessageException(NOT_EXIST_LINE);

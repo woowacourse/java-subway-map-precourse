@@ -14,6 +14,7 @@ public class PathOutputManager {
 
     private PathOutputManager() {
     }
+
     public static void printLineToAddPathGuide() {
         GuideMessage.print(LINE_TO_ADD_PATH_GUIDE);
     }
@@ -43,6 +44,5 @@ public class PathOutputManager {
         System.out.println();
         InfoMessage.print(PATH_DELETED);
     }
-
 
 }

@@ -34,4 +34,5 @@ public class StationRepository {
     public static boolean containsStationByName(String name) {
         return stations.stream().anyMatch(item -> Objects.equals(item.getName(), name));
     }
+
 }
