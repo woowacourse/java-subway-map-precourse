@@ -27,8 +27,13 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         initialize();
+        startProgram(scanner);
+    }
+
+    public static void startProgram(Scanner kbd) {
         showMainMenu();
-        goSubMenu(inputFunction(scanner, MAIN_FUNCTIONS), scanner);
+        String mainInput = inputFunction(kbd, MAIN_FUNCTIONS);
+        goSubMenu(mainInput, kbd);
     }
 
     public static void initialize() {
