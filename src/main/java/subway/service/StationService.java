@@ -1,8 +1,10 @@
 package subway.service;
 
+import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.exception.CannotFindStationByNameException;
+import subway.exception.StationRegisteredInLineException;
 import subway.view.OutputView;
 
 public class StationService {
@@ -16,6 +18,10 @@ public class StationService {
     }
 
     public static void removeStationByName(String name) {
+        if (LineRepository.isStationRegisteredInAnyLine(name)) {
+            throw new StationRegisteredInLineException();
+        }
+
         if (StationRepository.deleteStation(name)) {
             OutputView.printInfo(STATION_UNREGISTER_SUCCESS);
             return;
