@@ -4,7 +4,7 @@ import subway.controller.ManagementController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
-import subway.domain.function.Functionable;
+import subway.domain.menu.Menu;
 
 public final class OutputView {
 
@@ -51,12 +51,12 @@ public final class OutputView {
         }
     }
 
-    public static void printFunctions(final String viewTitle, final Functionable[] functionables) {
+    public static void printFunctions(final String viewTitle, final Menu[] menus) {
         printTitle(String.format(ViewFormat.VIEW_FORMAT, viewTitle));
 
-        for (Functionable functionable : functionables) {
-            System.out.printf(ViewFormat.FUNCTION_FORMAT, functionable.getIdentifier(),
-                    functionable.getDescription());
+        for (Menu menu : menus) {
+            System.out.printf(ViewFormat.FUNCTION_FORMAT, menu.getIdentifier(),
+                    menu.getDescription());
         }
 
         System.out.println();
