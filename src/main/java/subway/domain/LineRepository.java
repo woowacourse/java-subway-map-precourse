@@ -21,6 +21,11 @@ public class LineRepository {
         lines.add(line);
     }
 
+    public static void addSection(String lineName, int index, Station station) {
+        List<Station> list = findByName(lineName).getSections();
+        list.add(index, station);
+    }
+
     public static boolean deleteLine(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }

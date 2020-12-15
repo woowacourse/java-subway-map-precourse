@@ -1,9 +1,9 @@
 package subway.domain;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import subway.exception.DuplicatedStationInOneLineException;
 import subway.exception.AlreadyRegisteredLineNameException;
+import subway.exception.DuplicatedStationInOneLineException;
 import subway.exception.LineNameLengthException;
 
 public class Line {
@@ -19,7 +19,12 @@ public class Line {
     public static Line of(String name, Station firstStation, Station lastStation) {
         validateLength(name);
         validateDuplicatedStations(firstStation, lastStation);
-        return new Line(name, Arrays.asList(firstStation, lastStation));
+
+        List<Station> list = new ArrayList<>();
+        list.add(firstStation);
+        list.add(lastStation);
+
+        return new Line(name, list);
     }
 
     public void save() {

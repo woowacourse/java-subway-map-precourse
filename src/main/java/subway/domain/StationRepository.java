@@ -36,4 +36,8 @@ public class StationRepository {
         return stations.stream()
                 .anyMatch(station -> station.getName().equals(name));
     }
+
+    public static void deleteAll() {
+        stations.clear();
+    }
 }
