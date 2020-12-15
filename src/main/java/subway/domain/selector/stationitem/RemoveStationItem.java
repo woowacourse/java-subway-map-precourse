@@ -19,7 +19,7 @@ public class RemoveStationItem extends Selector implements Manipulable {
 
         String stationName = inputView.getName();
         stationValidator.validateRemoveStation(stationName);
-        StationRepository.deleteStation(stationName);
+        StationRepository.deleteStationByName(stationName);
 
         messageView.printRemoveStationSuccessMessage();
     }

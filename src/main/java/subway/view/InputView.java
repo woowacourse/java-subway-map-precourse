@@ -29,4 +29,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public int getNumber() {
+        return Integer.parseInt(scanner.nextLine());
+    }
+
 }

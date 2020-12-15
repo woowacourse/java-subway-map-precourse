@@ -7,7 +7,7 @@ public class Application {
 
     public static void main(String[] args) {
         DataFactory dataFactory = new DataFactory();
-        dataFactory.makeData();
+        dataFactory.makeSubwayData();
 
         SubwayManageController subwayManageController = new SubwayManageController();
         subwayManageController.run();

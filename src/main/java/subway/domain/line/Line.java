@@ -18,10 +18,6 @@ public class Line {
         return name;
     }
 
-    public void addStation(Station station) {
-        stations.add(station);
-    }
-
     public void addAllStation(List<Station> stationsList) {
         stations.addAll(stationsList);
     }
