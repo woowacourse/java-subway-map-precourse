@@ -2,7 +2,6 @@ package subway.manager.menu;
 
 import subway.controller.SectionController;
 import subway.view.Output;
-
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -27,6 +26,17 @@ public enum SectionMenu {
         Output.print(menu);
         Arrays.stream(SectionMenu.values())
                 .forEach(System.out::println);
+    }
+
+    public static SectionMenu getSectionMenuType(String selectMenu) {
+        return Arrays.stream(SectionMenu.values())
+                .filter(SectionMenu -> SectionMenu.number.equals(selectMenu))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
+    }
+
+    public void execute(SectionController sectionController) {
+        nextAction.accept(sectionController);
     }
 
     public static void initMenuStatus() {
