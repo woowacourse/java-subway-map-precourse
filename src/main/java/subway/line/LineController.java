@@ -1,5 +1,6 @@
 package subway.line;
 
+import subway.line.validation.NotAllowSameStartEnd;
 import subway.main.SubwayController;
 import subway.station.Station;
 import subway.station.StationService;
@@ -50,7 +51,7 @@ public class LineController {
         try {
             Line line = getNewLine(inputView);
             Station startStation = getStartStation(inputView);
-            Station endStation = getEndStation(inputView);
+            Station endStation = getEndStation(startStation, inputView);
             success = LineService.addLine(line, startStation, endStation);
             if (success) {
                 LineManagementView.addLineComplete();
@@ -73,9 +74,10 @@ public class LineController {
         return StationService.findStation(startStationName);
     }
 
-    private static Station getEndStation(InputView inputView) {
+    private static Station getEndStation(Station startStation, InputView inputView) {
         LineManagementView.askEndStationName();
         String endStationName = inputView.stationName();
+        NotAllowSameStartEnd.validation(startStation.getName(), endStationName);
         return StationService.findStation(endStationName);
     }
 
