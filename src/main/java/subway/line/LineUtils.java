@@ -58,6 +58,7 @@ public class LineUtils {
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
         String newLineName = scanner.next();
         Validator.isLineAlreadyExist(newLineName);
+        Validator.isNameOverTwoCharacter(newLineName);
         Line newLine = new Line(newLineName);
 
         System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");

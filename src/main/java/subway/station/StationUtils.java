@@ -53,6 +53,7 @@ public class StationUtils {
         System.out.println("\n## 등록할 역 이름을 입력하세요.");
         String newStationName = scanner.next();
         Validator.isStationAlreadyExist(newStationName);
+        Validator.isNameOverTwoCharacter(newStationName);
         Station newStation = new Station(newStationName);
         StationRepository.addStation(newStation);
         System.out.println("\n[INFO] 지하철 역이 등록되었습니다.\n");
