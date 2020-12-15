@@ -7,7 +7,7 @@ import subway.view.OutputView;
 
 import java.util.Scanner;
 
-public class MainService {
+public class MainService implements MapService {
 
     private boolean isContinue = true;
 
@@ -37,7 +37,8 @@ public class MainService {
     }
 
 
-    public void start() {
+    @Override
+    public void run() {
         while (isContinue)
             runService();
     }

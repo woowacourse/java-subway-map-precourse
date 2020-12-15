@@ -19,6 +19,10 @@ public class OutputView {
         print(information);
     }
 
+    private void printEmptyLine() {
+        print("");
+    }
+
     private void print(String message) {
         System.out.println(message);
     }
@@ -27,10 +31,6 @@ public class OutputView {
         print(SHOW_STATION_INFO);
         for (Station station : StationRepository.stations())
             print(INFO_HEADER + station.getName());
-    }
-
-    private void printEmptyLine() {
-        print("");
     }
 
     public void printLineList() {

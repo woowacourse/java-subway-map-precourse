@@ -9,12 +9,12 @@ public abstract class CrudService implements MapService {
 
     private InputView inputView;
     private OutputView outputView;
-    private String information;
+    private String functionInformation;
 
-    public CrudService(InputView inputView, OutputView outputView, String information) {
+    public CrudService(InputView inputView, OutputView outputView, String functionInformation) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.information = information;
+        this.functionInformation = functionInformation;
     }
 
     public InputView getInputView() {
@@ -28,7 +28,7 @@ public abstract class CrudService implements MapService {
     @Override
     public void run() {
         try {
-            String selectedFunction = inputView.getFunctionInput(information);
+            String selectedFunction = inputView.getFunctionInput(functionInformation);
             Function.validate(selectedFunction);
             runSelectedFunction(selectedFunction);
         } catch (InvalidInputException e) {

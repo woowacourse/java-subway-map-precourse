@@ -19,14 +19,14 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public String getFunctionInput(String information) {
-        System.out.println(information);
+    public String getSelectedServiceInput() {
+        System.out.println(MAIN_INFO);
         return scanner.nextLine();
     }
 
 
-    public String getSelectedServiceInput() {
-        System.out.println(MAIN_INFO);
+    public String getFunctionInput(String information) {
+        System.out.println(information);
         return scanner.nextLine();
     }
 
