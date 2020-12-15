@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum StationMenu {
-    ADD_STATION("역 관리", "1", StationMenuHandler::addStation),
+    ADD_STATION("역 등록", "1", StationMenuHandler::addStation),
     DELETE_STATION("역 삭제", "2", StationMenuHandler::deleteStation),
     SHOW_STATIONS("역 조회", "3", StationMenuHandler::showStation),
     BACK("돌아가기", "B", StationMenuHandler::back);

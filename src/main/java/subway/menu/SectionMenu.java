@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum SectionMenu {
-    ADD_SECTION("구간 관리", "1",SectionMenuHandler::addSection),
+    ADD_SECTION("구간 등록", "1",SectionMenuHandler::addSection),
     DELETE_SECTION("구간 삭제", "2", SectionMenuHandler::deleteSection),
     BACK("돌아가기", "B",SectionMenuHandler::back);
 
