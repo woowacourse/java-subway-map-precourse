@@ -13,6 +13,7 @@ public class OutputView {
     }
 
     public static void printMainView(){
+        System.out.println();
         System.out.print(Constant.VIEW_HEADER);
         System.out.println(Constant.MAIN_VIEW_HEADER);
         for(MainMenu menu : MainMenu.values()) {
@@ -35,7 +36,8 @@ public class OutputView {
     }
 
     public static void printSelectFunction(String askingMessage){
-
+        System.out.print(Constant.VIEW_HEADER);
+        System.out.println(askingMessage);
     }
 
     public static void printFunctionResult(String resultMessage){

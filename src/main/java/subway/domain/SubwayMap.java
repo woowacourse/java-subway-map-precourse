@@ -1,5 +1,6 @@
 package subway.domain;
 
+import subway.Constant;
 import subway.domain.data.LineRepository;
 import subway.domain.data.StationRepository;
 import subway.domain.menu.MainMenu;
@@ -22,6 +23,8 @@ public class SubwayMap {
     }
 
     private void startService() {
+        OutputView.printMainView();
+
         while (true) {
             String inputData = selectService();
             if (inputData.equals(MainMenu.END.getOrder())){
@@ -32,8 +35,8 @@ public class SubwayMap {
     }
 
     private String selectService() {
-        OutputView.printMainView();
         try {
+            OutputView.printSelectFunction(Constant.ASKING_FUNCTION_BODY);
             return InputView.inputMainMenu(scanner);
         } catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());

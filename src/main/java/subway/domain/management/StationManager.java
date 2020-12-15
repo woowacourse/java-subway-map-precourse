@@ -22,7 +22,6 @@ public class StationManager extends ServiceManager {
             OutputView.printError(e.getMessage());
             doStationManagement(scanner);
         }
-
     }
 
     @Override
