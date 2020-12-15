@@ -17,8 +17,6 @@ public class SubwayMap {
 
     public SubwayMap(Scanner scanner) {
         this.scanner = scanner;
-        lineRepository = new LineRepository();
-        stationRepository = new StationRepository();
         startService();
     }
 

@@ -54,5 +54,14 @@ public class OutputView {
         System.out.println();
         System.out.print(Constant.ILLEGAL_ARGUMENT_EXCEPTION_HEADER);
         System.out.println(errorMessage);
+        System.out.println();
     }
+
+    public static void printErrorWithFormat(String errorFormat, String service){
+        System.out.println();
+        System.out.print(Constant.ILLEGAL_ARGUMENT_EXCEPTION_HEADER);
+        System.out.printf(errorFormat, service);
+        System.out.println();
+    }
+
 }

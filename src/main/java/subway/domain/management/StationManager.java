@@ -1,17 +1,19 @@
 package subway.domain.management;
 
 import subway.Constant;
+import subway.domain.data.Station;
+import subway.domain.data.StationRepository;
 import subway.domain.menu.ManagementMenu;
 import subway.domain.menu.ServiceList;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.List;
 import java.util.Scanner;
 
 
 public class StationManager extends ServiceManager {
 
-    private Scanner scanner;
     public StationManager(Scanner scanner) {
         super(scanner);
     }
@@ -21,25 +23,44 @@ public class StationManager extends ServiceManager {
         OutputView.printManagementView(ServiceList.STATION, menuList);
         String inputData = getInputData(scanner);
 
-        if(inputData.equals(ManagementMenu.REGISTER.getOrder())){
-            registerStation();
-            return;
+        try {
+            if(inputData.equals(ManagementMenu.REGISTER.getOrder())){
+                registerStation();
+                return;
+            }
+            if(inputData.equals(ManagementMenu.FIND.getOrder())){
+                findStation();
+                return;
+            }
+        } catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            doStationManagement();
         }
+
+    }
+
+    private void findStation() {
+
     }
 
     private void registerStation() {
         String name = getStationName();
+        Station station = new Station(name);
+        List<Station> stations = StationRepository.stations();
 
+        if(stations.contains(station)){
+            OutputView.printErrorWithFormat(Constant.REGISTER_DUPLICATE_DATA_ERROR_FORMAT, ServiceList.STATION.getName());
+            return;
+        }
+
+        OutputView.printFunctionResult();
+        return;
     }
 
     private String getStationName() {
-        try{
-            OutputView.printInputData(Constant.INPUT_DATA_REGISTER_FORMAT, ServiceList.STATION.getName());
-            return InputView.inputData(scanner);
-        }catch (IllegalArgumentException e){
-            OutputView.printError(e.getMessage());
-            return getStationName();
-        }
+        OutputView.printInputData(Constant.INPUT_DATA_REGISTER_FORMAT, ServiceList.STATION.getName());
+        String data = InputView.inputData(scanner);
+        return data;
     }
 
 
