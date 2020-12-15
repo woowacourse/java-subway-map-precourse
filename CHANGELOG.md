@@ -6,6 +6,8 @@
 ---
 # 지하철 프로젝트
 
+feat(StationMenu.java): 역 삭제 기능 추가
+
 feat(StationMenu.java): 역 추가 기능 추가
 
 feat(Menu.java): 메뉴 입력 확인 기능 추가

@@ -33,4 +33,17 @@ public class StationMenu extends Menu {
         PrintInfo.addStationSuccess();
         return true;
     }
+
+    private boolean deleteStation() {
+        PrintInfo.inputDeleteStationName();
+        String stationName = scanner.nextLine();
+        if (!StationManager.containsName(stationName)) {
+            return Error.notExist();
+        }
+        if (!StationManager.deleteStationByName(stationName)) {
+            return Error.stationHasLine();
+        }
+        PrintInfo.deleteStationSuccess();
+        return true;
+    }
 }
