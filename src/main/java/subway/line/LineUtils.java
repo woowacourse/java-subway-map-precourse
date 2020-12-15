@@ -56,13 +56,19 @@ public class LineUtils {
         Station downTerminal;
 
         System.out.println("\n## 등록할 노선 이름을 입력하세요.");
-        Line newLine = new Line(scanner.next());
+        String newLineName = scanner.next();
+        Validator.isLineAlreadyExist(newLineName);
+        Line newLine = new Line(newLineName);
 
         System.out.println("\n## 등록할 노선의 상행 종점역 이름을 입력하세요.");
-        upTerminal = StationRepository.getStationByName(scanner.next());
+        String upTermianlName = scanner.next();
+        Validator.isStationExist(upTermianlName);
+        upTerminal = StationRepository.getStationByName(upTermianlName);
 
         System.out.println("\n## 등록할 노선의 하행 종점역 이름을 입력하세요.");
-        downTerminal = StationRepository.getStationByName(scanner.next());
+        String downTerminalName = scanner.next();
+        Validator.isStationExist(downTerminalName);
+        downTerminal = StationRepository.getStationByName(downTerminalName);
 
         newLine.setTerminal(upTerminal, downTerminal);
         LineRepository.addLine(newLine);

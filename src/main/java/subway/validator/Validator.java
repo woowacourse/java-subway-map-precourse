@@ -1,5 +1,6 @@
 package subway.validator;
 
+import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class Validator {
@@ -78,13 +79,17 @@ public class Validator {
         if (StationRepository.getStationByName(name) != null) {
             throw new IllegalArgumentException(ALREADY_EXIST_STATION);
         }
-
     }
 
     public static void isStationExist(String name) {
         if (StationRepository.getStationByName(name) == null) {
             throw new IllegalArgumentException(NOT_EXIST_STATION);
         }
+    }
 
+    public static void isLineAlreadyExist(String name) {
+        if (LineRepository.selectLineByName(name) != null) {
+            throw new IllegalArgumentException(ALREADY_EXIST_STATION);
+        }
     }
 }
