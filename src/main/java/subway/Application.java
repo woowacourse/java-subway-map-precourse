@@ -1,8 +1,5 @@
 package subway;
 
-import subway.domain.menu.DataList;
-import subway.view.OutputView;
-
 import java.util.Scanner;
 
 public class Application {
@@ -10,7 +7,6 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO: 프로그램 구현
 
-        OutputView.printMainView();
-        OutputView.printManagementView(DataList.SECTION);
+        new SubwayMap(scanner);                   /**프로그램 시작*/
     }
 }
