@@ -21,12 +21,16 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        validateExistLine(line);
+        validateExistLine(line.getName());
         lines.add(line);
     }
 
-    private static void validateExistLine(Line line) {
-        if (lines.contains(line)) {
+    private static void validateExistLine(String name) {
+        lines.forEach(line -> duplicateStationName(line, name));
+    }
+
+    private static void duplicateStationName(Line line, String name) {
+        if (line.getName().equals(name)) {
             throw new IllegalArgumentException(EXIST_LINE.getMessage());
         }
     }

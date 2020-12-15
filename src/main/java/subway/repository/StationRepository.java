@@ -21,12 +21,16 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        validateExistStation(station);
+        validateExistStation(station.getName());
         stations.add(station);
     }
 
-    private static void validateExistStation(Station station) {
-        if (stations.contains(station)) {
+    private static void validateExistStation(String name) {
+        stations.forEach(station -> duplicateStationName(station, name));
+    }
+
+    private static void duplicateStationName(Station station, String name) {
+        if (station.getName().equals(name)) {
             throw new IllegalArgumentException(EXIST_STATION.getMessage());
         }
     }
