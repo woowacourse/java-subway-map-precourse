@@ -70,6 +70,9 @@ public class LineRepository {
     }
 
     public static void addSection(String lineName, String stationName, int order) {
+        if (order > lines.toArray().length + 1) {
+            order = lines.toArray().length + 1;
+        }
         for (Line line : lines) {
             if (line.isSameName(lineName)) {
                 line.insertStation(stationName, order-1);
