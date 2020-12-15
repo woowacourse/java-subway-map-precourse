@@ -42,7 +42,7 @@ public class ErrorManager {
     public static boolean isLineExist(String input) {
         boolean check = false;
         for(Line line : LineRepository.lines()) {
-            if(line.getName() == input) {
+            if(line.getName().equals(input)) {
                 check = true;
                 break;
             }
