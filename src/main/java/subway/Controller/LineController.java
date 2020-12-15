@@ -3,6 +3,7 @@ package subway.Controller;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.exception.domain.LineExceptionHandler;
 import subway.exception.input.LineInputExceptionHandler;
 import subway.view.InputView;
@@ -62,9 +63,16 @@ public class LineController {
         String from = InputView.getAddLineUpwardStation();
         String to = InputView.getAddLineDownwardStation();
         LineExceptionHandler.fromAndToStationDuplicated(from, to);
+
         Line newLine = new Line(line);
-        newLine.addStationByOrder(new Station(from), 0);
-        newLine.addStationByOrder(new Station(to), 1);
+        Station fromStation = new Station(from);
+        Station toStation = new Station(to);
+
+        StationRepository.addStation(fromStation);
+        StationRepository.addStation(toStation);
+        
+        newLine.addStationByOrder(fromStation, 0);
+        newLine.addStationByOrder(toStation, 1);
         LineRepository.addLine(newLine);
         OutputView.printAddLineSuccess();
     }

@@ -112,7 +112,7 @@ public class SectionExceptionHandler {
     private static void overflow(String line, int order) {
         int max = LineRepository.getSectionLength(line) - 1;
         if (order > max) {
-            throw new CustomException(max + "보다 작아야 합니다.");
+            throw new CustomException("순서는 " + max + "이하여야 합니다. (입력값: " + order + ")");
         }
     }
 }
