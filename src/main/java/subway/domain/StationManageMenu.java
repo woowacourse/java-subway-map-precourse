@@ -17,7 +17,6 @@ public class StationManageMenu {
             public void stationManageMenuSelect() {
                 // 역 등록 호출
                 StationController.stationAdd();
-                //stationManageMenuStop();
             }
         },
         STATION_DELETE() {
@@ -25,7 +24,6 @@ public class StationManageMenu {
             public void stationManageMenuSelect() {
                 // 역 삭제 호출
                 StationController.stationDelete();
-                //stationManageMenuStop();
             }
         },
         STATION_CHECK() {
@@ -33,7 +31,6 @@ public class StationManageMenu {
             public void stationManageMenuSelect() {
                 // 역 조회 호출
                 StationController.stationCheck();
-                //stationManageMenuStop();
             }
         };
 

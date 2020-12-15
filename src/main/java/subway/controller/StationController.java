@@ -21,9 +21,7 @@ public class StationController {
             StationView.printStationAddSuccessMsg();
             StationManageMenu.stationManageMenuStop();
         } catch (IllegalArgumentException e) {
-            System.out.println();
-            System.out.println("[ERROR] " + e.getMessage());
-            System.out.println();
+            System.out.println("\n[ERROR] " + e.getMessage() + "\n");
         }
     }
 

@@ -16,7 +16,6 @@ public class SectionManageMenu {
             public void SectionManageMenuSelect() {
                 // 구간 등록 호출
                 SectionController.sectionAdd();
-                // sectionManageMenuStop();
             }
         },
         SECTION_DELETE() {
@@ -24,7 +23,6 @@ public class SectionManageMenu {
             public void SectionManageMenuSelect() {
                 // 구간 삭제 호출
                 SectionController.sectionDelete();
-                // sectionManageMenuStop();
             }
         };
 

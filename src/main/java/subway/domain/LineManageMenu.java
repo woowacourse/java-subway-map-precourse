@@ -16,7 +16,6 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 등록 호출
                 LineController.lineAdd();
-                // lineManageMenuStop();
             }
         },
         LINE_DELETE() {
@@ -24,7 +23,6 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 삭제 호출
                 LineController.lineDelete();
-                // lineManageMenuStop();
             }
         },
         LINE_CHECK() {
@@ -32,10 +30,8 @@ public class LineManageMenu {
             public void lineManageMenuSelect() {
                 // 라인 조회 호출
                 LineController.lineCheck();
-                // lineManageMenuStop();
             }
         };
-
         public abstract void lineManageMenuSelect();
     }
 
@@ -57,9 +53,7 @@ public class LineManageMenu {
                 OutputView.lineManageView();
                 lineManageMenuInput();
             } catch (IllegalArgumentException e) {
-                System.out.println();
-                System.out.println("[ERROR] " + e.getMessage());
-                System.out.println();
+                System.out.println("\n[ERROR] " + e.getMessage() + "\n");
             }
         }
     }
