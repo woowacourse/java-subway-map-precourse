@@ -1,22 +1,34 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import subway.util.ValidateUtil;
+
 import java.util.List;
-import java.util.Objects;
 
 public class StationRepository {
-    private static final List<Station> stations = new ArrayList<>();
+    private static final Stations stations = new Stations();
 
-    public static List<Station> stations() {
-        return Collections.unmodifiableList(stations);
+    public static Stations stations() {
+        return stations;
     }
 
     public static void addStation(Station station) {
-        stations.add(station);
+        stations.addStation(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void deleteStation(String name) {
+        ValidateUtil.canDeleteStation(stations.findStation(name));
+        stations.deleteStation(name);
+    }
+
+    public static List<String> getStationNames() {
+        return stations.stationNames();
+    }
+
+    public static boolean isPresentStation(String name) {
+        return stations.isPresentStation(StationFactory.makeStation(name));
+    }
+
+    public static Station findStationByName(String name) {
+        return stations.findStation(name);
     }
 }

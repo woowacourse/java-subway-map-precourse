@@ -1,22 +1,31 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class LineRepository {
-    private static final List<Line> lines = new ArrayList<>();
+    private static final Lines lines = new Lines();
 
-    public static List<Line> lines() {
-        return Collections.unmodifiableList(lines);
+    public static Lines lines() {
+        return lines;
     }
 
     public static void addLine(Line line) {
-        lines.add(line);
+        lines.addLine(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static void deleteLineByName(String name) {
+        lines.deleteLine(name);
+    }
+
+    public static List<String> getLineNames() {
+        return lines.lineNames();
+    }
+
+    public static boolean isPresentLine(String name) {
+        return lines.isPresentLine(name);
+    }
+
+    public static Line findLine(String name) {
+        return lines.findLine(name);
     }
 }
