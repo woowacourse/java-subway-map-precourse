@@ -21,11 +21,13 @@ public class MainMenu {
         this.scanner = scanner;
     }
 
+    //TODO 메뉴 이외의 입력을 받았을 때 예외사항 출력 구현해야함
     public void start() {
         String input;
         while (true) {
             printMainMenu();
             input = scanner.nextLine();
+            System.out.println();
             if (input.equals("1")) {
                 new StationMenu(scanner).startStationMenu();
             }
