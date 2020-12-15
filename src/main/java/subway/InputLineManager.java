@@ -17,12 +17,15 @@ public class InputLineManager implements InputManager {
     public static final String NOTHING_TRY_AGAIN = "[ERROR] 해당 역이 없습니다.";
     public static final String NOTHING_OR_START_END_SAME_TRY_AGAIN = "[ERROR] 해당 역이 없거나 상행 종점, 하행 종점역이 같습니다.";
     public static final String INPUT_END_STATION_TO_ENROLL = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
+    public static final String INPUT_LINE_TO_DELETE = "## 삭제할 노선 이름을 입력하세요.";
+    public static final String NOTHING_TO_DELETE_TRY_AGAIN = "[ERROR] 삭제할 노선이 없습니다.";
+    public static final String LINE_DELETED = "\n[INFO] 지하철 노선이 삭제되었습니다.\n";
 
     private Scanner scanner;
 
     private enum Menu {
-        REGISTER("1", ((InputLineManager) SubwayManager.getMenus(LINE_MENU))::register);
-//        DELETE("2"),
+        REGISTER("1", ((InputLineManager) SubwayManager.getMenus(LINE_MENU))::register),
+        DELETE("2", ((InputLineManager) SubwayManager.getMenus(LINE_MENU))::delete);
 //        INQUIRY("3"),
 //        BACK("B");
 
@@ -33,6 +36,7 @@ public class InputLineManager implements InputManager {
             this.name = name;
             this.runnable = runnable;
         }
+
         public static void execute(String input) {
             Arrays.stream(values())
                     .filter(value -> value.name.equals(input))
@@ -107,7 +111,17 @@ public class InputLineManager implements InputManager {
 
     @Override
     public void delete() {
-
+        try {
+            System.out.println(INPUT_LINE_TO_DELETE);
+            String lineToDelete = scanner.next();
+            if (!LineRepository.deleteLineByName(new LineName(lineToDelete))) {
+                throw new IllegalArgumentException(NOTHING_TO_DELETE_TRY_AGAIN);
+            }
+            System.out.println(LINE_DELETED);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            delete();
+        }
     }
 
 }
