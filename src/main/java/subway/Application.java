@@ -11,25 +11,24 @@ import java.util.Scanner;
 
 public class Application {
     public static final int FUNCTION_INPUT_ERROR = 0;
-    public static final List<String> mainFunctions = Arrays.asList("1", "2", "3", "4", "Q");
+    public static final List<String> MAIN_FUNCTIONS = Arrays.asList("1", "2", "3", "4", "Q");
     public static final String STATION_MENU = "1";
     public static final String LINE_MENU = "2";
     public static final String SECTION_MENU = "3";
     public static final String PRINT_LINES = "4";
     public static final String FINISH_PROGRAM = "Q";
-    public static final List<String> subFunctions = Arrays.asList("1", "2", "3", "B");
+    public static final List<String> SUB_FUNCTIONS = Arrays.asList("1", "2", "3", "B");
     public static final String ADD_MENU = "1";
     public static final String DELETE_MENU = "2";
     public static final String SEARCH_MENU = "3";
     public static final String GO_BACK_MENU = "B";
-    public static final List<String> sectionFunctions = Arrays.asList("1", "2", "B");
+    public static final List<String> SECTION_FUNCTIONS = Arrays.asList("1", "2", "B");
 
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         initialize();
         showMainMenu();
-        goSubMenu(inputMainFunction(scanner));
-        System.out.println(inputSubFunction(scanner));
+        goSubMenu(inputFunction(scanner, MAIN_FUNCTIONS), scanner);
     }
 
     public static void initialize() {
@@ -61,38 +60,53 @@ public class Application {
         System.out.println("Q. 종료");
     }
 
-    public static String inputMainFunction(Scanner kbd) {
+    public static String inputFunction(Scanner kbd, List<String> functions) {
         String input = "0";
         boolean check = false;
         while(!check) {
             System.out.println("\n## 원하는 기능을 선택하세요.");
             input = kbd.nextLine();
-            check = checkMainInput(input);
+            check = checkInput(input, functions);
         }
         return input;
     }
 
-    public static boolean checkMainInput(String input) {
+    public static boolean checkInput(String input, List<String> functions) {
         boolean check = true;
-        if (!mainFunctions.contains(input)) {
+        if (!functions.contains(input)) {
             displayErrorMessage(FUNCTION_INPUT_ERROR);
             check = false;
         }
         return check;
     }
 
-    public static void goSubMenu(String input) {
+    public static void goSubMenu(String input, Scanner kbd) {
         System.out.println();
         if (input.equals(STATION_MENU))
-            showStationMenu();
+            manageStation(kbd);
         if (input.equals(LINE_MENU))
-            showLineMenu();
+            manageLine(kbd);
         if (input.equals(SECTION_MENU))
-            showSectionMenu();
+            manageSection(kbd);
         if (input.equals(PRINT_LINES))
-            showPrintLines();
+            displayAllLines();
         if (input.equals(FINISH_PROGRAM))
             finishProgram();
+    }
+
+    public static void manageStation(Scanner kbd) {
+        showStationMenu();
+        inputFunction(kbd, SUB_FUNCTIONS);
+    }
+
+    public static void manageLine(Scanner kbd) {
+        showLineMenu();
+        inputFunction(kbd, SUB_FUNCTIONS);
+    }
+
+    public static void manageSection(Scanner kbd) {
+        showSectionMenu();
+        inputFunction(kbd, SECTION_FUNCTIONS);
     }
 
     public static void showStationMenu() {
@@ -118,7 +132,7 @@ public class Application {
         System.out.println("B. 돌아가기");
     }
 
-    public static void showPrintLines() {
+    public static void displayAllLines() {
         System.out.println("## 지하철 노선도");
         for(Line line : LineRepository.lines()) {
             System.out.println("[INFO] " + line.getName());
@@ -129,26 +143,6 @@ public class Application {
 
     public static void finishProgram() {
         System.out.println("## 프로그램 종료");
-    }
-
-    public static String inputSubFunction(Scanner kbd) {
-        String input = "0";
-        boolean check = false;
-        while(!check) {
-            System.out.println("\n## 원하는 기능을 선택하세요.");
-            input = kbd.nextLine();
-            check = checkSubInput(input);
-        }
-        return input;
-    }
-
-    public static boolean checkSubInput(String input) {
-        boolean check = true;
-        if (!subFunctions.contains(input)) {
-            displayErrorMessage(FUNCTION_INPUT_ERROR);
-            check = false;
-        }
-        return check;
     }
 
     public static void displayErrorMessage(int errorCase) {
