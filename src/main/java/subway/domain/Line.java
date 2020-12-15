@@ -1,5 +1,6 @@
 package subway.domain;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +32,14 @@ public class Line {
     public void add(String index, String stationName) {
         Station station = StationRepository.findStationByName(stationName);
         stationList.add(Integer.parseInt(index)-1, station);
+    }
+
+    public boolean isRemovable(String stationName) {
+        return stationList.removeIf(station -> station.getName().equals(stationName));
+    }
+
+    public List<Station> stationList() {
+        return Collections.unmodifiableList(stationList);
     }
 
 

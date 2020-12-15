@@ -37,11 +37,22 @@ public class SectionMenu {
                         String index = scanner.nextLine();
                         if (SectionValidator.checkValidIndex(index, lineName)) {
                             Objects.requireNonNull(LineRepository.findLineByName(lineName)).add(index, stationName);
+                            System.out.println("\n[ INFO ] 구간이 등록되었습니다.");
                         }
                     }
                 }
             }
             if (input.equals("2")) {
+                System.out.println("\n## 삭제할 구간의 노선을 입력하세요.");
+                String lineName = scanner.nextLine();
+                Line line = LineRepository.findLineByName(lineName);
+                if (line != null) {
+                    System.out.println("\n## 삭제할 구간의 역을 입력하세요.");
+                    String stationName = scanner.nextLine();
+                    if (line.isRemovable(stationName)) {
+                        System.out.println("\n[ INFO ] 구간이 삭제되었습니다.");
+                    }
+                }
             }
             if (input.equals("B")) {
                 break;
