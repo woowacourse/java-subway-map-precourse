@@ -12,8 +12,11 @@ public class SectionInputView {
     private static final String SELECT_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String CANNOT_SELECT_MESSAGE = "[ERROR] 선택할 수 없는 기능입니다.";
     private static final String INPUT_LINE_MESSAGE = "## 노선을 입력하세요.";
+    private static final String DELETE_LINE_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
+    private static final String DELETE_STATION_MESSAGE = "## 삭제할 구간의 역을 입력하세요.";
     private static final String INPUT_STATION_MESSAGE = "## 역 이름을 입력하세요.";
     private static final String INPUT_ORDER_MESSAGE = "## 순서를 입력하세요.";
+    private static final String STATION_NOT_EXIST = "[ERROR] 노선에 역이 존재하지 않습니다.";
     private static final String INVALID_ORDER_MESSAGE = "[ERROR] 순서는 양수이며 노선에 포함된 역의 개수 이하여야 합니다.";
     private static final String INVALID_STATION_MESSAGE = "[ERROR] 노선에 이미 등록되어 있는 역이므로 등록이 불가능합니다.";
     private static final int INTEGER_ONE = 1;
@@ -80,13 +83,16 @@ public class SectionInputView {
 
     public static void registerSection() { // TODO 순서가 노선 size 넘어가면 안됨
         try {
+            System.out.println(INPUT_LINE_MESSAGE);
             String lineName = getLineName();
+            System.out.println(INPUT_STATION_MESSAGE);
             String stationName = getStationName();
-            validateStationRegisteredOnLine(lineName, stationName);
+            validateStationRegisteredNotOnLine(lineName, stationName);
             int order = getOrder(lineName);
             insertStation(lineName, stationName, order);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            getSectionScreenUserSelection();
         }
     }
 
@@ -113,18 +119,16 @@ public class SectionInputView {
                 return line.getSize();
             }
         }
-        return 0;
+        return -1;
     }
 
     private static String getLineName() {
-        System.out.println(INPUT_LINE_MESSAGE);
         String lineName = scanner.nextLine();
         LineRepository.isLineExist(lineName);
         return lineName;
     }
 
     private static String getStationName() {
-        System.out.println(INPUT_STATION_MESSAGE);
         String stationName = scanner.nextLine();
         validateStationExistence(stationName);
         return stationName;
@@ -136,7 +140,7 @@ public class SectionInputView {
         }
     }
 
-    private static void validateStationRegisteredOnLine(String lineName, String stationName) {
+    private static void validateStationRegisteredNotOnLine(String lineName, String stationName) {
         for (Line line : LineRepository.lines()) {
             if (line.getName().equals(lineName) && line.isStationRegistered(stationName)) {
                 throw new IllegalArgumentException(INVALID_STATION_MESSAGE);
@@ -145,6 +149,40 @@ public class SectionInputView {
     }
 
     public static void removeSection() {
+        System.out.println(DELETE_LINE_MESSAGE);
+        try {
+            String lineName = getLineName();
+            System.out.println(DELETE_STATION_MESSAGE);
+            String stationName = scanner.nextLine();
+            validateStationOnLine(lineName, stationName);
+            removeStation(lineName, stationName);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            getSectionScreenUserSelection();
+        }
 
+    }
+
+    private static void removeStation(String lineName, String stationName) {
+        for (Line line : LineRepository.lines()) {
+            if (line.getName().equals(lineName)) {
+                line.remove(stationName);
+            }
+        }
+    }
+
+    private static void validateStationOnLine(String lineName, String stationName) {
+        if (!isStationOnLine(lineName, stationName)) {
+            throw new IllegalArgumentException(STATION_NOT_EXIST);
+        }
+    }
+
+    private static boolean isStationOnLine(String lineName, String stationName) {
+        for (Line line : LineRepository.lines()) {
+            if (line.getName().equals(lineName) && line.isStationRegistered(stationName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
