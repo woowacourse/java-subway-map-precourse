@@ -54,11 +54,18 @@ public class LineRepository {
         return false;
     }
 
-    public static void status() {
+    public static void allStatus() {
         for (Line line : lines) {
             OutputView.status(line.getName());
             line.status();
         }
+    }
+
+    public static void lineStatus() {
+        for (Line line : lines) {
+            OutputView.status(line.getName());
+        }
+        OutputView.space();
     }
 
     public static Line getLineByName(String name) {

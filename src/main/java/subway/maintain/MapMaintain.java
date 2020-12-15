@@ -17,18 +17,6 @@ public class MapMaintain {
     }
 
     private void map() {
-        List<Line> lines = LineRepository.lines();
-        for (Line line : lines) {
-            OutputView.status(line.getName());
-            stationMap(line);
-        }
-    }
-
-    private void stationMap(Line line) {
-        List<Station> stations = line.getStations();
-        for (Station station : stations) {
-            OutputView.status(station.getName());
-        }
-        OutputView.space();
+        LineRepository.allStatus();
     }
 }

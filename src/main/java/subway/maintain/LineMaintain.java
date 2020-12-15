@@ -57,7 +57,7 @@ public class LineMaintain {
 
     private void lineStatus() {
         OutputView.lineStatus();
-        LineRepository.status();
+        LineRepository.lineStatus();
         new Controller(scanner);
     }
 
