@@ -16,13 +16,13 @@ public class MainMenuHandler {
     }
 
     public static void lineManage() {
-        OutputView.showStationMenu();
+        OutputView.showLineMenu();
         LineMenu menuAction = LineMenu.findByCommand(InputView.nextLine());
         menuAction.run();
     }
 
     public static void sectionManage() {
-        OutputView.showStationMenu();
+        OutputView.showSectionMenu();
         SectionMenu menuAction = SectionMenu.findByCommand(InputView.nextLine());
         menuAction.run();
     }
