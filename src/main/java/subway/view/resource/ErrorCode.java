@@ -2,7 +2,7 @@ package subway.view.resource;
 
 public enum ErrorCode {
     INVALID_FUNCTION("선택할 수 없는 기능입니다."),
-    INVALID_NAME_LENGTH(" 이름은 2자 이상이어야 합니다."),
+    INVALID_NAME_LENGTH("이름은 2자 이상이어야 합니다."),
     INVALID_STATION_LAST_CHAR("이름의 마지막 글자는 '역'으로 끝나야 합니다."),
     INVALID_LINE_LAST_CHAR("이름의 마지막 글자는 '선'으로 끝나야 합니다."),
     INVALID_INDEX_RANGE("순서는 1에서 구간의 길이 -1까지여야 합니다."),
