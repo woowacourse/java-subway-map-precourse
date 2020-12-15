@@ -53,6 +53,8 @@ public class LineMenu {
                 }
             }
             if (input.equals("3")) {
+                System.out.println("## 노선 목록");
+                LineRepository.printLineList();
             }
             if (input.equals("B")) {
                 break;

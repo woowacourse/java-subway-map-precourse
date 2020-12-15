@@ -26,8 +26,7 @@ public class LineRepository {
             return;
         }
         for (Line line : lines) {
-            System.out.println(line.getName());
+            System.out.println("[ INFO ] " + line.getName());
         }
     }
-
 }
