@@ -26,8 +26,8 @@ public class InputStationManager implements InputManager {
                     ((InputStationManager) SubwayManager.getMenus(STATION_MENU_NUMBER))::register),
         DELETE("2",
                     ((InputStationManager) SubwayManager.getMenus(STATION_MENU_NUMBER))::delete),
-        INQUIRY("3", StationRepository::printStation);
-//        BACK("B");
+        INQUIRY("3", StationRepository::printStation),
+        BACK("B", System.out::println);
 
         private final String name;
         private final Runnable runnable;
