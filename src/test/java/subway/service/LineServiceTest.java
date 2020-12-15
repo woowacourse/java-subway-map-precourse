@@ -106,6 +106,22 @@ class LineServiceTest {
                 .hasMessage("등록되지 않은 지하철 노선 이름을 입력하셨습니다.");
     }
 
+    @DisplayName("Line의 구간 삭제 성공")
+    @Test
+    void deleteSectionByName_성공한다() {
+        SectionDto sectionDto = new SectionDto("1호선", "강릉역", 1);
+        Station station = new Station("강릉역");
+        lineService.addSection(sectionDto, station);
+
+        SectionDto deleteSectionDto = new SectionDto("1호선", "시청역");
+        lineService.deleteSection(deleteSectionDto);
+        List<String> stationNames = lineRepository.findByName("1호선")
+                .get()
+                .getStationNames();
+
+        assertThat(stationNames).hasSameElementsAs(Arrays.asList("강릉역", "의정부역"));
+    }
+
     @DisplayName("Line이 삭제되면 내부 Station의 상태가 변경")
     @Test
     void deleteLine_Station의_상태가_변경된다() {
