@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Application {
     public static final int FUNCTION_INPUT_ERROR = 0;
-    public static final int SAME_STATION_ERROR = 1;
+    public static final int ALREADY_EXIST_ERROR = 1;
     public static final int NAME_LENGTH_ERROR = 2;
     public static final int NO_SUCH_NAME_ERROR = 3;
     public static final int HAS_IN_LINE_ERROR = 4;
@@ -160,7 +160,7 @@ public class Application {
         try {
             System.out.println("\n## 삭제할 역 이름을 입력하세요.");
             String stationName = kbd.nextLine();
-            checkExist(stationName);
+            checkExistStation(stationName);
             checkInLine(stationName);
             StationRepository.deleteStation(stationName);
             System.out.println("\n[INFO] 지하철 역이 삭제되었습니다.");
@@ -194,10 +194,10 @@ public class Application {
         checkTextLength(lineName);
         System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         String firstStation = kbd.nextLine();
-        checkExist(firstStation);
+        checkExistStation(firstStation);
         System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         String lastStation = kbd.nextLine();
-        checkExist(lastStation);
+        checkExistStation(lastStation);
         checkSameName(firstStation, lastStation);
         Line newLine = new Line(lineName);
         LineRepository.addLine(newLine, Arrays.asList(firstStation, lastStation));
@@ -206,8 +206,11 @@ public class Application {
     public static void deleteLine(Scanner kbd) {
         try {
             System.out.println("\n## 삭제할 노선 이름을 입력하세요.");
-            String stationName = kbd.nextLine();
-            System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
+            String lineName = kbd.nextLine();
+            checkExistLine(lineName);
+            LineRepository.deleteLineByName(lineName);
+            System.out.println("\n[INFO] 지하철 노선이 삭제되었습니다.");
+            startProgram(kbd);
         } catch (Exception e) {
             startProgram(kbd);
         }
@@ -222,14 +225,14 @@ public class Application {
 
     public static void checkSameStation(String name) {
         if (StationRepository.isExist(name)) {
-            displayErrorMessage(SAME_STATION_ERROR);
+            displayErrorMessage(ALREADY_EXIST_ERROR);
             throw new IllegalArgumentException();
         }
     }
 
     public static void checkSameLine(String name) {
         if (LineRepository.isExist(name)) {
-            displayErrorMessage(SAME_LINE_ERROR);
+            displayErrorMessage(ALREADY_EXIST_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -248,8 +251,15 @@ public class Application {
         }
     }
 
-    public static void checkExist(String name) {
+    public static void checkExistStation(String name) {
         if (!StationRepository.isExist(name)) {
+            displayErrorMessage(NO_SUCH_NAME_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkExistLine(String name) {
+        if (!LineRepository.isExist(name)) {
             displayErrorMessage(NO_SUCH_NAME_ERROR);
             throw new IllegalArgumentException();
         }
@@ -303,16 +313,14 @@ public class Application {
     public static void displayErrorMessage(int errorCase) {
         if (errorCase == FUNCTION_INPUT_ERROR)
             System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
-        if (errorCase == SAME_STATION_ERROR)
-            System.out.println("[ERROR] 이미 등록된 역 이름입니다.");
+        if (errorCase == ALREADY_EXIST_ERROR)
+            System.out.println("[ERROR] 이미 등록된 역/노선 이름입니다.");
         if (errorCase == NAME_LENGTH_ERROR)
             System.out.println("[ERROR] 이름을 2글자 이상 입력해주세요.");
         if (errorCase == NO_SUCH_NAME_ERROR)
-            System.out.println("[ERROR] 등록되지 않은 역 이름입니다.");
+            System.out.println("[ERROR] 등록되지 않은 역/노선 이름입니다.");
         if (errorCase == HAS_IN_LINE_ERROR)
             System.out.println("[ERROR] 노선에 등록된 역은 삭제할 수 없습니다.");
-        if (errorCase == SAME_LINE_ERROR)
-            System.out.println("[ERROR] 이미 등록된 노선 이름입니다.");
         if (errorCase == SAME_NAME_ERROR)
             System.out.println("[ERROR] 상행역과 하행역은 같을 수 없습니다.");
     }
