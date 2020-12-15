@@ -467,3 +467,19 @@ public class StationRepository {
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-map-precourse/blob/master/LICENSE.md) licensed.
+
+## 구현할 기능 목록
+1. 지하철역 초기 설정
+2. 지하철 노선 초기 설정
+3. 지하철 노선에 역 초기 등록 설정
+4. 지하철 역 등록 삭제
+5. 지하철 역 중복 불가 설정
+6. 지하철 역 이름 2글자 이상 설정
+7. 지하철 역 목록 조회
+8. 지하철 노선 등록 시 상행 종점역과 하행 종점역 설정
+9. 지하철 노선 중복 불가 설정
+10. 지하철 노선 이름 2글자 이상 설정
+11. 지하철 노선 갈래길 불가 설정
+12. 지하철 노선 삭제
+13. 지하철 노선의 목록을 조회
+14. 사용자 입력 받기 
