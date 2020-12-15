@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.controller.constants.ControllerErrorMessage;
 import subway.controller.constants.QuestionNumber;
 import subway.controller.constants.StationOrderConstants;
 import subway.domain.Line;
@@ -49,6 +50,7 @@ public enum LineOptions {
     private static void enrollLine(Scanner scanner) {
         LineInputViewer.askEnrollLine();
         String lineTitle = getValidatedLine(scanner);
+        LineRepository.checkOverlappedLine(lineTitle);
         LineInputViewer.askDepartureStation();
         String departure = getValidatedStation(scanner);
         LineInputViewer.askTerminalStation();
@@ -64,21 +66,33 @@ public enum LineOptions {
 
     private static String getValidatedStation(Scanner scanner) {
         String stationTitle = scanner.next();
-        StationRepository.checkOverlappedStation(stationTitle);
+        if (!StationRepository.isExistedStation(stationTitle)) {
+            System.out.println(ControllerErrorMessage.NO_EXIST_STATION);
+            throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_STATION);
+        }
         return stationTitle;
     }
 
     private static void insertLine(String lineTitle, String departure, String terminal) {
-        int initialLocation = StationOrderConstants.INITIAL.getLocation();
+        isSameDepartureTerminal(departure, terminal);
+        int departureLocation = StationOrderConstants.INITIAL.getLocation();
         int terminalLocation = StationOrderConstants.TERMINAL.getLocation();
         Line line = new Line(lineTitle);
-        line.insertStation(initialLocation, new Station(departure));
+        line.insertStation(departureLocation, new Station(departure));
         line.insertStation(terminalLocation, new Station(terminal));
+        LineRepository.addLine(line);
+    }
+
+    private static void isSameDepartureTerminal(String departure, String terminal) {
+        if (departure.equals(terminal)) {
+            System.out.println(ControllerErrorMessage.Same_DEPARTURE_TERMINAL);
+            throw new IllegalArgumentException(ControllerErrorMessage.Same_DEPARTURE_TERMINAL);
+        }
     }
 
     private static void deleteLine(Scanner scanner) {
         LineInputViewer.askDeleteLine();
-        String stationTitle = scanner.next();
-        LineRepository.deleteLineByName(stationTitle);
+        String lineTitle = scanner.next();
+        LineRepository.deleteLineByName(lineTitle);
     }
 }

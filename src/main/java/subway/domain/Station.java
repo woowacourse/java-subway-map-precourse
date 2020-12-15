@@ -7,7 +7,7 @@ public class Station implements Comparable<Station> {
     private String name;
 
     public Station(String name) {
-        checkNameLength(name);
+        checkValidName(name);
         this.name = name;
     }
 
@@ -22,9 +22,23 @@ public class Station implements Comparable<Station> {
         return false;
     }
 
+    private void checkValidName(String name) {
+        checkNameLength(name);
+        checkEndName(name);
+    }
+
     private void checkNameLength(String name) {
         if (name.length() < DomainConstant.NAME_LIMIT_LENGTH) {
-            throw new IllegalArgumentException(DomainErrorMessage.STATION_LENGTH_ERROR_MESSAGE);
+            System.out.println(DomainErrorMessage.STATION_LENGTH);
+            throw new IllegalArgumentException(DomainErrorMessage.STATION_LENGTH);
+        }
+    }
+
+    private void checkEndName(String name) {
+        String last = name.substring(name.length() - DomainConstant.LAST_LOCATION);
+        if (!last.equals(DomainConstant.STATION_STRING)) {
+            System.out.println(DomainErrorMessage.STATION_FORMAT);
+            throw new IllegalArgumentException(DomainErrorMessage.STATION_FORMAT);
         }
     }
 

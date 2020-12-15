@@ -10,10 +10,11 @@ import java.util.Objects;
 
 public class Line implements Comparable<Line> {
     private String name;
-    private static List<Station> stations = new ArrayList<>();
+    private List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
         checkNameLength(name);
+        checkEndName(name);
         this.name = name;
     }
 
@@ -33,33 +34,56 @@ public class Line implements Comparable<Line> {
     }
 
     public void insertStation(int location, Station station) {
-        /*checkOverlappedStation(station);*/
+        checkOverlappedStation(station.getName());
         stations.add(location - DomainConstant.HUMAN_NUMBER_CALIBRATION, station);
     }
 
-    public boolean deleteStation(String name) {
+    public void deleteStation(String name) {
         checkAbleDeleteStation();
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public int checkStationNumber() {
+        return stations.size();
+    }
+
+    public boolean isContainedStation(String target) {
+        long checkOverlapped = stations.stream()
+                .map(Station::getName)
+                .filter(station -> station.equals(target))
+                .count();
+        if (checkOverlapped == DomainConstant.ZERO_LONG_NUMBER) {
+            return false;
+        }
+        return true;
+    }
+
+    private void checkOverlappedStation(String target) {
+        if (isContainedStation(target)) {
+            System.out.println(DomainErrorMessage.OVERLAP_STATION);
+            throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_STATION);
+        }
     }
 
     private void checkNameLength(String name) {
         if (name.length() < DomainConstant.NAME_LIMIT_LENGTH) {
-            throw new IllegalArgumentException(DomainErrorMessage.LINE_LENGTH_ERROR_MESSAGE);
+            System.out.println(DomainErrorMessage.LINE_LENGTH);
+            throw new IllegalArgumentException(DomainErrorMessage.LINE_LENGTH);
         }
     }
 
-    private void checkOverlappedStation(Station target) {
-        long isOverlap = stations.stream()
-                .filter(station -> station.compareName(target.getName()))
-                .count();
-        if (isOverlap != DomainConstant.ZERO_LONG_NUMBER) {
-            throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_STATION_ERROR);
+    private void checkAbleDeleteStation() {
+        if (stations.size() <= DomainConstant.MINIMUM_STATION) {
+            System.out.println(DomainErrorMessage.MINIMUM_STATION);
+            throw new IllegalArgumentException(DomainErrorMessage.MINIMUM_STATION);
         }
     }
 
-    private static void checkAbleDeleteStation() {
-        if (stations.size() <= DomainConstant.MINIMUM_STATION_NUMBER) {
-            throw new IllegalArgumentException(DomainErrorMessage.MINIMUM_STATION_ERROR);
+    private void checkEndName(String name) {
+        String last = name.substring(name.length() - DomainConstant.LAST_LOCATION);
+        if (!last.equals(DomainConstant.LINE_STRING)) {
+            System.out.println(DomainErrorMessage.LINE_FORMAT);
+            throw new IllegalArgumentException(DomainErrorMessage.LINE_FORMAT);
         }
     }
 

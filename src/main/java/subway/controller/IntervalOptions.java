@@ -1,7 +1,9 @@
 package subway.controller;
 
+import subway.controller.constants.ControllerErrorMessage;
 import subway.controller.constants.QuestionNumber;
 import subway.domain.LineRepository;
+import subway.domain.StationRepository;
 import subway.viewer.IntervalInputViewer;
 import subway.viewer.IntervalOutputViewer;
 
@@ -12,7 +14,7 @@ public enum IntervalOptions {
         public void processUnit(Scanner scanner) {
             String lineTitle = getLineTitle(scanner);
             String stationTitle = getStationTitle(scanner);
-            int order = getOrder(scanner);
+            int order = getOrder(scanner, lineTitle);
             insertInterval(lineTitle, stationTitle, order);
             IntervalOutputViewer.showEnrollInterval();
         }
@@ -44,18 +46,31 @@ public enum IntervalOptions {
 
     private static String getLineTitle(Scanner scanner) {
         IntervalInputViewer.askEnrollLine();
-        return scanner.next();
+        String lineTitle = scanner.next();
+        if (!LineRepository.isExistedLine(lineTitle)) {
+            System.out.println(ControllerErrorMessage.NO_EXIST_LINE);
+            throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_LINE);
+        }
+        return lineTitle;
     }
 
     private static String getStationTitle(Scanner scanner) {
         IntervalInputViewer.askEnrollStation();
-        return scanner.next();
+        String stationTitle = scanner.next();
+        if (!StationRepository.isExistedStation(stationTitle)) {
+            System.out.println(ControllerErrorMessage.NO_EXIST_STATION);
+            throw new IllegalArgumentException(ControllerErrorMessage.NO_EXIST_STATION);
+        }
+        return stationTitle;
     }
 
-    private static int getOrder(Scanner scanner) {
+    private static int getOrder(Scanner scanner, String lineTitle) {
         IntervalInputViewer.askEnrollOrder();
         String orderString = scanner.next();
-        return Integer.parseInt(orderString);
+        checkInteger(orderString);
+        int order = Integer.parseInt(orderString);
+        LineRepository.checkOutOrder(lineTitle, order);
+        return order;
     }
 
     private static void insertInterval(String lineTitle, String stationTitle, int order) {
@@ -64,5 +79,14 @@ public enum IntervalOptions {
 
     private static void deleteInterval(String lineTitle, String stationTitle) {
         LineRepository.deleteStationToLine(lineTitle, stationTitle);
+    }
+
+    private static void checkInteger(String order) {
+        try {
+            Integer.parseInt(order);
+        } catch (Exception e) {
+            System.out.println(ControllerErrorMessage.NO_INTEGER);
+            throw new IllegalArgumentException(ControllerErrorMessage.NO_INTEGER);
+        }
     }
 }

@@ -22,7 +22,6 @@ public class StationOutputViewer {
         System.out.println(SHOW_STATION_LIST);
         for (Station station : stations) {
             System.out.printf(SHOW_STATION_UNIT, station.getName());
-            System.out.println();
         }
     }
 }

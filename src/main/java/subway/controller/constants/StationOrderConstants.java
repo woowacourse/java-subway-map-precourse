@@ -1,8 +1,8 @@
 package subway.controller.constants;
 
 public enum StationOrderConstants {
-    INITIAL(0),
-    TERMINAL(1);
+    INITIAL(1),
+    TERMINAL(2);
 
     private int location;
 

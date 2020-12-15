@@ -21,16 +21,29 @@ public class StationRepository {
         Collections.sort(stations);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static void deleteStation(String name) {
+        if (isExistedStation(name)) {
+            LineRepository.deleteStationOnData(name);
+            stations.removeIf(station -> Objects.equals(station.getName(), name));
+        }
+        System.out.println(DomainErrorMessage.NO_CONTAIN_STATION);
+        throw new IllegalArgumentException(DomainErrorMessage.NO_CONTAIN_STATION);
     }
 
     public static void checkOverlappedStation(String target) {
-        long isOverlap = stations.stream()
+        if (isExistedStation(target)) {
+            System.out.println(DomainErrorMessage.OVERLAP_STATION);
+            throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_STATION);
+        }
+    }
+
+    public static boolean isExistedStation(String target) {
+        long checkOverlapped = stations.stream()
                 .filter(station -> station.compareName(target))
                 .count();
-        if (isOverlap != DomainConstant.ZERO_LONG_NUMBER) {
-            throw new IllegalArgumentException(DomainErrorMessage.OVERLAP_LINE_ERROR);
+        if (checkOverlapped == DomainConstant.ZERO_LONG_NUMBER) {
+            return false;
         }
+        return true;
     }
 }
