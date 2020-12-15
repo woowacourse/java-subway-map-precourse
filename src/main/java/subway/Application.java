@@ -1,5 +1,13 @@
 package subway;
-
+/*
+ * Application
+ *
+ * version 1.0
+ *
+ * 2020.12.15
+ *
+ * Copyright (c) by Davinci.J
+ */
 import subway.domain.Constants;
 import subway.domain.LineRepository;
 

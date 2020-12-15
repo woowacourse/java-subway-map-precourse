@@ -1,5 +1,13 @@
 package subway.domain;
-
+/*
+ * PositiveNumber
+ *
+ * version 1.0
+ *
+ * 2020.12.15
+ *
+ * Copyright (c) by Davinci.J
+ */
 public class PositiveNumber implements Comparable<PositiveNumber> {
     private int number;
 

@@ -1,5 +1,13 @@
 package subway.domain;
-
+/*
+ * LineName
+ *
+ * version 1.0
+ *
+ * 2020.12.15
+ *
+ * Copyright (c) by Davinci.J
+ */
 import java.util.Objects;
 
 public class LineName {
