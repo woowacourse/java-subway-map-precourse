@@ -156,7 +156,6 @@
     │
     ├─docs
     │   └─README.md
-    │
     └─src
         └─main
             └─java
@@ -260,6 +259,103 @@
                     │           └─ScreenView.java
                     └─Application.java
 ```
+### subwaymap
+- Application.java : 메인 클래스
+
+#### controller
+- LineController.java : 지하철 노선에 대한 컨트롤러 클래스
+- SectionController.java : 지하철 구간에 대한 컨트롤러 클래스
+- StationController.java : 지하철 역에 대한 컨트롤러 클래스
+- SubwayController.java : 지하철에 대한 컨트롤러 클래스
+- TransitMapController.java : 지하철 노선도에 대한 컨트롤러 클래스
+
+#### domain
+- Line.java : 지하철 노선에 대한 도메인 모델 클래스
+- Section.java : 지하철 구간에 대한 도메인 모델 클래스
+- Station.java : 지하철 역에 대한 도메인 모델 클래스
+- Stations.java : 지하철 상행 종점역, 하행 종점역에 대한 도메인 모델 클래스
+- TransitMap.java : 지하철 노선도에 대한 도메인 모델 클래스
+
+#### repository
+- LineRepository.java : 지하철 노선에 대한 저장소 클래스
+- StationRepository.java : 지하철 역에 대한 저장소 클래스
+- TransitMapRepository.java : 지하철 노선도에 대한 저장소 클래스
+
+#### service
+##### initialization
+- LineInitialization.java : 지하철 노선 초기화에 대한 클래스
+- StationInitialization.java : 지하철 역 초기화에 대한 클래스
+- TransitMapInitialization.java : 지하철 노선도 초기화에 대한 클래스
+
+##### line
+- addition/LineAdditionService.java : 지하철 노선 추가 로직에 대한 서비스 클래스
+- addition/LineAdditionValidation.java : 지하철 노선 추가 로직 검증에 대한 클래스
+- deletion/LineDeletionService.java : 지하철 노선 삭제 로직에 대한 서비스 클래스
+- deletion/LineDeletionValidation.java : 지하철 노선 삭제 로직 검증에 대한 클래스
+- show/LineShowService.java : 지하철 노선 조회 로직에 대한 서비스 클래스
+- LineService.java : 지하철 노선 비즈니스 로직에 대한 서비스 클래스
+
+##### section
+- addition/SectionAdditionService.java : 지하철 구간 추가 로직에 대한 서비스 클래스
+- addition/SectionAdditionValidation.java : 지하철 구간 추가 로직 검증에 대한 클래스
+- deletion/SectionDeletionService.java : 지하철 구간 삭제 로직에 대한 서비스 클래스
+- deletion/SectionDeletionValidation.java : 지하철 구간 삭제 로직 검증에 대한 클래스
+- SectionService.java : 지하철 구간 비즈니스 로직에 대한 서비스 클래스
+
+##### station
+- addition/StationAdditionValidation.java : 지하철 역 추가 로직 검증에 대한 클래스
+- addition/StationAdditionValidationInterface.java : 지하철 역 추가 로직 검증에 대한 인터페이스
+- deletion/StationDeletionValidation.java : 지하철 역 삭제 로직 검증에 대한 클래스
+- deletion/StationDeletionValidationInterface.java : 지하철 역 삭제 로직 검증에 대한 인터페이스
+- show/StationShowInterface.java : 지하철 역 조회 로직에 대한 인터페이스
+- show/StationShowService.java : 지하철 역 조회 로직에 대한 서비스 클래스
+- StationService.java : 지하철 역 비즈니스 로직에 대한 서비스 클래스
+
+##### subway
+- SubwayInterface.java : 지하철 비즈니스 로직에 대한 인터페이스
+- SubwayService.java : 지하철 비즈니스 로직에 대한 서비스 클래스
+
+##### transitmap
+- show/TransitMapShowService.java : 지하철 노선도 출력 로직에 대한 서비스 클래스
+- TransitMapService.java : 지하철 노선도 비즈니스 로직에 대한 서비스 클래스
+
+##### util
+- ChoiceInterface.java : 지하철 역, 지하철 노선 기능 선택에 대한 인터페이스
+- ChoiceService.java : 지하철 역, 지하철 노선 기능 선택에 대한 서비스 클래스
+- FeatureInterface.java : 지하철 역, 지하철 노선 기능에 대한 인터페이스
+
+#### type
+- BoundaryType.java : 경계 값 상수를 모아둔 Enum 클래스
+- CheckType.java : 입력 값 마지막 문자 확인용 상수를 모아둔 Enum 클래스
+- ExceptionType.java : 예외 처리 문구 상수를 모아둔 Enum 클래스
+- InformationType.java : 실행 결과 문구 상수를 모아둔 Enum 클래스
+- InputType.java : 화면 기능 입력 값 상수를 모아둔 Enum 클래스
+- LineType.java : 지하철 노선 초기화용 상수를 모아둔 Enum 클래스
+- ScreenType.java : 화면 문구 상수를 모아둔 Enum 클래스
+- StationType.java : 지하철 역 초기화용 상수를 모아둔 Enum 클래스
+- TextType.java : 화면 출력 문구 상수를 모아둔 Enum 클래스
+
+#### view
+##### input
+- line/LineScanView.java : 지하철 노선 기능 입력에 대한 클래스
+- section/SectionScanView.java : 지하철 구간 기능 입력에 대한 클래스
+- station/StationScanView.java : 지하철 역 기능 입력에 대한 클래스
+- subway/SubwayScanView.java : 지하철 기능 입력에 대한 클래스
+
+##### output
+- line/LineExceptionView.java : 지하철 노선 예외 처리 문구 출력에 대한 클래스
+- line/LineInformationView.java : 지하철 노선 실행 결과 문구 출력에 대한 클래스
+- line/LineTextView.java : 지하철 노선 화면 출력 문구 출력에 대한 클래스
+- section/SectionExceptionView.java : 지하철 구간 예외 처리 문구 출력에 대한 클래스
+- section/SectionInformationView.java : 지하철 구간 실행 결과 문구 출력에 대한 클래스
+- section/SectionTextView.java : 지하철 구간 화면 출력 문구 출력에 대한 클래스
+- station/StationExceptionView.java : 지하철 역 예외 처리 문구 출력에 대한 클래스
+- station/StationInformationView.java : 지하철 역 실행 결과 문구 출력에 대한 클래스
+- station/StationTextView.java : 지하철 역 화면 출력 문구 출력에 대한 클래스
+- util/FeatureChoiceExceptionView.java : 화면 기능 선택 예외 처리 문구 출력에 대한 클래스
+- util/ScreenView.java : 화면 출력에 대한 클래스
+
+<br>
 
 ## 📝 License
 
