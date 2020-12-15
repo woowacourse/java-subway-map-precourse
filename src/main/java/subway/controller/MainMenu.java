@@ -1,4 +1,6 @@
-package subway;
+package subway.controller;
+
+import subway.InputView;
 
 import java.util.Scanner;
 

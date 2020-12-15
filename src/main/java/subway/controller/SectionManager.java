@@ -1,5 +1,6 @@
-package subway;
+package subway.controller;
 
+import subway.InputView;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
