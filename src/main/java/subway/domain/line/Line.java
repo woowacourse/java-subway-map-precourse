@@ -7,8 +7,8 @@ import subway.domain.station.Station;
 
 public class Line {
 
-    private String name;
     private final List<Station> stations = new ArrayList<>();
+    private String name;
 
     public Line(String name) {
         this.name = name;
