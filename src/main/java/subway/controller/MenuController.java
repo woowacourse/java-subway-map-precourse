@@ -21,8 +21,6 @@ public class MenuController {
     private static final int SUB_MENU_ACTION_INDEX = 1;
     private static final String NORMAL_SIGN = "NORMAL";
     private static final String ERROR_SIGN = "ERROR";
-    public static ArrayList<String> selectedMenus = new ArrayList<String>();
-
     private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
         {
             put(STATION_MANAGEMENT_SIGN, Menu.stationMenu);
@@ -33,12 +31,20 @@ public class MenuController {
         }
     };
 
-    public static boolean runMenus(InputView inputView) {
-        String runStatus = checkRunStatus(inputView);
+    public ArrayList<String> selectedMenus;
+    private final InputView inputView;
+
+    public MenuController(InputView inputView) {
+        this.inputView = inputView;
+        this.selectedMenus = new ArrayList<String>();
+    }
+
+    public boolean runMenus() {
+        String runStatus = runMenu();
         while (runStatus.equals(ERROR_SIGN)) {
             selectedMenus.remove(SUB_MENU_ACTION_INDEX);
-            scanSubMenu(inputView, mainMenu.get(selectedMenus.get(SUB_MENU_INDEX)));
-            runStatus = checkRunStatus(inputView);
+            scanSubMenu(getSubMenu(selectedMenus.get(SUB_MENU_INDEX)));
+            runStatus = runMenu();
         }
         if (runStatus.equals(QUIT_SIGN)) {
             return false;
@@ -46,11 +52,12 @@ public class MenuController {
         return true;
     }
 
-    private static String checkRunStatus(InputView inputView) {
+    private String runMenu() {
         try {
-            if (!Menu.runMenu(inputView, selectedMenus)) {
+            if (isQuit()) {
                 return QUIT_SIGN;
             }
+            runAction(getSubMenu(selectedMenus.get(SUB_MENU_ACTION_INDEX)));
             return NORMAL_SIGN;
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -58,42 +65,70 @@ public class MenuController {
         }
     }
 
-    public static void scanMenu(InputView inputView) {
-        String selectedMainMenu = scanMainMenu(inputView);
-        if (Menu.isCategoricalMenu(mainMenu.get(selectedMainMenu))) {
-            scanSubMenu(inputView, mainMenu.get(selectedMainMenu));
+    private boolean isQuit() {
+        SubMenu menu = getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
+        if (menu == Menu.quit) {
+            return true;
+        }
+        return false;
+    }
+
+    private void runAction(SubMenu menu) {
+        boolean runActionStatus = true;
+        if (menu == Menu.stationMenu) {
+            runActionStatus = Menu.runStationMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        }
+        if (menu == Menu.lineMenu) {
+            runActionStatus = Menu.runLineMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        }
+        if (menu == Menu.edgeMenu) {
+            runActionStatus = Menu.runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        }
+        if (menu == Menu.lineMap) {
+            Menu.runLineMapMenu();
+        }
+        //돌아가기를 선택한 경우
+        if (!runActionStatus) {
+            selectedMenus.clear();
         }
     }
 
-    public static String scanMainMenu(InputView inputView) {
+    public void scanMenu() {
+        String selectedMainMenu = scanMainMenu();
+        if (Menu.isCategoricalMenu(mainMenu.get(selectedMainMenu))) {
+            scanSubMenu(mainMenu.get(selectedMainMenu));
+        }
+    }
+
+    private String scanMainMenu() {
         OutputView.printMainScreen();
         List<String> mainMenuSigns = new ArrayList<String> (mainMenu.keySet());
-        String selectedMainMenu = scanValidMenu(inputView, mainMenuSigns);
+        String selectedMainMenu = scanValidMenu(mainMenuSigns);
         selectedMenus.add(selectedMainMenu);
         return selectedMainMenu;
     }
 
-    private static void scanSubMenu(InputView inputView, SubMenu menu) {
+    private void scanSubMenu(SubMenu menu) {
         OutputView.printSubScreen(menu);
         List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
-        String selectedSubMenu = scanValidMenu(inputView, subMenuSigns);
+        String selectedSubMenu = scanValidMenu(subMenuSigns);
         selectedMenus.add(selectedSubMenu);
     }
 
-    private static String scanValidMenu(InputView inputView, List<String> signs) {
-        String menu = scanMenuCommand(inputView);
+    private String scanValidMenu(List<String> signs) {
+        String menu = scanMenuCommand();
         while (!isValidMenu(menu, signs)) {
-            menu = scanMenuCommand(inputView);
+            menu = scanMenuCommand();
         }
         return menu;
     }
 
-    private static String scanMenuCommand(InputView inputView) {
+    private String scanMenuCommand() {
         OutputView.printMenuSelectScreen();
         return inputView.getInput();
     }
 
-    public static boolean isValidMenu(String menu, List<String> signs) {
+    private boolean isValidMenu(String menu, List<String> signs) {
         try {
             validateMenu(menu, signs);
             return true;
@@ -103,14 +138,14 @@ public class MenuController {
         }
     }
 
-    public static boolean validateMenu(String menu, List<String> signs) {
+    private boolean validateMenu(String menu, List<String> signs) {
         if (!signs.contains(menu)) {
             throw new NonExistentMenuException();
         }
         return true;
     }
 
-    public static SubMenu getSubMenu(String menuSign) {
+    private SubMenu getSubMenu(String menuSign) {
         return mainMenu.get(menuSign);
     }
 }

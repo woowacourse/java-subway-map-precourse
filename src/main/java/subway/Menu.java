@@ -83,24 +83,7 @@ public class Menu {
         return true;
     }
 
-    public static boolean runMenu(InputView inputView, ArrayList<String> selectedMenus) {
-        SubMenu menu = MenuController.getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
-        if (menu == stationMenu) {
-            return runStationMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
-        }
-        if (menu == lineMenu) {
-            return runLineMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
-        }
-        if (menu == edgeMenu) {
-            return runEdgeMenu(inputView, selectedMenus.get(SUB_MENU_ACTION_INDEX));
-        }
-        if (menu == lineMap) {
-            return runLineMapMenu();
-        }
-        return false;
-    }
-
-    private static boolean runStationMenu(InputView inputView, String subMenuAction) {
+    public static boolean runStationMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             StationRepository.add(inputView, STATION_MENU_TITLE);
         }
@@ -111,12 +94,12 @@ public class Menu {
             StationRepository.printList(STATION_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
-            MenuController.selectedMenus.clear();
+            return false;
         }
         return true;
     }
 
-    private static boolean runLineMenu(InputView inputView, String subMenuAction) {
+    public static boolean runLineMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             LineRepository.add(inputView, LINE_MENU_TITLE, STATION_MENU_TITLE);
         }
@@ -127,12 +110,12 @@ public class Menu {
             LineRepository.printList(LINE_MENU_TITLE);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
-            MenuController.selectedMenus.clear();
+            return false;
         }
         return true;
     }
 
-    private static boolean runEdgeMenu(InputView inputView, String subMenuAction) {
+    public static boolean runEdgeMenu(InputView inputView, String subMenuAction) {
         if (subMenuAction.equals(INSERT_SIGN)) {
             Edge.add(inputView);
         }
@@ -140,13 +123,12 @@ public class Menu {
             Edge.delete(inputView);
         }
         if (subMenuAction.equals(BACK_SIGN)) {
-            MenuController.selectedMenus.clear();
+            return false;
         }
         return true;
     }
 
-    private static boolean runLineMapMenu() {
+    public static void runLineMapMenu() {
         LineRepository.runLineMap();
-        return true;
     }
 }
