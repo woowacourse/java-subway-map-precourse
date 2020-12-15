@@ -42,9 +42,9 @@ public class StationManagement {
 		if (selectedButton.equals(StationButton.BACK_TO_MAIN.getButton())) {
 			return;
 		} else if (selectedButton.equals(StationButton.REGISTER.getButton())) {
-			
+			registerStation();
 		} else if (selectedButton.equals(StationButton.DELETE.getButton())) {
-			
+			deleteStation();
 		} else if (selectedButton.equals(StationButton.LOOK_UP.getButton())) {
 			
 		}
@@ -59,7 +59,7 @@ public class StationManagement {
 	public static void deleteStation() {
 		String stationName = InputView.getDeleteStation();
 		StationRepository.deleteStation(stationName);
+		
 	}
-	
 	
 }

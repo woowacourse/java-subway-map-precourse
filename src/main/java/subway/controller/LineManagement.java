@@ -26,10 +26,10 @@ public class LineManagement {
 	private LineRepository lineRepository = new LineRepository();
 	
 	private static final List<String> menu = Arrays.asList(
-			LineButton.REGISTER.getButton(),
-			LineButton.DELETE.getButton(),
-			LineButton.LOOK_UP.getButton(),
-			LineButton.BACK_TO_MAIN.getButton()
+		LineButton.REGISTER.getButton(),
+		LineButton.DELETE.getButton(),
+		LineButton.LOOK_UP.getButton(),
+		LineButton.BACK_TO_MAIN.getButton()
 	);
 	
 	public static void execute() {
@@ -42,9 +42,9 @@ public class LineManagement {
 		if (selectedButton.equals(LineButton.BACK_TO_MAIN.getButton())) {
 			return;
 		} else if (selectedButton.equals(LineButton.REGISTER.getButton())) {
-			
+			registerLine();
 		} else if (selectedButton.equals(LineButton.DELETE.getButton())) {
-			
+			deleteLine();
 		} else if (selectedButton.equals(LineButton.LOOK_UP.getButton())) {
 			
 		}
