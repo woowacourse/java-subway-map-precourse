@@ -35,7 +35,7 @@ public class StationRepository {
     public static void printStations() {
         System.out.println();
         System.out.println(STATION_LIST);
-        for(Station station : stations) {
+        for (Station station : stations) {
             System.out.println(INFO + station.getName());
         }
     }

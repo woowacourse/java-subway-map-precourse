@@ -1,26 +1,26 @@
 package subway.type;
 
-import subway.view.LineOutputView;
-import subway.view.SectionOutputView;
 import subway.view.StationInputView;
+
+import static subway.domain.StationRepository.printStations;
 
 public enum StationScreenFunctionType {
     REGISTER_STATION(1) {
         @Override
         public void execute() {
-            System.out.println(("1"));
+            StationInputView.registerStation();
         }
     },
     REMOVE_STATION(2) {
         @Override
         public void execute() {
-            System.out.println("2");
+            StationInputView.removeStation();
         }
     },
     PRINT_STATION(3) {
         @Override
         public void execute() {
-            System.out.println("3");
+            printStations();
         }
     };
 
