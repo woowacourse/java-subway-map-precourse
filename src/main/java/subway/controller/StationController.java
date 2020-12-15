@@ -7,7 +7,8 @@ import subway.view.Output;
 
 public class StationController {
 
-    private StationController() {}
+    private StationController() {
+    }
 
     public void save() {
         try {
