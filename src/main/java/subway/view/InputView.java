@@ -35,16 +35,45 @@ public class InputView {
 		return name;
 	}
 	
-	public static String getAscendingEndPoint() {
+	public static String getAscendingEndPointLine() {
 		System.out.println(OutputView.ASCENDING_END_POINT);
 		String name = scanner.nextLine();
 		return name;
 	}
 	
-	public static String getDescendingEndPoint() {
+	public static String getDescendingEndPointLine() {
 		System.out.println(OutputView.DESCENDING_END_POINT);
 		String name = scanner.nextLine();
 		return name;
 	}
 	
+	public static String getSelectLineSection() {
+		System.out.println(OutputView.SELETE_LINE);
+		String name = scanner.nextLine();
+		return name;
+	}
+	
+	public static String getSelectStationSection() {
+		System.out.println(OutputView.SELETE_STATION);
+		String name = scanner.nextLine();
+		return name;
+	}
+	
+	public static int getRegisterSequenceSection() {
+		System.out.println(OutputView.REGISTER_SEQUENCE);
+		int number = scanner.nextInt();
+		return number;
+	}
+	
+	public static String getDeleteLineSection() {
+		System.out.println(OutputView.DELETE_SECTION_LINE);
+		String name = scanner.nextLine();
+		return name;
+	}
+	
+	public static String getDeleteStationSection() {
+		System.out.println(OutputView.DELETE_SECTION_STATION);
+		String name = scanner.nextLine();
+		return name;
+	}
 }
