@@ -32,11 +32,16 @@ public class StationRepository {
                 .findAny().orElseThrow(() -> new IllegalArgumentException(STATION_CANNOT_FIND_ERROR_MESSAGE));
     }
 
+    // Line에 station포함되어있으면 station 삭제 못함
     public static boolean deleteStation(String stationName) {
         Station targetStation = findStationName(stationName);
         if (LineRepository.contains(targetStation)) {
             throw new IllegalArgumentException(LINE_ALREADY_CONTAINS_STATION_ERROR_MESSAGE);
         }
         return stations.removeIf(station -> Objects.equals(station.getName(), stationName));
+    }
+
+    public static void saveDummyData(List<Station> stations) {
+        stations.forEach(StationRepository::save);
     }
 }

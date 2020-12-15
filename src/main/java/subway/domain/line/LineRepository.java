@@ -1,6 +1,7 @@
 package subway.domain.line;
 
 import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,4 +48,11 @@ public class LineRepository {
         Line line = findLineName(lineName);
         line.insertSection(index, station);
     }
+
+    public static void saveDummyData(List<Line> lines) {
+        lines.forEach(LineRepository::save);
+    }
+
+    // 구간에 station제거
+//    public static
 }
