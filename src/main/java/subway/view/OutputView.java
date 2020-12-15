@@ -1,7 +1,7 @@
 package subway.view;
 
-import subway.Menu;
-import subway.SubMenu;
+import subway.domain.MenuRepository;
+import subway.domain.Menu;
 
 import java.util.Iterator;
 import java.util.List;
@@ -36,14 +36,14 @@ public class OutputView {
         System.out.println(MAIN_SCREEN);
     }
 
-    public static void printSubScreen(SubMenu menu) {
+    public static void printSubScreen(Menu menu) {
         printTitle(menu);
         printSubMenus(menu);
     }
 
-    private static void printTitle(SubMenu menu) {
+    private static void printTitle(Menu menu) {
         String menuTitle = menu.menuTitle;
-        if (Menu.isCategoricalMenu(menu)) {
+        if (MenuRepository.isCategoricalMenu(menu)) {
             printCategoricalMenuTitle(menuTitle);
             return;
         }
@@ -58,7 +58,7 @@ public class OutputView {
         System.out.println(HASH + title);
     }
 
-    private static void printSubMenus(SubMenu menu) {
+    private static void printSubMenus(Menu menu) {
         Iterator<String> menuIter = menu.actionSign.keySet().iterator();
         while (menuIter.hasNext()) {
             String key = menuIter.next();

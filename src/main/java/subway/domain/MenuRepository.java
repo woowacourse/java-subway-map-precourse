@@ -1,13 +1,11 @@
-package subway;
+package subway.domain;
 
 import subway.controller.Edge;
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
 import subway.view.InputView;
 
 import java.util.LinkedHashMap;
 
-public class Menu {
+public class MenuRepository {
     private static final String INSERT_SIGN = "1";
     private static final String DELETE_SIGN = "2";
     private static final String LIST_SIGN = "3";
@@ -22,7 +20,7 @@ public class Menu {
     private static final String LIST_MENU_TITLE = "지하철 노선도";
     public static final String MENU_TITLE_SIGN = "title";
 
-    public static final SubMenu stationMenu = new SubMenu(
+    public static final Menu stationMenu = new Menu(
         new LinkedHashMap<String, String>() {
             {
                 put(MENU_TITLE_SIGN, STATION_MENU_TITLE);
@@ -34,7 +32,7 @@ public class Menu {
         }
     );
 
-    public static final SubMenu lineMenu = new SubMenu(
+    public static final Menu lineMenu = new Menu(
         new LinkedHashMap<String, String>() {
             {
                 put(MENU_TITLE_SIGN, LINE_MENU_TITLE);
@@ -46,7 +44,7 @@ public class Menu {
         }
     );
 
-    public static final SubMenu edgeMenu = new SubMenu(
+    public static final Menu edgeMenu = new Menu(
         new LinkedHashMap<String, String>() {
             {
                 put(MENU_TITLE_SIGN, EDGE_MENU_TITLE);
@@ -57,7 +55,7 @@ public class Menu {
         }
     );
 
-    public static final SubMenu lineMap = new SubMenu(
+    public static final Menu lineMap = new Menu(
         new LinkedHashMap<String, String>() {
             {
                 put(MENU_TITLE_SIGN, LIST_MENU_TITLE);
@@ -65,21 +63,21 @@ public class Menu {
         }
     );
 
-    public static final SubMenu quit = new SubMenu(
+    public static final Menu quit = new Menu(
         new LinkedHashMap<String, String>() {}
     );
 
-    private Menu() {
+    private MenuRepository() {
     }
 
-    public static boolean isCategoricalMenu(SubMenu menu) {
+    public static boolean isCategoricalMenu(Menu menu) {
         if (menu.actionSign.isEmpty()) {
             return false;
         }
         return true;
     }
 
-    public static boolean runCategoricalAction(InputView inputView, SubMenu menu, String subMenuAction) {
+    public static boolean runCategoricalAction(InputView inputView, Menu menu, String subMenuAction) {
         if (menu == stationMenu) {
             return runStationMenu(inputView, subMenuAction);
         }
@@ -92,7 +90,7 @@ public class Menu {
         return false;
     }
 
-    public static void runNonCategoricalAction(SubMenu menu) {
+    public static void runNonCategoricalAction(Menu menu) {
         if (menu == lineMap) {
             runLineMapMenu();
         }

@@ -1,7 +1,7 @@
 package subway.controller;
 
-import subway.Menu;
-import subway.SubMenu;
+import subway.domain.MenuRepository;
+import subway.domain.Menu;
 import subway.domain.exception.NonExistentMenuException;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -21,13 +21,13 @@ public class MenuController {
     private static final int SUB_MENU_ACTION_INDEX = 1;
     private static final String NORMAL_SIGN = "NORMAL";
     private static final String ERROR_SIGN = "ERROR";
-    private static final Map<String, SubMenu> mainMenu = new LinkedHashMap<String, SubMenu>() {
+    private static final Map<String, Menu> mainMenu = new LinkedHashMap<String, Menu>() {
         {
-            put(STATION_MANAGEMENT_SIGN, Menu.stationMenu);
-            put(LINE_MANAGEMENT_SIGN, Menu.lineMenu);
-            put(EDGE_MANAGEMENT_SIGN, Menu.edgeMenu);
-            put(LINE_MAP_SIGN, Menu.lineMap);
-            put(QUIT_SIGN, Menu.quit);
+            put(STATION_MANAGEMENT_SIGN, MenuRepository.stationMenu);
+            put(LINE_MANAGEMENT_SIGN, MenuRepository.lineMenu);
+            put(EDGE_MANAGEMENT_SIGN, MenuRepository.edgeMenu);
+            put(LINE_MAP_SIGN, MenuRepository.lineMap);
+            put(QUIT_SIGN, MenuRepository.quit);
         }
     };
 
@@ -66,19 +66,19 @@ public class MenuController {
     }
 
     private boolean isQuit() {
-        SubMenu menu = getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
-        if (menu == Menu.quit) {
+        Menu menu = getSubMenu(selectedMenus.get(SUB_MENU_INDEX));
+        if (menu == MenuRepository.quit) {
             return true;
         }
         return false;
     }
 
-    private void runAction(SubMenu menu) {
-        if (!Menu.isCategoricalMenu(menu)) {
-            Menu.runNonCategoricalAction(menu);
+    private void runAction(Menu menu) {
+        if (!MenuRepository.isCategoricalMenu(menu)) {
+            MenuRepository.runNonCategoricalAction(menu);
             return;
         }
-        boolean backAction = !Menu.runCategoricalAction(inputView, menu, selectedMenus.get(SUB_MENU_ACTION_INDEX));
+        boolean backAction = !MenuRepository.runCategoricalAction(inputView, menu, selectedMenus.get(SUB_MENU_ACTION_INDEX));
         if (backAction) {
             selectedMenus.clear();
         }
@@ -86,7 +86,7 @@ public class MenuController {
 
     public void scanMenu() {
         String selectedMenuSign = scanMainMenu();
-        if (Menu.isCategoricalMenu(getSubMenu(selectedMenuSign))) {
+        if (MenuRepository.isCategoricalMenu(getSubMenu(selectedMenuSign))) {
             scanSubMenu(mainMenu.get(selectedMenuSign));
         }
     }
@@ -99,7 +99,7 @@ public class MenuController {
         return selectedMainMenu;
     }
 
-    private void scanSubMenu(SubMenu menu) {
+    private void scanSubMenu(Menu menu) {
         OutputView.printSubScreen(menu);
         List<String> subMenuSigns = new ArrayList<String> (menu.actionSign.keySet());
         String selectedSubMenu = scanValidMenu(subMenuSigns);
@@ -136,7 +136,7 @@ public class MenuController {
         return true;
     }
 
-    private SubMenu getSubMenu(String menuSign) {
+    private Menu getSubMenu(String menuSign) {
         return mainMenu.get(menuSign);
     }
 }

@@ -1,4 +1,4 @@
-package subway;
+package subway.controller;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
