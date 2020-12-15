@@ -1,7 +1,7 @@
-package subway;
+package subway.domain;
 
-import subway.domain.LineRepository;
-import subway.domain.StationRepository;
+import subway.domain.data.LineRepository;
+import subway.domain.data.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
