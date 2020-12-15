@@ -45,7 +45,7 @@ public class StationManageController {
     private void addStation() {
         view.printMessage(INPUT_MESSAGE_FOR_STATION_NAME);
         String input = view.input();
-        if (!ValidateUtils.validateStationName(input)) {
+        if (!ValidateUtils.validateLengthMoreThanTwo(input)) {
             view.printMessage(ERROR_STATION_NAME_LESS_THAN_TWO);
             return;
         }
