@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.Constants;
+
 import java.util.Objects;
 
 public class Station {
@@ -38,7 +40,7 @@ public class Station {
 
     @Override
     public String toString() {
-        return "[INFO] " + name.toString();
+        return Constants.INFORMATION + name.toString();
     }
 
 }

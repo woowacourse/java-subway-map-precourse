@@ -8,19 +8,17 @@ package subway.manager;
  *
  * Copyright (c) by Davinci.J
  */
-import subway.controller.SubwayManager;
+import subway.Constants;
 import subway.domain.*;
+import subway.view.InputView;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class InputSectionManager implements InputManager {
-    private Scanner scanner;
-
+public class SectionManager {
     private enum Menu {
-        REGISTER("1", ((InputSectionManager) SubwayManager.getMenus(Constants.SECTION_MENU))::register),
-        DELETE("2", ((InputSectionManager) SubwayManager.getMenus(Constants.SECTION_MENU))::delete),
-        BACK("B", System.out::println);
+        REGISTER("1", SectionManager::register),
+        DELETE("2", SectionManager::delete),
+        BACK("B", () -> {});
 
         private final String name;
         private final Runnable runnable;
@@ -39,43 +37,33 @@ public class InputSectionManager implements InputManager {
         }
     }
 
-    public InputSectionManager(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    @Override
-    public void selectMenu() {
+    public static void selectMenu() {
         try {
-            System.out.println(Constants.SECTION_MAIN_MENU);
-            String state = scanner.next();
-            Menu.execute(state);
+            Menu.execute(InputView.inputSectionMenu());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             selectMenu();
         }
     }
 
-    @Override
-    public void register() {
+    public static void register() {
         try {
-            System.out.println(Constants.INPUT_LINE);
-            Line line = new Line(new LineName(scanner.next()));
+            Line line = new Line(new LineName(InputView.inputSectionToRegister()));
             if (!LineRepository.lines().contains(line)) {
                 throw new IllegalArgumentException(Constants.LINE_NOTHING_TRY_AGAIN);
             }
             registerStationInSection(line);
             System.out.println(Constants.SECTION_ENROLLED);
-        } catch (IllegalArgumentException
-                e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             register();
         }
     }
 
-    private void registerStationInSection(Line line) {
+    private static void registerStationInSection(Line line) {
         try {
-            System.out.println(Constants.INPUT_STATION);
-            Station station = new Station(new StationName(scanner.next()));
+            Station station = new Station(
+                    new StationName(InputView.inputStationInSectionToRegister()));
             if (!StationRepository.stations().contains(station)
                     || LineRepository.containsStationOfLine(line, station)) {
                 throw new IllegalArgumentException(Constants.NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN);
@@ -87,10 +75,9 @@ public class InputSectionManager implements InputManager {
         }
     }
 
-    private void registerOrderInSection(Line line, Station station) {
+    private static void registerOrderInSection(Line line, Station station) {
         try {
-            System.out.println(Constants.INPUT_ORDER);
-            PositiveNumber orderNumber = new PositiveNumber(scanner.next());
+            PositiveNumber orderNumber = new PositiveNumber(InputView.inputOrderInSectionToRegister());
             PositiveNumber lineSize = new PositiveNumber(LineRepository.getLineSize(line));
             if (orderNumber.compareTo(lineSize) > 0) {
                 throw new IllegalArgumentException(Constants.INDEX_OUT_OF_BOUNDS_TRY_AGAIN);
@@ -103,15 +90,13 @@ public class InputSectionManager implements InputManager {
         }
     }
 
-    @Override
-    public void delete() {
+    public static void delete() {
         try {
-            System.out.println(Constants.INPUT_LINE_OF_SECTION_TO_DELETE);
-            Line line = new Line(new LineName(scanner.next()));
+            Line line = new Line(new LineName(InputView.inputSectionToDelete()));
             if (!LineRepository.lines().contains(line)) {
                 throw new IllegalArgumentException(Constants.LINE_NOTHING_TRY_AGAIN);
             }
-            deleteStationOfSection(line);
+            deleteStationInSection(line);
             System.out.println(Constants.SECTION_DELETED);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -119,10 +104,10 @@ public class InputSectionManager implements InputManager {
         }
     }
 
-    private void deleteStationOfSection(Line line) {
+    private static void deleteStationInSection(Line line) {
         try {
-            System.out.println(Constants.INPUT_STATION_OF_SECTION_TO_ENROLL);
-            Station station = new Station(new StationName(scanner.next()));
+            Station station = new Station(
+                    new StationName(InputView.inputStationInSectionToDelete()));
             if (!LineRepository.containsStationOfLine(line, station)
                     || LineRepository.getLineSize(line) <= Constants.LINE_MIN_LENGTH) {
                 throw new IllegalArgumentException(Constants.STATION_NOTHING_OR_LINE_LENGTH_LIMIT_TRY_AGAIN);
@@ -130,7 +115,7 @@ public class InputSectionManager implements InputManager {
             LineRepository.deleteSection(line, station);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            deleteStationOfSection(line);
+            deleteStationInSection(line);
         }
     }
 }

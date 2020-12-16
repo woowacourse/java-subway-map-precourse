@@ -8,25 +8,21 @@ package subway.manager;
  *
  * Copyright (c) by Davinci.J
  */
-import subway.controller.SubwayManager;
-import subway.domain.Constants;
+import subway.Constants;
 import subway.domain.Station;
 import subway.domain.StationName;
 import subway.domain.StationRepository;
+import subway.view.InputView;
+import subway.view.OutputView;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class InputStationManager implements InputManager {
-    private Scanner scanner;
-
+public class StationManager {
     private enum Menu {
-        REGISTER("1",
-                    ((InputStationManager) SubwayManager.getMenus(Constants.STATION_MENU_NUMBER))::register),
-        DELETE("2",
-                    ((InputStationManager) SubwayManager.getMenus(Constants.STATION_MENU_NUMBER))::delete),
-        INQUIRY("3", StationRepository::printStation),
-        BACK("B", System.out::println);
+        REGISTER("1", StationManager::register),
+        DELETE("2", StationManager::delete),
+        INQUIRY("3", OutputView::printStation),
+        BACK("B", () -> {});
 
         private final String name;
         private final Runnable runnable;
@@ -45,15 +41,9 @@ public class InputStationManager implements InputManager {
         }
     }
 
-    public InputStationManager(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    @Override
-    public void selectMenu() {
+    public static void selectMenu() {
         try {
-            System.out.println(Constants.STATION_MAIN_MENU);
-            String state = scanner.next();
+            String state = InputView.inputStationMenu();
             Menu.execute(state);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -61,11 +51,9 @@ public class InputStationManager implements InputManager {
         }
     }
 
-    @Override
-    public void register() {
+    public static void register() {
         try {
-            System.out.println(Constants.INPUT_STATION_TO_ENROLL);
-            Station station = new Station(new StationName(scanner.next()));
+            Station station = new Station(new StationName(InputView.inputStationToRegister()));
             if (StationRepository.stations().contains(station)) {
                 throw new IllegalArgumentException(Constants.DUPLICATED_TRY_AGAIN);
             }
@@ -77,13 +65,11 @@ public class InputStationManager implements InputManager {
         }
     }
 
-    @Override
-    public void delete() {
+    public static void delete() {
         try {
-            System.out.println(Constants.INPUT_STATION_TO_DELETE);
-            String stationToDelete = scanner.next();
-            if (StationRepository.isRegisteredStation(new Station(new StationName(stationToDelete)))
-                    || !StationRepository.deleteStation(stationToDelete)) {
+            if (StationRepository.isRegisteredStation(
+                                    new Station(new StationName(InputView.inputStationToDelete())))
+                    || !StationRepository.deleteStation(InputView.inputStationToDelete())) {
                 throw new IllegalArgumentException(Constants.NOTHING_OR_ALREADY_ENROLLED_TRY_AGAIN);
             }
             System.out.println(Constants.STATION_DELETED);

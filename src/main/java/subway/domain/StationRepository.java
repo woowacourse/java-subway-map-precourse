@@ -39,11 +39,4 @@ public class StationRepository {
         return false;
     }
 
-    public static void printStation() {
-        System.out.println(Constants.STATION_LIST);
-        for (Station station : stations) {
-            System.out.println(station);
-        }
-        System.out.println();
-    }
 }

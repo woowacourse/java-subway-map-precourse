@@ -8,20 +8,19 @@ package subway.manager;
  *
  * Copyright (c) by Davinci.J
  */
-import subway.controller.SubwayManager;
+import subway.Constants;
 import subway.domain.*;
+import subway.view.InputView;
+import subway.view.OutputView;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class InputLineManager implements InputManager {
-    private Scanner scanner;
-
+public class LineManager {
     private enum Menu {
-        REGISTER("1", ((InputLineManager) SubwayManager.getMenus(Constants.LINE_MENU))::register),
-        DELETE("2", ((InputLineManager) SubwayManager.getMenus(Constants.LINE_MENU))::delete),
-        INQUIRY("3", LineRepository::printLine),
-        BACK("B", System.out::println);
+        REGISTER("1", LineManager::register),
+        DELETE("2", LineManager::delete),
+        INQUIRY("3", OutputView::printLine),
+        BACK("B", () -> {});
 
         private final String name;
         private final Runnable runnable;
@@ -40,27 +39,18 @@ public class InputLineManager implements InputManager {
         }
     }
 
-    public InputLineManager(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    @Override
-    public void selectMenu() {
+    public static void selectMenu() {
         try {
-            System.out.println(Constants.LINE_MAIN_MENU);
-            String state = scanner.next();
-            Menu.execute(state);
+            Menu.execute(InputView.inputLineMenu());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             selectMenu();
         }
     }
 
-    @Override
-    public void register() {
+    public static void register() {
         try {
-            System.out.println(Constants.INPUT_LINE_TO_ENROLL);
-            Line line = new Line(new LineName(scanner.next()));
+            Line line = new Line(new LineName(InputView.inputLineToRegister()));
             if (LineRepository.lines().contains(line)) {
                 throw new IllegalArgumentException(Constants.DUPLICATED_TRY_AGAIN);
             }
@@ -73,10 +63,10 @@ public class InputLineManager implements InputManager {
         }
     }
 
-    private void registerStartStation(Line line) {
+    private static void registerStartStation(Line line) {
         try {
-            System.out.println(Constants.INPUT_START_STATION_TO_ENROLL);
-            Station station = new Station(new StationName(scanner.next()));
+            Station station = new Station(
+                    new StationName(InputView.inputStartStationToEnroll()));
             if (!StationRepository.stations().contains(station)) {
                 throw new IllegalArgumentException(Constants.NOTHING_TRY_AGAIN);
             }
@@ -87,10 +77,9 @@ public class InputLineManager implements InputManager {
         }
     }
 
-    private void registerEndStation(Line line, Station startStation) {
+    private static void registerEndStation(Line line, Station startStation) {
         try {
-            System.out.println(Constants.INPUT_END_STATION_TO_ENROLL);
-            Station endStation = new Station(new StationName(scanner.next()));
+            Station endStation = new Station(new StationName(InputView.inputEndStationToEnroll()));
             if (!StationRepository.stations().contains(endStation)
                     || startStation.equals(endStation)) {
                 throw new IllegalArgumentException(Constants.NOTHING_OR_START_END_SAME_TRY_AGAIN);
@@ -103,12 +92,9 @@ public class InputLineManager implements InputManager {
         }
     }
 
-    @Override
-    public void delete() {
+    public static void delete() {
         try {
-            System.out.println(Constants.INPUT_LINE_TO_DELETE);
-            String lineToDelete = scanner.next();
-            if (!LineRepository.deleteLineByName(new LineName(lineToDelete))) {
+            if (!LineRepository.deleteLineByName(new LineName(InputView.inputLineToDelete()))) {
                 throw new IllegalArgumentException(Constants.NOTHING_TO_DELETE_TRY_AGAIN);
             }
             System.out.println(Constants.LINE_DELETED);

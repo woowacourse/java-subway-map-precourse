@@ -1,4 +1,7 @@
 package subway.domain;
+
+import subway.Constants;
+
 /*
  * PositiveNumber
  *

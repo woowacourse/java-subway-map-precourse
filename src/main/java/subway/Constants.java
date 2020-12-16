@@ -1,4 +1,4 @@
-package subway.domain;
+package subway;
 
 public class Constants {
     public static final String APPLICATION_QUIT = "Q";

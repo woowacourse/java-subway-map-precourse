@@ -9,26 +9,14 @@ package subway;
  * Copyright (c) by Davinci.J
  */
 import subway.controller.Subway;
-import subway.domain.Constants;
-import subway.domain.LineRepository;
-import subway.manager.InputManager;
+import subway.view.InputView;
 
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        Subway subway = new Subway(scanner);
-        while (true) {
-            String state = subway.selectState();
-            if (state.equals(Constants.APPLICATION_QUIT)) {
-                break;
-            }
-            if (state.equals(Constants.SUBWAY_LINEMAP_MENU)) {
-                LineRepository.printLineAndStation();
-                continue;
-            }
-            ((InputManager) subway.getMenus(state)).selectMenu();
-        }
+        InputView.insertScanner(scanner);
+        Subway.run();
     }
 }

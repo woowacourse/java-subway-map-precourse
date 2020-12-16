@@ -39,14 +39,6 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static void printLine() {
-        System.out.println(Constants.LINE_LIST);
-        for (Line line : lines) {
-            System.out.println(line.toString());
-        }
-        System.out.println();
-    }
-
     public static boolean containsStationOfLine(Line line, Station station) {
         for (Line n : lines) {
             if (n.equals(line) && n.getStations().contains(station)) {
@@ -80,16 +72,6 @@ public class LineRepository {
             if (n.equals(line)) {
                 n.getStations().remove(station);
             }
-        }
-    }
-
-    public static void printLineAndStation() {
-        for (Line line : lines) {
-            System.out.println(line.toString() + Constants.INFORMATION_BAR);
-            for (Station station : line.getStations()) {
-                System.out.println(station.toString());
-            }
-            System.out.println();
         }
     }
 

@@ -8,53 +8,63 @@ package subway.controller;
  *
  * Copyright (c) by Davinci.J
  */
-import subway.domain.Constants;
+import subway.Constants;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
-import subway.manager.InputLineManager;
-import subway.manager.InputSectionManager;
-import subway.manager.InputStationManager;
+import subway.manager.LineManager;
+import subway.manager.SectionManager;
+import subway.manager.StationManager;
+import subway.view.InputView;
+import subway.view.OutputView;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Subway {
-    private Scanner scanner;
-    private Map<String, Object> menus = new HashMap<>();
-
-    public Subway(Scanner scanner) {
-        this.scanner = scanner;
-        initSubway();
+    static {
         StationRepository.init();
         LineRepository.init();
     }
 
-    public String selectState() {
-        System.out.println(Constants.MAIN_MENU);
-        String menu = scanner.next();
+    private enum Menu {
+        STATION("1", StationManager::selectMenu),
+        LINE("2", LineManager::selectMenu),
+        SECTION("3", SectionManager::selectMenu),
+        SUBWAY_LIST("4", OutputView::printLineAndStation),
+        QUIT("Q", new Subway()::exit);
+
+        private final String name;
+        private final Runnable runnable;
+
+        Menu(String name, Runnable runnable) {
+            this.name = name;
+            this.runnable = runnable;
+        }
+
+        public static void execute(String input) {
+            Arrays.stream(values())
+                    .filter(value -> value.name.equals(input))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException(Constants.WRONG_STATE_TRY_AGAIN))
+                    .runnable.run();
+        }
+
+    }
+
+    public static void run() {
         try {
-            if (!menus.containsKey(menu)) {
-                throw new IllegalArgumentException(Constants.WRONG_STATE_TRY_AGAIN);
+            String state = InputView.inputMainMenu();
+            Menu.execute(state);
+            if (!state.equals(Constants.APPLICATION_QUIT)) {
+                run();
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return selectState();
+            run();
         }
-        return menu;
     }
 
-    private void initSubway() {
-        menus.put(Constants.ONE, new InputStationManager(scanner));
-        menus.put(Constants.TOW, new InputLineManager(scanner));
-        menus.put(Constants.THREE, new InputSectionManager(scanner));
-        menus.put(Constants.FOUR, Constants.FOUR);
-        menus.put(Constants.APPLICATION_QUIT, Constants.APPLICATION_QUIT);
-        SubwayManager.initSubwayManager(menus);
-    }
-
-    public Object getMenus(String name) {
-        return menus.get(name);
+    private void exit() {
+        System.exit(0);
     }
 
 }

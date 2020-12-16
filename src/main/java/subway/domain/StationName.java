@@ -8,6 +8,8 @@ package subway.domain;
  *
  * Copyright (c) by Davinci.J
  */
+import subway.Constants;
+
 import java.util.Objects;
 
 public class StationName {
