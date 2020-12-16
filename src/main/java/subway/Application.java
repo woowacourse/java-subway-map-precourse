@@ -3,6 +3,7 @@ package subway;
 import static log.Logger.displayInputScreen;
 import static log.Logger.displayMainScreen;
 import static subway.LineManage.linaManage;
+import static subway.SectionManage.sectionManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.StationRepository.addStation;
@@ -63,7 +64,7 @@ public class Application {
             linaManage(scanner);
         }
         if (input.equals(SECTION_MANAGE)) {
-            //sectionManage(scanner);
+            sectionManage(scanner);
         }
         if (input.equals(ALL_INFO)) {
             routeMapPrint();
