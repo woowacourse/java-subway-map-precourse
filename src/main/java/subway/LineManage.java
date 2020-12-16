@@ -40,16 +40,16 @@ public class LineManage {
     private static boolean isExit(Scanner scanner) {
         String input = displayInputScreen(scanner, new ArrayList<>(Arrays.asList(
             ADD_LINE, DELETE_LINE, ALL_LINES, BACK_SCREEN)));
-        if (input.equalsIgnoreCase(ADD_LINE)) {
+        if (input.equals(ADD_LINE)) {
             return addLineControl(scanner);
         }
-        if (input.equalsIgnoreCase(DELETE_LINE)) {
+        if (input.equals(DELETE_LINE)) {
             return deleteLineControl(scanner);
         }
-        if (input.equalsIgnoreCase(ALL_LINES)) {
+        if (input.equals(ALL_LINES)) {
             return allLinesControl();
         }
-        return input.equalsIgnoreCase(BACK_SCREEN);
+        return input.equals(BACK_SCREEN);
     }
 
     private static boolean addLineControl(Scanner scanner) {
