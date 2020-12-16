@@ -42,10 +42,7 @@ public class SectionManage {
         if (input.equals(DELETE_SECTION)) {
             //return deleteSectionPrint(scanner);
         }
-        if (input.equals(BACK_SCREEN)) {
-            return true;
-        }
-        return false;
+        return input.equals(BACK_SCREEN);
     }
 
     private static boolean addSectionControl(Scanner scanner) {
