@@ -9,13 +9,9 @@ public class Line {
 
     private final String name;
     private final LinkedList<Station> terminals;
-    private Station upwardTerminal;
-    private Station downwardTerminal;
 
     public Line(String name, Station upwardTerminal, Station downwardTerminal) {
         this.name = name;
-        this.upwardTerminal = upwardTerminal;
-        this.downwardTerminal = downwardTerminal;
         terminals = new LinkedList<Station>(Arrays.asList(upwardTerminal, downwardTerminal));
     }
 
