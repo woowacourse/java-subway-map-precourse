@@ -1,5 +1,7 @@
 package subway.domain;
 
+import subway.view.ErrorView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,5 +20,17 @@ public class LineRepository {
 
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    public static Line findLine(String name) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(name))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException((ErrorView.NO_EXIST_LINE)));
+    }
+
+    public static boolean exists(String name) {
+        return lines.stream()
+                .filter(line -> line.getName().equals(name))
+                .findFirst().isPresent();
     }
 }
