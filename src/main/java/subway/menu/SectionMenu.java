@@ -6,30 +6,23 @@ import subway.view.OutputView;
 import subway.view.SectionInputView;
 
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public enum SectionMenu implements MenuModel {
-    REGISTER("1", "구간 등록") {
-        public void moveView(Scanner scanner) {
-            SectionFeature.registerSection(scanner);
-        }
-    },
-    REMOVE("2", "구간 삭제") {
-        public void moveView(Scanner scanner) {
-            SectionFeature.removeSection(scanner);
-        }
-    },
-    BACK("B", "돌아가기") {
-        public void moveView(Scanner scanner) {
-            return;
-        }
-    };
+    REGISTER("1", "구간 등록", (Scanner scanner) -> SectionFeature.registerSection(scanner)),
+    REMOVE("2", "구간 삭제", (Scanner scanner) -> SectionFeature.removeSection(scanner)),
+    BACK("B", "돌아가기", (Scanner scanner) -> {
+        return;
+    });
 
     final private String selection;
     final private String feature;
+    private Consumer<Scanner> move;
 
-    private SectionMenu(String selection, String feature) {
+    private SectionMenu(String selection, String feature, Consumer<Scanner> move) {
         this.selection = selection;
         this.feature = feature;
+        this.move = move;
     }
 
     public static void openScreen(Scanner scanner) {
@@ -39,11 +32,9 @@ public enum SectionMenu implements MenuModel {
         select(sectionMenuInput, scanner);
     }
 
-    abstract public void moveView(Scanner scanner);
-
     private static void select(String sectionMenuInput, Scanner scanner) {
         MenuFeature.mapInputToSelection(SectionMenu.class, sectionMenuInput)
-                .moveView(scanner);
+                .getMove().accept(scanner);
     }
 
     public static String getMenu() {
@@ -58,5 +49,10 @@ public enum SectionMenu implements MenuModel {
     @Override
     public String getSelection() {
         return selection;
+    }
+
+    @Override
+    public Consumer<Scanner> getMove() {
+        return move;
     }
 }
