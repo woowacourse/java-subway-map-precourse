@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.Constants;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -71,9 +72,15 @@ public class InputView {
         return scanner.next();
     }
 
-    public static String inputOrderInSectionToRegister() {
-        System.out.println(Constants.INPUT_ORDER);
-        return scanner.next();
+    public static int inputOrderInSectionToRegister() {
+        try {
+            System.out.println(Constants.INPUT_ORDER);
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println(Constants.ERROR_NOT_NUMBER);
+            scanner.nextLine();
+            return inputOrderInSectionToRegister();
+        }
     }
 
     public static String inputSectionToDelete() {

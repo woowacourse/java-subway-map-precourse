@@ -58,5 +58,6 @@ public class Constants {
     public static final String ERROR_ONLY_POSITIVE_NUMBER = "[ERROR] 양의 정수만 가능합니다.";
     public static final int SINGLE_DIGIT_MIN = 0;
     public static final int SINGLE_DIGIT_MAX = 9;
-    public static final String STATION_LIST = "\n## 역 목록\n";
+    public static final String STATION_LIST = "\n## 역 목록";
+    public static final String ERROR_NOT_NUMBER = "[ERROR] 숫자가 아닙니다.";
 }
