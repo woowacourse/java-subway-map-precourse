@@ -1,7 +1,7 @@
 package subway.view;
 
 import subway.feature.MenuFeature;
-import subway.menu.SectionMenu;
+import subway.menu.LineMenu;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class LineInputView extends View {
         System.out.println(POUND_KEY + SELECT_FEATURE);
         try {
             String selection = scanner.nextLine().trim();
-            MenuFeature.mapInputToSelection(SectionMenu.class, selection);
+            MenuFeature.mapInputToSelection(LineMenu.class, selection);
             return selection;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
