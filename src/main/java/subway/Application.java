@@ -7,6 +7,7 @@ import static subway.SectionManage.sectionManage;
 import static subway.StationManage.stationManage;
 import static subway.domain.LineRepository.addLine;
 import static subway.domain.StationRepository.addStation;
+import static subway.domain.StationRepository.getStationByName;
 import static subway.routeMap.routeMapPrint;
 
 import java.util.ArrayList;
@@ -42,12 +43,12 @@ public class Application {
             addStation(new Station(stationName));
         }
         addLine(new Line("2호선", new LinkedList<Station>(Arrays.asList(
-            new Station("교대역"), new Station("강남역"), new Station("역삼역")))));
+            getStationByName("교대역"), getStationByName("강남역"), getStationByName("역삼역")))));
         addLine(new Line("3호선", new LinkedList<Station>(Arrays.asList(
-            new Station("교대역"), new Station("남부터미널역"),
-            new Station("양재역"), new Station("매봉역")))));
+            getStationByName("교대역"), getStationByName("남부터미널역"), getStationByName("양재역"),
+            getStationByName("매봉역")))));
         addLine(new Line("신분당선", new LinkedList<Station>(Arrays.asList(
-            new Station("강남역"), new Station("양재역"), new Station("양재시민의숲역")))));
+            getStationByName("강남역"), getStationByName("양재역"), getStationByName("양재시민의숲역")))));
     }
 
     private static boolean isExit(Scanner scanner) {

@@ -3,6 +3,7 @@ package subway;
 import static log.ErrorCase.ALREADY_EXIST_ERROR;
 import static log.ErrorCase.INVALID_POSITION_ERROR;
 import static log.ErrorCase.NO_SUCH_NAME_ERROR;
+import static log.ErrorCase.TERMINAL_LENGTH_ERROR;
 import static log.Logger.displayInputScreen;
 import static log.Logger.displaySectionManageScreen;
 import static log.Logger.errorPrint;
@@ -40,18 +41,18 @@ public class SectionManage {
             return addSectionControl(scanner);
         }
         if (input.equals(DELETE_SECTION)) {
-            //return deleteSectionPrint(scanner);
+            return deleteSectionControl(scanner);
         }
         return input.equals(BACK_SCREEN);
     }
 
     private static boolean addSectionControl(Scanner scanner) {
         errorFlag = false;
-        Line line = inputLine(scanner);
+        Line line = inputAddLine(scanner);
         if (errorFlag) {
             return false;
         }
-        Station terminal = inputTerminal(scanner, line);
+        Station terminal = inputAddTerminal(scanner, line);
         if (errorFlag) {
             return false;
         }
@@ -64,7 +65,22 @@ public class SectionManage {
         return true;
     }
 
-    private static Line inputLine(Scanner scanner) {
+    private static boolean deleteSectionControl(Scanner scanner) {
+        errorFlag = false;
+        Line line = inputDeleteLine(scanner);
+        if (errorFlag) {
+            return false;
+        }
+        String terminalName = inputDeleteTerminal(scanner, line);
+        if (errorFlag) {
+            return false;
+        }
+        line.deleteTerminal(terminalName);
+        infoPrint("구간이 삭제되었습니다. \n");
+        return true;
+    }
+
+    private static Line inputAddLine(Scanner scanner) {
         guidePrint("노선 이름을 입력하세요. \n");
         String lineName = scanner.next();
         Line line = getLineByName(lineName);
@@ -75,19 +91,54 @@ public class SectionManage {
         return line;
     }
 
-    private static Station inputTerminal(Scanner scanner, Line line) {
+    private static Station inputAddTerminal(Scanner scanner, Line line) {
         guidePrint("역 이름을 입력하세요. \n");
         String terminalName = scanner.next();
         Station terminal = getStationByName(terminalName);
         if (terminal == null) {
             errorPrint(NO_SUCH_NAME_ERROR);
             errorFlag = true;
+            return null;
         }
         if (line.hasTerminal(terminalName)) {
             errorPrint(ALREADY_EXIST_ERROR);
             errorFlag = true;
         }
         return terminal;
+    }
+
+    private static Line inputDeleteLine(Scanner scanner) {
+        guidePrint("삭제할 구간의 노선을 입력하세요. \n");
+        String lineName = scanner.next();
+        Line line = getLineByName(lineName);
+        if (line == null) {
+            errorPrint(NO_SUCH_NAME_ERROR);
+            errorFlag = true;
+            return null;
+        }
+        if (line.getLength() <= 2) {
+            errorPrint(TERMINAL_LENGTH_ERROR);
+            errorFlag = true;
+            return null;
+        }
+        return line;
+    }
+
+    private static String inputDeleteTerminal(Scanner scanner, Line line) {
+        guidePrint("삭제할 구간의 역을 입력하세요. \n");
+        String terminalName = scanner.next();
+        Station terminal = getStationByName(terminalName);
+        if (terminal == null) {
+            errorPrint(NO_SUCH_NAME_ERROR);
+            errorFlag = true;
+            return null;
+        }
+        if (!line.hasTerminal(terminalName)) {
+            errorPrint(NO_SUCH_NAME_ERROR);
+            errorFlag = true;
+            return null;
+        }
+        return terminalName;
     }
 
     private static int inputPosition(Scanner scanner, int max) {
