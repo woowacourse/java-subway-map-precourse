@@ -33,7 +33,7 @@ public class Logger {
 
     public static String displayInputScreen(Scanner scanner, List<String> whiteList) {
         String input;
-        while(true) {
+        while (true) {
             guidePrint("원하는 기능을 선택하세요.\n");
             input = scanner.next();
             if (whiteList.contains(input)) {

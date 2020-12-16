@@ -12,6 +12,6 @@ public class Station {
     }
 
     public void print() {
-        System.out.println("[INFO] "+this.name);
+        System.out.println("[INFO] " + this.name);
     }
 }
