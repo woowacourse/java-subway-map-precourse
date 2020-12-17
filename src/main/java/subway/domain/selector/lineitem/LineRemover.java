@@ -4,11 +4,11 @@ import subway.domain.line.LineRepository;
 import subway.domain.selector.Manipulable;
 import subway.domain.selector.Selector;
 
-public class RemoveLineItem extends Selector implements Manipulable {
+public class LineRemover extends Selector implements Manipulable {
 
     LineValidator lineValidator = new LineValidator();
 
-    public RemoveLineItem(String id, String name) {
+    public LineRemover(String id, String name) {
         this.id = id;
         this.name = name;
     }

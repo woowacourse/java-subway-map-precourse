@@ -2,26 +2,27 @@ package subway.domain.selector.stationitem;
 
 import subway.domain.selector.Manipulable;
 import subway.domain.selector.Selector;
+import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 
-public class RemoveStationItem extends Selector implements Manipulable {
+public class StationAdder extends Selector implements Manipulable {
 
     StationValidator stationValidator = new StationValidator();
 
-    public RemoveStationItem(String id, String name) {
+    public StationAdder(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
     public void execute() {
-        messageView.printRemoveStationMessage();
+        messageView.printAddStationMessage();
 
         String stationName = inputView.getName();
-        stationValidator.validateRemoveStation(stationName);
-        StationRepository.deleteStationByName(stationName);
+        stationValidator.validateAddStation(stationName);
+        StationRepository.addStation(new Station(stationName));
 
-        messageView.printRemoveStationSuccessMessage();
+        messageView.printAddStationSuccessMessage();
     }
 
 }

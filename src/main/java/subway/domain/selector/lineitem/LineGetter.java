@@ -4,9 +4,9 @@ import subway.domain.line.LineRepository;
 import subway.domain.selector.Manipulable;
 import subway.domain.selector.Selector;
 
-public class GetLineItem extends Selector implements Manipulable {
+public class LineGetter extends Selector implements Manipulable {
 
-    public GetLineItem(String id, String name) {
+    public LineGetter(String id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -9,12 +9,12 @@ import subway.domain.selector.Selector;
 import subway.domain.selector.stationitem.StationValidator;
 import subway.domain.station.Station;
 
-public class AddLineItem extends Selector implements Manipulable {
+public class LineAdder extends Selector implements Manipulable {
 
     LineValidator lineValidator = new LineValidator();
     StationValidator stationValidator = new StationValidator();
 
-    public AddLineItem(String id, String name) {
+    public LineAdder(String id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -8,13 +8,13 @@ import subway.domain.selector.Selector;
 import subway.domain.selector.lineitem.LineValidator;
 import subway.domain.selector.stationitem.StationValidator;
 
-public class RemoveSectionItem extends Selector implements Manipulable {
+public class SectionRemover extends Selector implements Manipulable {
 
     SectionValidator sectionValidator = new SectionValidator();
     LineValidator lineValidator = new LineValidator();
     StationValidator stationValidator = new StationValidator();
 
-    public RemoveSectionItem(String id, String name) {
+    public SectionRemover(String id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -4,9 +4,9 @@ import subway.domain.selector.Manipulable;
 import subway.domain.selector.Selector;
 import subway.domain.station.StationRepository;
 
-public class GetStationItem extends Selector implements Manipulable {
+public class StationGetter extends Selector implements Manipulable {
 
-    public GetStationItem(String id, String name) {
+    public StationGetter(String id, String name) {
         this.id = id;
         this.name = name;
     }
