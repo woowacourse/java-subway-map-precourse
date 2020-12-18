@@ -9,22 +9,21 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.menu.MainMenu;
+import subway.screen.MainScreen;
 import subway.view.Input;
 import subway.view.Output;
 
 public class SubwayController {
     public static boolean progress = true;
-    public static Output output;
     
     public SubwayController(Scanner scanner) {
     	initialization();
         Input.scanner = scanner;
-        output = new Output();
     }
     
     public static void run() {
         while (progress) {
-            output.printMainMenu();
+            Output.printMenu(new MainScreen());
             MainMenu.execute(Input.chooseFunction());
         }
     }

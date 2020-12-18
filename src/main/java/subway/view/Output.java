@@ -16,50 +16,18 @@ public class Output {
     private static final String RESULT_PREFIX = "[INFO] ";
     private static final String DIVIDING_LINE = "---";
     private static final String SUBWAY_MAP_INFO = "지하철 노선도";
-	
-    private MainScreen main;
-    private StationScreen station;
-    private LineScreen line;
-    private SectionScreen section;
-	
-    public Output() {
-        main = new MainScreen();
-        station = new StationScreen();
-        line = new LineScreen();
-        section = new SectionScreen();
-    }
     
-    public void printError(String message) {
+    public static void printError(String message) {
         System.out.println(ERROR_PREFIX + message);
     }
 	
-    public void printResult(String message) {
+    public static void printResult(String message) {
         System.out.println(RESULT_PREFIX + message);
     }
 		
-    public void printMainMenu() {
-        main.printScreen();
+    public static void printMenu(Screen screen) {
+        screen.printScreen();
     }   
-    
-    public void printStationMenu() {
-    	station.printScreen();
-    }
-    
-    public void printLineMenu() {
-        line.printScreen();
-    }
-    
-    public void printSectionMenu() {
-        section.printScreen();
-    }
-    
-    public void printStationListInfoMessage() {
-        station.printStationListInfoMessage();
-    }
-    
-    public void printLineListInfoMessage() {
-        line.printLineListInfoMessage();
-    }
     
     public static void printSubwayMap() {
         System.out.println();
@@ -73,16 +41,16 @@ public class Output {
     }
     
     public static void printStation() {
-        SubwayController.output.printStationListInfoMessage();
+        StationScreen.printStationListInfoMessage();
         for (Station station : StationRepository.stations()) {
-            SubwayController.output.printResult(station.getName());
+            printResult(station.getName());
         }
     }
     
     public static void printLine() {
-        SubwayController.output.printLineListInfoMessage();
+        LineScreen.printLineListInfoMessage();
         for (Line line : LineRepository.lines()) {
-            SubwayController.output.printResult(line.getName());
+            printResult(line.getName());
         }
     }
 

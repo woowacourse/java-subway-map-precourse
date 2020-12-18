@@ -5,14 +5,16 @@ import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.menu.LineMenu;
+import subway.screen.LineScreen;
 import subway.view.Input;
+import subway.view.Output;
 
 public class LineController {
     private static final String ADD_SUCCESS_MESSAGE = "지하철 노선이 등록되었습니다.";
     private static final String DELETE_SUCCESS_MESSAGE = "지하철 노선이 삭제되었습니다.";
 	
     public static void executeLineMenu() {
-    	SubwayController.output.printLineMenu();
+    	Output.printMenu(new LineScreen());
         LineMenu.execute(Input.chooseFunction());
     }
     
@@ -24,18 +26,18 @@ public class LineController {
             line.addUpTerminal(upTerminal);
             line.addDownTerminal(downTerminal);
             LineRepository.addLine(line);
-            SubwayController.output.printResult(ADD_SUCCESS_MESSAGE);
+            Output.printResult(ADD_SUCCESS_MESSAGE);
         } catch (Exception error) {
-            SubwayController.output.printError(error.getMessage());
+            Output.printError(error.getMessage());
         }
     }
 	
     public static void deleteLine() {
         try {
             LineRepository.deleteLineByName(Input.inputDeleteLineName());
-            SubwayController.output.printResult(DELETE_SUCCESS_MESSAGE);
+            Output.printResult(DELETE_SUCCESS_MESSAGE);
         } catch (Exception error) {
-            SubwayController.output.printError(error.getMessage());
+            Output.printError(error.getMessage());
         }
     }
 }
