@@ -1,9 +1,9 @@
 package subway.domain;
 
-public class Station {
+public class Section {
     private String name;
 
-    public Station(String name) {
+    public Section(String name) {
         this.name = name;
     }
 

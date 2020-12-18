@@ -1,0 +1,33 @@
+# Change Log
+
+이 프로젝트의 주목할만한 변화들은 모두 이곳에 기입합니다.  
+작성 기준은 [AngularJS Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 를 따르도록 합니다.  
+
+---
+# 지하철 프로젝트
+
+feat(MainMenu.java): 초기 역과 노선 등록 기능 추가
+
+feat(MainMenu.java): 지하철 노선도 출력 기능 추가
+
+feat(SectionMenu.java): 구간 삭제 기능 추가
+
+feat(SectionMenu.java): 구간 추가 기능 추가
+
+feat(LineMenu.java): 노선 출력 기능 추가
+
+feat(LineMenu.java): 노선 삭제 기능 추가
+
+feat(LineMenu.java): 노선 추가 기능 추가
+
+feat(StationMenu.java): 역 출력 기능 추가
+
+feat(StationMenu.java): 역 삭제 기능 추가
+
+feat(StationMenu.java): 역 추가 기능 추가
+
+feat(Menu.java): 메뉴 입력 확인 기능 추가
+
+feat(Menu.java): 메뉴 순환 기능 추가
+
+docs(README.md): 구현할 기능 목록 추가
