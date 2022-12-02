@@ -2,6 +2,7 @@ package subway.controller.menu;
 
 import java.util.Arrays;
 import java.util.Objects;
+import subway.domain.Line;
 
 public enum LineMenu implements Menu {
 
@@ -37,11 +38,11 @@ public enum LineMenu implements Menu {
     }
 
     public static void callFunction(String input) {
-        Arrays.stream(LineMenu.values())
+        LineMenu result = Arrays.stream(LineMenu.values())
                 .filter(function -> Objects.equals(function.getNumber(), input))
                 .findAny()
-                .get()
-                .getFunction()
+                .orElseThrow(() -> new IllegalStateException("[ERROR] 선택할 수 없는 기능입니다."));
+        result.getFunction()
                 .run();
     }
 }

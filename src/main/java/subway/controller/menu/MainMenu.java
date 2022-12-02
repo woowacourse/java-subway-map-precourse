@@ -41,11 +41,11 @@ public enum MainMenu implements Menu {
     }
 
     public static void callFunction(String input) {
-        Arrays.stream(MainMenu.values())
+        MainMenu result = Arrays.stream(MainMenu.values())
                 .filter(function -> Objects.equals(function.getNumber(), input))
                 .findAny()
-                .get()
-                .getFunction()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
+        result.getFunction()
                 .run();
     }
 }

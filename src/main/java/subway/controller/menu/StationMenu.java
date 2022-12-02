@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum StationMenu implements Menu {
+
     PRINT_STATION("##", " 역 관리 화면", null),
     SELECT_STATION_UPDATE("1", ". 역 등록", null),
     SELECT_STATION_REMOVE("2", ". 역 삭제", null),
@@ -36,11 +37,11 @@ public enum StationMenu implements Menu {
     }
 
     public static void callFunction(String input) {
-        Arrays.stream(StationMenu.values())
+        StationMenu result = Arrays.stream(StationMenu.values())
                 .filter(function -> Objects.equals(function.getNumber(), input))
                 .findAny()
-                .get()
-                .getFunction()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 선택할 수 없는 기능입니다."));
+        result.getFunction()
                 .run();
     }
 }
