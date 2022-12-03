@@ -1,17 +1,22 @@
 package subway.controller.menu;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
-import subway.domain.Line;
+import java.util.stream.Collectors;
+import subway.controller.LineController;
+import subway.controller.MainController;
+import subway.view.OutputView;
 
 public enum LineMenu implements Menu {
 
-    PRINT_LINE("##", ". 노선 관리 화면", null),
-    SELECT_LINE_UPDATE("1", ". 노선 등록", null),
-    SELECT_LINE_REMOVE("2", ". 노선 삭제", null),
-    SELECT_PRINT_LINE_LIST("3", ". 노선 조회", null),
-    BACK("B", ". 돌아가기", null);
+    PRINT_LINE("\n##", ". 노선 관리 화면", null),
+    SELECT_LINE_UPDATE("1", ". 노선 등록", new LineController()::inputAddLine),
+    SELECT_LINE_REMOVE("2", ". 노선 삭제", new LineController()::removeLine),
+    SELECT_PRINT_LINE_LIST("3", ". 노선 조회", new OutputView()::printLineList),
+    BACK("B", ". 돌아가기", new MainController()::runMenu);
 
+    private static final String ERROR_MESSAGE = "선택할 수 없는 기능입니다.";
     private final String number;
     private final String message;
     private final Runnable function;
@@ -37,11 +42,17 @@ public enum LineMenu implements Menu {
         return function;
     }
 
-    public static void callFunction(String input) {
+    public static List<String> getMenu() {
+        return Arrays.stream(LineMenu.values())
+                .map(e -> e.getNumber() + e.getMessage())
+                .collect(Collectors.toList());
+    }
+
+    public static void callLineFunction(String input) {
         LineMenu result = Arrays.stream(LineMenu.values())
                 .filter(function -> Objects.equals(function.getNumber(), input))
                 .findAny()
-                .orElseThrow(() -> new IllegalStateException("[ERROR] 선택할 수 없는 기능입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE));
         result.getFunction()
                 .run();
     }
