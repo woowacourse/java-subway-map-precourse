@@ -16,4 +16,9 @@ public enum InitLine {
     public Line getLineName() {
         return lineName;
     }
+
+    @Override
+    public String toString() {
+        return lineName.getName();
+    }
 }
