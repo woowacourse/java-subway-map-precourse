@@ -20,5 +20,10 @@ public enum InitStation {
     public Station getStationName() {
         return stationName;
     }
+
+    @Override
+    public String toString() {
+        return stationName.getName();
+    }
 }
 
