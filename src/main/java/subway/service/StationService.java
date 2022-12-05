@@ -1,5 +1,7 @@
 package subway.service;
 
+import static subway.domain.SectionRepository.hasStationOnLine;
+
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -25,5 +27,30 @@ public class StationService {
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
         }
+    }
+
+    public void removeStation() {
+        if (validate(inputView.getInput(INPUT_REMOVE_STATION_NAME))) {
+            outputView.printNotificationMessage(INFO_REMOVE_STATION);
+        }
+    }
+
+    private boolean validate(String inputRemoveStationName) {
+        return validateStationOnLine(inputRemoveStationName)
+                && validateExistStationName(inputRemoveStationName);
+    }
+
+    private boolean validateStationOnLine(String inputRemoveStationName) {
+        if (hasStationOnLine(inputRemoveStationName)) {
+            throw new IllegalArgumentException(ERROR_STATION_ON_LINE);
+        }
+        return true;
+    }
+
+    private boolean validateExistStationName(String inputRemoveStationName) {
+        if (!StationRepository.deleteStation(inputRemoveStationName)) {
+            throw new IllegalArgumentException(ERROR_NON_EXIST_STATION);
+        }
+        return true;
     }
 }
