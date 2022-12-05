@@ -7,15 +7,16 @@ import java.util.stream.Collectors;
 import subway.controller.LineController;
 import subway.controller.SectionController;
 import subway.controller.StationController;
+import subway.view.OutputView;
 
 public enum MainMenu implements Menu {
 
     PRINT_MAIN("##"," 메인 화면",null),
-    SELECT_STATION_MANAGEMENT("1",". 역 관리", new StationController()::stationRun),
-    SELECT_LINE_MANAGEMENT("2",". 노선 관리",  new LineController()::lineRun),
-    SELECT_SECTION_MANAGEMENT("3",". 구간 관리",new SectionController()::sectionRun),
-    PRINT_SUBWAY_MAP("4",". 지하철 노선도 출력",null),
-    QUIT("Q",". 종료",null);
+    SELECT_STATION_MANAGEMENT("1",". 역 관리", new StationController()::runMenu),
+    SELECT_LINE_MANAGEMENT("2",". 노선 관리",  new LineController()::runMenu),
+    SELECT_SECTION_MANAGEMENT("3",". 구간 관리",new SectionController()::runMenu),
+    PRINT_SUBWAY_MAP("4",". 지하철 노선도 출력",new OutputView()::printSubwayMap),
+    QUIT("Q",". 종료", null);
 
     private static final String ERROR_MESSAGE = "선택할 수 없는 기능입니다.";
     private final String number;
@@ -56,5 +57,21 @@ public enum MainMenu implements Menu {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE));
         result.getFunction()
                 .run();
+    }
+
+    public static String number(String input) {
+        try {
+            validateMainMenu(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return input;
+    }
+
+    public static void validateMainMenu(String input) {
+        Arrays.stream(MainMenu.values()).filter(f -> !f.getNumber().equals(input))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE));
+
     }
 }

@@ -4,16 +4,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import subway.controller.LineController;
 import subway.controller.MainController;
+import subway.service.StationService;
 import subway.view.OutputView;
 
-public enum LineMenu implements Menu {
+public enum StationMenu implements Menu {
 
-    PRINT_LINE("\n##", ". 노선 관리 화면", null),
-    SELECT_LINE_UPDATE("1", ". 노선 등록", new LineController()::inputAddLine),
-    SELECT_LINE_REMOVE("2", ". 노선 삭제", new LineController()::removeLine),
-    SELECT_PRINT_LINE_LIST("3", ". 노선 조회", new OutputView()::printLineList),
+    PRINT_STATION("\n##", " 역 관리 화면", null),
+    SELECT_STATION_UPDATE("1", ". 역 등록", new StationService()::addStation),
+    SELECT_STATION_REMOVE("2", ". 역 삭제", new StationService()::removeStation),
+    SELECT_PRINT_STATION_LIST("3", ". 역 조회", new OutputView()::printStationList),
     BACK("B", ". 돌아가기", new MainController()::runMenu);
 
     private static final String ERROR_MESSAGE = "선택할 수 없는 기능입니다.";
@@ -21,7 +21,7 @@ public enum LineMenu implements Menu {
     private final String message;
     private final Runnable function;
 
-    LineMenu(String number, String message, Runnable function) {
+    StationMenu(String number, String message, Runnable function) {
         this.number = number;
         this.message = message;
         this.function = function;
@@ -43,14 +43,14 @@ public enum LineMenu implements Menu {
     }
 
     public static List<String> getMenu() {
-        return Arrays.stream(LineMenu.values())
+        return Arrays.stream(StationMenu.values())
                 .map(e -> e.getNumber() + e.getMessage())
                 .collect(Collectors.toList());
     }
 
-    public static void callLineFunction(String input) {
-        LineMenu result = Arrays.stream(LineMenu.values())
-                .filter(function -> Objects.equals(function.getNumber(), input))
+    public static void callFunction(String input) {
+        StationMenu result = Arrays.stream(StationMenu.values())
+                .filter(e -> Objects.equals(e.getNumber(), input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE));
         result.getFunction()

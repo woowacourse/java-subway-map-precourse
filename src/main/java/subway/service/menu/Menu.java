@@ -7,4 +7,6 @@ public interface Menu {
     String getMessage();
 
     Runnable getFunction();
+
+//    void callFunction(String input);
 }
