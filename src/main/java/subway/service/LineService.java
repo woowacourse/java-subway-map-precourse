@@ -45,4 +45,21 @@ public class LineService {
     private Station inputDownBoundStation() {
         return new Station(inputView.getInput(INPUT_DOWN_BOUND_STATION_NAME));
     }
+
+    public void inputRemoveLine() {
+        String inputRemoveLine = inputView.getInput(INPUT_UPDATE_LINE_NAME);
+        try {
+            removeLine(inputRemoveLine);
+            SectionRepository.removeSections(new Line(inputRemoveLine));
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+        }
+    }
+
+    public void removeLine(String inputRemoveLine) {
+        if (!LineRepository.deleteLineByName(inputRemoveLine)) {
+            throw new IllegalArgumentException(ERROR_NON_EXIST_LINE);
+        }
+        outputView.printNotificationMessage(INFO_REMOVE_LINE);
+    }
 }
