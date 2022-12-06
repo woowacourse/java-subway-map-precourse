@@ -1,4 +1,4 @@
-package subway.controller.menu;
+package subway.service.menu;
 
 public interface Menu {
 

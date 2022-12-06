@@ -1,4 +1,4 @@
-package subway.controller.menu;
+package subway.service.menu;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +10,8 @@ import subway.view.OutputView;
 
 public enum StationMenu implements Menu {
 
-    PRINT_STATION("\n##", " 역 관리 화면", null),
-    SELECT_STATION_UPDATE("1", ". 역 등록", new StationService()::addStation),
+    PRINT_STATION("##", " 역 관리 화면", null),
+    SELECT_STATION_UPDATE("1", ". 역 등록", new StationService()::addStationLogic),
     SELECT_STATION_REMOVE("2", ". 역 삭제", new StationService()::removeStation),
     SELECT_PRINT_STATION_LIST("3", ". 역 조회", new OutputView()::printStationList),
     BACK("B", ". 돌아가기", new MainController()::runMenu);

@@ -1,4 +1,4 @@
-package subway.controller.menu;
+package subway.service.menu;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +10,8 @@ import subway.service.SectionService;
 public enum SectionMenu implements Menu {
 
     PRINT_SECTION("##", " 구간 관리 화면", null),
-    UPDATE_SECTION("1", ". 구간 등록", new SectionService()::addSection),
-    REMOVE_SECTION("2", ". 구간 삭제", new SectionService()::deleteSection),
+    UPDATE_SECTION("1", ". 구간 등록", new SectionService()::addSectionLogic),
+    REMOVE_SECTION("2", ". 구간 삭제", new SectionService()::removeSectionLogic),
     BACK("B", ". 돌아가기", new MainController()::runMenu);
 
     private static final String ERROR_MESSAGE = "선택할 수 없는 기능입니다.";

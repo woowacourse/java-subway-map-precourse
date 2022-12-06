@@ -1,4 +1,4 @@
-package subway.controller.menu;
+package subway.service.menu;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,21 +57,5 @@ public enum MainMenu implements Menu {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE));
         result.getFunction()
                 .run();
-    }
-
-    public static String number(String input) {
-        try {
-            validateMainMenu(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return input;
-    }
-
-    public static void validateMainMenu(String input) {
-        Arrays.stream(MainMenu.values()).filter(f -> !f.getNumber().equals(input))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_MESSAGE));
-
     }
 }
