@@ -2,8 +2,8 @@ package subway.initialization;
 
 import java.util.Arrays;
 import subway.domain.LineRepository;
-import subway.domain.SectionRepository;
 import subway.domain.StationRepository;
+import subway.domain.SectionRepository;
 
 public class InitSubway {
 
@@ -15,8 +15,7 @@ public class InitSubway {
 
     private static void initSection() {
         Arrays.stream(InitSection.values())
-                .forEach(section -> SectionRepository
-                        .addSections(section.getInitLine(), section.getInitStation()));
+                .forEach(ss -> SectionRepository.addSectionStations(ss.getInitStation()));
     }
 
     private static void initStation() {
