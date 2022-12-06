@@ -1,10 +1,14 @@
 package subway;
 
-import java.util.Scanner;
+import static subway.initialization.InitSubway.initSubway;
+
+import subway.controller.MainController;
 
 public class Application {
+
     public static void main(String[] args) {
-        SubwayController subwayController = new SubwayController();
-        subwayController.subwayRun();
+        initSubway();
+        MainController mainController = new MainController();
+        mainController.runMenu();
     }
 }
