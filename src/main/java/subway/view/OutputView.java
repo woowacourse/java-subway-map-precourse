@@ -1,9 +1,12 @@
 package subway.view;
 
 import static subway.domain.LineRepository.lines;
+import static subway.domain.SectionRepository.getLineIndex;
+import static subway.domain.SectionRepository.sections;
 import static subway.domain.StationRepository.stations;
 
 import java.util.List;
+import subway.domain.Line;
 
 public class OutputView {
 
@@ -46,5 +49,18 @@ public class OutputView {
     //INFO 메시지 출력
     public void printNotificationMessage(String message) {
         System.out.println(System.lineSeparator() + PREFIX_INFO + message);
+    }
+
+    //지하철 노선도 조회
+    public void printSubwayMap() {
+        System.out.println(PREFIX + SUBWAY_MAP_LIST);
+        for (Line line : lines()) {
+            System.out.println(PREFIX_INFO + line.getName());
+            System.out.println(PREFIX_INFO + DELIMITER);
+            sections().get(getLineIndex(line))
+                    .forEach(section ->
+                            System.out.println(PREFIX_INFO + section));
+            System.out.println();
+        }
     }
 }
