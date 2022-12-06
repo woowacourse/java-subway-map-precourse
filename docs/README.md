@@ -14,9 +14,9 @@ MainController
     - [x] StationController
   - [x] 노선 관리
     - [x] LineController
-  - [ ] 구간 관리
-    - [ ] SectionController
-  - [ ] 지하철 노선도 출력
+  - [x] 구간 관리
+    - [x] SectionController
+  - [x] 지하철 노선도 출력
   - [x] 종료
 
 StationRepository
@@ -25,7 +25,6 @@ StationRepository
     - [x] 두 글자 이상이 아니라면 예외 처리
     - [x] 중복된 역 이름이라면 예외 처리
 - [x] 역 삭제
-  - [x] 등록되어 있지 않은 역 이름이라면 예외 처리
 
 LineRepository
 - [x] 노선 추가
@@ -43,3 +42,31 @@ SectionRepository
 - [ ] 구간 삭제
   - [ ] 노선 입력 받기
   - [ ] 역 입력 받기
+
+service
+- StationService
+  - [x] 역 추가 로직
+    - [x] 메시지 출력
+  - [x] 역 삭제
+    - [x] 노선에 등록된 역이라면 예외 처리
+    - [x] 등록되어 있지 않은 역 이름이라면 예외 처리
+
+- LineService
+  - [x] 노선 추가 로직
+    
+## 예외 처리
+- Menu
+  - [ ] 잘못된 입력이 들어올 때 
+- Line
+  - [ ] 노선 길이가 두 글자 이하일 때
+  - [ ] 존재하지 않는 노선 삭제할 때
+  - [ ] 노선이 중복일 때
+- Station
+  - [ ] 노선에 등록된 역을 삭제할 때
+  - [ ] 역 길이가 두 글자 이하일 때
+  - [ ] 존재하지 않는 역 삭제할 때
+  - [ ] 역이 중복일 때
+- Section
+  - [ ] 노선 등록할 때 등록되지 않은 역이면 추가
+  - [ ] 구간 삭제 시 노선에 등록된 역이 두 개 이하라면 역 입력 받기전에 예외 처리
+  - [ ] 구간 등록 시 이미 등록되어 있는 역이라면 예외 처리
