@@ -3,6 +3,8 @@ package subway.service;
 import static subway.domain.LineRepository.hasLine;
 import static subway.domain.SectionRepository.addSection;
 import static subway.domain.SectionRepository.hasSectionStation;
+import static subway.domain.SectionRepository.removeSection;
+import static subway.domain.SectionRepository.removeSectionRange;
 import static subway.domain.SectionRepository.validateOrderRange;
 import static subway.domain.StationRepository.updateStation;
 
@@ -72,5 +74,38 @@ public class SectionService {
         int inputStationOrder = Integer.parseInt(inputView.getInput(PREFIX + INPUT_ORDER));
         validateOrderRange(inputStationOrder);
         return inputStationOrder;
+    }
+
+    //구간 삭제 로직
+    public void removeSectionLogic() {
+        Line inputRemoveLine = inputLineName();
+        Station inputRemoveStation = inputStationNameToDelete();
+        validate(inputRemoveLine, inputRemoveStation);
+        outputView.printNotificationMessage(INFO_REMOVE_SECTION);
+    }
+
+    //삭제할 역 입력
+    private Station inputStationNameToDelete() {
+        return new Station(inputView.getInput(PREFIX + INPUT_REMOVE_STATION_NAME));
+    }
+
+    //삭제 유효성 확인
+    private void validate(Line inputRemoveLine, Station inputRemoveStation) {
+        validateSectionRange(inputRemoveLine);
+        validateSection(inputRemoveLine, inputRemoveStation);
+    }
+
+    //삭제할 역 유효성 확인
+    private void validateSection(Line inputRemoveLine, Station inputRemoveStation) {
+        if (!removeSection(inputRemoveLine, inputRemoveStation)) {
+            throw new IllegalArgumentException(ERROR_NON_EXIST_STATION);
+        }
+    }
+
+    //삭제할 노선의 역 개수 유효성 확인
+    private void validateSectionRange(Line inputRemoveLine) {
+        if (!removeSectionRange(inputRemoveLine)) {
+            throw new IllegalArgumentException(ERROR_SECTION_LENGTH);
+        }
     }
 }
