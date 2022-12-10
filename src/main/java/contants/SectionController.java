@@ -1,6 +1,5 @@
 package contants;
 
-import contants.LineMenu;
 import subway.controllers.MainController;
 import subway.controllers.SectionMenu;
 import subway.domain.*;
@@ -23,16 +22,40 @@ public class SectionController {
             registerSection();
         }
         if (SectionMenu.SECOND.getUserInput().equals(selection)) {
-//            deleteSection();
+            deleteSection();
         }
         if (SectionMenu.BACK.getUserInput().equals(selection)) {
             MainController.run();
         }
     }
 
+    private static void deleteSection() {
+        OutputView.printAskDeleteSectionMessage();
+        List<String> inputs = new ArrayList<>();
+        for (String message : SectionMenu.getDeleteSectionFollowingMessages()) {
+            OutputView.print(message);
+            inputs.add(InputView.read());
+        }
+        validateLineForSectionDeletion(inputs.get(0));
+        validateStationForSectionDeletion(inputs.get(1));
+        OutputView.finishedDeletingSection();
+    }
+
+    private static void validateStationForSectionDeletion(String stationName) {
+        if (!StationRepository.has(stationName) || !SectionRepository.has(StationRepository.get(stationName))) {
+            throw new IllegalArgumentException(ExceptionMessage.STATION_DOES_NOT_EXIST_IN_SECTION.toString());
+        }
+    }
+
+    private static void validateLineForSectionDeletion(String lineName) {
+        if (!LineRepository.has(lineName) || !SectionRepository.has(LineRepository.get(lineName))) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST_IN_SECTION.toString());
+        }
+    }
+
     private static void registerSection() {
         List<String> inputs = new ArrayList<>();
-        for (String message : SectionMenu.getFollowingMessages()) {
+        for (String message : SectionMenu.getAddSectionFollowingMessages()) {
             OutputView.print(message);
             inputs.add(InputView.read());
         }
@@ -40,6 +63,7 @@ public class SectionController {
         validateStationOfSection(inputs.get(1));
         // TODO: integer.valueof 바꿥괴
         SectionRepository.addToSection(LineMaker.make(inputs.get(0)), StationMaker.make(inputs.get(1)), Integer.valueOf(inputs.get(2)));
+        OutputView.printFinishedAddingSection();
     }
 
     private static void validateStationOfSection(String stationName) {

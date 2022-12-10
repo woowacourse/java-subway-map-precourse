@@ -1,14 +1,12 @@
 package subway.controllers;
 
-import contants.StationMenu;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public enum SectionMenu {
     FIRST("1", "1. 구간 등록", List.of("## 원하는 기능을 선택하세요.", "## 역이름을 입력하세요.", "## 순서를 입력하세요.")),
-    SECOND("2", "2. 구간 삭제", null),
+    SECOND("2", "2. 구간 삭제", List.of("## 삭제할 구간의 노선을 입력하세요.", "## 삭제할 구간의 역을 입력하세요.")),
     BACK("B", "B. 돌아가기", null);
 
     private final String userInput;
@@ -25,8 +23,12 @@ public enum SectionMenu {
         return this.userInput;
     }
 
-    public static List<String> getFollowingMessages() {
+    public static List<String> getAddSectionFollowingMessages() {
         return FIRST.followingMessages;
+    }
+
+    public static List<String> getDeleteSectionFollowingMessages() {
+        return SECOND.followingMessages;
     }
 
     public static String getWholeMenu() {

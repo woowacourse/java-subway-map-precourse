@@ -21,4 +21,17 @@ public class SectionRepository {
     public static void addToSection(Line line, Station station, Integer order) {
         sections.get(line).add(order, station);
     }
+
+    public static boolean has(Line line) {
+        return stations().containsKey(line);
+    }
+
+    public static boolean has(Station station) {
+        for (Line line : sections.keySet()) {
+            if (sections.get(line).contains(station)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
