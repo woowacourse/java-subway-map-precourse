@@ -1,5 +1,7 @@
 package subway.domain;
 
+import contants.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +15,14 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (has(station)) {
+            throw new IllegalArgumentException(ExceptionMessage.STATION_DUPLICATION.toString());
+        }
         stations.add(station);
+    }
+
+    private static boolean has(Station station) {
+        return stations.contains(station);
     }
 
     public static boolean deleteStation(String name) {
