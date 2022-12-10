@@ -10,4 +10,8 @@ public class InputView {
     public static String readStationName(Scanner scanner) {
         return scanner.nextLine();
     }
+
+    public static String readDeletingStationName(Scanner scanner) {
+        return scanner.nextLine();
+    }
 }

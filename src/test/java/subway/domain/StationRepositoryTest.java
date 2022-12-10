@@ -14,4 +14,12 @@ class StationRepositoryTest {
         assertThatThrownBy(() -> StationRepository.addStation(station))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void testDeleteStation() {
+        Station station = StationMaker.make("강남역");
+        StationRepository.addStation(station);
+        assertThatThrownBy(() -> StationRepository.deleteStation("강남"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

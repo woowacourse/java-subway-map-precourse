@@ -21,11 +21,20 @@ public class StationRepository {
         stations.add(station);
     }
 
-    private static boolean has(Station station) {
+    public static boolean deleteStation(String name) {
+        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static boolean has(Station station) {
         return stations.contains(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean has(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
