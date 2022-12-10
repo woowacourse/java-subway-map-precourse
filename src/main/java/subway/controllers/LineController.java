@@ -29,8 +29,12 @@ public class LineController {
             printLines();
         }
         if (LineMenu.BACK.getUserInput().equals(selection)) {
-            MainController.run();
+            goBackToMain();
         }
+    }
+
+    private static void goBackToMain() {
+        MainController.run();
     }
 
     private static void printLines() {
@@ -43,6 +47,7 @@ public class LineController {
         OutputView.printAskDeleteLineMessage();
         String deletingLineName = InputView.read();
         validateDeletionLine(deletingLineName);
+        SectionRepository.deleteSection(LineRepository.get(deletingLineName));
         LineRepository.deleteLineByName(deletingLineName);
         OutputView.finishedDeletingLine();
     }
@@ -69,7 +74,7 @@ public class LineController {
 
     private static void validateLineDuplication(String lineName) {
         if (LineRepository.has(lineName)) {
-            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST.toString());
+            throw new IllegalArgumentException(ExceptionMessage.LINE_EXIST.toString());
         }
     }
 

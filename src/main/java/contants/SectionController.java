@@ -67,16 +67,18 @@ public class SectionController {
             inputs.add(InputView.read());
         }
         validateLineOfSection(inputs.get(0));
-        validateStationOfSection(inputs.get(1));
         // TODO: integer.valueof 바꿥괴
-        SectionRepository.addToSection(LineMaker.make(inputs.get(0)), StationMaker.make(inputs.get(1)), Integer.valueOf(inputs.get(2)));
+        SectionRepository.addToSection(LineMaker.make(inputs.get(0)), getStation(inputs.get(1)), Integer.valueOf(inputs.get(2)));
         OutputView.printFinishedAddingSection();
     }
 
-    private static void validateStationOfSection(String stationName) {
+    private static Station getStation(String stationName) {
         if (!StationRepository.has(stationName)) {
-            throw new IllegalArgumentException(ExceptionMessage.STATION_NOT_EXISTS.toString());
+            Station station = StationMaker.make(stationName);
+            StationRepository.addStation(station);
+            return station;
         }
+        return StationRepository.get(stationName);
     }
 
     private static void validateLineOfSection(String lineName) {

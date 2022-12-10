@@ -18,6 +18,10 @@ public enum MainMenu {
         this.menuName = menuName;
     }
 
+    public static boolean isQuit(String selection) {
+        return QUIT.userInput.equals(selection);
+    }
+
     public String getUserInput() {
         return this.userInput;
     }

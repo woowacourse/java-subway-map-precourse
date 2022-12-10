@@ -15,9 +15,6 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
-        if (has(station)) {
-            throw new IllegalArgumentException(ExceptionMessage.STATION_DUPLICATION.toString());
-        }
         stations.add(station);
     }
 

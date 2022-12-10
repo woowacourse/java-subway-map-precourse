@@ -43,4 +43,15 @@ public class SectionRepository {
     public static Map<Line, List<Station>> sections() {
         return Collections.unmodifiableMap(sections);
     }
+
+    public static void deleteSection(Line line) {
+        sections.remove(line);
+    }
+
+    public static void initSection(Line line, List<String> stations) {
+        sections.put(line, new ArrayList<>());
+        stations.stream()
+                .map(StationRepository::get)
+                .forEach(station -> sections.get(line).add(station));
+    }
 }

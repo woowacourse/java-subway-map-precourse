@@ -1,9 +1,12 @@
 package subway.domain;
 
+import contants.ExceptionMessage;
+
 public class Station {
     private String name;
 
     public Station(String name) {
+        validate(name);
         this.name = name;
     }
 
@@ -11,5 +14,9 @@ public class Station {
         return name;
     }
 
-    // 추가 기능 구현
+    public void validate(String name) {
+        if (name.length() < 2) {
+            throw new IllegalArgumentException(ExceptionMessage.STATION_NAME_LENGTH_ERROR.toString());
+        }
+    }
 }
