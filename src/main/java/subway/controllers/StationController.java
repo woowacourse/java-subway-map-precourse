@@ -26,7 +26,7 @@ public class StationController {
             OutputView.printFinishedAddingStation();
         }
         if (StationMenu.SECOND.getUserInput().equals(selection)) {
-            OutputView.printAskAddStation();
+            OutputView.printAskDeleteStation();
             String stationName = InputView.readDeletingStationName();
             stationDeleteValidation(stationName);
             StationRepository.deleteStation(stationName);

@@ -1,5 +1,6 @@
 package subway.controllers;
 
+import contants.ExceptionMessage;
 import contants.LineMenu;
 import subway.domain.*;
 import view.InputView;
@@ -22,17 +23,25 @@ public class LineController {
             registerLine();
         }
         if (LineMenu.SECOND.getUserInput().equals(selection)) {
-            OutputView.printAskAddStation();
-            String stationName = InputView.readDeletingStationName();
-            StationRepository.deleteStation(stationName);
+            OutputView.printAskDeleteLineMessage();
+            String deletingLineName = InputView.read();
+            validateDeletionLine(deletingLineName);
+            LineRepository.deleteLineByName(deletingLineName);
+            OutputView.finishedDeletingLine();
         }
         if (LineMenu.THIRD.getUserInput().equals(selection)) {
-            OutputView.printLookupStations(StationRepository.stations().stream()
+            OutputView.printLookupLines(LineRepository.lines().stream()
                     .map(station -> station.getName()).collect(Collectors.toList())
             );
         }
         if (LineMenu.BACK.getUserInput().equals(selection)) {
             MainController.run();
+        }
+    }
+
+    private static void validateDeletionLine(String deletingLineName) {
+        if (!LineRepository.has(deletingLineName)) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST.toString());
         }
     }
 
@@ -42,9 +51,18 @@ public class LineController {
             OutputView.print(message);
             inputs.add(InputView.read());
         }
+        validateLineDuplication(inputs.get(0));
         LineRepository.addLine(LineMaker.make(inputs.get(0)));
         addStationsToStationRepository(inputs.get(1), inputs.get(2));
+        // TODO : sectioncontroller한테 넘겨줘도 될 듯
         addToSection(LineRepository.get(inputs.get(0)), StationRepository.get(inputs.get(1)), StationRepository.get(inputs.get(2)));
+        OutputView.printFinishedAddingLine();
+    }
+
+    private static void validateLineDuplication(String lineName) {
+        if (LineRepository.has(lineName)) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST.toString());
+        }
     }
 
     private static void addToSection(Line line, Station upStation, Station downStation) {

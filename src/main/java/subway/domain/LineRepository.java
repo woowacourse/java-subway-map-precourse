@@ -29,4 +29,13 @@ public class LineRepository {
         // TODO : 하드코딩 바꾸기
         throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
     }
+
+    public static boolean has(String lineName) {
+        for (Line line : lines) {
+            if (line.getName().equals(lineName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
