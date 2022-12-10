@@ -10,6 +10,7 @@ public class OutputView {
     private static final String FINISHED_ADDING_STATION = "[INFO] 지하철 역이 등록되었습니다.";
     private static final String LOOKUP_TITLE = "## 역 목록";
     private static final String INFO = "[INFO] ";
+    private static final String LINE_MENU_TITLE = "## 노선 관리 화면";
 
     public static void printMainMenu(String value) {
         print(MAIN_MENU_TITLE);
@@ -21,7 +22,7 @@ public class OutputView {
     }
 
 
-    private static void print(String value) {
+    public static void print(String value) {
         System.out.println(value);
     }
 
@@ -43,5 +44,10 @@ public class OutputView {
         values.stream()
                 .map(value -> INFO + value)
                 .forEach(OutputView::print);
+    }
+
+    public static void printLineMenu(String menu) {
+        print(LINE_MENU_TITLE);
+        print(menu);
     }
 }

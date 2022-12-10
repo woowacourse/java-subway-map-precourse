@@ -37,4 +37,14 @@ public class StationRepository {
         }
         return false;
     }
+
+    public static Station get(String stationName) {
+        for (Station station : stations) {
+            if (station.getName().equals(stationName)) {
+                return station;
+            }
+        }
+        // TODO : 하드코딩 바꾸기
+        throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+    }
 }

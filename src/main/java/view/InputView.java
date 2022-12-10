@@ -3,15 +3,21 @@ package view;
 import java.util.Scanner;
 
 public class InputView {
-    public static String selectFunction(Scanner scanner) {
+    public static Scanner scanner;
+
+    public static String selectFunction() {
         return scanner.nextLine();
     }
 
-    public static String readStationName(Scanner scanner) {
+    public static String readStationName() {
         return scanner.nextLine();
     }
 
-    public static String readDeletingStationName(Scanner scanner) {
+    public static String readDeletingStationName() {
+        return scanner.nextLine();
+    }
+
+    public static String read() {
         return scanner.nextLine();
     }
 }

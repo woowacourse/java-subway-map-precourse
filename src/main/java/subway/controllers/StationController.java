@@ -11,23 +11,23 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class StationController {
-    public static void run(Scanner scanner) {
+    public static void run() {
         OutputView.printStationMenu(StationMenu.getWholeMenu());
-        selectMenu(scanner);
+        selectMenu();
     }
 
-    private static void selectMenu(Scanner scanner) {
+    private static void selectMenu() {
         OutputView.printSelectFunction();
-        String selection = InputView.selectFunction(scanner);
+        String selection = InputView.selectFunction();
         if (StationMenu.FIRST.getUserInput().equals(selection)) {
             // TODO : add에 대한 중복 검사는 아이디로 진행되고 있음
             OutputView.printAskAddStation();
-            StationRepository.addStation(StationMaker.make(InputView.readStationName(scanner)));
+            StationRepository.addStation(StationMaker.make(InputView.readStationName()));
             OutputView.printFinishedAddingStation();
         }
         if (StationMenu.SECOND.getUserInput().equals(selection)) {
             OutputView.printAskAddStation();
-            String stationName = InputView.readDeletingStationName(scanner);
+            String stationName = InputView.readDeletingStationName();
             stationDeleteValidation(stationName);
             StationRepository.deleteStation(stationName);
         }
@@ -37,7 +37,7 @@ public class StationController {
             );
         }
         if (StationMenu.BACK.getUserInput().equals(selection)) {
-
+            MainController.run();
         }
     }
 

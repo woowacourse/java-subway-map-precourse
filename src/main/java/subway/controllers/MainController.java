@@ -13,19 +13,19 @@ public class MainController {
         this.scanner = scanner;
     }
 
-    public void run() {
+    public static void run() {
         OutputView.printMainMenu(MainMenu.getWholeMenu());
         selectMenu();
     }
 
-    private void selectMenu() {
+    private static void selectMenu() {
         OutputView.printSelectFunction();
-        String selection = InputView.selectFunction(scanner);
+        String selection = InputView.selectFunction();
         if (MainMenu.FIRST.getUserInput().equals(selection)) {
-            StationController.run(scanner);
+            StationController.run();
         }
         if (MainMenu.SECOND.getUserInput().equals(selection)) {
-
+            LineController.run();
         }
         if (MainMenu.THIRD.getUserInput().equals(selection)) {
 
