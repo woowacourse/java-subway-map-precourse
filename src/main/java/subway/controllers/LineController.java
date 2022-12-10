@@ -23,20 +23,28 @@ public class LineController {
             registerLine();
         }
         if (LineMenu.SECOND.getUserInput().equals(selection)) {
-            OutputView.printAskDeleteLineMessage();
-            String deletingLineName = InputView.read();
-            validateDeletionLine(deletingLineName);
-            LineRepository.deleteLineByName(deletingLineName);
-            OutputView.finishedDeletingLine();
+            deleteLine();
         }
         if (LineMenu.THIRD.getUserInput().equals(selection)) {
-            OutputView.printLookupLines(LineRepository.lines().stream()
-                    .map(station -> station.getName()).collect(Collectors.toList())
-            );
+            printLines();
         }
         if (LineMenu.BACK.getUserInput().equals(selection)) {
             MainController.run();
         }
+    }
+
+    private static void printLines() {
+        OutputView.printLookupLines(LineRepository.lines().stream()
+                .map(station -> station.getName()).collect(Collectors.toList())
+        );
+    }
+
+    private static void deleteLine() {
+        OutputView.printAskDeleteLineMessage();
+        String deletingLineName = InputView.read();
+        validateDeletionLine(deletingLineName);
+        LineRepository.deleteLineByName(deletingLineName);
+        OutputView.finishedDeletingLine();
     }
 
     private static void validateDeletionLine(String deletingLineName) {

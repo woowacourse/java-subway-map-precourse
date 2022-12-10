@@ -1,6 +1,7 @@
 package subway.controllers;
 
 import contants.MainMenu;
+import contants.SectionController;
 import view.InputView;
 import view.OutputView;
 
@@ -28,7 +29,7 @@ public class MainController {
             LineController.run();
         }
         if (MainMenu.THIRD.getUserInput().equals(selection)) {
-
+            SectionController.run();
         }
         if (MainMenu.FOURTH.getUserInput().equals(selection)) {
 

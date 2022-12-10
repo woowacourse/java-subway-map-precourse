@@ -17,4 +17,8 @@ public class SectionRepository {
         sections.get(line).add(upStation);
         sections.get(line).add(downStation);
     }
+
+    public static void addToSection(Line line, Station station, Integer order) {
+        sections.get(line).add(order, station);
+    }
 }
