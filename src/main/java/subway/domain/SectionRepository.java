@@ -1,5 +1,7 @@
 package subway.domain;
 
+import contants.ExceptionMessage;
+
 import java.util.*;
 
 public class SectionRepository {
@@ -20,7 +22,7 @@ public class SectionRepository {
     }
 
     public static void addToSection(Line line, Station station, Integer order) {
-        sections.get(line).add(order, station);
+        sections.get(line).add(order - 1, station);
     }
 
     public static boolean has(Line line) {
@@ -28,12 +30,13 @@ public class SectionRepository {
     }
 
     public static boolean has(Station station) {
-        for (Line line : sections.keySet()) {
-            if (sections.get(line).contains(station)) {
-                return true;
-            }
-        }
-        return false;
+        return sections.containsValue(station);
+//        for (Line line : sections.keySet()) {
+//            if (sections.get(line).contains(station)) {
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     public static boolean isSectionDeletable(Line line) {
@@ -44,7 +47,17 @@ public class SectionRepository {
         return Collections.unmodifiableMap(sections);
     }
 
-    public static void deleteSection(Line line) {
+    public static void deleteSection(Line line, Station station) {
+        if (!sections.containsKey(line) || !sections.containsValue(station)) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST_IN_SECTION.toString());
+        }
+        sections.remove(line, station);
+    }
+
+    public static void deleteLineInSection(Line line) {
+        if (!sections.containsKey(line)) {
+            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST.toString());
+        }
         sections.remove(line);
     }
 

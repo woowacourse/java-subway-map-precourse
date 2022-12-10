@@ -6,11 +6,15 @@ import subway.domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class LineController {
+    private static final int FIRST_FOLLOWING_MESSAGE = 0;
+    private static final int SECOND_FOLLOWING_MESSAGE = 1;
+    private static final int THIRD_FOLLOWING_MESSAGE = 2;
+    private static final int UP_STATION = SECOND_FOLLOWING_MESSAGE;
+    private static final int DOWN_STATION = THIRD_FOLLOWING_MESSAGE;
+
     public static void run() {
         OutputView.printLineMenu(LineMenu.getWholeMenu());
         selectMenu();
@@ -18,7 +22,15 @@ public class LineController {
 
     private static void selectMenu() {
         OutputView.printSelectFunction();
-        String selection = InputView.selectFunction();
+        try {
+            runMenu(InputView.selectFunction());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            run();
+        }
+    }
+
+    private static void runMenu(String selection) {
         if (LineMenu.FIRST.getUserInput().equals(selection)) {
             registerLine();
         }
@@ -44,32 +56,41 @@ public class LineController {
     }
 
     private static void deleteLine() {
-        OutputView.printAskDeleteLineMessage();
-        String deletingLineName = InputView.read();
-        validateDeletionLine(deletingLineName);
-        SectionRepository.deleteSection(LineRepository.get(deletingLineName));
-        LineRepository.deleteLineByName(deletingLineName);
+        Line line = getLine();
+        SectionRepository.deleteLineInSection(line);
+        LineRepository.deleteLineByName(line.getName());
         OutputView.finishedDeletingLine();
     }
 
-    private static void validateDeletionLine(String deletingLineName) {
-        if (!LineRepository.has(deletingLineName)) {
-            throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST.toString());
-        }
+    private static Line getLine() {
+        OutputView.printAskDeleteLineMessage();
+        String deletingLineName = InputView.read();
+        return LineRepository.get(deletingLineName);
     }
 
     private static void registerLine() {
-        List<String> inputs = new ArrayList<>();
-        for (String message : LineMenu.getFollowingInputMessage()) {
-            OutputView.print(message);
-            inputs.add(InputView.read());
-        }
-        validateLineDuplication(inputs.get(0));
-        LineRepository.addLine(LineMaker.make(inputs.get(0)));
-        addStationsToStationRepository(inputs.get(1), inputs.get(2));
-        // TODO : sectioncontroller한테 넘겨줘도 될 듯
-        addToSection(LineRepository.get(inputs.get(0)), StationRepository.get(inputs.get(1)), StationRepository.get(inputs.get(2)));
+        Line line = LineMaker.make(getAvailableLineName());
+        Station upStation = getStationFromRepository(UP_STATION);
+        Station downStation = getStationFromRepository(DOWN_STATION);
+        LineRepository.addLine(line);
+        addToSection(line, upStation, downStation);
         OutputView.printFinishedAddingLine();
+    }
+
+    private static Station getStationFromRepository(int messageIndex) {
+        OutputView.print(LineMenu.getFollowingInputMessage().get(messageIndex));
+        String stationName = InputView.read();
+        if (!StationRepository.has(stationName)) {
+            StationRepository.addStation(StationMaker.make(stationName));
+        }
+        return StationRepository.get(stationName);
+    }
+
+    private static String getAvailableLineName() {
+        OutputView.print(LineMenu.getFollowingInputMessage().get(FIRST_FOLLOWING_MESSAGE));
+        String lineName = InputView.read();
+        validateLineDuplication(lineName);
+        return lineName;
     }
 
     private static void validateLineDuplication(String lineName) {
@@ -80,14 +101,5 @@ public class LineController {
 
     private static void addToSection(Line line, Station upStation, Station downStation) {
         SectionRepository.addNewSection(line, upStation, downStation);
-    }
-
-    private static void addStationsToStationRepository(String upStation, String downStation) {
-        if (!StationRepository.has(upStation)) {
-            StationRepository.addStation(StationMaker.make(upStation));
-        }
-        if (!StationRepository.has(downStation)) {
-            StationRepository.addStation(StationMaker.make(downStation));
-        }
     }
 }

@@ -1,5 +1,7 @@
 package subway.domain;
 
+import contants.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +28,7 @@ public class LineRepository {
                 return line;
             }
         }
-        // TODO : 하드코딩 바꾸기
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선입니다.");
+        throw new IllegalArgumentException(ExceptionMessage.LINE_DOES_NOT_EXIST.toString());
     }
 
     public static boolean has(String lineName) {

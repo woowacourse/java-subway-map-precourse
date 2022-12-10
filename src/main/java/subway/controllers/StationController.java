@@ -3,13 +3,11 @@ package subway.controllers;
 import contants.ExceptionMessage;
 import contants.StationMenu;
 import subway.domain.SectionRepository;
-import subway.domain.Station;
 import subway.domain.StationMaker;
 import subway.domain.StationRepository;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class StationController {
@@ -20,7 +18,15 @@ public class StationController {
 
     private static void selectMenu() {
         OutputView.printSelectFunction();
-        String selection = InputView.selectFunction();
+        try {
+            select(InputView.selectFunction());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            run();
+        }
+    }
+
+    private static void select(String selection) {
         if (StationMenu.FIRST.getUserInput().equals(selection)) {
             addStation();
         }
@@ -69,7 +75,6 @@ public class StationController {
 
     private static void stationDeleteValidation(String stationName) {
         validateDoesNotExist(stationName);
-        // TODO: 역 삭제 시 등록된 노선에 대한 체크
         validateSectionRegistered(stationName);
     }
 
