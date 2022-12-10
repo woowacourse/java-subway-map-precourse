@@ -1,15 +1,14 @@
 package subway.controllers;
 
 import contants.ExceptionMessage;
-import contants.MainMenu;
 import contants.StationMenu;
-import subway.domain.Station;
 import subway.domain.StationMaker;
 import subway.domain.StationRepository;
 import view.InputView;
 import view.OutputView;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class StationController {
     public static void run(Scanner scanner) {
@@ -33,7 +32,9 @@ public class StationController {
             StationRepository.deleteStation(stationName);
         }
         if (StationMenu.THIRD.getUserInput().equals(selection)) {
-
+            OutputView.printLookupStations(StationRepository.stations().stream()
+                    .map(station -> station.getName()).collect(Collectors.toList())
+            );
         }
         if (StationMenu.BACK.getUserInput().equals(selection)) {
 
