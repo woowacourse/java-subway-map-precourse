@@ -20,6 +20,7 @@ public class OutputView {
     private static final String FINISHED_ADDING_SECTION = "[INFO] 구간이 등록되었습니다.";
     private static final String ASK_DELETE_SECTION_MESSAGE = "## 삭제할 구간의 노선을 입력하세요.";
     private static final String FINISHED_DELETING_SECTION = "[INFO] 구간이 삭제되었습니다.";
+    private static final String SUBWAY_PRINTER_TITLE = "## 지하철 노선도";
 
     public static void printMainMenu(String value) {
         print(MAIN_MENU_TITLE);
@@ -98,5 +99,21 @@ public class OutputView {
 
     public static void finishedDeletingSection() {
         print(FINISHED_DELETING_SECTION);
+    }
+
+    public static void printSubwayPrintController() {
+        print(SUBWAY_PRINTER_TITLE);
+    }
+
+    public static void printWithInfo(String value) {
+        print(INFO + value);
+    }
+
+    public static void printNewLine() {
+        print("\n");
+    }
+
+    public static void printSeperateLine() {
+        print(INFO + "---");
     }
 }

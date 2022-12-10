@@ -38,7 +38,14 @@ public class SectionController {
         }
         validateLineForSectionDeletion(inputs.get(0));
         validateStationForSectionDeletion(inputs.get(1));
+        validateSectionSize(inputs.get(0));
         OutputView.finishedDeletingSection();
+    }
+
+    private static void validateSectionSize(String lineName) {
+        if (!SectionRepository.isSectionDeletable(LineRepository.get(lineName))) {
+            throw new IllegalArgumentException(ExceptionMessage.SECTION_HAS_LESS_THAN_TWO_STATIONS.toString());
+        }
     }
 
     private static void validateStationForSectionDeletion(String stationName) {

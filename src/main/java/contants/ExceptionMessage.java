@@ -5,7 +5,8 @@ public enum ExceptionMessage {
     STATION_NOT_EXISTS("존재하지 않는 역입니다."),
     LINE_DOES_NOT_EXIST("존재하지 않는 노선입니다."),
     LINE_DOES_NOT_EXIST_IN_SECTION("구간에 해당 노선이 존재하지 않습니다."),
-    STATION_DOES_NOT_EXIST_IN_SECTION("구간에 해당 지하철 역이 존재하지 않습니다.");
+    STATION_DOES_NOT_EXIST_IN_SECTION("구간에 해당 지하철 역이 존재하지 않습니다."),
+    SECTION_HAS_LESS_THAN_TWO_STATIONS("구간에는 2개 이상의 역이 존재해야 합니다.");
 
     private final String message;
 

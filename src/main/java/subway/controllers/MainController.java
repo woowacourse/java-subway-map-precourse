@@ -32,7 +32,7 @@ public class MainController {
             SectionController.run();
         }
         if (MainMenu.FOURTH.getUserInput().equals(selection)) {
-
+            SubwayPrintController.run();
         }
         if (MainMenu.QUIT.getUserInput().equals(selection)) {
 

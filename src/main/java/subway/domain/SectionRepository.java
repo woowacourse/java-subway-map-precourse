@@ -5,6 +5,7 @@ import java.util.*;
 public class SectionRepository {
     // TODO: List<Section> 시간 남으면 변경
     private static final HashMap<Line, List<Station>> sections = new HashMap<>();
+    private static final int MINIMUM_SECTION_SIZE = 2;
 
     public static Map<Line, List<Station>> stations() {
         return Collections.unmodifiableMap(sections);
@@ -33,5 +34,13 @@ public class SectionRepository {
             }
         }
         return false;
+    }
+
+    public static boolean isSectionDeletable(Line line) {
+        return sections.get(line).size() <= MINIMUM_SECTION_SIZE;
+    }
+
+    public static Map<Line, List<Station>> sections() {
+        return Collections.unmodifiableMap(sections);
     }
 }
