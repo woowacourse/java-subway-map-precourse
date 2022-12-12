@@ -1,8 +1,9 @@
 package subway.controllers;
 
-import contants.ExceptionMessage;
-import contants.StationMenu;
+import constants.ExceptionMessage;
+import constants.StationMenu;
 import subway.domain.SectionRepository;
+import subway.domain.Station;
 import subway.domain.StationMaker;
 import subway.domain.StationRepository;
 import view.InputView;
@@ -12,14 +13,12 @@ import java.util.stream.Collectors;
 
 public class StationController {
     public static void run() {
-        OutputView.printStationMenu(StationMenu.getWholeMenu());
         selectMenu();
     }
 
     private static void selectMenu() {
-        OutputView.printSelectFunction();
         try {
-            select(InputView.selectFunction());
+            select(InputView.selectStationMenu());
         } catch (IllegalArgumentException exception) {
             OutputView.print(exception.getMessage());
             run();
@@ -47,19 +46,17 @@ public class StationController {
 
     private static void printStations() {
         OutputView.printLookupStations(StationRepository.stations().stream()
-                .map(station -> station.getName()).collect(Collectors.toList())
+                .map(Station::getName).collect(Collectors.toList())
         );
     }
 
     private static void deleteStation() {
-        OutputView.printAskDeleteStation();
         String stationName = InputView.readDeletingStationName();
         stationDeleteValidation(stationName);
         StationRepository.deleteStation(stationName);
     }
 
     private static void addStation() {
-        // TODO : add에 대한 중복 검사는 아이디로 진행되고 있음
         OutputView.printAskAddStation();
         String stationName = InputView.readStationName();
         validateDuplication(stationName);
@@ -79,7 +76,7 @@ public class StationController {
     }
 
     private static void validateSectionRegistered(String stationName) {
-        if (StationRepository.has(stationName) && SectionRepository.has(StationRepository.get(stationName))) {
+        if (SectionRepository.has(StationRepository.get(stationName))) {
             throw new IllegalArgumentException(ExceptionMessage.ALREADY_REGISTERED_TO_SECTION.toString());
         }
     }

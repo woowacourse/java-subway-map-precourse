@@ -1,6 +1,6 @@
 package subway.domain;
 
-import contants.ExceptionMessage;
+import constants.ExceptionMessage;
 
 public class Station {
     private String name;

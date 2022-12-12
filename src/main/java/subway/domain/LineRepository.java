@@ -1,6 +1,6 @@
 package subway.domain;
 
-import contants.ExceptionMessage;
+import constants.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Line get(String lineName) {
+    public static Line getLineByName(String lineName) {
         for (Line line : lines) {
             if (line.getName().equals(lineName)) {
                 return line;

@@ -1,7 +1,7 @@
 package subway.controllers;
 
-import contants.ExceptionMessage;
-import contants.LineMenu;
+import constants.ExceptionMessage;
+import constants.LineMenu;
 import subway.domain.*;
 import view.InputView;
 import view.OutputView;
@@ -16,14 +16,12 @@ public class LineController {
     private static final int DOWN_STATION = THIRD_FOLLOWING_MESSAGE;
 
     public static void run() {
-        OutputView.printLineMenu(LineMenu.getWholeMenu());
         selectMenu();
     }
 
     private static void selectMenu() {
-        OutputView.printSelectFunction();
         try {
-            runMenu(InputView.selectFunction());
+            runMenu(InputView.selectLineMenu());
         } catch (IllegalArgumentException exception) {
             OutputView.print(exception.getMessage());
             run();
@@ -41,18 +39,17 @@ public class LineController {
             printLines();
         }
         if (LineMenu.BACK.getUserInput().equals(selection)) {
-            goBackToMain();
+            MainController.run();
         }
     }
 
-    private static void goBackToMain() {
-        MainController.run();
-    }
-
-    private static void printLines() {
-        OutputView.printLookupLines(LineRepository.lines().stream()
-                .map(station -> station.getName()).collect(Collectors.toList())
-        );
+    private static void registerLine() {
+        Line line = new Line(getAvailableLineName());
+        Station upStation = getStationFromRepository(UP_STATION);
+        Station downStation = getStationFromRepository(DOWN_STATION);
+        LineRepository.addLine(line);
+        addToSection(line, upStation, downStation);
+        OutputView.printFinishedAddingLine();
     }
 
     private static void deleteLine() {
@@ -62,19 +59,19 @@ public class LineController {
         OutputView.finishedDeletingLine();
     }
 
+    private static void printLines() {
+        OutputView.printLookupLines(
+                LineRepository.lines()
+                        .stream()
+                        .map(Line::getName)
+                        .collect(Collectors.toList())
+        );
+    }
+
     private static Line getLine() {
         OutputView.printAskDeleteLineMessage();
         String deletingLineName = InputView.read();
-        return LineRepository.get(deletingLineName);
-    }
-
-    private static void registerLine() {
-        Line line = LineMaker.make(getAvailableLineName());
-        Station upStation = getStationFromRepository(UP_STATION);
-        Station downStation = getStationFromRepository(DOWN_STATION);
-        LineRepository.addLine(line);
-        addToSection(line, upStation, downStation);
-        OutputView.printFinishedAddingLine();
+        return LineRepository.getLineByName(deletingLineName);
     }
 
     private static Station getStationFromRepository(int messageIndex) {

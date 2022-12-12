@@ -1,4 +1,4 @@
-package contants;
+package constants;
 
 public enum ExceptionMessage {
     STATION_DUPLICATION("이미 존재하는 역입니다."),
@@ -9,6 +9,7 @@ public enum ExceptionMessage {
     SECTION_HAS_LESS_THAN_TWO_STATIONS("구간에는 2개 이상의 역이 존재해야 합니다."),
     STATION_NAME_LENGTH_ERROR("역의 이름은 두 글자 이상이어야 합니다."),
     ALREADY_REGISTERED_TO_SECTION("노선으로 등록된 역은 삭제할 수 없습니다."),
+    WRONG_SELECTION("해당하는 메뉴가 없습니다."),
     LINE_EXIST("이미 존재하는 노선입니다");
 
     private final String message;

@@ -1,6 +1,6 @@
 package subway.domain;
 
-import contants.ExceptionMessage;
+import constants.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +41,6 @@ public class StationRepository {
                 return station;
             }
         }
-        // TODO : 하드코딩 바꾸기
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 역입니다.");
+        throw new IllegalArgumentException(ExceptionMessage.STATION_NOT_EXISTS.toString());
     }
 }

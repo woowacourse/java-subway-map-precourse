@@ -1,8 +1,6 @@
 package subway.controllers;
 
-import contants.MainMenu;
-import contants.SectionController;
-import subway.domain.Initializer;
+import constants.MainMenu;
 import view.InputView;
 import view.OutputView;
 
@@ -22,9 +20,12 @@ public class MainController {
     private static void selectMenu() {
         boolean quit = false;
         while (!quit) {
-            OutputView.printMainMenu(MainMenu.getWholeMenu());
-            OutputView.printSelectFunction();
-            quit = runMenu(InputView.selectFunction());
+            try {
+                quit = runMenu(InputView.selectMainFunction());
+            } catch (IllegalArgumentException exception) {
+                OutputView.print(exception.getMessage());
+                run();
+            }
         }
     }
 
@@ -39,12 +40,7 @@ public class MainController {
             SectionController.run();
         }
         if (MainMenu.FOURTH.getUserInput().equals(selection)) {
-            try {
-                SubwayPrintController.run();
-            } catch (IllegalArgumentException exception) {
-                OutputView.print(exception.getMessage());
-                SubwayPrintController.run();
-            }
+            SubwayPrintController.run();
         }
         if (MainMenu.QUIT.getUserInput().equals(selection)) {
             OutputView.printFinishSystem();

@@ -1,6 +1,5 @@
 package subway.domain;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Initializer {
@@ -16,11 +15,11 @@ public class Initializer {
     }
 
     private static void initLineSinboondang() {
-        SectionRepository.initSection(LineRepository.get("신분당선"), List.of("강남역", "양재역", "양재시민의숲역"));
+        SectionRepository.initSection(LineRepository.getLineByName("신분당선"), List.of("강남역", "양재역", "양재시민의숲역"));
     }
 
     private static void initLinenUmber3() {
-        SectionRepository.initSection(LineRepository.get("3호선"), List.of("교대역", "남부터미널역", "양재역", "매봉역"));
+        SectionRepository.initSection(LineRepository.getLineByName("3호선"), List.of("교대역", "남부터미널역", "양재역", "매봉역"));
     }
 
     private static void initStations() {
@@ -36,6 +35,6 @@ public class Initializer {
     }
 
     private static void initLineNumber2() {
-        SectionRepository.initSection(LineRepository.get("2호선"), List.of("교대역", "강남역", "역삼역"));
+        SectionRepository.initSection(LineRepository.getLineByName("2호선"), List.of("교대역", "강남역", "역삼역"));
     }
 }
