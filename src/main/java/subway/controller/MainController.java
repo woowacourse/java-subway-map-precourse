@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import subway.controller.subController.ApplicationExitController;
 import subway.controller.subController.Controllable;
+import subway.controller.subController.InitializingController;
 import subway.controller.subController.LineManagementController;
 import subway.controller.subController.PrintSubwayMapController;
 import subway.controller.subController.SectionManagementController;
@@ -34,6 +35,7 @@ public class MainController {
 
 
     public void service() {
+        new InitializingController().process();
         MainOption mainOption;
         do {
             outputView.printMainScreen();
