@@ -25,6 +25,14 @@ public class OutputView {
         System.out.println(Message.OUTPUT_STATION_MANAGEMENT_OPTION.message);
     }
 
+    public void printRegisterStation() {
+        printInfo(Message.OUTPUT_REGISTER_STATION.message);
+    }
+
+    private void printInfo(String message) {
+        System.out.printf(Message.OUTPUT_INFO.message, message);
+    }
+
     private enum Message {
         OUTPUT_MAIN_OPTION("## 메인 화면\n"
                 + "1. 역 관리\n"
@@ -52,7 +60,8 @@ public class OutputView {
                 + "B. 돌아가기\n"
                 + "\n"),
         OUTPUT_SUBWAY_MAP("## 지하철 노선도"),
-        OUTPUT_INFO("[INFO] %s");
+        OUTPUT_REGISTER_STATION("지하철 역이 등록되었습니다."),
+        OUTPUT_INFO("[INFO] %s%n");
 
         private final String message;
 

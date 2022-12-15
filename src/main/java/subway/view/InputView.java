@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.Scanner;
+import subway.domain.StationRepository;
 import subway.domain.option.MainOption;
 import subway.domain.option.StationOption;
 
@@ -18,18 +19,35 @@ public class InputView {
     // static이면 이 위에 지우고 아래를 static으로 만들면됨
 
     public MainOption readMainOption() {
-        System.out.println(Message.INPUT_OPTION.message);
-        return MainOption.from(scanner.next());
+        try {
+            System.out.println(Message.INPUT_OPTION.message);
+            return MainOption.from(scanner.next());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readMainOption();
+        }
     }
 
     public StationOption readStationOption() {
-        System.out.printf(Message.INPUT_OPTION.message);
-        return StationOption.from(scanner.next());
+        try {
+            System.out.println(Message.INPUT_OPTION.message);
+            return StationOption.from(scanner.next());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readStationOption();
+        }
+    }
+
+    public String readStationToRegister() {
+        System.out.println(Message.INPUT_REGISTER_STATION_NAME.message);
+        String newStationName = scanner.next();
+        StationRepository.validateDuplicatedStationName(newStationName);
+        return newStationName;
     }
 
     private enum Message {
         INPUT_OPTION("## 원하는 기능을 선택하세요."),
-        INPUT_REGISTER_STATION_NAME("## 등록할 노선 이름을 입력하세요."),
+        INPUT_REGISTER_STATION_NAME("## 등록할 역 이름을 입력하세요."),
         INPUT_REGISTER_LINE_NAME("## 등록할 노선 이름을 입력하세요."),
         INPUT_UPSTREAM_ENDPOINT_STATION_NAME("## 등록할 노선의 상행 종점역 이름을 입력하세요."),
         INPUT_DOWNSTREAM_ENDPOINT_STATION_NAME("## 등록할 노선의 하행 종점역 이름을 입력하세요."),

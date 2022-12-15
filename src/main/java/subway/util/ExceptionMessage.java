@@ -6,7 +6,8 @@ public enum ExceptionMessage {
     INVALID_OUT_OF_INT_RANGE("입력 범위를 초과하였습니다."),
     NO_SUCH_STATION_NAME("해당 이름을 가진 역을 찾을 수 없습니다."),
     NO_SUCH_LINE_NAME("해당 이름을 가진 노선을 찾을 수 없습니다."),
-    NO_SUCH_STATION_OPTION("올바른 역 관리 옵션을 선택해 주세요.");
+    NO_SUCH_STATION_OPTION("올바른 역 관리 옵션을 선택해 주세요."),
+    DUPLICATED_STATION_NAME("동일한 역 이름이 이미 존재합니다.");
 
     public static final String BASE_MESSAGE = "[ERROR] %s";
     private final String message;
