@@ -48,6 +48,7 @@ public class StationManagementController implements Controllable {
     }
 
     private void searchStation() {
+        outputView.printStations();
     }
 
 

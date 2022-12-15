@@ -1,5 +1,7 @@
 package subway.view;
 
+import subway.domain.StationRepository;
+
 public class OutputView {
 
     private static final OutputView instance = new OutputView();
@@ -35,6 +37,11 @@ public class OutputView {
 
     public void printDeleteSuccess() {
         printInfo(Message.OUTPUT_DELETE_STATION.message);
+    }
+
+    public void printStations() {
+        StationRepository.stations()
+                .forEach(element->printInfo(element.getName()));
     }
 
     private enum Message {
