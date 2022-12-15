@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.Scanner;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.option.MainOption;
 import subway.domain.option.StationOption;
@@ -38,20 +39,25 @@ public class InputView {
         }
     }
 
-    public String readStationToRegister() {
+    public Station readStationToRegister() {
         System.out.println(Message.INPUT_REGISTER_STATION_NAME.message);
         String newStationName = scanner.next();
         StationRepository.validateDuplicatedStationName(newStationName);
-        return newStationName;
+        return new Station(newStationName);
+    }
+
+    public String readStationToDelete() {
+        System.out.println(Message.INPUT_DELETE_STATION_NAME.message);
+        return scanner.next();
     }
 
     private enum Message {
         INPUT_OPTION("## 원하는 기능을 선택하세요."),
         INPUT_REGISTER_STATION_NAME("## 등록할 역 이름을 입력하세요."),
+        INPUT_DELETE_STATION_NAME("## 삭제할 역 이름을 입력하세요."),
         INPUT_REGISTER_LINE_NAME("## 등록할 노선 이름을 입력하세요."),
         INPUT_UPSTREAM_ENDPOINT_STATION_NAME("## 등록할 노선의 상행 종점역 이름을 입력하세요."),
         INPUT_DOWNSTREAM_ENDPOINT_STATION_NAME("## 등록할 노선의 하행 종점역 이름을 입력하세요."),
-        INPUT_DELETE_STATION_NAME("## 삭제할 역 이름을 입력하세요."),
         INPUT_STATION("## 역이름을 입력하세요."),
         INPUT_ORDER("## 순서를 입력하세요."),
         INPUT_DELETE_SECTION_LINE("## 삭제할 구간의 노선을 입력하세요."),

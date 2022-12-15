@@ -33,6 +33,10 @@ public class OutputView {
         System.out.printf(Message.OUTPUT_INFO.message, message);
     }
 
+    public void printDeleteSuccess() {
+        printInfo(Message.OUTPUT_DELETE_STATION.message);
+    }
+
     private enum Message {
         OUTPUT_MAIN_OPTION("## 메인 화면\n"
                 + "1. 역 관리\n"
@@ -61,6 +65,7 @@ public class OutputView {
                 + "\n"),
         OUTPUT_SUBWAY_MAP("## 지하철 노선도"),
         OUTPUT_REGISTER_STATION("지하철 역이 등록되었습니다."),
+        OUTPUT_DELETE_STATION("지하철 역이 삭제되었습니다."),
         OUTPUT_INFO("[INFO] %s%n");
 
         private final String message;

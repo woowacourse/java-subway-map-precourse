@@ -36,12 +36,15 @@ public class StationManagementController implements Controllable {
     }
 
     private void registerStation() {
-        String newStationName = inputView.readStationToRegister();
-        StationRepository.addStation(new Station(newStationName));
+        Station newStation = inputView.readStationToRegister();
+        StationRepository.addStation(newStation);
         outputView.printRegisterStation();
     }
 
     private void deleteStation() {
+        if(StationRepository.deleteStation(inputView.readStationToDelete())){
+         outputView.printDeleteSuccess();
+        }
     }
 
     private void searchStation() {
