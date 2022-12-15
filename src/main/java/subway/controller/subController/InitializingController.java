@@ -1,20 +1,28 @@
 package subway.controller.subController;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import subway.domain.LineRepository;
 import subway.domain.StationRepository;
 
 public class InitializingController implements Controllable {
     @Override
     public void process() {
+        initializeStations();
+        initializeLines();
+    }
+
+
+    private static void initializeStations() {
         Arrays.stream(Station.values()).map(station -> station.name)
                 .map(subway.domain.Station::new)
                 .forEach(StationRepository::addStation);
+    }
+    private static void initializeLines() {
         Arrays.stream(Line.values()).map(line -> line.name)
                 .map(subway.domain.Line::new)
                 .forEach(LineRepository::addLine);
-        System.out.println(StationRepository.stations());
-        System.out.println(LineRepository.lines());
     }
 
     private enum Station {

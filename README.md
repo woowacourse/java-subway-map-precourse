@@ -21,8 +21,8 @@
 
 ### 1. 역 관리 선택
 
-- [ ] 역 관리 화면 출력
-- [ ] 역 관리 옵션 선택 `StationManagementOption`
+- [x] 역 관리 화면 출력
+- [x] 역 관리 옵션 선택 `StationOption`
 
 ### 1.1 역 등록
 

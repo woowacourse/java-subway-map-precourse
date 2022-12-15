@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import subway.domain.option.MainOption;
+import subway.domain.option.StationOption;
 
 public class InputView {
     Scanner scanner = new Scanner(System.in);
@@ -19,6 +20,11 @@ public class InputView {
     public MainOption readMainOption() {
         System.out.println(Message.INPUT_OPTION.message);
         return MainOption.from(scanner.next());
+    }
+
+    public StationOption readStationOption() {
+        System.out.printf(Message.INPUT_OPTION.message);
+        return StationOption.from(scanner.next());
     }
 
     private enum Message {

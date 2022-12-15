@@ -21,6 +21,10 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
+    public void printStationOption() {
+        System.out.println(Message.OUTPUT_STATION_MANAGEMENT_OPTION.message);
+    }
+
     private enum Message {
         OUTPUT_MAIN_OPTION("## 메인 화면\n"
                 + "1. 역 관리\n"

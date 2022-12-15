@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.util.ExceptionMessage;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
+    }
+
+    public static Station findStationBy(String name) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.NO_SUCH_STATION_NAME.getMessage()));
     }
 
     public static void addStation(Station station) {
