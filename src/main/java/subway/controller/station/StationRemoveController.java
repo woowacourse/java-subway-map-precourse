@@ -21,6 +21,17 @@ public class StationRemoveController implements SubStationController {
 
     @Override
     public StationOption process() {
+        try {
+            Station station = getStation();
+            StationRepository.deleteStation(station.getName());
+            outputView.printRemoveStation();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return StationOption.DELETE;
+    }
+
+    private Station getStation() {
         Station station = inputView.readRemoveStation();
         if (!StationRepository.contains(station)) {
             throw new IllegalArgumentException(NOT_FOUND_STATION.getMessage());
@@ -28,8 +39,6 @@ public class StationRemoveController implements SubStationController {
         if (LineRepository.contains(station)) {
             throw new IllegalArgumentException(INVALID_REMOVE_STATION_IN_LINE.getMessage());
         }
-        StationRepository.deleteStation(station.getName());
-        outputView.printRemoveStation();
-        return StationOption.DELETE;
+        return station;
     }
 }

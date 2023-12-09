@@ -1,5 +1,7 @@
 package subway.controller.station;
 
+import static subway.util.Retry.retry;
+
 import java.util.EnumMap;
 import java.util.Map;
 import subway.controller.SubController;
@@ -25,7 +27,7 @@ public class StationController implements SubController {
     @Override
     public MainOption process() {
         while (true) {
-            StationOption stationOption = inputView.readStationOption();
+            StationOption stationOption = retry(inputView::readStationOption);
             SubStationController subStationController = subStationControllers.get(stationOption);
             if (subStationController.process().isBack()) {
                 break;
