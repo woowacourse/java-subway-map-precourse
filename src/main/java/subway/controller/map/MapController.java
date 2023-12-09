@@ -1,7 +1,10 @@
 package subway.controller.map;
 
-import subway.controller.SubController;
+import java.util.List;
 import subway.controller.MainOption;
+import subway.controller.SubController;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -16,6 +19,8 @@ public class MapController implements SubController {
 
     @Override
     public MainOption process() {
+        List<Line> lines = LineRepository.lines();
+        outputView.printAllLineWithStation(lines);
         return MainOption.MAP;
     }
 }

@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,5 +39,9 @@ public class Line {
 
     public String getName() {
         return name;
+    }
+
+    public List<Station> getSections() {
+        return Collections.unmodifiableList(this.sections);
     }
 }
