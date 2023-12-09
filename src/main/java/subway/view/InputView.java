@@ -4,6 +4,7 @@ package subway.view;
 import static subway.view.InputView.InputMessage.ADD_STATION;
 import static subway.view.InputView.InputMessage.GET_INPUT;
 import static subway.view.InputView.InputMessage.MAIN_OPTION;
+import static subway.view.InputView.InputMessage.REMOVE_STATION;
 import static subway.view.InputView.InputMessage.STATION_OPTION;
 
 import java.util.Scanner;
@@ -34,6 +35,11 @@ public class InputView {
         return new Station(scanner.nextLine());
     }
 
+    public Station readRemoveStation() {
+        System.out.println(REMOVE_STATION.getMessage());
+        return new Station(scanner.nextLine());
+    }
+
     protected enum InputMessage {
         MAIN_OPTION("## 메인 화면\n"
                 + "1. 역 관리\n"
@@ -48,6 +54,7 @@ public class InputView {
                 + "B. 돌아가기"),
         GET_INPUT("## 원하는 기능을 선택하세요."),
         ADD_STATION("## 등록할 역 이름을 입력하세요."),
+        REMOVE_STATION("## 삭제할 역 이름을 입력하세요."),
         ;
 
         private final String message;

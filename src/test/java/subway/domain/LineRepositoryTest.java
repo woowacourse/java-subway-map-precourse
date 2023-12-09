@@ -21,4 +21,12 @@ public class LineRepositoryTest {
         Assertions.assertThatCode(() -> LineRepository.findLineByName("4호선"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("노선 저장소에 등록된 역인지 반환한다.")
+    @Test
+    public void contains() throws Exception {
+        LineRepository.initialize();
+        Assertions.assertThat(LineRepository.contains(new Station("강남역"))).isTrue();
+        Assertions.assertThat(LineRepository.contains(new Station("없는역"))).isFalse();
+    }
 }

@@ -34,4 +34,9 @@ public class LineRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LINE.getMessage()));
     }
+
+    public static boolean contains(Station station) {
+        return lines.stream()
+                .anyMatch(line -> line.contains(station));
+    }
 }

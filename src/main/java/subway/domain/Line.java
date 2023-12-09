@@ -29,8 +29,8 @@ public class Line {
         return this.sections.get(this.sections.size() - 1);
     }
 
-    public boolean contains(Station ascendingStation) {
-        return this.sections.contains(ascendingStation);
+    public boolean contains(Station station) {
+        return this.sections.contains(station);
     }
 
     public String getName() {

@@ -8,7 +8,7 @@ public enum ExceptionMessage {
     INVALID_STATION_NAME_CHARACTER("역 이름은 한글만 가능합니다."),
     INVALID_STATION_NAME_SUFFIX("역 이름뒤에 '역'이 붙어야 합니다."),
     STATION_ALREADY_EXISTS("중복된 역을 등록할 수 없습니다."),
-    ;
+    INVALID_REMOVE_STATION_IN_LINE("노선에 등록된 역은 삭제할 수 없습니다.");
 
     private final String message;
 

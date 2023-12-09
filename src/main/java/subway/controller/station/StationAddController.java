@@ -22,6 +22,7 @@ public class StationAddController implements SubStationController {
     public StationOption process() {
         Station station = retry(this::getStation);
         StationRepository.addStation(station);
+        outputView.printAddStation();
         return StationOption.ADD;
     }
 
