@@ -1,5 +1,8 @@
 package subway.controller.line;
 
+import java.util.List;
+import subway.domain.Line;
+import subway.domain.LineRepository;
 import subway.view.OutputView;
 
 public class LineFindController implements SubLineController {
@@ -11,6 +14,8 @@ public class LineFindController implements SubLineController {
 
     @Override
     public LineOption process() {
+        List<Line> lines = LineRepository.lines();
+        outputView.printAllLine(lines);
         return LineOption.LIST;
     }
 }

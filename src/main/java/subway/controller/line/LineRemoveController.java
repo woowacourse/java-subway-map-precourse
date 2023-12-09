@@ -15,12 +15,16 @@ public class LineRemoveController implements SubLineController {
 
     @Override
     public LineOption process() {
-        String LineName = inputView.readRemoveLine();
-        if (!LineRepository.containsLineName(LineName)) {
-            throw new IllegalArgumentException("존재하지 않는 노선입니다.");
+        try {
+            String LineName = inputView.readRemoveLine();
+            if (!LineRepository.containsLineName(LineName)) {
+                throw new IllegalArgumentException("존재하지 않는 노선입니다.");
+            }
+            LineRepository.deleteLineByName(LineName);
+            outputView.printRemoveLine();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        LineRepository.deleteLineByName(LineName);
-        outputView.printRemoveLine();
         return LineOption.DELETE;
     }
 }

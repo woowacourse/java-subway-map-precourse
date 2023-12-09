@@ -6,6 +6,7 @@ import static subway.view.OutputView.OutputMessage.INFO;
 import static subway.view.OutputView.OutputMessage.REMOVE_STATION_SUCCESS;
 
 import java.util.List;
+import subway.domain.Line;
 import subway.domain.Station;
 
 public class OutputView {
@@ -30,6 +31,12 @@ public class OutputView {
 
     public void printRemoveLine() {
         System.out.println(String.format(INFO.getMessage(), "지하철 노선이 삭제되었습니다."));
+    }
+
+    public void printAllLine(List<Line> lines) {
+        System.out.println("## 노선 목록");
+        lines.forEach(line -> System.out.println(String.format(INFO.getMessage(), line.getName())));
+        System.out.println();
     }
 
     protected enum OutputMessage {

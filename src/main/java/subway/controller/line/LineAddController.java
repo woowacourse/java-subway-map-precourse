@@ -1,6 +1,9 @@
 package subway.controller.line;
 
 import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_ALREADY_EXISTS;
+import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME;
+import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME_CHARACTER;
+import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME_SUFFIX;
 import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NOT_FOUND_STATION;
 import static subway.util.Retry.retry;
 
@@ -21,11 +24,15 @@ public class LineAddController implements SubLineController {
 
     @Override
     public LineOption process() {
-        String lineName = retry(this::getLineName);
-        Station ascendingStation = retry(this::getAscendingStation);
-        Station descendingStation = retry(this::getDescendingStation);
-        LineRepository.addLine(new Line(lineName, ascendingStation, descendingStation));
-        outputView.printAddLine();
+        try {
+            String lineName = retry(this::getLineName);
+            Station ascendingStation = getAscendingStation();
+            Station descendingStation = getDescendingStation();
+            LineRepository.addLine(new Line(lineName, ascendingStation, descendingStation));
+            outputView.printAddLine();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return LineOption.ADD;
     }
 
@@ -33,6 +40,16 @@ public class LineAddController implements SubLineController {
         String lineName = inputView.readAddLine();
         if (LineRepository.containsLineName(lineName)) {
             throw new IllegalArgumentException(INVALID_ADD_LINE_ALREADY_EXISTS.getMessage());
+        }
+        if (lineName.length() < 2) {
+            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME.getMessage());
+        }
+        if (lineName.chars()
+                .anyMatch(character -> (character < '0' || '9' < character) && (character < '가' || '힣' < character))) {
+            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME_CHARACTER.getMessage());
+        }
+        if (!lineName.endsWith("선")) {
+            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME_SUFFIX.getMessage());
         }
         return lineName;
     }

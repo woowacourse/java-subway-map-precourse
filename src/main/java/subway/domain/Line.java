@@ -1,9 +1,5 @@
 package subway.domain;
 
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME;
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME_CHARACTER;
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME_SUFFIX;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,21 +9,8 @@ public class Line {
     private final List<Station> sections = new LinkedList<>();
 
     public Line(String name, Station... stations) {
-        validate(name);
         this.name = name;
         this.sections.addAll(Arrays.asList(stations));
-    }
-
-    private void validate(String name) {
-        if (name.length() < 2) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME.getMessage());
-        }
-        if (name.chars().anyMatch(character -> character < '가' || '힣' < character)) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME_CHARACTER.getMessage());
-        }
-        if (!name.endsWith("선")) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME_SUFFIX.getMessage());
-        }
     }
 
     public void addSection(Station station, int index) {
