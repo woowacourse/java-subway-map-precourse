@@ -11,11 +11,11 @@ import subway.domain.Station;
 public class OutputView {
 
     public void printAddStation() {
-        System.out.println(ADD_STATION_SUCCESS.getMessage());
+        System.out.println(String.format(INFO.getMessage(), ADD_STATION_SUCCESS.getMessage()));
     }
 
     public void printRemoveStation() {
-        System.out.println(REMOVE_STATION_SUCCESS.getMessage());
+        System.out.println(String.format(INFO.getMessage(), REMOVE_STATION_SUCCESS.getMessage()));
     }
 
     public void printAllStations(List<Station> stations) {
@@ -24,9 +24,13 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printAddLine() {
+        System.out.println(String.format(INFO.getMessage(), "지하철 노선이 등록되었습니다."));
+    }
+
     protected enum OutputMessage {
-        ADD_STATION_SUCCESS("[INFO] 지하철 역이 등록되었습니다."),
-        REMOVE_STATION_SUCCESS("[INFO] 지하철 역이 삭제되었습니다."),
+        ADD_STATION_SUCCESS("지하철 역이 등록되었습니다."),
+        REMOVE_STATION_SUCCESS("지하철 역이 삭제되었습니다."),
         FIND_STATION_SUCCESS("## 역 목록"),
         INFO("[INFO] %s"),
         ;

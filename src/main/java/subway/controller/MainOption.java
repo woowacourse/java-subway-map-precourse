@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.controller;
 
 import static subway.exception.ExceptionMessage.NOT_FOUND_OPTION;
 

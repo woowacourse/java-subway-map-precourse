@@ -8,7 +8,6 @@ import subway.controller.line.LineController;
 import subway.controller.map.MapController;
 import subway.controller.section.SectionController;
 import subway.controller.station.StationController;
-import subway.domain.MainOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 

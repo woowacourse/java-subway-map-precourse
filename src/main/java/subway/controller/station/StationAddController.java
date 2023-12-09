@@ -4,7 +4,6 @@ import static subway.exception.ExceptionMessage.STATION_ALREADY_EXISTS;
 import static subway.util.Retry.retry;
 
 import subway.domain.Station;
-import subway.domain.StationOption;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;

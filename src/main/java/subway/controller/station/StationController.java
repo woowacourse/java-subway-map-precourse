@@ -5,8 +5,7 @@ import static subway.util.Retry.retry;
 import java.util.EnumMap;
 import java.util.Map;
 import subway.controller.SubController;
-import subway.domain.MainOption;
-import subway.domain.StationOption;
+import subway.controller.MainOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 

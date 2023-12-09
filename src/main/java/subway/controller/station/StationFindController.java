@@ -2,7 +2,6 @@ package subway.controller.station;
 
 import java.util.List;
 import subway.domain.Station;
-import subway.domain.StationOption;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;

@@ -1,6 +1,8 @@
 package subway.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,7 @@ public class LineRepositoryTest {
     @Test
     public void findByName() throws Exception {
         LineRepository.initialize();
-        Assertions.assertThatCode(() -> LineRepository.findLineByName("1호선"))
+        assertThatCode(() -> LineRepository.findLineByName("1호선"))
                 .doesNotThrowAnyException();
     }
 
@@ -18,15 +20,23 @@ public class LineRepositoryTest {
     @Test
     public void findByNameFail() throws Exception {
         LineRepository.initialize();
-        Assertions.assertThatCode(() -> LineRepository.findLineByName("4호선"))
+        assertThatCode(() -> LineRepository.findLineByName("4호선"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("노선 저장소에 등록된 역인지 반환한다.")
     @Test
-    public void contains() throws Exception {
+    public void containsStation() throws Exception {
         LineRepository.initialize();
-        Assertions.assertThat(LineRepository.contains(new Station("강남역"))).isTrue();
-        Assertions.assertThat(LineRepository.contains(new Station("없는역"))).isFalse();
+        assertThat(LineRepository.containsStation(new Station("강남역"))).isTrue();
+        assertThat(LineRepository.containsStation(new Station("없는역"))).isFalse();
+    }
+
+    @DisplayName("호선의 이름이 존재하는지 확인한다.")
+    @Test
+    public void containsLine() throws Exception {
+        LineRepository.initialize();
+        assertThat(LineRepository.containsLineName("1호선")).isTrue();
+        assertThat(LineRepository.containsLineName("없는호선")).isFalse();
     }
 }

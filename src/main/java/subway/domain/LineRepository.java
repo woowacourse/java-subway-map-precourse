@@ -35,8 +35,13 @@ public class LineRepository {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LINE.getMessage()));
     }
 
-    public static boolean contains(Station station) {
+    public static boolean containsStation(Station station) {
         return lines.stream()
                 .anyMatch(line -> line.contains(station));
+    }
+
+    public static boolean containsLineName(String lineName) {
+        return lines.stream()
+                .anyMatch(line -> line.getName().equals(lineName));
     }
 }
