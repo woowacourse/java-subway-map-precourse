@@ -96,6 +96,16 @@ public class InputView {
         }
     }
 
+    public String readRemoveSectionLine() {
+        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public Station readRemoveSectionStation() {
+        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        return new Station(scanner.nextLine());
+    }
+
     protected enum InputMessage {
         MAIN_OPTION("## 메인 화면\n"
                 + "1. 역 관리\n"
