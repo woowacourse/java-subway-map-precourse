@@ -2,13 +2,14 @@ package subway.controller.section;
 
 import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
 
+import subway.controller.SubController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionAddController implements SubSectionController {
+public class SectionAddController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -18,7 +19,7 @@ public class SectionAddController implements SubSectionController {
     }
 
     @Override
-    public SectionOption process() {
+    public void process() {
         try {
             String lineName = inputView.readAddSectionLine();
             if (!LineRepository.containsLineName(lineName)) {
@@ -32,6 +33,5 @@ public class SectionAddController implements SubSectionController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return SectionOption.ADD;
     }
 }

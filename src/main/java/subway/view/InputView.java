@@ -1,11 +1,20 @@
 package subway.view;
 
 
+import static subway.exception.ExceptionMessage.INVALID_ADD_SECTION_STATION_INDEX;
 import static subway.view.InputView.InputMessage.ADD_LINE;
+import static subway.view.InputView.InputMessage.ADD_LINE_ASCENDING_STATION;
+import static subway.view.InputView.InputMessage.ADD_LINE_DESCENDING_STATION;
+import static subway.view.InputView.InputMessage.ADD_SECTION_LINE;
+import static subway.view.InputView.InputMessage.ADD_SECTION_STATION;
+import static subway.view.InputView.InputMessage.ADD_SECTION_STATION_INDEX;
 import static subway.view.InputView.InputMessage.ADD_STATION;
+import static subway.view.InputView.InputMessage.DELETE_LINE;
 import static subway.view.InputView.InputMessage.GET_INPUT;
 import static subway.view.InputView.InputMessage.LINE_OPTION;
 import static subway.view.InputView.InputMessage.MAIN_OPTION;
+import static subway.view.InputView.InputMessage.REMOVE_SECTION_LINE;
+import static subway.view.InputView.InputMessage.REMOVE_SECTION_STATION;
 import static subway.view.InputView.InputMessage.REMOVE_STATION;
 import static subway.view.InputView.InputMessage.SECTION_OPTION;
 import static subway.view.InputView.InputMessage.STATION_OPTION;
@@ -57,17 +66,17 @@ public class InputView {
     }
 
     public Station readAscendingStation() {
-        System.out.println("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        System.out.println(ADD_LINE_ASCENDING_STATION.getMessage());
         return new Station(scanner.nextLine());
     }
 
     public Station readDescendingStation() {
-        System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        System.out.println(ADD_LINE_DESCENDING_STATION.getMessage());
         return new Station(scanner.nextLine());
     }
 
     public String readRemoveLine() {
-        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        System.out.println(DELETE_LINE.getMessage());
         return scanner.nextLine();
     }
 
@@ -78,31 +87,31 @@ public class InputView {
     }
 
     public String readAddSectionLine() {
-        System.out.println("## 노선을 입력하세요.");
+        System.out.println(ADD_SECTION_LINE.getMessage());
         return scanner.nextLine();
     }
 
     public Station readAddSectionStation() {
-        System.out.println("## 역이름을 입력하세요.");
+        System.out.println(ADD_SECTION_STATION.getMessage());
         return new Station(scanner.nextLine());
     }
 
     public int readAddSectionIndex() {
-        System.out.println("## 순서를 입력하세요.");
+        System.out.println(ADD_SECTION_STATION_INDEX.getMessage());
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("순서는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_ADD_SECTION_STATION_INDEX.getMessage());
         }
     }
 
     public String readRemoveSectionLine() {
-        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        System.out.println(REMOVE_SECTION_LINE.getMessage());
         return scanner.nextLine();
     }
 
     public Station readRemoveSectionStation() {
-        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+        System.out.println(REMOVE_SECTION_STATION.getMessage());
         return new Station(scanner.nextLine());
     }
 
@@ -131,6 +140,14 @@ public class InputView {
         ADD_STATION("## 등록할 역 이름을 입력하세요."),
         REMOVE_STATION("## 삭제할 역 이름을 입력하세요."),
         ADD_LINE("## 등록할 노선 이름을 입력하세요."),
+        ADD_LINE_ASCENDING_STATION("## 등록할 노선의 상행 종점역 이름을 입력하세요."),
+        ADD_LINE_DESCENDING_STATION("## 등록할 노선의 하행 종점역 이름을 입력하세요."),
+        DELETE_LINE("## 삭제할 노선 이름을 입력하세요."),
+        ADD_SECTION_LINE("## 노선을 입력하세요."),
+        ADD_SECTION_STATION("## 역을 입력하세요."),
+        ADD_SECTION_STATION_INDEX("## 순서를 입력하세요."),
+        REMOVE_SECTION_LINE("## 삭제할 구간의 노선을 입력하세요."),
+        REMOVE_SECTION_STATION("## 삭제할 구간의 역을 입력하세요."),
         ;
 
         private final String message;

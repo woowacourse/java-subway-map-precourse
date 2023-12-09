@@ -5,14 +5,13 @@ import static subway.util.Retry.retry;
 import java.util.EnumMap;
 import java.util.Map;
 import subway.controller.SubController;
-import subway.controller.MainOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class StationController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Map<StationOption, SubStationController> subStationControllers = new EnumMap<>(StationOption.class);
+    private final Map<StationOption, SubController> subStationControllers = new EnumMap<>(StationOption.class);
 
     public StationController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -20,18 +19,16 @@ public class StationController implements SubController {
         subStationControllers.put(StationOption.ADD, new StationAddController(inputView, outputView));
         subStationControllers.put(StationOption.DELETE, new StationRemoveController(inputView, outputView));
         subStationControllers.put(StationOption.LIST, new StationFindController(inputView, outputView));
-        subStationControllers.put(StationOption.BACK, new StationBackController());
     }
 
     @Override
-    public MainOption process() {
+    public void process() {
         while (true) {
             StationOption stationOption = retry(inputView::readStationOption);
-            SubStationController subStationController = subStationControllers.get(stationOption);
-            if (subStationController.process().isBack()) {
+            if (stationOption.isBack()) {
                 break;
             }
+            subStationControllers.get(stationOption).process();
         }
-        return MainOption.STATION;
     }
 }

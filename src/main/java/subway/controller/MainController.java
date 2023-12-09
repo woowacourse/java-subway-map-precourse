@@ -23,16 +23,15 @@ public class MainController {
         subControllers.put(MainOption.LINE, new LineController(inputView, outputView));
         subControllers.put(MainOption.SECTION, new SectionController(inputView, outputView));
         subControllers.put(MainOption.MAP, new MapController(inputView, outputView));
-        subControllers.put(MainOption.QUIT, new QuitController(inputView, outputView));
     }
 
     public void run() {
         while (true) {
             MainOption mainOption = retry(inputView::readMainOption);
-            SubController subController = subControllers.get(mainOption);
-            if (subController.process().isQuit()) {
+            if (mainOption.isQuit()) {
                 break;
             }
+            subControllers.get(mainOption).process();
         }
     }
 }

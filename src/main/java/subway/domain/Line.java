@@ -3,17 +3,15 @@ package subway.domain;
 import static subway.exception.ExceptionMessage.INVALID_ADD_SECTION_INDEX;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Line {
     private final String name;
-    private final List<Station> sections = new LinkedList<>();
+    private final Section sections;
 
     public Line(String name, Station... stations) {
         this.name = name;
-        this.sections.addAll(Arrays.asList(stations));
+        this.sections = new Section(Arrays.asList(stations));
     }
 
     public void addSection(Station station, int index) {
@@ -28,11 +26,11 @@ public class Line {
     }
 
     public Station getAscendingStation() {
-        return this.sections.get(0);
+        return this.sections.getAscendingStation();
     }
 
     public Station getDescendingStation() {
-        return this.sections.get(this.sections.size() - 1);
+        return this.sections.getDescendingStation();
     }
 
     public boolean contains(Station station) {
@@ -44,6 +42,6 @@ public class Line {
     }
 
     public List<Station> getSections() {
-        return Collections.unmodifiableList(this.sections);
+        return this.sections.getSection();
     }
 }

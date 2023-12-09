@@ -1,12 +1,13 @@
 package subway.controller.station;
 
 import java.util.List;
+import subway.controller.SubController;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationFindController implements SubStationController {
+public class StationFindController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -16,9 +17,8 @@ public class StationFindController implements SubStationController {
     }
 
     @Override
-    public StationOption process() {
+    public void process() {
         List<Station> stations = StationRepository.stations();
         outputView.printAllStations(stations);
-        return StationOption.LIST;
     }
 }

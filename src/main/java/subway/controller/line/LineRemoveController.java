@@ -2,11 +2,12 @@ package subway.controller.line;
 
 import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
 
+import subway.controller.SubController;
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineRemoveController implements SubLineController {
+public class LineRemoveController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -16,7 +17,7 @@ public class LineRemoveController implements SubLineController {
     }
 
     @Override
-    public LineOption process() {
+    public void process() {
         try {
             String LineName = inputView.readRemoveLine();
             if (!LineRepository.containsLineName(LineName)) {
@@ -27,6 +28,5 @@ public class LineRemoveController implements SubLineController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return LineOption.DELETE;
     }
 }

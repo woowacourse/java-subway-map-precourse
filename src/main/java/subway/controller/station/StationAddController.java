@@ -3,12 +3,13 @@ package subway.controller.station;
 import static subway.exception.ExceptionMessage.STATION_ALREADY_EXISTS;
 import static subway.util.Retry.retry;
 
+import subway.controller.SubController;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationAddController implements SubStationController {
+public class StationAddController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -18,11 +19,10 @@ public class StationAddController implements SubStationController {
     }
 
     @Override
-    public StationOption process() {
+    public void process() {
         Station station = retry(this::getStation);
         StationRepository.addStation(station);
         outputView.printAddStation();
-        return StationOption.ADD;
     }
 
     private Station getStation() {

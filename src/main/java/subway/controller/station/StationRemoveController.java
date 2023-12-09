@@ -3,13 +3,14 @@ package subway.controller.station;
 import static subway.exception.ExceptionMessage.INVALID_REMOVE_STATION_IN_LINE;
 import static subway.exception.ExceptionMessage.NOT_FOUND_STATION;
 
+import subway.controller.SubController;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationRemoveController implements SubStationController {
+public class StationRemoveController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -19,7 +20,7 @@ public class StationRemoveController implements SubStationController {
     }
 
     @Override
-    public StationOption process() {
+    public void process() {
         try {
             Station station = getStation();
             StationRepository.deleteStation(station.getName());
@@ -27,7 +28,6 @@ public class StationRemoveController implements SubStationController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return StationOption.DELETE;
     }
 
     private Station getStation() {

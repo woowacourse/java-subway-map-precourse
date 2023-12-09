@@ -3,13 +3,14 @@ package subway.controller.section;
 import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
 import static subway.exception.ExceptionMessage.NOT_FOUND_STATION;
 
+import subway.controller.SubController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionRemoveController implements SubSectionController {
+public class SectionRemoveController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -19,7 +20,7 @@ public class SectionRemoveController implements SubSectionController {
     }
 
     @Override
-    public SectionOption process() {
+    public void process() {
         try {
             Line line = getLine();
             Station station = getStation(line);
@@ -28,7 +29,6 @@ public class SectionRemoveController implements SubSectionController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return SectionOption.DELETE;
     }
 
     private Line getLine() {
@@ -36,8 +36,7 @@ public class SectionRemoveController implements SubSectionController {
         if (!LineRepository.containsLineName(lineName)) {
             throw new IllegalArgumentException(NOT_FOUND_LINE.getMessage());
         }
-        Line line = LineRepository.findLineByName(lineName);
-        return line;
+        return LineRepository.findLineByName(lineName);
     }
 
     private Station getStation(Line line) {
