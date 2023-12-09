@@ -11,9 +11,8 @@ import static subway.view.InputView.InputMessage.STATION_OPTION;
 import java.util.Scanner;
 import subway.controller.MainOption;
 import subway.controller.line.LineOption;
-import subway.domain.Line;
-import subway.domain.Station;
 import subway.controller.station.StationOption;
+import subway.domain.Station;
 
 public class InputView {
     private final Scanner scanner;
@@ -61,6 +60,11 @@ public class InputView {
     public Station readDescendingStation() {
         System.out.println("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         return new Station(scanner.nextLine());
+    }
+
+    public String readRemoveLine() {
+        System.out.println("## 삭제할 노선 이름을 입력하세요.");
+        return scanner.nextLine();
     }
 
     protected enum InputMessage {
