@@ -28,7 +28,7 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) { // 역을 삭제할 때 노선에 등록되어있으면 삭제할 수 없다.
+    public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 

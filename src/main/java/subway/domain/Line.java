@@ -1,5 +1,7 @@
 package subway.domain;
 
+import static subway.exception.ExceptionMessage.INVALID_ADD_SECTION_INDEX;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -16,7 +18,7 @@ public class Line {
 
     public void addSection(Station station, int index) {
         if (index < 1 || index > sections.size()) {
-            throw new IllegalArgumentException("입력한 순서에 구간을 추가할 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_ADD_SECTION_INDEX.getMessage());
         }
         sections.add(index - 1, station);
     }

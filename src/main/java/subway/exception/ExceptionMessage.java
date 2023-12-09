@@ -14,6 +14,7 @@ public enum ExceptionMessage {
     INVALID_ADD_LINE_NAME("노선의 이름은 2글자 이상이어야 합니다."),
     INVALID_ADD_LINE_NAME_CHARACTER("노선의 이름은 한글만 가능합니다."),
     INVALID_ADD_LINE_NAME_SUFFIX("노선의 이름뒤에 '선'이 붙어야 합니다."),
+    INVALID_ADD_SECTION_INDEX("입력한 순서에 구간을 추가할 수 없습니다."),
     ;
     private final String message;
 

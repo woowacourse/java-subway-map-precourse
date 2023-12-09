@@ -1,9 +1,14 @@
 package subway.view;
 
+import static subway.view.OutputView.OutputMessage.ADD_LINE_SUCCESS;
+import static subway.view.OutputView.OutputMessage.ADD_SECTION_SUCCESS;
 import static subway.view.OutputView.OutputMessage.ADD_STATION_SUCCESS;
 import static subway.view.OutputView.OutputMessage.FIND_STATION_SUCCESS;
 import static subway.view.OutputView.OutputMessage.INFO;
 import static subway.view.OutputView.OutputMessage.INFO_DELIMITER;
+import static subway.view.OutputView.OutputMessage.LINE_LIST;
+import static subway.view.OutputView.OutputMessage.REMOVE_LINE_SUCCESS;
+import static subway.view.OutputView.OutputMessage.REMOVE_SECTION_SUCCESS;
 import static subway.view.OutputView.OutputMessage.REMOVE_STATION_SUCCESS;
 import static subway.view.OutputView.OutputMessage.SUBWAY_MAP;
 
@@ -28,25 +33,25 @@ public class OutputView {
     }
 
     public void printAddLine() {
-        System.out.println(String.format(INFO.getMessage(), "지하철 노선이 등록되었습니다."));
+        System.out.println(String.format(INFO.getMessage(), ADD_LINE_SUCCESS.getMessage()));
     }
 
     public void printRemoveLine() {
-        System.out.println(String.format(INFO.getMessage(), "지하철 노선이 삭제되었습니다."));
+        System.out.println(String.format(INFO.getMessage(), REMOVE_LINE_SUCCESS.getMessage()));
     }
 
     public void printAllLine(List<Line> lines) {
-        System.out.println("## 노선 목록");
+        System.out.println(LINE_LIST.getMessage());
         lines.forEach(line -> System.out.println(String.format(INFO.getMessage(), line.getName())));
         System.out.println();
     }
 
     public void printAddSection() {
-        System.out.println(String.format(INFO.getMessage(), "구간이 등록되었습니다."));
+        System.out.println(String.format(INFO.getMessage(), ADD_SECTION_SUCCESS.getMessage()));
     }
 
     public void printRemoveSection() {
-        System.out.println(String.format(INFO.getMessage(), "구간이 삭제되었습니다."));
+        System.out.println(String.format(INFO.getMessage(), REMOVE_SECTION_SUCCESS.getMessage()));
     }
 
     public void printAllLineWithStation(List<Line> lines) {
@@ -65,6 +70,11 @@ public class OutputView {
         REMOVE_STATION_SUCCESS("지하철 역이 삭제되었습니다."),
         FIND_STATION_SUCCESS("## 역 목록"),
         SUBWAY_MAP("## 지하철 노선도"),
+        ADD_LINE_SUCCESS("지하철 노선이 등록되었습니다."),
+        REMOVE_LINE_SUCCESS("지하철 노선이 삭제되었습니다."),
+        LINE_LIST("## 노선 목록"),
+        ADD_SECTION_SUCCESS("구간이 등록되었습니다."),
+        REMOVE_SECTION_SUCCESS("구간이 삭제되었습니다."),
         INFO("[INFO] %s"),
         INFO_DELIMITER("---"),
         ;

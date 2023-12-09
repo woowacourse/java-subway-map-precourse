@@ -1,5 +1,7 @@
 package subway.controller.line;
 
+import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
+
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -18,7 +20,7 @@ public class LineRemoveController implements SubLineController {
         try {
             String LineName = inputView.readRemoveLine();
             if (!LineRepository.containsLineName(LineName)) {
-                throw new IllegalArgumentException("존재하지 않는 노선입니다.");
+                throw new IllegalArgumentException(NOT_FOUND_LINE.getMessage());
             }
             LineRepository.deleteLineByName(LineName);
             outputView.printRemoveLine();

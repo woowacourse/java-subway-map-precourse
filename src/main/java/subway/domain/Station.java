@@ -7,6 +7,10 @@ import static subway.exception.ExceptionMessage.INVALID_STATION_NAME_SUFFIX;
 import java.util.Objects;
 
 public class Station {
+    private static final int MIN_STATION_NAME_LENGTH = 3;
+    private static final char MIN_KOREAN_STATION_NAME = '가';
+    private static final char MAX_KOREAN_STATION_NAME = '힣';
+    private static final String STATION_NAME_SUFFIX = "역";
     private String name;
 
     public Station(String name) {
@@ -15,13 +19,14 @@ public class Station {
     }
 
     private void validate(String name) {
-        if (name.length() < 3) {
+        if (name.length() < MIN_STATION_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_STATION_NAME_LENGTH.getMessage());
         }
-        if (name.chars().anyMatch(character -> character < '가' || '힣' < character)) {
+        if (name.chars()
+                .anyMatch(character -> character < MIN_KOREAN_STATION_NAME || MAX_KOREAN_STATION_NAME < character)) {
             throw new IllegalArgumentException(INVALID_STATION_NAME_CHARACTER.getMessage());
         }
-        if (!name.endsWith("역")) {
+        if (!name.endsWith(STATION_NAME_SUFFIX)) {
             throw new IllegalArgumentException(INVALID_STATION_NAME_SUFFIX.getMessage());
         }
     }
