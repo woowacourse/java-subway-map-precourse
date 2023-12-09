@@ -14,6 +14,7 @@ import static subway.view.OutputView.OutputMessage.SUBWAY_MAP;
 
 import java.util.List;
 import subway.domain.Line;
+import subway.domain.SectionRepository;
 import subway.domain.Station;
 
 public class OutputView {
@@ -59,7 +60,7 @@ public class OutputView {
         lines.forEach(line -> {
             System.out.println(String.format(INFO.getMessage(), line.getName()));
             System.out.println(String.format(INFO.getMessage(), INFO_DELIMITER.getMessage()));
-            List<Station> sections = line.getSections();
+            List<Station> sections = SectionRepository.getSections(line);
             sections.forEach(station -> System.out.println(String.format(INFO.getMessage(), station.getName())));
             System.out.println();
         });

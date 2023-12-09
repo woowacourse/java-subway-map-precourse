@@ -11,9 +11,9 @@ public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
 
     public static void initialize() {
-        lines.add(new Line("2호선", new Station("교대역"), new Station("강남역"), new Station("역삼역")));
-        lines.add(new Line("3호선", new Station("교대역"), new Station("남부터미널역"), new Station("양재역"), new Station("매봉역")));
-        lines.add(new Line("신분당선", new Station("강남역"), new Station("양재역"), new Station("양재시민의숲역")));
+        lines.add(new Line("2호선"));
+        lines.add(new Line("3호선"));
+        lines.add(new Line("신분당선"));
     }
 
     public static List<Line> lines() {
@@ -33,11 +33,6 @@ public class LineRepository {
                 .filter(line -> Objects.equals(line.getName(), name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_LINE.getMessage()));
-    }
-
-    public static boolean containsStation(Station station) {
-        return lines.stream()
-                .anyMatch(line -> line.contains(station));
     }
 
     public static boolean containsLineName(String lineName) {

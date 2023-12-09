@@ -16,6 +16,8 @@ public enum ExceptionMessage {
     INVALID_ADD_LINE_NAME_SUFFIX("노선의 이름뒤에 '선'이 붙어야 합니다."),
     INVALID_ADD_SECTION_INDEX("입력한 순서에 구간을 추가할 수 없습니다."),
     INVALID_ADD_SECTION_STATION_INDEX("순서는 숫자만 입력 가능합니다."),
+    INVALID_ADD_SECTION_STATION_NOT_FOUND("역 저장소에 존재하지 않는 역은 구간으로 추가할 수 없습니다."),
+    INVALID_REMOVE_SECTION_STATION_LESS_THAN_MINIMUM("노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다."),
     ;
     private final String message;
 

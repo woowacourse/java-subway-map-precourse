@@ -12,7 +12,7 @@ public class LineRepositoryTest {
     @Test
     public void findByName() throws Exception {
         LineRepository.initialize();
-        assertThatCode(() -> LineRepository.findLineByName("1호선"))
+        assertThatCode(() -> LineRepository.findLineByName("2호선"))
                 .doesNotThrowAnyException();
     }
 
@@ -24,19 +24,11 @@ public class LineRepositoryTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("노선 저장소에 등록된 역인지 반환한다.")
-    @Test
-    public void containsStation() throws Exception {
-        LineRepository.initialize();
-        assertThat(LineRepository.containsStation(new Station("강남역"))).isTrue();
-        assertThat(LineRepository.containsStation(new Station("없는역"))).isFalse();
-    }
-
     @DisplayName("호선의 이름이 존재하는지 확인한다.")
     @Test
     public void containsLine() throws Exception {
         LineRepository.initialize();
-        assertThat(LineRepository.containsLineName("1호선")).isTrue();
+        assertThat(LineRepository.containsLineName("2호선")).isTrue();
         assertThat(LineRepository.containsLineName("없는호선")).isFalse();
     }
 }

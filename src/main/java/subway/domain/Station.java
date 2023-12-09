@@ -19,13 +19,25 @@ public class Station {
     }
 
     private void validate(String name) {
+        validateStationNameLength(name);
+        validateStationNameCharacter(name);
+        validateStationNameSuffix(name);
+    }
+
+    private static void validateStationNameLength(String name) {
         if (name.length() < MIN_STATION_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_STATION_NAME_LENGTH.getMessage());
         }
+    }
+
+    private static void validateStationNameCharacter(String name) {
         if (name.chars()
                 .anyMatch(character -> character < MIN_KOREAN_STATION_NAME || MAX_KOREAN_STATION_NAME < character)) {
             throw new IllegalArgumentException(INVALID_STATION_NAME_CHARACTER.getMessage());
         }
+    }
+
+    private static void validateStationNameSuffix(String name) {
         if (!name.endsWith(STATION_NAME_SUFFIX)) {
             throw new IllegalArgumentException(INVALID_STATION_NAME_SUFFIX.getMessage());
         }

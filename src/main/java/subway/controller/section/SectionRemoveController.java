@@ -1,11 +1,12 @@
 package subway.controller.section;
 
-import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
-import static subway.exception.ExceptionMessage.NOT_FOUND_STATION;
+import static subway.util.SubwayValidator.validateLineExist;
+import static subway.util.SubwayValidator.validateSectionExist;
 
 import subway.controller.SubController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -22,9 +23,7 @@ public class SectionRemoveController implements SubController {
     @Override
     public void process() {
         try {
-            Line line = getLine();
-            Station station = getStation(line);
-            line.removeSection(station);
+            SectionRepository.removeSection(getLine(), getStation(getLine()));
             outputView.printRemoveSection();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -33,17 +32,13 @@ public class SectionRemoveController implements SubController {
 
     private Line getLine() {
         String lineName = inputView.readRemoveSectionLine();
-        if (!LineRepository.containsLineName(lineName)) {
-            throw new IllegalArgumentException(NOT_FOUND_LINE.getMessage());
-        }
+        validateLineExist(lineName);
         return LineRepository.findLineByName(lineName);
     }
 
     private Station getStation(Line line) {
         Station station = inputView.readRemoveSectionStation();
-        if (!line.contains(station)) {
-            throw new IllegalArgumentException(NOT_FOUND_STATION.getMessage());
-        }
+        validateSectionExist(line, station);
         return station;
     }
 }

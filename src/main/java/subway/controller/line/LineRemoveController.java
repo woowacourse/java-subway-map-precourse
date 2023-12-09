@@ -1,6 +1,6 @@
 package subway.controller.line;
 
-import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
+import static subway.util.SubwayValidator.validateLineExist;
 
 import subway.controller.SubController;
 import subway.domain.LineRepository;
@@ -20,9 +20,7 @@ public class LineRemoveController implements SubController {
     public void process() {
         try {
             String LineName = inputView.readRemoveLine();
-            if (!LineRepository.containsLineName(LineName)) {
-                throw new IllegalArgumentException(NOT_FOUND_LINE.getMessage());
-            }
+            validateLineExist(LineName);
             LineRepository.deleteLineByName(LineName);
             outputView.printRemoveLine();
         } catch (IllegalArgumentException e) {

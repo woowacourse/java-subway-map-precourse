@@ -1,10 +1,12 @@
 package subway.controller.section;
 
-import static subway.exception.ExceptionMessage.NOT_FOUND_LINE;
+import static subway.util.SubwayValidator.validateLineExist;
+import static subway.util.SubwayValidator.validateStationExist;
 
 import subway.controller.SubController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.domain.Station;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -21,17 +23,26 @@ public class SectionAddController implements SubController {
     @Override
     public void process() {
         try {
-            String lineName = inputView.readAddSectionLine();
-            if (!LineRepository.containsLineName(lineName)) {
-                throw new IllegalArgumentException(NOT_FOUND_LINE.getMessage());
-            }
-            Station station = inputView.readAddSectionStation();
-            int index = inputView.readAddSectionIndex();
-            Line line = LineRepository.findLineByName(lineName);
-            line.addSection(station, index);
+            SectionRepository.addSection(getLine(), getStation(), getIndex());
             outputView.printAddSection();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private Line getLine() {
+        String lineName = inputView.readAddSectionLine();
+        validateLineExist(lineName);
+        return LineRepository.findLineByName(lineName);
+    }
+
+    private Station getStation() {
+        Station station = inputView.readAddSectionStation();
+        validateStationExist(station);
+        return station;
+    }
+
+    private int getIndex() {
+        return inputView.readAddSectionIndex();
     }
 }

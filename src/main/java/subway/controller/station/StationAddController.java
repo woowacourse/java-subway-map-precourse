@@ -1,7 +1,7 @@
 package subway.controller.station;
 
-import static subway.exception.ExceptionMessage.STATION_ALREADY_EXISTS;
 import static subway.util.Retry.retry;
+import static subway.util.SubwayValidator.validateStationExist;
 
 import subway.controller.SubController;
 import subway.domain.Station;
@@ -27,9 +27,7 @@ public class StationAddController implements SubController {
 
     private Station getStation() {
         Station station = inputView.readAddStation();
-        if (StationRepository.contains(station)) {
-            throw new IllegalArgumentException(STATION_ALREADY_EXISTS.getMessage());
-        }
+        validateStationExist(station);
         return station;
     }
 }

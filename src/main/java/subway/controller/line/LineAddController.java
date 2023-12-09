@@ -1,26 +1,22 @@
 package subway.controller.line;
 
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_ALREADY_EXISTS;
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME;
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME_CHARACTER;
-import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NAME_SUFFIX;
 import static subway.exception.ExceptionMessage.INVALID_ADD_LINE_NOT_FOUND_STATION;
 import static subway.util.Retry.retry;
+import static subway.util.SubwayValidator.validateExistLine;
+import static subway.util.SubwayValidator.validateLineNameCharacter;
+import static subway.util.SubwayValidator.validateLineNameLength;
+import static subway.util.SubwayValidator.validateLineNameSuffix;
 
 import subway.controller.SubController;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.SectionRepository;
 import subway.domain.Station;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class LineAddController implements SubController {
-    private static final int MIN_LINE_NAME_LENGTH = 2;
-    private static final char MIN_NUMBER_LINE_NAME_CHARACTER = '0';
-    private static final char MAX_NUMBER_LINE_NAME_CHARACTER = '9';
-    private static final char MIN_KOREAN_LINE_NAME = '가';
-    private static final char MAX_KOREAN_LINE_NAME = '힣';
-    private static final String LINE_NAME_SUFFIX = "선";
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -32,10 +28,9 @@ public class LineAddController implements SubController {
     @Override
     public void process() {
         try {
-            String lineName = retry(this::getLineName);
-            Station ascendingStation = getAscendingStation();
-            Station descendingStation = getDescendingStation();
-            LineRepository.addLine(new Line(lineName, ascendingStation, descendingStation));
+            Line line = new Line(retry(this::getLineName));
+            LineRepository.addLine(line);
+            SectionRepository.createSection(line, getAscendingStation(), getDescendingStation());
             outputView.printAddLine();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -44,62 +39,32 @@ public class LineAddController implements SubController {
 
     private String getLineName() {
         String lineName = inputView.readAddLine();
-        validate(lineName);
-        return lineName;
+        return validate(lineName);
     }
 
-    private static void validate(String lineName) {
+    private static String validate(String lineName) {
         validateExistLine(lineName);
         validateLineNameLength(lineName);
         validateLineNameCharacter(lineName);
         validateLineNameSuffix(lineName);
-    }
-
-    private static void validateExistLine(String lineName) {
-        if (LineRepository.containsLineName(lineName)) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_ALREADY_EXISTS.getMessage());
-        }
-    }
-
-    private static void validateLineNameLength(String lineName) {
-        if (lineName.length() < MIN_LINE_NAME_LENGTH) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME.getMessage());
-        }
-    }
-
-    private static void validateLineNameCharacter(String lineName) {
-        if (lineName.chars()
-                .anyMatch(character ->
-                        (character < MIN_NUMBER_LINE_NAME_CHARACTER || MAX_NUMBER_LINE_NAME_CHARACTER < character) && (
-                                character < MIN_KOREAN_LINE_NAME
-                                        || MAX_KOREAN_LINE_NAME < character))) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME_CHARACTER.getMessage());
-        }
-    }
-
-    private static void validateLineNameSuffix(String lineName) {
-        if (!lineName.endsWith(LINE_NAME_SUFFIX)) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NAME_SUFFIX.getMessage());
-        }
+        return lineName;
     }
 
     private Station getAscendingStation() {
         Station ascendingStation = inputView.readAscendingStation();
-        if (!validateStationExist(ascendingStation)) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NOT_FOUND_STATION.getMessage());
-        }
+        validateStationExist(ascendingStation);
         return ascendingStation;
     }
 
     private Station getDescendingStation() {
         Station descendingStation = inputView.readDescendingStation();
-        if (!validateStationExist(descendingStation)) {
-            throw new IllegalArgumentException(INVALID_ADD_LINE_NOT_FOUND_STATION.getMessage());
-        }
+        validateStationExist(descendingStation);
         return descendingStation;
     }
 
-    private static boolean validateStationExist(Station station) {
-        return LineRepository.containsStation(station);
+    private static void validateStationExist(Station descendingStation) {
+        if (!StationRepository.contains(descendingStation)) {
+            throw new IllegalArgumentException(INVALID_ADD_LINE_NOT_FOUND_STATION.getMessage());
+        }
     }
 }

@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Section {
+    private static final int OFFSET = 1;
     private final List<Station> sections;
-
 
     public Section(List<Station> sections) {
         this.sections = sections;
@@ -28,7 +28,7 @@ public class Section {
     }
 
     public Station getDescendingStation() {
-        return this.sections.get(this.sections.size() - 1);
+        return this.sections.get(this.sections.size() - OFFSET);
     }
 
     public boolean contains(Station station) {
@@ -37,5 +37,9 @@ public class Section {
 
     public List<Station> getSection() {
         return Collections.unmodifiableList(this.sections);
+    }
+
+    public boolean isRemovable() {
+        return this.sections.size() > 2;
     }
 }

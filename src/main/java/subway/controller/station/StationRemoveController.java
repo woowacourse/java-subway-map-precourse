@@ -1,10 +1,9 @@
 package subway.controller.station;
 
-import static subway.exception.ExceptionMessage.INVALID_REMOVE_STATION_IN_LINE;
-import static subway.exception.ExceptionMessage.NOT_FOUND_STATION;
+import static subway.util.SubwayValidator.validateStationContainedAnyLine;
+import static subway.util.SubwayValidator.validateStationExist;
 
 import subway.controller.SubController;
-import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
@@ -32,12 +31,8 @@ public class StationRemoveController implements SubController {
 
     private Station getStation() {
         Station station = inputView.readRemoveStation();
-        if (!StationRepository.contains(station)) {
-            throw new IllegalArgumentException(NOT_FOUND_STATION.getMessage());
-        }
-        if (LineRepository.containsStation(station)) {
-            throw new IllegalArgumentException(INVALID_REMOVE_STATION_IN_LINE.getMessage());
-        }
+        validateStationExist(station);
+        validateStationContainedAnyLine(station);
         return station;
     }
 }
