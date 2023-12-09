@@ -14,6 +14,9 @@ public class Line {
     }
 
     public void addSection(Station station, int index) {
+        if (index < 1 || index > sections.size()) {
+            throw new IllegalArgumentException("입력한 순서에 구간을 추가할 수 없습니다.");
+        }
         sections.add(index - 1, station);
     }
 

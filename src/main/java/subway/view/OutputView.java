@@ -39,6 +39,10 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printAddSection() {
+        System.out.println(String.format(INFO.getMessage(), "구간이 등록되었습니다."));
+    }
+
     protected enum OutputMessage {
         ADD_STATION_SUCCESS("지하철 역이 등록되었습니다."),
         REMOVE_STATION_SUCCESS("지하철 역이 삭제되었습니다."),

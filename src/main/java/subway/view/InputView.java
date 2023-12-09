@@ -7,11 +7,13 @@ import static subway.view.InputView.InputMessage.GET_INPUT;
 import static subway.view.InputView.InputMessage.LINE_OPTION;
 import static subway.view.InputView.InputMessage.MAIN_OPTION;
 import static subway.view.InputView.InputMessage.REMOVE_STATION;
+import static subway.view.InputView.InputMessage.SECTION_OPTION;
 import static subway.view.InputView.InputMessage.STATION_OPTION;
 
 import java.util.Scanner;
 import subway.controller.MainOption;
 import subway.controller.line.LineOption;
+import subway.controller.section.SectionOption;
 import subway.controller.station.StationOption;
 import subway.domain.Station;
 
@@ -69,6 +71,31 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public SectionOption readSectionOption() {
+        System.out.println(SECTION_OPTION.getMessage());
+        System.out.println(GET_INPUT.getMessage());
+        return SectionOption.of(scanner.nextLine());
+    }
+
+    public String readAddSectionLine() {
+        System.out.println("## 노선을 입력하세요.");
+        return scanner.nextLine();
+    }
+
+    public Station readAddSectionStation() {
+        System.out.println("## 역이름을 입력하세요.");
+        return new Station(scanner.nextLine());
+    }
+
+    public int readAddSectionIndex() {
+        System.out.println("## 순서를 입력하세요.");
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("순서는 숫자만 입력 가능합니다.");
+        }
+    }
+
     protected enum InputMessage {
         MAIN_OPTION("## 메인 화면\n"
                 + "1. 역 관리\n"
@@ -85,6 +112,10 @@ public class InputView {
                 + "1. 노선 등록\n"
                 + "2. 노선 삭제\n"
                 + "3. 노선 조회\n"
+                + "B. 돌아가기"),
+        SECTION_OPTION("## 구간 관리 화면\n"
+                + "1. 구간 등록\n"
+                + "2. 구간 삭제\n"
                 + "B. 돌아가기"),
         GET_INPUT("## 원하는 기능을 선택하세요."),
         ADD_STATION("## 등록할 역 이름을 입력하세요."),

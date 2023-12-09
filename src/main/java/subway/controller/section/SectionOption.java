@@ -1,24 +1,23 @@
-package subway.controller.line;
+package subway.controller.section;
 
 import static subway.exception.ExceptionMessage.NOT_FOUND_OPTION;
 
 import java.util.Arrays;
 
-public enum LineOption {
+public enum SectionOption {
     ADD("1"),
     DELETE("2"),
-    LIST("3"),
     BACK("B"),
     ;
     private final String option;
 
-    LineOption(String option) {
+    SectionOption(String option) {
         this.option = option;
     }
 
-    public static LineOption of(String name) {
+    public static SectionOption of(String name) {
         return Arrays.stream(values())
-                .filter(lineOption -> lineOption.option.equals(name))
+                .filter(sectionOption -> sectionOption.option.equals(name))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_OPTION.getMessage()));
     }
