@@ -1,5 +1,6 @@
-package subway.controller;
+package subway.controller.map;
 
+import subway.controller.SubController;
 import subway.domain.MainOption;
 import subway.view.InputView;
 import subway.view.OutputView;

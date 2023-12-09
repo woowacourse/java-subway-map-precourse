@@ -1,6 +1,6 @@
 package subway.domain;
 
-import static subway.exception.ExceptionMessage.NOT_FOUND_MAIN_OPTION;
+import static subway.exception.ExceptionMessage.NOT_FOUND_OPTION;
 
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ public enum MainOption {
         return Arrays.stream(values())
                 .filter(mainOption -> mainOption.option.equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_MAIN_OPTION.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_OPTION.getMessage()));
     }
 
     public boolean isQuit() {

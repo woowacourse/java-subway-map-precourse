@@ -1,20 +1,21 @@
-package subway.controller;
+package subway.controller.line;
 
+import subway.controller.SubController;
 import subway.domain.MainOption;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionController implements SubController {
+public class LineController implements SubController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public SectionController(InputView inputView, OutputView outputView) {
+    public LineController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     @Override
     public MainOption process() {
-        return MainOption.SECTION;
+        return MainOption.LINE;
     }
 }

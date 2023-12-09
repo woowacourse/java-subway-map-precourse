@@ -38,4 +38,8 @@ public class StationRepository {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_STATION.getMessage()));
     }
+
+    public static boolean contains(Station station) {
+        return stations.contains(station);
+    }
 }
