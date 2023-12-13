@@ -10,7 +10,11 @@ public enum ErrorMessage {
 
     // Station
     STATION_DUPLICATED_ERROR("중복된 역 이름을 입력하였습니다."),
-    STATION_NOT_FOUND_ERROR("입력한 역을 찾을 수 없습니다.");
+    STATION_NOT_FOUND_ERROR("입력한 역을 찾을 수 없습니다."),
+
+    // Line
+    LINE_DUPLICATED_ERROR("중복된 노선 이름을 입력하였습니다."),
+    LINE_NOT_FOUND_ERROR("입력한 노선을 찾을 수 없습니다.");
 
     private final String message;
 

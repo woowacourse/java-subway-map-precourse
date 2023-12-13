@@ -1,5 +1,6 @@
 package subway.view;
 
+import java.util.List;
 import subway.domain.constants.LineCommand;
 import subway.view.console.ConsoleReader;
 import subway.view.console.ConsoleWriter;
@@ -16,8 +17,13 @@ public class LineView {
         return LineCommand.from(consoleReader.enterMessage());
     }
 
-    public String enterStationName() {
+    public String enterLineNameToAdd() {
         ConsoleWriter.printlnMessage("## 등록할 노선 이름을 입력하세요.");
+        return consoleReader.enterMessage();
+    }
+
+    public String enterLineNameToDelete() {
+        ConsoleWriter.printlnMessage("## 삭제할 노선 이름을 입력하세요.");
         return consoleReader.enterMessage();
     }
 
@@ -29,4 +35,19 @@ public class LineView {
         ConsoleWriter.printlnMessage("B. 돌아가기");
     }
 
+    public void printAddResult() {
+        ConsoleWriter.printlnMessage("[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    public void printDeleteResult() {
+        ConsoleWriter.printlnMessage("[INFO] 지하철 노선이 삭제되었습니다.");
+    }
+
+    public void printAllLines(List<String> lines) {
+        ConsoleWriter.printlnMessage("## 노선 목록");
+        for (String line : lines) {
+            ConsoleWriter.printlnMessage("[INFO] " + line);
+        }
+        ConsoleWriter.println();
+    }
 }

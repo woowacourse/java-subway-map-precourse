@@ -14,10 +14,6 @@ public class StationController {
         this.stationView = stationView;
     }
 
-    public void addStations(List<String> stations) {
-        subwayService.addAll(stations);
-    }
-
     public void run() {
         stationView.printFunctions();
         StationCommand function = stationView.enterFunction();
@@ -32,6 +28,10 @@ public class StationController {
         }
     }
 
+    public void addStations(List<String> stations) {
+        subwayService.addAll(stations);
+    }
+    
     private void addStation() {
         String name = stationView.enterStationNameToAdd();
         subwayService.add(name);
@@ -44,7 +44,7 @@ public class StationController {
         stationView.printDeleteResult();
     }
 
-    private List<String> getStation() {
+    private void getStation() {
         stationView.printAllStation(subwayService.getAll());
     }
 }
