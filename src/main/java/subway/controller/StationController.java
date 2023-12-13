@@ -35,5 +35,6 @@ public class StationController {
     private void addStation() {
         String name = stationView.enterStationName();
         subwayService.add(name);
+        stationView.printAddResult();
     }
 }

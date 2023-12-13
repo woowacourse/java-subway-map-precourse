@@ -13,7 +13,7 @@ public class Station {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() < 2) {
+        if (name.length() < MIN_LENGTH) {
             throw CustomException.from(ErrorMessage.STATION_NAME_ERROR);
         }
     }

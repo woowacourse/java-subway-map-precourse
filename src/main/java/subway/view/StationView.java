@@ -26,4 +26,8 @@ public class StationView {
         ConsoleWriter.printlnMessage("3. 역 조회");
         ConsoleWriter.printlnMessage("B. 돌아가기");
     }
+
+    public void printAddResult() {
+        ConsoleWriter.printlnMessage("[INFO] 지하철 역이 등록되었습니다.");
+    }
 }
