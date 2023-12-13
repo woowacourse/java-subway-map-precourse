@@ -39,7 +39,17 @@ public class RouteController {
         routeView.printResult();
     }
 
+    /**
+     * 구간을 삭제하는 함수
+     */
     private void deleteRoute() {
 
+    }
+
+    /**
+     * 지하철 노선도를 출력하는 함수
+     */
+    public void print() {
+        routeView.print
     }
 }
