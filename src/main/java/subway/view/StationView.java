@@ -15,8 +15,8 @@ public class StationView {
         return StationCommand.from(consoleReader.enterMessage());
     }
 
-    public void enterStationName() {
-        return
+    public String enterStationName() {
+        return consoleReader.enterMessage();
     }
 
     public void printFunctions() {

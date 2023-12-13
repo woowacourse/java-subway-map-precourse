@@ -3,6 +3,8 @@ package subway.service;
 import java.util.List;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.global.exception.CustomException;
+import subway.global.exception.ErrorMessage;
 
 public class StationService implements SubwayService {
     private final StationRepository stationRepository;
@@ -20,6 +22,9 @@ public class StationService implements SubwayService {
 
     @Override
     public void add(String station) {
+        if (stationRepository.findByName(station).isPresent()) {
+            throw CustomException.from(ErrorMessage.STATION_DUPLICATED_ERROR);
+        }
         stationRepository.addStation(new Station(station));
     }
 

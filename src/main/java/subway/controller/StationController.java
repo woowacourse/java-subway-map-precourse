@@ -33,6 +33,7 @@ public class StationController {
     }
 
     private void addStation() {
-        stationView.enterStationName();
+        String name = stationView.enterStationName();
+        subwayService.add(name);
     }
 }
