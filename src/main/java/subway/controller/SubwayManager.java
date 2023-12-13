@@ -4,22 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import subway.domain.constants.FunctionCommand;
-import subway.view.InputView;
-import subway.view.OutputView;
+import subway.view.MainView;
 
 public class SubwayManager {
-    private final OutputView outputView;
-    private final InputView inputView;
+    private final MainView mainView;
     private final LineController lineController;
     private final StationController stationController;
     private final RouteController routeController;
 
-    public SubwayManager(OutputView outputView, InputView inputView, LineController lineController,
+    public SubwayManager(MainView mainView,
+                         LineController lineController,
                          StationController stationController,
                          RouteController routeController
     ) {
-        this.outputView = outputView;
-        this.inputView = inputView;
+        this.mainView = mainView;
         this.lineController = lineController;
         this.stationController = stationController;
         this.routeController = routeController;
@@ -44,8 +42,8 @@ public class SubwayManager {
 
     public void run() {
         while (true) {
-            outputView.printMainScreen();
-            FunctionCommand function = inputView.enterFunction();
+            mainView.printMainScreen();
+            FunctionCommand function = mainView.enterFunction();
             if (function.equals(FunctionCommand.STATION)) {
                 stationController.run();
             }

@@ -1,8 +1,20 @@
 package subway.view;
 
+import subway.domain.constants.FunctionCommand;
+import subway.view.console.ConsoleReader;
 import subway.view.console.ConsoleWriter;
 
-public class OutputView {
+public class MainView {
+    private final ConsoleReader consoleReader;
+
+    public MainView(ConsoleReader consoleReader) {
+        this.consoleReader = consoleReader;
+    }
+
+    public FunctionCommand enterFunction() {
+        return FunctionCommand.from(consoleReader.enterMessage());
+    }
+
     public void printMainScreen() {
         ConsoleWriter.printlnMessage("## 메인 화면");
         ConsoleWriter.printlnMessage("1. 역 관리");
