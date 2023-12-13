@@ -16,8 +16,13 @@ public class StationView {
         return StationCommand.from(consoleReader.enterMessage());
     }
 
-    public String enterStationName() {
+    public String enterStationNameToAdd() {
         ConsoleWriter.printlnMessage("## 등록할 역 이름을 입력하세요.");
+        return consoleReader.enterMessage();
+    }
+
+    public String enterStationNameToDelete() {
+        ConsoleWriter.printlnMessage("## 삭제할 역 이름을 입력하세요.");
         return consoleReader.enterMessage();
     }
 
@@ -31,5 +36,9 @@ public class StationView {
 
     public void printAddResult() {
         ConsoleWriter.printlnMessage("[INFO] 지하철 역이 등록되었습니다.");
+    }
+
+    public void printDeleteResult() {
+        ConsoleWriter.printlnMessage("[INFO] 지하철 역이 삭제되었습니다.");
     }
 }

@@ -30,6 +30,9 @@ public class StationService implements SubwayService {
 
     @Override
     public void delete(String station) {
+        if (stationRepository.findByName(station).isEmpty()) {
+            throw CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR);
+        }
         stationRepository.deleteStation(station);
     }
 }

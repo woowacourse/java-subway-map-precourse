@@ -33,8 +33,14 @@ public class StationController {
     }
 
     private void addStation() {
-        String name = stationView.enterStationName();
+        String name = stationView.enterStationNameToAdd();
         subwayService.add(name);
         stationView.printAddResult();
+    }
+
+    private void deleteStation() {
+        String name = stationView.enterStationNameToDelete();
+        subwayService.delete(name);
+        stationView.printDeleteResult();
     }
 }
