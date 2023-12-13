@@ -12,10 +12,12 @@ public class StationView {
     }
 
     public StationCommand enterFunction() {
+        ConsoleWriter.printlnMessage("## 원하는 기능을 선택하세요.");
         return StationCommand.from(consoleReader.enterMessage());
     }
 
     public String enterStationName() {
+        ConsoleWriter.printlnMessage("## 등록할 역 이름을 입력하세요.");
         return consoleReader.enterMessage();
     }
 
