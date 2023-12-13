@@ -32,8 +32,13 @@ public class RouteController {
     }
 
     private void addRoute() {
+        String line = routeView.enterLineNameToAdd();
+        String station = routeView.enterStationNameToAdd();
+        int index = routeView.enterIndexToAdd();
+        routeService.addStation(line, station, index);
+        routeView.printResult();
     }
-    
+
     private void deleteRoute() {
 
     }

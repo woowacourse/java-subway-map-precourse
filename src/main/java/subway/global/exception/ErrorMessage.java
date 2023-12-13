@@ -14,7 +14,10 @@ public enum ErrorMessage {
 
     // Line
     LINE_DUPLICATED_ERROR("중복된 노선 이름을 입력하였습니다."),
-    LINE_NOT_FOUND_ERROR("입력한 노선을 찾을 수 없습니다.");
+    LINE_NOT_FOUND_ERROR("입력한 노선을 찾을 수 없습니다."),
+
+    // Route
+    INVALID_INDEX_ERROR("올바른 순서를 입력해주세요.");
 
     private final String message;
 

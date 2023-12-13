@@ -49,4 +49,12 @@ public class RouteService {
                 .orElseThrow(() -> CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR));
         route.add(line, List.of(head, tail));
     }
+
+    public void addStation(String lineName, String stationName, int index) {
+        Line line = lineRepository.findByName(lineName)
+                .orElseThrow(() -> CustomException.from(ErrorMessage.LINE_NOT_FOUND_ERROR));
+        Station station = stationRepository.findByName(stationName)
+                .orElseThrow(() -> CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR));
+        route.addStation(line, station, index);
+    }
 }

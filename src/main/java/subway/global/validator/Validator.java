@@ -9,4 +9,15 @@ public final class Validator {
             throw CustomException.from(ErrorMessage.INVALID_LENGTH_ERROR);
         }
     }
+
+    public static int validateNumber(String message, ErrorMessage errorMessage) {
+        if (isNotNumber(message)) {
+            throw CustomException.from(errorMessage);
+        }
+        return Integer.parseInt(message);
+    }
+
+    public static boolean isNotNumber(String str) {
+        return !str.matches("\\d+");
+    }
 }
