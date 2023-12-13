@@ -23,4 +23,17 @@ public class Route {
         }
         route.get(line).set(index, station);
     }
+
+    public void deleteStation(Line line, Station target) {
+        List<Station> stations = route.get(line);
+        Station station = findByName(stations, target.getName());
+        stations.remove(station);
+    }
+
+    private Station findByName(List<Station> stations, String target) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(target))
+                .findFirst()
+                .orElseThrow(() -> CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR));
+    }
 }

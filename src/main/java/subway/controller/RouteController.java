@@ -36,14 +36,17 @@ public class RouteController {
         String station = routeView.enterStationNameToAdd();
         int index = routeView.enterIndexToAdd();
         routeService.addStation(line, station, index);
-        routeView.printResult();
+        routeView.printAddResult();
     }
 
     /**
      * 구간을 삭제하는 함수
      */
     private void deleteRoute() {
-
+        String line = routeView.enterLineNameToDelete();
+        String station = routeView.enterStationNameToDelete();
+        routeService.deleteStation(line, station);
+        routeView.printDeleteResult();
     }
 
     /**

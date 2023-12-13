@@ -43,7 +43,21 @@ public class RouteView {
         );
     }
 
-    public void printResult() {
+    public String enterLineNameToDelete() {
+        ConsoleWriter.printlnMessage("## 삭제할 구간의 노선을 입력하세요.");
+        return consoleReader.enterMessage();
+    }
+
+    public String enterStationNameToDelete() {
+        ConsoleWriter.printlnMessage("## 삭제할 구간의 역을 입력하세요.");
+        return consoleReader.enterMessage();
+    }
+
+    public void printAddResult() {
         ConsoleWriter.printlnMessage("[INFO] 구간이 등록되었습니다.");
+    }
+
+    public void printDeleteResult() {
+        ConsoleWriter.printlnMessage("[INFO] 구간이 삭제되었습니다.");
     }
 }

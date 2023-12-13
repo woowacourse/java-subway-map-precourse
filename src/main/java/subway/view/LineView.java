@@ -60,5 +60,4 @@ public class LineView {
         ConsoleWriter.printlnMessage("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
         return consoleReader.enterMessage();
     }
-
 }
