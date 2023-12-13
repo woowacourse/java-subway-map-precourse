@@ -43,4 +43,8 @@ public class StationController {
         subwayService.delete(name);
         stationView.printDeleteResult();
     }
+
+    private List<String> getStation() {
+        stationView.printAllStation(subwayService.getAll());
+    }
 }

@@ -1,5 +1,6 @@
 package subway.view;
 
+import java.util.List;
 import subway.domain.constants.StationCommand;
 import subway.view.console.ConsoleReader;
 import subway.view.console.ConsoleWriter;
@@ -40,5 +41,13 @@ public class StationView {
 
     public void printDeleteResult() {
         ConsoleWriter.printlnMessage("[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
+    public void printAllStation(List<String> stations) {
+        ConsoleWriter.printlnMessage("## 역 목록");
+        for (String station : stations) {
+            ConsoleWriter.printlnMessage("[INFO] " + station);
+        }
+        ConsoleWriter.println();
     }
 }

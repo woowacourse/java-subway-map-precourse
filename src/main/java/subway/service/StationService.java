@@ -1,6 +1,7 @@
 package subway.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.global.exception.CustomException;
@@ -34,5 +35,13 @@ public class StationService implements SubwayService {
             throw CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR);
         }
         stationRepository.deleteStation(station);
+    }
+
+    @Override
+    public List<String> getAll() {
+        return stationRepository.stations()
+                .stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
     }
 }

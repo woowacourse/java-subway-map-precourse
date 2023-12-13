@@ -9,4 +9,6 @@ public interface SubwayService {
     void add(String element);
 
     void delete(String element);
+
+    List<String> getAll();
 }
