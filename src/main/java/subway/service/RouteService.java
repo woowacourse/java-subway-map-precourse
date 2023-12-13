@@ -8,6 +8,8 @@ import subway.domain.LineRepository;
 import subway.domain.Route;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.global.exception.CustomException;
+import subway.global.exception.ErrorMessage;
 
 public class RouteService {
     private final Route route;
@@ -36,5 +38,15 @@ public class RouteService {
         return stations.stream()
                 .map(Station::new)
                 .collect(Collectors.toList());
+    }
+
+    public void addRoute(String lineName, String headName, String tailName) {
+        Line line = lineRepository.findByName(lineName)
+                .orElseThrow(() -> CustomException.from(ErrorMessage.LINE_NOT_FOUND_ERROR));
+        Station head = stationRepository.findByName(headName)
+                .orElseThrow(() -> CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR));
+        Station tail = stationRepository.findByName(tailName)
+                .orElseThrow(() -> CustomException.from(ErrorMessage.STATION_NOT_FOUND_ERROR));
+        route.add(line, List.of(head, tail));
     }
 }

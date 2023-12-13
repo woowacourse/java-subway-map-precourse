@@ -21,10 +21,9 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public Optional<String> findByName(String line) {
+    public Optional<Line> findByName(String line) {
         return lines.stream()
-                .map(Line::getName)
-                .filter(name -> name.equals(line))
+                .filter(name -> name.getName().equals(line))
                 .findFirst();
     }
 }

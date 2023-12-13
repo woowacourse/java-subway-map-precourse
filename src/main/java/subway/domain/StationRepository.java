@@ -21,10 +21,9 @@ public class StationRepository {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
-    public static Optional<String> findByName(String station) {
+    public static Optional<Station> findByName(String station) {
         return stations.stream()
-                .map(Station::getName)
-                .filter(name -> name.equals(station))
+                .filter(name -> name.getName().equals(station))
                 .findFirst();
     }
 }

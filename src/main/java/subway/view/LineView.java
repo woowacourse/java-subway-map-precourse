@@ -50,4 +50,15 @@ public class LineView {
         }
         ConsoleWriter.println();
     }
+
+    public String enterHeadStation() {
+        ConsoleWriter.printlnMessage("## 등록할 노선의 상행 종점역 이름을 입력하세요.");
+        return consoleReader.enterMessage();
+    }
+
+    public String enterTailStation() {
+        ConsoleWriter.printlnMessage("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        return consoleReader.enterMessage();
+    }
+
 }
