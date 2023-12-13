@@ -3,16 +3,23 @@ package subway.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import subway.domain.constants.FunctionCommand;
+import subway.view.InputView;
+import subway.view.OutputView;
 
 public class SubwayManager {
+    private final OutputView outputView;
+    private final InputView inputView;
     private final LineController lineController;
     private final StationController stationController;
     private final RouteController routeController;
 
-    public SubwayManager(LineController lineController,
+    public SubwayManager(OutputView outputView, InputView inputView, LineController lineController,
                          StationController stationController,
                          RouteController routeController
     ) {
+        this.outputView = outputView;
+        this.inputView = inputView;
         this.lineController = lineController;
         this.stationController = stationController;
         this.routeController = routeController;
@@ -33,5 +40,27 @@ public class SubwayManager {
         route.put("3호선", List.of("교대역", "남부터미널역", "양재역", "매봉역"));
         route.put("신분당선", List.of("강남역", "양재역", "양재시민의숲역"));
         routeController.addRoutes(route);
+    }
+
+    public void run() {
+        while (true) {
+            outputView.printMainScreen();
+            FunctionCommand function = inputView.enterFunction();
+            if (function.equals(FunctionCommand.STATION)) {
+                stationController.run();
+            }
+            if (function.equals(FunctionCommand.LINE)) {
+                lineController.run();
+            }
+            if (function.equals(FunctionCommand.ROUTE)) {
+                routeController.run();
+            }
+            if (function.equals(FunctionCommand.PRINT)) {
+                routeController.print();
+            }
+            if (function.equals(FunctionCommand.QUIT)) {
+                break;
+            }
+        }
     }
 }
