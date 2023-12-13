@@ -48,11 +48,4 @@ public class RouteController {
         routeService.deleteStation(line, station);
         routeView.printDeleteResult();
     }
-
-    /**
-     * 지하철 노선도를 출력하는 함수
-     */
-    public void print() {
-        routeView.print
-    }
 }
